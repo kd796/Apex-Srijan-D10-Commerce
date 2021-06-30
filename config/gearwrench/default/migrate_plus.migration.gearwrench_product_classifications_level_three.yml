@@ -1,4 +1,4 @@
-uuid: 642013cc-bd6e-4c2f-b4bb-e15eb9ef584a
+uuid: 9b736a97-9f0e-4e95-a2d3-d9f25c563032
 langcode: en
 status: true
 dependencies: {  }
@@ -35,53 +35,45 @@ source:
       type: string
 process:
   name:
-    -
-      plugin: skip_on_empty
-      method: process
-      source: remote_term_name
-    -
-      plugin: skip_on_value
-      method: process
-      not_equals: true
-      value:
-        - Standard
-        - Deep
-        - Bit
-        - Flex
-        - 'Mixed Sets'
-        - Extensions
-        - Adapters
-        - 'Universal Joints'
-        - Accessories
-        - '1/4" Drive'
-        - '3/8" Drive'
-        - '1/2" Drive'
-        - '3/4" Drive'
-        - '1" Drive'
-        - Multi-Drive
-        - 'Dual Material'
-        - Acetate
-        - Bits
-        - Combination
-        - QuadBox™
-        - 'Double Box'
-        - 'Crowfoot & Flare Nut'
-        - Accessories
-        - Adjustable
-        - Combination
-        - 'Crowfoot & Flare Nut'
-  field_classification_id: remote_term_id
+    plugin: skip_on_empty
+    method: row
+    source: remote_term_name
   parent:
-    -
-      plugin: get_classification_parent_name
-      source: remote_parent_name
-    -
-      plugin: default_value
-      default_value: 0
+    plugin: get_classification_parent_name
+    source: remote_parent_name
+  field_classification_id:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_term_id
+    method: row
+    value:
+      - W3_735405
+      - W3_735403
+      - W3_735402
+      - W3_735407
+      - W3_735404
+      - W3_735408
+      - W3_735409
+      - W3_735410
+      - W3_735411
+      - W3_714195
+      - W3_714196
+      - W3_714197
+      - W3_714199
+      - W3_714200
+      - W3_714201
+      - W3_16160
+      - W3_16161
+      - W3_16163
+      - W3_16128
+      - W3_16138
+      - W3_736552
+      - W3_16141
+      - W3_736555
+      - W3_16146
+      - W3_16145
+      - W3_736554
 destination:
   plugin: 'entity:taxonomy_term'
   default_bundle: product_classifications
-migration_dependencies:
-  required:
-    - gearwrench_parent_product_classifications_level_two
-  optional: {  }
+migration_dependencies: null

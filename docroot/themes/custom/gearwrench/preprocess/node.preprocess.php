@@ -19,6 +19,7 @@ use Drupal\Core\Url;
  * Implements hook_preprocess_node().
  */
 function gearwrench_preprocess_node(array &$variables) {
+  // dump($variables);
   /*
    * Removing theme from field_components so it doesn't render wrapper
    * "field__item" on all our components
@@ -32,7 +33,7 @@ function gearwrench_preprocess_node(array &$variables) {
  * Implements hook_preprocess_node__VIEW_MODE() for full.
  */
 function gearwrench_preprocess_node__full(array &$variables) {
-  // Nothing to see here.
+  // Nothing to see here.;.
 }
 
 /**

@@ -146,7 +146,6 @@
     },
     updateHeaderPlaceholder: function ($menu_item) {
       var height = 0;
-
       if (this.isDesktop() && $menu_item.length > 0 && $('.region-header').hasClass('region--menu-item-expanded')) {
         if ($menu_item.hasClass('menu-item--toggle-block')) {
           var block_id = $menu_item.attr('data-toggle-block');

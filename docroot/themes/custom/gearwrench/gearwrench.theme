@@ -89,7 +89,7 @@ function gearwrench_theme_suggestions_menu_alter(array &$suggestions, array &$va
   if ($variables['menu_name'] === 'featured-tools') {
     $suggestions[] = $variables['theme_hook_original'] . '__block_' . $variables['menu_name'];
   }
-//  dump($variables);
+  // dump($variables);
 }
 
 /**
@@ -186,7 +186,7 @@ function gearwrench_preprocess_menu__main__block_header_menu_main(array &$variab
     }
   }
 
-  // Generate Featured Tools Menu
+  // Generate Featured Tools Menu.
   $featured_tools_menu = NULL;
   $featured_tools_menu_name = 'featured-tools';
   $featured_tools_menu_tree = \Drupal::menuTree();
@@ -301,4 +301,3 @@ function gearwrench_preprocess_responsive_image_formatter(&$variables) {
     $variables['item']->set('alt', $alt);
   }
 }
-

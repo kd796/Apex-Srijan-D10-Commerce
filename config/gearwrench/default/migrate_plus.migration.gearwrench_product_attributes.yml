@@ -1,4 +1,4 @@
-uuid: de5622b1-2ed1-4e0f-bbc2-0716c301c7dd
+uuid: db2cfad1-c9e8-47e3-afac-1074571c6f62
 langcode: en
 status: true
 dependencies: {  }
@@ -11,7 +11,7 @@ migration_group: gearwrench
 label: 'Product Attributes'
 source:
   constants:
-    DESCRIPTION_SUFFIX: 'Imported from PIM'
+    DESCRIPTION_PREFIX: 'PIM Attribute ID'
     COLON: ' : '
   plugin: url
   data_fetcher_plugin: http
@@ -64,6 +64,83 @@ process:
         - asset.extra-samples
         - asset.gamma
         - asset.pages
+        - ATT100
+        - ATT101
+        - ATT102
+        - ATT103
+        - ATT104
+        - ATT105
+        - ATT106
+        - ATT107
+        - ATT108
+        - ATT109
+        - ATT921
+        - BaseUnitOfMeasure
+        - Brand
+        - CasePackQty
+        - ATT738
+        - ATT704222
+        - ATT776
+        - ATT777459
+        - ATT938
+        - ATT170
+        - ATT919
+        - ATT672479
+        - CustomerPrice
+        - DeliveryUnit
+        - SAP_Description
+        - ATT22025
+        - 'Display Sequence'
+        - DistChannel
+        - DivCode
+        - ATT669088
+        - ExternalVideoURL
+        - ATT207
+        - ATT210
+        - ATT737269
+        - ATT583415
+        - ATT712732
+        - ListPrice
+        - ATT595
+        - 'SAP Material Status'
+        - ATT923
+        - ATT751760
+        - ATT799771
+        - ATT344
+        - ATT779366
+        - ATT180
+        - SalesOrg
+        - ATT703620
+        - ATT662384
+        - 'Table Display Sequence'
+        - ATT664496
+        - ATT670298
+        - 'Table Name'
+        - 'Table Sort Order'
+        - 'Table Sort Order Set Components'
+        - UNSPSC_V7.0901
+        - ATT539
+        - ATT15714
+        - ATT793609
+        - ATT15716
+        - ATT15715
+        - ATT15720
+        - ATT15702
+        - ATT793611
+        - ATT15717
+        - ATT793612
+        - ATT15700
+        - ATT15710
+        - ATT15701
+        - ATT793613
+        - ATT793614
+        - ATT15708
+        - ATT15712
+        - ATT15709
+        - ATT672478
+        - ATT672481
+        - AMZN
+        - ATT23047
     -
       plugin: machine_name
     -
@@ -74,13 +151,13 @@ process:
   vocab_id:
     source: remote_id
     plugin: machine_name
-  name:
+  name: remote_name
+  description:
     plugin: concat
     source:
-      - remote_name
+      - constants/DESCRIPTION_PREFIX
       - constants/COLON
       - remote_id
-  description: constants/DESCRIPTION_SUFFIX
 destination:
   plugin: 'entity:taxonomy_vocabulary'
 migration_dependencies: {  }

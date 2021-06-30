@@ -7,7 +7,7 @@ use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 
 /**
- * Get ID Attribute
+ * Get ID Attribute.
  *
  * @MigrateProcessPlugin(
  *   id = "get_id_attribute"
@@ -20,10 +20,9 @@ use Drupal\migrate\Row;
  *   plugin: get_id_attribute
  *   source: text
  * @endcode
- *
  */
-
 class GetIDAttribute extends ProcessPluginBase {
+
   /**
    * {@inheritdoc}
    */

@@ -1,4 +1,4 @@
-uuid: 3f9616b0-3731-4d0c-9f9c-02cbd1f2798d
+uuid: 973d4784-1ee3-4bc6-86f4-35b28d857a69
 langcode: en
 status: true
 dependencies: {  }
@@ -31,38 +31,37 @@ source:
       type: string
 process:
   name:
-    -
-      plugin: skip_on_empty
-      method: row
-      source: remote_term_name
-    -
-      plugin: skip_on_value
-      method: row
-      not_equals: false
-      value:
-        - 'Auto Specialty'
-        - 'Cutting Tools'
-        - 'Tool Storage'
-        - 'Impact Products'
-        - 'Ratchets and Drive Tools'
-        - 'Torque Products'
-        - 'Screwdrivers and Nutdrivers'
-        - Wrenches
-        - Pliers
-        - 'Pry Bars'
-        - 'Striking and Struck'
-        - 'Measuring and Inspection'
-        - Pullers
-        - Sockets
-        - Lighting
-        - 'Shop Assist Equipment'
-        - 'Tool Sets'
-        - 'Tethered Products'
-        - 'Extraction Tools'
+    plugin: skip_on_empty
+    method: row
+    source: remote_term_name
   vid:
     plugin: default_value
     default_value: product_classifications
-  field_classification_id: remote_term_id
+  field_classification_id:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_term_id
+    method: row
+    value:
+      - W1_15788
+      - W1_15789
+      - W1_15791
+      - W1_15792
+      - W1_15793
+      - W1_15794
+      - W1_15795
+      - W1_15796
+      - W1_15797
+      - W1_15798
+      - W1_15799
+      - W1_15847
+      - W1_15848
+      - W1_16113
+      - W1_727497
+      - W1_728251
+      - W1_736539
+      - W1_781017
+      - W1_785249
 destination:
   plugin: 'entity:taxonomy_term'
 migration_dependencies: null

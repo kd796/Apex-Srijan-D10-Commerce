@@ -1,4 +1,4 @@
-uuid: a9c99af7-a56e-47a7-9a5c-520366a3461b
+uuid: 078c5d6c-0c87-4f48-9f59-7c7218f1b5fc
 langcode: en
 status: true
 dependencies: {  }
@@ -70,6 +70,17 @@ process:
         - 'Tool Sets'
         - 'Tethered Products'
         - 'Extraction Tools'
+  product_classifications_array:
+    -
+      plugin: get_all_product_classifications
+      source: remote_name
+  field_product_classifications:
+    plugin: sub_process
+    source: '@product_classifications_array'
+    include_source: true
+    process:
+      vocabulary_id: vid
+      target_id: target_id
 destination:
   plugin: 'entity:node'
 migration_dependencies: {  }

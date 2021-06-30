@@ -35,40 +35,46 @@
   // Include if the globals only if explicitly included.
   @if $globals == included {
     font-family: $font-brand;
-    font-weight: $fw-bold;
+    font-weight: $fw-extra-bold;
     letter-spacing: inherit;
-    line-height: 1.33;
+    line-height: 1.2;
     margin: 1.25rem 0 0.5rem;
     padding: 0;
   }
-
   @if $color == light {
     color: $color-white;
   } @else if $color == dark {
-    color: $color-dark-grey;
+    color: $primary-orange;
   }
-
   @if $version == h1 {
-    font-size: 3rem;
-
+    font-size: 2.5rem;
     @include media('<md') {
       font-size: 1.75rem;
     }
   } @else if $version == h2 {
-    font-size: 2.25rem;
+    font-size: 2rem;
   } @else if $version == h3 {
     font-size: 1.6rem;
-    line-height: 1.55;
   } @else if $version == h4 {
-    font-size: 1.3rem;
-    line-height: 1.25;
+    font-size: 1.5rem;
   } @else if $version == h5 {
-    font-size: 1.05rem;
-    line-height: 1.25;
+    font-size: 1.25rem;
     text-transform: uppercase;
   } @else if $version == h6 {
-    font-size: 0.9rem;
-    line-height: 1.25;
+    font-size: 1rem;
+    text-transform: uppercase;
+  } @else if $version == display-headline-1 {
+    font-size: 4.5rem !important;
+    text-transform: uppercase;
+  } @else if $version == display-headline-2 {
+    font-size: 4rem !important;
+    letter-spacing: -0.02rem;
+    text-transform: uppercase;
+  } @else if $version == display-headline-3 {
+    font-size: 3.625rem !important;
+    text-transform: uppercase;
+  } @else if $version == display-headline-4 {
+    font-size: 3.25rem !important;
     text-transform: uppercase;
   }
 }

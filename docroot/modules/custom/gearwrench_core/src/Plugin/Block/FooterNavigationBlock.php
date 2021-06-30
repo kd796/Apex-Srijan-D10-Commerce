@@ -22,11 +22,8 @@ class FooterNavigationBlock extends BlockBase {
    */
   public function build() {
 
-
-
-    $footer_menu = $this->_gearwrench_core_build_menu('footer');
-    $social_menu = $this->_gearwrench_core_build_menu('social');
-
+    $footer_menu = $this->gearwrenchCoreBuildMenu('footer');
+    $social_menu = $this->gearwrenchCoreBuildMenu('social');
 
     return [
       'footer_menu' => $footer_menu,
@@ -55,7 +52,10 @@ class FooterNavigationBlock extends BlockBase {
     return Cache::mergeContexts(parent::getCacheContexts(), ['route']);
   }
 
-  public function _gearwrench_core_build_menu($menu_name) {
+  /**
+   * Utility function to build a menu tree.
+   */
+  public function gearwrenchCoreBuildMenu($menu_name) {
     $menu_tree = \Drupal::menuTree();
     $parameters = $menu_tree->getCurrentRouteMenuTreeParameters($menu_name);
     $parameters->setMinDepth(0);

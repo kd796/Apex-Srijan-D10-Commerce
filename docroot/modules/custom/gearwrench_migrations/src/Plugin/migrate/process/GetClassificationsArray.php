@@ -2,13 +2,14 @@
 
 namespace Drupal\gearwrench_migrations\Plugin\migrate\process;
 
+use Drupal\taxonomy\Entity\Term;
 use Drupal;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 
 /**
- * Get Classifications Array
+ * Get Classifications Array.
  *
  * @MigrateProcessPlugin(
  *   id = "get_classifications_array"
@@ -21,10 +22,9 @@ use Drupal\migrate\Row;
  *   plugin: get_classifications_array
  *   source: text
  * @endcode
- *
  */
-
 class GetClassificationsArray extends ProcessPluginBase {
+
   /**
    * {@inheritdoc}
    */
@@ -33,11 +33,11 @@ class GetClassificationsArray extends ProcessPluginBase {
     $query = \Drupal::entityQuery('taxonomy_term');
     $query->condition('vid', $vid);
     $tids = $query->execute();
-    $terms = \Drupal\taxonomy\Entity\Term::loadMultiple($tids);
+    $terms = Term::loadMultiple($tids);
     foreach ($value->children() as $child) {
       if (!empty($child->attributes()->Type) && $child->attributes()->Type == 'Web Reference') {
         foreach ($terms as $term) {
-          if(isset($term->get('field_classification_id')->value)){
+          if (isset($term->get('field_classification_id')->value)) {
             $classification_id = $term->get('field_classification_id')->value;
             if ($classification_id == $child->attributes()->ClassificationID) {
               $values_array[] = [
@@ -50,7 +50,7 @@ class GetClassificationsArray extends ProcessPluginBase {
       }
     }
     $values_array = json_encode($values_array);
-    return json_decode($values_array, true);
+    return json_decode($values_array, TRUE);
   }
 
 }

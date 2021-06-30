@@ -35,7 +35,10 @@ source:
       selector: ../../Product
     - name: remote_product_upc
       label: Product UPC
-      selector: Values/Value[@AttributeID="ATT539"]
+      selector: stibo:Values
+    - name: remote_product_long_description
+      label: Product Long Description
+      selector: stibo:Values
   ids:
     remote_sku:
       type: string
@@ -49,15 +52,9 @@ process:
   uid: constants/uid_root
   field_sku: remote_sku
   field_sku_group:
-    -
-      plugin: get_id_attribute
-      source: remote_sku_group
-    -
-      plugin: create_unique_term
-      vocabulary: sku_groups
-    -
-      plugin: skip_on_empty
-      method: row
+    plugin: get_id_attribute
+    source: remote_sku_group
+  # Product Specifications
   product_specifications_array:
     plugin: get_values_array
     source: remote_product_specifications
@@ -82,6 +79,7 @@ process:
         -
           plugin: skip_on_empty
           method: process
+  # Copy Points
   product_features_array:
     plugin: get_product_features_array
     source: remote_product_features
@@ -91,6 +89,7 @@ process:
     include_source: true
     process:
       value: copy_point
+  # Product Classifications
   product_classifications_array:
     plugin: get_classifications_array
     source: remote_product_classifications
@@ -101,12 +100,14 @@ process:
     process:
       vocabulary_id: vid
       target_id: target_id
+  field_long_description:
+    plugin: get_attribute_value
+    source: remote_product_long_description
+    attribute: ATT921
   field_upc:
-    -
-      plugin: callback
-      callable: var_dump
-      source: remote_product_upc
-
+    plugin: get_attribute_value
+    source: remote_product_upc
+    attribute: ATT539
 destination:
   plugin: entity:node
 migration_dependencies: {}

@@ -9,7 +9,7 @@ use Drupal\migrate\Row;
 use Drupal\taxonomy\Entity\Term;
 
 /**
- * Get Classification Parent Name
+ * Get Classification Parent Name.
  *
  * @MigrateProcessPlugin(
  *   id = "get_classification_parent_name"
@@ -22,12 +22,12 @@ use Drupal\taxonomy\Entity\Term;
  *   plugin: get_classification_parent_name
  *   source: text
  * @endcode
- *
  */
-
 class GetClassificationParentName extends ProcessPluginBase {
+
   /**
    * {@inheritdoc}
+   *
    * @throws MigrateSkipProcessException
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
@@ -56,7 +56,6 @@ class GetClassificationParentName extends ProcessPluginBase {
         }
 
         if ($id_to_check == $id) {
-
           return $term->id();
         }
       }
@@ -65,16 +64,5 @@ class GetClassificationParentName extends ProcessPluginBase {
       return 0;
     }
   }
-
-  protected function getXMLValue($item) {
-    $item_array = json_encode($item->Name);
-    $new_item_array = json_decode($item_array, true);
-    $value = $new_item_array[0];
-    $value = json_encode($value);
-    return trim($value, '"');
-  }
-
-
-
 
 }

@@ -367,10 +367,20 @@ function gearwrench_preprocess_paragraph__hero_slide__full(array &$variables) {
   // Initialize variables.
   $variables['inner_attributes']['class'][] = "{$base_class}__inner";
 
-  // Move media field to new variable.
-  $variables['media'] = $variables['content']['field_media_background'];
+  // Move background image field to new variable.
+  $variables['background_image'] = $variables['content']['field_media_background'];
+  // Move featured image field to new variable.
+  $variables['featured_image'] = $variables['content']['field_media_item'];
+
+  if (isset($variables['content']['field_link'][0])) {
+    $variables['footer']['field_link'] = $variables['content']['field_link'];
+    $variables['footer']['field_link'][0]['#options']['attributes']['class'] = "{$base_class}__link button";
+    unset($variables['content']['field_link'], $variables['footer']['field_link']['#theme']);
+  }
+
   unset($variables['media']['#theme']);
   unset($variables['content']['field_media_background']);
+  unset($variables['content']['field_media_item']);
 }
 
 /**

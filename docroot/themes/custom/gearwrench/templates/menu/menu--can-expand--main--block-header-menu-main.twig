@@ -93,29 +93,39 @@ We call a macro which calls itself to render the full tree.
             </button>
             <div {{ panel_attributes }}>
               {% if loop.index0 == 0 %}
-                {{ featured_tools }}
+                {% if menu_level == 0 %}
+                  {% set panel_image_attributes = create_attribute({
+                    'class': [
+                      'menu-item__panel-image',
+                      'menu-item__panel-image--depth-' ~ menu_level
+                    ],
+                  }) %}
+                {% endif %}
+                <div class="featured-tools-menu">
+                  <div class="featured-tools-menu__content-container">
+                    <div{{ panel_image_attributes }}>
+                      {% if item.panel_image %}
+                        {{ item.panel_image }}
+                      {% endif %}
+                    </div>
+                    <div class="featured-tools-menu__menu-wrapper">
+                      <header class="menu-item__panel-header">
+                        <h5>{{ 'Featured Tools'|t }}</h5>
+                      </header>
+                      {{ featured_tools }}
+                    </div>
+                  </div>
+                </div>
                 <div class="all-tools-menu">
                   <header class="menu-item__panel-header">
                     <h5>{{ 'All Tools'|t }}</h5>
                   </header>
                   <div class="all-tools-menu__content-container">
                     {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item_id) }}
-                    {% if menu_level == 0 %}
-                      {% set panel_image_attributes = create_attribute({
-                        'class': [
-                          'menu-item__panel-image',
-                          'menu-item__panel-image--depth-' ~ menu_level
-                        ],
-                      }) %}
-                      <div{{ panel_image_attributes }}>
-                        {% if item.panel_image %}
-                          {{ item.panel_image }}
-                        {% endif %}
-                      </div>
-                    {% endif %}
                   </div>
                 </div>
               {% else %}
+              <div class="menu__content-container">
                 {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item_id) }}
                 {% if menu_level == 0 %}
                   {% set panel_image_attributes = create_attribute({
@@ -126,11 +136,11 @@ We call a macro which calls itself to render the full tree.
                   }) %}
                   <div{{ panel_image_attributes }}>
                     {% if item.panel_image %}
-                      {{ link(item.title, item.url) }}
                       {{ item.panel_image }}
                     {% endif %}
                   </div>
                 {% endif %}
+              </div>
               {% endif %}
             </div>
           {% endif %}

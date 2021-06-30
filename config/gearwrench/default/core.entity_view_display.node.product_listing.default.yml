@@ -1,0 +1,37 @@
+uuid: abbb2504-f01f-428b-8f2d-073ebf420115
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.product_listing.body
+    - field.field.node.product_listing.field_product_classifications
+    - node.type.product_listing
+  module:
+    - text
+    - user
+id: node.product_listing.default
+targetEntityType: node
+bundle: product_listing
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_product_classifications:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

@@ -7,7 +7,7 @@ use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 
 /**
- * Get Values Array
+ * Get Values Array.
  *
  * @MigrateProcessPlugin(
  *   id = "get_values_array"
@@ -20,37 +20,33 @@ use Drupal\migrate\Row;
  *   plugin: get_values_array
  *   source: text
  * @endcode
- *
  */
-
 class GetValuesArray extends ProcessPluginBase {
+
   /**
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     foreach ($value->children() as $child) {
       if ($child->getName() !== 'MultiValue') {
-        $vid = strtolower((string)$child->attributes()->AttributeID);
+        $vid = strtolower((string) $child->attributes()->AttributeID);
         $vid = str_replace(' ', '_', $vid);
         $values_array[] = [
           'vid' => $vid,
-          'term_name' => (string)$child
+          'term_name' => (string) $child
         ];
       }
       else {
-        $vid = strtolower((string)$child->attributes()->AttributeID);
+        $vid = strtolower((string) $child->attributes()->AttributeID);
         $vid = str_replace(' ', '_', $vid);
         $values_array[] = [
           'vid' => $vid,
-          'term_name' => (string)$child->Value
+          'term_name' => (string) $child->Value
         ];
       }
     }
     $values_array = json_encode($values_array);
-
-//    dump(json_decode($values_array, true));
-
-    return json_decode($values_array, true);
+    return json_decode($values_array, TRUE);
   }
 
 }

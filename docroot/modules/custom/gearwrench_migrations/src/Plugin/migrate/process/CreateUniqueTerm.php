@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Drupal\gearwrench_migrations\Plugin\migrate\process;
 
 use Drupal\migrate\ProcessPluginBase;
@@ -58,6 +57,5 @@ class CreateUniqueTerm extends ProcessPluginBase {
     $term = reset($terms);
     return !empty($term) ? $term->id() : 0;
   }
-
 
 }
