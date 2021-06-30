@@ -62,10 +62,23 @@ if (isset($http_host)) {
   $sites[$http_host] = 'www';
 }
 
-// Main site.
+// Apex Tools.
 $sites['apex-tools.docksal'] = 'apex-tools';
 $sites['www.apex-tools.docksal'] = 'apex-tools';
+$sites['apextoolgroupdev.prod.acquia-sites.com'] = 'apex-tools';
+$sites['apextoolgroupstg.prod.acquia-sites.com'] = 'apex-tools';
+$sites['apextoolgroup.prod.acquia-sites.com'] = 'apex-tools';
+// gearwrench.com
 $sites['gearwrench.docksal'] = 'gearwrench';
 $sites['www.gearwrench.docksal'] = 'gearwrench';
+$sites['gearwrench.com'] = 'gearwrench';
+$sites['dev-www.gearwrench.com'] = 'gearwrench';
+$sites['stg-www.gearwrench.com'] = 'gearwrench';
+$sites['prod-www.gearwrench.com'] = 'gearwrench';
+// crescenttool.com
 $sites['crescenttool.docksal'] = 'crescenttool';
 $sites['www.crescenttool.docksal'] = 'crescenttool';
+$sites['crescenttool.com'] = 'crescenttool';
+$sites['dev-www.crescenttool.com'] = 'crescenttool';
+$sites['stg-www.crescenttool.com'] = 'crescenttool';
+$sites['prod-www.crescenttool.com'] = 'crescenttool';
