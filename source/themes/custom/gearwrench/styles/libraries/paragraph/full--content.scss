@@ -1,0 +1,71 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: content
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.component-content {
+  .component-content__title,
+  .component-content__content,
+  .component-content__footer {
+    @include container(
+      $width: $container-md,
+      $align: left
+    );
+  }
+
+  .component-content__title {
+    @include type-header(
+      $version: h5,
+      $color: dark,
+      $globals: included
+    );
+  }
+
+  .component-content__content {
+    li {
+      margin-bottom: 1rem;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .component-content__media {
+    margin: 1.5rem 0;
+  }
+
+  .component-content__footer:empty {
+    display: none;
+  }
+
+  .component-content__cta.button {
+    @include btn();
+  }
+
+
+  @include media('>=sm') {
+    &--media-layout-left-floated .component-content__media {
+      float: left;
+      margin-right: 1rem;
+      width: 40%;
+    }
+
+    &--media-layout-right-floated .component-content__media {
+      float: right;
+      margin-left: 1rem;
+      width: 40%;
+    }
+  }
+
+}

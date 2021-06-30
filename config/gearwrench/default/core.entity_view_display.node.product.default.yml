@@ -1,0 +1,31 @@
+uuid: 1ca8b4e8-c35f-496f-9905-0c46a67dfbb6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.product.body
+    - field.field.node.product.field_long_description
+    - field.field.node.product.field_media
+    - field.field.node.product.field_product_classifications
+    - field.field.node.product.field_product_features
+    - field.field.node.product.field_product_specifications
+    - field.field.node.product.field_sku_group
+    - field.field.node.product.field_upc
+    - node.type.product
+  module:
+    - user
+id: node.product.default
+targetEntityType: node
+bundle: product
+mode: default
+content: {  }
+hidden:
+  body: true
+  field_long_description: true
+  field_media: true
+  field_product_classifications: true
+  field_product_features: true
+  field_product_specifications: true
+  field_sku_group: true
+  field_upc: true
+  links: true

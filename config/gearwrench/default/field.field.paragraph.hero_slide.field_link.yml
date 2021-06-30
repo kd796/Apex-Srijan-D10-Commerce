@@ -1,0 +1,23 @@
+uuid: 63557c1a-2025-469a-8062-91a2d7b831c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_link
+    - paragraphs.paragraphs_type.hero_slide
+  module:
+    - link
+id: paragraph.hero_slide.field_link
+field_name: field_link
+entity_type: paragraph
+bundle: hero_slide
+label: 'Call to Action'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

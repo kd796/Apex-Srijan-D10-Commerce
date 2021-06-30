@@ -1,0 +1,46 @@
+// -----------------------------------------------------------------------------
+// Abstracts/Mixin: Button Styles
+// Base button style mixin
+// @include btn-base(), @include btn(primary, secondary)
+// -----------------------------------------------------------------------------
+
+// Base button styles
+@mixin btn-base($style: primary) {
+  background-image: linear-gradient(90deg, transparent 0%, transparent 50%, $primary-orange 50%, $primary-orange 100%);
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  background-size: 300%;
+  background-color: transparent;
+
+  border-color: $primary-orange;
+  border-style: solid;
+  border-width: 1px;
+  color: $secondary-black;
+  display: inline-block;
+  font-family: $font-brand;
+  font-weight: $fw-bold;
+  letter-spacing: 0.03rem;
+  text-align: center;
+  padding: .7rem 1.75rem 0.55rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: $transition-base;
+
+  @if $style == primary {
+    background-position: 100% 0;
+    background-repeat: no-repeat;
+    background-size: 300%;
+
+    @include on-event {
+      color: $primary-orange;
+      background-position: 0;
+    }
+  }
+}
+
+// Apply the button style and hover target
+@mixin btn($style: primary) {
+  @if $style == primary {
+    @include btn-base();
+  }
+}

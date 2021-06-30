@@ -1,0 +1,74 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: accordion
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.component-accordion {
+  .component-accordion-item__title {
+    @include type-header(h4, dark, included);
+    cursor: pointer;
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+    text-transform: uppercase;
+    position: relative;
+
+    &:before {
+      color: $color-blue;
+      content: '+';
+      display: inline-block;
+      margin-left: -1.5rem;
+      text-align: center;
+      width: 1.5rem;
+    }
+
+    &:focus,
+    &:hover {
+      color: $color-blue;
+    }
+  }
+
+  .component-accordion-item__content {
+    animation-duration: $transition-base-time * 2;
+    animation-direction: alternate;
+    animation-name: fadeIn;
+    animation-timing-function: ease-in-out;
+    padding: 0.5rem 1rem 1rem;
+
+    @include media('>=md') {
+      padding: $gap-vertical-sm 1rem $gap-vertical-sm 4rem;
+    }
+
+    > .paragraph-component:not(:first-of-type) {
+      margin-top: $gap-vertical-sm;
+    }
+  }
+
+  .component-accordion-item--open {
+    & > .component-accordion-item__title {
+
+      &:before {
+        content: '\2013';
+        transform: translateY(-1px);
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

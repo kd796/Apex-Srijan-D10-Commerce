@@ -1,0 +1,22 @@
+uuid: 9a3dd210-c8b1-486e-9253-69a48935f96b
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - gearwrench
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: gearwrench_messages
+theme: gearwrench
+region: pre_content
+weight: -5
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

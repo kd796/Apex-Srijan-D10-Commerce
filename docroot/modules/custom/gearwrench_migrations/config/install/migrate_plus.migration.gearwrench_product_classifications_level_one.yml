@@ -1,0 +1,59 @@
+# Migration configuration for gearwrench_products content.
+id: gearwrench_product_classifications_level_one
+label: Product Classifications - Level One
+migration_group: gearwrench
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: "http://www.stibosystems.com/step"
+  item_selector: /STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 1"]
+  fields:
+    -
+      name: remote_term_id
+      label: ID
+      selector: '@ID'
+    -
+      name: remote_term_name
+      label: Term Name
+      selector: stibo:Name
+  ids:
+    remote_term_id:
+      type: string
+process:
+  name:
+    plugin: skip_on_empty
+    method: row
+    source: remote_term_name
+  vid:
+    plugin: default_value
+    default_value: product_classifications
+  field_classification_id:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_term_id
+    method: row
+    value:
+      - W1_15788
+      - W1_15789
+      - W1_15791
+      - W1_15792
+      - W1_15793
+      - W1_15794
+      - W1_15795
+      - W1_15796
+      - W1_15797
+      - W1_15798
+      - W1_15799
+      - W1_15847
+      - W1_15848
+      - W1_16113
+      - W1_727497
+      - W1_728251
+      - W1_736539
+      - W1_781017
+      - W1_785249
+destination:
+  plugin: 'entity:taxonomy_term'

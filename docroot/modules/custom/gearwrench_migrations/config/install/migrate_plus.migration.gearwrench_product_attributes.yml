@@ -1,0 +1,228 @@
+id: gearwrench_product_attributes
+label: Product Attributes
+migration_group: gearwrench
+source:
+  constants:
+    DESCRIPTION_PREFIX: 'PIM Attribute ID'
+    COLON: ' : '
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: "http://www.stibosystems.com/step"
+  item_selector: /STEP-ProductInformation/AttributeList/Attribute
+  fields:
+    - name: remote_id
+      label: ID
+      selector: '@ID'
+    - name: remote_name
+      label: 'Name'
+      selector: stibo:Name
+  ids:
+    remote_id:
+      type: string
+process:
+  vid:
+    -
+      plugin: skip_on_value
+      source: remote_id
+      method: row
+      value:
+        # Skip Image Related Attributes
+        - asset.size
+        - asset.uploaded
+        - asset.extension
+        - asset.mime-type
+        - asset.compression
+        - asset.xdpi
+        - asset.class
+        - asset.pixel-width
+        - asset.colorspace
+        - asset.profile
+        - asset.ydpi
+        - asset.format
+        - asset.pixel-height
+        - asset.width
+        - asset.height
+        - asset.depth
+        - asset.samples
+        - asset.colors
+        - asset.dsc-conformance
+        - asset.creator
+        - asset.filename
+        - asset.format-version
+        - asset.extra-samples
+        - asset.gamma
+        - asset.pages
+        # Skip Copy Points
+        - ATT100
+        - ATT101
+        - ATT102
+        - ATT103
+        - ATT104
+        - ATT105
+        - ATT106
+        - ATT107
+        - ATT108
+        - ATT109
+        # Long Description
+        - ATT921
+        # BaseUnitOfMeasure
+        - BaseUnitOfMeasure
+        # Brand
+        - Brand
+        # Case Pack Qty
+        - CasePackQty
+        - ATT738
+        # Calculated Set Components
+        - ATT704222
+        # Clips Per Box
+        - ATT776
+        # Closure
+        - ATT777459
+        # Component Quantity
+        - ATT938
+        # Contents
+        - ATT170
+        # Coupon Headline
+        - ATT919
+        # CPO
+        - ATT672479
+        # CustomerPrice
+        - CustomerPrice
+        # Delivery Unit
+        - DeliveryUnit
+        # Description (SAP)
+        - SAP_Description
+        # Disable Web Add to Cart
+        - ATT22025
+        # Display Sequence
+        - Display Sequence
+        # Distribution Channel
+        - DistChannel
+        # Division Code
+        - DivCode
+        # External Video Sort Order
+        - ATT669088
+        # External Video URL
+        - ExternalVideoURL
+        # Fits Product Number
+        - ATT207
+        # Fits Tool
+        - ATT210
+        # Keywords
+        - ATT737269
+        # Launch Date
+        - ATT583415
+        # List of Materials It Works On
+        - ATT712732
+        # List Price
+        - ListPrice
+        # Marking Style
+        - ATT595
+        # Material Status (MRP)
+        - SAP Material Status
+        # Packaging
+        - ATT923
+        # Primary_SalesOrg
+        - ATT751760
+        # Product Group
+        - ATT799771
+        # Product Name
+        - ATT344
+        # ProductUrl
+        - ATT779366
+        # Table Description
+        - ATT180
+        # SalesOrg
+        - SalesOrg
+        # SAP Replacement Product
+        - ATT703620
+        # SubFamily
+        - ATT662384
+        # Table Display Sequence
+        - Table Display Sequence
+        # Table Display Sequence – SATA
+        - ATT664496
+        # Table Display Sequence – SATA Mini
+        - ATT670298
+        # Table Name
+        - Table Name
+        # Table Sort Order
+        - Table Sort Order
+        # Table Sort Order Set Components
+        - Table Sort Order Set Components
+        # UNSPSC_V7.0901
+        - UNSPSC_V7.0901
+        # UPC
+        - ATT539
+
+        # Competitor Cross Reference
+        # BAHCO Cross Reference
+        - ATT15714
+        # Blackhawk Cross Reference
+        - ATT793609
+        # Craftsman Industrial Cross Reference
+        - ATT15716
+        # CDI Cross Reference
+        - ATT15715
+        # Cornwell Cross Reference
+        - ATT15720
+        # Craftsman Cross Reference
+        - ATT15702
+        # Gray Cross Reference
+        - ATT793611
+        # Gray Pneumatic Cross Reference
+        - ATT15717
+        # Paramount Cross Reference
+        - ATT793612
+        # Proto Cross Reference
+        - ATT15700
+        # SK Cross Reference
+        - ATT15710
+        # Snap-on Cross Reference
+        - ATT15701
+        # Stanley Cross Reference
+        - ATT793613
+        # Westward Cross Reference
+        - ATT793614
+        # Williams Cross Reference
+        - ATT15708
+        # URREA Cross Reference
+        - ATT15712
+        # Wright Cross Reference
+        - ATT15709
+
+        # Retailer Flags
+        # Sears
+        - ATT672478
+        # Advance Auto Parts
+        - ATT672481
+        # Amazon
+        - AMZN
+        # Grainger
+        - ATT23047
+
+    -
+      plugin: machine_name
+    -
+      plugin: make_unique_entity_field
+      entity_type: taxonomy_vocabulary
+      field: vid
+      length: 32
+  vocab_id:
+    source: remote_id
+    plugin: machine_name
+  name: remote_name
+  description:
+    plugin: concat
+    source:
+      - constants/DESCRIPTION_PREFIX
+      - constants/COLON
+      - remote_id
+destination:
+  plugin: entity:taxonomy_vocabulary
+migration_dependencies: {}
+
+

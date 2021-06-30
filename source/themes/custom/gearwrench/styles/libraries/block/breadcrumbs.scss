@@ -1,0 +1,36 @@
+// -----------------------------------------------------------------------------
+// Block: Breadcrumbs
+// -----------------------------------------------------------------------------
+
+@import '../../globals';
+
+.block-system-breadcrumb-block {
+  font-size: 1rem;
+
+  .block-system-breadcrumb-block__content {
+    &:empty {
+      display: none;
+    }
+  }
+
+  a {
+    @include link-base();
+    @include icon(chevron-thin, before);
+    @include type-header(h4, dark, included);
+    text-decoration: none;
+
+    &:before {
+      color: $color-blue;
+      display: inline-block;
+      margin-right: 0.25rem;
+      transform: rotate(180deg);
+      transition: $transition-base;
+      transition-delay: $transition-base-time / 2;
+      vertical-align: top;
+    }
+
+    &:hover:before {
+      color: $color-dark-blue;
+    }
+  }
+}
