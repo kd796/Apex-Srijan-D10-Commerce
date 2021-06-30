@@ -1,0 +1,115 @@
+// -----------------------------------------------------------------------------
+// Base: Helpers
+// This file contains CSS helper classes
+// -----------------------------------------------------------------------------
+
+/**
+ * Hide Text
+ * Hide text while making it readable for screen readers
+ * 1. Needed in WebKit-based browsers because of an implementation bug;
+ * See: https://code.google.com/p/chromium/issues/detail?id=457146
+ */
+.hide-text {
+  @include hide-text();
+}
+
+/**
+ * Hide Element
+ * Hide element while making it readable for screen readers
+ * Shamelessly borrowed from HTML5Boilerplate:
+ * https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css#L119-L133
+ */
+.visually-hidden {
+  @include visually-hidden();
+}
+
+/**
+ * Body lock
+ * Prevents the body from scrolling when class is added to body
+ */
+.jsa-body-lock {
+  overflow: hidden;
+}
+
+/**
+ * Layout utility classes.
+ */
+.layout-container--full-width {
+  @include container-full-width();
+}
+
+.layout-container--xl {
+  @include container($container-xl);
+}
+
+.layout-container--lg {
+  @include container($container-lg);
+}
+
+.layout-container--md {
+  @include container($container-md);
+}
+
+.layout-container--sm {
+  @include container($container-sm);
+}
+
+/**
+ * Color utility classes.
+ */
+
+// Switch font colors based on whether the background is dark.
+.on-bg-dark,
+.block--bg-dark,
+.component--bg-dark,
+.node--bg-dark {
+  color: $color-white;
+
+  a:not([class^='button-']) {
+    color: $color-white;
+  }
+}
+
+// Switch font colors based on whether the background is light.
+.on-bg-light,
+.block--bg-light,
+.component--bg-light,
+.node--bg-light {
+  color: $color-dark-grey;
+
+  a:not([class^='button-']) {
+    color: $color-blue;
+  }
+}
+
+// Color background classes.
+@each $color, $hex in $colors {
+  .bg-#{$color} {
+    background-color: $hex;
+  }
+}
+
+// Generate color classes.
+@each $color, $hex in $colors {
+  .color-#{$color} {
+    color: $hex;
+  }
+}
+
+/**
+ * Fonts-related utility classes.
+ */
+
+// Print the font-face declaration and classes from the generated icon font.
+@each $key, $name in $icons {
+  .icon-#{$key} {
+    @include icon($name);
+  }
+}
+
+/**
+ * Button utility classes.
+ */
+.button {
+  @include btn-base;
+}

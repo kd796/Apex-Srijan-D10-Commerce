@@ -1,0 +1,77 @@
+{#
+/**
+ * @file
+ * Theme override to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ */
+#}
+{% import _self as menus %}
+
+{#
+We call a macro which calls itself to render the full tree.
+@see http://twig.sensiolabs.org/doc/tags/macro.html
+#}
+{{ menus.menu_links(items, attributes, 1, menu_name) }}
+
+{% macro menu_links(items, attributes, menu_level, menu_name) %}
+  {% import _self as menus %}
+  {% if items %}
+
+    {%
+      set attributes = create_attribute({
+      'class': [
+        'menu',
+        'menu--depth-' ~ menu_level,
+        'featured-tools-menu'
+      ]
+    })
+    %}
+    <div class="featured-tools-menu__wrapper">
+      <header class="menu-item__panel-header">
+        <h5>{{ 'Featured Tools'|t }}</h5>
+      </header>
+
+      <ul{{ attributes }}>
+        {% for item in items %}
+          {%
+            set item_classes = [
+            'menu-item',
+            'menu-item--depth-' ~ menu_level
+          ]
+          %}
+
+          {% if item.below %}
+            {% set item_classes = item_classes|merge(['menu-item--has-children']) %}
+          {% endif %}
+
+          <li{{ item.attributes.addClass(item_classes) }}>
+            {# Merge classes in with potential classes from the link (since link() doesn't seem to do it correctly) #}
+            {% set link_attributes = create_attribute(item.url.getOption('attributes') ?: []) %}
+            {% set link_attributes = link_attributes.addClass(['menu-item__link', 'menu-item__link--depth-' ~ menu_level]) %}
+
+            {{ link(item.title, item.url, link_attributes) }}
+
+            {% if item.below %}
+              {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+            {% endif %}
+
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+  {% endif %}
+{% endmacro %}

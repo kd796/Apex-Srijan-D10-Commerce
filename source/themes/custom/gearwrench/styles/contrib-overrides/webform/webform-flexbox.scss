@@ -1,0 +1,17 @@
+@charset 'UTF-8';
+
+@import '../../globals';
+
+@include media('<md') {
+  .webform-flexbox {
+    display: flex;
+    flex-direction: column;
+
+    .webform-flex {
+      margin-bottom: 1.5rem;
+    }
+  }
+  .webform-flexbox-center {
+    align-items: center;
+  }
+}

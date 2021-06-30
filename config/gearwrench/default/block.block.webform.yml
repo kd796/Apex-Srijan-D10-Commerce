@@ -1,0 +1,25 @@
+uuid: 11cc868a-6df7-4280-a1e8-d6988ac70469
+langcode: en
+status: true
+dependencies:
+  config:
+    - webform.webform.email_sign_up
+  module:
+    - webform
+  theme:
+    - gearwrench
+id: webform
+theme: gearwrench
+region: footer_second
+weight: 0
+provider: null
+plugin: webform_block
+settings:
+  id: webform_block
+  label: 'Email Sign-Up'
+  provider: webform
+  label_display: visible
+  webform_id: email_sign_up
+  default_data: ''
+  redirect: false
+visibility: {  }

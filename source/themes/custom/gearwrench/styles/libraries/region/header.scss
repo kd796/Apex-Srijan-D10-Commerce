@@ -1,0 +1,684 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Region: Header
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * SASS Variables
+ */
+$header-bp-desktop: '>=sm';
+$header-bp-mobile: '<sm';
+$header-z-index: 501;
+$mobile-menu-item-button-height: 7rem;
+
+/**
+ * CSS Variables
+ */
+:root {
+  // Note: unit is required with 0 here; having no unit messes up calc() functions below.
+  --admin-toolbar-height: 0px; // sass-lint:disable-line zero-unit
+}
+
+/**
+ * Region
+ */
+.region-header {
+  @include container-full-width();
+
+  background-color: $primary-orange;
+  left: 0;
+  max-width: none;
+  position: fixed;
+  right: 0;
+  top: 0; // Fallback for if var() isn't supported.
+  top: var(--admin-toolbar-height);
+  width: 100%;
+  z-index: $header-z-index;
+
+  &::after {
+    background-color: $primary-dark;
+    content: '';
+    display: block;
+    height: 1px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: $header-height;
+    z-index: 1;
+  }
+
+  .region-header__content {
+    @include container();
+    @include flex;
+    @include flex-x(align-items, center);
+    @include flex-x(flex-wrap, nowrap);
+    @include flex-x(justify-content, space-between);
+
+    height: $header-height;
+    padding: 0;
+  }
+
+  .block--header-branding {
+    .site-logo {
+      @include link-base();
+
+      display: block;
+      line-height: 1;
+      text-align: left;
+
+      svg {
+        display: inline-block;
+        height: 1.25rem;
+        vertical-align: middle;
+      }
+    }
+
+  }
+
+  .block--header-menu-main {
+    @include contextual-link-position-fixer;
+
+    .block__menu-toggle {
+      @include icon('menu');
+
+      background: 0;
+      border: 0;
+      color: $color-black;
+      font-weight: $fw-bold;
+      line-height: 1;
+      padding: 1.5rem;
+      position: relative;
+
+      span {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        text-indent: -9999999rem;
+        top: 0;
+      }
+
+      &[aria-expanded='false'] .block__menu-toggle-collapse,
+      &[aria-expanded='true'] .block__menu-toggle-expand {
+        display: none;
+      }
+
+      &[aria-expanded='true'] .block__menu-toggle-collapse,
+      &[aria-expanded='false'] .block__menu-toggle-expand {
+        display: inline-block;
+      }
+
+      &[aria-expanded='true']::before {
+        content: icon-char('close');
+      }
+    }
+
+    .menu {
+      margin: 0;
+    }
+
+    .menu-item {
+      list-style: none;
+      margin: 0;
+      padding-top: 0;
+    }
+
+    .menu-item__mobile-image {
+      display: none;
+    }
+
+    .menu-item__link {
+      color: $color-black;
+      display: block;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &[class^='icon-'],
+      &[class*=' icon-'] {
+        &::before {
+          display: inline-block;
+          font-size: 1.2rem;
+          line-height: 0.8;
+          margin-right: 0.3rem;
+          vertical-align: middle;
+        }
+      }
+
+      &.menu-item__link--icon-only {
+        box-sizing: content-box;
+        display: block;
+        font-size: 1.25rem;
+        height: 1rem;
+        line-height: 1;
+        padding: 1.1rem;
+        position: relative;
+        text-indent: -9999rem;
+        width: 1rem;
+
+        &::before {
+          @extend %icon;
+
+          display: inline-block;
+          height: 1rem;
+          left: 50%;
+          position: absolute;
+          text-indent: 0;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 1rem;
+        }
+      }
+    }
+
+    span.menu-item__link {
+      cursor: default;
+    }
+
+    .menu-item__panel {
+      display: block;
+      background-color: $primary-orange;
+    }
+
+    .menu-item__button[aria-expanded='true'] .menu-item__button-collapse,
+    .menu-item__button[aria-expanded='false'] .menu-item__button-expand {
+      display: inline-block;
+    }
+
+    .menu-item__button[aria-expanded='false'] .menu-item__button-collapse,
+    .menu-item__button[aria-expanded='true'] .menu-item__button-expand {
+      display: none;
+    }
+
+    .menu-item__button[aria-expanded='false'] + .menu-item__panel {
+      display: none;
+    }
+
+    .featured-tools-menu__wrapper {
+      background-color: $secondary-black;
+
+      .menu-item__panel-header {
+        padding: 2.75rem 0 .5rem;
+        width: 100%;
+
+        h5 {
+          color: $primary-orange;
+          margin: 0;
+          padding: 0;
+        }
+      }
+
+      li,
+      li a {
+        color: $primary-orange;
+      }
+
+    }
+
+    .all-tools-menu {
+      flex: 1;
+
+      .menu-item__panel-header {
+        padding: 2.75rem 0 .5rem;
+        width: 100%;
+
+        h5 {
+          margin: 0;
+          padding: 0;
+        }
+      }
+
+      .all-tools-menu__content-container {
+        display: flex;
+        flex-direction: row;
+
+        ul.menu--depth-1 {
+          padding-top: 0;
+        }
+      }
+    }
+  }
+
+  @include media($header-bp-desktop) {
+    .block--header-menu-main {
+      @include flex-x(flex, 1);
+
+      margin-left: 6rem;
+
+      .block__menu-toggle {
+        display: none;
+      }
+
+      .menu-item__button {
+        @include visually-hidden();
+
+        background-color: $color-white;
+        color: $color-black;
+
+        span {
+          white-space: nowrap;
+        }
+
+        &:focus {
+          display: block;
+          clip: auto;
+          height: auto;
+          overflow: visible;
+          padding: 0 0.2rem;
+          width: auto;
+          white-space: normal;
+        }
+      }
+
+      .menu--depth-0 {
+        @include flex;
+      }
+
+      .menu-item--depth-0 {
+        @include flex;
+        @include flex-x(align-items, center);
+        @include flex-x(justify-content, center);
+
+        height: $header-height;
+        margin: 0 1rem;
+
+        &:first-of-type {
+          margin-left: 0;
+        }
+      }
+
+      .menu-item__panel--depth-0 {
+        @include flex;
+        @include flex-x(flex-wrap, nowrap);
+        @include container();
+
+        animation-duration: 100ms;
+        animation-fill-mode: both;
+        animation-direction: normal;
+        animation-name: headerPanelFade;
+        opacity: 1;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: $header-height;
+        z-index: 1;
+
+        .menu-item__image {
+          width: 30%;
+          max-width: 360px;
+        }
+      }
+
+      .menu-item {
+        &.menu-item--has-children {
+          @include icon('arrow', after, false);
+
+          &::after {
+            transform: rotate(90deg);
+            margin-left: .5rem;
+          }
+        }
+      }
+
+      .menu-item__button[aria-expanded='false'] + .menu-item__panel--depth-0 {
+        animation-direction: reverse;
+        opacity: 0;
+      }
+
+      .menu-item__panel-image--depth-0 {
+        position: relative;
+        margin: 0 0 3.5rem;
+        width: 100%;
+
+        .media {
+          height: 100%; // Needed for blazy to load properly.
+
+          &.media--video {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 56.25%;
+
+            iframe {
+              position: absolute;
+              top: 0;
+              left: 0;
+              bottom: 0;
+              right: 0;
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+
+        img {
+          height: 100%;
+          left: 0;
+          object-fit: contain;
+          position: absolute;
+          top: 0;
+        }
+      }
+
+      .menu--depth-1 {
+        padding: 2rem;
+        width: 100%;
+      }
+
+      .menu-item--depth-1 {
+        font-size: .875rem;
+        margin: .5rem 0;
+      }
+
+      .featured-tools-menu__wrapper {
+        flex: 0 0 12rem;
+        margin-right: 2rem;
+
+        &::before {
+          background-color: $secondary-black;
+          position: absolute;
+          content: '';
+          width: 100vw;
+          height: 100%;
+          top: 0;
+          left: -100vw;
+          z-index: -1;
+        }
+
+        .menu-item__panel-header {
+          padding: 2.75rem 0 1rem;
+          width: 100%;
+
+          h5 {
+            margin: 0;
+            padding: 0;
+          }
+        }
+
+        ul.menu--depth-1 {
+          padding: 0 0 3.5rem;
+        }
+      }
+
+      .all-tools-menu {
+        flex: 1;
+
+        .menu-item__panel-header {
+          padding: 2.75rem 0 1rem;
+          width: 100%;
+
+          h5 {
+            margin: 0;
+            padding: 0;
+          }
+        }
+
+        .all-tools-menu__content-container {
+          display: flex;
+          flex-direction: row;
+
+          ul.menu--depth-1 {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            height: 20rem;
+            padding: 0 0 3.5rem;
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .block--header-search {
+      .block__content {
+        animation-duration: 300ms;
+        animation-fill-mode: both;
+        animation-direction: normal;
+        animation-name: searchPanelSlide;
+        background: $color-light-grey;
+        bottom: 0;
+        display: block;
+        padding: $header-height 3rem 3rem;
+        position: fixed;
+        right: 0;
+        top: 0; // Fallback for if var() isn't supported.
+        top: var(--admin-toolbar-height);
+        width: 25rem;
+        z-index: 1;
+      }
+
+      .block__content-toggle {
+        @include icon('close', after, false);
+
+        // Fake a close button inside the open panel.
+        &::after {
+          outline: inherit;
+          opacity: 0;
+          position: fixed;
+          right: 2rem;
+          top: 2rem; // Fallback for if var() isn't supported.
+          top: calc(2rem + var(--admin-toolbar-height, 2rem));
+          z-index: -1;
+        }
+
+        &[aria-expanded='true'] {
+          &::after {
+            opacity: 1;
+            transition: z-index 0ms linear, opacity 300ms linear 300ms;
+            z-index: 2;
+          }
+        }
+
+      }
+    }
+  }
+
+  @include media($header-bp-mobile) {
+    .region-header__content {
+      width: 100%;
+    }
+
+    .block--header-branding {
+      @include flex-x(order, 0);
+    }
+
+    .block--header-menu-main {
+      @include flex-x(order, 2);
+
+      .block__menu-toggle {
+        display: block;
+      }
+
+      .block__menu-toggle[aria-expanded='false'] + .block__menu {
+        animation-direction: reverse;
+        display: none;
+        opacity: 0;
+      }
+
+      .block__menu {
+        background-color: $primary-orange;
+        animation-delay: 300ms;
+        animation-duration: 300ms;
+        animation-fill-mode: both;
+        animation-direction: normal;
+        animation-name: headerPanelFade;
+        bottom: 0;
+        display: block;
+        height: 100vh;
+        left: 0;
+        padding: 1.25rem 0 0;
+        opacity: 1;
+        overflow: auto;
+        position: absolute;
+        right: 0;
+        top: $header-height;
+        z-index: 1;
+      }
+
+      .menu-item {
+        @include flex;
+        @include flex-x(flex-wrap, wrap);
+
+        &.menu-item--has-children {
+          .menu-item__button {
+            @include flex-x(align-items, center);
+            @include icon('arrow', after, false);
+
+            &:after {
+              font-size: 1rem;
+            }
+
+            .menu-item__button-collapse,
+            .menu-item__button-expand {
+              display: inline-block;
+              width: 0;
+              text-indent: -999rem;
+            }
+
+
+          }
+
+          &.menu-item--expanded {
+            .menu-item__button {
+              @include icon('arrow', after, false);
+
+              &:after {
+                transform: rotate(90deg);
+              }
+            }
+          }
+
+        }
+
+        .menu-item__link {
+          flex: 1;
+          display: block;
+          padding: 1.25rem 0 1.25rem 3rem;
+        }
+
+        .menu-item__button {
+          @include flex;
+          @include flex-x(align-items, center);
+          @include flex-x(justify-content, center);
+
+          background: transparent;
+          border: 0;
+          padding: 0 3rem 0 0;
+          position: relative;
+          width: 3rem;
+        }
+
+        .menu-item__panel {
+          display: block;
+          width: 100%;
+
+          .menu-item__panel-header {
+            padding: 1.25rem 0 1.25rem 3rem;
+          }
+
+          .menu {
+            width: 100%;
+          }
+        }
+      }
+
+      .menu-item__panel-image {
+        display: none;
+      }
+    }
+  }
+}
+
+/**
+ * Offset page since header is fixed.
+ */
+.page {
+  padding-top: $header-height;
+
+  @include media('<md') {
+    padding-top: $header-height-mobile;
+  }
+}
+
+/**
+ * Region styles to hide non-header content with menu open.
+ * Needed for accessibility.
+ * Disables tabbing to page content.
+ * @todo this needs to be switched to only when on mobile
+ */
+.region:not(.region-header) {
+  transition: visibility 0ms linear;
+}
+
+body {
+  &::after {
+    background: $color-black;
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: fixed;
+    opacity: 0;
+    right: 0;
+    transition: z-index 0ms linear 300ms, opacity 300ms linear;
+    top: 0;
+    z-index: -1;
+  }
+
+  @include media($header-bp-mobile) {
+    &[data-panel-open='block-header-menu-main--menu'],
+    &[data-panel-open='block-header-search--content'] {
+      .region:not(.region-header) {
+        transition: visibility 0ms linear 300ms;
+        visibility: hidden;
+      }
+
+      .region-header__inner {
+        max-height: 100vh; // Fallback for if var() isn't supported.
+        max-height: calc(100vh - var(--admin-toolbar-height));
+      }
+    }
+
+  }
+}
+
+/**
+ * Admin-related overrides to move fixed header down on page if admin-toolbar is present.
+ * Note: some browsers dont support css variables, but used here since this is only an offset for admin use.
+ */
+body.toolbar-fixed {
+  --admin-toolbar-height: #{$admin-toolbar};
+
+  &.toolbar-horizontal.toolbar-tray-open {
+    --admin-toolbar-height: #{$admin-toolbar-and-tray-horizontal};
+  }
+}
+
+@keyframes headerPanelFade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes searchPanelSlide {
+  0% {
+    right: -25rem;
+  }
+
+  100% {
+    right: 0;
+  }
+}

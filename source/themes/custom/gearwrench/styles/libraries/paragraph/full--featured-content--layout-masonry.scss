@@ -1,0 +1,75 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: Featured Content - Masonry layout
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.component-featured-content--layout-masonry {
+  .component-featured-content__list {
+    display: block;
+    list-style: none;
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 0;
+
+    @include media('>md') {
+      // Flex fallback.
+      @include flex();
+      @include flex-x(flex-wrap, wrap);
+      display: grid;
+      grid-auto-rows: minmax(2rem, auto);
+      grid-column-gap: 5rem;
+      grid-template-columns: repeat(auto-fill, calc(50% - 2.5rem));
+    }
+
+    @include media('>lg') {
+      grid-auto-rows: minmax(7rem, auto);
+      grid-template-columns: repeat(auto-fill, calc(50% - 3rem));
+      grid-column-gap: 6rem;
+    }
+  }
+
+  .component-featured-content__list-item {
+    margin-top: $gap-vertical-md;
+
+    @include media('>md') {
+      flex: 1 1 45%;
+      margin-left: 2.5%;
+      margin-right: 2.5%;
+
+      @supports (display: grid) {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    &:nth-of-type(2) {
+      @include media('>md') {
+        margin-top: 0;
+      }
+    }
+
+    article {
+      margin-bottom: 1rem;
+    }
+  }
+
+  @for $i from 1 through 16 {
+    .component-featured-content__list-item--size-#{$i} {
+      grid-row-end: span $i;
+    }
+  }
+}

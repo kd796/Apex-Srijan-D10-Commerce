@@ -1,0 +1,26 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: Section
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Classy Styles
+ */
+.component-section {
+  // gap for components within sections
+  .component-section__content > .paragraph-component:not(:first-child) {
+    @include gap-vertical(
+      $property: margin,
+      $breakpoint: md,
+      $gap-small: $gap-vertical-xsm,
+      $gap-large: $gap-vertical-sm
+    );
+  }
+}

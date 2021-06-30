@@ -1,0 +1,61 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: tabs
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+$tabs-border-width: 0.0625rem;
+
+.component-tabs {
+  & > .component-tabs__nav {
+    margin: 0;
+    padding: 0;
+
+    li {
+      cursor: pointer;
+      list-style: none;
+      margin-bottom: 0;
+    }
+  }
+
+  // @todo need styles for non-js-initialized tabs.
+  &.component-tabs--horizontal {
+    & > .component-tabs__nav {
+      @include flex();
+
+      li {
+        border: $tabs-border-width solid transparent;
+        padding: 1rem;
+        position: relative;
+
+        &[aria-selected='true'] {
+          border-color: $color-dark-grey;
+          border-bottom: 0 none;
+
+          &:after {
+            @include trl();
+            background-color: $color-white;
+            content: '';
+            display: block;
+            height: $tabs-border-width;
+            top: 100%;
+          }
+        }
+      }
+    }
+
+    & > .component-tabs__content {
+      border: $tabs-border-width solid $color-dark-grey;
+      padding: 1rem;
+    }
+  }
+}

@@ -1,0 +1,119 @@
+uuid: a50db97d-1346-4b54-954e-619b79114c8f
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.full
+    - field.field.paragraph.hero_slide.field_class_custom
+    - field.field.paragraph.hero_slide.field_content
+    - field.field.paragraph.hero_slide.field_link
+    - field.field.paragraph.hero_slide.field_media_background
+    - field.field.paragraph.hero_slide.field_media_item
+    - field.field.paragraph.hero_slide.field_style
+    - field.field.paragraph.hero_slide.field_title
+    - image.style.hero_slide_featured_image
+    - paragraphs.paragraphs_type.hero_slide
+  module:
+    - blazy
+    - link
+    - smart_trim
+_core:
+  default_config_hash: DsOopD2Ae4BtyASdTc2cM9-ovYf5OPEBxHnGhyvJqQ8
+id: paragraph.hero_slide.full
+targetEntityType: paragraph
+bundle: hero_slide
+mode: full
+content:
+  field_content:
+    weight: 1
+    label: hidden
+    settings:
+      trim_length: 230
+      trim_type: chars
+      trim_suffix: ...
+      wrap_class: trimmed
+      more_text: More
+      more_class: more-link
+      wrap_output: false
+      more_link: false
+      trim_options:
+        text: false
+        trim_zero: false
+      summary_handler: full
+    third_party_settings: {  }
+    type: smart_trim
+    region: content
+  field_link:
+    type: link
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+  field_media_background:
+    type: entity_reference_entity_view
+    weight: 4
+    region: content
+    label: hidden
+    settings:
+      view_mode: hero
+      link: false
+    third_party_settings: {  }
+  field_media_item:
+    type: blazy_media
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      image_style: hero_slide_featured_image
+      responsive_image_style: ''
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
+      view_mode: default
+      current_view_mode: full
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: 0
+      grid_medium: 0
+      grid_small: 0
+    third_party_settings: {  }
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  field_class_custom: true
+  field_style: true

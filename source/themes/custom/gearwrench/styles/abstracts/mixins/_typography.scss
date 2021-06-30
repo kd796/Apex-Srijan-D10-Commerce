@@ -1,0 +1,74 @@
+// -----------------------------------------------------------------------------
+// Abstracts/Mixin: Typography
+// Global typography for site
+// Place on elements as desired
+//
+// Options:
+// • $version(value = h1 - h6) - default = h1 - heading to apply styles to
+// • $color(value = light or dark) - default = dark - heading color
+// • $globals(value = included or excluded) - default = excluded - include the globals or just override
+//
+// === h1 === //
+// @include type-header(h1, dark, included);
+//
+// === h2 === //
+// @include type-header(h2, dark, included);
+//
+// === h3 === //
+// @include type-header(h3, dark, included);
+//
+// === h4 === //
+// @include type-header(h4, dark, included);
+//
+// === h5 === //
+// @include type-header(h5, dark, included);
+//
+// === h6 === //
+// @include type-header(h6, dark, included);
+//
+// -----------------------------------------------------------------------------
+
+@mixin type-header (
+  $version: h1,
+  $color: null,
+  $globals: excluded) {
+  // Include if the globals only if explicitly included.
+  @if $globals == included {
+    font-family: $font-brand;
+    font-weight: $fw-bold;
+    letter-spacing: inherit;
+    line-height: 1.33;
+    margin: 1.25rem 0 0.5rem;
+    padding: 0;
+  }
+
+  @if $color == light {
+    color: $color-white;
+  } @else if $color == dark {
+    color: $color-dark-grey;
+  }
+
+  @if $version == h1 {
+    font-size: 3rem;
+
+    @include media('<md') {
+      font-size: 1.75rem;
+    }
+  } @else if $version == h2 {
+    font-size: 2.25rem;
+  } @else if $version == h3 {
+    font-size: 1.6rem;
+    line-height: 1.55;
+  } @else if $version == h4 {
+    font-size: 1.3rem;
+    line-height: 1.25;
+  } @else if $version == h5 {
+    font-size: 1.05rem;
+    line-height: 1.25;
+    text-transform: uppercase;
+  } @else if $version == h6 {
+    font-size: 0.9rem;
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+}

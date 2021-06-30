@@ -1,0 +1,87 @@
+uuid: 642013cc-bd6e-4c2f-b4bb-e15eb9ef584a
+langcode: en
+status: true
+dependencies: {  }
+id: gearwrench_product_classifications_level_three
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: gearwrench
+label: 'Product Classifications - Level Three'
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: 'http://www.stibosystems.com/step'
+  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 3"]'
+  fields:
+    -
+      name: remote_term_id
+      label: ID
+      selector: '@ID'
+    -
+      name: remote_term_name
+      label: 'Term Name'
+      selector: 'stibo:Name'
+    -
+      name: remote_parent_name
+      label: 'Parent Term Name'
+      selector: ../../Classification
+  ids:
+    remote_term_id:
+      type: string
+process:
+  name:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: remote_term_name
+    -
+      plugin: skip_on_value
+      method: process
+      not_equals: true
+      value:
+        - Standard
+        - Deep
+        - Bit
+        - Flex
+        - 'Mixed Sets'
+        - Extensions
+        - Adapters
+        - 'Universal Joints'
+        - Accessories
+        - '1/4" Drive'
+        - '3/8" Drive'
+        - '1/2" Drive'
+        - '3/4" Drive'
+        - '1" Drive'
+        - Multi-Drive
+        - 'Dual Material'
+        - Acetate
+        - Bits
+        - Combination
+        - QuadBox™
+        - 'Double Box'
+        - 'Crowfoot & Flare Nut'
+        - Accessories
+        - Adjustable
+        - Combination
+        - 'Crowfoot & Flare Nut'
+  field_classification_id: remote_term_id
+  parent:
+    -
+      plugin: get_classification_parent_name
+      source: remote_parent_name
+    -
+      plugin: default_value
+      default_value: 0
+destination:
+  plugin: 'entity:taxonomy_term'
+  default_bundle: product_classifications
+migration_dependencies:
+  required:
+    - gearwrench_parent_product_classifications_level_two
+  optional: {  }

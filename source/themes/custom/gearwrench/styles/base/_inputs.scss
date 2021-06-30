@@ -1,0 +1,88 @@
+// -----------------------------------------------------------------------------
+// Base: Inputs
+// Themed inputs, buttons, and form item groups
+// -----------------------------------------------------------------------------
+
+// basic inputs
+input,
+textarea,
+select {
+  background: transparent;
+  border: rem(1px) solid $gray-30;
+  border-radius: 0;
+  color: $gray-30;
+  max-width: 100%;
+  outline: 0 none;
+  padding: 1rem;
+  transition: $transition-base;
+  -webkit-appearance: none;
+  width: 100%;
+
+  &:focus {
+    border-color: $gray-10;
+    color: $secondary-black;
+    outline: 0;
+  }
+
+  &:disabled {
+    background-color: $color-light-grey;
+  }
+}
+
+// input submit buttons
+input[type='button'],
+input[type='reset'],
+input[type='submit'] {
+  @include btn(primary);
+}
+
+// form titles
+.block-webform-block__title {
+  font-family: $font-brand;
+  font-size: rem(24px);
+  font-weight: $fw-extra-bold;
+  line-height: 1.2rem;
+  margin-bottom: rem(24px);
+  text-transform: uppercase;
+}
+
+// flex form rows
+.webform-flexbox {
+  margin: 0 -.5em rem(24px);
+
+  .webform-flex {
+    width: 100%;
+
+    .webform-flex--container {
+      margin: 0 rem(6px);
+    }
+  }
+
+  .form-item {
+    margin: 0;
+  }
+}
+
+//form button
+.form-actions {
+  margin: rem(24px) 0 1rem;
+}
+
+@include media('<md') {
+  .webform-flexbox {
+    margin-bottom: 0;
+  }
+
+  .form-actions {
+    margin: 0 0 1rem;
+  }
+}
+
+@include media('<sm') {
+  .webform-flexbox {
+    .webform-flex {
+      margin-bottom: rem(24px);
+    }
+  }
+}
+

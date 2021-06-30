@@ -1,0 +1,86 @@
+uuid: de5622b1-2ed1-4e0f-bbc2-0716c301c7dd
+langcode: en
+status: true
+dependencies: {  }
+id: gearwrench_product_attributes
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: gearwrench
+label: 'Product Attributes'
+source:
+  constants:
+    DESCRIPTION_SUFFIX: 'Imported from PIM'
+    COLON: ' : '
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: 'http://www.stibosystems.com/step'
+  item_selector: /STEP-ProductInformation/AttributeList/Attribute
+  fields:
+    -
+      name: remote_id
+      label: ID
+      selector: '@ID'
+    -
+      name: remote_name
+      label: Name
+      selector: 'stibo:Name'
+  ids:
+    remote_id:
+      type: string
+process:
+  vid:
+    -
+      plugin: skip_on_value
+      source: remote_id
+      method: row
+      value:
+        - asset.size
+        - asset.uploaded
+        - asset.extension
+        - asset.mime-type
+        - asset.compression
+        - asset.xdpi
+        - asset.class
+        - asset.pixel-width
+        - asset.colorspace
+        - asset.profile
+        - asset.ydpi
+        - asset.format
+        - asset.pixel-height
+        - asset.width
+        - asset.height
+        - asset.depth
+        - asset.samples
+        - asset.colors
+        - asset.dsc-conformance
+        - asset.creator
+        - asset.filename
+        - asset.format-version
+        - asset.extra-samples
+        - asset.gamma
+        - asset.pages
+    -
+      plugin: machine_name
+    -
+      plugin: make_unique_entity_field
+      entity_type: taxonomy_vocabulary
+      field: vid
+      length: 32
+  vocab_id:
+    source: remote_id
+    plugin: machine_name
+  name:
+    plugin: concat
+    source:
+      - remote_name
+      - constants/COLON
+      - remote_id
+  description: constants/DESCRIPTION_SUFFIX
+destination:
+  plugin: 'entity:taxonomy_vocabulary'
+migration_dependencies: {  }
