@@ -1,0 +1,20 @@
+uuid: 1c9ac4b6-c0ab-4432-931d-5ddac99131b3
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+_core:
+  default_config_hash: hv87-FdqEl7z8S3sGv6owamYjeUKvzpm98ks1HOfBVc
+name: biggest_portrait_1x2
+label: 'Biggest – portrait 1:2 (1620x3240)'
+effects:
+  f90ac677-32d7-4836-aab0-35c085035b82:
+    uuid: f90ac677-32d7-4836-aab0-35c085035b82
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 1620
+      height: 3240
+      crop_type: focal_point
+pipeline: smushit
