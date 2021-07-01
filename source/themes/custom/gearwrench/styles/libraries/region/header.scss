@@ -489,7 +489,7 @@ $mobile-menu-item-button-height: 7rem;
 
       .featured-tools-menu {
         flex: 1;
-        margin-right: 2rem;
+        padding-right: 2rem;
 
         &::before {
           background-color: $secondary-black;
@@ -524,6 +524,8 @@ $mobile-menu-item-button-height: 7rem;
 
       .all-tools-menu {
         flex: 1;
+        padding-left: 2rem;
+
 
         .menu-item__panel-header {
           padding: 2.75rem 0 1rem;
@@ -700,10 +702,18 @@ $mobile-menu-item-button-height: 7rem;
 
           .menu-item__panel-header {
             padding: 1.25rem 0 1.25rem 3rem;
+
+            h5 {
+              font-size: rem(22px);
+            }
           }
 
           .menu {
             width: 100%;
+          }
+
+          .featured-tools-menu__menu-wrapper {
+            flex: 1;
           }
         }
       }
