@@ -13,8 +13,8 @@
 /**
  * SASS Variables
  */
-$header-bp-desktop: '>=md';
-$header-bp-mobile: '<md';
+$header-bp-desktop: '>md';
+$header-bp-mobile: '<=md';
 $header-z-index: 501;
 $mobile-menu-item-button-height: 7rem;
 
@@ -76,6 +76,10 @@ $mobile-menu-item-button-height: 7rem;
     padding-right: rem(34px);
     position: relative;
 
+    @include media('<=1200px') {
+      padding-right: rem(18px);
+    }
+
     // Full width Bleed Element
     &::before {
       background-color: $secondary-black;
@@ -110,6 +114,13 @@ $mobile-menu-item-button-height: 7rem;
       svg {
         height: 1.25rem;
         vertical-align: middle;
+
+        @include media('<=lg') {
+          height: 1rem;
+        }
+        @include media('<=md') {
+          height: 1.25rem;
+        }
       }
     }
   }
@@ -122,7 +133,7 @@ $mobile-menu-item-button-height: 7rem;
 
       background: 0;
       border: 0;
-      color: $color-black;
+      color: $secondary-black;
       font-weight: $fw-bold;
       line-height: 1;
       padding: 1.5rem;
@@ -157,9 +168,43 @@ $mobile-menu-item-button-height: 7rem;
     }
 
     .menu-item {
+      color: $secondary-black;
+      font-family: $font-brand;
+      font-size: rem(18px);
+      font-weight: $fw-extra-bold;
+      line-height: 1.2;
       list-style: none;
       margin: 0;
       padding-top: 0;
+      text-transform: uppercase;
+
+      @include media('<=1200px') {
+        font-size: rem(17px);
+      }
+      @include media('<=1100px') {
+        font-size: rem(16px);
+      }
+      @include media('<=1050px') {
+        font-size: rem(15.5px);
+      }
+      @include media('<=1000px') {
+        font-size: rem(15px);
+      }
+      @include media('<=950px') {
+        font-size: rem(14.5px);
+      }
+      @include media('<=900px') {
+        font-size: rem(14px);
+      }
+      @include media('<=850px') {
+        font-size: rem(13.5px);
+      }
+      @include media('<=800px') {
+        font-size: rem(13px);
+      }
+      @include media('<=md') {
+        font-size: rem(22px);
+      }
     }
 
     .menu-item__mobile-image {
@@ -167,7 +212,6 @@ $mobile-menu-item-button-height: 7rem;
     }
 
     .menu-item__link {
-      color: $color-black;
       display: block;
 
       &:hover {
@@ -300,7 +344,11 @@ $mobile-menu-item-button-height: 7rem;
     .block--header-menu-main {
       @include flex-x(flex, 1);
 
-      margin-left: 6rem;
+      margin-left: 4rem;
+
+      @include media('<=1200px') {
+        margin-left: 3rem;
+      }
 
       .block__menu-toggle {
         display: none;
@@ -310,7 +358,7 @@ $mobile-menu-item-button-height: 7rem;
         @include visually-hidden();
 
         background-color: $color-white;
-        color: $color-black;
+        color: $secondary-black;
 
         span {
           white-space: nowrap;
@@ -329,6 +377,8 @@ $mobile-menu-item-button-height: 7rem;
 
       .menu--depth-0 {
         @include flex;
+        @include flex-x(justify-content, space-between);
+
       }
 
       .menu-item--depth-0 {
@@ -337,7 +387,7 @@ $mobile-menu-item-button-height: 7rem;
         @include flex-x(justify-content, center);
 
         height: $header-height;
-        margin: 0 1rem;
+        margin: 0;
 
         &:first-of-type {
           margin-left: 0;
@@ -690,7 +740,7 @@ $mobile-menu-item-button-height: 7rem;
 
 body {
   &::after {
-    background: $color-black;
+    background: $secondary-black;
     bottom: 0;
     content: '';
     left: 0;
