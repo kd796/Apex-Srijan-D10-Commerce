@@ -103,11 +103,6 @@ We call a macro which calls itself to render the full tree.
                 {% endif %}
                 <div class="featured-tools-menu">
                   <div class="featured-tools-menu__content-container">
-                    <div{{ panel_image_attributes }}>
-                      {% if item.panel_image %}
-                        {{ item.panel_image }}
-                      {% endif %}
-                    </div>
                     <div class="featured-tools-menu__menu-wrapper">
                       <header class="menu-item__panel-header">
                         <h5>{{ 'Featured Tools'|t }}</h5>
@@ -122,6 +117,11 @@ We call a macro which calls itself to render the full tree.
                   </header>
                   <div class="all-tools-menu__content-container">
                     {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item_id) }}
+                    <div{{ panel_image_attributes }}>
+                      {% if item.panel_image %}
+                        {{ item.panel_image }}
+                      {% endif %}
+                    </div>
                   </div>
                 </div>
               {% else %}
