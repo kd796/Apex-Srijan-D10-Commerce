@@ -71,7 +71,7 @@ $mobile-menu-item-button-height: 7rem;
     @include flex;
     @include flex-x(align-items, center);
 
-    background-color: $secondary-black;
+    background-color: $black;
     height: 100%;
     padding-right: rem(34px);
     position: relative;
@@ -82,7 +82,7 @@ $mobile-menu-item-button-height: 7rem;
 
     // Full width Bleed Element
     &::before {
-      background-color: $secondary-black;
+      background-color: $black;
       position: absolute;
       content: '';
       width: 100vw;
@@ -94,7 +94,7 @@ $mobile-menu-item-button-height: 7rem;
 
     // Performance Device
     &::after {
-      background-color: $secondary-black;
+      background-color: $black;
       position: absolute;
       content: '';
       width: 30px;
@@ -133,7 +133,7 @@ $mobile-menu-item-button-height: 7rem;
 
       background: 0;
       border: 0;
-      color: $secondary-black;
+      color: $black;
       font-weight: $fw-bold;
       line-height: 1;
       padding: 1.5rem;
@@ -168,7 +168,7 @@ $mobile-menu-item-button-height: 7rem;
     }
 
     .menu-item {
-      color: $secondary-black;
+      color: $black;
       font-family: $font-brand;
       font-size: rem(18px);
       font-weight: $fw-extra-bold;
@@ -213,6 +213,7 @@ $mobile-menu-item-button-height: 7rem;
 
     .menu-item__link {
       display: block;
+      color: $black;
 
       &:hover {
         text-decoration: underline;
@@ -308,7 +309,7 @@ $mobile-menu-item-button-height: 7rem;
     }
 
     .featured-tools-menu {
-      background-color: $secondary-black;
+      background-color: $black;
 
       .menu-item__panel-header {
         padding: 2.75rem 0 .5rem;
@@ -358,7 +359,7 @@ $mobile-menu-item-button-height: 7rem;
         @include visually-hidden();
 
         background-color: $color-white;
-        color: $secondary-black;
+        color: $black;
 
         span {
           white-space: nowrap;
@@ -492,7 +493,7 @@ $mobile-menu-item-button-height: 7rem;
         padding-right: 2rem;
 
         &::before {
-          background-color: $secondary-black;
+          background-color: $black;
           position: absolute;
           content: '';
           width: 100vw;
@@ -749,7 +750,7 @@ $mobile-menu-item-button-height: 7rem;
 
 body {
   &::after {
-    background: $secondary-black;
+    background: $black;
     bottom: 0;
     content: '';
     left: 0;
