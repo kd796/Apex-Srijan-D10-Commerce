@@ -727,6 +727,16 @@ $mobile-menu-item-button-height: 7rem;
   }
 }
 
+// Hides header when scroll up
+.header-hide {
+  top: -$header-height;
+}
+
+.header-ease-in-out {
+  transition-timing-function: ease-in-out;
+  transition: 0.25s;
+}
+
 /**
  * Offset page since header is fixed.
  */

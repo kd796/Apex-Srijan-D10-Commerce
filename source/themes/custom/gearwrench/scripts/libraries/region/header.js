@@ -10,6 +10,7 @@
       var selector_header_menu_item_buttons = '.block--header-menu-main .menu-item__button';
       var selector_header_menu_items_with_children = '.block--header-menu-main .menu-item--has-children';
       var selector_header_search_button = '.block--header-search .block__content-toggle';
+      var lastScrollTop = 0;
 
       // Open search panel.
       $(selector_header_search_button).once('header').on({
@@ -84,6 +85,29 @@
       $(window).once('header').on('resize', function () {
         var $menu_item = $('.region-header .menu-item--depth-0.menu-item--expanded');
         behavior_object.updateHeaderPlaceholder($menu_item);
+      });
+
+      // On scroll down, header and expanded navigation disappears, scroll up re-appears
+      window.addEventListener('scroll', function () {
+        if (behavior_object.isDesktop()) {
+          var $header = $('header');
+          var scrollTopVal = window.pageYOffset || document.documentElement.scrollTop;
+          var $menu_item = $('.region-header .menu-item--depth-0.menu-item--expanded');
+          var $button = $menu_item.find('.menu-item__button').first();
+
+          $header.addClass('header-ease-in-out');
+
+          if (window.scrollY <= 30 || scrollTopVal < lastScrollTop) {
+            $header.removeClass('header-hide');
+          }
+          else {
+            $header.addClass('header-hide');
+            if ($button.attr('aria-expanded') === 'true') {
+              behavior_object.toggleMenuPanel($button);
+            }
+          }
+          lastScrollTop = scrollTopVal <= 0 ? 0 : scrollTopVal;
+        }
       });
     },
     isDesktop: function () {
