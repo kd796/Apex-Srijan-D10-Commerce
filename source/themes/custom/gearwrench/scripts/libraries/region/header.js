@@ -95,13 +95,13 @@
           var $menu_item = $('.region-header .menu-item--depth-0.menu-item--expanded');
           var $button = $menu_item.find('.menu-item__button').first();
 
-          $header.addClass('header-ease-in-out');
+          $header.addClass('region-header--ease-in-out');
 
           if (window.scrollY <= 30 || scrollTopVal < lastScrollTop) {
-            $header.removeClass('header-hide');
+            $header.removeClass('region-header--hide');
           }
           else {
-            $header.addClass('header-hide');
+            $header.addClass('region-header--hide');
             if ($button.attr('aria-expanded') === 'true') {
               behavior_object.toggleMenuPanel($button);
             }
