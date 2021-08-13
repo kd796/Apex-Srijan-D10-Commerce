@@ -67,6 +67,13 @@ $mobile-menu-item-button-height: 7rem;
     padding: 0;
   }
 
+  // Larger performance device and logo at top
+  .region-header__content-large {
+    @include media('>md') {
+      @include flex-x(align-items, start);
+    }
+  }
+
   .block--header-branding {
     @include flex;
     @include flex-x(align-items, center);
@@ -78,6 +85,12 @@ $mobile-menu-item-button-height: 7rem;
 
     @include media('<=1200px') {
       padding-right: rem(18px);
+    }
+
+    @include media('>md') {
+      &:not(.block--header-branding-large) {
+        position: absolute;
+      }
     }
 
     // Full width Bleed Element
@@ -112,7 +125,7 @@ $mobile-menu-item-button-height: 7rem;
       line-height: 1;
 
       svg {
-        height: 1.25rem;
+        height: $header-logo-performance-height-large;
         vertical-align: middle;
 
         @include media('<=lg') {
@@ -122,6 +135,23 @@ $mobile-menu-item-button-height: 7rem;
           height: 1.25rem;
         }
       }
+    }
+
+    @include media('>md') {
+      &:not(.block--header-branding-large) {
+        .site-logo {
+          display: block;
+          width: 56px;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+
+  // Larger performance device and logo at top
+  .block--header-branding-large {
+    @include media('>md') {
+      height: rem(100px) !important;
     }
   }
 
@@ -345,10 +375,12 @@ $mobile-menu-item-button-height: 7rem;
     .block--header-menu-main {
       @include flex-x(flex, 1);
 
-      margin-left: 4rem;
-
       @include media('<=1200px') {
         margin-left: 3rem;
+      }
+
+      @include media('>md') {
+        margin-left: calc(4rem + 260px);
       }
 
       .block__menu-toggle {
@@ -392,6 +424,45 @@ $mobile-menu-item-button-height: 7rem;
 
         &:first-of-type {
           margin-left: 0;
+        }
+
+        &:hover {
+          box-shadow: 0 -5px 0 0 $black inset;
+        }
+
+        &.menu-item--in-active-trail {
+          &::after,
+          .menu-item__link--depth-0 {
+            color: $white;
+          }
+
+          .menu-item__link--depth-0  {
+            &::before,
+            &::after {
+              content: '';
+              background-color: red;
+              position: absolute;
+              top: 0;
+              width: rem(30px);
+              height: 100%;
+              z-index: -1;
+              transform: skew(-14deg);
+            }
+
+            &::before {
+              left: -15px;
+            }
+
+            &::after {
+              right: -15px;
+            }
+          }
+        }
+      }
+
+      .menu-item__link--depth-0 {
+        &:hover {
+          text-decoration: none;
         }
       }
 
@@ -553,6 +624,10 @@ $mobile-menu-item-button-height: 7rem;
       }
     }
 
+    .block--header-branding-large + .block--header-menu-main {
+      margin-left: 4rem;
+    }
+
     .block--header-search {
       .block__content {
         animation-duration: 300ms;
@@ -648,7 +723,6 @@ $mobile-menu-item-button-height: 7rem;
         @include flex-x(flex-wrap, wrap);
 
         &.menu-item--has-children {
-
           .menu-item__button {
             @include flex-x(align-items, center);
             @include icon('arrow', after, false);
@@ -666,7 +740,6 @@ $mobile-menu-item-button-height: 7rem;
           }
 
           &.menu-item--expanded {
-
             .menu-item__button {
               @include icon('arrow', after, false);
 
@@ -675,7 +748,6 @@ $mobile-menu-item-button-height: 7rem;
               }
             }
           }
-
         }
 
         .menu-item__link {
@@ -721,20 +793,18 @@ $mobile-menu-item-button-height: 7rem;
       .menu-item__panel-image {
         display: none;
       }
-
-
     }
   }
-}
 
-// Hides header when scroll up
-.region-header--hide {
-  top: -$header-height;
-}
+  // Hides header when scroll up
+  &.region-header--hide {
+    top: -$header-height;
+  }
 
-.region-header--ease-in-out {
-  transition-timing-function: $transition-base-style;
-  transition: 0.25s;
+  &.region-header--ease-in-out {
+    transition-timing-function: $transition-base-style;
+    transition: 0.25s;
+  }
 }
 
 /**
@@ -745,6 +815,11 @@ $mobile-menu-item-button-height: 7rem;
 
   @include media('<md') {
     padding-top: $header-height-mobile;
+  }
+
+  // Larger Performance device and logo
+  @include media('>md') {
+    padding-top: calc(#{$header-height} + #{$header-logo-performance-height-large});
   }
 }
 

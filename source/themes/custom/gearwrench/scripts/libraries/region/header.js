@@ -87,27 +87,36 @@
         behavior_object.updateHeaderPlaceholder($menu_item);
       });
 
-      // On scroll down, header and expanded navigation disappears, scroll up re-appears
+      // On scroll down, header and expanded navigation disappears, scroll up re-appears, logo area resizes
+      $('header .block--header-branding').addClass('block--header-branding-large');
+      $('header .region-header__content').addClass('region-header__content-large');
+
       window.addEventListener('scroll', function () {
-        if (behavior_object.isDesktop()) {
-          var $header = $('header');
-          var scrollTopVal = window.pageYOffset || document.documentElement.scrollTop;
-          var $menu_item = $('.region-header .menu-item--depth-0.menu-item--expanded');
-          var $button = $menu_item.find('.menu-item__button').first();
+        var $header = $('header');
+        var scrollTopVal = window.pageYOffset || document.documentElement.scrollTop;
+        var $menu_item = $('.region-header .menu-item--depth-0.menu-item--expanded');
+        var $button = $menu_item.find('.menu-item__button').first();
 
-          $header.addClass('region-header--ease-in-out');
+        $header.addClass('region-header--ease-in-out');
 
-          if (window.scrollY <= 30 || scrollTopVal < lastScrollTop) {
-            $header.removeClass('region-header--hide');
+        if (scrollTopVal <= 10 || scrollTopVal < lastScrollTop) {
+          $header.removeClass('region-header--hide');
+
+          if (scrollTopVal === 0) {
+            $('header .block--header-branding').addClass('block--header-branding-large');
+            $('header .region-header__content').addClass('region-header__content-large');
           }
-          else {
-            $header.addClass('region-header--hide');
-            if ($button.attr('aria-expanded') === 'true') {
-              behavior_object.toggleMenuPanel($button);
-            }
-          }
-          lastScrollTop = scrollTopVal <= 0 ? 0 : scrollTopVal;
         }
+        else {
+          $header.addClass('region-header--hide');
+          $('header .block--header-branding').removeClass('block--header-branding-large');
+          $('header .region-header__content').removeClass('region-header__content-large');
+
+          if ($button.attr('aria-expanded') === 'true') {
+            behavior_object.toggleMenuPanel($button);
+          }
+        }
+        lastScrollTop = scrollTopVal <= 0 ? 0 : scrollTopVal;
       });
     },
     isDesktop: function () {
