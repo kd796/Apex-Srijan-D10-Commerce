@@ -87,14 +87,15 @@
         behavior_object.updateHeaderPlaceholder($menu_item);
       });
 
-      // On scroll down, header and expanded navigation disappears, scroll up re-appears, logo area resizes
+      // Sets large logo with tall performance device
       $('header .block--header-branding').addClass('block--header-branding-large');
       $('header .region-header__content').addClass('region-header__content-large');
 
+      // On scroll down, header and expanded navigation disappears, scroll up re-appears, logo area resizes
       window.addEventListener('scroll', function () {
         var $header = $('header');
         var scrollTopVal = window.pageYOffset || document.documentElement.scrollTop;
-        var $menu_item = $('.region-header .menu-item--depth-0.menu-item--expanded');
+        var $menu_item = $('.region-header .menu-item--depth-0');
         var $button = $menu_item.find('.menu-item__button').first();
 
         $header.addClass('region-header--ease-in-out');
