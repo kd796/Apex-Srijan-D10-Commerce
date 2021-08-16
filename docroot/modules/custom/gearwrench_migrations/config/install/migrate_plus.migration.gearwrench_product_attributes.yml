@@ -5,6 +5,7 @@ source:
   constants:
     DESCRIPTION_PREFIX: 'PIM Attribute ID'
     COLON: ' : '
+    WEIGHT: 0
   plugin: url
   data_fetcher_plugin: http
   data_parser_plugin: xml
@@ -18,7 +19,7 @@ source:
       selector: '@ID'
     - name: remote_name
       label: 'Name'
-      selector: stibo:Name
+      selector: Name
   ids:
     remote_id:
       type: string
@@ -203,7 +204,6 @@ process:
         - AMZN
         # Grainger
         - ATT23047
-
     -
       plugin: machine_name
     -
@@ -211,10 +211,9 @@ process:
       entity_type: taxonomy_vocabulary
       field: vid
       length: 32
-  vocab_id:
-    source: remote_id
-    plugin: machine_name
   name: remote_name
+  label: remote_name
+  weight: constants/WEIGHT
   description:
     plugin: concat
     source:

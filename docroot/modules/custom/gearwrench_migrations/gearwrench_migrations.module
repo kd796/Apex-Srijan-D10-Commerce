@@ -8,3 +8,24 @@
  * This file is no longer required in Drupal 8.
  * @see https://www.drupal.org/node/2217931
  */
+
+use Drupal\migrate\MigrateSkipRowException;
+use Drupal\migrate\Plugin\MigrateSourceInterface;
+use Drupal\migrate\Plugin\MigrationInterface;
+use Drupal\migrate\Row;
+
+/**
+ * Implements hook_migrate_prepare_row().
+ */
+function gearwrench_migrations_migrate_prepare_row(Row $row, MigrateSourceInterface $source, MigrationInterface $migration) {
+  if ($migration->id() === 'gearwrench_products') {
+    if ($row->getSource()['remote_set'] === 'SKU-Set') {
+      throw new MigrateSkipRowException('', TRUE);
+    }
+  }
+  if ($migration->id() === 'gearwrench_product_sets') {
+    if ($row->getSource()['remote_set'] !== 'SKU-Set') {
+      throw new MigrateSkipRowException('', TRUE);
+    }
+  }
+}

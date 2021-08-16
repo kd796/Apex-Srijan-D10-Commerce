@@ -24,6 +24,9 @@ source:
     - name: remote_sku_group
       label: SKU Group
       selector: ../../Product
+    - name: remote_set
+      label: Set?
+      selector: '@UserTypeID'
     - name: remote_product_specifications
       label: Product Specifications
       selector: stibo:Values
@@ -56,29 +59,15 @@ process:
     source: remote_sku_group
   # Product Specifications
   product_specifications_array:
-    plugin: get_values_array
+    plugin: create_unique_term
     source: remote_product_specifications
   field_product_specifications:
     plugin: sub_process
     source: '@product_specifications_array'
     include_source: true
     process:
-      vocabulary_id:
-        - plugin: skip_on_empty
-          method: process
-          source: vid
-      target_id:
-        -
-          plugin: entity_generate
-          source: term_name
-          entity_type: taxonomy_term
-          bundle_key: vid
-          bundle: '@vocabulary_id'
-          value_key: name
-          ignore_case: true
-        -
-          plugin: skip_on_empty
-          method: process
+      vocabulary_id: vid
+      target_id: target_id
   # Copy Points
   product_features_array:
     plugin: get_product_features_array

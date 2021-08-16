@@ -1,4 +1,4 @@
-uuid: db2cfad1-c9e8-47e3-afac-1074571c6f62
+uuid: 7e4b7dcc-f8e7-4c9f-a67e-cbe5a43b928c
 langcode: en
 status: true
 dependencies: {  }
@@ -13,6 +13,7 @@ source:
   constants:
     DESCRIPTION_PREFIX: 'PIM Attribute ID'
     COLON: ' : '
+    WEIGHT: 0
   plugin: url
   data_fetcher_plugin: http
   data_parser_plugin: xml
@@ -28,7 +29,7 @@ source:
     -
       name: remote_name
       label: Name
-      selector: 'stibo:Name'
+      selector: Name
   ids:
     remote_id:
       type: string
@@ -148,10 +149,9 @@ process:
       entity_type: taxonomy_vocabulary
       field: vid
       length: 32
-  vocab_id:
-    source: remote_id
-    plugin: machine_name
   name: remote_name
+  label: remote_name
+  weight: constants/WEIGHT
   description:
     plugin: concat
     source:

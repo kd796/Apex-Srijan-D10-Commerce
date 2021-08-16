@@ -5,6 +5,7 @@ namespace Drupal\gearwrench_migrations\Plugin\migrate\process;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Get Values Array.
@@ -31,22 +32,57 @@ class GetValuesArray extends ProcessPluginBase {
       if ($child->getName() !== 'MultiValue') {
         $vid = strtolower((string) $child->attributes()->AttributeID);
         $vid = str_replace(' ', '_', $vid);
-        $values_array[] = [
-          'vid' => $vid,
-          'term_name' => (string) $child
-        ];
+        if ($tid = $this->getTidByName((string) $child, $vid)) {
+          $term = Term::load($tid);
+        }
+        else {
+          $term = Term::create([
+            'name' => (string) $child,
+            'vid'  => $vid,
+          ])->save();
+          if ($tid = $this->getTidByName((string) $child, $vid)) {
+            $term = Term::load($tid);
+          }
+        }
       }
       else {
         $vid = strtolower((string) $child->attributes()->AttributeID);
         $vid = str_replace(' ', '_', $vid);
-        $values_array[] = [
-          'vid' => $vid,
-          'term_name' => (string) $child->Value
-        ];
+
+        if ($tid = $this->getTidByName((string) $child->Value, $vid)) {
+          $term = Term::load($tid);
+        }
+        else {
+          $term = Term::create([
+            'name' => (string) $child->Value,
+            'vid'  => $vid,
+          ])->save();
+
+          if ($tid = $this->getTidByName((string) $child->Value, $vid)) {
+            $term = Term::load($tid);
+          }
+        }
       }
     }
-    $values_array = json_encode($values_array);
-    return json_decode($values_array, TRUE);
+    return [
+      'target_id' => is_object($term) ? $term->id() : 0,
+    ];
+  }
+
+  /**
+   * Load term by name.
+   */
+  protected function getTidByName($name = NULL, $vocabulary = NULL) {
+    $properties = [];
+    if (!empty($name)) {
+      $properties['name'] = $name;
+    }
+    if (!empty($vocabulary)) {
+      $properties['vid'] = $vocabulary;
+    }
+    $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties($properties);
+    $term = reset($terms);
+    return !empty($term) ? $term->id() : 0;
   }
 
 }

@@ -11,9 +11,10 @@
  * @see gearwrench_preprocess_node__page__full()
  */
 
+use Drupal\taxonomy\Entity\Vocabulary;
+use Drupal\file\Entity\File;
 use Drupal\Component\Utility\Html;
-use Drupal\Core\Link;
-use Drupal\Core\Url;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Implements hook_preprocess_node().
@@ -48,6 +49,61 @@ function gearwrench_preprocess_node__landing_page__full(array &$variables) {
  */
 function gearwrench_preprocess_node__page__full(array &$variables) {
   // Nothing to see here.
+}
+
+/**
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for page, full.
+ */
+function gearwrench_preprocess_node__product__full(array &$variables) {
+  $node = $variables['elements']['#node'];
+  // Product Features.
+  $page_top_products_features = $variables['content']['field_product_features'];
+  // Add first 3 Product Features to an array to display at the top of the page.
+  $all_product_features = $node->get('field_product_features')->getValue();
+  foreach ($all_product_features as $key => $feature) {
+    if ($key > 2) {
+      unset($page_top_products_features[$key]);
+    }
+  }
+  $variables['page_top_products_features'] = $page_top_products_features;
+  // Product Specifications.
+  $specs = $node->field_product_specifications->getValue();
+  foreach ($specs as $key => $spec) {
+    $term = Term::load($spec['target_id']);
+    $vocab = Vocabulary::load($term->bundle());
+    $initial_string = $variables['content']['field_product_specifications'][$key]['#plain_text'];
+    $formatted_string = $vocab->label() . ' : ' . $initial_string;
+    $variables['content']['field_product_specifications'][$key]['#plain_text'] = $formatted_string;
+  }
+
+  // Thumb Gallery.
+  $thumbs = $node->field_product_images->getValue();
+
+  foreach ($thumbs as $thumb) {
+    $file = File::load($thumb['target_id']);
+    $thumb_variables = [
+      'style_name' => 'thumbnail_cropped',
+      'uri' => $file->getFileUri(),
+    ];
+    // The image.factory service will check if our image is valid.
+    $image = \Drupal::service('image.factory')->get($file->getFileUri());
+    if ($image->isValid()) {
+      $thumb_variables['width'] = $image->getWidth();
+      $thumb_variables['height'] = $image->getHeight();
+    }
+    else {
+      $thumb_variables['width'] = $thumb_variables['height'] = NULL;
+    }
+
+    $variables['thumbnails'][] = [
+      '#theme' => 'image_style',
+      '#width' => $thumb_variables['width'],
+      '#height' => $thumb_variables['height'],
+      '#style_name' => $thumb_variables['style_name'],
+      '#uri' => $thumb_variables['uri']
+    ];
+  }
+
 }
 
 /**
