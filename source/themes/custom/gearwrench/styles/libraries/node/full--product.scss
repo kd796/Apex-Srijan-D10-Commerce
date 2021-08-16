@@ -1,0 +1,142 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Node: Full Product
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.node--type-product.node--view-mode-full .node__content {
+  .node--type-product__page-top {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+
+    @include media('>sm') {
+      display: grid;
+      column-gap: rem(26px);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .product-detail-slider {
+
+      .product-detail-slider__container {
+        position: relative;
+
+        .product-detail-slider__pseudo-prev-button,
+        .product-detail-slider__pseudo-next-button {
+          display: none;
+          @include media('<md') {
+            background: none;
+            border: 0;
+            color: $primary-orange;
+            display: block;
+            position: absolute;
+            top: calc(50% - .5rem);
+            margin: 0;
+            z-index: 10;
+            cursor: pointer;
+
+            &:after,
+            &:before {
+              font-size: 1.5rem;
+            }
+          }
+        }
+
+        .product-detail-slider__pseudo-prev-button {
+          @include icon('chevron-left-black', after, false);
+          left: 0;
+        }
+
+        .product-detail-slider__pseudo-next-button {
+          @include icon('chevron-right-black', after, false);
+          right: 0;
+        }
+
+      }
+
+      .product-detail-slider__thumbs-outer-wrapper {
+        position: relative;
+      }
+
+      .product-detail-slider__thumbs-container {
+        width: 100%;
+
+        @include media('>md') {
+          width: calc(66.6666666667% - 6px);
+        }
+
+        .swiper-slide-thumb-active {
+          outline: 2px solid $primary-orange;
+          outline-offset: -2px;
+        }
+      }
+
+      // Button Style Overrides
+      .swiper-button-next,
+      .swiper-button-prev {
+        display: none;
+
+        @include media('>md') {
+          display: block;
+          background: none;
+          background-color: $primary-orange;
+          margin: 0;
+          padding: 0;
+          top: 0;
+
+          @include on-event {
+            color: $black;
+          }
+        }
+      }
+
+      .swiper-button-prev {
+        @include icon('chevron-left-black', after, false);
+        left: 0;
+      }
+
+      .swiper-button-next {
+        @include icon('chevron-right-black', after, false);
+        right: 0;
+      }
+
+      .swiper-button-next.swiper-button-disabled,
+      .swiper-button-prev.swiper-button-disabled {
+        opacity: 1;
+      }
+    }
+
+    .product-detail-content-container__title {
+
+      h1 {
+        @include media('>md') {
+          margin: 0;
+        }
+      }
+
+      .sku {
+        display: block;
+        font-size: rem(14px);
+        margin: 0;
+      }
+
+      .product-detail-content-container__rating-container {
+        margin: rem(26px) 0;
+      }
+    }
+
+    .more-features-link {
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+  }
+}

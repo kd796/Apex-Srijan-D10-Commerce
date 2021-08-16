@@ -2,6 +2,7 @@
 
 namespace Drupal\gearwrench_migrations\Plugin\migrate\process;
 
+use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\MigrateSkipProcessException;
@@ -20,26 +21,60 @@ class CreateUniqueTerm extends ProcessPluginBase {
   /**
    * {@inheritdoc}
    */
-  public function transform($term_name, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
-    $vocabulary = $this->configuration['vocabulary'];
-    if (empty($term_name)) {
-      throw new MigrateSkipProcessException();
-    }
-    if ($tid = $this->getTidByName($term_name, $vocabulary)) {
-      $term = Term::load($tid);
-    }
-    else {
-      $term = Term::create([
-        'name' => $term_name,
-        'vid'  => $vocabulary,
-      ])->save();
-      if ($tid = $this->getTidByName($term_name, $vocabulary)) {
-        $term = Term::load($tid);
+  public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
+    $values_array = [];
+    foreach ($value->children() as $child) {
+      $term = NULL;
+      if ($child->getName() !== 'MultiValue') {
+        $vid = strtolower((string) $child->attributes()->AttributeID);
+        $vid = str_replace(' ', '_', $vid);
+        // Check if vocab exists.
+        $vocab = Vocabulary::load($vid);
+        if (!empty($vocab)) {
+          if ($tid = $this->getTidByName((string) $child, $vid)) {
+            $term = Term::load($tid);
+          }
+          else {
+            $term = Term::create([
+              'name' => (string) $child,
+              'vid'  => $vid,
+            ])->save();
+            if ($tid = $this->getTidByName((string) $child, $vid)) {
+              $term = Term::load($tid);
+            }
+          }
+        }
+      }
+      else {
+        $vid = strtolower((string) $child->attributes()->AttributeID);
+        $vid = str_replace(' ', '_', $vid);
+        // Check if vocab exists.
+        $vocab = Vocabulary::load($vid);
+        if (!empty($vocab)) {
+          if ($tid = $this->getTidByName((string) $child->Value, $vid)) {
+            $term = Term::load($tid);
+          }
+          else {
+            $term = Term::create([
+              'name' => (string) $child->Value,
+              'vid'  => $vid,
+            ])->save();
+
+            if ($tid = $this->getTidByName((string) $child->Value, $vid)) {
+              $term = Term::load($tid);
+            }
+          }
+        }
+      }
+      if (is_object($term)) {
+        $values_array[] = [
+          'vid' => $vid,
+          'target_id' => $term->id()
+        ];
       }
     }
-    return [
-      'target_id' => is_object($term) ? $term->id() : 0,
-    ];
+    $values_array = json_encode($values_array);
+    return json_decode($values_array, TRUE);
   }
 
   /**

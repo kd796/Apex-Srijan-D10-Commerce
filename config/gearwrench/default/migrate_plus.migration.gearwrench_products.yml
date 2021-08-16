@@ -1,4 +1,4 @@
-uuid: b3257ad4-31be-4815-8f2e-b3bfdc2a7265
+uuid: 9a703170-9409-4baf-9b24-d042c0978cfe
 langcode: en
 status: true
 dependencies: {  }
@@ -35,6 +35,10 @@ source:
       label: 'SKU Group'
       selector: ../../Product
     -
+      name: remote_set
+      label: 'Set?'
+      selector: '@UserTypeID'
+    -
       name: remote_product_specifications
       label: 'Product Specifications'
       selector: 'stibo:Values'
@@ -70,30 +74,15 @@ process:
     plugin: get_id_attribute
     source: remote_sku_group
   product_specifications_array:
-    plugin: get_values_array
+    plugin: create_unique_term
     source: remote_product_specifications
   field_product_specifications:
     plugin: sub_process
     source: '@product_specifications_array'
     include_source: true
     process:
-      vocabulary_id:
-        -
-          plugin: skip_on_empty
-          method: process
-          source: vid
-      target_id:
-        -
-          plugin: entity_generate
-          source: term_name
-          entity_type: taxonomy_term
-          bundle_key: vid
-          bundle: '@vocabulary_id'
-          value_key: name
-          ignore_case: true
-        -
-          plugin: skip_on_empty
-          method: process
+      vocabulary_id: vid
+      target_id: target_id
   product_features_array:
     plugin: get_product_features_array
     source: remote_product_features
