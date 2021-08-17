@@ -13,8 +13,8 @@
 /**
  * SASS Variables
  */
-$header-bp-desktop: '>md';
-$header-bp-mobile: '<=md';
+$header-bp-desktop: '>=lg';
+$header-bp-mobile: '<lg';
 $header-z-index: 501;
 $mobile-menu-item-button-height: 7rem;
 
@@ -129,16 +129,16 @@ $mobile-menu-item-button-height: 7rem;
         vertical-align: middle;
 
         @include media('<=lg-plus') {
-          height: 1.25rem;
+          height: $header-logo-height;
         }
       }
     }
 
-    @include media('>=lg-plus') {
+    @include media('>lg-plus') {
       &:not(.block--header-branding-large) {
         .site-logo {
           display: block;
-          width: 56px;
+          width: rem(56px);
           overflow: hidden;
         }
       }
@@ -147,12 +147,8 @@ $mobile-menu-item-button-height: 7rem;
 
   // Larger performance device and logo at top
   .block--header-branding-large {
-    @include media('>=lg-plus') {
-      height: rem(120px) !important;
-    }
-
-    @include media('>=xl') {
-      height: rem(100px) !important;
+    @include media('>lg-plus') {
+      height: rem(100px);
     }
 
     @include media('>=gr') {
@@ -384,11 +380,11 @@ $mobile-menu-item-button-height: 7rem;
         margin-left: rem(360px);
       }
 
-      @include media('>=lg-plus') {
+      @include media('>lg-plus') {
         margin-left: rem(50px);
       }
 
-      @include media('<lg-plus') {
+      @include media('<=lg-plus') {
         margin-left: 3rem;
       }
 
@@ -474,6 +470,21 @@ $mobile-menu-item-button-height: 7rem;
 
             &::after {
               right: rem(-35px);
+            }
+
+            @include media('<=xl') {
+              &::before,
+              &::after {
+                width: rem(20px);
+              }
+
+              &::before {
+                left: rem(-10px);
+              }
+
+              &::after {
+                right: rem(-28px);
+              }
             }
           }
         }
@@ -832,15 +843,13 @@ $mobile-menu-item-button-height: 7rem;
  * Offset page since header is fixed.
  */
 .page {
-  padding-top: $header-height;
+  padding-top: $header-height-large;
 
-  @include media('<md') {
-    padding-top: $header-height-mobile;
+  @include media('<=lg-plus') {
+    padding-top: $header-height;
   }
-
-  // Larger Performance device and logo
-  @include media('>=lg-plus') {
-    padding-top: calc(#{$header-height} + #{$header-logo-performance-height-large});
+  @include media('<lg') {
+    padding-top: $header-height-mobile;
   }
 }
 
