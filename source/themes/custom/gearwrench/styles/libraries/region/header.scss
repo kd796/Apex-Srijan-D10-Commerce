@@ -83,7 +83,7 @@ $mobile-menu-item-button-height: 7rem;
     padding-right: rem(34px);
     position: relative;
 
-    @include media('<=1200px') {
+    @include media('<1130px') {
       padding-right: rem(18px);
     }
 
@@ -375,13 +375,19 @@ $mobile-menu-item-button-height: 7rem;
   @include media($header-bp-desktop) {
     .block--header-menu-main {
       @include flex-x(flex, 1);
+      margin-left: rem(360px);
 
-      @include media('>=gr') {
-        margin-left: rem(360px);
+      @include media('<gr') {
+        margin-left: rem(400px);
       }
 
-      @include media('>lg-plus') {
-        margin-left: rem(50px);
+      @include media('<xl') {
+        margin-left: rem(380px);
+      }
+
+      //  Right padding is increased for performance device @1130px
+      @include media('>=1130px') {
+        margin-left: rem(398px);
       }
 
       @include media('<=lg-plus') {
@@ -537,6 +543,12 @@ $mobile-menu-item-button-height: 7rem;
             transform: rotate(90deg);
             margin-left: .5rem;
           }
+
+          &.menu-item--expanded {
+            &::after {
+              transform: rotate(-90deg);
+            }
+          }
         }
       }
 
@@ -655,8 +667,12 @@ $mobile-menu-item-button-height: 7rem;
     }
 
     .block--header-branding-large + .block--header-menu-main {
+      @include media('>lg-plus') {
+        margin-left: rem(50px);
+      }
+
       @include media('>=gr') {
-        margin-left: rem(110px);
+        margin-left: rem(150px);
       }
     }
 
