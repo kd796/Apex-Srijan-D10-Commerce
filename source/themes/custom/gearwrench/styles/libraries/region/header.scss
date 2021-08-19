@@ -209,6 +209,10 @@ $mobile-menu-item-button-height: 7rem;
       padding-top: 0;
       text-transform: uppercase;
 
+      .is-active {
+        font-weight: $fw-extra-bold;
+      }
+
       @include media('<=1200px') {
         font-size: rem(17px);
       }
@@ -457,7 +461,6 @@ $mobile-menu-item-button-height: 7rem;
             justify-content: center;
             align-self: center;
             background-color: $black;
-            font-weight: $fw-extra-bold;
 
             &::before,
             &::after {
@@ -651,7 +654,6 @@ $mobile-menu-item-button-height: 7rem;
           }
         }
 
-        .all-tools-menu__content-container,
         .featured-tools-menu__content-container {
           display: flex;
           flex-direction: row;
@@ -662,6 +664,17 @@ $mobile-menu-item-button-height: 7rem;
             flex-wrap: wrap;
             padding: 0 0 3.5rem;
             width: 100%;
+          }
+        }
+
+        .all-tools-menu__content-container {
+          display: flex;
+          flex-direction: row;
+
+          ul.menu--depth-1 {
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            grid-column-gap: rem(15px);
           }
         }
       }
