@@ -436,6 +436,13 @@ $mobile-menu-item-button-height: 7rem;
 
         height: $header-height;
         margin: 0;
+        padding-left: rem(10px);
+        padding-right: rem(10px);
+
+        &.menu-item--in-active-trail {
+          padding-left: 0;
+          padding-right: 0;
+        }
 
         &:first-of-type {
           margin-left: 0;
