@@ -8,13 +8,10 @@ dependencies:
     - field.field.paragraph.hero_slide.field_content
     - field.field.paragraph.hero_slide.field_link
     - field.field.paragraph.hero_slide.field_media_background
-    - field.field.paragraph.hero_slide.field_media_item
     - field.field.paragraph.hero_slide.field_style
     - field.field.paragraph.hero_slide.field_title
-    - image.style.hero_slide_featured_image
     - paragraphs.paragraphs_type.hero_slide
   module:
-    - blazy
     - link
     - smart_trim
 _core:
@@ -63,48 +60,6 @@ content:
     settings:
       view_mode: hero
       link: false
-    third_party_settings: {  }
-  field_media_item:
-    type: blazy_media
-    weight: 3
-    region: content
-    label: hidden
-    settings:
-      image_style: hero_slide_featured_image
-      responsive_image_style: ''
-      media_switch: ''
-      thumbnail_style: ''
-      ratio: ''
-      view_mode: default
-      current_view_mode: full
-      background: false
-      caption:
-        title: '0'
-        alt: '0'
-      class: ''
-      id: ''
-      image: ''
-      link: ''
-      overlay: ''
-      title: ''
-      vanilla: false
-      icon: ''
-      layout: ''
-      cache: 0
-      skin: ''
-      fx: ''
-      style: ''
-      box_caption: ''
-      box_caption_custom: ''
-      box_media_style: ''
-      box_style: ''
-      _uri: ''
-      breakpoints: {  }
-      sizes: ''
-      grid_header: ''
-      grid: 0
-      grid_medium: 0
-      grid_small: 0
     third_party_settings: {  }
   field_title:
     weight: 0
