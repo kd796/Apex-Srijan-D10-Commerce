@@ -61,19 +61,10 @@
         </div>
         <footer{{ footer_attributes }}>
           {{- footer -}}
-          <div class="component-hero__button-container">
-            <button class="component-hero__button component-hero__button-prev swiper-button-prev"></button>
-            <button class="component-hero__button component-hero__button-next swiper-button-next"></button>
+          <div class="component-hero-slide__button-container">
           </div>
         </footer>
       </div>
-
-      {% if featured_image %}
-        <div class="component-hero-slide__featured-image">
-          {{ featured_image }}
-        </div>
-      {% endif %}
     </div>
-
   </article>
 {% endblock paragraph %}
