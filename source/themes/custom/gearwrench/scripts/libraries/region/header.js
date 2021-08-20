@@ -9,6 +9,18 @@
       var selector_header_menu_button = '.block--header-menu-main .block__menu-toggle';
       var selector_header_menu_item_buttons = '.block--header-menu-main .menu-item__button';
       var selector_header_menu_items_with_children = '.block--header-menu-main .menu-item--has-children';
+      var selector_header_search_button = '.block--header-search .block__content-toggle';
+      var lastScrollTop = 0;
+
+      // Open search panel.
+      $(selector_header_search_button).once('header').on({
+        click: function () {
+          var $this = $(this);
+
+          // Either expand or collapse the search panel.
+          behavior_object.togglePanel($this);
+        }
+      });
 
       // Open mobile menu.
       $(selector_header_menu_button).once('header').on({
@@ -74,12 +86,45 @@
         var $menu_item = $('.region-header .menu-item--depth-0.menu-item--expanded');
         behavior_object.updateHeaderPlaceholder($menu_item);
       });
+
+      // Sets large logo with tall performance device
+      $('header .block--header-branding').addClass('block--header-branding-large');
+      $('header .region-header__content').addClass('region-header__content-large');
+
+      // On scroll down, header and expanded navigation disappears, scroll up re-appears, logo area resizes
+      window.addEventListener('scroll', function () {
+        var $header = $('header');
+        var scrollTopVal = window.pageYOffset || document.documentElement.scrollTop;
+        var $menu_item = $('.region-header .menu-item--depth-0');
+        var $button = $menu_item.find('.menu-item__button').first();
+
+        $header.addClass('region-header--ease-in-out');
+
+        if (scrollTopVal <= 10 || scrollTopVal < lastScrollTop) {
+          $header.removeClass('region-header--hide');
+
+          if (scrollTopVal === 0) {
+            $('header .block--header-branding').addClass('block--header-branding-large');
+            $('header .region-header__content').addClass('region-header__content-large');
+          }
+        }
+        else {
+          $header.addClass('region-header--hide');
+          $('header .block--header-branding').removeClass('block--header-branding-large');
+          $('header .region-header__content').removeClass('region-header__content-large');
+
+          if ($button.attr('aria-expanded') === 'true') {
+            behavior_object.toggleMenuPanel($button);
+          }
+        }
+        lastScrollTop = scrollTopVal <= 0 ? 0 : scrollTopVal;
+      });
     },
     isDesktop: function () {
-      return ($('body').width() >= 568);
+      return ($('body').width() >= 980);
     },
     isMobile: function () {
-      return ($('body').width() < 568);
+      return ($('body').width() < 980);
     },
     toggleMenuPanel: function ($button, to_expand) {
       to_expand = (typeof to_expand === 'boolean') ? to_expand : ($button.attr('aria-expanded') !== 'true');
