@@ -2,6 +2,10 @@
   'use strict';
 
   Drupal.behaviors.componentHero = {
+    resizeButtons: function ($heroSlideButtonContainer) {
+      var $buttonHeight = $heroSlideButtonContainer.outerHeight();
+      $('.component-hero-slide__button').css('width', $buttonHeight);
+    },
     attach: function (context, settings) {
       $('.component-hero:not(.component-hero--js-initialized)').each(function (index) {
         var $component = $(this);
@@ -29,30 +33,25 @@
           new Swiper($heroWrapper, {
             effect: 'fade',
             navigation: {
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev'
+              nextEl: '.component-hero-slide__button-next',
+              prevEl: '.component-hero-slide__button-prev'
             },
             on: {
               init: function () {
-                var $buttonHeight = $heroSlideButtonContainer.outerHeight();
-                setTimeout($('.component-hero-slide__button').css('width', $buttonHeight), 500);
                 // Use a timeout on init to make sure to catch contextual links.
-                setTimeout(Drupal.behaviors.swiper.updateSlideAria.bind(this), 500);
+                setTimeout(Drupal.behaviors.swiper.updateSlideAria.bind(this), Drupal.behaviors.componentHero.resizeButtons($heroSlideButtonContainer), 500);
               },
               resize: function () {
-                var $buttonHeight = $heroSlideButtonContainer.outerHeight();
-                setTimeout($('.component-hero-slide__button').css('width', $buttonHeight), 500);
-                Drupal.behaviors.swiper.updateSlideAria.apply(this);
+                setTimeout(Drupal.behaviors.swiper.updateSlideAria.bind(this), Drupal.behaviors.componentHero.resizeButtons($heroSlideButtonContainer), 500);
                 Drupal.blazy.init.revalidate();
               },
               slideChangeTransitionEnd: function () {
-                setTimeout($('.component-hero-slide__button').css('width', $buttonHeight), 500);
                 Drupal.behaviors.swiper.updateSlideAria.apply(this);
                 Drupal.blazy.init.revalidate();
               }
             },
             pagination: {
-              el: '.swiper-pagination',
+              el: '.component-hero-slide__pagination',
               clickable: true
             },
             slidesPerGroup: 1,

@@ -13,6 +13,7 @@ dependencies:
     - paragraphs.paragraphs_type.featured_content
     - paragraphs.paragraphs_type.featured_links
     - paragraphs.paragraphs_type.featured_media
+    - paragraphs.paragraphs_type.product_slider
     - paragraphs.paragraphs_type.pullquote
     - paragraphs.paragraphs_type.section
     - paragraphs.paragraphs_type.tabs
@@ -44,6 +45,7 @@ settings:
       featured_links: featured_links
       featured_media: featured_media
       pullquote: pullquote
+      product_slider: product_slider
       section: section
       tabs: tabs
     target_bundles_drag_drop:
@@ -80,6 +82,9 @@ settings:
       hero_slide:
         weight: 26
         enabled: false
+      product_slider:
+        enabled: true
+        weight: 28
       pullquote:
         enabled: true
         weight: 27

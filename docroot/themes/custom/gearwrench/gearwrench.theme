@@ -107,6 +107,7 @@ function gearwrench_preprocess_blazy(&$variables) {
     if ($entity instanceof Media) {
       $alt = $entity->getSource()->getMetadata($entity, 'thumbnail_alt_value');
       $variables['image']['#attributes']['alt'] = $alt;
+      $variables['image']['#attributes']['loading'] = 'lazy';
       $variables['item_attributes']['alt'] = $alt;
     }
   }

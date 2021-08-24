@@ -172,13 +172,12 @@ node--full--product:
     - gearwrench/library--swiper
 
 # === Node: Teaser === #
-#node--teaser:
-#  version: 1.x
-#  css:
-#    component:
-#      css/libraries/node/teaser.css: {}
 
-
+node--teaser--product:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/teaser--product.css: { }
 
 # ========= Paragraphs ========= #
 
@@ -321,6 +320,20 @@ paragraph--full--featured-media--layout-slider:
     js/libraries/paragraph/full--featured-media--layout-slider.js: {}
   dependencies:
     - gearwrench/paragraph--full--featured-media
+    - gearwrench/library--swiper
+
+# Product Slider #
+paragraph--full--product-slider:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--product-slider.css: {}
+  js:
+    js/libraries/paragraph/full--product-slider.js: { }
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
     - gearwrench/library--swiper
 
 # Pull Quote #

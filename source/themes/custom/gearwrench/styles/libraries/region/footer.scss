@@ -157,12 +157,13 @@ $footer-bp-mobile: '<sm';
       }
 
       .webform-button--submit {
-        background-image: linear-gradient(90deg, $primary-orange 0%, $primary-orange 50%, $black 50%, $black 100%);
-        border-color: $black;
+        background-color: $black;
+        border: 1px solid $black;
         color: $white;
         width: 100%;
 
         &:hover {
+          background-color: $primary-orange;
           color: $black;
         }
       }
