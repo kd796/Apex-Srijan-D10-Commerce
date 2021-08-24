@@ -20,6 +20,7 @@ $tabs-border-width-active: rem(5px);
   & > .component-tabs__nav {
     margin: 0;
     padding: 0;
+    border-bottom: $tabs-border-width solid $gray-30;
 
     li {
       cursor: pointer;
@@ -56,8 +57,6 @@ $tabs-border-width-active: rem(5px);
         }
 
         &[aria-selected='true'] {
-          border-color: $gray-30;
-
           &:after {
             @include trl();
             background-color: $color-white;
@@ -70,19 +69,38 @@ $tabs-border-width-active: rem(5px);
         }
       }
 
-      @include media('<md') {
+      @include media('<=lg-plus') {
         li {
           &:first-child {
-            margin-left: rem(50px);
+            margin-left: rem(35px);
           }
 
           &:last-child {
-            margin-right: rem(50px);
+            margin-right: rem(35px);
           }
+        }
+      }
 
+      @include media('<=lg') {
+        li {
           a {
             font-size: rem(20px);
           }
+        }
+      }
+
+      @include media('<md') {
+        flex-wrap: nowrap;
+        justify-content: center;
+        overflow-x: scroll;
+        margin-left: -2rem;
+        margin-right: -2rem;
+        scroll-snap-type: x mandatory;
+
+        li {
+          display: flex;
+          flex: 0 0 auto;
+          scroll-snap-align: start;
 
           &[aria-selected='false'] {
             a {
@@ -91,10 +109,13 @@ $tabs-border-width-active: rem(5px);
           }
         }
       }
+
+      @include media('<=sm') {
+        justify-content: flex-start;
+      }
     }
 
     & > .component-tabs__content {
-      border-top: $tabs-border-width solid $gray-30;
       padding: 1rem;
     }
   }
