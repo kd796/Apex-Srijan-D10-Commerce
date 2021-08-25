@@ -96,7 +96,7 @@ $tabs-border-width-active: rem(5px);
         margin-left: -1rem;
         margin-right: -1rem;
         -ms-overflow-style: none;
-        scrollbar-width: none;
+        scrollbar-width: none; // sass-lint:disable-line no-misspelled-properties
 
         &::-webkit-scrollbar {
           display: none;
@@ -120,7 +120,7 @@ $tabs-border-width-active: rem(5px);
     }
 
     & > .component-tabs__content {
-      padding: 1rem;
+      padding: 1rem 0;
     }
   }
 }
