@@ -14,25 +14,37 @@
  * Component
  */
 .component-accordion {
+  .component-accordion-item {
+    @include media('<md') {
+      &:first-of-type {
+        border-top: 0.125rem solid $gray-70;
+      }
+    }
+  }
+
   .component-accordion-item__title {
-    @include type-header(h4, dark, included);
+    @include type-header(h4, black, included);
+    @include icon('arrow', after, false);
+
     cursor: pointer;
-    padding: 0.5rem 0.5rem 0.5rem 1rem;
+    padding: rem(20px) 0 rem(17px) rem(10px) !important;
+    margin: 0 !important;
     text-transform: uppercase;
     position: relative;
+    border-bottom: 0.125rem solid $gray-70;
 
-    &:before {
-      color: $color-blue;
-      content: '+';
+    &::after {
+      color: $color-black;
+      transform: rotate(90deg);
       display: inline-block;
-      margin-left: -1.5rem;
-      text-align: center;
-      width: 1.5rem;
+      position: absolute;
+      right: rem(12px);
+      font-size: rem(18px);
     }
 
     &:focus,
     &:hover {
-      color: $color-blue;
+      color: $color-black;
     }
   }
 
@@ -41,23 +53,47 @@
     animation-direction: alternate;
     animation-name: fadeIn;
     animation-timing-function: ease-in-out;
-    padding: 0.5rem 1rem 1rem;
+    padding: 1rem 0 1rem !important;
 
     @include media('>=md') {
-      padding: $gap-vertical-sm 1rem $gap-vertical-sm 4rem;
+      padding: rem(30px) 0 rem(40px) !important;
     }
 
     > .paragraph-component:not(:first-of-type) {
       margin-top: $gap-vertical-sm;
     }
+
+    .component-content {
+      padding-left: 0;
+      padding-right: 0;
+
+      @include media('>=md') {
+        padding-left: 4rem;
+        padding-right: 4rem;
+      }
+    }
+
+    .block-webform {
+      @include media('>=md') {
+        width: 50%
+      }
+    }
+
+    .component-content__content {
+      max-width: 100%;
+    }
   }
 
   .component-accordion-item--open {
-    & > .component-accordion-item__title {
+    @include media('<md') {
+      &:not(:last-child) {
+        border-bottom: 0.125rem solid $gray-70;
+      }
+    }
 
-      &:before {
-        content: '\2013';
-        transform: translateY(-1px);
+    & > .component-accordion-item__title {
+      &::after {
+        transform: rotate(-90deg);
       }
     }
   }
