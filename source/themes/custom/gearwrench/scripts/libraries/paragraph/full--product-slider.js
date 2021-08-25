@@ -15,6 +15,7 @@
           slidesPerView: 2,
           slidesPerGroup: 2,
           slidesPerColumn: 2,
+          slidesPerColumnFill: 'column',
           spaceBetween: 24,
           navigation: {
             nextEl: '.component-product-slider__button-next',

@@ -20,6 +20,7 @@
   .component-product-slider__list-wrapper {
     overflow: visible;
     padding: 0;
+    width: 100%;
 
     @include media('<md') {
       overflow: hidden;
@@ -30,6 +31,15 @@
       padding: 0;
 
       .component-product-slider__list-item {
+        width: 25%;
+
+        @include media('<md') {
+          width: 50%;
+        }
+
+        .node--type-product {
+          width: 100%;
+        }
 
         &.swiper-slide {
           opacity: .1;
