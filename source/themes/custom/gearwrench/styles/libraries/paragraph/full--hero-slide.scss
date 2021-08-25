@@ -161,6 +161,7 @@
 
   .component-hero-slide__link {
     @include btn();
+    border: 1px solid $primary-orange !important;
   }
 
   .component-hero-slide__footer:not(:empty) {
@@ -195,14 +196,30 @@
       opacity: 1;
       position: relative;
 
+      &:hover,
+      &:focus {
+        background-color: $color-black;
+        border-color: $primary-orange;
+      }
+
       &.component-hero-slide__button-prev {
         background-image: url('../../../icons/chevron-left-black.svg');
         margin-right: 1px;
+
+        &:hover,
+        &:focus {
+          background-image: url('../../../icons/chevron-left-molten-orange.svg');
+        }
       }
 
       &.component-hero-slide__button-next {
         background-image: url('../../../icons/chevron-right-black.svg');
         margin-left: 1px;
+
+        &:hover,
+        &:focus {
+          background-image: url('../../../icons/chevron-right-molten-orange.svg');
+        }
       }
     }
   }
