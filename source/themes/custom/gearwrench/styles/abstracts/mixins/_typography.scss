@@ -54,21 +54,19 @@
       font-size: 1.75rem;
     }
   } @else if $version == h2 {
-    font-size: 2rem;
+    font-size: rem(32px);
+    line-height: rem(40px);
   } @else if $version == h3 {
-    font-size: 1.6rem;
+    font-size: rem(28px);
+    line-height: rem(32px);
   } @else if $version == h4 {
     font-size: rem(24px);
     line-height: rem(32px);
-    @include media('<md') {
-      font-size: rem(16px);
-      line-height: rem(20px);
-    }
   } @else if $version == h5 {
-    font-size: rem(28px);
+    font-size: rem(20px);
     text-transform: uppercase;
   } @else if $version == h6 {
-    font-size: 1rem;
+    font-size:  rem(16px);
     text-transform: uppercase;
   } @else if $version == display-headline-1 {
     font-size: 4.5rem !important;

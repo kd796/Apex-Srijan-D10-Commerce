@@ -136,30 +136,52 @@ function gearwrench_preprocess_paragraph__content__full(array &$variables) {
   $paragraph = $variables['paragraph'];
   $base_class = $variables['component_base_class'];
 
+  // Initialize variables.
+  $variables['inner_attributes']['class'][] = "{$base_class}__inner";
+
+  // Track if media should be placed outside of content.
+  $media_outside = FALSE;
+
+  // Move media field to new variable.
+  if (isset($variables['content']['field_media_item']) && !empty($variables['content']['field_media_item'])) {
+    $variables['attributes']['class'][] = "{$base_class}--with-media";
+
+    $field_settings = [
+      'type' => 'blazy_media',
+      'label' => 'hidden',
+    ];
+
+    // Determine changes based on selected media layout.
+    $layout = ($paragraph->get('field_media_layout')->isEmpty()) ? NULL : $paragraph->get('field_media_layout')->target_id;
+    switch ($layout) {
+      case 'content_media_layout__half_left':
+      case 'content_media_layout__half_right':
+        $field_settings['settings']['responsive_image_style'] = 'content_half';
+        $media_outside = TRUE;
+        break;
+
+      case 'content_media_layout__top':
+      case 'content_media_layout__bottom':
+        $field_settings['settings']['responsive_image_style'] = 'content_top_bottom';
+        $media_outside = TRUE;
+        break;
+
+      default:
+        $field_settings['settings']['responsive_image_style'] = 'teaser';
+        break;
+    }
+
+    $variables['media'] = $paragraph->get('field_media_item')->view($field_settings);
+    $variables['media']['#attributes']['class'][] = "{$base_class}__media";
+    $variables['media_outside'] = $media_outside;
+    unset($variables['content']['field_media_item']);
+  }
+
   // Move cta link to footer and add class.
   if (array_key_exists('field_link', $variables['content']) && !empty($variables['content']['field_link'])) {
     $variables['footer']['field_link'] = $variables['content']['field_link'];
     $variables['footer']['field_link'][0]['#options']['attributes']['class'] = "{$base_class}__link button";
     unset($variables['content']['field_link'], $variables['footer']['field_link']['#theme']);
-  }
-
-  // Move media field to new variable.
-  if (isset($variables['content']['field_media_item']) && !empty($variables['content']['field_media_item'])) {
-    $variables['media'] = $variables['content']['field_media_item'];
-    $variables['media']['#attributes']['class'][] = "{$base_class}__media";
-    unset($variables['content']['field_media_item']);
-
-    // Add a wrapper to each item if it has a url present.
-    if (isset($variables['media']['#items'])) {
-      $field_values = $variables['media']['#items']->getValue();
-      foreach (Element::children($variables['media']) as $delta) {
-        if (isset($field_values[$delta]['url']) && !empty($field_values[$delta]['url'])) {
-          $url = Url::fromUri($field_values[$delta]['url']);
-          $variables['media'][$delta]['#prefix'] = "<a href=\"{$url->toString()}\">";
-          $variables['media'][$delta]['#suffix'] = '</a>';
-        }
-      }
-    }
   }
 }
 
@@ -469,7 +491,7 @@ function gearwrench_preprocess_paragraph__tabs_tab__full(array &$variables) {
 }
 
 /**
- * Implements hook_preprocess_HOOK().
+ * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for product_slider, full.
  */
 function gearwrench_preprocess_paragraph__product_slider__full(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */

@@ -49,25 +49,35 @@
 {% block paragraph %}
   <section{{ attributes.addClass(classes) }}>
 
-    {{ title_prefix }}
-    {% if title_is_set %}
-      <header{{ title_attributes.addClass(title_classes) }}>
-        {{- title -}}
-      </header>
+    {% if media_outside %}
+      {{ media }}
     {% endif %}
-    {{ title_suffix }}
 
-    {{ media }}
+    <div{{ inner_attributes }}>
 
-    <div{{ content_attributes.addClass(content_classes) }}>
-      {{ content }}
+      {{ title_prefix }}
+      {% if title_is_set %}
+        <header{{ title_attributes.addClass(title_classes) }}>
+          {{- title -}}
+        </header>
+      {% endif %}
+      {{ title_suffix }}
+
+      {% if not media_outside %}
+        {{ media }}
+      {% endif %}
+
+      <div{{ content_attributes.addClass(content_classes) }}>
+        {{ content }}
+      </div>
+
+      {% if footer_is_set %}
+        <footer{{ footer_attributes.addClass(footer_classes) }}>
+          {{- footer -}}
+        </footer>
+      {% endif %}
+
     </div>
-
-    {% if footer_is_set %}
-      <footer{{ footer_attributes.addClass(footer_classes) }}>
-        {{- footer -}}
-      </footer>
-    {% endif %}
 
   </section>
 {% endblock paragraph %}

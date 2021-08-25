@@ -8,7 +8,7 @@
 @mixin btn-base($style: primary) {
   background-color: $primary-orange;
   border: 0;
-  color: $secondary-black;
+  color: $black;
   display: inline-block;
   font-family: $font-brand;
   font-weight: $fw-bold;
@@ -38,5 +38,37 @@
 @mixin btn($style: primary) {
   @if $style == primary {
     @include btn-base();
+  } @else if $style == secondary {
+    @include icon(tertiary-link, after, true);
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    color: $black;
+    display: flex;
+    font-family: $font-brand;
+    font-weight: $fw-regular;
+    padding: 3.75rem 0 2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: $transition-base;
+    white-space: nowrap;
+
+    &:after {
+      font-size: rem(20px);
+      margin-left: 1rem;
+    }
+
+    @include on-event {
+      color: $primary-orange;
+    }
+
+    @include media('<sm') {
+      padding: 1rem 0;
+
+      &:after {
+        margin-left: .5rem;
+      }
+    }
   }
+
 }

@@ -54,6 +54,11 @@
         .field--name-field-long-description {
           @include type-header(h4, black, included);
           margin-top: 0;
+
+          @include media('<md') {
+            font-size:  rem(16px);
+            line-height: rem(20px);
+          }
         }
       }
 
