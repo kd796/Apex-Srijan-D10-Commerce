@@ -13,12 +13,14 @@
 /**
  * Component
  */
-$tabs-border-width: 0.0625rem;
+$tabs-border-width: rem(2px);
+$tabs-border-width-active: rem(5px);
 
 .component-tabs {
   & > .component-tabs__nav {
     margin: 0;
     padding: 0;
+    border-bottom: $tabs-border-width solid $gray-30;
 
     li {
       cursor: pointer;
@@ -31,30 +33,93 @@ $tabs-border-width: 0.0625rem;
   &.component-tabs--horizontal {
     & > .component-tabs__nav {
       @include flex();
+      @include flex-x(justify-content, space-between);
 
       li {
-        border: $tabs-border-width solid transparent;
-        padding: 1rem;
+        border-bottom: .23rem solid transparent;
+        padding: 1rem 0;
+        margin: 0 1rem;
         position: relative;
 
-        &[aria-selected='true'] {
-          border-color: $color-dark-grey;
-          border-bottom: 0 none;
+        &:first-child {
+          margin-left: rem(90px);
+        }
 
+        &:last-child {
+          margin-right: rem(90px);
+        }
+
+        a {
+          text-transform: uppercase;
+          font-weight: 800;
+          font-size: rem(24px);
+          font-family: $font-brand;
+        }
+
+        &[aria-selected='true'] {
           &:after {
             @include trl();
             background-color: $color-white;
             content: '';
             display: block;
-            height: $tabs-border-width;
+            height: $tabs-border-width-active;
             top: 100%;
+            border-bottom: $tabs-border-width-active solid $primary-orange;
           }
         }
+      }
+
+      @include media('<=lg-plus') {
+        li {
+          &:first-child {
+            margin-left: rem(35px);
+          }
+
+          &:last-child {
+            margin-right: rem(35px);
+          }
+        }
+      }
+
+      @include media('<=lg') {
+        li {
+          a {
+            font-size: rem(20px);
+          }
+        }
+      }
+
+      @include media('<md') {
+        flex-wrap: nowrap;
+        justify-content: center;
+        overflow-x: scroll;
+        margin-left: -2rem;
+        margin-right: -2rem;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        li {
+          display: flex;
+          flex: 0 0 auto;
+
+          &[aria-selected='false'] {
+            a {
+              color: $gray-30;
+            }
+          }
+        }
+      }
+
+      @include media('<=sm') {
+        justify-content: flex-start;
       }
     }
 
     & > .component-tabs__content {
-      border: $tabs-border-width solid $color-dark-grey;
       padding: 1rem;
     }
   }

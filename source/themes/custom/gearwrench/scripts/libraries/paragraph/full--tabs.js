@@ -66,6 +66,18 @@
           Drupal.blazy.init.revalidate();
         });
 
+        // Slide clicked on tab to active position
+        if ($('body').width() < 768) {
+          $('.component-tabs__nav .component-tabs__nav-item').click(function () {
+            const tabUl = $('.component-tabs__nav');
+            const tabPosition = $(this).position();
+            const scrollValue = $(tabUl).scrollLeft();
+
+            $(tabUl).animate({
+              scrollLeft: scrollValue + tabPosition.left - 30
+            }, 200, 'linear');
+          });
+        }
       });
 
     }
