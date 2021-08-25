@@ -45,6 +45,8 @@
     color: $color-white;
   } @else if $color == dark {
     color: $primary-orange;
+  } @else if $color == black {
+    color: $black;
   }
   @if $version == h1 {
     font-size: 2.5rem;
@@ -56,7 +58,12 @@
   } @else if $version == h3 {
     font-size: 1.6rem;
   } @else if $version == h4 {
-    font-size: 1.5rem;
+    font-size: rem(24px);
+    line-height: rem(32px);
+    @include media('<md') {
+      font-size: rem(16px);
+      line-height: rem(20px);
+    }
   } @else if $version == h5 {
     font-size: rem(28px);
     text-transform: uppercase;

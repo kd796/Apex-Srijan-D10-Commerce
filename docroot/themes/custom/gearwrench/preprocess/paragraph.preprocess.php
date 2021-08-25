@@ -467,3 +467,43 @@ function gearwrench_preprocess_paragraph__tabs_tab__full(array &$variables) {
   // Hide tab heading. This is rendered and visually hidden for accessibility.
   $variables['title_attributes']['class'][] = 'visually-hidden';
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function gearwrench_preprocess_paragraph__product_slider__full(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $base_class = $variables['component_base_class'];
+
+  $field_settings['type'] = 'entity_reference_entity_view';
+  $field_settings['settings']['view_mode'] = 'teaser';
+  $field_settings['label'] = 'hidden';
+
+  $variables['#attached']['library'][] = 'gearwrench/paragraph--full--product-slider';
+  $field_settings['type'] = 'entity_reference_entity_view';
+  $field_settings['settings']['view_mode'] = 'teaser';
+  $field_settings['label'] = 'hidden';
+
+  // Replace field with new settings.
+  $variables['content']['field_products'] = $paragraph->get('field_products')->view($field_settings);
+
+  // Convert field_related_nodes to unordered list.
+  $variables['list']['#attributes']['class'][] = "{$base_class}__list";
+  $variables['list']['#wrapper_attributes']['class'][] = "{$base_class}__list-wrapper";
+  $variables['list']['#items'] = [];
+  $variables['list']['#theme'] = 'item_list';
+
+  // Hide list content heading. This is rendered and visually hidden for accessibility.
+  $variables['title_attributes']['class'][] = 'visually-hidden';
+
+  // Run through field items'.
+  foreach (Element::children($variables['content']['field_products']) as $delta) {
+    // Add class to list-item.
+    $variables['content']['field_products'][$delta]['#wrapper_attributes']['class'][] = "{$base_class}__list-item";
+    // Add field item to list item.
+    $variables['list']['#items'][] = $variables['content']['field_products'][$delta];
+  }
+  // Remove field render array.
+  unset($variables['content']['field_products']);
+}

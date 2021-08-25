@@ -6,15 +6,8 @@
 
 // Base button styles
 @mixin btn-base($style: primary) {
-  background-image: linear-gradient(90deg, transparent 0%, transparent 50%, $primary-orange 50%, $primary-orange 100%);
-  background-position: 100% 0;
-  background-repeat: no-repeat;
-  background-size: 300%;
-  background-color: transparent;
-
-  border-color: $primary-orange;
-  border-style: solid;
-  border-width: 1px;
+  background-color: $primary-orange;
+  border: 0;
   color: $secondary-black;
   display: inline-block;
   font-family: $font-brand;
@@ -34,13 +27,9 @@
   }
 
   @if $style == primary {
-    background-position: 100% 0;
-    background-repeat: no-repeat;
-    background-size: 300%;
-
     @include on-event {
       color: $primary-orange;
-      background-position: 0;
+      background-color: $black;
     }
   }
 }

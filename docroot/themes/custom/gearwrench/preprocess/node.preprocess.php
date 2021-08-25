@@ -75,10 +75,14 @@ function gearwrench_preprocess_node__product__full(array &$variables) {
     $formatted_string = $vocab->label() . ' : ' . $initial_string;
     $variables['content']['field_product_specifications'][$key]['#plain_text'] = $formatted_string;
   }
-
+  // Count Product Images.
+  $variables['product_images'] = NULL;
+  if (!empty($node->field_product_images->getValue())) {
+    $variables['product_images'] = TRUE;
+    $variables['product_image_count'] = count($node->field_product_images->getValue());
+  }
   // Thumb Gallery.
   $thumbs = $node->field_product_images->getValue();
-
   foreach ($thumbs as $thumb) {
     $file = File::load($thumb['target_id']);
     $thumb_variables = [
