@@ -196,8 +196,7 @@
       opacity: 1;
       position: relative;
 
-      &:hover,
-      &:focus {
+      &:hover {
         background-color: $color-black;
         border-color: $primary-orange;
       }
@@ -206,8 +205,7 @@
         background-image: url('../../../icons/chevron-left-black.svg');
         margin-right: 1px;
 
-        &:hover,
-        &:focus {
+        &:hover {
           background-image: url('../../../icons/chevron-left-molten-orange.svg');
         }
       }
@@ -216,10 +214,14 @@
         background-image: url('../../../icons/chevron-right-black.svg');
         margin-left: 1px;
 
-        &:hover,
-        &:focus {
+        &:hover {
           background-image: url('../../../icons/chevron-right-molten-orange.svg');
         }
+      }
+
+      &[aria-disabled="true"] {
+        background-color: $gray-30;
+        border-color: $gray-30;
       }
     }
   }

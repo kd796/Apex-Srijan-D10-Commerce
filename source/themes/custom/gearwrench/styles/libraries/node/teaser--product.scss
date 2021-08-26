@@ -77,6 +77,13 @@
       box-shadow: 0 0 0 1px $primary-orange;
       transition: $transition-base;
       width: 100%;
+
+      &:hover,
+      &:focus {
+        box-shadow: 0 0 0 2px $black;
+        color: $primary-orange;
+        background-color: $black;
+      }
     }
   }
 
@@ -95,9 +102,7 @@
       }
 
       .node__buy-now-button {
-        box-shadow: 0 0 0 2px $black;
-        color: $primary-orange;
-        background-color: $black;
+        box-shadow: 0 1px 0 2px $black;
       }
     }
   }
