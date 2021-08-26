@@ -222,22 +222,7 @@ $mobile-menu-item-button-height: 7rem;
       @include media('<=1050px') {
         font-size: rem(15.5px);
       }
-      @include media('<=1000px') {
-        font-size: rem(15px);
-      }
-      @include media('<=950px') {
-        font-size: rem(14.5px);
-      }
-      @include media('<=900px') {
-        font-size: rem(14px);
-      }
-      @include media('<=850px') {
-        font-size: rem(13.5px);
-      }
-      @include media('<=800px') {
-        font-size: rem(13px);
-      }
-      @include media('<=md') {
+      @include media('<lg') {
         font-size: rem(22px);
       }
     }
@@ -603,13 +588,17 @@ $mobile-menu-item-button-height: 7rem;
       }
 
       .menu--depth-1 {
-        padding: 2rem;
+        padding: 2rem 0;
         width: 100%;
       }
 
       .menu-item--depth-1 {
         font-size: .875rem;
-        margin: .5rem 0;
+        margin: .75rem 0;
+
+        &:first-of-type {
+          margin-top: 0;
+        }
       }
 
       .featured-tools-menu {
@@ -679,9 +668,7 @@ $mobile-menu-item-button-height: 7rem;
           flex-direction: row;
 
           ul.menu--depth-1 {
-            display: grid;
-            grid-template-columns: repeat(3, auto);
-            grid-column-gap: rem(15px);
+            columns: 3;
           }
         }
       }
@@ -772,7 +759,7 @@ $mobile-menu-item-button-height: 7rem;
         animation-name: headerPanelFade;
         bottom: 0;
         display: block;
-        height: 100vh;
+        height: calc(100vh - #{$header-height});
         left: 0;
         padding: 1.25rem 0 0;
         opacity: 1;
