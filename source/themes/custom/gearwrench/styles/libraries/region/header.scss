@@ -603,13 +603,17 @@ $mobile-menu-item-button-height: 7rem;
       }
 
       .menu--depth-1 {
-        padding: 2rem;
+        padding: 2rem 0;
         width: 100%;
       }
 
       .menu-item--depth-1 {
         font-size: .875rem;
-        margin: .5rem 0;
+        margin: .75rem 0;
+
+        &:first-of-type {
+          margin-top: 0;
+        }
       }
 
       .featured-tools-menu {
