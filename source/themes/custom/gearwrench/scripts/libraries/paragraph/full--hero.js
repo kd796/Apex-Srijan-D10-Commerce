@@ -32,6 +32,7 @@
           // eslint-disable-next-line
           new Swiper($heroWrapper, {
             effect: 'fade',
+            loop: true,
             navigation: {
               nextEl: '.component-hero-slide__button-next',
               prevEl: '.component-hero-slide__button-prev'
