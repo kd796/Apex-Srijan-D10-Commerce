@@ -37,6 +37,14 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
   $site_environment = $_SERVER['SITE_ENVIRONMENT'];
 }
 
+// Set private file path based on environment.
+$settings['file_private_path'] = '../private';
+$settings['file_temp_path'] = '/tmp';
+
+if (array_key_exists('AH_SITE_ENVIRONMENT', $_ENV) && array_key_exists('AH_SITE_GROUP', $_ENV) && isset($site_path)) {
+  $settings['file_private_path'] = '/mnt/files/' . $_ENV['AH_SITE_GROUP'] . '.' . $_ENV['AH_SITE_ENVIRONMENT'] . '/' . $site_path . '/files-private';
+}
+
 // Enable appropriate config overrides.
 switch ($site_environment) {
   case 'remote_prod':
