@@ -34,27 +34,28 @@ fieldset.webform-composite-hidden-title {
 }
 
 // All forms except footer add extra margin between fields
-form:not(.webform-submission-email-sign-up-form) div.form-item {
-  margin-bottom: 1.875rem !important;
-  margin-top: 0;
+form:not(.webform-submission-email-sign-up-form) {
+  div.form-item {
+    margin-bottom: 1.875rem !important;
+    margin-top: 0;
+  }
+
+  .form-submit {
+    max-width: rem(200px);
+  }
 }
 
+label {
+  color: $type-dark;
+}
+
+// Margin between label and input
 label ~ input,
 label ~ select,
-label ~ radio {
-  color: $type-dark;
+label ~ radio,
+label ~ textarea,
+label ~ div {
   margin-top: rem(5px);
-}
-
-// Remove required *
-.form-required {
-  &::after {
-    display: none;
-    height: 0;
-    width: 0;
-    margin: 0;
-    padding: 0;
-  }
 }
 
 // input submit buttons
@@ -199,18 +200,6 @@ $active-gap: 8px; // the math likes px values
     //transform: scale(1);
   }
 
-  //.form-required:after {
-  //  display: inline-block;
-  //  width: 6px;
-  //  height: 6px;
-  //  margin: 0 0.3em;
-  //  content: "";
-  //  vertical-align: super;
-  //  background-image: url(../../../../misc/icons/ee0000/required.svg);
-  //  background-repeat: no-repeat;
-  //  background-size: 6px 6px;
-  //}
-
   .required-icon {
     display: inline-block;
     width: 6px;
@@ -263,24 +252,20 @@ $active-gap: 8px; // the math likes px values
   }
 }
 
+// Dark square aligned right
+.form-select,
+.form-file {
+  background-image: url('../icons/chevron.svg'), linear-gradient(to right, $secondary-black, $secondary-black);
+  background-position: calc(100% - 1.5rem) center, top right;
+  background-size: 15px 15px, 4rem 4rem;
+  background-repeat: no-repeat;
+}
+
 // Select
 .form-select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-image:
-    linear-gradient(45deg, transparent 50%, blue 50%),
-    linear-gradient(135deg, blue 50%, transparent 50%),
-    linear-gradient(to right, $secondary-black, $secondary-black);
-  background-position:
-    calc(100% - 20px) calc(1em + 2px),
-    calc(100% - 15px) calc(1em + 2px),
-    100% 0;
-  background-size:
-    5px 5px,
-    5px 1px,
-    4rem 4rem;
-  background-repeat: no-repeat;
 
   &:focus {
     outline: 0 none;
@@ -304,6 +289,13 @@ $active-gap: 8px; // the math likes px values
     }
   }
 }
+
+//.form-required {
+//  &::after {
+//    color: $type-dark;
+//    background-image: url(../../../../misc/icons/ee0000/required-dark.svg);
+//  }
+//}
 
 @include media('<md') {
   .webform-flexbox {
