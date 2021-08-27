@@ -12,9 +12,9 @@ input.form-text.webform-counter-warning,
 textarea.webform-counter-warning,
 textarea.form-textarea.webform-counter-warning {
   background: transparent;
-  border: rem(1px) solid $gray-30;
+  border: rem(1px) solid $secondary-black;
   border-radius: 0;
-  color: $gray-30;
+  color: $secondary-black;
   max-width: 100%;
   outline: 0 none;
   padding: 1rem 1.75rem;
@@ -22,14 +22,38 @@ textarea.form-textarea.webform-counter-warning {
   -webkit-appearance: none;
   width: 100%;
 
-  &:focus {
-    border-color: $gray-10;
-    color: $secondary-black;
-    outline: 0;
-  }
-
   &:disabled {
     background-color: $color-light-grey;
+  }
+}
+
+// Remove fieldset margin
+fieldset.webform-composite-hidden-title {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+// All forms except footer add extra margin between fields
+form:not(.webform-submission-email-sign-up-form) div.form-item {
+  margin-bottom: 1.875rem !important;
+  margin-top: 0;
+}
+
+label ~ input,
+label ~ select,
+label ~ radio {
+  color: $type-dark;
+  margin-top: rem(5px);
+}
+
+// Remove required *
+.form-required {
+  &::after {
+    display: none;
+    height: 0;
+    width: 0;
+    margin: 0;
+    padding: 0;
   }
 }
 
@@ -244,6 +268,19 @@ $active-gap: 8px; // the math likes px values
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, blue 50%),
+    linear-gradient(135deg, blue 50%, transparent 50%),
+    linear-gradient(to right, $secondary-black, $secondary-black);
+  background-position:
+    calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px),
+    100% 0;
+  background-size:
+    5px 5px,
+    5px 1px,
+    4rem 4rem;
+  background-repeat: no-repeat;
 
   &:focus {
     outline: 0 none;
