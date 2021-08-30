@@ -27,6 +27,12 @@ textarea.form-textarea.webform-counter-warning {
   }
 }
 
+input,
+select {
+  height: 3.75rem;
+  overflow: hidden;
+}
+
 // Remove fieldset margin
 fieldset.webform-composite-hidden-title {
   margin-top: 0;
@@ -66,13 +72,6 @@ input[type='submit'],
   @include btn(primary);
 }
 
-//.form-container {
-//  @include container($container-md, $md, left, false);
-//  @include flex();
-//  @include flex-x(flex-wrap, wrap);
-//  @include flex-x(justify-content, space-between);
-//}
-
 // form titles
 .block-webform-block__title {
   font-family: $font-brand;
@@ -80,7 +79,9 @@ input[type='submit'],
   font-weight: $fw-extra-bold;
   line-height: 1.2rem;
   margin-bottom: rem(24px);
+  padding-bottom: rem(10px);
   text-transform: uppercase;
+  border-bottom: 1px solid $gray-70;
 }
 
 // flex form rows
@@ -263,37 +264,42 @@ $active-gap: 8px; // the math likes px values
   }
 }
 
-// Dark square aligned right
-.form-select,
-.form-file {
-  background-position: calc(100% - 1.25rem) center, top right;
-  background-size: 1.25rem  1.25rem, 4rem 4rem;
-  background-repeat: no-repeat;
-}
-
-.form-select {
-  background-image: url('../icons/chevron-down.svg'), linear-gradient(to right, $secondary-black, $secondary-black);
-}
-
-.form-file {
-  background-image: url('../icons/upload.svg'), linear-gradient(to right, $secondary-black, $secondary-black);
-}
-
-.form-item-select {
-  @include icon(chevron-thin, after);
+// Dark square with chevron aligned right
+//Select
+.form-select__wrapper,
+.form-input-file__wrapper {
   position: relative;
 
-  &:after {
-    bottom: 0.75rem;
+  &::after {
+    color: $color-white;
     pointer-events: none;
     position: absolute;
-    right: 1rem;
-    transform: rotate(90deg);
-    transition: $transition-base;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.75rem;
+    width: 3.75rem;
+    background-color: $secondary-black;
+  }
+}
 
-    @include bs-ie() {
-      display: none;
-    }
+.form-select__wrapper {
+  @include icon(chevron, after, false);
+
+  &::after {
+    font-size: rem(15px);
+    transform: rotate(90deg);
+  }
+}
+
+// Input File
+.form-input-file__wrapper {
+  @include icon(upload, after, false);
+
+  &::after {
+    font-size: rem(20px);
   }
 }
 
