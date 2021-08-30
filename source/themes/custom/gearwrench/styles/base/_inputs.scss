@@ -252,15 +252,6 @@ $active-gap: 8px; // the math likes px values
   }
 }
 
-// Dark square aligned right
-.form-select,
-.form-file {
-  background-image: url('../icons/chevron.svg'), linear-gradient(to right, $secondary-black, $secondary-black);
-  background-position: calc(100% - 1.5rem) center, top right;
-  background-size: 15px 15px, 4rem 4rem;
-  background-repeat: no-repeat;
-}
-
 // Select
 .form-select {
   -webkit-appearance: none;
@@ -270,6 +261,22 @@ $active-gap: 8px; // the math likes px values
   &:focus {
     outline: 0 none;
   }
+}
+
+// Dark square aligned right
+.form-select,
+.form-file {
+  background-position: calc(100% - 1.25rem) center, top right;
+  background-size: 1.25rem  1.25rem, 4rem 4rem;
+  background-repeat: no-repeat;
+}
+
+.form-select {
+  background-image: url('../icons/chevron-down.svg'), linear-gradient(to right, $secondary-black, $secondary-black);
+}
+
+.form-file {
+  background-image: url('../icons/upload.svg'), linear-gradient(to right, $secondary-black, $secondary-black);
 }
 
 .form-item-select {
@@ -290,12 +297,15 @@ $active-gap: 8px; // the math likes px values
   }
 }
 
-//.form-required {
-//  &::after {
-//    color: $type-dark;
-//    background-image: url(../../../../misc/icons/ee0000/required-dark.svg);
-//  }
-//}
+.form-required {
+  @include icon(required, after);
+
+  &::after {
+    font-size: rem(5px);
+    background-image: unset;
+    background-size: unset;
+  }
+}
 
 @include media('<md') {
   .webform-flexbox {
