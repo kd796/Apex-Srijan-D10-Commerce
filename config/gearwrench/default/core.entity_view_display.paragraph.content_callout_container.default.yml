@@ -1,0 +1,24 @@
+uuid: 0a18ab9b-86df-4502-a7c4-3bc05f9dc38b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.content_callout_container.field_components
+    - paragraphs.paragraphs_type.content_callout_container
+  module:
+    - entity_reference_revisions
+id: paragraph.content_callout_container.default
+targetEntityType: paragraph
+bundle: content_callout_container
+mode: default
+content:
+  field_components:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: full
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+hidden: {  }

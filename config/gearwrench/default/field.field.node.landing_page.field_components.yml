@@ -7,6 +7,7 @@ dependencies:
     - node.type.landing_page
     - paragraphs.paragraphs_type.accordion
     - paragraphs.paragraphs_type.content
+    - paragraphs.paragraphs_type.content_callout_container
     - paragraphs.paragraphs_type.embed_block
     - paragraphs.paragraphs_type.embed_iframe
     - paragraphs.paragraphs_type.embed_view
@@ -38,6 +39,7 @@ settings:
     target_bundles:
       accordion: accordion
       content: content
+      content_callout_container: content_callout_container
       embed_block: embed_block
       embed_iframe: embed_iframe
       embed_view: embed_view
@@ -49,52 +51,64 @@ settings:
       section: section
       tabs: tabs
     target_bundles_drag_drop:
+      50_50_callout:
+        weight: -35
+        enabled: false
+      50_50_callout_container:
+        weight: -33
+        enabled: false
       accordion:
         enabled: true
-        weight: 16
+        weight: -41
       accordion_item:
-        weight: 17
+        weight: -40
         enabled: false
       content:
         enabled: true
-        weight: 18
+        weight: -39
+      content_callout:
+        weight: -28
+        enabled: false
+      content_callout_container:
+        enabled: true
+        weight: -38
       embed_block:
         enabled: true
-        weight: 19
+        weight: -37
       embed_iframe:
         enabled: true
-        weight: 20
+        weight: -36
       embed_view:
         enabled: true
-        weight: 21
+        weight: -34
       featured_content:
         enabled: true
-        weight: 22
+        weight: -32
       featured_links:
         enabled: true
-        weight: 23
+        weight: -31
       featured_media:
         enabled: true
-        weight: 24
+        weight: -30
       hero:
-        weight: 25
+        weight: -29
         enabled: false
       hero_slide:
-        weight: 26
+        weight: -27
         enabled: false
       product_slider:
         enabled: true
-        weight: 28
+        weight: -25
       pullquote:
         enabled: true
-        weight: 27
+        weight: -26
       section:
         enabled: true
-        weight: 28
+        weight: -24
       tabs:
         enabled: true
-        weight: 29
+        weight: -23
       tabs_tab:
-        weight: 30
+        weight: -22
         enabled: false
 field_type: entity_reference_revisions
