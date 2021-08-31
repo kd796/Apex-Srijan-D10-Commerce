@@ -193,6 +193,13 @@ function gearwrench_preprocess_paragraph__content__full(array &$variables) {
 }
 
 /**
+ * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for content_callout, full.
+ */
+function gearwrench_preprocess_paragraph__content_callout__full(array &$variables) {
+  // Nothing to see here.
+}
+
+/**
  * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for embed_iframe, full.
  */
 function gearwrench_preprocess_paragraph__embed_iframe__full(array &$variables) {
