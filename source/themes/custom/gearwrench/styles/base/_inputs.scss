@@ -10,7 +10,8 @@ select,
 input.webform-counter-warning,
 input.form-text.webform-counter-warning,
 textarea.webform-counter-warning,
-textarea.form-textarea.webform-counter-warning {
+textarea.form-textarea.webform-counter-warning,
+.form-input-file__button {
   background: transparent;
   border: rem(1px) solid $secondary-black;
   border-radius: 0;
@@ -28,7 +29,8 @@ textarea.form-textarea.webform-counter-warning {
 }
 
 input,
-select {
+select,
+.form-input-file__button {
   height: 3.75rem;
   overflow: hidden;
 }
@@ -297,6 +299,13 @@ $active-gap: 8px; // the math likes px values
 // Input File
 .form-input-file__wrapper {
   @include icon(upload, after, false);
+
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
 
   &::after {
     font-size: rem(20px);
