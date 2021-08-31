@@ -91,10 +91,6 @@
         img {
           width: 100%;
         }
-
-        @include media('<sm') {
-          @include container-full-width();
-        }
       }
     }
 
@@ -106,10 +102,6 @@
         margin-bottom: 0;
         margin-top: $gap-vertical-xsm;
         order: 1;
-
-        @include media('<sm') {
-          @include container-full-width();
-        }
       }
     }
 
@@ -132,8 +124,8 @@
         .component-content__media {
           align-self: stretch;
           flex: none;
-          max-width: 67.77%;
-          width: 67.77%;
+          max-width: 50%;
+          width: 50%;
 
           img {
             display: block;
@@ -141,6 +133,14 @@
             min-height: 100%;
             object-fit: cover;
           }
+        }
+      }
+
+      @include media('>=md') {
+
+        .component-content__media {
+          max-width: 67.77%;
+          width: 67.77%;
         }
       }
     }
@@ -157,6 +157,50 @@
       @include media('>=sm') {
         .component-content__media {
           margin-left: 2rem;
+          order: 1;
+        }
+      }
+    }
+
+    &.component-content--media-layout-performance-device-left,
+    &.component-content--media-layout-performance-device-right {
+      display: flex;
+
+      @include media('<md') {
+        flex-direction: column;
+      }
+
+      @include media('>=md') {
+        align-items: center;
+
+        .component-content__inner {
+          flex: 1;
+          padding: $gap-vertical-xsm 0;
+        }
+
+        .component-content__media {
+          max-width: 50%;
+          width: 50%;
+
+          img {
+            display: block;
+          }
+        }
+      }
+    }
+
+    &.component-content--media-layout-performance-device-left {
+      @include media('>=md') {
+        .component-content__media {
+          margin-right: 4rem;
+        }
+      }
+    }
+
+    &.component-content--media-layout-performance-device-right {
+      @include media('>=md') {
+        .component-content__media {
+          margin-left: 4rem;
           order: 1;
         }
       }

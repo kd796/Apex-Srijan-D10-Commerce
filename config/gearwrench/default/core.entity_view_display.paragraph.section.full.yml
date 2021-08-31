@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.full
+    - field.field.paragraph.section.field_background_color
     - field.field.paragraph.section.field_class_custom
     - field.field.paragraph.section.field_components
     - field.field.paragraph.section.field_html_anchor
@@ -49,9 +50,10 @@ content:
         bg_image_media_query: all
         bg_image_path_format: relative
         bg_image_background_size_ie8: 0
-        bg_image_important: '0'
+        bg_image_important: 0
     third_party_settings: {  }
 hidden:
+  field_background_color: true
   field_class_custom: true
   field_html_anchor: true
   field_style: true
