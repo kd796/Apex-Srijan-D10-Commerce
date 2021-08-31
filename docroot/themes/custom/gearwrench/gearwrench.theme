@@ -303,3 +303,19 @@ function gearwrench_preprocess_responsive_image_formatter(&$variables) {
     $variables['item']->set('alt', $alt);
   }
 }
+
+/**
+ * Implements accordion on forms.
+ */
+function gearwrench_form_alter(&$form, &$form_state, $form_id) {
+  $webform_id = isset($form['#webform_id']) ? $form['#webform_id'] : $form_id;
+
+  switch ($webform_id) {
+    case 'warranty_replacement_form':
+      $form['#attached']['library'][] = 'gearwrench/webform--warranty-replacement-form';
+      break;
+
+    default:
+      break;
+  }
+}
