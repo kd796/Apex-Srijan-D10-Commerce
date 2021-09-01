@@ -364,6 +364,7 @@ $mobile-menu-item-button-height: 7rem;
   .block--country-switch {
     display: flex;
     padding-left: 1.5rem;
+    position: relative;
 
     .block__content-toggle {
       @include icon('globe');
@@ -377,15 +378,46 @@ $mobile-menu-item-button-height: 7rem;
       display: flex;
       height: $header-height;
 
-
       &::after {
         transform: rotate(90deg);
         margin-left: .5rem;
       }
 
       &[aria-expanded='true'] {
+        color: $white;
+
         &::after {
           transform: rotate(270deg);
+        }
+      }
+
+      &[aria-expanded='true'] + .block-country-switch__content + .block__pseudo-toggle {
+        height: $header-height;
+        width: 3.25rem;
+        position: absolute;
+        z-index: -1;
+
+        &::before,
+        &::after {
+          animation-fill-mode: both;
+          animation-direction: normal;
+          animation-name: headerPanelFade;
+          content: '';
+          background-color: $black;
+          position: absolute;
+          top: 0;
+          width: rem(30px);
+          height: 100%;
+          z-index: -1;
+          transform: skew(-14deg);
+        }
+
+        &::before {
+          left: 0;
+        }
+
+        &::after {
+          right: 0;
         }
       }
 
@@ -411,18 +443,16 @@ $mobile-menu-item-button-height: 7rem;
       &[aria-expanded='false'] + .block__content {
         animation-direction: reverse;
         display: none;
-        right: -25rem;
       }
     }
 
     .block__content {
-      animation-delay: 300ms;
-      animation-duration: 300ms;
       animation-fill-mode: both;
       animation-direction: normal;
       animation-name: headerPanelFade;
       background-color: $black;
       display: block;
+      left: rem(-55px);
       opacity: 1;
       position: absolute;
       top: $header-height;
@@ -434,7 +464,14 @@ $mobile-menu-item-button-height: 7rem;
 
         li,
         li a {
-          color: $primary-orange;
+          @include on-event() {
+            text-decoration: underline;
+          }
+          color: $white;
+          font-family: $font-brand;
+          font-weight: $fw-bold;
+          text-transform: uppercase;
+
         }
 
         li {
@@ -442,12 +479,13 @@ $mobile-menu-item-button-height: 7rem;
           white-space: nowrap;
 
           &:first-of-type {
-            padding-top: .5rem;
+            padding-top: 1rem;
           }
 
           &:last-of-type {
-            padding-bottom: .5rem;
+            padding-bottom: 1rem;
           }
+
         }
       }
     }
