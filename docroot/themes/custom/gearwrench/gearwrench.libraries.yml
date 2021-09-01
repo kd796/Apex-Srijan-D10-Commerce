@@ -407,8 +407,11 @@ region--footer-first:
 # ========= Forms ========= #
 webform--warranty-replacement-form:
   version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--accordion.css: { }
   js:
-    js/libraries/webform/form--accordion.js: {}
+    js/libraries/webform/form--accordion.js: {weight: -10}
   dependencies:
     - core/drupal
     - core/jquery
