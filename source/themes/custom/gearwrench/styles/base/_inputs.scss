@@ -10,11 +10,12 @@ select,
 input.webform-counter-warning,
 input.form-text.webform-counter-warning,
 textarea.webform-counter-warning,
-textarea.form-textarea.webform-counter-warning {
+textarea.form-textarea.webform-counter-warning,
+.form-input-file__button {
   background: transparent;
-  border: rem(1px) solid $gray-30;
+  border: rem(1px) solid $secondary-black;
   border-radius: 0;
-  color: $gray-30;
+  color: $secondary-black;
   max-width: 100%;
   outline: 0 none;
   padding: 1rem 1.75rem;
@@ -22,15 +23,47 @@ textarea.form-textarea.webform-counter-warning {
   -webkit-appearance: none;
   width: 100%;
 
-  &:focus {
-    border-color: $gray-10;
-    color: $secondary-black;
-    outline: 0;
-  }
-
   &:disabled {
     background-color: $color-light-grey;
   }
+}
+
+input,
+select,
+.form-input-file__button {
+  height: 3.75rem;
+  overflow: hidden;
+}
+
+// Remove fieldset margin
+fieldset.webform-composite-hidden-title {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+// All forms except footer add extra margin between fields
+form:not(.webform-submission-email-sign-up-form) {
+  div.form-item {
+    margin-bottom: 1.875rem !important;
+    margin-top: 0;
+  }
+
+  .form-submit {
+    max-width: rem(200px);
+  }
+}
+
+label {
+  color: $type-dark;
+}
+
+// Margin between label and input
+label ~ input,
+label ~ select,
+label ~ radio,
+label ~ textarea,
+label ~ div {
+  margin-top: rem(5px);
 }
 
 // input submit buttons
@@ -41,13 +74,6 @@ input[type='submit'],
   @include btn(primary);
 }
 
-//.form-container {
-//  @include container($container-md, $md, left, false);
-//  @include flex();
-//  @include flex-x(flex-wrap, wrap);
-//  @include flex-x(justify-content, space-between);
-//}
-
 // form titles
 .block-webform-block__title {
   font-family: $font-brand;
@@ -55,7 +81,9 @@ input[type='submit'],
   font-weight: $fw-extra-bold;
   line-height: 1.2rem;
   margin-bottom: rem(24px);
+  padding-bottom: rem(10px);
   text-transform: uppercase;
+  border-bottom: 1px solid $gray-70;
 }
 
 // flex form rows
@@ -175,18 +203,6 @@ $active-gap: 8px; // the math likes px values
     //transform: scale(1);
   }
 
-  //.form-required:after {
-  //  display: inline-block;
-  //  width: 6px;
-  //  height: 6px;
-  //  margin: 0 0.3em;
-  //  content: "";
-  //  vertical-align: super;
-  //  background-image: url(../../../../misc/icons/ee0000/required.svg);
-  //  background-repeat: no-repeat;
-  //  background-size: 6px 6px;
-  //}
-
   .required-icon {
     display: inline-block;
     width: 6px;
@@ -250,22 +266,66 @@ $active-gap: 8px; // the math likes px values
   }
 }
 
-.form-item-select {
-  @include icon(chevron-thin, after);
+// Dark square with chevron aligned right
+//Select
+.form-select__wrapper,
+.form-input-file__wrapper {
   position: relative;
 
-  &:after {
-    bottom: 0.75rem;
+  &::after {
+    color: $color-white;
     pointer-events: none;
     position: absolute;
-    right: 1rem;
-    transform: rotate(90deg);
-    transition: $transition-base;
-
-    @include bs-ie() {
-      display: none;
-    }
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.75rem;
+    width: 3.75rem;
+    background-color: $secondary-black;
   }
+}
+
+.form-select__wrapper {
+  @include icon(chevron, after, false);
+
+  &::after {
+    font-size: rem(15px);
+    transform: rotate(90deg);
+  }
+}
+
+// Input File
+.form-input-file__wrapper {
+  @include icon(upload, after, false);
+
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+
+  &::after {
+    font-size: rem(20px);
+  }
+}
+
+.form-required {
+  @include icon(required, after);
+
+  &::after {
+    font-size: rem(5px);
+    background-image: unset;
+    background-size: unset;
+  }
+}
+
+// Product Information Button within form
+.form-input-file-next-button {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 @include media('<md') {
