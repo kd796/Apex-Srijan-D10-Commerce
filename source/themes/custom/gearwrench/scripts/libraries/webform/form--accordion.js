@@ -1,14 +1,16 @@
 (function ($, Drupal) {
   'use strict';
 
-  Drupal.behaviors.componentAccordion = {
+  Drupal.behaviors.componentWebform = {
     attach: function (context, settings) {
-      $('.component-accordion:not(.component-accordion--js-initialized)').each(function (index) {
+      $('.webform-accordion:not(.component-accordion--js-initialized)').each(function (index) {
         // Initialize variables.
         var $widget = $(this);
         var $accordionContainer = $widget.children('.component-accordion__content');
         var $accordions = $accordionContainer.children('.component-accordion-item');
+        var $accordionPersonalInformation = $accordionContainer.children('.form-accordion-item-personal-information');
         var $accordionHeaders = $accordions.children('.component-accordion-item__title');
+        var $nextButton = $('.form-input-file-next-button');
 
         // Mark that the tabs component has been initialized.
         $widget.addClass('component-accordion--js-initialized');
@@ -46,6 +48,11 @@
             .attr('hidden', (!openByDefault))
             .attr('id', panelId)
             .attr('role', 'tabpanel');
+        });
+
+        // On Next button click, simulate click on Personal Information accordion
+        $($nextButton).on('click', function () {
+          $($accordionPersonalInformation).children()[0].click();
         });
 
         // Initialize the roving tabindex.

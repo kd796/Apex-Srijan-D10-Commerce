@@ -13,7 +13,8 @@
 /**
  * Component
  */
-.component-accordion {
+.component-accordion,
+.webform-accordion {
   .component-accordion-item {
     @include media('<md') {
       &:first-of-type {
@@ -73,7 +74,8 @@
       }
     }
 
-    .block-webform {
+    .block-webform,
+    &.block-webform {
       @include media('>=md') {
         width: 50%;
       }
