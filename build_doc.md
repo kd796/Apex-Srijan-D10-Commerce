@@ -5,11 +5,6 @@ Welcome to the Apex Tools Build doc.
 
 ## List of relevant links
 
-- [XD Design - Desktop](https://vml.invisionapp.com/d/main#/projects/prototypes/10478440)
-- [XD Design - Mobile](https://vml.invisionapp.com/d/main#/projects/prototypes/10478441)
-- [Visual Design - Desktop](https://vml.invisionapp.com/d/main#/projects/prototypes/10478580)
-- [Visual Design - Mobile](https://vml.invisionapp.com/d/main#/projects/prototypes/10478581)
-
 
 ## Table of Contents
 
