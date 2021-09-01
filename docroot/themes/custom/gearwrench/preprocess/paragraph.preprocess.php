@@ -134,6 +134,7 @@ function gearwrench_preprocess_paragraph__accordion_item__full(array &$variables
 function gearwrench_preprocess_paragraph__content__full(array &$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
+  $paragraphId = $paragraph->id();
   $base_class = $variables['component_base_class'];
 
   // Initialize variables.
@@ -160,6 +161,12 @@ function gearwrench_preprocess_paragraph__content__full(array &$variables) {
         $media_outside = TRUE;
         break;
 
+      case 'content_media_layout__performance_device_left':
+      case 'content_media_layout__performance_device_right':
+        $field_settings['settings']['image_style'] = 'medium_landscape_3x2';
+        $media_outside = TRUE;
+        break;
+
       case 'content_media_layout__top':
       case 'content_media_layout__bottom':
         $field_settings['settings']['responsive_image_style'] = 'content_top_bottom';
@@ -183,6 +190,13 @@ function gearwrench_preprocess_paragraph__content__full(array &$variables) {
     $variables['footer']['field_link'][0]['#options']['attributes']['class'] = "{$base_class}__link button";
     unset($variables['content']['field_link'], $variables['footer']['field_link']['#theme']);
   }
+}
+
+/**
+ * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for content_callout, full.
+ */
+function gearwrench_preprocess_paragraph__content_callout__full(array &$variables) {
+  // Nothing to see here.
 }
 
 /**
@@ -424,7 +438,27 @@ function gearwrench_preprocess_paragraph__pullquote__full(array &$variables) {
  * Implements hook_preprocess_paragraph__VIEW_MODE() for section, full.
  */
 function gearwrench_preprocess_paragraph__section__full(array &$variables) {
-  // Nothing to see here.
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $paragraphId = $paragraph->id();
+
+  // Process background color if specified.
+  if ($paragraph->hasField('field_background_color') && isset($paragraph->get('field_background_color')->getValue()[0])) {
+    $variables['attributes']['class'][] = 'paragraph-component--background-color';
+  }
+
+  // Add styling to head tag since the color field module doesn't do it.
+  if ($paragraph->hasField('field_background_color') && isset($paragraph->get('field_background_color')->getValue()[0])) {
+
+    $backgroundColor = $paragraph->get('field_background_color')->getValue()[0]['color'];
+    $backgroundOpacity = (isset($paragraph->get('field_background_color')->getValue()[0]['opacity']) ? ($paragraph->get('field_background_color')->getValue()[0]['opacity']) : (1));
+    $backgroundColorStyling = [
+      '#tag' => 'style',
+      '#value' => '.paragraph-component--background-color[data-entity-id="' . $paragraphId . '"]::after { background-color: ' . $backgroundColor . '; opacity: ' . $backgroundOpacity . '; }',
+    ];
+    $variables['#attached']['html_head'][] = [$backgroundColorStyling, 'backgroundColorBeforeStyling-' . $paragraphId];
+
+  }
 }
 
 /**

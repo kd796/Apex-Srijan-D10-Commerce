@@ -31,6 +31,7 @@ $footer-bp-mobile: '<sm';
   }
 
   .region-footer-first {
+    @include container($margin: 0);
     color: $secondary-light;
 
     a {
@@ -137,6 +138,7 @@ $footer-bp-mobile: '<sm';
   }
 
   .region-footer-second {
+    @include container($margin: 0);
     color: $black;
 
     .region-footer-second__content {
@@ -214,7 +216,7 @@ $footer-bp-mobile: '<sm';
     }
 
     .region-footer-second__content {
-      padding: 3.75rem 0 3.75rem 9rem;
+      padding: 3.75rem 0 3.75rem 10rem;
     }
 
     .block-footer-navigation-block__nav {
@@ -257,6 +259,7 @@ $footer-bp-mobile: '<sm';
       .region-footer-first {
         @include container-full-width();
         background-color: $black;
+        padding: 0 2rem;
         order: 2;
 
         &::after {
@@ -267,6 +270,7 @@ $footer-bp-mobile: '<sm';
       .region-footer-second {
         @include container-full-width();
         background-color: $primary-orange;
+        padding: 0 2rem;
         order: 1;
       }
     }

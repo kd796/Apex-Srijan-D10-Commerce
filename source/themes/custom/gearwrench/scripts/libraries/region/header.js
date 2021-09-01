@@ -10,10 +10,24 @@
       var selector_header_menu_item_buttons = '.block--header-menu-main .menu-item__button';
       var selector_header_menu_items_with_children = '.block--header-menu-main .menu-item--has-children';
       var selector_header_search_button = '.block--header-search .block__content-toggle';
+      var selector_header_country_switch_button = '.block--country-switch .block__content-toggle';
       var lastScrollTop = 0;
+
+      // Hide County Toggle Text.
+      $('.block__menu').find('.country-toggle').empty();
 
       // Open search panel.
       $(selector_header_search_button).once('header').on({
+        click: function () {
+          var $this = $(this);
+
+          // Either expand or collapse the search panel.
+          behavior_object.togglePanel($this);
+        }
+      });
+
+      // Open country switch panel.
+      $(selector_header_country_switch_button).once('header').on({
         click: function () {
           var $this = $(this);
 

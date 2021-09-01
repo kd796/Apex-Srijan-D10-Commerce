@@ -15,6 +15,11 @@ use Drupal\Component\Utility\Html;
  * Implements hook_theme().
  */
 function gearwrench_core_theme() {
+  $theme['block__country_switch'] = [
+    'render element' => 'elements',
+    'template' => 'block--country-switch',
+    'base hook' => 'block'
+  ];
   $theme['block__footer_navigation_block'] = [
     'render element' => 'elements',
     'template' => 'block--footer-navigation-block',

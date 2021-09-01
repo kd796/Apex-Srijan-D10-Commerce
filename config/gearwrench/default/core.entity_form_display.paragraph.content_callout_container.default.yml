@@ -1,0 +1,32 @@
+uuid: 80a2fec2-5755-4d27-9436-ec0181eeda63
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.content_callout_container.field_components
+    - paragraphs.paragraphs_type.content_callout_container
+  module:
+    - limited_field_widgets
+    - paragraphs_component_field
+id: paragraph.content_callout_container.default
+targetEntityType: paragraph
+bundle: content_callout_container
+mode: default
+content:
+  field_components:
+    weight: 0
+    settings:
+      title: 'Content Callout'
+      title_plural: 'Content Callouts'
+      form_display_mode: default
+      default_paragraph_type: content_callout
+      edit_mode: open
+      add_mode: dropdown
+    third_party_settings:
+      limited_field_widgets:
+        limit_values: '0'
+    type: paragraphs_component
+    region: content
+hidden:
+  created: true
+  status: true
