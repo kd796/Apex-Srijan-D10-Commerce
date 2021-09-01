@@ -1,0 +1,24 @@
+uuid: 72decc81-5244-4152-8bfb-899518d9d17a
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - gearwrench_core
+  theme:
+    - gearwrench
+third_party_settings:
+  block_class:
+    classes: block--country-switch
+id: country_switch_block
+theme: gearwrench
+region: header
+weight: 0
+provider: null
+plugin: country_switch
+settings:
+  id: country_switch
+  label: 'Country Switch Block'
+  provider: gearwrench_core
+  label_display: '0'
+visibility: {  }
