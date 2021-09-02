@@ -50,6 +50,7 @@
         .field--name-field-link {
           text-align: center;
         }
+
         .field--name-field-link a {
           @include btn(secondary);
           color: $primary-orange;
@@ -76,7 +77,7 @@
             }
           }
 
-          @include media('>=md') {
+          @include media('>=lg-plus') {
             font-size: rem(32px);
             padding: rem(35px) rem(30px);
           }
@@ -89,7 +90,7 @@
     }
   }
 
-  @include media('>=md'){
+  @include media('>=md') {
     flex-direction: row;
     flex-wrap: wrap;
   }
