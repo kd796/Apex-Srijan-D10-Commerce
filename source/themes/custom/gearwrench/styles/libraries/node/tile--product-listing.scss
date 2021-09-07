@@ -14,5 +14,53 @@
  * Component
  */
 .node--type-product-listing.node--view-mode-tile {
-  // Styles go here.
+  .node__product-listing-grid-image {
+    img {
+      width: 100%;
+    }
+  }
+
+  .node__product-listing-grid-title {
+    font-size: rem(16px);
+    width: 100%;
+    background-color: transparent;
+    padding: 1rem .85rem .85rem;
+    white-space: normal;
+
+    @include media('>=md') {
+      font-size: rem(20px);
+      padding: 1rem .75rem .85rem;
+    }
+
+  }
+
+  @include on-event {
+    .node__inner {
+      box-shadow: 0 0 16px 5px rgba(0, 0, 0, 0.2);
+      transition: $transition-base;
+
+      @include media('<md') {
+        box-shadow: none;
+      }
+
+      .node__product-listing-grid-image,
+      .node__product-listing-grid-title {
+        box-shadow: 0 0 0 2px $primary-orange;
+        @include media('<md') {
+          box-shadow: none;
+        }
+      }
+
+      .node__product-listing-grid-title {
+        @include icon('chevron-right-black', after, false);
+        background-color: $primary-orange;
+        color: $black;
+
+        &::after {
+          font-size: rem(12px);
+          padding-left: rem(5px);
+        }
+      }
+    }
+  }
 }
