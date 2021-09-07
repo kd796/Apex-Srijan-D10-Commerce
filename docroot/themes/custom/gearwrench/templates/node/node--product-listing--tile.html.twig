@@ -81,19 +81,4 @@
       </div>
     </a>
   </div>
-
-  <div{{ content_attributes }}>
-    {{ content|without('field_media') }}
-  </div>
-
-  {% if display_submitted %}
-    <footer{{ footer_attributes }}>
-      {{ author_picture }}
-      <div{{ author_attributes.addClass('node__submitted') }}>
-        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
-        {{ metadata }}
-      </div>
-    </footer>
-  {% endif %}
-
 </article>
