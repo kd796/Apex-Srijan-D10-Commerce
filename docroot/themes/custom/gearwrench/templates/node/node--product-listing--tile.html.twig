@@ -71,10 +71,10 @@
 {% set classes = [] %}
 
 <article{{ attributes.addClass(classes) }}>
-  <div class="node__inner">
-    <a href="{{ url }}" rel="bookmark" class="node__product-listing-grid-link">
-      <div class="node__product-listing-grid-image">
-        {{ content.field_media }}
+  <div{{ inner_attributes }}>
+    <a href="{{ url }}" rel="bookmark">
+      <div{{ media_attributes }}>
+        {{ content }}
       </div>
       <div class="btn node__product-listing-grid-title">
         {{ label }}

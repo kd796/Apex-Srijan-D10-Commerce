@@ -131,3 +131,25 @@ function gearwrench_preprocess_node__search_result(array &$variables) {
     unset($variables['content']['body']['#theme']);
   }
 }
+
+/**
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product listing, teaser.
+ */
+function gearwrench_preprocess_node__product_listing__tile(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $bundle = $node->bundle();
+  $view_mode = $variables['view_mode'];
+  $bundle_css = Html::cleanCssIdentifier($bundle);
+  $view_mode_css = Html::cleanCssIdentifier($view_mode);
+  // Track variables that should be converted to attribute objects.
+  $variables['#attribute_variables'][] = 'media_attributes';
+  $variables['inner_attributes']['class'][] = 'node__inner';
+  $variables['media_attributes']['class'][] = 'node__media';
+  if (isset($variables['content']['field_media'][0])) {
+    $variables['media_attributes']['class'][] = 'node__product-listing-grid-image';
+  }
+  else {
+    $variables['media_attributes']['class'][] = 'node__media--no-media';
+  }
+}
