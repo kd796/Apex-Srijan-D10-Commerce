@@ -12,6 +12,7 @@
  * @see gearwrench_preprocess_paragraph__content__full()
  * @see gearwrench_preprocess_paragraph__hero__full()
  * @see gearwrench_preprocess_paragraph__hero_slide__full()
+ * @see gearwrench_preprocess_paragraph__steps__full()
  * @see gearwrench_preprocess_paragraph__embed_iframe__full()
  * @see gearwrench_preprocess_paragraph__media__full()
  * @see gearwrench_preprocess_paragraph__section__full()
@@ -197,6 +198,18 @@ function gearwrench_preprocess_paragraph__content__full(array &$variables) {
  */
 function gearwrench_preprocess_paragraph__content_callout__full(array &$variables) {
   // Nothing to see here.
+}
+
+/**
+ * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for steps, full.
+ */
+function gearwrench_preprocess_paragraph__step__full(array &$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $base_class = $variables['component_base_class'];
+
+  // Set inner attributes.
+  $variables['title_inner_attributes']['class'][] = 'component-step__title-wrapper';
 }
 
 /**

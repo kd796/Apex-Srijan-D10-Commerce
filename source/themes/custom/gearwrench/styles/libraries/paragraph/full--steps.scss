@@ -1,0 +1,89 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: Steps
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.component-steps {
+  padding: rem(80px) 0;
+
+  @include media('>=lg-plus') {
+    @include container-full-width();
+    background-color: $gray-10;
+  }
+
+  .component-steps__content,
+  .component-steps__title {
+    @include container();
+  }
+
+  .component-steps__title {
+    @include type-header(h2, black, included);
+    font-size: rem(40px);
+    text-align: center;
+    margin-bottom: rem(80px);
+    text-transform: uppercase;
+
+    @include media('>=lg-plus') {
+      font-size: rem(28px);
+    }
+  }
+
+  .component-step:not(:last-of-type) {
+    .component-step__title {
+      position: relative;
+
+      @include media('>=lg-plus') {
+        &::after {
+          content: '';
+          background-color: $primary-orange;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: rem(30px);
+          height: 100%;
+          //z-index: -1;
+          transform: skew(-14deg);
+        }
+      }
+    }
+  }
+
+  .component-step__title-wrapper {
+    position: relative;
+    padding: rem(15px);
+    background-color: $primary-orange;
+    width: 100px;
+
+    &::after {
+      content: '';
+      border-bottom: 2px dashed $primary-orange;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      z-index: 0;
+    }
+  }
+
+  .component-step__title {
+    color: $type-dark;
+    font-family: $font-brand;
+    font-size: rem(16px);
+    font-weight: 800;
+    z-index: 1;
+
+    @include media('>=lg-plus') {
+      font-size: rem(20px);
+    }
+  }
+}

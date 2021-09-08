@@ -18,6 +18,7 @@ dependencies:
     - paragraphs.paragraphs_type.product_slider
     - paragraphs.paragraphs_type.pullquote
     - paragraphs.paragraphs_type.section
+    - paragraphs.paragraphs_type.steps
     - paragraphs.paragraphs_type.tabs
   module:
     - entity_reference_revisions
@@ -52,6 +53,7 @@ settings:
       tabs: tabs
       content_callout_container: content_callout_container
       product_slider: product_slider
+      steps: steps
     target_bundles_drag_drop:
       accordion:
         enabled: true
@@ -101,6 +103,12 @@ settings:
       section:
         enabled: true
         weight: -27
+      step:
+        weight: 38
+        enabled: false
+      steps:
+        enabled: true
+        weight: 39
       tabs:
         enabled: true
         weight: -23
