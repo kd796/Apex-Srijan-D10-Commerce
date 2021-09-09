@@ -16,7 +16,11 @@
 .component-steps {
   @include container-full-width();
   background-color: $gray-10;
-  padding: rem(80px) 0;
+  padding: rem(40px) 0;
+
+  @include media('>=lg-plus') {
+    padding: rem(80px) 0;
+  }
 
   .component-steps__content,
   .component-steps__title {
@@ -25,24 +29,37 @@
 
   .component-steps__content {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-rows: repeat(5, minmax(0, 1fr));
+    grid-auto-flow: column;
+
+    @include media('>=lg-plus') {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-rows: unset;
+      grid-auto-flow: unset;
+    }
   }
 
   .component-steps__title {
     @include type-header(h2, black, included);
-    font-size: rem(40px);
+    font-size: rem(28px);
     text-align: center;
-    margin-bottom: rem(80px);
+    margin-bottom: rem(40px);
     text-transform: uppercase;
 
     @include media('>=lg-plus') {
-      font-size: rem(28px);
+      font-size: rem(40px);
+      margin-bottom: rem(80px);
     }
   }
 
   .component-step__title-wrapper {
     position: relative;
-    margin-bottom: rem(30px);
+    padding-bottom: rem(30px);
+
+    @include media('>=lg-plus') {
+      padding-bottom: 0;
+      margin-bottom: rem(30px);
+    }
   }
 
   .component-step:not(:last-of-type) {
@@ -56,6 +73,20 @@
         width: 100%;
         z-index: 0;
       }
+
+      @include media('<lg-plus') {
+        &::after {
+          content: '';
+          border-bottom: unset;
+          border-left: 2px dashed $primary-orange;
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 100%;
+          height: 100%;
+          z-index: 0;
+        }
+      }
     }
   }
 
@@ -68,7 +99,6 @@
     background-color: $primary-orange;
     display: inline-flex;
     padding: rem(10px 10px 10px 20px);
-    min-width: rem(80px);
     z-index: 1;
 
     &::after {
@@ -79,7 +109,6 @@
       right: rem(-10px);
       width: rem(20px);
       height: 100%;
-      //z-index: -1;
       transform: skew(-14deg);
     }
 
@@ -89,6 +118,37 @@
   }
 
   .component-step__content {
-    padding-right: rem(40px);
+    padding-left: rem(25px);
+
+    @include media('>=lg-plus') {
+      padding-left: 0;
+      padding-right: rem(40px);
+    }
+  }
+
+  @include media('<lg-plus') {
+    .component-step__inner {
+      display: flex;
+      flex: 0 1 auto;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .component-step__title-wrapper,
+    .component-step__content {
+      flex-grow: 1;
+      flex: 0 0 auto;
+    }
+
+    .component-step__title-wrapper {
+      max-width: none;
+      width: auto;
+    }
+
+    .component-step__content {
+      max-width: 75%;
+      width: 75%;
+    }
   }
 }
