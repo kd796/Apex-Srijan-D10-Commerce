@@ -38,10 +38,14 @@
  * @ingroup themeable
  */
 #}
+{% set title_inner_attributes = create_attribute({}) %}
 {% set classes = [] %}
 {% set title_classes = [] %}
 {% set content_classes = [] %}
 {% set footer_classes = [] %}
+
+{% set title_inner_classes = ['component-step__title-wrapper']%}
+
 
 {% set title_is_set = title|render|striptags|trim is not empty %}
 {% set footer_is_set = footer|render|striptags|trim is not empty %}
@@ -51,7 +55,7 @@
 
     {{ title_prefix }}
     {% if title_is_set %}
-      <div{{ title_inner_attributes }}>
+      <div{{ title_inner_attributes.addClass(title_inner_classes) }}>
         <header{{ title_attributes.addClass(title_classes) }}>
           {{- title -}}
         </header>
