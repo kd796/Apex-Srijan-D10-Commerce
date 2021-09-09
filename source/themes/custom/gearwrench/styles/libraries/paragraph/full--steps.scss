@@ -14,16 +14,18 @@
  * Component
  */
 .component-steps {
+  @include container-full-width();
+  background-color: $gray-10;
   padding: rem(80px) 0;
-
-  @include media('>=lg-plus') {
-    @include container-full-width();
-    background-color: $gray-10;
-  }
 
   .component-steps__content,
   .component-steps__title {
     @include container();
+  }
+
+  .component-steps__content {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .component-steps__title {
@@ -38,52 +40,55 @@
     }
   }
 
-  .component-step:not(:last-of-type) {
-    .component-step__title {
-      position: relative;
+  .component-step__title-wrapper {
+    position: relative;
+    margin-bottom: rem(30px);
+  }
 
-      @include media('>=lg-plus') {
-        &::after {
-          content: '';
-          background-color: $primary-orange;
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: rem(30px);
-          height: 100%;
-          //z-index: -1;
-          transform: skew(-14deg);
-        }
+  .component-step:not(:last-of-type) {
+    .component-step__title-wrapper {
+      &::after {
+        content: '';
+        border-bottom: 2px dashed $primary-orange;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        z-index: 0;
       }
     }
   }
 
-  .component-step__title-wrapper {
-    position: relative;
-    padding: rem(15px);
-    background-color: $primary-orange;
-    width: 100px;
-
-    &::after {
-      content: '';
-      border-bottom: 2px dashed $primary-orange;
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
-      z-index: 0;
-    }
-  }
-
   .component-step__title {
+    position: relative;
     color: $type-dark;
     font-family: $font-brand;
     font-size: rem(16px);
     font-weight: 800;
+    background-color: $primary-orange;
+    display: inline-flex;
+    padding: rem(10px 10px 10px 20px);
+    min-width: rem(80px);
     z-index: 1;
+
+    &::after {
+      content: '';
+      background-color: $primary-orange;
+      position: absolute;
+      top: 0;
+      right: rem(-10px);
+      width: rem(20px);
+      height: 100%;
+      //z-index: -1;
+      transform: skew(-14deg);
+    }
 
     @include media('>=lg-plus') {
       font-size: rem(20px);
     }
+  }
+
+  .component-step__content {
+    padding-right: rem(40px);
   }
 }
