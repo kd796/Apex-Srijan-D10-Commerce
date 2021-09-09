@@ -52,26 +52,26 @@
 
 {% block paragraph %}
   <section{{ attributes.addClass(classes) }}>
+    <div {{ inner_attributes }}>
+      {{ title_prefix }}
+      {% if title_is_set %}
+        <div{{ title_inner_attributes.addClass(title_inner_classes) }}>
+          <header{{ title_attributes.addClass(title_classes) }}>
+            {{- title -}}
+          </header>
+        </div>
+      {% endif %}
+      {{ title_suffix }}
 
-    {{ title_prefix }}
-    {% if title_is_set %}
-      <div{{ title_inner_attributes.addClass(title_inner_classes) }}>
-        <header{{ title_attributes.addClass(title_classes) }}>
-          {{- title -}}
-        </header>
+      <div{{ content_attributes.addClass(content_classes) }}>
+        {{ content }}
       </div>
-    {% endif %}
-    {{ title_suffix }}
 
-    <div{{ content_attributes.addClass(content_classes) }}>
-      {{ content }}
+      {% if footer_is_set %}
+        <footer{{ footer_attributes.addClass(footer_classes) }}>
+          {{- footer -}}
+        </footer>
+      {% endif %}
     </div>
-
-    {% if footer_is_set %}
-      <footer{{ footer_attributes.addClass(footer_classes) }}>
-        {{- footer -}}
-      </footer>
-    {% endif %}
-
   </section>
 {% endblock paragraph %}
