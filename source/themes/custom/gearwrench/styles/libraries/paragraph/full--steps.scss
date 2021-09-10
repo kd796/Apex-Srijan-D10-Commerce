@@ -33,7 +33,7 @@
 
   .component-steps__content {
     display: grid;
-    grid-template-rows: repeat(5, minmax(0, 1fr));
+    grid-template-rows: repeat(5, minmax(0, auto));
     grid-auto-flow: column;
     position: relative;
 
@@ -79,6 +79,12 @@
     @include media('>=lg-plus') {
       font-size: rem(40px);
       margin-bottom: rem(80px);
+    }
+  }
+
+  .component-step {
+    &:not(:last-of-type) {
+      margin-bottom: rem(20px);
     }
   }
 
