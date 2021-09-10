@@ -112,10 +112,11 @@
       background-color: $primary-orange;
       position: absolute;
       top: 0;
-      right: rem(-5px);
-      width: rem(10px);
+      right: rem(-8px);
+      width: rem(16px);
       height: 100%;
       transform: skew(-14deg);
+      z-index: -1;
     }
 
     @include media('>=lg-plus') {
@@ -129,38 +130,76 @@
     }
   }
 
-  .component-step__content {
-    padding-left: rem(25px);
-
-    @include media('>=lg-plus') {
-      padding-left: 0;
-      padding-right: rem(40px);
-    }
-  }
-
   @include media('<lg-plus') {
+    .component-steps__content {
+      display: flex;
+      flex-direction: column;
+
+      .component-step {
+        &:nth-child(1) {
+          .component-step__title-wrapper {
+            &:after {
+              top: 45%;
+              height: 50%;
+            }
+          }
+        }
+
+        &:nth-last-of-type(1) {
+          .component-step__title-wrapper {
+            &:after {
+              top: 0;
+              height: 50%;
+            }
+          }
+        }
+      }
+    }
+
     .component-step__inner {
       display: flex;
-      flex: 0 1 auto;
       flex-direction: row;
       align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .component-step__title-wrapper,
-    .component-step__content {
-      flex-grow: 1;
-      flex: 0 0 auto;
+      position: relative;
     }
 
     .component-step__title-wrapper {
-      max-width: none;
-      width: auto;
+      flex: 0 0 0;
+      position: relative;
+      margin-right: rem(24px);
+
+      //&:after {
+      //  position: absolute;
+      //  content: '';
+      //  top: 0;
+      //  left: 50%;
+      //  height: 95%;
+      //  border-left: 2px dashed $primary-orange;
+      //  z-index: 0;
+      //}
+
+      //&::after {
+      //  content: '';
+      //  border-top: 2px dashed #EB8900;
+      //  position: absolute;
+      //  top: rem(25px);
+      //  left: rem(25px);
+      //  height: 85%;
+      //  z-index: 0;
+      //}
+    }
+
+    .component-step__title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: rem(45px);
+      margin: rem(20px 0);
+      text-align: center;
     }
 
     .component-step__content {
-      max-width: 75%;
-      width: 75%;
+      padding-right: rem(20px);
     }
   }
 }
