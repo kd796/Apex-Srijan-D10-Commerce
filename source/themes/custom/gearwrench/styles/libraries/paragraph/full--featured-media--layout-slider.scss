@@ -34,7 +34,7 @@
   .component-featured-media__list-item {
     height: auto;
     list-style: none;
-    margin-bottom: 3.5rem;
+    margin-bottom: 1.5rem;
 
     &.swiper-slide .media {
       height: 100%;
@@ -54,9 +54,19 @@
     }
   }
 
-  .component-featured-content__pagination {
-    bottom: 0;
-    margin: 1rem 0;
+  .component-featured-media__pagination {
     position: relative;
+
+    .swiper-pagination-bullet {
+      background: transparent;
+      border-color: $gray-90;
+      margin: 0 0.5rem;
+      width: 0.6rem;
+      height: 0.6rem;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: $gray-90;
+    }
   }
 }
