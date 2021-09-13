@@ -194,5 +194,9 @@
 
   .component-step__content {
     padding-right: rem(20px);
+
+    @include media('>=lg-plus') {
+      padding-right: rem(40px);
+    }
   }
 }
