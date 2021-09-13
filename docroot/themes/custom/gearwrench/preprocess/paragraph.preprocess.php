@@ -207,8 +207,7 @@ function gearwrench_preprocess_paragraph__step__full(array &$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   $base_class = $variables['component_base_class'];
-  // dpm($variables['title_inner_attributes']);
-  // Set inner attributes.
+  
   // Initialize variables.
   $variables['inner_attributes']['class'][] = "{$base_class}__inner";
 }
