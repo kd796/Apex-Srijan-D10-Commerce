@@ -346,7 +346,6 @@ $mobile-menu-item-button-height: 7rem;
       li a {
         color: $primary-orange;
       }
-
     }
 
     .menu__content-container {
@@ -485,12 +484,139 @@ $mobile-menu-item-button-height: 7rem;
           &:last-of-type {
             padding-bottom: 1rem;
           }
-
         }
       }
     }
   }
 
+  .block--header-search {
+    display: flex;
+    padding-left: 1.5rem;
+    position: relative;
+
+    .block__content-toggle {
+      @include icon('search');
+
+      align-items: center;
+      background: 0;
+      border: 0;
+      display: flex;
+      font-weight: $fw-bold;
+      height: $header-height;
+      margin-left: 10px;
+      position: relative;
+
+      &::after {
+        transform: rotate(90deg);
+        margin-left: .5rem;
+      }
+
+      &[aria-expanded='true'] {
+        color: $white;
+
+        &::after {
+          transform: rotate(270deg);
+        }
+      }
+
+      &[aria-expanded='true'] + .block-header-search__content + .block__pseudo-toggle {
+        height: $header-height;
+        width: 3.25rem;
+        position: absolute;
+        z-index: -1;
+
+        &::before,
+        &::after {
+          animation-fill-mode: both;
+          animation-direction: normal;
+          animation-name: headerPanelFade;
+          content: '';
+          background-color: $black;
+          position: absolute;
+          top: 0;
+          width: rem(30px);
+          height: 100%;
+          z-index: -1;
+          transform: skew(-14deg);
+        }
+
+        &::before {
+          left: 0;
+        }
+
+        &::after {
+          right: 0;
+        }
+      }
+
+      span {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        text-indent: -9999999em;
+        top: 0;
+      }
+
+      &[aria-expanded='false'] .block__content-toggle-collapse,
+      &[aria-expanded='true'] .block__content-toggle-expand {
+        display: none;
+      }
+
+      &[aria-expanded='true'] .block__content-toggle-collapse,
+      &[aria-expanded='false'] .block__content-toggle-expand {
+        display: inline-block;
+      }
+
+      &[aria-expanded='false'] + .block__content {
+        animation-direction: reverse;
+        display: none;
+      }
+    }
+
+    .block__content {
+      animation-fill-mode: both;
+      animation-direction: normal;
+      animation-name: headerPanelFade;
+      background-color: $black;
+      display: block;
+      height: 4.25rem;
+      right: -6.3rem;
+      opacity: 1;
+      position: absolute;
+      top: $header-height;
+      z-index: 1;
+      width: 100vw;
+
+      form {
+        height: 100%;
+        margin: 0;
+        padding: 0 1rem;
+
+        input {
+          background-color: $white;
+          font-family: $font-brand;
+          font-weight: $fw-bold;
+          text-transform: uppercase;
+          padding: .25rem 0;
+          white-space: nowrap;
+
+          height: 70%;
+          margin: 10px auto;
+          position: relative;
+          width: 55%;
+
+          &:first-of-type {
+            padding-top: 1rem;
+          }
+
+          &:last-of-type {
+            padding-bottom: 1rem;
+          }
+        }
+      }
+    }
+  }
 
   @include media($header-bp-desktop) {
     .block--header-menu-main {
@@ -542,7 +668,6 @@ $mobile-menu-item-button-height: 7rem;
       .menu--depth-0 {
         @include flex;
         @include flex-x(justify-content, space-between);
-
       }
 
       .menu-item--depth-0 {
@@ -818,8 +943,6 @@ $mobile-menu-item-button-height: 7rem;
         margin-left: rem(150px);
       }
     }
-
-
   }
 
   @include media($header-bp-mobile) {
@@ -953,6 +1076,22 @@ $mobile-menu-item-button-height: 7rem;
             text-decoration: none;
           }
         }
+
+        .header-search-toggle {
+          @include icon('search', $extend: false);
+
+          background: 0;
+          border: 0;
+          font-weight: $fw-bold;
+          position: relative;
+          align-items: center;
+          display: flex;
+          height: $header-height;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
       }
 
       .menu-item__panel-image {
@@ -961,6 +1100,10 @@ $mobile-menu-item-button-height: 7rem;
     }
 
     .block--country-switch {
+      display: none;
+    }
+
+    .block--header-search {
       display: none;
     }
   }

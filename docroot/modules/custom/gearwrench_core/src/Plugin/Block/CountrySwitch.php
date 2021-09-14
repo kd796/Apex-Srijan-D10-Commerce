@@ -5,7 +5,7 @@ namespace Drupal\gearwrench_core\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 
 /**
- * Provides a country switch block block.
+ * Provides a country switch block.
  *
  * @Block(
  *   id = "country_switch",

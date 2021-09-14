@@ -13,8 +13,8 @@
       var selector_header_country_switch_button = '.block--country-switch .block__content-toggle';
       var lastScrollTop = 0;
 
-      // Hide County Toggle Text.
-      $('.block__menu').find('.country-toggle').empty();
+      // Hide Search Toggle Text.
+      $('.block__menu').find('.search-toggle').empty();
 
       // Open search panel.
       $(selector_header_search_button).once('header').on({
@@ -25,6 +25,9 @@
           behavior_object.togglePanel($this);
         }
       });
+
+      // Hide Country Toggle Text.
+      $('.block__menu').find('.country-toggle').empty();
 
       // Open country switch panel.
       $(selector_header_country_switch_button).once('header').on({
