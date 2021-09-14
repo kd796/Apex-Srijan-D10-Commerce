@@ -28,7 +28,7 @@ class GetClassificationParentName extends ProcessPluginBase {
   /**
    * {@inheritdoc}
    *
-   * @throws MigrateSkipProcessException
+   * @throws \Drupal\migrate\MigrateSkipProcessException
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $vocabulary = 'product_classifications';

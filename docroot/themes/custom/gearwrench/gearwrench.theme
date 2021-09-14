@@ -21,6 +21,38 @@ include_once 'preprocess/paragraph.preprocess.php';
 include_once 'preprocess/view.preprocess.php';
 
 /**
+ * Implements hook_preprocess_html().
+ */
+function gearwrench_preprocess_html(&$variables) {
+  $priceSpiderKey = [
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'ps-key',
+      'content' => '2377-5994e3055319cc6f56bb06f6',
+    ],
+  ];
+
+  $priceSpiderCountry = [
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'ps-country',
+      'content' => 'US',
+    ],
+  ];
+  $priceSpiderLanguage = [
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'ps-language',
+      'content' => 'en',
+    ],
+  ];
+
+  $variables['#attached']['html_head'][] = [$priceSpiderKey, 'ps-key'];
+  $variables['#attached']['html_head'][] = [$priceSpiderCountry, 'ps-country'];
+  $variables['#attached']['html_head'][] = [$priceSpiderLanguage, 'ps-language'];
+}
+
+/**
  * Implements hook_form_FORM_ID_alter() for search_block_form.
  */
 function gearwrench_form_search_block_form_alter(&$form, &$form_state) {

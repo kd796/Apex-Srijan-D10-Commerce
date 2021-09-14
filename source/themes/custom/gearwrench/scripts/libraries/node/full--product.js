@@ -101,4 +101,171 @@
     }
   };
 
+  Drupal.behaviors.productDetailTabs = {
+    attach: function (context, settings) {
+      $('.node--type-product-tabs:not(.node--type-product-tabs--js-initialized)').once('tabbed').each(function (index) {
+        // Initialize variables.
+        var $tabsWidget = $(this);
+        var $tablist = $tabsWidget.find('.node--type-product-tabs__nav-wrapper').children('.node--type-product-tabs__nav');
+        var $tabs = $tablist.find('.node--type-product-tabs__nav-item');
+        var $links = $tablist.find('a');
+        var $panelContainer = $tabsWidget.children('.node--type-product-tabs__content');
+        var $panels = $panelContainer.children('.node--type-product-tabs-tab');
+        var $mobileTabsWidget = $(this);
+        var $mobileTablist = $mobileTabsWidget.find('.node--type-product-tabs__content');
+        var $mobileTabs = $mobileTablist.find('.node--type-product-tabs__mobile-nav-item');
+        var $mobileLinks = $mobileTablist.find('a');
+
+        // Mark that the tabs component has been initialized.
+        $tabsWidget.addClass('node--type-product-tabs--js-initialized');
+
+        // Add static roles to elements.
+        $tablist.attr('role', 'tablist');
+        $tabs.attr('role', 'tab');
+        $panels.attr('role', 'tabpanel');
+        $links.attr('role', 'presentation');
+
+        // Add static roles to elements.
+        $mobileTablist.attr('role', 'tablist');
+        $mobileTabs.attr('role', 'tab');
+        $mobileLinks.attr('role', 'presentation');
+
+        // Default to last item as selected.
+        $tabs.attr('aria-selected', 'false')
+          .last()
+          .attr('tabindex', '0')
+          .attr('aria-selected', 'true');
+        $mobileTabs.attr('aria-selected', 'false');
+        $panels.prop('hidden', true)
+          .last()
+          .prop('hidden', false);
+
+        // Label panel and mark that each is controlled by their respective tab.
+        $tabs.each(function (tabIndex) {
+          var $tab = $(this);
+          var $tabLink = $tab.find('a');
+          var panelId = $tabLink.attr('href').substring($tabLink.attr('href').indexOf('#') + 1);
+          $tabLink.attr('id', panelId);
+          var tabId = panelId + '-tab';
+
+          // Remove link from href.
+          $tabLink.removeAttr('href');
+
+          // Link tab to panel.
+          $tab.attr('id', tabId)
+            .attr('aria-controls', panelId);
+
+          // Link panel to tab.
+          $panels.eq(tabIndex)
+            .attr('id', panelId)
+            .attr('aria-labelledby', tabId);
+        });
+
+        $mobileTabs.each(function (tabIndex) {
+          var $tab = $(this);
+          var $tabLink = $tab.find('a');
+          var $tabLinkHref = $tabLink.attr('href');
+          var panelId;
+          if (typeof $tabLinkHref !== 'undefined' && $tabLinkHref !== false) {
+            panelId = $tabLink.attr('href').substring($tabLink.attr('href').indexOf('#') + 1);
+            $tabLink.attr('id', panelId);
+          }
+          else {
+            panelId = $tabLink.attr('id').substring($tabLink.attr('id').indexOf('#') + 1);
+          }
+          var tabId = panelId + '-tab';
+
+          // Remove link from href.
+          $tabLink.removeAttr('href');
+
+          // Link tab to panel.
+          $tab.attr('id', tabId)
+            .attr('aria-controls', panelId);
+
+          // Link panel to tab.
+          $panels.eq(tabIndex)
+            .attr('id', panelId)
+            .attr('aria-labelledby', tabId);
+        });
+
+        // Initialize the roving tabindex.
+        $tablist.rovingTabindex('[role=tab]');
+        $('.node--type-product-tabs__content').rovingTabindex('[role=tab]');
+
+        // Track when tab is changed.
+        $mobileTablist.on('rovingTabindexChange', '[role=tab]', function (e, data) {
+          var $mobileTab = $(this);
+          $mobileTabs.attr('aria-selected', 'false');
+          $mobileTab.attr('aria-selected', 'true');
+        });
+
+        $mobileTablist.on('click keydown', '[role=tab]', function (e, data) {
+          var $keyCode = e.keyCode || e.which;
+          if (e.type === 'click' || ($keyCode === 13 && e.type === 'keydown')) {
+            var $mobileTab = $(this);
+            if ($panels.filter('#' + $mobileTab.attr('aria-controls')).prop('hidden') === true) {
+              $panels.prop('hidden', true);
+              $panels.filter('#' + $mobileTab.attr('aria-controls')).prop('hidden', false);
+            }
+            else {
+              $panels.filter('#' + $mobileTab.attr('aria-controls')).prop('hidden', true);
+            }
+            Drupal.blazy.init.revalidate();
+          }
+        });
+
+        $tablist.on('rovingTabindexChange', '[role=tab]', function (e, data) {
+          var $tab = $(this);
+          $tabs.attr('aria-selected', 'false');
+          $tab.attr('aria-selected', 'true');
+          $panels.prop('hidden', true);
+          $panels.filter('#' + $tab.attr('aria-controls')).prop('hidden', false);
+          Drupal.blazy.init.revalidate();
+        });
+
+        // Track active slide.
+        $(window).resize(function () {
+          var $openPanel;
+          $panels.each(function (i, obj) {
+            if ($(this)[0].hidden === false) {
+              $openPanel = i;
+            }
+          });
+          if (typeof $openPanel === 'undefined') {
+            $tabs.each(function (i, obj) {
+              if (i === 0) {
+                $(this).trigger('click');
+              }
+            });
+          }
+          else {
+            $tabs.each(function (i, obj) {
+              if (i === $openPanel) {
+                $(this).trigger('click');
+              }
+            });
+          }
+        });
+
+        // Set active tab onload.
+        setTimeout(function () {
+          $tabs.each(function (i, obj) {
+            if (i === 2) {
+              $(this).trigger('click');
+              $(this).removeAttr('tabindex');
+            }
+          });
+        }, 0);
+
+        // Track Features click
+        $('.more-features-link').on('click', function () {
+          $tabs.each(function (i, obj) {
+            if (i === 0) {
+              $(this).trigger('click');
+            }
+          });
+        });
+      });
+    }
+  };
 })(jQuery, Drupal);

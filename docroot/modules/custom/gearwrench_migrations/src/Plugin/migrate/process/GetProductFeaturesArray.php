@@ -36,21 +36,23 @@ class GetProductFeaturesArray extends ProcessPluginBase {
       'ATT499',
       'UNSPSC_V7.0901'
     ];
-    foreach ($value->children() as $child) {
-      if (!in_array((string) $child->attributes()->AttributeID, $value_to_skip)) {
-        if ($child->getName() !== 'MultiValue') {
-          $copy_array[] = [
-            'copy_point' => (string) $child
-          ];
-        }
-        else {
-          $copy_array[] = [
-            'copy_point' => (string) $child->Value,
-          ];
+    if (!empty($value)) {
+      foreach ($value->children() as $child) {
+        if (!in_array((string) $child->attributes()->AttributeID, $value_to_skip)) {
+          if ($child->getName() !== 'MultiValue') {
+            $copy_array[] = [
+              'copy_point' => (string) $child
+            ];
+          }
+          else {
+            $copy_array[] = [
+              'copy_point' => (string) $child->Value,
+            ];
+          }
         }
       }
+      $copy_array = json_encode($copy_array);
     }
-    $copy_array = json_encode($copy_array);
     return json_decode($copy_array, TRUE);
   }
 

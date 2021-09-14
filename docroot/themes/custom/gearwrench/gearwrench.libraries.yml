@@ -30,6 +30,7 @@ global:
   dependencies:
     - core/drupal
     - core/jquery
+    - gearwrench/library--price-spider
 
 
 # === Global: Library Overrides === #
@@ -95,7 +96,10 @@ library--swiper:
   dependencies:
     - core/jquery
 
-
+library--price-spider:
+  version: 1.x
+  js:
+    //cdn.pricespider.com/1/lib/ps-widget.js: { type: external, attributes: { async: true } }
 
 # ========= Block ========= #
 
@@ -170,6 +174,7 @@ node--full--product:
     - core/jquery
     - core/jquery.once
     - gearwrench/library--swiper
+    - gearwrench/library--jquery-roving-tabindex
 
 # === Node: Teaser === #
 
@@ -178,14 +183,6 @@ node--teaser--product:
   css:
     component:
       css/libraries/node/teaser--product.css: { }
-
-# === Node: Tile === #
-
-node--tile--product-listing:
-  version: 1.x
-  css:
-    component:
-      css/libraries/node/tile--product-listing.css: { }
 
 # ========= Paragraphs ========= #
 
@@ -379,12 +376,7 @@ paragraph--full--tabs:
     - core/jquery.once
     - gearwrench/library--jquery-roving-tabindex
 
-# Steps #
-paragraph--full--steps:
-  version: 1.x
-  css:
-    component:
-      css/libraries/paragraph/full--steps.css: {}
+
 
 # ========= Region ========= #
 
@@ -417,13 +409,18 @@ region--footer-first:
 
 # ========= Views ========= #
 
-# ========= Views ========= #
-
-view--product-listing-grid:
+view--related-products:
   version: 1.x
   css:
     component:
-      css/libraries/view/product-listing-grid.css: {}
+      css/libraries/view/related-products.css: {}
+  js:
+    js/libraries/view/related-products.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - gearwrench/library--swiper
 
 # ========= Forms ========= #
 webform--warranty-replacement-form:

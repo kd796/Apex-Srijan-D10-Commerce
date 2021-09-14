@@ -5,18 +5,24 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.product.body
+    - field.field.node.product.field_featured_product
     - field.field.node.product.field_long_description
     - field.field.node.product.field_media
+    - field.field.node.product.field_meta_tags
+    - field.field.node.product.field_new_product
     - field.field.node.product.field_product_classifications
     - field.field.node.product.field_product_features
     - field.field.node.product.field_product_images
     - field.field.node.product.field_product_specifications
+    - field.field.node.product.field_related_products
     - field.field.node.product.field_set
     - field.field.node.product.field_set_components
     - field.field.node.product.field_sku_group
     - field.field.node.product.field_upc
+    - image.style.small
     - node.type.product
   module:
+    - blazy
     - user
 id: node.product.teaser
 targetEntityType: node
@@ -32,20 +38,57 @@ content:
       link_to_entity: false
     third_party_settings: {  }
   field_media:
-    type: entity_reference_entity_view
+    type: blazy_media
     weight: 0
     region: content
     label: hidden
     settings:
+      image_style: small
+      responsive_image_style: ''
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
       view_mode: teaser
-      link: false
+      image: ''
+      current_view_mode: teaser
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: 0
+      grid_medium: 0
+      grid_small: 0
     third_party_settings: {  }
 hidden:
   body: true
+  field_featured_product: true
+  field_meta_tags: true
+  field_new_product: true
   field_product_classifications: true
   field_product_features: true
   field_product_images: true
   field_product_specifications: true
+  field_related_products: true
   field_set: true
   field_set_components: true
   field_sku_group: true

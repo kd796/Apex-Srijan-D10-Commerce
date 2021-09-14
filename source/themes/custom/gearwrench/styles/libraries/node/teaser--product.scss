@@ -18,22 +18,33 @@
 
   .node__inner {
     .node__content {
-      box-shadow: 0 0 0 1px $gray-40;
+      border-top: 1px solid $gray-40;
+      border-left: 1px solid $gray-40;
+      border-right: 1px solid $gray-40;
       transition: $transition-base;
 
       @include media('<md') {
-        box-shadow: none;
+        border: 0;
       }
 
       .node__listing-image {
-        img {
-          object-fit: cover;
-          height: auto;
+        @include flex();
+        @include flex-x(align-items, center);
+        height: 245px;
+        display: flex;
+
+        @include media('<md') {
+          height: 160px;
+        }
+
+        .media {
+          display: flex;
+          justify-content: center;
           width: 100%;
         }
 
         @include media('<md') {
-          img {
+          .media {
             outline: 2px solid $primary-orange;
             outline-offset: -2px;
           }
@@ -73,14 +84,17 @@
     }
 
     .node__buy-now-button {
+      @include btn(primary);
+
       box-sizing: border-box;
-      box-shadow: 0 0 0 1px $primary-orange;
+      display: inline-block !important;
+      float: none;
+      font-size: 1rem;
       transition: $transition-base;
       width: 100%;
 
       &:hover,
       &:focus {
-        box-shadow: 0 0 0 2px $black;
         color: $primary-orange;
         background-color: $black;
       }
@@ -90,21 +104,12 @@
   @include on-event {
     .node__inner {
       box-shadow: 0 0 16px 5px rgba(0, 0, 0, 0.2);
+      outline: 2px solid $black;
+      outline-offset: -2px;
       @include media('<md') {
         box-shadow: none;
-      }
-
-      .node__content {
-        box-shadow: 0 0 0 2px $black;
-        @include media('<md') {
-          box-shadow: none;
-        }
-      }
-
-      .node__buy-now-button {
-        box-shadow: 0 1px 0 2px $black;
+        outline: none;
       }
     }
   }
-
 }

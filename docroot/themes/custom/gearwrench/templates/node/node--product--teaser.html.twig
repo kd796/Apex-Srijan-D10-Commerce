@@ -79,16 +79,16 @@
   view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
 ] %}
 <article{{ attributes.addClass(classes) }}>
-  <div class="node__inner">
+  <div{{ inner_attributes }}>
     <div{{ content_attributes.addClass('node__content') }}>
       <a href="{{ url }}" rel="bookmark">
-        <div class="node__listing-image">
-          {{ content.field_media }}
+        <div{{ media_attributes }}>
+          {{ media }}
         </div>
         <div class="node__content-container">
           <header class="node__header">
             <div class="node__long-description">
-              {{ content.field_long_description }}
+              {{ content }}
             </div>
           </header>
           <div class="node__sku">
@@ -100,6 +100,6 @@
         </div>
       </a>
     </div>
-    <div class="btn node__buy-now-button">{{ 'Buy Now'|t }}</div>
+    <div class="btn node__buy-now-button ps-widget" ps-sku="{{sku}}"></div>
   </div>
 </article>
