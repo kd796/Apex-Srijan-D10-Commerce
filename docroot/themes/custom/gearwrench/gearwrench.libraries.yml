@@ -30,6 +30,7 @@ global:
   dependencies:
     - core/drupal
     - core/jquery
+    - gearwrench/library--price-spider
 
 
 # === Global: Library Overrides === #
@@ -95,7 +96,10 @@ library--swiper:
   dependencies:
     - core/jquery
 
-
+library--price-spider:
+  version: 1.x
+  js:
+    //cdn.pricespider.com/1/lib/ps-widget.js: { type: external, attributes: { async: true } }
 
 # ========= Block ========= #
 
@@ -158,14 +162,27 @@ node--full:
     component:
       css/libraries/node/full.css: {}
 
+node--full--product:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/full--product.css: { }
+  js:
+    js/libraries/node/full--product.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - gearwrench/library--swiper
+    - gearwrench/library--jquery-roving-tabindex
+
 # === Node: Teaser === #
-#node--teaser:
-#  version: 1.x
-#  css:
-#    component:
-#      css/libraries/node/teaser.css: {}
 
-
+node--teaser--product:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/teaser--product.css: { }
 
 # ========= Paragraphs ========= #
 
@@ -198,6 +215,13 @@ paragraph--full--content:
   css:
     component:
       css/libraries/paragraph/full--content.css: {}
+
+# Content Callout #
+paragraph--full--content-callout:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--content-callout.css: {}
 
 # Hero #
 paragraph--full--hero:
@@ -310,6 +334,20 @@ paragraph--full--featured-media--layout-slider:
     - gearwrench/paragraph--full--featured-media
     - gearwrench/library--swiper
 
+# Product Slider #
+paragraph--full--product-slider:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--product-slider.css: {}
+  js:
+    js/libraries/paragraph/full--product-slider.js: { }
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - gearwrench/library--swiper
+
 # Pull Quote #
 paragraph--full--pullquote:
   version: 1.x
@@ -370,3 +408,30 @@ region--footer-first:
       css/libraries/region/footer.css: {}
 
 # ========= Views ========= #
+
+view--related-products:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/related-products.css: {}
+  js:
+    js/libraries/view/related-products.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - gearwrench/library--swiper
+
+# ========= Forms ========= #
+webform--warranty-replacement-form:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--accordion.css: { }
+  js:
+    js/libraries/webform/form--accordion.js: {weight: -10}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - gearwrench/library--jquery-roving-tabindex

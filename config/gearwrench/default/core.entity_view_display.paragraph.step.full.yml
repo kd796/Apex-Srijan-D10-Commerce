@@ -1,0 +1,32 @@
+uuid: be9303ee-02ce-42e9-bc2c-4997444e7dba
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.full
+    - field.field.paragraph.step.field_content
+    - field.field.paragraph.step.field_title
+    - paragraphs.paragraphs_type.step
+  module:
+    - text
+id: paragraph.step.full
+targetEntityType: paragraph
+bundle: step
+mode: full
+content:
+  field_content:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_title:
+    type: string
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden: {  }

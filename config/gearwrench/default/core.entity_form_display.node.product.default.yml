@@ -4,17 +4,25 @@ status: true
 dependencies:
   config:
     - field.field.node.product.body
+    - field.field.node.product.field_featured_product
     - field.field.node.product.field_long_description
     - field.field.node.product.field_media
+    - field.field.node.product.field_meta_tags
+    - field.field.node.product.field_new_product
     - field.field.node.product.field_product_classifications
     - field.field.node.product.field_product_features
+    - field.field.node.product.field_product_images
     - field.field.node.product.field_product_specifications
+    - field.field.node.product.field_related_products
+    - field.field.node.product.field_set
+    - field.field.node.product.field_set_components
     - field.field.node.product.field_sku_group
     - field.field.node.product.field_upc
     - node.type.product
   module:
     - field_group
     - media_library
+    - metatag
     - path
     - text
 third_party_settings:
@@ -70,6 +78,9 @@ third_party_settings:
         - field_product_features
         - field_product_specifications
         - field_product_classifications
+        - field_product_images
+        - field_set
+        - field_set_components
       parent_name: group_tabs
       weight: 3
       format_type: tab
@@ -102,6 +113,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_featured_product:
+    weight: 27
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
   field_long_description:
     weight: 16
     settings:
@@ -119,6 +137,20 @@ content:
         - video
     third_party_settings: {  }
     type: media_library_widget
+    region: content
+  field_meta_tags:
+    weight: 29
+    settings:
+      sidebar: true
+    third_party_settings: {  }
+    type: metatag_firehose
+    region: content
+  field_new_product:
+    weight: 26
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
   field_product_classifications:
     weight: 19
@@ -138,8 +170,42 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_product_images:
+    type: media_library_widget
+    weight: 20
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    region: content
   field_product_specifications:
     weight: 18
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_related_products:
+    weight: 28
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_set:
+    weight: 21
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_set_components:
+    weight: 22
     settings:
       match_operator: CONTAINS
       match_limit: 10

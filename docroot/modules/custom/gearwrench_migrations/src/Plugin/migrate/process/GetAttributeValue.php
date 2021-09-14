@@ -22,9 +22,21 @@ class GetAttributeValue extends ProcessPluginBase {
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $attribute_value = NULL;
     $attribute = $this->configuration['attribute'];
-    foreach ($value->children() as $child) {
-      if ($child->attributes()->AttributeID == $attribute) {
-        $attribute_value = (string) $child;
+    if (!empty($value)) {
+      foreach ($value->children() as $child) {
+        if ($child->attributes()->AttributeID == $attribute) {
+          if ($attribute === 'ATT17339' || $attribute === 'ATT16491') {
+            if ((string) $child === 'Yes') {
+              $attribute_value = 1;
+            }
+            elseif ((string) $child === 'No') {
+              $attribute_value = 0;
+            }
+          }
+          else {
+            $attribute_value = (string) $child;
+          }
+        }
       }
     }
     return $attribute_value;

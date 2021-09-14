@@ -1,10 +1,11 @@
 uuid: 8944037b-4aa4-4009-92a9-64930f94233a
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.product_listing.body
+    - field.field.node.product_listing.field_media
     - field.field.node.product_listing.field_product_classifications
     - node.type.product_listing
   module:
@@ -29,4 +30,5 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  field_media: true
   field_product_classifications: true

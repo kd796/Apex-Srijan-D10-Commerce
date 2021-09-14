@@ -6,34 +6,30 @@
 
 // Base button styles
 @mixin btn-base($style: primary) {
-  background-image: linear-gradient(90deg, transparent 0%, transparent 50%, $primary-orange 50%, $primary-orange 100%);
-  background-position: 100% 0;
-  background-repeat: no-repeat;
-  background-size: 300%;
-  background-color: transparent;
-
-  border-color: $primary-orange;
-  border-style: solid;
-  border-width: 1px;
-  color: $secondary-black;
+  background-color: $primary-orange;
+  border: 0;
+  color: $black;
   display: inline-block;
   font-family: $font-brand;
   font-weight: $fw-bold;
   letter-spacing: 0.03rem;
+  line-height: 1;
   text-align: center;
-  padding: .7rem 1.75rem 0.55rem;
+  padding: 1rem .85rem .85rem;
   text-decoration: none;
   text-transform: uppercase;
   transition: $transition-base;
+  white-space: nowrap;
+
+  @include media('>md') {
+    line-height: 1.625;
+    padding: 1rem 3.5rem .85rem;
+  }
 
   @if $style == primary {
-    background-position: 100% 0;
-    background-repeat: no-repeat;
-    background-size: 300%;
-
     @include on-event {
       color: $primary-orange;
-      background-position: 0;
+      background-color: $black;
     }
   }
 }
@@ -42,5 +38,37 @@
 @mixin btn($style: primary) {
   @if $style == primary {
     @include btn-base();
+  } @else if $style == secondary {
+    @include icon(tertiary-link, after, true);
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    color: $black;
+    display: flex;
+    font-family: $font-brand;
+    font-weight: $fw-regular;
+    padding: 3.75rem 0 2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: $transition-base;
+    white-space: nowrap;
+
+    &:after {
+      font-size: rem(20px);
+      margin-left: 1rem;
+    }
+
+    @include on-event {
+      color: $primary-orange;
+    }
+
+    @include media('<sm') {
+      padding: 1rem 0;
+
+      &:after {
+        margin-left: .5rem;
+      }
+    }
   }
+
 }

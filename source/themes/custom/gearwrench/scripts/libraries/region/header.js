@@ -4,15 +4,27 @@
   Drupal.behaviors.regionHeader = {
     attach: function (context, settings) {
       var behavior_object = this;
-      var mouseenter_delay_timer;
-      var mouseleave_delay_timer;
       var selector_header_menu_button = '.block--header-menu-main .block__menu-toggle';
-      var selector_header_menu_item_buttons = '.block--header-menu-main .menu-item__button';
       var selector_header_menu_items_with_children = '.block--header-menu-main .menu-item--has-children';
       var selector_header_search_button = '.block--header-search .block__content-toggle';
+      var selector_header_country_switch_button = '.block--country-switch .block__content-toggle';
+      var lastScrollTop = 0;
+
+      // Hide County Toggle Text.
+      $('.block__menu').find('.country-toggle').empty();
 
       // Open search panel.
       $(selector_header_search_button).once('header').on({
+        click: function () {
+          var $this = $(this);
+
+          // Either expand or collapse the search panel.
+          behavior_object.togglePanel($this);
+        }
+      });
+
+      // Open country switch panel.
+      $(selector_header_country_switch_button).once('header').on({
         click: function () {
           var $this = $(this);
 
@@ -39,44 +51,14 @@
         }
       });
 
-      // Trigger button's panel to open.
-      $(selector_header_menu_item_buttons).once('header').on({
-        click: function () {
-          behavior_object.toggleMenuPanel($(this));
-        }
-      });
-
       // Trigger button panel to open based on hover (done here instead of css
       // :hover to reduce amount of code and make issues easier to troubleshoot.
       $(selector_header_menu_items_with_children).once('header').on({
-        mouseenter: function () {
+        click: function () {
           var $menu_item = $(this);
-
-          clearTimeout(mouseleave_delay_timer);
-
-          // Make sure user continues to hover over the item before showing.
-          mouseenter_delay_timer = setTimeout(function () {
-            var $button = $menu_item.find('.menu-item__button').first();
-
-            // Only toggle panel for desktop and if not already expanded.
-            if (behavior_object.isDesktop() && $button.attr('aria-expanded') !== 'true') {
-              behavior_object.toggleMenuPanel($button);
-            }
-          }, 250);
-        },
-        mouseleave: function () {
-          var $menu_item = $(this);
-
-          clearTimeout(mouseenter_delay_timer);
-
-          mouseleave_delay_timer = setTimeout(function () {
-            var $button = $menu_item.find('.menu-item__button').first();
-
-            // Only toggle panel for desktop and if not already expanded.
-            if (behavior_object.isDesktop() && $button.attr('aria-expanded') === 'true') {
-              behavior_object.toggleMenuPanel($button);
-            }
-          }, 250);
+          var $button = $menu_item.find('.menu-item__button').first();
+          // Only toggle panel for desktop and if not already expanded.
+          behavior_object.toggleMenuPanel($button);
         }
       });
 
@@ -85,12 +67,45 @@
         var $menu_item = $('.region-header .menu-item--depth-0.menu-item--expanded');
         behavior_object.updateHeaderPlaceholder($menu_item);
       });
+
+      // Sets large logo with tall performance device
+      $('header .block--header-branding').addClass('block--header-branding-large');
+      $('header .region-header__content').addClass('region-header__content-large');
+
+      // On scroll down, header and expanded navigation disappears, scroll up re-appears, logo area resizes
+      window.addEventListener('scroll', function () {
+        var $header = $('header');
+        var scrollTopVal = window.pageYOffset || document.documentElement.scrollTop;
+        var $menu_item = $('.region-header .menu-item--depth-0');
+        var $button = $menu_item.find('.menu-item__button').first();
+
+        $header.addClass('region-header--ease-in-out');
+
+        if (scrollTopVal <= 10 || scrollTopVal < lastScrollTop) {
+          $header.removeClass('region-header--hide');
+
+          if (scrollTopVal === 0) {
+            $('header .block--header-branding').addClass('block--header-branding-large');
+            $('header .region-header__content').addClass('region-header__content-large');
+          }
+        }
+        else {
+          $header.addClass('region-header--hide');
+          $('header .block--header-branding').removeClass('block--header-branding-large');
+          $('header .region-header__content').removeClass('region-header__content-large');
+
+          if ($button.attr('aria-expanded') === 'true') {
+            behavior_object.toggleMenuPanel($button);
+          }
+        }
+        lastScrollTop = scrollTopVal <= 0 ? 0 : scrollTopVal;
+      });
     },
     isDesktop: function () {
-      return ($('body').width() >= 568);
+      return ($('body').width() >= 980);
     },
     isMobile: function () {
-      return ($('body').width() < 568);
+      return ($('body').width() < 980);
     },
     toggleMenuPanel: function ($button, to_expand) {
       to_expand = (typeof to_expand === 'boolean') ? to_expand : ($button.attr('aria-expanded') !== 'true');

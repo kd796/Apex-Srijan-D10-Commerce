@@ -45,6 +45,8 @@
     color: $color-white;
   } @else if $color == dark {
     color: $primary-orange;
+  } @else if $color == black {
+    color: $black;
   }
   @if $version == h1 {
     font-size: 2.5rem;
@@ -52,16 +54,19 @@
       font-size: 1.75rem;
     }
   } @else if $version == h2 {
-    font-size: 2rem;
+    font-size: rem(32px);
+    line-height: rem(40px);
   } @else if $version == h3 {
-    font-size: 1.6rem;
+    font-size: rem(28px);
+    line-height: rem(32px);
   } @else if $version == h4 {
-    font-size: 1.5rem;
+    font-size: rem(24px);
+    line-height: rem(32px);
   } @else if $version == h5 {
-    font-size: 1.25rem;
+    font-size: rem(20px);
     text-transform: uppercase;
   } @else if $version == h6 {
-    font-size: 1rem;
+    font-size:  rem(16px);
     text-transform: uppercase;
   } @else if $version == display-headline-1 {
     font-size: 4.5rem !important;

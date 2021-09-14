@@ -14,13 +14,42 @@
  * Classy Styles
  */
 .component-section {
+  @include container-full-width();
+  padding: 0 1rem;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .component-section__content {
+    @include container();
+    padding: 7.5rem 0 9.625rem;
+  }
+
   // gap for components within sections
   .component-section__content > .paragraph-component:not(:first-child) {
     @include gap-vertical(
       $property: margin,
       $breakpoint: md,
-      $gap-small: $gap-vertical-xsm,
-      $gap-large: $gap-vertical-sm
+      $gap-small: 3.75rem,
+      $gap-large: 9.375rem
     );
+  }
+
+  &.paragraph-component--background-color {
+    position: relative;
+
+    .component-section__content {
+      position: relative;
+      z-index: 1;
+    }
+
+    &:after {
+      @include trbl();
+
+      content: '';
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+    }
   }
 }

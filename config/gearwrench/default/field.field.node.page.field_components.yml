@@ -7,6 +7,7 @@ dependencies:
     - node.type.page
     - paragraphs.paragraphs_type.accordion
     - paragraphs.paragraphs_type.content
+    - paragraphs.paragraphs_type.content_callout_container
     - paragraphs.paragraphs_type.embed_block
     - paragraphs.paragraphs_type.embed_iframe
     - paragraphs.paragraphs_type.embed_view
@@ -14,8 +15,10 @@ dependencies:
     - paragraphs.paragraphs_type.featured_links
     - paragraphs.paragraphs_type.featured_media
     - paragraphs.paragraphs_type.hero
+    - paragraphs.paragraphs_type.product_slider
     - paragraphs.paragraphs_type.pullquote
     - paragraphs.paragraphs_type.section
+    - paragraphs.paragraphs_type.steps
     - paragraphs.paragraphs_type.tabs
   module:
     - entity_reference_revisions
@@ -48,16 +51,25 @@ settings:
       pullquote: pullquote
       section: section
       tabs: tabs
+      content_callout_container: content_callout_container
+      product_slider: product_slider
+      steps: steps
     target_bundles_drag_drop:
-      content:
-        enabled: true
-        weight: -41
       accordion:
         enabled: true
         weight: -40
       accordion_item:
         weight: -39
         enabled: false
+      content:
+        enabled: true
+        weight: -41
+      content_callout:
+        weight: 22
+        enabled: false
+      content_callout_container:
+        enabled: true
+        weight: 23
       embed_block:
         enabled: true
         weight: -38
@@ -70,6 +82,9 @@ settings:
       featured_content:
         enabled: true
         weight: -35
+      featured_links:
+        enabled: true
+        weight: -31
       featured_media:
         enabled: true
         weight: -34
@@ -79,30 +94,21 @@ settings:
       hero_slide:
         weight: -32
         enabled: false
-      featured_links:
+      product_slider:
         enabled: true
-        weight: -31
-      pod:
-        enabled: true
-        weight: -30
-      pod_pea_content:
-        weight: -29
-        enabled: false
+        weight: 32
       pullquote:
         enabled: true
         weight: -28
       section:
         enabled: true
         weight: -27
-      slider:
+      step:
+        weight: 38
+        enabled: false
+      steps:
         enabled: true
-        weight: -26
-      slider_slide_photo:
-        weight: -25
-        enabled: false
-      slider_slide_video:
-        weight: -24
-        enabled: false
+        weight: 39
       tabs:
         enabled: true
         weight: -23

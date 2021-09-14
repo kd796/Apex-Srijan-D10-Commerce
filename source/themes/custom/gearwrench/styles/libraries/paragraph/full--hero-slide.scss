@@ -18,17 +18,26 @@
   // The "!important" tags are set to override swiper-slider styles.
   @include flex();
   @include flex-x(flex-direction, row);
-  @include flex-x(justify-content, center);
+  @include flex-x(justify-content, flex-end);
   @include flex-x(align-items, center);
 
+  background-color: $white;
   height: 40rem;
   position: relative;
   width: 100vw !important;
 
+  @include media('<=sm') {
+    height: 75vh;
+  }
+
+  @include media('>sm', '<=md') {
+    height: 68vh;
+  }
+
   .field--name-field-media-background {
     .media {
       @include trbl();
-      height: 100%;
+      height: 60vh;
       overflow: hidden;
       width: 100%;
       z-index: 0;
@@ -43,7 +52,6 @@
         > picture,
         img {
           display: block;
-          filter: grayscale(1);
           height: 100%;
           left: 50%;
           min-height: 100%;
@@ -56,72 +64,48 @@
           object-fit: cover;
         }
       }
-    }
 
-    &:before {
-      @include trbl();
-      content: '';
-      background-color: $gray-90;
-      height: 100%;
-      opacity: .6;
-      width: 100%;
-      z-index: 1;
-    }
-
-    &:after {
-      @include trbl();
-      content: '';
-      background-color: $primary-dark;
-      mix-blend-mode: multiply;
-      height: 100%;
-      width: 100%;
-      z-index: 1;
+      @include media('>md') {
+        height: 100%;
+      }
     }
   }
 
   .component-hero-slide__inner {
-    @include container();
+    @include container($container-xl, 0, center, false);
     @include flex();
-    @include flex-x(flex-direction, row);
-    @include flex-x(justify-content, center);
-    @include flex-x(align-items, center);
+    @include flex-x(justify-content, left);
+    @include flex-x(align-items, flex-end);
 
-    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, .25));
-    position: relative;
-    z-index: 1;
-  }
-}
-
-// default slide content
-.component-hero-slide {
-  background-color: $color-black;
-
-  .component-hero-slide__inner {
     color: $color-white;
+    height: 100%;
 
-    //@include media('>=lg') {
-    //  padding: 0 8vw;
-    //}
-    //
-    //@include media('>=xl') {
-    //  padding: 0;
-    //}
-  }
-
-  .component-hero-slide__content-container,
-  .component-hero-slide__featured-image {
-    flex: 1 1 0;
+    @include media('>md') {
+      @include flex-x(justify-content, left);
+      @include flex-x(align-items, center);
+    }
   }
 
   .component-hero-slide__content-container {
-    @include flex-x(align-self, stretch);
-
-    background-color: $secondary-black;
-    padding: 2.75rem 2rem 2.5rem;
+    background-color: $black;
+    box-sizing: border-box;
+    margin: 0;
+    max-width: 75%;
+    padding: 1.625rem .875rem 1rem;
     position: relative;
 
+    @include media('<=xs-plus') {
+      max-width: 100%;
+    }
+
+    @include media('>md') {
+      filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.75));
+      max-width: 530px;
+      padding: 2.75rem 2rem 1.375rem;
+    }
+
     &::after {
-      background-color: $secondary-black;
+      background-color: $black;
       position: absolute;
       content: '';
       width: 20vw;
@@ -130,43 +114,55 @@
       right: -4rem;
       z-index: 1 !important;
       transform: skew(-14deg);
+
+      @include media('<=md') {
+        right: -2.5rem;
+      }
+
+      @include media('<=xs-plus') {
+        content: none;
+      }
     }
 
     >* {
       position: relative;
       z-index: 2;
     }
-  }
 
-  .component-hero-slide__featured-image {
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, .9);
-    align-self: stretch;
+    .component-hero-slide__title {
+      margin-bottom: 3rem;
 
-    * {
-      height: 100%;
-    }
+      @include media('>md') {
+        margin-bottom: 0;
+      }
 
-    .blazy {
-      position: relative;
-      z-index: -1;
+      h2 {
+        @include type-header(h4, light, included);
+        text-transform: uppercase;
+        color: $primary-orange;
+        display: block;
+        margin: 0;
 
-      img {
-        object-fit: cover;
+        @include media('>md') {
+          @include type-header(display-headline-4, light, included);
+          color: $primary-orange;
+          line-height: rem(48px);
+          margin: 0;
+        }
       }
     }
 
-
-
-  }
-
-  .component-hero-slide__title > h2 {
-    @include type-header(display-headline-4, light, included);
-    display: block;
-    margin: 0;
+    .component-hero-slide__content {
+      display: block;
+      @include media('<=md') {
+        display: none;
+      }
+    }
   }
 
   .component-hero-slide__link {
-    @include btn($style: secondary);
+    @include btn();
+    border: 1px solid $primary-orange !important;
   }
 
   .component-hero-slide__footer:not(:empty) {
@@ -180,7 +176,7 @@
     @include flex-x(align-items, center);
   }
 
-  .component-hero__button-container {
+  .component-hero-slide__button-container {
     @include flex;
     @include flex-x(flex-direction, row);
     @include flex-x(justify-content, center);
@@ -188,40 +184,64 @@
 
     align-self: stretch;
 
-    .component-hero__button {
+    .component-hero-slide__button {
       @include trbl();
 
-      background-color: $gray-90;
+      background-color: $primary-orange;
       background-size: rem(10px) rem(16px);
-      border: 1px solid $gray-90;
-      color: $primary-orange;
-      height: rem(45px);
+      border: 1px solid $primary-orange;
+      height: 100%;
+      min-width: rem(47px);
       margin: 0;
-      width: 2.125rem;
+      padding: 0;
       opacity: 1;
       position: relative;
 
-      &.component-hero__button-prev {
-        background-image: url('../../../icons/chevron-left-molten-orange.svg');
-        margin-right: 1px;
+      &:hover {
+        background-color: $color-black;
+        border-color: $primary-orange;
       }
 
-      &.component-hero__button-next {
-        background-image: url('../../../icons/chevron-right-molten-orange.svg');
+      &.component-hero-slide__button-prev {
+        background-image: url('../../../icons/chevron-left-black.svg');
+        margin-right: 1px;
+
+        &:hover {
+          background-image: url('../../../icons/chevron-left-molten-orange.svg');
+        }
+      }
+
+      &.component-hero-slide__button-next {
+        background-image: url('../../../icons/chevron-right-black.svg');
         margin-left: 1px;
+
+        &:hover {
+          background-image: url('../../../icons/chevron-right-molten-orange.svg');
+        }
+      }
+
+      &[aria-disabled='true'] {
+        background-color: $gray-30;
+        border-color: $gray-30;
       }
     }
   }
 
-  //.field--name-field-content {
-  //  @include container(
-  //    $width: $container-md,
-  //    $align: left
-  //  );
-  //  padding-left: 0.75vw;
-  //
-  //  @include media('>=xl') {
-  //    padding-left: 0.55rem;
-  //  }
-  //}
+  .component-hero-slide__pagination {
+    display: none;
+    margin: 2rem 0 0;
+
+    @include media('>md') {
+      display: block;
+    }
+
+    .swiper-pagination-bullet {
+      background: transparent;
+      border-color: $primary-orange;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: $primary-orange;
+    }
+  }
 }

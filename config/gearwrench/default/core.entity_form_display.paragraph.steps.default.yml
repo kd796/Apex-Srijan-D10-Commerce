@@ -1,0 +1,93 @@
+uuid: cebdfa8c-fc56-4d39-8323-ddf90e1f6f41
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.steps.field_class_custom
+    - field.field.paragraph.steps.field_components
+    - field.field.paragraph.steps.field_html_anchor
+    - field.field.paragraph.steps.field_title
+    - paragraphs.paragraphs_type.steps
+  module:
+    - field_group
+    - limited_field_widgets
+    - paragraphs
+third_party_settings:
+  field_group:
+    group_settings:
+      children:
+        - status
+        - field_html_anchor
+        - field_class_custom
+      parent_name: ''
+      weight: 0
+      format_type: settings
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        visible_for_roles:
+          administrator: 0
+          authenticated: 0
+          site_administrator: 0
+          content_editor: 0
+      label: Settings
+id: paragraph.steps.default
+targetEntityType: paragraph
+bundle: steps
+mode: default
+content:
+  field_class_custom:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_components:
+    weight: 2
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: step
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings:
+      limited_field_widgets:
+        limit_values: '0'
+    type: paragraphs
+    region: content
+  field_html_anchor:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_title:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  status:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  created: true

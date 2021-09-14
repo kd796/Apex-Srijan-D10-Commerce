@@ -1,0 +1,20 @@
+uuid: 6112b388-8eae-4410-bd24-e8c93c74b027
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+_core:
+  default_config_hash: ofFoopvFKRQTCiI_BcgGO8CXjYZZjiSvDFgZFTPWYS8
+name: huge_landscape_3x1
+label: 'Huge - landscape 3:1 (1260x420)'
+effects:
+  d6e7ef84-4d0b-484a-bd1c-3b492cde988f:
+    uuid: d6e7ef84-4d0b-484a-bd1c-3b492cde988f
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 1260
+      height: 420
+      crop_type: focal_point
+pipeline: smushit

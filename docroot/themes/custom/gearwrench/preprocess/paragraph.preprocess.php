@@ -12,6 +12,7 @@
  * @see gearwrench_preprocess_paragraph__content__full()
  * @see gearwrench_preprocess_paragraph__hero__full()
  * @see gearwrench_preprocess_paragraph__hero_slide__full()
+ * @see gearwrench_preprocess_paragraph__step__full()
  * @see gearwrench_preprocess_paragraph__embed_iframe__full()
  * @see gearwrench_preprocess_paragraph__media__full()
  * @see gearwrench_preprocess_paragraph__section__full()
@@ -134,7 +135,55 @@ function gearwrench_preprocess_paragraph__accordion_item__full(array &$variables
 function gearwrench_preprocess_paragraph__content__full(array &$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
+  $paragraphId = $paragraph->id();
   $base_class = $variables['component_base_class'];
+
+  // Initialize variables.
+  $variables['inner_attributes']['class'][] = "{$base_class}__inner";
+
+  // Track if media should be placed outside of content.
+  $media_outside = FALSE;
+
+  // Move media field to new variable.
+  if (isset($variables['content']['field_media_item']) && !empty($variables['content']['field_media_item'])) {
+    $variables['attributes']['class'][] = "{$base_class}--with-media";
+
+    $field_settings = [
+      'type' => 'blazy_media',
+      'label' => 'hidden',
+    ];
+
+    // Determine changes based on selected media layout.
+    $layout = ($paragraph->get('field_media_layout')->isEmpty()) ? NULL : $paragraph->get('field_media_layout')->target_id;
+    switch ($layout) {
+      case 'content_media_layout__half_left':
+      case 'content_media_layout__half_right':
+        $field_settings['settings']['responsive_image_style'] = 'content_half';
+        $media_outside = TRUE;
+        break;
+
+      case 'content_media_layout__performance_device_left':
+      case 'content_media_layout__performance_device_right':
+        $field_settings['settings']['image_style'] = 'medium_landscape_3x2';
+        $media_outside = TRUE;
+        break;
+
+      case 'content_media_layout__top':
+      case 'content_media_layout__bottom':
+        $field_settings['settings']['responsive_image_style'] = 'content_top_bottom';
+        $media_outside = TRUE;
+        break;
+
+      default:
+        $field_settings['settings']['responsive_image_style'] = 'teaser';
+        break;
+    }
+
+    $variables['media'] = $paragraph->get('field_media_item')->view($field_settings);
+    $variables['media']['#attributes']['class'][] = "{$base_class}__media";
+    $variables['media_outside'] = $media_outside;
+    unset($variables['content']['field_media_item']);
+  }
 
   // Move cta link to footer and add class.
   if (array_key_exists('field_link', $variables['content']) && !empty($variables['content']['field_link'])) {
@@ -142,25 +191,25 @@ function gearwrench_preprocess_paragraph__content__full(array &$variables) {
     $variables['footer']['field_link'][0]['#options']['attributes']['class'] = "{$base_class}__link button";
     unset($variables['content']['field_link'], $variables['footer']['field_link']['#theme']);
   }
+}
 
-  // Move media field to new variable.
-  if (isset($variables['content']['field_media_item']) && !empty($variables['content']['field_media_item'])) {
-    $variables['media'] = $variables['content']['field_media_item'];
-    $variables['media']['#attributes']['class'][] = "{$base_class}__media";
-    unset($variables['content']['field_media_item']);
+/**
+ * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for content_callout, full.
+ */
+function gearwrench_preprocess_paragraph__content_callout__full(array &$variables) {
+  // Nothing to see here.
+}
 
-    // Add a wrapper to each item if it has a url present.
-    if (isset($variables['media']['#items'])) {
-      $field_values = $variables['media']['#items']->getValue();
-      foreach (Element::children($variables['media']) as $delta) {
-        if (isset($field_values[$delta]['url']) && !empty($field_values[$delta]['url'])) {
-          $url = Url::fromUri($field_values[$delta]['url']);
-          $variables['media'][$delta]['#prefix'] = "<a href=\"{$url->toString()}\">";
-          $variables['media'][$delta]['#suffix'] = '</a>';
-        }
-      }
-    }
-  }
+/**
+ * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for step, full.
+ */
+function gearwrench_preprocess_paragraph__step__full(array &$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $base_class = $variables['component_base_class'];
+
+  // Initialize variables.
+  $variables['inner_attributes']['class'][] = "{$base_class}__inner";
 }
 
 /**
@@ -369,8 +418,6 @@ function gearwrench_preprocess_paragraph__hero_slide__full(array &$variables) {
 
   // Move background image field to new variable.
   $variables['background_image'] = $variables['content']['field_media_background'];
-  // Move featured image field to new variable.
-  $variables['featured_image'] = $variables['content']['field_media_item'];
 
   if (isset($variables['content']['field_link'][0])) {
     $variables['footer']['field_link'] = $variables['content']['field_link'];
@@ -380,7 +427,6 @@ function gearwrench_preprocess_paragraph__hero_slide__full(array &$variables) {
 
   unset($variables['media']['#theme']);
   unset($variables['content']['field_media_background']);
-  unset($variables['content']['field_media_item']);
 }
 
 /**
@@ -405,7 +451,27 @@ function gearwrench_preprocess_paragraph__pullquote__full(array &$variables) {
  * Implements hook_preprocess_paragraph__VIEW_MODE() for section, full.
  */
 function gearwrench_preprocess_paragraph__section__full(array &$variables) {
-  // Nothing to see here.
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $paragraphId = $paragraph->id();
+
+  // Process background color if specified.
+  if ($paragraph->hasField('field_background_color') && isset($paragraph->get('field_background_color')->getValue()[0])) {
+    $variables['attributes']['class'][] = 'paragraph-component--background-color';
+  }
+
+  // Add styling to head tag since the color field module doesn't do it.
+  if ($paragraph->hasField('field_background_color') && isset($paragraph->get('field_background_color')->getValue()[0])) {
+
+    $backgroundColor = $paragraph->get('field_background_color')->getValue()[0]['color'];
+    $backgroundOpacity = (isset($paragraph->get('field_background_color')->getValue()[0]['opacity']) ? ($paragraph->get('field_background_color')->getValue()[0]['opacity']) : (1));
+    $backgroundColorStyling = [
+      '#tag' => 'style',
+      '#value' => '.paragraph-component--background-color[data-entity-id="' . $paragraphId . '"]::after { background-color: ' . $backgroundColor . '; opacity: ' . $backgroundOpacity . '; }',
+    ];
+    $variables['#attached']['html_head'][] = [$backgroundColorStyling, 'backgroundColorBeforeStyling-' . $paragraphId];
+
+  }
 }
 
 /**
@@ -469,4 +535,44 @@ function gearwrench_preprocess_paragraph__tabs_tab__full(array &$variables) {
   $variables['attributes']['tabindex'] = '-1';
   // Hide tab heading. This is rendered and visually hidden for accessibility.
   $variables['title_attributes']['class'][] = 'visually-hidden';
+}
+
+/**
+ * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for product_slider, full.
+ */
+function gearwrench_preprocess_paragraph__product_slider__full(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $base_class = $variables['component_base_class'];
+
+  $field_settings['type'] = 'entity_reference_entity_view';
+  $field_settings['settings']['view_mode'] = 'teaser';
+  $field_settings['label'] = 'hidden';
+
+  $variables['#attached']['library'][] = 'gearwrench/paragraph--full--product-slider';
+  $field_settings['type'] = 'entity_reference_entity_view';
+  $field_settings['settings']['view_mode'] = 'teaser';
+  $field_settings['label'] = 'hidden';
+
+  // Replace field with new settings.
+  $variables['content']['field_products'] = $paragraph->get('field_products')->view($field_settings);
+
+  // Convert field_related_nodes to unordered list.
+  $variables['list']['#attributes']['class'][] = "{$base_class}__list";
+  $variables['list']['#wrapper_attributes']['class'][] = "{$base_class}__list-wrapper";
+  $variables['list']['#items'] = [];
+  $variables['list']['#theme'] = 'item_list';
+
+  // Hide list content heading. This is rendered and visually hidden for accessibility.
+  $variables['title_attributes']['class'][] = 'visually-hidden';
+
+  // Run through field items'.
+  foreach (Element::children($variables['content']['field_products']) as $delta) {
+    // Add class to list-item.
+    $variables['content']['field_products'][$delta]['#wrapper_attributes']['class'][] = "{$base_class}__list-item";
+    // Add field item to list item.
+    $variables['list']['#items'][] = $variables['content']['field_products'][$delta];
+  }
+  // Remove field render array.
+  unset($variables['content']['field_products']);
 }

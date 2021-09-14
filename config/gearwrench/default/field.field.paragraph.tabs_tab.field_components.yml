@@ -11,6 +11,7 @@ dependencies:
     - paragraphs.paragraphs_type.featured_content
     - paragraphs.paragraphs_type.featured_links
     - paragraphs.paragraphs_type.featured_media
+    - paragraphs.paragraphs_type.product_slider
     - paragraphs.paragraphs_type.pullquote
     - paragraphs.paragraphs_type.section
     - paragraphs.paragraphs_type.tabs
@@ -44,6 +45,7 @@ settings:
       pullquote: pullquote
       section: section
       tabs: tabs
+      product_slider: product_slider
     target_bundles_drag_drop:
       accordion:
         weight: -31
@@ -72,6 +74,15 @@ settings:
       featured_media:
         enabled: true
         weight: -23
+      hero:
+        weight: -18
+        enabled: false
+      hero_slide:
+        weight: -17
+        enabled: false
+      product_slider:
+        enabled: true
+        weight: 28
       pullquote:
         enabled: true
         weight: -22
@@ -83,11 +94,5 @@ settings:
         weight: -20
       tabs_tab:
         weight: -19
-        enabled: false
-      hero:
-        weight: -18
-        enabled: false
-      hero_slide:
-        weight: -17
         enabled: false
 field_type: entity_reference_revisions
