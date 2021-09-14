@@ -15,8 +15,25 @@
  */
 .component-steps {
   @include container-full-width();
-  background-color: $gray-10;
   padding: rem(40px) 0;
+
+  &.paragraph-component--background-color {
+    position: relative;
+
+    .component-steps__content {
+      position: relative;
+      z-index: 1;
+    }
+
+    &:after {
+      @include trbl();
+
+      content: '';
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+    }
+  }
 
   @include media('>=lg-plus') {
     padding: rem(80px) 0;
@@ -29,7 +46,6 @@
   .component-steps__content {
     display: flex;
     flex-direction: column;
-    position: relative;
 
     p {
       margin: 0;
@@ -109,6 +125,8 @@
     text-align: center;
     margin-bottom: rem(40px);
     text-transform: uppercase;
+    position: relative;
+    z-index: 1;
 
     @include media('>=lg-plus') {
       font-size: rem(40px);
