@@ -1077,19 +1077,31 @@ $mobile-menu-item-button-height: 7rem;
           }
         }
 
-        .header-search-toggle {
-          @include icon('search', $extend: false);
+        .mobile-search {
+          font-size: 16px;
+          margin-bottom: 10px;
+          width: 96%;
 
-          background: 0;
-          border: 0;
-          font-weight: $fw-bold;
-          position: relative;
-          align-items: center;
-          display: flex;
-          height: $header-height;
+          input {
+            @include icon('search', $insert: after, $extend: false);
 
-          &:hover {
-            text-decoration: none;
+            align-items: center;
+            background-color: $white;
+            border: 0;
+            display: flex;
+            font-weight: $fw-bold;
+            height: 48px;
+            margin: 10px 4%;
+            padding-left: 15px;
+            position: relative;
+            width: 96%;
+          }
+
+          button {
+            background-color: $black;
+            color: $white;
+            margin: 10px 4%;
+            width: 96%;
           }
         }
       }
