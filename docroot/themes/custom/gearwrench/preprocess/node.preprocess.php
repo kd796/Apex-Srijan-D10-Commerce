@@ -117,7 +117,7 @@ function gearwrench_preprocess_node__product__full(array &$variables) {
     ];
   }
 
-  // Related Products
+  // Related Products.
   /** @var \Drupal\views\ViewExecutable $main_view */
   $main_view = \Drupal::entityTypeManager()
     ->getStorage('view')
