@@ -5,16 +5,24 @@ namespace Drupal\gearwrench_migrations\Plugin\migrate\process;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
-use Drupal\taxonomy\Entity\Term;
 
 /**
- * Get Attribute Value.
+ * Get SKU Group Attribute Value.
  *
  * @MigrateProcessPlugin(
- *   id = "get_attribute_value"
+ *   id = "get_sku_group_attribute_value"
  * )
+ *
+ * To get use the following:
+ *
+ * @code
+ * field_text:
+ *   plugin: get_sku_group_attribute_value
+ *   source: text
+ *   attribute: text
+ * @endcode
  */
-class GetAttributeValue extends ProcessPluginBase {
+class GetSkuGroupAttributeValue extends ProcessPluginBase {
 
   /**
    * {@inheritdoc}
@@ -25,17 +33,7 @@ class GetAttributeValue extends ProcessPluginBase {
     if (!empty($value)) {
       foreach ($value->children() as $child) {
         if ($child->attributes()->AttributeID == $attribute) {
-          if ($attribute === 'ATT17339' || $attribute === 'ATT16491') {
-            if ((string) $child === 'Yes') {
-              $attribute_value = 1;
-            }
-            elseif ((string) $child === 'No') {
-              $attribute_value = 0;
-            }
-          }
-          else {
-            $attribute_value = (string) $child;
-          }
+          $attribute_value = (string) $child;
         }
       }
     }

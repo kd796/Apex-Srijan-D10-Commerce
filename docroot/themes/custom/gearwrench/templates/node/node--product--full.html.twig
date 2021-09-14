@@ -84,48 +84,121 @@
   <div{{ content_attributes }}>
     <div class="node--type-product__page-top">
       {% if product_images %}
-      <div class="product-detail-slider">
-      <div class="product-detail-slider__container">
-        <button class="product-detail-slider__pseudo-prev-button"></button>
-        {{ content.field_product_images }}
-        <button class="product-detail-slider__pseudo-next-button"></button>
-      </div>
-
-        {% if product_image_count > 1 %}
-        <div class="product-detail-slider__thumbs-outer-wrapper">
-        <button class="product-detail-slider__button product-detail-slider__button-prev swiper-button-prev"></button>
-        <div class="product-detail-slider__thumbs-container">
-          <div class="product-detail-slider__thumbs-wrapper">
-            {{ thumbnails }}
+        <div class="product-detail-slider">
+          <div class="product-detail-slider__container">
+            {% if product_image_count > 1 %}
+            <button class="product-detail-slider__pseudo-prev-button"></button>
+            {% endif %}
+            {{ content.field_product_images }}
+            {% if product_image_count > 1 %}
+            <button class="product-detail-slider__pseudo-next-button"></button>
+            {% endif %}
           </div>
+
+          {% if product_image_count > 1 %}
+            <div class="product-detail-slider__thumbs-outer-wrapper">
+              <button
+                class="product-detail-slider__button product-detail-slider__button-prev swiper-button-prev"></button>
+              <div class="product-detail-slider__thumbs-container">
+                <div class="product-detail-slider__thumbs-wrapper">
+                  {{ thumbnails }}
+                </div>
+              </div>
+              <button
+                class="product-detail-slider__button product-detail-slider__button-next swiper-button-next"></button>
+            </div>
+          {% endif %}
         </div>
-        <button class="product-detail-slider__button product-detail-slider__button-next swiper-button-next"></button>
-      </div>
-        {% endif %}
-    </div>
       {% endif %}
-    <div class="product-detail-content-container">
-      <header{{ title_attributes.addClass('product-detail-content-container__title') }}>
-        <h1>
-          {{ content.field_long_description }}
-        </h1>
-        <span class="sku">{{ label }}</span>
-        <div class="product-detail-content-container__rating-container">
-          <!--Price Spider Rating widget goes here-->
-          <button class="btn">Buy Now</button>
+      <div class="product-detail-content-container">
+        <header{{ title_attributes.addClass('product-detail-content-container__title') }}>
+          <h1>
+            {{ content.field_long_description }}
+          </h1>
+          <span class="sku">{{ label }}</span>
+          <div class="product-detail-content-container__rating-container">
+            <!--Price Spider Rating widget goes here-->
+            <div class="node__buy-now-button ps-widget" ps-sku="{{sku}}"></div>
+          </div>
+        </header>
+        <div class="product-detail-content-container__utility-container">
+        </div>
+        <h3>Features</h3>
+        {{ page_top_products_features }}
+        <span class="more-features-link"><a href="#features">See More Features</a> </span>
+      </div>
+    </div>
+    <div class="node--type-product__page-bottom">
+      <div class="node--type-product-tabs node--type-product-tabs--horizontal">
+        <div class="node--type-product-tabs__nav-wrapper">
+          <div class="node--type-product-tabs__nav-logo-wrapper">
+
+            <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="site-logo">
+              {% include directory ~ '/icons/logo.svg' %}
+            </a>
+          </div>
+          <ul class="node--type-product-tabs__nav">
+            <li class="node--type-product-tabs__nav-item">
+              <a href="#features">{{ 'Features'|t }}</a></li>
+            <li class="node--type-product-tabs__nav-item">
+              <a href="#specifications">{{ 'Specifications'|t }}</a></li>
+            <li class="node--type-product-tabs__nav-item">
+              <a href="#reviews-questions">{{ 'Reviews & Questions'|t }}</a></li>
+          </ul>
         </div>
 
-
-      </header>
-      <div class="product-detail-content-container__utility-container">
+        <div class="node--type-product-tabs__content">
+          <div class="node--type-product-tabs__mobile-nav-item">
+            <a href="#features">{{ 'Features'|t }}</a>
+          </div>
+          <section class="node--type-product-tabs-tab">
+            <div class="node--type-product__accordion-content">
+              <div class="node--type-product__accordion-content-header">
+                {{ 'Features'|t }}
+              </div>
+              {{ content.field_product_features }}
+            </div>
+          </section>
+          <div class="node--type-product-tabs__mobile-nav-item">
+            <a href="#specifications">{{ 'Specifications'|t }}</a>
+          </div>
+          <section class="node--type-product-tabs-tab">
+            <div class="node--type-product__accordion-content">
+              <div class="node--type-product__accordion-content-header">
+                {{ 'Specifications'|t }}
+              </div>
+              {{ content.field_product_specifications }}
+            </div>
+          </section>
+          <div class="node--type-product-tabs__mobile-nav-item">
+            <a href="#reviews-questions">{{ 'Reviews & Questions'|t }}</a>
+          </div>
+          <section class="node--type-product-tabs-tab">
+            <div class="node--type-product__accordion-content">
+              <div class="node--type-product__accordion-content-header">
+                {{ 'Reviews & Questions'|t }}
+              </div>
+              Reviews Go Here.
+            </div>
+          </section>
+        </div>
       </div>
-      <h5>Features</h5>
-      {{ page_top_products_features }}
-      <span class="more-features-link"><a href="#product-features">See More Features</a> </span>
+      {% if related_items %}
+        <div class="node--type-product-related-products__nav-wrapper">
+          <div class="node--type-product-related-products__nav-logo-wrapper">
+            <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="site-logo">
+              {% include directory ~ '/icons/logo.svg' %}
+            </a>
+          </div>
+          <div class="node--type-product-related-products__nav-content">
+            <h4>{{ 'Related Products'|t }}</h4>
+          </div>
+
+        </div>
+        {{ related_items }}
+      {% endif %}
+      {{ content|without('field_long_description','field_product_images', 'field_product_features', 'field_product_specifications',) }}
+
     </div>
   </div>
-  </div>
-{#  <div{{ content_attributes }}>#}
-{#    {{ content }}#}
-{#  </div>#}
 </article>

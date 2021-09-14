@@ -18,8 +18,8 @@
           slidesPerColumnFill: 'column',
           spaceBetween: 24,
           navigation: {
-            nextEl: '.component-product-slider__button-next',
-            prevEl: '.component-product-slider__button-prev'
+            nextEl: '.view-related-products-slider__button-next',
+            prevEl: '.view-related-products-slider__button-prev'
           },
           on: {
             init: function () {
@@ -47,7 +47,7 @@
             }
           },
           pagination: {
-            el: '.component-product-slider__pagination',
+            el: '.view-related-products-slider__pagination',
             clickable: true
           },
           watchSlidesVisibility: true,
@@ -62,8 +62,8 @@
           slidesPerGroup: 4,
           spaceBetween: 24,
           navigation: {
-            nextEl: '.component-product-slider__button-next',
-            prevEl: '.component-product-slider__button-prev'
+            nextEl: '.view-related-products-slider__button-next',
+            prevEl: '.view-related-products-slider__button-prev'
           },
           on: {
             init: function () {
@@ -90,7 +90,7 @@
             }
           },
           pagination: {
-            el: '.component-product-slider__pagination',
+            el: '.view-related-products-slider__pagination',
             clickable: true
           },
           watchSlidesVisibility: true,
@@ -104,23 +104,23 @@
       $('.swiper-slide-visible').addClass('active-pointer');
     },
     attach: function (context, settings) {
-      $('.component-product-slider:not(.component-product-slider--js-initialized)').each(function (index) {
+      $('.view-related-products:not(.view-related-products--js-initialized)').once('related-products-slider').each(function (index) {
         var $productSwiper;
         var $component = $(this);
-        var $productSliderWrapper = $component.find('.component-product-slider__list-wrapper');
-        var $productSlider = $component.find('.component-product-slider__list');
-        var $productSliderItems = $component.find('.component-product-slider__list-item');
+        var $productSliderWrapper = $component.find('.view-related-products-slider__list-wrapper');
+        var $productSlider = $component.find('.view-related-products-slider__list');
+        var $productSliderItems = $component.find('.view-related-products-slider__list-item');
         // Track that this component has been initialized.
-        $component.addClass('component-product-slider--js-initialized');
+        $component.addClass('view-related-products-slider--js-initialized');
         // Initialize swiper.
         if ($component.find('article').length > 1) {
           // Add swiper classes and elements.
           $productSliderWrapper.addClass('swiper-container');
           $productSliderItems.addClass('swiper-slide');
           $productSlider.addClass('swiper-wrapper');
-          $productSliderWrapper.after('<div class="component-product-slider__controls"><button class="component-product-slider__button component-product-slider__pseudo-button-prev"></button><div class="component-product-slider__pagination swiper-pagination"></div><button class="component-product-slider__button component-product-slider__pseudo-button-next"></button></div>');
-          $productSlider.after('<button class="component-product-slider__button component-product-slider__button-next swiper-button-next"></button>');
-          $productSlider.before('<button class="component-product-slider__button component-product-slider__button-prev swiper-button-prev"></button>');
+          $productSliderWrapper.after('<div class="view-related-products-slider__controls"><button class="view-related-products-slider__button view-related-products-slider__pseudo-button-prev"></button><div class="view-related-products-slider__pagination swiper-pagination"></div><button class="view-related-products-slider__button view-related-products-slider__pseudo-button-next"></button></div>');
+          $productSlider.after('<button class="view-related-products-slider__button view-related-products-slider__button-next swiper-button-next"></button>');
+          $productSlider.before('<button class="view-related-products-slider__button view-related-products-slider__button-prev swiper-button-prev"></button>');
           $productSwiper = Drupal.behaviors.componentProductSlider.initProductSlider($productSliderWrapper);
           $(window).resize(function () {
             if (window.matchMedia('(max-width: 768px)').matches) {
@@ -138,12 +138,12 @@
           });
         }
 
-        $(document).on('click', '.component-product-slider__pseudo-button-prev', function () {
-          $('.component-product-slider__button-prev').trigger('click');
+        $(document).on('click', '.view-related-products-slider__pseudo-button-prev', function () {
+          $('.view-related-products-slider__button-prev').trigger('click');
         });
 
-        $(document).on('click', '.component-product-slider__pseudo-button-next', function () {
-          $('.component-product-slider__button-next').trigger('click');
+        $(document).on('click', '.view-related-products-slider__pseudo-button-next', function () {
+          $('.view-related-products-slider__button-next').trigger('click');
         });
       });
     }

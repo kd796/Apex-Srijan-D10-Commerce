@@ -4,10 +4,7 @@
   Drupal.behaviors.regionHeader = {
     attach: function (context, settings) {
       var behavior_object = this;
-      var mouseenter_delay_timer;
-      var mouseleave_delay_timer;
       var selector_header_menu_button = '.block--header-menu-main .block__menu-toggle';
-      var selector_header_menu_item_buttons = '.block--header-menu-main .menu-item__button';
       var selector_header_menu_items_with_children = '.block--header-menu-main .menu-item--has-children';
       var selector_header_search_button = '.block--header-search .block__content-toggle';
       var selector_header_country_switch_button = '.block--country-switch .block__content-toggle';
@@ -54,44 +51,14 @@
         }
       });
 
-      // Trigger button's panel to open.
-      $(selector_header_menu_item_buttons).once('header').on({
-        click: function () {
-          behavior_object.toggleMenuPanel($(this));
-        }
-      });
-
       // Trigger button panel to open based on hover (done here instead of css
       // :hover to reduce amount of code and make issues easier to troubleshoot.
       $(selector_header_menu_items_with_children).once('header').on({
-        mouseenter: function () {
+        click: function () {
           var $menu_item = $(this);
-
-          clearTimeout(mouseleave_delay_timer);
-
-          // Make sure user continues to hover over the item before showing.
-          mouseenter_delay_timer = setTimeout(function () {
-            var $button = $menu_item.find('.menu-item__button').first();
-
-            // Only toggle panel for desktop and if not already expanded.
-            if (behavior_object.isDesktop() && $button.attr('aria-expanded') !== 'true') {
-              behavior_object.toggleMenuPanel($button);
-            }
-          }, 250);
-        },
-        mouseleave: function () {
-          var $menu_item = $(this);
-
-          clearTimeout(mouseenter_delay_timer);
-
-          mouseleave_delay_timer = setTimeout(function () {
-            var $button = $menu_item.find('.menu-item__button').first();
-
-            // Only toggle panel for desktop and if not already expanded.
-            if (behavior_object.isDesktop() && $button.attr('aria-expanded') === 'true') {
-              behavior_object.toggleMenuPanel($button);
-            }
-          }, 250);
+          var $button = $menu_item.find('.menu-item__button').first();
+          // Only toggle panel for desktop and if not already expanded.
+          behavior_object.toggleMenuPanel($button);
         }
       });
 

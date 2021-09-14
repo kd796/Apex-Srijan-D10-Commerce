@@ -45,10 +45,20 @@ source:
     - name: remote_product_long_description
       label: Product Long Description
       selector: stibo:Values
+    - name: remote_sku_overview
+      label: SKU Overview
+      selector: ../Values
+    - name: remote_listing_image
+      label: Listing Image
+      selector: ../../Product
+    - name: remote_product_images
+      label: Product Images
+      selector: ../../Product
   ids:
     remote_sku:
       type: string
 process:
+  # Basic Info
   type:
     plugin: default_value
     default_value: product
@@ -56,13 +66,38 @@ process:
   sticky: constants/bool_0
   promote: constants/bool_1
   uid: constants/uid_root
+  'body/value':
+    plugin: get_sku_group_attribute_value
+    source: remote_sku_overview
+    attribute: ATT17711
+  'body/format':
+    plugin: default_value
+    default_value: basic_html
   field_sku: remote_sku
   field_sku_group:
     plugin: get_id_attribute
     source: remote_sku_group
+  field_long_description:
+    plugin: get_attribute_value
+    source: remote_product_long_description
+    attribute: ATT921
+  field_upc:
+    plugin: get_attribute_value
+    source: remote_product_upc
+    attribute: ATT539
+  # Set Info
   field_set:
     plugin: determine_set_status
     source: remote_set
+  listing_image:
+    source: remote_listing_image
+    plugin: get_media_images
+    image_type: listing_image
+  'field_media/target_id':
+    plugin: migration
+    migration: gearwrench_image_media
+    source: '@listing_image'
+  'field_image/alt': '@listing_image'
   # Set Components
   set_components_array:
     plugin: get_set_components
@@ -105,14 +140,6 @@ process:
     process:
       vocabulary_id: vid
       target_id: target_id
-  field_long_description:
-    plugin: get_attribute_value
-    source: remote_product_long_description
-    attribute: ATT921
-  field_upc:
-    plugin: get_attribute_value
-    source: remote_product_upc
-    attribute: ATT539
 destination:
   plugin: entity:node
 migration_dependencies:

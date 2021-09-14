@@ -10,9 +10,9 @@ source:
   plugin: url
   data_fetcher_plugin: http
   data_parser_plugin: xml
-  urls: 'public://import/pim_data/test-pim.xml'
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
   namespaces:
-    stibo: "http://www.stibosystems.com/step"
+     "http://www.stibosystems.com/step"
   item_selector: /STEP-ProductInformation/Products/Product/Product
   fields:
     - name: remote_sku
@@ -20,16 +20,19 @@ source:
       selector: '@ID'
     - name: remote_name
       label: SKU Group
-      selector: stibo:Name
+      selector: Name
     - name: remote_sku_group
       label: SKU Group
       selector: ../../Product
     - name: remote_set
       label: Set?
       selector: '@UserTypeID'
+    - name: remote_set_components
+      label: Set Components
+      selector: ../Product
     - name: remote_product_specifications
       label: Product Specifications
-      selector: stibo:Values
+      selector: Values
     - name: remote_product_features
       label: Product Features
       selector: ../Values
@@ -38,14 +41,39 @@ source:
       selector: ../../Product
     - name: remote_product_upc
       label: Product UPC
-      selector: stibo:Values
+      selector: Values
+    - name: remote_new_product
+      label: New Product
+      selector: Values
+    - name: remote_featured_product
+      label: Featured Product
+      selector: Values
+    - name: remote_new_product
+      label: New Product
+      selector: Values
+    - name: remote_featured_product
+      label: Featured Product
+      selector: Values
     - name: remote_product_long_description
       label: Product Long Description
-      selector: stibo:Values
+      selector: Values
+    - name: remote_sku_overview
+      label: SKU Overview
+      selector: ../Values
+    - name: remote_listing_image
+      label: Listing Image
+      selector: ../../Product
+    - name: remote_product_images
+      label: Product Images
+      selector: ../../Product
+    - name: remote_related_products
+      label: Related Products
+      selector: Values
   ids:
     remote_sku:
       type: string
 process:
+  # Basic Info
   type:
     plugin: default_value
     default_value: product
@@ -53,10 +81,47 @@ process:
   sticky: constants/bool_0
   promote: constants/bool_1
   uid: constants/uid_root
+  'body/value':
+    plugin: get_sku_group_attribute_value
+    source: remote_sku_overview
+    attribute: ATT17711
+  'body/format':
+    plugin: default_value
+    default_value: basic_html
   field_sku: remote_sku
   field_sku_group:
     plugin: get_id_attribute
     source: remote_sku_group
+  field_long_description:
+    plugin: get_attribute_value
+    source: remote_product_long_description
+    attribute: ATT921
+  field_upc:
+    plugin: get_attribute_value
+    source: remote_product_upc
+    attribute: ATT539
+  field_new_product:
+    plugin: get_attribute_value
+    source: remote_product_upc
+    attribute: ATT17339
+  field_featured_product:
+    plugin: get_attribute_value
+    source: remote_product_upc
+    attribute: ATT16491
+  # Images
+  listing_image:
+    source: remote_listing_image
+    plugin: get_listing_image
+  'field_media/target_id': '@listing_image'
+  product_images_array:
+    source: remote_product_images
+    plugin: get_product_images
+  field_product_images:
+    plugin: sub_process
+    source: '@product_images_array'
+    include_source: true
+    process:
+      target_id: media_id
   # Product Specifications
   product_specifications_array:
     plugin: create_unique_term
@@ -89,14 +154,19 @@ process:
     process:
       vocabulary_id: vid
       target_id: target_id
-  field_long_description:
-    plugin: get_attribute_value
-    source: remote_product_long_description
-    attribute: ATT921
-  field_upc:
-    plugin: get_attribute_value
-    source: remote_product_upc
-    attribute: ATT539
+  # Related Products
+  related_products_array:
+    plugin: get_related_products
+    source: remote_related_products
+  field_related_products:
+    plugin: sub_process
+    source: '@related_products_array'
+    include_source: true
+    process:
+      target_id: target_id
+  # Used With
+  # Keywords
 destination:
-  plugin: entity:node
-migration_dependencies: {}
+  plugin: gearwrench_product
+  bundle: product
+migration_dependencies: []
