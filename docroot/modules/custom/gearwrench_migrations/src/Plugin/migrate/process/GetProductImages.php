@@ -23,7 +23,6 @@ use Drupal\migrate\Row;
  * @MigrateProcessPlugin(
  *   id = "get_product_images"
  * )
- *
  */
 class GetProductImages extends ProcessPluginBase {
 
@@ -40,9 +39,9 @@ class GetProductImages extends ProcessPluginBase {
         // Listing Image.
         if ($child->getName() === 'AssetCrossReference' && (string) $child->attributes()->Type === 'Primary Image') {
           $assets[] = [
-            'asset_id' => (string)$child->attributes()->AssetID,
-            'drupal_file_path' => 'public://pim_images/' . (string)$child->attributes()->AssetID . '.jpg',
-            'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . (string)$child->attributes()->AssetID . '.jpg',
+            'asset_id' => (string) $child->attributes()->AssetID,
+            'drupal_file_path' => 'public://pim_images/' . (string) $child->attributes()->AssetID . '.jpg',
+            'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . (string) $child->attributes()->AssetID . '.jpg',
           ];
         }
         // Product Images.
@@ -51,9 +50,9 @@ class GetProductImages extends ProcessPluginBase {
           foreach ($product->children() as $product_child) {
             if ($product_child->getName() === 'AssetCrossReference') {
               $assets[] = [
-                'asset_id' => (string)$product_child->attributes()->AssetID,
-                'drupal_file_path' => 'public://pim_images/' . (string)$product_child->attributes()->AssetID . '.jpg',
-                'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . (string)$product_child->attributes()->AssetID . '.jpg',
+                'asset_id' => (string) $product_child->attributes()->AssetID,
+                'drupal_file_path' => 'public://pim_images/' . (string) $product_child->attributes()->AssetID . '.jpg',
+                'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . (string) $product_child->attributes()->AssetID . '.jpg',
               ];
             }
           }
@@ -66,7 +65,7 @@ class GetProductImages extends ProcessPluginBase {
           $file_data = file_get_contents($asset['remote_file_path']);
           if ($file_data) {
             $file = file_save_data($file_data, $asset['drupal_file_path'], FileSystemInterface::EXISTS_REPLACE);
-            // See if there's a media item we can use already
+            // See if there's a media item we can use already.
             $usage = \Drupal::service('file.usage')->listUsage($file);
             if (count($usage) > 0 && !empty($usage['file']['media'])) {
               $media_id = array_key_first($usage['file']['media']);

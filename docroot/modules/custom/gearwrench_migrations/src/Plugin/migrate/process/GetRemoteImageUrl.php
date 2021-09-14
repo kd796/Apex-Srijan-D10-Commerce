@@ -25,7 +25,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @MigrateProcessPlugin(
  *   id = "get_remote_image_url"
  * )
- *
  */
 class GetRemoteImageUrl extends ProcessPluginBase {
 
@@ -38,7 +37,7 @@ class GetRemoteImageUrl extends ProcessPluginBase {
       foreach ($value->children() as $child) {
         if ($child->getName() === 'AssetCrossReference' && (string) $child->attributes()->Type === 'Primary Image') {
           $remote_asset_paths[] = [
-            'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/'  . (string) $child->attributes()->AssetID . '.jpg',
+            'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . (string) $child->attributes()->AssetID . '.jpg',
           ];
         }
       }

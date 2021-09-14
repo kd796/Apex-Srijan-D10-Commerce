@@ -10,7 +10,6 @@ use Drupal\taxonomy\Entity\Term;
 /**
  * Get Related Products.
  *
- *
  * @MigrateProcessPlugin(
  *   id = "get_related_products"
  * )

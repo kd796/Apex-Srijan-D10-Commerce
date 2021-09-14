@@ -18,7 +18,9 @@ use Drupal\node\NodeInterface;
  */
 class GearwrenchProduct extends EntityContentBase {
 
-  /** @var string $entityType */
+  /**
+   * {@inheritdoc}
+   */
   public static $entityType = 'node';
 
   /**
@@ -37,7 +39,7 @@ class GearwrenchProduct extends EntityContentBase {
     if ($entity && $entity instanceof NodeInterface) {
       if ($entity->bundle() === 'product') {
         if (!empty($entity->get('field_media')->target_id)) {
-          // Get fid from field_media
+          // Get fid from field_media.
           $mid = $entity->get('field_media')->target_id;
           $media = Media::load($mid);
           $fid = $media->field_media_image->target_id;
@@ -85,4 +87,3 @@ class GearwrenchProduct extends EntityContentBase {
   }
 
 }
-

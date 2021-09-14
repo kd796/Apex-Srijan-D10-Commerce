@@ -3,7 +3,6 @@
 namespace Drupal\gearwrench_migrations\Plugin\migrate\process;
 
 use Drupal\taxonomy\Entity\Term;
-use Drupal;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;

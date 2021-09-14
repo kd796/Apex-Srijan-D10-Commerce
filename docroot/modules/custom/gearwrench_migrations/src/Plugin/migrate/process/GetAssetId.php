@@ -25,13 +25,14 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @MigrateProcessPlugin(
  *   id = "get_asset_id"
  * )
- *
  */
 class GetAssetId extends ProcessPluginBase {
+
   /**
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     return (string) $value->attributes()->AssetID;
   }
+
 }
