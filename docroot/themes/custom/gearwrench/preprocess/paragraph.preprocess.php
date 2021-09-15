@@ -15,7 +15,7 @@
  * @see gearwrench_preprocess_paragraph__embed_iframe__full()
  * @see gearwrench_preprocess_paragraph__media__full()
  * @see gearwrench_preprocess_paragraph__section__full()
- * @see gearwrench_preprocess_paragraph__slider__full()
+ * @see gearwrench_preprocess_paragraph__product_slider__full()
  * @see gearwrench_preprocess_paragraph__tabs__full()
  * @see gearwrench_preprocess_paragraph__tabs_tab__full()
  */

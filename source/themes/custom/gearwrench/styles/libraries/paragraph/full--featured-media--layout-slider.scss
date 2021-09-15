@@ -16,6 +16,7 @@
 .component-featured-media--layout-slider {
   .component-featured-media__list-wrapper {
     box-shadow: 0 0 16px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1.5rem;
 
     &:not(.swiper-container-initialized) {
       .component-featured-media__list-item {
@@ -26,46 +27,141 @@
         }
       }
     }
+
+    .component-featured-media__button {
+      background-color: $gray-90;
+      background-size: rem(10px) rem(16px);
+      border: 1px solid $gray-90;
+      height: rem(48px);
+      width: rem(48px);
+      margin: 0;
+      padding: 0;
+      opacity: 1;
+
+      &:hover {
+        background-color: $primary-orange;
+        border-color: $primary-orange;
+      }
+
+      &.component-featured-media__button-prev {
+        background-image: url('../../../icons/chevron-left-molten-orange.svg');
+        left: rem(-98px);
+
+        &:hover {
+          background-image: url('../../../icons/chevron-left-black.svg');
+        }
+
+        @include media('<1401px') {
+          left: rem(-58px);
+        }
+
+        @include media('<1336px') {
+          display: none;
+        }
+      }
+
+      &.component-featured-media__button-next {
+        background-image: url('../../../icons/chevron-right-molten-orange.svg');
+        right: rem(-98px);
+
+        &:hover {
+          background-image: url('../../../icons/chevron-right-black.svg');
+        }
+
+        @include media('<1400px') {
+          right: rem(-58px);
+        }
+
+        @include media('<1336px') {
+          display: none;
+        }
+      }
+
+      &[aria-disabled='true'] {
+        background-color: $gray-30;
+        border-color: $gray-30;
+      }
+    }
   }
 
   .component-featured-media__list {
     margin: 0;
     padding: 0;
-  }
 
-  .component-featured-media__list-item {
-    height: auto;
-    list-style: none;
+    .component-featured-media__list-item {
+      height: auto;
+      list-style: none;
 
-    &.swiper-slide .media {
-      height: 100%;
-      margin-bottom: 0;
-      margin-top: 0;
-      max-width: 100vw;
-      position: relative;
-
-      .media__image,
-      .media__iframe {
-        display: block;
+      &.swiper-slide .media {
         height: 100%;
-        max-width: 100%;
-        width: 100%;
+        margin-bottom: 0;
+        margin-top: 0;
+        max-width: 100vw;
+        position: relative;
+
+        .media__image,
+        .media__iframe {
+          display: block;
+          height: 100%;
+          max-width: 100%;
+          width: 100%;
+        }
       }
     }
   }
 
-  .component-featured-media__pagination {
+  .component-featured-media__controls {
+    align-items: center;
+    display: flex;
+    justify-content: center;
     position: relative;
-    margin-top: 1.5rem;
+    width: 100%;
 
-    .swiper-pagination-bullet {
-      background: transparent;
-      border-color: $gray-90;
-      margin: 0 0.5rem;
+    .component-featured-media__button {
+      background-color: $gray-90;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: rem(10px) rem(16px);
+      border: 1px solid $gray-90;
+      display: none;
+      height: rem(48px);
+      width: rem(48px);
+      margin: 0;
+      padding: 0;
+      position: relative;
+      opacity: 1;
+
+      @include media('<md') {
+        height: rem(40px);
+        width: rem(40px);
+      }
+
+      @include media('<1336px') {
+        display: block;
+      }
+
+      &.component-featured-media__pseudo-button-prev {
+        background-image: url('../../../icons/chevron-left-molten-orange.svg');
+        margin-right: 1rem;
+      }
+
+      &.component-featured-media__pseudo-button-next {
+        background-image: url('../../../icons/chevron-right-molten-orange.svg');
+        margin-left: 1rem;
+      }
     }
 
-    .swiper-pagination-bullet-active {
-      background: $gray-90;
+    .component-featured-media__pagination {
+      position: relative;
+
+      .swiper-pagination-bullet {
+        background: transparent;
+        border-color: $gray-90;
+      }
+
+      .swiper-pagination-bullet-active {
+        background: $gray-90;
+      }
     }
   }
 }
