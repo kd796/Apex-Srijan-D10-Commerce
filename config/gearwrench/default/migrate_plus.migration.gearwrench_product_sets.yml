@@ -70,6 +70,10 @@ source:
       name: remote_listing_image
       label: 'Listing Image'
       selector: ../../Product
+    -
+      name: remote_product_images
+      label: 'Product Images'
+      selector: ../../Product
   ids:
     remote_sku:
       type: string
@@ -92,6 +96,14 @@ process:
   field_sku_group:
     plugin: get_id_attribute
     source: remote_sku_group
+  field_long_description:
+    plugin: get_attribute_value
+    source: remote_product_long_description
+    attribute: ATT921
+  field_upc:
+    plugin: get_attribute_value
+    source: remote_product_upc
+    attribute: ATT539
   field_set:
     plugin: determine_set_status
     source: remote_set
@@ -142,14 +154,6 @@ process:
     process:
       vocabulary_id: vid
       target_id: target_id
-  field_long_description:
-    plugin: get_attribute_value
-    source: remote_product_long_description
-    attribute: ATT921
-  field_upc:
-    plugin: get_attribute_value
-    source: remote_product_upc
-    attribute: ATT539
 destination:
   plugin: 'entity:node'
 migration_dependencies:
