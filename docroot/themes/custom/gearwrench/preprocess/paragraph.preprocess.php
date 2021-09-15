@@ -12,6 +12,7 @@
  * @see gearwrench_preprocess_paragraph__content__full()
  * @see gearwrench_preprocess_paragraph__hero__full()
  * @see gearwrench_preprocess_paragraph__hero_slide__full()
+ * @see gearwrench_preprocess_paragraph__steps__full()
  * @see gearwrench_preprocess_paragraph__step__full()
  * @see gearwrench_preprocess_paragraph__embed_iframe__full()
  * @see gearwrench_preprocess_paragraph__media__full()
@@ -198,6 +199,33 @@ function gearwrench_preprocess_paragraph__content__full(array &$variables) {
  */
 function gearwrench_preprocess_paragraph__content_callout__full(array &$variables) {
   // Nothing to see here.
+}
+
+/**
+ * Implements hook_preprocess_paragraph__VIEW_MODE() for steps, full.
+ */
+function gearwrench_preprocess_paragraph__steps__full(array &$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $paragraphId = $paragraph->id();
+
+  // Process background color if specified.
+  if ($paragraph->hasField('field_background_color') && isset($paragraph->get('field_background_color')->getValue()[0])) {
+    $variables['attributes']['class'][] = 'paragraph-component--background-color';
+  }
+
+  // Add styling to head tag since the color field module doesn't do it.
+  if ($paragraph->hasField('field_background_color') && isset($paragraph->get('field_background_color')->getValue()[0])) {
+
+    $backgroundColor = $paragraph->get('field_background_color')->getValue()[0]['color'];
+    $backgroundOpacity = (isset($paragraph->get('field_background_color')->getValue()[0]['opacity']) ? ($paragraph->get('field_background_color')->getValue()[0]['opacity']) : (1));
+    $backgroundColorStyling = [
+      '#tag' => 'style',
+      '#value' => '.paragraph-component--background-color[data-entity-id="' . $paragraphId . '"]::after { background-color: ' . $backgroundColor . '; opacity: ' . $backgroundOpacity . '; }',
+    ];
+    $variables['#attached']['html_head'][] = [$backgroundColorStyling, 'backgroundColorBeforeStyling-' . $paragraphId];
+
+  }
 }
 
 /**
