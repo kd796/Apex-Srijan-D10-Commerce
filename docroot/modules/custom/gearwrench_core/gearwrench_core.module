@@ -20,11 +20,19 @@ function gearwrench_core_theme() {
     'template' => 'block--country-switch',
     'base hook' => 'block'
   ];
+
   $theme['block__footer_navigation_block'] = [
     'render element' => 'elements',
     'template' => 'block--footer-navigation-block',
     'base hook' => 'block'
   ];
+
+  $theme['block__header_search'] = [
+    'render element' => 'elements',
+    'template' => 'block--header-search',
+    'base hook' => 'block'
+  ];
+
   return $theme;
 }
 
