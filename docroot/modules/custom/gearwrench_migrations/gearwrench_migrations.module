@@ -50,36 +50,3 @@ function gearwrench_migrations_migrate_prepare_row(Row $row, MigrateSourceInterf
     }
   }
 }
-
-/**
- * Utility function to install files.
- */
-function _gearwrench_migrations_file_install() {
-  // Prepare destination directory.
-  $dest_directory = 'public://import/pim_data';
-  \Drupal::service('file_system')->prepareDirectory($dest_directory, FileSystemInterface::CREATE_DIRECTORY);
-
-  // Copy files to destination directory.
-  foreach (_gearwrench_migrations_source_files_prep() as $filename => $file) {
-    \Drupal::service('file_system')->copy($file->uri, $dest_directory . '/' . $file->filename, FileSystemInterface::EXISTS_RENAME);
-  }
-}
-
-/**
- * Utility function.
- */
-function _gearwrench_migrations_source_files_prep() {
-  $dirname = drupal_get_path('module', 'gearwrench_migrations') . '/import/pim_data';
-  return \Drupal::service('file_system')->scanDirectory($dirname, '/.*/', [
-    'recurse' => FALSE,
-    'key' => 'filename',
-  ]);
-}
-
-/**
- * Utility function to clear files.
- */
-function _gearwrench_migrations_clear_files() {
-  $dest_directory = 'public://import';
-  \Drupal::service('file_system')->deleteRecursive($dest_directory);
-}
