@@ -9,12 +9,12 @@ dependencies:
     - field.field.node.page.field_media
     - field.field.node.page.field_meta_tags
     - node.type.page
+    - responsive_image.styles.hero
   module:
+    - blazy
     - entity_reference_revisions
     - text
     - user
-_core:
-  default_config_hash: sAvw4PYKRs5xwOlmxNQr31oWdxUXvkpGbwm1WSeP9T0
 id: node.page.full
 targetEntityType: node
 bundle: page
@@ -29,14 +29,55 @@ content:
     third_party_settings: {  }
   field_components:
     type: entity_reference_revisions_entity_view
-    weight: 1
+    weight: 2
     label: hidden
     settings:
       view_mode: full
       link: ''
     third_party_settings: {  }
     region: content
+  field_media:
+    type: blazy_media
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      image_style: ''
+      responsive_image_style: hero
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
+      view_mode: default
+      image: ''
+      current_view_mode: full
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: 0
+      grid_medium: 0
+      grid_small: 0
+    third_party_settings: {  }
 hidden:
-  field_media: true
   field_meta_tags: true
   links: true

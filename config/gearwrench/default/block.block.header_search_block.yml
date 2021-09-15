@@ -1,0 +1,24 @@
+uuid: 5f219fdb-6f4e-4b87-a193-d77ebdf86fb5
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - gearwrench_core
+  theme:
+    - gearwrench
+third_party_settings:
+  block_class:
+    classes: block--header-search
+id: header_search_block
+theme: gearwrench
+region: header
+weight: -4
+provider: null
+plugin: header_search
+settings:
+  id: header_search
+  label: 'Header Search Block'
+  provider: gearwrench_core
+  label_display: '0'
+visibility: {  }

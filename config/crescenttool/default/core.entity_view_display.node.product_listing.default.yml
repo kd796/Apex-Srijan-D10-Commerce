@@ -1,0 +1,21 @@
+uuid: 4e46467a-01d0-429d-8297-aa0c4c02a33f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.product_listing.body
+    - field.field.node.product_listing.field_media
+    - field.field.node.product_listing.field_product_classifications
+    - node.type.product_listing
+  module:
+    - user
+id: node.product_listing.default
+targetEntityType: node
+bundle: product_listing
+mode: default
+content: {  }
+hidden:
+  body: true
+  field_media: true
+  field_product_classifications: true
+  links: true

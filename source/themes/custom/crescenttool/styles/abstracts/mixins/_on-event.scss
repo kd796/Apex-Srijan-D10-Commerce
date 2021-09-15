@@ -1,0 +1,25 @@
+// -----------------------------------------------------------------------------
+// Abstracts/Mixin: Event wrapper
+// Common events to target
+// @include on-event();
+//
+// Option(s):
+// • $self(value = true or false) - to apply to item or events only
+// -----------------------------------------------------------------------------
+
+@mixin on-event($self: false) {
+  @if $self {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  } @else {
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+}

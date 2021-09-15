@@ -1,0 +1,20 @@
+uuid: 27b24217-e2d9-46b4-bca0-9fb5da285084
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - crescenttool
+id: crescenttool_messages
+theme: crescenttool
+region: pre_content
+weight: -5
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

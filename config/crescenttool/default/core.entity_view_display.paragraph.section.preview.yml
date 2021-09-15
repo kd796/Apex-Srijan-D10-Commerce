@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.section.field_background_color
     - field.field.paragraph.section.field_class_custom
     - field.field.paragraph.section.field_components
     - field.field.paragraph.section.field_html_anchor
@@ -46,8 +47,6 @@ third_party_settings:
         required_fields: false
       label: Settings
       region: content
-_core:
-  default_config_hash: lpadzJ8cvbdx5KyEUOzuQdjBXVw6wYLGPcO8qi2Avuk
 id: paragraph.section.preview
 targetEntityType: paragraph
 bundle: section
@@ -95,4 +94,5 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-hidden: {  }
+hidden:
+  field_background_color: true

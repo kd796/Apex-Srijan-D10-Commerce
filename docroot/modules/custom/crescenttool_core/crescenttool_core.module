@@ -1,0 +1,51 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Crescenttool Core module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+use Drupal\Component\Utility\Html;
+
+/**
+ * Implements hook_theme().
+ */
+function crescenttool_core_theme() {
+  $theme['block__country_switch'] = [
+    'render element' => 'elements',
+    'template' => 'block--country-switch',
+    'base hook' => 'block'
+  ];
+  $theme['block__footer_navigation_block'] = [
+    'render element' => 'elements',
+    'template' => 'block--footer-navigation-block',
+    'base hook' => 'block'
+  ];
+  return $theme;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block.html.twig.
+ */
+function crescenttool_core_preprocess_block(&$variables) {
+  if ($variables['base_plugin_id'] == 'footer_navigation_block') {
+    $plugin_css = Html::cleanCssIdentifier($variables['plugin_id']);
+    $provider_css = Html::cleanCssIdentifier($variables['configuration']['provider']);
+    $block_class = 'block-' . $plugin_css;
+
+    // Figure out title ID and set aria-related attributes.
+    $title_id = $variables['attributes']['id'] . '-footer';
+    $variables['attributes']['role'] = 'navigation';
+    $variables['attributes']['aria-label'] = $title_id;
+
+    // Add wrapper class.
+    $variables['wrapper_attributes']['class'][] = "{$block_class}__wrapper";
+
+    // Track to convert attributes.
+    $variables['#attribute_variables'][] = 'wrapper_attributes';
+  }
+}

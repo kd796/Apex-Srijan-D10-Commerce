@@ -1,0 +1,22 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Contrib Overrides/Blazy: Modifications
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Toolbar tab icon.
+ */
+.b-error {
+  opacity: 1;
+}
+
+.media--blazy.media--loading {
+  @include loading-placeholder();
+}

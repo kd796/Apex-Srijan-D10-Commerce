@@ -1,0 +1,72 @@
+uuid: eb0e2f3b-dfa3-470d-a14c-a9d565d8fe06
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.product_listing.body
+    - field.field.node.product_listing.field_media
+    - field.field.node.product_listing.field_product_classifications
+    - node.type.product_listing
+    - responsive_image.styles.hero
+  module:
+    - blazy
+    - text
+    - user
+id: node.product_listing.full
+targetEntityType: node
+bundle: product_listing
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_media:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: ''
+      responsive_image_style: hero
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
+      view_mode: default
+      current_view_mode: full
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: 0
+      grid_medium: 0
+      grid_small: 0
+    third_party_settings: {  }
+    type: blazy_media
+    region: content
+hidden:
+  field_product_classifications: true
+  links: true
