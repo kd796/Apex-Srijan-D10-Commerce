@@ -81,6 +81,8 @@ process:
         - ATT714704
         # Brand
         - Brand
+        # Business Unit
+        - ATT745346
         # Case Material
         - ATT714693
         # Case Pack Qty
@@ -88,8 +90,14 @@ process:
         - ATT738
         # Calculated Set Components
         - ATT704222
+        # Catalog Number
+        - Catalog Number
+        # Category (Full Path)
+        - ATT800719
         # Charger Included
         - ATT714717
+        # Cigarette Lighter Adapter Included
+        - ATT714713
         # Charge Time
         - ATT714732
         # Clips Per Box
@@ -108,6 +116,8 @@ process:
         - ATT672479
         # CustomerPrice
         - CustomerPrice
+        # Currency Code
+        - CurrencyCode
         # Delivery Unit
         - DeliveryUnit
         # Description (SAP)
@@ -126,12 +136,14 @@ process:
         - ATT669088
         # External Video URL
         - ExternalVideoURL
-        # Fits Product Number - Cross-Reference
+        # Fits Product Number - Elsewhere - Cross-Reference
         - ATT207
-        # Fits Tool - Include - Cross-Reference
+        # Fits Tool - Elsewhere - Cross-Reference
         - ATT210
         # Flexible
         - ATT714694
+        # Go-No-Go Gauge Sizes
+        - ATT932
         # Impact Resistant
         - ATT714719
         # Keywords - Meta Data
@@ -156,8 +168,12 @@ process:
         - MUSAICON
         # Marking Style
         - ATT595
-        # Material Status (MRP)
+        # Sales Org Status (MRP)
+        - SAP Sales Org Status
+        - # Material Status (MRP)
         - SAP Material Status
+        # Shelf Pack Qty.
+        - ATT375
         # Mount
         - ATT556
         # Number of Batteries
@@ -198,7 +214,7 @@ process:
         - ATT714716
         # SalesOrg
         - SalesOrg
-        # SAP Replacement Product
+        # SAP Replacement Product Elsewhere ?
         - ATT703620
         # Set?
         - Set
@@ -224,7 +240,7 @@ process:
         - UnitsOfMeasure
         # UNSPSC_V7.0901
         - UNSPSC_V7.0901
-        # Used on - Cross-Reference
+        # Used on - Cross-Reference Elsewhere
         - ATT575
         # UPC
         - ATT539
@@ -234,7 +250,7 @@ process:
         - ATT714722
         # Web New Product - Elsewhere
         - ATT17339
-        # Web Featured Product
+        # Web Featured Product - Elsewhere
         - ATT16491
         # Web Display Sort Order
         - ATT15738
@@ -248,51 +264,6 @@ process:
         - ATT714702
         # Works with
         - ATT789979
-        # Competitor Cross Reference
-        # BAHCO Cross Reference
-        - ATT15714
-        # Blackhawk Cross Reference
-        - ATT793609
-        # Craftsman Industrial Cross Reference
-        - ATT15716
-        # CDI Cross Reference
-        - ATT15715
-        # Cornwell Cross Reference
-        - ATT15720
-        # Craftsman Cross Reference
-        - ATT15702
-        # Gray Cross Reference
-        - ATT793611
-        # Gray Pneumatic Cross Reference
-        - ATT15717
-        # Paramount Cross Reference
-        - ATT793612
-        # Proto Cross Reference
-        - ATT15700
-        # SK Cross Reference
-        - ATT15710
-        # Snap-on Cross Reference
-        - ATT15701
-        # Stanley Cross Reference
-        - ATT793613
-        # Westward Cross Reference
-        - ATT793614
-        # Williams Cross Reference
-        - ATT15708
-        # URREA Cross Reference
-        - ATT15712
-        # Wright Cross Reference
-        - ATT15709
-
-        # Retailer Flags
-        # Sears
-        - ATT672478
-        # Advance Auto Parts
-        - ATT672481
-        # Amazon
-        - AMZN
-        # Grainger
-        - ATT23047
     -
       plugin: machine_name
     -
