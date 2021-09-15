@@ -1082,22 +1082,48 @@ $mobile-menu-item-button-height: 7rem;
           margin-bottom: 10px;
           width: 96%;
 
-          input {
-            @include icon('search', $insert: after, $extend: false);
-
+          .search-input-set {
             align-items: center;
+            display: flex;
+            height: 48px;
+            margin: 10px 4%;
+            width: 96%;
+          }
+
+          input {
             background-color: $white;
             border: 0;
             display: flex;
             font-weight: $fw-bold;
             height: 48px;
-            margin: 10px 4%;
             padding-left: 15px;
-            position: relative;
-            width: 96%;
           }
 
-          button {
+          .search-icon, .search-reset {
+            background-color: $white;
+            border: 0;
+            height: 48px;
+            width: 48px;
+
+            &:before {
+              display: block;
+              font-size: 20px;
+              position: relative;
+              right: -5px;
+              top: 12px;
+            }
+          }
+
+          .search-icon {
+            @include icon('search', $extend: false);
+          }
+
+          .search-reset {
+            @include icon('close', $extend: false);
+            display: none;
+          }
+
+          button.btn {
             background-color: $black;
             color: $white;
             margin: 10px 4%;

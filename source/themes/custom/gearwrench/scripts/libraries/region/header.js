@@ -10,20 +10,49 @@
       var selector_header_menu_item_buttons = '.block--header-menu-main .menu-item__button';
       var selector_header_menu_items_with_children = '.block--header-menu-main .menu-item--has-children';
       var selector_header_search_button = '.block--header-search .block__content-toggle';
-      var selector_header_mobile_search = '.search-toggle';
       var selector_header_country_switch_button = '.block--country-switch .block__content-toggle';
       var lastScrollTop = 0;
+
+      // Mobile selectors
+      var selector_header_mobile_search = '.search-toggle';
+      var selector_mobile_search_box = '.mobile-search input.search-box';
+      var selector_mobile_search_icon = '.mobile-search .search-icon';
+      var selector_mobile_search_reset = '.mobile-search .search-reset';
 
       // Build the search form.
       var search_text = Drupal.t('Search');
       var submit_text = Drupal.t('Submit');
-      var mobile_search_form = '<div class="mobile-search"><form action="/search" method="GET"><input name="search" type="text" placeholder="' + search_text + '"><button class="btn">' + submit_text + '</button></form></div>';
+      var mobile_search_form = '' +
+        '<div class="mobile-search">' +
+        ' <form action="/search" method="GET">' +
+        '   <div class="search-input-set">' +
+        '     <input class="search-box" name="search" type="text" placeholder="' + search_text + '">' +
+        '     <span class="search-icon"></span>' +
+        '     <span class="search-reset"></span>' +
+        '   </div>' +
+        '   <button class="btn">' + submit_text + '</button>' +
+        ' </form>' +
+        '</div>';
 
       // Add the search form to mobile.
       $('.block__menu').find(selector_header_mobile_search).parent().append(mobile_search_form);
 
       // Hide Search Toggle Text.
       $('.block__menu').find(selector_header_mobile_search).remove();
+
+      // Mobile controls.
+      $('.block__menu').find(selector_mobile_search_box).keyup(function () {
+        if ($(this).val().length > 0) {
+          $('.block__menu').find(selector_mobile_search_icon).hide();
+          $('.block__menu').find(selector_mobile_search_reset).show();
+        }
+      });
+
+      $('.block__menu').find(selector_mobile_search_reset).click(function () {
+        $('.block__menu').find(selector_mobile_search_box).val('');
+        $('.block__menu').find(selector_mobile_search_icon).show();
+        $('.block__menu').find(selector_mobile_search_reset).hide();
+      });
 
       // Open search panel.
       $(selector_header_search_button).once('header').on({
