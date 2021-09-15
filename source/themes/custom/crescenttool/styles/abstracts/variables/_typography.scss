@@ -1,0 +1,123 @@
+// -----------------------------------------------------------------------------
+// Abstracts/Variables: Typography
+// Global typography for site
+// -----------------------------------------------------------------------------
+
+/**
+ * Root Font Sizing
+ */
+
+// <html> and <body> font sizes
+$html-font-size: 100% !default;
+$body-font-size: 16px !default;
+$body-line-height: 1.625 !default;
+
+// Functions
+$font-size-base-rem: $body-font-size !default;
+
+/**
+ * Type sets
+ * Defines a type grouping that can be looped over and generate utility classes
+ */
+$type-sets: (
+  h1-title: (
+    base: (
+      font-size: rem(42px)
+    ),
+    sm: (
+      font-size: 8vw
+    ),
+    xl: (
+      font-size: rem(100px)
+    )
+  ),
+  h1: (
+    base: (
+      font-size: rem(42px)
+    ),
+    sm: (
+      font-size: 8vw
+    ),
+    xl: (
+      font-size: rem(100px)
+    )
+  ),
+  h2: (
+    base: (
+      font-size: rem(30px)
+    ),
+    md: (
+      font-size: rem(40px)
+    )
+  ),
+  h3: (
+    base: (
+      font-size: rem(20px)
+    ),
+    md: (
+      font-size: rem(30px)
+    )
+  ),
+  h4: (
+    base: (
+      font-size: rem(16px)
+    ),
+    md: (
+      font-size: rem(20px)
+    )
+  ),
+  h5: (
+    base: (
+      font-size: rem(16px)
+    )
+  ),
+  h6: (
+    base: (
+      font-size: rem(14px)
+    )
+  ),
+  paragraph: (
+    base: (
+      font-size: rem(14px)
+    ),
+    md: (
+      font-size: rem(16px)
+    )
+  ),
+  quote: (
+    base: (
+      font-size: rem(30px)
+    ),
+    md: (
+      font-size: rem(36px)
+    )
+  ),
+  xs: (
+    base: (
+      font-size: 0.75rem
+    )
+  ),
+  sm: (
+    base: (
+      font-size: 0.875rem
+    )
+  ),
+  base: (
+    base: (
+      font-size: 1rem
+    )
+  ),
+  lg: (
+    base: (
+      font-size: 1.125rem
+    )
+  ),
+  xl: (
+    base: (
+      font-size: rem(44px)
+    ),
+    sm: (
+      font-size: rem(80px)
+    )
+  )
+) !default;

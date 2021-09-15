@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.paragraph.field_components
     - paragraphs.paragraphs_type.content
+    - paragraphs.paragraphs_type.content_callout_container
     - paragraphs.paragraphs_type.embed_block
     - paragraphs.paragraphs_type.embed_iframe
     - paragraphs.paragraphs_type.embed_view
@@ -16,8 +17,6 @@ dependencies:
     - paragraphs.paragraphs_type.tabs
   module:
     - entity_reference_revisions
-_core:
-  default_config_hash: H0Ms50T9R96k-HUDdT51oHOqr__jLodyJyXaKNspMn0
 id: paragraph.section.field_components
 field_name: field_components
 entity_type: paragraph
@@ -34,6 +33,7 @@ settings:
     negate: 0
     target_bundles:
       content: content
+      content_callout_container: content_callout_container
       embed_block: embed_block
       embed_iframe: embed_iframe
       embed_view: embed_view
@@ -45,48 +45,57 @@ settings:
       tabs: tabs
     target_bundles_drag_drop:
       accordion:
-        weight: -31
+        weight: -37
         enabled: false
       accordion_item:
-        weight: -30
+        weight: -36
         enabled: false
       content:
         enabled: true
-        weight: -29
+        weight: -35
+      content_callout:
+        weight: -20
+        enabled: false
+      content_callout_container:
+        enabled: true
+        weight: -34
       embed_block:
         enabled: true
-        weight: -28
+        weight: -33
       embed_iframe:
         enabled: true
-        weight: -27
+        weight: -32
       embed_view:
         enabled: true
-        weight: -26
+        weight: -31
       featured_content:
         enabled: true
-        weight: -25
+        weight: -30
       featured_links:
         enabled: true
-        weight: -24
+        weight: -29
       featured_media:
         enabled: true
-        weight: -23
+        weight: -28
       hero:
-        weight: -22
+        weight: -27
         enabled: false
       hero_slide:
+        weight: -26
+        enabled: false
+      product_slider:
         weight: -21
         enabled: false
       pullquote:
         enabled: true
-        weight: -20
+        weight: -25
       section:
         enabled: true
-        weight: -19
+        weight: -24
       tabs:
         enabled: true
-        weight: -18
+        weight: -23
       tabs_tab:
-        weight: -17
+        weight: -22
         enabled: false
 field_type: entity_reference_revisions

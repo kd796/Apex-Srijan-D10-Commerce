@@ -1,0 +1,29 @@
+uuid: 456654bd-5375-4104-903f-b61dcaa10e87
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+  theme:
+    - crescenttool
+id: crescenttool_page_title
+theme: crescenttool
+region: content
+weight: -5
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility:
+  node_type:
+    id: node_type
+    bundles:
+      landing_page: landing_page
+      page: page
+      product_listing: product_listing
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

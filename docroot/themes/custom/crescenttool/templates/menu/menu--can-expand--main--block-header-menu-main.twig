@@ -1,0 +1,153 @@
+{#
+/**
+ * @file
+ * Theme override to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ */
+#}
+{% import _self as menus %}
+
+{#
+We call a macro which calls itself to render the full tree.
+@see http://twig.sensiolabs.org/doc/tags/macro.html
+#}
+
+{% macro menu_links(items, attributes, menu_level, menu_name, parent_item_id, featured_tools) %}
+  {% import _self as menus %}
+  {% if items %}
+
+    {% set attributes = create_attribute({
+      'class': [
+        'menu',
+        'menu--depth-' ~ menu_level
+      ]
+    }) %}
+
+    <ul{{ attributes }}>
+      {% for item in items %}
+
+        {% if parent_item_id is not defined or parent_item_id is null %}
+          {% set item_id = menu_name ~ '-menu-item-' ~ loop.index0 %}
+        {% else %}
+          {% set item_id = parent_item_id ~ '-' ~ loop.index0 %}
+        {% endif %}
+
+        {% set item_classes = [
+          'menu-item',
+          'menu-item--depth-' ~ menu_level
+        ] %}
+
+        {% if item.below %}
+          {% set item_classes = item_classes|merge(['menu-item--has-children']) %}
+        {% endif %}
+
+
+        {% if item.in_active_trail %}
+          {% set item_classes = item_classes|merge(['menu-item--in-active-trail']) %}
+        {% endif %}
+
+        <li{{ item.attributes.addClass(item_classes).setAttribute('id', item_id) }}>
+          {# Merge classes in with potential classes from the link (since link() doesn't seem to do it correctly) #}
+          {% set link_attributes = create_attribute(item.url.getOption('attributes') ?: []) %}
+          {% set link_attributes = link_attributes.addClass(['menu-item__link', 'menu-item__link--depth-' ~ menu_level]) %}
+
+          {{ link(item.title, item.url, link_attributes) }}
+
+          {% if item.below %}
+
+            {% set button_attributes = create_attribute({
+              'class': [
+                'menu-item__button',
+                'menu-item__button--depth-' ~ menu_level
+              ],
+              'aria-controls': item_id ~ '-panel',
+              'aria-expanded': 'false',
+              'data-item-title': item.title,
+              'title': 'Expand section'|t
+            }) %}
+
+            {% set panel_attributes = create_attribute({
+              'class': [
+                'menu-item__panel',
+                'menu-item__panel--depth-' ~ menu_level,
+              ],
+              'id': item_id ~ '-panel',
+            }) %}
+
+            <button{{ button_attributes }}>
+              <span class="menu-item__button-expand">{{ 'Expand @title'|t({'@title': item.title }) }}</span>
+              <span class="menu-item__button-collapse">{{ 'Collapse @title'|t({'@title': item.title }) }}</span>
+            </button>
+            <div {{ panel_attributes }}>
+              {% if loop.index0 == 0 %}
+                {% if menu_level == 0 %}
+                  {% set panel_image_attributes = create_attribute({
+                    'class': [
+                      'menu-item__panel-image',
+                      'menu-item__panel-image--depth-' ~ menu_level
+                    ],
+                  }) %}
+                {% endif %}
+                <div class="featured-tools-menu">
+                  <div class="featured-tools-menu__content-container">
+                    <div class="featured-tools-menu__menu-wrapper">
+                      <header class="menu-item__panel-header">
+                        <h5>{{ 'Featured Tools'|t }}</h5>
+                      </header>
+                      {{ featured_tools }}
+                    </div>
+                  </div>
+                </div>
+                <div class="all-tools-menu">
+                  <header class="menu-item__panel-header">
+                    <h5>{{ 'All Tools'|t }}</h5>
+                  </header>
+                  <div class="all-tools-menu__content-container">
+                    {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item_id) }}
+                    <div{{ panel_image_attributes }}>
+                      {% if item.panel_image %}
+                        {{ item.panel_image }}
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              {% else %}
+              <div class="menu__content-container">
+                {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item_id) }}
+                {% if menu_level == 0 %}
+                  {% set panel_image_attributes = create_attribute({
+                    'class': [
+                      'menu-item__panel-image',
+                      'menu-item__panel-image--depth-' ~ menu_level
+                    ],
+                  }) %}
+                  <div{{ panel_image_attributes }}>
+                    {% if item.panel_image %}
+                      {{ item.panel_image }}
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+              {% endif %}
+            </div>
+          {% endif %}
+
+        </li>
+
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}

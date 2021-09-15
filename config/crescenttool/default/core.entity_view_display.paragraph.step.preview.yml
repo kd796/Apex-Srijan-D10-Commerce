@@ -1,0 +1,32 @@
+uuid: 9b8432ee-a0c2-4915-acfb-33045d38f58c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.step.field_content
+    - field.field.paragraph.step.field_title
+    - paragraphs.paragraphs_type.step
+  module:
+    - text
+id: paragraph.step.preview
+targetEntityType: paragraph
+bundle: step
+mode: preview
+content:
+  field_content:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_title:
+    type: string
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden: {  }

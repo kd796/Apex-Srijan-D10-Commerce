@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for crescenttool Migrations module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+use Drupal\taxonomy\Entity\Vocabulary;
+use Drupal\Component\Utility\UrlHelper;
+use Drupal\Core\File\FileSystemInterface;
+use Drupal\Core\Language\LanguageInterface;
+use Drupal\file\Entity\File;
+use Drupal\media\Entity\Media;
+use Drupal\migrate\MigrateSkipRowException;
+use Drupal\migrate\Plugin\MigrateSourceInterface;
+use Drupal\migrate\Plugin\MigrationInterface;
+use Drupal\migrate\Row;
+use Drupal\node\NodeInterface;
+use GuzzleHttp\Exception\RequestException;
+
+/**
+ * Implements hook_migrate_prepare_row().
+ */
+function crescenttool_migrations_migrate_prepare_row(Row $row, MigrateSourceInterface $source, MigrationInterface $migration) {
+  if ($migration->id() === 'crescenttool_products') {
+    if ($row->getSource()['remote_set'] === 'SKU-Set') {
+      throw new MigrateSkipRowException('', TRUE);
+    }
+  }
+  if ($migration->id() === 'crescenttool_product_sets') {
+    if ($row->getSource()['remote_set'] !== 'SKU-Set') {
+      throw new MigrateSkipRowException('', TRUE);
+    }
+  }
+
+  if ($migration->id() === 'crescenttool_product_attributes') {
+    $vid_to_check = $row->getSource()['remote_id'];
+    $vid_to_check = strtolower($vid_to_check);
+    $vid_to_check = preg_replace('/[^a-z0-9_]+/', '_', $vid_to_check);
+    $vid_to_check = preg_replace('/_+/', '_', $vid_to_check);
+    $all_vids = Vocabulary::loadMultiple();
+    foreach ($all_vids as $vid) {
+      if ($vid->id() === $vid_to_check) {
+        throw new MigrateSkipRowException('Library already exists.', TRUE);
+      }
+    }
+  }
+}

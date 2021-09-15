@@ -1,0 +1,42 @@
+uuid: abd41fb2-cb72-46fe-a2ed-baa183a6ba51
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.full
+    - field.field.paragraph.steps.field_background_color
+    - field.field.paragraph.steps.field_class_custom
+    - field.field.paragraph.steps.field_components
+    - field.field.paragraph.steps.field_html_anchor
+    - field.field.paragraph.steps.field_style
+    - field.field.paragraph.steps.field_title
+    - paragraphs.paragraphs_type.steps
+  module:
+    - entity_reference_revisions
+id: paragraph.steps.full
+targetEntityType: paragraph
+bundle: steps
+mode: full
+content:
+  field_components:
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: full
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  field_title:
+    type: string
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  field_background_color: true
+  field_class_custom: true
+  field_html_anchor: true
+  field_style: true
