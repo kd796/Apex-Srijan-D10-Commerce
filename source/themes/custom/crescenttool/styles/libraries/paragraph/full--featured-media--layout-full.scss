@@ -1,0 +1,38 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: Featured Media - Full layout
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.component-featured-media--layout-full {
+  .component-featured-media__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    figure {
+      display: block;
+      min-width: 100%;
+    }
+  }
+
+  .media--type-image {
+    @include media('<=sm') {
+      @include container-full-width;
+    }
+  }
+
+  video {
+    height: 100%;
+    width: 100%;
+  }
+}

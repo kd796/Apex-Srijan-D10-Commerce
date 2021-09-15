@@ -1,0 +1,177 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: Product Slider
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.view-related-products {
+
+  .view-content {
+    width: 100%;
+    position: relative;
+
+    .view-related-products-slider__list-wrapper {
+      overflow: visible;
+      padding: 0;
+      width: 100%;
+
+      @include media('<md') {
+        overflow: hidden;
+      }
+
+      .view-related-products-slider__list {
+        list-style: none;
+        padding: 0;
+
+        .view-related-products-slider__list-item {
+          width: 25%;
+
+          @include media('<md') {
+            width: 50%;
+          }
+        }
+
+        .view-related-products-slider__list-item .node--type-product {
+          width: 100%;
+        }
+
+        .view-related-products-slider__list-item.swiper-slide {
+          opacity: .1;
+          pointer-events: none;
+        }
+
+        .view-related-products-slider__list-item.swiper-slide-visible {
+          opacity: 1;
+        }
+
+        .view-related-products-slider__list-item.active-pointer {
+          pointer-events: initial;
+        }
+      }
+
+      .view-related-products-slider__button {
+        background-color: $primary-orange;
+        background-size: rem(10px) rem(16px);
+        border: 1px solid $primary-orange;
+        height: rem(48px);
+        width: rem(48px);
+        margin: 0;
+        padding: 0;
+        opacity: 1;
+
+        &:hover {
+          background-color: $color-black;
+          border-color: $primary-orange;
+        }
+
+        &.view-related-products-slider__button-prev {
+          background-image: url('../../../icons/chevron-left-black.svg');
+          left: rem(-98px);
+
+          &:hover {
+            background-image: url('../../../icons/chevron-left-molten-orange.svg');
+          }
+
+          @include media('<1401px') {
+            left: rem(-58px);
+          }
+
+          @include media('<1336px') {
+            display: none;
+          }
+        }
+
+        &.view-related-products-slider__button-next {
+          background-image: url('../../../icons/chevron-right-black.svg');
+          right: rem(-98px);
+
+          &:hover {
+            background-image: url('../../../icons/chevron-right-molten-orange.svg');
+          }
+
+          @include media('<1400px') {
+            right: rem(-58px);
+          }
+
+          @include media('<1336px') {
+            display: none;
+          }
+        }
+
+        &[aria-disabled='true'] {
+          background-color: $gray-30;
+          border-color: $gray-30;
+        }
+      }
+    }
+
+    .view-related-products-slider__controls {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+
+      .view-related-products-slider__button {
+        background-color: $primary-orange;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: rem(10px) rem(16px);
+        border: 1px solid $primary-orange;
+        display: none;
+        height: rem(48px);
+        width: rem(48px);
+        margin: 0;
+        padding: 0;
+        position: relative;
+        opacity: 1;
+
+        @include media('<md') {
+          height: rem(40px);
+          width: rem(40px);
+        }
+
+        @include media('<1336px') {
+          display: block;
+        }
+
+        &.view-related-products-slider__pseudo-button-prev {
+          background-image: url('../../../icons/chevron-left-black.svg');
+          margin-right: 1rem;
+        }
+
+        &.view-related-products-slider__pseudo-button-next {
+          background-image: url('../../../icons/chevron-right-black.svg');
+          margin-left: 1rem;
+        }
+      }
+
+      .view-related-products-slider__pagination {
+        position: relative;
+
+        .swiper-pagination-bullet {
+          background: transparent;
+          border-color: $primary-orange;
+        }
+
+        .swiper-pagination-bullet-active {
+          background: $primary-orange;
+        }
+      }
+    }
+
+
+  }
+}
+
+
+

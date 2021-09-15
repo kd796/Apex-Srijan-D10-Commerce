@@ -1,0 +1,287 @@
+id: crescenttool_product_attributes
+label: Product Attributes
+migration_group: crescenttool
+source:
+  constants:
+    DESCRIPTION_PREFIX: 'PIM Attribute ID'
+    COLON: ' : '
+    WEIGHT: 0
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: "http://www.stibosystems.com/step"
+  item_selector: /STEP-ProductInformation/AttributeList/Attribute
+  fields:
+    - name: remote_id
+      label: ID
+      selector: '@ID'
+    - name: remote_name
+      label: 'Name'
+      selector: Name
+  ids:
+    remote_id:
+      type: string
+process:
+  vid:
+    -
+      plugin: skip_on_value
+      source: remote_id
+      method: row
+      value:
+        # Skip Image Related Attributes
+        - asset.size
+        - asset.uploaded
+        - asset.extension
+        - asset.mime-type
+        - asset.compression
+        - asset.xdpi
+        - asset.class
+        - asset.pixel-width
+        - asset.colorspace
+        - asset.profile
+        - asset.ydpi
+        - asset.format
+        - asset.pixel-height
+        - asset.width
+        - asset.height
+        - asset.depth
+        - asset.samples
+        - asset.colors
+        - asset.dsc-conformance
+        - asset.creator
+        - asset.filename
+        - asset.format-version
+        - asset.extra-samples
+        - asset.gamma
+        - asset.pages
+        # Skip Copy Points
+        - ATT100
+        - ATT101
+        - ATT102
+        - ATT103
+        - ATT104
+        - ATT105
+        - ATT106
+        - ATT107
+        - ATT108
+        - ATT109
+        # Long Description
+        - ATT921
+        # BaseUnitOfMeasure
+        - BaseUnitOfMeasure
+        # Batteries Included
+        - ATT714714
+        # Battery Run Time
+        - ATT714731
+        # Battery Type
+        - ATT714721
+        # Bulb Type
+        - ATT714704
+        # Brand
+        - Brand
+        # Business Unit
+        - ATT745346
+        # Case Material
+        - ATT714693
+        # Case Pack Qty
+        - CasePackQty
+        - ATT738
+        # Calculated Set Components
+        - ATT704222
+        # Catalog Number
+        - Catalog Number
+        # Category (Full Path)
+        - ATT800719
+        # Charger Included
+        - ATT714717
+        # Cigarette Lighter Adapter Included
+        - ATT714713
+        # Charge Time
+        - ATT714732
+        # Clips Per Box
+        - ATT776
+        # Closure
+        - ATT777459
+        # Component Quantity
+        - ATT938
+        # Contents
+        - ATT170
+        # Cord Length
+        - ATT663262
+        # Coupon Headline
+        - ATT919
+        # CPO
+        - ATT672479
+        # CustomerPrice
+        - CustomerPrice
+        # Currency Code
+        - CurrencyCode
+        # Delivery Unit
+        - DeliveryUnit
+        # Description (SAP)
+        - SAP_Description
+        # Disable Web Add to Cart
+        - ATT22025
+        # Display Sequence
+        - Display Sequence
+        # Distribution Channel
+        - DistChannel
+        # Division Code
+        - DivCode
+        # Dustproof
+        - ATT714723
+        # External Video Sort Order
+        - ATT669088
+        # External Video URL
+        - ExternalVideoURL
+        # Fits Product Number - Elsewhere - Cross-Reference
+        - ATT207
+        # Fits Tool - Elsewhere - Cross-Reference
+        - ATT210
+        # Flexible
+        - ATT714694
+        # Go-No-Go Gauge Sizes
+        - ATT932
+        # Impact Resistant
+        - ATT714719
+        # Keywords - Meta Data
+        - ATT737269
+        # Launch Date
+        - ATT583415
+        # Launch Date - Include - Sorting
+        - ATT583415
+        # Length of Light Section
+        - ATT714701
+        # Lens Material
+        - ATT714703
+        # Light Color
+        - ATT714705
+        # List Price
+        - ListPrice
+        # Locking
+        - ATT593
+        # Low Battery Indicator
+        - ATT714718
+        # Made in USA Icon - Elsewhere
+        - MUSAICON
+        # Marking Style
+        - ATT595
+        # Sales Org Status (MRP)
+        - SAP Sales Org Status
+        - # Material Status (MRP)
+        - SAP Material Status
+        # Shelf Pack Qty.
+        - ATT375
+        # Mount
+        - ATT556
+        # Number of Batteries
+        - ATT714730
+        # Number of Bulbs
+        - ATT714706
+        # Number of Light Settings
+        - ATT714708
+        # Number of Lumens per Setting
+        - ATT714709
+        # On sale
+        - ATT27964
+        # Overall Weight
+        - ATT584731
+        # Overall Width
+        - ATT584730
+        # Packaging
+        - ATT923
+        # Power Source
+        - ATT714712
+        # Primary_SalesOrg
+        - ATT751760
+        # Product Group
+        - ATT799771
+        # Product Name
+        - ATT344
+        # ProductUrl
+        - ATT779366
+        # Table Description
+        - ATT180
+        # Replaceable Battery
+        - ATT714715
+        # Range of Pivot (degrees)
+        - ATT714696
+        # Replaceable Bulbs
+        - ATT714707
+        # Rechargeable
+        - ATT714716
+        # SalesOrg
+        - SalesOrg
+        # SAP Replacement Product Elsewhere ?
+        - ATT703620
+        # Set?
+        - Set
+        # Set Components
+        - ATT674831
+        # SKU Overview
+        - ATT17711
+        # SubFamily
+        - ATT662384
+        # Table Display Sequence
+        - Table Display Sequence
+        # Table Display Sequence – SATA
+        - ATT664496
+        # Table Display Sequence – SATA Mini
+        - ATT670298
+        # Table Name
+        - Table Name
+        # Table Sort Order
+        - Table Sort Order
+        # Table Sort Order Set Components
+        - Table Sort Order Set Components
+        # Units of Measure
+        - UnitsOfMeasure
+        # UNSPSC_V7.0901
+        - UNSPSC_V7.0901
+        # Used on - Cross-Reference Elsewhere
+        - ATT575
+        # UPC
+        - ATT539
+        # Voltage
+        - ATT435
+        # Waterproof
+        - ATT714722
+        # Web New Product - Elsewhere
+        - ATT17339
+        # Web Featured Product - Elsewhere
+        - ATT16491
+        # Web Display Sort Order
+        - ATT15738
+        # Weight
+        - ATT439
+        # Weight (SAP)
+        - WeightSAP
+        # Weight - Ounces
+        - ATT540
+        # Width of Light Section
+        - ATT714702
+        # Works with
+        - ATT789979
+    -
+      plugin: machine_name
+    -
+      plugin: make_unique_entity_field
+      entity_type: taxonomy_vocabulary
+      field: vid
+      length: 32
+  name: remote_name
+  label: remote_name
+  weight: constants/WEIGHT
+  description:
+    plugin: concat
+    source:
+      - constants/DESCRIPTION_PREFIX
+      - constants/COLON
+      - remote_id
+destination:
+  plugin: entity:taxonomy_vocabulary
+migration_dependencies: {}
+
+

@@ -1,24 +1,437 @@
-# Main theme library.
+# Library naming structure
+#
+# library--{library-name}
+#   Use library naming structure for external libraries that will then be used as dependencies of other libraries.
+#
+# component--{component-name}
+#   Use component naming structure for reusable items that aren't necessarily entity-specific. Include these as
+#   dependencies on the entity-specific libraries.
+#
+# {entity-type}--{view-mode}
+# {entity-type}--{view-mode}--{bundle}
+#   Use entity naming structure to allow the entities to automatically attach styles when rendered.
+#
+# NOTE: Entity CSS and JS files that are included in multiple different entity-specific libraries, should probably be
+#       broken into the component structure listed above and added as a dependency on the entity-specific library.
+#
+
+# ========= Global ========= #
+
+# === Global: Base === #
 global:
-  js:
-    js/crescenttool.js: {}
+  version: 1.0
   css:
-    base:
-      css/base/elements.css: {}
-    component:
-      css/components/block.css: {}
-      css/components/breadcrumb.css: {}
-      css/components/field.css: {}
-      css/components/form.css: {}
-      css/components/header.css: {}
-      css/components/menu.css: {}
-      css/components/messages.css: {}
-      css/components/node.css: {}
-      css/components/sidebar.css: {}
-      css/components/table.css: {}
-      css/components/tabs.css: {}
-      css/components/buttons.css: {}
-    layout:
-      css/layouts/layout.css: {}
     theme:
-      css/theme/print.css: { media: print }
+      //use.typekit.net/ijc5xgl.css: { type: external }
+
+      css/main.css : {}
+  js:
+    js/main.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - crescenttool/library--price-spider
+
+
+# === Global: Library Overrides === #
+blazy:
+  version: 1.x
+  css:
+    component:
+      css/contrib-overrides/blazy/modifications.css: {}
+
+system-base--ajax:
+  version: 1.x
+  css:
+    component:
+      css/contrib-overrides/system/ajax-progress.module.css: {}
+
+webform-flexbox:
+  version: 1.x
+  css:
+    component:
+      css/contrib-overrides/webform/webform-flexbox.css: {}
+
+# === Global: External Libraries === #
+library--jquery-common-keydown:
+  version: 1.x
+  js:
+    //cdn.jsdelivr.net/npm/jquery-common-keydown@1.0.1/jquery.commonkeydown.min.js: { type: external, minified: true }
+
+library--jquery-grid-navigation:
+  version: 1.x
+  js:
+    //cdn.jsdelivr.net/npm/jquery-grid-navigation@1.0.1/jquery.gridnavigation.min.js: { type: external, minified: true }
+
+library--jquery-linear-navigation:
+  version: 1.x
+  js:
+    //cdn.jsdelivr.net/npm/jquery-linear-navigation@1.0.1/jquery.linearnavigation.min.js: { type: external, minified: true }
+
+library--jquery-prevent-scroll-keys:
+  version: 1.x
+  js:
+    //cdn.jsdelivr.net/npm/jquery-prevent-scroll-keys@1.0.1/jquery.preventscrollkeys.min.js: { type: external, minified: true }
+
+library--jquery-roving-tabindex:
+  version: 1.x
+  js:
+    //cdn.jsdelivr.net/npm/jquery-roving-tabindex@1.0.1/jquery.rovingtabindex.min.js: { type: external, minified: true }
+  dependencies:
+    - core/jquery
+    - crescenttool/library--jquery-common-keydown
+    - crescenttool/library--jquery-grid-navigation
+    - crescenttool/library--jquery-linear-navigation
+    - crescenttool/library--jquery-prevent-scroll-keys
+
+library--swiper:
+  version: 1.x
+  css:
+    component:
+      //cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css: { type: external }
+      css/contrib-overrides/swiper/swiper.css: {}
+  js:
+    //cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js: { type: external, minified: true }
+    js/contrib-overrides/swiper/swiper.js: {weight: -10}
+  dependencies:
+    - core/jquery
+
+library--price-spider:
+  version: 1.x
+  js:
+    //cdn.pricespider.com/1/lib/ps-widget.js: { type: external, attributes: { async: true } }
+
+# ========= Block ========= #
+
+# Global #
+#block:
+#  version: 1.x
+#  css:
+#    component:
+#      css/libraries/block/default.css: {}
+
+block--core--local-tasks-block:
+  version: 1.x
+  css:
+    component:
+      css/libraries/block/local-tasks.css: {}
+
+block--core--page-title-block:
+  version: 1.x
+  css:
+    component:
+      css/libraries/block/page-title-block.css: {}
+
+block--system--system-breadcrumb-block:
+  version: 1.x
+  css:
+    component:
+      css/libraries/block/breadcrumbs.css: {}
+
+
+
+# ========= Forms ========= #
+
+# Global #
+#form:
+#  version: 1.x
+#  css:
+#    component:
+#      css/libraries/form/default.css: {}
+
+
+
+# ========= Media ========= #
+
+# === Media: Teaser === #
+media--teaser:
+  version: 1.x
+  css:
+    component:
+      css/libraries/media/teaser.css: {}
+
+
+
+# ========= Nodes ========= #
+
+# === Node: Full === #
+
+node--full:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/full.css: {}
+
+node--full--product:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/full--product.css: { }
+  js:
+    js/libraries/node/full--product.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - crescenttool/library--swiper
+    - crescenttool/library--jquery-roving-tabindex
+
+# === Node: Teaser === #
+
+node--teaser--product:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/teaser--product.css: { }
+
+# ========= Paragraphs ========= #
+
+# === Paragraph: Full === #
+
+# Global #
+#paragraph--full:
+#  version: 1.x
+#  css:
+#    component:
+#      css/libraries/paragraph/full.css: {}
+
+# Accordion #
+paragraph--full--accordion:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--accordion.css: {}
+  js:
+    js/libraries/paragraph/full--accordion.js: {weight: -10}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - crescenttool/library--jquery-roving-tabindex
+
+# Content #
+paragraph--full--content:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--content.css: {}
+
+# Content Callout #
+paragraph--full--content-callout:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--content-callout.css: {}
+
+# Hero #
+paragraph--full--hero:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--hero.css: {}
+  js:
+    js/libraries/paragraph/full--hero.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - crescenttool/library--swiper
+
+# Hero Slide #
+paragraph--full--hero-slide:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--hero-slide.css: {}
+  js:
+    js/libraries/paragraph/full--hero-slide.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
+# Featured: Content #
+paragraph--full--featured-content:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--featured-content.css: {}
+paragraph--full--featured-content--layout-grid:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--featured-content--layout-grid.css: {}
+  dependencies:
+    - crescenttool/paragraph--full--featured-content
+paragraph--full--featured-content--layout-list:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--featured-content--layout-list.css: {}
+  dependencies:
+    - crescenttool/paragraph--full--featured-content
+paragraph--full--featured-content--layout-masonry:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--featured-content--layout-masonry.css: {}
+  js:
+    js/libraries/paragraph/full--featured-content--layout-masonry.js: {weight: -10}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - crescenttool/paragraph--full--featured-content
+
+# Featured: Links #
+paragraph--full--featured-links:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--featured-links.css: {}
+
+# Featured: Media #
+paragraph--full--featured-media:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--featured-media.css: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+paragraph--full--featured-media--layout-full:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--featured-media--layout-full.css: {}
+  dependencies:
+    - crescenttool/paragraph--full--featured-media
+paragraph--full--featured-media--layout-grid:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--featured-media--layout-grid.css: {}
+  dependencies:
+    - crescenttool/paragraph--full--featured-media
+paragraph--full--featured-media--layout-masonry:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--featured-media--layout-masonry.css: {}
+  js:
+    js/libraries/paragraph/full--featured-media--layout-masonry.js: {weight: -10}
+  dependencies:
+    - crescenttool/paragraph--full--featured-media
+paragraph--full--featured-media--layout-slider:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--featured-media--layout-slider.css: {}
+  js:
+    js/libraries/paragraph/full--featured-media--layout-slider.js: {}
+  dependencies:
+    - crescenttool/paragraph--full--featured-media
+    - crescenttool/library--swiper
+
+# Product Slider #
+paragraph--full--product-slider:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--product-slider.css: {}
+  js:
+    js/libraries/paragraph/full--product-slider.js: { }
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - crescenttool/library--swiper
+
+# Pull Quote #
+paragraph--full--pullquote:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--pullquote.css: {}
+
+# Section #
+paragraph--full--section:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--section.css: {}
+
+# Tabs #
+paragraph--full--tabs:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--tabs.css: {}
+  js:
+    js/libraries/paragraph/full--tabs.js: {weight: -10}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - crescenttool/library--jquery-roving-tabindex
+
+
+
+# ========= Region ========= #
+
+# Global #
+region:
+  version: 1.x
+  css:
+    component:
+      css/libraries/region/default.css: {}
+
+# Header #
+region--header:
+  version: 1.x
+  css:
+    component:
+      css/libraries/region/header.css: {}
+  js:
+    js/libraries/region/header.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
+# Footer #
+region--footer-first:
+  version: 1.x
+  css:
+    component:
+      css/libraries/region/footer.css: {}
+
+# ========= Views ========= #
+
+view--related-products:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/related-products.css: {}
+  js:
+    js/libraries/view/related-products.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - crescenttool/library--swiper
+
+# ========= Forms ========= #
+webform--warranty-replacement-form:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--accordion.css: { }
+  js:
+    js/libraries/webform/form--accordion.js: {weight: -10}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - crescenttool/library--jquery-roving-tabindex

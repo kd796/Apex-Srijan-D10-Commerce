@@ -1,0 +1,196 @@
+uuid: 7812ccc3-3fda-4b22-a13e-6ec40432a430
+langcode: en
+status: true
+dependencies: {  }
+id: crescenttool_product_attributes
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: crescenttool
+label: 'Product Attributes'
+source:
+  constants:
+    DESCRIPTION_PREFIX: 'PIM Attribute ID'
+    COLON: ' : '
+    WEIGHT: 0
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: 'http://www.stibosystems.com/step'
+  item_selector: /STEP-ProductInformation/AttributeList/Attribute
+  fields:
+    -
+      name: remote_id
+      label: ID
+      selector: '@ID'
+    -
+      name: remote_name
+      label: Name
+      selector: Name
+  ids:
+    remote_id:
+      type: string
+process:
+  vid:
+    -
+      plugin: skip_on_value
+      source: remote_id
+      method: row
+      value:
+        - asset.size
+        - asset.uploaded
+        - asset.extension
+        - asset.mime-type
+        - asset.compression
+        - asset.xdpi
+        - asset.class
+        - asset.pixel-width
+        - asset.colorspace
+        - asset.profile
+        - asset.ydpi
+        - asset.format
+        - asset.pixel-height
+        - asset.width
+        - asset.height
+        - asset.depth
+        - asset.samples
+        - asset.colors
+        - asset.dsc-conformance
+        - asset.creator
+        - asset.filename
+        - asset.format-version
+        - asset.extra-samples
+        - asset.gamma
+        - asset.pages
+        - ATT100
+        - ATT101
+        - ATT102
+        - ATT103
+        - ATT104
+        - ATT105
+        - ATT106
+        - ATT107
+        - ATT108
+        - ATT109
+        - ATT921
+        - BaseUnitOfMeasure
+        - ATT714714
+        - ATT714731
+        - ATT714721
+        - ATT714704
+        - Brand
+        - ATT745346
+        - ATT714693
+        - CasePackQty
+        - ATT738
+        - ATT704222
+        - 'Catalog Number'
+        - ATT800719
+        - ATT714717
+        - ATT714713
+        - ATT714732
+        - ATT776
+        - ATT777459
+        - ATT938
+        - ATT170
+        - ATT663262
+        - ATT919
+        - ATT672479
+        - CustomerPrice
+        - CurrencyCode
+        - DeliveryUnit
+        - SAP_Description
+        - ATT22025
+        - 'Display Sequence'
+        - DistChannel
+        - DivCode
+        - ATT714723
+        - ATT669088
+        - ExternalVideoURL
+        - ATT207
+        - ATT210
+        - ATT714694
+        - ATT932
+        - ATT714719
+        - ATT737269
+        - ATT583415
+        - ATT583415
+        - ATT714701
+        - ATT714703
+        - ATT714705
+        - ListPrice
+        - ATT593
+        - ATT714718
+        - MUSAICON
+        - ATT595
+        - 'SAP Sales Org Status'
+        - null
+        - 'SAP Material Status'
+        - ATT375
+        - ATT556
+        - ATT714730
+        - ATT714706
+        - ATT714708
+        - ATT714709
+        - ATT27964
+        - ATT584731
+        - ATT584730
+        - ATT923
+        - ATT714712
+        - ATT751760
+        - ATT799771
+        - ATT344
+        - ATT779366
+        - ATT180
+        - ATT714715
+        - ATT714696
+        - ATT714707
+        - ATT714716
+        - SalesOrg
+        - ATT703620
+        - Set
+        - ATT674831
+        - ATT17711
+        - ATT662384
+        - 'Table Display Sequence'
+        - ATT664496
+        - ATT670298
+        - 'Table Name'
+        - 'Table Sort Order'
+        - 'Table Sort Order Set Components'
+        - UnitsOfMeasure
+        - UNSPSC_V7.0901
+        - ATT575
+        - ATT539
+        - ATT435
+        - ATT714722
+        - ATT17339
+        - ATT16491
+        - ATT15738
+        - ATT439
+        - WeightSAP
+        - ATT540
+        - ATT714702
+        - ATT789979
+    -
+      plugin: machine_name
+    -
+      plugin: make_unique_entity_field
+      entity_type: taxonomy_vocabulary
+      field: vid
+      length: 32
+  name: remote_name
+  label: remote_name
+  weight: constants/WEIGHT
+  description:
+    plugin: concat
+    source:
+      - constants/DESCRIPTION_PREFIX
+      - constants/COLON
+      - remote_id
+destination:
+  plugin: 'entity:taxonomy_vocabulary'
+migration_dependencies: {  }

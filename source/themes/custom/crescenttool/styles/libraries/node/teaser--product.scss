@@ -1,0 +1,115 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Node: Teaser Product
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.node--type-product.node--view-mode-teaser {
+  width: 25%;
+
+  .node__inner {
+    .node__content {
+      border-top: 1px solid $gray-40;
+      border-left: 1px solid $gray-40;
+      border-right: 1px solid $gray-40;
+      transition: $transition-base;
+
+      @include media('<md') {
+        border: 0;
+      }
+
+      .node__listing-image {
+        @include flex();
+        @include flex-x(align-items, center);
+        height: 245px;
+        display: flex;
+
+        @include media('<md') {
+          height: 160px;
+        }
+
+        .media {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+        }
+
+        @include media('<md') {
+          .media {
+            outline: 2px solid $primary-orange;
+            outline-offset: -2px;
+          }
+        }
+      }
+
+      .node__content-container {
+        padding: 1rem;
+      }
+
+      .node__long-description {
+        min-height: rem(195px);
+
+        @include media('<md') {
+          min-height: rem(120px);
+        }
+
+        .field--name-field-long-description {
+          @include type-header(h4, black, included);
+          margin-top: 0;
+
+          @include media('<md') {
+            font-size:  rem(16px);
+            line-height: rem(20px);
+          }
+        }
+      }
+
+      .node__sku {
+        font-size: rem(14px);
+        margin: 0;
+
+        @include media('<md') {
+          font-size: rem(12px);
+        }
+      }
+    }
+
+    .node__buy-now-button {
+      @include btn(primary);
+
+      box-sizing: border-box;
+      display: inline-block !important;
+      float: none;
+      font-size: 1rem;
+      transition: $transition-base;
+      width: 100%;
+
+      &:hover,
+      &:focus {
+        color: $primary-orange;
+        background-color: $black;
+      }
+    }
+  }
+
+  @include on-event {
+    .node__inner {
+      box-shadow: 0 0 16px 5px rgba(0, 0, 0, 0.2);
+      outline: 2px solid $black;
+      outline-offset: -2px;
+      @include media('<md') {
+        box-shadow: none;
+        outline: none;
+      }
+    }
+  }
+}

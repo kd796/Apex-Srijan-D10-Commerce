@@ -1,0 +1,94 @@
+// -----------------------------------------------------------------------------
+// Base: Typography
+// Applies global typography variables and mixins to elements and classes
+// -----------------------------------------------------------------------------
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.type-header--h1,
+.type-header--h2,
+.type-header--h3,
+.type-header--h4,
+.type-header--h5,
+.type-header--h6 {
+  @include type-header(global, null, included);
+}
+
+h1,
+.type-header--h1 {
+  @include type-header(h1);
+}
+
+h2,
+.type-header--h2 {
+  @include type-header(h2);
+}
+
+h3,
+.type-header--h3 {
+  @include type-header(h3);
+}
+
+h4,
+.type-header--h4 {
+  @include type-header(h4);
+}
+
+h5,
+.type-header--h5 {
+  @include type-header(h5);
+}
+
+h6,
+.type-header--h6 {
+  @include type-header(h6);
+}
+
+a {
+  @include link-base();
+}
+
+p {
+  margin: 0 0 1.5rem;
+
+  a {
+    @include link-underline(full);
+  }
+}
+
+b,
+strong {
+  font-weight: $fw-black;
+}
+
+blockquote {
+  margin: 0;
+  padding: 0;
+}
+
+code {
+  background-color: $color-light-grey;
+  display: block;
+  margin: $gap-vertical-sm 0 $gap-vertical-md;
+  padding: 1rem;
+  white-space: pre-wrap;
+}
+
+ol,
+ul {
+  list-style-position: outside;
+  margin: 1rem 0;
+  padding: 0 0 0 1rem;
+
+  &ol {
+    list-style-type: decimal;
+  }
+
+  &ul {
+    list-style-type: disc;
+  }
+}

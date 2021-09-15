@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.paragraph.preview
     - field.field.paragraph.hero_slide.field_class_custom
     - field.field.paragraph.hero_slide.field_content
+    - field.field.paragraph.hero_slide.field_link
     - field.field.paragraph.hero_slide.field_media_background
     - field.field.paragraph.hero_slide.field_style
     - field.field.paragraph.hero_slide.field_title
@@ -43,8 +44,6 @@ third_party_settings:
         open: false
         required_fields: false
       label: Settings
-_core:
-  default_config_hash: PUVyKrK1jIG39_DP3xgKiW7c9XW1uZdACz-58Okh0Zs
 id: paragraph.hero_slide.preview
 targetEntityType: paragraph
 bundle: hero_slide
@@ -102,4 +101,5 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-hidden: {  }
+hidden:
+  field_link: true

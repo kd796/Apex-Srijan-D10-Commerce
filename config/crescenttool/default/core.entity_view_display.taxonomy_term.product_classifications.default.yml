@@ -1,0 +1,30 @@
+uuid: fa67b70e-7e15-407a-b648-a53bfa18c4e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.product_classifications.field_classification_id
+    - taxonomy.vocabulary.product_classifications
+  module:
+    - text
+id: taxonomy_term.product_classifications.default
+targetEntityType: taxonomy_term
+bundle: product_classifications
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_classification_id:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

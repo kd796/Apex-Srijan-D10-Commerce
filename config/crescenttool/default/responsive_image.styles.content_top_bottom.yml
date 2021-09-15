@@ -1,0 +1,27 @@
+uuid: 7f8693cd-d338-4200-bdd4-58ba91508374
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.huge_landscape_3x1
+    - image.style.large_landscape_3x1
+    - image.style.medium_landscape_3x1
+    - image.style.small_landscape_3x2
+  theme:
+    - crescenttool
+id: content_top_bottom
+label: 'Content - Top/Bottom'
+image_style_mappings:
+  -
+    breakpoint_id: crescenttool.All
+    multiplier: 1x
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: '(min-width: 75em) 75em, 100vw'
+      sizes_image_styles:
+        - huge_landscape_3x1
+        - large_landscape_3x1
+        - medium_landscape_3x1
+        - small_landscape_3x2
+breakpoint_group: crescenttool
+fallback_image_style: medium_landscape_3x1

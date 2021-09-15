@@ -1,0 +1,60 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: Featured Content - Grid layout
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.component-featured-content--layout-grid {
+
+  .component-featured-content__list {
+    @include grid-row();
+    @include grid-row-gutters(
+      $gutter-horizontal: false,
+      $gutter-vertical: true,
+      $gutter-vertical-size: wide
+    );
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @include media('>sm', '<=xl') {
+      @include grid-row-gutters(
+        $gutter-horizontal-size: narrow,
+        $gutter-vertical: true,
+        $gutter-vertical-size: wide
+      );
+    }
+
+    @include media('>xl') {
+      @include grid-row-gutters(
+        $gutter-horizontal-size: wide,
+        $gutter-vertical: true,
+        $gutter-vertical-size: wide
+      );
+    }
+
+    .component-featured-content__list-item {
+      @include grid-col(12);
+      @include grid-clear-vertical-spacing();
+
+      @include media('>=sm', '<lg') {
+        @include grid-col(6);
+        @include grid-clear-vertical-spacing(2);
+      }
+
+      @include media('>=lg') {
+        @include grid-col(4);
+        @include grid-clear-vertical-spacing(3);
+      }
+    }
+  }
+}

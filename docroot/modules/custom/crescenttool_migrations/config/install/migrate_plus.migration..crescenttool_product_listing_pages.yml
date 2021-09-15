@@ -1,0 +1,78 @@
+# Migration configuration for crescenttool_product_listing_pages content.
+id: crescenttool_product_listing_pages
+label: crescenttool Product Listing Pages
+migration_group: crescenttool
+source:
+  constants:
+    bool_0: 0
+    bool_1: 1
+    uid_root: 1
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: "http://www.stibosystems.com/step"
+  item_selector: /STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 1"]
+  fields:
+    - name: remote_id
+      label: ID
+      selector: '@ID'
+    - name: remote_name
+      label: Classification Name
+      selector: Name
+  ids:
+    remote_id:
+      type: string
+process:
+  type:
+    plugin: default_value
+    default_value: product_listing
+  title: remote_name
+  sticky: constants/bool_0
+  promote: constants/bool_1
+  uid: constants/uid_root
+  name:
+    -
+      plugin: skip_on_empty
+      method: row
+      source: remote_name
+    -
+      plugin: skip_on_value
+      method: row
+      not_equals: false
+      value:
+        - Auto Specialty
+        - Cutting Tools
+        - Tool Storage
+        - Impact Products
+        - Ratchets and Drive Tools
+        - Torque Products
+        - Screwdrivers and Nutdrivers
+        - Wrenches
+        - Pliers
+        - Pry Bars
+        - Striking and Struck
+        - Measuring and Inspection
+        - Pullers
+        - Sockets
+        - Lighting
+        - Shop Assist Equipment
+        - Tool Sets
+        - Tethered Products
+        - Extraction Tools
+  # Product Classifications
+  product_classifications_array:
+    -
+      plugin: get_all_product_classifications
+      source: remote_name
+  field_product_classifications:
+    plugin: sub_process
+    source: '@product_classifications_array'
+    include_source: true
+    process:
+      vocabulary_id: vid
+      target_id: target_id
+destination:
+  plugin: entity:node
+migration_dependencies: {}

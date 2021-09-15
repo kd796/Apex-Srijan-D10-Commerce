@@ -7,8 +7,6 @@ dependencies:
     - media.type.remote_video
   module:
     - video_embed_field
-_core:
-  default_config_hash: ruuxdnNQ8iG_T3by4-0I36t0WPVjeUaecWifeRh6tWI
 id: media.remote_video.field_media_video_embed_field
 field_name: field_media_video_embed_field
 entity_type: media
@@ -20,5 +18,8 @@ translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  allowed_providers: {  }
+  allowed_providers:
+    vimeo: vimeo
+    youtube: youtube
+    youtube_playlist: youtube_playlist
 field_type: video_embed_field

@@ -5,12 +5,14 @@ dependencies:
   config:
     - field.field.paragraph.hero_slide.field_class_custom
     - field.field.paragraph.hero_slide.field_content
+    - field.field.paragraph.hero_slide.field_link
     - field.field.paragraph.hero_slide.field_media_background
     - field.field.paragraph.hero_slide.field_style
     - field.field.paragraph.hero_slide.field_title
     - paragraphs.paragraphs_type.hero_slide
   module:
     - field_group
+    - link
     - media_library
     - text
 third_party_settings:
@@ -26,8 +28,7 @@ third_party_settings:
         id: ''
         classes: ''
       label: Settings
-_core:
-  default_config_hash: gwYS-B0XScBHGZrFQXWLc4ub5sj7qlSVzcP21ft6x5M
+      region: content
 id: paragraph.hero_slide.default
 targetEntityType: paragraph
 bundle: hero_slide
@@ -49,10 +50,19 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
+  field_link:
+    weight: 3
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   field_media_background:
     type: media_library_widget
-    weight: 3
-    settings: {  }
+    weight: 5
+    settings:
+      media_types: {  }
     third_party_settings: {  }
     region: content
   field_style:

@@ -1,21 +1,23 @@
 name: Crescenttool
 type: theme
 base theme: bazo
-description: A flexible theme with a responsive, mobile-first layout.
+description: A D9 theme for Crescenttool.
 package: ATG
 core: 8.x
 core_version_requirement: ^8 || ^9
+logo: icons/logo.svg
 libraries:
   - crescenttool/global
+libraries-extend:
+  webform/webform.element.flexbox:
+    - crescenttool/webform-flexbox
+
 regions:
-  header: 'Header'
-  primary_menu: 'Primary menu'
-  secondary_menu: 'Secondary menu'
   page_top: 'Page top'
+  header: 'Header'
+  pre_content: 'Pre-content'
+  content: Content
+  post_content: 'Post-content'
+  footer_first: 'Footer: First'
+  footer_second: 'Footer: Second'
   page_bottom: 'Page bottom'
-  featured: 'Featured'
-  breadcrumb: 'Breadcrumb'
-  content: 'Content'
-  sidebar_first: 'Sidebar first'
-  sidebar_second: 'Sidebar second'
-  footer: 'Footer'
