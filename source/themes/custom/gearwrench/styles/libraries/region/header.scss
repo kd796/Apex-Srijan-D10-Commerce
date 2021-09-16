@@ -678,17 +678,6 @@ $mobile-menu-item-button-height: 7rem;
         &.menu-item--in-active-trail {
           padding-left: 0;
           padding-right: 0;
-        }
-
-        &:first-of-type {
-          margin-left: 0;
-        }
-
-        &:hover {
-          box-shadow: 0 -5px 0 0 $black inset;
-        }
-
-        &.menu-item--in-active-trail {
           background-color: $black;
 
           &::after,
@@ -722,24 +711,25 @@ $mobile-menu-item-button-height: 7rem;
             }
 
             &::after {
-              right: rem(-20px);
+              right: rem(-15px);
             }
+          }
 
-            @include media('<=xl') {
-              &::before,
+          &.menu-item--has-children {
+            .menu-item__link--depth-0 {
               &::after {
-                width: rem(20px);
-              }
-
-              &::before {
-                left: rem(-10px);
-              }
-
-              &::after {
-                right: rem(-28px);
+                right: rem(-35px);
               }
             }
           }
+        }
+
+        &:first-of-type {
+          margin-left: 0;
+        }
+
+        &:hover {
+          box-shadow: 0 -5px 0 0 $black inset;
         }
       }
 
