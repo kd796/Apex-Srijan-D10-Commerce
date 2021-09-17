@@ -8,6 +8,7 @@
         return new Swiper($listWrapper, {
           slidesPerView: 1,
           slidesPerGroup: 1,
+          loop: true,
           navigation: {
             nextEl: $buttonNext,
             prevEl: $buttonPrev
@@ -49,6 +50,7 @@
         return new Swiper($listWrapper, {
           slidesPerView: 1,
           slidesPerGroup: 1,
+          loop: true,
           navigation: {
             nextEl: $buttonNext,
             prevEl: $buttonPrev
