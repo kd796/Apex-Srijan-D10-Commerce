@@ -4,4 +4,4 @@
  * Display an iframe with alterable components.
  */
 #}
-<iframe{{ attributes }}{% if url is not empty %} src="" data-src="{{ url }}{% if query is not empty %}?{{ query | url_encode }}{% endif %}{% if fragment is not empty %}#{{ fragment }}{% endif %}"{% endif %}></iframe>
+<iframe{{ attributes }} src="{{ url }}" {% if query is not empty %}?{{ query | url_encode }}{% endif %}{% if fragment is not empty %}#{{ fragment }}{% endif %}"></iframe>
