@@ -2,15 +2,15 @@
   'use strict';
 
   Drupal.behaviors.componentMediaLayoutSlider = {
-    initListSlider: function ($listWrapper, $swiperPagination) {
+    initListSlider: function ($listWrapper, $swiperPagination, $buttonPrev, $buttonNext) {
       if (window.matchMedia('(max-width: 768px)').matches) {
         // eslint-disable-next-line
         return new Swiper($listWrapper, {
           slidesPerView: 1,
           slidesPerGroup: 1,
           navigation: {
-            nextEl: '.component-featured-media__button-next',
-            prevEl: '.component-featured-media__button-prev'
+            nextEl: $buttonNext,
+            prevEl: $buttonPrev
           },
           on: {
             init: function () {
@@ -50,8 +50,8 @@
           slidesPerView: 1,
           slidesPerGroup: 1,
           navigation: {
-            nextEl: '.component-featured-media__button-next',
-            prevEl: '.component-featured-media__button-prev'
+            nextEl: $buttonNext,
+            prevEl: $buttonPrev
           },
           on: {
             init: function () {
@@ -111,32 +111,37 @@
 
         // Initialize swiper.
         if ($component.find('figure').length > 1) {
-          $list.after('<button class="component-featured-media__button component-featured-media__button-next swiper-button-next"></button>');
-          $list.before('<button class="component-featured-media__button component-featured-media__button-prev swiper-button-prev"></button>');
-          $listSwiper = Drupal.behaviors.componentMediaLayoutSlider.initListSlider($listWrapper, $swiperPagination);
+          // Create new container and wrap sides and buttons
+          $listWrapper.wrapAll('<div class="component-featured-media__list-container" />')
+            .before('<button class="component-featured-media__button component-featured-media__button-prev swiper-button-prev"></button>')
+            .after('<button class="component-featured-media__button component-featured-media__button-next swiper-button-next"></button>');
+
+          var $buttonPrev = $component.find('.component-featured-media__button-prev');
+          var $buttonNext = $component.find('.component-featured-media__button-next');
+          $listSwiper = Drupal.behaviors.componentMediaLayoutSlider.initListSlider($listWrapper, $swiperPagination, $buttonPrev, $buttonNext);
 
           $(window).resize(function () {
             if (window.matchMedia('(max-width: 768px)').matches) {
               if (typeof $listSwiper !== 'undefined') {
                 $listSwiper.destroy(true, true);
-                $listSwiper = Drupal.behaviors.componentMediaLayoutSlider.initListSlider($listWrapper, $swiperPagination);
+                $listSwiper = Drupal.behaviors.componentMediaLayoutSlider.initListSlider($listWrapper, $swiperPagination, $buttonPrev, $buttonNext);
               }
             }
             else {
               if (typeof $listSwiper !== 'undefined') {
                 $listSwiper.destroy(true, true);
-                $listSwiper = Drupal.behaviors.componentMediaLayoutSlider.initListSlider($listWrapper, $swiperPagination);
+                $listSwiper = Drupal.behaviors.componentMediaLayoutSlider.initListSlider($listWrapper, $swiperPagination, $buttonPrev, $buttonNext);
               }
             }
           });
         }
 
         $($component).on('click', '.component-featured-media__pseudo-button-prev', function () {
-          $('.component-featured-media__button-prev').trigger('click');
+          $component.find('.component-featured-media__button-prev').trigger('click');
         });
 
         $($component).on('click', '.component-featured-media__pseudo-button-next', function () {
-          $('.component-featured-media__button-next').trigger('click');
+          $component.find('.component-featured-media__button-next').trigger('click');
         });
       });
     }
