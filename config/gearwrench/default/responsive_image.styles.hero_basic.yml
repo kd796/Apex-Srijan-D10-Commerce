@@ -1,0 +1,25 @@
+uuid: 17e53bf8-239e-458e-8086-c4da86a75cc3
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.hero_banner
+    - image.style.hero_banner_mobile
+  theme:
+    - gearwrench
+_core:
+  default_config_hash: '-d1sO-6egFuPPJp3QqF6i3jwDeO22WofLVW6vLhcZhE'
+id: hero_basic
+label: 'Hero - Basic'
+image_style_mappings:
+  -
+    breakpoint_id: gearwrench.All
+    multiplier: 1x
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: 100vw
+      sizes_image_styles:
+        - hero_banner
+        - hero_banner_mobile
+breakpoint_group: gearwrench
+fallback_image_style: hero_banner

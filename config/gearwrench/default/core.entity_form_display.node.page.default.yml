@@ -5,12 +5,14 @@ dependencies:
   config:
     - field.field.node.page.body
     - field.field.node.page.field_components
+    - field.field.node.page.field_link
     - field.field.node.page.field_media
     - field.field.node.page.field_meta_tags
     - node.type.page
   module:
     - field_group
     - limited_field_widgets
+    - link
     - media_library
     - metatag
     - paragraphs
@@ -36,6 +38,7 @@ third_party_settings:
         - title
         - field_media
         - body
+        - field_link
       parent_name: group_tabs
       weight: 16
       format_type: tab
@@ -104,6 +107,14 @@ content:
     third_party_settings:
       limited_field_widgets:
         limit_values: '0'
+    region: content
+  field_link:
+    weight: 14
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
   field_media:
     weight: 12
