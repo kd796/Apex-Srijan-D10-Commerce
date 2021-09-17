@@ -14,19 +14,8 @@
  * Component
  */
 .component-featured-media--layout-slider {
-  .component-featured-media__list-wrapper {
-    box-shadow: 0 0 16px 5px rgba(0, 0, 0, 0.2);
-    margin-bottom: 1.5rem;
-
-    &:not(.swiper-container-initialized) {
-      .component-featured-media__list-item {
-        display: none;
-
-        &:first-child {
-          display: block;
-        }
-      }
-    }
+  .component-featured-media__list-container {
+    position: relative;
 
     .component-featured-media__button {
       background-color: $gray-90;
@@ -80,6 +69,21 @@
       &[aria-disabled='true'] {
         background-color: $gray-30;
         border-color: $gray-30;
+      }
+    }
+  }
+
+  .component-featured-media__list-wrapper {
+    box-shadow: 0 0 16px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1.5rem;
+
+    &:not(.swiper-container-initialized) {
+      .component-featured-media__list-item {
+        display: none;
+
+        &:first-child {
+          display: block;
+        }
       }
     }
   }
