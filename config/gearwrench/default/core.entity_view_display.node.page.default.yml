@@ -5,10 +5,12 @@ dependencies:
   config:
     - field.field.node.page.body
     - field.field.node.page.field_components
+    - field.field.node.page.field_link
     - field.field.node.page.field_media
     - field.field.node.page.field_meta_tags
     - node.type.page
   module:
+    - link
     - metatag
     - user
 _core:
@@ -18,6 +20,18 @@ targetEntityType: node
 bundle: page
 mode: default
 content:
+  field_link:
+    weight: 3
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
   field_media:
     weight: 2
     label: above
