@@ -580,7 +580,7 @@ $mobile-menu-item-button-height: 7rem;
       background-color: $black;
       display: block;
       height: 4.25rem;
-      right: -6.3rem;
+      right: 0;
       opacity: 1;
       position: absolute;
       top: $header-height;
@@ -597,7 +597,7 @@ $mobile-menu-item-button-height: 7rem;
           font-family: $font-brand;
           font-weight: $fw-bold;
           text-transform: uppercase;
-          padding: .25rem 0;
+          padding: .25rem .75rem;
           white-space: nowrap;
 
           height: 70%;
@@ -1157,6 +1157,11 @@ $mobile-menu-item-button-height: 7rem;
     transition: 0.25s;
   }
 }
+
+.user-logged-in .region-header .block--header-search .block__content {
+  right: -6.3rem;
+}
+
 
 /**
  * Offset page since header is fixed.
