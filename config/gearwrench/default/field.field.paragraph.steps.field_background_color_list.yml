@@ -1,0 +1,23 @@
+uuid: dc1479f5-aba8-4c11-8651-5c5c0ec68108
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_background_color_list
+    - paragraphs.paragraphs_type.steps
+  module:
+    - options
+id: paragraph.steps.field_background_color_list
+field_name: field_background_color_list
+entity_type: paragraph
+bundle: steps
+label: 'Background Color'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 'Light Gray'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

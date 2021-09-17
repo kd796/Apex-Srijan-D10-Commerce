@@ -209,22 +209,14 @@ function gearwrench_preprocess_paragraph__steps__full(array &$variables) {
   $paragraph = $variables['paragraph'];
   $paragraphId = $paragraph->id();
 
-  // Process background color if specified.
-  if ($paragraph->hasField('field_background_color') && isset($paragraph->get('field_background_color')->getValue()[0])) {
-    $variables['attributes']['class'][] = 'paragraph-component--background-color';
-  }
-
-  // Add styling to head tag since the color field module doesn't do it.
-  if ($paragraph->hasField('field_background_color') && isset($paragraph->get('field_background_color')->getValue()[0])) {
-
-    $backgroundColor = $paragraph->get('field_background_color')->getValue()[0]['color'];
-    $backgroundOpacity = (isset($paragraph->get('field_background_color')->getValue()[0]['opacity']) ? ($paragraph->get('field_background_color')->getValue()[0]['opacity']) : (1));
-    $backgroundColorStyling = [
-      '#tag' => 'style',
-      '#value' => '.paragraph-component--background-color[data-entity-id="' . $paragraphId . '"]::after { background-color: ' . $backgroundColor . '; opacity: ' . $backgroundOpacity . '; }',
-    ];
-    $variables['#attached']['html_head'][] = [$backgroundColorStyling, 'backgroundColorBeforeStyling-' . $paragraphId];
-
+  // Process background color list if specified.
+  if ($paragraph->hasField('field_background_color_list') && isset($paragraph->get('field_background_color_list')->getValue()[0])) {
+    if ($paragraph->get('field_background_color_list')->getValue()[0]['value'] === 'Light Gray') {
+      $variables['attributes']['class'][] = 'paragraph-component--background-color-lightgray';
+    }
+    elseif ($paragraph->get('field_background_color_list')->getValue()[0]['value'] === 'White') {
+      $variables['attributes']['class'][] = 'paragraph-component--background-color-white';
+    }
   }
 }
 

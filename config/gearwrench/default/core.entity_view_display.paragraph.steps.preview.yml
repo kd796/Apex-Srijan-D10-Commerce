@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.preview
-    - field.field.paragraph.steps.field_background_color
+    - field.field.paragraph.steps.field_background_color_list
     - field.field.paragraph.steps.field_class_custom
     - field.field.paragraph.steps.field_components
     - field.field.paragraph.steps.field_html_anchor
@@ -14,10 +14,12 @@ dependencies:
   module:
     - entity_reference_revisions
     - field_group
+    - options
 third_party_settings:
   field_group:
     group_settings:
       children:
+        - field_background_color_list
         - field_style
         - field_class_custom
         - field_html_anchor
@@ -37,9 +39,16 @@ targetEntityType: paragraph
 bundle: steps
 mode: preview
 content:
+  field_background_color_list:
+    type: list_default
+    weight: 0
+    region: content
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
   field_class_custom:
     type: string
-    weight: 1
+    weight: 2
     region: content
     label: inline
     settings:
@@ -56,7 +65,7 @@ content:
     region: content
   field_html_anchor:
     type: string
-    weight: 2
+    weight: 3
     region: content
     label: inline
     settings:
@@ -64,7 +73,7 @@ content:
     third_party_settings: {  }
   field_style:
     type: entity_reference_label
-    weight: 0
+    weight: 1
     region: content
     label: inline
     settings:
@@ -78,5 +87,4 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-hidden:
-  field_background_color: true
+hidden: {  }

@@ -17,7 +17,8 @@
   @include container-full-width();
   padding: rem(40px) 0;
 
-  &.paragraph-component--background-color {
+  &.paragraph-component--background-color-lightgray,
+  &.paragraph-component--background-color-white {
     position: relative;
 
     .component-steps__content {
@@ -33,6 +34,14 @@
       width: 100%;
       z-index: 0;
     }
+  }
+
+  &.paragraph-component--background-color-lightgray {
+    background-color: $gray-10;
+  }
+
+  &.paragraph-component--background-color-white {
+    background-color: $white;
   }
 
   @include media('>=lg-plus') {

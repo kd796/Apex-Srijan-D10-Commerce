@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.steps.field_background_color
+    - field.field.paragraph.steps.field_background_color_list
     - field.field.paragraph.steps.field_class_custom
     - field.field.paragraph.steps.field_components
     - field.field.paragraph.steps.field_html_anchor
@@ -11,21 +11,19 @@ dependencies:
     - field.field.paragraph.steps.field_title
     - paragraphs.paragraphs_type.steps
   module:
-    - color_field
     - entity_reference_revisions
+    - options
 id: paragraph.steps.default
 targetEntityType: paragraph
 bundle: steps
 mode: default
 content:
-  field_background_color:
-    weight: 5
+  field_background_color_list:
+    weight: 6
     label: above
-    settings:
-      format: hex
-      opacity: true
+    settings: {  }
     third_party_settings: {  }
-    type: color_field_formatter_text
+    type: list_default
     region: content
   field_class_custom:
     weight: 0
