@@ -54,20 +54,15 @@
   }
 
   .field--name-field-media {
-    left: 50%;
+    @include container-full-width();
+
     margin-bottom: 5rem;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    max-width: 100vw;
-    position: relative;
-    right: 50%;
-    width: 100vw;
 
     img {
       height: 256px;
 
       @include media('>=lg') {
-        height: 504px;
+        height: auto;
       }
     }
   }
