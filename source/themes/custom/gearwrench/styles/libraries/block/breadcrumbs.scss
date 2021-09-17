@@ -13,10 +13,25 @@
     }
   }
 
+  .breadcrumb li {
+    font-size: $body-font-size;
+
+    &:nth-child(n+2) {
+      &:before {
+        content: ' / ';
+      }
+    }
+
+    a {
+      color: $color-black;
+      font-size: $body-font-size;
+    }
+  }
+
   a {
-    @include link-base();
-    @include icon(chevron-thin, before);
-    @include type-header(h4, dark, included);
+    //@include link-base();
+    //@include icon(chevron-thin, before);
+    //@include type-header(h4, dark, included);
     text-decoration: none;
 
     &:before {
