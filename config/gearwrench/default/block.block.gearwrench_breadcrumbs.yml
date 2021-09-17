@@ -3,15 +3,19 @@ langcode: en
 status: true
 dependencies:
   module:
+    - block_class
     - system
   theme:
     - gearwrench
+third_party_settings:
+  block_class:
+    classes: breadcrumbs
 _core:
   default_config_hash: oXUb3JZR2WW5VOdw4HrhRicCsq51mCgLfRyvheG68ck
 id: gearwrench_breadcrumbs
 theme: gearwrench
 region: content
-weight: -6
+weight: -5
 provider: null
 plugin: system_breadcrumb_block
 settings:
