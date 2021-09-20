@@ -90,12 +90,11 @@ $tabs-border-width-active: rem(5px);
       }
 
       @include media('<md') {
+        @include container-full-width();
         flex-wrap: nowrap;
         justify-content: center;
         overflow-x: scroll;
         overflow-y: hidden;
-        margin-left: -1rem;
-        margin-right: -1rem;
         -ms-overflow-style: none;
         scrollbar-width: none; // sass-lint:disable-line no-misspelled-properties
 
