@@ -205,19 +205,7 @@ function gearwrench_preprocess_paragraph__content_callout__full(array &$variable
  * Implements hook_preprocess_paragraph__VIEW_MODE() for steps, full.
  */
 function gearwrench_preprocess_paragraph__steps__full(array &$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-  $paragraphId = $paragraph->id();
-
-  // Process background color list if specified.
-  if ($paragraph->hasField('field_background_color_list') && isset($paragraph->get('field_background_color_list')->getValue()[0])) {
-    if ($paragraph->get('field_background_color_list')->getValue()[0]['value'] === 'Light Gray') {
-      $variables['attributes']['class'][] = 'paragraph-component--background-color-lightgray';
-    }
-    elseif ($paragraph->get('field_background_color_list')->getValue()[0]['value'] === 'White') {
-      $variables['attributes']['class'][] = 'paragraph-component--background-color-white';
-    }
-  }
+  // Nothing to see here.
 }
 
 /**

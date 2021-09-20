@@ -3,8 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.steps.field_background_color_list
     - field.field.paragraph.steps.field_class_custom
+    - field.field.paragraph.steps.field_color
     - field.field.paragraph.steps.field_components
     - field.field.paragraph.steps.field_html_anchor
     - field.field.paragraph.steps.field_style
@@ -12,29 +12,29 @@ dependencies:
     - paragraphs.paragraphs_type.steps
   module:
     - entity_reference_revisions
-    - options
 id: paragraph.steps.default
 targetEntityType: paragraph
 bundle: steps
 mode: default
 content:
-  field_background_color_list:
-    weight: 6
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-    region: content
   field_class_custom:
-    weight: 0
+    weight: 1
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
+  field_color:
+    weight: 0
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
   field_components:
-    weight: 4
+    weight: 5
     label: above
     settings:
       view_mode: default
@@ -43,7 +43,7 @@ content:
     type: entity_reference_revisions_entity_view
     region: content
   field_html_anchor:
-    weight: 3
+    weight: 4
     label: above
     settings:
       link_to_entity: false
@@ -51,7 +51,7 @@ content:
     type: string
     region: content
   field_style:
-    weight: 1
+    weight: 2
     label: above
     settings:
       link: true
@@ -59,7 +59,7 @@ content:
     type: entity_reference_label
     region: content
   field_title:
-    weight: 2
+    weight: 3
     label: above
     settings:
       link_to_entity: false

@@ -17,8 +17,8 @@
   @include container-full-width();
   padding: rem(40px) 0;
 
-  &.paragraph-component--background-color-lightgray,
-  &.paragraph-component--background-color-white {
+  &.component-steps--color-light,
+  &.component-steps--color-dark {
     position: relative;
 
     .component-steps__content {
@@ -36,12 +36,22 @@
     }
   }
 
-  &.paragraph-component--background-color-lightgray {
+  &.component-steps--color-light {
     background-color: $gray-10;
+
+    .component-steps__title,
+    .component-step__content {
+      color: $black;
+    }
   }
 
-  &.paragraph-component--background-color-white {
-    background-color: $white;
+  &.component-steps--color-dark {
+    background-color: $black;
+
+    .component-steps__title,
+    .component-step__content {
+      color: $white;
+    }
   }
 
   @include media('>=lg-plus') {

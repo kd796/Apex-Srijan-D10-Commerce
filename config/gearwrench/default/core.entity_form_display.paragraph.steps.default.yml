@@ -3,8 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.steps.field_background_color_list
     - field.field.paragraph.steps.field_class_custom
+    - field.field.paragraph.steps.field_color
     - field.field.paragraph.steps.field_components
     - field.field.paragraph.steps.field_html_anchor
     - field.field.paragraph.steps.field_style
@@ -19,7 +19,7 @@ third_party_settings:
     group_settings:
       children:
         - status
-        - field_background_color_list
+        - field_color
         - field_html_anchor
         - field_style
         - field_class_custom
@@ -41,12 +41,6 @@ targetEntityType: paragraph
 bundle: steps
 mode: default
 content:
-  field_background_color_list:
-    weight: 2
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
   field_class_custom:
     weight: 5
     settings:
@@ -54,6 +48,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_color:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_components:
     weight: 2
