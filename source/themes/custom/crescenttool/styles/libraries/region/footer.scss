@@ -168,7 +168,7 @@ $footer-bp-mobile: '<sm';
         width: 100%;
 
         &:hover {
-          background-color: $primary-orange;
+          background-color: $primary-red;
           color: $black;
         }
 
@@ -185,7 +185,7 @@ $footer-bp-mobile: '<sm';
 
 @include media($footer-bp-desktop) {
   .region-footer {
-    background: linear-gradient(to right, $black 50%, $primary-orange 50%);
+    background: linear-gradient(to right, $black 50%, $primary-red 50%);
 
     .region-footer__inner-container {
       @include container();
@@ -269,7 +269,7 @@ $footer-bp-mobile: '<sm';
 
       .region-footer-second {
         @include container-full-width();
-        background-color: $primary-orange;
+        background-color: $primary-red;
         padding: 0 2rem;
         order: 1;
       }

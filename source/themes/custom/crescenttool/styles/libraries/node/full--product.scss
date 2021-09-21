@@ -40,7 +40,7 @@ $tabs-border-width-active: rem(5px);
           @include media('<md') {
             background: none;
             border: 0;
-            color: $primary-orange;
+            color: $primary-red;
             display: block;
             position: absolute;
             top: calc(50% - .5rem);
@@ -79,7 +79,7 @@ $tabs-border-width-active: rem(5px);
         }
 
         .swiper-slide-thumb-active {
-          outline: 2px solid $primary-orange;
+          outline: 2px solid $primary-red;
           outline-offset: -2px;
         }
       }
@@ -92,7 +92,7 @@ $tabs-border-width-active: rem(5px);
         @include media('>md') {
           display: block;
           background: none;
-          background-color: $primary-orange;
+          background-color: $primary-red;
           margin: 0;
           padding: 0;
           top: 0;
@@ -205,7 +205,7 @@ $tabs-border-width-active: rem(5px);
         @include container-full-width();
         @include flex();
         @include flex-x(flex-direction, row);
-        background-color: $primary-orange;
+        background-color: $primary-red;
         height: $header-height;
 
         @include media('<md') {
@@ -467,7 +467,7 @@ $tabs-border-width-active: rem(5px);
       }
 
       @include media('>lg-plus') {
-        background-color: $primary-orange;
+        background-color: $primary-red;
         max-width: rem(455px);
         text-align: left;
         position: relative;
@@ -476,7 +476,7 @@ $tabs-border-width-active: rem(5px);
 
         // Performance Device
         &::after {
-          background-color: $primary-orange;
+          background-color: $primary-red;
           position: absolute;
           content: '';
           width: 30px;
@@ -490,7 +490,7 @@ $tabs-border-width-active: rem(5px);
 
       h4 {
         text-transform: uppercase;
-        color: $primary-orange;
+        color: $primary-red;
 
         @include media('>lg-plus') {
           color: $black;
