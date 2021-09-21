@@ -78,7 +78,7 @@ $mobile-menu-item-button-height: 7rem;
     @include flex;
     @include flex-x(align-items, center);
 
-    background-color: $black;
+    background-color: $primary-red;
     height: 100%;
     padding-right: rem(34px);
     position: relative;
@@ -88,14 +88,12 @@ $mobile-menu-item-button-height: 7rem;
     }
 
     @include media('>lg-plus') {
-      &:not(.block--header-branding-large) {
-        position: absolute;
-      }
+      position: absolute;
     }
 
     // Full width Bleed Element
     &::before {
-      background-color: $black;
+      background-color: $primary-red;
       position: absolute;
       content: '';
       width: 100vw;
@@ -105,19 +103,6 @@ $mobile-menu-item-button-height: 7rem;
       z-index: -1;
     }
 
-    // Performance Device
-    &::after {
-      background-color: $black;
-      position: absolute;
-      content: '';
-      width: 30px;
-      height: 100%;
-      top: 0;
-      right: -15px;
-      z-index: 0;
-      transform: skew(-14deg);
-    }
-
     .site-logo {
       @include link-base();
 
@@ -125,34 +110,13 @@ $mobile-menu-item-button-height: 7rem;
       line-height: 1;
 
       svg {
-        height: $header-logo-performance-height-large;
+        height: $header-logo-height;
         vertical-align: middle;
 
         @include media('<=lg-plus') {
           height: $header-logo-height;
         }
       }
-    }
-
-    @include media('>lg-plus') {
-      &:not(.block--header-branding-large) {
-        .site-logo {
-          display: block;
-          width: rem(56px);
-          overflow: hidden;
-        }
-      }
-    }
-  }
-
-  // Larger performance device and logo at top
-  .block--header-branding-large {
-    @include media('>lg-plus') {
-      height: rem(100px);
-    }
-
-    @include media('>=gr') {
-      margin-left: rem(-100px);
     }
   }
 
@@ -199,7 +163,7 @@ $mobile-menu-item-button-height: 7rem;
     }
 
     .menu-item {
-      color: $black;
+      color: $white;
       font-family: $font-brand;
       font-size: rem(18px);
       font-weight: $fw-extra-bold;
@@ -233,7 +197,7 @@ $mobile-menu-item-button-height: 7rem;
 
     .menu-item__link {
       display: block;
-      color: $black;
+      color: $white;
 
       &:hover {
         text-decoration: underline;
@@ -329,7 +293,7 @@ $mobile-menu-item-button-height: 7rem;
     }
 
     .featured-tools-menu {
-      background-color: $black;
+      background-color: $primary-dark;
 
       .menu-item__panel-header {
         padding: 2.75rem 0 .5rem;
@@ -365,6 +329,7 @@ $mobile-menu-item-button-height: 7rem;
     display: flex;
     padding-left: 1.5rem;
     position: relative;
+    color: $white;
 
     .block__content-toggle {
       @include icon('globe');
@@ -495,24 +460,7 @@ $mobile-menu-item-button-height: 7rem;
   @include media($header-bp-desktop) {
     .block--header-menu-main {
       @include flex-x(flex, 1);
-      margin-left: rem(360px);
-
-      @include media('<gr') {
-        margin-left: rem(400px);
-      }
-
-      @include media('<xl') {
-        margin-left: rem(380px);
-      }
-
-      //  Right padding is increased for performance device @1130px
-      @include media('>=1130px') {
-        margin-left: rem(398px);
-      }
-
-      @include media('<=lg-plus') {
-        margin-left: 3rem;
-      }
+      margin-left: rem(250px);
 
       .block__menu-toggle {
         display: none;
@@ -808,18 +756,6 @@ $mobile-menu-item-button-height: 7rem;
         }
       }
     }
-
-    .block--header-branding-large + .block--header-menu-main {
-      @include media('>lg-plus') {
-        margin-left: rem(50px);
-      }
-
-      @include media('>=gr') {
-        margin-left: rem(150px);
-      }
-    }
-
-
   }
 
   @include media($header-bp-mobile) {
