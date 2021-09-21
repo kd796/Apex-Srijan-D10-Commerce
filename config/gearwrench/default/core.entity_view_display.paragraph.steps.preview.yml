@@ -4,8 +4,8 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.preview
-    - field.field.paragraph.steps.field_background_color
     - field.field.paragraph.steps.field_class_custom
+    - field.field.paragraph.steps.field_color
     - field.field.paragraph.steps.field_components
     - field.field.paragraph.steps.field_html_anchor
     - field.field.paragraph.steps.field_style
@@ -18,6 +18,7 @@ third_party_settings:
   field_group:
     group_settings:
       children:
+        - field_color
         - field_style
         - field_class_custom
         - field_html_anchor
@@ -39,11 +40,19 @@ mode: preview
 content:
   field_class_custom:
     type: string
-    weight: 1
+    weight: 2
     region: content
     label: inline
     settings:
       link_to_entity: false
+    third_party_settings: {  }
+  field_color:
+    type: entity_reference_label
+    weight: 0
+    region: content
+    label: inline
+    settings:
+      link: true
     third_party_settings: {  }
   field_components:
     weight: 2
@@ -56,7 +65,7 @@ content:
     region: content
   field_html_anchor:
     type: string
-    weight: 2
+    weight: 3
     region: content
     label: inline
     settings:
@@ -64,7 +73,7 @@ content:
     third_party_settings: {  }
   field_style:
     type: entity_reference_label
-    weight: 0
+    weight: 1
     region: content
     label: inline
     settings:
@@ -79,5 +88,4 @@ content:
       link_to_entity: false
     third_party_settings: {  }
 hidden:
-  field_background_color: true
   search_api_excerpt: true
