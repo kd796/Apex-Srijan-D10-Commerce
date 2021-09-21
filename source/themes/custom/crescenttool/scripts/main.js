@@ -1,7 +1,7 @@
 (function ($, Drupal) {
   'use strict';
 
-  Drupal.behaviors.gearwrench = {
+  Drupal.behaviors.crescenttool = {
     attach: function (context, settings) {
       function focusKeyDown(e) {
         if ([9, 13, 32, 38, 40].indexOf(e.keyCode) !== -1) {
