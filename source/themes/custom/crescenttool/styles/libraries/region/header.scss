@@ -83,14 +83,6 @@ $mobile-menu-item-button-height: 7rem;
     padding-right: rem(34px);
     position: relative;
 
-    @include media('<1130px') {
-      padding-right: rem(18px);
-    }
-
-    @include media('>lg-plus') {
-      position: absolute;
-    }
-
     // Full width Bleed Element
     &::before {
       background-color: $primary-red;
@@ -464,7 +456,7 @@ $mobile-menu-item-button-height: 7rem;
   @include media($header-bp-desktop) {
     .block--header-menu-main {
       @include flex-x(flex, 1);
-      margin-left: rem(250px);
+      margin-left: rem(50px);
 
       .block__menu-toggle {
         display: none;
