@@ -15,4 +15,8 @@ services:
   web:
     labels:
       - io.docksal.virtual-host=apex-tools.docksal,*.apex-tools.docksal,crescenttool.docksal,*.crescenttool.docksal,gearwrench.docksal,*.gearwrench.docksal
-
+  solr:
+    image: docksal/solr:8.1
+    extends:
+      file: ${HOME}/.docksal/stacks/services.yml
+      service: solr
