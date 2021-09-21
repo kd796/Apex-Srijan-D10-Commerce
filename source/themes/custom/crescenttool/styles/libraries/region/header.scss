@@ -246,7 +246,11 @@ $mobile-menu-item-button-height: 7rem;
 
     .menu-item__panel {
       display: block;
-      background-color: $primary-red;
+      background-color: $primary-dark;
+
+      @include media($header-bp-desktop) {
+        background-color: $primary-red;
+      }
     }
 
     .menu-item__button[aria-expanded='true'] .menu-item__button-collapse,
@@ -300,7 +304,7 @@ $mobile-menu-item-button-height: 7rem;
         width: 100%;
 
         h5 {
-          color: $primary-red;
+          color: $white;
           margin: 0;
           padding: 0;
         }
@@ -308,7 +312,7 @@ $mobile-menu-item-button-height: 7rem;
 
       li,
       li a {
-        color: $primary-red;
+        color: $white;
       }
 
     }
@@ -513,7 +517,7 @@ $mobile-menu-item-button-height: 7rem;
         }
 
         &:hover {
-          box-shadow: 0 -5px 0 0 $black inset;
+          box-shadow: 0 -5px 0 0 $white inset;
         }
 
         &.menu-item--in-active-trail {
@@ -594,7 +598,7 @@ $mobile-menu-item-button-height: 7rem;
         z-index: 1;
 
         &::before {
-          background-color: $primary-red;
+          background-color: $secondary-black;
           position: absolute;
           content: '';
           width: 200vw;
@@ -689,7 +693,7 @@ $mobile-menu-item-button-height: 7rem;
         padding-right: 2rem;
 
         &::before {
-          background-color: $black;
+          background-color: $primary-dark;
           position: absolute;
           content: '';
           width: 100vw;
@@ -867,6 +871,10 @@ $mobile-menu-item-button-height: 7rem;
 
           .menu {
             width: 100%;
+          }
+
+          .menu--depth-1 {
+            padding-left: rem(20px);
           }
 
           .featured-tools-menu__menu-wrapper {
