@@ -17,7 +17,8 @@
   @include container-full-width();
   padding: rem(40px) 0;
 
-  &.paragraph-component--background-color {
+  &.component-steps--color-light,
+  &.component-steps--color-dark {
     position: relative;
 
     .component-steps__content {
@@ -32,6 +33,24 @@
       height: 100%;
       width: 100%;
       z-index: 0;
+    }
+  }
+
+  &.component-steps--color-light {
+    background-color: $gray-10;
+
+    .component-steps__title,
+    .component-step__content {
+      color: $black;
+    }
+  }
+
+  &.component-steps--color-dark {
+    background-color: $black;
+
+    .component-steps__title,
+    .component-step__content {
+      color: $white;
     }
   }
 
@@ -63,8 +82,8 @@
           @include media('>=lg-plus') {
             &::after {
               top: 50%;
-              left: 22%;
-              width: 50%;
+              left: 0;
+              width: 100%;
               height: unset;
             }
           }
@@ -81,9 +100,10 @@
           @include media('>=lg-plus') {
             &::after {
               top: 50%;
-              left: -36%;
-              width: 50%;
+              left: 0;
+              width: 0;
               height: unset;
+              border-top: 0;
             }
           }
         }
@@ -99,8 +119,8 @@
       }
 
       @include media('>=lg-plus') {
-        width: 20%;
-        max-width: 20%;
+        max-width: 100%;
+        flex: 1 0 0;
       }
     }
 
@@ -160,8 +180,8 @@
 
       &::after {
         top: 50%;
-        left: -31%;
-        width: 98%;
+        left: 0;
+        width: 100%;
         border-top: 2px dashed $primary-orange;
       }
     }

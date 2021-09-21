@@ -1,0 +1,30 @@
+uuid: 5bb488f4-e287-4299-a9d5-d318078fb2fc
+langcode: en
+status: true
+dependencies:
+  config:
+    - classy_paragraphs.classy_paragraphs_style.steps_color_light
+    - field.storage.paragraph.field_color
+    - paragraphs.paragraphs_type.steps
+id: paragraph.steps.field_color
+field_name: field_color
+entity_type: paragraph
+bundle: steps
+label: Color
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    target_uuid: 31968194-7c82-4479-b997-42c77fdaa855
+default_value_callback: ''
+settings:
+  handler: classy_paragraphs
+  handler_settings:
+    filter:
+      type: starts_with
+      starts_with: steps_color_
+    sort:
+      field: label
+      direction: ASC
+field_type: entity_reference
