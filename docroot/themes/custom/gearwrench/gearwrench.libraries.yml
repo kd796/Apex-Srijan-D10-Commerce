@@ -169,6 +169,7 @@ node--full--product:
       css/libraries/node/full--product.css: { }
   js:
     js/libraries/node/full--product.js: {}
+    https://apps.bazaarvoice.com/deployments/gearwrench/main_site/production/en_US/bv.js: { type: external, async: true, minified: true }
   dependencies:
     - core/drupal
     - core/jquery
@@ -235,6 +236,13 @@ paragraph--full--content:
   css:
     component:
       css/libraries/paragraph/full--content.css: {}
+
+# Content #
+paragraph--full--content-2-column:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--content-2-column.css: {}
 
 # Content Callout #
 paragraph--full--content-callout:
