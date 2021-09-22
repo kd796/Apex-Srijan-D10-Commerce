@@ -42,6 +42,20 @@ $mobile-menu-item-button-height: 7rem;
   width: 100%;
   z-index: $header-z-index;
 
+  &::after {
+    background-color: $primary-red;
+    content: '';
+    display: block;
+    height: 1px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: $header-height;
+    z-index: -2;
+  }
+
   .region-header__content {
     @include container();
     @include flex;
@@ -530,20 +544,20 @@ $mobile-menu-item-button-height: 7rem;
             //  right: rem(-35px);
             //}
 
-            @include media('<=xl') {
-              //&::before,
-              //&::after {
-              //  width: rem(20px);
-              //}
-              //
-              //&::before {
-              //  left: rem(-10px);
-              //}
-              //
-              //&::after {
-              //  right: rem(-28px);
-              //}
-            }
+            //@include media('<=xl') {
+            //  //&::before,
+            //  //&::after {
+            //  //  width: rem(20px);
+            //  //}
+            //  //
+            //  //&::before {
+            //  //  left: rem(-10px);
+            //  //}
+            //  //
+            //  //&::after {
+            //  //  right: rem(-28px);
+            //  //}
+            //}
           }
         }
       }
@@ -735,6 +749,12 @@ $mobile-menu-item-button-height: 7rem;
     }
 
     // Change height for nav bar not at very top
+    &:not(.region-header-large) {
+      &::after {
+        top: $header-height-small;
+      }
+    }
+
     .region-header__content:not(.region-header__content-large) {
       height: $header-height-small;
 
