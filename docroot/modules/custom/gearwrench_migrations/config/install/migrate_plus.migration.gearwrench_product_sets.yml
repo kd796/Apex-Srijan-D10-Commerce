@@ -108,6 +108,11 @@ process:
     include_source: true
     process:
       target_id: target_id
+  # Set Content Text
+  field_set_content:
+    plugin: get_attribute_value
+    source: remote_set_contents
+    attribute: ATT921
   # Product Specifications
   product_specifications_array:
     plugin: create_unique_term

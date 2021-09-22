@@ -1,0 +1,46 @@
+uuid: 00c485f5-11d3-4ad5-b6f1-eae03797cae0
+langcode: en
+status: true
+dependencies:
+  module:
+    - image_effects
+_core:
+  default_config_hash: TbPyW9l5123HME4mpoE4vyi3HcnV5FAughDhacIILok
+name: product_medium
+label: 'Product - Medium - Scaled (720x720)'
+effects:
+  88412e51-1261-4e26-a79c-e41689635ca0:
+    uuid: 88412e51-1261-4e26-a79c-e41689635ca0
+    id: image_scale
+    weight: -10
+    data:
+      width: 720
+      height: 720
+      upscale: false
+  be6ae5e9-e566-4bc9-ab09-053b9e4c83ed:
+    uuid: be6ae5e9-e566-4bc9-ab09-053b9e4c83ed
+    id: image_effects_set_canvas
+    weight: -9
+    data:
+      canvas_size: exact
+      exact:
+        width: '720'
+        height: '720'
+        placement: center-center
+        x_offset: 0
+        y_offset: 0
+      relative:
+        left: 0
+        right: 0
+        top: 0
+        bottom: 0
+      canvas_color: '#FFFFFFFF'
+  915ca4ce-af84-43fe-a47c-b760a5cd4aa8:
+    uuid: 915ca4ce-af84-43fe-a47c-b760a5cd4aa8
+    id: image_crop
+    weight: -8
+    data:
+      width: 720
+      height: 720
+      anchor: center-center
+pipeline: smushit

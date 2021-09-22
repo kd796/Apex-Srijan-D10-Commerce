@@ -145,7 +145,7 @@ process:
     process:
       target_id: media_id
   product_specifications_array:
-    plugin: create_unique_term
+    plugin: create_product_specifications
     source: remote_product_specifications
   field_product_specifications:
     plugin: sub_process
