@@ -42,20 +42,6 @@ $mobile-menu-item-button-height: 7rem;
   width: 100%;
   z-index: $header-z-index;
 
-  &::after {
-    background-color: $primary-red;
-    content: '';
-    display: block;
-    height: 1px;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: calc(#{$header-height} - 1px);
-    z-index: -2;
-  }
-
   .region-header__content {
     @include container();
     @include flex;
@@ -752,6 +738,29 @@ $mobile-menu-item-button-height: 7rem;
         }
       }
     }
+
+    // Change height for nav bar not at very top
+    .region-header__content:not(.region-header__content-large) {
+      height: $header-height-small;
+
+      .block--header-menu-main {
+        .menu-item--depth-0 {
+          height: $header-height-small;
+        }
+      }
+
+      .block--country-switch {
+        .block__content-toggle {
+          height: $header-height-small;
+        }
+      }
+
+      .block--header-search {
+        .block__content-toggle {
+          height: $header-height-small;
+        }
+      }
+    }
   }
 
   @include media($header-bp-mobile) {
@@ -916,11 +925,8 @@ $mobile-menu-item-button-height: 7rem;
  * Offset page since header is fixed.
  */
 .page {
-  padding-top: $header-height-large;
+  padding-top: $header-height;
 
-  @include media('<=lg-plus') {
-    padding-top: $header-height;
-  }
   @include media('<lg') {
     padding-top: $header-height-mobile;
   }
