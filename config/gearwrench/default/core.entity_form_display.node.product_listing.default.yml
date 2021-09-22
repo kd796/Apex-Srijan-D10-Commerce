@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.node.product_listing.body
+    - field.field.node.product_listing.field_category_facets
+    - field.field.node.product_listing.field_classification_id
     - field.field.node.product_listing.field_media
     - field.field.node.product_listing.field_product_classifications
     - node.type.product_listing
@@ -32,6 +34,24 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_category_facets:
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_classification_id:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_media:
     weight: 2
     settings:

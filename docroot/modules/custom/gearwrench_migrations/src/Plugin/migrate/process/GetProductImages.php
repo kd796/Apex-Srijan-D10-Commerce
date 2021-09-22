@@ -33,31 +33,45 @@ class GetProductImages extends ProcessPluginBase {
     $assets = [];
     $media_ids = [];
     $alt_text = NULL;
+    $sku = NULL;
     if (!empty($value)) {
       $alt_text = $value->Name;
-      foreach ($value->children() as $child) {
-        // Listing Image.
-        if ($child->getName() === 'AssetCrossReference' && (string) $child->attributes()->Type === 'Primary Image') {
-          $assets[] = [
-            'asset_id' => (string) $child->attributes()->AssetID,
-            'drupal_file_path' => 'public://pim_images/' . (string) $child->attributes()->AssetID . '.jpg',
-            'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . (string) $child->attributes()->AssetID . '.jpg',
-          ];
+      // Are there product level images?
+      if ($value->getName() === 'Product') {
+        $sku_group = $value;
+        foreach ($sku_group->children() as $child) {
+          if ($child->getName() === 'Product') {
+            $sku = (string) $child->attributes()->ID;
+          }
         }
-        // Product Images.
-        if ($child->getName() === 'Product') {
-          $product = $child;
-          foreach ($product->children() as $product_child) {
-            if ($product_child->getName() === 'AssetCrossReference') {
+        foreach ($sku_group->children() as $child) {
+          if ($child->getName() === 'Product') {
+            foreach ($child->children() as $item) {
+              if ($item->getName() === 'AssetCrossReference' && (string) $child->attributes()->ID === $sku && ((string) $item->attributes()->Type === 'Primary Image' || (string) $item->attributes()->Type === 'Beauty-Glamour Image')) {
+                $assets[] = [
+                  'imagetype' => 'Product Level',
+                  'asset_id' => (string) $item->attributes()->AssetID,
+                  'drupal_file_path' => 'public://pim_images/' . (string) $item->attributes()->AssetID . '.jpg',
+                  'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . (string) $item->attributes()->AssetID . '.jpg',
+                ];
+              }
+            }
+          }
+        }
+        if (empty($assets)) {
+          foreach ($sku_group->children() as $child) {
+            if ($child->getName() === 'AssetCrossReference' && (string) $child->attributes()->Type === 'Primary Image') {
               $assets[] = [
-                'asset_id' => (string) $product_child->attributes()->AssetID,
-                'drupal_file_path' => 'public://pim_images/' . (string) $product_child->attributes()->AssetID . '.jpg',
-                'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . (string) $product_child->attributes()->AssetID . '.jpg',
+                'imagetype' => 'SKU Group Level',
+                'asset_id' => (string) $child->attributes()->AssetID,
+                'drupal_file_path' => 'public://pim_images/' . (string) $child->attributes()->AssetID . '.jpg',
+                'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . (string) $child->attributes()->AssetID . '.jpg',
               ];
             }
           }
         }
       }
+
       foreach ($assets as $asset) {
         $headers_array = @get_headers($asset['remote_file_path']);
         $headers_check = $headers_array[0];

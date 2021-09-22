@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Gearwrench Product Category Filtering module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function gearwrench_product_category_filtering_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the tnv_pathway module.
+    case 'help.page.gearwrench_product_category_filtering':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Custom Blocks to integrate with Gearwrench\'s Product Category Pages.') . '</p>';
+      return $output;
+
+    default:
+  }
+}

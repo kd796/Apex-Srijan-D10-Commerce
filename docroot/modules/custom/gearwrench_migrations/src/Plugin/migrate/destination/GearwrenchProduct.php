@@ -2,6 +2,7 @@
 
 namespace Drupal\gearwrench_migrations\Plugin\migrate\destination;
 
+use Drupal\taxonomy\Entity\Term;
 use Drupal\file\Entity\File;
 use Drupal\media\Entity\Media;
 use Drupal\migrate\Plugin\migrate\destination\EntityContentBase;
@@ -35,9 +36,10 @@ class GearwrenchProduct extends EntityContentBase {
    */
   public function rollback(array $destination_identifier) {
     $entity = $this->storage->load(reset($destination_identifier));
-    // Delete imported media and files.
+
     if ($entity && $entity instanceof NodeInterface) {
       if ($entity->bundle() === 'product') {
+        // Delete imported media and files.
         if (!empty($entity->get('field_media')->target_id)) {
           // Get fid from field_media.
           $mid = $entity->get('field_media')->target_id;
@@ -80,8 +82,19 @@ class GearwrenchProduct extends EntityContentBase {
             }
           }
         }
+        // Delete imported taxonomy items.
+        if (!empty($entity->get('field_product_specifications')->getValue())) {
+          $specifications = array_column($entity->get('field_product_specifications')->getValue(), 'target_id');
+          foreach ($specifications as $specification) {
+            if ($term = Term::load($specification)) {
+              // Delete the term itself.
+              $term->delete();
+            }
+          }
+        }
       }
     }
+
     // Execute the normal rollback from here.
     parent::rollback($destination_identifier);
   }

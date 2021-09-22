@@ -19,10 +19,8 @@ dependencies:
     - field.field.node.product.field_set_components
     - field.field.node.product.field_sku_group
     - field.field.node.product.field_upc
-    - image.style.small
     - node.type.product
   module:
-    - blazy
     - user
 id: node.product.teaser
 targetEntityType: node
@@ -38,46 +36,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
   field_media:
-    type: blazy_media
+    type: entity_reference_entity_view
     weight: 0
     region: content
     label: hidden
     settings:
-      image_style: small
-      responsive_image_style: ''
-      media_switch: ''
-      thumbnail_style: ''
-      ratio: ''
-      view_mode: teaser
-      image: ''
-      current_view_mode: teaser
-      background: false
-      caption:
-        title: '0'
-        alt: '0'
-      class: ''
-      id: ''
-      link: ''
-      overlay: ''
-      title: ''
-      vanilla: false
-      icon: ''
-      layout: ''
-      cache: 0
-      skin: ''
-      fx: ''
-      style: ''
-      box_caption: ''
-      box_caption_custom: ''
-      box_media_style: ''
-      box_style: ''
-      _uri: ''
-      breakpoints: {  }
-      sizes: ''
-      grid_header: ''
-      grid: 0
-      grid_medium: 0
-      grid_small: 0
+      view_mode: product_teaser
+      link: false
     third_party_settings: {  }
 hidden:
   body: true

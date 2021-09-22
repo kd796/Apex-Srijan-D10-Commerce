@@ -1,0 +1,39 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Node: Full Default
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.node--type-product-listing.node--view-mode-full .node__content {
+  .field--name-field-media {
+    @include container-full-width();
+    margin-bottom: rem(64px);
+
+    .media--view-mode-hero {
+      height: 500px;
+
+      .media__media,
+      .media__media picture {
+        width: 100%;
+        height: 100%;
+        display: flex;
+
+        img {
+          object-fit: cover;
+          height: auto;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+}
