@@ -357,29 +357,6 @@ $mobile-menu-item-button-height: 7rem;
         width: 3.25rem;
         position: absolute;
         z-index: -1;
-
-        &::before,
-        &::after {
-          animation-fill-mode: both;
-          animation-direction: normal;
-          animation-name: headerPanelFade;
-          content: '';
-          background-color: $black;
-          position: absolute;
-          top: 0;
-          width: rem(30px);
-          height: 100%;
-          z-index: -1;
-          transform: skew(-14deg);
-        }
-
-        &::before {
-          left: 0;
-        }
-
-        &::after {
-          right: 0;
-        }
       }
 
       span {
@@ -404,6 +381,10 @@ $mobile-menu-item-button-height: 7rem;
       &[aria-expanded='false'] + .block__content {
         animation-direction: reverse;
         display: none;
+      }
+
+      &:hover {
+        box-shadow: 0 -5px 0 0 $white inset;
       }
     }
 
