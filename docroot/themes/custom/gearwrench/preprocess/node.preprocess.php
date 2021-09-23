@@ -218,6 +218,7 @@ function gearwrench_preprocess_node__product_listing__full(array &$variables) {
   $node = $variables['node'];
   $bundle = $node->bundle();
   $view_mode = $variables['view_mode'];
+
   $main_view = \Drupal::entityTypeManager()
     ->getStorage('view')
     ->load('product_listing')

@@ -9,9 +9,8 @@ dependencies:
     - field.field.node.page.field_link
     - field.field.node.page.field_media
     - field.field.node.page.field_meta_tags
-    - image.style.hero_banner
     - node.type.page
-    - responsive_image.styles.hero_basic
+    - responsive_image.styles.short_hero
   module:
     - blazy
     - entity_reference_revisions
@@ -117,8 +116,8 @@ content:
     region: content
     label: hidden
     settings:
-      image_style: hero_banner
-      responsive_image_style: hero_basic
+      image_style: ''
+      responsive_image_style: short_hero
       media_switch: ''
       thumbnail_style: ''
       ratio: ''

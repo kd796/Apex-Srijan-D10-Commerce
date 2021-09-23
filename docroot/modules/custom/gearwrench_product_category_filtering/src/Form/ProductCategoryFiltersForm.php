@@ -41,29 +41,29 @@ class ProductCategoryFiltersForm extends FormBase {
     $view->setItemsPerPage(0);
     $view->preExecute();
     $view->execute();
-    $available_attribute_ids = [];
-    $available_classification_ids = [];
-    foreach ($view->result as $key => $row) {
-      $entity = $row->_entity;
-      if ($entity instanceof FieldableEntityInterface && $entity->hasField('field_product_specifications')) {
-        $available_specification_values = $entity->get('field_product_specifications')->getValue();
-        if (!empty($available_specification_values)) {
-          foreach ($available_specification_values as $available_specification_value) {
-            $tid = $available_specification_value['target_id'];
-            $available_attribute_ids[] = $tid;
-          }
-        }
-      }
-      if ($entity instanceof FieldableEntityInterface && $entity->hasField('field_product_classifications')) {
-        $available_classification_values = $entity->get('field_product_classifications')->getValue();
-        if (!empty($available_classification_values)) {
-          foreach ($available_classification_values as $available_classification_value) {
-            $tid = $available_classification_value['target_id'];
-            $available_classification_ids[] = $tid;
-          }
-        }
-      }
-    }
+    // Get all available product specifications.
+    $view_nids = array_column($view->result, 'nid');
+    $table_mapping = \Drupal::entityTypeManager()->getStorage('node')->getTableMapping();
+    $field_product_specifications_table = $table_mapping->getFieldTableName('field_product_specifications');
+    $field_product_specifications_storage_definitions = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('node')['field_product_specifications'];
+    $field_product_specifications_column = $table_mapping->getFieldColumnName($field_product_specifications_storage_definitions, 'target_id');
+    $connection = \Drupal::database();
+    $available_attribute_ids = $connection->select($field_product_specifications_table, 'f')
+      ->fields('f', [$field_product_specifications_column])
+      ->distinct(TRUE)
+      ->condition('bundle', 'product')
+      ->condition('entity_id', $view_nids, 'IN')
+      ->execute()->fetchCol();
+
+    $field_product_classifications_table = $table_mapping->getFieldTableName('field_product_classifications');
+    $field_product_classifications_storage_definitions = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('node')['field_product_classifications'];
+    $field_product_classifications_column = $table_mapping->getFieldColumnName($field_product_classifications_storage_definitions, 'target_id');
+    $available_classification_ids = $connection->select($field_product_classifications_table, 'f')
+      ->fields('f', [$field_product_classifications_column])
+      ->distinct(TRUE)
+      ->condition('bundle', 'product')
+      ->condition('entity_id', $view_nids, 'IN')
+      ->execute()->fetchCol();
     $available_attribute_ids = array_unique($available_attribute_ids);
     $available_classification_ids = array_unique($available_classification_ids);
 
@@ -79,28 +79,29 @@ class ProductCategoryFiltersForm extends FormBase {
     foreach ($classification_terms as $classification_term) {
       $child_terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('product_classifications', $classification_term->id(), $max_depth = 1, $load_entities = FALSE);
     }
-    foreach ($child_terms as $child_term) {
-      $selected_child_terms[] = $child_term->tid;
-    }
-    $available_classifications = array_intersect($selected_child_terms, $available_classification_ids);
-    foreach ($available_classifications as $available_classification) {
-      $available_classification_term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($available_classification);
-      $category_facet_options[$available_classification_term->id()] = $available_classification_term->label();
+    if ($child_terms) {
+      foreach ($child_terms as $child_term) {
+        $selected_child_terms[] = $child_term->tid;
+      }
+      $available_classifications = array_intersect($selected_child_terms, $available_classification_ids);
+      foreach ($available_classifications as $available_classification) {
+        $available_classification_term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($available_classification);
+        $category_facet_options[$available_classification_term->id()] = $available_classification_term->label();
 
+      }
+      $form['category-filter'] = [
+        '#type' => 'checkboxes',
+        '#options' => $category_facet_options,
+        '#title' => $this->t('Category'),
+        '#weight' => '0',
+        '#required' => FALSE,
+        '#attributes' => [
+          'class' => [
+            'node--type-product-listing__category-filter',
+          ]
+        ],
+      ];
     }
-
-    $form['category-filter'] = [
-      '#type' => 'checkboxes',
-      '#options' => $category_facet_options,
-      '#title' => $this->t('Category'),
-      '#weight' => '0',
-      '#required' => FALSE,
-      '#attributes' => [
-        'class' => [
-          'node--type-product-listing__category-filter',
-        ]
-      ],
-    ];
 
     // Prep Attribute Facets.
     $all_selected_attributes_tids = [];

@@ -404,6 +404,38 @@ $tabs-border-width-active: rem(5px);
                 display: none;
               }
             }
+
+            .node--type-product__ps-reviews-container {
+              position: relative;
+
+              &:after {
+                border-top: 2px dashed $gray-40;
+                content: '';
+                height: 1px;
+                width: 66.667%;
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, 0);
+              }
+
+              .ps-widget {
+                background: none;
+                border: 0;
+                float: none;
+
+                .ps-review-details {
+                  background: none;
+                }
+
+                .ps-review-count,
+                .ps-review-average {
+                  @include type-header(h5);
+                  color: $black;
+                  font-family: $font-brand;
+                  font-weight: $fw-bold;
+                }
+              }
+            }
           }
         }
       }

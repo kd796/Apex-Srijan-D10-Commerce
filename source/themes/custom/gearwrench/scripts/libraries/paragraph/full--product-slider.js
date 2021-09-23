@@ -17,6 +17,7 @@
           slidesPerColumn: 2,
           slidesPerColumnFill: 'column',
           spaceBetween: 24,
+          loop: true,
           navigation: {
             nextEl: '.component-product-slider__button-next',
             prevEl: '.component-product-slider__button-prev'
@@ -61,6 +62,7 @@
           slidesPerView: 4,
           slidesPerGroup: 4,
           spaceBetween: 24,
+          loop: true,
           navigation: {
             nextEl: '.component-product-slider__button-next',
             prevEl: '.component-product-slider__button-prev'
