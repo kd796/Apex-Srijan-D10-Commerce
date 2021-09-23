@@ -73,7 +73,8 @@ class GetProductImages extends ProcessPluginBase {
       }
 
       // Prep Directory.
-      \Drupal::service('file_system')->prepareDirectory('public://pim_images/', FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
+      $image_directory = 'public://pim_images/';
+      \Drupal::service('file_system')->prepareDirectory($image_directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
 
       foreach ($assets as $asset) {
         $headers_array = @get_headers($asset['remote_file_path']);
