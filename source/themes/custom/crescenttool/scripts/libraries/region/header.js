@@ -68,7 +68,8 @@
         behavior_object.updateHeaderPlaceholder($menu_item);
       });
 
-      // Sets large logo with tall performance device
+      // Adds class for Big Brother navbar at top of page
+      $('.region-header').addClass('region-header-large');
       $('header .block--header-branding').addClass('block--header-branding-large');
       $('header .region-header__content').addClass('region-header__content-large');
 
@@ -85,12 +86,14 @@
           $header.removeClass('region-header--hide');
 
           if (scrollTopVal === 0) {
+            $('.region-header').addClass('region-header-large');
             $('header .block--header-branding').addClass('block--header-branding-large');
             $('header .region-header__content').addClass('region-header__content-large');
           }
         }
         else {
           $header.addClass('region-header--hide');
+          $('.region-header').removeClass('region-header-large');
           $('header .block--header-branding').removeClass('block--header-branding-large');
           $('header .region-header__content').removeClass('region-header__content-large');
 

@@ -156,8 +156,8 @@ $active-gap: 8px; // the math likes px values
   input[type='checkbox']:not(:checked) + label:before,
   input[type='radio']:checked + label:before,
   input[type='radio']:not(:checked) + label:before {
-    background: $black;
-    border: 1px solid $black;
+    background: $white;
+    border: 1px solid $gray-40;
     content: '';
     height: $active-width;
     left: 0;
@@ -166,8 +166,10 @@ $active-gap: 8px; // the math likes px values
     width: $active-width;
   }
 
-  input[type='checkbox']:checked + label:before {
-    background-color: transparent;
+  input[type='checkbox']:checked + label:before,
+  input[type='radio']:checked + label:before, {
+    background-color: $primary-red;
+    border-color: $primary-red;
   }
 
   // fake input box active indicator
@@ -231,7 +233,7 @@ $active-gap: 8px; // the math likes px values
   // fake input box active indicator
   input[type='radio']:checked + label:after,
   input[type='radio']:not(:checked) + label:after {
-    background: $primary-orange;
+    background: $primary-red;
     border-radius: 100%;
     content: '';
     height: calc(#{$active-width} - #{$active-gap});
@@ -246,7 +248,7 @@ $active-gap: 8px; // the math likes px values
   input[type='checkbox']:not(:checked) + label.form-required:after,
   input[type='checkbox']:not(:checked) + label:after {
     @include icon-styles;
-    color: $black;
+    color: $white;
     content: icon-char(checkmark);
     font-size: rem(10px);
     height: $active-width;

@@ -32,7 +32,7 @@ $mobile-menu-item-button-height: 7rem;
 .region-header {
   @include container-full-width();
 
-  background-color: $primary-orange;
+  background-color: $primary-red;
   left: 0;
   max-width: none;
   position: fixed;
@@ -43,7 +43,7 @@ $mobile-menu-item-button-height: 7rem;
   z-index: $header-z-index;
 
   &::after {
-    background-color: $primary-orange;
+    background-color: $primary-red;
     content: '';
     display: block;
     height: 1px;
@@ -52,7 +52,7 @@ $mobile-menu-item-button-height: 7rem;
     left: 0;
     position: absolute;
     right: 0;
-    top: calc(#{$header-height} - 1px);
+    top: $header-height;
     z-index: -2;
   }
 
@@ -78,24 +78,14 @@ $mobile-menu-item-button-height: 7rem;
     @include flex;
     @include flex-x(align-items, center);
 
-    background-color: $black;
+    background-color: $primary-red;
     height: 100%;
     padding-right: rem(34px);
     position: relative;
 
-    @include media('<1130px') {
-      padding-right: rem(18px);
-    }
-
-    @include media('>lg-plus') {
-      &:not(.block--header-branding-large) {
-        position: absolute;
-      }
-    }
-
     // Full width Bleed Element
     &::before {
-      background-color: $black;
+      background-color: $primary-red;
       position: absolute;
       content: '';
       width: 100vw;
@@ -105,19 +95,6 @@ $mobile-menu-item-button-height: 7rem;
       z-index: -1;
     }
 
-    // Performance Device
-    &::after {
-      background-color: $black;
-      position: absolute;
-      content: '';
-      width: 30px;
-      height: 100%;
-      top: 0;
-      right: -15px;
-      z-index: 0;
-      transform: skew(-14deg);
-    }
-
     .site-logo {
       @include link-base();
 
@@ -125,34 +102,13 @@ $mobile-menu-item-button-height: 7rem;
       line-height: 1;
 
       svg {
-        height: $header-logo-performance-height-large;
+        height: $header-logo-height;
         vertical-align: middle;
 
         @include media('<=lg-plus') {
           height: $header-logo-height;
         }
       }
-    }
-
-    @include media('>lg-plus') {
-      &:not(.block--header-branding-large) {
-        .site-logo {
-          display: block;
-          width: rem(56px);
-          overflow: hidden;
-        }
-      }
-    }
-  }
-
-  // Larger performance device and logo at top
-  .block--header-branding-large {
-    @include media('>lg-plus') {
-      height: rem(100px);
-    }
-
-    @include media('>=gr') {
-      margin-left: rem(-100px);
     }
   }
 
@@ -164,7 +120,7 @@ $mobile-menu-item-button-height: 7rem;
 
       background: 0;
       border: 0;
-      color: $black;
+      color: $white;
       font-weight: $fw-bold;
       line-height: 1;
       padding: 1.5rem;
@@ -199,7 +155,7 @@ $mobile-menu-item-button-height: 7rem;
     }
 
     .menu-item {
-      color: $black;
+      color: $white;
       font-family: $font-brand;
       font-size: rem(18px);
       font-weight: $fw-extra-bold;
@@ -233,7 +189,7 @@ $mobile-menu-item-button-height: 7rem;
 
     .menu-item__link {
       display: block;
-      color: $black;
+      color: $white;
 
       &:hover {
         text-decoration: underline;
@@ -282,7 +238,11 @@ $mobile-menu-item-button-height: 7rem;
 
     .menu-item__panel {
       display: block;
-      background-color: $primary-orange;
+      background-color: $primary-dark;
+
+      @include media($header-bp-desktop) {
+        background-color: $primary-red;
+      }
     }
 
     .menu-item__button[aria-expanded='true'] .menu-item__button-collapse,
@@ -329,14 +289,14 @@ $mobile-menu-item-button-height: 7rem;
     }
 
     .featured-tools-menu {
-      background-color: $black;
+      background-color: $primary-dark;
 
       .menu-item__panel-header {
         padding: 2.75rem 0 .5rem;
         width: 100%;
 
         h5 {
-          color: $primary-orange;
+          color: $white;
           margin: 0;
           padding: 0;
         }
@@ -344,7 +304,7 @@ $mobile-menu-item-button-height: 7rem;
 
       li,
       li a {
-        color: $primary-orange;
+        color: $white;
       }
 
     }
@@ -365,6 +325,7 @@ $mobile-menu-item-button-height: 7rem;
     display: flex;
     padding-left: 1.5rem;
     position: relative;
+    color: $white;
 
     .block__content-toggle {
       @include icon('globe');
@@ -396,29 +357,6 @@ $mobile-menu-item-button-height: 7rem;
         width: 3.25rem;
         position: absolute;
         z-index: -1;
-
-        &::before,
-        &::after {
-          animation-fill-mode: both;
-          animation-direction: normal;
-          animation-name: headerPanelFade;
-          content: '';
-          background-color: $black;
-          position: absolute;
-          top: 0;
-          width: rem(30px);
-          height: 100%;
-          z-index: -1;
-          transform: skew(-14deg);
-        }
-
-        &::before {
-          left: 0;
-        }
-
-        &::after {
-          right: 0;
-        }
       }
 
       span {
@@ -443,6 +381,10 @@ $mobile-menu-item-button-height: 7rem;
       &[aria-expanded='false'] + .block__content {
         animation-direction: reverse;
         display: none;
+      }
+
+      &:hover {
+        box-shadow: 0 -5px 0 0 $white inset;
       }
     }
 
@@ -495,24 +437,7 @@ $mobile-menu-item-button-height: 7rem;
   @include media($header-bp-desktop) {
     .block--header-menu-main {
       @include flex-x(flex, 1);
-      margin-left: rem(360px);
-
-      @include media('<gr') {
-        margin-left: rem(400px);
-      }
-
-      @include media('<xl') {
-        margin-left: rem(380px);
-      }
-
-      //  Right padding is increased for performance device @1130px
-      @include media('>=1130px') {
-        margin-left: rem(398px);
-      }
-
-      @include media('<=lg-plus') {
-        margin-left: 3rem;
-      }
+      margin-left: rem(50px);
 
       .block__menu-toggle {
         display: none;
@@ -565,16 +490,11 @@ $mobile-menu-item-button-height: 7rem;
         }
 
         &:hover {
-          box-shadow: 0 -5px 0 0 $black inset;
+          box-shadow: 0 -5px 0 0 $white inset;
         }
 
         &.menu-item--in-active-trail {
-          background-color: $black;
-
-          &::after,
-          .menu-item__link--depth-0 {
-            color: $white;
-          }
+          box-shadow: 0 -5px 0 0 $white inset;
 
           .menu-item__link--depth-0  {
             position: relative;
@@ -583,42 +503,42 @@ $mobile-menu-item-button-height: 7rem;
             height: 100%;
             justify-content: center;
             align-self: center;
-            background-color: $black;
+            //background-color: $black;
 
-            &::before,
-            &::after {
-              content: '';
-              background-color: $black;
-              position: absolute;
-              top: 0;
-              width: rem(30px);
-              height: 100%;
-              z-index: -1;
-              transform: skew(-14deg);
-            }
+            //&::before,
+            //&::after {
+            //  content: '';
+            //  background-color: $black;
+            //  position: absolute;
+            //  top: 0;
+            //  width: rem(30px);
+            //  height: 100%;
+            //  z-index: -1;
+            //  transform: skew(-14deg);
+            //}
+            //
+            //&::before {
+            //  left: rem(-15px);
+            //}
+            //
+            //&::after {
+            //  right: rem(-35px);
+            //}
 
-            &::before {
-              left: rem(-15px);
-            }
-
-            &::after {
-              right: rem(-35px);
-            }
-
-            @include media('<=xl') {
-              &::before,
-              &::after {
-                width: rem(20px);
-              }
-
-              &::before {
-                left: rem(-10px);
-              }
-
-              &::after {
-                right: rem(-28px);
-              }
-            }
+            //@include media('<=xl') {
+            //  //&::before,
+            //  //&::after {
+            //  //  width: rem(20px);
+            //  //}
+            //  //
+            //  //&::before {
+            //  //  left: rem(-10px);
+            //  //}
+            //  //
+            //  //&::after {
+            //  //  right: rem(-28px);
+            //  //}
+            //}
           }
         }
       }
@@ -646,7 +566,7 @@ $mobile-menu-item-button-height: 7rem;
         z-index: 1;
 
         &::before {
-          background-color: $primary-orange;
+          background-color: $secondary-black;
           position: absolute;
           content: '';
           width: 200vw;
@@ -741,7 +661,7 @@ $mobile-menu-item-button-height: 7rem;
         padding-right: 2rem;
 
         &::before {
-          background-color: $black;
+          background-color: $primary-dark;
           position: absolute;
           content: '';
           width: 100vw;
@@ -809,17 +729,34 @@ $mobile-menu-item-button-height: 7rem;
       }
     }
 
-    .block--header-branding-large + .block--header-menu-main {
-      @include media('>lg-plus') {
-        margin-left: rem(50px);
-      }
-
-      @include media('>=gr') {
-        margin-left: rem(150px);
+    // Change height for nav bar not at very top
+    &:not(.region-header-large) {
+      &::after {
+        top: $header-height-small;
       }
     }
 
+    .region-header__content:not(.region-header__content-large) {
+      height: $header-height-small;
 
+      .block--header-menu-main {
+        .menu-item--depth-0 {
+          height: $header-height-small;
+        }
+      }
+
+      .block--country-switch {
+        .block__content-toggle {
+          height: $header-height-small;
+        }
+      }
+
+      .block--header-search {
+        .block__content-toggle {
+          height: $header-height-small;
+        }
+      }
+    }
   }
 
   @include media($header-bp-mobile) {
@@ -845,7 +782,7 @@ $mobile-menu-item-button-height: 7rem;
       }
 
       .block__menu {
-        background-color: $primary-orange;
+        background-color: $primary-red;
         animation-delay: 300ms;
         animation-duration: 300ms;
         animation-fill-mode: both;
@@ -933,6 +870,10 @@ $mobile-menu-item-button-height: 7rem;
             width: 100%;
           }
 
+          .menu--depth-1 {
+            padding-left: rem(20px);
+          }
+
           .featured-tools-menu__menu-wrapper {
             flex: 1;
           }
@@ -980,11 +921,8 @@ $mobile-menu-item-button-height: 7rem;
  * Offset page since header is fixed.
  */
 .page {
-  padding-top: $header-height-large;
+  padding-top: $header-height;
 
-  @include media('<=lg-plus') {
-    padding-top: $header-height;
-  }
   @include media('<lg') {
     padding-top: $header-height-mobile;
   }
