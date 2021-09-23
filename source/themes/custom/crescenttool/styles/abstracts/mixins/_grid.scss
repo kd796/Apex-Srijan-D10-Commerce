@@ -59,8 +59,8 @@
     } @else if $gutter-vertical-size == wide-large {
       > * {
         @include media('>=lg') {
-          margin-bottom: $gap-vertical-md;
-          margin-top: $gap-vertical-md;
+          margin-bottom: $gap-vertical-md-plus;
+          margin-top: $gap-vertical-md-plus;
         }
       }
     } @else if $gutter-vertical-size == narrow {
@@ -83,12 +83,12 @@
 
   @if $gutter-horizontal == true {
     @if $gutter-horizontal-size == wide {
-      margin-right: -$gap-horizontal-mid;
-      margin-left: -$gap-horizontal-mid;
+      margin-right: -$gap-horizontal-md-plus;
+      margin-left: -$gap-horizontal-md-plus;
 
       > * {
-        padding-right: $gap-horizontal-mid;
-        padding-left: $gap-horizontal-mid;
+        padding-right: $gap-horizontal-md-plus;
+        padding-left: $gap-horizontal-md-plus;
       }
     } @else if $gutter-horizontal-size == wide-large {
       @include media('>=lg') {

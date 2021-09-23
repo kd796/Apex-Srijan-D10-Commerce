@@ -162,6 +162,12 @@ node--full:
     component:
       css/libraries/node/full.css: {}
 
+node--full--page:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/full--page.css: {}
+
 node--full--product:
   version: 1.x
   css:
@@ -188,6 +194,7 @@ node--full--product-listing:
     - core/drupal
     - core/jquery
     - core/jquery.once
+    - gearwrench/library--jquery-roving-tabindex
 
 # === Node: Teaser === #
 
@@ -462,12 +469,6 @@ view--product-listing-grid:
   css:
     component:
       css/libraries/view/product-listing-grid.css: {}
-
-view--product-listing--products-by-category:
-  version: 1.x
-  css:
-    component:
-      css/libraries/view/product-listing--products-by-category.css: { }
 
 # ========= Forms ========= #
 webform--warranty-replacement-form:

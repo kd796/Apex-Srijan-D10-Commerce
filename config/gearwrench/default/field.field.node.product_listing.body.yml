@@ -6,12 +6,20 @@ dependencies:
     - field.storage.node.body
     - node.type.product_listing
   module:
+    - allowed_formats
     - text
+third_party_settings:
+  allowed_formats:
+    basic_html: basic_html
+    limited_html: limited_html
+    restricted_html: restricted_html
+    full_html: full_html
+    plain_text: '0'
 id: node.product_listing.body
 field_name: body
 entity_type: node
 bundle: product_listing
-label: Body
+label: "Lead-in/Summary Text\t"
 description: ''
 required: false
 translatable: true

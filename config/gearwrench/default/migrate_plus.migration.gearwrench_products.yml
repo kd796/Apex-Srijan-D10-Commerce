@@ -54,6 +54,10 @@ source:
       label: 'Product Classifications'
       selector: ../../Product
     -
+      name: remote_launch_date
+      label: 'Launch Date'
+      selector: Values
+    -
       name: remote_product_upc
       label: 'Product UPC'
       selector: Values
@@ -125,12 +129,16 @@ process:
     attribute: ATT539
   field_new_product:
     plugin: get_attribute_value
-    source: remote_product_upc
+    source: remote_new_product
     attribute: ATT17339
   field_featured_product:
     plugin: get_attribute_value
-    source: remote_product_upc
+    source: remote_featured_product
     attribute: ATT16491
+  field_launch_date:
+    plugin: get_attribute_value
+    source: remote_launch_date
+    attribute: ATT583415
   listing_image:
     source: remote_listing_image
     plugin: get_listing_image
@@ -182,6 +190,22 @@ process:
     include_source: true
     process:
       target_id: target_id
+  field_set:
+    plugin: determine_set_status
+    source: remote_set
+  set_components_array:
+    plugin: get_set_components
+    source: remote_set_components
+  field_set_components:
+    plugin: sub_process
+    source: '@set_components_array'
+    include_source: true
+    process:
+      target_id: target_id
+  field_set_content:
+    plugin: get_attribute_value
+    source: remote_set_contents
+    attribute: ATT921
 destination:
   plugin: gearwrench_product
   bundle: product

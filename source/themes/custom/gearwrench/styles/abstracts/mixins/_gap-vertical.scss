@@ -7,7 +7,7 @@
 // • $property(value = margin or padding) - default = padding - changes property
 // • $breakpoint(value = breakpoint variable) - default = md - breakpoint trigger
 // • $gap-small(value = gap vertical variable) - default = $gap-vertical-sm - the small/mobile size
-// • $gap-large(value = gap vertical variable) - default = $gap-vertical-md - the large/desktop size
+// • $gap-large(value = gap vertical variable) - default = $gap-vertical-md-plus - the large/desktop size
 // • $reset(value = true or false) - default = false - reset the property back to initial
 // • $negative(value = true or false) - default = false - pulls content up the rhythm amount
 // -----------------------------------------------------------------------------
@@ -16,7 +16,7 @@
   $property: padding,
   $breakpoint: md,
   $gap-small: $gap-vertical-sm,
-  $gap-large: $gap-vertical-md,
+  $gap-large: $gap-vertical-md-plus,
   $reset: false,
   $negative: false) {
 

@@ -84,8 +84,10 @@
 
   <div{{ content_attributes }}>
     {{ content }}
-    {{ filters }}
-    {{ view }}
+    <div class="product-listing-view-section">
+      {{ filters }}
+      {{ view }}
+    </div>
   </div>
 
   {% if display_submitted %}
