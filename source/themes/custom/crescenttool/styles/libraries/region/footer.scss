@@ -291,18 +291,24 @@ $footer-bp-mobile: '<sm';
       .block-footer-navigation-block__content {
         @include flex-x(flex-direction, column);
 
+        .block-footer-navigation-block__header {
+          order: 2;
+          margin-top: rem(20px);
+          padding-bottom: 0;
+        }
+
         .block-footer-navigation-block__footer-address-social-menu-container {
           @include flex;
           @include flex-x(flex-direction, column);
 
-          order: 2;
+          order: 3;
 
           .block-footer-navigation-block__footer-address {
-            order: 2;
+            order: 1;
           }
 
           .block-footer-navigation-block__footer-social-menu-wrapper {
-            order: 1;
+            order: 2;
           }
         }
 

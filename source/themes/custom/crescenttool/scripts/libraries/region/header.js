@@ -105,10 +105,10 @@
       });
     },
     isDesktop: function () {
-      return ($('body').width() >= 980);
+      return ($('body').width() >= 1280);
     },
     isMobile: function () {
-      return ($('body').width() < 980);
+      return ($('body').width() < 1280);
     },
     toggleMenuPanel: function ($button, to_expand) {
       to_expand = (typeof to_expand === 'boolean') ? to_expand : ($button.attr('aria-expanded') !== 'true');
