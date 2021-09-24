@@ -206,3 +206,20 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
+  top_level_items:
+    display_plugin: embed
+    id: top_level_items
+    display_title: 'Top Level Items'
+    position: 1
+    display_options:
+      display_extenders: {  }
+      display_description: 'See gearwrench_core for programmatic filter settings for this display mode.'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
