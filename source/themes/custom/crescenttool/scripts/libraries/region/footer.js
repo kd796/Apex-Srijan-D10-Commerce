@@ -6,7 +6,7 @@
       var behavior_object = this;
 
       if (behavior_object.isMobile()) {
-        // Move header and children to block__content
+        // Move header and children to block__content above address
         $('.block-footer-navigation-block__header').prependTo('.block-footer-navigation-block__content');
       }
     },
