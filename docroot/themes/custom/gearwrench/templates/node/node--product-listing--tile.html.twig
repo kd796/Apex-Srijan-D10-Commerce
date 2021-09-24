@@ -72,13 +72,16 @@
 
 <article{{ attributes.addClass(classes) }}>
   <div{{ inner_attributes }}>
-    <a href="{{ url }}" rel="bookmark">
-      <div{{ media_attributes }}>
-        {{ content }}
-      </div>
-      <div class="btn node__product-listing-grid-title">
-        {{ label }}
-      </div>
-    </a>
+    <div{{ content_attributes.addClass('node__content') }}>
+      <a href="{{ url }}" rel="bookmark">
+        <div{{ media_attributes }}>
+          {{ content }}
+        </div>
+        <div class="btn node__product-listing-grid-title">
+          {{ label }}
+        </div>
+      </a>
+    </div>
+
   </div>
 </article>
