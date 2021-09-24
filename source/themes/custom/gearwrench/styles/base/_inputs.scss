@@ -203,6 +203,11 @@ $active-gap: 8px; // the math likes px values
     //transform: scale(1);
   }
 
+  input[type='checkbox']:not(:checked):focus + label:before,
+  input[type='checkbox']:checked:focus + label:before {
+    border: 1px solid $primary-orange;
+  }
+
   .required-icon {
     display: inline-block;
     width: 6px;

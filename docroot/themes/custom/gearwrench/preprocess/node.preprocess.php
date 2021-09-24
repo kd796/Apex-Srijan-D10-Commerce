@@ -12,17 +12,19 @@
  */
 
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\Render\Element;
+use Drupal\Core\Render\Markup;
 use Drupal\media\Entity\Media;
 use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\file\Entity\File;
 use Drupal\Component\Utility\Html;
 use Drupal\taxonomy\Entity\Term;
+use Drupal\taxonomy\TermStorage;
 
 /**
  * Implements hook_preprocess_node().
  */
 function gearwrench_preprocess_node(array &$variables) {
-  // dump($variables);
   /*
    * Removing theme from field_components so it doesn't render wrapper
    * "field__item" on all our components
@@ -73,15 +75,7 @@ function gearwrench_preprocess_node__product__full(array &$variables) {
     }
   }
   $variables['page_top_products_features'] = $page_top_products_features;
-  // Product Specifications.
-  $specs = $node->field_product_specifications->getValue();
-  foreach ($specs as $key => $spec) {
-    $term = Term::load($spec['target_id']);
-    $vocab = Vocabulary::load($term->bundle());
-    $initial_string = $variables['content']['field_product_specifications'][$key]['#plain_text'];
-    $formatted_string = $vocab->label() . ' : ' . $initial_string;
-    $variables['content']['field_product_specifications'][$key]['#plain_text'] = $formatted_string;
-  }
+
   // Count Product Images.
   $variables['product_images'] = NULL;
   if (!empty($node->field_product_images->getValue())) {
@@ -210,6 +204,81 @@ function gearwrench_preprocess_node__product__teaser(&$variables) {
     $variables['media'] = $variables['content']['field_media'];
     unset($variables['media']['#theme']);
     unset($variables['content']['field_media']);
+  }
+  else {
+    $variables['media_attributes']['class'][] = 'node__media--no-media';
+  }
+}
+
+/**
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product_listing, full.
+ */
+function gearwrench_preprocess_node__product_listing__full(array &$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $bundle = $node->bundle();
+  $view_mode = $variables['view_mode'];
+
+  $main_view = \Drupal::entityTypeManager()
+    ->getStorage('view')
+    ->load('product_listing')
+    ->getExecutable();
+  $view_args = [];
+  // Get Product Classification ID's.
+  if (!empty($node->get('field_product_classifications')->getValue())) {
+    $classifications = array_column($node->get('field_product_classifications')->getValue(), 'target_id');
+    $view_args[] = implode(',', $classifications);
+  }
+  $view_display = 'products_by_category';
+  $main_view->initDisplay();
+  $main_view->setDisplay($view_display);
+  $main_view->setArguments($view_args);
+  $main_view->preExecute();
+  $main_view->execute();
+
+  // Initialize cache contexts.
+  if (!isset($variables['#cache']['contexts'])) {
+    $variables['#cache']['contexts'] = [];
+  }
+  // Initialize cache tags.
+  if (!isset($variables['#cache']['tags'])) {
+    $variables['#cache']['tags'] = [];
+  }
+  // Initialize cache max-age.
+  if (!isset($variables['#cache']['max-age'])) {
+    $variables['#cache']['max-age'] = Cache::PERMANENT;
+  }
+  // Merge display cache tags.
+  $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'], $main_view->display_handler->getCacheMetadata()
+    ->getCacheContexts());
+  $variables['#cache']['tags'] = Cache::mergeTags($variables['#cache']['tags'], $main_view->display_handler->getCacheMetadata()
+    ->getCacheTags());
+  $variables['#cache']['max-age'] = Cache::mergeMaxAges($variables['#cache']['max-age'], $main_view->display_handler->getCacheMetadata()
+    ->getCacheMaxAge());
+  // Merge view cache tags.
+  $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'], $main_view->storage->getCacheContexts());
+  $variables['#cache']['tags'] = Cache::mergeTags($variables['#cache']['tags'], $main_view->getCacheTags());
+  $variables['#cache']['max-age'] = Cache::mergeMaxAges($variables['#cache']['max-age'], $main_view->storage->getCacheMaxAge());
+  $variables['view'] = $main_view->buildRenderable($view_display, $main_view->args);
+  $variables['filters'] = \Drupal::formBuilder()->getForm('Drupal\gearwrench_product_category_filtering\Form\ProductCategoryFiltersForm');
+}
+
+/**
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product listing, teaser.
+ */
+function gearwrench_preprocess_node__product_listing__tile(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $bundle = $node->bundle();
+  $view_mode = $variables['view_mode'];
+  $bundle_css = Html::cleanCssIdentifier($bundle);
+  $view_mode_css = Html::cleanCssIdentifier($view_mode);
+  // Track variables that should be converted to attribute objects.
+  $variables['#attribute_variables'][] = 'media_attributes';
+  $variables['inner_attributes']['class'][] = 'node__inner';
+  $variables['media_attributes']['class'][] = 'node__media';
+  if (isset($variables['content']['field_media'][0])) {
+    $variables['media_attributes']['class'][] = 'node__product-listing-grid-image';
   }
   else {
     $variables['media_attributes']['class'][] = 'node__media--no-media';

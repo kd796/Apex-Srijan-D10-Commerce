@@ -13,9 +13,18 @@
 /**
  * Component
  */
+
 .node--type-product-listing.node--view-mode-tile {
-  .node__product-listing-grid-image {
-    img {
+  .node__product-listing-grid-image .field--name-field-media .media {
+    picture {
+      width: 100%;
+      height: 100%;
+      display: flex;
+    }
+
+    picture img {
+      object-fit: cover;
+      height: auto;
       width: 100%;
     }
   }
@@ -64,3 +73,4 @@
     }
   }
 }
+

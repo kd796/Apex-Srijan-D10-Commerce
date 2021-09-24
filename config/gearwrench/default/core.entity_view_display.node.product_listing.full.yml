@@ -5,10 +5,12 @@ dependencies:
   config:
     - core.entity_view_mode.node.full
     - field.field.node.product_listing.body
+    - field.field.node.product_listing.field_category_facets
+    - field.field.node.product_listing.field_classification_id
     - field.field.node.product_listing.field_media
     - field.field.node.product_listing.field_product_classifications
     - node.type.product_listing
-    - responsive_image.styles.hero
+    - responsive_image.styles.short_hero
   module:
     - blazy
     - text
@@ -21,16 +23,16 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 1
+    weight: 0
     settings: {  }
     third_party_settings: {  }
     region: content
   field_media:
-    weight: 0
+    weight: 1
     label: hidden
     settings:
       image_style: ''
-      responsive_image_style: hero
+      responsive_image_style: short_hero
       media_switch: ''
       thumbnail_style: ''
       ratio: ''
@@ -68,5 +70,7 @@ content:
     type: blazy_media
     region: content
 hidden:
+  field_category_facets: true
+  field_classification_id: true
   field_product_classifications: true
   links: true

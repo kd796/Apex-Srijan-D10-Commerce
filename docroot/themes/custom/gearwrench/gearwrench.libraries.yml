@@ -162,6 +162,12 @@ node--full:
     component:
       css/libraries/node/full.css: {}
 
+node--full--page:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/full--page.css: {}
+
 node--full--product:
   version: 1.x
   css:
@@ -175,6 +181,19 @@ node--full--product:
     - core/jquery
     - core/jquery.once
     - gearwrench/library--swiper
+    - gearwrench/library--jquery-roving-tabindex
+
+node--full--product-listing:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/full--product-listing.css: { }
+  js:
+    js/libraries/node/full--product-listing.js: { }
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
     - gearwrench/library--jquery-roving-tabindex
 
 # === Node: Teaser === #

@@ -45,6 +45,24 @@ class GetClassificationsArray extends ProcessPluginBase {
                   'vid' => $vid,
                   'target_id' => $term->id()
                 ];
+                // Does Item have Parent?
+                $parent_term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($term->id());
+                if (!empty(reset($parent_term))) {
+                  $parent = reset($parent_term);
+                  $values_array[] = [
+                    'vid' => $vid,
+                    'target_id' => $parent->id()
+                  ];
+                  // Does Item have Grandparent?
+                  $grandparent_term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($parent->id());
+                  if (!empty(reset($grandparent_term))) {
+                    $grandparent = reset($grandparent_term);
+                    $values_array[] = [
+                      'vid' => $vid,
+                      'target_id' => $grandparent->id()
+                    ];
+                  }
+                }
               }
             }
           }

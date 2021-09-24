@@ -30,6 +30,9 @@ $tabs-border-width-active: rem(5px);
     }
 
     .product-detail-slider {
+      @include media('>sm') {
+        margin-bottom: rem(55px);
+      }
 
       .product-detail-slider__container {
         position: relative;
@@ -37,7 +40,7 @@ $tabs-border-width-active: rem(5px);
         .product-detail-slider__pseudo-prev-button,
         .product-detail-slider__pseudo-next-button {
           display: none;
-          @include media('<md') {
+          @include media('<=md') {
             background: none;
             border: 0;
             color: $primary-orange;
@@ -122,6 +125,10 @@ $tabs-border-width-active: rem(5px);
     .product-detail-content-container {
 
       @include media('>sm') {
+        padding-top: rem(32px);
+      }
+
+      @include media('>md') {
         padding-top: rem(96px);
       }
     }
@@ -208,7 +215,7 @@ $tabs-border-width-active: rem(5px);
         background-color: $primary-orange;
         height: $header-height;
 
-        @include media('<md') {
+        @include media('<=md') {
           display: none;
         }
 
@@ -317,7 +324,7 @@ $tabs-border-width-active: rem(5px);
             }
           }
 
-          @include media('<md') {
+          @include media('<=md') {
             flex-wrap: nowrap;
             justify-content: center;
             overflow-x: scroll;
@@ -346,8 +353,6 @@ $tabs-border-width-active: rem(5px);
             justify-content: flex-start;
           }
         }
-
-
       }
 
       & > .node--type-product-tabs__content {
@@ -395,8 +400,40 @@ $tabs-border-width-active: rem(5px);
                 margin: 0;
               }
 
-              @include media('<md') {
+              @include media('<=md') {
                 display: none;
+              }
+            }
+
+            .node--type-product__ps-reviews-container {
+              position: relative;
+
+              &:after {
+                border-top: 2px dashed $gray-40;
+                content: '';
+                height: 1px;
+                width: 66.667%;
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, 0);
+              }
+
+              .ps-widget {
+                background: none;
+                border: 0;
+                float: none;
+
+                .ps-review-details {
+                  background: none;
+                }
+
+                .ps-review-count,
+                .ps-review-average {
+                  @include type-header(h5);
+                  color: $black;
+                  font-family: $font-brand;
+                  font-weight: $fw-bold;
+                }
               }
             }
           }
