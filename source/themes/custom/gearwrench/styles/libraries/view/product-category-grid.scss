@@ -1,0 +1,31 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/View: Product Listing Grid
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * View
+ */
+
+.view-product-category-grid {
+  .view-content {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: rem(25px); // sass-lint:disable-line no-misspelled-properties
+
+    @include media('>=md') {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @include media('>=lg') {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+}
