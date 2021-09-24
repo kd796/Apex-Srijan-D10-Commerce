@@ -438,6 +438,10 @@ $mobile-menu-item-button-height: 7rem;
         animation-direction: reverse;
         display: none;
       }
+
+      &:hover {
+        box-shadow: 0 -5px 0 0 $black inset;
+      }
     }
 
     .block__content {
@@ -565,6 +569,10 @@ $mobile-menu-item-button-height: 7rem;
       &[aria-expanded='false'] + .block__content {
         animation-direction: reverse;
         display: none;
+      }
+
+      &:hover {
+        box-shadow: 0 -5px 0 0 $black inset;
       }
     }
 
