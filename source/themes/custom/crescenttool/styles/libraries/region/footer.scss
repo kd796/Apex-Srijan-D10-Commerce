@@ -41,6 +41,8 @@ $footer-bp-mobile: '<sm';
     .block-footer-navigation-block__footer-address-phone {
       a {
         @include link(red, hover);
+        font-weight: $fw-bold;
+        font-size: rem(20px);
       }
     }
   }
@@ -66,8 +68,9 @@ $footer-bp-mobile: '<sm';
       @include flex;
 
       .block-footer-navigation-block__footer-address p {
-        font-size: rem(12px);
+        font-size: rem(16px);
         margin: 0;
+        font-weight: $fw-medium;
 
         &:first-of-type {
           margin-top: 0.5rem;
@@ -111,6 +114,7 @@ $footer-bp-mobile: '<sm';
       position: relative;
       text-indent: -9999px;
       width: 1rem;
+      font-size: rem(20px);
 
       &::before {
         @extend %icon;
@@ -147,9 +151,8 @@ $footer-bp-mobile: '<sm';
     li,
     li a {
       font-family: $font-brand;
-      font-size: rem(14px);
+      font-size: rem(16px);
       font-weight: $fw-extra-bold;
-      text-transform: uppercase;
     }
   }
 
@@ -234,7 +237,7 @@ $footer-bp-mobile: '<sm';
     }
 
     .menu--footer {
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       margin: 0;
       padding: 0 0 0 3rem;
     }
@@ -308,6 +311,12 @@ $footer-bp-mobile: '<sm';
 
           .block-footer-navigation-block__footer-address {
             order: 1;
+
+            .block-footer-navigation-block__footer-address-phone {
+              a {
+                font-size: rem(16px);
+              }
+            }
           }
 
           .block-footer-navigation-block__footer-social-menu-wrapper {
@@ -344,6 +353,7 @@ $footer-bp-mobile: '<sm';
 
         .menu-item__link {
           margin: 0 2rem;
+          font-size: rem(20px);
         }
       }
     }
