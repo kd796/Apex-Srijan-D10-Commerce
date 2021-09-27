@@ -437,6 +437,10 @@ $mobile-menu-item-button-height: 7rem;
     display: flex;
     padding-left: 1.5rem;
 
+    &.contextual-region {
+      position: unset;
+    }
+
     .block__content-toggle {
       @include icon('search');
 
@@ -1058,10 +1062,6 @@ $mobile-menu-item-button-height: 7rem;
     transition-timing-function: $transition-base-style;
     transition: 0.25s;
   }
-}
-
-.user-logged-in .region-header .block--header-search .block__content {
-  right: -6.3rem;
 }
 
 /**
