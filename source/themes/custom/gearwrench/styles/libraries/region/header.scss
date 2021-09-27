@@ -341,6 +341,22 @@ $mobile-menu-item-button-height: 7rem;
       li a {
         color: $primary-orange;
       }
+
+      .menu-item__link--all {
+        .menu-item__link {
+          @include icon(tertiary-link, after, false);
+          font-weight: $fw-bold;
+
+          &::after {
+            margin-left: 0.5rem;
+            vertical-align: bottom;
+
+            &:hover {
+              text-decoration: none;
+            }
+          }
+        }
+      }
     }
 
     .menu__content-container {
