@@ -1,14 +1,14 @@
-uuid: 9ea08c5e-26f3-4139-be58-54f69b30f044
+uuid: 3d1f1151-8c9e-4895-938b-888071358bb4
 langcode: en
 status: true
 dependencies: {  }
-id: gearwrench_product_listing_pages
+id: gearwrench_product_category_pages_level_one
 class: null
 field_plugin_method: null
 cck_plugin_method: null
 migration_tags: null
 migration_group: gearwrench
-label: 'Gearwrench Product Listing Pages'
+label: 'Gearwrench Product Listing Pages - Level One'
 source:
   constants:
     bool_0: 0
@@ -34,46 +34,46 @@ source:
     remote_id:
       type: string
 process:
+  field_classification_id:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_id
+    method: row
+    value:
+      - W1_15788
+      - W1_15789
+      - W1_15791
+      - W1_15792
+      - W1_15793
+      - W1_15794
+      - W1_15795
+      - W1_15796
+      - W1_15797
+      - W1_15798
+      - W1_15799
+      - W1_15847
+      - W1_15848
+      - W1_16113
+      - W1_727497
+      - W1_728251
+      - W1_736539
+      - W1_781017
+      - W1_785249
   type:
     plugin: default_value
-    default_value: product_listing
+    default_value: product_category
   title: remote_name
   sticky: constants/bool_0
   promote: constants/bool_1
   uid: constants/uid_root
   name:
-    -
-      plugin: skip_on_empty
-      method: row
-      source: remote_name
-    -
-      plugin: skip_on_value
-      method: row
-      not_equals: false
-      value:
-        - 'Auto Specialty'
-        - 'Cutting Tools'
-        - 'Tool Storage'
-        - 'Impact Products'
-        - 'Ratchets and Drive Tools'
-        - 'Torque Products'
-        - 'Screwdrivers and Nutdrivers'
-        - Wrenches
-        - Pliers
-        - 'Pry Bars'
-        - 'Striking and Struck'
-        - 'Measuring and Inspection'
-        - Pullers
-        - Sockets
-        - Lighting
-        - 'Shop Assist Equipment'
-        - 'Tool Sets'
-        - 'Tethered Products'
-        - 'Extraction Tools'
+    plugin: skip_on_empty
+    method: row
+    source: remote_name
   product_classifications_array:
-    -
-      plugin: get_all_product_classifications
-      source: remote_name
+    plugin: get_all_product_classifications
+    source: remote_name
+    depth: 2
   field_product_classifications:
     plugin: sub_process
     source: '@product_classifications_array'

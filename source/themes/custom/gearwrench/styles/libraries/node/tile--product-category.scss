@@ -1,7 +1,7 @@
 @charset 'UTF-8';
 
 // -----------------------------------------------------------------------------
-// Libraries/Node: Tile Product Listing
+// Libraries/Node: Tile Product Category
 // -----------------------------------------------------------------------------
 
 /**
@@ -14,8 +14,8 @@
  * Component
  */
 
-.node--type-product-listing.node--view-mode-tile {
-  .node__product-listing-grid-image .field--name-field-media .media {
+.node--type-product-category.node--view-mode-tile {
+  .node__product-category-grid-image .field--name-field-media .media {
     picture {
       width: 100%;
       height: 100%;
@@ -29,7 +29,7 @@
     }
   }
 
-  .node__product-listing-grid-title {
+  .node__product-category-grid-title {
     font-size: rem(16px);
     width: 100%;
     background-color: transparent;
@@ -52,15 +52,15 @@
         box-shadow: none;
       }
 
-      .node__product-listing-grid-image,
-      .node__product-listing-grid-title {
+      .node__product-category-grid-image,
+      .node__product-category-grid-title {
         box-shadow: 0 0 0 2px $primary-orange;
         @include media('<md') {
           box-shadow: none;
         }
       }
 
-      .node__product-listing-grid-title {
+      .node__product-category-grid-title {
         @include icon('chevron-right-black', after, false);
         background-color: $primary-orange;
         color: $black;

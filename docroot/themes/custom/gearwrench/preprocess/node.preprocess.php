@@ -200,7 +200,7 @@ function gearwrench_preprocess_node__product__teaser(&$variables) {
   // Move media to media variable.
   if (isset($variables['content']['field_media'][0])) {
     $variables['media_attributes']['class'][] = 'node__media--with-media';
-    $variables['media_attributes']['class'][] = 'node__listing-image';
+    $variables['media_attributes']['class'][] = 'node__category-image';
     $variables['media'] = $variables['content']['field_media'];
     unset($variables['media']['#theme']);
     unset($variables['content']['field_media']);
@@ -211,9 +211,9 @@ function gearwrench_preprocess_node__product__teaser(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product_listing, full.
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product_category, full.
  */
-function gearwrench_preprocess_node__product_listing__full(array &$variables) {
+function gearwrench_preprocess_node__product_category__full(array &$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
   $bundle = $node->bundle();
@@ -221,7 +221,7 @@ function gearwrench_preprocess_node__product_listing__full(array &$variables) {
 
   $main_view = \Drupal::entityTypeManager()
     ->getStorage('view')
-    ->load('product_listing')
+    ->load('product_category')
     ->getExecutable();
   $view_args = [];
   // Get Product Classification ID's.
@@ -264,9 +264,9 @@ function gearwrench_preprocess_node__product_listing__full(array &$variables) {
 }
 
 /**
- * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product listing, teaser.
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product category, teaser.
  */
-function gearwrench_preprocess_node__product_listing__tile(&$variables) {
+function gearwrench_preprocess_node__product_category__tile(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
   $bundle = $node->bundle();
@@ -278,7 +278,7 @@ function gearwrench_preprocess_node__product_listing__tile(&$variables) {
   $variables['inner_attributes']['class'][] = 'node__inner';
   $variables['media_attributes']['class'][] = 'node__media';
   if (isset($variables['content']['field_media'][0])) {
-    $variables['media_attributes']['class'][] = 'node__product-listing-grid-image';
+    $variables['media_attributes']['class'][] = 'node__product-category-grid-image';
   }
   else {
     $variables['media_attributes']['class'][] = 'node__media--no-media';

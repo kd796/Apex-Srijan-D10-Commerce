@@ -183,13 +183,13 @@ node--full--product:
     - gearwrench/library--swiper
     - gearwrench/library--jquery-roving-tabindex
 
-node--full--product-listing:
+node--full--product-category:
   version: 1.x
   css:
     component:
-      css/libraries/node/full--product-listing.css: { }
+      css/libraries/node/full--product-category.css: { }
   js:
-    js/libraries/node/full--product-listing.js: { }
+    js/libraries/node/full--product-category.js: { }
   dependencies:
     - core/drupal
     - core/jquery
@@ -206,11 +206,11 @@ node--teaser--product:
 
 # === Node: Tile === #
 
-node--tile--product-listing:
+node--tile--product-category:
   version: 1.x
   css:
     component:
-      css/libraries/node/tile--product-listing.css: { }
+      css/libraries/node/tile--product-category.css: { }
 
 # ========= Paragraphs ========= #
 
@@ -463,12 +463,6 @@ view--related-products:
     - core/jquery
     - gearwrench/library--swiper
     - core/jquery.once
-
-view--product-listing-grid:
-  version: 1.x
-  css:
-    component:
-      css/libraries/view/product-listing-grid.css: {}
 
 view--product-category-grid:
   version: 1.x

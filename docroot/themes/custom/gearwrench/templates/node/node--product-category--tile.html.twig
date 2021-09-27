@@ -71,33 +71,17 @@
 {% set classes = [] %}
 
 <article{{ attributes.addClass(classes) }}>
-
-  {{ title_prefix }}
-  {% if not page %}
-    <header{{ title_attributes }}>
-      <h3>
-        <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-      </h3>
-    </header>
-  {% endif %}
-  {{ title_suffix }}
-
-  <div{{ content_attributes }}>
-    {{ content }}
-    <div class="product-listing-view-section">
-      {{ filters }}
-      {{ view }}
+  <div{{ inner_attributes }}>
+    <div{{ content_attributes.addClass('node__content') }}>
+      <a href="{{ url }}" rel="bookmark">
+        <div{{ media_attributes }}>
+          {{ content }}
+        </div>
+        <div class="btn node__product-category-grid-title">
+          {{ label }}
+        </div>
+      </a>
     </div>
+
   </div>
-
-  {% if display_submitted %}
-    <footer{{ footer_attributes }}>
-      {{ author_picture }}
-      <div{{ author_attributes.addClass('node__submitted') }}>
-        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
-        {{ metadata }}
-      </div>
-    </footer>
-  {% endif %}
-
 </article>
