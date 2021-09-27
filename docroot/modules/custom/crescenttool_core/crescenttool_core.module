@@ -25,6 +25,13 @@ function crescenttool_core_theme() {
     'template' => 'block--footer-navigation-block',
     'base hook' => 'block'
   ];
+
+  $theme['block__header_search'] = [
+    'render element' => 'elements',
+    'template' => 'block--header-search',
+    'base hook' => 'block'
+  ];
+
   return $theme;
 }
 
