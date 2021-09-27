@@ -1,5 +1,5 @@
-# Migration configuration for gearwrench_product_listing_pages content.
-id: gearwrench_product_listing_pages
+# Migration configuration for gearwrench_product_category_pages content.
+id: gearwrench_product_category_pages
 label: Gearwrench Product Listing Pages
 migration_group: gearwrench
 source:
@@ -27,7 +27,7 @@ source:
 process:
   type:
     plugin: default_value
-    default_value: product_listing
+    default_value: product_category
   title: remote_name
   sticky: constants/bool_0
   promote: constants/bool_1

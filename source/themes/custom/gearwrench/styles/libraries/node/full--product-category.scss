@@ -13,7 +13,7 @@
 /**
  * Component
  */
-.node--type-product-listing.node--view-mode-full .node__content {
+.node--type-product-category.node--view-mode-full .node__content {
 
   .page-heading {
     @include flex();
@@ -73,7 +73,7 @@
     }
   }
 
-  .product-listing-view-section {
+  .product-category-view-section {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: rem(24px); // sass-lint:disable-line no-misspelled-properties
@@ -84,7 +84,7 @@
     }
 
 
-    .gearwrench-product-listing-filters {
+    .gearwrench-product-category-filters {
       display: none;
       grid-column: 1;
 
@@ -160,7 +160,7 @@
 
     }
 
-    .view-product-listing {
+    .view-product-category {
 
       .view-header {
         @include type-header(h6, black, included);

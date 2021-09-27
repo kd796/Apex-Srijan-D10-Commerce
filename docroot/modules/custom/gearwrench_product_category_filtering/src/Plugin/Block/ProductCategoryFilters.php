@@ -8,7 +8,7 @@ use Drupal\Core\Block\BlockBase;
  * Provides a product listing filters block.
  *
  * @Block(
- *   id = "gearwrench_product_listing_filters",
+ *   id = "gearwrench_product_category_filters",
  *   admin_label = @Translation("Product Listing Filters"),
  *   category = @Translation("Gearwrench")
  * )

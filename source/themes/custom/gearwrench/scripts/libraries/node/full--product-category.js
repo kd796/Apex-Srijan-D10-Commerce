@@ -1,6 +1,6 @@
 (function ($, Drupal) {
   'use strict';
-  Drupal.behaviors.productListingFilters = {
+  Drupal.behaviors.productCategoryFilters = {
     filtering: function ($item, $filterType) {
       if (typeof drupalSettings.selectedCategories == 'undefined') {
         drupalSettings.selectedCategories = [];
@@ -35,27 +35,26 @@
             break;
         }
       }
-
-      var $productListingView = $('.view-product-listing');
-      var attributeSelect = $productListingView.find('.form-item-field-product-specifications-target-id').find('.form-select');
+      var $productCategoryView = $('.view-product-category');
+      var attributeSelect = $productCategoryView.find('.form-item-field-product-specifications-target-id').find('.form-select');
       attributeSelect.val(drupalSettings.selectedAttributes);
-      var classificationSelect = $productListingView.find('.form-item-field-product-classifications-target-id').find('.form-select');
+      var classificationSelect = $productCategoryView.find('.form-item-field-product-classifications-target-id').find('.form-select');
       classificationSelect.val(drupalSettings.selectedCategories);
       attributeSelect.val(drupalSettings.selectedAttributes);
-      $productListingView.find('input[type=submit]').click();
+      $productCategoryView.find('input[type=submit]').click();
     },
     attach: function (context, settings) {
-      $('.gearwrench-product-listing-filters:not(.gearwrench-product-listing-filters--js-initialized)').once('product-listing-filters').each(function (index) {
-        var $categoryFilter = $('.node--type-product-listing__category-filter');
-        var $attributeFilter = $('.node--type-product-listing__attribute-filter');
+      $('.gearwrench-product-category-filters:not(.gearwrench-product-category-filters--js-initialized)').once('product-category-filters').each(function (index) {
+        var $categoryFilter = $('.node--type-product-category__category-filter');
+        var $attributeFilter = $('.node--type-product-category__attribute-filter');
         // Track that this component has been initialized.
-        $(this).addClass('gearwrench-product-listing-filters--js-initialized');
+        $(this).addClass('gearwrench-product-category-filters--js-initialized');
         $categoryFilter.find('.form-checkbox').bind('change', function (e) {
-          Drupal.behaviors.productListingFilters.filtering($(this), 'category');
+          Drupal.behaviors.productCategoryFilters.filtering($(this), 'category');
           e.stopImmediatePropagation();
         });
         $attributeFilter.find('.form-checkbox').bind('change', function (e) {
-          Drupal.behaviors.productListingFilters.filtering($(this), 'attribute');
+          Drupal.behaviors.productCategoryFilters.filtering($(this), 'attribute');
           e.stopImmediatePropagation();
         });
 
@@ -67,16 +66,16 @@
     }
   };
 
-  Drupal.behaviors.productListingFilterTabs = {
+  Drupal.behaviors.productCategoryFilterTabs = {
     attach: function (context, settings) {
-      $('.gearwrench-product-listing-filters').once('product-listing-filter-tabs').each(function (index) {
+      $('.gearwrench-product-category-filters').once('product-category-filter-tabs').each(function (index) {
         // Initialize variables.
         var $widget = $(this);
         var $accordions = $widget.find('fieldset');
         var $accordionHeaders = $accordions.find('legend');
 
         // Mark that the tabs component has been initialized.
-        // $widget.addClass('gearwrench-product-listing-filters--js-initialized');
+        // $widget.addClass('gearwrench-product-category-filters--js-initialized');
 
         // Add static roles to elements.
         $widget.attr('role', 'tablist');
@@ -90,8 +89,8 @@
 
           // Generate the accordion tab (header) and panel (content) IDs.
           var accordionId = $accordion.attr('data-drupal-selector');
-          var headerId = 'product-listing-filter-item-' + accordionId + '__header';
-          var panelId = 'product-listing-filter-item-' + accordionId + '__panel';
+          var headerId = 'product-category-filter-item-' + accordionId + '__header';
+          var panelId = 'product-category-filter-item-' + accordionId + '__panel';
 
           // Determine whether this accordion needs to be open by default.
           var openByDefault = $accordion.hasClass('component-accordion-item--open');
@@ -131,9 +130,9 @@
             var $accordionHeader = $(this);
             var $accordionContent = $accordionHeader.siblings('.fieldset-wrapper');
             var $accordion = $accordionHeader.parent();
-            var open = $accordion.hasClass('product-listing-filter-item---open');
+            var open = $accordion.hasClass('product-category-filter-item---open');
 
-            $accordion.toggleClass('product-listing-filter-item---open', (!open));
+            $accordion.toggleClass('product-category-filter-item---open', (!open));
             $accordionHeader.attr('aria-selected', (open) ? 'false' : 'true');
             $accordionContent
               .attr('aria-hidden', (open) ? 'true' : 'false')
