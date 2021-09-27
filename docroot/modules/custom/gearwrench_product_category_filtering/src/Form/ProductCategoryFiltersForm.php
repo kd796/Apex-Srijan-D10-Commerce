@@ -16,7 +16,7 @@ class ProductCategoryFiltersForm extends FormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'gearwrench_product_listing_filters';
+    return 'gearwrench_product_category_filters';
   }
 
   /**
@@ -26,7 +26,7 @@ class ProductCategoryFiltersForm extends FormBase {
     $node = \Drupal::routeMatch()->getParameter('node');
     $view = \Drupal::entityTypeManager()
       ->getStorage('view')
-      ->load('product_listing')
+      ->load('product_category')
       ->getExecutable();
     $view_args = [];
     // Get Product Classification ID's.
@@ -97,7 +97,7 @@ class ProductCategoryFiltersForm extends FormBase {
         '#required' => FALSE,
         '#attributes' => [
           'class' => [
-            'node--type-product-listing__category-filter',
+            'node--type-product-category__category-filter',
           ]
         ],
       ];
@@ -143,7 +143,7 @@ class ProductCategoryFiltersForm extends FormBase {
         '#required' => FALSE,
         '#attributes' => [
           'class' => [
-            'node--type-product-listing__attribute-filter',
+            'node--type-product-category__attribute-filter',
           ]
         ],
       ];

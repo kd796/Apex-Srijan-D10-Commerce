@@ -1,0 +1,25 @@
+uuid: 5d4d3c2d-1cb9-47b1-b17d-062f2e0a3b7d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.product_category.body
+    - field.field.node.product_category.field_category_facets
+    - field.field.node.product_category.field_classification_id
+    - field.field.node.product_category.field_media
+    - field.field.node.product_category.field_product_classifications
+    - node.type.product_category
+  module:
+    - user
+id: node.product_category.default
+targetEntityType: node
+bundle: product_category
+mode: default
+content: {  }
+hidden:
+  body: true
+  field_category_facets: true
+  field_classification_id: true
+  field_media: true
+  field_product_classifications: true
+  links: true
