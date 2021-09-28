@@ -35,7 +35,7 @@
   // Include if the globals only if explicitly included.
   @if $globals == included {
     font-family: $font-brand;
-    font-weight: $fw-extra-bold;
+    font-weight: $fw-semi-bold;
     letter-spacing: inherit;
     line-height: 1.2;
     margin: 1.25rem 0 0.5rem;
@@ -64,22 +64,16 @@
     line-height: rem(32px);
   } @else if $version == h5 {
     font-size: rem(20px);
-    text-transform: uppercase;
   } @else if $version == h6 {
     font-size:  rem(16px);
-    text-transform: uppercase;
   } @else if $version == display-headline-1 {
     font-size: 4.5rem !important;
-    text-transform: uppercase;
   } @else if $version == display-headline-2 {
     font-size: 4rem !important;
     letter-spacing: -0.02rem;
-    text-transform: uppercase;
   } @else if $version == display-headline-3 {
     font-size: 3.625rem !important;
-    text-transform: uppercase;
   } @else if $version == display-headline-4 {
     font-size: 3.25rem !important;
-    text-transform: uppercase;
   }
 }
