@@ -135,7 +135,7 @@ $active-gap: 8px; // the math likes px values
     width: inherit;
   }
 
-  // hide the default input box
+  // hide the default input box but keep under fake input box for html error
   input[type='checkbox']:checked,
   input[type='checkbox']:not(:checked),
   input[type='radio']:checked,
@@ -171,6 +171,20 @@ $active-gap: 8px; // the math likes px values
     position: absolute;
     top: 0;
     width: $active-width;
+  }
+
+  // Error on required field change color
+  input[type='checkbox']:not(:checked),
+  input[type='radio']:not(:checked) {
+    &:invalid:focus {
+      + label:before {
+        border-color: $danger-red !important;
+      }
+
+      + label {
+        color: $danger-red;
+      }
+    }
   }
 
   input[type='checkbox']:checked + label:before,
