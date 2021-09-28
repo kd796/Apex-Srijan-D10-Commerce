@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_product_specifications
     - node.type.product
+    - taxonomy.vocabulary.product_specifications
     - taxonomy.vocabulary.tags
 id: node.product.field_product_specifications
 field_name: field_product_specifications
@@ -20,10 +21,11 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
+      product_specifications: product_specifications
       tags: tags
     sort:
       field: name
       direction: asc
     auto_create: false
-    auto_create_bundle: null
+    auto_create_bundle: product_specifications
 field_type: entity_reference

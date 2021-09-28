@@ -32,10 +32,18 @@ $footer-bp-mobile: '<sm';
 
   .region-footer-first {
     @include container($margin: 0);
-    color: $secondary-light;
+    color: $white;
 
     a {
       @include link(light, hover);
+    }
+
+    .block-footer-navigation-block__footer-address-phone {
+      a {
+        @include link(red, hover);
+        font-weight: $fw-bold;
+        font-size: rem(20px);
+      }
     }
   }
 
@@ -44,7 +52,7 @@ $footer-bp-mobile: '<sm';
     @include flex-x(flex-direction, column);
 
     .block-footer-navigation-block__header {
-      padding: 0 0 2.75rem;
+      padding: 0 0 1rem;
 
       .block-footer-navigation-block__footer-logo {
         max-width: 16rem;
@@ -60,11 +68,22 @@ $footer-bp-mobile: '<sm';
       @include flex;
 
       .block-footer-navigation-block__footer-address p {
-        font-size: rem(12px);
+        font-size: rem(16px);
         margin: 0;
+        font-weight: $fw-medium;
 
         &:first-of-type {
           margin-top: 0.5rem;
+        }
+
+        &.block-footer-navigation-block__footer-address-phone {
+          margin-top: rem(10px);
+        }
+      }
+
+      .block-footer-navigation-block__footer-social-menu-wrapper {
+        .menu--social {
+          padding-top: rem(10px);
         }
       }
     }
@@ -95,6 +114,7 @@ $footer-bp-mobile: '<sm';
       position: relative;
       text-indent: -9999px;
       width: 1rem;
+      font-size: rem(20px);
 
       &::before {
         @extend %icon;
@@ -131,45 +151,48 @@ $footer-bp-mobile: '<sm';
     li,
     li a {
       font-family: $font-brand;
-      font-size: rem(14px);
+      font-size: rem(16px);
       font-weight: $fw-extra-bold;
-      text-transform: uppercase;
     }
   }
 
   .region-footer-second {
     @include container($margin: 0);
-    color: $black;
+    color: $white;
 
     .region-footer-second__content {
       .block-webform-block__title {
         border-bottom: unset;
       }
 
+      label {
+        color: $white;
+      }
+
       input,
       textarea,
       select {
-        color: $gray-30;
+        color: $gray-20;
 
         &::placeholder {
-          color: $gray-30;
+          color: $gray-20;
         }
       }
 
       input:not([type='submit']) {
-        background: $black;
-        border-color: $black;
+        background: $gray-90;
+        border-color: $gray-20;
       }
 
       .webform-button--submit {
-        background-color: $black;
-        border: 1px solid $black;
+        background-color: $primary-red;
+        border: 1px solid $primary-red;
         color: $white;
         width: 100%;
 
         &:hover {
-          background-color: $primary-orange;
-          color: $black;
+          background-color: $primary-dark;
+          color: $white;
         }
 
         &:disabled {
@@ -178,14 +201,13 @@ $footer-bp-mobile: '<sm';
           color: $black;
         }
       }
-
     }
   }
 }
 
 @include media($footer-bp-desktop) {
   .region-footer {
-    background: linear-gradient(to right, $black 50%, $primary-orange 50%);
+    background: linear-gradient(to right, $secondary-black 50%, $gray-90 50%);
 
     .region-footer__inner-container {
       @include container();
@@ -196,19 +218,6 @@ $footer-bp-mobile: '<sm';
     .region-footer-first {
       position: relative;
       z-index: 0;
-
-      // Performance Device
-      &::after {
-        background-color: $black;
-        position: absolute;
-        content: '';
-        width: 100%;
-        height: 100%;
-        top: 0;
-        right: -14%;
-        z-index: -1;
-        transform: skew(-14deg);
-      }
     }
 
     .region-footer-first__content {
@@ -228,7 +237,7 @@ $footer-bp-mobile: '<sm';
     }
 
     .menu--footer {
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       margin: 0;
       padding: 0 0 0 3rem;
     }
@@ -251,14 +260,13 @@ $footer-bp-mobile: '<sm';
 @include media($footer-bp-tablet-landscape) {
 
   .region-footer {
-
     .region-footer__inner-container {
       @include container-full-width();
       grid-template-columns: 1fr;
 
       .region-footer-first {
         @include container-full-width();
-        background-color: $black;
+        background-color: $secondary-black;
         padding: 0 2rem;
         order: 2;
 
@@ -269,7 +277,7 @@ $footer-bp-mobile: '<sm';
 
       .region-footer-second {
         @include container-full-width();
-        background-color: $primary-orange;
+        background-color: $gray-90;
         padding: 0 2rem;
         order: 1;
       }
@@ -280,45 +288,74 @@ $footer-bp-mobile: '<sm';
       padding: 3rem 0;
     }
 
+    .region-footer-first__content {
+      padding-top: 0;
+    }
+
     .block-footer-navigation-block__nav {
 
       .block-footer-navigation-block__content {
         @include flex-x(flex-direction, column);
 
+        .block-footer-navigation-block__header {
+          order: 2;
+          margin-top: rem(20px);
+          padding-bottom: 0;
+        }
+
         .block-footer-navigation-block__footer-address-social-menu-container {
           @include flex;
           @include flex-x(flex-direction, column);
 
-          order: 2;
+          order: 3;
 
           .block-footer-navigation-block__footer-address {
-            order: 2;
+            order: 1;
+
+            .block-footer-navigation-block__footer-address-phone {
+              a {
+                font-size: rem(16px);
+              }
+            }
           }
 
           .block-footer-navigation-block__footer-social-menu-wrapper {
-            order: 1;
+            order: 2;
           }
         }
 
         .block-footer-navigation-block__footer-menu-wrapper {
+          @include container-full-width();
           order: 1;
         }
       }
     }
 
     .menu--footer {
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr;
       padding: 0;
-    }
-  }
-}
+      margin-bottom: rem(20px);
 
-@include media($footer-bp-tablet-portrait) {
+      .menu-item--depth-0 {
+        @include icon('arrow', after, false);
+        border-bottom: rem(1px) solid $gray-50;
+        margin: 0;
+        padding: 0.5rem 0;
+        position: relative;
 
-  .region-footer {
+        &::after {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          right: 2rem;
+          color: $primary-red;
+        }
 
-    .menu--footer {
-      grid-template-columns: 1fr 1fr;
+        .menu-item__link {
+          margin: 0 2rem;
+          font-size: rem(20px);
+        }
+      }
     }
   }
 }

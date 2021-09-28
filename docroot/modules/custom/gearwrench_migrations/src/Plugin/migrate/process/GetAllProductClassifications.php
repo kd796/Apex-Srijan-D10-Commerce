@@ -27,6 +27,8 @@ class GetAllProductClassifications extends ProcessPluginBase {
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
+    // 1 to get only immediate children, NULL to load entire tree.
+    $depth = $this->configuration['depth'];
     $all_terms_array = [];
     $properties = [];
     $vid = 'product_classifications';
@@ -45,8 +47,7 @@ class GetAllProductClassifications extends ProcessPluginBase {
         'vid' => $vid,
         'target_id' => $parent_tid
       ];
-      // 1 to get only immediate children, NULL to load entire tree.
-      $depth = 2;
+
       // True will return loaded entities rather than ids.
       $load_entities = FALSE;
       $child_terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid, $parent_tid, $depth, $load_entities);

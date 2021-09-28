@@ -118,8 +118,6 @@
           <span class="sku">{{ label }}</span>
           <div class="product-detail-content-container__rating-container">
             <!--Price Spider Rating widget goes here-->
-            <div data-bv-show="rating_summary" data-bv-product-id="{{ sku }}"></div>
-
             <div class="node__buy-now-button ps-widget" ps-sku="{{ sku }}"></div>
           </div>
         </header>
@@ -180,7 +178,9 @@
               <div class="node--type-product__accordion-content-header">
                 {{ 'Reviews & Questions'|t }}
               </div>
-              Reviews Go Here.
+              <div class="node--type-product__ps-reviews-container">
+                <div class="ps-widget" ps-config="5d66ebae332829002b90e9f3" ps-sku="{{ sku }}"></div>
+              </div>
               <div data-bv-show="reviews" data-bv-product-id="{{ sku }}"></div>
             </div>
           </section>

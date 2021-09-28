@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.product.body
     - field.field.node.product.field_featured_product
+    - field.field.node.product.field_launch_date
     - field.field.node.product.field_long_description
     - field.field.node.product.field_media
     - field.field.node.product.field_meta_tags
@@ -20,6 +21,7 @@ dependencies:
     - field.field.node.product.field_upc
     - node.type.product
   module:
+    - datetime
     - field_group
     - media_library
     - metatag
@@ -119,6 +121,12 @@ content:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
+    region: content
+  field_launch_date:
+    weight: 30
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
     region: content
   field_long_description:
     weight: 16

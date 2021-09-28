@@ -41,7 +41,7 @@ function gearwrench_migrations_uninstall() {
   \Drupal::configFactory()->getEditable('migrate_plus.migration.gearwrench_product_classifications_level_three')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.gearwrench_products')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.gearwrench_product_sets')->delete();
-  \Drupal::configFactory()->getEditable('migrate_plus.migration.gearwrench_product_listing_pages')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.gearwrench_product_category_pages')->delete();
 }
 
 /**

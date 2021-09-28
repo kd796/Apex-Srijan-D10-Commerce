@@ -23,15 +23,18 @@
       </div>
       {{ title_suffix }}
       <a href="/" title="{{ 'CRESCENTTOOL Home'|t }}" rel="home" class="block-footer-navigation-block__footer-logo">
-        {% include directory ~ '/icons/logo-forge-ahead.svg' %}
+        {% include directory ~ '/icons/logo-trusted-by-the-trades-white.svg' %}
       </a>
     </header>
     <div{{ content_attributes }}>
       <section class="block-footer-navigation-block__footer-address-social-menu-container">
         <div class="block-footer-navigation-block__footer-address">
-          <p>Address and Shipping</p>
-          <p>City, State Zip Code</p>
-          <p>888-888-888</p>
+          <a href="https://goo.gl/maps/g8MsAJ12BiKZosMg6" target="_blank">
+            <p class="block-footer-navigation-block__footer-address-first">910 Ridgebrook Road</p>
+            <p class="block-footer-navigation-block__footer-address-second">Suite 200</p>
+            <p class="block-footer-navigation-block__footer-address-city">Sparks, Maryland 21152</p>
+          </a>
+          <p class="block-footer-navigation-block__footer-address-phone"><a href="tel:800-621-8814">(800) 621-8814</a></p>
         </div>
         <div class="block-footer-navigation-block__footer-social-menu-wrapper">
           {{ content.social_menu }}
