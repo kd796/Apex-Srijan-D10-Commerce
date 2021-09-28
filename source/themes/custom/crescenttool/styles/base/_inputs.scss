@@ -28,6 +28,10 @@ textarea.form-textarea.webform-counter-warning,
   &:disabled {
     background-color: $color-light-grey;
   }
+
+  &:invalid:focus {
+    border-color: $danger-red !important;
+  }
 }
 
 input,
@@ -84,7 +88,6 @@ input[type='submit'],
   line-height: 1.2rem;
   margin-bottom: rem(24px);
   padding-bottom: rem(10px);
-  text-transform: uppercase;
   border-bottom: 1px solid $gray-70;
 }
 
@@ -138,7 +141,9 @@ $active-gap: 8px; // the math likes px values
   input[type='radio']:checked,
   input[type='radio']:not(:checked) {
     position: absolute;
-    left: -9999px;
+    left: 0;
+    opacity: 0;
+    height: 10px;
   }
 
   // create a fake input box
