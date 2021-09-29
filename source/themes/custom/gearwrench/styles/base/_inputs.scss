@@ -3,6 +3,8 @@
 // Themed inputs, buttons, and form item groups
 // -----------------------------------------------------------------------------
 
+$input-height: 3.75rem;
+
 // basic inputs
 input,
 textarea,
@@ -26,13 +28,24 @@ textarea.form-textarea.webform-counter-warning,
   &:disabled {
     background-color: $color-light-grey;
   }
+
+  @include media('<sm') {
+    padding: 1rem;
+  }
+}
+
+select {
+  padding-right: $input-height;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden !important;
 }
 
 input,
 select,
 .form-input-file__button {
-  height: 3.75rem;
-  overflow: hidden;
+  height: $input-height;
+  overflow: hidden !important;
 }
 
 // Remove fieldset margin
@@ -130,13 +143,15 @@ $active-gap: 8px; // the math likes px values
     width: inherit;
   }
 
-  // hide the default input box
+  // hide the default input box but keep under fake input box for html error
   input[type='checkbox']:checked,
   input[type='checkbox']:not(:checked),
   input[type='radio']:checked,
   input[type='radio']:not(:checked) {
     position: absolute;
-    left: -9999px;
+    left: 0;
+    opacity: 0;
+    height: 10px;
   }
 
   // create a fake input box
@@ -286,8 +301,8 @@ $active-gap: 8px; // the math likes px values
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 3.75rem;
-    width: 3.75rem;
+    height: $input-height;
+    width: $input-height;
     background-color: $secondary-black;
   }
 }
@@ -324,6 +339,33 @@ $active-gap: 8px; // the math likes px values
     font-size: rem(5px);
     background-image: unset;
     background-size: unset;
+  }
+}
+
+.form-error {
+  input,
+  textarea,
+  select {
+    &:invalid:focus {
+      border-color: $danger-red !important;
+    }
+  }
+
+  .form-checkboxes,
+  .form-radios {
+    // Error on required field change color
+    input[type='checkbox']:not(:checked),
+    input[type='radio']:not(:checked) {
+      &:invalid:focus {
+        + label:before {
+          border-color: $danger-red !important;
+        }
+
+        + label {
+          color: $danger-red;
+        }
+      }
+    }
   }
 }
 

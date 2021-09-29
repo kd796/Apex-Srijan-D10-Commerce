@@ -3,6 +3,25 @@
 
   Drupal.behaviors.gearwrench = {
     attach: function (context, settings) {
+      // Form error on submit button click
+      $('.webform-submission-form:not(.component-accordion--js-initialized)').once().each(function (index) {
+        // Initialize variables.
+        var $widget = $(this);
+        var $submitButton = $($widget).find('.webform-button--submit');
+
+        // Create isValid() jQuery function
+        $.fn.isValid = function () {
+          return this[0].checkValidity();
+        };
+
+        // Set error class
+        $($submitButton).on('click', function () {
+          if (!$($widget).isValid()) {
+            $($widget).addClass('form-error');
+          }
+        });
+      });
+
       function focusKeyDown(e) {
         if ([9, 13, 32, 38, 40].indexOf(e.keyCode) !== -1) {
           $('body').addClass('keyboard-activated');
