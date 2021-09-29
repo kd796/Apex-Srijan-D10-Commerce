@@ -24,25 +24,15 @@ class ProductCategoryFiltersForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $node = \Drupal::routeMatch()->getParameter('node');
-    $view = \Drupal::entityTypeManager()
-      ->getStorage('view')
-      ->load('product_category')
-      ->getExecutable();
-    $view_args = [];
     // Get Product Classification ID's.
     if (!empty($node->get('field_product_classifications')->getValue())) {
       $classifications = array_column($node->get('field_product_classifications')->getValue(), 'target_id');
-      $view_args[] = implode(',', $classifications);
     }
-    $view_display = 'products_by_category';
-    $view->initDisplay();
-    $view->setDisplay($view_display);
-    $view->setArguments($view_args);
-    $view->setItemsPerPage(0);
-    $view->preExecute();
-    $view->execute();
-    // Get all available product specifications.
-    $view_nids = array_column($view->result, 'nid');
+    $product_query = \Drupal::entityQuery('node')
+      ->condition('type', 'product')
+      ->condition('field_product_classifications', $classifications[0])
+      ->execute();
+    $product_nids = array_values($product_query);
     $table_mapping = \Drupal::entityTypeManager()->getStorage('node')->getTableMapping();
     $field_product_specifications_table = $table_mapping->getFieldTableName('field_product_specifications');
     $field_product_specifications_storage_definitions = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('node')['field_product_specifications'];
@@ -52,9 +42,8 @@ class ProductCategoryFiltersForm extends FormBase {
       ->fields('f', [$field_product_specifications_column])
       ->distinct(TRUE)
       ->condition('bundle', 'product')
-      ->condition('entity_id', $view_nids, 'IN')
+      ->condition('entity_id', $product_nids, 'IN')
       ->execute()->fetchCol();
-
     $field_product_classifications_table = $table_mapping->getFieldTableName('field_product_classifications');
     $field_product_classifications_storage_definitions = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('node')['field_product_classifications'];
     $field_product_classifications_column = $table_mapping->getFieldColumnName($field_product_classifications_storage_definitions, 'target_id');
@@ -62,11 +51,10 @@ class ProductCategoryFiltersForm extends FormBase {
       ->fields('f', [$field_product_classifications_column])
       ->distinct(TRUE)
       ->condition('bundle', 'product')
-      ->condition('entity_id', $view_nids, 'IN')
+      ->condition('entity_id', $product_nids, 'IN')
       ->execute()->fetchCol();
     $available_attribute_ids = array_unique($available_attribute_ids);
     $available_classification_ids = array_unique($available_classification_ids);
-
     // Set up Filters
     // Classification/Category Filtering.
     $active_classification_id = $node->field_classification_id->value;
