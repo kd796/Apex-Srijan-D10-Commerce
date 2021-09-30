@@ -291,13 +291,6 @@ function crescenttool_preprocess_paragraph__featured_content__full(array &$varia
       $field_settings['label'] = 'hidden';
       break;
 
-    case 'featured_content_layout__masonry':
-      $variables['#attached']['library'][] = 'crescenttool/paragraph--full--featured-content--layout-masonry';
-      $field_settings['type'] = 'entity_reference_entity_view';
-      $field_settings['settings']['view_mode'] = 'masonry';
-      $field_settings['label'] = 'hidden';
-      break;
-
     case 'featured_content_layout__list':
     default:
       $variables['#attached']['library'][] = 'crescenttool/paragraph--full--featured-content--layout-list';
@@ -368,13 +361,6 @@ function crescenttool_preprocess_paragraph__featured_media__full(array &$variabl
       $variables['#attached']['library'][] = 'crescenttool/paragraph--full--featured-media--layout-grid';
       $field_settings['type'] = 'entity_reference_entity_view';
       $field_settings['settings']['view_mode'] = 'teaser';
-      $field_settings['label'] = 'hidden';
-      break;
-
-    case 'featured_media_layout__masonry':
-      $variables['#attached']['library'][] = 'crescenttool/paragraph--full--featured-media--layout-masonry';
-      $field_settings['type'] = 'entity_reference_entity_view';
-      $field_settings['settings']['view_mode'] = 'masonry';
       $field_settings['label'] = 'hidden';
       break;
 

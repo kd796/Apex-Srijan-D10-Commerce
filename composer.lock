@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4fca1b77ff01cb44c46fe20e587578a0",
+    "content-hash": "530981f20792d8587bbe6f3c306addae",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6125,6 +6125,58 @@
             }
         },
         {
+            "name": "drupal/node_view_permissions",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/node_view_permissions.git",
+                "reference": "8.x-1.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/node_view_permissions-8.x-1.5.zip",
+                "reference": "8.x-1.5",
+                "shasum": "e9f0bc9d1285e57233ab1b11833b55dda6d483f0"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.5",
+                    "datestamp": "1622716915",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "adci_contributor",
+                    "homepage": "https://www.drupal.org/user/1830536"
+                },
+                {
+                    "name": "adcillc",
+                    "homepage": "https://www.drupal.org/user/366450"
+                },
+                {
+                    "name": "hoter",
+                    "homepage": "https://www.drupal.org/user/1677790"
+                }
+            ],
+            "description": "Enables permissions \"View own content\" and \"View any content\" for each content type.",
+            "homepage": "https://www.drupal.org/project/node_view_permissions",
+            "support": {
+                "source": "https://git.drupalcode.org/project/node_view_permissions"
+            }
+        },
+        {
             "name": "drupal/paragraphs",
             "version": "1.12.0",
             "source": {
@@ -7642,6 +7694,75 @@
             }
         },
         {
+            "name": "drupal/ultimate_cron",
+            "version": "2.0.0-alpha5",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ultimate_cron.git",
+                "reference": "8.x-2.0-alpha5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ultimate_cron-8.x-2.0-alpha5.zip",
+                "reference": "8.x-2.0-alpha5",
+                "shasum": "0f10464fff29eca89024e7afa5b6d8d07bd52f75"
+            },
+            "require": {
+                "drupal/core": "^8.7.7 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-2.0-alpha5",
+                    "datestamp": "1600928948",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9 || ^10"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
+                },
+                {
+                    "name": "Dane Powell",
+                    "homepage": "https://www.drupal.org/user/339326"
+                },
+                {
+                    "name": "Primsi",
+                    "homepage": "https://www.drupal.org/user/282629"
+                },
+                {
+                    "name": "arnested",
+                    "homepage": "https://www.drupal.org/user/245635"
+                },
+                {
+                    "name": "gielfeldt",
+                    "homepage": "https://www.drupal.org/user/366993"
+                },
+                {
+                    "name": "miro_dietiker",
+                    "homepage": "https://www.drupal.org/user/227761"
+                }
+            ],
+            "description": "Ultimate cron",
+            "homepage": "https://www.drupal.org/project/ultimate_cron",
+            "support": {
+                "source": "https://git.drupalcode.org/project/ultimate_cron"
+            }
+        },
+        {
             "name": "drupal/video_embed_field",
             "version": "2.4.0",
             "source": {
@@ -8217,6 +8338,68 @@
                 "source": "https://github.com/ezyang/htmlpurifier/tree/master"
             },
             "time": "2020-06-29T00:56:53+00:00"
+        },
+        {
+            "name": "facebook/graph-sdk",
+            "version": "5.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facebook/php-graph-sdk.git",
+                "reference": "2d8250638b33d73e7a87add65f47fabf91f8ad9b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facebook/php-graph-sdk/zipball/2d8250638b33d73e7a87add65f47fabf91f8ad9b",
+                "reference": "2d8250638b33d73e7a87add65f47fabf91f8ad9b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.4|^7.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "~5.0",
+                "mockery/mockery": "~0.8",
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client",
+                "paragonie/random_compat": "Provides a better CSPRNG option in PHP 5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Facebook\\": "src/Facebook/"
+                },
+                "files": [
+                    "src/Facebook/polyfills.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Facebook Platform"
+            ],
+            "authors": [
+                {
+                    "name": "Facebook",
+                    "homepage": "https://github.com/facebook/php-graph-sdk/contributors"
+                }
+            ],
+            "description": "Facebook SDK for PHP",
+            "homepage": "https://github.com/facebook/php-graph-sdk",
+            "keywords": [
+                "facebook",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/facebook/php-graph-sdk/issues",
+                "source": "https://github.com/facebook/php-graph-sdk/tree/5.7.0"
+            },
+            "time": "2018-12-11T22:56:31+00:00"
         },
         {
             "name": "furf/jquery-ui-touch-punch",
@@ -9261,6 +9444,66 @@
             "time": "2021-02-22T09:20:06+00:00"
         },
         {
+            "name": "lsolesen/pel",
+            "version": "0.9.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pel/pel.git",
+                "reference": "04ecb8a29e4b1628414193b0df9294232a44f8a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pel/pel/zipball/04ecb8a29e4b1628414193b0df9294232a44f8a9",
+                "reference": "04ecb8a29e4b1628414193b0df9294232a44f8a9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "ext-exif": "*",
+                "ext-gd": "*",
+                "php-coveralls/php-coveralls": ">2.4",
+                "squizlabs/php_codesniffer": ">3.5",
+                "symfony/phpunit-bridge": "^4 || ^5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "lsolesen\\pel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Lars Olesen",
+                    "email": "lars@intraface.dk",
+                    "homepage": "http://intraface.dk",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Martin Geisler",
+                    "email": "martin@geisler.net",
+                    "homepage": "http://geisler.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP Exif Library. A library for reading and writing Exif headers in JPEG and TIFF images using PHP.",
+            "homepage": "http://pel.github.com/pel/",
+            "keywords": [
+                "exif",
+                "image"
+            ],
+            "support": {
+                "issues": "https://github.com/pel/pel/issues",
+                "source": "https://github.com/pel/pel/tree/0.9.10"
+            },
+            "time": "2021-01-01T22:15:50+00:00"
+        },
+        {
             "name": "maennchen/zipstream-php",
             "version": "2.1.0",
             "source": {
@@ -9330,66 +9573,6 @@
                 }
             ],
             "time": "2020-05-30T13:11:16+00:00"
-        },
-        {
-            "name": "lsolesen/pel",
-            "version": "0.9.10",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pel/pel.git",
-                "reference": "04ecb8a29e4b1628414193b0df9294232a44f8a9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pel/pel/zipball/04ecb8a29e4b1628414193b0df9294232a44f8a9",
-                "reference": "04ecb8a29e4b1628414193b0df9294232a44f8a9",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.0"
-            },
-            "require-dev": {
-                "ext-exif": "*",
-                "ext-gd": "*",
-                "php-coveralls/php-coveralls": ">2.4",
-                "squizlabs/php_codesniffer": ">3.5",
-                "symfony/phpunit-bridge": "^4 || ^5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "lsolesen\\pel\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Lars Olesen",
-                    "email": "lars@intraface.dk",
-                    "homepage": "http://intraface.dk",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Martin Geisler",
-                    "email": "martin@geisler.net",
-                    "homepage": "http://geisler.net",
-                    "role": "Developer"
-                }
-            ],
-            "description": "PHP Exif Library. A library for reading and writing Exif headers in JPEG and TIFF images using PHP.",
-            "homepage": "http://pel.github.com/pel/",
-            "keywords": [
-                "exif",
-                "image"
-            ],
-            "support": {
-                "issues": "https://github.com/pel/pel/issues",
-                "source": "https://github.com/pel/pel/tree/0.9.10"
-            },
-            "time": "2021-01-01T22:15:50+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -17428,6 +17611,7 @@
         "drupal/stage_file_proxy": 15,
         "drupal/swiftmailer": 10,
         "drupal/telephone_formatter": 10,
+        "drupal/ultimate_cron": 15,
         "drupal/viewsreference": 15,
         "vmlyr-drupal/kit-docksal-commands": 20
     },
