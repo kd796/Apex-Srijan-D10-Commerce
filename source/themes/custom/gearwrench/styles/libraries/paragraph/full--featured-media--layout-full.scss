@@ -26,8 +26,13 @@
   }
 
   .media--type-image {
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: auto;
+    }
     @include media('<=sm') {
-      @include container-full-width;
+      @include container-full-width();
     }
   }
 

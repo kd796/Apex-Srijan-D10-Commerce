@@ -271,13 +271,6 @@ function gearwrench_preprocess_paragraph__featured_content__full(array &$variabl
       $field_settings['label'] = 'hidden';
       break;
 
-    case 'featured_content_layout__masonry':
-      $variables['#attached']['library'][] = 'gearwrench/paragraph--full--featured-content--layout-masonry';
-      $field_settings['type'] = 'entity_reference_entity_view';
-      $field_settings['settings']['view_mode'] = 'masonry';
-      $field_settings['label'] = 'hidden';
-      break;
-
     case 'featured_content_layout__list':
     default:
       $variables['#attached']['library'][] = 'gearwrench/paragraph--full--featured-content--layout-list';
@@ -351,17 +344,10 @@ function gearwrench_preprocess_paragraph__featured_media__full(array &$variables
       $field_settings['label'] = 'hidden';
       break;
 
-    case 'featured_media_layout__masonry':
-      $variables['#attached']['library'][] = 'gearwrench/paragraph--full--featured-media--layout-masonry';
-      $field_settings['type'] = 'entity_reference_entity_view';
-      $field_settings['settings']['view_mode'] = 'masonry';
-      $field_settings['label'] = 'hidden';
-      break;
-
     case 'featured_media_layout__slider':
       $variables['#attached']['library'][] = 'gearwrench/paragraph--full--featured-media--layout-slider';
       $field_settings['type'] = 'entity_reference_entity_view';
-      $field_settings['settings']['view_mode'] = 'embed';
+      $field_settings['settings']['view_mode'] = 'hero';
       $field_settings['label'] = 'hidden';
       break;
 
@@ -462,6 +448,12 @@ function gearwrench_preprocess_paragraph__section__full(array &$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   $paragraphId = $paragraph->id();
+  $base_class = $variables['component_base_class'];
+
+  // Add class if background image is specified.
+  if ($paragraph->hasField('field_image_background') && isset($paragraph->get('field_image_background')->getValue()[0])) {
+    $variables['attributes']['class'][] = $base_class . '__background-image-active';
+  }
 
   // Process background color if specified.
   if ($paragraph->hasField('field_background_color') && isset($paragraph->get('field_background_color')->getValue()[0])) {

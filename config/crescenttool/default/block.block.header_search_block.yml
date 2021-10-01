@@ -1,0 +1,24 @@
+uuid: 8e3500db-1e11-493f-a440-e7e129b36a6f
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - crescenttool_core
+  theme:
+    - crescenttool
+third_party_settings:
+  block_class:
+    classes: block--header-search
+id: header_search_block
+theme: crescenttool
+region: header
+weight: -4
+provider: null
+plugin: header_search
+settings:
+  id: header_search
+  label: 'Header Search Block'
+  provider: crescenttool_core
+  label_display: '0'
+visibility: {  }

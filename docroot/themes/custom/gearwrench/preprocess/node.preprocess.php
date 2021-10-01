@@ -200,7 +200,7 @@ function gearwrench_preprocess_node__product__teaser(&$variables) {
   // Move media to media variable.
   if (isset($variables['content']['field_media'][0])) {
     $variables['media_attributes']['class'][] = 'node__media--with-media';
-    $variables['media_attributes']['class'][] = 'node__category-image';
+    $variables['media_attributes']['class'][] = 'node__listing-image';
     $variables['media'] = $variables['content']['field_media'];
     unset($variables['media']['#theme']);
     unset($variables['content']['field_media']);
@@ -283,4 +283,39 @@ function gearwrench_preprocess_node__product_category__tile(&$variables) {
   else {
     $variables['media_attributes']['class'][] = 'node__media--no-media';
   }
+}
+
+/**
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product, teaser.
+ */
+function gearwrench_preprocess_node__social_post__teaser(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $bundle = $node->bundle();
+  $view_mode = $variables['view_mode'];
+
+  $bundle_css = Html::cleanCssIdentifier($bundle);
+  $view_mode_css = Html::cleanCssIdentifier($view_mode);
+
+  // Track variables that should be converted to attribute objects.
+  $variables['#attribute_variables'][] = 'media_attributes';
+
+  $variables['inner_attributes']['class'][] = 'node__inner';
+  $variables['media_attributes']['class'][] = 'node__media';
+
+  // Move media to media variable.
+  if (isset($variables['content']['field_media'][0])) {
+    $variables['media_attributes']['class'][] = 'node__media--with-media';
+    $variables['media_attributes']['class'][] = 'node__listing-image';
+    $variables['media'] = $variables['content']['field_media'];
+    unset($variables['media']['#theme']);
+    unset($variables['content']['field_media']);
+  }
+  else {
+    $variables['media_attributes']['class'][] = 'node__media--no-media';
+  }
+
+  // Move url to drupal settings.
+  $variables['#attached']['drupalSettings']['social_feed'][] = $variables['content']['field_post_url'];
+  unset($variables['content']['field_post_url']);
 }

@@ -190,7 +190,8 @@ $footer-bp-mobile: '<sm';
         color: $white;
         width: 100%;
 
-        &:hover {
+        &:hover,
+        &:focus {
           background-color: $primary-dark;
           color: $white;
         }
@@ -225,7 +226,7 @@ $footer-bp-mobile: '<sm';
     }
 
     .region-footer-second__content {
-      padding: 3.75rem 0 3.75rem 10rem;
+      padding: 3.75rem 0 3.75rem 4rem;
     }
 
     .block-footer-navigation-block__nav {
@@ -248,7 +249,7 @@ $footer-bp-mobile: '<sm';
   .region-footer {
 
     .region-footer__inner-container {
-      grid-template-columns: 55% 45%;
+      grid-template-columns: 1fr 1fr;
     }
 
     .menu--footer {

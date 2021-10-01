@@ -1,0 +1,33 @@
+uuid: e9efabe0-7bf3-410e-ba27-f16e2eaf0c80
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.styleguide
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    limited_html: limited_html
+    plain_text: plain_text
+    basic_html: '0'
+    restricted_html: '0'
+    full_html: '0'
+_core:
+  default_config_hash: 1KJVq7aOf31bG84B5MdpQkVQOuvDx91E-Bt3nmPuzaM
+id: node.styleguide.body
+field_name: body
+entity_type: node
+bundle: styleguide
+label: 'Lead-in/Summary Text'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary
