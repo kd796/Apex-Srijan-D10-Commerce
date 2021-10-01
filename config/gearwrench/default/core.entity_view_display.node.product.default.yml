@@ -21,25 +21,16 @@ dependencies:
     - field.field.node.product.field_upc
     - node.type.product
   module:
-    - datetime
     - user
 id: node.product.default
 targetEntityType: node
 bundle: product
 mode: default
-content:
-  field_launch_date:
-    weight: 1
-    label: above
-    settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
+content: {  }
 hidden:
   body: true
   field_featured_product: true
+  field_launch_date: true
   field_long_description: true
   field_media: true
   field_meta_tags: true

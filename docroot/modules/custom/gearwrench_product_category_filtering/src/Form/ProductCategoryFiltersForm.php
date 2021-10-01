@@ -114,7 +114,7 @@ class ProductCategoryFiltersForm extends FormBase {
         foreach ($available_attributes as $available_attribute) {
           $available_attribute_term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($available_attribute);
           $selected_attribute_term_label = substr($available_attribute_term->label(), strpos($available_attribute_term->label(), ':') + 2);
-          $selected_attribute_facet_options[$key][$available_attribute_term->id()] = $selected_attribute_term_label;
+          $selected_attribute_facet_options[$key][$available_attribute_term->label()] = $selected_attribute_term_label;
           $selected_attribute_parent = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($available_attribute_term->id());
           $selected_attribute_parent = reset($selected_attribute_parent);
           $selected_attribute_title = substr($selected_attribute_parent->label(), strpos($selected_attribute_parent->label(), '|') + 2);
