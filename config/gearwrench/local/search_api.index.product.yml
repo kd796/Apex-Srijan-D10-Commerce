@@ -4,13 +4,15 @@ status: true
 dependencies:
   module:
     - search_api_solr
-    - path_alias
-    - token
     - node
     - search_api
   config:
     - field.storage.node.body
+    - field.storage.node.field_long_description
     - field.storage.node.field_product_classifications
+    - field.storage.node.field_product_specifications
+    - field.storage.node.field_set_components
+    - field.storage.node.field_sku_group
     - search_api.server.local_solr
     - core.entity_view_mode.node.full
 third_party_settings:
@@ -59,14 +61,6 @@ name: Product
 description: ''
 read_only: false
 field_settings:
-  alias:
-    label: 'URL alias'
-    datasource_id: 'entity:path_alias'
-    property_path: alias
-    type: string
-    dependencies:
-      module:
-        - path_alias
   body:
     label: 'Lead-in/Summary Text'
     datasource_id: 'entity:node'
@@ -75,22 +69,46 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.body
+  field_long_description:
+    label: 'Long Description'
+    datasource_id: 'entity:node'
+    property_path: field_long_description
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_long_description
   field_product_classifications:
     label: 'Product Classifications'
     datasource_id: 'entity:node'
     property_path: field_product_classifications
-    type: integer
+    type: text
     dependencies:
       config:
         - field.storage.node.field_product_classifications
-  menu_link:
-    label: 'Menu link'
+  field_product_specifications:
+    label: 'Product Specifications'
     datasource_id: 'entity:node'
-    property_path: menu_link
-    type: integer
+    property_path: field_product_specifications
+    type: text
     dependencies:
-      module:
-        - token
+      config:
+        - field.storage.node.field_product_specifications
+  field_set_components:
+    label: 'Set Components'
+    datasource_id: 'entity:node'
+    property_path: field_set_components
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_set_components
+  field_sku_group:
+    label: 'SKU Group'
+    datasource_id: 'entity:node'
+    property_path: field_sku_group
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_sku_group
   node_grants:
     label: 'Node access information'
     property_path: search_api_node_grants
@@ -122,21 +140,21 @@ field_settings:
     dependencies:
       module:
         - node
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: string
+    dependencies:
+      module:
+        - node
   uid:
-    label: null
+    label: uid
     datasource_id: 'entity:node'
     property_path: uid
     type: integer
     indexed_locked: true
     type_locked: true
-    dependencies:
-      module:
-        - node
-  uuid:
-    label: UUID
-    datasource_id: 'entity:node'
-    property_path: uuid
-    type: string
     dependencies:
       module:
         - node
@@ -149,7 +167,6 @@ datasource_settings:
     languages:
       default: true
       selected: {  }
-  'entity:path_alias': {  }
 processor_settings:
   add_url: {  }
   aggregated_field: {  }
@@ -157,12 +174,17 @@ processor_settings:
     weights:
       preprocess_query: -30
   double_quote_workaround:
-    all_fields: false
+    all_fields: true
     fields:
       - alias
       - body
+      - field_long_description
+      - field_product_classifications
+      - field_product_specifications
+      - field_set_components
+      - field_sku_group
       - rendered_item
-      - uuid
+      - title
     replacement: '|9999999998|'
     weights:
       postprocess_query: 0
@@ -174,41 +196,11 @@ processor_settings:
       field_product_classifications: taxonomy_term-parent
     weights:
       preprocess_index: -45
-  highlight:
-    highlight: always
-    highlight_partial: true
-    excerpt: true
-    excerpt_length: 256
-    exclude_fields: {  }
-    prefix: '<strong>'
-    suffix: '</strong>'
-    weights:
-      postprocess_query: 0
-  html_filter:
-    all_fields: false
-    fields:
-      - alias
-      - body
-      - rendered_item
-      - uuid
-    title: true
-    alt: true
-    tags:
-      b: 2
-      h1: 5
-      h2: 3
-      h3: 2
-      strong: 2
-    weights:
-      preprocess_index: -15
-      preprocess_query: -15
   ignore_character:
     all_fields: false
     fields:
-      - alias
       - body
       - rendered_item
-      - uuid
     ignorable: '[''¿¡!?,.:;]'
     ignorable_classes:
       - Pc
@@ -231,9 +223,13 @@ processor_settings:
     weights:
       preprocess_index: 0
   tokenizer:
-    all_fields: false
+    all_fields: true
     fields:
       - body
+      - field_long_description
+      - field_product_classifications
+      - field_product_specifications
+      - field_set_components
       - rendered_item
     ignored: ._-
     spaces: ''

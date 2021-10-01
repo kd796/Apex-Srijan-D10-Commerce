@@ -37,12 +37,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
   field_product_images:
-    type: entity_reference_label
+    type: entity_reference_entity_view
     weight: 0
     region: content
     label: hidden
     settings:
-      link: true
+      view_mode: product_teaser
+      link: false
     third_party_settings: {  }
   field_sku_group:
     type: string
