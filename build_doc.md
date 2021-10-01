@@ -163,9 +163,10 @@ Taxonomy allows you to categorize content within your site.
 
 |Vocabulary|Content Types|Required|Notes|
 | :--- | :--- | :--- | :--- |
-|Article Category|Article|Yes||
+|Product Classifications|Product/Product Category|Yes||
+|Product Specifications|Product|Yes||
 
-Will also have custom tagging per article, for search results
+Will also have custom tagging per basic page, for search results
 
 #### View Modes (Taxonomy)
 
@@ -199,7 +200,6 @@ Types:
 
 #### Featured Content
 Featured content references other pages, with a variety of view modes.
-- Blade: eyebrow, header, copy, expanded copy, text link
 - Summary: # of referenced content determines 2 column or 3 column layout
 - Summary Highlight: 1st item highlighted, 4 additional in grid
 - Tailored Content (may not be final): Half width image, multiple results in slider
@@ -282,17 +282,6 @@ Used withing List Content component. Each item contains an icon, header, text, a
 |Content|field_content |text (plain, long)|Yes   | |
 |Call to Action|field_link|link       |No        | |
 
-#### Pullquote
-Component for a quote. Background color can be specified via classy styles.
-
-| Field | Machine Name | Type | Required | Notes |
-|-------|--------------|------|----------|-------|
-|Content|field_content |text (formatted, long)|No|
-|Attribution|field_attribution|Text - plain|No|  |
-|Custom Classes|field_custom_classes|text|No|    |
-|Style|field_style|class list|No|Color picker    |
-|Anchor |field_html_anchor|Text|No       |       |
-
 #### Section
 Section bundle together other components into one section (for striping effect).
 
@@ -327,48 +316,7 @@ Used within the Spotlight Tabs component.
 |Related Stories|field_related_nodes|Entity Reference|No|Autocomplete|
 |Background| field_media_background| Entity reference|No||
 
-#### Stock Ticker
-Basic content component with stock ticker information.
-
-| Field | Machine Name | Type | Required | Notes |
-|-------|--------------|------|----------|-------|
-|Header |field_title   |text  |No        |       |
-|Content|field_content |text (formatted, long)|No|
-|Call to Action|field_link |links        |No|    |
-|Custom Classes|field_custom_classes|text|No|    |
-|Style  |field_style   |class list|No    |       |
-|Anchor |field_html_anchor|Text|No       |       |
-
-#### Pie Chart
-Can be used within content component, R/L/Center aligned
-Pie chart data point can have percentage, caption.
-Pie chart title and caption.
-
-| Field | Machine Name | Type | Required | Notes |
-|-------|--------------|------|----------|-------|
-|Label  |field_title   |text  |Yes       |Visually Hidden |
-|Description|field_content |text formatted  |No       |
-|Data|field_data |Table Field  |No       | 2 cols, first row filled|
-|Call to Action|field_link |Link |No       | |
-|Layout|field_layout |Entity Reference (Classy) |No |Default Centered |
-|Custom Classes|field_custom_classes|text|No|    |
-|Style|field_style|class list|No| Background styles |
-
 ### Other:
-#### Embed: form
-Paragraph component to embed a form.
-
-| Field | Machine Name | Type | Required | Notes |
-|:------|:-------------|:----:|:--------:|-------|
-|Title  |field_title   |text  |Yes       |       |
-|Hide Title  |field_title_hide   |boolean  |      | Allows to hide headers even though they are required for accessibility. |
-|Content|field_content |text (formatted, long)|No||
-|Form Markup|field_markup |text (formatted, long)|Yes| Uses a custom "form" text formatter option |
-|Form provider|field_markup_provider|class list|Yes|Defaults to "General". Exists to allow to target provider-specific markup/classes for styling purposes.|
-|Custom Classes|field_custom_classes|text|No|    |
-|Style|field_style|class list|No|                |
-|Anchor |field_html_anchor|Text|No       |       |
-
 #### Embed: iframe
 Paragraph component to embed an iframe. May be used for instagram feed.
 
@@ -394,25 +342,6 @@ Paragraph component to embed a view. (Related Articles)
 ---
 
 ## Views
-
-#### Article Hub
- * Embed
- * Exposed Filter: Categories
- * Sort: Sticky by category (sort swapped programmatically based on filter selection), falls back to date descending
- * Display all published, content type article, limit 9.
-
-#### Content Archive
- * Embed (Article, Press Release, Article/Press Release)
- * Contextual filter on published date (field_date, granularity: year), via query parameter.
- * Display all published, content type (depends on display), exposed category filter, exposed topic filter.
- * Year filter added programmatically in wba_core_form_views_exposed_form_alter
-
-#### Latest News
- * Latest News 1/4 (view mode summary: 1 main article, 4 smaller articles)
- * Block
- * Relationship: Content entity referenced from field_page_reference (field on landing page)
- * Display all published, content type press release, limit 5, sort by last 5 publish date.
-
 #### Search
  * Page, block
  * Relationship: Content entity referenced from field_page_reference (field on landing page)
@@ -462,6 +391,7 @@ Paragraph component to embed a view. (Related Articles)
 
 ### Asset
 A file or set of files to be provided as a downloadable asset.
+
 |Label|Machine Name|Type|Notes|
 |---------| :---: | :---: | :--- |
 |File|field_media_file |File| |

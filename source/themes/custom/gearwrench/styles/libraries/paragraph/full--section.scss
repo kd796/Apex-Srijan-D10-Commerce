@@ -52,4 +52,12 @@
       z-index: 0;
     }
   }
+
+  &.component-section__background-image-active {
+    margin-bottom: 0 !important;
+
+    & + .component-section__background-image-active {
+      margin-top: 0 !important;
+    }
+  }
 }

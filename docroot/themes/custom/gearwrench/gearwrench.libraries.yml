@@ -101,6 +101,10 @@ library--price-spider:
   js:
     //cdn.pricespider.com/1/lib/ps-widget.js: { type: external, attributes: { async: true } }
 
+library--add-to-any:
+  version: 1.x
+  js:
+    //static.addtoany.com/menu/page.js: { type: external, attributes: { async: true } }
 # ========= Block ========= #
 
 # Global #
@@ -305,19 +309,6 @@ paragraph--full--featured-content--layout-list:
       css/libraries/paragraph/full--featured-content--layout-list.css: {}
   dependencies:
     - gearwrench/paragraph--full--featured-content
-paragraph--full--featured-content--layout-masonry:
-  version: 1.x
-  css:
-    component:
-      css/libraries/paragraph/full--featured-content--layout-masonry.css: {}
-  js:
-    js/libraries/paragraph/full--featured-content--layout-masonry.js: {weight: -10}
-  dependencies:
-    - core/drupal
-    - core/jquery
-    - core/jquery.once
-    - gearwrench/paragraph--full--featured-content
-
 # Featured: Links #
 paragraph--full--featured-links:
   version: 1.x
@@ -347,15 +338,6 @@ paragraph--full--featured-media--layout-grid:
   css:
     component:
       css/libraries/paragraph/full--featured-media--layout-grid.css: {}
-  dependencies:
-    - gearwrench/paragraph--full--featured-media
-paragraph--full--featured-media--layout-masonry:
-  version: 1.x
-  css:
-    component:
-      css/libraries/paragraph/full--featured-media--layout-masonry.css: {}
-  js:
-    js/libraries/paragraph/full--featured-media--layout-masonry.js: {weight: -10}
   dependencies:
     - gearwrench/paragraph--full--featured-media
 paragraph--full--featured-media--layout-slider:
@@ -469,6 +451,19 @@ view--product-category-grid:
   css:
     component:
       css/libraries/view/product-category-grid.css: {}
+
+view--social-feed:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/social-feed.css: {}
+  js:
+    js/libraries/view/social-feed.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - gearwrench/library--add-to-any
 
 # ========= Forms ========= #
 webform--warranty-replacement-form:

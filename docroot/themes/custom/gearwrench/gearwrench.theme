@@ -195,9 +195,9 @@ function gearwrench_preprocess_breadcrumb(&$variables) {
 function gearwrench_preprocess_menu__main__block_header_menu_main(array &$variables) {
   // Basic attribute variables.
   $node_storage = Drupal::entityTypeManager()->getStorage('node');
-
   foreach (Element::children($variables['items']) as $delta) {
     $item = &$variables['items'][$delta];
+
     // Only render content if link is a MenuLinkContent plugin.
     if (isset($item['original_link']) && $item['original_link'] instanceof MenuLinkContent) {
       $definition = $item['original_link']->getPluginDefinition();

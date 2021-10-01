@@ -1,0 +1,19 @@
+apex_tools_instagram_feed.process:
+  path: '/admin/apex-tools-instagram-feed/process'
+  defaults:
+    _title: 'Process Instagram Feed'
+    _controller: '\Drupal\apex_tools_instagram_feed\Controller\ApexToolsInstagramFeedController::build'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+
+apex_tools_instagram_feed.settings_form:
+  path: '/admin/config/apex-tools-instagram-feed'
+  defaults:
+    _title: 'Apex Tools Instagram Feed Settings'
+    _form: 'Drupal\apex_tools_instagram_feed\Form\SettingsForm'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE

@@ -227,19 +227,6 @@ function gearwrench_migrations_migrate_prepare_row(Row $row, MigrateSourceInterf
       throw new MigrateSkipRowException('', TRUE);
     }
   }
-
-  if ($migration->id() === 'gearwrench_product_attributes') {
-    $vid_to_check = $row->getSource()['remote_id'];
-    $vid_to_check = strtolower($vid_to_check);
-    $vid_to_check = preg_replace('/[^a-z0-9_]+/', '_', $vid_to_check);
-    $vid_to_check = preg_replace('/_+/', '_', $vid_to_check);
-    $all_vids = Vocabulary::loadMultiple();
-    foreach ($all_vids as $vid) {
-      if ($vid->id() === $vid_to_check) {
-        throw new MigrateSkipRowException('Library already exists.', TRUE);
-      }
-    }
-  }
 }
 
 /**
