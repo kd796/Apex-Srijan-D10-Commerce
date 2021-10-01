@@ -29,16 +29,23 @@ textarea.form-textarea.webform-counter-warning,
     background-color: $color-light-grey;
   }
 
-  &:invalid:focus {
-    border-color: $danger-red !important;
+  @include media('<sm') {
+    padding: 1rem;
   }
+}
+
+select {
+  padding-right: $input-height;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden !important;
 }
 
 input,
 select,
 .form-input-file__button {
   height: $input-height;
-  overflow: hidden;
+  overflow: hidden !important;
 }
 
 // Remove fieldset margin
@@ -173,20 +180,6 @@ $active-gap: 8px; // the math likes px values
     width: $active-width;
   }
 
-  // Error on required field change color
-  input[type='checkbox']:not(:checked),
-  input[type='radio']:not(:checked) {
-    &:invalid:focus {
-      + label:before {
-        border-color: $danger-red !important;
-      }
-
-      + label {
-        color: $danger-red;
-      }
-    }
-  }
-
   input[type='checkbox']:checked + label:before,
   input[type='radio']:checked + label:before, {
     background-color: $primary-red;
@@ -224,6 +217,11 @@ $active-gap: 8px; // the math likes px values
   input[type='radio']:checked + label:after {
     opacity: 1;
     //transform: scale(1);
+  }
+
+  input[type='checkbox']:not(:checked):focus + label:before,
+  input[type='checkbox']:checked:focus + label:before {
+    border: 1px solid $primary-red;
   }
 
   .required-icon {
@@ -342,6 +340,33 @@ $active-gap: 8px; // the math likes px values
     font-size: rem(5px);
     background-image: unset;
     background-size: unset;
+  }
+}
+
+.form-error {
+  input,
+  textarea,
+  select {
+    &:invalid:focus {
+      border-color: $danger-red !important;
+    }
+  }
+
+  .form-checkboxes,
+  .form-radios {
+    // Error on required field change color
+    input[type='checkbox']:not(:checked),
+    input[type='radio']:not(:checked) {
+      &:invalid:focus {
+        + label:before {
+          border-color: $danger-red !important;
+        }
+
+        + label {
+          color: $danger-red;
+        }
+      }
+    }
   }
 }
 
