@@ -1,4 +1,4 @@
-uuid: f3d71da1-badd-4306-a000-12e18d8bcecf
+uuid: 603456bd-0ffe-48c6-bf5e-4b72304725bc
 langcode: en
 status: true
 dependencies:
@@ -36,7 +36,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  field_media:
+  field_product_images:
     type: entity_reference_entity_view
     weight: 0
     region: content
@@ -45,20 +45,27 @@ content:
       view_mode: product_teaser
       link: false
     third_party_settings: {  }
+  field_sku_group:
+    type: string
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
 hidden:
   body: true
   field_featured_product: true
   field_launch_date: true
+  field_media: true
   field_meta_tags: true
   field_new_product: true
   field_product_classifications: true
   field_product_features: true
-  field_product_images: true
   field_product_specifications: true
   field_related_products: true
   field_set: true
   field_set_components: true
-  field_sku_group: true
   field_upc: true
   langcode: true
   links: true
