@@ -1,0 +1,244 @@
+uuid: 93fe614f-a5e4-4124-88e7-4610a5819bbf
+langcode: en
+status: true
+dependencies:
+  module:
+    - search_api_solr
+    - node
+    - search_api
+  config:
+    - field.storage.node.body
+    - field.storage.node.field_long_description
+    - field.storage.node.field_product_classifications
+    - field.storage.node.field_product_specifications
+    - field.storage.node.field_set_components
+    - field.storage.node.field_sku_group
+    - search_api.server.local_solr
+    - core.entity_view_mode.node.full
+third_party_settings:
+  search_api_solr:
+    finalize: false
+    commit_before_finalize: false
+    commit_after_finalize: false
+    multilingual:
+      limit_to_content_language: false
+      include_language_independent: true
+    highlighter:
+      maxAnalyzedChars: 51200
+      fragmenter: gap
+      regex:
+        slop: 0.5
+        pattern: blank
+        maxAnalyzedChars: 10000
+      usePhraseHighlighter: true
+      highlightMultiTerm: true
+      preserveMulti: false
+      highlight:
+        mergeContiguous: false
+        requireFieldMatch: false
+        snippets: 3
+        fragsize: 0
+    mlt:
+      mintf: 1
+      mindf: 1
+      maxdf: 0
+      maxdfpct: 0
+      minwl: 0
+      maxwl: 0
+      maxqt: 100
+      maxntp: 2000
+      boost: false
+      interestingTerms: none
+    term_modifiers:
+      slop: 3
+      fuzzy: 1
+    advanced:
+      index_prefix: ''
+      collection: ''
+      timezone: ''
+id: product
+name: Product
+description: ''
+read_only: false
+field_settings:
+  body:
+    label: 'Lead-in/Summary Text'
+    datasource_id: 'entity:node'
+    property_path: body
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.body
+  field_long_description:
+    label: 'Long Description'
+    datasource_id: 'entity:node'
+    property_path: field_long_description
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_long_description
+  field_product_classifications:
+    label: 'Product Classifications'
+    datasource_id: 'entity:node'
+    property_path: field_product_classifications
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_product_classifications
+  field_product_specifications:
+    label: 'Product Specifications'
+    datasource_id: 'entity:node'
+    property_path: field_product_specifications
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_product_specifications
+  field_set_components:
+    label: 'Set Components'
+    datasource_id: 'entity:node'
+    property_path: field_set_components
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_set_components
+  field_sku_group:
+    label: 'SKU Group'
+    datasource_id: 'entity:node'
+    property_path: field_sku_group
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_sku_group
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
+  rendered_item:
+    label: 'Rendered HTML output'
+    property_path: rendered_item
+    type: text
+    configuration:
+      roles:
+        anonymous: anonymous
+      view_mode:
+        'entity:node':
+          landing_page: ''
+          page: ''
+          product_listing: full
+        'entity:path_alias':
+          path_alias: ''
+  status:
+    label: Published
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: string
+    dependencies:
+      module:
+        - node
+  uid:
+    label: uid
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - product
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
+  double_quote_workaround:
+    all_fields: true
+    fields:
+      - alias
+      - body
+      - field_long_description
+      - field_product_classifications
+      - field_product_specifications
+      - field_set_components
+      - field_sku_group
+      - rendered_item
+      - title
+    replacement: '|9999999998|'
+    weights:
+      postprocess_query: 0
+      preprocess_index: -15
+      preprocess_query: -15
+  entity_status: {  }
+  hierarchy:
+    fields:
+      field_product_classifications: taxonomy_term-parent
+    weights:
+      preprocess_index: -45
+  ignore_character:
+    all_fields: false
+    fields:
+      - body
+      - rendered_item
+    ignorable: '[''¿¡!?,.:;]'
+    ignorable_classes:
+      - Pc
+      - Pd
+      - Pe
+      - Pf
+      - Pi
+      - Po
+      - Ps
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+  language_with_fallback: {  }
+  number_field_boost:
+    boosts: {  }
+    weights:
+      preprocess_index: 0
+  rendered_item: {  }
+  solr_date_range:
+    weights:
+      preprocess_index: 0
+  tokenizer:
+    all_fields: true
+    fields:
+      - body
+      - field_long_description
+      - field_product_classifications
+      - field_product_specifications
+      - field_set_components
+      - rendered_item
+    ignored: ._-
+    spaces: ''
+    overlap_cjk: 1
+    minimum_word_size: '3'
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 50
+server: local_solr

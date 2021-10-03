@@ -14,45 +14,14 @@ module:
   stage_file_proxy: 0
   views_ui: 0
 theme: {  }
-blacklist: {  }
+blacklist:
+  - search_api.server.local_solr
 graylist:
   - advagg.settings
   - advagg_css_minify.settings
   - advagg_js_minify.settings
-  - search_api.index.site_search
-  - search_api.server.local_solr
-  - search_api.settings
-  - search_api_solr.solr_cache.cache_document_default_7_0_0
-  - search_api_solr.solr_cache.cache_fieldvalue_default_7_0_0
-  - search_api_solr.solr_cache.cache_filter_default_7_0_0
-  - search_api_solr.solr_cache.cache_persegfilter_default_7_0_0
-  - search_api_solr.solr_cache.cache_queryresult_default_7_0_0
-  - search_api_solr.solr_field_type.text_edgestring_und_6_0_0
-  - search_api_solr.solr_field_type.text_edge_und_6_0_0
-  - search_api_solr.solr_field_type.text_edge_und_7_0_0
-  - search_api_solr.solr_field_type.text_en_6_0_0
-  - search_api_solr.solr_field_type.text_en_7_0_0
-  - search_api_solr.solr_field_type.text_ngramstring_und_6_0_0
-  - search_api_solr.solr_field_type.text_ngram_und_6_0_0
-  - search_api_solr.solr_field_type.text_ngram_und_7_0_0
-  - search_api_solr.solr_field_type.text_phonetic_en_7_0_0
-  - search_api_solr.solr_field_type.text_phonetic_und_7_0_0
-  - search_api_solr.solr_field_type.text_und_6_0_0
-  - search_api_solr.solr_field_type.text_und_7_0_0
-  - search_api_solr.solr_request_dispatcher.request_dispatcher_httpcachingnever_default_7_0_0
-  - search_api_solr.solr_request_dispatcher.request_dispatcher_httpcaching_default_7_0_0
-  - search_api_solr.solr_request_handler.request_handler_autocomplete_default_7_0_0
-  - search_api_solr.solr_request_handler.request_handler_elevate_default_7_0_0
-  - search_api_solr.solr_request_handler.request_handler_extract_default_7_0_0
-  - search_api_solr.solr_request_handler.request_handler_mlt_default_7_0_0
-  - search_api_solr.solr_request_handler.request_handler_query_default_7_0_0
-  - search_api_solr.solr_request_handler.request_handler_replicationmaster_default_7_0_0
-  - search_api_solr.solr_request_handler.request_handler_replicationslave_default_7_0_0
-  - search_api_solr.solr_request_handler.request_handler_select_default_7_0_0
-  - search_api_solr.solr_request_handler.request_handler_spell_default_7_0_0
-  - search_api_solr.solr_request_handler.request_handler_suggest_default_7_0_0
-  - search_api_solr.solr_request_handler.request_handler_tvrh_default_7_0_0
   - system.performance
+  - search_api.index.site_search
 graylist_dependents: true
 graylist_skip_equal: false
 weight: -5
