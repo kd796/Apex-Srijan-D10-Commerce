@@ -1,4 +1,4 @@
-uuid: 64aef3d8-4aa0-4247-8295-1197a4dfeed9
+uuid: bd924881-0081-4f15-b615-6cd036274e0d
 langcode: en
 status: false
 dependencies:
@@ -9,8 +9,6 @@ dependencies:
     - search_api
   config:
     - field.storage.node.body
-    - field.storage.node.field_component_hero
-    - field.storage.node.field_components
     - search_api.server.acquia_search_server
     - core.entity_view_mode.node.full
 third_party_settings:
@@ -58,8 +56,8 @@ third_party_settings:
       timezone: ''
 _core:
   default_config_hash: m3BA7ry9oerhED2EXWWHra57A4vZj7Eobsr5-29dq4M
-id: acquia_search_index
-name: 'Acquia Search Solr Index - No Products'
+id: acquia_search_index_products
+name: 'Acquia Search Index - Products'
 description: ''
 read_only: false
 field_settings:
@@ -79,22 +77,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.body
-  field_component_hero:
-    label: Hero
-    datasource_id: 'entity:node'
-    property_path: field_component_hero
-    type: text
-    dependencies:
-      config:
-        - field.storage.node.field_component_hero
-  field_components:
-    label: Content
-    datasource_id: 'entity:node'
-    property_path: field_components
-    type: text
-    dependencies:
-      config:
-        - field.storage.node.field_components
   node_grants:
     label: 'Node access information'
     property_path: search_api_node_grants
@@ -170,11 +152,9 @@ field_settings:
 datasource_settings:
   'entity:node':
     bundles:
-      default: true
+      default: false
       selected:
         - product
-        - product_category
-        - styleguide
     languages:
       default: true
       selected: {  }
@@ -201,8 +181,6 @@ processor_settings:
     fields:
       - body
       - body_1
-      - field_component_hero
-      - field_components
       - rendered_item
       - title
       - title_1
