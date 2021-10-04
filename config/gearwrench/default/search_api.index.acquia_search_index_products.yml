@@ -1,21 +1,19 @@
-uuid: 129f5316-85f3-45e6-9fe8-00fe4460059c
+uuid: bd924881-0081-4f15-b615-6cd036274e0d
 langcode: en
-status: true
+status: false
 dependencies:
   module:
+    - acquia_search
     - search_api_solr
-    - token
     - node
     - search_api
   config:
     - field.storage.node.body
-    - field.storage.node.field_component_hero
-    - field.storage.node.field_components
-    - field.storage.node.field_link
-    - field.storage.node.field_media
-    - search_api.server.local_solr
+    - search_api.server.acquia_search_server
     - core.entity_view_mode.node.full
 third_party_settings:
+  acquia_search:
+    use_edismax: 1
   search_api_solr:
     finalize: false
     commit_before_finalize: false
@@ -56,12 +54,22 @@ third_party_settings:
       index_prefix: ''
       collection: ''
       timezone: ''
-id: general_content_no_products_
-name: 'General Content (no products)'
+_core:
+  default_config_hash: m3BA7ry9oerhED2EXWWHra57A4vZj7Eobsr5-29dq4M
+id: acquia_search_index_products
+name: 'Acquia Search Index - Products'
 description: ''
 read_only: false
 field_settings:
   body:
+    label: Body
+    datasource_id: 'entity:node'
+    property_path: body
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.body
+  body_1:
     label: 'Lead-in/Summary Text'
     datasource_id: 'entity:node'
     property_path: body
@@ -69,46 +77,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.body
-  field_component_hero:
-    label: Hero
-    datasource_id: 'entity:node'
-    property_path: field_component_hero
-    type: text
-    dependencies:
-      config:
-        - field.storage.node.field_component_hero
-  field_components:
-    label: Content
-    datasource_id: 'entity:node'
-    property_path: field_components
-    type: text
-    dependencies:
-      config:
-        - field.storage.node.field_components
-  field_link:
-    label: 'Call to Action'
-    datasource_id: 'entity:node'
-    property_path: field_link
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_link
-  field_media:
-    label: 'Listing Image'
-    datasource_id: 'entity:node'
-    property_path: field_media
-    type: text
-    dependencies:
-      config:
-        - field.storage.node.field_media
-  menu_link:
-    label: 'Menu link'
-    datasource_id: 'entity:node'
-    property_path: menu_link
-    type: string
-    dependencies:
-      module:
-        - token
   node_grants:
     label: 'Node access information'
     property_path: search_api_node_grants
@@ -127,8 +95,10 @@ field_settings:
         'entity:node':
           landing_page: full
           page: full
+          social_post: full
+          styleguide: ''
   status:
-    label: Published
+    label: status
     datasource_id: 'entity:node'
     property_path: status
     type: boolean
@@ -137,7 +107,23 @@ field_settings:
     dependencies:
       module:
         - node
+  status_1:
+    label: Published
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    dependencies:
+      module:
+        - node
   title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    dependencies:
+      module:
+        - node
+  title_1:
     label: Title
     datasource_id: 'entity:node'
     property_path: title
@@ -145,8 +131,16 @@ field_settings:
     dependencies:
       module:
         - node
+  type:
+    label: 'Content type'
+    datasource_id: 'entity:node'
+    property_path: type
+    type: string
+    dependencies:
+      module:
+        - node
   uid:
-    label: null
+    label: uid
     datasource_id: 'entity:node'
     property_path: uid
     type: integer
@@ -160,8 +154,7 @@ datasource_settings:
     bundles:
       default: false
       selected:
-        - landing_page
-        - page
+        - product
     languages:
       default: true
       selected: {  }
@@ -171,42 +164,55 @@ processor_settings:
   content_access:
     weights:
       preprocess_query: -30
-  double_quote_workaround:
-    all_fields: false
-    fields:
-      - body
-      - field_component_hero
-      - field_components
-      - field_link
-      - field_media
-      - menu_link
-      - rendered_item
-      - title
-    replacement: '|9999999998|'
-    weights:
-      postprocess_query: 0
-      preprocess_index: -15
-      preprocess_query: -15
   entity_status: {  }
   highlight:
-    highlight: always
+    highlight: server
     highlight_partial: false
     excerpt: true
-    excerpt_length: 256
-    exclude_fields: {  }
+    excerpt_length: 400
+    exclude_fields:
+      - title
     prefix: '<strong>'
     suffix: '</strong>'
     weights:
       postprocess_query: 0
+  html_filter:
+    all_fields: true
+    fields:
+      - body
+      - body_1
+      - rendered_item
+      - title
+      - title_1
+      - type
+    title: true
+    alt: true
+    tags:
+      b: 2
+      em: 1
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+      u: 1
+    weights:
+      preprocess_index: -15
+      preprocess_query: -15
   language_with_fallback: {  }
   rendered_item: {  }
   solr_date_range:
+    weights:
+      preprocess_index: 0
+  type_boost:
+    boosts:
+      'entity:node':
+        datasource_boost: !!float 1
     weights:
       preprocess_index: 0
 tracker_settings:
   default:
     indexing_order: fifo
 options:
-  index_directly: true
+  index_directly: false
   cron_limit: 50
-server: local_solr
+server: acquia_search_server
