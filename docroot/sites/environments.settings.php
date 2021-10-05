@@ -75,6 +75,19 @@ switch ($site_environment) {
 
   case 'local':
     $config['config_split.config_split.local']['status'] = TRUE;
+
+    // Solr
+    $config['search_api.server.acquia_search_server']['backend_config'] = [
+      'connector' => 'standard',
+      'connector_config' => [
+        'scheme' => 'http',
+        'host' => 'solr',
+        'port' => 8983,
+        'path' => '/',
+        'core' => 'search_api_solr_8.x-3.0',
+        'solr_version' => '8',
+      ],
+    ];
     break;
 }
 
