@@ -14,15 +14,13 @@ module:
   stage_file_proxy: 0
   views_ui: 0
 theme: {  }
-blacklist:
-  - search_api.server.local_solr
+blacklist: {  }
 graylist:
   - advagg.settings
   - advagg_css_minify.settings
   - advagg_js_minify.settings
   - core.extension
   - system.performance
-  - search_api.index.site_search
 graylist_dependents: true
 graylist_skip_equal: false
 weight: -5
