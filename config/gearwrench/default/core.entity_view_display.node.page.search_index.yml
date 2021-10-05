@@ -9,8 +9,10 @@ dependencies:
     - field.field.node.page.field_link
     - field.field.node.page.field_media
     - field.field.node.page.field_meta_tags
+    - image.style.search_teaser_261x256
     - node.type.page
   module:
+    - blazy
     - text
     - user
 _core:
@@ -28,13 +30,46 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_media:
-    type: entity_reference_entity_view
+    type: blazy_media
     weight: 0
     region: content
     label: hidden
     settings:
+      image_style: search_teaser_261x256
+      responsive_image_style: ''
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
       view_mode: search_teaser
-      link: false
+      image: ''
+      current_view_mode: search_index
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: 0
+      grid_medium: 0
+      grid_small: 0
     third_party_settings: {  }
 hidden:
   field_components: true
