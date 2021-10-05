@@ -26,7 +26,8 @@ $config['environment_indicator.indicator']['fg_color'] = '#e6e6e6';
 $config['environment_indicator.indicator']['name'] = 'Local';
 
 // Determine passed-in environment.
-$site_environment = '';
+$site_environment = 'local';
+
 if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
   $site_environment = $_ENV['AH_SITE_ENVIRONMENT'];
 } elseif (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
@@ -36,6 +37,7 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
 } elseif (isset($_SERVER['SITE_ENVIRONMENT'])) {
   $site_environment = $_SERVER['SITE_ENVIRONMENT'];
 }
+
 
 // Set private file path based on environment.
 $settings['file_private_path'] = '../private';
