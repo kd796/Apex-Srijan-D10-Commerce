@@ -20,8 +20,10 @@ dependencies:
     - field.field.node.product.field_set_components
     - field.field.node.product.field_sku_group
     - field.field.node.product.field_upc
+    - image.style.search_teaser_261x256
     - node.type.product
   module:
+    - blazy
     - user
 id: node.product.search_index
 targetEntityType: node
@@ -37,13 +39,46 @@ content:
       link_to_entity: false
     third_party_settings: {  }
   field_product_images:
-    type: entity_reference_entity_view
+    type: blazy_media
     weight: 0
     region: content
     label: hidden
     settings:
+      style: ''
+      image_style: search_teaser_261x256
+      responsive_image_style: ''
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
       view_mode: search_teaser
-      link: false
+      image: ''
+      grid: null
+      grid_medium: null
+      grid_small: null
+      current_view_mode: search_index
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
     third_party_settings: {  }
   field_sku_group:
     type: string

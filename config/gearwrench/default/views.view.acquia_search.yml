@@ -39,7 +39,7 @@ display:
           skip_access: false
           parse_mode: terms
       exposed_form:
-        type: basic
+        type: input_required
         options:
           submit_button: Search
           reset_button: true
@@ -48,12 +48,14 @@ display:
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
+          text_input_required: 'Select any filter and click on Apply to see results'
+          text_input_required_format: basic_html
       pager:
         type: full
         options:
           items_per_page: 4
           offset: 0
-          id: 0
+          id: 1
           total_pages: null
           tags:
             previous: '‹ Previous'
@@ -85,7 +87,6 @@ display:
             'entity:node':
               landing_page: search_index
               page: search_index
-              social_post: search_index
       fields:
         title:
           id: title
