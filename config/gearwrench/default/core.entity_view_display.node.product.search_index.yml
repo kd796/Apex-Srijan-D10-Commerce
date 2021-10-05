@@ -1,4 +1,4 @@
-uuid: f3d71da1-badd-4306-a000-12e18d8bcecf
+uuid: 603456bd-0ffe-48c6-bf5e-4b72304725bc
 langcode: en
 status: true
 dependencies:
@@ -20,8 +20,10 @@ dependencies:
     - field.field.node.product.field_set_components
     - field.field.node.product.field_sku_group
     - field.field.node.product.field_upc
+    - image.style.search_teaser_261x256
     - node.type.product
   module:
+    - blazy
     - user
 id: node.product.search_index
 targetEntityType: node
@@ -36,24 +38,57 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  field_media:
-    type: entity_reference_entity_view
+  field_product_images:
+    type: blazy_media
     weight: 0
     region: content
     label: hidden
     settings:
-      view_mode: product_teaser
-      link: false
+      style: ''
+      image_style: search_teaser_261x256
+      responsive_image_style: ''
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
+      view_mode: search_teaser
+      image: ''
+      grid: null
+      grid_medium: null
+      grid_small: null
+      current_view_mode: search_index
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
     third_party_settings: {  }
 hidden:
   body: true
   field_featured_product: true
   field_launch_date: true
+  field_media: true
   field_meta_tags: true
   field_new_product: true
   field_product_classifications: true
   field_product_features: true
-  field_product_images: true
   field_product_specifications: true
   field_related_products: true
   field_set: true
