@@ -1,0 +1,39 @@
+uuid: 280d50e5-64c3-457c-b112-f27b7576778c
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_media_type
+field_name: field_media_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: Document
+      label: Document
+    -
+      value: 'Featured News'
+      label: 'Featured News'
+    -
+      value: Image
+      label: Image
+    -
+      value: News
+      label: News
+    -
+      value: Video
+      label: Video
+    -
+      value: 'Zip File'
+      label: 'Zip File'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
