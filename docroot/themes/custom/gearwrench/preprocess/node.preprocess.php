@@ -258,11 +258,13 @@ function gearwrench_preprocess_node__product_category__full(array &$variables) {
     ->load('product_category')
     ->getExecutable();
   $view_args = [];
+
   // Get Product Classification ID's.
   if (!empty($node->get('field_product_classifications')->getValue())) {
     $classifications = array_column($node->get('field_product_classifications')->getValue(), 'target_id');
     $view_args[] = implode(',', $classifications);
   }
+
   $view_display = 'products_by_category';
   $main_view->initDisplay();
   $main_view->setDisplay($view_display);
@@ -274,14 +276,17 @@ function gearwrench_preprocess_node__product_category__full(array &$variables) {
   if (!isset($variables['#cache']['contexts'])) {
     $variables['#cache']['contexts'] = [];
   }
+
   // Initialize cache tags.
   if (!isset($variables['#cache']['tags'])) {
     $variables['#cache']['tags'] = [];
   }
+
   // Initialize cache max-age.
   if (!isset($variables['#cache']['max-age'])) {
     $variables['#cache']['max-age'] = Cache::PERMANENT;
   }
+
   // Merge display cache tags.
   $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'], $main_view->display_handler->getCacheMetadata()
     ->getCacheContexts());
@@ -289,10 +294,12 @@ function gearwrench_preprocess_node__product_category__full(array &$variables) {
     ->getCacheTags());
   $variables['#cache']['max-age'] = Cache::mergeMaxAges($variables['#cache']['max-age'], $main_view->display_handler->getCacheMetadata()
     ->getCacheMaxAge());
+
   // Merge view cache tags.
   $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'], $main_view->storage->getCacheContexts());
   $variables['#cache']['tags'] = Cache::mergeTags($variables['#cache']['tags'], $main_view->getCacheTags());
   $variables['#cache']['max-age'] = Cache::mergeMaxAges($variables['#cache']['max-age'], $main_view->storage->getCacheMaxAge());
+
   $variables['view'] = $main_view->buildRenderable($view_display, $main_view->args);
   $variables['filters'] = \Drupal::formBuilder()->getForm('Drupal\gearwrench_product_category_filtering\Form\ProductCategoryFiltersForm');
 }
