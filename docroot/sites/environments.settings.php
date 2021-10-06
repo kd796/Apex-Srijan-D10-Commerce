@@ -26,7 +26,8 @@ $config['environment_indicator.indicator']['fg_color'] = '#e6e6e6';
 $config['environment_indicator.indicator']['name'] = 'Local';
 
 // Determine passed-in environment.
-$site_environment = '';
+$site_environment = 'local';
+
 if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
   $site_environment = $_ENV['AH_SITE_ENVIRONMENT'];
 } elseif (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
@@ -36,6 +37,7 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
 } elseif (isset($_SERVER['SITE_ENVIRONMENT'])) {
   $site_environment = $_SERVER['SITE_ENVIRONMENT'];
 }
+
 
 // Set private file path based on environment.
 $settings['file_private_path'] = '../private';
@@ -75,6 +77,19 @@ switch ($site_environment) {
 
   case 'local':
     $config['config_split.config_split.local']['status'] = TRUE;
+
+    // Solr
+    $config['search_api.server.acquia_search_server']['backend_config'] = [
+      'connector' => 'standard',
+      'connector_config' => [
+        'scheme' => 'http',
+        'host' => 'solr',
+        'port' => 8983,
+        'path' => '/',
+        'core' => 'search_api_solr_8.x-3.0',
+        'solr_version' => '8',
+      ],
+    ];
     break;
 }
 

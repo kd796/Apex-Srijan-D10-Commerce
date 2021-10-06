@@ -29,11 +29,19 @@ class ProductCategoryFiltersForm extends FormBase {
     if ($node != NULL && $node->hasField('field_product_classifications') && !empty($node->get('field_product_classifications')->getValue())) {
       $classifications = array_column($node->get('field_product_classifications')->getValue(), 'target_id');
 
+      if (empty($classifications)) {
+        return $form;
+      }
+
       $product_query = \Drupal::entityQuery('node')
         ->condition('type', 'product')
         ->condition('field_product_classifications', $classifications[0])
         ->execute();
       $product_nids = array_values($product_query);
+
+      if (empty($product_nids)) {
+        return $form;
+      }
 
       $table_mapping = \Drupal::entityTypeManager()->getStorage('node')->getTableMapping();
       $field_product_specifications_table = $table_mapping->getFieldTableName('field_product_specifications');
