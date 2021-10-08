@@ -27,7 +27,7 @@
   width: 100vw !important;
 
   @include media('<=sm') {
-    height: 75vh;
+    height: 80vh;
   }
 
   @include media('>sm', '<=md') {
@@ -74,7 +74,7 @@
   .component-hero-slide__inner {
     @include container($container-xl, 0, center, false);
     @include flex();
-    @include flex-x(justify-content, left);
+    @include flex-x(justify-content, center);
     @include flex-x(align-items, flex-end);
 
     color: $color-white;
@@ -90,12 +90,16 @@
     background-color: rgba($black, 0.6);
     box-sizing: border-box;
     margin: 0;
-    max-width: 75%;
+    max-width: 100%;
     padding: 1.625rem .875rem 1rem;
     position: relative;
 
-    @include media('<=xs-plus') {
-      max-width: 100%;
+    @include media('>xs-plus') {
+      max-width: 90%;
+    }
+
+    @include media('>=sm') {
+      max-width: 75%;
     }
 
     @include media('>md') {
@@ -110,7 +114,7 @@
     }
 
     .component-hero-slide__title {
-      margin-bottom: 3rem;
+      margin-bottom: 1rem;
 
       @include media('>md') {
         margin-bottom: 0;
@@ -132,9 +136,6 @@
 
     .component-hero-slide__content {
       display: block;
-      @include media('<=md') {
-        display: none;
-      }
     }
   }
 
