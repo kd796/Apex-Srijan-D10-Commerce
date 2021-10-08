@@ -27,7 +27,7 @@
   width: 100vw !important;
 
   @include media('<=sm') {
-    height: 75vh;
+    height: 80vh;
   }
 
   @include media('>sm', '<=md') {
@@ -74,7 +74,7 @@
   .component-hero-slide__inner {
     @include container($container-xl, 0, center, false);
     @include flex();
-    @include flex-x(justify-content, left);
+    @include flex-x(justify-content, center);
     @include flex-x(align-items, flex-end);
 
     color: $color-white;
@@ -87,15 +87,19 @@
   }
 
   .component-hero-slide__content-container {
-    background-color: $black;
+    background-color: rgba($black, 0.6);
     box-sizing: border-box;
     margin: 0;
-    max-width: 75%;
+    max-width: 100%;
     padding: 1.625rem .875rem 1rem;
     position: relative;
 
-    @include media('<=xs-plus') {
-      max-width: 100%;
+    @include media('>xs-plus') {
+      max-width: 90%;
+    }
+
+    @include media('>=sm') {
+      max-width: 75%;
     }
 
     @include media('>md') {
@@ -104,33 +108,13 @@
       padding: 2.75rem 2rem 1.375rem;
     }
 
-    &::after {
-      background-color: $black;
-      position: absolute;
-      content: '';
-      width: 20vw;
-      height: 100%;
-      top: 0;
-      right: -4rem;
-      z-index: 1 !important;
-      transform: skew(-14deg);
-
-      @include media('<=md') {
-        right: -2.5rem;
-      }
-
-      @include media('<=xs-plus') {
-        content: none;
-      }
-    }
-
     >* {
       position: relative;
       z-index: 2;
     }
 
     .component-hero-slide__title {
-      margin-bottom: 3rem;
+      margin-bottom: 1rem;
 
       @include media('>md') {
         margin-bottom: 0;
@@ -139,13 +123,11 @@
       h2 {
         @include type-header(h4, light, included);
         text-transform: uppercase;
-        color: $primary-red;
         display: block;
         margin: 0;
 
         @include media('>md') {
           @include type-header(display-headline-4, light, included);
-          color: $primary-red;
           line-height: rem(48px);
           margin: 0;
         }
@@ -154,9 +136,6 @@
 
     .component-hero-slide__content {
       display: block;
-      @include media('<=md') {
-        display: none;
-      }
     }
   }
 
@@ -197,27 +176,19 @@
       opacity: 1;
       position: relative;
 
-      &:hover {
-        background-color: $color-black;
-        border-color: $primary-red;
+      @include on-event() {
+        background-color: $primary-dark;
+        border-color: $primary-dark;
       }
 
       &.component-hero-slide__button-prev {
-        background-image: url('../../../icons/chevron-left-black.svg');
+        background-image: url('../../../icons/chevron-left-white.svg');
         margin-right: 1px;
-
-        &:hover {
-          background-image: url('../../../icons/chevron-left-molten-orange.svg');
-        }
       }
 
       &.component-hero-slide__button-next {
-        background-image: url('../../../icons/chevron-right-black.svg');
+        background-image: url('../../../icons/chevron-right-white.svg');
         margin-left: 1px;
-
-        &:hover {
-          background-image: url('../../../icons/chevron-right-molten-orange.svg');
-        }
       }
 
       &[aria-disabled='true'] {
@@ -237,7 +208,7 @@
 
     .swiper-pagination-bullet {
       background: transparent;
-      border-color: $primary-red;
+      border-color: $white;
     }
 
     .swiper-pagination-bullet-active {

@@ -9,7 +9,7 @@
   background-color: $primary-red;
   border: 0;
   border-radius: rem(40px);
-  color: $black;
+  color: $white;
   display: inline-block;
   font-family: $font-brand;
   font-weight: $fw-bold;
@@ -29,8 +29,8 @@
 
   @if $style == primary {
     @include on-event {
-      color: $primary-red;
-      background-color: $black;
+      background-color: $primary-dark;
+      border-color: $primary-dark;
     }
   }
 }
@@ -44,7 +44,7 @@
     align-items: center;
     background-color: transparent;
     border: 0;
-    color: $black;
+    color: $secondary-light;
     display: flex;
     font-family: $font-brand;
     font-weight: $fw-regular;
@@ -60,7 +60,9 @@
     }
 
     @include on-event {
-      color: $primary-red;
+      background-color: $secondary-black;
+      border-color: $secondary-black;
+      color: $white;
     }
 
     @include media('<sm') {
@@ -71,5 +73,4 @@
       }
     }
   }
-
 }
