@@ -171,7 +171,6 @@ $active-gap: 8px; // the math likes px values
   input[type='checkbox']:not(:checked) + label:before,
   input[type='radio']:checked + label:before,
   input[type='radio']:not(:checked) + label:before {
-    background: $black;
     border: 1px solid $black;
     content: '';
     height: $active-width;
@@ -182,7 +181,7 @@ $active-gap: 8px; // the math likes px values
   }
 
   input[type='checkbox']:checked + label:before {
-    background-color: transparent;
+    background-color: $primary-orange;
   }
 
   // fake input box active indicator
