@@ -18,10 +18,7 @@
 
   .node__inner {
     .node__content {
-      border-top: 1px solid $gray-40;
-      border-left: 1px solid $gray-40;
-      border-right: 1px solid $gray-40;
-      transition: $transition-base;
+      background-color: $gray-20;
 
       @include media('<md') {
         border: 0;
@@ -92,23 +89,31 @@
       font-size: 1rem;
       transition: $transition-base;
       width: 100%;
+      border-top-left-radius: unset;
+      border-top-right-radius: unset;
 
       &:hover,
       &:focus {
         color: $primary-red;
-        background-color: $black;
+        background-color: $gray-20;
+        border-bottom-left-radius: rem(40px);
+        border-bottom-right-radius: rem(40px);
       }
     }
   }
 
   @include on-event {
-    .node__inner {
-      box-shadow: 0 0 16px 5px rgba(0, 0, 0, 0.2);
-      outline: 2px solid $black;
-      outline-offset: -2px;
-      @include media('<md') {
-        box-shadow: none;
-        outline: none;
+    .node__content {
+      background-color: $secondary-black;
+
+      .node__long-description {
+        .field--name-field-long-description {
+          color: $white;
+        }
+      }
+
+      .node__sku {
+        color: $white;
       }
     }
   }
