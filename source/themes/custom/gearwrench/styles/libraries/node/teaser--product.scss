@@ -31,15 +31,20 @@
       @include flex-x(align-items, center);
       @include flex-x(justify-content, center);
       background-color: $white;
-      height: 243px;
+      height: 100px;
       display: flex;
       overflow: hidden;
-      padding-top: 2px;
+      padding-top: 0;
+      border: 2px solid $primary-orange;
 
-      @include media('<md') {
+      @include media('>xs') {
         height: 160px;
-        padding-top: 0;
-        border: 2px solid $primary-orange;
+      }
+
+      @include media('>md') {
+        height: 243px;
+        border: 0;
+        padding-top: 2px;
       }
 
       .media {
@@ -56,6 +61,11 @@
 
     .node__content-container {
       padding: 1rem;
+
+      @include media('<md') {
+        padding-left: 0;
+        padding-right: 0;
+      }
     }
 
     .node__long-description {
@@ -96,10 +106,35 @@
     transition: $transition-base;
     width: 100%;
 
+    @include media('<md') {
+      white-space: normal;
+      min-width: 100%;
+    }
+
+    &.ps-disabled {
+      background-color: $gray-50;
+
+      > small {
+        line-height: 1.625;
+        font-weight: $fw-bold;
+
+
+        &:hover,
+        &:focus {
+          font-weight: $fw-bold;
+        }
+      }
+    }
+
     &:hover,
     &:focus {
       color: $primary-orange;
       background-color: $black;
+
+      &.ps-disabled > small {
+        line-height: 1.625;
+        font-weight: $fw-bold;
+      }
     }
   }
 
