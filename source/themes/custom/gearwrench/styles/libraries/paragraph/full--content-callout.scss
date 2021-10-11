@@ -95,6 +95,26 @@
     }
   }
 
+  section:only-child {
+    @include media('>md') {
+      .component-content-callout__content {
+        max-height: rem(650px);
+
+        .media {
+          height: 0;
+          padding-bottom: 56.25%;
+
+          .media__image {
+            height: 100%;
+            max-height: rem(650px);
+            object-fit: cover;
+            position: absolute;
+          }
+        }
+      }
+    }
+  }
+
   @include media('>=md') {
     flex-direction: row;
     flex-wrap: wrap;
