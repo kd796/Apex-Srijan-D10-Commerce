@@ -31,30 +31,32 @@
       @include flex-x(align-items, center);
       @include flex-x(justify-content, center);
       background-color: $white;
-      height: 100px;
       display: flex;
       overflow: hidden;
       padding-top: 0;
       border: 2px solid $primary-orange;
 
-      @include media('>xs') {
-        height: 160px;
-      }
-
       @include media('>md') {
-        height: 243px;
         border: 0;
         padding-top: 2px;
       }
 
       .media {
         display: flex;
-        height: 100%;
+        position: relative;
+        padding-top: 100%;
+        width: 100%;
 
         img {
           object-fit: cover;
-          height: auto;
+          height: 100%;
           width: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+
         }
       }
     }
