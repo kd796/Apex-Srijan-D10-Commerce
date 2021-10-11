@@ -18,33 +18,48 @@
 
   .node__inner {
     .node__content {
+      border-top-left-radius: rem(20px);
+      border-top-right-radius: rem(20px);
+      padding: rem(10px 10px 0 10px);
       background-color: $gray-20;
-
-      @include media('<md') {
-        border: 0;
-      }
 
       .node__listing-image {
         @include flex();
         @include flex-x(align-items, center);
-        height: 245px;
+        @include flex-x(justify-content, center);
+        background-color: transparent;
+        height: rem(100px);
         display: flex;
+        overflow: hidden;
+        padding-top: 0;
 
-        @include media('<md') {
-          height: 160px;
+        @include media('>=xs') {
+          height: rem(160px);
+        }
+
+        @include media('>=sm') {
+          height: rem(200px);
+        }
+
+        @include media('>=md') {
+          height: rem(200px);
+        }
+
+        @include media('>=xl') {
+          height: rem(243px);
         }
 
         .media {
           display: flex;
-          justify-content: center;
+          height: 100%;
           width: 100%;
         }
 
-        @include media('<md') {
-          .media {
-            outline: 2px solid $primary-red;
-            outline-offset: -2px;
-          }
+        .media img {
+          object-fit: cover;
+          height: auto;
+          width: 100%;
+          border-radius: rem(20px);
         }
       }
 
@@ -86,16 +101,41 @@
       box-sizing: border-box;
       display: inline-block !important;
       float: none;
-      font-size: 1rem;
+      font-size: 1rem !important;
       transition: $transition-base;
       width: 100%;
+      border: 1px solid $primary-red;
       border-top-left-radius: unset;
       border-top-right-radius: unset;
+      white-space: normal;
+      min-width: 100%;
+
+      &.ps-disabled {
+        background-color: $gray-50;
+        border-color: $gray-50;
+
+        > small {
+          line-height: 1.625;
+          font-weight: $fw-bold;
+
+          &:hover,
+          &:focus {
+            color: $white;
+            font-weight: $fw-bold;
+          }
+        }
+
+        &:hover,
+        &:focus {
+          background-color: $gray-50;
+        }
+      }
 
       &:hover,
       &:focus {
         color: $primary-red;
         background-color: $gray-20;
+        border-width: 1px;
         border-bottom-left-radius: rem(40px);
         border-bottom-right-radius: rem(40px);
       }
@@ -105,6 +145,10 @@
   @include on-event {
     .node__content {
       background-color: $secondary-black;
+
+      .node__listing-image {
+        background-color: $secondary-black;
+      }
 
       .node__long-description {
         .field--name-field-long-description {
