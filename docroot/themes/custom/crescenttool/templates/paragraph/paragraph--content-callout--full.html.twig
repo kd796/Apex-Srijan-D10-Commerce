@@ -51,15 +51,17 @@
 
     <div{{ content_attributes.addClass(content_classes) }}>
       <div class="component-content-callout__content--position">
-        {{ title_prefix }}
-        {% if title_is_set %}
-          <header{{ title_attributes.addClass(title_classes) }}>
-            {{- title -}}
-          </header>
-        {% endif %}
-        {{ title_suffix }}
+        <div class="component-content-callout__content-box">
+          {{ title_prefix }}
+          {% if title_is_set %}
+            <header{{ title_attributes.addClass(title_classes) }}>
+              {{- title -}}
+            </header>
+          {% endif %}
+          {{ title_suffix }}
 
-        {{ content.field_link }}
+          {{ content.field_link }}
+        </div>
       </div>
 
       {{ content|without('field_link') }}
