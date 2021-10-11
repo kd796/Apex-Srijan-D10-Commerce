@@ -18,10 +18,16 @@
 
   .node__inner {
     .node__content {
-      border-top-left-radius: rem(20px);
-      border-top-right-radius: rem(20px);
-      padding: rem(10px 10px 0 10px);
+      border-top-left-radius: rem(11px);
+      border-top-right-radius: rem(11px);
+      padding: rem(3px 3px 0 3px);
       background-color: $gray-20;
+
+      @include media('>=md') {
+        padding: rem(10px 10px 0 10px);
+        border-top-left-radius: rem(25px);
+        border-top-right-radius: rem(25px);
+      }
 
       .node__listing-image {
         @include flex();
@@ -59,12 +65,20 @@
           object-fit: cover;
           height: auto;
           width: 100%;
-          border-radius: rem(20px);
+          border-radius: rem(11px);
+
+          @include media('>=md') {
+            border-radius: rem(25px);
+          }
         }
       }
 
       .node__content-container {
-        padding: 1rem;
+        padding: 1rem rem(2px);
+
+        @include media('>=md') {
+          padding: 1rem;
+        }
       }
 
       .node__long-description {
@@ -79,7 +93,7 @@
           margin-top: 0;
 
           @include media('<md') {
-            font-size:  rem(16px);
+            font-size:  rem(13px);
             line-height: rem(20px);
           }
         }
@@ -90,7 +104,7 @@
         margin: 0;
 
         @include media('<md') {
-          font-size: rem(12px);
+          font-size: rem(11px);
         }
       }
     }
@@ -109,6 +123,8 @@
       border-top-right-radius: unset;
       white-space: normal;
       min-width: 100%;
+      border-bottom-left-radius: rem(25px);
+      border-bottom-right-radius: rem(25px);
 
       &.ps-disabled {
         background-color: $gray-50;
@@ -136,8 +152,8 @@
         color: $primary-red;
         background-color: $gray-20;
         border-width: 1px;
-        border-bottom-left-radius: rem(40px);
-        border-bottom-right-radius: rem(40px);
+        border-bottom-left-radius: rem(25px);
+        border-bottom-right-radius: rem(25px);
       }
     }
   }
