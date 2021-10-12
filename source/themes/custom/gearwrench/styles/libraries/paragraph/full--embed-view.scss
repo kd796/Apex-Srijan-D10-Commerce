@@ -1,0 +1,21 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Node: Full Default
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.paragraph--type-embed-view {
+  @include media('<=md') {
+    left: calc(-47vw + 50%);
+    position: relative;
+  }
+}

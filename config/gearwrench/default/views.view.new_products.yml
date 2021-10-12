@@ -276,7 +276,28 @@ display:
             label: ''
           granularity: second
       title: 'New Products'
-      header: {  }
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          content: 'Showing @current_record_count of @total results'
+          plugin_id: result
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content: '<div class="controls"><div class=''filter-icon''></div><div class=''sort-icon''></div></div>'
+          plugin_id: text_custom
       footer: {  }
       empty: {  }
       relationships: {  }
