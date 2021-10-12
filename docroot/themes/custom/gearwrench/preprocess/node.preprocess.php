@@ -9,6 +9,13 @@
  * @see gearwrench_preprocess_node()
  * @see gearwrench_preprocess_node__full()
  * @see gearwrench_preprocess_node__page__full()
+ * @see gearwrench_preprocess_node__search_result()
+ * @see gearwrench_preprocess_node__product__teaser()
+ * @see gearwrench_preprocess_node__search_index()
+ * @see gearwrench_preprocess_node__product__search_index()
+ * @see gearwrench_preprocess_node__product_category__full()
+ * @see gearwrench_preprocess_node__product_category__tile()
+ * @see gearwrench_preprocess_node__social_post__teaser()
  */
 
 use Drupal\Core\Cache\Cache;
@@ -211,6 +218,23 @@ function gearwrench_preprocess_node__product__teaser(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for search index.
+ */
+function gearwrench_preprocess_node__search_index(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $bundle = $node->bundle();
+
+  if ($bundle == ('landing_page') || $bundle == ('basic_page')) {
+    foreach (Element::children($variables['content']['field_media']) as $id) {
+      if ($id) {
+        unset($variables['content']['field_media'][$id]);
+      }
+    }
+  }
+}
+
+/**
  * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product, search index.
  */
 function gearwrench_preprocess_node__product__search_index(&$variables) {
@@ -241,6 +265,12 @@ function gearwrench_preprocess_node__product__search_index(&$variables) {
   }
   else {
     $variables['media_attributes']['class'][] = 'node__media--no-media';
+  }
+
+  foreach (Element::children($variables['content']['field_product_images']) as $id) {
+    if ($id) {
+      unset($variables['content']['field_product_images'][$id]);
+    }
   }
 }
 
