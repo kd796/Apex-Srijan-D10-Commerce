@@ -1,0 +1,30 @@
+uuid: a7ed0045-4975-4423-80cd-3a52001ab56e
+langcode: en
+status: true
+dependencies:
+  module:
+    - apex_tools_instagram_feed
+title: 'Get Instagram Posts'
+id: apex_tools_instagram_feed_cron
+weight: 0
+module: apex_tools_instagram_feed
+callback: apex_tools_instagram_feed_cron
+scheduler:
+  id: crontab
+  configuration:
+    rules:
+      - '00 13,18 * * *'
+    catch_up: 0
+launcher:
+  id: serial
+  configuration:
+    timeouts:
+      lock_timeout: 3600
+    launcher:
+      thread: 0
+logger:
+  id: database
+  configuration:
+    method: '3'
+    expire: 1209600
+    retain: 1000

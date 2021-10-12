@@ -1,0 +1,47 @@
+uuid: dabd09b5-a461-4a5c-990f-9ba78d30a6b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.social_post.body
+    - field.field.node.social_post.field_media
+    - field.field.node.social_post.field_post_url
+    - node.type.social_post
+  module:
+    - text
+    - user
+id: node.social_post.teaser
+targetEntityType: node
+bundle: social_post
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 1
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  field_media:
+    type: entity_reference_entity_view
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+  field_post_url:
+    type: string
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  links: true
+  search_api_excerpt: true

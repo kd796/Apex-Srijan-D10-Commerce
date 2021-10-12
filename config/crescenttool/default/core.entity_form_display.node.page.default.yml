@@ -117,6 +117,13 @@ content:
     third_party_settings: {  }
     type: metatag_firehose
     region: content
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
   path:
     type: path
     weight: 5
@@ -167,4 +174,5 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_link: true

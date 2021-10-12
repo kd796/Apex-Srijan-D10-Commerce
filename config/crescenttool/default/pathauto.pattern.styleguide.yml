@@ -1,0 +1,22 @@
+uuid: 7c774bbf-4b97-4b35-8fd6-a19480788790
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: styleguide
+label: Styleguide
+type: 'canonical_entities:node'
+pattern: '/styleguide/[current-page:title]'
+selection_criteria:
+  db286121-a0c3-4b9f-ab9f-ffffc4ec0d54:
+    id: node_type
+    bundles:
+      styleguide: styleguide
+    negate: false
+    context_mapping:
+      node: node
+    uuid: db286121-a0c3-4b9f-ab9f-ffffc4ec0d54
+selection_logic: and
+weight: -5
+relationships: {  }
