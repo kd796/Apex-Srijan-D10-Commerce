@@ -71,23 +71,25 @@
 {% set classes = [] %}
 
 <article{{ attributes.addClass(classes) }}>
-  <div>
-    <a href="{{ url }}" rel="bookmark">
-      {{ title_prefix }}
-      {% if not page %}
-        <header{{ title_attributes }}>
-          <h3>
-            {{ label }}
-          </h3>
-        </header>
-      {% endif %}
-      {{ title_suffix }}
+  <div{{ inner_attributes }}>
+    <div{{ content_attributes.addClass('node__content') }}>
+      <a href="{{ url }}" rel="bookmark">
+        <div{{ media_attributes }}>
+          {{ media }}
+        </div>
+        <div class="node__content-container">
+          <header{{ title_attributes }}>
+            <h3>
+              {{ label }}
+            </h3>
+          </header>
 
-      <div{{ content_attributes }}>
-        {{ content }}
-      </div>
-
-      <div class="btn node__read-more-button">Read More</div>
-    </a>
+          <div{{ content_attributes }}>
+            {{ content|without('field_media') }}
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="btn node__read-more-button">{{ 'Read More' |t }}</div>
   </div>
 </article>

@@ -224,6 +224,27 @@ function gearwrench_preprocess_node__search_index(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
   $bundle = $node->bundle();
+  $view_mode = $variables['view_mode'];
+
+  $bundle_css = Html::cleanCssIdentifier($bundle);
+  $view_mode_css = Html::cleanCssIdentifier($view_mode);
+
+  // Track variables that should be converted to attribute objects.
+  $variables['#attribute_variables'][] = 'media_attributes';
+
+  $variables['inner_attributes']['class'][] = 'node__inner';
+  $variables['media_attributes']['class'][] = 'node__media';
+
+  // Move media to media variable.
+  if (isset($variables['content']['field_media'][0])) {
+    $variables['media_attributes']['class'][] = 'node__media--with-media';
+    $variables['media_attributes']['class'][] = 'node__listing-image';
+    $variables['media'] = $variables['content']['field_media'];
+    unset($variables['media']['#theme']);
+  }
+  else {
+    $variables['media_attributes']['class'][] = 'node__media--no-media';
+  }
 
   if ($bundle == ('landing_page') || $bundle == ('basic_page')) {
     foreach (Element::children($variables['content']['field_media']) as $id) {
