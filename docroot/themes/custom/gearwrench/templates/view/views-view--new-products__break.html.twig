@@ -56,11 +56,11 @@
     {{- title -}}
   {% endif %}
   {{ title_suffix }}
-  {% if header %}
-    <div class="view-header">
+  <div class="view-header">
+    {% if header %}
       {{ header }}
-    </div>
-  {% endif %}
+    {% endif %}
+  </div>
   {% if exposed %}
     <div class="view-filters">
       {{ exposed }}
