@@ -1,0 +1,32 @@
+uuid: 3c0eb249-94be-4793-94dc-629448872ab3
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.search_teaser
+    - field.field.paragraph.hero.field_class_custom
+    - field.field.paragraph.hero.field_components
+    - field.field.paragraph.hero.field_html_anchor
+    - field.field.paragraph.hero.field_style
+    - paragraphs.paragraphs_type.hero
+  module:
+    - entity_reference_revisions
+id: paragraph.hero.search_teaser
+targetEntityType: paragraph
+bundle: hero
+mode: search_teaser
+content:
+  field_components:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: search_teaser
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+hidden:
+  field_class_custom: true
+  field_html_anchor: true
+  field_style: true
+  search_api_excerpt: true
