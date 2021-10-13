@@ -37,17 +37,47 @@ class GetListingImage extends ProcessPluginBase {
     $assets = [];
     $media_id = NULL;
     $alt_text = NULL;
+    $sku = NULL;
     if (!empty($value)) {
       $alt_text = $value->Name;
       foreach ($value->children() as $child) {
-        if ($child->getName() === 'AssetCrossReference' && (string) $child->attributes()->Type === 'Primary Image') {
-          $assets[] = [
-            'asset_id' => (string) $child->attributes()->AssetID,
-            'drupal_file_path' => 'public://pim_images/' . (string) $child->attributes()->AssetID . '.jpg',
-            'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . (string) $child->attributes()->AssetID . '.jpg',
-          ];
+        if ($child->getName() === 'Product') {
+          $sku = (string) $child->attributes()->ID;
         }
       }
+      foreach ($value->children() as $child) {
+        if ($child->getName() === 'Product' && (string) $child->attributes()->ID === $sku) {
+          foreach ($child->children() as $item) {
+            if ($item->getName() === 'AssetCrossReference' && ((string) $item->attributes()->Type === 'Primary Image')) {
+              $assets[] = [
+                'sku' => $sku,
+                'imagetype' => 'Product Level',
+                'asset_id' => (string) $item->attributes()->AssetID,
+                'drupal_file_path' => 'public://pim_images/' . (string) $item->attributes()->AssetID . '.jpg',
+                'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . (string) $item->attributes()->AssetID . '.jpg',
+              ];
+            }
+          }
+        }
+      }
+      if (empty($assets)) {
+        foreach ($value->children() as $child) {
+          if ($child->getName() === 'AssetCrossReference' && (string) $child->attributes()->Type === 'Primary Image') {
+            $assets[] = [
+              'sku' => $sku,
+              'imagetype' => 'SKU Group Level',
+              'asset_id' => (string) $child->attributes()->AssetID,
+              'drupal_file_path' => 'public://pim_images/' . (string) $child->attributes()->AssetID . '.jpg',
+              'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . (string) $child->attributes()->AssetID . '.jpg',
+            ];
+          }
+        }
+      }
+
+      // Prep Directory.
+      $image_directory = 'public://pim_images/';
+      \Drupal::service('file_system')->prepareDirectory($image_directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
+
       foreach ($assets as $asset) {
         $headers_array = @get_headers($asset['remote_file_path']);
         $headers_check = $headers_array[0];
