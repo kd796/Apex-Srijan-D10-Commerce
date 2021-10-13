@@ -202,8 +202,12 @@ function gearwrench_preprocess_menu__main__block_header_menu_main(array &$variab
     if (isset($item['original_link']) && $item['original_link'] instanceof MenuLinkContent) {
       $definition = $item['original_link']->getPluginDefinition();
 
-      if ($definition['route_name'] === 'entity.node.canonical' && isset($definition['route_parameters']['node'])) {
-        $node = $node_storage->load($definition['route_parameters']['node']);
+      $nodes = \Drupal::entityTypeManager()
+        ->getStorage('node')
+        ->loadByProperties(['title' => 'Featured Content']);
+
+      if (!empty($nodes)) {
+        $node = reset($nodes);
 
         // Get Node.
         if ($node instanceof NodeInterface && $node->hasField('field_media') && !$node->get('field_media')->isEmpty()) {
