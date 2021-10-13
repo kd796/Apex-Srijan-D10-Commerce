@@ -74,22 +74,26 @@
   <div{{ inner_attributes }}>
     <div{{ content_attributes.addClass('node__content') }}>
       <a href="{{ url }}" rel="bookmark">
-        <div{{ media_attributes }}>
-          {{ media }}
-        </div>
         <div class="node__content-container">
-          <header{{ title_attributes }}>
-            <h3>
-              {{ label }}
-            </h3>
+          <header class="node__header">
+            <div class="node__long-description">
+              <div{{ media_attributes }}>
+                {{ media }}
+              </div>
+              <h3>
+                {{ label }}
+              </h3>
+            </div>
           </header>
 
-          <div{{ content_attributes }}>
+          <div>
             {{ content|without('field_media') }}
           </div>
         </div>
       </a>
     </div>
-    <div class="btn node__read-more-button">{{ 'Read More' |t }}</div>
+    <a href="{{ url }}" rel="bookmark">
+      <div class="btn node__read-more-button">{{ 'Read More' |t }}</div>
+    </a>
   </div>
 </article>
