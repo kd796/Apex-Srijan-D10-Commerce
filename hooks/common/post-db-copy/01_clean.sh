@@ -21,7 +21,6 @@ drush_alias=$site'.'$target_env
 uri=apextoolgroupdev.prod.acquia-sites.com
 drush9 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
 drush9 @$drush_alias updatedb -y --strict=0 --uri=$uri
-drush9 @$drush_alias entup -y --strict=0 --uri=$uri
 drush9 @$drush_alias cim sync -y --uri=$uri
 drush9 @$drush_alias cr --uri=$uri
 drush9 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
@@ -30,7 +29,6 @@ drush9 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
 uri=prod-www.gearwrench.com
 drush9 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
 drush9 @$drush_alias updatedb -y --strict=0 --uri=$uri
-drush9 @$drush_alias entup -y --strict=0 --uri=$uri
 drush9 @$drush_alias cim sync -y --uri=$uri
 drush9 @$drush_alias cr --uri=$uri
 drush9 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
@@ -39,7 +37,6 @@ drush9 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
 uri=prod-www.crescenttool.com
 drush9 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
 drush9 @$drush_alias updatedb -y --strict=0 --uri=$uri
-drush9 @$drush_alias entup -y --strict=0 --uri=$uri
 drush9 @$drush_alias cim sync -y --uri=$uri
 drush9 @$drush_alias cr --uri=$uri
 drush9 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri

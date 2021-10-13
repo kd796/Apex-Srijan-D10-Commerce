@@ -1,0 +1,37 @@
+uuid: f90e22a7-6787-4176-a4b0-d96c563568cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.styleguide.body
+    - field.field.node.styleguide.field_component_hero
+    - field.field.node.styleguide.field_components
+    - field.field.node.styleguide.field_media
+    - field.field.node.styleguide.field_meta_tags
+    - node.type.styleguide
+  module:
+    - entity_reference_revisions
+    - user
+id: node.styleguide.full
+targetEntityType: node
+bundle: styleguide
+mode: full
+content:
+  field_components:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      view_mode: full
+      link: ''
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_component_hero: true
+  field_media: true
+  field_meta_tags: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

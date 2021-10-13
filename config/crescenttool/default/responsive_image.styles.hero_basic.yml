@@ -1,0 +1,23 @@
+uuid: 4f9799e2-5b73-4e95-a641-1e8b7642a76a
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.hero_banner
+    - image.style.hero_banner_mobile
+  theme:
+    - crescenttool
+id: hero_basic
+label: 'Hero - Basic'
+image_style_mappings:
+  -
+    breakpoint_id: gearwrench.All
+    multiplier: 1x
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: 100vw
+      sizes_image_styles:
+        - hero_banner
+        - hero_banner_mobile
+breakpoint_group: gearwrench
+fallback_image_style: hero_banner

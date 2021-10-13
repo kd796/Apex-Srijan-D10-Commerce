@@ -1,0 +1,119 @@
+uuid: 0f74cf31-80c7-4359-8036-53e45d4a7bee
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_components
+    - node.type.styleguide
+    - paragraphs.paragraphs_type.accordion
+    - paragraphs.paragraphs_type.content
+    - paragraphs.paragraphs_type.content_2_column
+    - paragraphs.paragraphs_type.content_callout_container
+    - paragraphs.paragraphs_type.embed_block
+    - paragraphs.paragraphs_type.embed_iframe
+    - paragraphs.paragraphs_type.embed_view
+    - paragraphs.paragraphs_type.featured_content
+    - paragraphs.paragraphs_type.featured_links
+    - paragraphs.paragraphs_type.featured_media
+    - paragraphs.paragraphs_type.product_slider
+    - paragraphs.paragraphs_type.pullquote
+    - paragraphs.paragraphs_type.section
+    - paragraphs.paragraphs_type.steps
+    - paragraphs.paragraphs_type.tabs
+  module:
+    - entity_reference_revisions
+id: node.styleguide.field_components
+field_name: field_components
+entity_type: node
+bundle: styleguide
+label: Content
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      accordion: accordion
+      content: content
+      content_2_column: content_2_column
+      content_callout_container: content_callout_container
+      embed_block: embed_block
+      embed_iframe: embed_iframe
+      embed_view: embed_view
+      featured_content: featured_content
+      featured_links: featured_links
+      featured_media: featured_media
+      pullquote: pullquote
+      product_slider: product_slider
+      section: section
+      tabs: tabs
+      steps: steps
+    target_bundles_drag_drop:
+      accordion:
+        enabled: true
+        weight: -43
+      accordion_item:
+        weight: -42
+        enabled: false
+      content:
+        enabled: true
+        weight: -41
+      content_2_column:
+        enabled: true
+        weight: -40
+      content_callout:
+        weight: -31
+        enabled: false
+      content_callout_container:
+        enabled: true
+        weight: -39
+      embed_block:
+        enabled: true
+        weight: -38
+      embed_iframe:
+        enabled: true
+        weight: -37
+      embed_view:
+        enabled: true
+        weight: -36
+      featured_content:
+        enabled: true
+        weight: -35
+      featured_links:
+        enabled: true
+        weight: -34
+      featured_media:
+        enabled: true
+        weight: -33
+      hero:
+        weight: -32
+        enabled: false
+      hero_slide:
+        weight: -30
+        enabled: false
+      product_slider:
+        enabled: true
+        weight: -28
+      pullquote:
+        enabled: true
+        weight: -29
+      section:
+        enabled: true
+        weight: -27
+      step:
+        weight: -24
+        enabled: false
+      steps:
+        enabled: true
+        weight: -23
+      tabs:
+        enabled: true
+        weight: -26
+      tabs_tab:
+        weight: -25
+        enabled: false
+field_type: entity_reference_revisions

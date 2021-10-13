@@ -16,46 +16,71 @@
 
 .view-new-products {
   display: grid;
-  gap: 1.5rem;
-  grid-auto-rows: minmax(100px,auto);
-  grid-template-columns: repeat(3,1fr);
+
+  .view-header {
+    @include type-header(h6, black, included);
+    @include flex();
+    @include flex-x(justify-content, space-between);
+
+    grid-column-start: 1;
+    grid-column-end: 4;
+    margin: 0;
+    padding: 1rem 0;
+
+    .controls {
+      text-align: right;
+      width: 25%;
+    }
+
+    .filter-icon {
+      @include icon('filter', after);
+
+      display: inline-block;
+      font-size: 18px;
+      margin-top: -4px;
+      margin-right: 20px;
+    }
+
+    .sort-icon {
+      @include icon('sort', after);
+
+      display: inline-block;
+    }
+  }
 
   .view-filters {
+    display: none;
     grid-column: 1;
+
+    @include media('>=md') {
+      display: block;
+    }
 
     .fieldset-legend {
       display: none;
     }
   }
 
-  .products-list {
-    grid-column: 1 / 4;
+  .view-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: rem(25px); // sass-lint:disable-line no-misspelled-properties
 
-    @include media('>=md') {
-      grid-column: 2 / 4;
+    @include media('>=sm') {
+      grid-template-columns: repeat(3, 1fr);
     }
 
-    .view-content {
-      display: grid;
+    @include media('>=md') {
       grid-template-columns: repeat(2, 1fr);
-      gap: rem(25px); // sass-lint:disable-line no-misspelled-properties
+    }
 
-      @include media('>=sm') {
-        grid-template-columns: repeat(3, 1fr);
-      }
+    @include media('>=lg') {
+      grid-template-columns: repeat(3, 1fr);
+    }
 
-      @include media('>=md') {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      @include media('>=lg') {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .views-row {
-        .node--view-mode-teaser {
-          width: 100%;
-        }
+    .views-row {
+      .node--view-mode-teaser {
+        width: 100%;
       }
     }
   }
