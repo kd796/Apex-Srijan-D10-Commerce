@@ -1,0 +1,111 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Node: Search Index
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+
+.node--type-page.node--view-mode-search-index,
+.node--type-basic-page.node--view-mode-search-index,
+.node--type-landing-page.node--view-mode-search-index {
+  .node__content {
+    .node__listing-image {
+      @include flex();
+      @include flex-x(align-items, center);
+      @include flex-x(justify-content, center);
+      background-color: $white;
+      height: 243px;
+      display: flex;
+      overflow: hidden;
+      padding-top: 2px;
+
+      @include media('<md') {
+        height: 160px;
+        padding-top: 0;
+        border: 2px solid $primary-orange;
+      }
+
+      .media {
+        display: flex;
+        height: 100%;
+
+        img {
+          object-fit: cover;
+          height: auto;
+          width: 100%;
+        }
+      }
+    }
+
+    .node__content-container {
+      padding: 1rem;
+    }
+
+    .node__long-description {
+      min-height: rem(195px);
+
+      @include media('<md') {
+        min-height: rem(120px);
+      }
+
+      .media {
+        height: 241px;
+      }
+
+      .field--name-field-long-description {
+        @include type-header(h4, black, included);
+        margin-top: 1.5rem;
+        min-height: 12.1875rem;
+
+        @include media('<md') {
+          font-size:  rem(16px);
+          line-height: rem(20px);
+        }
+      }
+    }
+
+    .node__sku {
+      font-size: rem(14px);
+      margin: 0;
+
+      @include media('<md') {
+        font-size: rem(12px);
+      }
+    }
+  }
+
+  .node__read-more-button {
+    @include btn(primary);
+
+    box-sizing: border-box;
+    display: inline-block !important;
+    float: none;
+    font-size: 1rem !important;
+    transition: $transition-base;
+    width: 100%;
+  }
+
+  @include on-event {
+    box-shadow: 0 0 16px 5px rgba(0, 0, 0, 0.2);
+    outline: 2px solid $black;
+
+    .node__read-more-button {
+      color: $primary-orange;
+      background-color: $black;
+    }
+
+    @include media('<md') {
+      box-shadow: none;
+      outline: none;
+    }
+  }
+}

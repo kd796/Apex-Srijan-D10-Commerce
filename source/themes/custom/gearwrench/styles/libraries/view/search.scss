@@ -84,63 +84,99 @@
   > .block__tile {
     @include type-header(h2, black, included);
   }
-}
 
-.pager {
-  margin-top: rem(60px);
+  // Section title with Performance Device
+  .node--type-product-related-products__nav-wrapper {
+    @include container-full-width();
+    @include flex();
+    @include flex-x(flex-direction, row);
+    height: $header-height;
+    margin-bottom: 2.5rem;
 
-  .pager__item {
-    font-size: rem(14px);
+    .node--type-product-related-products__nav-logo-wrapper {
+      display: none;
 
-    &.pager__item--previous,
-    &.pager__item--next {
-      padding: 0;
-    }
+      @include media('>lg-plus') {
+        @include flex;
+        @include flex-x(align-items, center);
 
-    &.is-active {
-      font-weight: $fw-regular;
+        background-color: $black;
+        height: 100%;
+        padding: 0 2rem;
+        position: relative;
+        z-index: 1;
+      }
 
-      a {
-        color: $white;
-        background-color: $primary-orange;
-        padding: rem(7px 12px);
+      // Performance Device
+      &::after {
+        background-color: $black;
+        position: absolute;
+        content: '';
+        width: 30px;
+        height: 100%;
+        top: 0;
+        right: -15px;
+        z-index: 0;
+        transform: skew(-14deg);
+      }
+
+      .site-logo {
+        @include link-base();
+        background-color: $black;
+        display: block;
+        width: rem(56px);
+        overflow: hidden;
+        line-height: 1;
+
+        svg {
+          height: $header-logo-performance-height-large;
+          vertical-align: middle;
+
+          @include media('<=lg-plus') {
+            height: $header-logo-height;
+          }
+        }
       }
     }
 
-    &.pager__item--previous,
-    &.pager__item--next {
-      position: relative;
-      font-size: rem(18px);
+    .node--type-product-related-products__nav-content {
+      text-align: center;
+      width: 100%;
 
-      a {
-        padding: rem(13px 23px);
-        background-color: $gray-20;
+      @include media('<=lg-plus') {
+        height: $header-logo-height;
+      }
 
+      @include media('>lg-plus') {
+        background-color: $primary-orange;
+        max-width: rem(455px);
+        text-align: left;
+        position: relative;
+        width: 100%;
+        z-index: 0;
+
+        // Performance Device
         &::after {
-          content: '';
+          background-color: $primary-orange;
           position: absolute;
-          top: 50%;
-          left: 0;
-          right: 0;
-          transform: translateY(-50%);
-          color: $secondary-black;
+          content: '';
+          width: 30px;
+          height: 100%;
+          top: 0;
+          right: -15px;
+          z-index: 0;
+          transform: skew(-14deg);
         }
       }
 
-      span:not(.visually-hidden) {
-        display: none;
-      }
-    }
+      h4 {
+        text-transform: uppercase;
+        color: $primary-orange;
 
-    &.pager__item--previous {
-      a {
-        @include icon('chevron-left-black', after, false);
-      }
-    }
-
-    &.pager__item--next {
-      a {
-        @include icon('chevron-right-black', after, false);
+        @include media('>lg-plus') {
+          color: $black;
+          padding-left: 3rem;
+        }
       }
     }
   }
