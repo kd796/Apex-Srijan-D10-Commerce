@@ -17,7 +17,17 @@
 .node--type-page.node--view-mode-search-index,
 .node--type-basic-page.node--view-mode-search-index,
 .node--type-landing-page.node--view-mode-search-index {
+  height: 100%;
+
+  .node__inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
   .node__content {
+    height: 100%;
+
     .node__listing-image {
       @include flex();
       @include flex-x(align-items, center);
@@ -61,10 +71,16 @@
         @include type-header(h4, black, included);
         margin-top: 0;
         text-transform: uppercase;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        min-height: rem(100px);
 
         @include media('<md') {
           font-size:  rem(16px);
           line-height: rem(20px);
+          min-height: rem(60px);
         }
       }
     }
