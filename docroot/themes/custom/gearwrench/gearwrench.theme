@@ -204,7 +204,7 @@ function gearwrench_preprocess_menu__main__block_header_menu_main(array &$variab
 
       $nodes = \Drupal::entityTypeManager()
         ->getStorage('node')
-        ->loadByProperties(['title' => 'Featured Content']);
+        ->loadByProperties(['title' => 'Featured Tools']);
 
       if (!empty($nodes)) {
         $node = reset($nodes);
