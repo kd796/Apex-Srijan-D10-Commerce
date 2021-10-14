@@ -49,6 +49,7 @@
   .form-item-search {
     @include icon('search', after, true);
     position: relative;
+    width: 100%;
 
     &::after {
       position: absolute;
@@ -58,7 +59,11 @@
       font-size: rem(20px);
     }
 
-    @include media('>md') {
+    @include media('>=md') {
+      width: 75%;
+    }
+
+    @include media('>lg') {
       width: 50%;
 
       &::after {
@@ -120,33 +125,18 @@
       width: 100%;
 
       ul {
-        display: flex;
         list-style: none;
         padding: 0;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: rem(25px); // sass-lint:disable-line no-misspelled-properties
 
-        @include media('<md') {
-          flex-wrap: wrap;
+        @include media('>=md') {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
         }
 
         li {
-          width: 25%;
-          flex: 1 1;
           margin: 0;
-
-          @include media('>=md') {
-            &:not(:nth-child(4n)) {
-              margin-right: 20px;
-            }
-          }
-
-          @include media('<md') {
-            margin-bottom: 20px;
-            width: 50%;
-
-            &:nth-child(odd) {
-              margin-right: 20px;
-            }
-          }
         }
       }
     }

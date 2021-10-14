@@ -27,17 +27,14 @@
       overflow: hidden;
       padding-top: 0;
 
-      @include media('>md') {
-        border: 0;
-      }
-
       .media {
         display: flex;
         position: relative;
         padding-top: 100%;
         width: 100%;
 
-        img {
+        img,
+        iframe {
           object-fit: cover;
           height: 100%;
           width: 100%;
@@ -53,19 +50,13 @@
     .node__content-container {
       padding: 1rem;
 
-      @include media('<md') {
+      @include media('<lg') {
         padding-left: 0;
         padding-right: 0;
       }
     }
 
     .node__long-description {
-      min-height: rem(195px);
-
-      @include media('<md') {
-        min-height: rem(120px);
-      }
-
       .field--name-title {
         @include type-header(h4, black, included);
         margin-top: 0;

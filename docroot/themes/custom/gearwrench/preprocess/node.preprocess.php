@@ -269,6 +269,12 @@ function gearwrench_preprocess_node__product__search_index(&$variables) {
   $variables['inner_attributes']['class'][] = 'node__inner';
   $variables['media_attributes']['class'][] = 'node__media';
 
+  foreach (Element::children($variables['content']['field_product_images']) as $id) {
+    if ($id) {
+      unset($variables['content']['field_product_images'][$id]);
+    }
+  }
+
   // Move media to media variable.
   if (isset($variables['content']['field_product_images'][0])) {
     $variables['media_attributes']['class'][] = 'node__media--with-media';
