@@ -58,7 +58,7 @@ class FooterNavigationBlock extends BlockBase {
   public function gearwrenchCoreBuildMenu($menu_name) {
     $menu_tree = \Drupal::menuTree();
     $parameters = $menu_tree->getCurrentRouteMenuTreeParameters($menu_name);
-    $parameters->setMinDepth(0);
+    $parameters->setMinDepth(1);
     $parameters->onlyEnabledLinks();
     $tree = $menu_tree->load($menu_name, $parameters);
     $manipulators = [
