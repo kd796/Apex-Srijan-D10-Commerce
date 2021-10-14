@@ -21,6 +21,10 @@
     .pager__item {
       font-size: rem(14px);
 
+      @include media('<md') {
+        line-height: 3;
+      }
+
       &.pager__item--previous,
       &.pager__item--next {
         padding: 0;

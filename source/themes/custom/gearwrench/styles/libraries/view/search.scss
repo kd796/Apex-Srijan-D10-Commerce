@@ -14,7 +14,6 @@
  * View
  */
 
-.view-acquia-search,
 .view-search {
   .views-element-container {
     grid-column: 1 / 4;
@@ -42,11 +41,39 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
-}
 
-.view-search {
   .block-page-title-block {
     text-transform: uppercase;
+  }
+
+  .form-item-search {
+    @include icon('search', after, true);
+    position: relative;
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      right: rem(15px);
+      transform: translateY(-50%);
+      font-size: rem(20px);
+    }
+
+    @include media('>md') {
+      width: 50%;
+
+      &::after {
+        right: rem(20px);
+        font-size: rem(24px);
+      }
+    }
+
+    .form-text {
+      padding-right: rem(40px);
+
+      @include media('>md') {
+        padding-right: rem(50px);
+      }
+    }
   }
 
   .view-search__header-results {
@@ -81,8 +108,48 @@
 }
 
 .block-views-blockacquia-search-block-1 {
-  > .block__tile {
-    @include type-header(h2, black, included);
+  .view-filters {
+    .views-exposed-form {
+      display: none;
+    }
+  }
+
+  .view-content {
+    .item-list {
+      padding: 0;
+      width: 100%;
+
+      ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+
+        @include media('<md') {
+          flex-wrap: wrap;
+        }
+
+        li {
+          width: 25%;
+          flex: 1 1;
+          margin: 0;
+
+          @include media('>=md') {
+            &:not(:nth-child(4n)) {
+              margin-right: 20px;
+            }
+          }
+
+          @include media('<md') {
+            margin-bottom: 20px;
+            width: 50%;
+
+            &:nth-child(odd) {
+              margin-right: 20px;
+            }
+          }
+        }
+      }
+    }
   }
 
   // Section title with Performance Device

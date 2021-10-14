@@ -56,7 +56,6 @@
           left: 0;
           right: 0;
           bottom: 0;
-
         }
       }
     }
@@ -120,7 +119,6 @@
         line-height: 1.625;
         font-weight: $fw-bold;
 
-
         &:hover,
         &:focus {
           font-weight: $fw-bold;
@@ -143,6 +141,7 @@
   @include on-event {
     box-shadow: 0 0 16px 5px rgba(0, 0, 0, 0.2);
     outline: 2px solid $black;
+
     @include media('<md') {
       box-shadow: none;
       outline: none;

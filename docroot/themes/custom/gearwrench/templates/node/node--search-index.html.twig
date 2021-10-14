@@ -68,26 +68,32 @@
  * @ingroup themeable
  */
 #}
-{% set classes = [] %}
+{% set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  node.isPromoted() ? 'node--promoted',
+  node.isSticky() ? 'node--sticky',
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+] %}
 
 <article{{ attributes.addClass(classes) }}>
   <div{{ inner_attributes }}>
     <div{{ content_attributes.addClass('node__content') }}>
       <a href="{{ url }}" rel="bookmark">
+        <div{{ media_attributes }}>
+          {{ media }}
+        </div>
         <div class="node__content-container">
           <header class="node__header">
             <div class="node__long-description">
-              <div{{ media_attributes }}>
-                {{ media }}
-              </div>
               <h3>
                 {{ label }}
               </h3>
             </div>
           </header>
-
-          <div>
-            {{ content|without('field_media') }}
+          <div class="node__summary">
+            {{ content }}
           </div>
         </div>
       </a>
