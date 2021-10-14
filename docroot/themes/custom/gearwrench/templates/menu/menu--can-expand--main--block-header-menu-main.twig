@@ -93,7 +93,8 @@ We call a macro which calls itself to render the full tree.
               <span class="menu-item__button-collapse">{{ 'Collapse @title'|t({'@title': item.title }) }}</span>
             </button>
           <div {{ panel_attributes }}>
-            {% for nested_item in item.below %}
+            {% set break = false %}
+            {% for nested_item in item.below if not break %}
               {% if nested_item.title == "Featured Tools" %}
                 {% set panel_image_attributes = create_attribute({
                   'class': [
@@ -117,9 +118,10 @@ We call a macro which calls itself to render the full tree.
                   </div>
                 </div>
               {% else %}
-              <div class="menu__content-container">
-                {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item_id) }}
-              </div>
+                <div class="menu__content-container">
+                  {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item_id) }}
+                  {% set break = true %}
+                </div>
               {% endif %}
             {% endfor %}
           </div>

@@ -339,7 +339,20 @@ display:
           content: '<div class=''sort-icon''></div>'
           plugin_id: text_custom
       footer: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'No results have been found within your selection.'
+            format: basic_html
+          plugin_id: text
       relationships: {  }
       arguments:
         field_product_classifications_target_id:
