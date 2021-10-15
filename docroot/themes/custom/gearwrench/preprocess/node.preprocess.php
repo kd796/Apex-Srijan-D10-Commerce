@@ -9,6 +9,13 @@
  * @see gearwrench_preprocess_node()
  * @see gearwrench_preprocess_node__full()
  * @see gearwrench_preprocess_node__page__full()
+ * @see gearwrench_preprocess_node__search_result()
+ * @see gearwrench_preprocess_node__product__teaser()
+ * @see gearwrench_preprocess_node__search_index()
+ * @see gearwrench_preprocess_node__product__search_index()
+ * @see gearwrench_preprocess_node__product_category__full()
+ * @see gearwrench_preprocess_node__product_category__tile()
+ * @see gearwrench_preprocess_node__social_post__teaser()
  */
 
 use Drupal\Core\Cache\Cache;
@@ -211,6 +218,37 @@ function gearwrench_preprocess_node__product__teaser(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for search index.
+ */
+function gearwrench_preprocess_node__search_index(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $bundle = $node->bundle();
+  $view_mode = $variables['view_mode'];
+
+  $bundle_css = Html::cleanCssIdentifier($bundle);
+  $view_mode_css = Html::cleanCssIdentifier($view_mode);
+
+  // Track variables that should be converted to attribute objects.
+  $variables['#attribute_variables'][] = 'media_attributes';
+
+  $variables['inner_attributes']['class'][] = 'node__inner';
+  $variables['media_attributes']['class'][] = 'node__media';
+
+  // Move media to media variable.
+  if (isset($variables['content']['field_media'][0])) {
+    $variables['media_attributes']['class'][] = 'node__media--with-media';
+    $variables['media_attributes']['class'][] = 'node__listing-image';
+    $variables['media'] = $variables['content']['field_media'];
+    unset($variables['media']['#theme']);
+    unset($variables['content']['field_media']);
+  }
+  else {
+    $variables['media_attributes']['class'][] = 'node__media--no-media';
+  }
+}
+
+/**
  * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product, search index.
  */
 function gearwrench_preprocess_node__product__search_index(&$variables) {
@@ -231,13 +269,19 @@ function gearwrench_preprocess_node__product__search_index(&$variables) {
   $variables['inner_attributes']['class'][] = 'node__inner';
   $variables['media_attributes']['class'][] = 'node__media';
 
+  foreach (Element::children($variables['content']['field_product_images']) as $id) {
+    if ($id) {
+      unset($variables['content']['field_product_images'][$id]);
+    }
+  }
+
   // Move media to media variable.
-  if (isset($variables['content']['field_media'][0])) {
+  if (isset($variables['content']['field_product_images'][0])) {
     $variables['media_attributes']['class'][] = 'node__media--with-media';
     $variables['media_attributes']['class'][] = 'node__listing-image';
-    $variables['media'] = $variables['content']['field_media'];
+    $variables['media'] = $variables['content']['field_product_images'];
     unset($variables['media']['#theme']);
-    unset($variables['content']['field_media']);
+    unset($variables['content']['field_product_images']);
   }
   else {
     $variables['media_attributes']['class'][] = 'node__media--no-media';
@@ -305,7 +349,7 @@ function gearwrench_preprocess_node__product_category__full(array &$variables) {
 }
 
 /**
- * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product category, teaser.
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product category, tile.
  */
 function gearwrench_preprocess_node__product_category__tile(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
@@ -327,7 +371,7 @@ function gearwrench_preprocess_node__product_category__tile(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product, teaser.
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for social post, teaser.
  */
 function gearwrench_preprocess_node__social_post__teaser(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
