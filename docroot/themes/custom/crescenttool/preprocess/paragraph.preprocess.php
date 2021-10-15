@@ -159,13 +159,7 @@ function crescenttool_preprocess_paragraph__content__full(array &$variables) {
     switch ($layout) {
       case 'content_media_layout__half_left':
       case 'content_media_layout__half_right':
-        $field_settings['settings']['responsive_image_style'] = 'content_half';
-        $media_outside = TRUE;
-        break;
-
-      case 'content_media_layout__performance_device_left':
-      case 'content_media_layout__performance_device_right':
-        $field_settings['settings']['image_style'] = 'medium_landscape_3x2';
+        $field_settings['settings']['image_style'] = 'small_landscape_4x3';
         $media_outside = TRUE;
         break;
 
