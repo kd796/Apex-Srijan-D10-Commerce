@@ -18,10 +18,42 @@
 
   &.show--no-nav {
     top: 1.8rem;
+
+    @media (min-width: 595px) and (max-width: 1154px) {
+      .user-logged-in & {
+        top: 6.7rem;
+      }
+    }
+
+    @media (min-width: 1155px) {
+      .user-logged-in & {
+        top: 4.2rem;
+      }
+
+      .user-logged-in.toolbar-tray-open & {
+        top: 6.7rem;
+      }
+    }
   }
 
   &.show--with-nav {
     top: 5.8rem;
+
+    @media (min-width: 595px) and (max-width: 1154px) {
+      .user-logged-in & {
+        top: 8.5rem;
+      }
+    }
+
+    @media (min-width: 1155px) {
+      .user-logged-in & {
+        top: 8.5rem;
+      }
+
+      .user-logged-in.toolbar-tray-open & {
+        top: 11rem;
+      }
+    }
   }
 
   .block--gw-product-buy-now-sticky {
