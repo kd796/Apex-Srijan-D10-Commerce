@@ -700,9 +700,10 @@ $mobile-menu-item-button-height: 7rem;
       }
 
       .menu-item__panel-image--depth-0 {
-        position: relative;
-        margin: 0 0 3.5rem;
+        background-color: $primary-dark;
         max-width: 356px;
+        padding: 2.75rem 55px 3.5rem 0;
+        position: relative;
         width: 100%;
 
         .media {
@@ -747,8 +748,25 @@ $mobile-menu-item-button-height: 7rem;
         }
       }
 
-      .featured-tools-menu {
-        flex: 1;
+      .secondary-menu {
+        h5 {
+          margin: 0;
+          padding: 0;
+
+          a {
+            color: $white;
+
+            &:hover {
+              color: $white;
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+
+      .secondary-menu.secondary-menu__first {
+        background-color: $primary-dark;
+        flex: 0.5;
         padding-right: 2rem;
 
         &::before {
@@ -762,19 +780,9 @@ $mobile-menu-item-button-height: 7rem;
           z-index: -1;
         }
 
-        .menu-item__panel-image--depth-0 {
-          margin: 2.75rem 1rem 3.5rem 0;
-          max-width: 356px;
-        }
-
         .menu-item__panel-header {
           padding: 2.75rem 0 1rem;
           width: 100%;
-
-          h5 {
-            margin: 0;
-            padding: 0;
-          }
         }
 
         ul.menu--depth-1 {
@@ -782,34 +790,20 @@ $mobile-menu-item-button-height: 7rem;
         }
       }
 
-      .all-tools-menu {
-        flex: 2 1 auto;
+      .secondary-menu:last-child {
+        flex: 0.35 1 auto;
         padding-left: 2rem;
+
+        .menu.menu--depth-1 {
+          padding-top: 0;
+        }
 
         .menu-item__panel-header {
           padding: 2.75rem 0 1rem;
           width: 100%;
-
-          h5 {
-            margin: 0;
-            padding: 0;
-          }
         }
 
-        .featured-tools-menu__content-container {
-          display: flex;
-          flex-direction: row;
-
-          ul.menu--depth-1 {
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-            padding: 0 0 3.5rem;
-            width: 100%;
-          }
-        }
-
-        .all-tools-menu__content-container {
+        .secondary-menu__content-container {
           display: flex;
           flex-direction: row;
 
@@ -954,6 +948,10 @@ $mobile-menu-item-button-height: 7rem;
 
             h5 {
               font-size: rem(22px);
+
+              a {
+                color: $white;
+              }
             }
           }
 
@@ -963,10 +961,10 @@ $mobile-menu-item-button-height: 7rem;
 
           .menu--depth-1 {
             padding-left: rem(20px);
-          }
 
-          .featured-tools-menu__menu-wrapper {
-            flex: 1;
+            .menu-item__link {
+              color: $white;
+            }
           }
         }
 
