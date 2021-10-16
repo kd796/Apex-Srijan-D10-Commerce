@@ -12,6 +12,8 @@
  * @see gearwrench_preprocess_paragraph__content__full()
  * @see gearwrench_preprocess_paragraph__hero__full()
  * @see gearwrench_preprocess_paragraph__hero_slide__full()
+ * @see gearwrench_preprocess_paragraph__content_callout_container__full()
+ * @see gearwrench_preprocess_paragraph__content_callout__full()
  * @see gearwrench_preprocess_paragraph__steps__full()
  * @see gearwrench_preprocess_paragraph__step__full()
  * @see gearwrench_preprocess_paragraph__embed_iframe__full()
@@ -195,10 +197,29 @@ function gearwrench_preprocess_paragraph__content__full(array &$variables) {
 }
 
 /**
+ * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for content_callout_container, full.
+ */
+function gearwrench_preprocess_paragraph__content_callout_container__full(array &$variables) {
+  if (count(Element::children($variables['content']['field_components'])) == 1) {
+    $variables['content']['field_components'][0]['single_image'] = ['#markup' => 'TRUE'];
+  }
+}
+
+/**
  * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for content_callout, full.
  */
 function gearwrench_preprocess_paragraph__content_callout__full(array &$variables) {
-  // Nothing to see here.
+  if (array_key_exists('single_image', $variables['content'])) {
+    /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+    $paragraph = $variables['paragraph'];
+    $field_settings = [
+      'type' => 'blazy_media',
+      'label' => 'hidden',
+      'settings' => ['responsive_image_style' => 'hero'],
+    ];
+    $variables['content']['field_media_background'] = $paragraph->get('field_media_background')->view($field_settings);
+    unset($variables['content']['single_image']);
+  }
 }
 
 /**
