@@ -92,39 +92,39 @@ We call a macro which calls itself to render the full tree.
               <span class="menu-item__button-expand">{{ 'Expand @title'|t({'@title': item.title }) }}</span>
               <span class="menu-item__button-collapse">{{ 'Collapse @title'|t({'@title': item.title }) }}</span>
             </button>
-          <div {{ panel_attributes }}>
-            {% set break = false %}
-            {% for nested_item in item.below if not break %}
-              {% if nested_item.title == "Featured Tools" %}
-                {% set panel_image_attributes = create_attribute({
-                  'class': [
-                    'menu-item__panel-image',
-                    'menu-item__panel-image--depth-' ~ menu_level
-                  ],
-                }) %}
-                <div{{ panel_image_attributes }}>
-                  {% if item.panel_image %}
-                    {{ item.panel_image }}
-                  {% endif %}
-                </div>
-              {% endif %}
-              {% if nested_item.below %}
-                <div class="secondary-menu {% if loop.first %}secondary-menu__first{% endif %}">
-                  <header class="menu-item__panel-header">
-                    <h5><a href="{{ nested_item.url }}">{{ nested_item.title }}</a></h5>
-                  </header>
-                  <div class="secondary-menu__content-container">
-                    {{ menus.menu_links(nested_item.below, attributes, menu_level + 1, menu_name, item_id) }}
+            <div {{ panel_attributes }}>
+              {% set break = false %}
+              {% for nested_item in item.below if not break %}
+                {% if nested_item.title == "Featured Tools" %}
+                  {% set panel_image_attributes = create_attribute({
+                    'class': [
+                      'menu-item__panel-image',
+                      'menu-item__panel-image--depth-' ~ menu_level
+                    ],
+                  }) %}
+                  <div{{ panel_image_attributes }}>
+                    {% if item.panel_image %}
+                      {{ item.panel_image }}
+                    {% endif %}
                   </div>
-                </div>
-              {% else %}
-                <div class="menu__content-container">
-                  {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item_id) }}
-                  {% set break = true %}
-                </div>
-              {% endif %}
-            {% endfor %}
-          </div>
+                {% endif %}
+                {% if nested_item.below %}
+                  <div class="secondary-menu {% if loop.first %}secondary-menu__first{% endif %}">
+                    <header class="menu-item__panel-header">
+                      <h5><a href="{{ nested_item.url }}">{{ nested_item.title }}</a></h5>
+                    </header>
+                    <div class="secondary-menu__content-container">
+                      {{ menus.menu_links(nested_item.below, attributes, menu_level + 1, menu_name, item_id) }}
+                    </div>
+                  </div>
+                {% else %}
+                  <div class="menu__content-container">
+                    {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item_id) }}
+                    {% set break = true %}
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
           {% endif %}
         </li>
       {% endfor %}

@@ -200,7 +200,6 @@ function gearwrench_preprocess_menu__main__block_header_menu_main(array &$variab
 
     // Only render content if link is a MenuLinkContent plugin.
     if (isset($item['original_link']) && $item['original_link'] instanceof MenuLinkContent) {
-      $definition = $item['original_link']->getPluginDefinition();
 
       $nodes = \Drupal::entityTypeManager()
         ->getStorage('node')
