@@ -1,0 +1,109 @@
+// -----------------------------------------------------------------------------
+// Block: Page Title Block
+// -----------------------------------------------------------------------------
+
+@import '../../globals';
+
+.block-product-buy-now-sticky__content {
+  @include container-full-width();
+
+  position: fixed;
+  top: -4.8rem;
+  z-index: 500;
+
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+
+  &.show--no-nav {
+    top: 1.8rem;
+  }
+
+  &.show--with-nav {
+    top: 5.8rem;
+  }
+
+  .block--gw-product-buy-now-sticky {
+    background-color: $black;
+    margin-top: -1.8rem;
+    padding: 1rem 0;
+
+    .block--gw-product-buy-now-sticky__inner-wrapper {
+      @include container();
+      @include flex();
+      @include flex-x(flex-direction, row);
+
+      align-items: center;
+      justify-content: space-between;
+
+      header {
+        @include setfont();
+
+        color: #FFFFFF;
+        font-size: 1.25rem;
+        font-weight: 800;
+        text-transform: uppercase;
+
+        @media (max-width: 767px) {
+          font-size: 1rem;
+        }
+      }
+
+      .sku--mobile {
+        display: none;
+        height: 26px;
+
+        @media (max-width: 767px) {
+          display: block;
+        }
+
+        p {
+          color: $white;
+          font-weight: 800;
+        }
+      }
+
+      footer {
+        @include flex();
+        @include flex-x(flex-direction, row);
+
+        align-items: center;
+
+        .sku {
+          height: 26px;
+
+          p {
+            color: $white;
+            font-weight: 800;
+          }
+
+          &.sku--desktop {
+            padding-right: 1rem;
+
+            @media (max-width: 767px) {
+              display: none;
+            }
+          }
+        }
+
+        .ps-widget {
+          @include btn(primary);
+
+          border: 2px solid $primary-orange !important;
+          float: unset;
+
+          &:hover {
+            cursor: pointer;
+          }
+
+          @media (max-width: 767px) {
+            min-width: 120px;
+            padding-left: 0;
+            padding-right: 0;
+          }
+        }
+      }
+    }
+  }
+}
