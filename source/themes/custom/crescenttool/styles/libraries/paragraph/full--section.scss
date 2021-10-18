@@ -20,9 +20,14 @@
   background-repeat: no-repeat;
   background-size: cover;
 
+  .component-section__title {
+    @include type-header(h2, black, included);
+    text-align: center;
+  }
+
   .component-section__content {
     @include container();
-    padding: 7.5rem 0 9.625rem;
+    padding: 6.5rem 0 9.625rem;
   }
 
   // gap for components within sections
