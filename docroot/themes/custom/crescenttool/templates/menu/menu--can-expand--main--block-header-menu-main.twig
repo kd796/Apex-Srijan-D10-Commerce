@@ -39,8 +39,10 @@ We call a macro which calls itself to render the full tree.
     <ul{{ attributes }}>
       {% for item in items %}
 
+        {% set top_level = false %}
         {% if parent_item_id is not defined or parent_item_id is null %}
           {% set item_id = menu_name ~ '-menu-item-' ~ loop.index0 %}
+          {% set top_level = true %}
         {% else %}
           {% set item_id = parent_item_id ~ '-' ~ loop.index0 %}
         {% endif %}
@@ -66,8 +68,7 @@ We call a macro which calls itself to render the full tree.
 
           {{ link(item.title, item.url, link_attributes) }}
 
-          {% if item.below %}
-
+          {% if item.below and top_level %}
             {% set button_attributes = create_attribute({
               'class': [
                 'menu-item__button',
@@ -92,42 +93,9 @@ We call a macro which calls itself to render the full tree.
               <span class="menu-item__button-collapse">{{ 'Collapse @title'|t({'@title': item.title }) }}</span>
             </button>
             <div {{ panel_attributes }}>
-              {% if loop.index0 == 0 %}
-                {% if menu_level == 0 %}
-                  {% set panel_image_attributes = create_attribute({
-                    'class': [
-                      'menu-item__panel-image',
-                      'menu-item__panel-image--depth-' ~ menu_level
-                    ],
-                  }) %}
-                {% endif %}
-                <div class="featured-tools-menu">
-                  <div class="featured-tools-menu__content-container">
-                    <div class="featured-tools-menu__menu-wrapper">
-                      <header class="menu-item__panel-header">
-                        <h5>{{ 'Featured'|t }}</h5>
-                      </header>
-                      {{ featured_tools }}
-                    </div>
-                  </div>
-                </div>
-                <div class="all-tools-menu">
-                  <header class="menu-item__panel-header">
-                    <h5>{{ 'All Tools'|t }}</h5>
-                  </header>
-                  <div class="all-tools-menu__content-container">
-                    {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item_id) }}
-                    <div{{ panel_image_attributes }}>
-                      {% if item.panel_image %}
-                        {{ item.panel_image }}
-                      {% endif %}
-                    </div>
-                  </div>
-                </div>
-              {% else %}
-              <div class="menu__content-container">
-                {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item_id) }}
-                {% if menu_level == 0 %}
+              {% set break = false %}
+              {% for nested_item in item.below if not break %}
+                {% if nested_item.title == "Featured Tools" %}
                   {% set panel_image_attributes = create_attribute({
                     'class': [
                       'menu-item__panel-image',
@@ -140,13 +108,25 @@ We call a macro which calls itself to render the full tree.
                     {% endif %}
                   </div>
                 {% endif %}
-              </div>
-              {% endif %}
+                {% if nested_item.below %}
+                  <div class="secondary-menu {% if loop.first %}secondary-menu__first{% endif %}">
+                    <header class="menu-item__panel-header">
+                      <h5><a href="{{ nested_item.url }}">{{ nested_item.title }}</a></h5>
+                    </header>
+                    <div class="secondary-menu__content-container">
+                      {{ menus.menu_links(nested_item.below, attributes, menu_level + 1, menu_name, item_id) }}
+                    </div>
+                  </div>
+                {% else %}
+                  <div class="menu__content-container">
+                    {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item_id) }}
+                    {% set break = true %}
+                  </div>
+                {% endif %}
+              {% endfor %}
             </div>
           {% endif %}
-
         </li>
-
       {% endfor %}
     </ul>
   {% endif %}

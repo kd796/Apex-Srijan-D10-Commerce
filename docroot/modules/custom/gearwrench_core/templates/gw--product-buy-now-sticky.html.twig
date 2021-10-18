@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Theme override to display a Product: Buy Now Sticky block.
+ *
+ * Available variables:
+ * - title: Product Title
+ * - sku: Product sku
+ *
+ * See gearwrench_core/src/Plugin/Block/ProductBuyNowSticky.php
+ */
+#}
+
+{% if title is not null %}
+<div class="block block--gw-product-buy-now-sticky">
+  <div class="block--gw-product-buy-now-sticky__inner-wrapper">
+    <div class="title">
+      <header>{{ title }}</header>
+      <div class="sku sku--mobile"><p>{{ sku }}</p></div>
+    </div>
+    <footer>
+      <div class="sku sku--desktop"><p>{{ sku }}</p></div>
+      <div class="node__buy-now-button ps-widget" ps-sku="{{sku}}"></div>
+    </footer>
+  </div>
+</div>
+{% endif %}
