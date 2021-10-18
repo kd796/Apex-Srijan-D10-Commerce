@@ -117,6 +117,12 @@
 }
 
 .block-views-blockacquia-search-block-1 {
+  margin-top: rem(30px);
+
+  @include media('>=md') {
+    margin-top: rem(60px);
+  }
+
   .view-filters {
     .views-exposed-form {
       display: none;
