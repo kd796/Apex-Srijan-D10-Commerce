@@ -25,12 +25,10 @@
 
   .component-content__title {
     @include type-header(
-      $version: h2,
+      $version: h3,
       $color: $black,
       $globals: included
     );
-    text-transform: uppercase;
-
 
     @include media('<sm') {
       @include type-header(
@@ -78,6 +76,11 @@
 
   .component-content__link.button {
     @include btn(secondary);
+    color: $secondary-black;
+
+    @include on-event() {
+      color: $secondary-light;
+    }
   }
 
   // Media layout classy styles.

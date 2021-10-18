@@ -9,6 +9,7 @@ dependencies:
     - field.field.paragraph.section.field_html_anchor
     - field.field.paragraph.section.field_image_background
     - field.field.paragraph.section.field_style
+    - field.field.paragraph.section.field_title
     - image.style.thumbnail
     - paragraphs.paragraphs_type.section
   module:
@@ -42,7 +43,7 @@ content:
   field_background_color:
     weight: 10
     settings:
-      default_colors: '#ac725e,#d06b64,#f83a22,#fa573c,#ff7537,#ffad46,#42d692,#16a765,#7bd148,#b3dc6c,#fbe983,#92e1c0,#9fe1e7,#9fc6e7,#4986e7,#9a9cff,#b99aff,#c2c2c2,#cabdbf,#cca6ac,#f691b2,#cd74e6,#a47ae2'
+      default_colors: '#ffffff,#f5f4f4,#e1dfdf,#d7d5d5,#cecaca,#b0abab,#ca3604'
     third_party_settings: {  }
     type: color_field_widget_box
     region: content
@@ -55,7 +56,7 @@ content:
     type: string_textfield
     region: content
   field_components:
-    weight: 4
+    weight: 2
     settings:
       title: Component
       title_plural: Components
@@ -96,6 +97,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
+  field_title:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   status:
     type: boolean_checkbox
