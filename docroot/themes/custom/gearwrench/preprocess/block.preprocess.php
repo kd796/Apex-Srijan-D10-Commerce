@@ -84,5 +84,4 @@ function gearwrench_preprocess_block__page_title_block(&$variables) {
       unset($hero_slide);
     }
   }
-
 }

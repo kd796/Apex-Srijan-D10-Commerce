@@ -24,11 +24,19 @@ include_once 'preprocess/view.preprocess.php';
  * Implements hook_preprocess_html().
  */
 function gearwrench_preprocess_html(&$variables) {
-  $priceSpiderKey = [
+  $priceSpiderProductKey = [
     '#tag' => 'meta',
     '#attributes' => [
       'name' => 'ps-key',
       'content' => '2377-5994e3055319cc6f56bb06f6',
+    ],
+  ];
+
+  $priceSpiderGenericKey = [
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'ps-key',
+      'content' => '2377-5994e318c4d97a6dbf2d9a4d',
     ],
   ];
 
@@ -47,7 +55,14 @@ function gearwrench_preprocess_html(&$variables) {
     ],
   ];
 
-  $variables['#attached']['html_head'][] = [$priceSpiderKey, 'ps-key'];
+  // If page where-buy use generic key, else product key.
+  if (str_contains($_SERVER['REQUEST_URI'], '/where-buy')) {
+    $variables['#attached']['html_head'][] = [$priceSpiderGenericKey, 'ps-key'];
+  }
+  else {
+    $variables['#attached']['html_head'][] = [$priceSpiderProductKey, 'ps-key'];
+  }
+
   $variables['#attached']['html_head'][] = [$priceSpiderCountry, 'ps-country'];
   $variables['#attached']['html_head'][] = [$priceSpiderLanguage, 'ps-language'];
 }

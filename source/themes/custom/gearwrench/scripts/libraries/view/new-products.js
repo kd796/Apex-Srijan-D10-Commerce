@@ -3,8 +3,6 @@
 
   Drupal.behaviors.componentNewProducts = {
     attach: function (context, settings) {
-      console.log('Here we are');
-
       $('.view-new-products:not(.view-new-products--js-initialized)').each(function (index) {
         var $new_products_view = $(this);
         var $viewFilterIcon = $new_products_view.children('.view-header .filter-icon');
