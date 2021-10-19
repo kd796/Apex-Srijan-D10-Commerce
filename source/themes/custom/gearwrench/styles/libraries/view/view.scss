@@ -25,15 +25,6 @@
     .pager__item {
       font-size: rem(14px);
 
-      @include media('<md') {
-        line-height: 3;
-      }
-
-      &.pager__item--previous,
-      &.pager__item--next {
-        padding: 0;
-      }
-
       &.is-active {
         font-weight: $fw-regular;
 
@@ -46,6 +37,7 @@
 
       &.pager__item--previous,
       &.pager__item--next {
+        padding: 0;
         position: relative;
         font-size: rem(18px);
 
@@ -78,6 +70,36 @@
       &.pager__item--next {
         a {
           @include icon('chevron-right-black', after, false);
+        }
+      }
+
+      @include media('<md') {
+        line-height: 3;
+      }
+
+      @include media('<sm') {
+        &.pager__item--first,
+        &.pager__item--ellipsis,
+        &.pager__item--last {
+          display: none;
+        }
+
+        &.pager__item--previous,
+        &.pager__item--next {
+          font-size: rem(15px);
+
+          a {
+            padding: rem(10px 20px);
+            background-color: $gray-20;
+          }
+        }
+
+        &.pager__item--previous {
+          margin-right: rem(5px);
+        }
+
+        &.pager__item--next {
+          margin-left: rem(5px);
         }
       }
     }
