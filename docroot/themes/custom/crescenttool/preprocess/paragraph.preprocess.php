@@ -17,9 +17,9 @@
  * @see crescenttool_preprocess_paragraph__embed_iframe__full()
  * @see crescenttool_preprocess_paragraph__media__full()
  * @see crescenttool_preprocess_paragraph__section__full()
- * @see crescenttool_preprocess_paragraph__slider__full()
  * @see crescenttool_preprocess_paragraph__tabs__full()
  * @see crescenttool_preprocess_paragraph__tabs_tab__full()
+ * @see crescenttool_preprocess_paragraph__product_slider__full()
  */
 
 use Drupal\Component\Utility\Html;
@@ -159,13 +159,7 @@ function crescenttool_preprocess_paragraph__content__full(array &$variables) {
     switch ($layout) {
       case 'content_media_layout__half_left':
       case 'content_media_layout__half_right':
-        $field_settings['settings']['responsive_image_style'] = 'content_half';
-        $media_outside = TRUE;
-        break;
-
-      case 'content_media_layout__performance_device_left':
-      case 'content_media_layout__performance_device_right':
-        $field_settings['settings']['image_style'] = 'medium_landscape_3x2';
+        $field_settings['settings']['image_style'] = 'small_landscape_4x3';
         $media_outside = TRUE;
         break;
 

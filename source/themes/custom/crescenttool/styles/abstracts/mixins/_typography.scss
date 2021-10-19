@@ -35,7 +35,7 @@
   // Include if the globals only if explicitly included.
   @if $globals == included {
     font-family: $font-brand;
-    font-weight: $fw-semi-bold;
+    font-weight: $fw-medium;
     letter-spacing: inherit;
     line-height: 1.2;
     margin: 1.25rem 0 0.5rem;
@@ -46,7 +46,7 @@
   } @else if $color == dark {
     color: $primary-red;
   } @else if $color == black {
-    color: $black;
+    color: $secondary-black;
   }
   @if $version == h1 {
     font-size: 2.5rem;
@@ -54,11 +54,21 @@
       font-size: 1.75rem;
     }
   } @else if $version == h2 {
-    font-size: rem(32px);
-    line-height: rem(40px);
+    font-size: rem(40px);
+    line-height: rem(48px);
+
+    @include media('<md') {
+      font-size: rem(26px);
+      line-height: rem(31px);
+    }
   } @else if $version == h3 {
     font-size: rem(28px);
     line-height: rem(32px);
+
+    @include media('<md') {
+      font-size: rem(23px);
+      line-height: rem(27px);
+    }
   } @else if $version == h4 {
     font-size: rem(24px);
     line-height: rem(32px);

@@ -34,6 +34,14 @@ function gearwrench_core_theme() {
     'base hook' => 'block'
   ];
 
+  $theme['gw_product_buy_now_sticky'] = [
+    'template' => 'gw--product-buy-now-sticky',
+    'variables' => [
+      'title' => NULL,
+      'sku' => NULL,
+    ],
+  ];
+
   return $theme;
 }
 

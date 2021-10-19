@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - node
+    - system
   theme:
     - gearwrench
 _core:
@@ -26,7 +27,10 @@ visibility:
       landing_page: landing_page
       page: page
       product_category: product_category
-      product_listing: product_listing
     negate: false
     context_mapping:
       node: '@node.node_route_context:node'
+  request_path:
+    id: request_path
+    pages: /search
+    negate: false
