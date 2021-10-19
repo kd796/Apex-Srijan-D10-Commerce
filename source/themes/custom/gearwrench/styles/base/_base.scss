@@ -137,3 +137,10 @@ body.toolbar-loading .toolbar-tray {
   background: $color-white;
   background: rgba($color-white, 0.8);
 }
+
+// Move Drupal edit buttons to the right with performance Device
+.block-local-tasks-block__content {
+  @include media('>lg-plus') {
+    margin-left: 250px;
+  }
+}

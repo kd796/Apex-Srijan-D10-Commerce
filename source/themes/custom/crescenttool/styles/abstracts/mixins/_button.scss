@@ -47,7 +47,7 @@
     color: $secondary-light;
     display: flex;
     font-family: $font-brand;
-    font-weight: $fw-regular;
+    font-weight: $fw-bold;
     padding: 3.75rem 0 2rem;
     text-decoration: none;
     text-transform: uppercase;
@@ -60,9 +60,7 @@
     }
 
     @include on-event {
-      background-color: $secondary-black;
-      border-color: $secondary-black;
-      color: $white;
+      color: $primary-red;
     }
 
     @include media('<sm') {

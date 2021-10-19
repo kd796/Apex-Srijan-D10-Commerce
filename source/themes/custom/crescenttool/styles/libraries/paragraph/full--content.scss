@@ -25,12 +25,10 @@
 
   .component-content__title {
     @include type-header(
-      $version: h2,
+      $version: h3,
       $color: $black,
       $globals: included
     );
-    text-transform: uppercase;
-
 
     @include media('<sm') {
       @include type-header(
@@ -78,6 +76,11 @@
 
   .component-content__link.button {
     @include btn(secondary);
+    color: $secondary-black;
+
+    @include on-event() {
+      color: $secondary-light;
+    }
   }
 
   // Media layout classy styles.
@@ -109,16 +112,25 @@
     &.component-content--media-layout-half-right {
       display: flex;
 
-      @include media('<sm') {
+      @include media('<md') {
         flex-direction: column;
+
+        .media__image {
+          margin-left: auto;
+          margin-right: auto;
+        }
       }
 
-      @include media('>=sm') {
-        align-items: center;
+      @include media('>=md') {
+        align-items: start;
 
         .component-content__inner {
           flex: 1;
-          padding: $gap-vertical-xsm 0;
+          padding: 0 0 $gap-vertical-xsm;
+
+          .component-content__title {
+            margin-top: 0;
+          }
         }
 
         .component-content__media {
@@ -136,72 +148,62 @@
         }
       }
 
-      @include media('>=md') {
-
+      @include media('>=lg') {
         .component-content__media {
-          max-width: 67.77%;
-          width: 67.77%;
+          max-width: 40%;
+          width: 40%;
+
+          .media {
+            padding-top: 75%;
+            width: 100%;
+            position: relative;
+          }
+
+          img {
+            display: block;
+            max-height: 100%;
+            min-height: 100%;
+            width: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+          }
+        }
+
+        .field[data-blazy] {
+          min-width: 40%;
         }
       }
     }
 
     &.component-content--media-layout-half-left {
-      @include media('>=sm') {
+      @include media('>=md') {
         .component-content__media {
           margin-right: 2rem;
+        }
+      }
+
+      @include media('>=lg') {
+        .component-content__media {
+          margin-right: 3rem;
         }
       }
     }
 
     &.component-content--media-layout-half-right {
-      @include media('>=sm') {
+      @include media('>=md') {
         .component-content__media {
           margin-left: 2rem;
           order: 1;
         }
       }
-    }
 
-    &.component-content--media-layout-performance-device-left,
-    &.component-content--media-layout-performance-device-right {
-      display: flex;
-
-      @include media('<md') {
-        flex-direction: column;
-      }
-
-      @include media('>=md') {
-        align-items: center;
-
-        .component-content__inner {
-          flex: 1;
-          padding: $gap-vertical-xsm 0;
-        }
-
+      @include media('>=lg') {
         .component-content__media {
-          max-width: 50%;
-          width: 50%;
-
-          img {
-            display: block;
-          }
-        }
-      }
-    }
-
-    &.component-content--media-layout-performance-device-left {
-      @include media('>=md') {
-        .component-content__media {
-          margin-right: 4rem;
-        }
-      }
-    }
-
-    &.component-content--media-layout-performance-device-right {
-      @include media('>=md') {
-        .component-content__media {
-          margin-left: 4rem;
-          order: 1;
+          margin-left: 3rem;
         }
       }
     }

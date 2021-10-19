@@ -15,14 +15,28 @@
  */
 .component-section {
   @include container-full-width();
+  margin-top: 0 !important;
   padding: 0 1rem;
+  padding-top: $gap-vertical-md;
+
+  @include media('>=md') {
+    padding-top: $gap-vertical-md-plus;
+  }
 
   background-repeat: no-repeat;
   background-size: cover;
 
+  .component-section__title {
+    @include type-header(h2, black, included);
+    margin: 0;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
   .component-section__content {
     @include container();
-    padding: 7.5rem 0 9.625rem;
+    padding: 6.5rem 0 9.625rem;
   }
 
   // gap for components within sections
