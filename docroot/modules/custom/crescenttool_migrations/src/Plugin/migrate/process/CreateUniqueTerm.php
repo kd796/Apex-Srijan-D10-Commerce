@@ -23,14 +23,18 @@ class CreateUniqueTerm extends ProcessPluginBase {
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $values_array = [];
+
     if (!empty($value)) {
       foreach ($value->children() as $child) {
         $term = NULL;
+
         if ($child->getName() !== 'MultiValue') {
           $vid = strtolower((string) $child->attributes()->AttributeID);
           $vid = str_replace(' ', '_', $vid);
+
           // Check if vocab exists.
           $vocab = Vocabulary::load($vid);
+
           if (!empty($vocab)) {
             if ($tid = $this->getTidByName((string) $child, $vid)) {
               $term = Term::load($tid);
@@ -40,6 +44,7 @@ class CreateUniqueTerm extends ProcessPluginBase {
                 'name' => (string) $child,
                 'vid'  => $vid,
               ])->save();
+
               if ($tid = $this->getTidByName((string) $child, $vid)) {
                 $term = Term::load($tid);
               }
@@ -49,8 +54,10 @@ class CreateUniqueTerm extends ProcessPluginBase {
         else {
           $vid = strtolower((string) $child->attributes()->AttributeID);
           $vid = str_replace(' ', '_', $vid);
+
           // Check if vocab exists.
           $vocab = Vocabulary::load($vid);
+
           if (!empty($vocab)) {
             if ($tid = $this->getTidByName((string) $child->Value, $vid)) {
               $term = Term::load($tid);
@@ -67,6 +74,7 @@ class CreateUniqueTerm extends ProcessPluginBase {
             }
           }
         }
+
         if (is_object($term)) {
           $values_array[] = [
             'vid' => $vid,
@@ -74,6 +82,7 @@ class CreateUniqueTerm extends ProcessPluginBase {
           ];
         }
       }
+
       $values_array = json_encode($values_array);
     }
 
@@ -85,14 +94,18 @@ class CreateUniqueTerm extends ProcessPluginBase {
    */
   protected function getTidByName($name = NULL, $vocabulary = NULL) {
     $properties = [];
+
     if (!empty($name)) {
       $properties['name'] = $name;
     }
+
     if (!empty($vocabulary)) {
       $properties['vid'] = $vocabulary;
     }
+
     $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties($properties);
     $term = reset($terms);
+
     return !empty($term) ? $term->id() : 0;
   }
 

@@ -370,3 +370,10 @@ function gearwrench_form_alter(&$form, &$form_state, $form_id) {
       break;
   }
 }
+
+/**
+ * Implements hook alter on the new products filter form.
+ */
+function gearwrench_form_views_exposed_form_new_products_new_products_block_alter(&$form, &$form_state, $form_id) {
+  // We will be limiting the term depth shown.
+}
