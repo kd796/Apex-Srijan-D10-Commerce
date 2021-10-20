@@ -56,7 +56,7 @@ function gearwrench_preprocess_html(&$variables) {
   ];
 
   // If page where-buy use generic key, else product key.
-  if (str_contains($_SERVER['REQUEST_URI'], '/where-buy')) {
+  if (str_contains($_SERVER['REQUEST_URI'], 'where-to-buy')) {
     $variables['#attached']['html_head'][] = [$priceSpiderGenericKey, 'ps-key'];
   }
   else {
