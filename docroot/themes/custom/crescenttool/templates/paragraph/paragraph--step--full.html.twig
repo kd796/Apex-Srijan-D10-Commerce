@@ -56,15 +56,20 @@
       {{ title_prefix }}
       {% if title_is_set %}
         <div{{ title_inner_attributes.addClass(title_inner_classes) }}>
-          <header{{ title_attributes.addClass(title_classes) }}>
-            {{- title -}}
-          </header>
+          <div class="component-step__title-container">
+            <div class="component-step__pre-title">
+              {{ content.field_pre_title }}
+            </div>
+            <header{{ title_attributes.addClass(title_classes) }}>
+              {{- title -}}
+            </header>
+          </div>
         </div>
       {% endif %}
       {{ title_suffix }}
 
       <div{{ content_attributes.addClass(content_classes) }}>
-        {{ content }}
+        {{ content|without('field_pre_title') }}
       </div>
 
       {% if footer_is_set %}
