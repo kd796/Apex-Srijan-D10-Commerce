@@ -100,6 +100,7 @@ library--price-spider:
   version: 1.x
   js:
     //cdn.pricespider.com/1/lib/ps-widget.js: { type: external, attributes: { async: true } }
+    //cdn.pricespider.com/1/2377/ps-utid.js: { type: external, attributes: { async: true } }
 
 # ========= Block ========= #
 
@@ -128,6 +129,11 @@ block--system--system-breadcrumb-block:
     component:
       css/libraries/block/breadcrumbs.css: {}
 
+block--pricespider-generic-widget-block:
+  version: 1.x
+  css:
+    component:
+      css/libraries/block/pricespider-generic-widget.css: { }
 
 
 # ========= Forms ========= #
