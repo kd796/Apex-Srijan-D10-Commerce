@@ -62,6 +62,10 @@
     }
   }
 
+  .view-container {
+    grid-column: 2;
+  }
+
   .view-content {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -77,6 +81,7 @@
 
     @include media('>=lg') {
       grid-template-columns: repeat(3, 1fr);
+      grid-column: 2 / 4;
     }
 
     .views-row {
