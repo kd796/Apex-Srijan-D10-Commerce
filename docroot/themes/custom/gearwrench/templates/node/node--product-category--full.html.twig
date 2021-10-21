@@ -73,11 +73,13 @@
 <article{{ attributes.addClass(classes) }}>
 
   {{ title_prefix }}
-  <header{{ title_attributes }}>
-    <h3>
-      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-    </h3>
-  </header>
+  {% if not page %}
+    <header{{ title_attributes }}>
+      <h3>
+        <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+      </h3>
+    </header>
+  {% endif %}
   {{ title_suffix }}
 
   <div{{ content_attributes }}>
