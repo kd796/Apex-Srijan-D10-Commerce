@@ -56,11 +56,7 @@
     {{- title -}}
   {% endif %}
   {{ title_suffix }}
-  <div class="view-header">
-    {% if header %}
-      {{ header }}
-    {% endif %}
-  </div>
+
   {% if exposed %}
     <div class="view-filters">
       {{ exposed }}
@@ -72,19 +68,27 @@
     </div>
   {% endif %}
 
-  <div class="products-list">
-    <div{{ content_attributes.addClass(content_classes) }}>
-      {% if rows %}
-        {{ rows }}
-      {% elseif empty %}
-        {{ empty }}
+  <div class="view-container">
+    <div class="view-header">
+      {% if header %}
+        {{ header }}
       {% endif %}
     </div>
+    <div class="products-list">
+      <div{{ content_attributes.addClass(content_classes) }}>
+        {% if rows %}
+          {{ rows }}
+        {% elseif empty %}
+          {{ empty }}
+        {% endif %}
+      </div>
+    </div>
+
+    {% if pager %}
+      {{ pager }}
+    {% endif %}
   </div>
 
-  {% if pager %}
-    {{ pager }}
-  {% endif %}
   {% if attachment_after %}
     <div class="attachment attachment-after">
       {{ attachment_after }}
