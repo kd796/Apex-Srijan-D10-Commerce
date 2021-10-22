@@ -3,19 +3,29 @@ langcode: en
 status: true
 dependencies:
   module:
-    - acquia_search
     - search_api_solr
     - node
+    - paragraphs
+    - media
+    - file
     - search_api
   config:
     - field.storage.node.body
-    - field.storage.node.field_component_hero
+    - field.storage.node.field_link
     - field.storage.node.field_components
+    - field.storage.paragraph.field_link
+    - field.storage.paragraph.field_content
+    - field.storage.paragraph.field_title
+    - field.storage.paragraph.field_links
+    - field.storage.media.field_media_file
+    - field.storage.paragraph.field_media_items
+    - field.storage.media.field_media_image
+    - field.storage.paragraph.field_media_item
+    - field.storage.node.field_component_hero
+    - field.storage.node.field_media_type
     - search_api.server.acquia_search_server
     - core.entity_view_mode.node.full
 third_party_settings:
-  acquia_search:
-    use_edismax: 1
   search_api_solr:
     finalize: false
     commit_before_finalize: false
@@ -63,6 +73,32 @@ name: 'Acquia Search Solr Index - No Products'
 description: ''
 read_only: false
 field_settings:
+  alt:
+    label: 'Content » Paragraph » Media » Media » Image » Alternative text'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_media_item:entity:field_media_image:alt'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_image
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_media_item
+      module:
+        - media
+        - paragraphs
+  alt_1:
+    label: 'Content » Paragraph » Media » Media » Image » Alternative text'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_media_items:entity:field_media_image:alt'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_image
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_media_items
+      module:
+        - media
+        - paragraphs
   body:
     label: Body
     datasource_id: 'entity:node'
@@ -79,6 +115,19 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.body
+  description:
+    label: 'Content » Paragraph » Media » Media » File » Description'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_media_items:entity:field_media_file:description'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_file
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_media_items
+      module:
+        - media
+        - paragraphs
   field_component_hero:
     label: Hero
     datasource_id: 'entity:node'
@@ -95,6 +144,63 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_components
+  field_media_type:
+    label: 'Media Type'
+    datasource_id: 'entity:node'
+    property_path: field_media_type
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_media_type
+  field_title:
+    label: 'Content » Paragraph » Label'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_title'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_title
+      module:
+        - paragraphs
+  filename:
+    label: 'Content » Paragraph » Media » Media » File » File » Filename'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_media_items:entity:field_media_file:entity:filename'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_file
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_media_items
+      module:
+        - file
+        - media
+        - paragraphs
+  name:
+    label: 'Content » Paragraph » Media » Media » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_media_item:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_media_item
+      module:
+        - media
+        - paragraphs
+  name_1:
+    label: 'Content » Paragraph » Media » Media » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_media_items:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_media_items
+      module:
+        - media
+        - paragraphs
   node_grants:
     label: 'Node access information'
     property_path: search_api_node_grants
@@ -102,10 +208,22 @@ field_settings:
     indexed_locked: true
     type_locked: true
     hidden: true
+  processed:
+    label: 'Content » Paragraph » Content » Processed text'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_content:processed'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_content
+      module:
+        - paragraphs
   rendered_item:
     label: 'Rendered HTML output'
     property_path: rendered_item
     type: text
+    boost: 0.5
     configuration:
       roles:
         anonymous: anonymous
@@ -125,14 +243,6 @@ field_settings:
     dependencies:
       module:
         - node
-  status_1:
-    label: Published
-    datasource_id: 'entity:node'
-    property_path: status
-    type: boolean
-    dependencies:
-      module:
-        - node
   title:
     label: Title
     datasource_id: 'entity:node'
@@ -142,13 +252,61 @@ field_settings:
       module:
         - node
   title_1:
-    label: Title
+    label: 'Call to Action » Link text'
     datasource_id: 'entity:node'
-    property_path: title
+    property_path: 'field_link:title'
     type: string
     dependencies:
+      config:
+        - field.storage.node.field_link
+  title_2:
+    label: 'Content » Paragraph » Call to Action » Link text'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_link:title'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_link
       module:
-        - node
+        - paragraphs
+  title_3:
+    label: 'Content » Paragraph » Links » Link text'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_links:title'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_links
+      module:
+        - paragraphs
+  title_4:
+    label: 'Content » Paragraph » Media » Media » Image » Title'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_media_item:entity:field_media_image:title'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_image
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_media_item
+      module:
+        - media
+        - paragraphs
+  title_5:
+    label: 'Content » Paragraph » Media » Media » Image » Title'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_media_items:entity:field_media_image:title'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_image
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_media_items
+      module:
+        - media
+        - paragraphs
   type:
     label: 'Content type'
     datasource_id: 'entity:node'
@@ -173,6 +331,7 @@ datasource_settings:
       default: false
       selected:
         - landing_page
+        - media_page
         - page
     languages:
       default: true
@@ -184,6 +343,12 @@ processor_settings:
     weights:
       preprocess_query: -30
   entity_status: {  }
+  hierarchy:
+    fields:
+      field_component_hero: paragraph-field_content_items
+      field_components: paragraph-field_content_items
+    weights:
+      preprocess_index: -45
   highlight:
     highlight: server
     highlight_partial: false
@@ -196,12 +361,13 @@ processor_settings:
     weights:
       postprocess_query: 0
   html_filter:
-    all_fields: true
+    all_fields: false
     fields:
       - body
       - body_1
       - field_component_hero
       - field_components
+      - field_media_type
       - rendered_item
       - title
       - title_1
@@ -228,6 +394,9 @@ processor_settings:
     boosts:
       'entity:node':
         datasource_boost: !!float 1
+        bundle_boosts:
+          landing_page: 0.5
+          media_page: 0.8
     weights:
       preprocess_index: 0
 tracker_settings:
