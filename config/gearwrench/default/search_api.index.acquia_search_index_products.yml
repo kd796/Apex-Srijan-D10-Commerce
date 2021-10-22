@@ -5,10 +5,22 @@ dependencies:
   module:
     - acquia_search
     - search_api_solr
+    - media
+    - taxonomy
     - node
     - search_api
   config:
+    - field.storage.media.field_media_image
+    - field.storage.node.field_product_images
     - field.storage.node.body
+    - field.storage.node.field_product_classifications
+    - field.storage.taxonomy_term.field_classification_id
+    - field.storage.node.field_product_specifications
+    - field.storage.node.field_featured_product
+    - field.storage.node.field_long_description
+    - field.storage.node.field_set_components
+    - field.storage.node.field_new_product
+    - field.storage.node.field_set
     - search_api.server.acquia_search_server
     - core.entity_view_mode.node.full
 third_party_settings:
@@ -61,6 +73,17 @@ name: 'Acquia Search Index - Products'
 description: ''
 read_only: false
 field_settings:
+  alt:
+    label: 'Product Images » Media » Image » Alternative text'
+    datasource_id: 'entity:node'
+    property_path: 'field_product_images:entity:field_media_image:alt'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_image
+        - field.storage.node.field_product_images
+      module:
+        - media
   body:
     label: Body
     datasource_id: 'entity:node'
@@ -77,6 +100,101 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.body
+  field_classification_id:
+    label: 'Product Classifications » Taxonomy term » Classification ID'
+    datasource_id: 'entity:node'
+    property_path: 'field_product_classifications:entity:field_classification_id'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_product_classifications
+        - field.storage.taxonomy_term.field_classification_id
+      module:
+        - taxonomy
+  field_classification_id_1:
+    label: 'Product Specifications » Taxonomy term » Classification ID'
+    datasource_id: 'entity:node'
+    property_path: 'field_product_specifications:entity:field_classification_id'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_product_specifications
+        - field.storage.taxonomy_term.field_classification_id
+      module:
+        - taxonomy
+  field_featured_product:
+    label: 'Featured Product'
+    datasource_id: 'entity:node'
+    property_path: field_featured_product
+    type: boolean
+    dependencies:
+      config:
+        - field.storage.node.field_featured_product
+  field_long_description:
+    label: 'Long Description'
+    datasource_id: 'entity:node'
+    property_path: field_long_description
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_long_description
+  field_long_description_1:
+    label: 'Set Components » Content » Long Description'
+    datasource_id: 'entity:node'
+    property_path: 'field_set_components:entity:field_long_description'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_long_description
+        - field.storage.node.field_set_components
+      module:
+        - node
+  field_new_product:
+    label: 'New Product'
+    datasource_id: 'entity:node'
+    property_path: field_new_product
+    type: boolean
+    dependencies:
+      config:
+        - field.storage.node.field_new_product
+  field_set:
+    label: 'Set?'
+    datasource_id: 'entity:node'
+    property_path: field_set
+    type: boolean
+    dependencies:
+      config:
+        - field.storage.node.field_set
+  name:
+    label: 'Product Classifications » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_product_classifications:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_product_classifications
+      module:
+        - taxonomy
+  name_1:
+    label: 'Product Images » Media » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_product_images:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_product_images
+      module:
+        - media
+  name_2:
+    label: 'Product Specifications » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_product_specifications:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_product_specifications
+      module:
+        - taxonomy
   node_grants:
     label: 'Node access information'
     property_path: search_api_node_grants
@@ -107,14 +225,6 @@ field_settings:
     dependencies:
       module:
         - node
-  status_1:
-    label: Published
-    datasource_id: 'entity:node'
-    property_path: status
-    type: boolean
-    dependencies:
-      module:
-        - node
   title:
     label: Title
     datasource_id: 'entity:node'
@@ -124,13 +234,16 @@ field_settings:
       module:
         - node
   title_1:
-    label: Title
+    label: 'Product Images » Media » Image » Title'
     datasource_id: 'entity:node'
-    property_path: title
+    property_path: 'field_product_images:entity:field_media_image:title'
     type: string
     dependencies:
+      config:
+        - field.storage.media.field_media_image
+        - field.storage.node.field_product_images
       module:
-        - node
+        - media
   type:
     label: 'Content type'
     datasource_id: 'entity:node'
@@ -177,10 +290,18 @@ processor_settings:
     weights:
       postprocess_query: 0
   html_filter:
-    all_fields: true
+    all_fields: false
     fields:
+      - alt
       - body
       - body_1
+      - field_classification_id
+      - field_classification_id_1
+      - field_long_description
+      - field_long_description_1
+      - name
+      - name_1
+      - name_2
       - rendered_item
       - title
       - title_1
