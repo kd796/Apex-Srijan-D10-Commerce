@@ -115,6 +115,10 @@
       border-bottom-left-radius: rem(25px);
       border-bottom-right-radius: rem(25px);
 
+      @include media('<md') {
+        font-size: rem(13px) !important;
+      }
+
       &.ps-disabled {
         background-color: $gray-50;
         border-color: $gray-50;

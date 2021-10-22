@@ -40,6 +40,14 @@ function crescenttool_preprocess_html(&$variables) {
     ],
   ];
 
+  $priceSpiderAccount = [
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'ps-account',
+      'content' => '2377',
+    ],
+  ];
+
   $priceSpiderCountry = [
     '#tag' => 'meta',
     '#attributes' => [
@@ -61,7 +69,7 @@ function crescenttool_preprocess_html(&$variables) {
     $variables['#attached']['html_head'][] = [$priceSpiderGenericKey, 'ps-key'];
   }
   else {
-    $variables['#attached']['html_head'][] = [$priceSpiderProductKey, 'ps-key'];
+    $variables['#attached']['html_head'][] = [$priceSpiderAccount, 'ps-account'];
   }
 
   $variables['#attached']['html_head'][] = [$priceSpiderCountry, 'ps-country'];
