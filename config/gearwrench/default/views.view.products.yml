@@ -185,28 +185,69 @@ display:
           settings:
             link_to_entity: true
           plugin_id: field
-        status:
-          id: status
-          table: node_field_data
-          field: status
-          label: Status
+        field_long_description:
+          id: field_long_description
+          table: node__field_long_description
+          field: field_long_description
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Long Description'
           exclude: false
           alter:
             alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
           element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
           element_default_classes: true
           empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          type: boolean
+          click_sort_column: value
+          type: string
           settings:
-            format: custom
-            format_custom_true: Published
-            format_custom_false: Unpublished
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
           plugin_id: field
-          entity_type: node
-          entity_field: status
         field_new_product:
           id: field_new_product
           table: node__field_new_product
@@ -335,6 +376,28 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          label: Status
+          exclude: false
+          alter:
+            alter_text: false
+          element_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          type: boolean
+          settings:
+            format: custom
+            format_custom_true: Published
+            format_custom_false: Unpublished
+          plugin_id: field
+          entity_type: node
+          entity_field: status
         changed:
           id: changed
           table: node_field_data
@@ -450,6 +513,49 @@ display:
           plugin_id: string
           entity_type: node
           entity_field: title
+        field_long_description_value:
+          id: field_long_description_value
+          table: node__field_long_description
+          field: field_long_description_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: allwords
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_long_description_value_op
+            label: 'Long Description'
+            description: ''
+            use_operator: true
+            operator: field_long_description_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_long_description_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              site_administrator: '0'
+              content_editor: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: string
         type:
           id: type
           table: node_field_data
@@ -681,6 +787,7 @@ display:
         - user.permissions
       max-age: 0
       tags:
+        - 'config:field.storage.node.field_long_description'
         - 'config:field.storage.node.field_new_product'
         - 'config:field.storage.node.field_product_specifications'
   data_export_1:
@@ -1004,5 +1111,6 @@ display:
         - user.permissions
       max-age: 0
       tags:
+        - 'config:field.storage.node.field_long_description'
         - 'config:field.storage.node.field_new_product'
         - 'config:field.storage.node.field_product_specifications'
