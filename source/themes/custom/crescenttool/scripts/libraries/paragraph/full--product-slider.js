@@ -109,7 +109,7 @@
         // Track that this component has been initialized.
         $component.addClass('component-product-slider--js-initialized');
         // Initialize swiper.
-        if ($component.find('article').length > 1) {
+        if ($component.find('article').length > 4) {
           // Add swiper classes and elements.
           $productSliderWrapper.addClass('swiper-container');
           $productSliderItems.addClass('swiper-slide');
