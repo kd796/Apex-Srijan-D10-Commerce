@@ -31,10 +31,10 @@
       padding: 0;
 
       .component-product-slider__list-item {
-        width: 25%;
+        width: 50%;
 
-        @include media('<md') {
-          width: 50%;
+        @include media('>=lg') {
+          width: 25%;
         }
 
         .node--type-product {
@@ -56,27 +56,45 @@
       }
     }
 
+    .component-product-slider__list:not(.swiper-wrapper) {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem; // sass-lint:disable-line no-misspelled-properties
+
+      @include media('>=lg') {
+        flex-wrap: nowrap;
+        gap: 1.5rem; // sass-lint:disable-line no-misspelled-properties
+      }
+
+      .component-product-slider__list-item {
+        width: calc(50% - 1rem);
+
+        @include media('>=lg') {
+          width: calc(25% - 1.5rem);
+        }
+      }
+    }
+
     .component-product-slider__button {
-      background-color: $primary-red;
-      background-size: rem(10px) rem(16px);
-      border: 1px solid $primary-red;
       height: rem(48px);
       width: rem(48px);
       margin: 0;
       padding: 0;
       opacity: 1;
 
-      &:hover {
-        background-color: $color-black;
-        border-color: $primary-red;
-      }
-
       &.component-product-slider__button-prev {
-        background-image: url('../../../icons/chevron-left-black.svg');
+        background-image: url('../../../icons/chevron-left-red.svg');
         left: rem(-98px);
 
         &:hover {
-          background-image: url('../../../icons/chevron-left-molten-orange.svg');
+          background-image: url('../../../icons/chevron-left-dark-red.svg');
+        }
+
+        &[aria-disabled='true'] {
+          background-image: url('../../../icons/chevron-left-gray-50.svg');
         }
 
         @include media('<1401px') {
@@ -89,11 +107,15 @@
       }
 
       &.component-product-slider__button-next {
-        background-image: url('../../../icons/chevron-right-black.svg');
+        background-image: url('../../../icons/chevron-right-red.svg');
         right: rem(-98px);
 
         &:hover {
-          background-image: url('../../../icons/chevron-right-molten-orange.svg');
+          background-image: url('../../../icons/chevron-right-dark-red.svg');
+        }
+
+        &[aria-disabled='true'] {
+          background-image: url('../../../icons/chevron-right-gray-50.svg');
         }
 
         @include media('<1400px') {
@@ -103,11 +125,6 @@
         @include media('<1336px') {
           display: none;
         }
-      }
-
-      &[aria-disabled='true'] {
-        background-color: $gray-30;
-        border-color: $gray-30;
       }
     }
   }
@@ -120,11 +137,10 @@
     width: 100%;
 
     .component-product-slider__button {
-      background-color: $primary-red;
+      background-color: transparent;
       background-position: center;
       background-repeat: no-repeat;
-      background-size: rem(10px) rem(16px);
-      border: 1px solid $primary-red;
+      border: 0;
       display: none;
       height: rem(48px);
       width: rem(48px);
@@ -133,9 +149,9 @@
       position: relative;
       opacity: 1;
 
-      @include media('<md') {
-        height: rem(40px);
-        width: rem(40px);
+      @include media('<=lg-plus') {
+        height: rem(30px);
+        width: rem(30px);
       }
 
       @include media('<1336px') {
@@ -143,13 +159,29 @@
       }
 
       &.component-product-slider__pseudo-button-prev {
-        background-image: url('../../../icons/chevron-left-black.svg');
+        background-image: url('../../../icons/chevron-left-red.svg');
         margin-right: 1rem;
+
+        &:hover {
+          background-image: url('../../../icons/chevron-left-dark-red.svg');
+        }
+
+        &[aria-disabled='true'] {
+          background-image: url('../../../icons/chevron-left-gray-50.svg');
+        }
       }
 
       &.component-product-slider__pseudo-button-next {
-        background-image: url('../../../icons/chevron-right-black.svg');
+        background-image: url('../../../icons/chevron-right-red.svg');
         margin-left: 1rem;
+
+        &:hover {
+          background-image: url('../../../icons/chevron-right-dark-red.svg');
+        }
+
+        &[aria-disabled='true'] {
+          background-image: url('../../../icons/chevron-right-gray-50.svg');
+        }
       }
     }
 
