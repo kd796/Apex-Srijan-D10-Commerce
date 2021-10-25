@@ -1,0 +1,63 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/View: Product Category Grid
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * View
+ */
+
+
+.view-media-pages {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: rem(24px); // sass-lint:disable-line no-misspelled-properties
+  grid-auto-rows: minmax(100px, auto);
+
+  @include media('>=md') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .views-element-container {
+    grid-column: 1 / 4;
+
+    @include media('>=md') {
+      grid-column: 2 / 4;
+    }
+  }
+
+  .view-filters {
+    grid-column: 1;
+  }
+
+  .view-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: rem(25px); // sass-lint:disable-line no-misspelled-properties
+
+    @include media('>=sm') {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include media('>=md') {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include media('>=lg') {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .views-row {
+      .node--view-mode-teaser {
+        width: 100%;
+      }
+    }
+  }
+}
