@@ -11,7 +11,7 @@
           slidesPerColumn: 2,
           slidesPerColumnFill: 'column',
           spaceBetween: 24,
-          loop: true,
+          loop: false,
           navigation: {
             nextEl: $buttonNext,
             prevEl: $buttonPrev
