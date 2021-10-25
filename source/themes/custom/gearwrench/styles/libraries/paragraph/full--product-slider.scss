@@ -31,10 +31,10 @@
       padding: 0;
 
       .component-product-slider__list-item {
-        width: 25%;
+        width: 50%;
 
-        @include media('<md') {
-          width: 50%;
+        @include media('>=lg') {
+          width: 25%;
         }
 
         .node--type-product {
@@ -52,6 +52,28 @@
 
         &.active-pointer {
           pointer-events: initial;
+        }
+      }
+    }
+
+    .component-product-slider__list:not(.swiper-wrapper) {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem; // sass-lint:disable-line no-misspelled-properties
+
+      @include media('>=lg') {
+        flex-wrap: nowrap;
+        gap: 1.5rem; // sass-lint:disable-line no-misspelled-properties
+      }
+
+      .component-product-slider__list-item {
+        width: calc(50% - 1rem);
+
+        @include media('>=lg') {
+          width: calc(25% - 1.5rem);
         }
       }
     }
