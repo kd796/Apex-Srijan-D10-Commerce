@@ -407,6 +407,7 @@ $tabs-border-width-active: rem(5px);
 
             .node--type-product__ps-reviews-container {
               position: relative;
+              margin-bottom: rem(20px);
 
               &:after {
                 border-top: 2px dashed $gray-40;
@@ -425,6 +426,10 @@ $tabs-border-width-active: rem(5px);
 
                 .ps-review-details {
                   background: none;
+
+                  @include media('<sm') {
+                    margin-left: 0;
+                  }
                 }
 
                 .ps-review-count,
