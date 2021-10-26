@@ -13,6 +13,7 @@
 /**
  * Review Rating Snapshot
  */
+
 .bv-cv2-cleanslate {
   .bv-inline-histogram-ratings-star {
     .bv-glyph {
@@ -20,22 +21,41 @@
     }
   }
 
-  .bv-core-container-89 {
-    .bv-content-placeholder {
-      .bv-write-review-label {
-        @include icon(tertiary-link, after, true);
-        display: flex !important;
-        align-items: center;
+  .bv-content-placeholder {
+    .bv-write-review-label {
+      @include icon(tertiary-link, after, true);
+      display: flex !important;
+      align-items: center;
 
-        &::after {
-          margin-left: rem(10px);
-          vertical-align: middle;
-        }
+      &::after {
+        margin-left: rem(10px);
+        vertical-align: middle;
       }
     }
   }
 
+  .bv-submission-button-submit {
+    @include icon(tertiary-link, after, true);
+    display: flex !important;
+    align-items: center;
+
+    &::after {
+      margin-left: rem(10px);
+    }
+  }
+
   .bv-action-bar {
+    button {
+      @include icon(tertiary-link, after, true);
+      display: flex !important;
+      align-items: center;
+
+      &::after {
+        margin-left: rem(10px);
+        vertical-align: bottom;
+      }
+    }
+
     .bv-write-review-container {
       .bv-write-review {
         @include icon(tertiary-link, after, true);
