@@ -372,6 +372,13 @@ function gearwrench_preprocess_paragraph__featured_media__full(array &$variables
       $field_settings['label'] = 'hidden';
       break;
 
+    case 'featured_media_layout__live_area':
+      $variables['#attached']['library'][] = 'gearwrench/paragraph--full--featured-media--layout-live-area';
+      $field_settings['type'] = 'entity_reference_entity_view';
+      $field_settings['settings']['view_mode'] = 'live_area';
+      $field_settings['label'] = 'hidden';
+      break;
+
     case 'featured_media_layout__full':
     default:
       $variables['#attached']['library'][] = 'gearwrench/paragraph--full--featured-media--layout-full';
