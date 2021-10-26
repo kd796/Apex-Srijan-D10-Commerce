@@ -19,29 +19,26 @@
       color: $primary-orange !important;
     }
   }
-
-  .bv-core-container-89 {
-    .bv-content-placeholder {
-      .bv-write-review-label {
-        @include icon(tertiary-link, after, true);
-        display: flex !important;
-        align-items: center;
-
-        &::after {
-          margin-left: rem(10px);
-          vertical-align: middle;
-        }
-      }
-    }
-
-    .bv-submission-button-submit {
+  .bv-content-placeholder {
+    .bv-write-review-label {
       @include icon(tertiary-link, after, true);
       display: flex !important;
       align-items: center;
 
       &::after {
         margin-left: rem(10px);
+        vertical-align: middle;
       }
+    }
+  }
+
+  .bv-submission-button-submit {
+    @include icon(tertiary-link, after, true);
+    display: flex !important;
+    align-items: center;
+
+    &::after {
+      margin-left: rem(10px);
     }
   }
 
