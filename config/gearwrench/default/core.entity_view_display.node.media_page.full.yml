@@ -11,74 +11,14 @@ dependencies:
     - field.field.node.media_page.field_media_type
     - field.field.node.media_page.field_published_date
     - field.field.node.media_page.field_tags
+    - image.style.medium_portrait_4x5
     - node.type.media_page
-    - responsive_image.styles.short_hero
   module:
     - blazy
-    - datetime
     - entity_reference_revisions
-    - field_group
     - link
     - text
     - user
-third_party_settings:
-  field_group:
-    group_page_heading:
-      children:
-        - group_left
-        - group_right
-      parent_name: ''
-      weight: 0
-      format_type: html_element
-      region: content
-      format_settings:
-        id: ''
-        classes: ''
-        element: div
-        show_label: false
-        label_element: h3
-        label_element_classes: ''
-        attributes: ''
-        effect: none
-        speed: fast
-      label: 'Page Heading'
-    group_left:
-      children:
-        - field_published_date
-        - body
-      parent_name: group_page_heading
-      weight: 20
-      format_type: html_element
-      region: content
-      format_settings:
-        id: ''
-        classes: ''
-        element: div
-        show_label: false
-        label_element: h3
-        label_element_classes: ''
-        attributes: ''
-        effect: none
-        speed: fast
-      label: Left
-    group_right:
-      children:
-        - field_link
-      parent_name: group_page_heading
-      weight: 21
-      format_type: html_element
-      region: content
-      format_settings:
-        id: ''
-        classes: ''
-        element: div
-        show_label: false
-        label_element: h3
-        label_element_classes: ''
-        attributes: ''
-        effect: none
-        speed: fast
-      label: Right
 id: node.media_page.full
 targetEntityType: node
 bundle: media_page
@@ -87,12 +27,12 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 7
+    weight: 1
     settings: {  }
     third_party_settings: {  }
     region: content
   field_components:
-    weight: 2
+    weight: 4
     label: hidden
     settings:
       view_mode: full
@@ -101,7 +41,7 @@ content:
     type: entity_reference_revisions_entity_view
     region: content
   field_link:
-    weight: 3
+    weight: 2
     label: hidden
     settings:
       trim_length: 80
@@ -113,11 +53,11 @@ content:
     type: link
     region: content
   field_media:
-    weight: 1
+    weight: 0
     label: hidden
     settings:
-      image_style: ''
-      responsive_image_style: short_hero
+      image_style: medium_portrait_4x5
+      responsive_image_style: ''
       media_switch: ''
       thumbnail_style: ''
       ratio: ''
@@ -154,15 +94,6 @@ content:
     third_party_settings: {  }
     type: blazy_media
     region: content
-  field_published_date:
-    weight: 6
-    label: inline
-    settings:
-      timezone_override: ''
-      format_type: html_date
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_tags:
     weight: 3
     label: inline
@@ -173,6 +104,7 @@ content:
     region: content
 hidden:
   field_media_type: true
+  field_published_date: true
   langcode: true
   links: true
   search_api_excerpt: true
