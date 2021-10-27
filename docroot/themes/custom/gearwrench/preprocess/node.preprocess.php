@@ -300,19 +300,13 @@ function gearwrench_preprocess_node__product__search_index(&$variables) {
   $variables['inner_attributes']['class'][] = 'node__inner';
   $variables['media_attributes']['class'][] = 'node__media';
 
-  foreach (Element::children($variables['content']['field_product_images']) as $id) {
-    if ($id) {
-      unset($variables['content']['field_product_images'][$id]);
-    }
-  }
-
   // Move media to media variable.
-  if (isset($variables['content']['field_product_images'][0])) {
+  if (isset($variables['content']['field_media'][0])) {
     $variables['media_attributes']['class'][] = 'node__media--with-media';
     $variables['media_attributes']['class'][] = 'node__listing-image';
-    $variables['media'] = $variables['content']['field_product_images'];
+    $variables['media'] = $variables['content']['field_media'];
     unset($variables['media']['#theme']);
-    unset($variables['content']['field_product_images']);
+    unset($variables['content']['field_media']);
   }
   else {
     $variables['media_attributes']['class'][] = 'node__media--no-media';
