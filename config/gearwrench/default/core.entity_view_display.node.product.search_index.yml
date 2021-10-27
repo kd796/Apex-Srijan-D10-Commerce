@@ -38,23 +38,19 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  field_product_images:
+  field_media:
     type: blazy_media
     weight: 0
     region: content
-    label: hidden
+    label: above
     settings:
-      style: ''
       image_style: product_small
       responsive_image_style: ''
       media_switch: ''
       thumbnail_style: ''
       ratio: ''
-      view_mode: product_teaser
+      view_mode: default
       image: ''
-      grid: null
-      grid_medium: null
-      grid_small: null
       current_view_mode: search_index
       background: false
       caption:
@@ -71,6 +67,7 @@ content:
       cache: 0
       skin: ''
       fx: ''
+      style: ''
       box_caption: ''
       box_caption_custom: ''
       box_media_style: ''
@@ -79,16 +76,19 @@ content:
       breakpoints: {  }
       sizes: ''
       grid_header: ''
+      grid: 0
+      grid_medium: 0
+      grid_small: 0
     third_party_settings: {  }
 hidden:
   body: true
   field_featured_product: true
   field_launch_date: true
-  field_media: true
   field_meta_tags: true
   field_new_product: true
   field_product_classifications: true
   field_product_features: true
+  field_product_images: true
   field_product_specifications: true
   field_related_products: true
   field_set: true

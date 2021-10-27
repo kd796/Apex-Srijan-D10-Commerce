@@ -1,0 +1,15 @@
+gearwrench_core.set_default_listing_image:
+  path: '/admin/config/gearwrench-core/set-default-listing-image'
+  defaults:
+    _form: '\Drupal\gearwrench_core\Form\SetDefaultListingImage'
+  requirements:
+    _permission: 'administer nodes'
+gearwrench_core.set_default_listing_image_process:
+  path: '/admin/config/gearwrench-core/set-default-listing-image/process'
+  defaults:
+    _controller: '\Drupal\gearwrench_core\Controller\SetDefaultListingImage::process'
+    _title: 'Set default listing images on products'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
