@@ -80,9 +80,11 @@ function gearwrench_preprocess_node__media_page__full(&$variables) {
 
   $variables['title'] = $node->title->value;
   $variables['summary'] = $variables['content']['body'];
+  $variables['categories'] = $variables['content']['field_categories'];
   $variables['tags'] = $variables['content']['field_tags'];
   $variables['cta'] = $variables['content']['field_link'];
 
+  unset($variables['content']['field_categories']);
   unset($variables['content']['field_link']);
   unset($variables['content']['field_tags']);
   unset($variables['content']['body']);
@@ -103,6 +105,11 @@ function gearwrench_preprocess_node__media_page__full(&$variables) {
   }
   else {
     $variables['media_attributes']['class'][] = 'node__media--no-media';
+  }
+
+  if (!empty($variables['content']['field_preferred_listing_image'][0])) {
+    $variables['media'] = $variables['content']['field_preferred_listing_image'];
+    unset($variables['content']['field_preferred_listing_image']);
   }
 }
 
@@ -134,6 +141,11 @@ function gearwrench_preprocess_node__media_page__teaser(&$variables) {
   }
   else {
     $variables['media_attributes']['class'][] = 'node__media--no-media';
+  }
+
+  if (!empty($variables['content']['field_preferred_listing_image'][0])) {
+    $variables['media'] = $variables['content']['field_preferred_listing_image'];
+    unset($variables['content']['field_preferred_listing_image']);
   }
 }
 

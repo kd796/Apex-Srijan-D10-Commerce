@@ -5,10 +5,12 @@ dependencies:
   config:
     - core.entity_view_mode.node.full
     - field.field.node.media_page.body
+    - field.field.node.media_page.field_categories
     - field.field.node.media_page.field_components
     - field.field.node.media_page.field_link
     - field.field.node.media_page.field_media
     - field.field.node.media_page.field_media_type
+    - field.field.node.media_page.field_preferred_listing_image
     - field.field.node.media_page.field_published_date
     - field.field.node.media_page.field_tags
     - image.style.medium_portrait_4x5
@@ -27,12 +29,20 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 1
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     region: content
-  field_components:
+  field_categories:
+    type: entity_reference_label
     weight: 4
+    region: content
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_components:
+    weight: 6
     label: hidden
     settings:
       view_mode: full
@@ -41,7 +51,7 @@ content:
     type: entity_reference_revisions_entity_view
     region: content
   field_link:
-    weight: 2
+    weight: 3
     label: hidden
     settings:
       trim_length: 80
@@ -94,8 +104,50 @@ content:
     third_party_settings: {  }
     type: blazy_media
     region: content
+  field_preferred_listing_image:
+    type: blazy_media
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      image_style: medium_portrait_4x5
+      responsive_image_style: ''
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
+      view_mode: default
+      current_view_mode: full
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: 0
+      grid_medium: 0
+      grid_small: 0
+    third_party_settings: {  }
   field_tags:
-    weight: 3
+    weight: 5
     label: inline
     settings:
       link: true

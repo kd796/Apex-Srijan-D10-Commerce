@@ -5,10 +5,12 @@ dependencies:
   config:
     - core.entity_view_mode.node.block_title
     - field.field.node.media_page.body
+    - field.field.node.media_page.field_categories
     - field.field.node.media_page.field_components
     - field.field.node.media_page.field_link
     - field.field.node.media_page.field_media
     - field.field.node.media_page.field_media_type
+    - field.field.node.media_page.field_preferred_listing_image
     - field.field.node.media_page.field_published_date
     - field.field.node.media_page.field_tags
     - node.type.media_page
@@ -90,5 +92,7 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  field_categories: true
+  field_preferred_listing_image: true
   langcode: true
   search_api_excerpt: true

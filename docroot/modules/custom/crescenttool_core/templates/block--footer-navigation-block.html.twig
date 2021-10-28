@@ -29,10 +29,10 @@
     <div{{ content_attributes }}>
       <section class="block-footer-navigation-block__footer-address-social-menu-container">
         <div class="block-footer-navigation-block__footer-address">
-          <p class="block-footer-navigation-block__footer-address-first">910 Ridgebrook Road</p>
-          <p class="block-footer-navigation-block__footer-address-second">Suite 200</p>
-          <p class="block-footer-navigation-block__footer-address-city">Sparks, Maryland 21152</p>
-          <p class="block-footer-navigation-block__footer-address-phone"><a href="tel:800-621-8814">(800) 621-8814</a></p>
+          <p class="block-footer-navigation-block__footer-address-first">{{ content.address_line_1 }}</p>
+          <p class="block-footer-navigation-block__footer-address-second">{{ content.address_line_2 }}</p>
+          <p class="block-footer-navigation-block__footer-address-city">{{ content.address_line_3 }}</p>
+          <p class="block-footer-navigation-block__footer-address-phone"><a href="tel:{{ content.phone_raw }}">{{ content.phone }}</a></p>
         </div>
         <div class="block-footer-navigation-block__footer-social-menu-wrapper">
           {{ content.social_menu }}
