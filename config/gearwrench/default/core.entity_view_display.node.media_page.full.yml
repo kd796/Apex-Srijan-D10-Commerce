@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.full
     - field.field.node.media_page.body
+    - field.field.node.media_page.field_categories
     - field.field.node.media_page.field_components
     - field.field.node.media_page.field_link
     - field.field.node.media_page.field_media
@@ -31,8 +32,16 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
+  field_categories:
+    type: entity_reference_label
+    weight: 3
+    region: content
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
   field_components:
-    weight: 4
+    weight: 5
     label: hidden
     settings:
       view_mode: full
@@ -95,7 +104,7 @@ content:
     type: blazy_media
     region: content
   field_tags:
-    weight: 3
+    weight: 4
     label: inline
     settings:
       link: true
