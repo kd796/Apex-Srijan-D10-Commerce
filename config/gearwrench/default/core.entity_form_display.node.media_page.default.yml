@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.media_page.body
+    - field.field.node.media_page.field_categories
     - field.field.node.media_page.field_components
     - field.field.node.media_page.field_link
     - field.field.node.media_page.field_media
@@ -43,6 +44,7 @@ third_party_settings:
         - field_published_date
         - body
         - field_link
+        - field_categories
         - field_tags
       parent_name: group_tabs
       weight: 20
@@ -90,6 +92,16 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_categories:
+    weight: 7
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_components:
     weight: 13
     settings:
@@ -139,7 +151,7 @@ content:
     type: datetime_default
     region: content
   field_tags:
-    weight: 7
+    weight: 8
     settings:
       match_operator: CONTAINS
       match_limit: 10
