@@ -25,11 +25,78 @@ class FooterNavigationBlock extends BlockBase {
 
     $footer_menu = $this->crescenttoolCoreBuildMenu('footer');
     $social_menu = $this->crescenttoolCoreBuildMenu('social');
+    $address_line_1 = \Drupal::state()->get('footer_address_line_1') ?
+      ['#plain_text' => \Drupal::state()->get('footer_address_line_1')] : '';
+    $address_line_2 = \Drupal::state()->get('footer_address_line_2') ?
+      ['#plain_text' => \Drupal::state()->get('footer_address_line_2')] : '';
+    $address_line_3 = \Drupal::state()->get('footer_address_line_3') ?
+      ['#plain_text' => \Drupal::state()->get('footer_address_line_3')] : '';
+    $phone = \Drupal::state()->get('footer_phone') ?
+      ['#plain_text' => \Drupal::state()->get('footer_phone')] : '';
+    $phone_raw = '';
+    if ($phone) {
+      $phone_raw = preg_replace('~\D~', '', \Drupal::state()->get('footer_phone'));
+    }
 
     return [
       'footer_menu' => $footer_menu,
       'social_menu' => $social_menu,
+      'address_line_1' => $address_line_1,
+      'address_line_2' => $address_line_2,
+      'address_line_3' => $address_line_3,
+      'phone_raw' => $phone_raw,
+      'phone' => $phone,
     ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function blockForm($form, FormStateInterface $form_state) {
+    $form = parent::blockForm($form, $form_state);
+
+    $form['address_line_1'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Address Line 1'),
+      '#description' => $this->t(''),
+      '#default_value' => \Drupal::state()->get('footer_address_line_1') ?? '',
+    ];
+
+    $form['address_line_2'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Address Line 2'),
+      '#description' => $this->t(''),
+      '#default_value' => \Drupal::state()->get('footer_address_line_2') ?? '',
+    ];
+
+    $form['address_line_3'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('City, State Zip'),
+      '#description' => $this->t(''),
+      '#default_value' => \Drupal::state()->get('footer_address_line_3') ?? '',
+    ];
+
+    $form['phone'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Phone Number'),
+      '#description' => $this->t(''),
+      '#default_value' => \Drupal::state()->get('footer_phone') ?? '',
+    ];
+
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function blockSubmit($form, FormStateInterface $form_state) {
+    parent::blockSubmit($form, $form_state);
+    $values = $form_state->getValues();
+
+    \Drupal::state()->set('footer_address_line_1', $values['address_line_1']);
+    \Drupal::state()->set('footer_address_line_2', $values['address_line_2']);
+    \Drupal::state()->set('footer_address_line_3', $values['address_line_3']);
+    \Drupal::state()->set('footer_phone', $values['phone']);
   }
 
   /**
