@@ -80,11 +80,11 @@ function gearwrench_preprocess_node__media_page__full(&$variables) {
 
   $variables['title'] = $node->title->value;
   $variables['summary'] = $variables['content']['body'];
-  $variables['categories'] = $variables['content']['field_categories'];
+  $variables['categories'] = $variables['content']['field_category'];
   $variables['tags'] = $variables['content']['field_tags'];
   $variables['cta'] = $variables['content']['field_link'];
 
-  unset($variables['content']['field_categories']);
+  unset($variables['content']['field_category']);
   unset($variables['content']['field_link']);
   unset($variables['content']['field_tags']);
   unset($variables['content']['body']);

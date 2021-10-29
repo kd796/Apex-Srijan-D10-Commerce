@@ -55,6 +55,8 @@
     }
 
     .node__tags, .node__categories {
+      margin-bottom: 2rem;
+
       .field--label-inline {
         .field__label {
           float: unset;
@@ -74,24 +76,24 @@
         .field__items {
           float: unset;
           padding-right: 0;
+        }
 
-          .field__item {
-            display: inline-block;
+        .field__item {
+          display: inline-block;
 
-            &:not(:last-of-type) {
-              margin-right: rem(10px);
-              margin-bottom: rem(10px);
-            }
+          &:not(:last-of-type) {
+            margin-right: rem(10px);
+            margin-bottom: rem(10px);
+          }
 
-            a {
-              @include btn(primary);
-              background-color: transparent;
-              border: 2px solid $primary-orange !important;
-              padding: .5rem .75rem;
+          a {
+            @include btn(primary);
+            background-color: transparent;
+            border: 2px solid $primary-orange !important;
+            padding: .5rem .75rem;
 
-              @include media('>md') {
-                padding: .5rem 1rem;
-              }
+            @include media('>md') {
+              padding: .5rem 1rem;
             }
           }
         }
