@@ -339,7 +339,8 @@ class CreateProductSpecifications extends ProcessPluginBase {
       'JawThicknessLower',
       'JawThicknessUpper',
       'JawWidthLower',
-      'JawWidthUpper'
+      'JawWidthUpper',
+      'Set',
     ];
     if (in_array($attribute, $attributes_to_include)) {
       return TRUE;
