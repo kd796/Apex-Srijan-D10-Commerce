@@ -59,8 +59,6 @@ process:
       - W1_736539
       - W1_781017
       - W1_785249
-      - W1_802014
-      - W1_806799
   type:
     plugin: default_value
     default_value: product_category
@@ -79,6 +77,16 @@ process:
   field_product_classifications:
     plugin: sub_process
     source: '@product_classifications_array'
+    include_source: true
+    process:
+      vocabulary_id: vid
+      target_id: target_id
+  category_facets_array:
+    plugin: get_all_category_facets
+    source: remote_id
+  field_category_facets:
+    plugin: sub_process
+    source: '@category_facets_array'
     include_source: true
     process:
       vocabulary_id: vid
