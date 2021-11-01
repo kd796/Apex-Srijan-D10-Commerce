@@ -6,6 +6,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\group\Entity\GroupContent;
 use Drupal\node\NodeInterface;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Provides a 'FooterNavigationBlock' block.
