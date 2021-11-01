@@ -27,18 +27,19 @@ class GetAllCategoryFacets extends ProcessPluginBase {
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
-    $product_specifications = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties([
-      'vid' => 'product_specifications',
-      // Only the top level terms.
-      'parent_target_id' => '0',
-    ]);
+    $product_specifications = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree(
+      'product_specifications',
+      0,
+      1,
+      TRUE
+    );
 
     $facets = $this->mapCategoryToFacetsList($value);
     $all_terms_array = [];
 
     if (!empty($facets) && !empty($product_specifications)) {
       foreach ($product_specifications as $spec) {
-        $source_id = explode($spec->label(), ' | ')[0];
+        $source_id = explode(' | ', $spec->label())[0];
 
         if (in_array($source_id, $facets)) {
           $all_terms_array[] = [
