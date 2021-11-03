@@ -14,8 +14,6 @@
         drupalSettings.selectedSetFilterValue = 'All';
       }
 
-      console.log('Filter Type: ' + $filterType);
-
       if ($item.prop('checked')) {
         var $filterVal = $item.val();
 
