@@ -5,11 +5,14 @@
       if (typeof drupalSettings.selectedCategories == 'undefined') {
         drupalSettings.selectedCategories = [];
       }
+
       if (typeof drupalSettings.selectedAttributes == 'undefined') {
         drupalSettings.selectedAttributes = [];
       }
+
       if ($item.prop('checked')) {
         var $filterVal = $item.val();
+
         // Add Items
         switch ($filterType) {
           case 'category':
@@ -35,24 +38,37 @@
             break;
         }
       }
+
+      // Load the Product Category view DOM element from the page.
       var $productCategoryView = $('.view-product-category');
-      var attributeSelect = $productCategoryView.find('.form-item-field-product-specifications-target-id').find('.form-select');
-      attributeSelect.val(drupalSettings.selectedAttributes);
+
+      // Load the product attributes filter that is hidden on the page.
+      var attributeTextField = $productCategoryView.find('.form-item-field-product-specifications-target-id').find('.form-text');
+
+      // Now load the category filter that is hidden on the page.
       var classificationSelect = $productCategoryView.find('.form-item-field-product-classifications-target-id').find('.form-select');
+
+      // Now set all the values for categories and attributes.
       classificationSelect.val(drupalSettings.selectedCategories);
-      attributeSelect.val(drupalSettings.selectedAttributes);
+      // attributeSelect.val(drupalSettings.selectedAttributes);
+      attributeTextField.val(drupalSettings.selectedAttributes.join(', '));
+
+      // Finally trigger the hidden submit button.
       $productCategoryView.find('input[type=submit]').click();
     },
     attach: function (context, settings) {
       $('.gearwrench-product-category-filters:not(.gearwrench-product-category-filters--js-initialized)').once('product-category-filters').each(function (index) {
         var $categoryFilter = $('.node--type-product-category__category-filter');
         var $attributeFilter = $('.node--type-product-category__attribute-filter');
+
         // Track that this component has been initialized.
         $(this).addClass('gearwrench-product-category-filters--js-initialized');
+
         $categoryFilter.find('.form-checkbox').bind('change', function (e) {
           Drupal.behaviors.productCategoryFilters.filtering($(this), 'category');
           e.stopImmediatePropagation();
         });
+
         $attributeFilter.find('.form-checkbox').bind('change', function (e) {
           Drupal.behaviors.productCategoryFilters.filtering($(this), 'attribute');
           e.stopImmediatePropagation();

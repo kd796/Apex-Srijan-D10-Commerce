@@ -14,8 +14,6 @@
             var $filterList = $new_products_view.find('.view-filters');
 
             var open = $filterIcon.hasClass('component-filter--open');
-            console.log('Open is set to:');
-            console.log(open);
 
             $filterIcon.toggleClass('component-filter--open', (!open));
             $filterIcon.attr('aria-selected', (open) ? 'false' : 'true');
