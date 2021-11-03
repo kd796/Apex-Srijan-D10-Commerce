@@ -43,14 +43,15 @@
       var $productCategoryView = $('.view-product-category');
 
       // Load the product attributes filter that is hidden on the page.
-      var attributeSelect = $productCategoryView.find('.form-item-field-product-specifications-target-id').find('.form-select');
+      var attributeTextField = $productCategoryView.find('.form-item-field-product-specifications-target-id').find('.form-text');
 
       // Now load the category filter that is hidden on the page.
       var classificationSelect = $productCategoryView.find('.form-item-field-product-classifications-target-id').find('.form-select');
 
       // Now set all the values for categories and attributes.
       classificationSelect.val(drupalSettings.selectedCategories);
-      attributeSelect.val(drupalSettings.selectedAttributes);
+      // attributeSelect.val(drupalSettings.selectedAttributes);
+      attributeTextField.val(drupalSettings.selectedAttributes.join(', '));
 
       // Finally trigger the hidden submit button.
       $productCategoryView.find('input[type=submit]').click();
