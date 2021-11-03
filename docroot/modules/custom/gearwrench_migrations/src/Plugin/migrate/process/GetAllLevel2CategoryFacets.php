@@ -10,18 +10,18 @@ use Drupal\migrate\Row;
  * Get All Product Classifications.
  *
  * @MigrateProcessPlugin(
- *   id = "get_all_category_facets"
+ *   id = "get_all_level_2_category_facets"
  * )
  *
  * To get use the following:
  *
  * @code
  * field_text:
- *   plugin: get_all_category_facets
+ *   plugin: get_all_level_2_category_facets
  *   source: text
  * @endcode
  */
-class GetAllCategoryFacets extends ProcessPluginBase {
+class GetAllLevel2CategoryFacets extends ProcessPluginBase {
 
   /**
    * {@inheritdoc}
@@ -34,7 +34,28 @@ class GetAllCategoryFacets extends ProcessPluginBase {
       TRUE
     );
 
-    $facets = $this->mapCategoryToFacetsList($value);
+    $facets = $this->mapCategoryToCustomFacets($value);
+
+    if (empty($facets)) {
+      // Get the parent term ID of the current term.
+      $product_categories = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties([
+        'vid' => 'product_classifications',
+        'field_classification_id' => $value,
+      ]);
+
+      /** @var \Drupal\taxonomy\Entity\Term $current_term */
+      $current_term = array_pop($product_categories);
+      $parent = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($current_term->id());
+
+      /** @var \Drupal\taxonomy\Entity\Term $parent */
+      $parent = reset($parent);
+      $parent_arr = $parent->toArray();
+      $parent_source_id = $parent_arr['field_classification_id'][0]['value'];
+
+      // Load the facets for the parent instead.
+      $facets = $this->mapCategoryToFacetsList($parent_source_id);
+    }
+
     $all_terms_array = [];
 
     if (!empty($facets) && !empty($product_specifications)) {
@@ -53,6 +74,31 @@ class GetAllCategoryFacets extends ProcessPluginBase {
     $all_terms_array = json_encode($all_terms_array);
 
     return json_decode($all_terms_array, TRUE);
+  }
+
+  /**
+   * Maps only the 2nd level categories that differ from their parents.
+   */
+  protected function mapCategoryToCustomFacets($category_remote_id) {
+    $mapping = [
+      'W2_803378' => ['ATT496', 'ATT493', 'ATT484', 'ATT491'],
+      'W2_803379' => ['ATT496', 'ATT415'],
+      'W2_803380' => ['ATT496'],
+      'W2_15809' => ['ATT496', 'ATT802893', 'ATT807126', 'ATT228', 'ATT227',
+        'ATT345'
+      ],
+      'W2_15810' => ['ATT496', 'ATT802893', 'ATT807127', 'ATT345'],
+      'W2_783461' => ['ATT496', 'ATT802893', 'ATT804086', 'ATT783458',
+        'ATT83507', 'ATT783498', 'ATT783499', 'ATT83508'
+      ],
+      'W2_783462' => ['ATT496', 'ATT802893', 'ATT783458'],
+    ];
+
+    if (isset($mapping[$category_remote_id])) {
+      return $mapping[$category_remote_id];
+    }
+
+    return [];
   }
 
   /**
