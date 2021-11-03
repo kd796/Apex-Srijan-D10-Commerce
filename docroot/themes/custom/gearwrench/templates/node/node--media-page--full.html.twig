@@ -85,6 +85,9 @@
       <div class="node__cta">
         {{ cta }}
       </div>
+      {% if file is not null %}
+        <div>{{ file }}</div>
+      {% endif %}
       <div class="node__categories">
         {{ categories }}
       </div>

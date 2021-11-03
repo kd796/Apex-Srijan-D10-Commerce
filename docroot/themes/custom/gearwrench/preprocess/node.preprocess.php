@@ -30,6 +30,7 @@ use Drupal\file\Entity\File;
 use Drupal\Component\Utility\Html;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\TermStorage;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_preprocess_node().
@@ -96,6 +97,7 @@ function gearwrench_preprocess_node__media_page__full(&$variables) {
   $variables['media_attributes']['class'][] = 'node__media';
 
   // Move media to media variable.
+  $variables['file'] = NULL;
   if (isset($variables['content']['field_preferred_listing_image'][0])) {
     $variables['media_attributes']['class'][] = 'node__media--with-media';
     $variables['media_attributes']['class'][] = 'node__listing-image';
@@ -105,9 +107,16 @@ function gearwrench_preprocess_node__media_page__full(&$variables) {
     unset($variables['content']['field_preferred_listing_image']);
 
     if (isset($variables['content']['field_media'][0])) {
-      $variables['file'] = $variables['content']['field_media'][0];
-      unset($variables['content']['field_media'][0]);
+      $mediaItem = Media::load($node->get('field_media')->getValue()[0]['target_id']);
+      if ($mediaItem->bundle() == 'file') {
+        $fid = $mediaItem->get('field_media_file')->getValue()[0]['target_id'];
+        $file = File::load($fid);
+        $url = $file->createFileUrl();
+        $variables['file'] = $url;
+      }
     }
+
+    unset($variables['content']['field_media'][0]);
   }
   elseif (isset($variables['content']['field_media'][0])) {
     $variables['media_attributes']['class'][] = 'node__media--with-media';
