@@ -83,7 +83,7 @@ function gearwrench_preprocess_node__media_page__full(&$variables) {
   $variables['categories'] = $variables['content']['field_category'];
   $variables['tags'] = $variables['content']['field_tags'];
   $variables['cta'] = $variables['content']['field_link'];
-  // ['cta'][0]['#url']['uri'] = $variables['media']['#object']['values']['field_link'] .
+
   unset($variables['content']['field_category']);
   unset($variables['content']['field_link']);
   unset($variables['content']['field_tags']);
