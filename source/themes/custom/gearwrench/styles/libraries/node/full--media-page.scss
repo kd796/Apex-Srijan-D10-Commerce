@@ -101,15 +101,17 @@
     }
   }
 
-  & > .paragraph-component {
-    margin-top: $gap-vertical-md;
+  .node__bottom-content {
+    & > .paragraph-component {
+      margin-top: $gap-vertical-md;
 
-    @include media('>=md') {
-      margin-top: $gap-vertical-md-plus;
-    }
+      @include media('>=md') {
+        margin-top: $gap-vertical-md-plus;
+      }
 
-    &:last-of-type {
-      margin-bottom: 5rem;
+      &:last-of-type {
+        margin-bottom: 5rem;
+      }
     }
   }
 }

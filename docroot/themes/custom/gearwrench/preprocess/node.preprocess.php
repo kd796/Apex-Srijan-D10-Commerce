@@ -96,7 +96,20 @@ function gearwrench_preprocess_node__media_page__full(&$variables) {
   $variables['media_attributes']['class'][] = 'node__media';
 
   // Move media to media variable.
-  if (isset($variables['content']['field_media'][0])) {
+  if (isset($variables['content']['field_preferred_listing_image'][0])) {
+    $variables['media_attributes']['class'][] = 'node__media--with-media';
+    $variables['media_attributes']['class'][] = 'node__listing-image';
+    $variables['media'] = $variables['content']['field_preferred_listing_image'];
+
+    unset($variables['media']['#theme']);
+    unset($variables['content']['field_preferred_listing_image']);
+
+    if (isset($variables['content']['field_media'][0])) {
+      $variables['file'] = $variables['content']['field_media'][0];
+      unset($variables['content']['field_media'][0]);
+    }
+  }
+  elseif (isset($variables['content']['field_media'][0])) {
     $variables['media_attributes']['class'][] = 'node__media--with-media';
     $variables['media_attributes']['class'][] = 'node__listing-image';
     $variables['media'] = $variables['content']['field_media'];

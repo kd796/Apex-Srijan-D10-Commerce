@@ -140,9 +140,11 @@ class ProductCategoryFiltersForm extends FormBase {
           $available_attributes = array_intersect($all_selected_attributes_tid_array, $available_attribute_ids);
 
           foreach ($available_attributes as $available_attribute) {
+            /** @var Drupal\taxonomy\Entity\Term $available_attribute_term */
             $available_attribute_term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($available_attribute);
             $selected_attribute_term_label = substr($available_attribute_term->label(), strpos($available_attribute_term->label(), ':') + 2);
-            $selected_attribute_facet_options[$key][$available_attribute_term->label()] = $selected_attribute_term_label;
+            $select_attribute_value = $available_attribute_term->label() . ' (' . $available_attribute_term->id() . ')';
+            $selected_attribute_facet_options[$key][$select_attribute_value] = $selected_attribute_term_label;
             $selected_attribute_parent = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($available_attribute_term->id());
             $selected_attribute_parent = reset($selected_attribute_parent);
             $selected_attribute_title = substr($selected_attribute_parent->label(), strpos($selected_attribute_parent->label(), '|') + 2);

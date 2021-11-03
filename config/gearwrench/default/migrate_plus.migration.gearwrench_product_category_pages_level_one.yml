@@ -81,6 +81,16 @@ process:
     process:
       vocabulary_id: vid
       target_id: target_id
+  category_facets_array:
+    plugin: get_all_category_facets
+    source: remote_id
+  field_category_facets:
+    plugin: sub_process
+    source: '@category_facets_array'
+    include_source: true
+    process:
+      vocabulary_id: vid
+      target_id: target_id
 destination:
   plugin: 'entity:node'
 migration_dependencies: {  }

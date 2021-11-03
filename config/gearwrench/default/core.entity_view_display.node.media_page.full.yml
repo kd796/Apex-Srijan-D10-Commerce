@@ -13,7 +13,7 @@ dependencies:
     - field.field.node.media_page.field_preferred_listing_image
     - field.field.node.media_page.field_published_date
     - field.field.node.media_page.field_tags
-    - image.style.medium_portrait_4x5
+    - image.style.media_page_medium_width_720
     - node.type.media_page
   module:
     - blazy
@@ -55,10 +55,10 @@ content:
     label: hidden
     settings:
       trim_length: 80
+      target: _blank
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
+      rel: '0'
     third_party_settings: {  }
     type: link
     region: content
@@ -66,7 +66,7 @@ content:
     weight: 0
     label: hidden
     settings:
-      image_style: medium_portrait_4x5
+      image_style: media_page_medium_width_720
       responsive_image_style: ''
       media_switch: ''
       thumbnail_style: ''
@@ -110,7 +110,7 @@ content:
     region: content
     label: hidden
     settings:
-      image_style: medium_portrait_4x5
+      image_style: media_page_medium_width_720
       responsive_image_style: ''
       media_switch: ''
       thumbnail_style: ''
