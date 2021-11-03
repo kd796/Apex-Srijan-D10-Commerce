@@ -10,6 +10,10 @@
         drupalSettings.selectedAttributes = [];
       }
 
+      if (typeof drupalSettings.selectedSetFilterValue == 'undefined') {
+        drupalSettings.selectedSetFilterValue = 'All';
+      }
+
       if ($item.prop('checked')) {
         var $filterVal = $item.val();
 
@@ -20,6 +24,9 @@
             break;
           case 'attribute':
             drupalSettings.selectedAttributes.push($item.val());
+            break;
+          case 'set':
+            drupalSettings.selectedSetFilterValue = $filterVal;
             break;
         }
       }
@@ -48,10 +55,13 @@
       // Now load the category filter that is hidden on the page.
       var classificationSelect = $productCategoryView.find('.form-item-field-product-classifications-target-id').find('.form-select');
 
+      // Now load the Set? filter that is hidden on the page.
+      var setFilterSelect = $productCategoryView.find('.form-item-field-set-value').find('.form-select');
+
       // Now set all the values for categories and attributes.
       classificationSelect.val(drupalSettings.selectedCategories);
-      // attributeSelect.val(drupalSettings.selectedAttributes);
       attributeTextField.val(drupalSettings.selectedAttributes.join(', '));
+      setFilterSelect.val(drupalSettings.selectedSetFilterValue);
 
       // Finally trigger the hidden submit button.
       $productCategoryView.find('input[type=submit]').click();
@@ -60,6 +70,7 @@
       $('.gearwrench-product-category-filters:not(.gearwrench-product-category-filters--js-initialized)').once('product-category-filters').each(function (index) {
         var $categoryFilter = $('.node--type-product-category__category-filter');
         var $attributeFilter = $('.node--type-product-category__attribute-filter');
+        var $setFilter = $('.node--type-product-category__set-filter');
 
         // Track that this component has been initialized.
         $(this).addClass('gearwrench-product-category-filters--js-initialized');
@@ -71,6 +82,11 @@
 
         $attributeFilter.find('.form-checkbox').bind('change', function (e) {
           Drupal.behaviors.productCategoryFilters.filtering($(this), 'attribute');
+          e.stopImmediatePropagation();
+        });
+
+        $setFilter.bind('change', function (e) {
+          Drupal.behaviors.productCategoryFilters.filtering($(this), 'set');
           e.stopImmediatePropagation();
         });
 

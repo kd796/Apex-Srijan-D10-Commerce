@@ -171,6 +171,27 @@ class ProductCategoryFiltersForm extends FormBase {
       }
     }
 
+    if ($node->hasField('field_show_set_filter')
+        && $node->get('field_show_set_filter')->getValue()[0]['value'] == 1) {
+      $form['set_filter'] = [
+        '#type' => 'radios',
+        '#options' => [
+          'All' => t('Any'),
+          '1' => t('Yes'),
+          '0' => t('No'),
+        ],
+        '#title' => 'Set?',
+        '#weight' => '0',
+        '#required' => FALSE,
+        '#default_value' => 'All',
+        '#attributes' => [
+          'class' => [
+            'node--type-product-category__set-filter',
+          ]
+        ],
+      ];
+    }
+
     return $form;
   }
 
