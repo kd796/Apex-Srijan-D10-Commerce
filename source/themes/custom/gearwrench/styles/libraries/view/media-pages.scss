@@ -1,7 +1,7 @@
 @charset 'UTF-8';
 
 // -----------------------------------------------------------------------------
-// Libraries/View: Product Category Grid
+// Libraries/View: Media Pages
 // -----------------------------------------------------------------------------
 
 /**
@@ -17,24 +17,58 @@
 
 .view-media-pages {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: rem(24px); // sass-lint:disable-line no-misspelled-properties
-  grid-auto-rows: minmax(100px, auto);
 
   @include media('>=md') {
-    grid-template-columns: repeat(3, 1fr);
+    column-gap: rem(40px);
   }
 
-  .views-element-container {
-    grid-column: 1 / 4;
+  .view-header {
+    @include type-header(h6, black, included);
+    @include flex();
+    @include flex-x(justify-content, space-between);
 
-    @include media('>=md') {
-      grid-column: 2 / 4;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    margin: 0;
+    padding: 1rem 0;
+
+    .controls {
+      text-align: right;
+      width: 25%;
+    }
+
+    .filter-icon {
+      @include icon('filter', after);
+
+      cursor: pointer;
+      display: inline-block;
+      font-size: 18px;
+      margin-right: 20px;
+    }
+
+    .sort-icon {
+      @include icon('sort', after);
+
+      cursor: pointer;
+      display: inline-block;
     }
   }
 
   .view-filters {
+    display: none;
     grid-column: 1;
+
+    @include media('>=md') {
+      display: block;
+    }
+
+    .fieldset-legend {
+      display: none;
+    }
+  }
+
+  .view-container {
+    grid-column: 2;
   }
 
   .view-content {
@@ -52,6 +86,7 @@
 
     @include media('>=lg') {
       grid-template-columns: repeat(3, 1fr);
+      grid-column: 2 / 4;
     }
 
     .views-row {
