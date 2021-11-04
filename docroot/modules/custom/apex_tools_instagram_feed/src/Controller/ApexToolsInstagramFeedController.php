@@ -20,7 +20,7 @@ class ApexToolsInstagramFeedController extends ControllerBase {
       if (!empty($access_token)) {
         $facebook_page_id = $service_provider->getFaceBookPageId();
         if (!empty($facebook_page_id)) {
-          $instagram_account_id = $service_provider->getInstagramAccountId($facebook_page_id);;
+          $instagram_account_id = $service_provider->getInstagramAccountId($facebook_page_id);
           if (!empty($instagram_account_id)) {
             $service_provider->getInstagramMediaItems();
           }

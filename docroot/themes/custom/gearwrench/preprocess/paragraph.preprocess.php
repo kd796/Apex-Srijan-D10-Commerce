@@ -497,7 +497,10 @@ function gearwrench_preprocess_paragraph__section__full(array &$variables) {
       '#tag' => 'style',
       '#value' => '.paragraph-component--background-color[data-entity-id="' . $paragraphId . '"]::after { background-color: ' . $backgroundColor . '; opacity: ' . $backgroundOpacity . '; }',
     ];
-    $variables['#attached']['html_head'][] = [$backgroundColorStyling, 'backgroundColorBeforeStyling-' . $paragraphId];
+    $variables['#attached']['html_head'][] = [
+      $backgroundColorStyling,
+      'backgroundColorBeforeStyling-' . $paragraphId,
+    ];
 
   }
 }
