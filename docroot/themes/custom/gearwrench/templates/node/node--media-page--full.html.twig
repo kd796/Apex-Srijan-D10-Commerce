@@ -73,7 +73,13 @@
 <article{{ attributes.addClass(classes) }}>
   <div class="node__top-content">
     <div{{ media_attributes }}>
-      {{ media }}
+      {% if file is not null %}
+        <a href="{{ file }}" target="_blank">
+      {% endif %}
+          {{ media }}
+      {% if file is not null %}
+        </a>
+      {% endif %}
     </div>
     <div class="node__details">
       <header class="node__header">
@@ -82,9 +88,11 @@
       <div class="node__summary">
         {{ summary }}
       </div>
-      <div class="node__cta">
-        {{ cta }}
-      </div>
+      {% if file is not null %}
+        <div class="node__cta">
+          <a href="{{ file }}" target="_blank">{{ 'Download'|t }} {{ mediaType }}</a>
+        </div>
+      {% endif %}
       <div class="node__categories">
         {{ categories }}
       </div>
