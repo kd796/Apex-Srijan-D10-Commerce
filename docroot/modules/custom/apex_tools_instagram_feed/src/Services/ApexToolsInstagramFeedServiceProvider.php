@@ -44,8 +44,25 @@ class ApexToolsInstagramFeedServiceProvider {
    */
   protected $messenger;
 
+  /**
+   * The base url of the endpoint.
+   *
+   * @var string
+   */
   private $endpointBase;
+
+  /**
+   * The app id.
+   *
+   * @var string
+   */
   private $appId;
+
+  /**
+   * The app secret.
+   *
+   * @var string
+   */
   private $appSecret;
 
   /**
@@ -53,7 +70,7 @@ class ApexToolsInstagramFeedServiceProvider {
    */
   public function __construct() {
     $this->logger = \Drupal::logger('apex_tools_instagram_feed');
-    $this->httpClient = \Drupal::httpClient();;
+    $this->httpClient = \Drupal::httpClient();
     $this->messenger = \Drupal::messenger();
     $this->endpointBase = 'https://graph.facebook.com/v12.0/';
     $this->appId = \Drupal::state()->get('app_id');
