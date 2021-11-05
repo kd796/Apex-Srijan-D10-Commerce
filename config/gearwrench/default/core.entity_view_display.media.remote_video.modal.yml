@@ -1,37 +1,36 @@
-uuid: c3f86aa5-6b3a-4c31-b9fa-6f1152edd197
+uuid: 859f9c6c-6f31-4847-80dc-36f25f513c19
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.media.hero
+    - core.entity_view_mode.media.modal
     - field.field.media.remote_video.field_media_oembed_video
     - field.field.media.remote_video.field_media_video_embed_field
     - media.type.remote_video
   module:
-    - video_embed_field
+    - media_video_micromodal
 _core:
-  default_config_hash: e0mjO41Lqd_mk33DE8w6MC5Nn3RmcHJKhokfhGYakKQ
-id: media.remote_video.hero
+  default_config_hash: DPwLUJ_F8J1krETaxWO9RC0FVDKElz_zNw0NuGaK-sc
+id: media.remote_video.modal
 targetEntityType: media
 bundle: remote_video
-mode: hero
+mode: modal
 content:
-  field_media_video_embed_field:
+  thumbnail:
+    type: micromodal_field_formatter
     weight: 0
+    region: content
     label: hidden
     settings:
-      responsive: true
-      width: 854
-      height: 480
-      autoplay: false
+      thumbnail_image_style: media_page_medium_width_720
+      string_classes: ''
+      caption_swap: ''
     third_party_settings: {  }
-    type: video_embed_field_video
-    region: content
 hidden:
   created: true
   field_media_oembed_video: true
+  field_media_video_embed_field: true
   langcode: true
   name: true
   search_api_excerpt: true
-  thumbnail: true
   uid: true

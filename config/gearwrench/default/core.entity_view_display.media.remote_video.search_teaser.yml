@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.media.search_teaser
+    - field.field.media.remote_video.field_media_oembed_video
     - field.field.media.remote_video.field_media_video_embed_field
     - image.style.search_teaser_261x256
     - media.type.remote_video
@@ -27,6 +28,7 @@ content:
     region: content
 hidden:
   created: true
+  field_media_oembed_video: true
   langcode: true
   name: true
   search_api_excerpt: true
