@@ -21,6 +21,7 @@ use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\Row;
 use Drupal\node\NodeInterface;
 use GuzzleHttp\Exception\RequestException;
+use Drupal\file\FileInterface;
 
 /**
  * Implements hook_migrate_prepare_row().
@@ -241,4 +242,53 @@ function gearwrench_migrations_migrate_prepare_row(Row $row, MigrateSourceInterf
  */
 function gearwrench_migrations_preprocess_node(&$variables) {
 
+}
+
+/**
+ * Takes a source file and replaces the existing schema file in the filesystem.
+ *
+ * This will allow us to update the import as needed.
+ */
+function _gearwrench_migrations_clear_destination_and_pull_in_new($source_file) {
+  // For GearWrench.
+  $dest_directory = 'public://import/pim_data';
+  $destination = NULL;
+
+  \Drupal::service('file_system')->prepareDirectory(
+    $dest_directory,
+    FileSystemInterface::CREATE_DIRECTORY
+  );
+
+  if (is_object($source_file)) {
+    $source_filename = $source_file->uri;
+  }
+  else {
+    $source_filename = $source_file;
+  }
+
+  try {
+    $destination = \Drupal::service('file_system')->copy(
+      $source_filename,
+      $dest_directory . '/pim_export_with_schema.xml',
+      FileSystemInterface::EXISTS_REPLACE
+    );
+  }
+  catch (\Exception $e) {
+    \Drupal::messenger()->addError('Failed to copy uploaded file to the pim_data directory. Error: ' . $e->getMessage());
+  }
+
+  return $destination;
+}
+
+/**
+ * Simple file upload validator.
+ */
+function gearwrench_migrations_file_validate_is_xml(FileInterface $file) {
+  $errors = [];
+
+  if (!stripos($file->getFilename(), '.xml', -4)) {
+    $errors[] = t('This is not a valid XML file.');
+  }
+
+  return $errors;
 }

@@ -98,7 +98,8 @@ function gearwrench_preprocess_node__media_page__full(&$variables) {
 
   // Move media to media variable.
   $variables['file'] = NULL;
-  $downloadLinkEnable = $node->get('field_enable_download_link')->getValue()[0]['value'];
+  $dle_array = $node->get('field_enable_download_link')->getValue();
+  $downloadLinkEnable = !empty($dle_array) ? $dle_array[0]['value'] : '0';
   if (isset($variables['content']['field_preferred_listing_image'][0])) {
     $variables['media_attributes']['class'][] = 'node__media--with-media';
     $variables['media_attributes']['class'][] = 'node__listing-image';
@@ -136,8 +137,15 @@ function gearwrench_preprocess_node__media_page__full(&$variables) {
   elseif (isset($variables['content']['field_media'][0])) {
     $variables['media_attributes']['class'][] = 'node__media--with-media';
     $variables['media_attributes']['class'][] = 'node__listing-image';
-    $variables['media'] = $variables['content']['field_media'];
-    unset($variables['media']['#theme']);
+    $mediaItem = Media::load($node->get('field_media')->getValue()[0]['target_id']);
+    if ($mediaItem->bundle() == 'remote_video') {
+      $build = \Drupal::entityTypeManager()->getViewBuilder('media')->view($mediaItem, 'modal');
+      $variables['media'] = $build;
+    }
+    else {
+      $variables['media'] = $variables['content']['field_media'];
+      unset($variables['media']['#theme']);
+    }
     unset($variables['content']['field_media']);
   }
   else {
