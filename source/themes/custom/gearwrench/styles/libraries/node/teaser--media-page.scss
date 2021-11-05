@@ -24,6 +24,7 @@
 
   .node__content {
     height: 100%;
+    word-break: break-all;
 
     .node__listing-image {
       @include flex();
@@ -33,6 +34,10 @@
       display: flex;
       overflow: hidden;
       padding-top: 0;
+
+      .field[data-blazy] {
+        min-width: 100%;
+      }
 
       .media {
         display: flex;
