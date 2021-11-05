@@ -57,3 +57,21 @@ function _gearwrench_migrations_source_files() {
     'key' => 'filename',
   ]);
 }
+
+/**
+ * Imports the latest update from the PIM.
+ */
+function gearwrench_migrations_update_8001(&$sandbox) {
+  $dirname = drupal_get_path('module', 'gearwrench_migrations') . '/import/pim-dump/10-29-2021';
+
+  $source_files = \Drupal::service('file_system')->scanDirectory($dirname, '/.*/', [
+    'recurse' => FALSE,
+    'key' => 'filename',
+  ]);
+
+  if (is_array($source_files)) {
+    $source_files = $source_files[0];
+  }
+
+  _gearwrench_migrations_clear_destination_and_pull_in_new($source_files);
+}
