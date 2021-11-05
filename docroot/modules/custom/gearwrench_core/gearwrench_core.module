@@ -12,6 +12,7 @@
 use Drupal\Component\Utility\Html;
 use Drupal\views\ViewExecutable;
 use Drupal\node\Entity\Node;
+use Drupal\media\MediaInterface;
 
 /**
  * Implements hook_theme().
@@ -194,4 +195,14 @@ function _gearwrench_core_return_product_classification(Node $node, $call) {
 
   // Provide the term name at requested level, empty string if none exists.
   return array_key_exists($call, $parents) ? $parents[$call] : '';
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function gearwrench_core_media_presave(MediaInterface $entity) {
+  if ($entity->bundle() == 'remote_video') {
+    $url = $entity->get('field_media_video_embed_field')->getValue()[0]['value'];
+    $entity->set('field_media_oembed_video', $url);
+  }
 }
