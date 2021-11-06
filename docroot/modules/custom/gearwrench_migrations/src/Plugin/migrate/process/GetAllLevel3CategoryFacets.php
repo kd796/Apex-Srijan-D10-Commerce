@@ -36,26 +36,36 @@ class GetAllLevel3CategoryFacets extends ProcessPluginBase {
       TRUE
     );
 
-    $level_two_parent = $this->getParentTermFromClassificationId($value);
-    $level_two_parent_source_id = $this->getClassificationId($level_two_parent);
-
-    $top_level_parent = $this->getParentTermFromClassificationId($level_two_parent_source_id);
-    $top_level_parent_source_id = $this->getClassificationId($top_level_parent);
-
-    // Load the facets for the parent instead.
-    $facets = $this->mapCategoryToFacetsList($top_level_parent_source_id);
-
     $all_terms_array = [];
+    $value = (string) $value;
+    $level_two_parent = $this->getParentTermFromClassificationId($value);
 
-    if (!empty($facets) && !empty($product_specifications)) {
-      foreach ($product_specifications as $spec) {
-        $source_id = explode(' | ', $spec->label())[0];
+    if (!empty($level_two_parent)) {
+      $level_two_parent_source_id = $this->getClassificationId($level_two_parent);
 
-        if (in_array($source_id, $facets)) {
-          $all_terms_array[] = [
-            'vid' => 'product_specifications',
-            'target_id' => $spec->id(),
-          ];
+      if (!empty($level_two_parent_source_id)) {
+        $top_level_parent = $this->getParentTermFromClassificationId($level_two_parent_source_id);
+
+        if (!empty($top_level_parent)) {
+          $top_level_parent_source_id = $this->getClassificationId($top_level_parent);
+
+          if (!empty($level_two_parent_source_id)) {
+            // Load the facets for the parent instead.
+            $facets = $this->mapCategoryToFacetsList($top_level_parent_source_id);
+
+            if (!empty($facets) && !empty($product_specifications)) {
+              foreach ($product_specifications as $spec) {
+                $source_id = explode(' | ', $spec->label())[0];
+
+                if (in_array($source_id, $facets)) {
+                  $all_terms_array[] = [
+                    'vid' => 'product_specifications',
+                    'target_id' => $spec->id(),
+                  ];
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -75,21 +85,34 @@ class GetAllLevel3CategoryFacets extends ProcessPluginBase {
       'field_classification_id' => $classificationID,
     ]);
 
-    /** @var \Drupal\taxonomy\Entity\Term $current_term */
-    $current_term = array_pop($product_categories);
-    $parent = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($current_term->id());
+    if (!empty($product_categories)) {
+      /** @var \Drupal\taxonomy\Entity\Term $current_term */
+      $current_term = array_pop($product_categories);
 
-    /** @var \Drupal\taxonomy\Entity\Term $parent */
-    return reset($parent);
+      if (!is_object($current_term)) {
+        $parent = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($current_term->id());
+
+        /** @var \Drupal\taxonomy\Entity\Term $parent */
+        return reset($parent);
+      }
+    }
+
+    return NULL;
   }
 
   /**
    * Get the classification ID from the parent of the passed in term.
    */
   protected function getClassificationId($term) {
-    $term_arr = $term->toArray();
+    if (is_object($term)) {
+      $term_arr = $term->toArray();
 
-    return $term_arr['field_classification_id'][0]['value'];
+      if (!empty($term_arr['field_classification_id'][0]['value'])) {
+        return $term_arr['field_classification_id'][0]['value'];
+      }
+    }
+
+    return NULL;
   }
 
   /**
@@ -240,7 +263,7 @@ class GetAllLevel3CategoryFacets extends ProcessPluginBase {
       ],
     ];
 
-    if (isset($mapping[$category_remote_id])) {
+    if (!empty($mapping[$category_remote_id])) {
       return $mapping[$category_remote_id];
     }
 
