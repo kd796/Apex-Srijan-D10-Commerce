@@ -67,11 +67,19 @@
       $productCategoryView.find('input[type=submit]').click();
     },
     attach: function (context, settings) {
+      let catArray = [];
+      $('#edit-field-product-classifications-target-id option').once('setfilters').each(function (index) {
+        if ($(this).is(':selected')) {
+          $('#edit-category-filter-' + $(this).val()).prop('checked', true);
+          catArray.push($(this).val());
+          drupalSettings.selectedCategories = catArray;
+        }
+      });
+
       $('.gearwrench-product-category-filters:not(.gearwrench-product-category-filters--js-initialized)').once('product-category-filters').each(function (index) {
         var $categoryFilter = $('.node--type-product-category__category-filter');
         var $attributeFilter = $('.node--type-product-category__attribute-filter');
         var $setFilter = $('.node--type-product-category__set-filter');
-
         // Track that this component has been initialized.
         $(this).addClass('gearwrench-product-category-filters--js-initialized');
 
