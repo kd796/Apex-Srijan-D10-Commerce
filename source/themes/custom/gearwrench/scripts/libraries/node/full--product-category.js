@@ -68,11 +68,20 @@
     },
     attach: function (context, settings) {
       let catArray = [];
-      $('#edit-field-product-classifications-target-id option').once('setfilters').each(function (index) {
+      let setArray = [];
+      $('#edit-field-product-classifications-target-id option').once('setCatFilters').each(function (index) {
         if ($(this).is(':selected')) {
           $('#edit-category-filter-' + $(this).val()).prop('checked', true);
           catArray.push($(this).val());
           drupalSettings.selectedCategories = catArray;
+        }
+      });
+
+      $('#edit-field-set-value option').once('setSetFilters').each(function (index) {
+        if ($(this).is(':selected')) {
+          $('#edit-set-filter-' + $(this).val()).prop('checked', true);
+          setArray.push($(this).val());
+          drupalSettings.selectedSetFilterValue = setArray;
         }
       });
 
