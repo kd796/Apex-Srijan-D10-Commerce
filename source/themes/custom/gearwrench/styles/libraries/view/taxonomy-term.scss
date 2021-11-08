@@ -32,10 +32,27 @@
     margin-bottom: rem(30px);
   }
 
+  .view-header {
+    text-transform: uppercase;
+    margin-bottom: rem(20px);
+
+    .term__title {
+      h2 {
+        @include type-header(h1);
+      }
+    }
+  }
+
+  .feed-icons {
+    display: none;
+  }
+
   .view-content {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: rem(25px); // sass-lint:disable-line no-misspelled-properties
+
+    margin-bottom: rem(60px);
 
     @include media('>=md') {
       grid-template-columns: repeat(3, minmax(0, 1fr));
