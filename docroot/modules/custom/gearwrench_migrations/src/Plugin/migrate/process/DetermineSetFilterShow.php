@@ -26,13 +26,14 @@ class DetermineSetFilterShow extends ProcessPluginBase {
       'W2_787570', 'W2_16111'
     ];
 
+    $value = (string) $value;
+
     // Enable for all categories except those specified above.
     if (!in_array((string) $value, $disable_set_filter)) {
       return 1;
     }
-    else {
-      return 0;
-    }
+
+    return 0;
   }
 
 }

@@ -378,6 +378,11 @@ function gearwrench_preprocess_node__search_index(&$variables) {
   else {
     $variables['media_attributes']['class'][] = 'node__media--no-media';
   }
+
+  if (!empty($variables['content']['field_preferred_listing_image'][0])) {
+    $variables['media'] = $variables['content']['field_preferred_listing_image'];
+    unset($variables['content']['field_preferred_listing_image']);
+  }
 }
 
 /**

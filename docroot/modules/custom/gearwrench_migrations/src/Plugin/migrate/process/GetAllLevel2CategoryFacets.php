@@ -34,6 +34,7 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
       TRUE
     );
 
+    $value = (string) $value;
     $facets = $this->mapCategoryToCustomFacets($value);
 
     if (empty($facets)) {
@@ -45,28 +46,39 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
 
       /** @var \Drupal\taxonomy\Entity\Term $current_term */
       $current_term = array_pop($product_categories);
-      $parent = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($current_term->id());
 
-      /** @var \Drupal\taxonomy\Entity\Term $parent */
-      $parent = reset($parent);
-      $parent_arr = $parent->toArray();
-      $parent_source_id = $parent_arr['field_classification_id'][0]['value'];
+      if (!empty($current_term) && is_object($current_term)) {
+        $parent = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($current_term->id());
 
-      // Load the facets for the parent instead.
-      $facets = $this->mapCategoryToFacetsList($parent_source_id);
+        /** @var \Drupal\taxonomy\Entity\Term $parent */
+        $parent = reset($parent);
+
+        if (is_object($parent)) {
+          $parent_arr = $parent->toArray();
+
+          if (!empty($parent_arr['field_classification_id'][0]['value'])) {
+            $parent_source_id = $parent_arr['field_classification_id'][0]['value'];
+
+            // Load the facets for the parent instead.
+            $facets = $this->mapCategoryToFacetsList($parent_source_id);
+          }
+        }
+      }
     }
 
     $all_terms_array = [];
 
     if (!empty($facets) && !empty($product_specifications)) {
       foreach ($product_specifications as $spec) {
-        $source_id = explode(' | ', $spec->label())[0];
+        if (is_object($spec) && !empty($spec->label())) {
+          $source_id = explode(' | ', $spec->label())[0];
 
-        if (in_array($source_id, $facets)) {
-          $all_terms_array[] = [
-            'vid' => 'product_specifications',
-            'target_id' => $spec->id(),
-          ];
+          if (in_array($source_id, $facets)) {
+            $all_terms_array[] = [
+              'vid' => 'product_specifications',
+              'target_id' => $spec->id(),
+            ];
+          }
         }
       }
     }
@@ -94,7 +106,7 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
       'W2_783462' => ['ATT496', 'ATT802893', 'ATT783458'],
     ];
 
-    if (isset($mapping[$category_remote_id])) {
+    if (!empty($mapping[$category_remote_id])) {
       return $mapping[$category_remote_id];
     }
 
@@ -249,7 +261,7 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
       ],
     ];
 
-    if (isset($mapping[$category_remote_id])) {
+    if (!empty($mapping[$category_remote_id])) {
       return $mapping[$category_remote_id];
     }
 

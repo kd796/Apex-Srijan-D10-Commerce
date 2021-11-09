@@ -24,7 +24,7 @@
 
   .node__content {
     height: 100%;
-    word-break: break-all;
+    word-break: break-word;
 
     .node__listing-image {
       @include flex();
@@ -34,6 +34,7 @@
       display: flex;
       overflow: hidden;
       padding-top: 0;
+      width: 100%;
 
       .field[data-blazy] {
         min-width: 100%;
@@ -47,7 +48,6 @@
 
         img,
         iframe {
-          object-fit: cover;
           height: 100%;
           width: 100%;
           position: absolute;
@@ -55,6 +55,10 @@
           left: 0;
           right: 0;
           bottom: 0;
+        }
+
+        img {
+          object-fit: cover;
         }
       }
     }

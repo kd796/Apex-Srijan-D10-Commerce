@@ -31,12 +31,14 @@ function apex_tools_instagram_feed_auth_callback($form, FormStateInterface $form
   $app_id = $form_state->getValue('app_id');
   $app_secret = $form_state->getValue('app_secret');
   $redirect_uri = $form_state->getValue('redirect_uri');
+
   $facebook_creds = [
     'app_id' => $app_id,
     'app_secret' => $app_secret,
     'default_graph_version' => 'v12.0',
     'persistent_data_handler' => 'session'
   ];
+
   $facebook = new Facebook($facebook_creds);
   $helper = $facebook->getRedirectLoginHelper();
   $permissions = [
@@ -44,6 +46,7 @@ function apex_tools_instagram_feed_auth_callback($form, FormStateInterface $form
     'instagram_basic',
     'pages_show_list'
   ];
+
   $login_url = $helper->getLoginUrl($redirect_uri, $permissions);
   $response = new TrustedRedirectResponse(Url::fromUri($login_url)->toString());
   $form_state->setResponse($response);
@@ -55,10 +58,13 @@ function apex_tools_instagram_feed_auth_callback($form, FormStateInterface $form
 function apex_tools_instagram_feed_cron() {
   $service_provider = \Drupal::service('apex_tools_instagram_feed.service_provider');
   $access_token = \Drupal::state()->get('access_token');
+
   if (!empty($access_token)) {
     $facebook_page_id = $service_provider->getFaceBookPageId();
+
     if (!empty($facebook_page_id)) {
       $instagram_account_id = $service_provider->getInstagramAccountId($facebook_page_id);
+
       if (!empty($instagram_account_id)) {
         $service_provider->getInstagramMediaItems();
       }

@@ -16,7 +16,8 @@
 
 .node--type-page.node--view-mode-search-index,
 .node--type-basic-page.node--view-mode-search-index,
-.node--type-landing-page.node--view-mode-search-index {
+.node--type-landing-page.node--view-mode-search-index,
+.node--type-media-page.node--view-mode-search-index {
   height: 100%;
 
   .node__inner {
@@ -37,6 +38,10 @@
       overflow: hidden;
       padding-top: 0;
 
+      .field[data-blazy] {
+        min-width: 100%;
+      }
+
       .media {
         display: flex;
         position: relative;
@@ -45,7 +50,6 @@
 
         img,
         iframe {
-          object-fit: cover;
           height: 100%;
           width: 100%;
           position: absolute;
@@ -53,6 +57,10 @@
           left: 0;
           right: 0;
           bottom: 0;
+        }
+
+        img {
+          object-fit: cover;
         }
       }
     }

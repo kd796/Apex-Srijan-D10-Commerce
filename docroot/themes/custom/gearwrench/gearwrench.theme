@@ -387,3 +387,14 @@ function gearwrench_form_views_exposed_form_alter(array &$form, FormStateInterfa
     }
   }
 }
+
+/**
+ * Implements preprocess_taxonomy_term().
+ */
+function gearwrench_preprocess_taxonomy_term(array &$variables) {
+  foreach ($variables['title_attributes']['class'] as $k => $v) {
+    if ($v == 'visually-hidden') {
+      unset($variables['title_attributes']['class'][$k]);
+    }
+  }
+}
