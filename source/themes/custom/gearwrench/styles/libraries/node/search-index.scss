@@ -16,7 +16,8 @@
 
 .node--type-page.node--view-mode-search-index,
 .node--type-basic-page.node--view-mode-search-index,
-.node--type-landing-page.node--view-mode-search-index {
+.node--type-landing-page.node--view-mode-search-index,
+.node--type-media-page.node--view-mode-search-index {
   height: 100%;
 
   .node__inner {
@@ -36,6 +37,10 @@
       display: flex;
       overflow: hidden;
       padding-top: 0;
+
+      .field[data-blazy] {
+        min-width: 100%;
+      }
 
       .media {
         display: flex;
