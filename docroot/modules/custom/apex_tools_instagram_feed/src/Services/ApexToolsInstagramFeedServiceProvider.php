@@ -66,6 +66,13 @@ class ApexToolsInstagramFeedServiceProvider {
   private $appSecret;
 
   /**
+   * The maximum number of items we import.
+   *
+   * @var int
+   */
+  private $importLimit = 5;
+
+  /**
    * Constructs a new object.
    */
   public function __construct() {
@@ -82,6 +89,7 @@ class ApexToolsInstagramFeedServiceProvider {
    */
   public function getAccessToken() {
     $access_token = NULL;
+
     // Create Facebook object.
     $facebook_creds = [
       'app_id' => $this->appId,
@@ -89,11 +97,14 @@ class ApexToolsInstagramFeedServiceProvider {
       'default_graph_version' => 'v12.0',
       'persistent_data_handler' => 'session'
     ];
+
     // Create FB Object.
     $facebook = new Facebook($facebook_creds);
+
     // Set FB Services.
     $helper = $facebook->getRedirectLoginHelper();
     $oAuth2Client = $facebook->getOAuth2Client();
+
     try {
       $access_token = $helper->getAccessToken();
     }
@@ -104,17 +115,20 @@ class ApexToolsInstagramFeedServiceProvider {
     catch (FacebookSDKException $e) {
       $this->logger->warning('Facebook SDK returned an error "%error".', ['%error' => $e->getMessage()]);
     }
+
     // Exchange short for long.
     if (!$access_token->isExpired()) {
       try {
         $access_token = $oAuth2Client->getLongLivedAccessToken($access_token);
         $access_token = (string) $access_token;
+
         \Drupal::state()->set('access_token', $access_token);
       }
       catch (FacebookSDKException $e) {
         $this->logger->warning('Error getting long lived access token "%error".', ['%error' => $e->getMessage()]);
       }
     }
+
     return $access_token;
   }
 
@@ -125,12 +139,15 @@ class ApexToolsInstagramFeedServiceProvider {
     $facebook_page_id = NULL;
     $access_token = \Drupal::state()->get('access_token');
     $facebook_account_endpoint = $this->endpointBase . 'me/accounts';
+
     // Endpoint Params.
     $pages_params = [
       'access_token' => (string) $access_token
     ];
+
     // Add Params to Endpoint.
     $facebook_account_endpoint .= '?' . http_build_query($pages_params);
+
     try {
       $pages_response = $this->httpClient->get($facebook_account_endpoint);
       $pages_response_data = json_decode($pages_response->getBody()->getContents());
@@ -150,25 +167,31 @@ class ApexToolsInstagramFeedServiceProvider {
    */
   public function getInstagramAccountId($facebook_page_id) {
     $instagram_account_id = NULL;
+
     // Get Instagram Account ID.
     $instagram_account_endpoint = $this->endpointBase . $facebook_page_id;
+
     // Endpoint Params.
     $instagram_params = [
       'fields' => 'instagram_business_account',
       'access_token' => \Drupal::state()->get('access_token')
     ];
+
     // Add Params to Endpoint.
     $instagram_account_endpoint .= '?' . http_build_query($instagram_params);
+
     try {
       $instagram_account_response = $this->httpClient->get($instagram_account_endpoint);
       $instagram_account_response_data = json_decode($instagram_account_response->getBody()->getContents());
       $instagram_account_id = $instagram_account_response_data->instagram_business_account->id;
+
       \Drupal::state()->set('instagram_account_id', $instagram_account_id);
     }
     catch (RequestException $e) {
       $this->logger->warning('Failed to get instagram_account_id due to "%error".', ['%error' => $e->getMessage()]);
       $this->messenger->addStatus(t('Failed to get instagram_account_id due to "%error".', ['%error' => $e->getMessage()]));
     }
+
     return $instagram_account_id;
   }
 
@@ -177,30 +200,54 @@ class ApexToolsInstagramFeedServiceProvider {
    */
   public function getInstagramMediaItems() {
     $instagram_account_id = \Drupal::state()->get('instagram_account_id');
+
     // Get Media.
     $instagram_media_endpoint = $this->endpointBase . $instagram_account_id . '/media';
     $instagram_media_params = [
       'access_token' => \Drupal::state()->get('access_token'),
     ];
+
     // Add params to endpoint.
     $instagram_media_endpoint .= '?' . http_build_query($instagram_media_params);
+
     try {
       $instagram_media_response = $this->httpClient->get($instagram_media_endpoint);
       $instagram_media_response_data = json_decode($instagram_media_response->getBody()->getContents());
+
+      /*
+       * The idea here is that we will skip over the responses that say VIDEO
+       * for the MEDIA TYPE until we can support pulling that in. Thus, we grab
+       * more than we would actually need in case we skip some.
+       */
+      $howManyToLoad = $this->importLimit * 2;
       $media_items = $instagram_media_response_data->data;
-      $media_items = array_slice($media_items, 0, 5, TRUE);
+      $media_items = array_slice($media_items, 0, $howManyToLoad, TRUE);
       $this->clearSocialPosts();
+      $imported = 0;
+
       foreach ($media_items as $media_item) {
         $instagram_media_item_endpoint = $this->endpointBase . $media_item->id;
+
         $instagram_media_item_params = [
           'fields' => 'caption,comments_count,id,ig_id,is_comment_enabled,like_count,media_product_type,media_type,media_url,owner,permalink,shortcode,thumbnail_url,timestamp,username,video_title',
           'access_token' => \Drupal::state()->get('access_token'),
         ];
+
         $instagram_media_item_endpoint .= '?' . http_build_query($instagram_media_item_params);
+
         try {
           $instagram_media_item_response = $this->httpClient->get($instagram_media_item_endpoint);
           $instagram_media_item_response_data = json_decode($instagram_media_item_response->getBody()->getContents());
-          $this->createSocialPosts($instagram_media_item_response_data);
+
+          if ($instagram_media_item_response_data->media_type !== 'VIDEO') {
+            $this->createSocialPosts($instagram_media_item_response_data);
+            $imported++;
+
+            // When we have reached the import limit, lets leave this loop.
+            if ($imported === $this->importLimit) {
+              break;
+            }
+          }
         }
         catch (RequestException $e) {
           $this->logger->warning('Failed to get instagram_media_item due to "%error".', ['%error' => $e->getMessage()]);
@@ -219,11 +266,13 @@ class ApexToolsInstagramFeedServiceProvider {
    */
   public function clearSocialPosts() {
     $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+
     // Delete all social posts and associated media items.
     $social_query = \Drupal::entityQuery('node')
       ->condition('type', 'social_post');
     $social_nids = $social_query->execute();
     $posts = $node_storage->loadMultiple($social_nids);
+
     if (!empty($posts)) {
       foreach ($posts as $post) {
         // Delete Associated Media and Files.
@@ -232,21 +281,26 @@ class ApexToolsInstagramFeedServiceProvider {
           $mid = $post->get('field_media')->target_id;
           $media = Media::load($mid);
           $fid = $media->field_media_image->target_id;
+
           if ($mid) {
             $media_storage_handler = \Drupal::entityTypeManager()->getStorage('media');
             $media_item = $media_storage_handler->load($mid);
+
             if ($media_item) {
               $media_storage_handler->delete([$media_item]);
             }
           }
+
           if ($fid) {
             $file_storage_handler = \Drupal::entityTypeManager()->getStorage('file');
             $file = $file_storage_handler->load($fid);
+
             if ($file) {
               $file_storage_handler->delete([$file]);
             }
           }
         }
+
         // Delete Post.
         $post->delete();
       }
@@ -261,25 +315,32 @@ class ApexToolsInstagramFeedServiceProvider {
     $post_title = 'Instagram Post | ' . $instagram_post_id;
     $post_url = $instagram_media_item_response_data->permalink;
     $post_media_url = $instagram_media_item_response_data->media_url;
+
     if (!empty($instagram_media_item_response_data->caption)) {
       $post_content = $instagram_media_item_response_data->caption;
     }
     else {
       $post_content = NULL;
     }
+
     $post_media_url_path = parse_url($post_media_url);
     $post_media_url_basename = basename($post_media_url_path['path']);
+
     // Prep Directory.
     $image_directory = 'public://social_images/' . date("Y-m") . '/';
     \Drupal::service('file_system')->prepareDirectory($image_directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
+
     // Get File.
     $headers_array = @get_headers($post_media_url);
     $headers_check = $headers_array[0];
+
     if (strpos($headers_check, "200")) {
       $file_data = file_get_contents($post_media_url);
       $file = file_save_data($file_data, $image_directory . $post_media_url_basename, FileSystemInterface::EXISTS_REPLACE);
+
       // See if there's a media item we can use already.
       $usage = \Drupal::service('file.usage')->listUsage($file);
+
       if (count($usage) > 0 && !empty($usage['file']['media'])) {
         $media_id = array_key_first($usage['file']['media']);
       }
@@ -292,6 +353,7 @@ class ApexToolsInstagramFeedServiceProvider {
             'alt' => 'Image of ' . $post_title
           ],
         ]);
+
         $media->setName($post_title)->setPublished(TRUE)->save();
         $media_id = $media->id();
       }
@@ -306,6 +368,7 @@ class ApexToolsInstagramFeedServiceProvider {
       ],
       'field_post_url' => $post_url,
     ]);
+
     $node->save();
     $this->messenger->addStatus(t('A post with a title of "%title" has been created.', ['%title' => $post_title]));
   }
