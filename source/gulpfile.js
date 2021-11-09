@@ -46,7 +46,7 @@ const iconfontCss = require('gulp-iconfont-css');
 const sassLint = require('gulp-sass-lint');
 const eslint = require('gulp-eslint');
 const fs = require('fs');
-const merge  = require('merge2');
+const merge = require('merge2');
 const packageJson = require('./package.json');
 const { src, dest, watch, parallel, series } = require('gulp');
 
@@ -115,6 +115,17 @@ function buildImages() {
       .pipe(changed('../docroot/themes/custom/' + entry.themeName + '/' + customDest + '/images'))
       .pipe(imagemin({progressive: true}))
       .pipe(dest('../docroot/themes/custom/' + entry.themeName + '/' + customDest + '/images'));
+  });
+
+  return merge(tasks);
+}
+
+function buildFavicons() {
+  const tasks = config.map(function(entry) {
+    return src('themes/custom/' + entry.themeName + '/favicons/**/*')
+      .pipe(changed('../docroot/themes/custom/' + entry.themeName + '/' + customDest + '/favicons'))
+      .pipe(imagemin({progressive: true}))
+      .pipe(dest('../docroot/themes/custom/' + entry.themeName + '/favicons'));
   });
 
   return merge(tasks);
@@ -207,6 +218,12 @@ function watchImages() {
   });
 }
 
+function watchFavicons() {
+  config.map(function(entry) {
+    watch('themes/custom/' + entry.themeName + '/favicons/**/*', {usePolling: true, interval: 1000}, buildFavicons);
+  });
+}
+
 function watchFonts() {
   config.map(function(entry) {
     watch('themes/custom/' + entry.themeName + '/fonts/**/*', {usePolling: true, interval: 1000}, buildFonts);
@@ -223,6 +240,6 @@ function watchIcons() {
  * 5. Exports                         *
  **************************************/
 
-exports.default = series(buildFonts, buildIcons, buildImages, testJsLint, buildJavascript, testSassLint, buildSass);
+exports.default = series(buildFonts, buildIcons, buildImages, buildFavicons, testJsLint, buildJavascript, testSassLint, buildSass);
 exports.test = series(testJsLint, testSassLint);
-exports.watch = parallel(watchFonts, watchImages, watchIcons, watchJavascript, watchSass);
+exports.watch = parallel(watchFonts, watchImages, watchFavicons, watchIcons, watchJavascript, watchSass);
