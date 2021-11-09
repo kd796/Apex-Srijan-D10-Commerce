@@ -62,11 +62,13 @@
       height: 100%;
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem; // sass-lint:disable-line no-misspelled-properties
+      column-gap: 1rem;
+      row-gap: 1rem;
 
       @include media('>=lg') {
         flex-wrap: nowrap;
-        gap: 1.5rem; // sass-lint:disable-line no-misspelled-properties
+        column-gap: 1rem;
+        row-gap: 1rem;
       }
 
       .component-product-slider__list-item {
