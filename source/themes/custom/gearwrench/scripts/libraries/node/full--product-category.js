@@ -2,6 +2,9 @@
   'use strict';
   Drupal.behaviors.productCategoryFilters = {
     filtering: function ($item, $filterType) {
+      let newVal = '';
+      let newArray = [];
+
       if (typeof drupalSettings.selectedCategories == 'undefined') {
         drupalSettings.selectedCategories = [];
       }
@@ -23,7 +26,8 @@
             drupalSettings.selectedCategories.push($filterVal);
             break;
           case 'attribute':
-            drupalSettings.selectedAttributes.push($item.val());
+            newVal = drupalSettings.selectedAttributes + ', ' + $item.val();
+            drupalSettings.selectedAttributes = newVal;
             break;
           case 'set':
             drupalSettings.selectedSetFilterValue = $filterVal;
@@ -39,9 +43,11 @@
             });
             break;
           case 'attribute':
-            drupalSettings.selectedAttributes = drupalSettings.selectedAttributes.filter(function (item) {
+            newVal = drupalSettings.selectedAttributes.split(', ');
+            newArray = newVal.filter(function (item) {
               return item !== $item.val();
             });
+            drupalSettings.selectedAttributes = newArray.join(', ');
             break;
         }
       }
@@ -60,18 +66,43 @@
 
       // Now set all the values for categories and attributes.
       classificationSelect.val(drupalSettings.selectedCategories);
-      attributeTextField.val(drupalSettings.selectedAttributes.join(', '));
+      attributeTextField.val(drupalSettings.selectedAttributes);
       setFilterSelect.val(drupalSettings.selectedSetFilterValue);
 
       // Finally trigger the hidden submit button.
       $productCategoryView.find('input[type=submit]').click();
     },
     attach: function (context, settings) {
+      drupalSettings.selectedAttributes = $('#edit-field-product-specifications-target-id').val();
+
+      let catArray = [];
+      let setArray = [];
+      let specArray = drupalSettings.selectedAttributes.split(', ');
+
+      $('#edit-field-product-classifications-target-id option').once('setCatFilters').each(function (index) {
+        if ($(this).is(':selected')) {
+          $('#edit-category-filter-' + $(this).val()).prop('checked', true);
+          catArray.push($(this).val());
+          drupalSettings.selectedCategories = catArray;
+        }
+      });
+
+      $('#edit-field-set-value option').once('setSetFilters').each(function (index) {
+        if ($(this).is(':selected')) {
+          $('#edit-set-filter-' + $(this).val()).prop('checked', true);
+          setArray.push($(this).val());
+          drupalSettings.selectedSetFilterValue = setArray;
+        }
+      });
+
+      $.each(specArray, function (index, value) {
+        $('.node--type-product-category__attribute-filter').find('input[value="' + value + '"]').prop('checked', true);
+      });
+
       $('.gearwrench-product-category-filters:not(.gearwrench-product-category-filters--js-initialized)').once('product-category-filters').each(function (index) {
         var $categoryFilter = $('.node--type-product-category__category-filter');
         var $attributeFilter = $('.node--type-product-category__attribute-filter');
         var $setFilter = $('.node--type-product-category__set-filter');
-
         // Track that this component has been initialized.
         $(this).addClass('gearwrench-product-category-filters--js-initialized');
 
