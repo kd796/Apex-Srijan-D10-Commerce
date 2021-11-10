@@ -9,10 +9,9 @@ dependencies:
     - field.field.node.landing_page.field_components
     - field.field.node.landing_page.field_media
     - field.field.node.landing_page.field_meta_tags
-    - image.style.product_small
     - node.type.landing_page
   module:
-    - blazy
+    - entity_reference_revisions
     - text
     - user
 _core:
@@ -24,56 +23,23 @@ mode: search_index
 content:
   body:
     type: text_default
-    weight: 1
+    weight: 0
     region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
-  field_media:
-    type: blazy_media
-    weight: 0
+  field_component_hero:
+    type: entity_reference_revisions_entity_view
+    weight: 1
     region: content
     label: hidden
     settings:
-      image_style: product_small
-      responsive_image_style: ''
-      media_switch: ''
-      thumbnail_style: ''
-      ratio: ''
-      view_mode: search_teaser
-      current_view_mode: search_index
-      background: false
-      caption:
-        title: '0'
-        alt: '0'
-      class: ''
-      id: ''
-      image: ''
+      view_mode: search_index
       link: ''
-      overlay: ''
-      title: ''
-      vanilla: false
-      icon: ''
-      layout: ''
-      cache: 0
-      skin: ''
-      fx: ''
-      style: ''
-      box_caption: ''
-      box_caption_custom: ''
-      box_media_style: ''
-      box_style: ''
-      _uri: ''
-      breakpoints: {  }
-      sizes: ''
-      grid_header: ''
-      grid: 0
-      grid_medium: 0
-      grid_small: 0
     third_party_settings: {  }
 hidden:
-  field_component_hero: true
   field_components: true
+  field_media: true
   field_meta_tags: true
   langcode: true
   links: true
