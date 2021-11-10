@@ -172,6 +172,7 @@ class ProductCategoryFiltersForm extends FormBase {
     }
 
     if ($node->hasField('field_show_set_filter')
+        && !empty($node->get('field_show_set_filter')->getValue()[0]['value'])
         && $node->get('field_show_set_filter')->getValue()[0]['value'] == 1) {
       $form['set_filter'] = [
         '#type' => 'radios',

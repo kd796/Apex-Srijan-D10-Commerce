@@ -226,7 +226,4 @@
     $mobileCategoryFilters.removeClass('mobile-show');
   });
 
-  $(document).ajaxComplete(function () {
-    $mobileMenuIcon = $('.sort-icon');
-  });
 })(jQuery, Drupal);
