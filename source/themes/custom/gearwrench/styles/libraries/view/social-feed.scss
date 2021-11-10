@@ -16,7 +16,10 @@
 
 .view-social-feed {
   @include container-full-width();
-
+  .field--type-text-with-summary {
+    max-height: 100%;
+    overflow: hidden;
+  }
   .view-header {
     @include container-full-width();
     @include flex();
@@ -112,12 +115,31 @@
     }
   }
 
+  .swiper-pagination {
+    display: block;
+    bottom: -4rem;
+
+    @include media('>md') {
+      display: none;
+    }
+
+    .swiper-pagination-bullet {
+      background: transparent;
+      border-color: $primary-orange;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: $primary-orange;
+    }
+  }
+
   .view-content {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(1, minmax(0, 1fr));
     gap: rem(8px); // sass-lint:disable-line no-misspelled-properties
 
     @include media('>=md') {
+      display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
     }
 
@@ -131,14 +153,14 @@
       }
 
       .node__content-container {
+        border: 20px solid $black;
         position: absolute;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
-        height: 100%;
-        width: 100%;
         opacity: 0;
+        padding: 20px;
         transition: .5s ease;
         background-color: rgba(235, 137, 0, .8);
         display: flex;
