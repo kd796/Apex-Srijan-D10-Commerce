@@ -7,16 +7,16 @@ dependencies:
 id: product
 label: Product
 type: 'canonical_entities:node'
-pattern: '/products/[node:product_classifications_parent]/[node:product_classifications_child_first]/[node:product_classifications_child_second]/[node:title]'
+pattern: '/products/[node:product_classifications_parent]/[node:product_classifications_child_first]/[node:product_classifications_child_second]/[node:title]-[node:field_long_description]'
 selection_criteria:
-  10bb6fcf-3f2e-438e-8a9c-58f56502b3cf:
+  713babda-79a1-483f-9b4d-b267e018d90b:
     id: node_type
     bundles:
       product: product
     negate: false
     context_mapping:
       node: node
-    uuid: 10bb6fcf-3f2e-438e-8a9c-58f56502b3cf
+    uuid: 713babda-79a1-483f-9b4d-b267e018d90b
 selection_logic: and
 weight: -5
 relationships: {  }
