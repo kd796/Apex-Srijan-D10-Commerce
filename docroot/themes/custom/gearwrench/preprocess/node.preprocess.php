@@ -368,20 +368,34 @@ function gearwrench_preprocess_node__search_index(&$variables) {
   $variables['media_attributes']['class'][] = 'node__media';
 
   // Move media to media variable.
-  if (isset($variables['content']['field_media'][0])) {
+  if (isset($variables['content']['field_media'][0]) || isset($variables['content']['field_preferred_listing_image'][0]) || isset($variables['content']['field_component_hero'][0])) {
     $variables['media_attributes']['class'][] = 'node__media--with-media';
-    $variables['media_attributes']['class'][] = 'node__listing-image';
-    $variables['media'] = $variables['content']['field_media'];
+
+    if (array_key_exists('field_component_hero', $variables['content']) && !empty($variables['content']['field_component_hero'][0])) {
+      $slideParagraph = $variables['content']['field_component_hero'][0]['#paragraph'];
+      $sid = $slideParagraph->get('field_components')->getValue()[0]['target_id'];
+      $view_builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
+      $storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+      $slide = $storage->load($sid);
+      $build = $view_builder->view($slide, 'search_index');
+      $variables['media'] = $build;
+      unset($variables['content']['field_component_hero']);
+    }
+    elseif (array_key_exists('field_preferred_listing_image', $variables['content']) && !empty($variables['content']['field_preferred_listing_image'][0])) {
+      $variables['media_attributes']['class'][] = 'node__listing-image';
+      $variables['media'] = $variables['content']['field_preferred_listing_image'];
+      unset($variables['content']['field_preferred_listing_image']);
+    }
+    elseif (!empty($variables['content']['field_media'][0])) {
+      $variables['media_attributes']['class'][] = 'node__listing-image';
+      $variables['media'] = $variables['content']['field_media'];
+      unset($variables['content']['field_media']);
+    }
+
     unset($variables['media']['#theme']);
-    unset($variables['content']['field_media']);
   }
   else {
     $variables['media_attributes']['class'][] = 'node__media--no-media';
-  }
-
-  if (!empty($variables['content']['field_preferred_listing_image'][0])) {
-    $variables['media'] = $variables['content']['field_preferred_listing_image'];
-    unset($variables['content']['field_preferred_listing_image']);
   }
 }
 
