@@ -31,6 +31,7 @@ global:
     - core/drupal
     - core/jquery
     - gearwrench/library--price-spider
+    - gearwrench/library--hubspot
 
 
 # === Global: Library Overrides === #
@@ -106,6 +107,14 @@ library--add-to-any:
   version: 1.x
   js:
     //static.addtoany.com/menu/page.js: { type: external, attributes: { async: true } }
+
+library--hubspot:
+  version: 1.x
+  js:
+    //js.hs-scripts.com/20087540.js: { type: external, attributes: { async: true, defer: true, id: 'hs-script-loader' } }
+
+
+
 # ========= Block ========= #
 
 # Global #
