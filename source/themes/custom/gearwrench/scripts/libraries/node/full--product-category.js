@@ -207,4 +207,26 @@
       });
     }
   };
+
+  var $mobileMenuIcon = $('.sort-icon');
+  var $mobileCloseIcon;
+  var $mobileCategoryFilters = $('.gearwrench-product-category-filters');
+
+  if (window.innerWidth <= 768) {
+
+    $mobileCategoryFilters.append('<div class="mobile-filter-header"><div class="mobile-filter-header-inner"><span>Filter</span><span class="mobile-close-icon"></span></div></div>');
+    $mobileCloseIcon = $('.mobile-close-icon');
+  }
+
+  $mobileMenuIcon.click(function () {
+    $mobileCategoryFilters.addClass('mobile-show');
+  });
+
+  $mobileCloseIcon.click(function () {
+    $mobileCategoryFilters.removeClass('mobile-show');
+  });
+
+  $(document).ajaxComplete(function () {
+    $mobileMenuIcon = $('.sort-icon');
+  });
 })(jQuery, Drupal);
