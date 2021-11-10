@@ -116,6 +116,11 @@ function gearwrench_core_token_info() {
     'description' => t('Custom token to provide the second child Product Classification'),
   ];
 
+  $info['tokens']['node']['product_classifications_full_string'] = [
+    'name' => t('Product Classifications Full String'),
+    'description' => t('Custom token to provide the full Product Classification (for metadata)'),
+  ];
+
   return $info;
 }
 
@@ -143,6 +148,10 @@ function gearwrench_core_tokens($type, $tokens, array $data = [], array $options
 
         case 'product_classifications_child_second':
           $call = 'parent_level_3';
+          break;
+
+        case 'product_classifications_full_string':
+          $call = 'full';
           break;
 
       }
@@ -182,8 +191,23 @@ function _gearwrench_core_return_product_classification(Node $node, $call) {
 
   if (!empty($tid_parents)) {
 
+    // Build the full string of terms for use with metadata.
+    $full_string = '';
+
     // The longest array provides the full hierarchy.
-    $longest = array_reverse(max($tid_parents));
+    if ($node->getType() == 'product') {
+      foreach (max($tid_parents) as $t) {
+        $full_string .= $t->getName() . ' ';
+      }
+      $longest = array_reverse(max($tid_parents));
+    }
+    elseif ($node->getType() == 'product_category') {
+      foreach (min($tid_parents) as $t) {
+        $full_string .= $t->getName() . ' ';
+      }
+      $longest = array_reverse(min($tid_parents));
+    }
+    $parents['full'] = trim($full_string);
     $i = 1;
 
     // Loop through and set the term name at each level.
