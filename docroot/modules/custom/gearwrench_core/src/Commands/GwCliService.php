@@ -38,15 +38,25 @@ class GwCliService extends DrushCommands {
     if (!empty($xml_contents)) {
       $this->output()->writeln('File not empty');
 
+      // Load config values.
+      $config = \Drupal::config('gearwrench_core.settings');
+      $host = $config->get('warranty_sftp_host');
+      $user = $config->get('warranty_sftp_username');
+      $pass = $config->get('warranty_sftp_password');
+      $root = $config->get('warranty_sftp_root');
+
+      $this->output()->writeln('Connecting to host: ' . $host);
+      $this->output()->writeln('Using file root: ' . $root);
+
       try {
         // Load up our SFTP connection.
         $filesystem = new Filesystem(new SftpAdapter(
           new SftpConnectionProvider(
-            '199.115.148.37',
-            'ftpmagento',
-            'UbgrBlA3'
+            $host,
+            $user,
+            $pass
           ),
-          '/Magento/WarrantyExport/Queue'
+          $root
         ));
 
         $dateObj = new \DateTime();
