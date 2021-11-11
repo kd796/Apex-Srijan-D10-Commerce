@@ -239,6 +239,12 @@ node--full--product-category:
     - core/jquery.once
     - gearwrench/library--jquery-roving-tabindex
 
+node--full--product-industry:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/full--product-industry.css: { }
+
 # === Node: Search Index === #
 node--search-index:
   version: 1.x
@@ -269,11 +275,11 @@ node--teaser--media-page:
 
 # === Node: Tile === #
 
-node--tile--product-category:
+node--tile:
   version: 1.x
   css:
     component:
-      css/libraries/node/tile--product-category.css: { }
+      css/libraries/node/tile.css: { }
 
 # ========= Paragraphs ========= #
 
@@ -558,6 +564,12 @@ view--product-category-grid:
   css:
     component:
       css/libraries/view/product-category-grid.css: {}
+
+view--product-industry-grid:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/product-industry-grid.css: {}
 
 view--acquia-search:
   version: 1.x
