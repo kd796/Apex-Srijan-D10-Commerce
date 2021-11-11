@@ -91,6 +91,16 @@ body:not(.keyboard-activated) *:focus {
   @include bs-ie() {
     display: block;
   }
+
+  // custom loader styles
+  .media--loading:not([data-animation])::before,
+  .is-b-loading:not([data-animation])::before {
+    background: url("../../gearwrench/images/GW_Airfoil_OR_BL.png") center no-repeat;
+    background-size: contain;
+    height: 50px;
+    width: 50px;
+    max-width: 50px;
+  }
 }
 
 img {
