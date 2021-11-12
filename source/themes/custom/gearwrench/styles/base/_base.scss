@@ -101,6 +101,14 @@ body:not(.keyboard-activated) *:focus {
     width: 50px;
     max-width: 50px;
   }
+
+  //fixing product autocomplete style on mobile
+  .ui-widget.ui-widget-content {
+    max-width: calc(100% - 4rem);
+    @include media('>md') {
+      max-width: none;
+    }
+  }
 }
 
 img {
