@@ -276,6 +276,14 @@ function gearwrench_preprocess_menu__main__block_header_menu_main(array &$variab
 function gearwrench_preprocess_page(array &$variables) {
   // Basic attribute variables.
   $variables['footer_attributes']['class'][] = 'region';
+
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $contentType = $node->getType();
+
+  if ($contentType == 'landing_page') {
+    unset($variables['page']['content']['gearwrench_breadcrumbs']);
+  }
 }
 
 /**
