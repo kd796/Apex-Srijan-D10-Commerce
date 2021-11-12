@@ -27,10 +27,40 @@ body {
   line-height: $body-line-height;
   overflow-x: hidden;
 
-  .ui-widget.ui-widget-content {
+  .ui-widget.ui-widget-content.ui-autocomplete {
     max-width: calc(100% - 4rem);
+    padding-top: 10px;
+    
     @include media('>md') {
       max-width: none;
+    }
+
+    .ui-menu-item {
+      margin: 0 0 5px;
+    }
+
+    .ui-menu-item-wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    .views-field-field-product-images {
+      display: flex;
+      min-width: 50px;
+
+      .field-content {
+        margin: auto;
+      }
+    }
+
+    .views-field-title {
+      font-weight: bold;
+      line-height: 1.25;
+      padding-right: 10px;
+    }
+
+    .views-field-field-long-description {
+      line-height: 1.25;
     }
   }
 }
