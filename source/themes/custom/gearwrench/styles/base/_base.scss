@@ -30,7 +30,7 @@ body {
   .ui-widget.ui-widget-content.ui-autocomplete {
     max-width: calc(100% - 4rem);
     padding-top: 10px;
-    
+
     @include media('>md') {
       max-width: none;
     }
@@ -49,6 +49,7 @@ body {
       min-width: 50px;
 
       .field-content {
+        display: flex;
         margin: auto;
       }
     }
