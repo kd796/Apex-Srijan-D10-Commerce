@@ -604,7 +604,10 @@ function gearwrench_preprocess_node__social_post__teaser(&$variables) {
     $variables['media_attributes']['class'][] = 'node__media--no-media';
   }
 
+  // Need to troubleshoot why this causes the crash when not logged in
   // Move url to drupal settings.
-  $variables['#attached']['drupalSettings']['social_feed'][] = $variables['content']['field_post_url'];
-  unset($variables['content']['field_post_url']);
+  // if (!empty($variables['content']['field_post_url'])) {
+     // $variables['#attached']['drupalSettings']['social_feed'][] = $variables['content']['field_post_url'];
+     // unset($variables['content']['field_post_url']);
+  // }
 }
