@@ -34,8 +34,14 @@ class GwCliService extends DrushCommands {
    */
   public function gwWarrantyExport() {
     $submissions = $this->getLatestWebformSubmissions();
-    $submissions = $this->convertSubmissions($submissions);
-    $xml = $this->buildSubmissionXml($submissions);
+
+    if (empty($submissions)) {
+      $this->output()->writeln('No new submissions found.');
+      return;
+    }
+
+    $converted_submissions = $this->convertSubmissions($submissions);
+    $xml = $this->buildSubmissionXml($converted_submissions);
     $this->uploadToWarrantyFtp($xml);
 
     // Update the highest updated SID.
@@ -47,17 +53,24 @@ class GwCliService extends DrushCommands {
    */
   protected function updateHighestExportedSid($submissions) {
     $highest_sid = $this->getHighestExportedSid();
+    reset($submissions);
+
+    $this->output()->writeln(
+      'Updating highest exported SID from: ' . $highest_sid
+    );
 
     /** @var \Drupal\Core\Entity\EntityInterface $submission */
     foreach ($submissions as $submission) {
-      $id = $submission['sid'];
+      $id = (int) $submission->id();
 
       if ($id > $highest_sid) {
         $highest_sid = $id;
       }
     }
 
+    $this->output()->writeln('To SID:' . $highest_sid);
     $this->getGwCoreConfig()->set('warranty_highest_exported_sid', $highest_sid);
+    $this->getGwCoreConfig()->save();
   }
 
   /**
@@ -75,13 +88,14 @@ class GwCliService extends DrushCommands {
    * Gets the last highest exported SID.
    */
   protected function getHighestExportedSid() {
-    return $this->getGwCoreConfig()->get('warranty_highest_exported_sid');
+    return (int) $this->getGwCoreConfig()->get('warranty_highest_exported_sid');
   }
 
   /**
    * Gets the latest submissions.
    */
   protected function getLatestWebformSubmissions() {
+    $this->output()->writeln('Getting the latest submissions...');
     $highest_exported_sid = $this->getHighestExportedSid();
     $query = $this->getSubmissionStorage()->getQuery()->condition(
       'webform_id',
@@ -115,6 +129,7 @@ class GwCliService extends DrushCommands {
    * Builds the XML from the submissions.
    */
   protected function buildSubmissionXml($submissions) {
+    $this->output()->writeln('Generating XML...');
     $encoder = new XmlEncoder();
     $serializer = new Serializer([new GetSetMethodNormalizer()]);
     $encoder->setSerializer($serializer);
@@ -128,6 +143,7 @@ class GwCliService extends DrushCommands {
    * Converts the style of all of the submissions.
    */
   protected function convertSubmissions($submissions) {
+    $this->output()->writeln('Converting submissions to the clients format...');
     $data = [];
 
     foreach ($submissions as $webform_submission) {
@@ -215,7 +231,7 @@ class GwCliService extends DrushCommands {
    */
   protected function uploadToWarrantyFtp($xml_contents) {
     if (!empty($xml_contents)) {
-      $this->output()->writeln('File not empty');
+      $this->output()->writeln('XML content not empty');
 
       // Load config values.
       $config = \Drupal::config('gearwrench_core.settings');
@@ -243,14 +259,14 @@ class GwCliService extends DrushCommands {
 
         // Push that file.
         $filesystem->write($new_filename, $xml_contents);
-        $this->output()->writeln('File has been sent to the server.');
+        $this->output()->writeln('XML File has been sent to the server.');
       }
       catch (\Exception $e) {
         echo 'Failure to do something with FTP. Message: ' . $e->getMessage();
       }
     }
     else {
-      $this->output()->writeln('Empty file.');
+      $this->output()->writeln('Empty content.');
     }
   }
 
