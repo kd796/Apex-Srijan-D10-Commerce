@@ -26,6 +26,13 @@ body {
   font-weight: $fw-medium;
   line-height: $body-line-height;
   overflow-x: hidden;
+
+  .ui-widget.ui-widget-content {
+    max-width: calc(100% - 4rem);
+    @include media('>md') {
+      max-width: none;
+    }
+  }
 }
 
 html,
@@ -102,13 +109,6 @@ body:not(.keyboard-activated) *:focus {
     max-width: 50px;
   }
 
-  //fixing product autocomplete style on mobile
-  .ui-widget.ui-widget-content {
-    max-width: calc(100% - 4rem);
-    @include media('>md') {
-      max-width: none;
-    }
-  }
 }
 
 img {
