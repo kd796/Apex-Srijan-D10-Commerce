@@ -26,6 +26,44 @@ body {
   font-weight: $fw-medium;
   line-height: $body-line-height;
   overflow-x: hidden;
+
+  .ui-widget.ui-widget-content.ui-autocomplete {
+    max-width: calc(100% - 4rem);
+    padding-top: 10px;
+
+    @include media('>md') {
+      max-width: none;
+    }
+
+    .ui-menu-item {
+      margin: 0 0 5px;
+    }
+
+    .ui-menu-item-wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    .views-field-field-product-images {
+      display: flex;
+      min-width: 50px;
+
+      .field-content {
+        display: flex;
+        margin: auto;
+      }
+    }
+
+    .views-field-title {
+      font-weight: bold;
+      line-height: 1.25;
+      padding-right: 10px;
+    }
+
+    .views-field-field-long-description {
+      line-height: 1.25;
+    }
+  }
 }
 
 html,
@@ -95,12 +133,13 @@ body:not(.keyboard-activated) *:focus {
   // custom loader styles
   .media--loading:not([data-animation])::before,
   .is-b-loading:not([data-animation])::before {
-    background: url("../../gearwrench/images/GW_Airfoil_OR_BL.png") center no-repeat;
+    background: url('../../gearwrench/images/GW_Airfoil_OR_BL.png') center no-repeat;
     background-size: contain;
     height: 50px;
     width: 50px;
     max-width: 50px;
   }
+
 }
 
 img {

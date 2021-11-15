@@ -385,6 +385,10 @@ function gearwrench_preprocess_node__search_index(&$variables) {
       $variables['media_attributes']['class'][] = 'node__listing-image';
       $variables['media'] = $variables['content']['field_preferred_listing_image'];
       unset($variables['content']['field_preferred_listing_image']);
+
+      if (isset($variables['content']['field_media'])) {
+        unset($variables['content']['field_media']);
+      }
     }
     elseif (!empty($variables['content']['field_media'][0])) {
       $variables['media_attributes']['class'][] = 'node__listing-image';
@@ -607,7 +611,7 @@ function gearwrench_preprocess_node__social_post__teaser(&$variables) {
   // Need to troubleshoot why this causes the crash when not logged in
   // Move url to drupal settings.
   // if (!empty($variables['content']['field_post_url'])) {
-     // $variables['#attached']['drupalSettings']['social_feed'][] = $variables['content']['field_post_url'];
-     // unset($variables['content']['field_post_url']);
-  // }
+  // $variables['#attached']['drupalSettings']['social_feed'][] = $variables['content']['field_post_url'];
+  // unset($variables['content']['field_post_url']);
+  // } !
 }

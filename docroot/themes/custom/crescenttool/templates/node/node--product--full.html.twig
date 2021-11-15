@@ -178,7 +178,10 @@
               <div class="node--type-product__accordion-content-header">
                 {{ 'Reviews & Questions'|t }}
               </div>
-              Reviews Go Here.
+              <div class="node--type-product__ps-reviews-container">
+                <div class="ps-widget" ps-config="ADD Config " ps-sku="{{ sku }}"></div>
+              </div>
+              <div data-bv-show="reviews" data-bv-product-id="{{ sku }}"></div>
             </div>
           </section>
         </div>
