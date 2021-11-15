@@ -278,11 +278,13 @@ function gearwrench_preprocess_page(array &$variables) {
   $variables['footer_attributes']['class'][] = 'region';
 
   /** @var \Drupal\node\NodeInterface $node */
-  $node = $variables['node'];
-  $contentType = $node->getType();
+  if (isset($variables['node'])) {
+    $node = $variables['node'];
+    $contentType = $node->bundle();
 
-  if ($contentType == 'landing_page') {
-    unset($variables['page']['content']['gearwrench_breadcrumbs']);
+    if ($contentType == 'landing_page') {
+      unset($variables['page']['content']['gearwrench_breadcrumbs']);
+    }
   }
 }
 
