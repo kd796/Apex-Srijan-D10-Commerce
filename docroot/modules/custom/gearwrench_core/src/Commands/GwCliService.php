@@ -164,6 +164,7 @@ class GwCliService extends DrushCommands {
     $address_fields = ['city', 'state_province', 'country', 'zip_code'];
     $new_data = [
       'wrf_vendor_code' => 'APEX-GWW-POR',
+      'wrf_item_number' => '',
     ];
 
     if (!empty($data['sid'])) {
@@ -180,7 +181,10 @@ class GwCliService extends DrushCommands {
       // We have to retrieve the Product Number from the entity reference for the item number.
       if ($field == 'item_number' && !empty($value)) {
         $node = Node::load($value);
-        $new_data['wrf_item_number'] = $node->getTitle();
+
+        if (is_object($node)) {
+          $new_data['wrf_item_number'] = $node->getTitle();
+        }
       }
 
       if ($field == 'product_image' && !empty($value)) {
