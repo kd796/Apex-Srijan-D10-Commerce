@@ -14,7 +14,9 @@ module:
   syslog: 0
 theme: {  }
 blacklist: {  }
-graylist: {  }
+graylist:
+  - acquia_connector.settings
+  - gearwrench_core.settings
 graylist_dependents: true
 graylist_skip_equal: true
 weight: 0
