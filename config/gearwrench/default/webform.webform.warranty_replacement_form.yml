@@ -196,5 +196,42 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers: {  }
+handlers:
+  email_to_customer:
+    id: email
+    label: 'Email to customer'
+    notes: ''
+    handler_id: email_to_customer
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:email_address:raw]'
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: noreply@gearwrench.com
+      from_options: {  }
+      from_name: 'GEARWRENCH Warranty/Replacement'
+      subject: 'Your GEARWRENCH Support Case: #[webform_submission:sid]'
+      body: "<div id=\"center\">\r\n<div id=\"main\" style=\"*position:relative;*zoom:1;color:#000;background-color:transparent !important;background-image:none !important;\">\r\n<table bgcolor=\"#ffffff\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-bottom:1px solid #555;width:100%;\" width=\"50%\">\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td align=\"center\" style=\"height:42px; line-height:20px; padding:0 10px\"><img alt=\"GearWrench\" src=\"https://cms.gearwrench.com/sites/all/themes/gearwrenchrebrand/images/GearWrenchVerticalAlternateLockup.png\" style=\"border:0;-ms-interpolation-mode:bicubic;max-width:100%;height:auto;vertical-align:bottom;\" />\r\n\t\t\t<p style=\"background-color:#000000;height:10px;margin:12px 0 20px 0 !important;line-height:1.2;letter-spacing:1px;\">&nbsp;</p>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"font-size:25px; font-style:italic; font-weight:bold; height:42px; line-height:20px; padding:0% 5%\">THANKS FOR REACHING OUT!</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"color:#a0a0a0; font-size:16px; font-style:italic; font-weight:bold; height:42px; line-height:20px; padding:0% 5%\">WE HAVE RECEIVED YOUR WARRANTY/REPLACEMENT REQUEST AND ARE CURRENTLY WORKING WITH OUR TEAM TO GET YOUR REPLACEMENT ITEMS SHIPPED OUT TO YOU.</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"color:#000000; font-size:16px; font-style:italic; font-weight:bold; height:42px; line-height:20px; padding:0% 5%\">YOUR CASE NUMBER IS: #[webform_submission:sid]</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"height:42px; line-height:20px; padding:0 10px\">\r\n\t\t\t<p style=\"width:90%;margin:2% 5% 2% 5%;background-color:#d3d3d3;height:2px;line-height:1.2;letter-spacing:1px;\">&nbsp;</p>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"color:#a0a0a0; font-size:16px; font-style:italic; font-weight:bold; height:42px; line-height:20px; padding:0% 5%\">YOUR SUBMITTED VALUES ARE:</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"color:#000000; font-size:16px; font-style:italic; font-weight:bold; height:42px; line-height:20px; padding:0% 5%\">ITEM NUMBER: <strong style=\"color:#a0a0a0; font-weight:bold\">[webform_submission:values:item_number]</strong></td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"color:#000000; font-size:16px; font-style:italic; font-weight:bold; height:42px; line-height:20px; padding:0% 5%\">PHOTO SUBMISSION: <strong style=\"color:#a0a0a0; font-weight:bold\"> <a href=\"[webform_submission:values:product_image:entity:url]\" style=\"color:#ED8B00;text-decoration:none;\">[webform_submission:values:product_image:entity:url]</a> </strong></td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"color:#000000; font-size:16px; font-style:italic; font-weight:bold; height:42px; line-height:20px; padding:0% 5%\">FIRST NAME: <strong style=\"color:#a0a0a0; font-weight:bold\">[webform_submission:values:first_name]</strong></td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"color:#000000; font-size:16px; font-style:italic; font-weight:bold; height:42px; line-height:20px; padding:0% 5%\">LAST NAME: <strong style=\"color:#a0a0a0; font-weight:bold\">[webform_submission:values:last_name]</strong></td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"color:#000000; font-size:16px; font-style:italic; font-weight:bold; height:42px; line-height:20px; padding:0% 5%\">EMAIL ADDRESS: <strong style=\"color:#a0a0a0; font-weight:bold\">[webform_submission:values:email_address:raw]</strong></td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"color:#000000; font-size:16px; font-style:italic; font-weight:bold; height:42px; line-height:20px; padding:0% 5%\">PHONE NUMBER: <strong style=\"color:#a0a0a0; font-weight:bold\">[webform_submission:values:phone_number]</strong></td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"color:#000000; font-size:16px; font-style:italic; font-weight:bold; height:42px; line-height:20px; padding:0% 5%\">COUNTRY: <strong style=\"color:#a0a0a0; font-weight:bold\">United States</strong></td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"color:#000000; font-size:16px; font-style:italic; font-weight:bold; height:42px; line-height:20px; padding:0% 5%\">STREET: <strong style=\"color:#a0a0a0; font-weight:bold\">[webform_submission:values:address:address]</strong></td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"color:#000000; font-size:16px; font-style:italic; font-weight:bold; height:42px; line-height:20px; padding:0% 5%\">CITY: <strong style=\"color:#a0a0a0; font-weight:bold\">[webform_submission:values:address:city]</strong></td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"color:#000000; font-size:16px; font-style:italic; font-weight:bold; height:42px; line-height:20px; padding:0% 5%\">STATE: <strong style=\"color:#a0a0a0; font-weight:bold\">[webform_submission:values:address:state_province]</strong></td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"color:#000000; font-size:16px; font-style:italic; font-weight:bold; height:42px; line-height:20px; padding:0% 5%\">ZIP: <strong style=\"color:#a0a0a0; font-weight:bold\">[webform_submission:values:address:postal_code]</strong></td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"color:#000000; font-size:16px; font-style:italic; font-weight:bold; height:42px; line-height:20px; padding:0% 5%\">MESSAGE: <strong style=\"color:#a0a0a0; font-weight:bold\">[webform_submission:values:message]</strong></td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"color:#a0a0a0; font-size:17px; font-style:italic; font-weight:bold; height:42px; line-height:20px; padding:1% 5%\">IF YOU HAVE ANY QUESTIONS <strong style=\"color:#0000ff; font-weight:bold\"><a href=\"https://www.gearwrench.com/contact-us\" style=\"color:#ED8B00;text-decoration:none;\">CONTACT US</a></strong> OR CALL 1.866.907.9716</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"color:#a0a0a0; font-size:17px; font-style:italic; font-weight:bold; height:42px; line-height:20px; padding:1% 5%\">APEX TOOL GROUP, LLC ALL RIGHTS RESERVED</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n</div>\r\n</div>"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: noreply@gearwrench.com
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
 variants: {  }
