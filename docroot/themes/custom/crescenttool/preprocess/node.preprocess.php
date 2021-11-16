@@ -140,12 +140,21 @@ function crescenttool_preprocess_node__product__full(array &$variables) {
 
   // Count Product Images.
   $variables['product_images'] = NULL;
+  $variables['field_product_images_exist'] = NULL;
   if (!empty($node->field_product_images->getValue())) {
     $variables['product_images'] = TRUE;
+    $variables['field_product_images_exist'] = TRUE;
     $variables['product_image_count'] = count($node->field_product_images->getValue());
+    $thumbs = $node->field_product_images->getValue();
   }
+  elseif (!empty($node->field_media->getValue())) {
+    $variables['product_images'] = TRUE;
+    $variables['product_image_count'] = count($node->field_media->getValue());
+    $thumbs = $node->field_media->getValue();
+  }
+
   // Thumb Gallery.
-  $thumbs = $node->field_product_images->getValue();
+  // $thumbs = $node->field_media->getValue();
   foreach ($thumbs as $thumb) {
     $media = Media::load($thumb['target_id']);
     $fid = $media->field_media_image->target_id;

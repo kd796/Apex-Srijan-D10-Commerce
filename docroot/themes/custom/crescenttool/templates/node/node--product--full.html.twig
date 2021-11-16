@@ -89,7 +89,15 @@
             {% if product_image_count > 1 %}
             <button class="product-detail-slider__pseudo-prev-button"></button>
             {% endif %}
-            {{ content.field_product_images }}
+            {% if field_product_images_exist %}
+              {{ content.field_product_images }}
+            {% else %}
+              <div class="swiper-wrapper">
+                <div class="field__item swiper-slide">
+                  {{ content.field_media }}
+                </div>
+              </div>
+            {% endif %}
             {% if product_image_count > 1 %}
             <button class="product-detail-slider__pseudo-next-button"></button>
             {% endif %}
@@ -200,7 +208,7 @@
         </div>
         {{ related_items }}
       {% endif %}
-      {{ content|without('field_long_description','field_product_images', 'field_product_features', 'field_product_specifications',) }}
+      {{ content|without('field_long_description','field_product_images', 'field_product_features', 'field_product_specifications', 'field_media',) }}
 
     </div>
   </div>

@@ -30,6 +30,9 @@ $tabs-border-width-active: rem(5px);
     }
 
     .product-detail-slider {
+      @include media('>sm') {
+        margin-bottom: rem(55px);
+      }
 
       .product-detail-slider__container {
         position: relative;
@@ -37,7 +40,7 @@ $tabs-border-width-active: rem(5px);
         .product-detail-slider__pseudo-prev-button,
         .product-detail-slider__pseudo-next-button {
           display: none;
-          @include media('<md') {
+          @include media('<=md') {
             background: none;
             border: 0;
             color: $primary-red;
@@ -124,6 +127,10 @@ $tabs-border-width-active: rem(5px);
       @include media('>sm') {
         padding-top: rem(96px);
       }
+
+      @include media('>md') {
+        padding-top: rem(96px);
+      }
     }
 
     .product-detail-content-container__title {
@@ -208,7 +215,7 @@ $tabs-border-width-active: rem(5px);
         background-color: $primary-red;
         height: $header-height;
 
-        @include media('<md') {
+        @include media('<=md') {
           display: none;
         }
 
@@ -248,7 +255,7 @@ $tabs-border-width-active: rem(5px);
             line-height: 1;
 
             svg {
-              height: $header-logo-height;
+              height: 1.75rem;
               vertical-align: middle;
 
               @include media('<=lg-plus') {
@@ -317,7 +324,7 @@ $tabs-border-width-active: rem(5px);
             }
           }
 
-          @include media('<md') {
+          @include media('<=md') {
             flex-wrap: nowrap;
             justify-content: center;
             overflow-x: scroll;
@@ -346,8 +353,6 @@ $tabs-border-width-active: rem(5px);
             justify-content: flex-start;
           }
         }
-
-
       }
 
       & > .node--type-product-tabs__content {
@@ -395,7 +400,7 @@ $tabs-border-width-active: rem(5px);
                 margin: 0;
               }
 
-              @include media('<md') {
+              @include media('<=md') {
                 display: none;
               }
             }
@@ -421,6 +426,10 @@ $tabs-border-width-active: rem(5px);
 
                 .ps-review-details {
                   background: none;
+
+                  @include media('<sm') {
+                    margin-left: 0;
+                  }
                 }
 
                 .ps-review-count,
@@ -481,7 +490,7 @@ $tabs-border-width-active: rem(5px);
         line-height: 1;
 
         svg {
-          height: $header-logo-height;
+          height: 1.75rem;
           vertical-align: middle;
 
           @include media('<=lg-plus') {
@@ -531,7 +540,5 @@ $tabs-border-width-active: rem(5px);
         }
       }
     }
-
-
   }
 }
