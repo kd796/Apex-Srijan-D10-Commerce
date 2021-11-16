@@ -56,15 +56,24 @@ $tabs-border-width-active: rem(5px);
               font-size: 1.5rem;
             }
           }
+
+          @include on-event(){
+            color: $primary-red;
+          }
+
+          &[aria-disabled='true'] {
+            background-color: $gray-30;
+            border-color: $gray-30;
+          }
         }
 
         .product-detail-slider__pseudo-prev-button {
-          @include icon('chevron-left-black', after, false);
+          @include icon('chevron-left-white', after, false);
           left: 0;
         }
 
         .product-detail-slider__pseudo-next-button {
-          @include icon('chevron-right-black', after, false);
+          @include icon('chevron-right-white', after, false);
           right: 0;
         }
 
@@ -101,18 +110,25 @@ $tabs-border-width-active: rem(5px);
           top: 0;
 
           @include on-event {
-            color: $black;
+            background-color: $color-black;
+            border-color: $primary-red;
+            color: $primary-red;
           }
+        }
+
+        &[aria-disabled='true'] {
+          background-color: $gray-30;
+          border-color: $gray-30;
         }
       }
 
       .swiper-button-prev {
-        @include icon('chevron-left-black', after, false);
+        @include icon('chevron-left-white', after, false);
         left: 0;
       }
 
       .swiper-button-next {
-        @include icon('chevron-right-black', after, false);
+        @include icon('chevron-right-white', after, false);
         right: 0;
       }
 
@@ -164,6 +180,7 @@ $tabs-border-width-active: rem(5px);
     h3 {
       text-transform: uppercase;
       display: none;
+      color: $type-dark;
 
       @include media('>sm') {
         display: block;
@@ -172,6 +189,7 @@ $tabs-border-width-active: rem(5px);
 
     .field--name-field-product-features {
       display: none;
+      color: $type-dark;
 
       @include media('>sm') {
         display: block;
@@ -183,6 +201,7 @@ $tabs-border-width-active: rem(5px);
 
       text-transform: uppercase;
       font-weight: 600;
+      color: $type-dark;
       margin-bottom: rem(55px);
       display: none;
 
@@ -223,7 +242,7 @@ $tabs-border-width-active: rem(5px);
           @include flex;
           @include flex-x(align-items, center);
 
-          background-color: $black;
+          background-color: $secondary-black;
           height: 100%;
           padding: 0 0 0 2rem;
           position: relative;
@@ -232,30 +251,16 @@ $tabs-border-width-active: rem(5px);
             padding: 0 2rem;
           }
 
-
-          // Performance Device
-          &::after {
-            background-color: $black;
-            position: absolute;
-            content: '';
-            width: 30px;
-            height: 100%;
-            top: 0;
-            right: -15px;
-            z-index: 0;
-            transform: skew(-14deg);
-          }
-
           .site-logo {
             @include link-base();
-            background-color: $black;
+            background-color: $secondary-black;
             display: block;
             width: rem(56px);
             overflow: hidden;
             line-height: 1;
 
             svg {
-              height: 1.75rem;
+              height: 2.4375rem;
               vertical-align: middle;
 
               @include media('<=lg-plus') {
@@ -286,9 +291,10 @@ $tabs-border-width-active: rem(5px);
 
             a {
               text-transform: uppercase;
-              font-weight: 800;
+              font-weight: $fw-medium;
               font-size: rem(24px);
               font-family: $font-brand;
+              color: $white;
             }
 
             &[aria-selected='true'] {
@@ -299,7 +305,7 @@ $tabs-border-width-active: rem(5px);
                 display: block;
                 height: $tabs-border-width-active;
                 top: calc(100% - #{$tabs-border-width-active});
-                border-bottom: $tabs-border-width-active solid $black;
+                border-bottom: $tabs-border-width-active solid $secondary-black;
               }
             }
           }
@@ -390,10 +396,10 @@ $tabs-border-width-active: rem(5px);
 
             .node--type-product__accordion-content-header {
               display: block;
-              text-transform: uppercase;
               font-weight: 800;
               font-size: rem(24px);
               font-family: $font-brand;
+              color: $secondary-black;
               margin-bottom: 1rem;
 
               ul {
@@ -410,7 +416,7 @@ $tabs-border-width-active: rem(5px);
               margin-bottom: rem(20px);
 
               &:after {
-                border-top: 2px dashed $gray-40;
+                border-top: 1px solid $secondary-black;
                 content: '';
                 height: 1px;
                 width: 66.667%;
@@ -461,36 +467,23 @@ $tabs-border-width-active: rem(5px);
         @include flex;
         @include flex-x(align-items, center);
 
-        background-color: $black;
+        background-color: $secondary-black;
         height: 100%;
         padding: 0 2rem;
         position: relative;
         z-index: 1;
       }
 
-      // Performance Device
-      &::after {
-        background-color: $black;
-        position: absolute;
-        content: '';
-        width: 30px;
-        height: 100%;
-        top: 0;
-        right: -15px;
-        z-index: 0;
-        transform: skew(-14deg);
-      }
-
       .site-logo {
         @include link-base();
-        background-color: $black;
+        background-color: $secondary-black;
         display: block;
         width: rem(56px);
         overflow: hidden;
         line-height: 1;
 
         svg {
-          height: 1.75rem;
+          height: 2.4375rem;
           vertical-align: middle;
 
           @include media('<=lg-plus') {
@@ -503,6 +496,8 @@ $tabs-border-width-active: rem(5px);
     .node--type-product-related-products__nav-content {
       text-align: center;
       width: 100%;
+      border-top-right-radius: rem(30px);
+      border-bottom-right-radius: rem(30px);
 
       @include media('<=lg-plus') {
         height: $header-logo-height;
@@ -515,27 +510,15 @@ $tabs-border-width-active: rem(5px);
         position: relative;
         width: 100%;
         z-index: 0;
-
-        // Performance Device
-        &::after {
-          background-color: $primary-red;
-          position: absolute;
-          content: '';
-          width: 30px;
-          height: 100%;
-          top: 0;
-          right: -15px;
-          z-index: 0;
-          transform: skew(-14deg);
-        }
       }
 
       h4 {
         text-transform: uppercase;
         color: $primary-red;
+        font-weight: $fw-medium;
 
         @include media('>lg-plus') {
-          color: $black;
+          color: $white;
           padding-left: 3rem;
         }
       }
