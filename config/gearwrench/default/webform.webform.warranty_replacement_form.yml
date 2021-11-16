@@ -196,5 +196,42 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers: {  }
+handlers:
+  email_to_customer:
+    id: email
+    label: 'Email to customer'
+    notes: ''
+    handler_id: email_to_customer
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:email_address:raw]'
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 514px;\" width=\"50%\">\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td style=\"width:508px\">THANKS FOR REACHING OUT!</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"width:508px\">WE HAVE RECEIVED YOUR WARRANTY/REPLACEMENT REQUEST AND ARE CURRENTLY WORKING WITH OUR TEAM TO GET YOUR REPLACEMENT ITEMS SHIPPED OUT TO YOU.</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"width:508px\">YOUR CASE NUMBER IS: #[webform_submission:sid]</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"width:508px\">\r\n\t\t\t<p>&nbsp;</p>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"width:508px\">YOUR SUBMITTED VALUES ARE:</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"width:508px\">ITEM NUMBER:&nbsp;[webform_submission:values:item_number]</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"width:508px\">PHOTO SUBMISSION:&nbsp;[webform_submission:values:files:product_image:entity:url]</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"width:508px\">FIRST NAME:&nbsp;[webform_submission:values:first_name]</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"width:508px\">LAST NAME:&nbsp;[webform_submission:values:last_name]</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"width:508px\">EMAIL ADDRESS:&nbsp;[webform_submission:values:email_address]</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"width:508px\">PHONE NUMBER:&nbsp;[webform_submission:values:phone_number]</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"width:508px\">COUNTRY: United States</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"width:508px\">STREET:&nbsp;[webform_submission:values:address:address]</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"width:508px\">CITY:&nbsp;[webform_submission:values:address:city]</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"width:508px\">STATE:&nbsp;[webform_submission:values:address:state_province]</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"width:508px\">ZIP:&nbsp;[webform_submission:values:address:postal_code]</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"width:508px\">MESSAGE:&nbsp;[webform_submission:values:message]</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"width:508px\">IF YOU HAVE ANY QUESTIONS&nbsp;<strong><a href=\"https://urldefense.com/v3/__https://www.gearwrench.com/contact-us__;!!Gajz09w!TRgFryxvyjgEt-RCrPN4-Y_xIlNIorPMKWNOh0jVLalgk2SiFzVbw_5GCzDOWCt_fi23kQ$\" title=\"https://urldefense.com/v3/__https://www.gearwrench.com/contact-us__;!!Gajz09w!TRgFryxvyjgEt-RCrPN4-Y_xIlNIorPMKWNOh0jVLalgk2SiFzVbw_5GCzDOWCt_fi23kQ$\">CONTACT US</a></strong>&nbsp;OR CALL 1.866.907.9716</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"width:508px\">APEX TOOL GROUP, LLC ALL RIGHTS RESERVED</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: noreply@gearwrench.com
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
 variants: {  }
