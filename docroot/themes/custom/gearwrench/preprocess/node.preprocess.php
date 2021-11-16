@@ -377,9 +377,12 @@ function gearwrench_preprocess_node__search_index(&$variables) {
       $view_builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
       $storage = \Drupal::entityTypeManager()->getStorage('paragraph');
       $slide = $storage->load($sid);
-      $build = $view_builder->view($slide, 'search_index');
-      $variables['media'] = $build;
-      unset($variables['content']['field_component_hero']);
+
+      if (!empty($slide)) {
+        $build = $view_builder->view($slide, 'search_index');
+        $variables['media'] = $build;
+        unset($variables['content']['field_component_hero']);
+      }
     }
     elseif (array_key_exists('field_preferred_listing_image', $variables['content']) && !empty($variables['content']['field_preferred_listing_image'][0])) {
       $variables['media_attributes']['class'][] = 'node__listing-image';
