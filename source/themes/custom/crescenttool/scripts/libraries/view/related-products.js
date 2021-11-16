@@ -17,7 +17,7 @@
           slidesPerColumn: 2,
           slidesPerColumnFill: 'column',
           spaceBetween: 24,
-          loop: true,
+          loop: false,
           navigation: {
             nextEl: '.view-related-products-slider__button-next',
             prevEl: '.view-related-products-slider__button-prev'
