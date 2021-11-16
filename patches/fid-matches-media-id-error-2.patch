@@ -1,10 +1,15 @@
 diff --git a/src/Plugin/Field/FieldFormatter/MicromodalFieldFormatter.php b/src/Plugin/Field/FieldFormatter/MicromodalFieldFormatter.php
-index 7749261..faa1585 100644
+index 7749261..6434e94 100644
 --- a/src/Plugin/Field/FieldFormatter/MicromodalFieldFormatter.php
 +++ b/src/Plugin/Field/FieldFormatter/MicromodalFieldFormatter.php
-@@ -265,7 +265,7 @@ class MicromodalFieldFormatter extends FormatterBase {
+@@ -264,8 +264,12 @@ class MicromodalFieldFormatter extends FormatterBase {
+               // Load the media for the thumbnail.
                $thumbnail_media = $this->entityTypeManager->getStorage('media')->load($thumbnail_id);
  
++              if (!$thumbnail_media) {
++                $thumbnail_media = $media;
++              }
++
                // Check the file ID and update as necessary.
 -              if (method_exists($thumbnail_media, 'get')) {
 +              if (method_exists($thumbnail_media, 'get') && $thumbnail_media->id() === $media->id()) {
