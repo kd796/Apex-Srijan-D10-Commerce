@@ -231,6 +231,11 @@ function gearwrench_core_media_presave(MediaInterface $entity) {
   }
 }
 
+/**
+ * Takes a YouTube video URL and gets a clean URL and retrieves video data.
+ *
+ * Source: Google JSON API for title, thumbnail, and other video info.
+ */
 function gearwrench_core_get_youtube_data($video_url) {
   $data = file_get_contents("https://www.youtube.com/oembed?format=json&url=$video_url");
   $result = new stdClass();
@@ -238,7 +243,7 @@ function gearwrench_core_get_youtube_data($video_url) {
   if (!empty($data)) {
     $result = json_decode($data);
 
-    // Now get a clean version of the video URL
+    // Now get a clean version of the video URL.
     $match = [];
 
     preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $video_url, $match);
