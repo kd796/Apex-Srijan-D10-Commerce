@@ -67,7 +67,7 @@ $mobile-menu-item-button-height: 7rem;
     padding: 0;
   }
 
-  // Larger performance device and logo at top
+  // Larger header area at top
   .region-header__content-large {
     @include media('>lg-plus') {
       @include flex-x(align-items, start);
@@ -102,7 +102,7 @@ $mobile-menu-item-button-height: 7rem;
       line-height: 1;
 
       svg {
-        height: $header-logo-height;
+        height: $header-logo-height-large;
         vertical-align: middle;
 
         @include media('<=lg-plus') {

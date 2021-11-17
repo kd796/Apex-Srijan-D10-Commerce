@@ -32,6 +32,7 @@
           var $galleryThumbs = new Swiper($thumbsContainer, {
             spaceBetween: 24,
             slidesPerView: 4,
+            loop: false,
             breakpoints: {
               568: {
                 slidesPerView: 6,
