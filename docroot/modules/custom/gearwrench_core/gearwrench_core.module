@@ -242,14 +242,26 @@ function gearwrench_core_get_youtube_data($video_url) {
 
   if (!empty($data)) {
     $result = json_decode($data);
-
-    // Now get a clean version of the video URL.
-    $match = [];
-
-    preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $video_url, $match);
-    $youtube_id = $match[1];
-    $result->clean_url = 'https://www.youtube.com/watch?v=' . $youtube_id;
+    $result->clean_url = gearwrench_core_get_youtube_clean_url($video_url);
   }
 
   return $result;
+}
+
+/**
+ * Gets a clean URL for a YouTube video.
+ */
+function gearwrench_core_get_youtube_clean_url($video_url) {
+  // Now get a clean version of the video URL.
+  $match = [];
+  $pattern = '%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i';
+
+  preg_match($pattern, $video_url, $match);
+
+  if (!empty($match[1])) {
+    $youtube_id = $match[1];
+    return 'https://www.youtube.com/watch?v=' . $youtube_id;
+  }
+
+  return '';
 }
