@@ -230,3 +230,38 @@ function gearwrench_core_media_presave(MediaInterface $entity) {
     $entity->set('field_media_oembed_video', $url);
   }
 }
+
+/**
+ * Takes a YouTube video URL and gets a clean URL and retrieves video data.
+ *
+ * Source: Google JSON API for title, thumbnail, and other video info.
+ */
+function gearwrench_core_get_youtube_data($video_url) {
+  $data = file_get_contents("https://www.youtube.com/oembed?format=json&url=$video_url");
+  $result = new stdClass();
+
+  if (!empty($data)) {
+    $result = json_decode($data);
+    $result->clean_url = gearwrench_core_get_youtube_clean_url($video_url);
+  }
+
+  return $result;
+}
+
+/**
+ * Gets a clean URL for a YouTube video.
+ */
+function gearwrench_core_get_youtube_clean_url($video_url) {
+  // Now get a clean version of the video URL.
+  $match = [];
+  $pattern = '%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i';
+
+  preg_match($pattern, $video_url, $match);
+
+  if (!empty($match[1])) {
+    $youtube_id = $match[1];
+    return 'https://www.youtube.com/watch?v=' . $youtube_id;
+  }
+
+  return '';
+}

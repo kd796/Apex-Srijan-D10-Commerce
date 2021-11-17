@@ -65,6 +65,7 @@ function gearwrench_preprocess_node__landing_page__full(array &$variables) {
  */
 function gearwrench_preprocess_node__page__full(array &$variables) {
   // Nothing to see here.
+  $something_to_see = 'NOTHING';
 }
 
 /**
@@ -100,6 +101,7 @@ function gearwrench_preprocess_node__media_page__full(&$variables) {
   $variables['file'] = NULL;
   $dle_array = $node->get('field_enable_download_link')->getValue();
   $downloadLinkEnable = !empty($dle_array) ? $dle_array[0]['value'] : '0';
+
   if (isset($variables['content']['field_preferred_listing_image'][0])) {
     $variables['media_attributes']['class'][] = 'node__media--with-media';
     $variables['media_attributes']['class'][] = 'node__listing-image';
@@ -111,6 +113,7 @@ function gearwrench_preprocess_node__media_page__full(&$variables) {
     if (isset($variables['content']['field_media'][0]) && $downloadLinkEnable === '1') {
       $mediaItem = Media::load($node->get('field_media')->getValue()[0]['target_id']);
       $variables['mediaItem'] = $mediaItem;
+
       if ($mediaItem->bundle() == 'remote_video') {
         $url = $mediaItem->get('field_media_video_embed_field')->getValue()[0]['value'];
       }
@@ -138,6 +141,7 @@ function gearwrench_preprocess_node__media_page__full(&$variables) {
     $variables['media_attributes']['class'][] = 'node__media--with-media';
     $variables['media_attributes']['class'][] = 'node__listing-image';
     $mediaItem = Media::load($node->get('field_media')->getValue()[0]['target_id']);
+
     if ($mediaItem->bundle() == 'remote_video') {
       $build = \Drupal::entityTypeManager()->getViewBuilder('media')->view($mediaItem, 'modal');
       $variables['media'] = $build;
@@ -146,6 +150,7 @@ function gearwrench_preprocess_node__media_page__full(&$variables) {
       $variables['media'] = $variables['content']['field_media'];
       unset($variables['media']['#theme']);
     }
+
     unset($variables['content']['field_media']);
   }
   else {
@@ -231,7 +236,7 @@ function gearwrench_preprocess_node__product__full(array &$variables) {
   // Thumb Gallery.
   $thumbs = $node->field_product_images->getValue();
 
-  foreach ($thumbs as $thumb) {
+  foreach ($thumbs as $tidx => $thumb) {
     $media = Media::load($thumb['target_id']);
 
     if (!empty($media->field_media_image)) {
@@ -269,8 +274,22 @@ function gearwrench_preprocess_node__product__full(array &$variables) {
         $message = 'No target ID';
       }
     }
-    elseif (!empty($media->field_media_video_embed_field)) {
-      // TODO: figure out how to get it to load the videos properly.
+    elseif (!empty($media->field_media_video_embed_field) || $media->bundle() == 'remote_video') {
+      $video_thumbnail_fid = $media->get('thumbnail')->target_id;
+
+      /** @var \Drupal\file\Entity\File $file */
+      $file = File::load($video_thumbnail_fid);
+      $uri = $file->getFileUri();
+
+      if (!empty($uri)) {
+        $variables['thumbnails'][] = [
+          '#theme' => 'image_style',
+          '#width' => 100,
+          '#height' => 100,
+          '#style_name' => 'thumbnail_cropped',
+          '#uri' => $uri,
+        ];
+      }
     }
     else {
       $message = 'No field media image';
