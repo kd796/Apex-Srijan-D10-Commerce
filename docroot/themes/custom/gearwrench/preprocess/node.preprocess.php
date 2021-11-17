@@ -199,55 +199,82 @@ function gearwrench_preprocess_node__media_page__teaser(&$variables) {
  */
 function gearwrench_preprocess_node__product__full(array &$variables) {
   $node = $variables['elements']['#node'];
+
   if ($node instanceof NodeInterface) {
     $current_nid = $node->id();
   }
+
   $sku = $node->title->value;
   $variables['sku'] = $sku;
+
   // Product Features.
   $page_top_products_features = $variables['content']['field_product_features'];
+
   // Add first 3 Product Features to an array to display at the top of the page.
   $all_product_features = $node->get('field_product_features')->getValue();
+
   foreach ($all_product_features as $key => $feature) {
     if ($key > 2) {
       unset($page_top_products_features[$key]);
     }
   }
+
   $variables['page_top_products_features'] = $page_top_products_features;
 
   // Count Product Images.
   $variables['product_images'] = NULL;
+
   if (!empty($node->field_product_images->getValue())) {
     $variables['product_images'] = TRUE;
     $variables['product_image_count'] = count($node->field_product_images->getValue());
   }
   // Thumb Gallery.
   $thumbs = $node->field_product_images->getValue();
+
   foreach ($thumbs as $thumb) {
     $media = Media::load($thumb['target_id']);
-    $fid = $media->field_media_image->target_id;
-    $file = File::load($fid);
-    $thumb_variables = [
-      'style_name' => 'thumbnail_cropped',
-      'uri' => $file->getFileUri(),
-    ];
-    // The image.factory service will check if our image is valid.
-    $image = \Drupal::service('image.factory')->get($file->getFileUri());
-    if ($image->isValid()) {
-      $thumb_variables['width'] = $image->getWidth();
-      $thumb_variables['height'] = $image->getHeight();
+
+    if (!empty($media->field_media_image)) {
+      $field_media_image = $media->field_media_image;
+
+      if (!empty($field_media_image->target_id)) {
+        $fid = $media->field_media_image->target_id;
+        $file = File::load($fid);
+
+        $thumb_variables = [
+          'style_name' => 'thumbnail_cropped',
+          'uri' => $file->getFileUri(),
+        ];
+
+        // The image.factory service will check if our image is valid.
+        $image = \Drupal::service('image.factory')->get($file->getFileUri());
+
+        if ($image->isValid()) {
+          $thumb_variables['width'] = $image->getWidth();
+          $thumb_variables['height'] = $image->getHeight();
+        }
+        else {
+          $thumb_variables['width'] = $thumb_variables['height'] = NULL;
+        }
+
+        $variables['thumbnails'][] = [
+          '#theme' => 'image_style',
+          '#width' => $thumb_variables['width'],
+          '#height' => $thumb_variables['height'],
+          '#style_name' => $thumb_variables['style_name'],
+          '#uri' => $thumb_variables['uri'],
+        ];
+      }
+      else {
+        $message = 'No target ID';
+      }
+    }
+    elseif (!empty($media->field_media_video_embed_field)) {
+      // TODO: figure out how to get it to load the videos properly.
     }
     else {
-      $thumb_variables['width'] = $thumb_variables['height'] = NULL;
+      $message = 'No field media image';
     }
-
-    $variables['thumbnails'][] = [
-      '#theme' => 'image_style',
-      '#width' => $thumb_variables['width'],
-      '#height' => $thumb_variables['height'],
-      '#style_name' => $thumb_variables['style_name'],
-      '#uri' => $thumb_variables['uri'],
-    ];
   }
 
   // Related Products.
@@ -256,9 +283,11 @@ function gearwrench_preprocess_node__product__full(array &$variables) {
     ->getStorage('view')
     ->load('related_products')
     ->getExecutable();
+
   $view_args = [];
   $view_display = 'related_categories';
   $view_exposed_input = [];
+
   // Initialize, setup, and execute backfill view display.
   $main_view->initDisplay();
   $main_view->setDisplay($view_display);
@@ -271,25 +300,33 @@ function gearwrench_preprocess_node__product__full(array &$variables) {
   if (!isset($variables['#cache']['contexts'])) {
     $variables['#cache']['contexts'] = [];
   }
+
   // Initialize cache tags.
   if (!isset($variables['#cache']['tags'])) {
     $variables['#cache']['tags'] = [];
   }
+
   // Initialize cache max-age.
   if (!isset($variables['#cache']['max-age'])) {
     $variables['#cache']['max-age'] = Cache::PERMANENT;
   }
+
   // Merge display cache tags.
   $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'], $main_view->display_handler->getCacheMetadata()
     ->getCacheContexts());
+
   $variables['#cache']['tags'] = Cache::mergeTags($variables['#cache']['tags'], $main_view->display_handler->getCacheMetadata()
     ->getCacheTags());
+
   $variables['#cache']['max-age'] = Cache::mergeMaxAges($variables['#cache']['max-age'], $main_view->display_handler->getCacheMetadata()
     ->getCacheMaxAge());
+
   // Merge storage cache tags.
   $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'], $main_view->storage->getCacheContexts());
+
   $variables['#cache']['tags'] = Cache::mergeTags($variables['#cache']['tags'], $main_view->getCacheTags());
   $variables['#cache']['max-age'] = Cache::mergeMaxAges($variables['#cache']['max-age'], $main_view->storage->getCacheMaxAge());
+
   $variables['related_items'] = $main_view->buildRenderable($view_display, $main_view->args);
 }
 
