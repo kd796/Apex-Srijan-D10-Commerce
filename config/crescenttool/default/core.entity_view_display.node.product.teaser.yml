@@ -1,4 +1,4 @@
-uuid: b9098559-e075-4c0a-85d8-d3e8e1d92265
+uuid: f73f0306-2e49-45fb-b485-6f11807ccca1
 langcode: en
 status: true
 dependencies:
@@ -6,6 +6,8 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.product.body
     - field.field.node.product.field_featured_product
+    - field.field.node.product.field_industry
+    - field.field.node.product.field_launch_date
     - field.field.node.product.field_long_description
     - field.field.node.product.field_media
     - field.field.node.product.field_meta_tags
@@ -19,7 +21,7 @@ dependencies:
     - field.field.node.product.field_set_components
     - field.field.node.product.field_sku_group
     - field.field.node.product.field_upc
-    - image.style.small
+    - image.style.product_small
     - node.type.product
   module:
     - blazy
@@ -43,12 +45,12 @@ content:
     region: content
     label: hidden
     settings:
-      image_style: small
+      image_style: product_small
       responsive_image_style: ''
       media_switch: ''
       thumbnail_style: ''
       ratio: ''
-      view_mode: teaser
+      view_mode: product_teaser
       image: ''
       current_view_mode: teaser
       background: false
@@ -82,6 +84,7 @@ content:
 hidden:
   body: true
   field_featured_product: true
+  field_industry: true
   field_launch_date: true
   field_meta_tags: true
   field_new_product: true

@@ -1,4 +1,4 @@
-uuid: a588ae4e-e848-45c8-822b-a62e6295d5e2
+uuid: e5dfcf9a-42d4-43af-b037-b5a67bb78b69
 langcode: en
 status: true
 dependencies:
@@ -6,7 +6,9 @@ dependencies:
     - field.field.media.image.field_media_image
     - media.type.image
   module:
-    - image
+    - blazy
+_core:
+  default_config_hash: PaZ7IN5ey3rp2fwE9LXGfW9Piq7oX4piH08FhUTI4lQ
 id: media.image.default
 targetEntityType: media
 bundle: image
@@ -16,9 +18,35 @@ content:
     label: visually_hidden
     settings:
       image_style: ''
-      image_link: file
+      responsive_image_style: ''
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
+      current_view_mode: default
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      icon: ''
+      layout: ''
+      view_mode: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: 0
+      grid_medium: 0
+      grid_small: 0
     third_party_settings: {  }
-    type: image
+    type: blazy
     weight: 1
     region: content
 hidden:

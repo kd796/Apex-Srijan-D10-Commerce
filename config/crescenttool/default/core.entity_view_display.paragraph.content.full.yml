@@ -1,4 +1,4 @@
-uuid: 335bc0f1-5668-45ad-bcb0-14d6cc841fdd
+uuid: 48c4430b-e3b0-4cb9-9edd-b8e9d40dbc23
 langcode: en
 status: true
 dependencies:
@@ -12,12 +12,14 @@ dependencies:
     - field.field.paragraph.content.field_media_layout
     - field.field.paragraph.content.field_style
     - field.field.paragraph.content.field_title
-    - image.style.small_landscape_4x3
+    - image.style.small
     - paragraphs.paragraphs_type.content
   module:
     - blazy
     - linkit
     - text
+_core:
+  default_config_hash: KpCo30VG0jTdIP8FDQi7dTMd0rmnR_dm1xaDjjE96WU
 id: paragraph.content.full
 targetEntityType: paragraph
 bundle: content
@@ -49,17 +51,52 @@ content:
     region: content
     label: hidden
     settings:
-      image_style: small_landscape_4x3
+      image_style: small
+      thumbnail_style: ''
       responsive_image_style: ''
       media_switch: ''
-      thumbnail_style: ''
       ratio: ''
-      view_mode: default
+      sizes: ''
+      breakpoints:
+        xs:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+        sm:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+        md:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+        lg:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+        xl:
+          image_style: ''
+          width: ''
+          breakpoint: ''
       current_view_mode: full
       background: false
       caption:
         title: '0'
         alt: '0'
+      icon: ''
+      layout: ''
+      view_mode: ''
+      cache: 0
+      skin: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_style: ''
+      box_media_style: ''
+      grid: 0
+      grid_header: ''
+      grid_medium: 0
+      grid_small: 0
       class: ''
       id: ''
       image: ''
@@ -67,23 +104,8 @@ content:
       overlay: ''
       title: ''
       vanilla: false
-      icon: ''
-      layout: ''
-      cache: 0
-      skin: ''
       fx: ''
-      style: ''
-      box_caption: ''
-      box_caption_custom: ''
-      box_media_style: ''
-      box_style: ''
       _uri: ''
-      breakpoints: {  }
-      sizes: ''
-      grid_header: ''
-      grid: 0
-      grid_medium: 0
-      grid_small: 0
     third_party_settings: {  }
   field_title:
     type: string

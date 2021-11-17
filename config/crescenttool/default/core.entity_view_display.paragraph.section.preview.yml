@@ -1,4 +1,4 @@
-uuid: aeee51bb-8ea8-4bab-a9c8-8b6be152e55e
+uuid: 48db3d6e-edbd-4005-988f-7790ce2ebe7c
 langcode: en
 status: true
 dependencies:
@@ -10,7 +10,6 @@ dependencies:
     - field.field.paragraph.section.field_html_anchor
     - field.field.paragraph.section.field_image_background
     - field.field.paragraph.section.field_style
-    - field.field.paragraph.section.field_title
     - image.style.thumbnail_cropped
     - paragraphs.paragraphs_type.section
   module:
@@ -26,6 +25,7 @@ third_party_settings:
       weight: 1
       format_type: fieldset
       format_settings:
+        label: Components
         description: ''
         id: ''
         classes: ''
@@ -47,6 +47,8 @@ third_party_settings:
         required_fields: false
       label: Settings
       region: content
+_core:
+  default_config_hash: lpadzJ8cvbdx5KyEUOzuQdjBXVw6wYLGPcO8qi2Avuk
 id: paragraph.section.preview
 targetEntityType: paragraph
 bundle: section
@@ -94,14 +96,6 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  field_title:
-    type: string
-    weight: 0
-    region: content
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
 hidden:
   field_background_color: true
   search_api_excerpt: true

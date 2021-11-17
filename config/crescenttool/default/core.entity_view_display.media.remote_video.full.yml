@@ -1,13 +1,16 @@
-uuid: 6b9dc144-0738-429e-b8b6-208c47526175
+uuid: 334cfc52-2825-4620-bec0-12b0812d0e00
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.media.full
+    - field.field.media.remote_video.field_media_oembed_video
     - field.field.media.remote_video.field_media_video_embed_field
     - media.type.remote_video
   module:
     - video_embed_field
+_core:
+  default_config_hash: 75jYK77SzUA2rLQ0trXSjWLp2eBAJg7ynZxP8IaYWbo
 id: media.remote_video.full
 targetEntityType: media
 bundle: remote_video
@@ -26,6 +29,7 @@ content:
     region: content
 hidden:
   created: true
+  field_media_oembed_video: true
   langcode: true
   name: true
   search_api_excerpt: true

@@ -54,6 +54,9 @@ settings:
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
+  form_method: ''
+  form_action: ''
+  form_attributes: {  }
   share: false
   share_node: false
   share_theme_name: ''
@@ -112,16 +115,16 @@ settings:
   draft_loaded_message: ''
   draft_pending_single_message: ''
   draft_pending_multiple_message: ''
-  confirmation_type: page
+  confirmation_type: url
   confirmation_title: ''
   confirmation_message: ''
-  confirmation_url: ''
+  confirmation_url: /form-submission-thank-you
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''
   confirmation_back_attributes: {  }
-  confirmation_exclude_query: false
-  confirmation_exclude_token: false
+  confirmation_exclude_query: true
+  confirmation_exclude_token: true
   confirmation_update: false
   limit_total: null
   limit_total_interval: null
@@ -191,5 +194,634 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers: {  }
+handlers:
+  email:
+    id: email
+    label: 'Email for "Become a Distributor" - US'
+    notes: ''
+    handler_id: email
+    status: true
+    conditions:
+      enabled:
+        ':input[name="address[country]"]':
+          value: 'United States'
+        ':input[name="select_type"]':
+          value: 'Become a Distributor'
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: csrwest@apextoolgroup.com
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_for_become_a_distributor_guam:
+    id: email
+    label: 'Email for "Become a Distributor" - Guam'
+    notes: ''
+    handler_id: email_for_become_a_distributor_guam
+    status: true
+    conditions:
+      enabled:
+        ':input[name="address[country]"]':
+          value: Guam
+        ':input[name="select_type"]':
+          value: 'Become a Distributor'
+    weight: 1
+    settings:
+      states:
+        - completed
+      to_mail: peter.reynoldson@apextoolgroup.com
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_for_become_a_distributor_us_virgin_islands:
+    id: email
+    label: 'Email for "Become a Distributor" - US Virgin Islands'
+    notes: ''
+    handler_id: email_for_become_a_distributor_us_virgin_islands
+    status: true
+    conditions:
+      enabled:
+        ':input[name="address[country]"]':
+          value: 'U.S. Virgin Islands'
+        ':input[name="select_type"]':
+          value: 'Become a Distributor'
+    weight: 3
+    settings:
+      states:
+        - completed
+      to_mail: esteban.quijano@apextoolgroup.com
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_for_become_a_distributor_puerto_rico:
+    id: email
+    label: 'Email for "Become a Distributor" - Puerto Rico'
+    notes: ''
+    handler_id: email_for_become_a_distributor_puerto_rico
+    status: true
+    conditions:
+      enabled:
+        ':input[name="address[country]"]':
+          value: 'Puerto Rico'
+        ':input[name="select_type"]':
+          value: 'Become a Distributor'
+    weight: 3
+    settings:
+      states:
+        - completed
+      to_mail: amilcar.toolpr@gmail.com
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_for_feedback_us:
+    id: email
+    label: 'Email for "Feedback" - US'
+    notes: ''
+    handler_id: email_for_feedback_us
+    status: true
+    conditions:
+      enabled:
+        ':input[name="address[country]"]':
+          value: 'United States'
+        ':input[name="select_type"]':
+          value: 'Product Feedback'
+    weight: 4
+    settings:
+      states:
+        - completed
+      to_mail: csrwest@apextoolgroup.com
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_for_feedback_guam:
+    id: email
+    label: 'Email for "Feedback" - Guam'
+    notes: ''
+    handler_id: email_for_feedback_guam
+    status: true
+    conditions:
+      enabled:
+        ':input[name="address[country]"]':
+          value: Guam
+        ':input[name="select_type"]':
+          value: 'Product Feedback'
+    weight: 5
+    settings:
+      states:
+        - completed
+      to_mail: peter.reynoldson@apextoolgroup.com
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_for_feedback_puerto_rico:
+    id: email
+    label: 'Email for "Feedback" - Puerto Rico'
+    notes: ''
+    handler_id: email_for_feedback_puerto_rico
+    status: true
+    conditions:
+      enabled:
+        ':input[name="address[country]"]':
+          value: 'Puerto Rico'
+        ':input[name="select_type"]':
+          value: 'Product Feedback'
+    weight: 6
+    settings:
+      states:
+        - completed
+      to_mail: amilcar.toolpr@gmail.com
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_for_feedback_us_virgin_islands:
+    id: email
+    label: 'Email for "Feedback" - US Virgin Islands'
+    notes: ''
+    handler_id: email_for_feedback_us_virgin_islands
+    status: true
+    conditions:
+      enabled:
+        ':input[name="address[country]"]':
+          value: 'U.S. Virgin Islands'
+        ':input[name="select_type"]':
+          value: 'Product Feedback'
+    weight: 7
+    settings:
+      states:
+        - completed
+      to_mail: esteban.quijano@apextoolgroup.com
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_for_sales_us:
+    id: email
+    label: 'Email for "Sales" - US'
+    notes: ''
+    handler_id: email_for_sales_us
+    status: true
+    conditions:
+      enabled:
+        ':input[name="address[country]"]':
+          value: 'United States'
+        ':input[name="select_type"]':
+          value: 'Sales Quote'
+    weight: 8
+    settings:
+      states:
+        - completed
+      to_mail: csrwest@apextoolgroup.com
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_for_sales_guam:
+    id: email
+    label: 'Email for "Sales" - Guam'
+    notes: ''
+    handler_id: email_for_sales_guam
+    status: true
+    conditions:
+      enabled:
+        ':input[name="address[country]"]':
+          value: Guam
+        ':input[name="select_type"]':
+          value: 'Sales Quote'
+    weight: 9
+    settings:
+      states:
+        - completed
+      to_mail: peter.reynoldson@apextoolgroup.com
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_for_sales_puerto_rico:
+    id: email
+    label: 'Email for "Sales" - Puerto Rico'
+    notes: ''
+    handler_id: email_for_sales_puerto_rico
+    status: true
+    conditions:
+      enabled:
+        ':input[name="address[country]"]':
+          value: 'Puerto Rico'
+        ':input[name="select_type"]':
+          value: 'Sales Quote'
+    weight: 10
+    settings:
+      states:
+        - completed
+      to_mail: amilcar.toolpr@gmail.com
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_for_sales_us_virgin_islands:
+    id: email
+    label: 'Email for "Sales" - US Virgin Islands'
+    notes: ''
+    handler_id: email_for_sales_us_virgin_islands
+    status: true
+    conditions:
+      enabled:
+        ':input[name="address[country]"]':
+          value: 'U.S. Virgin Islands'
+        ':input[name="select_type"]':
+          value: 'Sales Quote'
+    weight: 11
+    settings:
+      states:
+        - completed
+      to_mail: esteban.quijano@apextoolgroup.com
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_for_technical_all:
+    id: email
+    label: 'Email for "Technical" - All'
+    notes: ''
+    handler_id: email_for_technical_all
+    status: true
+    conditions:
+      enabled:
+        ':input[name="select_type"]':
+          value: 'Product Technical Question'
+    weight: 12
+    settings:
+      states:
+        - completed
+      to_mail: TechnicalQuestions@ApexToolGroup.com
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_for_support_all:
+    id: email
+    label: 'Email for "Support" - All'
+    notes: ''
+    handler_id: email_for_support_all
+    status: true
+    conditions:
+      enabled:
+        -
+          ':input[name="select_type"]':
+            value: 'Tools Truck'
+        - or
+        -
+          ':input[name="select_type"]':
+            value: 'Add/Adjust Your Location Information'
+    weight: 13
+    settings:
+      states:
+        - completed
+      to_mail: Streetteam.help@apextoolgroup.com
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  email_for_warranty_all:
+    id: email
+    label: 'Email for "Warranty" - All'
+    notes: ''
+    handler_id: email_for_warranty_all
+    status: true
+    conditions:
+      enabled:
+        ':input[name="select_type"]':
+          value: 'Warranty/Replacement Parts/Repair'
+    weight: 14
+    settings:
+      states:
+        - completed
+      to_mail: customercare@apextoolgroup.com
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
 variants: {  }

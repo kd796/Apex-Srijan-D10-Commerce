@@ -1,11 +1,10 @@
-uuid: 9b8432ee-a0c2-4915-acfb-33045d38f58c
+uuid: 4c0288f3-4f7d-4708-bb54-d4a734561e9c
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.preview
     - field.field.paragraph.step.field_content
-    - field.field.paragraph.step.field_pre_title
     - field.field.paragraph.step.field_title
     - paragraphs.paragraphs_type.step
   module:
@@ -16,23 +15,15 @@ bundle: step
 mode: preview
 content:
   field_content:
-    weight: 2
+    weight: 1
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
-  field_pre_title:
-    type: string
-    weight: 0
-    region: content
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   field_title:
     type: string
-    weight: 1
+    weight: 0
     region: content
     label: above
     settings:
