@@ -154,7 +154,6 @@ function crescenttool_preprocess_node__product__full(array &$variables) {
   }
 
   // Thumb Gallery.
-  // $thumbs = $node->field_media->getValue();
   foreach ($thumbs as $thumb) {
     $media = Media::load($thumb['target_id']);
     $fid = $media->field_media_image->target_id;
