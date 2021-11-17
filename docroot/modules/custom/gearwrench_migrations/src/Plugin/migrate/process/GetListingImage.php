@@ -38,13 +38,16 @@ class GetListingImage extends ProcessPluginBase {
     $media_id = NULL;
     $alt_text = NULL;
     $sku = NULL;
+
     if (!empty($value)) {
       $alt_text = $value->Name;
+
       foreach ($value->children() as $child) {
         if ($child->getName() === 'Product') {
           $sku = (string) $child->attributes()->ID;
         }
       }
+
       foreach ($value->children() as $child) {
         if ($child->getName() === 'Product' && (string) $child->attributes()->ID === $sku) {
           foreach ($child->children() as $item) {
@@ -60,6 +63,7 @@ class GetListingImage extends ProcessPluginBase {
           }
         }
       }
+
       if (empty($assets)) {
         foreach ($value->children() as $child) {
           if ($child->getName() === 'AssetCrossReference' && (string) $child->attributes()->Type === 'Primary Image') {
@@ -81,11 +85,14 @@ class GetListingImage extends ProcessPluginBase {
       foreach ($assets as $asset) {
         $headers_array = @get_headers($asset['remote_file_path']);
         $headers_check = $headers_array[0];
+
         if (strpos($headers_check, "200")) {
           $file_data = file_get_contents($asset['remote_file_path']);
           $file = file_save_data($file_data, $asset['drupal_file_path'], FileSystemInterface::EXISTS_REPLACE);
+
           // See if there's a media item we can use already.
           $usage = \Drupal::service('file.usage')->listUsage($file);
+
           if (count($usage) > 0 && !empty($usage['file']['media'])) {
             $media_id = array_key_first($usage['file']['media']);
           }
@@ -98,12 +105,14 @@ class GetListingImage extends ProcessPluginBase {
                 'alt' => 'Image of ' . $alt_text
               ],
             ]);
+
             $media->setName($asset['asset_id'])->setPublished(TRUE)->save();
             $media_id = $media->id();
           }
         }
       }
     }
+
     return $media_id;
   }
 
