@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.product_category.field_classification_id
     - field.field.node.product_category.field_media
     - field.field.node.product_category.field_product_classifications
+    - field.field.node.product_category.field_show_set_filter
     - node.type.product_category
   module:
     - user
@@ -15,7 +16,17 @@ id: node.product_category.default
 targetEntityType: node
 bundle: product_category
 mode: default
-content: {  }
+content:
+  field_show_set_filter:
+    weight: 1
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
 hidden:
   body: true
   field_category_facets: true

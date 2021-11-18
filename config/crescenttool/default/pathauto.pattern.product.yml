@@ -1,0 +1,22 @@
+uuid: 01bdc3d8-8a95-4ae8-be34-e42b53a46c6b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: product
+label: Product
+type: 'canonical_entities:node'
+pattern: '/products/[node:product_classifications_parent]/[node:product_classifications_child_first]/[node:product_classifications_child_second]/[node:title]-[node:field_long_description]'
+selection_criteria:
+  713babda-79a1-483f-9b4d-b267e018d90b:
+    id: node_type
+    bundles:
+      product: product
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 713babda-79a1-483f-9b4d-b267e018d90b
+selection_logic: and
+weight: -5
+relationships: {  }
