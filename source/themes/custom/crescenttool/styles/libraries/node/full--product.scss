@@ -57,11 +57,11 @@ $tabs-border-width-active: rem(5px);
             }
           }
 
-          @include on-event(){
+          @include on-event() {
             color: $primary-red;
           }
 
-          &[aria-disabled='true'] {
+          &[aria-disabled='true'] { // sass-lint:disable-line nesting-depth
             background-color: $gray-30;
             border-color: $gray-30;
           }

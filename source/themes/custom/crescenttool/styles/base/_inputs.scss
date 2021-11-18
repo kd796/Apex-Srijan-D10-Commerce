@@ -20,7 +20,7 @@ textarea.form-textarea.webform-counter-warning,
   color: $secondary-black;
   max-width: 100%;
   outline: 0 none;
-  padding: 1rem 1.75rem;
+  padding: 0.5rem 1.75rem;
   transition: $transition-base;
   -webkit-appearance: none;
   width: 100%;
@@ -30,7 +30,7 @@ textarea.form-textarea.webform-counter-warning,
   }
 
   @include media('<sm') {
-    padding: 1rem;
+    padding: 0.5rem;
   }
 }
 
@@ -314,6 +314,8 @@ $active-gap: 8px; // the math likes px values
   &::after {
     font-size: rem(15px);
     transform: rotate(90deg);
+    border-top-right-radius: rem(8px);
+    border-top-left-radius: rem(8px);
   }
 }
 
@@ -330,6 +332,8 @@ $active-gap: 8px; // the math likes px values
 
   &::after {
     font-size: rem(20px);
+    border-top-right-radius: rem(8px);
+    border-bottom-right-radius: rem(8px);
   }
 }
 

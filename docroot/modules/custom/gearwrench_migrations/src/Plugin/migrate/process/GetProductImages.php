@@ -175,22 +175,24 @@ class GetProductImages extends ProcessPluginBase {
       // Take all the videos and create media items.
       if (!empty($videos)) {
         foreach ($videos as $video) {
-          // Load data about the video.
-          $data = file_get_contents("https://www.youtube.com/oembed?format=json&url=http://www.youtube.com/watch?v=Ebn0JcwVzG4&amp;list=PL3930C801CC49086F&amp;index=25");
-          $video_json = json_decode($data);
+          // Process the video down to a normal URL, not a video series.
+          $video_json = gearwrench_core_get_youtube_data($video);
+          $clean_url = gearwrench_core_get_youtube_clean_url($video);
 
-          $media = Media::create([
-            'bundle'           => 'remote_video',
-            'uid'              => 1,
-            'field_media_video_embed_field' => [
-              'value' => $video,
-            ],
-          ]);
+          if (!empty($video_json)) {
+            $media = Media::create([
+              'bundle'           => 'remote_video',
+              'uid'              => 1,
+              'field_media_video_embed_field' => [
+                'value' => $clean_url,
+              ],
+            ]);
 
-          $media->setName($video_json->title)->setPublished(TRUE)->save();
-          $media_ids[] = [
-            'media_id' => $media->id()
-          ];
+            $media->setName($video_json->title)->setPublished(TRUE)->save();
+            $media_ids[] = [
+              'media_id' => $media->id()
+            ];
+          }
         }
       }
     }
