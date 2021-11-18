@@ -31,6 +31,7 @@ global:
     - core/drupal
     - core/jquery
     - crescenttool/library--price-spider
+    - gearwrench/library--hubspot
 
 
 # === Global: Library Overrides === #
@@ -101,6 +102,11 @@ library--price-spider:
   js:
     //cdn.pricespider.com/1/lib/ps-widget.js: { type: external, attributes: { async: true } }
     //cdn.pricespider.com/1/2377/ps-utid.js: { type: external, attributes: { async: true } }
+
+library--hubspot:
+  version: 1.x
+  js:
+    //js.hs-scripts.com/20116876.js: { type: external, attributes: { async: true, defer: true, id: 'hs-script-loader' } }
 
 # ========= Block ========= #
 
