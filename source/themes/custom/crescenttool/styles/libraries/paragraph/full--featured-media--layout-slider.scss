@@ -18,26 +18,22 @@
     position: relative;
 
     .component-featured-media__button {
-      background-color: $gray-90;
-      background-size: rem(10px) rem(16px);
-      border: 1px solid $gray-90;
       height: rem(48px);
       width: rem(48px);
       margin: 0;
       padding: 0;
       opacity: 1;
 
-      &:hover {
-        background-color: $primary-red;
-        border-color: $primary-red;
-      }
-
       &.component-featured-media__button-prev {
         background-image: url('../../../icons/chevron-left-red.svg');
         left: rem(-98px);
 
         &:hover {
-          background-image: url('../../../icons/chevron-left-white.svg');
+          background-image: url('../../../icons/chevron-left-dark-red.svg');
+        }
+
+        &[aria-disabled='true'] {
+          background-image: url('../../../icons/chevron-left-gray-50.svg');
         }
 
         @include media('<1401px') {
@@ -54,7 +50,11 @@
         right: rem(-98px);
 
         &:hover {
-          background-image: url('../../../icons/chevron-right-white.svg');
+          background-image: url('../../../icons/chevron-right-dark-red.svg');
+        }
+
+        &[aria-disabled='true'] {
+          background-image: url('../../../icons/chevron-right-gray-50.svg');
         }
 
         @include media('<1400px') {
@@ -64,11 +64,6 @@
         @include media('<1336px') {
           display: none;
         }
-      }
-
-      &[aria-disabled='true'] {
-        background-color: $gray-30;
-        border-color: $gray-30;
       }
     }
   }
@@ -130,11 +125,10 @@
     width: 100%;
 
     .component-featured-media__button {
-      background-color: $gray-90;
+      background-color: transparent;
       background-position: center;
       background-repeat: no-repeat;
-      background-size: rem(10px) rem(16px);
-      border: 1px solid $gray-90;
+      border: 0;
       display: none;
       height: rem(48px);
       width: rem(48px);
@@ -143,9 +137,9 @@
       position: relative;
       opacity: 1;
 
-      @include media('<md') {
-        height: rem(40px);
-        width: rem(40px);
+      @include media('<=lg-plus') {
+        height: rem(30px);
+        width: rem(30px);
       }
 
       @include media('<1336px') {
@@ -155,11 +149,27 @@
       &.component-featured-media__pseudo-button-prev {
         background-image: url('../../../icons/chevron-left-red.svg');
         margin-right: 1rem;
+
+        &:hover {
+          background-image: url('../../../icons/chevron-left-dark-red.svg');
+        }
+
+        &[aria-disabled='true'] {
+          background-image: url('../../../icons/chevron-left-gray-50.svg');
+        }
       }
 
       &.component-featured-media__pseudo-button-next {
         background-image: url('../../../icons/chevron-right-red.svg');
         margin-left: 1rem;
+
+        &:hover {
+          background-image: url('../../../icons/chevron-right-dark-red.svg');
+        }
+
+        &[aria-disabled='true'] {
+          background-image: url('../../../icons/chevron-right-gray-50.svg');
+        }
       }
     }
 
@@ -167,12 +177,12 @@
       position: relative;
 
       .swiper-pagination-bullet {
-        background: transparent;
-        border-color: $gray-90;
+        background: $primary-red;
+        border-color: $primary-red;
       }
 
       .swiper-pagination-bullet-active {
-        background: $gray-90;
+        background: transparent;
       }
     }
   }
