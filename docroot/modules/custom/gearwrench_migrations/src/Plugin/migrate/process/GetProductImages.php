@@ -177,13 +177,14 @@ class GetProductImages extends ProcessPluginBase {
         foreach ($videos as $video) {
           // Process the video down to a normal URL, not a video series.
           $video_json = gearwrench_core_get_youtube_data($video);
+          $clean_url = gearwrench_core_get_youtube_clean_url($video);
 
           if (!empty($video_json)) {
             $media = Media::create([
               'bundle'           => 'remote_video',
               'uid'              => 1,
               'field_media_video_embed_field' => [
-                'value' => $video_json->clean_url,
+                'value' => $clean_url,
               ],
             ]);
 
