@@ -16,24 +16,30 @@ third_party_settings:
   field_group:
     group_settings:
       children:
-        - status
-        - field_style
-        - field_class_custom
+        - field_layout
         - field_html_anchor
+        - field_class_custom
+        - status
       parent_name: ''
       weight: 0
       format_type: settings
       format_settings:
+        visible_for_roles:
+          authenticated: authenticated
+          site_administrator: site_administrator
+          content_editor: content_editor
+          administrator: 0
         id: ''
         classes: ''
       label: Settings
+      region: content
 id: paragraph.featured_media.default
 targetEntityType: paragraph
 bundle: featured_media
 mode: default
 content:
   field_class_custom:
-    weight: 8
+    weight: 7
     settings:
       size: 60
       placeholder: ''
@@ -41,7 +47,7 @@ content:
     type: string_textfield
     region: content
   field_html_anchor:
-    weight: 9
+    weight: 6
     settings:
       size: 60
       placeholder: 'Example: find-out-more'
@@ -49,31 +55,26 @@ content:
     type: string_textfield
     region: content
   field_layout:
-    weight: 3
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_media_items:
     type: media_library_widget
-    weight: 4
+    weight: 1
     settings:
       media_types: {  }
     third_party_settings: {  }
     region: content
-  field_style:
-    weight: 7
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
   status:
     type: boolean_checkbox
-    weight: 6
+    weight: 8
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
 hidden:
   created: true
+  field_style: true
   uid: true

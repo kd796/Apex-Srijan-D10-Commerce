@@ -1,4 +1,4 @@
-uuid: d5924388-e80d-46c4-b8d1-00579ee2945c
+uuid: 8c94c0b5-eaf0-4e43-be79-913b3a87b0fa
 langcode: en
 status: true
 dependencies:
@@ -18,6 +18,8 @@ dependencies:
     - paragraphs.paragraphs_type.tabs
   module:
     - entity_reference_revisions
+_core:
+  default_config_hash: 7ELNhfqqGxCjdH0SR1HZJR31TXJUlW0CB1uHEkj7QPY
 id: paragraph.accordion_item.field_components
 field_name: field_components
 entity_type: paragraph
@@ -45,15 +47,15 @@ settings:
       section: section
       tabs: tabs
     target_bundles_drag_drop:
-      accordion:
-        enabled: true
-        weight: -29
       accordion_item:
         weight: -31
         enabled: false
       content:
         enabled: true
         weight: -30
+      accordion:
+        enabled: true
+        weight: -29
       embed_block:
         enabled: true
         weight: -28

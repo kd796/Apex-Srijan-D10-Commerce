@@ -9,7 +9,6 @@ dependencies:
     - field.field.paragraph.section.field_html_anchor
     - field.field.paragraph.section.field_image_background
     - field.field.paragraph.section.field_style
-    - field.field.paragraph.section.field_title
     - paragraphs.paragraphs_type.section
   module:
     - color_field
@@ -70,14 +69,6 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
-    region: content
-  field_title:
-    weight: 6
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
     region: content
 hidden:
   search_api_excerpt: true
