@@ -14,14 +14,15 @@ module:
   recaptcha: 0
   syslog: 0
 theme: {  }
-blacklist: {  }
+blacklist:
+  - purge.logger_channels
 graylist:
   - gearwrench_core.settings
   - google_tag.container.google_tag_59x3zt8
   - google_tag.container.primary
   - purge.logger_channels
-  - purge.plugins
   - system.performance
+  - purge.plugins
   - purge_queuer_coretags.settings
 graylist_dependents: true
 graylist_skip_equal: true
