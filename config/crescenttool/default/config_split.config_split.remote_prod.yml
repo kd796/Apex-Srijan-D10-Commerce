@@ -7,15 +7,19 @@ label: 'Remote - Prod'
 description: ''
 folder: ../config/crescenttool/remote_prod
 module:
+  acquia_connector: 0
   captcha: 0
   recaptcha: 0
   syslog: 0
 theme: {  }
-blacklist: {  }
-graylist:
-  - acquia_connector.settings
-  - crescenttool_core.settings
+blacklist:
   - purge.logger_channels
+graylist:
+  - gearwrench_core.settings
+  - google_tag.container.google_tag_59x3zt8
+  - google_tag.container.primary
+  - purge.logger_channels
+  - system.performance
   - purge.plugins
   - purge_queuer_coretags.settings
 graylist_dependents: true
