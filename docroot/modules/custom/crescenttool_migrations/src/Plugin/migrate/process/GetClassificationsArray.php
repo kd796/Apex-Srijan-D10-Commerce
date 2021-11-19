@@ -34,27 +34,33 @@ class GetClassificationsArray extends ProcessPluginBase {
     $tids = $query->execute();
     $terms = Term::loadMultiple($tids);
     $values_array = [];
+
     if (!empty($value)) {
       foreach ($value->children() as $child) {
         if (!empty($child->attributes()->Type) && $child->attributes()->Type == 'Web Reference') {
           foreach ($terms as $term) {
             if (isset($term->get('field_classification_id')->value)) {
               $classification_id = $term->get('field_classification_id')->value;
+
               if ($classification_id == $child->attributes()->ClassificationID) {
                 $values_array[] = [
                   'vid' => $vid,
                   'target_id' => $term->id()
                 ];
+
                 // Does Item have Parent?
                 $parent_term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($term->id());
+
                 if (!empty(reset($parent_term))) {
                   $parent = reset($parent_term);
                   $values_array[] = [
                     'vid' => $vid,
                     'target_id' => $parent->id()
                   ];
+
                   // Does Item have Grandparent?
                   $grandparent_term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($parent->id());
+
                   if (!empty(reset($grandparent_term))) {
                     $grandparent = reset($grandparent_term);
                     $values_array[] = [
@@ -68,6 +74,7 @@ class GetClassificationsArray extends ProcessPluginBase {
           }
         }
       }
+
       $values_array = json_encode($values_array);
     }
 
