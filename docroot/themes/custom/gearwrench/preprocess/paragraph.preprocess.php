@@ -17,7 +17,7 @@
  * @see gearwrench_preprocess_paragraph__steps__full()
  * @see gearwrench_preprocess_paragraph__step__full()
  * @see gearwrench_preprocess_paragraph__embed_iframe__full()
- * @see gearwrench_preprocess_paragraph__media__full()
+ * @see gearwrench_preprocess_paragraph__featured_media__full()
  * @see gearwrench_preprocess_paragraph__section__full()
  * @see gearwrench_preprocess_paragraph__product_slider__full()
  * @see gearwrench_preprocess_paragraph__tabs__full()
@@ -348,7 +348,7 @@ function gearwrench_preprocess_paragraph__featured_links__full(array &$variables
 }
 
 /**
- * Implements hook_preprocess_paragraph__VIEW_MODE() for media, full.
+ * Implements hook_preprocess_paragraph__VIEW_MODE() for featured media, full.
  */
 function gearwrench_preprocess_paragraph__featured_media__full(array &$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */

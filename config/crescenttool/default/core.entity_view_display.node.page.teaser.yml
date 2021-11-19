@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.page.body
     - field.field.node.page.field_components
+    - field.field.node.page.field_link
     - field.field.node.page.field_media
     - field.field.node.page.field_meta_tags
     - image.style.small_1x1
@@ -45,51 +46,38 @@ content:
     label: hidden
     settings:
       image_style: small_1x1
-      thumbnail_style: ''
       responsive_image_style: ''
       media_switch: ''
+      thumbnail_style: ''
       ratio: ''
-      sizes: ''
-      breakpoints:
-        xs:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-        sm:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-        md:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-        lg:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-        xl:
-          image_style: ''
-          width: ''
-          breakpoint: ''
+      view_mode: default
+      image: ''
       current_view_mode: teaser
       background: false
       caption:
         title: '0'
         alt: '0'
-      iframe_lazy: true
+      class: ''
+      id: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
       icon: ''
       layout: ''
-      view_mode: ''
       cache: 0
-      optionset: default
       skin: ''
+      fx: ''
       style: ''
       box_caption: ''
       box_caption_custom: ''
-      box_style: ''
       box_media_style: ''
-      grid: 0
+      box_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
       grid_header: ''
+      grid: 0
       grid_medium: 0
       grid_small: 0
     third_party_settings: {  }

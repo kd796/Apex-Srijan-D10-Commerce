@@ -1,4 +1,4 @@
-uuid: 8865ecff-31e3-4e0d-a979-9c585cecb6e6
+uuid: a0131fbb-1baf-43af-ba14-e77084d918d0
 langcode: en
 status: true
 dependencies:
@@ -8,6 +8,8 @@ dependencies:
     - paragraphs.paragraphs_type.accordion_item
   module:
     - entity_reference_revisions
+_core:
+  default_config_hash: dyDRi3vdxrF9ef_GO6TebAmre0dGufC49pCC8SnzbJY
 id: paragraph.accordion.field_components
 field_name: field_components
 entity_type: paragraph
@@ -25,12 +27,12 @@ settings:
     target_bundles:
       accordion_item: accordion_item
     target_bundles_drag_drop:
-      accordion:
-        weight: 16
-        enabled: false
       accordion_item:
         enabled: true
         weight: 15
+      accordion:
+        weight: 16
+        enabled: false
       content:
         weight: 17
         enabled: false

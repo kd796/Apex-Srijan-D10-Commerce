@@ -31,6 +31,7 @@ global:
     - core/drupal
     - core/jquery
     - crescenttool/library--price-spider
+    - gearwrench/library--hubspot
 
 
 # === Global: Library Overrides === #
@@ -101,6 +102,11 @@ library--price-spider:
   js:
     //cdn.pricespider.com/1/lib/ps-widget.js: { type: external, attributes: { async: true } }
     //cdn.pricespider.com/1/2377/ps-utid.js: { type: external, attributes: { async: true } }
+
+library--hubspot:
+  version: 1.x
+  js:
+    //js.hs-scripts.com/20116876.js: { type: external, attributes: { async: true, defer: true, id: 'hs-script-loader' } }
 
 # ========= Block ========= #
 
@@ -182,6 +188,19 @@ node--full--product:
     - core/jquery.once
     - crescenttool/library--swiper
     - crescenttool/library--jquery-roving-tabindex
+
+# === Node: Search Index === #
+node--search-index:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/search-index.css: { }
+
+node--search-index--product:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/search-index--product.css: { }
 
 # === Node: Teaser === #
 
@@ -416,6 +435,12 @@ region--footer-first:
 
 # ========= Views ========= #
 
+view:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/view.css: {}
+
 view--related-products:
   version: 1.x
   css:
@@ -434,6 +459,12 @@ view--product-listing-grid:
   css:
     component:
       css/libraries/view/product-listing-grid.css: {}
+
+view--search:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/search.css: {}
 
 # ========= Forms ========= #
 webform--warranty-replacement-form:

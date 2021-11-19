@@ -3,38 +3,45 @@ langcode: en
 status: true
 dependencies:
   config:
-    - image.style.biggest_landscape_2x1
-    - image.style.biggest_landscape_3x2
-    - image.style.huge_landscape_3x2
-    - image.style.huge_landscape_4x3
-    - image.style.large_landscape_4x3
-    - image.style.large_landscape_5x4
+    - image.style.biggest_landscape_3x1
+    - image.style.huge_landscape_2x1
+    - image.style.large_1x1
     - image.style.medium_1x1
-    - image.style.medium_landscape_3x2
-    - image.style.medium_landscape_5x4
-    - image.style.small_1x1
-    - image.style.small_portrait_1x2
+    - image.style.small_portrait_2x3
   theme:
     - crescenttool
 id: hero
 label: Hero
 image_style_mappings:
   -
-    breakpoint_id: crescenttool.All
+    breakpoint_id: crescenttool.grande
     multiplier: 1x
-    image_mapping_type: sizes
-    image_mapping:
-      sizes: 100vw
-      sizes_image_styles:
-        - biggest_landscape_2x1
-        - biggest_landscape_3x2
-        - huge_landscape_3x2
-        - huge_landscape_4x3
-        - large_landscape_4x3
-        - large_landscape_5x4
-        - medium_1x1
-        - medium_landscape_5x4
-        - small_1x1
-        - small_portrait_1x2
+    image_mapping_type: image_style
+    image_mapping: biggest_landscape_3x1
+  -
+    breakpoint_id: crescenttool.xlarge
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: huge_landscape_2x1
+  -
+    breakpoint_id: crescenttool.large
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: large_1x1
+  -
+    breakpoint_id: crescenttool.medium
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: medium_1x1
+  -
+    breakpoint_id: crescenttool.small
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: small_portrait_2x3
+  -
+    breakpoint_id: crescenttool.xsmall
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: small_portrait_2x3
 breakpoint_group: crescenttool
-fallback_image_style: medium_landscape_3x2
+fallback_image_style: biggest_landscape_3x1

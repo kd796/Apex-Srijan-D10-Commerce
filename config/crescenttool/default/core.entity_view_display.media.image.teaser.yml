@@ -5,10 +5,10 @@ dependencies:
   config:
     - core.entity_view_mode.media.teaser
     - field.field.media.image.field_media_image
+    - image.style.small_1x1
     - media.type.image
-    - responsive_image.styles.teaser
   module:
-    - responsive_image
+    - blazy
 id: media.image.teaser
 targetEntityType: media
 bundle: image
@@ -17,10 +17,36 @@ content:
   field_media_image:
     label: visually_hidden
     settings:
-      responsive_image_style: teaser
-      image_link: ''
+      image_style: small_1x1
+      responsive_image_style: ''
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
+      current_view_mode: teaser
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      icon: ''
+      layout: ''
+      view_mode: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: 0
+      grid_medium: 0
+      grid_small: 0
     third_party_settings: {  }
-    type: responsive_image
+    type: blazy
     weight: 1
     region: content
 hidden:

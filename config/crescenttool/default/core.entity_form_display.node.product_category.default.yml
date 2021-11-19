@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.product_category.field_classification_id
     - field.field.node.product_category.field_media
     - field.field.node.product_category.field_product_classifications
+    - field.field.node.product_category.field_show_set_filter
     - node.type.product_category
   module:
     - media_library
@@ -68,6 +69,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_show_set_filter:
+    weight: 28
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
   langcode:
     type: language_select

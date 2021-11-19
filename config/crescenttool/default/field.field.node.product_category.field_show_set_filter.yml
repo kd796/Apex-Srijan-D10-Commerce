@@ -1,0 +1,23 @@
+uuid: 7da1902f-09b2-48f3-8241-93c9f6ba77e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_show_set_filter
+    - node.type.product_category
+id: node.product_category.field_show_set_filter
+field_name: field_show_set_filter
+entity_type: node
+bundle: product_category
+label: 'Show "Set?" filter'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
