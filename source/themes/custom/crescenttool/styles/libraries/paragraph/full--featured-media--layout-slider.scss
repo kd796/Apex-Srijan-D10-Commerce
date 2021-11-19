@@ -14,7 +14,64 @@
  * Component
  */
 .component-featured-media--layout-slider {
+  .component-featured-media__list-container {
+    position: relative;
+
+    .component-featured-media__button {
+      height: rem(48px);
+      width: rem(48px);
+      margin: 0;
+      padding: 0;
+      opacity: 1;
+
+      &.component-featured-media__button-prev {
+        background-image: url('../../../icons/chevron-left-red.svg');
+        left: rem(-98px);
+
+        &:hover {
+          background-image: url('../../../icons/chevron-left-dark-red.svg');
+        }
+
+        &[aria-disabled='true'] {
+          background-image: url('../../../icons/chevron-left-gray-50.svg');
+        }
+
+        @include media('<1401px') {
+          left: rem(-58px);
+        }
+
+        @include media('<1336px') {
+          display: none;
+        }
+      }
+
+      &.component-featured-media__button-next {
+        background-image: url('../../../icons/chevron-right-red.svg');
+        right: rem(-98px);
+
+        &:hover {
+          background-image: url('../../../icons/chevron-right-dark-red.svg');
+        }
+
+        &[aria-disabled='true'] {
+          background-image: url('../../../icons/chevron-right-gray-50.svg');
+        }
+
+        @include media('<1400px') {
+          right: rem(-58px);
+        }
+
+        @include media('<1336px') {
+          display: none;
+        }
+      }
+    }
+  }
+
   .component-featured-media__list-wrapper {
+    box-shadow: 0 0 16px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1.5rem;
+
     &:not(.swiper-container-initialized) {
       .component-featured-media__list-item {
         display: none;
@@ -29,41 +86,104 @@
   .component-featured-media__list {
     margin: 0;
     padding: 0;
-  }
 
-  .component-featured-media__list-item {
-    height: auto;
-    list-style: none;
+    .component-featured-media__list-item {
+      height: auto;
+      list-style: none;
 
-    &.swiper-slide .media {
-      height: 0;
-      margin-bottom: 0;
-      margin-top: 0;
-      max-width: 100vw;
-      position: relative;
-      padding-bottom: 56.25%;
+      &.swiper-slide .media {
+        height: 0;
+        margin-bottom: 0;
+        margin-top: 0;
+        max-width: 100vw;
+        position: relative;
+        padding-bottom: 56.25%;
 
-      .media__image,
-      .media__iframe,
-      img,
-      iframe {
-        display: block;
-        height: 100%;
-        max-width: 100%;
-        position: absolute;
-        width: 100%;
-      }
+        .media__image,
+        .media__iframe,
+        img,
+        iframe {
+          display: block;
+          height: 100%;
+          max-width: 100%;
+          position: absolute;
+          width: 100%;
+        }
 
-      .media__image,
-      img {
-        object-fit: cover;
+        img {
+          object-fit: cover;
+        }
       }
     }
   }
 
-  .component-featured-content__pagination {
-    bottom: 0;
-    margin: 1rem 0;
+  .component-featured-media__controls {
+    align-items: center;
+    display: flex;
+    justify-content: center;
     position: relative;
+    width: 100%;
+
+    .component-featured-media__button {
+      background-color: transparent;
+      background-position: center;
+      background-repeat: no-repeat;
+      border: 0;
+      display: none;
+      height: rem(48px);
+      width: rem(48px);
+      margin: 0;
+      padding: 0;
+      position: relative;
+      opacity: 1;
+
+      @include media('<=lg-plus') {
+        height: rem(30px);
+        width: rem(30px);
+      }
+
+      @include media('<1336px') {
+        display: block;
+      }
+
+      &.component-featured-media__pseudo-button-prev {
+        background-image: url('../../../icons/chevron-left-red.svg');
+        margin-right: 1rem;
+
+        &:hover {
+          background-image: url('../../../icons/chevron-left-dark-red.svg');
+        }
+
+        &[aria-disabled='true'] {
+          background-image: url('../../../icons/chevron-left-gray-50.svg');
+        }
+      }
+
+      &.component-featured-media__pseudo-button-next {
+        background-image: url('../../../icons/chevron-right-red.svg');
+        margin-left: 1rem;
+
+        &:hover {
+          background-image: url('../../../icons/chevron-right-dark-red.svg');
+        }
+
+        &[aria-disabled='true'] {
+          background-image: url('../../../icons/chevron-right-gray-50.svg');
+        }
+      }
+    }
+
+    .component-featured-media__pagination {
+      position: relative;
+
+      .swiper-pagination-bullet {
+        background: $primary-red;
+        border-color: $primary-red;
+      }
+
+      .swiper-pagination-bullet-active {
+        background: transparent;
+      }
+    }
   }
 }
