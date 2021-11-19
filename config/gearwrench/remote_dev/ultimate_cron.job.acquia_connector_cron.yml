@@ -1,14 +1,14 @@
-uuid: 5ef966d3-741a-419f-8543-97842986ff1e
+uuid: 3419cd19-6493-4782-bf4c-a865174a7898
 langcode: en
 status: true
 dependencies:
   module:
-    - search_api_solr
+    - acquia_connector
 title: 'Default cron handler'
-id: search_api_solr_cron
+id: acquia_connector_cron
 weight: 0
-module: search_api_solr
-callback: search_api_solr_cron
+module: acquia_connector
+callback: acquia_connector_cron
 scheduler:
   id: simple
 launcher:

@@ -9,11 +9,13 @@ label: Local
 description: ''
 folder: ../config/gearwrench/local
 module:
-  devel: 0
-  ultimate_cron: 0
-  views_ui: 0
+  acquia_connector: 0
+  acquia_purge: 0
   dblog: 0
+  devel_generate: 0
   stage_file_proxy: 0
+  views_ui: 0
+  devel: 0
 theme: {  }
 blacklist: {  }
 graylist:
@@ -21,7 +23,8 @@ graylist:
   - advagg_css_minify.settings
   - advagg_js_minify.settings
   - core.extension
+  - google_tag.container.primary
   - system.performance
 graylist_dependents: true
-graylist_skip_equal: false
+graylist_skip_equal: true
 weight: -5
