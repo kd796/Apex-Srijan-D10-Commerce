@@ -21,32 +21,274 @@ use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\Row;
 use Drupal\node\NodeInterface;
 use GuzzleHttp\Exception\RequestException;
+use Drupal\file\FileInterface;
 
 /**
  * Implements hook_migrate_prepare_row().
  */
 function crescenttool_migrations_migrate_prepare_row(Row $row, MigrateSourceInterface $source, MigrationInterface $migration) {
-  if ($migration->id() === 'crescenttool_products') {
-    if ($row->getSource()['remote_set'] === 'SKU-Set') {
+
+  if ($migration->id() === 'crescenttool_product_specifications') {
+    $attributes_to_include = [
+      'ATT115',
+      'ATT125',
+      'ATT128',
+      'ATT132',
+      'ATT159',
+      'ATT17712',
+      'ATT178',
+      'ATT179',
+      'ATT190',
+      'ATT194',
+      'ATT196',
+      'ATT201',
+      'ATT205',
+      'ATT22085',
+      'ATT22086',
+      'ATT22087',
+      'ATT22088',
+      'ATT22089',
+      'ATT224',
+      'ATT22443',
+      'ATT225',
+      'ATT226',
+      'ATT227',
+      'ATT228',
+      'ATT232',
+      'ATT235',
+      'ATT236',
+      'ATT238',
+      'ATT239',
+      'ATT251',
+      'ATT254',
+      'ATT256',
+      'ATT259',
+      'ATT301',
+      'ATT326',
+      'ATT336',
+      'ATT345',
+      'ATT349',
+      'ATT351',
+      'ATT374',
+      'ATT387',
+      'ATT410',
+      'ATT450',
+      'ATT451',
+      'ATT466',
+      'ATT468',
+      'ATT471',
+      'ATT473',
+      'ATT476',
+      'ATT477',
+      'ATT478',
+      'ATT479',
+      'ATT480',
+      'ATT481',
+      'ATT484',
+      'ATT491',
+      'ATT492',
+      'ATT493',
+      'ATT494',
+      'ATT495',
+      'ATT496',
+      'ATT497',
+      'ATT499',
+      'ATT500',
+      'ATT501',
+      'ATT503',
+      'ATT504',
+      'ATT505',
+      'ATT506',
+      'ATT507',
+      'ATT509',
+      'ATT510',
+      'ATT518',
+      'ATT523',
+      'ATT525',
+      'ATT532',
+      'ATT534',
+      'ATT535',
+      'ATT536',
+      'ATT537',
+      'ATT538',
+      'ATT539',
+      'ATT541',
+      'ATT547',
+      'ATT548',
+      'ATT549',
+      'ATT550',
+      'ATT551',
+      'ATT552',
+      'ATT563',
+      'ATT564',
+      'ATT565',
+      'ATT575',
+      'ATT581',
+      'ATT582',
+      'ATT583',
+      'ATT584',
+      'ATT584730',
+      'ATT584731',
+      'ATT584734',
+      'ATT584737',
+      'ATT584868',
+      'ATT584927',
+      'ATT585',
+      'ATT586',
+      'ATT587',
+      'ATT588',
+      'ATT589',
+      'ATT590',
+      'ATT591',
+      'ATT592',
+      'ATT593',
+      'ATT606',
+      'ATT607',
+      'ATT608',
+      'ATT609',
+      'ATT610',
+      'ATT612',
+      'ATT613',
+      'ATT614',
+      'ATT631',
+      'ATT633',
+      'ATT634',
+      'ATT635',
+      'ATT659132',
+      'ATT659133',
+      'ATT660',
+      'ATT660051',
+      'ATT660052',
+      'ATT664101',
+      'ATT678641',
+      'ATT684692',
+      'ATT689',
+      'ATT693',
+      'ATT708',
+      'ATT709',
+      'ATT710',
+      'ATT714694',
+      'ATT714714',
+      'ATT714716',
+      'ATT714720',
+      'ATT714721',
+      'ATT714725',
+      'ATT714731',
+      'ATT728',
+      'ATT729',
+      'ATT749756',
+      'ATT755881',
+      'ATT767142',
+      'ATT777456',
+      'ATT783458',
+      'ATT783482',
+      'ATT783483',
+      'ATT783491',
+      'ATT783492',
+      'ATT783498',
+      'ATT783499',
+      'ATT802893',
+      'ATT804086',
+      'ATT806600',
+      'ATT807126',
+      'ATT807127',
+      'ATT807194',
+      'ATT818',
+      'ATT820',
+      'ATT833',
+      'ATT835',
+      'ATT83507',
+      'ATT83508',
+      'ATT836',
+      'ATT840',
+      'ATT841',
+      'ATT843',
+      'ATT844',
+      'ATT894',
+      'ATT907',
+      'ATT912',
+      'ATT913',
+      'ATT914',
+      'ATT915',
+      'ATT922',
+      'ATT923',
+      'ATT929',
+      'ATT936',
+      'ATT943',
+      'ATT948',
+      'ATT950',
+      'Footnotes',
+      'ForeignTrade',
+      'JawThicknessLower',
+      'JawThicknessUpper',
+      'JawWidthLower',
+      'JawWidthUpper',
+      'ATT415',
+      'ATT880',
+      // 'Set',.
+      // 'ATT744972',.
+      // 'ATT744973',.
+      // 'ATT806802',.
+    ];
+
+    if (!in_array($row->getSource()['remote_term_id'], $attributes_to_include)) {
       throw new MigrateSkipRowException('', TRUE);
     }
   }
-  if ($migration->id() === 'crescenttool_product_sets') {
-    if ($row->getSource()['remote_set'] !== 'SKU-Set') {
-      throw new MigrateSkipRowException('', TRUE);
-    }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function crescenttool_migrations_preprocess_node(&$variables) {
+
+}
+
+/**
+ * Takes a source file and replaces the existing schema file in the filesystem.
+ *
+ * This will allow us to update the import as needed.
+ */
+function _crescenttool_migrations_clear_destination_and_pull_in_new($source_file) {
+  // For GearWrench.
+  $dest_directory = 'public://import/pim_data';
+  $destination = NULL;
+
+  \Drupal::service('file_system')->prepareDirectory(
+    $dest_directory,
+    FileSystemInterface::CREATE_DIRECTORY
+  );
+
+  if (is_object($source_file)) {
+    $source_filename = $source_file->uri;
+  }
+  else {
+    $source_filename = $source_file;
   }
 
-  if ($migration->id() === 'crescenttool_product_attributes') {
-    $vid_to_check = $row->getSource()['remote_id'];
-    $vid_to_check = strtolower($vid_to_check);
-    $vid_to_check = preg_replace('/[^a-z0-9_]+/', '_', $vid_to_check);
-    $vid_to_check = preg_replace('/_+/', '_', $vid_to_check);
-    $all_vids = Vocabulary::loadMultiple();
-    foreach ($all_vids as $vid) {
-      if ($vid->id() === $vid_to_check) {
-        throw new MigrateSkipRowException('Library already exists.', TRUE);
-      }
-    }
+  try {
+    $destination = \Drupal::service('file_system')->copy(
+      $source_filename,
+      $dest_directory . '/pim_export_with_schema.xml',
+      FileSystemInterface::EXISTS_REPLACE
+    );
   }
+  catch (\Exception $e) {
+    \Drupal::messenger()->addError('Failed to copy uploaded file to the pim_data directory. Error: ' . $e->getMessage());
+  }
+
+  return $destination;
+}
+
+/**
+ * Simple file upload validator.
+ */
+function crescenttool_migrations_file_validate_is_xml(FileInterface $file) {
+  $errors = [];
+
+  if (!stripos($file->getFilename(), '.xml', -4)) {
+    $errors[] = t('This is not a valid XML file.');
+  }
+
+  return $errors;
 }
