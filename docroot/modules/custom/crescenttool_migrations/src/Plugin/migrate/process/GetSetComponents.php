@@ -29,22 +29,29 @@ class GetSetComponents extends ProcessPluginBase {
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $set_component_skus = [];
     $set_component_ids = [];
+
     if (!empty($value)) {
       foreach ($value->children() as $child) {
         if ($child->getName() === 'ProductCrossReference') {
           $set_component_skus[] = (string) $child->attributes()->ProductID;
         };
       }
+
       foreach ($set_component_skus as $component_sku) {
         $set_component = \Drupal::entityTypeManager()->getStorage('node')
           ->loadByProperties(['title' => $component_sku]);
         $set_component = reset($set_component);
-        $set_component_ids[] = [
-          'target_id' => $set_component->nid->value,
-        ];
+
+        if (is_object($set_component) && !empty($set_component->nid->value)) {
+          $set_component_ids[] = [
+            'target_id' => $set_component->nid->value,
+          ];
+        }
       }
+
       $set_component_ids = json_encode($set_component_ids);
     }
+
     return json_decode($set_component_ids, TRUE);
   }
 
