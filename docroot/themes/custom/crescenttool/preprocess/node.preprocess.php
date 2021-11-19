@@ -146,12 +146,10 @@ function crescenttool_preprocess_node__product__full(array &$variables) {
     $variables['product_images'] = TRUE;
     $variables['field_product_images_exist'] = TRUE;
     $variables['product_image_count'] = count($node->field_product_images->getValue());
-    $thumbs = $node->field_product_images->getValue();
   }
   else {
     $variables['product_images'] = TRUE;
     $variables['product_image_count'] = count($node->field_media->getValue());
-    $thumbs = $node->field_media->getValue();
   }
   // Thumb Gallery.
   $thumbs = $node->field_product_images->getValue();
