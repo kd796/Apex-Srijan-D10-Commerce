@@ -93,17 +93,39 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
    */
   protected function mapCategoryToCustomFacets($category_remote_id) {
     $mapping = [
-      'W2_803378' => ['ATT496', 'ATT493', 'ATT484', 'ATT491'],
-      'W2_803379' => ['ATT496', 'ATT415'],
-      'W2_803380' => ['ATT496'],
-      'W2_15809' => ['ATT496', 'ATT802893', 'ATT807126', 'ATT228', 'ATT227',
-        'ATT345'
+      'W2_777129' => ['ATT802893', 'ATT778642' , 'ATT763883'],
+      'W2_719536' => ['ATT802893'],
+      'W2_744962' => ['ATT802893'],
+      'W2_719533' => ['ATT802893'],
+      'W2_803436' => ['ATT802893'],
+      'W2_806576' => [
+        'ATT496', 'ATT802893', 'ATT499', 'ATT493', 'ATT491', 'ATT744972',
+        'ATT744973'
       ],
-      'W2_15810' => ['ATT496', 'ATT802893', 'ATT807127', 'ATT345'],
-      'W2_783461' => ['ATT496', 'ATT802893', 'ATT804086', 'ATT783458',
-        'ATT83507', 'ATT783498', 'ATT783499', 'ATT83508'
+      'W2_806577' => [
+        'ATT496', 'ATT802893', 'ATT499', 'ATT493', 'ATT491', 'ATT744972',
+        'ATT744973'
       ],
-      'W2_783462' => ['ATT496', 'ATT802893', 'ATT783458'],
+      'W2_806578' => [
+        'ATT496', 'ATT802893', 'ATT499', 'ATT493', 'ATT491', 'ATT744972',
+        'ATT744973'
+      ],
+      'W2_806579' => [
+        'ATT496', 'ATT802893', 'ATT499', 'ATT493', 'ATT491', 'ATT744972',
+        'ATT744973'
+      ],
+      'W2_806580' => [
+        'ATT496', 'ATT802893', 'ATT499', 'ATT493', 'ATT491', 'ATT744972',
+        'ATT744973'
+      ],
+      'W2_22492' => [
+        'ATT496', 'ATT802893', 'ATT499', 'ATT493', 'ATT491', 'ATT744972',
+        'ATT744973'
+      ],
+      'W2_792547' => ['ATT802893', 'ATT345', 'ATT205', 'ATT159'],
+      'W2_22489' => ['ATT496', 'ATT802893', 'ATT491', 'ATT205'],
+      'W2_761733' => ['ATT496', 'ATT802893', 'ATT491', 'ATT205', 'ATT226'],
+      'W2_22491' => ['ATT496', 'ATT802893', 'ATT714694'],
     ];
 
     if (!empty($mapping[$category_remote_id])) {
@@ -118,21 +140,22 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
    */
   protected function mapCategoryToFacetsList($category_remote_id) {
     $mapping = [
-      'W1_15788' => [
+      'W1_719495' => [
         'ATT496',
         'ATT802893',
+        'ATT340',
+        'ATT769436',
+        'ATT278',
+        'ATT686141',
       ],
-      'W1_15789' => [
+      'W1_22487' => [
         'ATT496',
         'ATT802893',
+        'ATT584',
+        'ATT582',
+        'ATT583',
       ],
-      'W1_785249' => [
-        'ATT496',
-        'ATT493',
-        'ATT484',
-        'ATT491'
-      ],
-      'W1_802014' => [
+      'W1_706367' => [
         'ATT496',
         'ATT802893',
         'ATT493',
@@ -140,33 +163,15 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
         'ATT592',
         'ATT659'
       ],
-      'W1_15792' => [
-        'ATT496',
+      'W1_719524' => [
         'ATT802893',
-        'ATT499',
-        'ATT804086',
-        'ATT491',
-        'ATT744972',
-        'ATT744973'
+        'ATT807193',
+        'ATT127',
+        'ATT130',
+        'ATT592',
+        'ATT593',
       ],
-      'W1_727497' => [
-        'ATT802893',
-        'ATT714716',
-        'ATT714694',
-        'ATT592'
-      ],
-      'W1_806799' => [
-        'ATT496',
-        'ATT802893',
-        'ATT804086',
-        'ATT484',
-        'ATT499',
-        'ATT493',
-        'ATT744972',
-        'ATT744973',
-        'ATT806802'
-      ],
-      'W1_15797' => [
+      'W1_22486' => [
         'ATT802893',
         'ATT496',
         'ATT259',
@@ -176,14 +181,13 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
         'ATT115',
         'ATT714720'
       ],
-      'W1_15798' => [
+      'W1_755886' => [
         'ATT496',
-        'ATT802893',
-        'ATT584',
-        'ATT582',
-        'ATT583'
+        'ATT804086',
+        'ATT755881',
+        'ATT592'
       ],
-      'W1_15793' => [
+      'W1_22482' => [
         'ATT496',
         'ATT802893',
         'ATT804086',
@@ -197,16 +201,21 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
         'ATT593',
         'ATT710'
       ],
-      'W1_15795' => [
+      'W1_22485' => [
         'ATT496',
         'ATT802893',
         'ATT415',
-        'ATT631'
+        'ATT631',
+        'ATT806593'
       ],
-      'W1_728251' => [
-        'ATT802893'
+      'W1_719537' => [
+        'ATT496',
+        'ATT802893',
+        'ATT934',
+        'ATT201',
+        'ATT547'
       ],
-      'W1_16113' => [
+      'W1_22481' => [
         'ATT496',
         'ATT802893',
         'ATT499',
@@ -216,7 +225,10 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
         'ATT744973',
         'ATT806802'
       ],
-      'W1_15799' => [
+      'W1_736078' => [
+        'ATT802893',
+      ],
+      'W1_706780' => [
         'ATT496',
         'ATT802893',
         'ATT807126',
@@ -225,35 +237,20 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
         'ATT227',
         'ATT345'
       ],
-      'W1_781017' => [
-        'ATT496',
-        'ATT802893',
-        'ATT804086',
-        'ATT783458'
-      ],
-      'W1_736539' => [
+      'W1_22484' => [
         'ATT496',
         'ATT802893',
       ],
-      'W1_15791' => [
-        'ATT802893',
-        'ATT753947'
-      ],
-      'W1_15794' => [
+      'W1_802905' => [
         'ATT806600',
         'ATT802893',
-        'ATT484',
-        'ATT585',
-        'ATT714694',
-        'ATT753929'
       ],
-      'W1_15796' => [
+      'W1_22483' => [
         'ATT496',
         'ATT802893',
         'ATT499',
         'ATT491',
         'ATT585',
-        'ATT749756',
         'ATT714694',
         'ATT205',
         'ATT739685',

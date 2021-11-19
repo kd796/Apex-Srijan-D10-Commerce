@@ -28,7 +28,7 @@ use Drupal\file\FileInterface;
  */
 function crescenttool_migrations_migrate_prepare_row(Row $row, MigrateSourceInterface $source, MigrationInterface $migration) {
 
-  if ($migration->id() === 'crescenttool_product_specifications') {
+  if ($migration->id() === 'gearwrench_product_specifications') {
     $attributes_to_include = [
       'ATT115',
       'ATT125',
@@ -225,6 +225,9 @@ function crescenttool_migrations_migrate_prepare_row(Row $row, MigrateSourceInte
       'JawWidthUpper',
       'ATT415',
       'ATT880',
+      'ATT807193',
+      'ATT127',
+      'ATT130',
       // 'Set',.
       // 'ATT744972',.
       // 'ATT744973',.

@@ -339,8 +339,18 @@ class CreateProductSpecifications extends ProcessPluginBase {
       'JawThicknessLower',
       'JawThicknessUpper',
       'JawWidthLower',
-      'JawWidthUpper'
+      'JawWidthUpper',
+      'ATT415',
+      'ATT880',
+      'ATT807193',
+      'ATT127',
+      'ATT130',
+      // 'Set',.
+      // 'ATT744972',.
+      // 'ATT744973',.
+      // 'ATT806802',.
     ];
+
     if (in_array($attribute, $attributes_to_include)) {
       return TRUE;
     }
