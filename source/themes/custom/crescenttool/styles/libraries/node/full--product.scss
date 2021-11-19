@@ -100,25 +100,28 @@ $tabs-border-width-active: rem(5px);
       .swiper-button-next,
       .swiper-button-prev {
         display: none;
+        line-height: 1;
+        font-size: rem(60px);
+
+        &::after {
+          vertical-align: bottom;
+        }
 
         @include media('>md') {
           display: block;
           background: none;
-          background-color: $primary-red;
+          color: $primary-red;
           margin: 0;
           padding: 0;
           top: 0;
 
           @include on-event {
-            background-color: $color-black;
-            border-color: $primary-red;
-            color: $primary-red;
+            color: $primary-dark;
           }
         }
 
         &[aria-disabled='true'] {
-          background-color: $gray-30;
-          border-color: $gray-30;
+          color: $gray-30;
         }
       }
 
@@ -160,7 +163,7 @@ $tabs-border-width-active: rem(5px);
       .sku {
         display: block;
         font-size: rem(14px);
-        margin: 0;
+        margin: rem(10px) 0 0;
       }
 
 
@@ -178,7 +181,6 @@ $tabs-border-width-active: rem(5px);
     }
 
     h3 {
-      text-transform: uppercase;
       display: none;
       color: $type-dark;
 
@@ -371,11 +373,36 @@ $tabs-border-width-active: rem(5px);
 
         .node--type-product-tabs__mobile-nav-item {
           @include type-header(h6, $globals: included);
+          @include icon('arrow', after, false);
 
           border-top: 1px solid $black;
           margin: 0;
           padding: rem(20px) 0;
           cursor: pointer;
+          position: relative;
+
+          &::after {
+            color: $primary-red;
+            transform: rotate(90deg);
+            display: inline-block;
+            position: absolute;
+            right: rem(12px);
+            font-size: rem(18px);
+          }
+
+          &:last-of-type {
+            border-bottom: 1px solid $black;
+          }
+
+          &.node--type-product-tabs__mobile-nav-item--open {
+            &:last-of-type {
+              border-bottom: 0;
+            }
+
+            &::after {
+              transform: rotate(-90deg);
+            }
+          }
 
           @include media('>md') {
             display: none;
@@ -383,15 +410,9 @@ $tabs-border-width-active: rem(5px);
         }
 
         .node--type-product-tabs-tab {
-          border-top: 1px solid $black;
-
-          @include media('>md') {
-            border-top: 0;
-          }
-
           .node--type-product__accordion-content {
             font-family: $font-default;
-            margin: 1.25rem 0;
+            margin: .75rem 0;
             padding: 0;
 
             .node--type-product__accordion-content-header {
