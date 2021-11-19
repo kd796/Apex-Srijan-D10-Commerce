@@ -9,9 +9,6 @@ label: 'Remote - Prod'
 description: ''
 folder: ../config/gearwrench/remote_prod
 module:
-  purge: 0
-  purge_drush: 0
-  purge_ui: 0
   acquia_connector: 0
   captcha: 0
   recaptcha: 0
@@ -23,8 +20,8 @@ graylist:
   - google_tag.container.google_tag_59x3zt8
   - google_tag.container.primary
   - purge.logger_channels
-  - system.performance
   - purge.plugins
+  - system.performance
   - purge_queuer_coretags.settings
 graylist_dependents: true
 graylist_skip_equal: true
