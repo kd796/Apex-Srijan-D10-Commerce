@@ -19,11 +19,11 @@ class DetermineSetFilterShow extends ProcessPluginBase {
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
-    $disable_set_filter = ['W1_727497', 'W1_728251', 'W2_736544', 'W2_736540',
-      'W2_736541', 'W2_736542', 'W2_736543', 'W2_736547', 'W2_736546',
-      'W1_736539', 'W2_736542', 'W2_736540', 'W2_736543', 'W2_736541',
-      'W2_736544', 'W2_736547', 'W2_736546', 'W1_15791', 'W2_15804',
-      'W2_787570', 'W2_16111'
+    $disable_set_filter = ['W1_736078', 'W2_792073', 'W2_800174', 'W2_803455',
+      'W2_803456', 'W2_803457', 'W2_792079', 'W2_803454', 'W2_792547',
+      'W3_792548', 'W3_792549', 'W3_792550', 'W3_792551', 'W3_792552',
+      'W3_803453', 'W2_792546', 'W2_803458', 'W1_22484', 'W2_26534', 'W2_26532',
+      'W2_26535', 'W2_26533', 'W2_26531', 'W2_26530'
     ];
 
     $value = (string) $value;
