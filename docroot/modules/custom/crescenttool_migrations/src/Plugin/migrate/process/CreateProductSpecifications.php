@@ -150,7 +150,6 @@ class CreateProductSpecifications extends ProcessPluginBase {
       'ATT128',
       'ATT132',
       'ATT159',
-      'ATT170',
       'ATT17712',
       'ATT178',
       'ATT179',
