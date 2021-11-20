@@ -21,8 +21,10 @@ dependencies:
     - field.field.node.product.field_set_components
     - field.field.node.product.field_sku_group
     - field.field.node.product.field_upc
+    - image.style.product_medium
     - node.type.product
   module:
+    - blazy
     - user
 id: node.product.full
 targetEntityType: node
@@ -30,15 +32,57 @@ bundle: product
 mode: full
 content:
   field_long_description:
-    weight: 1
+    weight: 2
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
+  field_media:
+    type: blazy_media
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      image_style: product_medium
+      responsive_image_style: ''
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
+      view_mode: product_detail_slider
+      image: ''
+      current_view_mode: full
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+    third_party_settings: {  }
   field_product_features:
-    weight: 2
+    weight: 3
     label: hidden
     settings:
       link_to_entity: false
@@ -55,7 +99,7 @@ content:
       link: false
     third_party_settings: {  }
   field_product_specifications:
-    weight: 3
+    weight: 4
     label: hidden
     settings:
       link: false
@@ -67,7 +111,6 @@ hidden:
   field_featured_product: true
   field_industry: true
   field_launch_date: true
-  field_media: true
   field_meta_tags: true
   field_new_product: true
   field_product_classifications: true

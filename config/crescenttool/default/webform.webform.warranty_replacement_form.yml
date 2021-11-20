@@ -43,14 +43,14 @@ elements: |-
           '#title': 'Item Number'
         product_image:
           '#type': webform_image_file
-          '#title': 'Product Image'
+          '#title': 'Send us a photo'
           '#required': true
           '#required_error': Required
           '#max_filesize': '5'
           '#sanitize': true
         receipt_image:
           '#type': webform_image_file
-          '#title': 'Receipt Image'
+          '#title': 'Feel free to upload a copy of your receipt'
           '#max_filesize': '5'
           '#sanitize': true
         message:
@@ -112,14 +112,13 @@ elements: |-
           '#address_2__access': false
           '#city__title': City
           '#city__required': true
-          '#state_province__title': State
           '#state_province__required': true
-          '#postal_code__title': 'Zip Code'
+          '#postal_code__title': 'Zip/Postal Code'
           '#postal_code__required': true
           '#country__required': true
         warranty_and_privacy_policy:
           '#type': checkbox
-          '#title': 'I agree to the GEARWRENCH Warranty and Privacy Policy'
+          '#title': 'I agree to the Crescent Warranty and Privacy Policy'
           '#required': true
           '#required_error': Required
           '#wrapper_attributes':
@@ -127,7 +126,7 @@ elements: |-
               - form-checkboxes
         email_opt_in:
           '#type': checkbox
-          '#title': 'Subscribe to GEARWRENCH email distribution list'
+          '#title': 'Subscribe to Crescent email distribution list'
           '#wrapper_attributes':
             class:
               - form-checkboxes

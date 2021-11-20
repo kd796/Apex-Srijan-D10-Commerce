@@ -82,8 +82,8 @@
           @include media('>=lg-plus') {
             &::after {
               top: 50%;
-              left: 22%;
-              width: 50%;
+              left: 0;
+              width: 100%;
               height: unset;
             }
           }
@@ -100,10 +100,20 @@
           @include media('>=lg-plus') {
             &::after {
               top: 50%;
-              left: -36%;
-              width: 50%;
+              left: 0;
+              width: 0;
               height: unset;
+              border-top: 0;
             }
+          }
+        }
+      }
+
+      &:only-child {
+        .component-step__title-wrapper {
+          &::after {
+            top: 0;
+            height: 0;
           }
         }
       }
@@ -118,8 +128,8 @@
       }
 
       @include media('>=lg-plus') {
-        width: 20%;
-        max-width: 20%;
+        max-width: 100%;
+        flex: 1 0 0;
       }
     }
 
@@ -178,7 +188,7 @@
 
       &::after {
         top: 50%;
-        left: -31%;
+        left: 0;
         width: 100%;
         border-top: 3px solid $primary-red;
       }

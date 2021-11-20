@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.paragraph.preview
     - field.field.paragraph.step.field_content
+    - field.field.paragraph.step.field_pre_title
     - field.field.paragraph.step.field_title
     - paragraphs.paragraphs_type.step
   module:
@@ -15,13 +16,13 @@ bundle: step
 mode: preview
 content:
   field_content:
-    weight: 1
+    weight: 2
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
-  field_title:
+  field_pre_title:
     type: string
     weight: 0
     region: content
@@ -29,6 +30,13 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
+  field_title:
+    type: string
+    weight: 1
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
 hidden:
-  field_pre_title: true
   search_api_excerpt: true

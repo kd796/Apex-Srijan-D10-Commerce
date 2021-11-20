@@ -15,7 +15,7 @@ category: ''
 elements: |-
   select_type:
     '#type': select
-    '#title': Inquiry
+    '#title': 'Select Type'
     '#options':
       'Become a Distributor': 'Become a Distributor'
       'Product Feedback': 'Product Feedback'
@@ -26,29 +26,6 @@ elements: |-
       'Add/Adjust Your Location Information': 'Add/Adjust Your Location Information'
     '#required': true
     '#required_error': Required
-  brand:
-    '#type': textfield
-    '#title': Brand
-    '#states':
-      visible:
-        ':input[name="select_type"]':
-          value: 'Product Technical Question'
-    '#required': true
-  product_model_number:
-    '#type': textfield
-    '#title': 'Product Model Number'
-    '#required': true
-    '#required_error': Required
-    '#states':
-      visible:
-        - ':input[name="select_type"]':
-            value: 'Product Feedback'
-        - or
-        - ':input[name="select_type"]':
-            value: 'Product Technical Question'
-        - or
-        - ':input[name="select_type"]':
-            value: 'Warranty/Replacement Parts/Repair'
   business_name:
     '#type': textfield
     '#title': 'Business Name'
@@ -88,8 +65,10 @@ elements: |-
     '#required': true
     '#address__required': true
     '#address_2__access': false
+    '#city__title': City
     '#city__required': true
     '#state_province__required': true
+    '#postal_code__title': 'Postal Code'
     '#country__required': true
   request_comments:
     '#type': textarea
@@ -102,7 +81,7 @@ elements: |-
       visible:
         ':input[name="select_type"]':
           '!value': 'Zipper Warranty Registration'
-    '#file_extensions': xlsx
+    '#file_extensions': 'xlsx, xls'
     '#sanitize': true
   trade:
     '#type': select

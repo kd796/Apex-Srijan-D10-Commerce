@@ -12,7 +12,7 @@
  * @see crescenttool_preprocess_node__page__full()
  * @see crescenttool_preprocess_node__search_result()
  * @see crescenttool_preprocess_node__product__teaser()
- * @see gearwrench_preprocess_node__product__full()
+ * @see crescenttool_preprocess_node__product__full()
  */
 
 use Drupal\Core\Cache\Cache;
@@ -141,44 +141,77 @@ function crescenttool_preprocess_node__product__full(array &$variables) {
   // Count Product Images.
   $variables['product_images'] = NULL;
   $variables['field_product_images_exist'] = NULL;
+
   if (!empty($node->field_product_images->getValue())) {
     $variables['product_images'] = TRUE;
     $variables['field_product_images_exist'] = TRUE;
     $variables['product_image_count'] = count($node->field_product_images->getValue());
-    $thumbs = $node->field_product_images->getValue();
   }
-  elseif (!empty($node->field_media->getValue())) {
+  else {
     $variables['product_images'] = TRUE;
     $variables['product_image_count'] = count($node->field_media->getValue());
-    $thumbs = $node->field_media->getValue();
   }
-
   // Thumb Gallery.
-  foreach ($thumbs as $thumb) {
+  $thumbs = $node->field_product_images->getValue();
+
+  foreach ($thumbs as $tidx => $thumb) {
     $media = Media::load($thumb['target_id']);
-    $fid = $media->field_media_image->target_id;
-    $file = File::load($fid);
-    $thumb_variables = [
-      'style_name' => 'thumbnail_cropped',
-      'uri' => $file->getFileUri(),
-    ];
-    // The image.factory service will check if our image is valid.
-    $image = \Drupal::service('image.factory')->get($file->getFileUri());
-    if ($image->isValid()) {
-      $thumb_variables['width'] = $image->getWidth();
-      $thumb_variables['height'] = $image->getHeight();
+
+    if (!empty($media->field_media_image)) {
+      $field_media_image = $media->field_media_image;
+
+      if (!empty($field_media_image->target_id)) {
+        $fid = $media->field_media_image->target_id;
+        $file = File::load($fid);
+
+        $thumb_variables = [
+          'style_name' => 'thumbnail_cropped',
+          'uri' => $file->getFileUri(),
+        ];
+
+        // The image.factory service will check if our image is valid.
+        $image = \Drupal::service('image.factory')->get($file->getFileUri());
+
+        if ($image->isValid()) {
+          $thumb_variables['width'] = $image->getWidth();
+          $thumb_variables['height'] = $image->getHeight();
+        }
+        else {
+          $thumb_variables['width'] = $thumb_variables['height'] = NULL;
+        }
+
+        $variables['thumbnails'][] = [
+          '#theme' => 'image_style',
+          '#width' => $thumb_variables['width'],
+          '#height' => $thumb_variables['height'],
+          '#style_name' => $thumb_variables['style_name'],
+          '#uri' => $thumb_variables['uri'],
+        ];
+      }
+      else {
+        $message = 'No target ID';
+      }
+    }
+    elseif (!empty($media->field_media_video_embed_field) || $media->bundle() == 'remote_video') {
+      $video_thumbnail_fid = $media->get('thumbnail')->target_id;
+
+      /** @var \Drupal\file\Entity\File $file */
+      $file = File::load($video_thumbnail_fid);
+      $uri = $file->getFileUri();
+
+      if (!empty($uri)) {
+        $variables['thumbnails'][] = [
+          '#theme' => 'image_style',
+          '#width' => 100,
+          '#height' => 100,
+          '#style_name' => 'thumbnail_cropped',
+          '#uri' => $uri,
+        ];
+      }
     }
     else {
-      $thumb_variables['width'] = $thumb_variables['height'] = NULL;
+      $message = 'No field media image';
     }
-
-    $variables['thumbnails'][] = [
-      '#theme' => 'image_style',
-      '#width' => $thumb_variables['width'],
-      '#height' => $thumb_variables['height'],
-      '#style_name' => $thumb_variables['style_name'],
-      '#uri' => $thumb_variables['uri'],
-    ];
   }
 
   // Related Products.
@@ -187,9 +220,11 @@ function crescenttool_preprocess_node__product__full(array &$variables) {
     ->getStorage('view')
     ->load('related_products')
     ->getExecutable();
+
   $view_args = [];
   $view_display = 'related_categories';
   $view_exposed_input = [];
+
   // Initialize, setup, and execute backfill view display.
   $main_view->initDisplay();
   $main_view->setDisplay($view_display);
@@ -202,24 +237,32 @@ function crescenttool_preprocess_node__product__full(array &$variables) {
   if (!isset($variables['#cache']['contexts'])) {
     $variables['#cache']['contexts'] = [];
   }
+
   // Initialize cache tags.
   if (!isset($variables['#cache']['tags'])) {
     $variables['#cache']['tags'] = [];
   }
+
   // Initialize cache max-age.
   if (!isset($variables['#cache']['max-age'])) {
     $variables['#cache']['max-age'] = Cache::PERMANENT;
   }
+
   // Merge display cache tags.
   $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'], $main_view->display_handler->getCacheMetadata()
     ->getCacheContexts());
+
   $variables['#cache']['tags'] = Cache::mergeTags($variables['#cache']['tags'], $main_view->display_handler->getCacheMetadata()
     ->getCacheTags());
+
   $variables['#cache']['max-age'] = Cache::mergeMaxAges($variables['#cache']['max-age'], $main_view->display_handler->getCacheMetadata()
     ->getCacheMaxAge());
+
   // Merge storage cache tags.
   $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'], $main_view->storage->getCacheContexts());
+
   $variables['#cache']['tags'] = Cache::mergeTags($variables['#cache']['tags'], $main_view->getCacheTags());
   $variables['#cache']['max-age'] = Cache::mergeMaxAges($variables['#cache']['max-age'], $main_view->storage->getCacheMaxAge());
+
   $variables['related_items'] = $main_view->buildRenderable($view_display, $main_view->args);
 }
