@@ -136,62 +136,102 @@ class GetProductImages extends ProcessPluginBase {
       \Drupal::service('file_system')->prepareDirectory($image_directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
 
       foreach ($final_asset_list as $asset) {
-        $headers_array = @get_headers($asset['remote_file_path']);
-        $headers_check = $headers_array[0];
+        try {
+          /*
+           * @todo: Investigate to see if there is a way to check for the existing file before even sending a network request.
+           *
+           * Ideas:
+           *  - Calculate the destination file name and check for that in media/files.
+           *  - Store the origin file path somewhere and relate to imported file.
+           */
+          $headers_array = @get_headers($asset['remote_file_path']);
+          $headers_check = $headers_array[0];
 
-        if (strpos($headers_check, "200")) {
-          $file_data = file_get_contents($asset['remote_file_path']);
+          if (strpos($headers_check, "200")) {
+            $file_data = file_get_contents($asset['remote_file_path']);
 
-          if ($file_data) {
-            $file = file_save_data($file_data, $asset['drupal_file_path'], FileSystemInterface::EXISTS_REPLACE);
+            if ($file_data) {
+              $file = file_save_data($file_data, $asset['drupal_file_path'], FileSystemInterface::EXISTS_REPLACE);
 
-            // See if there's a media item we can use already.
-            $usage = \Drupal::service('file.usage')->listUsage($file);
+              // See if there's a media item we can use already.
+              $usage = \Drupal::service('file.usage')->listUsage($file);
 
-            if (count($usage) > 0 && !empty($usage['file']['media'])) {
-              $media_id = array_key_first($usage['file']['media']);
-              $media_ids[] = [
-                'media_id' => $media_id
-              ];
-            }
-            else {
-              $media = Media::create([
-                'bundle'           => 'image',
-                'uid'              => 1,
-                'field_media_image' => [
-                  'target_id' => $file->id(),
-                ],
-              ]);
+              if (count($usage) > 0 && !empty($usage['file']['media'])) {
+                $media_id = array_key_first($usage['file']['media']);
+                $media_ids[] = [
+                  'media_id' => $media_id
+                ];
+              }
+              else {
+                $media = Media::create([
+                  'bundle'           => 'image',
+                  'uid'              => 1,
+                  'field_media_image' => [
+                    'target_id' => $file->id(),
+                  ],
+                ]);
 
-              $media->setName($asset['asset_id'])->setPublished(TRUE)->save();
-              $media_ids[] = [
-                'media_id' => $media->id()
-              ];
+                $media->setName($asset['asset_id'])->setPublished(TRUE)->save();
+                $media_ids[] = [
+                  'media_id' => $media->id()
+                ];
+              }
             }
           }
+          else {
+            $migrate_executable->saveMessage(
+              'During import of "'
+              . $sku . '" - Unable to load image "'
+              . $asset['remote_file_path']
+              . '". Header response: "' . $headers_check . '"'
+            );
+          }
+        }
+        catch (\Exception $e) {
+          $migrate_executable->saveMessage(
+            'During import of "'
+            . $sku . '" - There was a problem loading image "'
+            . $asset['remote_file_path']
+            . '". Error: ' . $e->getMessage()
+          );
         }
       }
 
       // Take all the videos and create media items.
       if (!empty($videos)) {
         foreach ($videos as $video) {
-          // Process the video down to a normal URL, not a video series.
-          $video_json = gearwrench_core_get_youtube_data($video);
-          $clean_url = gearwrench_core_get_youtube_clean_url($video);
+          try {
+            // Process the video down to a normal URL, not a video series.
+            $video_json = gearwrench_core_get_youtube_data($video);
+            $clean_url = gearwrench_core_get_youtube_clean_url($video);
 
-          if (!empty($video_json)) {
-            $media = Media::create([
-              'bundle'           => 'remote_video',
-              'uid'              => 1,
-              'field_media_video_embed_field' => [
-                'value' => $clean_url,
-              ],
-            ]);
+            if (!empty($video_json->title)) {
+              $media = Media::create([
+                'bundle'           => 'remote_video',
+                'uid'              => 1,
+                'field_media_video_embed_field' => [
+                  'value' => $clean_url,
+                ],
+              ]);
 
-            $media->setName($video_json->title)->setPublished(TRUE)->save();
-            $media_ids[] = [
-              'media_id' => $media->id()
-            ];
+              $media->setName($video_json->title)->setPublished(TRUE)->save();
+              $media_ids[] = [
+                'media_id' => $media->id()
+              ];
+            }
+            else {
+              $migrate_executable->saveMessage(
+                'During import of "'
+                . $sku . '" - Unable to retrieve YouTube video metadata for url: '
+                . $clean_url
+              );
+            }
+          }
+          catch (\Exception $e) {
+            $migrate_executable->saveMessage(
+              'During import of "'
+              . $sku . '" - Unable to load the video. Error: ' . $e->getMessage()
+            );
           }
         }
       }

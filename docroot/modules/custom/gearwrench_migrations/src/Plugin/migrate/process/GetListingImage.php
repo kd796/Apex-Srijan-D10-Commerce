@@ -83,32 +83,51 @@ class GetListingImage extends ProcessPluginBase {
       \Drupal::service('file_system')->prepareDirectory($image_directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
 
       foreach ($assets as $asset) {
-        $headers_array = @get_headers($asset['remote_file_path']);
-        $headers_check = $headers_array[0];
+        try {
+          $headers_array = @get_headers($asset['remote_file_path']);
+          $headers_check = $headers_array[0];
 
-        if (strpos($headers_check, "200")) {
-          $file_data = file_get_contents($asset['remote_file_path']);
-          $file = file_save_data($file_data, $asset['drupal_file_path'], FileSystemInterface::EXISTS_REPLACE);
+          if (strpos($headers_check, "200")) {
+            $file_data = file_get_contents($asset['remote_file_path']);
 
-          // See if there's a media item we can use already.
-          $usage = \Drupal::service('file.usage')->listUsage($file);
+            if ($file_data) {
+              $file = file_save_data($file_data, $asset['drupal_file_path'], FileSystemInterface::EXISTS_REPLACE);
 
-          if (count($usage) > 0 && !empty($usage['file']['media'])) {
-            $media_id = array_key_first($usage['file']['media']);
+              // See if there's a media item we can use already.
+              $usage = \Drupal::service('file.usage')->listUsage($file);
+
+              if (count($usage) > 0 && !empty($usage['file']['media'])) {
+                $media_id = array_key_first($usage['file']['media']);
+              }
+              else {
+                $media = Media::create([
+                  'bundle'           => 'image',
+                  'uid'              => 1,
+                  'field_media_image' => [
+                    'target_id' => $file->id(),
+                    'alt' => 'Image of ' . $alt_text
+                  ],
+                ]);
+
+                $media->setName($asset['asset_id'])->setPublished(TRUE)->save();
+                $media_id = $media->id();
+              }
+            }
           }
           else {
-            $media = Media::create([
-              'bundle'           => 'image',
-              'uid'              => 1,
-              'field_media_image' => [
-                'target_id' => $file->id(),
-                'alt' => 'Image of ' . $alt_text
-              ],
-            ]);
-
-            $media->setName($asset['asset_id'])->setPublished(TRUE)->save();
-            $media_id = $media->id();
+            $migrate_executable->saveMessage(
+              'During import of "'
+              . $sku . '" - Unable to load image "'
+              . $asset['remote_file_path']
+              . '". Header response: "' . $headers_check . '"'
+            );
           }
+        }
+        catch (\Exception $e) {
+          $migrate_executable->saveMessage(
+            'During import of "'
+            . $sku . '" - Unable to load the video. Error: ' . $e->getMessage()
+          );
         }
       }
     }
