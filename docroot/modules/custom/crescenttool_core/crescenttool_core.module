@@ -196,6 +196,20 @@ function crescenttool_core_media_presave(MediaInterface $entity) {
 }
 
 /**
+ * Tells you whether or not the remote URL gives you a 200 OK or a different response.
+ */
+function crescenttool_core_remote_url_good_response($url) {
+  $headers_array = @get_headers($url);
+  $headers_check = $headers_array[0];
+
+  if (strpos($headers_check, "200")) {
+    return TRUE;
+  }
+
+  return $headers_check;
+}
+
+/**
  * Takes a YouTube video URL and gets a clean URL and retrieves video data.
  *
  * Source: Google JSON API for title, thumbnail, and other video info.
@@ -205,10 +219,21 @@ function crescenttool_core_get_youtube_data($video_url) {
   $result = new stdClass();
 
   if (!empty($clean_url)) {
-    $data = file_get_contents("https://www.youtube.com/oembed?format=json&url=$clean_url");
+    $youtube_api_url = "https://www.youtube.com/oembed?format=json&url=$clean_url";
+    $good_response = crescenttool_core_remote_url_good_response($youtube_api_url);
 
-    if (!empty($data)) {
-      $result = json_decode($data);
+    if ($good_response === TRUE) {
+      $data = file_get_contents($youtube_api_url);
+
+      if (!empty($data)) {
+        $result = json_decode($data);
+      }
+    }
+    else {
+      throw new \Exception(
+        'Unable to connect to remote URL. Header response: '
+        . $good_response
+      );
     }
   }
 
