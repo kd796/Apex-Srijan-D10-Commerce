@@ -8,11 +8,20 @@
  *
  * @see crescenttool_preprocess_node()
  * @see crescenttool_preprocess_node__full()
+ * @see crescenttool_preprocess_node__tile()
  * @see crescenttool_preprocess_node__landing_page__full()
  * @see crescenttool_preprocess_node__page__full()
+ * @see crescenttool_preprocess_node__media_page__full()
+ * @see crescenttool_preprocess_node__media_page__teaser()
  * @see crescenttool_preprocess_node__search_result()
  * @see crescenttool_preprocess_node__product__teaser()
  * @see crescenttool_preprocess_node__product__full()
+ * @see crescenttool_preprocess_node__search_index()
+ * @see crescenttool_preprocess_node__product__search_index()
+ * @see crescenttool_preprocess_node__product_category__full()
+ * @see crescenttool_preprocess_node__product_category__tile()
+ * @see crescenttool_preprocess_node__social_post__teaser()
+ * @see crescenttool_preprocess_node__product_industry__full()
  */
 
 use Drupal\Core\Cache\Cache;
@@ -122,20 +131,26 @@ function crescenttool_preprocess_node__product__teaser(&$variables) {
  */
 function crescenttool_preprocess_node__product__full(array &$variables) {
   $node = $variables['elements']['#node'];
+
   if ($node instanceof NodeInterface) {
     $current_nid = $node->id();
   }
+
   $sku = $node->title->value;
   $variables['sku'] = $sku;
+
   // Product Features.
   $page_top_products_features = $variables['content']['field_product_features'];
+
   // Add first 3 Product Features to an array to display at the top of the page.
   $all_product_features = $node->get('field_product_features')->getValue();
+
   foreach ($all_product_features as $key => $feature) {
     if ($key > 2) {
       unset($page_top_products_features[$key]);
     }
   }
+
   $variables['page_top_products_features'] = $page_top_products_features;
 
   // Count Product Images.
@@ -151,6 +166,7 @@ function crescenttool_preprocess_node__product__full(array &$variables) {
     $variables['product_images'] = TRUE;
     $variables['product_image_count'] = count($node->field_media->getValue());
   }
+
   // Thumb Gallery.
   $thumbs = $node->field_product_images->getValue();
 
@@ -265,4 +281,277 @@ function crescenttool_preprocess_node__product__full(array &$variables) {
   $variables['#cache']['max-age'] = Cache::mergeMaxAges($variables['#cache']['max-age'], $main_view->storage->getCacheMaxAge());
 
   $variables['related_items'] = $main_view->buildRenderable($view_display, $main_view->args);
+}
+
+/**
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for search index.
+ */
+function crescenttool_preprocess_node__search_index(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $bundle = $node->bundle();
+  $view_mode = $variables['view_mode'];
+
+  $bundle_css = Html::cleanCssIdentifier($bundle);
+  $view_mode_css = Html::cleanCssIdentifier($view_mode);
+
+  // Track variables that should be converted to attribute objects.
+  $variables['#attribute_variables'][] = 'media_attributes';
+
+  $variables['inner_attributes']['class'][] = 'node__inner';
+  $variables['media_attributes']['class'][] = 'node__media';
+
+  // Move media to media variable.
+  if (isset($variables['content']['field_media'][0]) || isset($variables['content']['field_preferred_listing_image'][0]) || isset($variables['content']['field_component_hero'][0])) {
+    $variables['media_attributes']['class'][] = 'node__media--with-media';
+
+    if (array_key_exists('field_component_hero', $variables['content']) && !empty($variables['content']['field_component_hero'][0])) {
+      $slideParagraph = $variables['content']['field_component_hero'][0]['#paragraph'];
+      $sid = $slideParagraph->get('field_components')->getValue()[0]['target_id'];
+      $view_builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
+      $storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+      $slide = $storage->load($sid);
+
+      if (!empty($slide)) {
+        $build = $view_builder->view($slide, 'search_index');
+        $variables['media'] = $build;
+        unset($variables['content']['field_component_hero']);
+      }
+    }
+    elseif (array_key_exists('field_preferred_listing_image', $variables['content']) && !empty($variables['content']['field_preferred_listing_image'][0])) {
+      $variables['media_attributes']['class'][] = 'node__listing-image';
+      $variables['media'] = $variables['content']['field_preferred_listing_image'];
+      unset($variables['content']['field_preferred_listing_image']);
+
+      if (isset($variables['content']['field_media'])) {
+        unset($variables['content']['field_media']);
+      }
+    }
+    elseif (!empty($variables['content']['field_media'][0])) {
+      $variables['media_attributes']['class'][] = 'node__listing-image';
+      $variables['media'] = $variables['content']['field_media'];
+      unset($variables['content']['field_media']);
+    }
+
+    unset($variables['media']['#theme']);
+  }
+  else {
+    $variables['media_attributes']['class'][] = 'node__media--no-media';
+  }
+}
+
+/**
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product, search index.
+ */
+function crescenttool_preprocess_node__product__search_index(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $bundle = $node->bundle();
+  $view_mode = $variables['view_mode'];
+
+  $sku = $node->title->value;
+  $variables['sku'] = $sku;
+
+  $bundle_css = Html::cleanCssIdentifier($bundle);
+  $view_mode_css = Html::cleanCssIdentifier($view_mode);
+
+  // Track variables that should be converted to attribute objects.
+  $variables['#attribute_variables'][] = 'media_attributes';
+
+  $variables['inner_attributes']['class'][] = 'node__inner';
+  $variables['media_attributes']['class'][] = 'node__media';
+
+  // Move media to media variable.
+  if (isset($variables['content']['field_media'][0])) {
+    $variables['media_attributes']['class'][] = 'node__media--with-media';
+    $variables['media_attributes']['class'][] = 'node__listing-image';
+    $variables['media'] = $variables['content']['field_media'];
+    unset($variables['media']['#theme']);
+    unset($variables['content']['field_media']);
+  }
+  else {
+    $variables['media_attributes']['class'][] = 'node__media--no-media';
+  }
+}
+
+/**
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product_category, full.
+ */
+function crescenttool_preprocess_node__product_category__full(array &$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $bundle = $node->bundle();
+  $view_mode = $variables['view_mode'];
+
+  $main_view = \Drupal::entityTypeManager()
+    ->getStorage('view')
+    ->load('product_category')
+    ->getExecutable();
+  $view_args = [];
+
+  // Get Product Classification ID's.
+  if (!empty($node->get('field_product_classifications')->getValue())) {
+    $classifications = array_column($node->get('field_product_classifications')->getValue(), 'target_id');
+    $view_args[] = implode(',', $classifications);
+  }
+
+  $view_display = 'products_by_category';
+  $main_view->initDisplay();
+  $main_view->setDisplay($view_display);
+  $main_view->setArguments($view_args);
+  $main_view->preExecute();
+  $main_view->execute();
+
+  // Initialize cache contexts.
+  if (!isset($variables['#cache']['contexts'])) {
+    $variables['#cache']['contexts'] = [];
+  }
+
+  // Initialize cache tags.
+  if (!isset($variables['#cache']['tags'])) {
+    $variables['#cache']['tags'] = [];
+  }
+
+  // Initialize cache max-age.
+  if (!isset($variables['#cache']['max-age'])) {
+    $variables['#cache']['max-age'] = Cache::PERMANENT;
+  }
+
+  // Merge display cache tags.
+  $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'], $main_view->display_handler->getCacheMetadata()
+    ->getCacheContexts());
+  $variables['#cache']['tags'] = Cache::mergeTags($variables['#cache']['tags'], $main_view->display_handler->getCacheMetadata()
+    ->getCacheTags());
+  $variables['#cache']['max-age'] = Cache::mergeMaxAges($variables['#cache']['max-age'], $main_view->display_handler->getCacheMetadata()
+    ->getCacheMaxAge());
+
+  // Merge view cache tags.
+  $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'], $main_view->storage->getCacheContexts());
+  $variables['#cache']['tags'] = Cache::mergeTags($variables['#cache']['tags'], $main_view->getCacheTags());
+  $variables['#cache']['max-age'] = Cache::mergeMaxAges($variables['#cache']['max-age'], $main_view->storage->getCacheMaxAge());
+
+  $variables['view'] = $main_view->buildRenderable($view_display, $main_view->args);
+  $variables['filters'] = \Drupal::formBuilder()->getForm('Drupal\crescenttool_product_category_filtering\Form\ProductCategoryFiltersForm');
+}
+
+/**
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product_category, full.
+ */
+function crescenttool_preprocess_node__product_industry__full(array &$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $bundle = $node->bundle();
+  $view_mode = $variables['view_mode'];
+
+  $main_view = \Drupal::entityTypeManager()
+    ->getStorage('view')
+    ->load('product_category')
+    ->getExecutable();
+  $view_args = [];
+
+  // Get Product Classification ID's.
+  if (!empty($node->get('field_industry')->getValue())) {
+    $classifications = array_column($node->get('field_industry')->getValue(), 'target_id');
+    $view_args[] = implode(',', $classifications);
+  }
+
+  $view_display = 'products_by_industry';
+  $main_view->initDisplay();
+  $main_view->setDisplay($view_display);
+  $main_view->setArguments($view_args);
+  $main_view->preExecute();
+  $main_view->execute();
+
+  // Initialize cache contexts.
+  if (!isset($variables['#cache']['contexts'])) {
+    $variables['#cache']['contexts'] = [];
+  }
+
+  // Initialize cache tags.
+  if (!isset($variables['#cache']['tags'])) {
+    $variables['#cache']['tags'] = [];
+  }
+
+  // Initialize cache max-age.
+  if (!isset($variables['#cache']['max-age'])) {
+    $variables['#cache']['max-age'] = Cache::PERMANENT;
+  }
+
+  // Merge display cache tags.
+  $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'], $main_view->display_handler->getCacheMetadata()
+    ->getCacheContexts());
+  $variables['#cache']['tags'] = Cache::mergeTags($variables['#cache']['tags'], $main_view->display_handler->getCacheMetadata()
+    ->getCacheTags());
+  $variables['#cache']['max-age'] = Cache::mergeMaxAges($variables['#cache']['max-age'], $main_view->display_handler->getCacheMetadata()
+    ->getCacheMaxAge());
+
+  // Merge view cache tags.
+  $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'], $main_view->storage->getCacheContexts());
+  $variables['#cache']['tags'] = Cache::mergeTags($variables['#cache']['tags'], $main_view->getCacheTags());
+  $variables['#cache']['max-age'] = Cache::mergeMaxAges($variables['#cache']['max-age'], $main_view->storage->getCacheMaxAge());
+
+  $variables['view'] = $main_view->buildRenderable($view_display, $main_view->args);
+}
+
+/**
+ * Implements hook_preprocess_node__VIEW_MODE() for product category, tile.
+ */
+function crescenttool_preprocess_node__tile(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $bundle = $node->bundle();
+  $view_mode = $variables['view_mode'];
+
+  $bundle_css = Html::cleanCssIdentifier($bundle);
+  $view_mode_css = Html::cleanCssIdentifier($view_mode);
+
+  // Track variables that should be converted to attribute objects.
+  $variables['#attribute_variables'][] = 'media_attributes';
+  $variables['inner_attributes']['class'][] = 'node__inner';
+  $variables['media_attributes']['class'][] = 'node__media';
+
+  if (isset($variables['content']['field_media'][0])) {
+    $variables['media_attributes']['class'][] = 'node__grid-image';
+  }
+  else {
+    $variables['media_attributes']['class'][] = 'node__media--no-media';
+  }
+}
+
+/**
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for social post, teaser.
+ */
+function crescenttool_preprocess_node__social_post__teaser(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $bundle = $node->bundle();
+  $view_mode = $variables['view_mode'];
+
+  $bundle_css = Html::cleanCssIdentifier($bundle);
+  $view_mode_css = Html::cleanCssIdentifier($view_mode);
+
+  // Track variables that should be converted to attribute objects.
+  $variables['#attribute_variables'][] = 'media_attributes';
+
+  $variables['inner_attributes']['class'][] = 'node__inner';
+  $variables['media_attributes']['class'][] = 'node__media';
+
+  // Move media to media variable.
+  if (isset($variables['content']['field_media'][0])) {
+    $variables['media_attributes']['class'][] = 'node__media--with-media';
+    $variables['media_attributes']['class'][] = 'node__listing-image';
+    $variables['media'] = $variables['content']['field_media'];
+    unset($variables['media']['#theme']);
+    unset($variables['content']['field_media']);
+  }
+  else {
+    $variables['media_attributes']['class'][] = 'node__media--no-media';
+  }
+
+  // Need to troubleshoot why this causes the crash when not logged in
+  // Move url to drupal settings.
+  // if (!empty($variables['content']['field_post_url'])) {
+  // $variables['#attached']['drupalSettings']['social_feed'][] = $variables['content']['field_post_url'];
+  // unset($variables['content']['field_post_url']);
+  // } !
 }
