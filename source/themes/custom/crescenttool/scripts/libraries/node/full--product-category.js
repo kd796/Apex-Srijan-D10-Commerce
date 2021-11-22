@@ -25,10 +25,12 @@
           case 'category':
             drupalSettings.selectedCategories.push($filterVal);
             break;
+
           case 'attribute':
             newVal = drupalSettings.selectedAttributes + ', ' + $item.val();
             drupalSettings.selectedAttributes = newVal;
             break;
+
           case 'set':
             drupalSettings.selectedSetFilterValue = $filterVal;
             break;
@@ -42,6 +44,7 @@
               return item !== $item.val();
             });
             break;
+
           case 'attribute':
             newVal = drupalSettings.selectedAttributes.split(', ');
             newArray = newVal.filter(function (item) {
@@ -99,12 +102,13 @@
         $('.node--type-product-category__attribute-filter').find('input[value="' + value + '"]').prop('checked', true);
       });
 
-      $('.gearwrench-product-category-filters:not(.gearwrench-product-category-filters--js-initialized)').once('product-category-filters').each(function (index) {
+      $('.crescenttool-product-category-filters:not(.crescenttool-product-category-filters--js-initialized)').once('product-category-filters').each(function (index) {
         var $categoryFilter = $('.node--type-product-category__category-filter');
         var $attributeFilter = $('.node--type-product-category__attribute-filter');
         var $setFilter = $('.node--type-product-category__set-filter');
+
         // Track that this component has been initialized.
-        $(this).addClass('gearwrench-product-category-filters--js-initialized');
+        $(this).addClass('crescenttool-product-category-filters--js-initialized');
 
         $categoryFilter.find('.form-checkbox').bind('change', function (e) {
           Drupal.behaviors.productCategoryFilters.filtering($(this), 'category');
@@ -131,14 +135,14 @@
 
   Drupal.behaviors.productCategoryFilterTabs = {
     attach: function (context, settings) {
-      $('.gearwrench-product-category-filters').once('product-category-filter-tabs').each(function (index) {
+      $('.crescenttool-product-category-filters').once('product-category-filter-tabs').each(function (index) {
         // Initialize variables.
         var $widget = $(this);
         var $accordions = $widget.find('fieldset');
         var $accordionHeaders = $accordions.find('legend');
 
         // Mark that the tabs component has been initialized.
-        // $widget.addClass('gearwrench-product-category-filters--js-initialized');
+        // $widget.addClass('crescenttool-product-category-filters--js-initialized');
 
         // Add static roles to elements.
         $widget.attr('role', 'tablist');
@@ -211,7 +215,7 @@
   if (window.innerWidth <= 768) {
     var $mobileMenuIcon = $('.sort-icon');
     var $mobileCloseIcon;
-    var $mobileCategoryFilters = $('.gearwrench-product-category-filters');
+    var $mobileCategoryFilters = $('.crescenttool-product-category-filters');
 
     $mobileCategoryFilters.append('<div class="mobile-filter-header"><div class="mobile-filter-header-inner"><span>Filter</span><span class="mobile-close-icon"></span></div></div>');
     $mobileCloseIcon = $('.mobile-close-icon');
