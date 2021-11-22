@@ -43,7 +43,6 @@
 
         a {
           padding: rem(13px 23px);
-          background-color: $gray-20;
 
           &::after {
             content: '';
@@ -64,13 +63,25 @@
       &.pager__item--previous {
         a {
           @include icon('chevron-left-black', after, false);
+          &:after {
+            color: $primary-red;
+          }
         }
       }
 
       &.pager__item--next {
         a {
           @include icon('chevron-right-black', after, false);
+          
+          &:after {
+            color: $primary-red;
+          }
         }
+      }
+
+      &.pager__item--first,
+      &.pager__item--last {
+        display: none;
       }
 
       @include media('<md') {
@@ -79,11 +90,6 @@
 
       @include media('<sm') {
         font-size: rem(12px);
-
-        &.pager__item--first,
-        &.pager__item--last {
-          display: none;
-        }
 
         &.pager__item--previous + .pager__item--ellipsis {
           padding-right: 0;
