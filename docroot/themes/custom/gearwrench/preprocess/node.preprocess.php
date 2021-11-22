@@ -8,6 +8,7 @@
  *
  * @see gearwrench_preprocess_node()
  * @see gearwrench_preprocess_node__full()
+ * @see gearwrench_preprocess_node__tile()
  * @see gearwrench_preprocess_node__page__full()
  * @see gearwrench_preprocess_node__media_page__full()
  * @see gearwrench_preprocess_node__media_page__teaser()
@@ -19,6 +20,7 @@
  * @see gearwrench_preprocess_node__product_category__full()
  * @see gearwrench_preprocess_node__product_category__tile()
  * @see gearwrench_preprocess_node__social_post__teaser()
+ * @see gearwrench_preprocess_node__product_industry__full()
  */
 
 use Drupal\Core\Cache\Cache;
@@ -233,6 +235,7 @@ function gearwrench_preprocess_node__product__full(array &$variables) {
     $variables['product_images'] = TRUE;
     $variables['product_image_count'] = count($node->field_product_images->getValue());
   }
+
   // Thumb Gallery.
   $thumbs = $node->field_product_images->getValue();
 
@@ -623,12 +626,15 @@ function gearwrench_preprocess_node__tile(&$variables) {
   $node = $variables['node'];
   $bundle = $node->bundle();
   $view_mode = $variables['view_mode'];
+
   $bundle_css = Html::cleanCssIdentifier($bundle);
   $view_mode_css = Html::cleanCssIdentifier($view_mode);
+
   // Track variables that should be converted to attribute objects.
   $variables['#attribute_variables'][] = 'media_attributes';
   $variables['inner_attributes']['class'][] = 'node__inner';
   $variables['media_attributes']['class'][] = 'node__media';
+
   if (isset($variables['content']['field_media'][0])) {
     $variables['media_attributes']['class'][] = 'node__grid-image';
   }
