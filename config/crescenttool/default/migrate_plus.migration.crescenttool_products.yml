@@ -99,8 +99,12 @@ source:
       selector: Values
     -
       name: remote_keywords
-      label: 'Keywords'
-      selector: //*[@AttributeID='ATT737269']
+      label: Keywords
+      selector: '//*[@AttributeID=''ATT737269'']'
+    -
+      name: remote_brand
+      label: Brand
+      selector: '//*[@AttributeID=''Brand'']'
   ids:
     remote_sku:
       type: string
@@ -211,6 +215,7 @@ process:
     source: remote_set_contents
     attribute: ATT921
   field_keywords: remote_keywords
+  field_brand: remote_brand
 destination:
   plugin: crescenttool_product
   bundle: product
