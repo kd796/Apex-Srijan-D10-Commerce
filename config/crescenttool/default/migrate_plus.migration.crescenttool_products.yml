@@ -97,6 +97,10 @@ source:
       name: remote_related_products
       label: 'Related Products'
       selector: Values
+    -
+      name: remote_keywords
+      label: 'Keywords'
+      selector: //*[@AttributeID='ATT737269']
   ids:
     remote_sku:
       type: string
@@ -206,6 +210,7 @@ process:
     plugin: get_attribute_value
     source: remote_set_contents
     attribute: ATT921
+  field_keywords: remote_keywords
 destination:
   plugin: crescenttool_product
   bundle: product
