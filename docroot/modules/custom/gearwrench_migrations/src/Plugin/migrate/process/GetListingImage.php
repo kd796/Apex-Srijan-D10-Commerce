@@ -71,7 +71,8 @@ class GetListingImage extends ProcessPluginBase {
       }
 
       if (!empty($primary_image)) {
-        $assetId = urlencode($primary_image->attributes()->AssetID);
+        $assetId = $primary_image->attributes()->AssetID;
+
         $asset = [
           'sku' => $sku,
           'imagetype' => 'Product Level',

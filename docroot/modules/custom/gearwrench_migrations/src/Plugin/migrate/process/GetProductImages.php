@@ -71,7 +71,8 @@ class GetProductImages extends ProcessPluginBase {
       $primary_image_element = array_shift($primary_image_element);
     }
 
-    $assetId = urlencode($primary_image_element->attributes()->AssetID);
+    $assetId = $primary_image_element->attributes()->AssetID;
+
     $primary_image = [
       'sku' => $sku,
       'imagetype' => 'Product Level',
