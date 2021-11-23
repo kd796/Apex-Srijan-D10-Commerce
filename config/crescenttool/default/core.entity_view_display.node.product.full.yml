@@ -5,8 +5,10 @@ dependencies:
   config:
     - core.entity_view_mode.node.full
     - field.field.node.product.body
+    - field.field.node.product.field_brand
     - field.field.node.product.field_featured_product
     - field.field.node.product.field_industry
+    - field.field.node.product.field_keywords
     - field.field.node.product.field_launch_date
     - field.field.node.product.field_long_description
     - field.field.node.product.field_media
@@ -108,8 +110,10 @@ content:
     region: content
 hidden:
   body: true
+  field_brand: true
   field_featured_product: true
   field_industry: true
+  field_keywords: true
   field_launch_date: true
   field_meta_tags: true
   field_new_product: true
