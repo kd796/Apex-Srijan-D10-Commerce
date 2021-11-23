@@ -13,6 +13,7 @@
 /**
  * Component
  */
+
 .node--type-media-page.node--view-mode-teaser {
   height: 100%;
 
@@ -39,8 +40,9 @@
       .field[data-blazy] {
         min-width: 100%;
       }
-
+      //
       .media {
+        background-color: $black;
         display: flex;
         position: relative;
         padding-top: 100%;
@@ -58,7 +60,7 @@
         }
 
         img {
-          object-fit: cover;
+          object-fit: contain;
         }
       }
     }
