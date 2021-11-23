@@ -15,7 +15,7 @@
  * @see crescenttool_preprocess_paragraph__steps__full()
  * @see crescenttool_preprocess_paragraph__step__full()
  * @see crescenttool_preprocess_paragraph__embed_iframe__full()
- * @see crescenttool_preprocess_paragraph__media__full()
+ * @see crescenttool_preprocess_paragraph__featured_media__full()
  * @see crescenttool_preprocess_paragraph__section__full()
  * @see crescenttool_preprocess_paragraph__tabs__full()
  * @see crescenttool_preprocess_paragraph__tabs_tab__full()
@@ -321,7 +321,7 @@ function crescenttool_preprocess_paragraph__featured_links__full(array &$variabl
 }
 
 /**
- * Implements hook_preprocess_paragraph__VIEW_MODE() for media, full.
+ * Implements hook_preprocess_paragraph__VIEW_MODE() for featured media, full.
  */
 function crescenttool_preprocess_paragraph__featured_media__full(array &$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -341,7 +341,14 @@ function crescenttool_preprocess_paragraph__featured_media__full(array &$variabl
     case 'featured_media_layout__slider':
       $variables['#attached']['library'][] = 'crescenttool/paragraph--full--featured-media--layout-slider';
       $field_settings['type'] = 'entity_reference_entity_view';
-      $field_settings['settings']['view_mode'] = 'embed';
+      $field_settings['settings']['view_mode'] = 'hero';
+      $field_settings['label'] = 'hidden';
+      break;
+
+    case 'featured_media_layout__live_area':
+      $variables['#attached']['library'][] = 'crescenttool/paragraph--full--featured-media--layout-live-area';
+      $field_settings['type'] = 'entity_reference_entity_view';
+      $field_settings['settings']['view_mode'] = 'live_area';
       $field_settings['label'] = 'hidden';
       break;
 

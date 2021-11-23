@@ -62,18 +62,19 @@
       height: 100%;
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem; // sass-lint:disable-line no-misspelled-properties
+      column-gap: rem(24px);
+      row-gap: rem(24px); // sass-lint:disable-line no-misspelled-properties
 
       @include media('>=lg') {
         flex-wrap: nowrap;
-        gap: 1.5rem; // sass-lint:disable-line no-misspelled-properties
+        row-gap: unset; // sass-lint:disable-line no-misspelled-properties
       }
 
       .component-product-slider__list-item {
         width: calc(50% - 1rem);
 
         @include media('>=lg') {
-          width: calc(25% - 1.5rem);
+          width: 25%;
         }
       }
     }
@@ -189,12 +190,12 @@
       position: relative;
 
       .swiper-pagination-bullet {
-        background: transparent;
-        border-color: $primary-red;
+        background: $primary-red;
       }
 
       .swiper-pagination-bullet-active {
-        background: $primary-red;
+        background: transparent;
+        border-color: $primary-red;
       }
     }
   }

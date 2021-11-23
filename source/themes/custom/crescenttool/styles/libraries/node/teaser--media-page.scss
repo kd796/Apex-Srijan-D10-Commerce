@@ -1,0 +1,132 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Node: Full Default
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.node--type-media-page.node--view-mode-teaser {
+  height: 100%;
+
+  .node__inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .node__content {
+    height: 100%;
+    word-break: break-word;
+
+    .node__listing-image {
+      @include flex();
+      @include flex-x(align-items, center);
+      @include flex-x(justify-content, center);
+      background-color: $white;
+      display: flex;
+      overflow: hidden;
+      padding-top: 0;
+      width: 100%;
+
+      .field[data-blazy] {
+        min-width: 100%;
+      }
+
+      .media {
+        display: flex;
+        position: relative;
+        padding-top: 100%;
+        width: 100%;
+
+        img,
+        iframe {
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+        }
+
+        img {
+          object-fit: cover;
+        }
+      }
+    }
+
+    .node__content-container {
+      padding: 1rem;
+
+      @include media('<lg') {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+
+    .node__long-description {
+      .field--name-title {
+        @include type-header(h4, black, included);
+        margin-top: 0;
+        text-transform: uppercase;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        min-height: rem(100px);
+
+        @include media('<md') {
+          font-size:  rem(16px);
+          line-height: rem(20px);
+          min-height: rem(60px);
+        }
+      }
+    }
+
+    .node__summary {
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+
+  .node__read-more-button {
+    @include btn(primary);
+
+    box-sizing: border-box;
+    display: inline-block !important;
+    float: none;
+    font-size: 1rem !important;
+    transition: $transition-base;
+    width: 100%;
+
+    @include media('<md') {
+      white-space: normal;
+      min-width: 100%;
+    }
+  }
+
+  @include on-event {
+    box-shadow: 0 0 16px 5px rgba(0, 0, 0, 0.2);
+    outline: 2px solid $black;
+
+    .node__read-more-button {
+      color: $primary-red;
+      background-color: $black;
+    }
+
+    @include media('<md') {
+      box-shadow: none;
+      outline: none;
+    }
+  }
+}

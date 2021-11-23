@@ -1,0 +1,34 @@
+uuid: 33232ae1-ceb3-42f8-9743-7920d762262c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.search_index
+    - field.field.paragraph.hero.field_class_custom
+    - field.field.paragraph.hero.field_components
+    - field.field.paragraph.hero.field_html_anchor
+    - field.field.paragraph.hero.field_style
+    - paragraphs.paragraphs_type.hero
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: 43Uou_JupnxPbDdZf2zi6uUqeFOo6vPRn4q5NgaTSjc
+id: paragraph.hero.search_index
+targetEntityType: paragraph
+bundle: hero
+mode: search_index
+content:
+  field_components:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: search_index
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+hidden:
+  field_class_custom: true
+  field_html_anchor: true
+  field_style: true
+  search_api_excerpt: true

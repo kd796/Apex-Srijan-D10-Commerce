@@ -207,3 +207,23 @@
     }
   }
 }
+
+// classy paragraph cta styles
+.button-cta {
+  .component-content__link.button {
+    @include btn-reset();
+    @include btn-base();
+    display: inline-flex;
+    margin-top: 2rem;
+
+    &:hover {
+      border: 1px solid $primary-orange !important;
+    }
+  }
+}
+
+.text-cta {
+  .component-content__link.button {
+    @include btn(secondary);
+  }
+}

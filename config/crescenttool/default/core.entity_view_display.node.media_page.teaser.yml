@@ -5,13 +5,16 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.media_page.body
+    - field.field.node.media_page.field_category
     - field.field.node.media_page.field_components
+    - field.field.node.media_page.field_enable_download_link
     - field.field.node.media_page.field_link
     - field.field.node.media_page.field_media
     - field.field.node.media_page.field_media_type
+    - field.field.node.media_page.field_preferred_listing_image
     - field.field.node.media_page.field_published_date
     - field.field.node.media_page.field_tags
-    - image.style.small_1x1
+    - image.style.search_teaser_261x256
     - node.type.media_page
   module:
     - blazy
@@ -25,20 +28,20 @@ content:
   body:
     label: hidden
     type: smart_trim
-    weight: 1
+    weight: 2
     settings:
-      trim_length: 200
+      trim_length: 100
       trim_type: chars
       trim_suffix: ''
+      wrap_output: true
       wrap_class: trimmed
       more_text: More
       more_class: more-link
-      summary_handler: full
-      wrap_output: false
-      more_link: false
+      summary_handler: trim
       trim_options:
-        text: false
+        text: true
         trim_zero: false
+      more_link: false
     third_party_settings: {  }
     region: content
   field_media:
@@ -47,12 +50,12 @@ content:
     region: content
     label: hidden
     settings:
-      image_style: small_1x1
+      image_style: search_teaser_261x256
       responsive_image_style: ''
       media_switch: ''
       thumbnail_style: ''
       ratio: ''
-      view_mode: default
+      view_mode: search_teaser
       image: ''
       current_view_mode: teaser
       background: false
@@ -76,15 +79,59 @@ content:
       box_media_style: ''
       box_style: ''
       _uri: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
       breakpoints: {  }
       sizes: ''
       grid_header: ''
-      grid: 0
-      grid_medium: 0
-      grid_small: 0
+    third_party_settings: {  }
+  field_preferred_listing_image:
+    type: blazy_media
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      image_style: search_teaser_261x256
+      responsive_image_style: ''
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
+      view_mode: search_teaser
+      current_view_mode: teaser
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
     third_party_settings: {  }
 hidden:
+  field_category: true
   field_components: true
+  field_enable_download_link: true
   field_link: true
   field_media_type: true
   field_published_date: true

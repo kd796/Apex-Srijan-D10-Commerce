@@ -31,6 +31,7 @@ global:
     - core/drupal
     - core/jquery
     - crescenttool/library--price-spider
+    - crescenttool/library--hubspot
 
 
 # === Global: Library Overrides === #
@@ -102,6 +103,11 @@ library--price-spider:
     //cdn.pricespider.com/1/lib/ps-widget.js: { type: external, attributes: { async: true } }
     //cdn.pricespider.com/1/2377/ps-utid.js: { type: external, attributes: { async: true } }
 
+library--hubspot:
+  version: 1.x
+  js:
+    //js.hs-scripts.com/20116876.js: { type: external, attributes: { async: true, defer: true, id: 'hs-script-loader' } }
+
 # ========= Block ========= #
 
 # Global #
@@ -128,6 +134,14 @@ block--system--system-breadcrumb-block:
   css:
     component:
       css/libraries/block/breadcrumbs.css: {}
+
+block--crescenttool-core--product-buy-now-sticky:
+  version: 1.x
+  css:
+    component:
+      css/libraries/block/product-buy-now-sticky.css: { }
+  js:
+    js/libraries/block/product-buy-now-sticky.js: {}
 
 block--pricespider-generic-widget-block:
   version: 1.x
@@ -156,6 +170,19 @@ media--teaser:
     component:
       css/libraries/media/teaser.css: {}
 
+# === Media: Teaser === #
+media--modal:
+  version: 1.x
+  css:
+    component:
+      css/libraries/media/modal.css: {}
+
+# === Media: Product Detail Slider - Remote Video === #
+media--product-detail-slider--remote-video:
+  version: 1.x
+  css:
+    component:
+      css/libraries/media/product-detail-slider__remote-video.css: {}
 
 
 # ========= Nodes ========= #
@@ -174,6 +201,12 @@ node--full--media-page:
     component:
       css/libraries/node/full--media-page.css: {}
 
+node--full--page:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/full--page.css: {}
+
 node--full--product:
   version: 1.x
   css:
@@ -189,6 +222,38 @@ node--full--product:
     - crescenttool/library--swiper
     - crescenttool/library--jquery-roving-tabindex
 
+node--full--product-category:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/full--product-category.css: { }
+  js:
+    js/libraries/node/full--product-category.js: { }
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - crescenttool/library--jquery-roving-tabindex
+
+node--full--product-industry:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/full--product-industry.css: { }
+
+# === Node: Search Index === #
+node--search-index:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/search-index.css: { }
+
+node--search-index--product:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/search-index--product.css: { }
+
 # === Node: Teaser === #
 
 node--teaser--product:
@@ -197,7 +262,19 @@ node--teaser--product:
     component:
       css/libraries/node/teaser--product.css: { }
 
+node--teaser--media-page:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/teaser--media-page.css: { }
+
 # === Node: Tile === #
+
+node--tile:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/tile.css: { }
 
 node--tile--product-listing:
   version: 1.x
@@ -237,12 +314,26 @@ paragraph--full--content:
     component:
       css/libraries/paragraph/full--content.css: {}
 
+# Content #
+paragraph--full--content-2-column:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--content-2-column.css: {}
+
 # Content Callout #
 paragraph--full--content-callout:
   version: 1.x
   css:
     component:
       css/libraries/paragraph/full--content-callout.css: {}
+
+# Embed View #
+paragraph--full--embed-view:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--embed-view.css: {}
 
 # Hero #
 paragraph--full--hero:
@@ -277,6 +368,7 @@ paragraph--full--featured-content:
   css:
     component:
       css/libraries/paragraph/full--featured-content.css: {}
+
 paragraph--full--featured-content--layout-grid:
   version: 1.x
   css:
@@ -284,6 +376,7 @@ paragraph--full--featured-content--layout-grid:
       css/libraries/paragraph/full--featured-content--layout-grid.css: {}
   dependencies:
     - crescenttool/paragraph--full--featured-content
+
 paragraph--full--featured-content--layout-list:
   version: 1.x
   css:
@@ -309,6 +402,7 @@ paragraph--full--featured-media:
     - core/drupal
     - core/jquery
     - core/jquery.once
+
 paragraph--full--featured-media--layout-full:
   version: 1.x
   css:
@@ -316,6 +410,7 @@ paragraph--full--featured-media--layout-full:
       css/libraries/paragraph/full--featured-media--layout-full.css: {}
   dependencies:
     - crescenttool/paragraph--full--featured-media
+
 paragraph--full--featured-media--layout-grid:
   version: 1.x
   css:
@@ -323,6 +418,15 @@ paragraph--full--featured-media--layout-grid:
       css/libraries/paragraph/full--featured-media--layout-grid.css: {}
   dependencies:
     - crescenttool/paragraph--full--featured-media
+
+paragraph--full--featured-media--layout-live-area:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--featured-media--layout-live-area.css: {}
+  dependencies:
+    - crescenttool/paragraph--full--featured-media
+
 paragraph--full--featured-media--layout-slider:
   version: 1.x
   css:
@@ -422,6 +526,24 @@ region--footer-first:
 
 # ========= Views ========= #
 
+view:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/view.css: {}
+
+view--media-pages:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/media-pages.css: {}
+
+view--taxonomy-term:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/taxonomy-term.css: {}
+
 view--related-products:
   version: 1.x
   css:
@@ -440,6 +562,52 @@ view--product-listing-grid:
   css:
     component:
       css/libraries/view/product-listing-grid.css: {}
+
+view--new-products:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/new-products.css: {}
+  js:
+    js/libraries/view/new-products.js: {}
+
+view--product-category-grid:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/product-category-grid.css: {}
+
+view--product-industry-grid:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/product-industry-grid.css: {}
+
+view--acquia-search:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/search.css: {}
+
+view--search:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/search.css: {}
+
+view--social-feed:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/social-feed.css: {}
+  js:
+    js/libraries/view/instagram-feed.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - crescenttool/library--swiper
+    - crescenttool/library--add-to-any
 
 # ========= Forms ========= #
 webform--warranty-replacement-form:

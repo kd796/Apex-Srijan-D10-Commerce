@@ -6,15 +6,75 @@ dependencies:
     - core.entity_view_mode.node.full
     - field.field.node.page.body
     - field.field.node.page.field_components
+    - field.field.node.page.field_link
     - field.field.node.page.field_media
     - field.field.node.page.field_meta_tags
     - node.type.page
-    - responsive_image.styles.hero
+    - responsive_image.styles.short_hero
   module:
     - blazy
     - entity_reference_revisions
+    - field_group
+    - link
     - text
     - user
+third_party_settings:
+  field_group:
+    group_page_heading:
+      children:
+        - group_left
+        - group_right
+      parent_name: ''
+      weight: 0
+      format_type: html_element
+      region: content
+      format_settings:
+        id: ''
+        classes: page-heading
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+      label: 'Page Heading'
+    group_left:
+      children:
+        - body
+      parent_name: group_page_heading
+      weight: 7
+      format_type: html_element
+      region: content
+      format_settings:
+        id: ''
+        classes: heading-left
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+      label: Left
+    group_right:
+      children:
+        - field_link
+      parent_name: group_page_heading
+      weight: 8
+      format_type: html_element
+      region: content
+      format_settings:
+        id: ''
+        classes: heading-right
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+      label: Right
 id: node.page.full
 targetEntityType: node
 bundle: page
@@ -23,27 +83,39 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 0
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
   field_components:
     type: entity_reference_revisions_entity_view
-    weight: 2
+    weight: 4
     label: hidden
     settings:
       view_mode: full
       link: ''
     third_party_settings: {  }
     region: content
+  field_link:
+    type: link
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
   field_media:
     type: blazy_media
-    weight: 1
+    weight: 3
     region: content
     label: hidden
     settings:
       image_style: ''
-      responsive_image_style: hero
+      responsive_image_style: short_hero
       media_switch: ''
       thumbnail_style: ''
       ratio: ''
@@ -71,15 +143,14 @@ content:
       box_media_style: ''
       box_style: ''
       _uri: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
       breakpoints: {  }
       sizes: ''
       grid_header: ''
-      grid: 0
-      grid_medium: 0
-      grid_small: 0
     third_party_settings: {  }
 hidden:
-  field_link: true
   field_meta_tags: true
   langcode: true
   links: true

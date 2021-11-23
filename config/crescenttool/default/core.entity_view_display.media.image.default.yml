@@ -6,7 +6,7 @@ dependencies:
     - field.field.media.image.field_media_image
     - media.type.image
   module:
-    - image
+    - blazy
 id: media.image.default
 targetEntityType: media
 bundle: image
@@ -16,9 +16,35 @@ content:
     label: visually_hidden
     settings:
       image_style: ''
-      image_link: file
+      responsive_image_style: ''
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
+      current_view_mode: default
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      icon: ''
+      layout: ''
+      view_mode: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
     third_party_settings: {  }
-    type: image
+    type: blazy
     weight: 1
     region: content
 hidden:

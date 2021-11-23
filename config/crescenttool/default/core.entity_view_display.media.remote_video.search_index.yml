@@ -1,0 +1,62 @@
+uuid: 4825cccb-b286-4b0b-b03d-e42017c8ce72
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.search_index
+    - field.field.media.remote_video.field_media_oembed_video
+    - field.field.media.remote_video.field_media_video_embed_field
+    - image.style.search_teaser_261x256
+    - media.type.remote_video
+  module:
+    - blazy
+_core:
+  default_config_hash: DPwLUJ_F8J1krETaxWO9RC0FVDKElz_zNw0NuGaK-sc
+id: media.remote_video.search_index
+targetEntityType: media
+bundle: remote_video
+mode: search_index
+content:
+  thumbnail:
+    type: blazy
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: search_teaser_261x256
+      responsive_image_style: ''
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
+      current_view_mode: search_index
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      icon: ''
+      layout: ''
+      view_mode: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_media_oembed_video: true
+  field_media_video_embed_field: true
+  langcode: true
+  name: true
+  search_api_excerpt: true
+  uid: true

@@ -4,7 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.node.product.body
+    - field.field.node.product.field_brand
     - field.field.node.product.field_featured_product
+    - field.field.node.product.field_industry
+    - field.field.node.product.field_keywords
+    - field.field.node.product.field_launch_date
     - field.field.node.product.field_long_description
     - field.field.node.product.field_media
     - field.field.node.product.field_meta_tags
@@ -20,6 +24,7 @@ dependencies:
     - field.field.node.product.field_upc
     - node.type.product
   module:
+    - datetime
     - field_group
     - media_library
     - metatag
@@ -44,6 +49,8 @@ third_party_settings:
     group_main:
       children:
         - title
+        - field_brand
+        - field_industry
         - body
         - field_media
       parent_name: group_tabs
@@ -81,6 +88,7 @@ third_party_settings:
         - field_product_images
         - field_set
         - field_set_components
+        - field_keywords
       parent_name: group_tabs
       weight: 3
       format_type: tab
@@ -99,7 +107,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 2
+    weight: 4
     settings:
       rows: 9
       summary_rows: 3
@@ -113,15 +121,47 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_brand:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_featured_product:
-    weight: 27
+    weight: 11
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
+  field_industry:
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_keywords:
+    weight: 24
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_launch_date:
+    weight: 14
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
   field_long_description:
-    weight: 16
+    weight: 17
     settings:
       size: 60
       placeholder: ''
@@ -129,7 +169,7 @@ content:
     type: string_textfield
     region: content
   field_media:
-    weight: 3
+    weight: 5
     settings:
       media_types:
         - image
@@ -139,21 +179,21 @@ content:
     type: media_library_widget
     region: content
   field_meta_tags:
-    weight: 29
+    weight: 13
     settings:
       sidebar: true
     third_party_settings: {  }
     type: metatag_firehose
     region: content
   field_new_product:
-    weight: 26
+    weight: 10
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
   field_product_classifications:
-    weight: 19
+    weight: 20
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -163,7 +203,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_product_features:
-    weight: 17
+    weight: 18
     settings:
       size: 60
       placeholder: ''
@@ -172,13 +212,13 @@ content:
     region: content
   field_product_images:
     type: media_library_widget
-    weight: 20
+    weight: 21
     settings:
       media_types: {  }
     third_party_settings: {  }
     region: content
   field_product_specifications:
-    weight: 18
+    weight: 19
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -188,7 +228,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_related_products:
-    weight: 28
+    weight: 12
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -198,14 +238,14 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_set:
-    weight: 21
+    weight: 22
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
   field_set_components:
-    weight: 22
+    weight: 23
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -239,7 +279,7 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 6
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -247,21 +287,21 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 4
+    weight: 5
     region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 8
+    weight: 9
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 5
+    weight: 6
     region: content
     third_party_settings: {  }
   title:
@@ -283,9 +323,8 @@ content:
     region: content
     third_party_settings: {  }
   url_redirects:
-    weight: 7
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden:
-  field_launch_date: true
+hidden: {  }

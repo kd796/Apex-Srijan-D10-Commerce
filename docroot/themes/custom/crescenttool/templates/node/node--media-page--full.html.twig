@@ -69,6 +69,7 @@
  */
 #}
 {% set classes = [] %}
+
 <article{{ attributes.addClass(classes) }}>
   <div class="node__top-content">
     <div{{ media_attributes }}>
@@ -82,7 +83,7 @@
     </div>
     <div class="node__details">
       <header class="node__header">
-        <h1 class="title">{{ title }}</h1>
+        <h1>{{ title }}</h1>
       </header>
       <div class="node__summary">
         {{ summary }}

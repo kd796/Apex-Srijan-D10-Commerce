@@ -10,6 +10,8 @@
  */
 
 use Drupal\Component\Utility\Html;
+use Drupal\media\MediaInterface;
+use Drupal\node\Entity\Node;
 
 /**
  * Implements hook_theme().
@@ -55,4 +57,206 @@ function crescenttool_core_preprocess_block(&$variables) {
     // Track to convert attributes.
     $variables['#attribute_variables'][] = 'wrapper_attributes';
   }
+}
+
+/**
+ * Implementation of hook_token_info().
+ *
+ * We are creating tokens for up to 3 levels of classification hierarchy.
+ */
+function crescenttool_core_token_info() {
+  $info['tokens']['node']['product_classifications_parent'] = [
+    'name' => t('Product Classifications Parent'),
+    'description' => t('Custom token to provide the top level Product Classification'),
+  ];
+
+  $info['tokens']['node']['product_classifications_child_first'] = [
+    'name' => t('Product Classifications First Child'),
+    'description' => t('Custom token to provide the first child Product Classification'),
+  ];
+
+  $info['tokens']['node']['product_classifications_child_second'] = [
+    'name' => t('Product Classifications Second Child'),
+    'description' => t('Custom token to provide the second child Product Classification'),
+  ];
+
+  $info['tokens']['node']['product_classifications_full_string'] = [
+    'name' => t('Product Classifications Full String'),
+    'description' => t('Custom token to provide the full Product Classification (for metadata)'),
+  ];
+
+  return $info;
+}
+
+/**
+ * Implementation of hook_tokens().
+ */
+function crescenttool_core_tokens($type, $tokens, array $data = [], array $options = []) {
+  $replacements = [];
+
+  if ($type == 'node' && !empty($data['node'])) {
+    $node = $data['node'];
+
+    foreach ($tokens as $name => $original) {
+      $call = FALSE;
+
+      // Loop through the tokens, only react on our custom tokens.
+      switch ($name) {
+        case 'product_classifications_parent':
+          $call = 'parent_level_1';
+          break;
+
+        case 'product_classifications_child_first':
+          $call = 'parent_level_2';
+          break;
+
+        case 'product_classifications_child_second':
+          $call = 'parent_level_3';
+          break;
+
+        case 'product_classifications_full_string':
+          $call = 'full';
+          break;
+
+      }
+
+      if ($call) {
+
+        // Replace the token with the value returned from the function call.
+        $replacements[$original] = _crescenttool_core_return_product_classification($node, $call);
+      }
+    }
+  }
+  return $replacements;
+}
+
+/**
+ * Return a taxonomy value at a specific hierarchy level determined by the caller.
+ *
+ * @param \Drupal\node\Entity\Node $node
+ *   The node object to act upon.
+ * @param string $call
+ *   The call determines which level of the classification hierarchy we want.
+ *
+ * @return string
+ *   Return the name of the Term or a blank string if none is available.
+ */
+function _crescenttool_core_return_product_classification(Node $node, $call) {
+  $parents = [];
+
+  // Load the classifications on the node.
+  $classification_tids = $node->get('field_product_classifications')->getValue();
+  $tid_parents = [];
+
+  // Create an array of each term with its parents.
+  foreach ($classification_tids as $tid) {
+    $tid_parents[$tid['target_id']] = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($tid['target_id']);
+  }
+
+  if (!empty($tid_parents)) {
+
+    // Build the full string of terms for use with metadata.
+    $full_string = '';
+
+    // The longest array provides the full hierarchy.
+    if ($node->getType() == 'product') {
+      foreach (max($tid_parents) as $t) {
+        $full_string .= $t->getName() . ' ';
+      }
+      $longest = array_reverse(max($tid_parents));
+    }
+    elseif ($node->getType() == 'product_category') {
+      foreach (min($tid_parents) as $t) {
+        $full_string .= $t->getName() . ' ';
+      }
+      $longest = array_reverse(min($tid_parents));
+    }
+    $parents['full'] = trim($full_string);
+    $i = 1;
+
+    // Loop through and set the term name at each level.
+    foreach ($longest as $term) {
+      $parents['parent_level_' . $i] = $term->getName();
+      $i++;
+    }
+  }
+
+  // Provide the term name at requested level, empty string if none exists.
+  return array_key_exists($call, $parents) ? $parents[$call] : '';
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function crescenttool_core_media_presave(MediaInterface $entity) {
+  if ($entity->bundle() == 'remote_video') {
+    $url = $entity->get('field_media_video_embed_field')->getValue()[0]['value'];
+    $entity->set('field_media_oembed_video', $url);
+  }
+}
+
+/**
+ * Tells you whether or not the remote URL gives you a 200 OK or a different response.
+ */
+function crescenttool_core_remote_url_good_response($url) {
+  $headers_array = @get_headers($url);
+  $headers_check = $headers_array[0];
+
+  if (strpos($headers_check, "200")) {
+    return TRUE;
+  }
+
+  return $headers_check;
+}
+
+/**
+ * Takes a YouTube video URL and gets a clean URL and retrieves video data.
+ *
+ * Source: Google JSON API for title, thumbnail, and other video info.
+ */
+function crescenttool_core_get_youtube_data($video_url) {
+  $clean_url = crescenttool_core_get_youtube_clean_url($video_url);
+  $result = new stdClass();
+
+  if (!empty($clean_url)) {
+    $youtube_api_url = "https://www.youtube.com/oembed?format=json&url=$clean_url";
+    $good_response = crescenttool_core_remote_url_good_response($youtube_api_url);
+
+    if ($good_response === TRUE) {
+      $data = file_get_contents($youtube_api_url);
+
+      if (!empty($data)) {
+        $result = json_decode($data);
+      }
+    }
+    else {
+      throw new \Exception(
+        'Unable to connect to remote URL. Header response: '
+        . $good_response
+      );
+    }
+  }
+
+  $result->clean_url = $clean_url;
+  return $result;
+}
+
+/**
+ * Gets a clean URL for a YouTube video.
+ */
+function crescenttool_core_get_youtube_clean_url($video_url) {
+  $video_url = trim($video_url);
+
+  // Now get a clean version of the video URL.
+  $match = [];
+  $pattern = '%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i';
+
+  preg_match($pattern, $video_url, $match);
+
+  if (!empty($match[1])) {
+    $youtube_id = $match[1];
+    return 'https://www.youtube.com/watch?v=' . $youtube_id;
+  }
+
+  return '';
 }

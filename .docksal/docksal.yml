@@ -20,3 +20,6 @@ services:
     extends:
       file: ${HOME}/.docksal/stacks/services.yml
       service: solr
+  cli:
+    environment:
+      - XDEBUG_CONFIG=remote_connect_back=0 remote_host=${DOCKSAL_HOST_IP}

@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.product_category.field_classification_id
     - field.field.node.product_category.field_media
     - field.field.node.product_category.field_product_classifications
+    - field.field.node.product_category.field_show_set_filter
     - node.type.product_category
     - responsive_image.styles.teaser
   module:
@@ -52,12 +53,12 @@ content:
       box_media_style: ''
       box_style: ''
       _uri: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
       breakpoints: {  }
       sizes: ''
       grid_header: ''
-      grid: 0
-      grid_medium: 0
-      grid_small: 0
     third_party_settings: {  }
     type: blazy_media
     region: content
@@ -66,6 +67,7 @@ hidden:
   field_category_facets: true
   field_classification_id: true
   field_product_classifications: true
+  field_show_set_filter: true
   langcode: true
   links: true
   search_api_excerpt: true

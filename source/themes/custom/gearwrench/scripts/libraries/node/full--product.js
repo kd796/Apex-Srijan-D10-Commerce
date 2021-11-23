@@ -56,6 +56,10 @@
                 var $thumbHeight = $thumbsItems.outerHeight();
                 var $thumbWidth = $thumbsItems.outerWidth();
                 $('.product-detail-slider__button').css('height', $thumbHeight).css('width', $thumbWidth);
+              },
+              slideChangeTransitionEnd: function () {
+                Drupal.behaviors.swiper.updateSlideAria.apply(this);
+                Drupal.blazy.init.revalidate();
               }
             }
           });

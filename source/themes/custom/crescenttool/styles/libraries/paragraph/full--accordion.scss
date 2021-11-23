@@ -15,20 +15,12 @@
  */
 .component-accordion,
 .webform-accordion {
-  .component-accordion-item {
-    @include media('<md') {
-      &:first-of-type {
-        border-top: 0.125rem solid $gray-70;
-      }
-    }
-  }
-
   .component-accordion-item__title {
     @include type-header(h4, black, included);
     @include icon('arrow', after, false);
 
     cursor: pointer;
-    padding: rem(20px) 0 rem(17px) rem(10px) !important;
+    padding: rem(20px) rem(30px) rem(17px) rem(10px) !important;
     margin: 0 !important;
     text-transform: uppercase;
     position: relative;

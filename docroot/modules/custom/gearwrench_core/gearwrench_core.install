@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Handle install / uninstall events for the module.
+ */
+
+/**
+ * Insert default config.
+ */
+function gearwrench_core_update_8001(&$sandbox) {
+  $config = \Drupal::configFactory()->getEditable('gearwrench_core.settings');
+
+  $config->set('warranty_sftp_host', '199.115.148.37');
+  $config->set('warranty_sftp_username', 'ftpmagento');
+  $config->set('warranty_sftp_password', 'UbgrBlA3');
+  $config->set('warranty_sftp_root', '/Magento/WarrantyExport/Queue');
+  $config->save(TRUE);
+}

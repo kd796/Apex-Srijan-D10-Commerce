@@ -32,6 +32,7 @@
           var $galleryThumbs = new Swiper($thumbsContainer, {
             spaceBetween: 24,
             slidesPerView: 4,
+            loop: true,
             breakpoints: {
               568: {
                 slidesPerView: 6,
@@ -62,6 +63,7 @@
           // eslint-disable-next-line
           new Swiper($sliderContainer, {
             effect: 'fade',
+            loop: true,
             navigation: {
               nextEl: '.swiper-button-next',
               prevEl: '.swiper-button-prev'
@@ -203,6 +205,10 @@
           var $keyCode = e.keyCode || e.which;
           if (e.type === 'click' || ($keyCode === 13 && e.type === 'keydown')) {
             var $mobileTab = $(this);
+
+            // Toggle class to rotate arrow
+            $($mobileTab).toggleClass('node--type-product-tabs__mobile-nav-item--open');
+
             if ($panels.filter('#' + $mobileTab.attr('aria-controls')).prop('hidden') === true) {
               $panels.prop('hidden', true);
               $panels.filter('#' + $mobileTab.attr('aria-controls')).prop('hidden', false);

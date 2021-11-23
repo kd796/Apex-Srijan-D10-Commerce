@@ -77,11 +77,19 @@ function gearwrench_preprocess_block__page_title_block(&$variables) {
     // Get Hero component to replace header.
     if ($node->hasField('field_component_hero') && !$node->get('field_component_hero')->isEmpty()) {
       $hero_slide = $node->get('field_component_hero')->entity;
+
       if ($hero_slide instanceof Paragraph && $hero_slide->hasField('field_components') && !$hero_slide->get('field_components')->isEmpty()) {
         $variables['hero'] = $node->get('field_component_hero')->view('block_title');
         unset($variables['hero']['#theme']);
       }
+
       unset($hero_slide);
+
+      /** @var \Drupal\Core\Block\BlockManager $block_manager */
+      $block_manager = \Drupal::service('plugin.manager.block');
+      $plugin_block = $block_manager->createInstance('system_breadcrumb_block');
+      $render = $plugin_block->build();
+      $variables['gearwrench_breadcrumbs'] = render($render);
     }
   }
 }

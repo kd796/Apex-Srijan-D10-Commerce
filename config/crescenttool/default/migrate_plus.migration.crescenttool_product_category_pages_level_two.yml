@@ -73,6 +73,8 @@ process:
       - W2_26511
       - W2_783453
       - W2_28101
+      - W2_809734
+      - W2_809735
       - W2_806583
       - W2_806584
       - W2_806585
@@ -100,11 +102,11 @@ process:
       - W2_792547
       - W2_792546
       - W2_803458
-      - W2_26531
-      - W2_26532
-      - W2_26533
       - W2_26534
+      - W2_26532
       - W2_26535
+      - W2_26533
+      - W2_26531
       - W2_26530
       - W2_802906
       - W2_802907
@@ -136,6 +138,19 @@ process:
     process:
       vocabulary_id: vid
       target_id: target_id
+  category_facets_array:
+    plugin: get_all_level_2_category_facets
+    source: remote_id
+  field_category_facets:
+    plugin: sub_process
+    source: '@category_facets_array'
+    include_source: true
+    process:
+      vocabulary_id: vid
+      target_id: target_id
+  field_show_set_filter:
+    plugin: determine_set_filter_show
+    source: remote_id
 destination:
   plugin: 'entity:node'
 migration_dependencies: {  }
