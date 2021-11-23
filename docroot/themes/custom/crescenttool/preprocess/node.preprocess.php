@@ -283,6 +283,9 @@ function crescenttool_preprocess_node__product__full(array &$variables) {
   $variables['related_items'] = $main_view->buildRenderable($view_display, $main_view->args);
 }
 
+/**
+ * Implements hook_preprocess for media page teaser view.
+ */
 function crescenttool_preprocess_node__media_page__teaser(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
