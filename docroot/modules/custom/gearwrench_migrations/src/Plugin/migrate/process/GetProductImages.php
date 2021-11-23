@@ -117,7 +117,7 @@ class GetProductImages extends ProcessPluginBase {
 
         if (count($usage) > 0 && !empty($usage['file']['media'])) {
           $media_id = array_key_first($usage['file']['media']);
-          $media_ids[] = [
+          $media_array = [
             'media_id' => $media_id
           ];
         }
