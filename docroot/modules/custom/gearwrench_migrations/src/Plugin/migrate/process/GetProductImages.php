@@ -45,14 +45,16 @@ class GetProductImages extends ProcessPluginBase {
 
       if (!empty($typeImages)) {
         foreach ($typeImages as $image_element) {
-          $assetId = (string) $image_element->attributes()->AssetID;
+          if (is_object($image_element)) {
+            $assetId = (string) $image_element->attributes()->AssetID;
 
-          $assets[] = [
-            'imagetype' => 'Product Level',
-            'asset_id' => $assetId,
-            'drupal_file_path' => 'public://pim_images/' . $assetId . '.jpg',
-            'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . $assetId . '.jpg',
-          ];
+            $assets[] = [
+              'imagetype' => 'Product Level',
+              'asset_id' => $assetId,
+              'drupal_file_path' => 'public://pim_images/' . $assetId . '.jpg',
+              'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . $assetId . '.jpg',
+            ];
+          }
         }
       }
     }
@@ -66,20 +68,23 @@ class GetProductImages extends ProcessPluginBase {
   protected function getPrimaryImage($elem, $sku) {
     /** @var \SimpleXMLElement $primary_image */
     $primary_image_element = $elem->xpath("/Product/AssetCrossReference[@Type='Primary Image']");
+    $primary_image = NULL;
 
     if (is_array($primary_image_element)) {
       $primary_image_element = array_shift($primary_image_element);
     }
 
-    $assetId = $primary_image_element->attributes()->AssetID;
+    if (is_object($primary_image_element)) {
+      $assetId = $primary_image_element->attributes()->AssetID;
 
-    $primary_image = [
-      'sku' => $sku,
-      'imagetype' => 'Product Level',
-      'asset_id' => $assetId,
-      'drupal_file_path' => 'public://pim_images/' . $assetId . '.jpg',
-      'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . $assetId . '.jpg',
-    ];
+      $primary_image = [
+        'sku' => $sku,
+        'imagetype' => 'Product Level',
+        'asset_id' => $assetId,
+        'drupal_file_path' => 'public://pim_images/' . $assetId . '.jpg',
+        'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . $assetId . '.jpg',
+      ];
+    }
 
     return $primary_image;
   }
@@ -140,7 +145,7 @@ class GetProductImages extends ProcessPluginBase {
     }
     else {
       $migrate_executable->saveMessage(
-        'During import of "'
+        '[Product Images] During import of "'
         . $sku . '" - Unable to load image "'
         . $asset['remote_file_path']
         . '". Header response: "' . $headers_check . '"'
@@ -176,7 +181,7 @@ class GetProductImages extends ProcessPluginBase {
     }
     else {
       $migrate_executable->saveMessage(
-        'During import of "'
+        '[Product Images] During import of "'
         . $sku . '" - Unable to retrieve YouTube video metadata for url: '
         . $clean_url
       );
@@ -227,14 +232,14 @@ class GetProductImages extends ProcessPluginBase {
 
       if (empty($primary_image)) {
         $migrate_executable->saveMessage(
-          'While loading the primary image for "'
+          '[Product Images] While loading the primary image for "'
           . $sku . '" - Unable to find the primary image "'
         );
       }
 
       if (empty($assets)) {
         $migrate_executable->saveMessage(
-          'While loading the product images for "'
+          '[Product Images] While loading the product images for "'
           . $sku . '" - Unable to find the product images "'
         );
       }
@@ -265,7 +270,7 @@ class GetProductImages extends ProcessPluginBase {
         }
         catch (\Exception $e) {
           $migrate_executable->saveMessage(
-            'During import of "'
+            '[Product Images] During import of "'
             . $sku . '" - There was a problem loading image "'
             . $asset['remote_file_path']
             . '". Error: ' . $e->getMessage()
@@ -285,7 +290,7 @@ class GetProductImages extends ProcessPluginBase {
           }
           catch (\Exception $e) {
             $migrate_executable->saveMessage(
-              'During import of "'
+              '[Product Images] During import of "'
               . $sku . '" - Unable to load the video. Error: ' . $e->getMessage()
             );
           }

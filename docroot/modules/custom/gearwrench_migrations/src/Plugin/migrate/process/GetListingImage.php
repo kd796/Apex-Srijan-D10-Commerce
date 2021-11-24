@@ -80,62 +80,62 @@ class GetListingImage extends ProcessPluginBase {
           'drupal_file_path' => 'public://pim_images/' . $assetId . '.jpg',
           'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . $assetId . '.jpg',
         ];
-      }
-      else {
-        $migrate_executable->saveMessage(
-          'While loading the primary image for "'
-          . $sku . '" - Unable to find the primary image "'
-        );
-      }
 
-      // Prep Directory.
-      $image_directory = 'public://pim_images/';
-      \Drupal::service('file_system')->prepareDirectory($image_directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
+        // Prep Directory.
+        $image_directory = 'public://pim_images/';
+        \Drupal::service('file_system')->prepareDirectory($image_directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
 
-      try {
-        $headers_array = @get_headers($asset['remote_file_path']);
-        $headers_check = $headers_array[0];
+        try {
+          $headers_array = @get_headers($asset['remote_file_path']);
+          $headers_check = $headers_array[0];
 
-        if (strpos($headers_check, "200")) {
-          $file_data = file_get_contents($asset['remote_file_path']);
+          if (strpos($headers_check, "200")) {
+            $file_data = file_get_contents($asset['remote_file_path']);
 
-          if ($file_data) {
-            $file = file_save_data($file_data, $asset['drupal_file_path'], FileSystemInterface::EXISTS_REPLACE);
+            if ($file_data) {
+              $file = file_save_data($file_data, $asset['drupal_file_path'], FileSystemInterface::EXISTS_REPLACE);
 
-            // See if there's a media item we can use already.
-            $usage = \Drupal::service('file.usage')->listUsage($file);
+              // See if there's a media item we can use already.
+              $usage = \Drupal::service('file.usage')->listUsage($file);
 
-            if (count($usage) > 0 && !empty($usage['file']['media'])) {
-              $media_id = array_key_first($usage['file']['media']);
-            }
-            else {
-              $media = Media::create([
-                'bundle'           => 'image',
-                'uid'              => 1,
-                'field_media_image' => [
-                  'target_id' => $file->id(),
-                  'alt' => 'Image of ' . $alt_text
-                ],
-              ]);
+              if (count($usage) > 0 && !empty($usage['file']['media'])) {
+                $media_id = array_key_first($usage['file']['media']);
+              }
+              else {
+                $media = Media::create([
+                  'bundle'           => 'image',
+                  'uid'              => 1,
+                  'field_media_image' => [
+                    'target_id' => $file->id(),
+                    'alt' => 'Image of ' . $alt_text
+                  ],
+                ]);
 
-              $media->setName($asset['asset_id'])->setPublished(TRUE)->save();
-              $media_id = $media->id();
+                $media->setName($asset['asset_id'])->setPublished(TRUE)->save();
+                $media_id = $media->id();
+              }
             }
           }
+          else {
+            $migrate_executable->saveMessage(
+              '[Listing Image] During import of "'
+              . $sku . '" - Unable to load the primary image URL: "'
+              . $asset['remote_file_path']
+              . '". Header response: "' . $headers_check . '"'
+            );
+          }
         }
-        else {
+        catch (\Exception $e) {
           $migrate_executable->saveMessage(
-            'During import of "'
-            . $sku . '" - Unable to load the primary image URL: "'
-            . $asset['remote_file_path']
-            . '". Header response: "' . $headers_check . '"'
+            '[Listing Image] During import of "'
+            . $sku . '" - Unable to load the primary image. Error: ' . $e->getMessage()
           );
         }
       }
-      catch (\Exception $e) {
+      else {
         $migrate_executable->saveMessage(
-          'During import of "'
-          . $sku . '" - Unable to load the primary image. Error: ' . $e->getMessage()
+          '[Listing Image] While loading the primary image for "'
+          . $sku . '" - Unable to find the primary image "'
         );
       }
     }
