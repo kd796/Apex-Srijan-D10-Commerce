@@ -1,0 +1,99 @@
+uuid: be2b8335-f4d5-4b84-bade-0e9eb19b772a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.product_brand.body
+    - field.field.node.product_brand.field_media
+    - node.type.product_brand
+    - responsive_image.styles.short_hero
+  module:
+    - blazy
+    - field_group
+    - text
+    - user
+third_party_settings:
+  field_group:
+    group_page_heading:
+      children:
+        - body
+      parent_name: ''
+      weight: 0
+      format_type: html_element
+      region: content
+      format_settings:
+        show_empty_fields: true
+        id: ''
+        classes: page-heading
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+      label: 'Page Heading'
+id: node.product_brand.full
+targetEntityType: node
+bundle: product_brand
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_media:
+    weight: 1
+    label: hidden
+    settings:
+      image_style: ''
+      responsive_image_style: short_hero
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
+      view_mode: default
+      current_view_mode: full
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+    third_party_settings: {  }
+    type: blazy_media
+    region: content
+  products_by_brand:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  links: true
+  search_api_excerpt: true

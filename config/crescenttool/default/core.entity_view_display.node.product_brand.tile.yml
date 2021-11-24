@@ -1,0 +1,66 @@
+uuid: 2a60b4ec-71e3-4c2d-a9a9-4b00f409a0d0
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.tile
+    - field.field.node.product_brand.body
+    - field.field.node.product_brand.field_media
+    - node.type.product_brand
+    - responsive_image.styles.teaser
+  module:
+    - blazy
+    - user
+id: node.product_brand.tile
+targetEntityType: node
+bundle: product_brand
+mode: tile
+content:
+  field_media:
+    type: blazy_media
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: ''
+      responsive_image_style: teaser
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
+      view_mode: default
+      current_view_mode: tile
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+    third_party_settings: {  }
+hidden:
+  body: true
+  langcode: true
+  links: true
+  products_by_brand: true
+  search_api_excerpt: true

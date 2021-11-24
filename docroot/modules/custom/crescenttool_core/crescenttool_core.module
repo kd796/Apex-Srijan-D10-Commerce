@@ -12,6 +12,9 @@
 use Drupal\Component\Utility\Html;
 use Drupal\media\MediaInterface;
 use Drupal\node\Entity\Node;
+use Drupal\views\Views;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 
 /**
  * Implements hook_theme().
@@ -35,6 +38,38 @@ function crescenttool_core_theme() {
   ];
 
   return $theme;
+}
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function crescenttool_core_entity_extra_field_info() {
+
+  $extra = [];
+
+  $extra['node']['product_brand']['display']['products_by_brand'] = [
+    'label' => t('View Block - Products by Brand'),
+    'description' => t('Lists Products filtered to current brand'),
+    'weight' => 0
+  ];
+
+  return $extra;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function crescenttool_core_entity_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  if (method_exists($entity, 'getType') && $entity->getType() == "product_brand") {
+    if ($build['#view_mode'] == 'full') {
+      $view = Views::getView('product_category');
+      $view->setDisplay('products_by_brand');
+      $view->setArguments([$entity->get('title')->value]);
+      $view->preExecute();
+      $view->execute();
+      $build['products_by_brand'][] = $view->buildRenderable();
+    }
+  }
 }
 
 /**
