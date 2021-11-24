@@ -63,6 +63,7 @@
       &.pager__item--previous {
         a {
           @include icon('chevron-left-black', after, false);
+
           &:after {
             color: $primary-red;
           }
@@ -72,7 +73,7 @@
       &.pager__item--next {
         a {
           @include icon('chevron-right-black', after, false);
-          
+
           &:after {
             color: $primary-red;
           }
