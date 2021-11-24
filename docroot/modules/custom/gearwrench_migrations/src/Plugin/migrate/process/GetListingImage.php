@@ -34,57 +34,57 @@ class GetListingImage extends ProcessPluginBase {
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
+    $assets = [];
     $media_id = NULL;
+    $alt_text = NULL;
+    $sku = NULL;
 
-    /** @var \SimpleXMLElement $productGroup */
-    $productGroup = $value;
-
-    if (!empty($productGroup)) {
-      $alt_text = $productGroup->Name[0];
+    if (!empty($value)) {
+      $alt_text = $value->Name;
       $sku = $row->getSourceIdValues()['remote_sku'];
-      $primary_image = NULL;
-      $asset = [];
-      $matchingProducts = $productGroup->xpath("//Product[@ID='$sku']");
 
-      if (!empty($matchingProducts)) {
-        /** @var \SimpleXMLElement $product */
-        $product = $matchingProducts[0];
-      }
-
-      if (!empty($product)) {
-        /** @var \SimpleXMLElement $primary_image */
-        $primary_image = $product->xpath("/Product/AssetCrossReference[@Type='Primary Image']");
-
-        if (is_array($primary_image)) {
-          $primary_image = array_shift($primary_image);
+      foreach ($value->children() as $child) {
+        if ($child->getName() === 'Product' && (string) $child->attributes()->ID === $sku) {
+          foreach ($child->children() as $item) {
+            if ($item->getName() === 'AssetCrossReference' && ((string) $item->attributes()->Type === 'Primary Image')) {
+              $assets[] = [
+                'sku' => $sku,
+                'imagetype' => 'Product Level',
+                'asset_id' => (string) $item->attributes()->AssetID,
+                'drupal_file_path' => 'public://pim_images/' . (string) $item->attributes()->AssetID . '.jpg',
+                'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . (string) $item->attributes()->AssetID . '.jpg',
+              ];
+            }
+          }
         }
       }
 
-      // If the current product doesn't have it, then maybe the product group does.
-      if (empty($primary_image)) {
-        $primary_image = $productGroup->xpath("/Product/AssetCrossReference[@Type='Primary Image']");
-
-        // The first element should be the primary image for the product group.
-        if (is_array($primary_image)) {
-          $primary_image = array_shift($primary_image);
+      if (empty($assets)) {
+        foreach ($value->children() as $child) {
+          if ($child->getName() === 'AssetCrossReference' && (string) $child->attributes()->Type === 'Primary Image') {
+            $assets[] = [
+              'sku' => $sku,
+              'imagetype' => 'SKU Group Level',
+              'asset_id' => (string) $child->attributes()->AssetID,
+              'drupal_file_path' => 'public://pim_images/' . (string) $child->attributes()->AssetID . '.jpg',
+              'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . (string) $child->attributes()->AssetID . '.jpg',
+            ];
+          }
         }
       }
 
-      if (!empty($primary_image)) {
-        $assetId = $primary_image->attributes()->AssetID;
+      if (empty($assets)) {
+        $migrate_executable->saveMessage(
+          '[Listing Image] While loading the primary image for "'
+          . $sku . '" - Unable to find the primary image.'
+        );
+      }
 
-        $asset = [
-          'sku' => $sku,
-          'imagetype' => 'Product Level',
-          'asset_id' => $assetId,
-          'drupal_file_path' => 'public://pim_images/' . $assetId . '.jpg',
-          'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . $assetId . '.jpg',
-        ];
+      // Prep Directory.
+      $image_directory = 'public://pim_images/';
+      \Drupal::service('file_system')->prepareDirectory($image_directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
 
-        // Prep Directory.
-        $image_directory = 'public://pim_images/';
-        \Drupal::service('file_system')->prepareDirectory($image_directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
-
+      foreach ($assets as $asset) {
         try {
           $headers_array = @get_headers($asset['remote_file_path']);
           $headers_check = $headers_array[0];
@@ -119,7 +119,7 @@ class GetListingImage extends ProcessPluginBase {
           else {
             $migrate_executable->saveMessage(
               '[Listing Image] During import of "'
-              . $sku . '" - Unable to load the primary image URL: "'
+              . $sku . '" - Unable to load image "'
               . $asset['remote_file_path']
               . '". Header response: "' . $headers_check . '"'
             );
@@ -128,15 +128,9 @@ class GetListingImage extends ProcessPluginBase {
         catch (\Exception $e) {
           $migrate_executable->saveMessage(
             '[Listing Image] During import of "'
-            . $sku . '" - Unable to load the primary image. Error: ' . $e->getMessage()
+            . $sku . '" - Unable to load the video. Error: ' . $e->getMessage()
           );
         }
-      }
-      else {
-        $migrate_executable->saveMessage(
-          '[Listing Image] While loading the primary image for "'
-          . $sku . '" - Unable to find the primary image "'
-        );
       }
     }
 
