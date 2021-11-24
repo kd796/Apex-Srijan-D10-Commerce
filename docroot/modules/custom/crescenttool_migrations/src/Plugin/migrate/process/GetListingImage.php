@@ -41,12 +41,7 @@ class GetListingImage extends ProcessPluginBase {
 
     if (!empty($value)) {
       $alt_text = $value->Name;
-
-      foreach ($value->children() as $child) {
-        if ($child->getName() === 'Product') {
-          $sku = (string) $child->attributes()->ID;
-        }
-      }
+      $sku = $row->getSourceIdValues()['remote_sku'];
 
       foreach ($value->children() as $child) {
         if ($child->getName() === 'Product' && (string) $child->attributes()->ID === $sku) {
@@ -76,6 +71,13 @@ class GetListingImage extends ProcessPluginBase {
             ];
           }
         }
+      }
+
+      if (empty($assets)) {
+        $migrate_executable->saveMessage(
+          '[Listing Image] While loading the primary image for "'
+          . $sku . '" - Unable to find the primary image.'
+        );
       }
 
       // Prep Directory.
@@ -116,7 +118,7 @@ class GetListingImage extends ProcessPluginBase {
           }
           else {
             $migrate_executable->saveMessage(
-              'During import of "'
+              '[Listing Image] During import of "'
               . $sku . '" - Unable to load image "'
               . $asset['remote_file_path']
               . '". Header response: "' . $headers_check . '"'
@@ -125,7 +127,7 @@ class GetListingImage extends ProcessPluginBase {
         }
         catch (\Exception $e) {
           $migrate_executable->saveMessage(
-            'During import of "'
+            '[Listing Image] During import of "'
             . $sku . '" - Unable to load the video. Error: ' . $e->getMessage()
           );
         }

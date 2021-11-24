@@ -102,9 +102,14 @@
 
           a {
             @include btn(primary);
+            color: $type-dark;
             background-color: transparent;
             border: 2px solid $primary-red !important;
             padding: .5rem .75rem;
+
+            &:hover {
+              color: $type-light;
+            }
 
             @include media('>md') {
               padding: .5rem 1rem;

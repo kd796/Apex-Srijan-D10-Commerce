@@ -51,12 +51,7 @@ class GetProductImages extends ProcessPluginBase {
           'Product Logo', 'Secondary Image', 'Warning Image', 'ICON'
         ];
 
-        foreach ($sku_group->children() as $child) {
-          if ($child->getName() === 'Product') {
-            $sku = (string) $child->attributes()->ID;
-            break;
-          }
-        }
+        $sku = $row->getSourceIdValues()['remote_sku'];
 
         foreach ($sku_group->children() as $child) {
           if ($child->getName() === 'Product') {
@@ -131,6 +126,13 @@ class GetProductImages extends ProcessPluginBase {
         $final_asset_list[] = $asset;
       }
 
+      if (empty($final_asset_list)) {
+        $migrate_executable->saveMessage(
+          '[Product Images] While loading the primary image for "'
+          . $sku . '" - Unable to find product images.'
+        );
+      }
+
       // Prep Directory.
       $image_directory = 'public://pim_images/';
       \Drupal::service('file_system')->prepareDirectory($image_directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
@@ -180,7 +182,7 @@ class GetProductImages extends ProcessPluginBase {
           }
           else {
             $migrate_executable->saveMessage(
-              'During import of "'
+              '[Product Images] During import of "'
               . $sku . '" - Unable to load image "'
               . $asset['remote_file_path']
               . '". Header response: "' . $headers_check . '"'
@@ -189,7 +191,7 @@ class GetProductImages extends ProcessPluginBase {
         }
         catch (\Exception $e) {
           $migrate_executable->saveMessage(
-            'During import of "'
+            '[Product Images] During import of "'
             . $sku . '" - There was a problem loading image "'
             . $asset['remote_file_path']
             . '". Error: ' . $e->getMessage()
@@ -221,7 +223,7 @@ class GetProductImages extends ProcessPluginBase {
             }
             else {
               $migrate_executable->saveMessage(
-                'During import of "'
+                '[Product Images] During import of "'
                 . $sku . '" - Unable to retrieve YouTube video metadata for url: '
                 . $clean_url
               );
@@ -229,7 +231,7 @@ class GetProductImages extends ProcessPluginBase {
           }
           catch (\Exception $e) {
             $migrate_executable->saveMessage(
-              'During import of "'
+              '[Product Images] During import of "'
               . $sku . '" - Unable to load the video. Error: ' . $e->getMessage()
             );
           }
