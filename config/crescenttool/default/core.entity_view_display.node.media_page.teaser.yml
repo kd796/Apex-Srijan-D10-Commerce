@@ -14,7 +14,7 @@ dependencies:
     - field.field.node.media_page.field_preferred_listing_image
     - field.field.node.media_page.field_published_date
     - field.field.node.media_page.field_tags
-    - image.style.search_teaser_261x256
+    - image.style.media_page_teaser
     - node.type.media_page
   module:
     - blazy
@@ -50,7 +50,7 @@ content:
     region: content
     label: hidden
     settings:
-      image_style: search_teaser_261x256
+      image_style: media_page_teaser
       responsive_image_style: ''
       media_switch: ''
       thumbnail_style: ''
@@ -79,12 +79,12 @@ content:
       box_media_style: ''
       box_style: ''
       _uri: ''
-      grid: ''
-      grid_medium: ''
-      grid_small: ''
       breakpoints: {  }
       sizes: ''
       grid_header: ''
+      grid: 0
+      grid_medium: 0
+      grid_small: 0
     third_party_settings: {  }
   field_preferred_listing_image:
     type: blazy_media
@@ -92,7 +92,7 @@ content:
     region: content
     label: hidden
     settings:
-      image_style: search_teaser_261x256
+      image_style: media_page_teaser
       responsive_image_style: ''
       media_switch: ''
       thumbnail_style: ''
@@ -121,12 +121,12 @@ content:
       box_media_style: ''
       box_style: ''
       _uri: ''
-      grid: ''
-      grid_medium: ''
-      grid_small: ''
       breakpoints: {  }
       sizes: ''
       grid_header: ''
+      grid: 0
+      grid_medium: 0
+      grid_small: 0
     third_party_settings: {  }
 hidden:
   field_category: true
