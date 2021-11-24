@@ -97,6 +97,10 @@ if ($site_environment !== 'local' && PHP_SAPI === 'cli') {
   ini_set('memory_limit', '1024M');
 }
 
+if ($site_environment === 'local') {
+  ini_set('memory_limit', '1024M');
+}
+
 // Enable docksal settings overrides.
 if (file_exists($app_root . '/' . $site_path . '/settings.docksal.php')) {
   include $app_root . '/' . $site_path . '/settings.docksal.php';
