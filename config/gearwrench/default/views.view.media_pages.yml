@@ -50,30 +50,22 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
           text_input_required: 'Select any filter and click on Apply to see results'
-          text_input_required_format: full_html
+          text_input_required_format: null
           bef:
             general:
-              autosubmit: true
+              autosubmit: false
               autosubmit_exclude_textfield: false
               autosubmit_textfield_delay: 500
-              autosubmit_hide: true
+              autosubmit_hide: false
               input_required: false
               allow_secondary: false
               secondary_label: 'Advanced options'
               secondary_open: false
+            sort:
+              plugin_id: default
             filter:
               field_media_type_value:
-                plugin_id: bef
-                advanced:
-                  rewrite:
-                    filter_rewrite_values: ''
-                  collapsible: false
-                  is_secondary: false
-                select_all_none: false
-                select_all_none_nested: false
-                display_inline: 0
-                options_show_only_used: false
-                options_show_only_used_filtered: false
+                plugin_id: default
       pager:
         type: full
         options:
@@ -213,11 +205,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value:
-            Brochure: Brochure
-            Catalog: Catalog
-            'News Release': 'News Release'
-            Video: Video
+          value: {  }
           group: 1
           exposed: true
           expose:
@@ -289,7 +277,7 @@ display:
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
-      use_ajax: false
+      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:
@@ -340,27 +328,8 @@ display:
                 select_all_none: false
                 select_all_none_nested: false
                 display_inline: 0
-                options_show_only_used: false
-                options_show_only_used_filtered: false
       defaults:
         exposed_form: false
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - url.query_args
-        - 'user.node_grants:view'
-        - user.permissions
-      tags: {  }
-  embed_1:
-    display_plugin: embed
-    id: embed_1
-    display_title: Embed
-    position: 2
-    display_options:
-      display_extenders: {  }
     cache_metadata:
       max-age: -1
       contexts:
