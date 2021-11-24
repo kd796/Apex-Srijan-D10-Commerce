@@ -13,6 +13,7 @@
 /**
  * Component
  */
+
 .node--type-media-page.node--view-mode-teaser {
   height: 100%;
 
@@ -40,7 +41,9 @@
         min-width: 100%;
       }
 
+
       .media {
+        background-color: $black;
         display: flex;
         position: relative;
         padding-top: 100%;
@@ -57,9 +60,12 @@
           bottom: 0;
         }
 
+
         img {
-          object-fit: cover;
+          object-fit: contain;
         }
+
+
       }
     }
 
@@ -70,7 +76,9 @@
         padding-left: 0;
         padding-right: 0;
       }
+
     }
+
 
     .node__long-description {
       .field--name-title {

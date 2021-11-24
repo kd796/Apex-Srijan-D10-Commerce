@@ -378,3 +378,14 @@ function crescenttool_form_alter(&$form, &$form_state, $form_id) {
       break;
   }
 }
+
+/**
+ * Implements preprocess_taxonomy_term().
+ */
+function crescenttool_preprocess_taxonomy_term(array &$variables) {
+  foreach ($variables['title_attributes']['class'] as $k => $v) {
+    if ($v == 'visually-hidden') {
+      unset($variables['title_attributes']['class'][$k]);
+    }
+  }
+}

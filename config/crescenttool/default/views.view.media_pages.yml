@@ -5,10 +5,12 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - node.type.media_page
+    - taxonomy.vocabulary.media_page_categories
   module:
     - better_exposed_filters
     - node
     - options
+    - taxonomy
     - user
 id: media_pages
 label: 'Media Pages'
@@ -65,6 +67,7 @@ display:
               field_media_type_value:
                 plugin_id: bef
                 advanced:
+                  sort_options: false
                   rewrite:
                     filter_rewrite_values: ''
                   collapsible: false
@@ -74,6 +77,19 @@ display:
                 display_inline: false
                 options_show_only_used: false
                 options_show_only_used_filtered: false
+              field_category_target_id:
+                plugin_id: bef
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: ''
+                  collapsible: false
+                  is_secondary: false
+                select_all_none: false
+                select_all_none_nested: false
+                display_inline: false
+                options_show_only_used: 1
+                options_show_only_used_filtered: 0
       pager:
         type: full
         options:
@@ -100,6 +116,7 @@ display:
       row:
         type: 'entity:node'
         options:
+          relationship: none
           view_mode: teaser
       fields:
         title:
@@ -213,11 +230,7 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value:
-            Brochure: Brochure
-            Catalog: Catalog
-            'News Release': 'News Release'
-            Video: Video
+          value: {  }
           group: 1
           exposed: true
           expose:
@@ -253,6 +266,55 @@ display:
             group_items: {  }
           reduce_duplicates: false
           plugin_id: list_field
+        field_category_target_id:
+          id: field_category_target_id
+          table: node__field_category
+          field: field_category_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_category_target_id_op
+            label: Category
+            description: ''
+            use_operator: false
+            operator: field_category_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_category_target_id
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              site_administrator: '0'
+              content_editor: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: media_page_categories
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
       sorts:
         created:
           id: created
@@ -297,6 +359,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
@@ -351,6 +414,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
@@ -368,6 +432,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }

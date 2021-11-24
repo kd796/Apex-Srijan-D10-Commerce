@@ -1,0 +1,22 @@
+uuid: a24256ee-7789-47a2-93c5-d8847702d927
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.product_brand.body
+    - field.field.node.product_brand.field_media
+    - node.type.product_brand
+  module:
+    - user
+id: node.product_brand.default
+targetEntityType: node
+bundle: product_brand
+mode: default
+content: {  }
+hidden:
+  body: true
+  field_media: true
+  langcode: true
+  links: true
+  products_by_brand: true
+  search_api_excerpt: true
