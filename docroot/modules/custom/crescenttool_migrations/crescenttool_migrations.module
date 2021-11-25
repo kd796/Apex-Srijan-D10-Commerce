@@ -295,3 +295,10 @@ function crescenttool_migrations_file_validate_is_xml(FileInterface $file) {
 
   return $errors;
 }
+
+/**
+ * Does some common cleaning on asset IDs.
+ */
+function crescenttool_migrations_clean_asset_id($assetId) {
+  return str_replace(' ', '%20', $assetId);
+}
