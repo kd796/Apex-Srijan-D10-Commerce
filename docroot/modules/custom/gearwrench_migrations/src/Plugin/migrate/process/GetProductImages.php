@@ -130,7 +130,7 @@ class GetProductImages extends ProcessPluginBase {
 
       if (empty($final_asset_list)) {
         $migrate_executable->saveMessage(
-          '[Product Images] While loading the primary image for "'
+          '[Product Images] While loading the product images for "'
           . $sku . '" - Unable to find product images.'
         );
       }
