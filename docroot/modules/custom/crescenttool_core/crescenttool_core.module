@@ -266,7 +266,8 @@ function crescenttool_core_get_youtube_data($video_url) {
     }
     else {
       throw new \Exception(
-        'Unable to connect to remote URL. Header response: '
+        'Unable to connect to remote URL: '
+        . $clean_url . '. Header response: '
         . $good_response
       );
     }
