@@ -72,3 +72,45 @@
     }
   }
 }
+
+@mixin card-btn {
+  box-sizing: border-box;
+  display: inline-block !important;
+  float: none;
+  font-size: 1rem !important;
+  transition: $transition-base;
+  width: 100%;
+  border: 1px solid $primary-red;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  white-space: normal;
+  min-width: 100%;
+  border-bottom-left-radius: rem(25px);
+  border-bottom-right-radius: rem(25px);
+
+  @include media('<md') {
+    font-size: rem(13px) !important;
+  }
+
+  > small {
+    line-height: 1.625;
+    font-weight: $fw-bold;
+
+    &:hover,
+    &:focus {
+      color: $white;
+      font-weight: $fw-bold;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $gray-50;
+    border-radius: 0;
+    border-bottom-left-radius: rem(25px);
+    border-bottom-right-radius: rem(25px);
+    color: $primary-red;
+    font-family: 'Industry';
+    font-weight: $fw-bold;
+  }
+}
