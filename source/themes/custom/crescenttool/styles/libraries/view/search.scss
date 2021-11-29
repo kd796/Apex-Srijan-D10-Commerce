@@ -225,14 +225,14 @@
         overflow: hidden;
         line-height: 1;
 
-        // svg {
-        //   height: $header-logo-height-large;
-        //   vertical-align: middle;
+        svg {
+          height: $header-logo-height-large;
+          vertical-align: middle;
 
-        //   @include media('<=lg-plus') {
-        //     height: $header-logo-height;
-        //   }
-        // }
+          @include media('<=lg-plus') {
+            height: $header-logo-height;
+          }
+        }
       }
     }
 
@@ -245,25 +245,14 @@
       }
 
       @include media('>lg-plus') {
-        background-color: $primary-red;
+        background-color: $white;
+        border-bottom-right-radius: 2rem;
+        border-top-right-radius: 2rem;
         max-width: rem(455px);
         text-align: left;
         position: relative;
         width: 100%;
         z-index: 0;
-
-        // Performance Device
-        &::after {
-          background-color: $primary-red;
-          position: absolute;
-          content: '';
-          width: 30px;
-          height: 100%;
-          top: 0;
-          right: -15px;
-          z-index: 0;
-          transform: skew(-14deg);
-        }
       }
 
       h4 {
