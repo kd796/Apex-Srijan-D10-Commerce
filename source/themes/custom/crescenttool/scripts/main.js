@@ -4,7 +4,7 @@
   Drupal.behaviors.crescenttool = {
     attach: function (context, settings) {
       // Form error on submit button click
-      $('.webform-submission-form:not(.component-accordion--js-initialized)').once().each(function (index) {
+      $('.webform-submission-form').once().each(function (index) {
         // Initialize variables.
         var $widget = $(this);
         var $submitButton = $($widget).find('.webform-button--submit');
