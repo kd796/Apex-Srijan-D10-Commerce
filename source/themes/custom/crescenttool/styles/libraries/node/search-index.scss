@@ -127,17 +127,25 @@
   }
 
   @include on-event {
-    box-shadow: 0 0 16px 5px rgba(0, 0, 0, 0.2);
-    outline: 2px solid $black;
 
     .node__read-more-button {
       color: $primary-red;
       background-color: $black;
     }
+  }
+}
 
-    @include media('<md') {
-      box-shadow: none;
-      outline: none;
-    }
+.region-post-content {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  max-width: 100%;
+  padding-bottom: 3.75rem;
+  width: 100%;
+
+  .view-content {
+    max-width: 75em;
+    width: calc(100% - 2rem);
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 }

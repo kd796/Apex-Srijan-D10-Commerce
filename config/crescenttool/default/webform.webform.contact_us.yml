@@ -99,6 +99,13 @@ elements: |-
       visible:
         ':input[name="select_type"]':
           value: 'Zipper Warranty Registration'
+  trade_other:
+    '#type': textfield
+    '#title': 'Trade Other'
+    '#states':
+      visible:
+        ':input[name="trade"]':
+          value: Other...
   receipt_image:
     '#type': webform_image_file
     '#title': 'Receipt Image'

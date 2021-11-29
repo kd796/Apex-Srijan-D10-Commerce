@@ -1,0 +1,6 @@
+services:
+  # Drush commands
+  crescenttool_core.cli_service:
+    class: Drupal\crescenttool_core\Commands\CtCliService
+    tags:
+      - { name: drush.command }
