@@ -58,9 +58,9 @@ class GetProductImages extends ProcessPluginBase {
             foreach ($child->children() as $item) {
               $attributeId = (string) $child->attributes()->ID;
               $attributeType = (string) $item->attributes()->Type;
-              $assetId = (string) $item->attributes()->AssetID;
+              $assetId = gearwrench_migrations_clean_asset_id((string) $item->attributes()->AssetID);
 
-              if ($item->getName() === 'AssetCrossReference' && $attributeId === $sku) {
+              if (!empty($assetId) && $item->getName() === 'AssetCrossReference' && $attributeId === $sku) {
                 if ($attributeType === 'Primary Image') {
                   $primary_image = [
                     'imagetype' => 'Product Level',
@@ -101,14 +101,16 @@ class GetProductImages extends ProcessPluginBase {
         if (empty($assets) && empty($primary_image)) {
           foreach ($sku_group->children() as $child) {
             if ($child->getName() === 'AssetCrossReference' && (string) $child->attributes()->Type === 'Primary Image') {
-              $assetId = (string) $child->attributes()->AssetID;
+              $assetId = gearwrench_migrations_clean_asset_id((string) $child->attributes()->AssetID);
 
-              $assets[] = [
-                'imagetype' => 'SKU Group Level',
-                'asset_id' => $assetId,
-                'drupal_file_path' => 'public://pim_images/' . $assetId . '.jpg',
-                'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . $assetId . '.jpg',
-              ];
+              if (!empty($assetId)) {
+                $assets[] = [
+                  'imagetype' => 'SKU Group Level',
+                  'asset_id' => $assetId,
+                  'drupal_file_path' => 'public://pim_images/' . $assetId . '.jpg',
+                  'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . $assetId . '.jpg',
+                ];
+              }
             }
           }
         }
@@ -128,7 +130,7 @@ class GetProductImages extends ProcessPluginBase {
 
       if (empty($final_asset_list)) {
         $migrate_executable->saveMessage(
-          '[Product Images] While loading the primary image for "'
+          '[Product Images] While loading the product images for "'
           . $sku . '" - Unable to find product images.'
         );
       }
