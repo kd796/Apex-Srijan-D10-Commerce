@@ -29,8 +29,8 @@ class CtCliService extends DrushCommands {
   /**
    * Load the warranty webform submission and upload to FTP.
    *
-   * @command gw:warranty-export
-   * @aliases gwwe
+   * @command ct:warranty-export
+   * @aliases ctwe
    */
   public function ctWarrantyExport() {
     $submissions = $this->getLatestWebformSubmissions();
