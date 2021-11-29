@@ -1,0 +1,137 @@
+// -----------------------------------------------------------------------------
+// Abstracts/Mixin: View Cards Styles
+// Base view card style mixin
+// @include view-cards('.my-card-button-class')
+// -----------------------------------------------------------------------------
+
+@mixin view-cards($button-class) {
+  .node__content {
+    border-top-left-radius: rem(11px);
+    border-top-right-radius: rem(11px);
+    padding: rem(3px 3px 0 3px);
+    background-color: $gray-20;
+
+    @include media('>=md') {
+      padding: rem(10px 10px 0 10px);
+      border-top-left-radius: rem(25px);
+      border-top-right-radius: rem(25px);
+    }
+
+    .node__listing-image {
+      @include flex();
+      @include flex-x(align-items, center);
+      @include flex-x(justify-content, center);
+      background-color: transparent;
+      display: flex;
+      overflow: hidden;
+      padding-top: 0;
+
+      .media {
+        display: flex;
+        position: relative;
+        padding-top: 100%;
+        width: 100%;
+
+        img {
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
+          border-radius: rem(11px);
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+
+          @include media('>=md') {
+            border-radius: rem(25px);
+          }
+        }
+      }
+    }
+
+    .node__content-container {
+      padding: 1rem rem(2px);
+
+      @include media('>=md') {
+        padding: 1rem;
+      }
+    }
+
+    .node__long-description {
+      min-height: rem(195px);
+
+      @include media('<md') {
+        min-height: rem(120px);
+      }
+
+      .field--name-field-long-description {
+        @include type-header(h4, black, included);
+        margin-top: 0;
+
+        @include media('<md') {
+          font-size:  rem(16px);
+          line-height: rem(20px);
+        }
+      }
+    }
+
+    .node__sku {
+      font-size: rem(14px);
+      margin: 0;
+
+      @include media('<md') {
+        font-size: rem(12px);
+      }
+    }
+  }
+
+  @include on-event {
+    .node__content {
+      background-color: $secondary-black;
+
+      transition-delay: 0s;
+      transition-duration: 0.3s;
+      transition-timing-function: ease-in-out;
+
+      .node__listing-image {
+        background-color: $secondary-black;
+
+        transition-delay: 0s;
+        transition-duration: 2s;
+        transition-timing-function: ease-in-out;
+      }
+
+      .node__summary {
+        color: $white;
+      }
+
+      .node__long-description {
+
+        .field--name-title {
+          color: $white;
+        }
+
+        .field--name-field-long-description {
+          color: $white;
+          transition-delay: 0s;
+          transition-duration: 0.3s;
+          transition-timing-function: ease-in-out;
+        }
+      }
+
+      .node__sku {
+        color: $white;
+        transition-delay: 0s;
+        transition-duration: 0.3s;
+        transition-timing-function: ease-in-out;
+      }
+    }
+  }
+
+  #{$button-class} {
+    @include btn(primary);
+
+    @include card-btn;
+  }
+}
