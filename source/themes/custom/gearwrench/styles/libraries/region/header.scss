@@ -30,6 +30,16 @@ $mobile-menu-item-button-height: 7rem;
  * Region
  */
 .region-header {
+
+  .mobile-close-icon {
+    height: 2rem;
+    width: 2rem;
+
+    &::before {
+      content: icon-char('close');
+    }
+  }
+
   @include container-full-width();
 
   background-color: $primary-orange;
