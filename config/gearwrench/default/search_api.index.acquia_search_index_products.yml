@@ -5,22 +5,22 @@ dependencies:
   module:
     - acquia_search
     - search_api_solr
-    - media
-    - taxonomy
     - node
+    - taxonomy
+    - media
     - search_api
   config:
-    - field.storage.media.field_media_image
-    - field.storage.node.field_product_images
     - field.storage.node.body
-    - field.storage.node.field_product_classifications
-    - field.storage.taxonomy_term.field_classification_id
-    - field.storage.node.field_product_specifications
     - field.storage.node.field_featured_product
     - field.storage.node.field_long_description
-    - field.storage.node.field_set_components
     - field.storage.node.field_new_product
+    - field.storage.node.field_product_classifications
+    - field.storage.taxonomy_term.field_classification_id
+    - field.storage.media.field_media_image
+    - field.storage.node.field_product_images
+    - field.storage.node.field_product_specifications
     - field.storage.node.field_set
+    - field.storage.node.field_set_components
     - search_api.server.acquia_search_server
     - core.entity_view_mode.node.full
 third_party_settings:
@@ -211,10 +211,7 @@ field_settings:
         anonymous: anonymous
       view_mode:
         'entity:node':
-          landing_page: full
-          page: full
-          social_post: full
-          styleguide: ''
+          product: full
   status:
     label: status
     datasource_id: 'entity:node'
@@ -336,4 +333,5 @@ tracker_settings:
 options:
   index_directly: false
   cron_limit: 50
+  track_changes_in_references: true
 server: acquia_search_server
