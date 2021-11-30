@@ -1,0 +1,63 @@
+uuid: 8109e4bd-cf59-48d6-8404-d5d90cd8f6f1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.banner_cta_slider.field_components
+    - field.field.paragraph.banner_cta_slider.field_media_items
+    - field.field.paragraph.banner_cta_slider.field_text_pagination
+    - field.field.paragraph.banner_cta_slider.field_title
+    - paragraphs.paragraphs_type.banner_cta_slider
+  module:
+    - media_library
+    - paragraphs
+id: paragraph.banner_cta_slider.default
+targetEntityType: paragraph
+bundle: banner_cta_slider
+mode: default
+content:
+  field_components:
+    weight: 3
+    settings:
+      title: Slide
+      title_plural: Slides
+      edit_mode: closed
+      closed_mode: preview
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: banner_cta_slide
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+    type: paragraphs
+    region: content
+  field_media_items:
+    weight: 1
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    type: media_library_widget
+    region: content
+  field_text_pagination:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true

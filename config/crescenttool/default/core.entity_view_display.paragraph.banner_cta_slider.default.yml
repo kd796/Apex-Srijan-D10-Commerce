@@ -1,0 +1,87 @@
+uuid: 4d70a867-711a-4944-af94-7e26474a4d72
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.banner_cta_slider.field_components
+    - field.field.paragraph.banner_cta_slider.field_media_items
+    - field.field.paragraph.banner_cta_slider.field_text_pagination
+    - field.field.paragraph.banner_cta_slider.field_title
+    - paragraphs.paragraphs_type.banner_cta_slider
+  module:
+    - blazy
+    - entity_reference_revisions
+id: paragraph.banner_cta_slider.default
+targetEntityType: paragraph
+bundle: banner_cta_slider
+mode: default
+content:
+  field_components:
+    weight: 3
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  field_media_items:
+    weight: 1
+    label: hidden
+    settings:
+      style: ''
+      image_style: ''
+      responsive_image_style: ''
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
+      view_mode: default
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+      current_view_mode: default
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+    third_party_settings: {  }
+    type: blazy_media
+    region: content
+  field_text_pagination:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  search_api_excerpt: true
