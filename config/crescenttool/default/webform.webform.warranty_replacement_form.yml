@@ -39,8 +39,16 @@ elements: |-
             - 'component-accordion-item__content block-webform'
           style: component-accordion-item__content
         item_number:
-          '#type': textfield
+          '#type': entity_autocomplete
           '#title': 'Item Number'
+          '#description': 'Can&#39;t find your item in the list above? Please contact our live support staff at 1.866.907.9716 Monday-Friday 9am-5pm ET'
+          '#target_type': node
+          '#selection_handler': views
+          '#selection_settings':
+            view:
+              view_name: product_entity_autocomplete
+              display_name: entity_reference_1
+              arguments: {  }
         product_image:
           '#type': webform_image_file
           '#title': 'Send us a photo'
