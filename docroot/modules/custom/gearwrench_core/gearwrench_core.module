@@ -75,6 +75,7 @@ function gearwrench_core_preprocess_block(&$variables) {
 function gearwrench_core_views_pre_build(ViewExecutable $view) {
   $id = $view->storage->id();
   $display = $view->current_display;
+
   if ($id === 'product_category_grid' && $display === 'top_level_items') {
     $parent_tids = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('product_classifications', 0, 1, FALSE);
     $parent_tids = array_column($parent_tids, 'tid');
