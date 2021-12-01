@@ -1,0 +1,119 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Node: Full Product Industry
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.node--type-product-trade.node--view-mode-full .node__content {
+
+  .page-heading {
+    @include flex();
+    flex-flow: row wrap;
+    margin-bottom: 3rem;
+
+    @include media('>=lg') {
+      margin-bottom: 2rem;
+    }
+
+    .heading-left {
+      flex: 0 0 100%;
+      margin-bottom: 3rem;
+
+      @include media('>=lg') {
+        flex: 3;
+        margin-bottom: 0;
+        padding-right: 50px;
+      }
+    }
+
+    .heading-right {
+      flex: 0 0 100%;
+
+      @include media('>=lg') {
+        flex: 1;
+      }
+    }
+  }
+
+  .field--name-field-link {
+    text-align: center;
+
+    a {
+      @include btn();
+    }
+  }
+
+  .field--name-field-media {
+    @include container-full-width();
+    margin-bottom: 3rem;
+
+    .media {
+      height: 500px;
+
+      picture {
+        width: 100%;
+        height: 100%;
+        display: flex;
+
+        img {
+          object-fit: cover;
+          height: auto;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .view-product-category {
+    margin-bottom: 4rem;
+
+    .view-header {
+      @include type-header(h6, black, included);
+      @include flex();
+      @include flex-x(justify-content, space-between);
+
+      margin: 0;
+      padding: 1rem 0;
+
+      .sort-icon {
+        @include icon('sort', after);
+      }
+
+      @include media('>=md') {
+        .sort-icon {
+          visibility: hidden;
+        }
+      }
+
+    }
+
+    .view-content {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: rem(25px); // sass-lint:disable-line no-misspelled-properties
+
+      @include media('>=md') {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      @include media('>=lg') {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .views-row {
+        .node--view-mode-teaser {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
