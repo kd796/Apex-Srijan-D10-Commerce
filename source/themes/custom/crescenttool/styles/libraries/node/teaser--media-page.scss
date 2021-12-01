@@ -21,7 +21,39 @@
     display: flex;
     flex-direction: column;
   }
+
   @include view-cards('.node__read-more-button');
+
+  .node__content {
+
+    .node__long-description {
+      min-height: 0;
+    }
+
+    .node__content-container {
+      min-height: 18rem;
+    }
+
+    .node__listing-image {
+      border-radius: rem(11px);
+
+      @include media('>=md') {
+        border-radius: rem(25px);
+      }
+
+      .media.media--video {
+
+        iframe {
+          position: absolute;
+          top: 0;
+          height: 100%;
+          width: 100%;
+        }
+        
+      }
+
+    }
+  }
 
   .field[data-blazy] {
     background-color: $black;
