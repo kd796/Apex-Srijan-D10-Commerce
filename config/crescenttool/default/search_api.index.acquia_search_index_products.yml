@@ -5,22 +5,23 @@ dependencies:
   module:
     - acquia_search
     - search_api_solr
-    - media
-    - taxonomy
     - node
+    - taxonomy
+    - media
     - search_api
   config:
-    - field.storage.media.field_media_image
-    - field.storage.node.field_product_images
     - field.storage.node.body
+    - field.storage.node.field_featured_product
+    - field.storage.node.field_keywords
+    - field.storage.node.field_long_description
+    - field.storage.node.field_new_product
     - field.storage.node.field_product_classifications
     - field.storage.taxonomy_term.field_classification_id
+    - field.storage.media.field_media_image
+    - field.storage.node.field_product_images
     - field.storage.node.field_product_specifications
-    - field.storage.node.field_featured_product
-    - field.storage.node.field_long_description
-    - field.storage.node.field_set_components
-    - field.storage.node.field_new_product
     - field.storage.node.field_set
+    - field.storage.node.field_set_components
     - search_api.server.acquia_search_server
     - core.entity_view_mode.node.full
 third_party_settings:
@@ -128,6 +129,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_featured_product
+  field_keywords:
+    label: Keywords
+    datasource_id: 'entity:node'
+    property_path: field_keywords
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_keywords
   field_long_description:
     label: 'Long Description'
     datasource_id: 'entity:node'
@@ -209,10 +218,7 @@ field_settings:
         anonymous: anonymous
       view_mode:
         'entity:node':
-          landing_page: full
-          page: full
-          social_post: full
-          styleguide: ''
+          product: full
   status:
     label: status
     datasource_id: 'entity:node'

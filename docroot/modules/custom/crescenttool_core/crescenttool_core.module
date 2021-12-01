@@ -10,6 +10,7 @@
  */
 
 use Drupal\Component\Utility\Html;
+use Drupal\views\ViewExecutable;
 use Drupal\media\MediaInterface;
 use Drupal\node\Entity\Node;
 use Drupal\views\Views;
@@ -25,6 +26,7 @@ function crescenttool_core_theme() {
     'template' => 'block--country-switch',
     'base hook' => 'block'
   ];
+
   $theme['block__footer_navigation_block'] = [
     'render element' => 'elements',
     'template' => 'block--footer-navigation-block',
@@ -44,7 +46,6 @@ function crescenttool_core_theme() {
  * Implements hook_entity_extra_field_info().
  */
 function crescenttool_core_entity_extra_field_info() {
-
   $extra = [];
 
   $extra['node']['product_brand']['display']['products_by_brand'] = [
@@ -91,6 +92,36 @@ function crescenttool_core_preprocess_block(&$variables) {
 
     // Track to convert attributes.
     $variables['#attribute_variables'][] = 'wrapper_attributes';
+  }
+}
+
+/**
+ * Implements hook_views_pre_build().
+ */
+function crescenttool_core_views_pre_build(ViewExecutable $view) {
+  $id = $view->storage->id();
+  $display = $view->current_display;
+
+  if ($id === 'product_category_grid' && $display === 'top_level_items') {
+    $parent_tids = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('product_classifications', 0, 1, FALSE);
+    $parent_tids = array_column($parent_tids, 'tid');
+    $table_mapping = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->getTableMapping();
+
+    $field_classification_id_table = $table_mapping->getFieldTableName('field_classification_id');
+    $field_classification_id_storage_definitions = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('taxonomy_term')['field_classification_id'];
+    $field_classification_id_column = $table_mapping->getFieldColumnName($field_classification_id_storage_definitions, 'value');
+
+    $connection = \Drupal::database();
+    $classification_ids = $connection->select($field_classification_id_table, 'f')
+      ->fields('f', [$field_classification_id_column])
+      ->distinct(TRUE)
+      ->condition('bundle', 'product_classifications')
+      ->condition('entity_id', $parent_tids, 'IN')
+      ->execute()->fetchCol();
+
+    $view_args = [];
+    $view_args[] = implode('+', $classification_ids);
+    $view->args = $view_args;
   }
 }
 
@@ -156,12 +187,12 @@ function crescenttool_core_tokens($type, $tokens, array $data = [], array $optio
       }
 
       if ($call) {
-
         // Replace the token with the value returned from the function call.
         $replacements[$original] = _crescenttool_core_return_product_classification($node, $call);
       }
     }
   }
+
   return $replacements;
 }
 
@@ -189,7 +220,6 @@ function _crescenttool_core_return_product_classification(Node $node, $call) {
   }
 
   if (!empty($tid_parents)) {
-
     // Build the full string of terms for use with metadata.
     $full_string = '';
 
@@ -198,14 +228,17 @@ function _crescenttool_core_return_product_classification(Node $node, $call) {
       foreach (max($tid_parents) as $t) {
         $full_string .= $t->getName() . ' ';
       }
+
       $longest = array_reverse(max($tid_parents));
     }
     elseif ($node->getType() == 'product_category') {
       foreach (min($tid_parents) as $t) {
         $full_string .= $t->getName() . ' ';
       }
+
       $longest = array_reverse(min($tid_parents));
     }
+
     $parents['full'] = trim($full_string);
     $i = 1;
 
