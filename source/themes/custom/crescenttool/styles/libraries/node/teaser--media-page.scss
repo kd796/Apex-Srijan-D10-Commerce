@@ -31,7 +31,14 @@
     }
 
     .node__content-container {
-      min-height: 18rem;
+
+      min-height: 15rem;
+
+      @include media('>=md') {
+        
+        min-height: 18rem;
+
+      }
     }
 
     .node__listing-image {
@@ -49,7 +56,7 @@
           height: 100%;
           width: 100%;
         }
-        
+
       }
 
     }
