@@ -6,6 +6,8 @@ dependencies:
     - field.field.paragraph.banner_cta_slide.field_content
     - field.field.paragraph.banner_cta_slide.field_link
     - field.field.paragraph.banner_cta_slide.field_media_background
+    - field.field.paragraph.banner_cta_slide.field_text_pagination
+    - field.field.paragraph.banner_cta_slide.field_thumbnail_image
     - field.field.paragraph.banner_cta_slide.field_title
     - paragraphs.paragraphs_type.banner_cta_slide
   module:
@@ -43,6 +45,21 @@ content:
       media_types: {  }
     third_party_settings: {  }
     type: media_library_widget
+    region: content
+  field_text_pagination:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_thumbnail_image:
+    type: media_library_widget
+    weight: 5
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
     region: content
   field_title:
     weight: 1

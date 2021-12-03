@@ -4,12 +4,9 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.banner_cta_slider.field_components
-    - field.field.paragraph.banner_cta_slider.field_media_items
-    - field.field.paragraph.banner_cta_slider.field_text_pagination
     - field.field.paragraph.banner_cta_slider.field_title
     - paragraphs.paragraphs_type.banner_cta_slider
   module:
-    - media_library
     - paragraphs
 id: paragraph.banner_cta_slider.default
 targetEntityType: paragraph
@@ -17,7 +14,7 @@ bundle: banner_cta_slider
 mode: default
 content:
   field_components:
-    weight: 3
+    weight: 1
     settings:
       title: Slide
       title_plural: Slides
@@ -34,21 +31,6 @@ content:
         duplicate: duplicate
     third_party_settings: {  }
     type: paragraphs
-    region: content
-  field_media_items:
-    weight: 1
-    settings:
-      media_types: {  }
-    third_party_settings: {  }
-    type: media_library_widget
-    region: content
-  field_text_pagination:
-    weight: 2
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
     region: content
   field_title:
     weight: 0

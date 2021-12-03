@@ -1,9 +1,9 @@
-uuid: 9948b958-5ab8-4c76-874f-07d3a78b4de7
+uuid: 4270504a-80a9-446b-b4ac-cba41017c740
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.paragraph.full
+    - core.entity_view_mode.paragraph.thumbnail
     - field.field.paragraph.banner_cta_slide.field_content
     - field.field.paragraph.banner_cta_slide.field_link
     - field.field.paragraph.banner_cta_slide.field_media_background
@@ -13,62 +13,52 @@ dependencies:
     - paragraphs.paragraphs_type.banner_cta_slide
   module:
     - blazy
-    - link
-    - text
-id: paragraph.banner_cta_slide.full
+id: paragraph.banner_cta_slide.thumbnail
 targetEntityType: paragraph
 bundle: banner_cta_slide
-mode: full
+mode: thumbnail
 content:
-  field_content:
-    weight: 2
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
-    region: content
-  field_link:
-    weight: 3
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
-    region: content
-  field_media_background:
+  field_text_pagination:
     weight: 0
     label: hidden
     settings:
-      link: '1'
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_thumbnail_image:
+    type: blazy_media
+    weight: 1
+    label: hidden
+    settings:
+      image_style: ''
+      responsive_image_style: ''
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
+      view_mode: default
+      current_view_mode: thumbnail
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
       class: ''
       id: ''
       image: ''
+      link: ''
       overlay: ''
       title: ''
       vanilla: false
       icon: ''
       layout: ''
-      view_mode: ''
       cache: 0
-      current_view_mode: ''
       skin: ''
       fx: ''
       style: ''
-      background: false
       box_caption: ''
       box_caption_custom: ''
       box_media_style: ''
-      caption: {  }
-      responsive_image_style: ''
       box_style: ''
-      image_style: ''
-      media_switch: ''
-      ratio: ''
-      thumbnail_style: ''
       _uri: ''
       breakpoints: {  }
       sizes: ''
@@ -77,17 +67,10 @@ content:
       grid_medium: ''
       grid_small: ''
     third_party_settings: {  }
-    type: blazy_media
-    region: content
-  field_title:
-    weight: 1
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
     region: content
 hidden:
-  field_text_pagination: true
-  field_thumbnail_image: true
+  field_content: true
+  field_link: true
+  field_media_background: true
+  field_title: true
   search_api_excerpt: true
