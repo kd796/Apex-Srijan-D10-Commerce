@@ -84,16 +84,24 @@ $radius-desktop: rem(25px);
 
       @include media('<md') {
         min-height: rem(120px);
+
+        > * {
+          font-size:  rem(13px);
+          line-height: rem(20px);
+        }
       }
 
       .field--name-field-long-description {
         @include type-header(h4, black, included);
         margin-top: 0;
 
-        @include media('<md') {
-          font-size:  rem(16px);
-          line-height: rem(20px);
-        }
+      }
+    }
+
+    .node__summary {
+      @include media('<md') {
+        font-size:  rem(13px);
+        line-height: rem(20px);
       }
     }
 
@@ -138,6 +146,12 @@ $radius-desktop: rem(25px);
           transition-delay: 0s;
           transition-duration: 0.3s;
           transition-timing-function: ease-in-out;
+
+          @include media('<md') {
+            font-size:  rem(13px);
+            line-height: rem(20px);
+          }
+
         }
       }
 
