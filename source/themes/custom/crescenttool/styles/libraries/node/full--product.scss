@@ -480,68 +480,49 @@ $tabs-border-width-active: rem(5px);
     @include flex-x(flex-direction, row);
     height: $header-height;
     margin-bottom: 2.5rem;
+    width: 98%;
+    width: 98vw;
 
     .node--type-product-related-products__nav-logo-wrapper {
-      display: none;
+      @include flex;
+      @include flex-x(align-items, center);
 
-      @include media('>lg-plus') {
-        @include flex;
-        @include flex-x(align-items, center);
-
-        background-color: $secondary-black;
-        height: 100%;
-        padding: 0 2rem;
-        position: relative;
-        z-index: 1;
-      }
+      background-color: $secondary-black;
+      height: 100%;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 1;
 
       .site-logo {
         @include link-base();
         background-color: $secondary-black;
         display: block;
-        width: rem(56px);
+        width: 4.25rem;
         overflow: hidden;
         line-height: 1;
 
         svg {
-          height: 2.4375rem;
+          height: 4.275rem;
           vertical-align: middle;
-
-          @include media('<=lg-plus') {
-            height: $header-logo-height;
-          }
         }
       }
     }
 
     .node--type-product-related-products__nav-content {
-      text-align: center;
-      width: 100%;
       border-top-right-radius: rem(30px);
       border-bottom-right-radius: rem(30px);
-
-      @include media('<=lg-plus') {
-        height: $header-logo-height;
-      }
-
-      @include media('>lg-plus') {
-        background-color: $primary-red;
-        max-width: rem(455px);
-        text-align: left;
-        position: relative;
-        width: 100%;
-        z-index: 0;
-      }
+      background-color: $primary-red;
+      max-width: rem(455px);
+      text-align: left;
+      position: relative;
+      width: 100%;
+      z-index: 0;
 
       h4 {
         text-transform: uppercase;
-        color: $primary-red;
+        color: $white;
         font-weight: $fw-medium;
-
-        @include media('>lg-plus') {
-          color: $white;
-          padding-left: 3rem;
-        }
+        padding-left: 3rem;
       }
     }
   }
