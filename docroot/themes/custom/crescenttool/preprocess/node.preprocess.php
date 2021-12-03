@@ -196,7 +196,7 @@ function crescenttool_preprocess_node__product__full(array &$variables) {
           $thumb_variables['width'] = $thumb_variables['height'] = NULL;
         }
 
-        $variables['thumbnails'][] = [
+        $variables['thumbnails'][$fid] = [
           '#theme' => 'image_style',
           '#width' => $thumb_variables['width'],
           '#height' => $thumb_variables['height'],
