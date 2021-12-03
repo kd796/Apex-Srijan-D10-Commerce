@@ -9,13 +9,10 @@
       $(swiperInstance.slides).slice(index, index + itemsPerSlide).removeAttr('aria-hidden').find('*').removeAttr('tabindex');
     },
     initProductSlider: function ($productSliderWrapper) {
-      if (window.matchMedia('(max-width: 768px)').matches) {
+      if (window.innerWidth <= 768) {
         // eslint-disable-next-line
         return new Swiper($productSliderWrapper, {
           slidesPerView: 2,
-          slidesPerGroup: 2,
-          slidesPerColumn: 2,
-          slidesPerColumnFill: 'column',
           spaceBetween: 24,
           loop: false,
           navigation: {
@@ -25,8 +22,10 @@
           on: {
             init: function () {
               Drupal.behaviors.componentProductSlider.updatePointerEvents();
+
               // Use a timeout on init to make sure to catch contextual links.
               setTimeout(Drupal.behaviors.componentProductSlider.updateSlideAria($(this)[0]), 500);
+
               if (typeof Drupal.blazy !== 'undefined') {
                 Drupal.blazy.init.revalidate();
               }
@@ -34,6 +33,7 @@
             resize: function () {
               Drupal.behaviors.componentProductSlider.updatePointerEvents();
               Drupal.behaviors.componentProductSlider.updateSlideAria($(this)[0]);
+
               // Load lazyloaded images in tabs.
               if (typeof Drupal.blazy !== 'undefined') {
                 Drupal.blazy.init.revalidate();
@@ -42,6 +42,7 @@
             slideChangeTransitionEnd: function () {
               Drupal.behaviors.componentProductSlider.updateSlideAria($(this)[0]);
               Drupal.behaviors.componentProductSlider.updatePointerEvents();
+
               if (typeof Drupal.blazy !== 'undefined') {
                 Drupal.blazy.init.revalidate();
               }
@@ -70,8 +71,10 @@
           on: {
             init: function () {
               Drupal.behaviors.componentProductSlider.updatePointerEvents();
+
               // Use a timeout on init to make sure to catch contextual links.
               setTimeout(Drupal.behaviors.componentProductSlider.updateSlideAria($(this)[0]), 500);
+
               if (typeof Drupal.blazy !== 'undefined') {
                 Drupal.blazy.init.revalidate();
               }
@@ -79,6 +82,7 @@
             resize: function () {
               Drupal.behaviors.componentProductSlider.updatePointerEvents();
               Drupal.behaviors.componentProductSlider.updateSlideAria($(this)[0]);
+
               if (typeof Drupal.blazy !== 'undefined') {
                 Drupal.blazy.init.revalidate();
               }
@@ -86,6 +90,7 @@
             slideChangeTransitionEnd: function () {
               Drupal.behaviors.componentProductSlider.updateSlideAria($(this)[0]);
               Drupal.behaviors.componentProductSlider.updatePointerEvents();
+
               if (typeof Drupal.blazy !== 'undefined') {
                 Drupal.blazy.init.revalidate();
               }
@@ -112,8 +117,10 @@
         var $productSliderWrapper = $component.find('.view-related-products-slider__list-wrapper');
         var $productSlider = $component.find('.view-related-products-slider__list');
         var $productSliderItems = $component.find('.view-related-products-slider__list-item');
+
         // Track that this component has been initialized.
         $component.addClass('view-related-products-slider--js-initialized');
+
         // Initialize swiper.
         if ($component.find('article').length > 1) {
           // Add swiper classes and elements.
@@ -124,6 +131,7 @@
           $productSlider.after('<button class="view-related-products-slider__button view-related-products-slider__button-next swiper-button-next"></button>');
           $productSlider.before('<button class="view-related-products-slider__button view-related-products-slider__button-prev swiper-button-prev"></button>');
           $productSwiper = Drupal.behaviors.componentProductSlider.initProductSlider($productSliderWrapper);
+
           $(window).resize(function () {
             if (window.matchMedia('(max-width: 768px)').matches) {
               if (typeof $productSwiper !== 'undefined') {
