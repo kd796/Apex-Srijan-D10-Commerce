@@ -209,24 +209,52 @@
           }
         });
       });
+
+      // Logic for mobile filtering menu.
+      if (window.innerWidth <= 768) {
+        var $mobileMenuIcon = $('.sort-icon');
+        var $mobileCloseIcon;
+        var $mobileCategoryFilters = $('.crescenttool-product-category-filters');
+        var $viewHeader = $('.view-header');
+
+        $mobileCategoryFilters.append('<div class="mobile-filter-header"><div class="mobile-filter-header-inner"><span>Filter</span><span class="mobile-close-icon"></span></div></div>');
+        $mobileCloseIcon = $('.mobile-close-icon');
+        $viewHeader.after('<div class="chip-container"><ul class="chips" role="list"></ul></div>');
+
+        $mobileMenuIcon.click(function () {
+          $mobileCategoryFilters.addClass('mobile-show');
+        });
+
+        $mobileCloseIcon.click(function () {
+          $mobileCategoryFilters.removeClass('mobile-show');
+        });
+
+        // Logic for the mobile filtering chips
+        var $chipList = $('.chips');
+        var selectedString = drupalSettings.selectedAttributes;
+        var selectedArray = selectedString.split(',');
+        var cleanedArray = [];
+        var checkedFilters = $('input[type=checkbox]:checked');
+
+        // console.log(checkedFilters);
+        // console.log(checkedFilters[1]);
+        // console.log(checkedFilters[1].value);
+        //
+        // function UncheckAll() {
+        //   for (var index = 1; index < checkedFilters.length; index++) {
+        //     checkedFilters[index].checked = false;
+        //   }
+        // }
+
+        for (var idx = 1; idx < selectedArray.length; idx++) {
+          cleanedArray[idx] = selectedArray[idx].split('(');
+        }
+
+        for (var i = 1; i < cleanedArray.length; i++) {
+          $chipList.append('<li class="chip">' + cleanedArray[i][0].trim() + '<span class="chip-close-icon" id="filter-" onclick="UncheckAll()"></span>' + '</li>');
+        }
+      }
     }
   };
-
-  if (window.innerWidth <= 768) {
-    var $mobileMenuIcon = $('.sort-icon');
-    var $mobileCloseIcon;
-    var $mobileCategoryFilters = $('.crescenttool-product-category-filters');
-
-    $mobileCategoryFilters.append('<div class="mobile-filter-header"><div class="mobile-filter-header-inner"><span>Filter</span><span class="mobile-close-icon"></span></div></div>');
-    $mobileCloseIcon = $('.mobile-close-icon');
-
-    $mobileMenuIcon.click(function () {
-      $mobileCategoryFilters.addClass('mobile-show');
-    });
-
-    $mobileCloseIcon.click(function () {
-      $mobileCategoryFilters.removeClass('mobile-show');
-    });
-  }
 
 })(jQuery, Drupal);
