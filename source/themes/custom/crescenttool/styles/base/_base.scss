@@ -72,6 +72,13 @@ body:not(.keyboard-activated) *:focus {
   color: $color-blue;
 }
 
+*::selection,
+a::selection,
+a span::selection {
+  background-color: $primary-red;
+  color: $black;
+}
+
 // height for page wrappers so the site spans the full height of the window
 .dialog-off-canvas-main-canvas,
 .page {
