@@ -177,7 +177,7 @@
               </div>
               {{ content.field_product_features }}
 
-              {% if (content.field_set_components) %}
+              {% if content.field_set_components|render|trim|length > 0 %}
               <div class="product-set-components">
                 <div class="node--type-product__accordion-content-header">
                   {{ 'Contains' }}
