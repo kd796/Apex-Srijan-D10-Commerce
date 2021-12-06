@@ -4,15 +4,29 @@ status: true
 dependencies:
   config:
     - field.field.node.product_brand.body
+    - field.field.node.product_brand.field_link
     - field.field.node.product_brand.field_media
     - node.type.product_brand
   module:
+    - link
     - user
 id: node.product_brand.default
 targetEntityType: node
 bundle: product_brand
 mode: default
-content: {  }
+content:
+  field_link:
+    weight: 1
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
 hidden:
   body: true
   field_media: true

@@ -5,19 +5,22 @@ dependencies:
   config:
     - core.entity_view_mode.node.full
     - field.field.node.product_brand.body
+    - field.field.node.product_brand.field_link
     - field.field.node.product_brand.field_media
     - node.type.product_brand
     - responsive_image.styles.short_hero
   module:
     - blazy
     - field_group
+    - link
     - text
     - user
 third_party_settings:
   field_group:
     group_page_heading:
       children:
-        - body
+        - group_left
+        - group_right
       parent_name: ''
       weight: 0
       format_type: html_element
@@ -34,6 +37,44 @@ third_party_settings:
         effect: none
         speed: fast
       label: 'Page Heading'
+    group_left:
+      children:
+        - body
+      parent_name: group_page_heading
+      weight: 20
+      format_type: html_element
+      region: content
+      format_settings:
+        show_empty_fields: false
+        id: ''
+        classes: heading-left
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+      label: Left
+    group_right:
+      children:
+        - field_link
+      parent_name: group_page_heading
+      weight: 21
+      format_type: html_element
+      region: content
+      format_settings:
+        show_empty_fields: false
+        id: ''
+        classes: heading-right
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+      label: Right
 id: node.product_brand.full
 targetEntityType: node
 bundle: product_brand
@@ -42,10 +83,22 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 2
+    weight: 21
     settings: {  }
     third_party_settings: {  }
     region: content
+  field_link:
+    type: link
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
   field_media:
     weight: 1
     label: hidden
