@@ -44,7 +44,7 @@
           var $galleryThumbs = new Swiper($thumbsContainer, {
             spaceBetween: 24,
             slidesPerView: slidesPerViewLarge,
-            loop: true,
+            loop: false,
             breakpoints: {
               568: {
                 slidesPerView: slidesPerView,
@@ -76,7 +76,7 @@
           // eslint-disable-next-line
           new Swiper($sliderContainer, {
             effect: 'fade',
-            loop: true,
+            loop: false,
             navigation: {
               nextEl: '.swiper-button-next',
               prevEl: '.swiper-button-prev'
