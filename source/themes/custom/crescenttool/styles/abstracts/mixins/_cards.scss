@@ -7,6 +7,15 @@
 $radius-mobile: rem(11px);
 $radius-desktop: rem(25px);
 
+@mixin pager-adjustment {
+  grid-column-start: 2;
+  grid-column-end: 4;
+
+  @include media('<md') {
+    grid-column-start: 1;
+  }
+}
+
 @mixin view-cards-radius {
   border-top-left-radius: $radius-mobile;
   border-top-right-radius: $radius-mobile;
@@ -38,7 +47,7 @@ $radius-desktop: rem(25px);
 
     @include view-cards-radius;
 
-    .node__listing-image {
+    .node__media {
       @include flex();
       @include flex-x(align-items, center);
       @include flex-x(justify-content, center);
