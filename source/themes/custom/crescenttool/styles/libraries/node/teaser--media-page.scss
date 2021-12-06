@@ -28,6 +28,13 @@
 
     .node__long-description {
       min-height: 0;
+
+      .field--name-title {
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+      }
     }
 
     .node__content-container {
