@@ -1,0 +1,23 @@
+uuid: 2ebaae31-7206-4b91-8319-2766ac71bf8e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_link
+    - node.type.product_brand
+  module:
+    - link
+id: node.product_brand.field_link
+field_name: field_link
+entity_type: node
+bundle: product_brand
+label: 'Call to Action'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link
