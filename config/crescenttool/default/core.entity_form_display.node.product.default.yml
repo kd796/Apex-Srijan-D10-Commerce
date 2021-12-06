@@ -6,7 +6,6 @@ dependencies:
     - field.field.node.product.body
     - field.field.node.product.field_brand
     - field.field.node.product.field_featured_product
-    - field.field.node.product.field_industry
     - field.field.node.product.field_keywords
     - field.field.node.product.field_launch_date
     - field.field.node.product.field_long_description
@@ -21,6 +20,7 @@ dependencies:
     - field.field.node.product.field_set
     - field.field.node.product.field_set_components
     - field.field.node.product.field_sku_group
+    - field.field.node.product.field_trade
     - field.field.node.product.field_upc
     - node.type.product
   module:
@@ -50,7 +50,7 @@ third_party_settings:
       children:
         - title
         - field_brand
-        - field_industry
+        - field_trade
         - body
         - field_media
       parent_name: group_tabs
@@ -135,16 +135,6 @@ content:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
-    region: content
-  field_industry:
-    weight: 3
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
     region: content
   field_keywords:
     weight: 24
@@ -261,6 +251,16 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_trade:
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   field_upc:
     weight: 14

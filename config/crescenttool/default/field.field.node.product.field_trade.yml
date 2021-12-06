@@ -1,16 +1,16 @@
-uuid: 4f9e4843-216b-465d-9ae8-d3ba4701f023
+uuid: 6dee5532-4c81-4b99-af9d-28df382b45cb
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_industry
+    - field.storage.node.field_trade
     - node.type.product
-    - taxonomy.vocabulary.product_industry
-id: node.product.field_industry
-field_name: field_industry
+    - taxonomy.vocabulary.product_trade
+id: node.product.field_trade
+field_name: field_trade
 entity_type: node
 bundle: product
-label: Industry
+label: Trade
 description: ''
 required: false
 translatable: true
@@ -20,7 +20,7 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      product_industry: product_industry
+      product_trade: product_trade
     sort:
       field: name
       direction: asc
