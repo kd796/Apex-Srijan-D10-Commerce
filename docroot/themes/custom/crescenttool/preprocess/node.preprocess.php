@@ -127,6 +127,20 @@ function crescenttool_preprocess_node__product__teaser(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product, set listing.
+ */
+function crescenttool_preprocess_node__product__set_listing(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  $sku = $node->title->value;
+  $variables['sku'] = $sku;
+
+  // Track variables that should be converted to attribute objects.
+  $variables['inner_attributes']['class'][] = 'node__inner';
+}
+
+/**
  * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product, full.
  */
 function crescenttool_preprocess_node__product__full(array &$variables) {
@@ -196,7 +210,7 @@ function crescenttool_preprocess_node__product__full(array &$variables) {
           $thumb_variables['width'] = $thumb_variables['height'] = NULL;
         }
 
-        $variables['thumbnails'][] = [
+        $variables['thumbnails'][$fid] = [
           '#theme' => 'image_style',
           '#width' => $thumb_variables['width'],
           '#height' => $thumb_variables['height'],
