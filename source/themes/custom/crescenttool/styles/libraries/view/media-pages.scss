@@ -22,8 +22,17 @@
     column-gap: rem(40px);
   }
 
+  .pager {
+    grid-column-start: 2;
+    grid-column-end: 4;
+
+    @include media('<md') {
+      grid-column-start: 1;
+    }
+  }
+
   .view-header {
-    @include type-header(h6, black, included);
+    @include type-header(h6, $black, included);
     @include flex();
     @include flex-x(justify-content, space-between);
 

@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.tile
     - field.field.node.product_brand.body
+    - field.field.node.product_brand.field_link
     - field.field.node.product_brand.field_media
     - node.type.product_brand
     - responsive_image.styles.teaser
@@ -60,6 +61,7 @@ content:
     third_party_settings: {  }
 hidden:
   body: true
+  field_link: true
   langcode: true
   links: true
   products_by_brand: true
