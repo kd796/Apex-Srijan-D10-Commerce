@@ -23,19 +23,7 @@
           loop: false,
           freeMode: true,
           watchSlidesVisibility: true,
-          watchSlidesProgress: true,
-          on: {
-            resize: function () {
-              var $thumbHeight = $thumbsItems.outerHeight();
-              var $thumbWidth = $thumbsItems.outerWidth();
-              $($button).css('height', $thumbHeight).css('width', $thumbWidth);
-            },
-            imagesReady: function () {
-              var $thumbHeight = $thumbsItems.outerHeight();
-              var $thumbWidth = $thumbsItems.outerWidth();
-              $($button).css('height', $thumbHeight).css('width', $thumbWidth);
-            }
-          }
+          watchSlidesProgress: true
         });
       }
       // eslint-disable-next-line
@@ -48,19 +36,19 @@
         },
         on: {
           init: function () {
-            // Drupal.behaviors.componentBannerCTASlider.updatePointerEvents();
+            Drupal.behaviors.componentBannerCTASlider.updatePointerEvents();
             // Use a timeout on init to make sure to catch contextual links.
             setTimeout(Drupal.behaviors.swiper.updateSlideAria.bind($(this)[0]), 500);
           },
           resize: function () {
-            // Drupal.behaviors.componentBannerCTASlider.updatePointerEvents();
+            Drupal.behaviors.componentBannerCTASlider.updatePointerEvents();
             Drupal.behaviors.swiper.updateSlideAria.apply($(this)[0]);
             if (typeof Drupal.blazy !== 'undefined') {
               Drupal.blazy.init.revalidate();
             }
           },
           slideChangeTransitionEnd: function () {
-            // Drupal.behaviors.componentBannerCTASlider.updatePointerEvents();
+            Drupal.behaviors.componentBannerCTASlider.updatePointerEvents();
             Drupal.behaviors.swiper.updateSlideAria.apply($(this)[0]);
 
             if (typeof Drupal.blazy !== 'undefined') {
