@@ -48,14 +48,6 @@
 
 {% block paragraph %}
   <section{{ attributes.addClass(classes) }}>
-    <div class="component-banner-cta-slider__container">
-      <button class="component-banner-cta-slider__pseudo-prev-button"></button>
-      <div{{ content_attributes.addClass(content_classes) }}>
-        {{ content }}
-      </div>
-      <button class="component-banner-cta-slider__pseudo-next-button"></button>
-    </div>
-
     <div class="component-banner-cta-slider__thumbs-outer-wrapper">
       <button class="component-banner-cta-slider__button component-banner-cta-slider__button-prev swiper-button-prev"></button>
       <div class="component-banner-cta-slider__thumbs-container">
@@ -64,6 +56,13 @@
         </div>
       </div>
       <button class="component-banner-cta-slider__button component-banner-cta-slider__button-next swiper-button-next"></button>
+    </div>
+    <div class="component-banner-cta-slider__container">
+      <button class="component-banner-cta-slider__pseudo-prev-button"></button>
+      <div{{ content_attributes.addClass(content_classes) }}>
+        {{ content }}
+      </div>
+      <button class="component-banner-cta-slider__pseudo-next-button"></button>
     </div>
   </section>
 {% endblock paragraph %}

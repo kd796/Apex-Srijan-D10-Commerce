@@ -25,15 +25,13 @@
 
     .component-banner-cta-slider__thumbs-outer-wrapper {
       float: left;
-      width: 25%;
+      width: 20%;
+      z-index: 2;
     }
 
     .component-banner-cta-slider__container {
-      position: absolute;
-      top: 0;
-      right: 0;
       float: left;
-      width: 75%;
+      width: 80%;
     }
   }
 
@@ -148,8 +146,13 @@
     overflow: visible;
 
     .paragraph--type-banner-cta-slide {
-      padding: rem(10px 30px 0 15px);
-      margin-bottom: 0;
+      padding: rem(10px 15px 10px 15px);
+      height: auto !important;
+      min-height: rem(65px);
+
+      &:last-of-type {
+        margin-bottom: 0 !important;
+      }
     }
 
     .field--name-field-text-pagination {
@@ -161,7 +164,8 @@
       line-height: 1.1;
 
       @include media('>md') {
-        font-size: rem(35px);
+        font-size: rem(25px);
+        text-align: left;
       }
     }
 

@@ -2,7 +2,7 @@
   'use strict';
 
   Drupal.behaviors.componentBannerCTASlider = {
-    initBannerSlider: function ($sliderContainer, $buttonPrev, $buttonNext, $thumbsContainer, $thumbsItems, $button) {
+    initBannerSlider: function ($sliderContainer, $swiperPagination, $buttonPrev, $buttonNext, $thumbsContainer) {
       var $galleryThumbs;
       if (window.matchMedia('(max-width: 768px)').matches) {
         // eslint-disable-next-line
@@ -17,7 +17,7 @@
       else {
         // eslint-disable-next-line
         $galleryThumbs = new Swiper($thumbsContainer, {
-          spaceBetween: 24,
+          spaceBetween: 10,
           slidesPerView: 6,
           direction: 'vertical',
           loop: false,
@@ -36,19 +36,17 @@
         },
         on: {
           init: function () {
-            Drupal.behaviors.componentBannerCTASlider.updatePointerEvents();
             // Use a timeout on init to make sure to catch contextual links.
             setTimeout(Drupal.behaviors.swiper.updateSlideAria.bind($(this)[0]), 500);
           },
           resize: function () {
-            Drupal.behaviors.componentBannerCTASlider.updatePointerEvents();
             Drupal.behaviors.swiper.updateSlideAria.apply($(this)[0]);
+
             if (typeof Drupal.blazy !== 'undefined') {
               Drupal.blazy.init.revalidate();
             }
           },
           slideChangeTransitionEnd: function () {
-            Drupal.behaviors.componentBannerCTASlider.updatePointerEvents();
             Drupal.behaviors.swiper.updateSlideAria.apply($(this)[0]);
 
             if (typeof Drupal.blazy !== 'undefined') {
@@ -61,6 +59,10 @@
         touchEventsTarget: 'container',
         thumbs: {
           swiper: $galleryThumbs
+        },
+        pagination: {
+          el: $swiperPagination,
+          clickable: true
         }
       });
     },
@@ -95,22 +97,23 @@
 
         // Initialize swiper.
         if ($component.find('.component-banner-cta-slide').length > 1) {
+          $sliderWrapper.after('<div class="component-product-slider__controls"><div class="component-product-slider__pagination swiper-pagination"></div></div>');
           var $buttonPrev = $component.find('.component-banner-cta-slider__button-prev');
           var $buttonNext = $component.find('.component-banner-cta-slider__button-next');
-          var $button = $component.find('.component-banner-cta-slider__button');
+          var $swiperPagination = $component.find('.swiper-pagination');
+          $bannerSwiper = Drupal.behaviors.componentBannerCTASlider.initBannerSlider($sliderContainer, $swiperPagination, $buttonPrev, $buttonNext, $thumbsContainer);
 
-          $bannerSwiper = Drupal.behaviors.componentBannerCTASlider.initBannerSlider($sliderContainer, $buttonPrev, $buttonNext, $thumbsContainer, $thumbsItems, $button);
           $(window).resize(function () {
             if (window.matchMedia('(max-width: 768px)').matches) {
               if (typeof $productSwiper !== 'undefined') {
                 $bannerSwiper.destroy(true, true);
-                $bannerSwiper = Drupal.behaviors.componentBannerCTASlider.initBannerSlider($sliderContainer, $buttonPrev, $buttonNext, $thumbsContainer, $thumbsItems, $button);
+                $bannerSwiper = Drupal.behaviors.componentBannerCTASlider.initBannerSlider($sliderContainer, $swiperPagination, $buttonPrev, $buttonNext, $thumbsContainer);
               }
             }
             else {
               if (typeof $bannerSwiper !== 'undefined') {
                 $bannerSwiper.destroy(true, true);
-                $bannerSwiper = Drupal.behaviors.componentBannerCTASlider.initBannerSlider($sliderContainer, $buttonPrev, $buttonNext, $thumbsContainer, $thumbsItems, $button);
+                $bannerSwiper = Drupal.behaviors.componentBannerCTASlider.initBannerSlider($sliderContainer, $buttonPrev, $buttonNext, $thumbsContainer);
               }
             }
           });

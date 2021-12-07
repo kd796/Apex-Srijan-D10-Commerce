@@ -1,0 +1,30 @@
+uuid: eab7d55d-d017-41d3-bb2d-ca1c2163550d
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.large_landscape_16_9_960x560_
+    - image.style.medium_landscape_16x9
+    - image.style.small_landscape_4x3
+  theme:
+    - crescenttool
+id: cta_slider_16x9
+label: 'CTA Slider 16x9'
+image_style_mappings:
+  -
+    breakpoint_id: crescenttool.grande
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: large_landscape_16_9_960x560_
+  -
+    breakpoint_id: crescenttool.large_min
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: medium_landscape_16x9
+  -
+    breakpoint_id: crescenttool.All
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: small_landscape_4x3
+breakpoint_group: crescenttool
+fallback_image_style: small_landscape_4x3
