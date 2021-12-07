@@ -231,27 +231,80 @@
 
         // Logic for the mobile filtering chips
         var $chipList = $('.chips');
-        var selectedString = drupalSettings.selectedAttributes;
-        var selectedArray = selectedString.split(',');
         var cleanedArray = [];
+        var cleanedRadioArray = [];
         var checkedFilters = $('input[type=checkbox]:checked');
+        var checkedRadios = $('input[type=radio]:checked');
+        var setText = '';
 
-        // console.log(checkedFilters);
-        // console.log(checkedFilters[1]);
-        // console.log(checkedFilters[1].value);
-        //
-        // function UncheckAll() {
-        //   for (var index = 1; index < checkedFilters.length; index++) {
-        //     checkedFilters[index].checked = false;
-        //   }
-        // }
+        // Loop through all checked filters
+        for (var indx = 0; indx < checkedFilters.length; indx++) {
+          if (checkedFilters[indx].id.includes('edit-category')) {
+            cleanedArray[indx] = [];
+            cleanedArray[indx][1] = checkedFilters[indx].id;
+            cleanedArray[indx][2] = 'category';
 
-        for (var idx = 1; idx < selectedArray.length; idx++) {
-          cleanedArray[idx] = selectedArray[idx].split('(');
+            var boxLabel = $(`[for="${cleanedArray[indx][1]}"]`);
+            cleanedArray[indx][0] = 'Category : ' + boxLabel.text();
+          }
+          else {
+            cleanedArray[indx] = checkedFilters[indx].value;
+            cleanedArray[indx] = cleanedArray[indx].split('(');
+            cleanedArray[indx][0] = cleanedArray[indx][0].trim();
+            cleanedArray[indx][1] = checkedFilters[indx].id;
+            cleanedArray[indx][2] = 'attribute';
+          }
         }
 
-        for (var i = 1; i < cleanedArray.length; i++) {
-          $chipList.append('<li class="chip">' + cleanedArray[i][0].trim() + '<span class="chip-close-icon" id="filter-" onclick="UncheckAll()"></span>' + '</li>');
+        // Loop through all checked radio buttons
+        for (var idx = 0; idx < checkedRadios.length; idx++) {
+          if (checkedRadios[idx].id.includes('edit-set')) {
+            cleanedRadioArray[idx] = [];
+
+            if (checkedRadios[idx].value === 'all') {
+              setText = 'All';
+            }
+            if (checkedRadios[idx].value === '1') {
+              setText = 'Yes';
+            }
+            if (checkedRadios[idx].value === '0') {
+              setText = 'No';
+            }
+            cleanedRadioArray[idx][0] = checkedRadios;
+            cleanedRadioArray[idx][1] = 'Set : ' + setText;
+          }
+
+          // Build chips for radio buttons
+          if (cleanedRadioArray[idx].length > 0) {
+            $chipList.append('<li class="chip">' + cleanedRadioArray[idx][1] + '<span  data-radioinfo="' + checkedRadios[idx].id + '_set' + '"class="chip-close-icon" id="chip-' + checkedRadios[idx].value + '"></span></li>');
+
+            // eslint-disable-next-line
+            jQuery('#chip-' + checkedRadios[idx].value + '').click(function () {
+              // Scope is weird here, have to put the id in the data-attribute and then find the element again instead of just using it.
+              var radioInfo = this.dataset.radioinfo.split('_');
+              var checkedRadio = $('#' + radioInfo[0]);
+
+              checkedRadio.value = 'all';
+              Drupal.behaviors.productCategoryFilters.filtering($(checkedRadio), 'set');
+            });
+          }
+        }
+
+        // Build chips for checkboxes
+        for (var i = 0; i < cleanedArray.length; i++) {
+          var id = cleanedArray[i][1];
+
+          if (cleanedArray[i].length > 0) {
+            $chipList.append('<li class="chip">' + cleanedArray[i][0] + '<span  data-boxinfo="' + id + '_' + cleanedArray[i][2] + '"  class="chip-close-icon" id="chip-' + id + '"></span></li>');
+
+            // eslint-disable-next-line
+            jQuery('#chip-' + id + '').click(function () {
+              var boxInfo = this.dataset.boxinfo.split('_');
+              var checkedBox = $('#' + boxInfo[0]);
+              checkedBox[0].checked = false;
+              Drupal.behaviors.productCategoryFilters.filtering($(checkedBox[0]), boxInfo[1]);
+            });
+          }
         }
       }
     }
