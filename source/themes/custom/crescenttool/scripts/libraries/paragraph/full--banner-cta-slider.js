@@ -3,40 +3,45 @@
 
   Drupal.behaviors.componentBannerCTASlider = {
     initBannerSlider: function ($sliderContainer, $buttonPrev, $buttonNext, $thumbsContainer, $thumbsItems, $button) {
-      // eslint-disable-next-line
-      var $galleryThumbs = new Swiper($thumbsContainer, {
-        spaceBetween: 24,
-        slidesPerView: 4,
-        loop: true,
-        breakpoints: {
-          768: {
-            slidesPerView: 6,
-            spaceBetween: 12
-          },
-          1024: {
-            slidesPerView: 6,
-            spaceBetween: 16
+      var $galleryThumbs;
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        // eslint-disable-next-line
+        $galleryThumbs = new Swiper($thumbsContainer, {
+          slidesPerView: 1,
+          loop: false,
+          freeMode: true,
+          watchSlidesVisibility: true,
+          watchSlidesProgress: true
+        });
+      }
+      else {
+        // eslint-disable-next-line
+        $galleryThumbs = new Swiper($thumbsContainer, {
+          spaceBetween: 24,
+          slidesPerView: 6,
+          direction: 'vertical',
+          loop: false,
+          freeMode: true,
+          watchSlidesVisibility: true,
+          watchSlidesProgress: true,
+          on: {
+            resize: function () {
+              var $thumbHeight = $thumbsItems.outerHeight();
+              var $thumbWidth = $thumbsItems.outerWidth();
+              $($button).css('height', $thumbHeight).css('width', $thumbWidth);
+            },
+            imagesReady: function () {
+              var $thumbHeight = $thumbsItems.outerHeight();
+              var $thumbWidth = $thumbsItems.outerWidth();
+              $($button).css('height', $thumbHeight).css('width', $thumbWidth);
+            }
           }
-        },
-        freeMode: true,
-        watchSlidesVisibility: true,
-        watchSlidesProgress: true,
-        on: {
-          resize: function () {
-            var $thumbHeight = $thumbsItems.outerHeight();
-            var $thumbWidth = $thumbsItems.outerWidth();
-            $($button).css('height', $thumbHeight).css('width', $thumbWidth);
-          },
-          imagesReady: function () {
-            var $thumbHeight = $thumbsItems.outerHeight();
-            var $thumbWidth = $thumbsItems.outerWidth();
-            $($button).css('height', $thumbHeight).css('width', $thumbWidth);
-          }
-        }
-      });
+        });
+      }
       // eslint-disable-next-line
       return new Swiper($sliderContainer, {
-        loop: true,
+        loop: false,
+        direction: 'horizontal',
         navigation: {
           nextEl: $buttonNext,
           prevEl: $buttonPrev
@@ -123,11 +128,11 @@
           });
         }
 
-        $($component).on('click', '.component-banner-cta-slider__pseudo-button-prev', function () {
+        $($component).on('click', '.component-banner-cta-slider__pseudo-prev-button', function () {
           $component.find('.component-banner-cta-slider__button-prev').trigger('click');
         });
 
-        $($component).on('click', '.component-banner-cta-slider__pseudo-button-next', function () {
+        $($component).on('click', '.component-banner-cta-slider__pseudo-next-button', function () {
           $component.find('.component-banner-cta-slider__button-next').trigger('click');
         });
       });
