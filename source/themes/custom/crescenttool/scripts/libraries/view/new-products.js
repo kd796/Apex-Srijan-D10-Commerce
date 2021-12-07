@@ -59,13 +59,8 @@
               var boxInfo = this.dataset.boxinfo.split('_');
               var checkedBox = $('#' + boxInfo[0]);
               checkedBox[0].checked = false;
-
               var $newProductView = $('#views-exposed-form-new-products-default');
-
-
               $newProductView.find('input[type=submit]').click();
-
-              // Drupal.behaviors.productCategoryFilters.filtering($(checkedBox[0]), boxInfo[1]);
             });
           }
         }
