@@ -63,7 +63,7 @@
         background: none;
         color: $primary-red;
         font-size: rem(50px);
-        height: 0;
+        height: auto;
         width: 5rem;
         margin: 0;
         padding: 0;
@@ -98,11 +98,6 @@
           @include media('<1336px') {
             display: none;
           }
-        }
-
-        &[aria-disabled='true'] {
-          background-color: $gray-30;
-          border-color: $gray-30;
         }
       }
     }

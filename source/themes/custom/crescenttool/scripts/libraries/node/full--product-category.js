@@ -209,24 +209,104 @@
           }
         });
       });
+
+      // Logic for mobile filtering menu.
+      if (window.innerWidth <= 768) {
+        var $mobileMenuIcon = $('.sort-icon');
+        var $mobileCloseIcon;
+        var $mobileCategoryFilters = $('.crescenttool-product-category-filters');
+        var $viewHeader = $('.view-header');
+
+        $mobileCategoryFilters.append('<div class="mobile-filter-header"><div class="mobile-filter-header-inner"><span>Filter</span><span class="mobile-close-icon"></span></div></div>');
+        $mobileCloseIcon = $('.mobile-close-icon');
+        $viewHeader.after('<div class="chip-container"><ul class="chips" role="list"></ul></div>');
+
+        $mobileMenuIcon.click(function () {
+          $mobileCategoryFilters.addClass('mobile-show');
+        });
+
+        $mobileCloseIcon.click(function () {
+          $mobileCategoryFilters.removeClass('mobile-show');
+        });
+
+        // Logic for the mobile filtering chips
+        var $chipList = $('.chips');
+        var cleanedArray = [];
+        var cleanedRadioArray = [];
+        var checkedFilters = $('input[type=checkbox]:checked');
+        var checkedRadios = $('input[type=radio]:checked');
+        var setText = '';
+
+        // Loop through all checked filters
+        for (var indx = 0; indx < checkedFilters.length; indx++) {
+          if (checkedFilters[indx].id.includes('edit-category')) {
+            cleanedArray[indx] = [];
+            cleanedArray[indx][1] = checkedFilters[indx].id;
+            cleanedArray[indx][2] = 'category';
+
+            var boxLabel = $(`[for="${cleanedArray[indx][1]}"]`);
+            cleanedArray[indx][0] = 'Category : ' + boxLabel.text();
+          }
+          else {
+            cleanedArray[indx] = checkedFilters[indx].value;
+            cleanedArray[indx] = cleanedArray[indx].split('(');
+            cleanedArray[indx][0] = cleanedArray[indx][0].trim();
+            cleanedArray[indx][1] = checkedFilters[indx].id;
+            cleanedArray[indx][2] = 'attribute';
+          }
+        }
+
+        // Loop through all checked radio buttons
+        for (var idx = 0; idx < checkedRadios.length; idx++) {
+          if (checkedRadios[idx].id.includes('edit-set')) {
+            cleanedRadioArray[idx] = [];
+
+            if (checkedRadios[idx].value === '1') {
+              cleanedRadioArray[idx][1] = 'Set : Yes';
+            }
+            else if (checkedRadios[idx].value === '0') {
+              cleanedRadioArray[idx][1] = 'Set : No';
+            }
+            else {
+              cleanedRadioArray[idx][1] = '';
+            }
+            cleanedRadioArray[idx][0] = checkedRadios;
+          }
+        }
+
+        // Build chips for radio buttons
+        for (var index = 0; index < cleanedRadioArray.length; index++) {
+          if (cleanedRadioArray[index][1].length > 0) {
+            $chipList.append('<li class="chip">' + cleanedRadioArray[index][1] + '<span  data-radioinfo="' + checkedRadios[index].id + '_set' + '"class="chip-close-icon" id="chip-' + checkedRadios[index].value + '"></span></li>');
+
+            jQuery('#chip-' + checkedRadios[index].value + '').click(function () {
+              // Scope is weird here, have to put the id in the data-attribute and then find the element again instead of just using it. Same on line 302.
+              var radioInfo = this.dataset.radioinfo.split('_');
+              var checkedRadio = $('#' + radioInfo[0]);
+
+              checkedRadio.val('all');
+              Drupal.behaviors.productCategoryFilters.filtering($(checkedRadio), 'set');
+            });
+          }
+        }
+
+        // Build chips for checkboxes
+        for (var i = 0; i < cleanedArray.length; i++) {
+          var id = cleanedArray[i][1];
+
+          if (cleanedArray[i].length > 0) {
+            $chipList.append('<li class="chip">' + cleanedArray[i][0] + '<span  data-boxinfo="' + id + '_' + cleanedArray[i][2] + '"  class="chip-close-icon" id="chip-' + id + '"></span></li>');
+
+            jQuery('#chip-' + id + '').click(function () {
+              var boxInfo = this.dataset.boxinfo.split('_');
+              var checkedBox = $('#' + boxInfo[0]);
+              checkedBox[0].checked = false;
+              Drupal.behaviors.productCategoryFilters.filtering($(checkedBox[0]), boxInfo[1]);
+            });
+          }
+        }
+      }
     }
   };
-
-  if (window.innerWidth <= 768) {
-    var $mobileMenuIcon = $('.sort-icon');
-    var $mobileCloseIcon;
-    var $mobileCategoryFilters = $('.crescenttool-product-category-filters');
-
-    $mobileCategoryFilters.append('<div class="mobile-filter-header"><div class="mobile-filter-header-inner"><span>Filter</span><span class="mobile-close-icon"></span></div></div>');
-    $mobileCloseIcon = $('.mobile-close-icon');
-
-    $mobileMenuIcon.click(function () {
-      $mobileCategoryFilters.addClass('mobile-show');
-    });
-
-    $mobileCloseIcon.click(function () {
-      $mobileCategoryFilters.removeClass('mobile-show');
-    });
-  }
 
 })(jQuery, Drupal);

@@ -251,7 +251,7 @@ $tabs-border-width-active: rem(5px);
 
           background-color: $secondary-black;
           height: 100%;
-          padding: 0 0 0 2rem;
+          padding: 0 2rem;
           position: relative;
 
           @include media('>lg-plus') {
@@ -267,12 +267,7 @@ $tabs-border-width-active: rem(5px);
             line-height: 1;
 
             svg {
-              height: 2.4375rem;
               vertical-align: middle;
-
-              @include media('<=lg-plus') {
-                height: $header-logo-height;
-              }
             }
           }
         }
@@ -511,12 +506,12 @@ $tabs-border-width-active: rem(5px);
         @include link-base();
         background-color: $secondary-black;
         display: block;
-        width: 4.25rem;
+        width: 4.1rem;
         overflow: hidden;
         line-height: 1;
 
         svg {
-          height: 4rem;
+          margin: 0.25rem;
           vertical-align: middle;
         }
       }
@@ -535,8 +530,14 @@ $tabs-border-width-active: rem(5px);
       h4 {
         text-transform: uppercase;
         color: $white;
+        font-size: 1.25rem;
         font-weight: $fw-medium;
-        padding-left: 3rem;
+        padding-left: 1.25rem;
+
+        @include media('>sm') {
+          @include type-header(h4);
+          padding-left: 3rem;
+        }
       }
     }
   }
