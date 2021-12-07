@@ -147,15 +147,33 @@
   }
 
   .component-banner-cta-slider__thumbs-container {
-    overflow: visible;
+    @include media('<=md') {
+      width: 80%;
+    }
+
+    @include media('>md') {
+      overflow: visible;
+    }
 
     .paragraph--type-banner-cta-slide {
       padding: rem(10px 15px 10px 15px);
       height: auto !important;
-      min-height: rem(65px);
 
       &:last-of-type {
         margin-bottom: 0 !important;
+      }
+
+      @include media('>md') {
+        padding: rem(10px 15px 10px 15px);
+        min-height: rem(65px);
+      }
+    }
+
+    .component-banner-cta-slide__content {
+      @include media('>md') {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
       }
     }
 

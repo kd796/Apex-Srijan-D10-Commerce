@@ -10,8 +10,8 @@ dependencies:
     - field.field.paragraph.banner_cta_slide.field_text_pagination
     - field.field.paragraph.banner_cta_slide.field_thumbnail_image
     - field.field.paragraph.banner_cta_slide.field_title
-    - image.style.banner_cta_slider_210x50_
     - paragraphs.paragraphs_type.banner_cta_slide
+    - responsive_image.styles.cta_slider_thumb
   module:
     - blazy
 id: paragraph.banner_cta_slide.thumbnail
@@ -32,8 +32,8 @@ content:
     weight: 1
     label: hidden
     settings:
-      image_style: banner_cta_slider_210x50_
-      responsive_image_style: ''
+      image_style: ''
+      responsive_image_style: cta_slider_thumb
       media_switch: ''
       thumbnail_style: ''
       ratio: ''
