@@ -261,23 +261,22 @@
           if (checkedRadios[idx].id.includes('edit-set')) {
             cleanedRadioArray[idx] = [];
 
-            if (checkedRadios[idx].value === 'all') {
-              setText = 'All';
-            }
             if (checkedRadios[idx].value === '1') {
-              setText = 'Yes';
+              cleanedRadioArray[idx][1] = 'Set : Yes';
             }
-            if (checkedRadios[idx].value === '0') {
-              setText = 'No';
+            else if (checkedRadios[idx].value === '0') {
+              cleanedRadioArray[idx][1] = 'Set : No';
+            }
+            else {
+              cleanedRadioArray[idx][1] = '';
             }
             cleanedRadioArray[idx][0] = checkedRadios;
-            cleanedRadioArray[idx][1] = 'Set : ' + setText;
           }
         }
 
         // Build chips for radio buttons
         for (var index = 0; index < cleanedRadioArray.length; index++) {
-          if (cleanedRadioArray[index].length > 0) {
+          if (cleanedRadioArray[index][1].length > 0) {
             $chipList.append('<li class="chip">' + cleanedRadioArray[index][1] + '<span  data-radioinfo="' + checkedRadios[index].id + '_set' + '"class="chip-close-icon" id="chip-' + checkedRadios[index].value + '"></span></li>');
 
             jQuery('#chip-' + checkedRadios[index].value + '').click(function () {
@@ -285,7 +284,7 @@
               var radioInfo = this.dataset.radioinfo.split('_');
               var checkedRadio = $('#' + radioInfo[0]);
 
-              checkedRadio.value = 'all';
+              checkedRadio.val('all');
               Drupal.behaviors.productCategoryFilters.filtering($(checkedRadio), 'set');
             });
           }
