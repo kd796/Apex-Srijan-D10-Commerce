@@ -273,14 +273,15 @@
             cleanedRadioArray[idx][0] = checkedRadios;
             cleanedRadioArray[idx][1] = 'Set : ' + setText;
           }
+        }
 
-          // Build chips for radio buttons
-          if (cleanedRadioArray[idx].length > 0) {
-            $chipList.append('<li class="chip">' + cleanedRadioArray[idx][1] + '<span  data-radioinfo="' + checkedRadios[idx].id + '_set' + '"class="chip-close-icon" id="chip-' + checkedRadios[idx].value + '"></span></li>');
+        // Build chips for radio buttons
+        for (var index = 0; index < cleanedRadioArray.length; index++) {
+          if (cleanedRadioArray[index].length > 0) {
+            $chipList.append('<li class="chip">' + cleanedRadioArray[index][1] + '<span  data-radioinfo="' + checkedRadios[index].id + '_set' + '"class="chip-close-icon" id="chip-' + checkedRadios[index].value + '"></span></li>');
 
-            // eslint-disable-next-line
-            jQuery('#chip-' + checkedRadios[idx].value + '').click(function () {
-              // Scope is weird here, have to put the id in the data-attribute and then find the element again instead of just using it.
+            jQuery('#chip-' + checkedRadios[index].value + '').click(function () {
+              // Scope is weird here, have to put the id in the data-attribute and then find the element again instead of just using it. Same on line 302.
               var radioInfo = this.dataset.radioinfo.split('_');
               var checkedRadio = $('#' + radioInfo[0]);
 
@@ -297,7 +298,6 @@
           if (cleanedArray[i].length > 0) {
             $chipList.append('<li class="chip">' + cleanedArray[i][0] + '<span  data-boxinfo="' + id + '_' + cleanedArray[i][2] + '"  class="chip-close-icon" id="chip-' + id + '"></span></li>');
 
-            // eslint-disable-next-line
             jQuery('#chip-' + id + '').click(function () {
               var boxInfo = this.dataset.boxinfo.split('_');
               var checkedBox = $('#' + boxInfo[0]);
