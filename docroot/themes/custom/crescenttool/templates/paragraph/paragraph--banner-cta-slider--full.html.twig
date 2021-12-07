@@ -48,15 +48,6 @@
 
 {% block paragraph %}
   <section{{ attributes.addClass(classes) }}>
-
-    {{ title_prefix }}
-    {% if title_is_set %}
-      <header{{ title_attributes.addClass(title_classes) }}>
-        {{- title -}}
-      </header>
-    {% endif %}
-    {{ title_suffix }}
-
     <div class="component-banner-cta-slider__container">
       <button class="component-banner-cta-slider__pseudo-prev-button"></button>
       <div{{ content_attributes.addClass(content_classes) }}>

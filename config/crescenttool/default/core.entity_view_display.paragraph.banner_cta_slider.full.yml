@@ -5,7 +5,6 @@ dependencies:
   config:
     - core.entity_view_mode.paragraph.full
     - field.field.paragraph.banner_cta_slider.field_components
-    - field.field.paragraph.banner_cta_slider.field_title
     - paragraphs.paragraphs_type.banner_cta_slider
   module:
     - entity_reference_revisions
@@ -23,13 +22,5 @@ content:
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
     region: content
-  field_title:
-    type: string
-    weight: 0
-    region: content
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
 hidden:
   search_api_excerpt: true

@@ -9,6 +9,7 @@ dependencies:
     - field.field.paragraph.section.field_html_anchor
     - field.field.paragraph.section.field_image_background
     - field.field.paragraph.section.field_style
+    - field.field.paragraph.section.field_title
     - paragraphs.paragraphs_type.section
   module:
     - color_field
@@ -20,7 +21,7 @@ bundle: section
 mode: default
 content:
   field_background_color:
-    weight: 5
+    weight: 6
     label: above
     settings:
       format: hex
@@ -29,7 +30,7 @@ content:
     type: color_field_formatter_text
     region: content
   field_class_custom:
-    weight: 1
+    weight: 2
     label: above
     settings:
       link_to_entity: false
@@ -37,7 +38,7 @@ content:
     type: string
     region: content
   field_components:
-    weight: 3
+    weight: 4
     label: above
     settings:
       view_mode: default
@@ -46,7 +47,7 @@ content:
     type: entity_reference_revisions_entity_view
     region: content
   field_html_anchor:
-    weight: 4
+    weight: 5
     label: above
     settings:
       link_to_entity: false
@@ -54,7 +55,7 @@ content:
     type: string
     region: content
   field_image_background:
-    weight: 0
+    weight: 1
     label: above
     settings:
       image_style: ''
@@ -63,13 +64,20 @@ content:
     type: image
     region: content
   field_style:
-    weight: 2
+    weight: 3
     label: above
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
     region: content
+  field_title:
+    type: string
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
 hidden:
-  field_title: true
   search_api_excerpt: true

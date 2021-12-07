@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.banner_cta_slider.field_components
-    - field.field.paragraph.banner_cta_slider.field_title
     - paragraphs.paragraphs_type.banner_cta_slider
   module:
     - entity_reference_revisions
@@ -21,14 +20,6 @@ content:
       link: ''
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
-    region: content
-  field_title:
-    weight: 0
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
     region: content
 hidden:
   search_api_excerpt: true
