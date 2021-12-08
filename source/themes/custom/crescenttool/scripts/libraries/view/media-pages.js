@@ -53,7 +53,7 @@
               var boxInfo = this.dataset.boxinfo.split('_');
               var checkedBox = $('#' + boxInfo[0]);
               checkedBox[0].checked = false;
-              var $mediaView = $('#views-exposed-form-media-pages-default');
+              var $mediaView = $('#views-exposed-form-media-pages-embed-1');
               $mediaView.find('input[type=submit]').click();
             });
           }
