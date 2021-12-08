@@ -66,10 +66,6 @@
         }
       });
     },
-    updatePointerEvents: function () {
-      $('.swiper-slide').removeClass('active-pointer');
-      $('.swiper-slide-visible').addClass('active-pointer');
-    },
     attach: function (context, settings) {
       $('.component-banner-cta-slider:not(.component-banner-cta-slider--js-initialized)').each(function (index) {
         // Main Slider.
@@ -96,7 +92,7 @@
         $thumbsWrapper.addClass('swiper-wrapper');
 
         // Initialize swiper.
-        if ($component.find('.component-banner-cta-slide').length > 1) {
+        if ($component.find('.component-banner-cta-slider__container .component-banner-cta-slide').length > 1) {
           $sliderWrapper.after('<div class="component-product-slider__controls"><div class="component-product-slider__pagination swiper-pagination"></div></div>');
           var $buttonPrev = $component.find('.component-banner-cta-slider__button-prev');
           var $buttonNext = $component.find('.component-banner-cta-slider__button-next');
