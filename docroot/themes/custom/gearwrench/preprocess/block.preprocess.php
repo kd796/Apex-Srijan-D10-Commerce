@@ -7,7 +7,6 @@
  * Index:
  *
  * @see gearwrench_preprocess_block()
- * @see gearwrench_preprocess_block__page_title_block()
  */
 
 use Drupal\Component\Utility\Html;
