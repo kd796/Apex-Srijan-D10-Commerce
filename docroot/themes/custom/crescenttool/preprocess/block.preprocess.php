@@ -7,6 +7,7 @@
  * Index:
  *
  * @see crescenttool_preprocess_block()
+ * @see crescenttool_preprocess_block__page_title_block()
  */
 
 use Drupal\Component\Utility\Html;
@@ -82,7 +83,12 @@ function crescenttool_preprocess_block__page_title_block(&$variables) {
         unset($variables['hero']['#theme']);
       }
       unset($hero_slide);
+
+      /** @var \Drupal\Core\Block\BlockManager $block_manager */
+      $block_manager = \Drupal::service('plugin.manager.block');
+      $plugin_block = $block_manager->createInstance('system_breadcrumb_block');
+      $render = $plugin_block->build();
+      $variables['crescenttool_breadcrumbs'] = render($render);
     }
   }
-
 }

@@ -44,6 +44,17 @@
   {{ hero }}
 {% endif %}
 
+{# If breadcrumbs is set, place below the hero. #}
+{% if crescenttool_breadcrumbs is not null %}
+  {{ attach_library('crescenttool/block--system--system-breadcrumb-block') }}
+  <section id="block-crescenttool-breadcrumbs" class="breadcrumbs contextual-region block block-system block-system-breadcrumb-block" data-entity-id="system_breadcrumb_block" data-entity-type="block">
+    <div class="block__content block-system-breadcrumb-block__content">
+      {% set classes = classes|merge(['visually-hidden']) %}
+      {{ crescenttool_breadcrumbs }}
+    </div>
+  </section>
+{% endif %}
+
 <header{{ attributes.addClass(classes) }}>
   <div{{ inner_attributes.addClass(inner_classes) }}>
 
