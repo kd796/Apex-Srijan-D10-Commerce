@@ -77,10 +77,7 @@
   .component-content__link.button {
     @include btn(secondary);
     color: $secondary-black;
-
-    @include on-event() {
-      color: $secondary-light;
-    }
+    line-height: 1;
   }
 
   // Media layout classy styles.

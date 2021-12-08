@@ -217,10 +217,14 @@
       @include type-header(h6, black, included);
       @include flex();
       @include flex-x(justify-content, space-between);
-      grid-column-start: 2;
-
+      grid-column-start: 1;
+      grid-column-end: 4;
       margin: 0;
       padding: 1rem 0 0;
+
+      @include media('>=md') {
+        grid-column-start: 2;
+      }
 
       .sort-icon {
         @include icon('sort', after);
