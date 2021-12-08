@@ -260,5 +260,30 @@
   .swiper-button-prev.swiper-button-disabled {
     opacity: 1;
   }
+
+  .component-banner-cta-slider__controls {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+
+    @include media('>md') {
+      display: none;
+    }
+
+    .component-banner-cta-slider__pagination {
+      position: relative;
+
+      .swiper-pagination-bullet {
+        background: transparent;
+        border-color: $primary-red;
+      }
+
+      .swiper-pagination-bullet-active {
+        background: $primary-red;
+      }
+    }
+  }
 }
 

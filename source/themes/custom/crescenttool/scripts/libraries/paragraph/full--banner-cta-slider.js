@@ -93,7 +93,7 @@
 
         // Initialize swiper.
         if ($component.find('.component-banner-cta-slider__container .component-banner-cta-slide').length > 1) {
-          $sliderWrapper.after('<div class="component-product-slider__controls"><div class="component-product-slider__pagination swiper-pagination"></div></div>');
+          $sliderWrapper.after('<div class="component-banner-cta-slider__controls"><div class="component-banner-cta-slider__pagination swiper-pagination"></div></div>');
           var $buttonPrev = $component.find('.component-banner-cta-slider__button-prev');
           var $buttonNext = $component.find('.component-banner-cta-slider__button-next');
           var $swiperPagination = $component.find('.swiper-pagination');
