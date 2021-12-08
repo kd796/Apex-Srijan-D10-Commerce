@@ -16,11 +16,11 @@
 
 .mobile-view-filter-header {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin-bottom: 0.2rem;
 
   .filter-icon {
-    @include icon('sort', after);
+    @include icon('filter', after);
   }
 
   @include media('>=md') {
