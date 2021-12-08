@@ -592,11 +592,6 @@ function crescenttool_preprocess_paragraph__banner_cta_slider__full(&$variables)
   foreach ($thumbnails as $idx => $thumb_slide) {
     if (is_int($idx) && !empty($thumb_slide['#paragraph'])) {
       $thumbnails[$idx]['#view_mode'] = 'thumbnail';
-
-      // Thumbnail image set, unset thumbnail text.
-      // if (isset($thumbnails[$idx]['#paragraph']->field_thumbnail_image)) {!
-      // unset($thumbnails[$idx]['#paragraph']->field_text_pagination);
-      // }!
     }
   }
 
