@@ -39,6 +39,14 @@ function crescenttool_core_theme() {
     'base hook' => 'block'
   ];
 
+    $theme['ct_product_buy_now_sticky'] = [
+    'template' => 'ct--product-buy-now-sticky',
+    'variables' => [
+      'title' => NULL,
+      'sku' => NULL,
+    ],
+  ];
+
   return $theme;
 }
 
