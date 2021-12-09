@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c1a900c98336a965eff976b2b885696f",
+    "content-hash": "2085097eed69b04d215192d82ad71146",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6521,17 +6521,11 @@
         },
         {
             "name": "drupal/paragraphs",
-            "version": "1.12.0",
+            "version": "dev-1.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/paragraphs.git",
-                "reference": "8.x-1.12"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/paragraphs-8.x-1.12.zip",
-                "reference": "8.x-1.12",
-                "shasum": "3b67d8af1160af42d93a4610be1e02869e428965"
+                "reference": "203ecf83fa85e1ca957db1e2da7d0b8498b764e7"
             },
             "require": {
                 "drupal/core": "^8.8 || ^9",
@@ -6555,12 +6549,15 @@
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
                 "drupal": {
-                    "version": "8.x-1.12",
-                    "datestamp": "1590140081",
+                    "version": "8.x-1.12+20-dev",
+                    "datestamp": "1630064939",
                     "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -8641,17 +8638,17 @@
         },
         {
             "name": "drupal/webform",
-            "version": "6.1.0",
+            "version": "6.1.2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/webform.git",
-                "reference": "6.1.0"
+                "reference": "6.1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/webform-6.1.0.zip",
-                "reference": "6.1.0",
-                "shasum": "0dae48cc100133a4144ca8219d5506b917888588"
+                "url": "https://ftp.drupal.org/files/projects/webform-6.1.2.zip",
+                "reference": "6.1.2",
+                "shasum": "3afb96566f5d31474483e163b4e0138d43cffdcd"
             },
             "require": {
                 "drupal/core": "^8.8 || ^9"
@@ -8699,8 +8696,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "6.1.0",
-                    "datestamp": "1635676666",
+                    "version": "6.1.2",
+                    "datestamp": "1638988073",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -19031,6 +19028,7 @@
         "drupal/linkit": 10,
         "drupal/memcache": 15,
         "drupal/metatag_async_widget": 15,
+        "drupal/paragraphs": 20,
         "drupal/paragraphs_ee": 20,
         "drupal/path_redirect_import": 20,
         "drupal/selective_better_exposed_filters": 10,
