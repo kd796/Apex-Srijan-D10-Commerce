@@ -284,6 +284,16 @@ function crescenttool_preprocess_menu__main__block_header_menu_main(array &$vari
 function crescenttool_preprocess_page(array &$variables) {
   // Basic attribute variables.
   $variables['footer_attributes']['class'][] = 'region';
+
+  /** @var \Drupal\node\NodeInterface $node */
+  if (isset($variables['node'])) {
+    $node = $variables['node'];
+    $contentType = $node->bundle();
+
+    if ($contentType == 'landing_page') {
+      unset($variables['page']['content']['crescenttool_breadcrumbs']);
+    }
+  }
 }
 
 /**
