@@ -87,8 +87,9 @@
         <div class="product-detail-slider">
           <div class="product-detail-slider__container">
             {% if product_image_count > 1 %}
-            <button class="product-detail-slider__pseudo-prev-button"></button>
+              <button class="product-detail-slider__pseudo-prev-button"></button>
             {% endif %}
+
             {% if field_product_images_exist %}
               {{ content.field_product_images }}
             {% else %}
@@ -98,8 +99,9 @@
                 </div>
               </div>
             {% endif %}
+
             {% if product_image_count > 1 %}
-            <button class="product-detail-slider__pseudo-next-button"></button>
+              <button class="product-detail-slider__pseudo-next-button"></button>
             {% endif %}
           </div>
 
@@ -107,44 +109,52 @@
             <div class="product-detail-slider__thumbs-outer-wrapper">
               <button
                 class="product-detail-slider__button product-detail-slider__button-prev swiper-button-prev"></button>
+
               <div class="product-detail-slider__thumbs-container">
                 <div class="product-detail-slider__thumbs-wrapper">
                   {{ thumbnails }}
                 </div>
               </div>
+
               <button
                 class="product-detail-slider__button product-detail-slider__button-next swiper-button-next"></button>
             </div>
           {% endif %}
         </div>
       {% endif %}
+
       <div class="product-detail-content-container">
         <header{{ title_attributes.addClass('product-detail-content-container__title') }}>
           <h1>
             {{ content.field_long_description }}
           </h1>
+
           <span class="sku">{{ label }}</span>
+
           <div class="product-detail-content-container__rating-container">
             <!--Price Spider Rating widget goes here-->
             <div class="node__buy-now-button ps-widget" ps-sku="{{sku}}"></div>
           </div>
         </header>
+
         <div class="product-detail-content-container__utility-container">
         </div>
+
         <h3>Features</h3>
         {{ page_top_products_features }}
         <span class="more-features-link"><a href="#features">See More Features</a> </span>
       </div>
     </div>
+
     <div class="node--type-product__page-bottom">
       <div class="node--type-product-tabs node--type-product-tabs--horizontal">
         <div class="node--type-product-tabs__nav-wrapper">
           <div class="node--type-product-tabs__nav-logo-wrapper">
-
             <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="site-logo">
               {% include directory ~ '/icons/logo-red-white.svg' %}
             </a>
           </div>
+
           <ul class="node--type-product-tabs__nav">
             <li class="node--type-product-tabs__nav-item">
               <a href="#features">{{ 'Features'|t }}</a></li>
@@ -159,17 +169,30 @@
           <div class="node--type-product-tabs__mobile-nav-item">
             <a href="#features">{{ 'Features'|t }}</a>
           </div>
+
           <section class="node--type-product-tabs-tab">
             <div class="node--type-product__accordion-content">
               <div class="node--type-product__accordion-content-header">
                 {{ 'Features'|t }}
               </div>
               {{ content.field_product_features }}
+
+              {% if content.field_set_components|render|trim|length > 0 %}
+              <div class="product-set-components">
+                <div class="node--type-product__accordion-content-header">
+                  {{ 'Contains' }}
+                </div>
+
+                {{ content.field_set_components }}
+              </div>
+              {% endif %}
             </div>
           </section>
+
           <div class="node--type-product-tabs__mobile-nav-item">
             <a href="#specifications">{{ 'Specifications'|t }}</a>
           </div>
+
           <section class="node--type-product-tabs-tab">
             <div class="node--type-product__accordion-content">
               <div class="node--type-product__accordion-content-header">
@@ -178,22 +201,27 @@
               {{ content.field_product_specifications }}
             </div>
           </section>
+
           <div class="node--type-product-tabs__mobile-nav-item">
             <a href="#reviews-questions">{{ 'Reviews & Questions'|t }}</a>
           </div>
+
           <section class="node--type-product-tabs-tab">
             <div class="node--type-product__accordion-content">
               <div class="node--type-product__accordion-content-header">
                 {{ 'Reviews & Questions'|t }}
               </div>
+
               <div class="node--type-product__ps-reviews-container">
                 <div class="ps-widget" ps-config="5994e2f3c4d97a6dbf2d9a4c" ps-sku="{{ sku }}"></div>
               </div>
+
               <div data-bv-show="reviews" data-bv-product-id="{{ sku }}"></div>
             </div>
           </section>
         </div>
       </div>
+
       {% if related_items %}
         <div class="node--type-product-related-products__nav-wrapper">
           <div class="node--type-product-related-products__nav-logo-wrapper">
@@ -201,15 +229,16 @@
               {% include directory ~ '/icons/logo-red-white.svg' %}
             </a>
           </div>
+
           <div class="node--type-product-related-products__nav-content">
             <h4>{{ 'Related Products'|t }}</h4>
           </div>
-
         </div>
+
         {{ related_items }}
       {% endif %}
-      {{ content|without('field_long_description','field_product_images', 'field_product_features', 'field_product_specifications', 'field_media',) }}
 
+      {{ content|without('field_long_description','field_product_images', 'field_product_features', 'field_product_specifications', 'field_media', 'field_set_components') }}
     </div>
   </div>
 </article>

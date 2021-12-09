@@ -25,21 +25,33 @@
         $thumbsContainer.addClass('swiper-container');
         $thumbsItems.addClass('swiper-slide');
         $thumbsWrapper.addClass('swiper-wrapper');
+        var numberOfItems = $component.find('.field__item').length;
 
         // Initialize swiper.
-        if ($component.find('.field__item').length > 1) {
+        if (numberOfItems > 1) {
+          var slidesPerView = 6;
+          var slidesPerViewLarge = 4;
+
+          if (numberOfItems < 6) {
+            slidesPerView = numberOfItems;
+          }
+
+          if (numberOfItems < 4) {
+            slidesPerViewLarge = numberOfItems;
+          }
+
           // eslint-disable-next-line
           var $galleryThumbs = new Swiper($thumbsContainer, {
             spaceBetween: 24,
-            slidesPerView: 4,
-            loop: true,
+            slidesPerView: slidesPerViewLarge,
+            loop: false,
             breakpoints: {
               568: {
-                slidesPerView: 6,
+                slidesPerView: slidesPerView,
                 spaceBetween: 12
               },
               1024: {
-                slidesPerView: 4,
+                slidesPerView: slidesPerViewLarge,
                 spaceBetween: 16
               }
             },
@@ -60,10 +72,11 @@
               }
             }
           });
+
           // eslint-disable-next-line
           new Swiper($sliderContainer, {
             effect: 'fade',
-            loop: true,
+            loop: false,
             navigation: {
               nextEl: '.swiper-button-next',
               prevEl: '.swiper-button-prev'

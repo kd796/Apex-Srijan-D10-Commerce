@@ -854,10 +854,10 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
-  products_by_industry:
+  products_by_trade:
     display_plugin: embed
-    id: products_by_industry
-    display_title: 'Products by Industry'
+    id: products_by_trade
+    display_title: 'Products by Trade'
     position: 1
     display_options:
       display_extenders:
@@ -932,10 +932,10 @@ display:
         groups:
           1: AND
       arguments:
-        field_industry_target_id:
-          id: field_industry_target_id
-          table: node__field_industry
-          field: field_industry_target_id
+        field_trade_target_id:
+          id: field_trade_target_id
+          table: node__field_trade
+          field: field_trade_target_id
           relationship: none
           group_type: group
           admin_label: ''

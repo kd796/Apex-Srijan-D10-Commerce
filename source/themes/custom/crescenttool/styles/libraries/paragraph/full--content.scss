@@ -77,10 +77,7 @@
   .component-content__link.button {
     @include btn(secondary);
     color: $secondary-black;
-
-    @include on-event() {
-      color: $secondary-light;
-    }
+    line-height: 1;
   }
 
   // Media layout classy styles.
@@ -207,5 +204,31 @@
         }
       }
     }
+  }
+}
+
+// classy paragraph cta styles
+.button-cta {
+  .component-content__link.button {
+    @include btn-reset();
+    @include btn-base();
+    display: inline-flex;
+    margin-top: 2rem;
+
+    &:hover {
+      background-color: $primary-dark;
+      color: $white;
+      border: 1px solid $primary-red;
+    }
+
+    &:after {
+      display: none;
+    }
+  }
+}
+
+.text-cta {
+  .component-content__link.button {
+    @include btn(secondary);
   }
 }

@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_long_description
-    - field.storage.node.field_product_images
+    - field.storage.node.field_media
     - image.style.thumbnail_entity_reference_50x50
     - node.type.product
   module:
@@ -60,10 +60,10 @@ display:
       row:
         type: fields
       fields:
-        field_product_images:
-          id: field_product_images
-          table: node__field_product_images
-          field: field_product_images
+        field_media:
+          id: field_media
+          table: node__field_media
+          field: field_media
           relationship: none
           group_type: group
           admin_label: ''
@@ -308,7 +308,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_long_description'
-        - 'config:field.storage.node.field_product_images'
+        - 'config:field.storage.node.field_media'
   block_1:
     display_plugin: block
     id: block_1
@@ -325,7 +325,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_long_description'
-        - 'config:field.storage.node.field_product_images'
+        - 'config:field.storage.node.field_media'
   entity_reference_1:
     display_plugin: entity_reference
     id: entity_reference_1
@@ -356,4 +356,4 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_long_description'
-        - 'config:field.storage.node.field_product_images'
+        - 'config:field.storage.node.field_media'

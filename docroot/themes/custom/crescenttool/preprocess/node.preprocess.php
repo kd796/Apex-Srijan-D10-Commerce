@@ -127,6 +127,20 @@ function crescenttool_preprocess_node__product__teaser(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product, set listing.
+ */
+function crescenttool_preprocess_node__product__set_listing(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  $sku = $node->title->value;
+  $variables['sku'] = $sku;
+
+  // Track variables that should be converted to attribute objects.
+  $variables['inner_attributes']['class'][] = 'node__inner';
+}
+
+/**
  * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product, full.
  */
 function crescenttool_preprocess_node__product__full(array &$variables) {
@@ -196,7 +210,7 @@ function crescenttool_preprocess_node__product__full(array &$variables) {
           $thumb_variables['width'] = $thumb_variables['height'] = NULL;
         }
 
-        $variables['thumbnails'][] = [
+        $variables['thumbnails'][$fid] = [
           '#theme' => 'image_style',
           '#width' => $thumb_variables['width'],
           '#height' => $thumb_variables['height'],
@@ -492,6 +506,65 @@ function crescenttool_preprocess_node__product_industry__full(array &$variables)
   }
 
   $view_display = 'products_by_industry';
+  $main_view->initDisplay();
+  $main_view->setDisplay($view_display);
+  $main_view->setArguments($view_args);
+  $main_view->preExecute();
+  $main_view->execute();
+
+  // Initialize cache contexts.
+  if (!isset($variables['#cache']['contexts'])) {
+    $variables['#cache']['contexts'] = [];
+  }
+
+  // Initialize cache tags.
+  if (!isset($variables['#cache']['tags'])) {
+    $variables['#cache']['tags'] = [];
+  }
+
+  // Initialize cache max-age.
+  if (!isset($variables['#cache']['max-age'])) {
+    $variables['#cache']['max-age'] = Cache::PERMANENT;
+  }
+
+  // Merge display cache tags.
+  $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'], $main_view->display_handler->getCacheMetadata()
+    ->getCacheContexts());
+  $variables['#cache']['tags'] = Cache::mergeTags($variables['#cache']['tags'], $main_view->display_handler->getCacheMetadata()
+    ->getCacheTags());
+  $variables['#cache']['max-age'] = Cache::mergeMaxAges($variables['#cache']['max-age'], $main_view->display_handler->getCacheMetadata()
+    ->getCacheMaxAge());
+
+  // Merge view cache tags.
+  $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'], $main_view->storage->getCacheContexts());
+  $variables['#cache']['tags'] = Cache::mergeTags($variables['#cache']['tags'], $main_view->getCacheTags());
+  $variables['#cache']['max-age'] = Cache::mergeMaxAges($variables['#cache']['max-age'], $main_view->storage->getCacheMaxAge());
+
+  $variables['view'] = $main_view->buildRenderable($view_display, $main_view->args);
+}
+
+/**
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product_category, full.
+ */
+function crescenttool_preprocess_node__product_trade__full(array &$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $bundle = $node->bundle();
+  $view_mode = $variables['view_mode'];
+
+  $main_view = \Drupal::entityTypeManager()
+    ->getStorage('view')
+    ->load('product_category')
+    ->getExecutable();
+  $view_args = [];
+
+  // Get Product Classification ID's.
+  if (!empty($node->get('field_trade')->getValue())) {
+    $classifications = array_column($node->get('field_trade')->getValue(), 'target_id');
+    $view_args[] = implode(',', $classifications);
+  }
+
+  $view_display = 'products_by_trade';
   $main_view->initDisplay();
   $main_view->setDisplay($view_display);
   $main_view->setArguments($view_args);

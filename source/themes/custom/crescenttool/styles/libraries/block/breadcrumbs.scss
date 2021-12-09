@@ -14,6 +14,22 @@
     }
   }
 
+  .breadcrumb li,
+  .breadcrumb li a {
+    font-size: $body-font-size;
+    font-family: $font-brand;
+    font-weight: $fw-medium;
+    color: $secondary-black;
+  }
+
+  .breadcrumb li {
+    &:nth-child(n+2) {
+      &:before {
+        content: ' > ';
+      }
+    }
+  }
+
   a {
     @include link-base();
     @include icon(chevron-thin, before);
@@ -21,7 +37,7 @@
     text-decoration: none;
 
     &:before {
-      color: $color-blue;
+      color: $secondary-black;
       display: inline-block;
       margin-right: 0.25rem;
       transform: rotate(180deg);
@@ -31,7 +47,7 @@
     }
 
     &:hover:before {
-      color: $color-dark-blue;
+      color: $secondary-black;
     }
   }
 }

@@ -14,6 +14,7 @@
  * Component
  */
 .view-related-products {
+  margin-bottom: 3rem;
 
   .view-content {
     width: 100%;
@@ -59,30 +60,26 @@
       }
 
       .view-related-products-slider__button {
-        background-color: $primary-red;
-        background-size: rem(10px) rem(16px);
-        border: 1px solid $primary-red;
-        height: rem(48px);
-        width: rem(48px);
+        background: none;
+        color: $primary-red;
+        font-size: rem(50px);
+        height: auto;
+        width: 5rem;
         margin: 0;
         padding: 0;
         opacity: 1;
+        top: 40%;
 
         @include on-event {
-          background-color: $color-black;
-          border-color: $primary-red;
+          color: $primary-dark;
         }
 
         &.view-related-products-slider__button-prev {
-          background-image: url('../../../icons/chevron-left-white.svg');
+          @include icon('chevron-left-white', after, false);
           left: rem(-98px);
 
-          &:hover {
-            background-image: url('../../../icons/chevron-left-red.svg');
-          }
-
           @include media('<1401px') {
-            left: rem(-58px);
+            left: rem(-74px);
           }
 
           @include media('<1336px') {
@@ -91,25 +88,16 @@
         }
 
         &.view-related-products-slider__button-next {
-          background-image: url('../../../icons/chevron-right-white.svg');
+          @include icon('chevron-right-white', after, false);
           right: rem(-98px);
 
-          &:hover {
-            background-image: url('../../../icons/chevron-right-red.svg');
-          }
-
           @include media('<1400px') {
-            right: rem(-58px);
+            right: rem(-74px);
           }
 
           @include media('<1336px') {
             display: none;
           }
-        }
-
-        &[aria-disabled='true'] {
-          background-color: $gray-30;
-          border-color: $gray-30;
         }
       }
     }
@@ -122,14 +110,13 @@
       width: 100%;
 
       .view-related-products-slider__button {
-        background-color: $primary-red;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: rem(10px) rem(16px);
-        border: 1px solid $primary-red;
+        background: none;
+        border: 0;
+        color: $primary-red;
+        font-size: rem(30px);
         display: none;
-        height: rem(48px);
-        width: rem(48px);
+        height: 2.75rem;
+        width: 5rem;
         margin: 0;
         padding: 0;
         position: relative;
@@ -145,12 +132,12 @@
         }
 
         &.view-related-products-slider__pseudo-button-prev {
-          background-image: url('../../../icons/chevron-left-black.svg');
+          @include icon('chevron-left-white', after, false);
           margin-right: 1rem;
         }
 
         &.view-related-products-slider__pseudo-button-next {
-          background-image: url('../../../icons/chevron-right-black.svg');
+          @include icon('chevron-right-white', after, false);
           margin-left: 1rem;
         }
       }
@@ -168,8 +155,6 @@
         }
       }
     }
-
-
   }
 }
 

@@ -13,6 +13,7 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\taxonomy\Entity\Term;
+use Drupal\Core\Form\FormStateInterface;
 
 include_once 'preprocess/block.preprocess.php';
 include_once 'preprocess/media.preprocess.php';
@@ -283,6 +284,16 @@ function crescenttool_preprocess_menu__main__block_header_menu_main(array &$vari
 function crescenttool_preprocess_page(array &$variables) {
   // Basic attribute variables.
   $variables['footer_attributes']['class'][] = 'region';
+
+  /** @var \Drupal\node\NodeInterface $node */
+  if (isset($variables['node'])) {
+    $node = $variables['node'];
+    $contentType = $node->bundle();
+
+    if ($contentType == 'landing_page') {
+      unset($variables['page']['content']['crescenttool_breadcrumbs']);
+    }
+  }
 }
 
 /**
@@ -293,12 +304,12 @@ function crescenttool_preprocess_responsive_image(&$variables) {
   // @note: this is done here instead of in preprocess_blazy since height and
   // width is usually handled in template_responsive_image.
   if (substr($variables['img_element']['#uri'], 0, 21) === 'data:image/gif;base64') {
-
     // Try to determine height based on different parent key options.
     $height = NULL;
     $height_parent_options[] = ['height'];
     $height_parent_options[] = ['attributes', 'height'];
     $height_parent_options[] = ['img_element', '#attributes', 'height'];
+
     while (is_null($height) && current($height_parent_options)) {
       $height = NestedArray::getValue($variables, current($height_parent_options));
       next($height_parent_options);
@@ -309,6 +320,7 @@ function crescenttool_preprocess_responsive_image(&$variables) {
     $width_parent_options[] = ['width'];
     $width_parent_options[] = ['attributes', 'width'];
     $width_parent_options[] = ['img_element', '#attributes', 'width'];
+
     while (is_null($width) && current($width_parent_options)) {
       $width = NestedArray::getValue($variables, current($width_parent_options));
       next($width_parent_options);
@@ -333,6 +345,7 @@ function crescenttool_preprocess_responsive_image(&$variables) {
       if (!isset($variables['img_element']['#height'])) {
         $variables['img_element']['#height'] = $height;
       }
+
       if (!isset($variables['img_element']['#width'])) {
         $variables['img_element']['#width'] = $width;
       }
@@ -356,6 +369,7 @@ function crescenttool_preprocess_responsive_image_formatter(&$variables) {
 
   /* @var \Drupal\image\Plugin\Field\FieldType\ImageItem $variables['item'] */
   $entity = $variables['item']->getEntity();
+
   if ($entity instanceof Media) {
     $alt = $entity->getSource()->getMetadata($entity, 'thumbnail_alt_value');
     $variables['responsive_image']['#attributes']['alt'] = $alt;
@@ -376,6 +390,23 @@ function crescenttool_form_alter(&$form, &$form_state, $form_id) {
 
     default:
       break;
+  }
+}
+
+/**
+ * Implements hook alter on the new products filter form.
+ */
+function crescenttool_form_views_exposed_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+  $view = $form_state->getStorage('view');
+
+  if (($view['view']->id() == 'new_products')) {
+    foreach ($form['category']['#options'] as $key => $v) {
+      $parent = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($key);
+
+      if (!empty($parent)) {
+        unset($form['category']['#options'][$key]);
+      }
+    }
   }
 }
 

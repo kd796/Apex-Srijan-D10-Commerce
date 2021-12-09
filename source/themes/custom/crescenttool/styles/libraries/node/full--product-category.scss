@@ -147,7 +147,6 @@
             width: 100%;
           }
         }
-
       }
 
       @include media('>=md') {
@@ -202,7 +201,6 @@
         top: .125rem;
       }
 
-
       .form-checkboxes input[type='checkbox']:not(:checked) + label:before {
         background-color: transparent;
       }
@@ -219,7 +217,6 @@
         display: none;
         visibility: hidden;
       }
-
     }
 
     .view-product-category {
@@ -241,7 +238,6 @@
             visibility: hidden;
           }
         }
-
       }
 
       .view-content {
@@ -265,6 +261,30 @@
           .node--view-mode-teaser {
             width: 100%;
           }
+        }
+      }
+    }
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding-left: 0;
+
+    .chip {
+      background-color: $black;
+      color: $white;
+      margin: 0.2rem;
+      padding: 0.2rem 0.4rem;
+      white-space: nowrap;
+
+      .chip-close-icon {
+
+        &::before {
+          font-family: 'themeIcons';
+          content: icon-char('close');
+          margin-left: 1rem;
         }
       }
     }

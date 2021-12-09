@@ -236,11 +236,23 @@ node--full--product-category:
     - core/jquery.once
     - crescenttool/library--jquery-roving-tabindex
 
+node--full--product-brand:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/full--product-brand.css: { }
+
 node--full--product-industry:
   version: 1.x
   css:
     component:
       css/libraries/node/full--product-industry.css: { }
+
+node--full--product-trade:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/full--product-trade.css: { }
 
 # === Node: Search Index === #
 node--search-index:
@@ -282,6 +294,15 @@ node--tile--product-listing:
   css:
     component:
       css/libraries/node/tile--product-listing.css: { }
+
+# === Node: Teaser === #
+
+node--set-listing--product:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/set-listing--product.css: { }
+
 
 # ========= Paragraphs ========= #
 
@@ -551,6 +572,8 @@ view--media-pages:
   css:
     component:
       css/libraries/view/media-pages.css: {}
+  js:
+    js/libraries/view/media-pages.js: {}
 
 view--taxonomy-term:
   version: 1.x
@@ -585,6 +608,12 @@ view--new-products:
   js:
     js/libraries/view/new-products.js: {}
 
+view--product-brand-grid:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/product-brand-grid.css: {}
+
 view--product-category-grid:
   version: 1.x
   css:
@@ -596,6 +625,12 @@ view--product-industry-grid:
   css:
     component:
       css/libraries/view/product-industry-grid.css: {}
+
+view--product-trade-grid:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/product-trade-grid.css: {}
 
 view--acquia-search:
   version: 1.x
