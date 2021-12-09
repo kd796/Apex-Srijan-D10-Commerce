@@ -93,7 +93,7 @@ $radius-desktop: rem(25px);
       min-height: rem(195px);
 
       @include media('<md') {
-        min-height: rem(265px);
+        min-height: rem(120px);
 
         > * {
           font-size:  rem(13px);
@@ -105,6 +105,10 @@ $radius-desktop: rem(25px);
         @include type-header(h4, black, included);
         margin-top: 0;
 
+        @include media('<md') {
+          font-size:  rem(13px);
+          line-height: rem(20px);
+        }
       }
     }
 
