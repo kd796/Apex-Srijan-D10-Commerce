@@ -45,13 +45,13 @@
       box-shadow: 0 0 16px 5px rgba(0, 0, 0, 0.2);
 
       .paragraph--type-banner-cta-slide {
-        height: 540px !important;
+        height: 476px !important;
       }
     }
 
     @include media('>=xl') {
       .paragraph--type-banner-cta-slide {
-        height: 560px !important;
+        height: 590px !important;
       }
     }
 
@@ -167,7 +167,8 @@
 
   .component-banner-cta-slider__thumbs-container {
     @include media('<lg-plus') {
-      width: 80% !important;
+      box-shadow: 0 0 16px 5px rgba(0, 0, 0, 0.2);
+      width: 75% !important;
       margin: 0 auto;
     }
 
@@ -183,13 +184,17 @@
         margin-bottom: 0 !important;
       }
 
+      .field[data-blazy] {
+        min-width: unset;
+      }
+
       @include media('>=lg-plus') {
         padding: rem(10px 15px 10px 15px);
-        min-height: rem(70px);
+        min-height: rem(51px);
       }
 
       @include media('>=xl') {
-        min-height: rem(65px);
+        min-height: rem(70px);
       }
     }
 
@@ -221,6 +226,11 @@
       @include media('>=lg-plus') {
         font-size: rem(25px);
         text-align: left;
+        max-width: rem(164px);
+      }
+
+      @include media('>=xl') {
+        max-width: rem(200px);
       }
     }
 
@@ -228,23 +238,25 @@
       background-color: $primary-red;
       overflow: visible;
 
-      &::before,
-      &::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        height: 50%;
-        width: 100%;
-        box-shadow: 0 0 16px 5px rgba(0, 0, 0, 0.2);
-        z-index: -1;
-      }
+      @include media('>=lg-plus') {
+        &::before,
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          height: 50%;
+          width: 100%;
+          box-shadow: 0 0 16px 5px rgba(0, 0, 0, 0.2);
+          z-index: -1;
+        }
 
-      &::before {
-        top: 0;
-      }
+        &::before {
+          top: 0;
+        }
 
-      &::after {
-        bottom: 0;
+        &::after {
+          bottom: 0;
+        }
       }
     }
   }
@@ -255,11 +267,12 @@
     display: block;
     background: none;
     line-height: 1;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: $primary-red;
     margin: 0;
     padding: 0;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
 
     @include on-event {
       color: $primary-dark;

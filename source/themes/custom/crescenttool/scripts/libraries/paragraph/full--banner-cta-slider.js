@@ -9,7 +9,7 @@
         direction: 'vertical',
         spaceBetween: 10,
         breakpoints: {
-          1024: {
+          1023: {
             slidesPerView: 1,
             direction: 'horizontal',
             spaceBetween: 0
@@ -60,7 +60,7 @@
           clickable: true
         },
         breakpoints: {
-          1024: {
+          1023: {
             autoHeight: true
           }
         }
@@ -69,7 +69,6 @@
     attach: function (context, settings) {
       $('.component-banner-cta-slider:not(.component-banner-cta-slider--js-initialized)').each(function (index) {
         // Main Slider.
-        var $bannerSwiper;
         var $component = $(this);
         var $sliderContainer = $component.find('.component-banner-cta-slider__container');
         var $sliderWrapper = $sliderContainer.find('.component-banner-cta-slider__content');
@@ -97,14 +96,7 @@
           var $buttonPrev = $component.find('.component-banner-cta-slider__button-prev');
           var $buttonNext = $component.find('.component-banner-cta-slider__button-next');
           var $swiperPagination = $component.find('.swiper-pagination');
-          $bannerSwiper = Drupal.behaviors.componentBannerCTASlider.initBannerSlider($sliderContainer, $swiperPagination, $buttonPrev, $buttonNext, $thumbsContainer);
-
-          // $(window).resize(function () {
-          //   if (typeof $bannerSwiper !== 'undefined') {
-          //     $bannerSwiper.destroy(true, true);
-          //     $bannerSwiper = Drupal.behaviors.componentBannerCTASlider.initBannerSlider($sliderContainer, $swiperPagination, $buttonPrev, $buttonNext, $thumbsContainer);
-          //   }
-          // });
+          Drupal.behaviors.componentBannerCTASlider.initBannerSlider($sliderContainer, $swiperPagination, $buttonPrev, $buttonNext, $thumbsContainer);
         }
 
         $($component).on('click', '.component-banner-cta-slider__pseudo-prev-button', function () {
