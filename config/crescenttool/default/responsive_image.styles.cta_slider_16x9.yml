@@ -4,12 +4,11 @@ status: true
 dependencies:
   config:
     - image.style.large_landscape_16_9_960x560_
-    - image.style.medium_landscape_16x9
-    - image.style.small_landscape_4x3
+    - image.style.medium_landscape_5_4_768x560_
   theme:
     - crescenttool
 id: cta_slider_16x9
-label: 'CTA Slider 16x9'
+label: 'CTA Slider'
 image_style_mappings:
   -
     breakpoint_id: crescenttool.grande
@@ -20,11 +19,11 @@ image_style_mappings:
     breakpoint_id: crescenttool.large_min
     multiplier: 1x
     image_mapping_type: image_style
-    image_mapping: medium_landscape_16x9
+    image_mapping: medium_landscape_5_4_768x560_
   -
     breakpoint_id: crescenttool.All
     multiplier: 1x
     image_mapping_type: image_style
-    image_mapping: small_landscape_4x3
+    image_mapping: medium_landscape_5_4_768x560_
 breakpoint_group: crescenttool
-fallback_image_style: small_landscape_4x3
+fallback_image_style: medium_landscape_5_4_768x560_

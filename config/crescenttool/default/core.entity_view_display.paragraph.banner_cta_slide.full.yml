@@ -11,6 +11,7 @@ dependencies:
     - field.field.paragraph.banner_cta_slide.field_thumbnail_image
     - field.field.paragraph.banner_cta_slide.field_title
     - paragraphs.paragraphs_type.banner_cta_slide
+    - responsive_image.styles.cta_slider_16x9
   module:
     - blazy
     - link
@@ -43,32 +44,34 @@ content:
     weight: 0
     label: hidden
     settings:
-      link: '1'
+      image_style: ''
+      responsive_image_style: cta_slider_16x9
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
+      view_mode: default
+      current_view_mode: full
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
       class: ''
       id: ''
       image: ''
+      link: ''
       overlay: ''
       title: ''
       vanilla: false
       icon: ''
       layout: ''
-      view_mode: ''
       cache: 0
-      current_view_mode: ''
       skin: ''
       fx: ''
       style: ''
-      background: false
       box_caption: ''
       box_caption_custom: ''
       box_media_style: ''
-      caption: {  }
-      responsive_image_style: ''
       box_style: ''
-      image_style: ''
-      media_switch: ''
-      ratio: ''
-      thumbnail_style: ''
       _uri: ''
       breakpoints: {  }
       sizes: ''
