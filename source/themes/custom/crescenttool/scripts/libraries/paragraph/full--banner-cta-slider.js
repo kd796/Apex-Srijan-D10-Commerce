@@ -9,7 +9,7 @@
         direction: 'vertical',
         spaceBetween: 10,
         breakpoints: {
-          768: {
+          1024: {
             slidesPerView: 1,
             direction: 'horizontal',
             spaceBetween: 0
@@ -58,6 +58,11 @@
         pagination: {
           el: $swiperPagination,
           clickable: true
+        },
+        breakpoints: {
+          1024: {
+            autoHeight: true
+          }
         }
       });
     },
