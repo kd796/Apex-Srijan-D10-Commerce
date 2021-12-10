@@ -4,7 +4,9 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_components
+    - paragraphs.paragraphs_type.banner_cta_slider
     - paragraphs.paragraphs_type.content
+    - paragraphs.paragraphs_type.content_2_column
     - paragraphs.paragraphs_type.content_callout_container
     - paragraphs.paragraphs_type.embed_block
     - paragraphs.paragraphs_type.embed_iframe
@@ -32,7 +34,9 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
+      banner_cta_slider: banner_cta_slider
       content: content
+      content_2_column: content_2_column
       content_callout_container: content_callout_container
       embed_block: embed_block
       embed_iframe: embed_iframe
@@ -45,57 +49,72 @@ settings:
       tabs: tabs
     target_bundles_drag_drop:
       accordion:
-        weight: -37
+        weight: -47
         enabled: false
       accordion_item:
-        weight: -36
+        weight: -46
         enabled: false
+      banner_cta_slide:
+        weight: -27
+        enabled: false
+      banner_cta_slider:
+        enabled: true
+        weight: -45
       content:
         enabled: true
-        weight: -35
+        weight: -44
+      content_2_column:
+        enabled: true
+        weight: -43
       content_callout:
-        weight: -20
+        weight: -28
         enabled: false
       content_callout_container:
         enabled: true
-        weight: -34
+        weight: -42
       embed_block:
         enabled: true
-        weight: -33
+        weight: -41
       embed_iframe:
         enabled: true
-        weight: -32
+        weight: -40
       embed_view:
         enabled: true
-        weight: -31
+        weight: -39
       featured_content:
         enabled: true
-        weight: -30
+        weight: -38
       featured_links:
         enabled: true
-        weight: -29
+        weight: -37
       featured_media:
         enabled: true
-        weight: -28
+        weight: -36
       hero:
-        weight: -27
+        weight: -35
         enabled: false
       hero_slide:
-        weight: -26
+        weight: -34
         enabled: false
       product_slider:
-        weight: -21
+        weight: -29
         enabled: false
       pullquote:
         enabled: true
-        weight: -25
+        weight: -33
       section:
         enabled: true
-        weight: -24
+        weight: -32
+      step:
+        weight: -26
+        enabled: false
+      steps:
+        weight: -25
+        enabled: false
       tabs:
         enabled: true
-        weight: -23
+        weight: -31
       tabs_tab:
-        weight: -22
+        weight: -30
         enabled: false
 field_type: entity_reference_revisions
