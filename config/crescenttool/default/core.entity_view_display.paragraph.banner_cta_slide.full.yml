@@ -1,0 +1,96 @@
+uuid: 9948b958-5ab8-4c76-874f-07d3a78b4de7
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.full
+    - field.field.paragraph.banner_cta_slide.field_content
+    - field.field.paragraph.banner_cta_slide.field_link
+    - field.field.paragraph.banner_cta_slide.field_media_background
+    - field.field.paragraph.banner_cta_slide.field_text_pagination
+    - field.field.paragraph.banner_cta_slide.field_thumbnail_image
+    - field.field.paragraph.banner_cta_slide.field_title
+    - paragraphs.paragraphs_type.banner_cta_slide
+    - responsive_image.styles.cta_slider_16x9
+  module:
+    - blazy
+    - link
+    - text
+id: paragraph.banner_cta_slide.full
+targetEntityType: paragraph
+bundle: banner_cta_slide
+mode: full
+content:
+  field_content:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_link:
+    weight: 3
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_media_background:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: ''
+      responsive_image_style: cta_slider_16x9
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
+      view_mode: default
+      current_view_mode: full
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+    third_party_settings: {  }
+    type: blazy_media
+    region: content
+  field_title:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  field_text_pagination: true
+  field_thumbnail_image: true
+  search_api_excerpt: true

@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_components
     - node.type.page
     - paragraphs.paragraphs_type.accordion
+    - paragraphs.paragraphs_type.banner_cta_slider
     - paragraphs.paragraphs_type.content
     - paragraphs.paragraphs_type.content_2_column
     - paragraphs.paragraphs_type.content_callout_container
@@ -54,12 +55,22 @@ settings:
       content_callout_container: content_callout_container
       product_slider: product_slider
       steps: steps
+      banner_cta_slider: banner_cta_slider
     target_bundles_drag_drop:
       accordion:
         enabled: true
         weight: -41
       accordion_item:
         weight: -40
+        enabled: false
+      banner_cta_slide:
+        weight: 27
+        enabled: false
+      banner_cta_slider:
+        enabled: true
+        weight: 28
+      banner_cta_thumbnails:
+        weight: 29
         enabled: false
       content:
         enabled: true

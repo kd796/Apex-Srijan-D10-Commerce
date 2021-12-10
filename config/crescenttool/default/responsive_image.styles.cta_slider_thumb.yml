@@ -1,0 +1,19 @@
+uuid: fbb5593c-8be2-4a8f-91f6-88ddd0fd490c
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.banner_cta_slider_175x42_
+    - image.style.banner_cta_slider_210x50_
+  theme:
+    - crescenttool
+id: cta_slider_thumb
+label: 'CTA Slider Thumb'
+image_style_mappings:
+  -
+    breakpoint_id: crescenttool.large_min
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: banner_cta_slider_210x50_
+breakpoint_group: crescenttool
+fallback_image_style: banner_cta_slider_175x42_

@@ -1,0 +1,119 @@
+uuid: 9b4bf429-7b50-4993-989a-227939e7ae58
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.banner_cta_slide.field_content
+    - field.field.paragraph.banner_cta_slide.field_link
+    - field.field.paragraph.banner_cta_slide.field_media_background
+    - field.field.paragraph.banner_cta_slide.field_text_pagination
+    - field.field.paragraph.banner_cta_slide.field_thumbnail_image
+    - field.field.paragraph.banner_cta_slide.field_title
+    - paragraphs.paragraphs_type.banner_cta_slide
+    - responsive_image.styles.cta_slider_16x9
+  module:
+    - blazy
+    - field_group
+    - link
+    - text
+third_party_settings:
+  field_group:
+    group_field_content:
+      children:
+        - field_title
+        - field_content
+        - field_link
+      parent_name: ''
+      weight: 1
+      format_type: html_element
+      region: content
+      format_settings:
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+        id: ''
+        classes: component-banner-cta-slide__content-field
+        show_empty_fields: false
+      label: 'Field Content'
+id: paragraph.banner_cta_slide.default
+targetEntityType: paragraph
+bundle: banner_cta_slide
+mode: default
+content:
+  field_content:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_link:
+    weight: 4
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_media_background:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: ''
+      responsive_image_style: cta_slider_16x9
+      media_switch: ''
+      thumbnail_style: ''
+      ratio: ''
+      view_mode: default
+      current_view_mode: default
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      cache: 0
+      skin: ''
+      fx: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      box_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+    third_party_settings: {  }
+    type: blazy_media
+    region: content
+  field_title:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  field_text_pagination: true
+  field_thumbnail_image: true
+  search_api_excerpt: true

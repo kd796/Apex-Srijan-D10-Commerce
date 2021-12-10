@@ -1,0 +1,102 @@
+uuid: d1c5da99-568e-4a32-85b5-d54794af7907
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.banner_cta_slide.field_content
+    - field.field.paragraph.banner_cta_slide.field_link
+    - field.field.paragraph.banner_cta_slide.field_media_background
+    - field.field.paragraph.banner_cta_slide.field_text_pagination
+    - field.field.paragraph.banner_cta_slide.field_thumbnail_image
+    - field.field.paragraph.banner_cta_slide.field_title
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.banner_cta_slide
+  module:
+    - field_group
+    - link
+    - media
+    - text
+third_party_settings:
+  field_group:
+    group_field_content:
+      children:
+        - field_title
+        - field_content
+        - field_link
+      parent_name: ''
+      weight: 3
+      format_type: html_element
+      region: content
+      format_settings:
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+        id: ''
+        classes: component-banner-cta-slide__content-field
+        show_empty_fields: false
+      label: 'Field Content'
+id: paragraph.banner_cta_slide.preview
+targetEntityType: paragraph
+bundle: banner_cta_slide
+mode: preview
+content:
+  field_content:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_link:
+    weight: 4
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_media_background:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: thumbnail
+      image_link: ''
+    third_party_settings: {  }
+    type: media_thumbnail
+    region: content
+  field_text_pagination:
+    type: string
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_thumbnail_image:
+    type: media_thumbnail
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      image_style: thumbnail
+      image_link: ''
+    third_party_settings: {  }
+  field_title:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  search_api_excerpt: true

@@ -1,19 +1,20 @@
-uuid: 4a795246-bae5-4318-a5b0-4e5ba8e7ec6e
+uuid: 9a6d2331-3c5f-4172-8712-278a25f66a9d
 langcode: en
 status: true
 dependencies:
   module:
-    - media
     - paragraphs
-id: paragraph.field_media_items
-field_name: field_media_items
+id: paragraph.field_text_pagination
+field_name: field_text_pagination
 entity_type: paragraph
-type: entity_reference
+type: string
 settings:
-  target_type: media
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
 module: core
 locked: false
-cardinality: 6
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

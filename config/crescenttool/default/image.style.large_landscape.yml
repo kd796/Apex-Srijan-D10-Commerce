@@ -1,0 +1,18 @@
+uuid: 57c505c4-648f-4bd2-afb6-5c295fa9cc14
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: large_landscape
+label: 'Large - Landscape (960x590)'
+effects:
+  5af6c012-54f1-4325-8c6c-36ca6322d545:
+    uuid: 5af6c012-54f1-4325-8c6c-36ca6322d545
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 960
+      height: 590
+      crop_type: focal_point
+pipeline: smushit
