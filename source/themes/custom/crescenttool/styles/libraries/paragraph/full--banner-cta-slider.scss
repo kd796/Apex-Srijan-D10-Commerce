@@ -215,6 +215,20 @@
       }
     }
 
+    .field--name-field-thumbnail-image {
+      img {
+        max-height: 45px;
+      }
+
+      @include media('>=lg-plus') {
+        max-width: rem(164px);
+      }
+
+      @include media('>=xl') {
+        max-width: rem(200px);
+      }
+    }
+
     .field--name-field-text-pagination {
       text-align: center;
       font-family: $font-brand;
