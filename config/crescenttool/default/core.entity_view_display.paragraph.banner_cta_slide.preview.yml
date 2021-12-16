@@ -24,11 +24,15 @@ third_party_settings:
         - field_title
         - field_content
         - field_link
+      label: 'Field Content'
       parent_name: ''
+      region: content
       weight: 3
       format_type: html_element
-      region: content
       format_settings:
+        classes: component-banner-cta-slide__content-field
+        show_empty_fields: false
+        id: ''
         element: div
         show_label: false
         label_element: h3
@@ -36,24 +40,20 @@ third_party_settings:
         attributes: ''
         effect: none
         speed: fast
-        id: ''
-        classes: component-banner-cta-slide__content-field
-        show_empty_fields: false
-      label: 'Field Content'
 id: paragraph.banner_cta_slide.preview
 targetEntityType: paragraph
 bundle: banner_cta_slide
 mode: preview
 content:
   field_content:
-    weight: 3
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 3
     region: content
   field_link:
-    weight: 4
+    type: link
     label: hidden
     settings:
       trim_length: 80
@@ -62,41 +62,41 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link
+    weight: 4
     region: content
   field_media_background:
-    weight: 0
+    type: media_thumbnail
     label: hidden
     settings:
-      image_style: thumbnail
       image_link: ''
+      image_style: thumbnail
     third_party_settings: {  }
-    type: media_thumbnail
+    weight: 0
     region: content
   field_text_pagination:
     type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 1
     region: content
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   field_thumbnail_image:
     type: media_thumbnail
-    weight: 2
-    region: content
     label: hidden
     settings:
-      image_style: thumbnail
       image_link: ''
+      image_style: thumbnail
     third_party_settings: {  }
-  field_title:
     weight: 2
+    region: content
+  field_title:
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 2
     region: content
 hidden:
   search_api_excerpt: true

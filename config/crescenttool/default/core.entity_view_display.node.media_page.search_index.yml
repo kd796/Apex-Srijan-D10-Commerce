@@ -26,68 +26,58 @@ bundle: media_page
 mode: search_index
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 2
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 2
     region: content
   field_media:
-    weight: 0
+    type: blazy_media
     label: hidden
     settings:
-      image_style: search_teaser_261x256
-      responsive_image_style: ''
-      media_switch: ''
-      thumbnail_style: ''
-      ratio: ''
-      view_mode: search_teaser
-      image: ''
-      current_view_mode: search_index
-      background: false
       caption:
         title: '0'
         alt: '0'
       class: ''
       id: ''
+      image: ''
       link: ''
       overlay: ''
       title: ''
       vanilla: false
       icon: ''
       layout: ''
+      view_mode: search_teaser
       cache: 0
+      current_view_mode: search_index
       skin: ''
       fx: ''
       style: ''
+      background: false
       box_caption: ''
       box_caption_custom: ''
       box_media_style: ''
+      responsive_image_style: ''
       box_style: ''
+      image_style: search_teaser_261x256
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
       _uri: ''
-      grid: ''
-      grid_medium: ''
-      grid_small: ''
       breakpoints: {  }
       sizes: ''
       grid_header: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
     third_party_settings: {  }
-    type: blazy_media
+    weight: 0
     region: content
   field_preferred_listing_image:
     type: blazy_media
-    weight: 1
-    region: content
     label: hidden
     settings:
-      image_style: search_teaser_261x256
-      responsive_image_style: ''
-      media_switch: ''
-      thumbnail_style: ''
-      ratio: ''
-      view_mode: search_teaser
-      current_view_mode: search_index
-      background: false
       caption:
         title: '0'
         alt: '0'
@@ -100,22 +90,32 @@ content:
       vanilla: false
       icon: ''
       layout: ''
+      view_mode: search_teaser
       cache: 0
+      current_view_mode: search_index
       skin: ''
       fx: ''
       style: ''
+      background: false
       box_caption: ''
       box_caption_custom: ''
       box_media_style: ''
+      responsive_image_style: ''
       box_style: ''
+      image_style: search_teaser_261x256
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
       _uri: ''
-      grid: ''
-      grid_medium: ''
-      grid_small: ''
       breakpoints: {  }
       sizes: ''
       grid_header: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
     third_party_settings: {  }
+    weight: 1
+    region: content
 hidden:
   field_category: true
   field_components: true

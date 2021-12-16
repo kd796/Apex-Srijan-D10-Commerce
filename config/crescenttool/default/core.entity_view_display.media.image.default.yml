@@ -13,15 +13,9 @@ bundle: image
 mode: default
 content:
   field_media_image:
+    type: blazy
     label: visually_hidden
     settings:
-      image_style: ''
-      responsive_image_style: ''
-      media_switch: ''
-      thumbnail_style: ''
-      ratio: ''
-      current_view_mode: default
-      background: false
       caption:
         title: '0'
         alt: '0'
@@ -29,22 +23,28 @@ content:
       layout: ''
       view_mode: ''
       cache: 0
+      current_view_mode: default
       skin: ''
       fx: ''
       style: ''
+      background: false
       box_caption: ''
       box_caption_custom: ''
       box_media_style: ''
+      responsive_image_style: ''
       box_style: ''
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
       _uri: ''
-      grid: ''
-      grid_medium: ''
-      grid_small: ''
       breakpoints: {  }
       sizes: ''
       grid_header: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
     third_party_settings: {  }
-    type: blazy
     weight: 1
     region: content
 hidden:

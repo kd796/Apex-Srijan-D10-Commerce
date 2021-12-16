@@ -19,36 +19,28 @@ bundle: social_post
 mode: search_index
 content:
   body:
-    label: hidden
     type: smart_trim
-    weight: 1
+    label: hidden
     settings:
       trim_length: 160
       trim_type: chars
       trim_suffix: ''
-      wrap_class: trimmed
-      more_text: More
-      more_class: more-link
-      summary_handler: full
       wrap_output: false
+      wrap_class: trimmed
       more_link: false
+      more_class: more-link
+      more_text: More
+      summary_handler: full
       trim_options:
         text: false
         trim_zero: false
     third_party_settings: {  }
+    weight: 1
     region: content
   field_media:
-    weight: 0
+    type: blazy_media
     label: hidden
     settings:
-      image_style: search_teaser_261x256
-      responsive_image_style: ''
-      media_switch: ''
-      thumbnail_style: ''
-      ratio: ''
-      view_mode: default
-      current_view_mode: search_index
-      background: false
       caption:
         title: '0'
         alt: '0'
@@ -61,14 +53,22 @@ content:
       vanilla: false
       icon: ''
       layout: ''
+      view_mode: default
       cache: 0
+      current_view_mode: search_index
       skin: ''
       fx: ''
       style: ''
+      background: false
       box_caption: ''
       box_caption_custom: ''
       box_media_style: ''
+      responsive_image_style: ''
       box_style: ''
+      image_style: search_teaser_261x256
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
       _uri: ''
       breakpoints: {  }
       sizes: ''
@@ -77,7 +77,7 @@ content:
       grid_medium: '0'
       grid_small: '0'
     third_party_settings: {  }
-    type: blazy_media
+    weight: 0
     region: content
 hidden:
   field_post_url: true
