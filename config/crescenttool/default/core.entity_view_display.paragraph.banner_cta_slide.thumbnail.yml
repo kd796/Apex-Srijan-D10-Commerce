@@ -19,26 +19,17 @@ bundle: banner_cta_slide
 mode: thumbnail
 content:
   field_text_pagination:
-    weight: 0
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 0
     region: content
   field_thumbnail_image:
     type: blazy_media
-    weight: 1
     label: hidden
     settings:
-      image_style: ''
-      responsive_image_style: ''
-      media_switch: ''
-      thumbnail_style: ''
-      ratio: ''
-      view_mode: default
-      current_view_mode: thumbnail
-      background: false
       caption:
         title: '0'
         alt: '0'
@@ -51,14 +42,22 @@ content:
       vanilla: false
       icon: ''
       layout: ''
+      view_mode: default
       cache: 0
+      current_view_mode: thumbnail
       skin: ''
       fx: ''
       style: ''
+      background: false
       box_caption: ''
       box_caption_custom: ''
       box_media_style: ''
+      responsive_image_style: ''
       box_style: ''
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
       _uri: ''
       breakpoints: {  }
       sizes: ''
@@ -67,6 +66,7 @@ content:
       grid_medium: ''
       grid_small: ''
     third_party_settings: {  }
+    weight: 1
     region: content
 hidden:
   field_content: true

@@ -18,35 +18,35 @@ bundle: embed_block
 mode: default
 content:
   field_class_custom:
-    weight: 2
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 2
     region: content
   field_embed_block:
-    weight: 1
+    type: block_field
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: block_field
+    weight: 1
     region: content
   field_html_anchor:
-    weight: 3
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 3
     region: content
   field_style:
-    weight: 0
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 0
     region: content
 hidden:
   search_api_excerpt: true

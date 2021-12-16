@@ -23,11 +23,15 @@ third_party_settings:
         - field_title
         - field_content
         - field_link
+      label: 'Field Content'
       parent_name: ''
+      region: content
       weight: 1
       format_type: html_element
-      region: content
       format_settings:
+        classes: component-banner-cta-slide__content-field
+        show_empty_fields: false
+        id: ''
         element: div
         show_label: false
         label_element: h3
@@ -35,24 +39,20 @@ third_party_settings:
         attributes: ''
         effect: none
         speed: fast
-        id: ''
-        classes: component-banner-cta-slide__content-field
-        show_empty_fields: false
-      label: 'Field Content'
 id: paragraph.banner_cta_slide.default
 targetEntityType: paragraph
 bundle: banner_cta_slide
 mode: default
 content:
   field_content:
-    weight: 3
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 3
     region: content
   field_link:
-    weight: 4
+    type: link
     label: hidden
     settings:
       trim_length: 80
@@ -61,20 +61,12 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link
+    weight: 4
     region: content
   field_media_background:
-    weight: 0
+    type: blazy_media
     label: hidden
     settings:
-      image_style: ''
-      responsive_image_style: cta_slider_16x9
-      media_switch: ''
-      thumbnail_style: ''
-      ratio: ''
-      view_mode: default
-      current_view_mode: default
-      background: false
       caption:
         title: '0'
         alt: '0'
@@ -87,14 +79,22 @@ content:
       vanilla: false
       icon: ''
       layout: ''
+      view_mode: default
       cache: 0
+      current_view_mode: default
       skin: ''
       fx: ''
       style: ''
+      background: false
       box_caption: ''
       box_caption_custom: ''
       box_media_style: ''
+      responsive_image_style: cta_slider_16x9
       box_style: ''
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
       _uri: ''
       breakpoints: {  }
       sizes: ''
@@ -103,15 +103,15 @@ content:
       grid_medium: ''
       grid_small: ''
     third_party_settings: {  }
-    type: blazy_media
+    weight: 0
     region: content
   field_title:
-    weight: 2
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 2
     region: content
 hidden:
   field_text_pagination: true

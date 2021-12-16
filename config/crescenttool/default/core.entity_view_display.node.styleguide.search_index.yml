@@ -21,29 +21,29 @@ mode: search_index
 content:
   body:
     type: text_default
-    weight: 1
-    region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 1
+    region: content
   field_component_hero:
     type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: ''
+    third_party_settings: {  }
     weight: 0
     region: content
-    label: hidden
-    settings:
-      view_mode: full
-      link: ''
-    third_party_settings: {  }
   field_components:
     type: entity_reference_revisions_entity_view
-    weight: 2
-    region: content
     label: hidden
     settings:
       view_mode: full
       link: ''
     third_party_settings: {  }
+    weight: 2
+    region: content
 hidden:
   field_media: true
   field_meta_tags: true

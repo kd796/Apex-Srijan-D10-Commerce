@@ -2,9 +2,9 @@ uuid: f59a15c6-efaa-465b-88c4-ba0929441c81
 langcode: en
 status: open
 dependencies: {  }
+weight: 0
 open: null
 close: null
-weight: 0
 uid: 1
 template: false
 archive: false
@@ -149,9 +149,9 @@ settings:
   page_theme_name: ''
   form_title: both
   form_submit_once: false
-  form_exception_message: ''
   form_open_message: ''
   form_close_message: ''
+  form_exception_message: ''
   form_previous_submissions: true
   form_confidential: false
   form_confidential_message: ''
@@ -161,31 +161,36 @@ settings:
   form_prepopulate_source_entity: false
   form_prepopulate_source_entity_required: false
   form_prepopulate_source_entity_type: ''
-  form_reset: false
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
   form_disable_autocomplete: false
   form_novalidate: false
   form_disable_inline_errors: false
   form_required: false
-  form_unsaved: false
-  form_disable_back: false
-  form_submit_back: false
   form_autofocus: false
   form_details_toggle: false
+  form_reset: false
   form_access_denied: default
   form_access_denied_title: ''
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
+  form_attributes: {  }
   form_method: ''
   form_action: ''
-  form_attributes: {  }
   share: false
   share_node: false
   share_theme_name: ''
   share_title: true
   share_page_body_attributes: {  }
   submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
   submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
   submission_views: {  }
   submission_views_replace: {  }
   submission_user_columns: {  }
@@ -194,11 +199,6 @@ settings:
   submission_access_denied_title: ''
   submission_access_denied_message: ''
   submission_access_denied_attributes: {  }
-  submission_exception_message: ''
-  submission_locked_message: ''
-  submission_excluded_elements: {  }
-  submission_exclude_empty: false
-  submission_exclude_empty_checkbox: false
   previous_submission_message: ''
   previous_submissions_message: ''
   autofill: false
@@ -209,13 +209,13 @@ settings:
   wizard_progress_percentage: false
   wizard_progress_link: false
   wizard_progress_states: false
-  wizard_auto_forward: true
-  wizard_auto_forward_hide_next_button: false
-  wizard_keyboard: true
   wizard_start_label: ''
   wizard_preview_link: false
   wizard_confirmation: true
   wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
   wizard_track: ''
   wizard_prev_button_label: ''
   wizard_next_button_label: ''
@@ -238,9 +238,9 @@ settings:
   draft_pending_single_message: ''
   draft_pending_multiple_message: ''
   confirmation_type: url
+  confirmation_url: /form-submission-thank-you
   confirmation_title: ''
   confirmation_message: ''
-  confirmation_url: /form-submission-thank-you
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''
@@ -319,9 +319,9 @@ access:
 handlers:
   email:
     id: email
+    handler_id: email
     label: 'Email for "Become a Distributor" - US'
     notes: ''
-    handler_id: email
     status: true
     conditions:
       enabled:
@@ -335,13 +335,17 @@ handlers:
         - completed
       to_mail: csrwest@apextoolgroup.com
       to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: _default
       excluded_elements: {  }
@@ -352,18 +356,14 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   email_for_become_a_distributor_guam:
     id: email
+    handler_id: email_for_become_a_distributor_guam
     label: 'Email for "Become a Distributor" - Guam'
     notes: ''
-    handler_id: email_for_become_a_distributor_guam
     status: true
     conditions:
       enabled:
@@ -377,13 +377,17 @@ handlers:
         - completed
       to_mail: peter.reynoldson@apextoolgroup.com
       to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: _default
       excluded_elements: {  }
@@ -394,18 +398,14 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   email_for_become_a_distributor_us_virgin_islands:
     id: email
+    handler_id: email_for_become_a_distributor_us_virgin_islands
     label: 'Email for "Become a Distributor" - US Virgin Islands'
     notes: ''
-    handler_id: email_for_become_a_distributor_us_virgin_islands
     status: true
     conditions:
       enabled:
@@ -419,13 +419,17 @@ handlers:
         - completed
       to_mail: esteban.quijano@apextoolgroup.com
       to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: _default
       excluded_elements: {  }
@@ -436,18 +440,14 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   email_for_become_a_distributor_puerto_rico:
     id: email
+    handler_id: email_for_become_a_distributor_puerto_rico
     label: 'Email for "Become a Distributor" - Puerto Rico'
     notes: ''
-    handler_id: email_for_become_a_distributor_puerto_rico
     status: true
     conditions:
       enabled:
@@ -461,13 +461,17 @@ handlers:
         - completed
       to_mail: amilcar.toolpr@gmail.com
       to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: _default
       excluded_elements: {  }
@@ -478,18 +482,14 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   email_for_feedback_us:
     id: email
+    handler_id: email_for_feedback_us
     label: 'Email for "Feedback" - US'
     notes: ''
-    handler_id: email_for_feedback_us
     status: true
     conditions:
       enabled:
@@ -503,13 +503,17 @@ handlers:
         - completed
       to_mail: csrwest@apextoolgroup.com
       to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: _default
       excluded_elements: {  }
@@ -520,18 +524,14 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   email_for_feedback_guam:
     id: email
+    handler_id: email_for_feedback_guam
     label: 'Email for "Feedback" - Guam'
     notes: ''
-    handler_id: email_for_feedback_guam
     status: true
     conditions:
       enabled:
@@ -545,13 +545,17 @@ handlers:
         - completed
       to_mail: peter.reynoldson@apextoolgroup.com
       to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: _default
       excluded_elements: {  }
@@ -562,18 +566,14 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   email_for_feedback_puerto_rico:
     id: email
+    handler_id: email_for_feedback_puerto_rico
     label: 'Email for "Feedback" - Puerto Rico'
     notes: ''
-    handler_id: email_for_feedback_puerto_rico
     status: true
     conditions:
       enabled:
@@ -587,13 +587,17 @@ handlers:
         - completed
       to_mail: amilcar.toolpr@gmail.com
       to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: _default
       excluded_elements: {  }
@@ -604,18 +608,14 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   email_for_feedback_us_virgin_islands:
     id: email
+    handler_id: email_for_feedback_us_virgin_islands
     label: 'Email for "Feedback" - US Virgin Islands'
     notes: ''
-    handler_id: email_for_feedback_us_virgin_islands
     status: true
     conditions:
       enabled:
@@ -629,13 +629,17 @@ handlers:
         - completed
       to_mail: esteban.quijano@apextoolgroup.com
       to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: _default
       excluded_elements: {  }
@@ -646,18 +650,14 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   email_for_sales_us:
     id: email
+    handler_id: email_for_sales_us
     label: 'Email for "Sales" - US'
     notes: ''
-    handler_id: email_for_sales_us
     status: true
     conditions:
       enabled:
@@ -671,13 +671,17 @@ handlers:
         - completed
       to_mail: csrwest@apextoolgroup.com
       to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: _default
       excluded_elements: {  }
@@ -688,18 +692,14 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   email_for_sales_guam:
     id: email
+    handler_id: email_for_sales_guam
     label: 'Email for "Sales" - Guam'
     notes: ''
-    handler_id: email_for_sales_guam
     status: true
     conditions:
       enabled:
@@ -713,13 +713,17 @@ handlers:
         - completed
       to_mail: peter.reynoldson@apextoolgroup.com
       to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: _default
       excluded_elements: {  }
@@ -730,18 +734,14 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   email_for_sales_puerto_rico:
     id: email
+    handler_id: email_for_sales_puerto_rico
     label: 'Email for "Sales" - Puerto Rico'
     notes: ''
-    handler_id: email_for_sales_puerto_rico
     status: true
     conditions:
       enabled:
@@ -755,13 +755,17 @@ handlers:
         - completed
       to_mail: amilcar.toolpr@gmail.com
       to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: _default
       excluded_elements: {  }
@@ -772,18 +776,14 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   email_for_sales_us_virgin_islands:
     id: email
+    handler_id: email_for_sales_us_virgin_islands
     label: 'Email for "Sales" - US Virgin Islands'
     notes: ''
-    handler_id: email_for_sales_us_virgin_islands
     status: true
     conditions:
       enabled:
@@ -797,13 +797,17 @@ handlers:
         - completed
       to_mail: esteban.quijano@apextoolgroup.com
       to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: _default
       excluded_elements: {  }
@@ -814,18 +818,14 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   email_for_technical_all:
     id: email
+    handler_id: email_for_technical_all
     label: 'Email for "Technical" - All'
     notes: ''
-    handler_id: email_for_technical_all
     status: true
     conditions:
       enabled:
@@ -837,13 +837,17 @@ handlers:
         - completed
       to_mail: TechnicalQuestions@ApexToolGroup.com
       to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: _default
       excluded_elements: {  }
@@ -854,18 +858,14 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   email_for_support_all:
     id: email
+    handler_id: email_for_support_all
     label: 'Email for "Support" - All'
     notes: ''
-    handler_id: email_for_support_all
     status: true
     conditions:
       enabled:
@@ -882,13 +882,17 @@ handlers:
         - completed
       to_mail: Streetteam.help@apextoolgroup.com
       to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: _default
       excluded_elements: {  }
@@ -899,18 +903,14 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
   email_for_warranty_all:
     id: email
+    handler_id: email_for_warranty_all
     label: 'Email for "Warranty" - All'
     notes: ''
-    handler_id: email_for_warranty_all
     status: true
     conditions:
       enabled:
@@ -922,13 +922,17 @@ handlers:
         - completed
       to_mail: customercare@apextoolgroup.com
       to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: _default
       body: _default
       excluded_elements: {  }
@@ -939,11 +943,7 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
 variants: {  }

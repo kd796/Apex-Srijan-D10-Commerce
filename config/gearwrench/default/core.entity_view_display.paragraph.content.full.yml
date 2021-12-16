@@ -26,16 +26,14 @@ bundle: content
 mode: full
 content:
   field_content:
-    weight: 2
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 2
     region: content
   field_link:
     type: linkit
-    weight: 3
-    region: content
     label: hidden
     settings:
       trim_length: 80
@@ -45,58 +43,15 @@ content:
       target: '0'
       linkit_profile: default
     third_party_settings: {  }
+    weight: 3
+    region: content
   field_media_item:
     type: blazy_media
-    weight: 1
-    region: content
     label: hidden
     settings:
-      image_style: small
-      thumbnail_style: ''
-      responsive_image_style: ''
-      media_switch: ''
-      ratio: ''
-      sizes: ''
-      breakpoints:
-        xs:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-        sm:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-        md:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-        lg:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-        xl:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-      current_view_mode: full
-      background: false
       caption:
         title: '0'
         alt: '0'
-      icon: ''
-      layout: ''
-      view_mode: ''
-      cache: 0
-      skin: ''
-      style: ''
-      box_caption: ''
-      box_caption_custom: ''
-      box_style: ''
-      box_media_style: ''
-      grid: '0'
-      grid_header: ''
-      grid_medium: '0'
-      grid_small: '0'
       class: ''
       id: ''
       image: ''
@@ -104,17 +59,62 @@ content:
       overlay: ''
       title: ''
       vanilla: false
+      icon: ''
+      layout: ''
+      view_mode: ''
+      cache: 0
+      current_view_mode: full
+      skin: ''
       fx: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      responsive_image_style: ''
+      box_style: ''
+      image_style: small
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
       _uri: ''
+      breakpoints:
+        xs:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        sm:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        md:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        lg:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        xl:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+      sizes: ''
+      grid_header: ''
+      grid: '0'
+      grid_medium: '0'
+      grid_small: '0'
     third_party_settings: {  }
+    weight: 1
+    region: content
   field_title:
     type: string
-    weight: 0
-    region: content
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   field_class_custom: true
   field_html_anchor: true

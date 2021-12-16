@@ -30,11 +30,14 @@ $site_environment = 'local';
 
 if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
   $site_environment = $_ENV['AH_SITE_ENVIRONMENT'];
-} elseif (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
-    $site_environment = $_ENV['PANTHEON_ENVIRONMENT'];
-} elseif (isset($_ENV['SITE_ENVIRONMENT'])) {
+}
+elseif (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
+  $site_environment = $_ENV['PANTHEON_ENVIRONMENT'];
+}
+elseif (isset($_ENV['SITE_ENVIRONMENT'])) {
   $site_environment = $_ENV['SITE_ENVIRONMENT'];
-} elseif (isset($_SERVER['SITE_ENVIRONMENT'])) {
+}
+elseif (isset($_SERVER['SITE_ENVIRONMENT'])) {
   $site_environment = $_SERVER['SITE_ENVIRONMENT'];
 }
 

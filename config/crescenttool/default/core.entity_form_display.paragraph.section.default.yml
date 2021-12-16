@@ -27,42 +27,45 @@ third_party_settings:
         - field_html_anchor
         - field_background_color
         - field_image_background
+      label: Settings
+      region: content
       parent_name: ''
       weight: 0
       format_type: settings
       format_settings:
         id: ''
         classes: ''
-      label: Settings
-      region: content
 id: paragraph.section.default
 targetEntityType: paragraph
 bundle: section
 mode: default
 content:
   field_background_color:
+    type: color_field_widget_box
     weight: 10
+    region: content
     settings:
       default_colors: '#ffffff,#f5f4f4,#e1dfdf,#d7d5d5,#cecaca,#b0abab,#ca3604'
     third_party_settings: {  }
-    type: color_field_widget_box
-    region: content
   field_class_custom:
+    type: string_textfield
     weight: 8
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_components:
+    type: paragraphs
     weight: 2
+    region: content
     settings:
       title: Component
       title_plural: Components
       edit_mode: closed
       closed_mode: preview
       autocollapse: all
+      closed_mode_threshold: 0
       add_mode: dropdown
       form_display_mode: default
       default_paragraph_type: _none
@@ -70,34 +73,31 @@ content:
         add_above: '0'
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
-      closed_mode_threshold: 0
     third_party_settings: {  }
-    type: paragraphs
-    region: content
   field_html_anchor:
+    type: string_textfield
     weight: 9
+    region: content
     settings:
       size: 60
       placeholder: 'Example: find-out-more'
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_image_background:
+    type: image_focal_point
     weight: 11
+    region: content
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
       preview_link: true
       offsets: '50,50'
     third_party_settings: {  }
-    type: image_focal_point
-    region: content
   field_style:
+    type: options_select
     weight: 7
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_title:
     type: string_textfield
     weight: 1

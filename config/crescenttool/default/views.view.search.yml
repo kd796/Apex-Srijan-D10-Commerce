@@ -18,93 +18,23 @@ base_table: search_api_index_acquia_search_index_products
 base_field: search_api_id
 display:
   default:
-    display_plugin: default
     id: default
     display_title: Master
+    display_plugin: default
     position: 0
     display_options:
-      access:
-        type: none
-        options: {  }
-      cache:
-        type: tag
-        options: {  }
-      query:
-        type: views_query
-        options:
-          bypass_access: false
-          skip_access: false
-          preserve_facet_query_args: false
-      exposed_form:
-        type: bef
-        options:
-          submit_button: Search
-          reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-          text_input_required: 'Type your search in the search box to see results.'
-          text_input_required_format: basic_html
-          bef:
-            general:
-              autosubmit: false
-              autosubmit_exclude_textfield: false
-              autosubmit_textfield_delay: 500
-              autosubmit_hide: true
-              input_required: true
-              allow_secondary: false
-              secondary_label: 'Advanced options'
-              secondary_open: false
-            filter:
-              search_api_fulltext:
-                plugin_id: default
-                advanced:
-                  rewrite:
-                    filter_rewrite_values: ''
-                  collapsible: false
-                  is_secondary: false
-      pager:
-        type: full
-        options:
-          items_per_page: 8
-          offset: 0
-          id: 0
-          total_pages: null
-          tags:
-            previous: '<'
-            next: '>'
-            first: ''
-            last: ''
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
-          quantity: 5
-      style:
-        type: default
-      row:
-        type: search_api
-        options:
-          view_modes:
-            'entity:node':
-              product: search_index
+      title: Search
       fields:
         body:
+          id: body
           table: search_api_index_acquia_search_index_products
           field: body
-          id: body
-          entity_type: null
-          entity_field: null
-          plugin_id: search_api_field
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: null
+          entity_field: null
+          plugin_id: search_api_field
           label: ''
           exclude: false
           alter:
@@ -166,142 +96,65 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-      filters:
-        search_api_fulltext:
-          id: search_api_fulltext
-          table: search_api_index_acquia_search_index_products
-          field: search_api_fulltext
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: and
-          value: ''
-          group: 1
-          exposed: true
+      pager:
+        type: full
+        options:
+          offset: 0
+          items_per_page: 8
+          total_pages: null
+          id: 0
+          tags:
+            next: '>'
+            previous: '<'
+            first: ''
+            last: ''
           expose:
-            operator_id: search_api_fulltext_op
-            label: 'Fulltext search'
-            description: ''
-            use_operator: false
-            operator: search_api_fulltext_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: search
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              site_administrator: '0'
-              content_editor: '0'
-            placeholder: ''
-            expose_fields: false
-            searched_fields_id: search_api_fulltext_searched_fields
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          parse_mode: terms
-          min_length: null
-          fields: {  }
-          plugin_id: search_api_fulltext
-        status_1:
-          id: status_1
-          table: search_api_index_acquia_search_index_products
-          field: status_1
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: '='
-          value: '1'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: search_api_boolean
-        status:
-          id: status
-          table: search_api_index_acquia_search_index_products
-          field: status
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: '='
-          value: '1'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: search_api_boolean
-      sorts: {  }
-      title: Search
-      header: {  }
-      footer:
-        area:
-          id: area
-          table: views
-          field: area
-          plugin_id: text
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          quantity: 5
+      exposed_form:
+        type: bef
+        options:
+          submit_button: Search
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+          text_input_required: 'Type your search in the search box to see results.'
+          text_input_required_format: basic_html
+          bef:
+            general:
+              autosubmit: false
+              autosubmit_exclude_textfield: false
+              autosubmit_textfield_delay: 500
+              autosubmit_hide: true
+              input_required: true
+              allow_secondary: false
+              secondary_label: 'Advanced options'
+              secondary_open: false
+            filter:
+              search_api_fulltext:
+                plugin_id: default
+                advanced:
+                  rewrite:
+                    filter_rewrite_values: ''
+                  collapsible: false
+                  is_secondary: false
+      access:
+        type: none
+        options: {  }
+      cache:
+        type: tag
+        options: {  }
       empty: {  }
-      relationships: {  }
+      sorts: {  }
       arguments:
         search_api_fulltext:
           id: search_api_fulltext
@@ -310,6 +163,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_fulltext
           default_action: ignore
           exception:
             value: all
@@ -334,31 +188,8 @@ display:
           break_phrase: false
           not: false
           parse_mode: terms
-          fields: {  }
           conjunction: AND
-          plugin_id: search_api_fulltext
-      display_extenders: {  }
-      use_ajax: false
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - url.query_args
-        - 'user.node_grants:view'
-      tags:
-        - 'config:field.storage.node.body'
-        - 'config:search_api.index.acquia_search_index_products'
-  page_1:
-    display_plugin: page
-    id: page_1
-    display_title: Page
-    position: 1
-    display_options:
-      display_extenders: {  }
-      path: search
-      exposed_block: false
+          fields: {  }
       filters:
         search_api_fulltext:
           id: search_api_fulltext
@@ -367,13 +198,14 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_fulltext
           operator: and
           value: ''
           group: 1
           exposed: true
           expose:
             operator_id: search_api_fulltext_op
-            label: ''
+            label: 'Fulltext search'
             description: ''
             use_operator: false
             operator: search_api_fulltext_op
@@ -389,8 +221,8 @@ display:
               administrator: '0'
               site_administrator: '0'
               content_editor: '0'
-            placeholder: 'Search CrescentTool.com'
             expose_fields: false
+            placeholder: ''
             searched_fields_id: search_api_fulltext_searched_fields
           is_grouped: false
           group_info:
@@ -407,7 +239,6 @@ display:
           parse_mode: terms
           min_length: null
           fields: {  }
-          plugin_id: search_api_fulltext
         status_1:
           id: status_1
           table: search_api_index_acquia_search_index_products
@@ -415,6 +246,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: search_api_boolean
           operator: '='
           value: '1'
           group: 1
@@ -445,16 +277,181 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        status:
+          id: status
+          table: search_api_index_acquia_search_index_products
+          field: status
+          relationship: none
+          group_type: group
+          admin_label: ''
           plugin_id: search_api_boolean
+          operator: '='
+          value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      style:
+        type: default
+      row:
+        type: search_api
+        options:
+          view_modes:
+            'entity:node':
+              product: search_index
+      query:
+        type: views_query
+        options:
+          bypass_access: false
+          skip_access: false
+          preserve_facet_query_args: false
+      relationships: {  }
+      use_ajax: false
+      header: {  }
+      footer:
+        area:
+          id: area
+          table: views
+          field: area
+          plugin_id: text
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'user.node_grants:view'
+      tags:
+        - 'config:field.storage.node.body'
+        - 'config:search_api.index.acquia_search_index_products'
+  page_1:
+    id: page_1
+    display_title: Page
+    display_plugin: page
+    position: 1
+    display_options:
+      filters:
+        search_api_fulltext:
+          id: search_api_fulltext
+          table: search_api_index_acquia_search_index_products
+          field: search_api_fulltext
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api_fulltext
+          operator: and
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: search_api_fulltext_op
+            label: ''
+            description: ''
+            use_operator: false
+            operator: search_api_fulltext_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: search
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              site_administrator: '0'
+              content_editor: '0'
+            expose_fields: false
+            placeholder: 'Search CrescentTool.com'
+            searched_fields_id: search_api_fulltext_searched_fields
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          parse_mode: terms
+          min_length: null
+          fields: {  }
+        status_1:
+          id: status_1
+          table: search_api_index_acquia_search_index_products
+          field: status_1
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api_boolean
+          operator: '='
+          value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
       defaults:
         filters: false
         filter_groups: false
         header: false
         footer: false
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
       header:
         result:
           id: result
@@ -463,10 +460,13 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: result
           empty: true
           content: "<div class=\"view-search__header-results\">Your search returned @total results.</div>\r\n<div class=\"view-search__header-product-results\">Products (@total)</div>"
-          plugin_id: result
       footer: {  }
+      exposed_block: false
+      display_extenders: {  }
+      path: search
     cache_metadata:
       max-age: -1
       contexts:

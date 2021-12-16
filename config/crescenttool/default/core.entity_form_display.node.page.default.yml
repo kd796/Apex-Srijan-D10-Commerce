@@ -24,46 +24,46 @@ third_party_settings:
       children:
         - group_main
         - group_content
+      label: Tabs
+      region: content
       parent_name: ''
       weight: 0
       format_type: tabs
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         direction: horizontal
-      label: Tabs
-      region: content
     group_main:
       children:
         - title
         - field_media
         - body
         - field_link
+      label: Main
+      region: content
       parent_name: group_tabs
       weight: 16
       format_type: tab
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         formatter: closed
         description: ''
         required_fields: true
-      label: Main
-      region: content
     group_content:
       children:
         - field_components
+      label: Content
+      region: content
       parent_name: group_tabs
       weight: 17
       format_type: tab
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         formatter: closed
         description: ''
         required_fields: true
-      label: Content
-      region: content
 id: node.page.default
 targetEntityType: node
 bundle: page
@@ -88,6 +88,7 @@ content:
   field_components:
     type: paragraphs
     weight: 10
+    region: content
     settings:
       title: Component
       title_plural: Components
@@ -105,29 +106,28 @@ content:
     third_party_settings:
       limited_field_widgets:
         limit_values: '0'
-    region: content
   field_link:
+    type: link_default
     weight: 14
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
-    type: link_default
-    region: content
   field_media:
+    type: media_library_widget
     weight: 12
+    region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
-    type: media_library_widget
-    region: content
   field_meta_tags:
+    type: metatag_firehose
     weight: 8
+    region: content
     settings:
       sidebar: true
     third_party_settings: {  }
-    type: metatag_firehose
-    region: content
   langcode:
     type: language_select
     weight: 2
@@ -143,24 +143,24 @@ content:
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 3
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 7
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 4
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -176,9 +176,9 @@ content:
     region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
   url_redirects:
     weight: 6

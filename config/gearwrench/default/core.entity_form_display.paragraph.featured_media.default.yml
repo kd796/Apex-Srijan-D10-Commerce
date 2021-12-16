@@ -20,6 +20,8 @@ third_party_settings:
         - field_html_anchor
         - field_class_custom
         - status
+      label: Settings
+      region: content
       parent_name: ''
       weight: 0
       format_type: settings
@@ -31,8 +33,6 @@ third_party_settings:
           administrator: 0
         id: ''
         classes: ''
-      label: Settings
-      region: content
 _core:
   default_config_hash: gmfXKhybgF4Mm0Q3rO8byqX1bq6rMCgpNe_ZU2j6ZZA
 id: paragraph.featured_media.default
@@ -41,34 +41,34 @@ bundle: featured_media
 mode: default
 content:
   field_class_custom:
+    type: string_textfield
     weight: 7
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_html_anchor:
+    type: string_textfield
     weight: 6
+    region: content
     settings:
       size: 60
       placeholder: 'Example: find-out-more'
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_layout:
+    type: options_select
     weight: 5
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_media_items:
     type: media_library_widget
     weight: 1
+    region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
-    region: content
   status:
     type: boolean_checkbox
     weight: 8

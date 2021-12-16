@@ -2,28 +2,28 @@ uuid: 61e327a9-0cb1-4dee-8f15-bbb4bd17718c
 langcode: en
 status: true
 dependencies:
-  enforced:
-    module:
-      - media
   module:
     - file
     - image
     - media
+  enforced:
+    module:
+      - media
 id: media.field_media_image
 field_name: field_media_image
 entity_type: media
 type: image
 settings:
+  target_type: file
+  display_field: false
+  display_default: false
+  uri_scheme: public
   default_image:
     uuid: null
     alt: ''
     title: ''
     width: null
     height: null
-  target_type: file
-  display_field: false
-  display_default: false
-  uri_scheme: public
 module: image
 locked: false
 cardinality: 1
