@@ -16,13 +16,13 @@ plugin: product_buy_now_sticky
 settings:
   id: product_buy_now_sticky
   label: 'Product: Buy Now Sticky'
-  provider: crescenttool_core
   label_display: '0'
+  provider: crescenttool_core
 visibility:
-  node_type:
-    id: node_type
-    bundles:
-      product: product
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
     negate: false
     context_mapping:
       node: '@node.node_route_context:node'
+    bundles:
+      product: product

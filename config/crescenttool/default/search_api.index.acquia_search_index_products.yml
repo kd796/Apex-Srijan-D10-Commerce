@@ -2,48 +2,42 @@ uuid: 5dd3c17c-c881-4661-ad14-4991ed94b977
 langcode: en
 status: true
 dependencies:
-  module:
-    - acquia_search
-    - search_api_solr
-    - node
-    - taxonomy
-    - media
-    - search_api
   config:
+    - field.storage.media.field_media_image
+    - field.storage.node.field_product_images
     - field.storage.node.body
+    - field.storage.node.field_product_classifications
+    - field.storage.taxonomy_term.field_classification_id
+    - field.storage.node.field_product_specifications
     - field.storage.node.field_featured_product
     - field.storage.node.field_keywords
     - field.storage.node.field_long_description
-    - field.storage.node.field_new_product
-    - field.storage.node.field_product_classifications
-    - field.storage.taxonomy_term.field_classification_id
-    - field.storage.media.field_media_image
-    - field.storage.node.field_product_images
-    - field.storage.node.field_product_specifications
-    - field.storage.node.field_set
     - field.storage.node.field_set_components
+    - field.storage.node.field_new_product
+    - field.storage.node.field_set
     - search_api.server.acquia_search_server
     - core.entity_view_mode.node.full
+  module:
+    - search_api_solr
+    - media
+    - taxonomy
+    - node
+    - search_api
 third_party_settings:
-  acquia_search:
-    use_edismax: 1
   search_api_solr:
     finalize: false
     commit_before_finalize: false
     commit_after_finalize: false
-    multilingual:
-      limit_to_content_language: false
-      include_language_independent: true
     highlighter:
       maxAnalyzedChars: 51200
       fragmenter: gap
+      usePhraseHighlighter: true
+      highlightMultiTerm: true
+      preserveMulti: false
       regex:
         slop: 0.5
         pattern: blank
         maxAnalyzedChars: 10000
-      usePhraseHighlighter: true
-      highlightMultiTerm: true
-      preserveMulti: false
       highlight:
         mergeContiguous: false
         requireFieldMatch: false
@@ -67,6 +61,9 @@ third_party_settings:
       index_prefix: ''
       collection: ''
       timezone: ''
+    multilingual:
+      limit_to_content_language: false
+      include_language_independent: true
 id: acquia_search_index_products
 name: 'Acquia Search Index - Products'
 description: ''
@@ -283,17 +280,20 @@ processor_settings:
       preprocess_query: -30
   entity_status: {  }
   highlight:
-    highlight: server
-    highlight_partial: false
+    weights:
+      postprocess_query: 0
+    prefix: '<strong>'
+    suffix: '</strong>'
     excerpt: true
     excerpt_length: 400
     exclude_fields:
       - title
-    prefix: '<strong>'
-    suffix: '</strong>'
-    weights:
-      postprocess_query: 0
+    highlight: server
+    highlight_partial: false
   html_filter:
+    weights:
+      preprocess_index: -15
+      preprocess_query: -15
     all_fields: false
     fields:
       - alt
@@ -320,25 +320,22 @@ processor_settings:
       h3: 2
       strong: 2
       u: 1
-    weights:
-      preprocess_index: -15
-      preprocess_query: -15
   language_with_fallback: {  }
   rendered_item: {  }
   solr_date_range:
     weights:
       preprocess_index: 0
   type_boost:
+    weights:
+      preprocess_index: 0
     boosts:
       'entity:node':
         datasource_boost: !!float 1
-    weights:
-      preprocess_index: 0
 tracker_settings:
   default:
     indexing_order: fifo
 options:
-  index_directly: false
   cron_limit: 50
+  index_directly: true
   track_changes_in_references: true
 server: acquia_search_server

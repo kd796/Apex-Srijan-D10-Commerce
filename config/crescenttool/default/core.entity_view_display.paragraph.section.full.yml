@@ -10,6 +10,7 @@ dependencies:
     - field.field.paragraph.section.field_html_anchor
     - field.field.paragraph.section.field_image_background
     - field.field.paragraph.section.field_style
+    - field.field.paragraph.section.field_title
     - image.style.large_1x1
     - paragraphs.paragraphs_type.section
   module:
@@ -21,18 +22,16 @@ bundle: section
 mode: full
 content:
   field_components:
-    weight: 0
+    type: entity_reference_revisions_entity_view
     label: hidden
     settings:
       view_mode: full
       link: ''
     third_party_settings: {  }
-    type: entity_reference_revisions_entity_view
+    weight: 1
     region: content
   field_image_background:
     type: bg_image_formatter
-    weight: 1
-    region: content
     label: hidden
     settings:
       image_style: large_1x1
@@ -46,14 +45,23 @@ content:
         bg_image_repeat: '0'
         bg_image_background_size: ''
         bg_image_media_query: all
-        bg_image_path_format: relative
-        bg_image_background_size_ie8: 0
         bg_image_important: 0
+        bg_image_background_size_ie8: 0
+        bg_image_path_format: relative
     third_party_settings: {  }
+    weight: 2
+    region: content
+  field_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   field_background_color: true
   field_class_custom: true
   field_html_anchor: true
   field_style: true
-  field_title: true
   search_api_excerpt: true

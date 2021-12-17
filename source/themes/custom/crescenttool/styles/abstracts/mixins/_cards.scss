@@ -105,6 +105,10 @@ $radius-desktop: rem(25px);
         @include type-header(h4, black, included);
         margin-top: 0;
 
+        @include media('<md') {
+          font-size:  rem(13px);
+          line-height: rem(20px);
+        }
       }
     }
 

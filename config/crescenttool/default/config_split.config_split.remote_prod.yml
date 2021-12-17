@@ -5,6 +5,7 @@ dependencies: {  }
 id: remote_prod
 label: 'Remote - Prod'
 description: ''
+weight: 0
 folder: ../config/crescenttool/remote_prod
 module:
   acquia_connector: 0
@@ -16,7 +17,7 @@ blacklist:
   - purge.logger_channels
 graylist:
   - crescenttool_core.settings
-  - google_tag.container.google_tag_59x3zt8
+  - google_tag.container.google_tag_mzk37hc
   - google_tag.container.primary
   - purge.logger_channels
   - purge.plugins
@@ -24,4 +25,3 @@ graylist:
   - purge_queuer_coretags.settings
 graylist_dependents: true
 graylist_skip_equal: true
-weight: 0

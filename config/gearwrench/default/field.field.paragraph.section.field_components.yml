@@ -32,7 +32,6 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       content: content
       content_callout_container: content_callout_container
@@ -45,6 +44,7 @@ settings:
       pullquote: pullquote
       section: section
       tabs: tabs
+    negate: 0
     target_bundles_drag_drop:
       accordion:
         weight: -37
@@ -53,32 +53,32 @@ settings:
         weight: -36
         enabled: false
       content:
-        enabled: true
         weight: -35
+        enabled: true
       content_callout:
         weight: -20
         enabled: false
       content_callout_container:
-        enabled: true
         weight: -34
+        enabled: true
       embed_block:
-        enabled: true
         weight: -33
+        enabled: true
       embed_iframe:
-        enabled: true
         weight: -32
+        enabled: true
       embed_view:
-        enabled: true
         weight: -31
+        enabled: true
       featured_content:
-        enabled: true
         weight: -30
+        enabled: true
       featured_links:
-        enabled: true
         weight: -29
-      featured_media:
         enabled: true
+      featured_media:
         weight: -28
+        enabled: true
       hero:
         weight: -27
         enabled: false
@@ -89,14 +89,14 @@ settings:
         weight: -21
         enabled: false
       pullquote:
-        enabled: true
         weight: -25
+        enabled: true
       section:
-        enabled: true
         weight: -24
-      tabs:
         enabled: true
+      tabs:
         weight: -23
+        enabled: true
       tabs_tab:
         weight: -22
         enabled: false

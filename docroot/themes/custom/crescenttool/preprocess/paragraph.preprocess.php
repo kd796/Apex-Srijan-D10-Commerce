@@ -16,16 +16,19 @@
  * @see crescenttool_preprocess_paragraph__step__full()
  * @see crescenttool_preprocess_paragraph__embed_iframe__full()
  * @see crescenttool_preprocess_paragraph__featured_media__full()
+ * @see crescenttool_preprocess_paragraph__pullquote__full()
  * @see crescenttool_preprocess_paragraph__section__full()
  * @see crescenttool_preprocess_paragraph__tabs__full()
  * @see crescenttool_preprocess_paragraph__tabs_tab__full()
  * @see crescenttool_preprocess_paragraph__product_slider__full()
+ * @see crescenttool_preprocess_paragraph__banner_cta_slider__full()
  */
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Url;
 use Drupal\paragraphs\ParagraphInterface;
+use Drupal\paragraphs\Entity\Paragraph;
 
 /**
  * Implements hook_preprocess_paragraph().
@@ -573,4 +576,24 @@ function crescenttool_preprocess_paragraph__product_slider__full(&$variables) {
   }
   // Remove field render array.
   unset($variables['content']['field_products']);
+}
+
+/**
+ * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for banner cta slider, full.
+ */
+function crescenttool_preprocess_paragraph__banner_cta_slider__full(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $base_class = $variables['component_base_class'];
+
+  $field_components = $variables['content']['field_components'];
+  $thumbnails = $field_components;
+
+  foreach ($thumbnails as $idx => $thumb_slide) {
+    if (is_int($idx) && !empty($thumb_slide['#paragraph'])) {
+      $thumbnails[$idx]['#view_mode'] = 'thumbnail';
+    }
+  }
+
+  $variables['thumbnails'] = $thumbnails;
 }

@@ -235,7 +235,6 @@
         var cleanedRadioArray = [];
         var checkedFilters = $('input[type=checkbox]:checked');
         var checkedRadios = $('input[type=radio]:checked');
-        var setText = '';
 
         // Loop through all checked filters
         for (var indx = 0; indx < checkedFilters.length; indx++) {

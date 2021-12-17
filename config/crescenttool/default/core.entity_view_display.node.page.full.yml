@@ -24,13 +24,14 @@ third_party_settings:
       children:
         - group_left
         - group_right
+      label: 'Page Heading'
       parent_name: ''
+      region: content
       weight: 0
       format_type: html_element
-      region: content
       format_settings:
-        id: ''
         classes: page-heading
+        id: ''
         element: div
         show_label: false
         label_element: h3
@@ -38,17 +39,17 @@ third_party_settings:
         attributes: ''
         effect: none
         speed: fast
-      label: 'Page Heading'
     group_left:
       children:
         - body
+      label: Left
       parent_name: group_page_heading
+      region: content
       weight: 7
       format_type: html_element
-      region: content
       format_settings:
-        id: ''
         classes: heading-left
+        id: ''
         element: div
         show_label: false
         label_element: h3
@@ -56,17 +57,17 @@ third_party_settings:
         attributes: ''
         effect: none
         speed: fast
-      label: Left
     group_right:
       children:
         - field_link
+      label: Right
       parent_name: group_page_heading
+      region: content
       weight: 8
       format_type: html_element
-      region: content
       format_settings:
-        id: ''
         classes: heading-right
+        id: ''
         element: div
         show_label: false
         label_element: h3
@@ -74,32 +75,29 @@ third_party_settings:
         attributes: ''
         effect: none
         speed: fast
-      label: Right
 id: node.page.full
 targetEntityType: node
 bundle: page
 mode: full
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 1
-    region: content
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 1
+    region: content
   field_components:
     type: entity_reference_revisions_entity_view
-    weight: 4
     label: hidden
     settings:
       view_mode: full
       link: ''
     third_party_settings: {  }
+    weight: 4
     region: content
   field_link:
     type: link
-    weight: 2
-    region: content
     label: hidden
     settings:
       trim_length: 80
@@ -108,48 +106,50 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
+    weight: 2
+    region: content
   field_media:
     type: blazy_media
-    weight: 3
-    region: content
     label: hidden
     settings:
-      image_style: ''
-      responsive_image_style: short_hero
-      media_switch: ''
-      thumbnail_style: ''
-      ratio: ''
-      view_mode: default
-      image: ''
-      current_view_mode: full
-      background: false
       caption:
         title: '0'
         alt: '0'
       class: ''
       id: ''
+      image: ''
       link: ''
       overlay: ''
       title: ''
       vanilla: false
       icon: ''
       layout: ''
+      view_mode: default
       cache: 0
+      current_view_mode: full
       skin: ''
       fx: ''
       style: ''
+      background: false
       box_caption: ''
       box_caption_custom: ''
       box_media_style: ''
+      responsive_image_style: short_hero
       box_style: ''
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
       _uri: ''
-      grid: ''
-      grid_medium: ''
-      grid_small: ''
       breakpoints: {  }
       sizes: ''
       grid_header: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
     third_party_settings: {  }
+    weight: 3
+    region: content
 hidden:
   field_meta_tags: true
   langcode: true

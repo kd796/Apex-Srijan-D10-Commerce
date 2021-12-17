@@ -19,24 +19,16 @@ bundle: product_trade
 mode: full
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 0
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 0
     region: content
   field_media:
-    weight: 1
+    type: blazy_media
     label: hidden
     settings:
-      image_style: ''
-      responsive_image_style: short_hero
-      media_switch: ''
-      thumbnail_style: ''
-      ratio: ''
-      view_mode: default
-      current_view_mode: full
-      background: false
       caption:
         title: '0'
         alt: '0'
@@ -49,14 +41,22 @@ content:
       vanilla: false
       icon: ''
       layout: ''
+      view_mode: default
       cache: 0
+      current_view_mode: full
       skin: ''
       fx: ''
       style: ''
+      background: false
       box_caption: ''
       box_caption_custom: ''
       box_media_style: ''
+      responsive_image_style: short_hero
       box_style: ''
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
       _uri: ''
       breakpoints: {  }
       sizes: ''
@@ -65,7 +65,7 @@ content:
       grid_medium: ''
       grid_small: ''
     third_party_settings: {  }
-    type: blazy_media
+    weight: 1
     region: content
 hidden:
   field_trade: true

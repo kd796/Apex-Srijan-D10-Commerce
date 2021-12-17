@@ -1,0 +1,29 @@
+uuid: 755e44ec-2cff-47da-bdc1-d04767ee630c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content
+    - paragraphs.paragraphs_type.banner_cta_slide
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    limited_html: limited_html
+    full_html: '0'
+    basic_html: '0'
+    restricted_html: '0'
+    plain_text: '0'
+id: paragraph.banner_cta_slide.field_content
+field_name: field_content
+entity_type: paragraph
+bundle: banner_cta_slide
+label: Content
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

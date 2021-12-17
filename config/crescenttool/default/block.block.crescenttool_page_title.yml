@@ -16,21 +16,21 @@ plugin: page_title_block
 settings:
   id: page_title_block
   label: 'Page title'
-  provider: core
   label_display: '0'
+  provider: core
 visibility:
-  node_type:
-    id: node_type
+  request_path:
+    id: request_path
+    negate: true
+    pages: /where-to-buy
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
     bundles:
       landing_page: landing_page
       page: page
       product_brand: product_brand
       product_category: product_category
       product_listing: product_listing
-    negate: false
-    context_mapping:
-      node: '@node.node_route_context:node'
-  request_path:
-    id: request_path
-    pages: /where-to-buy
-    negate: true

@@ -18,17 +18,9 @@ bundle: product_listing
 mode: tile
 content:
   field_media:
-    weight: 0
+    type: blazy_media
     label: hidden
     settings:
-      image_style: ''
-      responsive_image_style: teaser
-      media_switch: ''
-      thumbnail_style: ''
-      ratio: ''
-      view_mode: default
-      current_view_mode: tile
-      background: false
       caption:
         title: '0'
         alt: '0'
@@ -41,23 +33,31 @@ content:
       vanilla: false
       icon: ''
       layout: ''
+      view_mode: default
       cache: 0
+      current_view_mode: tile
       skin: ''
       fx: ''
       style: ''
+      background: false
       box_caption: ''
       box_caption_custom: ''
       box_media_style: ''
+      responsive_image_style: teaser
       box_style: ''
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
       _uri: ''
-      grid: ''
-      grid_medium: ''
-      grid_small: ''
       breakpoints: {  }
       sizes: ''
       grid_header: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
     third_party_settings: {  }
-    type: blazy_media
+    weight: 0
     region: content
 hidden:
   body: true

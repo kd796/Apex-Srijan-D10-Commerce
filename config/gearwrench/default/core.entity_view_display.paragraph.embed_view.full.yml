@@ -20,8 +20,6 @@ mode: full
 content:
   field_embed_view:
     type: viewsreference_formatter
-    weight: 0
-    region: content
     label: hidden
     settings:
       plugin_types:
@@ -30,6 +28,8 @@ content:
         page: 0
         feed: 0
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   field_class_custom: true
   field_html_anchor: true
