@@ -1,0 +1,22 @@
+version: "2.1"
+
+services:
+  mail:
+    hostname: mail
+    image: mailhog/mailhog
+    expose:
+      - "80"
+    environment:
+      - MH_API_BIND_ADDR=0.0.0.0:80
+      - MH_UI_BIND_ADDR=0.0.0.0:80
+    labels:
+      - io.docksal.virtual-host=webmail.${VIRTUAL_HOST}
+    user: root
+  web:
+    labels:
+      - io.docksal.virtual-host=apex-tools.docksal,*.apex-tools.docksal,crescenttool.docksal,*.crescenttool.docksal,gearwrench.docksal,*.gearwrench.docksal
+  cli:
+    environment:
+      - XDEBUG_CONFIG=client_host=${DOCKSAL_HOST_IP}
+      - XDEBUG_MODE=off
+      - PHP_IDE_CONFIG=serverName=${VIRTUAL_HOST}
