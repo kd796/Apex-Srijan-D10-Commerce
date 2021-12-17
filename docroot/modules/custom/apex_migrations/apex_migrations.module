@@ -1,0 +1,136 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Gearwrench Migrations module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+use Drupal\Core\File\FileSystemInterface;
+use Drupal\file\FileInterface;
+
+/**
+ * Takes a source file and replaces the existing schema file in the filesystem.
+ *
+ * This will allow us to update the import as needed.
+ */
+function _apex_migrations_clear_destination_and_pull_in_new($source_file) {
+  // For GearWrench.
+  $dest_directory = 'public://import/pim_data';
+  $destination = NULL;
+
+  \Drupal::service('file_system')->prepareDirectory(
+    $dest_directory,
+    FileSystemInterface::CREATE_DIRECTORY
+  );
+
+  if (is_object($source_file)) {
+    $source_filename = $source_file->uri;
+  }
+  else {
+    $source_filename = $source_file;
+  }
+
+  try {
+    $destination = \Drupal::service('file_system')->copy(
+      $source_filename,
+      $dest_directory . '/pim_export_with_schema.xml',
+      FileSystemInterface::EXISTS_REPLACE
+    );
+  }
+  catch (\Exception $e) {
+    \Drupal::messenger()->addError('Failed to copy uploaded file to the pim_data directory. Error: ' . $e->getMessage());
+  }
+
+  return $destination;
+}
+
+/**
+ * Simple file upload validator.
+ */
+function apex_migrations_file_validate_is_xml(FileInterface $file) {
+  $errors = [];
+
+  if (!stripos($file->getFilename(), '.xml', -4)) {
+    $errors[] = t('This is not a valid XML file.');
+  }
+
+  return $errors;
+}
+
+/**
+ * Does some common cleaning on asset IDs.
+ */
+function apex_migrations_clean_asset_id($assetId) {
+  return str_replace(' ', '%20', $assetId);
+}
+
+/**
+ * Tells you whether or not the remote URL gives you a 200 OK or a different response.
+ */
+function apex_migrations_remote_url_good_response($url) {
+  $headers_array = @get_headers($url);
+  $headers_check = $headers_array[0];
+
+  if (strpos($headers_check, "200")) {
+    return TRUE;
+  }
+
+  return $headers_check;
+}
+
+/**
+ * Takes a YouTube video URL and gets a clean URL and retrieves video data.
+ *
+ * Source: Google JSON API for title, thumbnail, and other video info.
+ */
+function apex_migrations_get_youtube_data($video_url) {
+  $clean_url = apex_migrations_get_youtube_clean_url($video_url);
+  $result = new stdClass();
+
+  if (!empty($clean_url)) {
+    $youtube_api_url = "https://www.youtube.com/oembed?format=json&url=$clean_url";
+    $good_response = apex_migrations_remote_url_good_response($youtube_api_url);
+
+    if ($good_response === TRUE) {
+      $data = file_get_contents($youtube_api_url);
+
+      if (!empty($data)) {
+        $result = json_decode($data);
+      }
+    }
+    else {
+      throw new \Exception(
+        'Unable to connect to remote URL: '
+        . $clean_url . '. Header response: '
+        . $good_response
+      );
+    }
+  }
+
+  $result->clean_url = $clean_url;
+  return $result;
+}
+
+/**
+ * Gets a clean URL for a YouTube video.
+ */
+function apex_migrations_get_youtube_clean_url($video_url) {
+  $video_url = trim($video_url);
+
+  // Now get a clean version of the video URL.
+  $match = [];
+  $pattern = '%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i';
+
+  preg_match($pattern, $video_url, $match);
+
+  if (!empty($match[1])) {
+    $youtube_id = $match[1];
+    return 'https://www.youtube.com/watch?v=' . $youtube_id;
+  }
+
+  return '';
+}
