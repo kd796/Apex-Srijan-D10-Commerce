@@ -40,6 +40,7 @@ class GetListingImage extends ProcessPluginBase {
     $sku = NULL;
 
     if (!empty($value)) {
+      $sku_group = $value;
       $alt_text = $value->Name;
       $sku = $row->getSourceIdValues()['remote_sku'];
 
@@ -58,24 +59,35 @@ class GetListingImage extends ProcessPluginBase {
                   'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . $assetId . '.jpg',
                 ];
               }
+              else {
+                $migrate_executable->saveMessage(
+                  '[Listing Image] Product Level Asset ID empty for "'
+                  . $sku
+                );
+              }
             }
           }
         }
       }
 
       if (empty($assets)) {
-        foreach ($value->children() as $child) {
+        foreach ($sku_group->children() as $child) {
           if ($child->getName() === 'AssetCrossReference' && (string) $child->attributes()->Type === 'Primary Image') {
-            $assetId = gearwrench_migrations_clean_asset_id((string) $item->attributes()->AssetID);
+            $assetId = gearwrench_migrations_clean_asset_id((string) $child->attributes()->AssetID);
 
             if (!empty($assetId)) {
               $assets[] = [
-                'sku' => $sku,
                 'imagetype' => 'SKU Group Level',
                 'asset_id' => $assetId,
                 'drupal_file_path' => 'public://pim_images/' . $assetId . '.jpg',
                 'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . $assetId . '.jpg',
               ];
+            }
+            else {
+              $migrate_executable->saveMessage(
+                '[Listing Image] SKU Group Level Asset ID empty for "'
+                . $sku
+              );
             }
           }
         }

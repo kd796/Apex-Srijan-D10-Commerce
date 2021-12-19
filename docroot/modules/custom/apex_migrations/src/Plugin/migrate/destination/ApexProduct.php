@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\gearwrench_migrations\Plugin\migrate\destination;
+namespace Drupal\apex_migrations\Plugin\migrate\destination;
 
 use Drupal\taxonomy\Entity\Term;
 use Drupal\media\Entity\Media;

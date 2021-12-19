@@ -109,7 +109,7 @@ process:
   promote: constants/bool_1
   uid: constants/uid_root
   body/value:
-    plugin: get_sku_group_attribute_value
+    plugin: apex_get_sku_group_attribute_value
     source: remote_sku_overview
     attribute: ATT17711
   body/format:
@@ -117,7 +117,7 @@ process:
     default_value: basic_html
   field_sku: remote_sku
   field_sku_group:
-    plugin: get_id_attribute
+    plugin: apex_get_id_attribute
     source: remote_sku_group
   field_long_description:
     plugin: get_attribute_value
@@ -141,11 +141,11 @@ process:
     attribute: ATT583415
   listing_image:
     source: remote_listing_image
-    plugin: get_listing_image
+    plugin: apex_get_listing_image
   field_media/target_id: '@listing_image'
   product_images_array:
     source: remote_product_images
-    plugin: get_product_images
+    plugin: apex_get_product_images
   field_product_images:
     plugin: sub_process
     source: '@product_images_array'
@@ -172,7 +172,7 @@ process:
     process:
       value: copy_point
   product_classifications_array:
-    plugin: get_classifications_array
+    plugin: apex_get_classifications_array
     source: remote_product_classifications
   field_product_classifications:
     plugin: sub_process
@@ -182,7 +182,7 @@ process:
       vocabulary_id: vid
       target_id: target_id
   related_products_array:
-    plugin: get_related_products
+    plugin: apex_get_related_products
     source: remote_related_products
   field_related_products:
     plugin: sub_process
@@ -191,10 +191,10 @@ process:
     process:
       target_id: target_id
   field_set:
-    plugin: determine_set_status
+    plugin: apex_determine_set_status
     source: remote_set
   set_components_array:
-    plugin: get_set_components
+    plugin: apex_get_set_components
     source: remote_set_components
   field_set_components:
     plugin: sub_process

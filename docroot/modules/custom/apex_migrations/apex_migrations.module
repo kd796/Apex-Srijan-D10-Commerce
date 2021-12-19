@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Primary module hooks for Gearwrench Migrations module.
+ * Primary module hooks for Apex Migrations module.
  *
  * @DCG
  * This file is no longer required in Drupal 8.
@@ -18,7 +18,7 @@ use Drupal\file\FileInterface;
  * This will allow us to update the import as needed.
  */
 function _apex_migrations_clear_destination_and_pull_in_new($source_file) {
-  // For GearWrench.
+  // For Apex.
   $dest_directory = 'public://import/pim_data';
   $destination = NULL;
 

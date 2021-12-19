@@ -58,7 +58,7 @@ class GetProductImages extends ProcessPluginBase {
             foreach ($child->children() as $item) {
               $attributeId = (string) $child->attributes()->ID;
               $attributeType = (string) $item->attributes()->Type;
-              $assetId = gearwrench_migrations_clean_asset_id((string) $item->attributes()->AssetID);
+              $assetId = apex_migrations_clean_asset_id((string) $item->attributes()->AssetID);
 
               if (!empty($assetId) && $item->getName() === 'AssetCrossReference' && $attributeId === $sku) {
                 if ($attributeType === 'Primary Image') {
@@ -101,7 +101,7 @@ class GetProductImages extends ProcessPluginBase {
         if (empty($assets) && empty($primary_image)) {
           foreach ($sku_group->children() as $child) {
             if ($child->getName() === 'AssetCrossReference' && (string) $child->attributes()->Type === 'Primary Image') {
-              $assetId = gearwrench_migrations_clean_asset_id((string) $child->attributes()->AssetID);
+              $assetId = apex_migrations_clean_asset_id((string) $child->attributes()->AssetID);
 
               if (!empty($assetId)) {
                 $assets[] = [
