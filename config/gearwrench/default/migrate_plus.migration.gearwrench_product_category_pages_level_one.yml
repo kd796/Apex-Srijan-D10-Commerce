@@ -94,8 +94,13 @@ process:
       vocabulary_id: vid
       target_id: target_id
   field_show_set_filter:
-    plugin: determine_set_filter_show
+    plugin: apex_determine_set_filter_show
     source: remote_id
+    allowed_categories:
+      - W1_727497
+      - W1_728251
+      - W1_736539
+      - W1_15791
 destination:
   plugin: 'entity:node'
 migration_dependencies: {  }

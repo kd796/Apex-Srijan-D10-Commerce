@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\gearwrench_migrations\Plugin\migrate\process;
+namespace Drupal\apex_migrations\Plugin\migrate\process;
 
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\ProcessPluginBase;
@@ -10,14 +10,14 @@ use Drupal\migrate\Row;
  * Get Product Features Array.
  *
  * @MigrateProcessPlugin(
- *   id = "get_product_features_array"
+ *   id = "apex_get_product_features_array"
  * )
  *
  * To get use the following:
  *
  * @code
  * field_text:
- *   plugin: get_product_features_array
+ *   plugin: apex_get_product_features_array
  *   source: text
  * @endcode
  */
@@ -36,6 +36,7 @@ class GetProductFeaturesArray extends ProcessPluginBase {
       'ATT499',
       'UNSPSC_V7.0901'
     ];
+
     if (!empty($value)) {
       foreach ($value->children() as $child) {
         if (!in_array((string) $child->attributes()->AttributeID, $value_to_skip)) {
@@ -51,8 +52,10 @@ class GetProductFeaturesArray extends ProcessPluginBase {
           }
         }
       }
+
       $copy_array = json_encode($copy_array);
     }
+
     return json_decode($copy_array, TRUE);
   }
 

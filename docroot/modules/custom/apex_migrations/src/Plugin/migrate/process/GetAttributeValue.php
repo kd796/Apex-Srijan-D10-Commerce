@@ -1,17 +1,16 @@
 <?php
 
-namespace Drupal\gearwrench_migrations\Plugin\migrate\process;
+namespace Drupal\apex_migrations\Plugin\migrate\process;
 
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
-use Drupal\taxonomy\Entity\Term;
 
 /**
  * Get Attribute Value.
  *
  * @MigrateProcessPlugin(
- *   id = "get_attribute_value"
+ *   id = "apex_get_attribute_value"
  * )
  */
 class GetAttributeValue extends ProcessPluginBase {
@@ -22,6 +21,7 @@ class GetAttributeValue extends ProcessPluginBase {
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $attribute_value = NULL;
     $attribute = $this->configuration['attribute'];
+
     if (!empty($value)) {
       foreach ($value->children() as $child) {
         if ($child->attributes()->AttributeID == $attribute) {
@@ -39,6 +39,7 @@ class GetAttributeValue extends ProcessPluginBase {
         }
       }
     }
+
     return $attribute_value;
   }
 
