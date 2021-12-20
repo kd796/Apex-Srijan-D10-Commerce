@@ -161,7 +161,7 @@ process:
     method: row
     source: remote_name
   product_classifications_array:
-    plugin: get_product_classification_children
+    plugin: apex_get_product_classification_children
     source: remote_classification
   field_product_classifications:
     plugin: sub_process
@@ -181,8 +181,26 @@ process:
       vocabulary_id: vid
       target_id: target_id
   field_show_set_filter:
-    plugin: determine_set_filter_show
+    plugin: apex_determine_set_filter_show
     source: remote_id
+    allowed_categories:
+      - W2_736544
+      - W2_736540
+      - W2_736541
+      - W2_736542
+      - W2_736543
+      - W2_736547
+      - W2_736546
+      - W2_736542
+      - W2_736540
+      - W2_736543
+      - W2_736541
+      - W2_736544
+      - W2_736547
+      - W2_736546
+      - W2_15804
+      - W2_787570
+      - W2_16111
 destination:
   plugin: 'entity:node'
 migration_dependencies: {  }
