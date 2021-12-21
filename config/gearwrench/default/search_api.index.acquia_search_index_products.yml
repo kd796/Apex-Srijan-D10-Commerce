@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.body
     - field.storage.node.field_featured_product
+    - field.storage.node.field_keywords
     - field.storage.node.field_long_description
     - field.storage.node.field_new_product
     - field.storage.node.field_product_classifications
@@ -127,6 +128,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_featured_product
+  field_keywords:
+    label: Keywords
+    datasource_id: 'entity:node'
+    property_path: field_keywords
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_keywords
   field_long_description:
     label: 'Long Description'
     datasource_id: 'entity:node'

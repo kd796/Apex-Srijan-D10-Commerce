@@ -73,5 +73,5 @@ function gearwrench_migrations_update_8001(&$sandbox) {
     $source_files = $source_files[0];
   }
 
-  _gearwrench_migrations_clear_destination_and_pull_in_new($source_files);
+  _apex_migrations_clear_destination_and_pull_in_new($source_files);
 }
