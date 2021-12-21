@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.product.body
     - field.field.node.product.field_featured_product
     - field.field.node.product.field_industry
+    - field.field.node.product.field_keywords
     - field.field.node.product.field_launch_date
     - field.field.node.product.field_long_description
     - field.field.node.product.field_media
@@ -27,7 +28,14 @@ id: node.product.default
 targetEntityType: node
 bundle: product
 mode: default
-content: {  }
+content:
+  field_keywords:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
 hidden:
   body: true
   field_featured_product: true
