@@ -10,8 +10,11 @@ dependencies:
     - field.field.paragraph.hero_slide.field_media_background
     - field.field.paragraph.hero_slide.field_style
     - field.field.paragraph.hero_slide.field_title
+    - field.field.paragraph.hero_slide.field_title_image
+    - image.style.small_landscape_2_1_360x180_scaled_only
     - paragraphs.paragraphs_type.hero_slide
   module:
+    - blazy
     - link
     - smart_trim
 id: paragraph.hero_slide.full
@@ -36,7 +39,7 @@ content:
         text: false
         trim_zero: false
     third_party_settings: {  }
-    weight: 1
+    weight: 2
     region: content
   field_link:
     type: link
@@ -48,7 +51,7 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
-    weight: 2
+    weight: 3
     region: content
   field_media_background:
     type: entity_reference_entity_view
@@ -66,6 +69,48 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_title_image:
+    type: blazy_media
+    label: hidden
+    settings:
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      view_mode: default
+      cache: 0
+      current_view_mode: full
+      skin: ''
+      fx: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      responsive_image_style: ''
+      box_style: ''
+      image_style: small_landscape_2_1_360x180_scaled_only
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+    third_party_settings: {  }
+    weight: 1
     region: content
 hidden:
   field_class_custom: true
