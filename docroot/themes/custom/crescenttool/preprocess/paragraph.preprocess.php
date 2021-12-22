@@ -128,6 +128,7 @@ function crescenttool_preprocess_paragraph__accordion_item__full(array &$variabl
 
   // Check if this accordion item should be open by default.
   $is_open = (!$paragraph->get('field_enabled')->isEmpty() && $paragraph->get('field_enabled')->value === '1');
+
   if ($is_open) {
     $variables['attributes']['class'][] = "{$base_class}--open";
   }
@@ -232,11 +233,14 @@ function crescenttool_preprocess_paragraph__embed_iframe__full(array &$variables
   $src = $paragraph->get('field_link')->isEmpty() ?: $paragraph->get('field_link')->uri;
   $style_tag = '';
   $height = '600px';
+
   if (!$paragraph->get('field_style_height')->isEmpty()) {
     $height = Html::escape($paragraph->get('field_style_height')->value);
     $style_tag .= "height: {$height}; ";
   }
+
   $width = '100%';
+
   if (!$paragraph->get('field_style_width')->isEmpty()) {
     $width = Html::escape($paragraph->get('field_style_width')->value);
     $style_tag .= "height: {$height}; ";
@@ -260,6 +264,7 @@ function crescenttool_preprocess_paragraph__featured_content__full(array &$varia
 
   // Determine changes based on selected layout.
   $layout = ($paragraph->get('field_layout')->isEmpty()) ? NULL : $paragraph->get('field_layout')->target_id;
+
   switch ($layout) {
     case 'featured_content_layout__grid':
       $variables['#attached']['library'][] = 'crescenttool/paragraph--full--featured-content--layout-grid';
@@ -292,9 +297,11 @@ function crescenttool_preprocess_paragraph__featured_content__full(array &$varia
   foreach (Element::children($variables['content']['field_related_nodes']) as $delta) {
     // Add class to list-item.
     $variables['content']['field_related_nodes'][$delta]['#wrapper_attributes']['class'][] = "{$base_class}__list-item";
+
     // Add field item to list item.
     $variables['list']['#items'][] = $variables['content']['field_related_nodes'][$delta];
   }
+
   // Remove field render array.
   unset($variables['content']['field_related_nodes']);
 }
@@ -312,13 +319,16 @@ function crescenttool_preprocess_paragraph__featured_links__full(array &$variabl
   $variables['list']['#wrapper_attributes'] = [];
   $variables['list']['#items'] = [];
   $variables['list']['#theme'] = 'item_list';
+
   // Run through field items'.
   foreach (Element::children($variables['content']['field_links']) as $delta) {
     // Add class to list-item.
     $variables['content']['field_links'][$delta]['#wrapper_attributes']['class'][] = "{$base_class}__list-item";
+
     // Add field item to list item.
     $variables['list']['#items'][] = $variables['content']['field_links'][$delta];
   }
+
   // Remove field render array.
   unset($variables['content']['field_links']);
 }
@@ -333,6 +343,7 @@ function crescenttool_preprocess_paragraph__featured_media__full(array &$variabl
 
   // Determine changes based on selected layout.
   $layout = ($paragraph->get('field_layout')->isEmpty()) ? NULL : $paragraph->get('field_layout')->target_id;
+
   switch ($layout) {
     case 'featured_media_layout__grid':
       $variables['#attached']['library'][] = 'crescenttool/paragraph--full--featured-media--layout-grid';
@@ -377,6 +388,7 @@ function crescenttool_preprocess_paragraph__featured_media__full(array &$variabl
   foreach (Element::children($variables['content']['field_media_items']) as $delta) {
     // Add class to list-item.
     $variables['content']['field_media_items'][$delta]['#wrapper_attributes']['class'][] = "{$base_class}__list-item";
+
     // Add field item to list item.
     $variables['list']['#items'][] = $variables['content']['field_media_items'][$delta];
   }
@@ -421,6 +433,10 @@ function crescenttool_preprocess_paragraph__hero_slide__full(array &$variables) 
     $variables['footer']['field_link'] = $variables['content']['field_link'];
     $variables['footer']['field_link'][0]['#options']['attributes']['class'] = "{$base_class}__link button";
     unset($variables['content']['field_link'], $variables['footer']['field_link']['#theme']);
+  }
+
+  if (!empty($paragraph->get('field_title_image')->getValue())) {
+    unset($variables['content']['field_title']);
   }
 
   unset($variables['media']['#theme']);

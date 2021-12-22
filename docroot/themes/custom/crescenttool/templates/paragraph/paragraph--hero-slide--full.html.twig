@@ -48,23 +48,30 @@
   <article{{ attributes.addClass(classes) }}>
     {{ background_image }}
     <div{{ inner_attributes.addClass(inner_classes) }}>
-      <div class="component-hero-slide__content-container">
-        {% if title %}
-          {{ title_prefix }}
-          <header{{ title_attributes.addClass(title_classes) }}>
-            <h2>{{- title -}}</h2>
-          </header>
-          {{ title_suffix }}
-        {% endif %}
-        <div{{ content_attributes.addClass(content_classes) }}>
-          {{- content -}}
+      {% if content.field_title_image|render|trim|length > 0 %}
+        <div class="component-hero-slide__title-image">
+          {{ content.field_title_image }}
         </div>
-        <footer{{ footer_attributes }}>
-          {{- footer -}}
-          <div class="component-hero-slide__button-container">
+      {% elseif content.field_title_image|render|trim|length == 0 %}
+        <div class="component-hero-slide__content-container">
+          {% if title %}
+            {{ title_prefix }}
+            <header{{ title_attributes.addClass(title_classes) }}>
+              <h2>{{- title -}}</h2>
+            </header>
+            {{ title_suffix }}
+          {% endif %}
+
+          <div{{ content_attributes.addClass(content_classes) }}>
+            {{ content|without('field_title_image') }}
           </div>
-        </footer>
-      </div>
+
+          <footer{{ footer_attributes }}>
+            {{- footer -}}
+            <div class="component-hero-slide__button-container"></div>
+          </footer>
+        </div>
+      {% endif %}
     </div>
   </article>
 {% endblock paragraph %}
