@@ -233,8 +233,13 @@
           @include icon('sort', after);
         }
 
+        .filter-icon {
+          @include icon('filter', after);
+        }
+
         @include media('>=md') {
-          .sort-icon {
+          .sort-icon,
+          .filter-icon {
             visibility: hidden;
           }
         }
