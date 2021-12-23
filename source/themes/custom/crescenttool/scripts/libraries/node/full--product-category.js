@@ -212,7 +212,7 @@
 
       // Logic for mobile filtering menu.
       if (window.innerWidth <= 768) {
-        var $mobileMenuIcon = $('.sort-icon');
+        var $mobileMenuIcon = $('.filter-icon');
         var $mobileCloseIcon;
         var $mobileCategoryFilters = $('.crescenttool-product-category-filters');
         var $viewHeader = $('.view-header');

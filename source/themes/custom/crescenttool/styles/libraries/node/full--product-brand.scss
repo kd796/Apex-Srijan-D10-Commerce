@@ -231,8 +231,14 @@
         display: none; // Until issues with javascript on brand pages are resolved.
       }
 
+      .filter-icon {
+        @include icon('filter', after);
+        display: none; // Until issues with javascript on brand pages are resolved.
+      }
+
       @include media('>=md') {
-        .sort-icon {
+        .sort-icon,
+        .filter-icon {
           visibility: hidden;
         }
       }
