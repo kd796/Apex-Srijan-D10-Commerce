@@ -62,6 +62,37 @@ function gearwrench_preprocess_media__remote_video__hero(array &$variables) {
   /** @var \Drupal\media\MediaInterface $media */
   $media = $variables['media'];
 
+  if (isset($variables['media_embed'][0]['children']['#type'])) {
+    $type = $variables['media_embed'][0]['children']['#type'];
+
+    if ($type == 'video_embed_iframe') {
+      $provider = $variables['media_embed'][0]['children']['#provider'];
+      $url = $variables['media_embed'][0]['children']['#url'];
+      $parsed_url = parse_url($url);
+
+      $options = [];
+      $options['query'] = isset($parsed_url['query']) ? parse_str($parsed_url['query']) : [];
+
+      if ($provider == 'youtube') {
+        $options['query']['rel'] = 0;
+        $options['query']['autoplay'] = 0;
+        $options['query']['enablejsapi'] = 1;
+        $options['query']['modestbranding'] = 1;
+      }
+      elseif ($provider == 'vimeo') {
+        $options['query']['autoplay'] = 0;
+        $options['query']['background'] = 1;
+        $options['query']['loop'] = 1;
+      }
+
+      /** @var \Drupal\Core\Utility\UnroutedUrlAssemblerInterface $unrouted_url_assembler */
+      $unrouted_url_assembler = Drupal::service('unrouted_url_assembler');
+      $url = $unrouted_url_assembler->assemble($url, $options, FALSE);
+
+      $variables['media_embed'][0]['children']['#url'] = $url;
+    }
+  }
+
   // Make video autoplay, loop and disabling any controls and branding.
   if (isset($variables['media_embed'][0]['#build']['settings']['scheme']) && $variables['media_embed'][0]['#build']['settings']['type'] === 'video') {
     $settings = $variables['media_embed'][0]['#build']['settings'];
@@ -69,8 +100,10 @@ function gearwrench_preprocess_media__remote_video__hero(array &$variables) {
 
     // Make modifications by provider.
     $url = !empty($settings['autoplay_url']) ? $settings['autoplay_url'] : $settings['embed_url'];
+
     if (UrlHelper::isExternal($url)) {
       $options = [];
+
       switch ($settings['scheme']) {
         case 'vimeo':
           $options['query']['autoplay'] = 1;
@@ -83,11 +116,11 @@ function gearwrench_preprocess_media__remote_video__hero(array &$variables) {
           $options['query']['autoplay'] = 1;
           $options['query']['showinfo'] = 0;
           $options['query']['controls'] = 0;
-          $options['query']['mute'] = 1;
           $options['query']['disablekb'] = 1;
           $options['query']['fs'] = 0;
           $options['query']['mute'] = 1;
           $options['query']['loop'] = 1;
+          $options['query']['enablejsapi'] = 1;
           $options['query']['modestbranding'] = 1;
           $options['query']['playlist'] = $settings['video_id'];
           break;
@@ -97,6 +130,7 @@ function gearwrench_preprocess_media__remote_video__hero(array &$variables) {
       /** @var \Drupal\Core\Utility\UnroutedUrlAssemblerInterface $unrouted_url_assembler */
       $unrouted_url_assembler = Drupal::service('unrouted_url_assembler');
       $url = $unrouted_url_assembler->assemble($url, $options, FALSE);
+
       $settings['autoplay_url'] = $url;
       $settings['embed_url'] = $url;
 
