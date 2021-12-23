@@ -94,6 +94,9 @@ switch ($site_environment) {
       ],
     ];
     break;
+
+  default:
+    // Do nothing.
 }
 
 if ($site_environment !== 'local' && PHP_SAPI === 'cli') {

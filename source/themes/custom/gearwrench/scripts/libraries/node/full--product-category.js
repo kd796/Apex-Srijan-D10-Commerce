@@ -209,7 +209,7 @@
   };
 
   if (window.innerWidth <= 768) {
-    var $mobileMenuIcon = $('.sort-icon');
+    var $mobileMenuIcon = $('.filter-icon');
     var $mobileCloseIcon;
     var $mobileCategoryFilters = $('.gearwrench-product-category-filters');
 
