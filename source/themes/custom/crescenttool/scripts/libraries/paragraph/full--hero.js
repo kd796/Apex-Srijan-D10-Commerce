@@ -29,6 +29,7 @@
         // Initialize swiper.
         if ($component.find('article').length > 1) {
           $heroSlideButtonContainer.html('<button class="component-hero-slide__button component-hero-slide__button-prev swiper-button-prev"></button><button class="component-hero-slide__button component-hero-slide__button-next swiper-button-next"></button>');
+
           // eslint-disable-next-line
           new Swiper($heroWrapper, {
             effect: 'fade',
@@ -45,6 +46,15 @@
               resize: function () {
                 setTimeout(Drupal.behaviors.swiper.updateSlideAria.bind(this), Drupal.behaviors.componentHero.resizeButtons($heroSlideButtonContainer), 500);
                 Drupal.blazy.init.revalidate();
+              },
+              slideChange: function (el) {
+                $('.swiper-slide').each(function () {
+                  var youtubePlayer = $(this).find('iframe').get(0);
+
+                  if (youtubePlayer) {
+                    youtubePlayer.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                  }
+                });
               },
               slideChangeTransitionEnd: function () {
                 Drupal.behaviors.swiper.updateSlideAria.apply(this);

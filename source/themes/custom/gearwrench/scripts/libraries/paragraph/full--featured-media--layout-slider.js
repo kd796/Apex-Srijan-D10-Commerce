@@ -16,8 +16,10 @@
           on: {
             init: function () {
               Drupal.behaviors.componentMediaLayoutSlider.updatePointerEvents();
+
               // Use a timeout on init to make sure to catch contextual links.
               setTimeout(Drupal.behaviors.swiper.updateSlideAria.bind($(this)[0]), 500);
+
               if (typeof Drupal.blazy !== 'undefined') {
                 Drupal.blazy.init.revalidate();
               }
@@ -25,14 +27,25 @@
             resize: function () {
               Drupal.behaviors.componentMediaLayoutSlider.updatePointerEvents();
               Drupal.behaviors.swiper.updateSlideAria.apply($(this)[0]);
+
               // Load lazyloaded images in tabs.
               if (typeof Drupal.blazy !== 'undefined') {
                 Drupal.blazy.init.revalidate();
               }
             },
+            slideChange: function (el) {
+              $('.swiper-slide').each(function () {
+                var youtubePlayer = $(this).find('iframe').get(0);
+
+                if (youtubePlayer) {
+                  youtubePlayer.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                }
+              });
+            },
             slideChangeTransitionEnd: function () {
               Drupal.behaviors.swiper.updateSlideAria.apply($(this)[0]);
               Drupal.behaviors.componentMediaLayoutSlider.updatePointerEvents();
+
               if (typeof Drupal.blazy !== 'undefined') {
                 Drupal.blazy.init.revalidate();
               }
@@ -58,8 +71,10 @@
           on: {
             init: function () {
               Drupal.behaviors.componentMediaLayoutSlider.updatePointerEvents();
+
               // Use a timeout on init to make sure to catch contextual links.
               setTimeout(Drupal.behaviors.swiper.updateSlideAria.bind($(this)[0]), 500);
+
               if (typeof Drupal.blazy !== 'undefined') {
                 Drupal.blazy.init.revalidate();
               }
@@ -67,13 +82,24 @@
             resize: function () {
               Drupal.behaviors.componentMediaLayoutSlider.updatePointerEvents();
               Drupal.behaviors.swiper.updateSlideAria.apply($(this)[0]);
+
               if (typeof Drupal.blazy !== 'undefined') {
                 Drupal.blazy.init.revalidate();
               }
             },
+            slideChange: function (el) {
+              $('.swiper-slide').each(function () {
+                var youtubePlayer = $(this).find('iframe').get(0);
+
+                if (youtubePlayer) {
+                  youtubePlayer.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                }
+              });
+            },
             slideChangeTransitionEnd: function () {
               Drupal.behaviors.swiper.updateSlideAria.apply($(this)[0]);
               Drupal.behaviors.componentMediaLayoutSlider.updatePointerEvents();
+
               if (typeof Drupal.blazy !== 'undefined') {
                 Drupal.blazy.init.revalidate();
               }
