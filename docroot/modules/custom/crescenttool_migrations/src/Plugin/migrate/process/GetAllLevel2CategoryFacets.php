@@ -140,6 +140,7 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
    */
   protected function mapCategoryToFacetsList($category_remote_id) {
     $mapping = [
+      // Cutting - W1_719495.
       'W1_719495' => [
         'ATT496',
         'ATT802893',
@@ -148,6 +149,7 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
         'ATT278',
         'ATT686141',
       ],
+      // Demolition Tools - W1_22487.
       'W1_22487' => [
         'ATT496',
         'ATT802893',
@@ -155,6 +157,7 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
         'ATT582',
         'ATT583',
       ],
+      // Hex Keys - W1_706367.
       'W1_706367' => [
         'ATT496',
         'ATT802893',
@@ -163,6 +166,7 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
         'ATT592',
         'ATT659'
       ],
+      // Measuring - W1_719524.
       'W1_719524' => [
         'ATT802893',
         'ATT807193',
@@ -171,6 +175,7 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
         'ATT592',
         'ATT593',
       ],
+      // Pliers - W1_22486.
       'W1_22486' => [
         'ATT802893',
         'ATT496',
@@ -181,12 +186,15 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
         'ATT115',
         'ATT714720'
       ],
+      // Power Tool Accessories - W1_755886.
       'W1_755886' => [
+        'ATT802893',
         'ATT496',
         'ATT804086',
         'ATT755881',
         'ATT592'
       ],
+      // Ratchets and Drive Tools - W1_22482.
       'W1_22482' => [
         'ATT496',
         'ATT802893',
@@ -201,6 +209,7 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
         'ATT593',
         'ATT710'
       ],
+      // Screwdrivers and Nutdrivers - W1_22485.
       'W1_22485' => [
         'ATT496',
         'ATT802893',
@@ -208,6 +217,7 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
         'ATT631',
         'ATT806593'
       ],
+      // Shaping - W1_719537.
       'W1_719537' => [
         'ATT496',
         'ATT802893',
@@ -215,6 +225,7 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
         'ATT201',
         'ATT547'
       ],
+      // Sockets - W1_22481.
       'W1_22481' => [
         'ATT496',
         'ATT802893',
@@ -225,26 +236,30 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
         'ATT744973',
         'ATT806802'
       ],
+      // Storage - W1_736078.
       'W1_736078' => [
         'ATT802893',
       ],
+      // Striking and Struck - W1_706780.
       'W1_706780' => [
         'ATT496',
         'ATT802893',
         'ATT807126',
-        'ATT807127',
         'ATT228',
         'ATT227',
         'ATT345'
       ],
+      // Tool Sets - W1_22484.
       'W1_22484' => [
         'ATT496',
         'ATT802893',
       ],
+      // Trade Tools - W1_802905.
       'W1_802905' => [
         'ATT806600',
         'ATT802893',
       ],
+      // Wrenches - W1_22483.
       'W1_22483' => [
         'ATT496',
         'ATT802893',
