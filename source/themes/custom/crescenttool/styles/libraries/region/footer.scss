@@ -176,6 +176,10 @@ $footer-bp-mobile: '<sm';
     @include container($margin: 0);
     color: $white;
 
+    a {
+      @include link(light, hover);
+    }
+
     .region-footer-second__content {
       .block-webform-block__title {
         border-bottom: unset;
