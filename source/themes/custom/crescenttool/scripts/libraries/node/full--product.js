@@ -65,6 +65,15 @@
                 var $thumbWidth = $thumbsItems.outerWidth();
                 $('.product-detail-slider__button').css('height', $thumbHeight).css('width', $thumbWidth);
               },
+              slideChange: function (el) {
+                $('.swiper-slide').each(function () {
+                  var youtubePlayer = $(this).find('iframe').get(0);
+
+                  if (youtubePlayer) {
+                    youtubePlayer.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                  }
+                });
+              },
               imagesReady: function () {
                 var $thumbHeight = $thumbsItems.outerHeight();
                 var $thumbWidth = $thumbsItems.outerWidth();
@@ -89,6 +98,15 @@
               resize: function () {
                 Drupal.behaviors.swiper.updateSlideAria.apply(this);
                 Drupal.blazy.init.revalidate();
+              },
+              slideChange: function (el) {
+                $('.swiper-slide').each(function () {
+                  var youtubePlayer = $(this).find('iframe').get(0);
+
+                  if (youtubePlayer) {
+                    youtubePlayer.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                  }
+                });
               },
               slideChangeTransitionEnd: function () {
                 Drupal.behaviors.swiper.updateSlideAria.apply(this);

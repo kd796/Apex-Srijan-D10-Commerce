@@ -58,7 +58,7 @@ function crescenttool_preprocess_media(array &$variables) {
 /**
  * Implements hook_preprocess_media__BUNDLE__VIEW_MODE() for remote_video, hero.
  */
-function crescenttool_preprocess_media__remote_video__hero(array &$variables) {
+function crescenttool_preprocess_media__remote_video(array &$variables) {
   /** @var \Drupal\media\MediaInterface $media */
   $media = $variables['media'];
 
