@@ -33,6 +33,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\TermStorage;
 use Drupal\Core\Url;
+use Drupal\node\NodeInterface;
 
 /**
  * Implements hook_preprocess_node().
@@ -205,6 +206,7 @@ function gearwrench_preprocess_node__media_page__teaser(&$variables) {
  * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product, full.
  */
 function gearwrench_preprocess_node__product__full(array &$variables) {
+  /** @var Drupal\node\NodeInterface $node */
   $node = $variables['elements']['#node'];
 
   if ($node instanceof NodeInterface) {
