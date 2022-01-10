@@ -10,14 +10,12 @@
     },
     initProductSlider: function ($productSliderWrapper) {
       if (window.matchMedia('(max-width: 768px)').matches) {
+        // Mobile slider.
         // eslint-disable-next-line
         return new Swiper($productSliderWrapper, {
           slidesPerView: 2,
-          slidesPerGroup: 2,
-          slidesPerColumn: 2,
-          slidesPerColumnFill: 'column',
           spaceBetween: 24,
-          loop: true,
+          loop: false,
           navigation: {
             nextEl: '.view-related-products-slider__button-next',
             prevEl: '.view-related-products-slider__button-prev'
