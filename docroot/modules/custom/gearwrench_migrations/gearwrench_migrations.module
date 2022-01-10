@@ -226,10 +226,13 @@ function gearwrench_migrations_migrate_prepare_row(Row $row, MigrateSourceInterf
       'ATT415',
       'ATT880',
       'ATT753929',
-      // 'Set',.
-      // 'ATT744972',.
-      // 'ATT744973',.
-      // 'ATT806802',.
+      'ATT744972',
+      'ATT744973',
+      'ATT806802',
+      'ATT659',
+      'ATT753947',
+      'ATT739684',
+      'ATT739685',
     ];
 
     if (!in_array($row->getSource()['remote_term_id'], $attributes_to_include)) {
