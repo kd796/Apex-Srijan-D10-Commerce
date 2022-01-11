@@ -23,7 +23,10 @@ class ProductCategoryFiltersForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    /** @var \Drupal\node\Entity\Node $node */
     $node = \Drupal::routeMatch()->getParameter('node');
+    $available_classification_ids = [];
+    $child_terms = [];
 
     // Get Product Classification ID's.
     if ($node != NULL && $node->hasField('field_product_classifications') && !empty($node->get('field_product_classifications')->getValue())) {
@@ -87,6 +90,8 @@ class ProductCategoryFiltersForm extends FormBase {
     }
 
     if ($child_terms) {
+      $selected_child_terms = [];
+
       foreach ($child_terms as $child_term) {
         $selected_child_terms[] = $child_term->tid;
       }
@@ -114,8 +119,12 @@ class ProductCategoryFiltersForm extends FormBase {
 
     // Prep Attribute Facets.
     $all_selected_attributes_tids = [];
-    $selected_attributes = array_column($node->get('field_category_facets')
-      ->getValue(), 'target_id');
+
+    if ($node->hasField('field_category_facets')) {
+      $selected_attributes = array_column($node->get('field_category_facets')
+        ->getValue(), 'target_id');
+    }
+
     $selected_attribute_facet_titles = [];
     $selected_attribute_facet_options = [];
 
