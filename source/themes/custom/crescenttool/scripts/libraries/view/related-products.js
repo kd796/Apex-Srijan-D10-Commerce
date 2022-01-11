@@ -10,6 +10,7 @@
     },
     initProductSlider: function ($productSliderWrapper) {
       if (window.innerWidth <= 768) {
+        // Mobile slider.
         // eslint-disable-next-line
         return new Swiper($productSliderWrapper, {
           slidesPerView: 2,
