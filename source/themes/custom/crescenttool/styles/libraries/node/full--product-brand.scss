@@ -173,16 +173,6 @@
           align-items: center;
           justify-content: space-between;
         }
-
-        &:after {
-          background-color: $gray-40;
-          bottom: 0;
-          content: '';
-          height: 1px;
-          left: 0;
-          position: absolute;
-          width: 100%;
-        }
       }
 
       fieldset {
@@ -198,9 +188,36 @@
         top: .125rem;
       }
 
-
       .form-checkboxes input[type='checkbox']:not(:checked) + label:before {
         background-color: transparent;
+      }
+
+      .bef-nested {
+        ul {
+          list-style-type: none;
+        }
+
+        > ul {
+          padding-inline-start: 0;
+
+          > li {
+            margin-bottom: 3rem;
+          }
+        }
+
+        // Target the first level checkboxes for styles.
+        > ul > li > .form-item > label {
+          @include type-header(h6, $black, included);
+
+          display: block;
+          border-bottom: 1px solid #CECACA;
+          padding-bottom: 1rem;
+          padding-left: 1.75rem;
+        }
+
+        .form-item {
+          margin-bottom: 0.5rem !important;
+        }
       }
     }
 
@@ -210,7 +227,6 @@
       @include media('>=md') {
         grid-column: 2 / 4;
       }
-
     }
 
     .view-header {
