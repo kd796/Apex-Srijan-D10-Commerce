@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for the Apex Common module.
+ */
+
+/**
+ * Alter webform options by id.
+ *
+ * @param array $options
+ *   An associative array of options.
+ * @param array $element
+ *   The webform element that the options is for.
+ */
+function apex_common_webform_options_state_province_names_alter(array &$options, array &$element) {
+  if (!empty($options)) {
+    $options_to_remove = [
+      'Federated States of Micronesia',
+      'Alberta',
+      'British Columbia',
+      'Manitoba',
+      'New Brunswick',
+      'Newfoundland and Labrador',
+      'Nova Scotia',
+      'Northwest Territories',
+      'Nunavut',
+      'Ontario',
+      'Prince Edward Island',
+      'Quebec',
+      'Saskatchewan',
+      'Yukon'
+    ];
+
+    foreach ($options as $idx => $option) {
+      if (in_array($idx, $options_to_remove)) {
+        unset($options[$idx]);
+      }
+    }
+  }
+}
