@@ -168,7 +168,7 @@ class GwCliService extends DrushCommands {
     ];
 
     if (!empty($data['sid'])) {
-      $new_data['wrf_sid'] = $data['sid'];
+      $new_data['wrf_sid'] = 'GW-' . $data['sid'];
     }
 
     foreach ($data['data'] as $field => $value) {
