@@ -562,10 +562,6 @@ function crescenttool_preprocess_paragraph__product_slider__full(&$variables) {
   $paragraph = $variables['paragraph'];
   $base_class = $variables['component_base_class'];
 
-  $field_settings['type'] = 'entity_reference_entity_view';
-  $field_settings['settings']['view_mode'] = 'teaser';
-  $field_settings['label'] = 'hidden';
-
   $variables['#attached']['library'][] = 'crescenttool/paragraph--full--product-slider';
   $field_settings['type'] = 'entity_reference_entity_view';
   $field_settings['settings']['view_mode'] = 'teaser';
@@ -587,9 +583,11 @@ function crescenttool_preprocess_paragraph__product_slider__full(&$variables) {
   foreach (Element::children($variables['content']['field_products']) as $delta) {
     // Add class to list-item.
     $variables['content']['field_products'][$delta]['#wrapper_attributes']['class'][] = "{$base_class}__list-item";
+
     // Add field item to list item.
     $variables['list']['#items'][] = $variables['content']['field_products'][$delta];
   }
+
   // Remove field render array.
   unset($variables['content']['field_products']);
 }
@@ -612,4 +610,17 @@ function crescenttool_preprocess_paragraph__banner_cta_slider__full(&$variables)
   }
 
   $variables['thumbnails'] = $thumbnails;
+}
+
+/**
+ * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for hero_slide, full.
+ */
+function crescenttool_preprocess_paragraph__banner_cta_slide__thumbnail(array &$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $base_class = $variables['component_base_class'];
+
+  // Initialize variables.
+  $variables['inner_attributes']['class'][] = "{$base_class}__inner";
+  $variables['attributes']['id'] .= '-thumbnail';
 }

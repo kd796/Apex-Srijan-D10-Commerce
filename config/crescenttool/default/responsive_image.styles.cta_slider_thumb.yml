@@ -3,8 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
-    - image.style.banner_cta_slider_175x42_
-    - image.style.banner_cta_slider_210x50_
+    - image.style.banner_cta_slider_large_scaled_height_50
+    - image.style.banner_cta_slider_small_scaled_height_40
   theme:
     - crescenttool
 id: cta_slider_thumb
@@ -12,8 +12,8 @@ label: 'CTA Slider Thumb'
 image_style_mappings:
   -
     image_mapping_type: image_style
-    image_mapping: banner_cta_slider_210x50_
+    image_mapping: banner_cta_slider_large_scaled_height_50
     breakpoint_id: crescenttool.large_min
     multiplier: 1x
 breakpoint_group: crescenttool
-fallback_image_style: banner_cta_slider_175x42_
+fallback_image_style: banner_cta_slider_small_scaled_height_40

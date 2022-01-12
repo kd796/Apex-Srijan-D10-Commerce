@@ -11,8 +11,9 @@ dependencies:
     - field.field.paragraph.banner_cta_slide.field_thumbnail_image
     - field.field.paragraph.banner_cta_slide.field_title
     - paragraphs.paragraphs_type.banner_cta_slide
+    - responsive_image.styles.cta_slider_thumb
   module:
-    - blazy
+    - media_responsive_thumbnail
 id: paragraph.banner_cta_slide.thumbnail
 targetEntityType: paragraph
 bundle: banner_cta_slide
@@ -27,44 +28,11 @@ content:
     weight: 0
     region: content
   field_thumbnail_image:
-    type: blazy_media
+    type: media_responsive_thumbnail
     label: hidden
     settings:
-      caption:
-        title: '0'
-        alt: '0'
-      class: ''
-      id: ''
-      image: ''
-      link: ''
-      overlay: ''
-      title: ''
-      vanilla: false
-      icon: ''
-      layout: ''
-      view_mode: default
-      cache: 0
-      current_view_mode: thumbnail
-      skin: ''
-      fx: ''
-      style: ''
-      background: false
-      box_caption: ''
-      box_caption_custom: ''
-      box_media_style: ''
-      responsive_image_style: ''
-      box_style: ''
-      image_style: ''
-      media_switch: ''
-      ratio: ''
-      thumbnail_style: ''
-      _uri: ''
-      breakpoints: {  }
-      sizes: ''
-      grid_header: ''
-      grid: ''
-      grid_medium: ''
-      grid_small: ''
+      responsive_image_style: cta_slider_thumb
+      image_link: ''
     third_party_settings: {  }
     weight: 1
     region: content
