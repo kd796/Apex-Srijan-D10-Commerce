@@ -115,6 +115,10 @@
       border-bottom-left-radius: rem(25px);
       border-bottom-right-radius: rem(25px);
 
+      &:focus {
+        background-color: $primary-red !important;
+      }
+
       @include media('<md') {
         font-size: rem(13px) !important;
       }
