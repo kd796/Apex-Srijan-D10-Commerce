@@ -16,9 +16,11 @@
           }
         },
         loop: false,
-        freeMode: true,
+        freeMode: false,
+        nested: true,
         watchSlidesVisibility: true,
-        watchSlidesProgress: true
+        watchSlidesProgress: true,
+        momentum: false
       });
 
       // eslint-disable-next-line
@@ -41,15 +43,6 @@
               Drupal.blazy.init.revalidate();
             }
           },
-          slideChange: function (el) {
-            $('.swiper-slide').each(function () {
-              var youtubePlayer = $(this).find('iframe').get(0);
-
-              if (youtubePlayer) {
-                youtubePlayer.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-              }
-            });
-          },
           slideChangeTransitionEnd: function () {
             Drupal.behaviors.swiper.updateSlideAria.apply($(this)[0]);
 
@@ -60,7 +53,7 @@
         },
         slidesPerGroup: 1,
         slidesPerView: 1,
-        touchEventsTarget: 'container',
+        momentum: false,
         thumbs: {
           swiper: $galleryThumbs
         },

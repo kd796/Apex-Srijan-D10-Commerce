@@ -328,11 +328,11 @@
     position: relative;
     width: 100%;
 
-    @include media('<lg-plus') {
-      margin-top: rem(50px);
+    @include media('<lg') {
+      margin-top: 2rem;
     }
 
-    @include media('>=lg-plus') {
+    @include media('>=lg') {
       display: none;
     }
 
