@@ -60,11 +60,6 @@
         pagination: {
           el: $swiperPagination,
           clickable: true
-        },
-        breakpoints: {
-          1023: {
-            autoHeight: true
-          }
         }
       });
     },

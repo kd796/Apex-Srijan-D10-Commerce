@@ -38,7 +38,7 @@
   .component-banner-cta-slider__container {
     @include media('<lg-plus') {
       margin-top: rem(-15px);
-      z-index: -1;
+      z-index: 2;
     }
 
     @include media('>=lg-plus') {
@@ -159,6 +159,7 @@
 
   .component-banner-cta-slider__thumbs-outer-wrapper {
     position: relative;
+    z-index: 3;
 
     @include media('>=lg-plus') {
       position: relative;
