@@ -1,0 +1,32 @@
+local:
+  site-env: local
+  root: /var/www/docroot
+  uri: http://www.crescenttool.com.au.docksal
+remote_dev:
+  site-env: dev
+  host: apextoolgroupdev.ssh.prod.acquia-sites.com
+  user: apextoolgroup.dev
+  root: /var/www/html/apextoolgroup.dev/docroot
+  uri: http://dev-www.crescenttool.com.au
+  ac-site: apextoolgroup
+  ac-env: dev
+  ac-realm: prod
+remote_stage:
+  site-env: stage
+  host: apextoolgroupstg.ssh.prod.acquia-sites.com
+  user: apextoolgroup.test
+  root: /var/www/html/apextoolgroup.test/docroot
+  uri: http://stg-www.crescenttool.com.au
+  ac-site: apextoolgroup
+  ac-env: test
+  ac-realm: prod
+remote_prod:
+  site-env: prod
+  host: apextoolgroup.ssh.prod.acquia-sites.com
+  user: apextoolgroup.prod
+  root: /var/www/html/apextoolgroup.prod/docroot
+  uri: http://prod-www.crescenttool.com.au
+  ac-site: apextoolgroup
+  ac-env: prod
+  ac-realm: prod
+
