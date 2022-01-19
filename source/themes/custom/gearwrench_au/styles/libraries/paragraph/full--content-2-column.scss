@@ -1,0 +1,33 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: content
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component - Content 2 Column
+ */
+.component-content-2-column {
+  > header {
+    @include type-header(h2);
+    font-family: $font-brand;
+    font-weight: $fw-extra-bold;
+    text-transform: uppercase;
+  }
+
+  .field__items {
+    @include media('>=md') {
+      @include flex();
+
+      .field__item {
+        flex: 1;
+      }
+    }
+  }
+}

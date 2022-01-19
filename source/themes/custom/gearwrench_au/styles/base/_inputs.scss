@@ -1,0 +1,394 @@
+// -----------------------------------------------------------------------------
+// Base: Inputs
+// Themed inputs, buttons, and form item groups
+// -----------------------------------------------------------------------------
+
+$input-height: 3.75rem;
+
+// basic inputs
+input,
+textarea,
+select,
+input.webform-counter-warning,
+input.form-text.webform-counter-warning,
+textarea.webform-counter-warning,
+textarea.form-textarea.webform-counter-warning,
+.form-input-file__button {
+  background: transparent;
+  border: rem(1px) solid $secondary-black;
+  border-radius: 0;
+  color: $secondary-black;
+  max-width: 100%;
+  outline: 0 none;
+  padding: 1rem 1.75rem;
+  transition: $transition-base;
+  -webkit-appearance: none;
+  width: 100%;
+
+  &:disabled {
+    background-color: $color-light-grey;
+  }
+
+  @include media('<sm') {
+    padding: 1rem;
+  }
+}
+
+select {
+  padding-right: $input-height;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden !important;
+}
+
+input,
+select,
+.form-input-file__button {
+  height: $input-height;
+  overflow: hidden !important;
+}
+
+// Remove fieldset margin
+fieldset.webform-composite-hidden-title {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+// All forms except footer add extra margin between fields
+form:not(.webform-submission-email-sign-up-form) {
+  div.form-item {
+    margin-bottom: 1.875rem !important;
+    margin-top: 0;
+  }
+
+  .form-submit {
+    max-width: rem(200px);
+  }
+}
+
+label {
+  color: $type-dark;
+}
+
+// Margin between label and input
+label ~ input,
+label ~ select,
+label ~ radio,
+label ~ textarea,
+label ~ div {
+  margin-top: rem(5px);
+}
+
+// input submit buttons
+input[type='button'],
+input[type='reset'],
+input[type='submit'],
+.btn {
+  @include btn(primary);
+}
+
+// form titles
+.block-webform-block__title {
+  font-family: $font-brand;
+  font-size: rem(24px);
+  font-weight: $fw-extra-bold;
+  line-height: 1.2rem;
+  margin-bottom: rem(24px);
+  padding-bottom: rem(10px);
+  text-transform: uppercase;
+  border-bottom: 1px solid $gray-70;
+}
+
+// flex form rows
+.webform-flexbox {
+  margin: 0 -.5em rem(24px);
+
+  .webform-flex {
+    width: 100%;
+
+    .webform-flex--container {
+      margin: 0 rem(6px);
+    }
+  }
+
+  .form-item {
+    margin: 0;
+  }
+}
+
+//form button
+.form-actions {
+  margin: rem(24px) 0 1rem;
+}
+
+// Checkbox & Radio buttons
+$marker-to-text-space: 1.625rem;
+$active-width: 1.125rem;
+$active-gap: 8px; // the math likes px values
+
+.form-checkboxes,
+.form-radios {
+  // item groups
+  .form-item {
+    @include flex-x(align-items, center);
+    @include flex-x(flex-direction, row);
+    @include flex-x(flex-wrap, wrap);
+  }
+
+  .form-item:last-of-type {
+    margin-bottom: 0;
+  }
+
+  input {
+    width: inherit;
+  }
+
+  // hide the default input box but keep under fake input box for html error
+  input[type='checkbox']:checked,
+  input[type='checkbox']:not(:checked),
+  input[type='radio']:checked,
+  input[type='radio']:not(:checked) {
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    height: 10px;
+  }
+
+  // create a fake input box
+  input[type='checkbox']:checked + label,
+  input[type='checkbox']:not(:checked) + label,
+  input[type='radio']:checked + label,
+  input[type='radio']:not(:checked) + label {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    line-height: 1;
+    padding-left: $marker-to-text-space;
+  }
+
+  // fake input box base
+  input[type='checkbox']:checked + label:before,
+  input[type='checkbox']:not(:checked) + label:before,
+  input[type='radio']:checked + label:before,
+  input[type='radio']:not(:checked) + label:before {
+    border: 1px solid $black;
+    content: '';
+    height: $active-width;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: $active-width;
+  }
+
+  input[type='checkbox']:checked + label:before {
+    background-color: $primary-orange;
+  }
+
+  // fake input box active indicator
+  input[type='checkbox']:checked + label:after,
+  input[type='checkbox']:checked + .form-required:after,
+  input[type='checkbox']:not(:checked) + label:after,
+  input[type='radio']:checked + label:after,
+  input[type='radio']:not(:checked) + label:after {
+    background-image: none;
+    display: block;
+    left: $active-gap / 2;
+    height: 0;
+    margin: 0;
+    position: absolute;
+    top: $active-gap / 2;
+    transition: $transition-base;
+    width: 0;
+  }
+
+  // fake input box active indicator NOT checked
+  input[type='checkbox']:not(:checked) + label:after,
+  input[type='checkbox']:not(:checked) + .form-required:after,
+  input[type='radio']:not(:checked) + label:after {
+    opacity: 0;
+    //transform: scale(0);
+  }
+
+  // fake input box active indicator checked
+  input[type='checkbox']:checked + label:after,
+  input[type='checkbox']:checked + label.form-required:after,
+  input[type='radio']:checked + label:after {
+    opacity: 1;
+    //transform: scale(1);
+  }
+
+  input[type='checkbox']:not(:checked):focus + label:before,
+  input[type='checkbox']:checked:focus + label:before {
+    border: 1px solid $black;
+  }
+
+  .required-icon {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin: 0 0.3em 1em;
+    background-image: url('/core/misc/icons/ee0000/required.svg');
+    background-repeat: no-repeat;
+    background-size: 6px 6px;
+  }
+
+  // item description
+  .description {
+    margin-left: $marker-to-text-space;
+  }
+}
+
+// Radio buttons
+.form-radios {
+
+  // fake input box base
+  input[type='radio']:checked + label:before,
+  input[type='radio']:not(:checked) + label:before {
+    border-radius: 100%;
+  }
+
+  // fake input box active indicator
+  input[type='radio']:checked + label:after,
+  input[type='radio']:not(:checked) + label:after {
+    background: $primary-orange;
+    border-radius: 100%;
+    content: '';
+    height: calc(#{$active-width} - #{$active-gap});
+    width: calc(#{$active-width} - #{$active-gap});
+  }
+}
+
+// Checkbox buttons
+.form-checkboxes {
+  input[type='checkbox']:checked + label:after,
+  input[type='checkbox']:checked + label.form-required:after,
+  input[type='checkbox']:not(:checked) + label.form-required:after,
+  input[type='checkbox']:not(:checked) + label:after {
+    @include icon-styles;
+    color: $black;
+    content: icon-char(checkmark);
+    font-size: rem(10px);
+    height: $active-width;
+    width: $active-width;
+    left: .15rem;
+  }
+}
+
+// Select
+.form-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  &:focus {
+    outline: 0 none;
+  }
+}
+
+// Dark square with chevron aligned right
+//Select
+.form-select__wrapper,
+.form-input-file__wrapper {
+  position: relative;
+
+  &::after {
+    color: $color-white;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $input-height;
+    width: $input-height;
+    background-color: $secondary-black;
+  }
+}
+
+.form-select__wrapper {
+  @include icon(chevron, after, false);
+
+  &::after {
+    font-size: rem(15px);
+    transform: rotate(90deg);
+  }
+}
+
+// Input File
+.form-input-file__wrapper {
+  @include icon(upload, after, false);
+
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+
+  &::after {
+    font-size: rem(20px);
+  }
+}
+
+.form-required {
+  @include icon(required, after);
+
+  &::after {
+    font-size: rem(5px);
+    background-image: unset;
+    background-size: unset;
+  }
+}
+
+.form-error {
+  input,
+  textarea,
+  select {
+    &:invalid:focus {
+      border-color: $danger-red !important;
+    }
+  }
+
+  .form-checkboxes,
+  .form-radios {
+    // Error on required field change color
+    input[type='checkbox']:not(:checked),
+    input[type='radio']:not(:checked) {
+      &:invalid:focus {
+        + label:before {
+          border-color: $danger-red !important;
+        }
+
+        + label {
+          color: $danger-red;
+        }
+      }
+    }
+  }
+}
+
+// Product Information Button within form
+.form-input-file-next-button {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+@include media('<md') {
+  .webform-flexbox {
+    margin-bottom: 0;
+  }
+
+  .form-actions {
+    margin: 0 0 1rem;
+  }
+}
+
+@include media('<sm') {
+  .webform-flexbox {
+    .webform-flex {
+      margin-bottom: rem(24px);
+    }
+  }
+}
+

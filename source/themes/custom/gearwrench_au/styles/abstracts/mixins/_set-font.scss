@@ -1,0 +1,34 @@
+// -----------------------------------------------------------------------------
+// Abstracts/Mixin: Set Font
+// Apply font family and weight
+//
+// Options:
+// • $family(value = variable, default = sans-serif) - The font families
+// • $weight(value = variable, default = normal) - The weight of the font
+//
+// Usage:
+// • default = @include setfont(fontName);
+// • with weight = @include setfont(fontName, $fw-light);
+// -----------------------------------------------------------------------------
+
+
+// ex: @include setfont(font-one, 400)
+// First value is your $family and second value is your weight
+
+@mixin setfont($family: $font-default, $weight: normal) {
+  @if $family == default {
+    // Default font stack
+    font-family: $font-default;
+  } @else if $family == brand {
+    // Brand font stack
+    font-family: $font-brand;
+  } @else if $family == mono {
+    // Mono Code
+    font-family: $font-mono;
+  } @else {
+    // Set at use
+    font-family: $family;
+  }
+
+  font-weight: $weight;
+}
