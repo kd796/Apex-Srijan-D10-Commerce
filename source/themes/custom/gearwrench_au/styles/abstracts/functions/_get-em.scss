@@ -1,0 +1,29 @@
+// -----------------------------------------------------------------------------
+// Abstracts/Functions: Get ems
+// Convert values into em units
+//
+// Options:
+// • $pixels(value = number or variable) - Unit value. Can only be single.
+// • $context(value = number or variable, default = $base-multiplyer-em) - Set unit base, or defaults to defined value in settings
+//
+// Usage:
+// • Use with single or multiple units
+//   font-size: em(20px);
+// • Use with a base unit size
+//   font-size: em(20px, 12px);
+// -----------------------------------------------------------------------------
+
+// Base unit multiplyer for em conversion
+$base-multiplyer-em: 16px !default;
+
+@function em($pixels, $context: $base-multiplyer-em) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+
+  @return $pixels / $context * 1em;
+}

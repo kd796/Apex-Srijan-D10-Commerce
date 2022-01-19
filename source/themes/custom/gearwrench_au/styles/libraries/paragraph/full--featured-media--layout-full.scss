@@ -1,0 +1,48 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: Featured Media - Full layout
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.component-featured-media--layout-full {
+  margin-left: -2rem;
+  margin-right: -2rem;
+
+  .component-featured-media__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    figure {
+      display: block;
+      min-width: 100%;
+    }
+  }
+
+  .media--type-image {
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  video {
+    height: 100%;
+    width: 100%;
+  }
+
+  @media (min-width: 75em) {
+    margin-left: calc(-100vw / 2 + 75em / 2);
+    margin-right: calc(-100vw / 2 + 75em / 2);
+  }
+}

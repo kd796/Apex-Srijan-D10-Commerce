@@ -1,0 +1,38 @@
+// -----------------------------------------------------------------------------
+// Abstracts/Mixin: Positionings
+// Common positionings for fixed and absolute items
+//
+// Option(s):
+// • $position(value = fixed or absolute) - default = absolute - position property
+//
+// === trbl === //
+// @include trbl();
+//
+// === trl === //
+// @include trl();
+//
+// === rbl === //
+// @include rbl();
+// -----------------------------------------------------------------------------
+
+@mixin trbl($position: absolute) {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: $position;
+}
+
+@mixin trl($position: absolute) {
+  top: 0;
+  right: 0;
+  left: 0;
+  position: $position;
+}
+
+@mixin rbl($position: absolute) {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: $position;
+}

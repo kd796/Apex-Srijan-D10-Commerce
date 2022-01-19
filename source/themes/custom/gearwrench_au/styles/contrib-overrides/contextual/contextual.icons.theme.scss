@@ -1,0 +1,41 @@
+// sass-lint:disable-all
+
+/**
+ * @file
+ * Styling for contextual module icons.
+ */
+
+/**
+ * Toolbar tab icon.
+ */
+.toolbar-bar .toolbar-icon-edit:before {
+  background-image: url(../../../../../../core/themes/stable/images/core/icons/bebebe/pencil.svg)!important;
+}
+.toolbar-bar .toolbar-icon-edit:active:before,
+.toolbar-bar .toolbar-icon-edit.is-active:before {
+  background-image: url(../../../../../../core/themes/stable/images/core/icons/ffffff/pencil.svg)!important;
+}
+
+/**
+ * Contextual trigger.
+ */
+.contextual .trigger {
+  background-image: url(../../../../../../core/themes/stable/images/core/icons/bebebe/pencil.svg)!important;
+  background-position: center center!important;
+  background-repeat: no-repeat!important;
+  background-size: 16px 16px!important;
+  /* Override the .focusable height: auto */
+  height: 26px !important;
+  /* Override the .focusable height: auto */
+  width: 26px !important;
+  text-indent: -9999px!important;
+}
+
+.contextual .trigger:hover {
+  background-image: url(../../../../../../core/themes/stable/images/core/icons/787878/pencil.svg)!important;
+}
+
+.contextual .trigger:focus {
+  background-image: url(../../../../../../core/themes/stable/images/core/icons/5181c6/pencil.svg)!important;
+  outline: none;
+}
