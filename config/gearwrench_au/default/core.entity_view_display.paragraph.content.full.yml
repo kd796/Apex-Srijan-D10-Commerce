@@ -1,3 +1,4 @@
+uuid: 88e15c9d-7609-404e-baa8-62edeed14469
 langcode: en
 status: true
 dependencies:
@@ -17,6 +18,8 @@ dependencies:
     - blazy
     - linkit
     - text
+_core:
+  default_config_hash: KpCo30VG0jTdIP8FDQi7dTMd0rmnR_dm1xaDjjE96WU
 id: paragraph.content.full
 targetEntityType: paragraph
 bundle: content
@@ -49,20 +52,13 @@ content:
       caption:
         title: '0'
         alt: '0'
-      class: ''
-      id: ''
-      image: ''
-      link: ''
-      overlay: ''
-      title: ''
-      vanilla: false
+      optionset: default
       icon: ''
       layout: ''
       view_mode: ''
       cache: 0
       current_view_mode: full
       skin: ''
-      fx: ''
       style: ''
       background: false
       box_caption: ''
@@ -74,7 +70,6 @@ content:
       media_switch: ''
       ratio: ''
       thumbnail_style: ''
-      _uri: ''
       breakpoints:
         xs:
           breakpoint: ''
@@ -101,6 +96,7 @@ content:
       grid: '0'
       grid_medium: '0'
       grid_small: '0'
+      iframe_lazy: true
     third_party_settings: {  }
     weight: 1
     region: content

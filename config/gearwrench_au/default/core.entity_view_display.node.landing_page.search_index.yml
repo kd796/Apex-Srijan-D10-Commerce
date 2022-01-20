@@ -1,3 +1,4 @@
+uuid: d37f88ab-19cc-43ba-986d-1c8c64bb3990
 langcode: en
 status: true
 dependencies:
@@ -13,6 +14,8 @@ dependencies:
     - entity_reference_revisions
     - text
     - user
+_core:
+  default_config_hash: MWpmiVUYfi4J5cKI1GD9E1MmSKdmtm-IOemzDLDy8eE
 id: node.landing_page.search_index
 targetEntityType: node
 bundle: landing_page
@@ -23,19 +26,27 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
   field_component_hero:
     type: entity_reference_revisions_entity_view
     label: hidden
     settings:
-      view_mode: search_index
+      view_mode: full
       link: ''
     third_party_settings: {  }
-    weight: 1
+    weight: 0
+    region: content
+  field_components:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: ''
+    third_party_settings: {  }
+    weight: 2
     region: content
 hidden:
-  field_components: true
   field_media: true
   field_meta_tags: true
   langcode: true

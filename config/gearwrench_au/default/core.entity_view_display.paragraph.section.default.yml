@@ -1,8 +1,8 @@
+uuid: 3562f806-75b4-44e1-af7c-3b5342a7566c
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.section.field_background_color
     - field.field.paragraph.section.field_class_custom
     - field.field.paragraph.section.field_components
     - field.field.paragraph.section.field_html_anchor
@@ -10,23 +10,15 @@ dependencies:
     - field.field.paragraph.section.field_style
     - paragraphs.paragraphs_type.section
   module:
-    - color_field
     - entity_reference_revisions
     - image
+_core:
+  default_config_hash: ONE1_UFJkJDhP3A-psO4UoVnTnyAEqZHQCSPBKp6omo
 id: paragraph.section.default
 targetEntityType: paragraph
 bundle: section
 mode: default
 content:
-  field_background_color:
-    type: color_field_formatter_text
-    label: above
-    settings:
-      format: hex
-      opacity: true
-    third_party_settings: {  }
-    weight: 5
-    region: content
   field_class_custom:
     type: string
     label: above
@@ -70,4 +62,5 @@ content:
     weight: 2
     region: content
 hidden:
+  field_background_color: true
   search_api_excerpt: true

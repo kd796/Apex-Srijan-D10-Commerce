@@ -1,3 +1,4 @@
+uuid: 7130f85f-8248-4ba0-b2ce-64a552e41888
 langcode: en
 status: true
 dependencies:
@@ -6,8 +7,6 @@ dependencies:
     - node.type.page
     - paragraphs.paragraphs_type.accordion
     - paragraphs.paragraphs_type.content
-    - paragraphs.paragraphs_type.content_2_column
-    - paragraphs.paragraphs_type.content_callout_container
     - paragraphs.paragraphs_type.embed_block
     - paragraphs.paragraphs_type.embed_iframe
     - paragraphs.paragraphs_type.embed_view
@@ -15,13 +14,13 @@ dependencies:
     - paragraphs.paragraphs_type.featured_links
     - paragraphs.paragraphs_type.featured_media
     - paragraphs.paragraphs_type.hero
-    - paragraphs.paragraphs_type.product_slider
     - paragraphs.paragraphs_type.pullquote
     - paragraphs.paragraphs_type.section
-    - paragraphs.paragraphs_type.steps
     - paragraphs.paragraphs_type.tabs
   module:
     - entity_reference_revisions
+_core:
+  default_config_hash: 0iNEFdxPmFHFRrmV3E30mzVM44KPzntKof7Rf845E6E
 id: node.page.field_components
 field_name: field_components
 entity_type: node
@@ -35,9 +34,9 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
+    negate: 0
     target_bundles:
       content: content
-      content_2_column: content_2_column
       accordion: accordion
       embed_block: embed_block
       embed_iframe: embed_iframe
@@ -49,72 +48,65 @@ settings:
       pullquote: pullquote
       section: section
       tabs: tabs
-      content_callout_container: content_callout_container
-      product_slider: product_slider
-      steps: steps
-    negate: 0
     target_bundles_drag_drop:
-      accordion:
-        weight: -41
-        enabled: true
-      accordion_item:
-        weight: -40
-        enabled: false
       content:
-        weight: -43
         enabled: true
-      content_2_column:
-        weight: -42
+        weight: -41
+      accordion:
         enabled: true
-      content_callout:
-        weight: -27
-        enabled: false
-      content_callout_container:
-        weight: -26
-        enabled: true
-      embed_block:
+        weight: -40
+      accordion_item:
         weight: -39
-        enabled: true
-      embed_iframe:
-        weight: -38
-        enabled: true
-      embed_view:
-        weight: -37
-        enabled: true
-      featured_content:
-        weight: -36
-        enabled: true
-      featured_links:
-        weight: -32
-        enabled: true
-      featured_media:
-        weight: -35
-        enabled: true
-      hero:
-        weight: -34
-        enabled: true
-      hero_slide:
-        weight: -33
         enabled: false
-      product_slider:
-        weight: -25
+      embed_block:
         enabled: true
-      pullquote:
+        weight: -38
+      embed_iframe:
+        enabled: true
+        weight: -37
+      embed_view:
+        enabled: true
+        weight: -36
+      featured_content:
+        enabled: true
+        weight: -35
+      featured_media:
+        enabled: true
+        weight: -34
+      hero:
+        enabled: true
+        weight: -33
+      hero_slide:
+        weight: -32
+        enabled: false
+      featured_links:
+        enabled: true
         weight: -31
+      pod:
         enabled: true
-      section:
         weight: -30
+      pod_pea_content:
+        weight: -29
+        enabled: false
+      pullquote:
         enabled: true
-      step:
+        weight: -28
+      section:
+        enabled: true
+        weight: -27
+      slider:
+        enabled: true
+        weight: -26
+      slider_slide_photo:
+        weight: -25
+        enabled: false
+      slider_slide_video:
         weight: -24
         enabled: false
-      steps:
-        weight: -23
-        enabled: true
       tabs:
-        weight: -29
         enabled: true
+        weight: -23
       tabs_tab:
-        weight: -28
+        weight: -22
         enabled: false
 field_type: entity_reference_revisions

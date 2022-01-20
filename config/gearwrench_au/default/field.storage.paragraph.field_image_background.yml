@@ -1,3 +1,4 @@
+uuid: de0ee3b0-9a5a-413b-ac16-e3424cfc24b0
 langcode: en
 status: true
 dependencies:
@@ -5,14 +6,13 @@ dependencies:
     - file
     - image
     - paragraphs
+_core:
+  default_config_hash: J3agu5XqizYUCKwhkb21KV8mxsVqsD5-6D3qiieMCao
 id: paragraph.field_image_background
 field_name: field_image_background
 entity_type: paragraph
 type: image
 settings:
-  target_type: file
-  display_field: false
-  display_default: false
   uri_scheme: public
   default_image:
     uuid: ''
@@ -20,6 +20,9 @@ settings:
     title: ''
     width: null
     height: null
+  target_type: file
+  display_field: false
+  display_default: false
 module: image
 locked: false
 cardinality: 1

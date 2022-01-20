@@ -1,3 +1,4 @@
+uuid: 00808ff8-6d22-4545-8abb-171ea62afe8d
 langcode: en
 status: true
 dependencies:
@@ -5,7 +6,6 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.page.body
     - field.field.node.page.field_components
-    - field.field.node.page.field_link
     - field.field.node.page.field_media
     - field.field.node.page.field_meta_tags
     - image.style.small_1x1
@@ -14,6 +14,8 @@ dependencies:
     - blazy
     - smart_trim
     - user
+_core:
+  default_config_hash: UDLaRNf0Y6Ip7i48hyinduYv4c-goGdKzRShKxx40L4
 id: node.page.teaser
 targetEntityType: node
 bundle: page
@@ -45,20 +47,13 @@ content:
       caption:
         title: '0'
         alt: '0'
-      class: ''
-      id: ''
-      image: ''
-      link: ''
-      overlay: ''
-      title: ''
-      vanilla: false
+      optionset: default
       icon: ''
       layout: ''
-      view_mode: default
+      view_mode: ''
       cache: 0
       current_view_mode: teaser
       skin: ''
-      fx: ''
       style: ''
       background: false
       box_caption: ''
@@ -70,13 +65,33 @@ content:
       media_switch: ''
       ratio: ''
       thumbnail_style: ''
-      _uri: ''
-      breakpoints: {  }
+      breakpoints:
+        xs:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        sm:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        md:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        lg:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        xl:
+          breakpoint: ''
+          width: ''
+          image_style: ''
       sizes: ''
       grid_header: ''
       grid: '0'
       grid_medium: '0'
       grid_small: '0'
+      iframe_lazy: true
     third_party_settings: {  }
     weight: 0
     region: content

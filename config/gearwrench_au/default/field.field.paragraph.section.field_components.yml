@@ -1,10 +1,10 @@
+uuid: 8ca362ad-3b0a-4424-adb5-da77161dcb7a
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_components
     - paragraphs.paragraphs_type.content
-    - paragraphs.paragraphs_type.content_callout_container
     - paragraphs.paragraphs_type.embed_block
     - paragraphs.paragraphs_type.embed_iframe
     - paragraphs.paragraphs_type.embed_view
@@ -16,6 +16,8 @@ dependencies:
     - paragraphs.paragraphs_type.tabs
   module:
     - entity_reference_revisions
+_core:
+  default_config_hash: H0Ms50T9R96k-HUDdT51oHOqr__jLodyJyXaKNspMn0
 id: paragraph.section.field_components
 field_name: field_components
 entity_type: paragraph
@@ -29,9 +31,9 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
+    negate: 0
     target_bundles:
       content: content
-      content_callout_container: content_callout_container
       embed_block: embed_block
       embed_iframe: embed_iframe
       embed_view: embed_view
@@ -41,60 +43,50 @@ settings:
       pullquote: pullquote
       section: section
       tabs: tabs
-    negate: 0
     target_bundles_drag_drop:
       accordion:
-        weight: -37
+        weight: -31
         enabled: false
       accordion_item:
-        weight: -36
+        weight: -30
         enabled: false
       content:
-        weight: -35
         enabled: true
-      content_callout:
-        weight: -20
-        enabled: false
-      content_callout_container:
-        weight: -34
-        enabled: true
-      embed_block:
-        weight: -33
-        enabled: true
-      embed_iframe:
-        weight: -32
-        enabled: true
-      embed_view:
-        weight: -31
-        enabled: true
-      featured_content:
-        weight: -30
-        enabled: true
-      featured_links:
         weight: -29
+      embed_block:
         enabled: true
-      featured_media:
         weight: -28
+      embed_iframe:
         enabled: true
-      hero:
         weight: -27
+      embed_view:
+        enabled: true
+        weight: -26
+      featured_content:
+        enabled: true
+        weight: -25
+      featured_links:
+        enabled: true
+        weight: -24
+      featured_media:
+        enabled: true
+        weight: -23
+      hero:
+        weight: -22
         enabled: false
       hero_slide:
-        weight: -26
-        enabled: false
-      product_slider:
         weight: -21
         enabled: false
       pullquote:
-        weight: -25
         enabled: true
+        weight: -20
       section:
-        weight: -24
         enabled: true
+        weight: -19
       tabs:
-        weight: -23
         enabled: true
+        weight: -18
       tabs_tab:
-        weight: -22
+        weight: -17
         enabled: false
 field_type: entity_reference_revisions

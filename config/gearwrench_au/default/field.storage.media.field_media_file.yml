@@ -1,3 +1,4 @@
+uuid: 0a266b07-3ff7-4280-8ca6-d159e54eae27
 langcode: en
 status: true
 dependencies:
@@ -7,15 +8,17 @@ dependencies:
   enforced:
     module:
       - media
+_core:
+  default_config_hash: 4GNilUMnj0opT050eZIkWhkfuzu69ClyEr-cHxofjQw
 id: media.field_media_file
 field_name: field_media_file
 entity_type: media
 type: file
 settings:
+  uri_scheme: public
   target_type: file
   display_field: false
   display_default: false
-  uri_scheme: public
 module: file
 locked: false
 cardinality: 1

@@ -1,3 +1,4 @@
+uuid: c22e4964-01c8-4783-b72c-f50ce94e2a8e
 langcode: en
 status: true
 dependencies:
@@ -6,10 +7,14 @@ dependencies:
     - image.style.large_landscape_4x3
     - image.style.medium_landscape_4x3
     - image.style.small_landscape_4x3
+_core:
+  default_config_hash: Ueixy1Nnk0KORFF330euEf3OtxL7HiWsav9smf0tUlo
 id: wide
 label: Wide
 image_style_mappings:
   -
+    breakpoint_id: responsive_image.viewport_sizing
+    multiplier: 1x
     image_mapping_type: sizes
     image_mapping:
       sizes: '(min-width: 1290px) 1290px, 100vw'
@@ -18,7 +23,5 @@ image_style_mappings:
         - large_landscape_4x3
         - medium_landscape_4x3
         - small_landscape_4x3
-    breakpoint_id: responsive_image.viewport_sizing
-    multiplier: 1x
 breakpoint_group: responsive_image
 fallback_image_style: small_landscape_4x3

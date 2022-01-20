@@ -1,3 +1,4 @@
+uuid: 89a4fb7c-fe1e-418a-829c-983d868af3d4
 langcode: en
 status: true
 dependencies:
@@ -6,22 +7,18 @@ dependencies:
   module:
     - filter
     - media
-    - node_view_permissions
     - search
     - system
+_core:
+  default_config_hash: JrtDp8Iu4bDYXyEa3b0ibCCP9Lcj-px3BRoEOpg85_Q
 id: anonymous
 label: 'Anonymous user'
 weight: 0
 is_admin: false
 permissions:
+  - 'access comments'
   - 'access content'
+  - 'access site-wide contact form'
   - 'search content'
   - 'use text format restricted_html'
-  - 'view any landing_page content'
-  - 'view any media_page content'
-  - 'view any page content'
-  - 'view any product content'
-  - 'view any product_category content'
-  - 'view any product_industry content'
-  - 'view any social_post content'
   - 'view media'

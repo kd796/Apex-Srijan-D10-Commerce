@@ -1,13 +1,15 @@
+uuid: 880aae30-71ab-4ac8-a1b6-5cebe3e9c519
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.media.embed_grid
-    - field.field.media.remote_video.field_media_oembed_video
     - field.field.media.remote_video.field_media_video_embed_field
     - media.type.remote_video
   module:
     - video_embed_field
+_core:
+  default_config_hash: CUEbGSt9DKdBRrd6lE9TOyMZYFjhYntnn4ONAn95J10
 id: media.remote_video.embed_grid
 targetEntityType: media
 bundle: remote_video

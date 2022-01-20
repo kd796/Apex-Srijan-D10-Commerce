@@ -1,3 +1,4 @@
+uuid: 89c578fd-fd36-40d0-916d-6ee3bf00f40f
 langcode: en
 status: true
 dependencies:
@@ -5,49 +6,25 @@ dependencies:
     - core.entity_view_mode.paragraph.full
     - field.field.paragraph.hero_slide.field_class_custom
     - field.field.paragraph.hero_slide.field_content
-    - field.field.paragraph.hero_slide.field_link
     - field.field.paragraph.hero_slide.field_media_background
     - field.field.paragraph.hero_slide.field_style
     - field.field.paragraph.hero_slide.field_title
     - paragraphs.paragraphs_type.hero_slide
   module:
-    - link
-    - smart_trim
+    - text
+_core:
+  default_config_hash: DsOopD2Ae4BtyASdTc2cM9-ovYf5OPEBxHnGhyvJqQ8
 id: paragraph.hero_slide.full
 targetEntityType: paragraph
 bundle: hero_slide
 mode: full
 content:
   field_content:
-    type: smart_trim
+    type: text_default
     label: hidden
-    settings:
-      trim_length: 230
-      trim_type: chars
-      trim_suffix: ...
-      wrap_output: false
-      wrap_class: trimmed
-      more_link: false
-      more_class: more-link
-      more_text: More
-      summary_handler: full
-      trim_options:
-        text: false
-        trim_zero: false
+    settings: {  }
     third_party_settings: {  }
     weight: 1
-    region: content
-  field_link:
-    type: link
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
-    third_party_settings: {  }
-    weight: 2
     region: content
   field_media_background:
     type: entity_reference_entity_view
@@ -56,7 +33,7 @@ content:
       view_mode: hero
       link: false
     third_party_settings: {  }
-    weight: 4
+    weight: 2
     region: content
   field_title:
     type: string
@@ -68,5 +45,6 @@ content:
     region: content
 hidden:
   field_class_custom: true
+  field_link: true
   field_style: true
   search_api_excerpt: true

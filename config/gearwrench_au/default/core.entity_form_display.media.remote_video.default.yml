@@ -1,12 +1,14 @@
+uuid: 7451109b-9338-42c6-9a1d-8826f6d7009c
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.media.remote_video.field_media_oembed_video
     - field.field.media.remote_video.field_media_video_embed_field
     - media.type.remote_video
   module:
     - video_embed_field
+_core:
+  default_config_hash: MJYW88FZlo9dYnLr0zrWDDK3iij-0GHhgOa_dXZg1zA
 id: media.remote_video.default
 targetEntityType: media
 bundle: remote_video
@@ -20,7 +22,7 @@ content:
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 1
+    weight: 2
     region: content
     settings:
       include_locked: true
