@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.huge_landscape_3x1
+    - image.style.large_landscape_3x1
+    - image.style.medium_landscape_3x1
+    - image.style.small_landscape_3x2
+  theme:
+    - gearwrench
+id: content_top_bottom
+label: 'Content - Top/Bottom'
+image_style_mappings:
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: '(min-width: 75em) 75em, 100vw'
+      sizes_image_styles:
+        - huge_landscape_3x1
+        - large_landscape_3x1
+        - medium_landscape_3x1
+        - small_landscape_3x2
+    breakpoint_id: gearwrench.All
+    multiplier: 1x
+breakpoint_group: gearwrench
+fallback_image_style: medium_landscape_3x1

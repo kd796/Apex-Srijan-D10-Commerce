@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.acquia_search
+  module:
+    - system
+    - views
+  theme:
+    - gearwrench
+id: views_block__acquia_search_block_1
+theme: gearwrench
+region: post_content
+weight: 0
+provider: null
+plugin: 'views_block:acquia_search-block_1'
+settings:
+  id: 'views_block:acquia_search-block_1'
+  label: 'Other Results for'
+  label_display: '0'
+  provider: views
+  views_label: 'Other Results for'
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /search

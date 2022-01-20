@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - gearwrench_core
+    - node
+  theme:
+    - gearwrench
+id: productbuynowsticky
+theme: gearwrench
+region: pre_content
+weight: -7
+provider: null
+plugin: product_buy_now_sticky
+settings:
+  id: product_buy_now_sticky
+  label: 'Product: Buy Now Sticky'
+  label_display: '0'
+  provider: gearwrench_core
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      product: product

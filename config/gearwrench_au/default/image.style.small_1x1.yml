@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: small_1x1
+label: 'Small - square (360x360)'
+effects:
+  5f1a3992-6f9f-4b7c-acc5-d33bd9ef4a90:
+        id: focal_point_scale_and_crop
+    weight: 2
+    data:
+      width: 360
+      height: 360
+      crop_type: focal_point
+pipeline: smushit

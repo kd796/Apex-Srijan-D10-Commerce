@@ -1,0 +1,78 @@
+langcode: en
+status: true
+dependencies: {  }
+id: gearwrench_product_classifications_level_three
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: gearwrench
+label: 'Product Classifications - Level Three'
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: 'http://www.stibosystems.com/step'
+  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 3"]'
+  fields:
+    -
+      name: remote_term_id
+      label: ID
+      selector: '@ID'
+    -
+      name: remote_term_name
+      label: 'Term Name'
+      selector: Name
+    -
+      name: remote_parent_name
+      label: 'Parent Term Name'
+      selector: ../../Classification
+  ids:
+    remote_term_id:
+      type: string
+process:
+  name:
+    plugin: skip_on_empty
+    method: row
+    source: remote_term_name
+  parent:
+    plugin: apex_get_classification_parent_term
+    source: remote_parent_name
+  field_classification_id:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_term_id
+    method: row
+    value:
+      - W3_735405
+      - W3_735403
+      - W3_735402
+      - W3_735407
+      - W3_735404
+      - W3_735408
+      - W3_735409
+      - W3_735410
+      - W3_735411
+      - W3_714195
+      - W3_714196
+      - W3_714197
+      - W3_714199
+      - W3_714200
+      - W3_714201
+      - W3_16160
+      - W3_16161
+      - W3_16163
+      - W3_16128
+      - W3_16138
+      - W3_736552
+      - W3_16141
+      - W3_736555
+      - W3_16146
+      - W3_16145
+      - W3_736554
+destination:
+  plugin: 'entity:taxonomy_term'
+  default_bundle: product_classifications
+migration_dependencies: null

@@ -1,0 +1,46 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.biggest_landscape_3x1
+    - image.style.huge_landscape_2x1
+    - image.style.large_1x1
+    - image.style.medium_1x1
+    - image.style.small_portrait_2x3
+  theme:
+    - gearwrench
+id: hero
+label: Hero
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: biggest_landscape_3x1
+    breakpoint_id: gearwrench.grande
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: huge_landscape_2x1
+    breakpoint_id: gearwrench.xlarge
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: large_1x1
+    breakpoint_id: gearwrench.large
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: medium_1x1
+    breakpoint_id: gearwrench.medium
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: small_portrait_2x3
+    breakpoint_id: gearwrench.small
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: small_portrait_2x3
+    breakpoint_id: gearwrench.xsmall
+    multiplier: 1x
+breakpoint_group: gearwrench
+fallback_image_style: biggest_landscape_3x1
