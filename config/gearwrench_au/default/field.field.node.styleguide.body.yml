@@ -1,0 +1,31 @@
+uuid: c38e8fd7-0108-4707-86e4-2c8a0db27a7b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.styleguide
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    limited_html: limited_html
+    plain_text: plain_text
+    basic_html: '0'
+    restricted_html: '0'
+    full_html: '0'
+id: node.styleguide.body
+field_name: body
+entity_type: node
+bundle: styleguide
+label: 'Lead-in/Summary Text'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

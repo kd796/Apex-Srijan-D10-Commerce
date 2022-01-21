@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------------
+// Abstracts/Mixin: Classy styles
+// Styles for classy classes that need to be applied specifically to the component
+// @include classy-no-space();
+// -----------------------------------------------------------------------------
+
+/** No-space
+ * Removes the default space, border, and padding place on a component
+ */
+@mixin classy-no-space() {
+  border-top: 0 none;
+  margin-top: $gap-vertical-sm-plus;
+  padding-top: 0;
+}

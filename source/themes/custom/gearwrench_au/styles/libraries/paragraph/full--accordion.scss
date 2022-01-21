@@ -1,0 +1,112 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: accordion
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.component-accordion,
+.webform-accordion {
+  .component-accordion-item {
+    @include media('<md') {
+      &:first-of-type {
+        border-top: 0.125rem solid $gray-70;
+      }
+    }
+  }
+
+  .component-accordion-item__title {
+    @include type-header(h4, black, included);
+    @include icon('arrow', after, false);
+
+    cursor: pointer;
+    padding: rem(20px) 0 rem(17px) rem(10px) !important;
+    margin: 0 !important;
+    text-transform: uppercase;
+    position: relative;
+    border-bottom: 0.125rem solid $gray-70;
+
+    &::after {
+      color: $color-black;
+      transform: rotate(90deg);
+      display: inline-block;
+      position: absolute;
+      right: rem(12px);
+      font-size: rem(18px);
+    }
+
+    &:focus,
+    &:hover {
+      color: $color-black;
+    }
+  }
+
+  .component-accordion-item__content {
+    animation-duration: $transition-base-time * 2;
+    animation-direction: alternate;
+    animation-name: fadeIn;
+    animation-timing-function: ease-in-out;
+    padding: 1rem 0 !important;
+
+    @include media('>=md') {
+      padding: rem(30px) 0 rem(40px) !important;
+    }
+
+    > .paragraph-component:not(:first-of-type) {
+      margin-top: $gap-vertical-sm;
+    }
+
+    .component-content {
+      padding-left: 0;
+      padding-right: 0;
+
+      @include media('>=md') {
+        padding-left: 4rem;
+        padding-right: 4rem;
+      }
+    }
+
+    .block-webform,
+    &.block-webform {
+      @include media('>=md') {
+        width: 50%;
+      }
+    }
+
+    .component-content__content {
+      max-width: 100%;
+    }
+  }
+
+  .component-accordion-item--open {
+    @include media('<md') {
+      &:not(:last-child) {
+        border-bottom: 0.125rem solid $gray-70;
+      }
+    }
+
+    & > .component-accordion-item__title {
+      &::after {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

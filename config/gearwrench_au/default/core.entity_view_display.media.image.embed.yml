@@ -1,0 +1,80 @@
+uuid: b1a1f1bf-8e07-46d8-83db-0e355f5391a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.embed
+    - field.field.media.image.field_media_image
+    - image.style.medium
+    - media.type.image
+  module:
+    - blazy
+_core:
+  default_config_hash: 9RwxCcGQ1e4OMQAvqWs-8SgNx55WcNLtaEN8-7Yb0FU
+id: media.image.embed
+targetEntityType: media
+bundle: image
+mode: embed
+content:
+  field_media_image:
+    type: blazy
+    label: visually_hidden
+    settings:
+      caption:
+        title: '0'
+        alt: '0'
+      optionset: default
+      icon: ''
+      layout: ''
+      view_mode: ''
+      cache: 0
+      current_view_mode: embed
+      skin: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      responsive_image_style: ''
+      box_style: ''
+      image_style: medium
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
+      breakpoints:
+        xs:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        sm:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        md:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        lg:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        xl:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+      sizes: ''
+      grid_header: ''
+      grid: '0'
+      grid_medium: '0'
+      grid_small: '0'
+      iframe_lazy: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  created: true
+  langcode: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

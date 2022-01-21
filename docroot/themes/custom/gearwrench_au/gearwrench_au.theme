@@ -1,0 +1,419 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the gearwrench theme.
+ */
+
+use Drupal\Component\Utility\NestedArray;
+use Drupal\Core\Render\Element;
+use Drupal\media\Entity\Media;
+use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
+use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
+use Drupal\responsive_image\Entity\ResponsiveImageStyle;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\Core\Form\FormStateInterface;
+
+include_once 'preprocess/block.preprocess.php';
+include_once 'preprocess/media.preprocess.php';
+include_once 'preprocess/node.preprocess.php';
+include_once 'preprocess/paragraph.preprocess.php';
+include_once 'preprocess/view.preprocess.php';
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function gearwrench_au_preprocess_html(&$variables) {
+  $priceSpiderProductKey = [
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'ps-key',
+      'content' => '2377-5994e3055319cc6f56bb06f6',
+    ],
+  ];
+
+  $priceSpiderGenericKey = [
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'ps-key',
+      'content' => '2377-5994e318c4d97a6dbf2d9a4d',
+    ],
+  ];
+
+  $priceSpiderCountry = [
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'ps-country',
+      'content' => 'US',
+    ],
+  ];
+
+  $priceSpiderLanguage = [
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'ps-language',
+      'content' => 'en',
+    ],
+  ];
+
+  // If page where-buy use generic key, else product key.
+  if (str_contains($_SERVER['REQUEST_URI'], 'where-to-buy')) {
+    $variables['#attached']['html_head'][] = [$priceSpiderGenericKey, 'ps-key'];
+  }
+  else {
+    $variables['#attached']['html_head'][] = [$priceSpiderProductKey, 'ps-key'];
+  }
+
+  $variables['#attached']['html_head'][] = [$priceSpiderCountry, 'ps-country'];
+  $variables['#attached']['html_head'][] = [$priceSpiderLanguage, 'ps-language'];
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for search_block_form.
+ */
+function gearwrench_au_form_search_block_form_alter(&$form, &$form_state) {
+  $form['keys']['#attributes']['autocomplete'] = 'off';
+  $form['keys']['#attributes']['placeholder'][] = t('Search');
+
+  $form['actions']['submit'] = [
+    '#type' => 'html_tag',
+    '#tag' => 'button',
+    '#value' => '<span>' . t('Search') . '</span>',
+    '#attributes' => [
+      'id' => 'edit-submit',
+      'type' => 'submit',
+      'class' => [
+        'search-submit'
+      ],
+      'title' => t('Search'),
+      'data-drupal-selector' => 'edit-submit',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for search_form.
+ */
+function gearwrench_au_form_search_form_alter(&$form, &$form_state) {
+  $form['basic']['keys']['#attributes']['autocomplete'] = 'off';
+  $form['basic']['keys']['#attributes']['placeholder'][] = t('Search');
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ *
+ * We're doing this to automatically convert passed-through attribute arrays
+ * into Attribute objects.
+ *
+ * @see bazo_theme_registry_alter();
+ * @see bazo_postprocess();
+ */
+function gearwrench_au_theme_registry_alter(&$theme_registry) {
+  $theme_keys = [
+    'search_result',
+  ];
+
+  // Run through each theme id.
+  foreach (array_keys($theme_registry) as $key) {
+    // Attach post process if key or base_hook is in supported theme keys.
+    if (in_array($key, $theme_keys) || (array_key_exists('base hook', $theme_registry[$key]) && in_array($theme_registry[$key]['base hook'], $theme_keys))) {
+      // Add postprocess function to automatically convert attributes arrays.
+      $theme_registry[$key]['preprocess functions'][] = 'bazo_postprocess';
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for menu.
+ */
+function gearwrench_au_theme_suggestions_menu_alter(array &$suggestions, array &$variables) {
+  /*
+   * Add hook suggestion based on block ID.
+   * @see vmc_preprocess_block();
+   */
+  if (isset($variables['attributes']['data-block'])) {
+    $id = $variables['attributes']['data-block'];
+    unset($variables['attributes']['data-block']);
+    $suggestions[] = $variables['theme_hook_original'] . '__block_' . $id;
+  }
+
+  if ($variables['menu_name'] === 'featured-tools') {
+    $suggestions[] = $variables['theme_hook_original'] . '__block_' . $variables['menu_name'];
+  }
+}
+
+/**
+ * Implements hook_preprocess_blazy().
+ */
+function gearwrench_au_preprocess_blazy(&$variables) {
+  // @todo watch these tickets and remove this portion of the code when they're
+  //   merged into core and we can properly batch-update/update alt tags.
+  // @link https://www.drupal.org/project/drupal/issues/2983456
+  // @link https://www.drupal.org/project/drupal/issues/2878119
+  $entity = NULL;
+
+  if (isset($variables['element']['#item']) && ($item = $variables['element']['#item']) && method_exists($item, 'getEntity')) {
+    $entity = $item->getEntity();
+
+    if ($entity instanceof Media) {
+      $alt = $entity->getSource()->getMetadata($entity, 'thumbnail_alt_value');
+      $variables['image']['#attributes']['alt'] = $alt;
+      $variables['image']['#attributes']['loading'] = 'lazy';
+      $variables['item_attributes']['alt'] = $alt;
+    }
+  }
+
+  // Passing #item_attributes to blazy doesn't seem to actually work, so we pass
+  // them through the settings and then reset them now.
+  if (isset($variables['settings']['item_attributes']) && is_array($variables['settings']['item_attributes'])) {
+    foreach ($variables['settings']['item_attributes'] as $attr_key => $attr_val) {
+      $variables['image']['#attributes'][$attr_key] = $attr_val;
+      $variables['item_attributes'][$attr_key] = $attr_val;
+    }
+  }
+
+  // Try to override placeholder if default placeholder and image_style exists.
+  if (isset($variables['settings']['image_style']) && isset($variables['image']['#uri']) && substr($variables['image']['#uri'], 0, 21) === 'data:image/gif;base64') {
+    // Try to determine height and width of image based on image style.
+    $image = \Drupal::service('image.factory')->get($variables['settings']['uri']);
+    $image_dimensions['height'] = $image->getHeight();
+    $image_dimensions['width'] = $image->getWidth();
+    $image_dimensions = responsive_image_get_image_dimensions($variables['settings']['image_style'], $image_dimensions, $variables['settings']['uri']);
+    $height = $image_dimensions['height'];
+    $width = $image_dimensions['width'];
+
+    // Override with aspect-ratio correct  placeholder if height/width found.
+    if (!is_null($height) && !is_null($width)) {
+      $variables['image']['#attributes']['height'] = $height;
+      $variables['image']['#attributes']['width'] = $width;
+      $variables['image']['#uri'] = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 {$width} {$height}'%3e%3c/svg%3e";
+    }
+  }
+
+  // Set video iframe attributes for accessibility if they're known.
+  if ($entity instanceof Media && $variables['settings']['type'] === 'video' && isset($variables['settings']['current_view_mode']) && $variables['settings']['current_view_mode'] === 'hero') {
+    $variables['iframe_attributes']->setAttribute('title', $entity->label());
+    $variables['iframe_attributes']->setAttribute('tabindex', '-1');
+  }
+}
+
+/**
+ * Implements hook_preprocess_breadcrumb().
+ */
+function gearwrench_au_preprocess_breadcrumb(&$variables) {
+  // Unset if only 1 item is set (IE. Home or Current Page)
+  if (count($variables['links']) < 2) {
+    unset($variables['links'][0]);
+    unset($variables['breadcrumb'][0]);
+  }
+}
+
+/**
+ * Implements hook_preprocess_hook() for menu, main, block-header-menu-main.
+ */
+function gearwrench_au_preprocess_menu__main__block_header_menu_main(array &$variables) {
+  // Basic attribute variables.
+  $node_storage = Drupal::entityTypeManager()->getStorage('node');
+
+  foreach (Element::children($variables['items']) as $delta) {
+    $item = &$variables['items'][$delta];
+
+    // Only render content if link is a MenuLinkContent plugin.
+    if (isset($item['original_link']) && $item['original_link'] instanceof MenuLinkContent) {
+      $nodes = \Drupal::entityTypeManager()
+        ->getStorage('node')
+        ->loadByProperties(['title' => 'Featured Tools']);
+
+      if (!empty($nodes)) {
+        $node = reset($nodes);
+
+        // Get Node.
+        if ($node instanceof NodeInterface && $node->hasField('field_media') && !$node->get('field_media')->isEmpty()) {
+          $item['panel_image'] = $node->get('field_media')->view([
+            'label' => 'hidden',
+            'type' => 'blazy_media',
+            'settings' => [
+              'image_style' => 'medium_landscape_16x9',
+            ]
+          ]);
+
+          unset($item['panel_image']['#theme']);
+        }
+      }
+    }
+  }
+
+  // Generate Featured Tools Menu.
+  $featured_tools_menu = NULL;
+  $featured_tools_menu_name = 'featured-tools';
+  $featured_tools_menu_tree = \Drupal::menuTree();
+  $parameters = $featured_tools_menu_tree->getCurrentRouteMenuTreeParameters($featured_tools_menu_name);
+  $parameters->setMinDepth(0);
+  $parameters->onlyEnabledLinks();
+  $featured_tools_tree = $featured_tools_menu_tree->load($featured_tools_menu_name, $parameters);
+
+  $manipulators = [
+    ['callable' => 'menu.default_tree_manipulators:checkNodeAccess'],
+    ['callable' => 'menu.default_tree_manipulators:checkAccess'],
+    ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
+  ];
+
+  $featured_tools_tree = $featured_tools_menu_tree->transform($featured_tools_tree, $manipulators);
+  $featured_tools_menu = $featured_tools_menu_tree->build($featured_tools_tree);
+
+  if (!empty($featured_tools_tree)) {
+    $variables['featured_tools'] = [
+      '#markup' => \Drupal::service('renderer')->render($featured_tools_menu),
+      '#cache' => [
+        'contexts' => ['url'],
+        'tags' => ['config:system.menu.' . $featured_tools_menu_name],
+      ],
+    ];
+  }
+  else {
+    $variables['featured_tools'] = NULL;
+  }
+}
+
+/**
+ * Implements hook_preprocess_hook() for page.
+ */
+function gearwrench_au_preprocess_page(array &$variables) {
+  // Basic attribute variables.
+  $variables['footer_attributes']['class'][] = 'region';
+
+  /** @var \Drupal\node\NodeInterface $node */
+  if (isset($variables['node'])) {
+    $node = $variables['node'];
+    $contentType = $node->bundle();
+
+    if ($contentType == 'landing_page') {
+      unset($variables['page']['content']['gearwrench_breadcrumbs']);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_responsive_image().
+ */
+function gearwrench_au_preprocess_responsive_image(&$variables) {
+  // Blazy placeholder override.
+  // @note: this is done here instead of in preprocess_blazy since height and
+  // width is usually handled in template_responsive_image.
+  if (substr($variables['img_element']['#uri'], 0, 21) === 'data:image/gif;base64') {
+    // Try to determine height based on different parent key options.
+    $height = NULL;
+    $height_parent_options[] = ['height'];
+    $height_parent_options[] = ['attributes', 'height'];
+    $height_parent_options[] = ['img_element', '#attributes', 'height'];
+
+    while (is_null($height) && current($height_parent_options)) {
+      $height = NestedArray::getValue($variables, current($height_parent_options));
+      next($height_parent_options);
+    }
+
+    // Try to determine width based on different parent key options.
+    $width = NULL;
+    $width_parent_options[] = ['width'];
+    $width_parent_options[] = ['attributes', 'width'];
+    $width_parent_options[] = ['img_element', '#attributes', 'width'];
+
+    while (is_null($width) && current($width_parent_options)) {
+      $width = NestedArray::getValue($variables, current($width_parent_options));
+      next($width_parent_options);
+    }
+
+    // Calculate the height and width.
+    if (is_null($height) || is_null($width)) {
+      $image = \Drupal::service('image.factory')->get($variables['uri']);
+      $image_dimensions['height'] = $image->getHeight();
+      $image_dimensions['width'] = $image->getWidth();
+      $responsive_image_style = ResponsiveImageStyle::load($variables['responsive_image_style_id']);
+      $image_dimensions = responsive_image_get_image_dimensions($responsive_image_style->getFallbackImageStyle(), $image_dimensions, $variables['uri']);
+      $height = $image_dimensions['height'];
+      $width = $image_dimensions['width'];
+    }
+
+    // Override with aspect-ratio correct  placeholder if height/width found.
+    if (!is_null($height) && !is_null($width)) {
+      $variables['img_element']['#uri'] = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 {$width} {$height}'%3e%3c/svg%3e";
+
+      // Set height and width if placeholder image is missing dimensions.
+      if (!isset($variables['img_element']['#height'])) {
+        $variables['img_element']['#height'] = $height;
+      }
+      if (!isset($variables['img_element']['#width'])) {
+        $variables['img_element']['#width'] = $width;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_responsive_image_formatter().
+ */
+function gearwrench_au_preprocess_responsive_image_formatter(&$variables) {
+  if (!empty($variables['responsive_image']['#height']) && !empty($variables['responsive_image']['#width'])) {
+    $variables['responsive_image']['#attributes']['height'] = $variables['responsive_image']['#height'];
+    $variables['responsive_image']['#attributes']['width'] = $variables['responsive_image']['#width'];
+  }
+
+  // @todo watch these tickets and remove this portion of the code when they're
+  //   merged into core and we can properly batch-update/update alt tags.
+  // @link https://www.drupal.org/project/drupal/issues/2983456
+  // @link https://www.drupal.org/project/drupal/issues/2878119
+
+  /* @var \Drupal\image\Plugin\Field\FieldType\ImageItem $variables['item'] */
+  $entity = $variables['item']->getEntity();
+
+  if ($entity instanceof Media) {
+    $alt = $entity->getSource()->getMetadata($entity, 'thumbnail_alt_value');
+    $variables['responsive_image']['#attributes']['alt'] = $alt;
+    $variables['item']->set('alt', $alt);
+  }
+}
+
+/**
+ * Implements accordion on forms.
+ */
+function gearwrench_au_form_alter(&$form, &$form_state, $form_id) {
+  $webform_id = isset($form['#webform_id']) ? $form['#webform_id'] : $form_id;
+
+  switch ($webform_id) {
+    case 'warranty_replacement_form':
+      $form['#attached']['library'][] = 'gearwrench/webform--warranty-replacement-form';
+      break;
+
+    default:
+      break;
+  }
+}
+
+/**
+ * Implements hook alter on the new products filter form.
+ */
+function gearwrench_au_form_views_exposed_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+  $view = $form_state->getStorage('view');
+
+  if (($view['view']->id() == 'new_products')) {
+    foreach ($form['category']['#options'] as $key => $v) {
+      $parent = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($key);
+
+      if (!empty($parent)) {
+        unset($form['category']['#options'][$key]);
+      }
+    }
+  }
+}
+
+/**
+ * Implements preprocess_taxonomy_term().
+ */
+function gearwrench_au_preprocess_taxonomy_term(array &$variables) {
+  foreach ($variables['title_attributes']['class'] as $k => $v) {
+    if ($v == 'visually-hidden') {
+      unset($variables['title_attributes']['class'][$k]);
+    }
+  }
+}

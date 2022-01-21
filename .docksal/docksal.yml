@@ -14,7 +14,7 @@ services:
     user: root
   web:
     labels:
-      - io.docksal.virtual-host=apex-tools.docksal,*.apex-tools.docksal,crescenttool.docksal,*.crescenttool.docksal,gearwrench.docksal,*.gearwrench.docksal
+      - io.docksal.virtual-host=apex-tools.docksal,*.apex-tools.docksal,crescenttool.docksal,*.crescenttool.docksal,gearwrench.docksal,*.gearwrench.docksal,crescenttool.com.au.docksal,*.crescenttool.com.au.docksal,gearwrench.com.au.docksal,*.gearwrench.com.au.docksal
   solr:
     image: docksal/solr:8.1
     extends:

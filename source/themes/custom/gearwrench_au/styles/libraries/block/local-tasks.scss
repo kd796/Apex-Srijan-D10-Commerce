@@ -1,0 +1,46 @@
+// -----------------------------------------------------------------------------
+// Block: Local Tasks
+// -----------------------------------------------------------------------------
+
+@import '../../globals';
+
+.block-local-tasks-block {
+  @include gap-horizontal();
+  font-size: 0.75rem;
+
+  .block-local-tasks-block__content {
+
+    ul {
+      @include flex();
+      line-height: 1;
+      list-style: none;
+      margin: 0;
+      padding: 1rem 0;
+    }
+
+    li {
+      border-right: 0.0625rem solid;
+      margin: 0;
+
+      &:last-of-type {
+        border-right: 0 none;
+      }
+
+      a {
+        @include link;
+        background-color: transparent;
+        line-height: 1;
+        padding: 0 1rem;
+
+        @include on-event() {
+          background-color: transparent;
+        }
+
+        &.is-active {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
+}

@@ -1,0 +1,25 @@
+uuid: 834be7bc-2db1-4dba-92d9-2837df348abc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_background_color
+    - paragraphs.paragraphs_type.section
+  module:
+    - color_field
+id: paragraph.section.field_background_color
+field_name: field_background_color
+entity_type: paragraph
+bundle: section
+label: 'Background Color'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    color: '#ffffff'
+    opacity: 0.6
+default_value_callback: ''
+settings:
+  opacity: 1
+field_type: color_field_type

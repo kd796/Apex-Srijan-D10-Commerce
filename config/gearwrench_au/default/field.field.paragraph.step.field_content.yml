@@ -1,0 +1,29 @@
+uuid: 4b66cb30-6d5f-4613-89b6-eba09029e7d1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content
+    - paragraphs.paragraphs_type.step
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    basic_html: basic_html
+    limited_html: limited_html
+    restricted_html: restricted_html
+    full_html: full_html
+    plain_text: '0'
+id: paragraph.step.field_content
+field_name: field_content
+entity_type: paragraph
+bundle: step
+label: Content
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

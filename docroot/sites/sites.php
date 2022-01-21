@@ -80,3 +80,26 @@ $sites['dev-www.crescenttool.com'] = 'crescenttool';
 $sites['stg-www.crescenttool.com'] = 'crescenttool';
 $sites['prod-www.crescenttool.com'] = 'crescenttool';
 $sites['www.crescenttool.com'] = 'crescenttool';
+
+/**
+ * Australia
+ * -----------------
+ */
+
+// gearwrench.com.au
+$sites['gearwrench.com.au.docksal'] = 'gearwrench_au';
+$sites['www.gearwrench.com.au.docksal'] = 'gearwrench_au';
+$sites['gearwrench.com.au'] = 'gearwrench_au';
+$sites['dev-www.gearwrench.com.au'] = 'gearwrench_au';
+$sites['stg-www.gearwrench.com.au'] = 'gearwrench_au';
+$sites['prod-www.gearwrench.com.au'] = 'gearwrench_au';
+$sites['www.gearwrench.com.au'] = 'gearwrench_au';
+
+// crescenttool.com.au
+$sites['crescenttool.com.au.docksal'] = 'crescenttool_au';
+$sites['www.crescenttool.com.au.docksal'] = 'crescenttool_au';
+$sites['crescenttool.com.au'] = 'crescenttool_au';
+$sites['dev-www.crescenttool.com.au'] = 'crescenttool_au';
+$sites['stg-www.crescenttool.com.au'] = 'crescenttool_au';
+$sites['prod-www.crescenttool.com.au'] = 'crescenttool_au';
+$sites['www.crescenttool.com.au'] = 'crescenttool_au';

@@ -1,0 +1,28 @@
+uuid: 855a9d24-46dc-41ac-8c3a-7223d9900247
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.limited_html
+  module:
+    - filter
+    - media
+    - search
+    - shortcut
+    - system
+_core:
+  default_config_hash: D2X2ptHvNtDj2MldPZaK433GfovwBCAxwj0kdd7JdXU
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access comments'
+  - 'access content'
+  - 'access shortcuts'
+  - 'access site-wide contact form'
+  - 'post comments'
+  - 'search content'
+  - 'skip comment approval'
+  - 'use text format limited_html'
+  - 'view media'
