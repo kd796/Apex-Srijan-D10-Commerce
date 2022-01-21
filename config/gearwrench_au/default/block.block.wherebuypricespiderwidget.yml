@@ -1,0 +1,34 @@
+uuid: 47f9abf6-2e21-4320-9dfd-dce029a63a29
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:9610659b-4dba-4225-b330-4dda5b6d95cf'
+  module:
+    - block_class
+    - block_content
+    - system
+  theme:
+    - gearwrench_au
+third_party_settings:
+  block_class:
+    classes: block-pricespider-generic-widget-block
+id: wherebuypricespiderwidget
+theme: gearwrench
+region: ''
+weight: 0
+provider: null
+plugin: 'block_content:9610659b-4dba-4225-b330-4dda5b6d95cf'
+settings:
+  id: 'block_content:9610659b-4dba-4225-b330-4dda5b6d95cf'
+  label: 'Where Buy: PriceSpider Widget'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /where-to-buy

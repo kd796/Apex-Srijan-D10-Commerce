@@ -1,0 +1,42 @@
+uuid: 1639d10b-6e5d-4e18-add0-671ece0f831e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.styleguide.body
+    - field.field.node.styleguide.field_component_hero
+    - field.field.node.styleguide.field_components
+    - field.field.node.styleguide.field_media
+    - field.field.node.styleguide.field_meta_tags
+    - node.type.styleguide
+  module:
+    - metatag
+    - user
+id: node.styleguide.default
+targetEntityType: node
+bundle: styleguide
+mode: default
+content:
+  field_media:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_meta_tags:
+    type: metatag_empty_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  body: true
+  field_component_hero: true
+  field_components: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

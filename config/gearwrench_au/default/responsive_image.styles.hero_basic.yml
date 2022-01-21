@@ -1,0 +1,23 @@
+uuid: e00c6420-1d69-42aa-a980-95df63e41972
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.hero_banner
+    - image.style.hero_banner_mobile
+  theme:
+    - gearwrench_au
+id: hero_basic
+label: 'Hero - Basic'
+image_style_mappings:
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: 100vw
+      sizes_image_styles:
+        - hero_banner
+        - hero_banner_mobile
+    breakpoint_id: gearwrench.All
+    multiplier: 1x
+breakpoint_group: gearwrench
+fallback_image_style: hero_banner
