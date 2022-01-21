@@ -21,6 +21,7 @@ third_party_settings:
         - field_class_custom
         - field_html_anchor
       label: Settings
+      region: content
       parent_name: ''
       weight: 0
       format_type: settings
@@ -52,16 +53,17 @@ content:
     third_party_settings: {  }
   field_layout:
     type: options_select
-    weight: 4
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
   field_related_nodes:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 3
     region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
@@ -73,7 +75,7 @@ content:
     third_party_settings: {  }
   field_title:
     type: string_textfield
-    weight: 3
+    weight: 1
     region: content
     settings:
       size: 60
