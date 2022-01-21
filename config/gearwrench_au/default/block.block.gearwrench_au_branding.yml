@@ -1,19 +1,17 @@
-uuid: 777d79a0-3cd5-476e-8549-73e51c6b9303
+uuid: ceef5ea9-b125-420c-9696-2dda60c6a8b9
 langcode: en
 status: true
 dependencies:
   module:
-    - block_class
     - system
   theme:
-    - gearwrench
-third_party_settings:
-  block_class:
-    classes: block--header-branding
-id: gearwrench_branding
-theme: gearwrench
+    - gearwrench_au
+_core:
+  default_config_hash: NDwadleLD3YVSbDUaakxyYZyINYtkFtOVGShfq4kWy8
+id: gearwrench_au_branding
+theme: gearwrench_au
 region: header
-weight: -6
+weight: 0
 provider: null
 plugin: system_branding_block
 settings:
@@ -22,6 +20,6 @@ settings:
   label_display: '0'
   provider: system
   use_site_logo: true
-  use_site_name: false
-  use_site_slogan: false
+  use_site_name: true
+  use_site_slogan: true
 visibility: {  }

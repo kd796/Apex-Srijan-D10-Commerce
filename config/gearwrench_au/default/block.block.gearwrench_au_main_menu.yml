@@ -1,21 +1,19 @@
-uuid: 00629519-8cf5-43cb-93e1-2c1de1362c23
+uuid: 1906a3b9-4433-4376-9ac7-f45bb173d5b2
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - system.menu.main
   module:
-    - block_class
     - system
   theme:
     - gearwrench_au
-third_party_settings:
-  block_class:
-    classes: block--header-menu-main
-id: header_menu_main
-theme: gearwrench
-region: ''
-weight: -5
+_core:
+  default_config_hash: ChCx7DYNUrPTt5uiRdQAPDKJQMc-_SyAQTrZh8H0o-c
+id: gearwrench_au_main_menu
+theme: gearwrench_au
+region: header
+weight: 0
 provider: null
 plugin: 'system_menu_block:main'
 settings:
@@ -24,6 +22,6 @@ settings:
   label_display: '0'
   provider: system
   level: 1
-  depth: 3
-  expand_all_items: true
+  depth: 1
+  expand_all_items: false
 visibility: {  }

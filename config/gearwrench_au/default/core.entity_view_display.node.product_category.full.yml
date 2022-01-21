@@ -11,9 +11,7 @@ dependencies:
     - field.field.node.product_category.field_product_classifications
     - field.field.node.product_category.field_show_set_filter
     - node.type.product_category
-    - responsive_image.styles.short_hero
   module:
-    - blazy
     - text
     - user
 id: node.product_category.full
@@ -28,51 +26,10 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  field_media:
-    type: blazy_media
-    label: hidden
-    settings:
-      caption:
-        title: '0'
-        alt: '0'
-      class: ''
-      id: ''
-      image: ''
-      link: ''
-      overlay: ''
-      title: ''
-      vanilla: false
-      icon: ''
-      layout: ''
-      view_mode: default
-      cache: 0
-      current_view_mode: full
-      skin: ''
-      fx: ''
-      style: ''
-      background: false
-      box_caption: ''
-      box_caption_custom: ''
-      box_media_style: ''
-      responsive_image_style: short_hero
-      box_style: ''
-      image_style: ''
-      media_switch: ''
-      ratio: ''
-      thumbnail_style: ''
-      _uri: ''
-      breakpoints: {  }
-      sizes: ''
-      grid_header: ''
-      grid: '0'
-      grid_medium: '0'
-      grid_small: '0'
-    third_party_settings: {  }
-    weight: 1
-    region: content
 hidden:
   field_category_facets: true
   field_classification_id: true
+  field_media: true
   field_product_classifications: true
   field_show_set_filter: true
   langcode: true
