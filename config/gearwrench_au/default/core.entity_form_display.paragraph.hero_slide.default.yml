@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.hero_slide.field_class_custom
     - field.field.paragraph.hero_slide.field_content
+    - field.field.paragraph.hero_slide.field_link
     - field.field.paragraph.hero_slide.field_media_background
     - field.field.paragraph.hero_slide.field_style
     - field.field.paragraph.hero_slide.field_title
@@ -20,6 +21,7 @@ third_party_settings:
         - field_style
         - field_class_custom
       label: Settings
+      region: content
       parent_name: ''
       weight: 0
       format_type: settings
@@ -53,7 +55,8 @@ content:
     type: media_library_widget
     weight: 3
     region: content
-    settings: {  }
+    settings:
+      media_types: {  }
     third_party_settings: {  }
   field_style:
     type: options_select
