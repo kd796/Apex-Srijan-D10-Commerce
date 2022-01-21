@@ -28,16 +28,17 @@ third_party_settings:
       label: Settings
       region: content
       parent_name: group_content
-      weight: 1
+      weight: 4
       format_type: settings
       format_settings:
         id: ''
         classes: ''
     group_tabs:
       children:
-        - group_content
         - group_media
+        - group_content
       label: Tabs
+      region: content
       parent_name: ''
       weight: 0
       format_type: tabs
@@ -52,8 +53,9 @@ third_party_settings:
         - field_content
         - field_link
       label: Content
+      region: content
       parent_name: group_tabs
-      weight: 20
+      weight: 3
       format_type: tab
       format_settings:
         classes: ''
@@ -66,8 +68,9 @@ third_party_settings:
         - field_media_layout
         - field_media_item
       label: Media
+      region: content
       parent_name: group_tabs
-      weight: 21
+      weight: 2
       format_type: tab
       format_settings:
         classes: ''
@@ -92,7 +95,7 @@ content:
     third_party_settings: {  }
   field_content:
     type: text_textarea
-    weight: 3
+    weight: 6
     region: content
     settings:
       rows: 5
@@ -108,7 +111,7 @@ content:
     third_party_settings: {  }
   field_link:
     type: linkit
-    weight: 4
+    weight: 7
     region: content
     settings:
       placeholder_url: ''
@@ -136,7 +139,7 @@ content:
     third_party_settings: {  }
   field_title:
     type: string_textfield
-    weight: 2
+    weight: 5
     region: content
     settings:
       size: 60
