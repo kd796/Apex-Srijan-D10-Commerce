@@ -40,3 +40,11 @@ drush9 @$drush_alias updatedb -y --strict=0 --uri=$uri
 drush9 @$drush_alias cim sync -y --uri=$uri
 drush9 @$drush_alias cr --uri=$uri
 drush9 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
+
+# GEARWRENCH
+uri=prod-www.gearwrench.com.au
+drush9 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
+drush9 @$drush_alias updatedb -y --strict=0 --uri=$uri
+drush9 @$drush_alias cim sync -y --uri=$uri
+drush9 @$drush_alias cr --uri=$uri
+drush9 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
