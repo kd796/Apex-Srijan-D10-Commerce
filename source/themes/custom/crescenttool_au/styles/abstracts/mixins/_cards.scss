@@ -1,0 +1,271 @@
+// -----------------------------------------------------------------------------
+// Abstracts/Mixin: View Cards Styles
+// Base view card style mixin
+// @include view-cards('.my-card-button-class')
+// -----------------------------------------------------------------------------
+
+$radius-mobile: rem(11px);
+$radius-desktop: rem(25px);
+
+@mixin pager-adjustment {
+  grid-column-start: 2;
+  grid-column-end: 4;
+
+  @include media('<md') {
+    grid-column-start: 1;
+  }
+}
+
+@mixin view-cards-radius {
+  border-top-left-radius: $radius-mobile;
+  border-top-right-radius: $radius-mobile;
+
+  @include media('>=md') {
+    border-top-left-radius: $radius-desktop;
+    border-top-right-radius: $radius-desktop;
+  }
+}
+
+@mixin view-cards-radius-bottom {
+  border-bottom-left-radius: $radius-mobile;
+  border-bottom-right-radius: $radius-mobile;
+
+  @include media('>=md') {
+    border-bottom-left-radius: $radius-desktop;
+    border-bottom-right-radius: $radius-desktop;
+  }
+}
+
+@mixin view-cards($button-class) {
+  .node__content {
+    padding: rem(3px 3px 0 3px);
+    background-color: $gray-20;
+
+    @include media('>=md') {
+      padding: rem(10px 10px 0 10px);
+    }
+
+    @include view-cards-radius;
+
+    .node__listing-image,
+    .node__media--no-media {
+      @include flex();
+      @include flex-x(align-items, center);
+      @include flex-x(justify-content, center);
+      background-color: transparent;
+      display: flex;
+      overflow: hidden;
+      padding-top: 0;
+
+      .media {
+        display: flex;
+        position: relative;
+        padding-top: 100%;
+        width: 100%;
+
+        img {
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
+          border-radius: rem(11px);
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+
+          @include media('>=md') {
+            border-radius: rem(25px);
+          }
+        }
+      }
+    }
+
+    .node__content-container {
+      padding: 1rem rem(2px);
+
+      @include media('>=md') {
+        padding: 1rem;
+      }
+    }
+
+    .node__long-description {
+      min-height: rem(195px);
+
+      @include media('<md') {
+        min-height: rem(120px);
+
+        > * {
+          font-size:  rem(13px);
+          line-height: rem(20px);
+        }
+      }
+
+      .field--name-field-long-description {
+        @include type-header(h4, black, included);
+        margin-top: 0;
+
+        @include media('<md') {
+          font-size:  rem(13px);
+          line-height: rem(20px);
+        }
+      }
+    }
+
+    .node__summary {
+      @include media('<md') {
+        font-size:  rem(13px);
+        line-height: rem(20px);
+      }
+    }
+
+    .node__sku {
+      font-size: rem(14px);
+      margin: 0;
+
+      @include media('<md') {
+        font-size: rem(12px);
+      }
+    }
+  }
+
+  @include on-event {
+    .node__content {
+      background-color: $secondary-black;
+
+      transition-delay: 0s;
+      transition-duration: 0.3s;
+      transition-timing-function: ease-in-out;
+
+      .node__listing-image {
+        background-color: $secondary-black;
+
+        transition-delay: 0s;
+        transition-duration: 2s;
+        transition-timing-function: ease-in-out;
+      }
+
+      .node__summary {
+        color: $white;
+      }
+
+      .node__long-description {
+
+        .field--name-title {
+          color: $white;
+        }
+
+        .field--name-field-long-description {
+          color: $white;
+          transition-delay: 0s;
+          transition-duration: 0.3s;
+          transition-timing-function: ease-in-out;
+
+          @include media('<md') {
+            font-size:  rem(13px);
+            line-height: rem(20px);
+          }
+
+        }
+      }
+
+      .node__sku {
+        color: $white;
+        transition-delay: 0s;
+        transition-duration: 0.3s;
+        transition-timing-function: ease-in-out;
+      }
+    }
+  }
+
+  #{$button-class} {
+    @include btn(primary);
+
+    @include card-btn;
+  }
+}
+
+@mixin view-cards-compact ($node-class) {
+
+  #{$node-class} {
+    @include view-cards-radius;
+    @include view-cards-radius-bottom;
+    overflow: hidden;
+
+    @include on-event {
+      .btn {
+        color: $primary-red;
+        background: $gray-10;
+      }
+
+      .node__inner .node__grid-title::after {
+        display: none;
+      }
+    }
+  }
+
+  .view-content {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: rem(25px); // sass-lint:disable-line no-misspelled-properties
+
+    @include media('>=md') {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @include media('>=lg') {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    @include on-event {
+      .node__content {
+        background-color: transparent;
+      }
+    }
+
+    @include view-cards('.btn');
+
+    .node__content {
+      background: none;
+      padding: 0;
+
+      @include on-event {
+        .node__media {
+          background-color: $black;
+        }
+      }
+
+      .node__media {
+        @include view-cards-radius;
+        background: $gray-20;
+        transition: background-color 0.3s ease;
+      }
+
+      .media {
+        @include view-cards-radius;
+        @include view-cards-radius-bottom;
+        overflow: hidden;
+      }
+
+      .blazy {
+        overflow: hidden;
+        padding: rem(12px);
+      }
+
+      .btn {
+        font-size: 20px !important;
+        padding-left: rem(5px);
+        padding-right: rem(5px);
+        min-height: rem(80px);
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+
+        @include on-event {
+          color: $primary-red;
+          background: $gray-10;
+        }
+      }
+    }
+  }
+}

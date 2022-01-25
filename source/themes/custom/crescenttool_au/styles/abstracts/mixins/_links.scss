@@ -1,0 +1,88 @@
+// -----------------------------------------------------------------------------
+// Mixin: Links
+// Common link styles
+//
+// === link === //
+// @include link-base();
+// Options(s):
+// • $style(value = dark | light | red) - default = dark - What version of link we should use.
+//
+// @include link-underline();
+// Option(s):
+// • $version(value = none | hover | full) - default = hover - Whether the link should be underlined on hover, at all times, or not at all.
+//
+// @include link();
+// Option(s):
+// • $style(value = base | dark | light | red) - default = base - The version of link we should use. base is used by default, Dark can be used to force the styles to be redeclared.
+// • $underline(value = null | none | hover | full) - default = null - Whether the underline version should be declared, and if so, which version.
+// -----------------------------------------------------------------------------
+
+
+@mixin link-base ($style: dark) {
+  $color: $secondary-light;
+  $hover-color: $primary-red;
+  $hover-weight: null;
+
+  // Light overrides.
+  @if $style == light {
+    $color: $white;
+    $hover-color: $primary-red;
+    $hover-weight: $fw-bold;
+  }
+
+  // Red overrides.
+  @if $style == red {
+    $color: $primary-red;
+    $hover-color: $primary-dark;
+    $hover-weight: $fw-bold;
+  }
+
+  color: $color;
+  text-decoration: none;
+  transition: $transition-base;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.is-active {
+    color: $hover-color;
+    outline: none;
+
+    @if $hover-weight != null {
+      font-weight: $hover-weight;
+    }
+  }
+
+  &:active,
+  &.is-active {
+    font-weight: $fw-medium;
+  }
+}
+
+@mixin link-underline($version: hover) {
+  @if $version == none {
+    @include on-event() {
+      text-decoration: none;
+    }
+  } @else {
+    @if $version == full {
+      text-decoration: underline;
+    } @else if $version == hover {
+      text-decoration: none;
+      @include on-event() {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+@mixin link ($style: base, $underline: null) {
+  // If style is explicitly stated, include it. Otherwise don't do anything since base is already set on page.
+  @if $style != base {
+    @include link-base($style);
+  }
+
+  @if $underline != null {
+    @include link-underline($underline);
+  }
+}

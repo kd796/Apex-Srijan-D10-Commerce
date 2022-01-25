@@ -1,0 +1,203 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: Product Slider
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.component-product-slider {
+  width: 100%;
+  position: relative;
+
+  .component-product-slider__list-wrapper {
+    overflow: visible;
+    padding: 0;
+    width: 100%;
+
+    @include media('<md') {
+      overflow: hidden;
+    }
+
+    .component-product-slider__list {
+      list-style: none;
+      padding: 0;
+
+      .component-product-slider__list-item {
+        width: 50%;
+
+        @include media('>=lg') {
+          width: 25%;
+        }
+
+        .node--type-product {
+          width: 100%;
+        }
+
+        &.swiper-slide {
+          opacity: .1;
+          pointer-events: none;
+        }
+
+        &.swiper-slide-visible {
+          opacity: 1;
+        }
+
+        &.active-pointer {
+          pointer-events: initial;
+        }
+      }
+    }
+
+    .component-product-slider__list:not(.swiper-wrapper) {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: rem(24px);
+      row-gap: rem(24px); // sass-lint:disable-line no-misspelled-properties
+
+      @include media('>=lg') {
+        flex-wrap: nowrap;
+        row-gap: unset; // sass-lint:disable-line no-misspelled-properties
+      }
+
+      .component-product-slider__list-item {
+        width: calc(50% - 1rem);
+
+        @include media('>=lg') {
+          width: 25%;
+        }
+      }
+    }
+
+    .component-product-slider__button {
+      height: rem(48px);
+      width: rem(48px);
+      margin: 0;
+      padding: 0;
+      opacity: 1;
+
+      &.component-product-slider__button-prev {
+        background-image: url('../../../icons/chevron-left-red.svg');
+        left: rem(-98px);
+
+        &:hover {
+          background-image: url('../../../icons/chevron-left-dark-red.svg');
+        }
+
+        &[aria-disabled='true'] {
+          background-image: url('../../../icons/chevron-left-gray-50.svg');
+        }
+
+        @include media('<1401px') {
+          left: rem(-58px);
+        }
+
+        @include media('<1336px') {
+          display: none;
+        }
+      }
+
+      &.component-product-slider__button-next {
+        background-image: url('../../../icons/chevron-right-red.svg');
+        right: rem(-98px);
+
+        &:hover {
+          background-image: url('../../../icons/chevron-right-dark-red.svg');
+        }
+
+        &[aria-disabled='true'] {
+          background-image: url('../../../icons/chevron-right-gray-50.svg');
+        }
+
+        @include media('<1400px') {
+          right: rem(-58px);
+        }
+
+        @include media('<1336px') {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .component-product-slider__controls {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+
+    .component-product-slider__button {
+      background-color: transparent;
+      background-position: center;
+      background-repeat: no-repeat;
+      border: 0;
+      display: none;
+      height: rem(48px);
+      width: rem(48px);
+      margin: 0;
+      padding: 0;
+      position: relative;
+      opacity: 1;
+
+      @include media('<=lg-plus') {
+        height: rem(30px);
+        width: rem(30px);
+      }
+
+      @include media('<1336px') {
+        display: block;
+      }
+
+      &.component-product-slider__pseudo-button-prev {
+        background-image: url('../../../icons/chevron-left-red.svg');
+        margin-right: 1rem;
+
+        &:hover {
+          background-image: url('../../../icons/chevron-left-dark-red.svg');
+        }
+
+        &[aria-disabled='true'] {
+          background-image: url('../../../icons/chevron-left-gray-50.svg');
+        }
+      }
+
+      &.component-product-slider__pseudo-button-next {
+        background-image: url('../../../icons/chevron-right-red.svg');
+        margin-left: 1rem;
+
+        &:hover {
+          background-image: url('../../../icons/chevron-right-dark-red.svg');
+        }
+
+        &[aria-disabled='true'] {
+          background-image: url('../../../icons/chevron-right-gray-50.svg');
+        }
+      }
+    }
+
+    .component-product-slider__pagination {
+      position: relative;
+
+      .swiper-pagination-bullet {
+        background: $primary-red;
+      }
+
+      .swiper-pagination-bullet-active {
+        background: transparent;
+        border-color: $primary-red;
+      }
+    }
+  }
+}
+

@@ -1,0 +1,134 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: content
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+
+.component-content-callout-container {
+  @include container-full-width();
+}
+
+.component-content-callout-container__content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .component-content-callout {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1 50%;
+
+    .component-content-callout__content {
+      position: relative;
+
+      .component-content-callout__content--position {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        z-index: 5;
+        display: flex;
+        justify-content: center;
+      }
+
+      .component-content-callout__content-box {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        border: 1px solid $primary-red;
+        border-radius: rem(20px);
+        background-color: $black;
+        padding: rem(10px 25px);
+        min-width: rem(200px);
+        margin: rem(0 10px);
+
+        .component-content-callout__title {
+          color: $white;
+          text-align: center;
+          font-size: rem(28px);
+          margin-bottom: rem(10px);
+
+          @include media('>=md') {
+            font-size: rem(28px);
+          }
+        }
+
+        .field--name-field-link {
+          text-align: center;
+        }
+
+        .field--name-field-link a {
+          @include btn(secondary);
+          color: $white;
+          font-weight: $fw-extra-bold;
+          font-size: rem(16px);
+          display: inline-flex;
+          justify-content: center;
+          flex: auto;
+          padding: unset;
+
+          @include on-event() {
+            color: $primary-red;
+          }
+
+          @include media('<sm') {
+            padding: unset;
+
+            &:after {
+              margin-left: .5rem;
+            }
+          }
+
+          @include media('>=lg-plus') {
+            font-size: rem(16px);
+          }
+        }
+
+        @include media('>=lg-plus') {
+          padding: rem(10px 60px);
+        }
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  section:only-child {
+    @include media('>md') {
+      .component-content-callout__content {
+        max-height: rem(650px);
+
+        .media {
+          height: 0;
+          padding-bottom: 56.25%;
+
+          .media__image {
+            height: 100%;
+            max-height: rem(650px);
+            object-fit: cover;
+            position: absolute;
+          }
+        }
+      }
+    }
+  }
+
+  @include media('>=md') {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
