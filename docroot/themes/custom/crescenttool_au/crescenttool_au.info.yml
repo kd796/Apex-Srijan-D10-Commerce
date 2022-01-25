@@ -1,0 +1,23 @@
+name: Crescenttool Australia
+type: theme
+base theme: bazo
+description: A D9 theme for Crescenttool Australia.
+package: ATG
+core: 8.x
+core_version_requirement: ^8 || ^9
+logo: icons/logo.svg
+libraries:
+  - crescenttool_au/global
+libraries-extend:
+  webform/webform.element.flexbox:
+    - crescenttool_au/webform-flexbox
+
+regions:
+  page_top: 'Page top'
+  header: 'Header'
+  pre_content: 'Pre-content'
+  content: Content
+  post_content: 'Post-content'
+  footer_first: 'Footer: First'
+  footer_second: 'Footer: Second'
+  page_bottom: 'Page bottom'

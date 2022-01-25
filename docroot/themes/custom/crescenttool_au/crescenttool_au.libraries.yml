@@ -1,0 +1,676 @@
+# Library naming structure
+#
+# library--{library-name}
+#   Use library naming structure for external libraries that will then be used as dependencies of other libraries.
+#
+# component--{component-name}
+#   Use component naming structure for reusable items that aren't necessarily entity-specific. Include these as
+#   dependencies on the entity-specific libraries.
+#
+# {entity-type}--{view-mode}
+# {entity-type}--{view-mode}--{bundle}
+#   Use entity naming structure to allow the entities to automatically attach styles when rendered.
+#
+# NOTE: Entity CSS and JS files that are included in multiple different entity-specific libraries, should probably be
+#       broken into the component structure listed above and added as a dependency on the entity-specific library.
+#
+
+# ========= Global ========= #
+
+# === Global: Base === #
+global:
+  version: 1.0
+  css:
+    theme:
+      //use.typekit.net/ijc5xgl.css: { type: external }
+
+      css/main.css : {}
+  js:
+    js/main.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - crescenttool_au/library--price-spider
+    - crescenttool_au/library--hubspot
+
+
+# === Global: Library Overrides === #
+blazy:
+  version: 1.x
+  css:
+    component:
+      css/contrib-overrides/blazy/modifications.css: {}
+
+system-base--ajax:
+  version: 1.x
+  css:
+    component:
+      css/contrib-overrides/system/ajax-progress.module.css: {}
+
+webform-flexbox:
+  version: 1.x
+  css:
+    component:
+      css/contrib-overrides/webform/webform-flexbox.css: {}
+
+# === Global: External Libraries === #
+library--jquery-common-keydown:
+  version: 1.x
+  js:
+    //cdn.jsdelivr.net/npm/jquery-common-keydown@1.0.1/jquery.commonkeydown.min.js: { type: external, minified: true }
+
+library--jquery-grid-navigation:
+  version: 1.x
+  js:
+    //cdn.jsdelivr.net/npm/jquery-grid-navigation@1.0.1/jquery.gridnavigation.min.js: { type: external, minified: true }
+
+library--jquery-linear-navigation:
+  version: 1.x
+  js:
+    //cdn.jsdelivr.net/npm/jquery-linear-navigation@1.0.1/jquery.linearnavigation.min.js: { type: external, minified: true }
+
+library--jquery-prevent-scroll-keys:
+  version: 1.x
+  js:
+    //cdn.jsdelivr.net/npm/jquery-prevent-scroll-keys@1.0.1/jquery.preventscrollkeys.min.js: { type: external, minified: true }
+
+library--jquery-roving-tabindex:
+  version: 1.x
+  js:
+    //cdn.jsdelivr.net/npm/jquery-roving-tabindex@1.0.1/jquery.rovingtabindex.min.js: { type: external, minified: true }
+  dependencies:
+    - core/jquery
+    - crescenttool_au/library--jquery-common-keydown
+    - crescenttool_au/library--jquery-grid-navigation
+    - crescenttool_au/library--jquery-linear-navigation
+    - crescenttool_au/library--jquery-prevent-scroll-keys
+
+library--swiper:
+  version: 1.x
+  css:
+    component:
+      //cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css: { type: external }
+      css/contrib-overrides/swiper/swiper.css: {}
+  js:
+    //cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js: { type: external, minified: true }
+    js/contrib-overrides/swiper/swiper.js: {weight: -10}
+  dependencies:
+    - core/jquery
+
+library--price-spider:
+  version: 1.x
+  js:
+    //cdn.pricespider.com/1/lib/ps-widget.js: { type: external, attributes: { async: true } }
+    //cdn.pricespider.com/1/2377/ps-utid.js: { type: external, attributes: { async: true } }
+
+library--hubspot:
+  version: 1.x
+  js:
+    //js.hs-scripts.com/20116876.js: { type: external, attributes: { async: true, defer: true, id: 'hs-script-loader' } }
+
+# ========= Block ========= #
+
+# Global #
+#block:
+#  version: 1.x
+#  css:
+#    component:
+#      css/libraries/block/default.css: {}
+
+block--core--local-tasks-block:
+  version: 1.x
+  css:
+    component:
+      css/libraries/block/local-tasks.css: {}
+
+block--core--page-title-block:
+  version: 1.x
+  css:
+    component:
+      css/libraries/block/page-title-block.css: {}
+
+block--system--system-breadcrumb-block:
+  version: 1.x
+  css:
+    component:
+      css/libraries/block/breadcrumbs.css: {}
+
+block--crescenttool-core--product-buy-now-sticky:
+  version: 1.x
+  css:
+    component:
+      css/libraries/block/product-buy-now-sticky.css: { }
+  js:
+    js/libraries/block/product-buy-now-sticky.js: {}
+
+block--pricespider-generic-widget-block:
+  version: 1.x
+  css:
+    component:
+      css/libraries/block/pricespider-generic-widget.css: { }
+
+
+# ========= Forms ========= #
+
+# Global #
+#form:
+#  version: 1.x
+#  css:
+#    component:
+#      css/libraries/form/default.css: {}
+
+
+
+# ========= Media ========= #
+
+# === Media: Teaser === #
+media--teaser:
+  version: 1.x
+  css:
+    component:
+      css/libraries/media/teaser.css: {}
+
+# === Media: Teaser === #
+media--modal:
+  version: 1.x
+  css:
+    component:
+      css/libraries/media/modal.css: {}
+
+# === Media: Product Detail Slider - Remote Video === #
+media--product-detail-slider--remote-video:
+  version: 1.x
+  css:
+    component:
+      css/libraries/media/product-detail-slider__remote-video.css: {}
+
+
+# ========= Nodes ========= #
+
+# === Node: Full === #
+
+node--full:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/full.css: {}
+
+node--full--media-page:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/full--media-page.css: {}
+
+node--full--page:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/full--page.css: {}
+
+node--full--product:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/full--product.css: { }
+      css/contrib-overrides/bazaarvoice/bazaarvoice.css: {}
+  js:
+    js/libraries/node/full--product.js: {}
+    https://apps.bazaarvoice.com/deployments/crescent/main_site_new_brand/production/en_US/bv.js: { type: external, async: true, minified: true }
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - crescenttool_au/library--swiper
+    - crescenttool_au/library--jquery-roving-tabindex
+
+node--full--product-category:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/full--product-category.css: { }
+  js:
+    js/libraries/node/full--product-category.js: { }
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - crescenttool_au/library--jquery-roving-tabindex
+
+node--full--product-brand:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/full--product-brand.css: { }
+
+node--full--product-industry:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/full--product-industry.css: { }
+
+node--full--product-trade:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/full--product-trade.css: { }
+
+# === Node: Search Index === #
+node--search-index:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/search-index.css: { }
+
+node--search-index--product:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/search-index--product.css: { }
+
+# === Node: Teaser === #
+
+node--teaser--product:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/teaser--product.css: { }
+  js:
+    js/libraries/node/teaser--product.js: {}
+
+node--teaser--media-page:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/teaser--media-page.css: { }
+
+# === Node: Tile === #
+
+node--tile:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/tile.css: { }
+
+node--tile--product-listing:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/tile--product-listing.css: { }
+
+# === Node: Teaser === #
+
+node--set-listing--product:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/set-listing--product.css: { }
+
+
+# ========= Paragraphs ========= #
+
+# === Paragraph: Full === #
+
+# Global #
+#paragraph--full:
+#  version: 1.x
+#  css:
+#    component:
+#      css/libraries/paragraph/full.css: {}
+
+# Accordion #
+paragraph--full--accordion:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--accordion.css: {}
+  js:
+    js/libraries/paragraph/full--accordion.js: {weight: -10}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - crescenttool_au/library--jquery-roving-tabindex
+
+# Content #
+paragraph--full--content:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--content.css: {}
+
+# Content #
+paragraph--full--content-2-column:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--content-2-column.css: {}
+
+# Content Callout #
+paragraph--full--content-callout:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--content-callout.css: {}
+
+# Embed View #
+paragraph--full--embed-view:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--embed-view.css: {}
+
+# Hero #
+paragraph--full--hero:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--hero.css: {}
+  js:
+    js/libraries/paragraph/full--hero.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - crescenttool_au/library--swiper
+
+# Hero Slide #
+paragraph--full--hero-slide:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--hero-slide.css: {}
+  js:
+    js/libraries/paragraph/full--hero-slide.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
+# Featured: Content #
+paragraph--full--featured-content:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--featured-content.css: {}
+
+paragraph--full--featured-content--layout-grid:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--featured-content--layout-grid.css: {}
+  dependencies:
+    - crescenttool_au/paragraph--full--featured-content
+
+paragraph--full--featured-content--layout-list:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--featured-content--layout-list.css: {}
+  dependencies:
+    - crescenttool_au/paragraph--full--featured-content
+
+# Featured: Links #
+paragraph--full--featured-links:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--featured-links.css: {}
+
+# Featured: Media #
+paragraph--full--featured-media:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--featured-media.css: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
+paragraph--full--featured-media--layout-full:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--featured-media--layout-full.css: {}
+  dependencies:
+    - crescenttool_au/paragraph--full--featured-media
+
+paragraph--full--featured-media--layout-grid:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--featured-media--layout-grid.css: {}
+  dependencies:
+    - crescenttool_au/paragraph--full--featured-media
+
+paragraph--full--featured-media--layout-live-area:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--featured-media--layout-live-area.css: {}
+  dependencies:
+    - crescenttool_au/paragraph--full--featured-media
+
+paragraph--full--featured-media--layout-slider:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--featured-media--layout-slider.css: {}
+  js:
+    js/libraries/paragraph/full--featured-media--layout-slider.js: {}
+  dependencies:
+    - crescenttool_au/paragraph--full--featured-media
+    - crescenttool_au/library--swiper
+
+# Product Slider #
+paragraph--full--product-slider:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--product-slider.css: {}
+  js:
+    js/libraries/paragraph/full--product-slider.js: { }
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - crescenttool_au/library--swiper
+
+# Banner CTA Slider #
+paragraph--full--banner-cta-slider:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--banner-cta-slider.css: {}
+  js:
+    js/libraries/paragraph/full--banner-cta-slider.js: { }
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - crescenttool_au/library--swiper
+
+# Pull Quote #
+paragraph--full--pullquote:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--pullquote.css: {}
+
+# Section #
+paragraph--full--section:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--section.css: {}
+
+# Steps #
+paragraph--full--steps:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--steps.css: {}
+
+# Tabs #
+paragraph--full--tabs:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--tabs.css: {}
+  js:
+    js/libraries/paragraph/full--tabs.js: {weight: -10}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - crescenttool_au/library--jquery-roving-tabindex
+
+
+
+# ========= Region ========= #
+
+# Global #
+region:
+  version: 1.x
+  css:
+    component:
+      css/libraries/region/default.css: {}
+
+# Header #
+region--header:
+  version: 1.x
+  css:
+    component:
+      css/libraries/region/header.css: {}
+  js:
+    js/libraries/region/header.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
+# Footer #
+region--footer-first:
+  version: 1.x
+  css:
+    component:
+      css/libraries/region/footer.css: {}
+  js:
+    js/libraries/region/footer.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
+# ========= Views ========= #
+
+view:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/view.css: {}
+
+view--media-pages:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/media-pages.css: {}
+  js:
+    js/libraries/view/media-pages.js: {}
+
+view--taxonomy-term:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/taxonomy-term.css: {}
+
+view--related-products:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/related-products.css: {}
+  js:
+    js/libraries/view/related-products.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - crescenttool_au/library--swiper
+    - core/jquery.once
+
+view--product-listing-grid:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/product-listing-grid.css: {}
+
+view--new-products:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/new-products.css: {}
+  js:
+    js/libraries/view/new-products.js: {}
+
+view--product-brand-grid:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/product-brand-grid.css: {}
+
+view--product-category-grid:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/product-category-grid.css: {}
+
+view--product-industry-grid:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/product-industry-grid.css: {}
+
+view--product-trade-grid:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/product-trade-grid.css: {}
+
+view--acquia-search:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/search.css: {}
+
+view--search:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/search.css: {}
+
+view--social-feed:
+  version: 1.x
+  css:
+    component:
+      css/libraries/view/social-feed.css: {}
+  js:
+    js/libraries/view/instagram-feed.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - crescenttool_au/library--swiper
+    - crescenttool_au/library--add-to-any
+
+# ========= Forms ========= #
+webform--warranty-replacement-form:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--accordion.css: { }
+  js:
+    js/libraries/webform/form--accordion.js: {weight: -10}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - crescenttool_au/library--jquery-roving-tabindex
