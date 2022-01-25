@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: large_landscape_16_9_960x560_
+label: 'Large - Landscape 16:9 (960x560)'
+effects:
+  32d77555-9168-4a89-bae9-17fa7468e389:
+    uuid: 32d77555-9168-4a89-bae9-17fa7468e389
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 960
+      height: 560
+      crop_type: focal_point
+pipeline: smushit

@@ -1,0 +1,67 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.tile
+    - field.field.node.product_brand.body
+    - field.field.node.product_brand.field_link
+    - field.field.node.product_brand.field_media
+    - node.type.product_brand
+    - responsive_image.styles.teaser
+  module:
+    - blazy
+    - user
+id: node.product_brand.tile
+targetEntityType: node
+bundle: product_brand
+mode: tile
+content:
+  field_media:
+    type: blazy_media
+    label: hidden
+    settings:
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      view_mode: default
+      cache: 0
+      current_view_mode: tile
+      skin: ''
+      fx: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      responsive_image_style: teaser
+      box_style: ''
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  field_link: true
+  langcode: true
+  links: true
+  products_by_brand: true
+  search_api_excerpt: true

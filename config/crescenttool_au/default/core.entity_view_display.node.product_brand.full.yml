@@ -1,0 +1,151 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.product_brand.body
+    - field.field.node.product_brand.field_link
+    - field.field.node.product_brand.field_media
+    - node.type.product_brand
+    - responsive_image.styles.short_hero
+  module:
+    - blazy
+    - field_group
+    - link
+    - text
+    - user
+third_party_settings:
+  field_group:
+    group_page_heading:
+      children:
+        - group_left
+        - group_right
+      label: 'Page Heading'
+      parent_name: ''
+      region: content
+      weight: 0
+      format_type: html_element
+      format_settings:
+        classes: page-heading
+        show_empty_fields: true
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+    group_left:
+      children:
+        - body
+      label: Left
+      parent_name: group_page_heading
+      region: content
+      weight: 20
+      format_type: html_element
+      format_settings:
+        classes: heading-left
+        show_empty_fields: false
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+    group_right:
+      children:
+        - field_link
+      label: Right
+      parent_name: group_page_heading
+      region: content
+      weight: 21
+      format_type: html_element
+      format_settings:
+        classes: heading-right
+        show_empty_fields: false
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+id: node.product_brand.full
+targetEntityType: node
+bundle: product_brand
+mode: full
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 21
+    region: content
+  field_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_media:
+    type: blazy_media
+    label: hidden
+    settings:
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      view_mode: default
+      cache: 0
+      current_view_mode: full
+      skin: ''
+      fx: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      responsive_image_style: short_hero
+      box_style: ''
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  products_by_brand:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  langcode: true
+  links: true
+  search_api_excerpt: true

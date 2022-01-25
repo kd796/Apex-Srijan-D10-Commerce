@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies: {  }
+id: remote_stage
+label: 'Remote - Stage'
+description: ''
+weight: 0
+folder: ../config/crescenttool/remote_stage
+module:
+  acquia_connector: 0
+  dblog: 0
+  shield: 0
+  stage_file_proxy: 0
+theme: {  }
+blacklist:
+  - purge.logger_channels
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true

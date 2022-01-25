@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: media_page
+label: 'Media Page'
+type: 'canonical_entities:node'
+pattern: '/media-center/[node:field_category:entity:name]/[node:title]'
+selection_criteria:
+  d7352d28-41a7-4cc4-aeb1-e94ee5af6161:
+    id: node_type
+    negate: false
+    uuid: d7352d28-41a7-4cc4-aeb1-e94ee5af6161
+    context_mapping:
+      node: node
+    bundles:
+      media_page: media_page
+selection_logic: and
+weight: -5
+relationships: {  }

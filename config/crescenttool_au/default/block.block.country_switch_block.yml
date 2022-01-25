@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - crescenttool_core
+  theme:
+    - crescenttool
+third_party_settings:
+  block_class:
+    classes: block--country-switch
+id: country_switch_block
+theme: crescenttool
+region: header
+weight: -3
+provider: null
+plugin: country_switch
+settings:
+  id: country_switch
+  label: 'Country Switch Block'
+  label_display: '0'
+  provider: crescenttool_core
+visibility: {  }

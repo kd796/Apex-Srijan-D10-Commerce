@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: product_brand
+label: 'Product Brand'
+type: 'canonical_entities:node'
+pattern: '/brands/[node:title]'
+selection_criteria:
+  a8b9a8ca-0edb-4b09-acd8-785a7aac51b1:
+    id: node_type
+    negate: false
+    uuid: a8b9a8ca-0edb-4b09-acd8-785a7aac51b1
+    context_mapping:
+      node: node
+    bundles:
+      product_brand: product_brand
+selection_logic: and
+weight: -5
+relationships: {  }

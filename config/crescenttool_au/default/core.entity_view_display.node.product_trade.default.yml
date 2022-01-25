@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.product_trade.body
+    - field.field.node.product_trade.field_media
+    - field.field.node.product_trade.field_trade
+    - node.type.product_trade
+  module:
+    - user
+id: node.product_trade.default
+targetEntityType: node
+bundle: product_trade
+mode: default
+content: {  }
+hidden:
+  body: true
+  field_media: true
+  field_trade: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

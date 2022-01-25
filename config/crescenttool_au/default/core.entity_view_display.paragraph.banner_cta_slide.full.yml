@@ -1,0 +1,95 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.full
+    - field.field.paragraph.banner_cta_slide.field_content
+    - field.field.paragraph.banner_cta_slide.field_link
+    - field.field.paragraph.banner_cta_slide.field_media_background
+    - field.field.paragraph.banner_cta_slide.field_text_pagination
+    - field.field.paragraph.banner_cta_slide.field_thumbnail_image
+    - field.field.paragraph.banner_cta_slide.field_title
+    - paragraphs.paragraphs_type.banner_cta_slide
+    - responsive_image.styles.cta_slider_16x9
+  module:
+    - blazy
+    - link
+    - text
+id: paragraph.banner_cta_slide.full
+targetEntityType: paragraph
+bundle: banner_cta_slide
+mode: full
+content:
+  field_content:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_media_background:
+    type: blazy_media
+    label: hidden
+    settings:
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      view_mode: default
+      cache: 0
+      current_view_mode: full
+      skin: ''
+      fx: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      responsive_image_style: cta_slider_16x9
+      box_style: ''
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_text_pagination: true
+  field_thumbnail_image: true
+  search_api_excerpt: true

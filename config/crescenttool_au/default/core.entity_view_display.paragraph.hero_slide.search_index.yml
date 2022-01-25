@@ -1,0 +1,71 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.search_index
+    - field.field.paragraph.hero_slide.field_class_custom
+    - field.field.paragraph.hero_slide.field_content
+    - field.field.paragraph.hero_slide.field_link
+    - field.field.paragraph.hero_slide.field_media_background
+    - field.field.paragraph.hero_slide.field_style
+    - field.field.paragraph.hero_slide.field_title
+    - field.field.paragraph.hero_slide.field_title_image
+    - image.style.search_teaser_261x256
+    - paragraphs.paragraphs_type.hero_slide
+  module:
+    - blazy
+id: paragraph.hero_slide.search_index
+targetEntityType: paragraph
+bundle: hero_slide
+mode: search_index
+content:
+  field_media_background:
+    type: blazy_media
+    label: hidden
+    settings:
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      view_mode: search_index
+      cache: 0
+      current_view_mode: search_index
+      skin: ''
+      fx: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      responsive_image_style: ''
+      box_style: ''
+      image_style: search_teaser_261x256
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_class_custom: true
+  field_content: true
+  field_link: true
+  field_style: true
+  field_title: true
+  field_title_image: true
+  search_api_excerpt: true
