@@ -1,3 +1,4 @@
+uuid: f4fd9be5-5a44-401f-a5df-2b539ed1ef72
 langcode: en
 status: true
 dependencies:
@@ -22,28 +23,30 @@ third_party_settings:
         - field_html_anchor
         - field_style_height
         - field_style_width
-      label: Settings
       parent_name: ''
-      region: content
       weight: 1
       format_type: details
       format_settings:
-        classes: ''
         id: ''
+        classes: ''
         open: false
         required_fields: false
+      label: Settings
+      region: content
     group_component:
       children:
         - field_link
-      label: Component
       parent_name: ''
-      region: content
       weight: 0
       format_type: fieldset
       format_settings:
-        classes: ''
         id: ''
+        classes: ''
         description: ''
+      label: Component
+      region: content
+_core:
+  default_config_hash: fLA-h43UQzboqGSQV-BNmtrMJfe9BZJ6tqpKp2BI3Lc
 id: paragraph.embed_iframe.preview
 targetEntityType: paragraph
 bundle: embed_iframe

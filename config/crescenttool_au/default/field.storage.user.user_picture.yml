@@ -1,3 +1,4 @@
+uuid: 5fd644b0-7697-4994-bc70-5173c0c5b0e6
 langcode: en
 status: true
 dependencies:
@@ -5,14 +6,13 @@ dependencies:
     - file
     - image
     - user
+_core:
+  default_config_hash: 6k-VBFilDLuzgSOT-77CFgHFlcd5D-kqRixtH89EShU
 id: user.user_picture
 field_name: user_picture
 entity_type: user
 type: image
 settings:
-  target_type: file
-  display_field: false
-  display_default: false
   uri_scheme: public
   default_image:
     uuid: null
@@ -20,6 +20,9 @@ settings:
     title: ''
     width: null
     height: null
+  target_type: file
+  display_field: false
+  display_default: false
 module: image
 locked: false
 cardinality: 1

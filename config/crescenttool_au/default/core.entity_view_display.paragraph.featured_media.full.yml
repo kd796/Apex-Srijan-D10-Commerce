@@ -1,3 +1,4 @@
+uuid: d1a59458-96e9-44d0-aa1e-fa8be6a3392e
 langcode: en
 status: true
 dependencies:
@@ -9,6 +10,8 @@ dependencies:
     - field.field.paragraph.featured_media.field_media_items
     - field.field.paragraph.featured_media.field_style
     - paragraphs.paragraphs_type.featured_media
+_core:
+  default_config_hash: hwnLxgH1CtO46BAb1d1F4MSspPqDWSObv6YZApaCNsQ
 id: paragraph.featured_media.full
 targetEntityType: paragraph
 bundle: featured_media
@@ -16,12 +19,12 @@ mode: full
 content:
   field_media_items:
     type: entity_reference_entity_view
+    weight: 0
     label: hidden
     settings:
       view_mode: embed
       link: false
     third_party_settings: {  }
-    weight: 0
     region: content
 hidden:
   field_class_custom: true

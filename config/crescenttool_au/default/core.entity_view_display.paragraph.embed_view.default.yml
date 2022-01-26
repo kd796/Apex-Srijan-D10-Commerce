@@ -1,3 +1,4 @@
+uuid: 93234042-bdcc-4b4e-b106-ea22c339767a
 langcode: en
 status: true
 dependencies:
@@ -9,43 +10,44 @@ dependencies:
     - paragraphs.paragraphs_type.embed_view
   module:
     - viewsreference
+_core:
+  default_config_hash: d0RZ_RCe4fiYKzJB-ZJ58agbAJMZKL9S2vd9ThYh_3Y
 id: paragraph.embed_view.default
 targetEntityType: paragraph
 bundle: embed_view
 mode: default
 content:
   field_class_custom:
-    type: string
+    weight: 2
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 2
+    type: string
     region: content
   field_embed_view:
-    type: viewsreference_formatter
+    weight: 3
     label: above
     settings:
       plugin_types:
         - block
     third_party_settings: {  }
-    weight: 3
+    type: viewsreference_formatter
     region: content
   field_html_anchor:
-    type: string
+    weight: 4
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 4
+    type: string
     region: content
   field_style:
-    type: entity_reference_label
+    weight: 0
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    weight: 0
+    type: entity_reference_label
     region: content
-hidden:
-  search_api_excerpt: true
+hidden: {  }

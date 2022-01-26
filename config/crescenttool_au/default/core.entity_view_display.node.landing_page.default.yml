@@ -1,3 +1,4 @@
+uuid: d751d761-651c-438c-b8a0-64eac077b345
 langcode: en
 status: true
 dependencies:
@@ -11,6 +12,8 @@ dependencies:
   module:
     - metatag
     - user
+_core:
+  default_config_hash: IAfnY-S_mjUUfwzt51d4OsXLCeSSeZfO4f02Uq6WDvY
 id: node.landing_page.default
 targetEntityType: node
 bundle: landing_page
@@ -18,19 +21,19 @@ mode: default
 content:
   field_media:
     type: entity_reference_entity_view
+    weight: 1
     label: above
     settings:
       view_mode: default
       link: false
     third_party_settings: {  }
-    weight: 1
     region: content
   field_meta_tags:
-    type: metatag_empty_formatter
+    weight: 2
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 2
+    type: metatag_empty_formatter
     region: content
 hidden:
   body: true

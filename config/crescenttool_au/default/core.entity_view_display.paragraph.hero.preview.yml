@@ -1,3 +1,4 @@
+uuid: cfa780ca-489e-4c0e-a334-3c8a83a4da4e
 langcode: en
 status: true
 dependencies:
@@ -16,63 +17,65 @@ third_party_settings:
     group_component:
       children:
         - field_components
-      label: Component
       parent_name: ''
       weight: 0
       format_type: fieldset
       format_settings:
-        classes: ''
         id: ''
+        classes: ''
         description: ''
+      label: Component
     group_settings:
       children:
         - field_style
         - field_class_custom
         - field_html_anchor
-      label: Settings
       parent_name: ''
       weight: 1
       format_type: details
       format_settings:
-        classes: ''
         id: ''
+        classes: ''
         open: false
         required_fields: false
+      label: Settings
+_core:
+  default_config_hash: tXWEcJz5JGsoVK4JIClrEgVG3utJfcfVF16hhpaY11M
 id: paragraph.hero.preview
 targetEntityType: paragraph
 bundle: hero
 mode: preview
 content:
   field_class_custom:
-    type: string
+    weight: 4
     label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 4
+    type: string
     region: content
   field_components:
-    type: paragraph_summary
+    weight: 1
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 1
+    type: paragraph_summary
     region: content
   field_html_anchor:
     type: string
+    weight: 5
+    region: content
     label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 5
-    region: content
   field_style:
-    type: entity_reference_label
+    weight: 3
     label: inline
     settings:
       link: false
     third_party_settings: {  }
-    weight: 3
+    type: entity_reference_label
     region: content
 hidden:
   search_api_excerpt: true

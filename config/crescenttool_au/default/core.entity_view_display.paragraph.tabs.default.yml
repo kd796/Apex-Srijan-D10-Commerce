@@ -1,3 +1,4 @@
+uuid: a955fb41-f499-487d-903f-e51012f7ce7f
 langcode: en
 status: true
 dependencies:
@@ -10,51 +11,53 @@ dependencies:
     - paragraphs.paragraphs_type.tabs
   module:
     - entity_reference_revisions
+_core:
+  default_config_hash: 9gslxcO4ixq-1Agpw-IIItnm7_5Bfs8q-02T51JeSC8
 id: paragraph.tabs.default
 targetEntityType: paragraph
 bundle: tabs
 mode: default
 content:
   field_class_custom:
-    type: string
+    weight: 4
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 4
+    type: string
     region: content
   field_components:
-    type: entity_reference_revisions_entity_view
+    weight: 0
     label: above
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 0
+    type: entity_reference_revisions_entity_view
     region: content
   field_html_anchor:
-    type: string
+    weight: 6
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 6
+    type: string
     region: content
   field_style:
-    type: entity_reference_label
+    weight: 3
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    weight: 3
+    type: entity_reference_label
     region: content
   field_title:
-    type: string
+    weight: 5
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 5
+    type: string
     region: content
 hidden:
   search_api_excerpt: true

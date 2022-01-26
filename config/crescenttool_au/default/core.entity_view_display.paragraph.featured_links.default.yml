@@ -1,3 +1,4 @@
+uuid: 6193beae-0507-4cb5-a65d-b0b2adbe95ef
 langcode: en
 status: true
 dependencies:
@@ -10,29 +11,31 @@ dependencies:
     - paragraphs.paragraphs_type.featured_links
   module:
     - link
+_core:
+  default_config_hash: L9QmFTOh2UWQMDwDZDhJOI_eeMAUwAqOcnNwtD7OOjA
 id: paragraph.featured_links.default
 targetEntityType: paragraph
 bundle: featured_links
 mode: default
 content:
   field_class_custom:
-    type: string
+    weight: 2
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 2
+    type: string
     region: content
   field_html_anchor:
-    type: string
+    weight: 4
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 4
+    type: string
     region: content
   field_links:
-    type: link
+    weight: 3
     label: above
     settings:
       trim_length: 80
@@ -41,23 +44,23 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 3
+    type: link
     region: content
   field_style:
-    type: entity_reference_label
+    weight: 0
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    weight: 0
+    type: entity_reference_label
     region: content
   field_title:
-    type: string
+    weight: 1
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
+    type: string
     region: content
 hidden:
   search_api_excerpt: true

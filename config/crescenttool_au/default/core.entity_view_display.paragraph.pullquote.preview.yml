@@ -1,3 +1,4 @@
+uuid: 0ee41fbd-a07f-4571-b13e-fc07b2be7595
 langcode: en
 status: true
 dependencies:
@@ -18,83 +19,85 @@ third_party_settings:
       children:
         - field_content
         - field_attribution
-      label: Component
       parent_name: ''
       weight: 1
       format_type: fieldset
       format_settings:
-        classes: ''
         id: ''
+        classes: ''
         description: ''
+      label: Component
     group_settings:
       children:
         - field_style
         - field_class_custom
         - field_html_anchor
-      label: Settings
       parent_name: ''
       weight: 20
       format_type: details
       format_settings:
-        classes: ''
         id: ''
+        classes: ''
         open: false
         required_fields: false
+      label: Settings
+_core:
+  default_config_hash: ZIGdtQA2s5v9L-QQ1AkomzMVM5h2PW8HzlkGWOyEcpw
 id: paragraph.pullquote.preview
 targetEntityType: paragraph
 bundle: pullquote
 mode: preview
 content:
   field_attribution:
-    type: string
+    weight: 6
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 6
+    type: string
     region: content
   field_class_custom:
-    type: string
+    weight: 1
     label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
+    type: string
     region: content
   field_content:
-    type: smart_trim
+    weight: 5
     label: above
     settings:
       trim_length: 200
       trim_type: chars
       trim_suffix: ...
-      wrap_output: false
       wrap_class: trimmed
-      more_link: false
-      more_class: more-link
       more_text: More
-      summary_handler: full
+      more_class: more-link
       trim_options:
         text: true
         trim_zero: false
+      wrap_output: false
+      more_link: false
+      summary_handler: full
     third_party_settings: {  }
-    weight: 5
+    type: smart_trim
     region: content
   field_html_anchor:
     type: string
+    weight: 2
+    region: content
     label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 2
-    region: content
   field_style:
-    type: entity_reference_label
+    weight: 0
     label: inline
     settings:
       link: false
     third_party_settings: {  }
-    weight: 0
+    type: entity_reference_label
     region: content
 hidden:
   search_api_excerpt: true

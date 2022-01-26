@@ -1,3 +1,4 @@
+uuid: 29c47a98-9357-4186-8a18-8b9841bee2a9
 langcode: en
 status: true
 dependencies:
@@ -9,43 +10,45 @@ dependencies:
     - paragraphs.paragraphs_type.hero
   module:
     - entity_reference_revisions
+_core:
+  default_config_hash: 43Uou_JupnxPbDdZf2zi6uUqeFOo6vPRn4q5NgaTSjc
 id: paragraph.hero.default
 targetEntityType: paragraph
 bundle: hero
 mode: default
 content:
   field_class_custom:
-    type: string
+    weight: 1
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
+    type: string
     region: content
   field_components:
-    type: entity_reference_revisions_entity_view
+    weight: 0
     label: above
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 0
+    type: entity_reference_revisions_entity_view
     region: content
   field_html_anchor:
-    type: string
+    weight: 3
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 3
+    type: string
     region: content
   field_style:
-    type: entity_reference_label
+    weight: 2
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    weight: 2
+    type: entity_reference_label
     region: content
 hidden:
   search_api_excerpt: true

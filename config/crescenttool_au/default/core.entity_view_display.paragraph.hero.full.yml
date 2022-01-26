@@ -1,3 +1,4 @@
+uuid: d3b02f3b-0c98-48f4-a405-0befac4b8ac1
 langcode: en
 status: true
 dependencies:
@@ -10,19 +11,21 @@ dependencies:
     - paragraphs.paragraphs_type.hero
   module:
     - entity_reference_revisions
+_core:
+  default_config_hash: xXTMSk1gsIBA39d2J9V3FnpPb_KE3BtZbY_JBujuDrA
 id: paragraph.hero.full
 targetEntityType: paragraph
 bundle: hero
 mode: full
 content:
   field_components:
-    type: entity_reference_revisions_entity_view
+    weight: 0
     label: hidden
     settings:
       view_mode: full
       link: ''
     third_party_settings: {  }
-    weight: 0
+    type: entity_reference_revisions_entity_view
     region: content
 hidden:
   field_class_custom: true

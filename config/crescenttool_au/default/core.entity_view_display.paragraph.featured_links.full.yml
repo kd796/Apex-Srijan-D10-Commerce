@@ -1,3 +1,4 @@
+uuid: 0b8c7d29-60d1-4f85-b2f4-43c2b240e6e4
 langcode: en
 status: true
 dependencies:
@@ -11,13 +12,15 @@ dependencies:
     - paragraphs.paragraphs_type.featured_links
   module:
     - linkit
+_core:
+  default_config_hash: fCRcz0b9Een9NmbigCAOxs4lcO_ljcA3emQsVjdyuyc
 id: paragraph.featured_links.full
 targetEntityType: paragraph
 bundle: featured_links
 mode: full
 content:
   field_links:
-    type: linkit
+    weight: 1
     label: hidden
     settings:
       trim_length: 80
@@ -27,15 +30,15 @@ content:
       target: ''
       linkit_profile: default
     third_party_settings: {  }
-    weight: 1
+    type: linkit
     region: content
   field_title:
-    type: string
+    weight: 0
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 0
+    type: string
     region: content
 hidden:
   field_class_custom: true

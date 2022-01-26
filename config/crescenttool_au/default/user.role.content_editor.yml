@@ -1,14 +1,13 @@
+uuid: 28a97c76-166e-4dfe-ac37-aee49ccf699d
 langcode: en
 status: true
 dependencies:
   config:
     - filter.format.basic_html
-    - filter.format.full_html
     - filter.format.restricted_html
     - media.type.audio
     - media.type.file
     - media.type.image
-    - media.type.remote_video
     - node.type.page
     - taxonomy.vocabulary.tags
   module:
@@ -23,6 +22,8 @@ dependencies:
     - system
     - taxonomy
     - toolbar
+_core:
+  default_config_hash: nUttSvbEP8ffsA9G_Jp_VDZi51ml_uWq0b8e0QKZa3I
 id: content_editor
 label: 'Content Editor'
 weight: 4
@@ -68,7 +69,6 @@ permissions:
   - 'update any media'
   - 'update media'
   - 'use text format basic_html'
-  - 'use text format full_html'
   - 'use text format restricted_html'
   - 'view all media revisions'
   - 'view all revisions'

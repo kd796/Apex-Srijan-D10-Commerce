@@ -1,3 +1,4 @@
+uuid: 7ebe544a-68d7-4b40-9c6f-76d1e7743fa3
 langcode: en
 status: true
 dependencies:
@@ -11,25 +12,27 @@ dependencies:
     - paragraphs.paragraphs_type.pullquote
   module:
     - text
+_core:
+  default_config_hash: gZG5X6o_0_8OsZvqrKfkv9aObumwDDJjRr8UAOMltYQ
 id: paragraph.pullquote.full
 targetEntityType: paragraph
 bundle: pullquote
 mode: full
 content:
   field_attribution:
-    type: string
+    weight: 1
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
+    type: string
     region: content
   field_content:
-    type: text_default
+    weight: 0
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 0
+    type: text_default
     region: content
 hidden:
   field_class_custom: true

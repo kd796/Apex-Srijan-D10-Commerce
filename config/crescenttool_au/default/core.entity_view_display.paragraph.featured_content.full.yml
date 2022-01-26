@@ -1,3 +1,4 @@
+uuid: 73b0cef9-898d-4194-9f17-ec97484b8b4e
 langcode: en
 status: true
 dependencies:
@@ -10,26 +11,28 @@ dependencies:
     - field.field.paragraph.featured_content.field_style
     - field.field.paragraph.featured_content.field_title
     - paragraphs.paragraphs_type.featured_content
+_core:
+  default_config_hash: Hq778LEJmij7jHAkrUO6D58kxkXoMUXiABEG23ON5-0
 id: paragraph.featured_content.full
 targetEntityType: paragraph
 bundle: featured_content
 mode: full
 content:
   field_related_nodes:
-    type: entity_reference_label
+    weight: 1
     label: hidden
     settings:
       link: true
     third_party_settings: {  }
-    weight: 1
+    type: entity_reference_label
     region: content
   field_title:
-    type: string
+    weight: 0
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 0
+    type: string
     region: content
 hidden:
   field_class_custom: true
