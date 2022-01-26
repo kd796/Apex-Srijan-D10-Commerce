@@ -17,45 +17,45 @@ bundle: featured_media
 mode: default
 content:
   field_class_custom:
-    weight: 0
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 0
     region: content
   field_html_anchor:
-    weight: 4
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 4
     region: content
   field_layout:
-    weight: 2
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 2
     region: content
   field_media_items:
     type: entity_reference_entity_view
-    weight: 3
     label: above
     settings:
       view_mode: default
       link: false
     third_party_settings: {  }
+    weight: 3
     region: content
   field_style:
-    weight: 1
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 1
     region: content
 hidden:
   search_api_excerpt: true

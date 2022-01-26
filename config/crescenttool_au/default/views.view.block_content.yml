@@ -16,9 +16,9 @@ base_table: block_content_field_data
 base_field: id
 display:
   default:
-    display_plugin: default
     id: default
     display_title: Master
+    display_plugin: default
     position: 0
     display_options:
       title: 'Custom block library'
@@ -30,6 +30,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: null
+          entity_field: info
+          plugin_id: field
           label: 'Block description'
           exclude: false
           alter:
@@ -85,9 +88,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: null
-          entity_field: info
-          plugin_id: field
         type:
           id: type
           table: block_content_field_data
@@ -95,6 +95,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: block_content
+          entity_field: type
+          plugin_id: field
           label: 'Block type'
           exclude: false
           alter:
@@ -150,9 +153,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: block_content
-          entity_field: type
-          plugin_id: field
         changed:
           id: changed
           table: block_content_field_data
@@ -160,6 +160,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: block_content
+          entity_field: changed
+          plugin_id: field
           label: Updated
           exclude: false
           alter:
@@ -201,14 +204,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          entity_type: block_content
-          entity_field: changed
           type: timestamp
           settings:
             date_format: short
             custom_date_format: ''
             timezone: ''
-          plugin_id: field
         operations:
           id: operations
           table: block_content

@@ -20,7 +20,7 @@ bundle: featured_links
 mode: full
 content:
   field_links:
-    weight: 1
+    type: linkit
     label: hidden
     settings:
       trim_length: 80
@@ -30,15 +30,15 @@ content:
       target: ''
       linkit_profile: default
     third_party_settings: {  }
-    type: linkit
+    weight: 1
     region: content
   field_title:
-    weight: 0
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 0
     region: content
 hidden:
   field_class_custom: true
