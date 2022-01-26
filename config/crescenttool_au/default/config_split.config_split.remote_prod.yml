@@ -1,0 +1,28 @@
+uuid: 84b8e4d0-c64d-4f3f-83b8-c8d2a0fe991b
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: d__7lDFIA_k4JXAVmqfhm5NKJdkXloI7bh1jFHRc9W4
+id: remote_prod
+label: 'Remote - Prod'
+description: ''
+weight: 0
+folder: ../config/crescenttool_au/remote_prod
+module:
+  captcha: 0
+  recaptcha: 0
+  syslog: 0
+theme: {  }
+blacklist:
+  - purge.logger_channels
+graylist:
+  - crescenttool_core.settings
+  - google_tag.container.google_tag_mzk37hc
+  - google_tag.container.primary
+  - purge.logger_channels
+  - purge.plugins
+  - system.performance
+  - purge_queuer_coretags.settings
+graylist_dependents: true
+graylist_skip_equal: true

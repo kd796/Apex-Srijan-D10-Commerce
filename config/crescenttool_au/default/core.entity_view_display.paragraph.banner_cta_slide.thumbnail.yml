@@ -1,0 +1,44 @@
+uuid: 4b3cfb7c-6bbb-4c01-885b-4b38072897cd
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.thumbnail
+    - field.field.paragraph.banner_cta_slide.field_content
+    - field.field.paragraph.banner_cta_slide.field_link
+    - field.field.paragraph.banner_cta_slide.field_media_background
+    - field.field.paragraph.banner_cta_slide.field_text_pagination
+    - field.field.paragraph.banner_cta_slide.field_thumbnail_image
+    - field.field.paragraph.banner_cta_slide.field_title
+    - paragraphs.paragraphs_type.banner_cta_slide
+    - responsive_image.styles.cta_slider_thumb
+  module:
+    - media_responsive_thumbnail
+id: paragraph.banner_cta_slide.thumbnail
+targetEntityType: paragraph
+bundle: banner_cta_slide
+mode: thumbnail
+content:
+  field_text_pagination:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_thumbnail_image:
+    type: media_responsive_thumbnail
+    label: hidden
+    settings:
+      responsive_image_style: cta_slider_thumb
+      image_link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_content: true
+  field_link: true
+  field_media_background: true
+  field_title: true
+  search_api_excerpt: true

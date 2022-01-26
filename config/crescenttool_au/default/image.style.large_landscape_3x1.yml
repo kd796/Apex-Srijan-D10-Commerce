@@ -1,0 +1,18 @@
+uuid: 2def3385-b290-43c3-8f52-aa1254e6c800
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: large_landscape_3x1
+label: 'Large - landscape 3:1 (1080x360)'
+effects:
+  3699553f-e961-4b9a-b63e-8b5ee0d7051c:
+    uuid: 3699553f-e961-4b9a-b63e-8b5ee0d7051c
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 1080
+      height: 360
+      crop_type: focal_point
+pipeline: smushit

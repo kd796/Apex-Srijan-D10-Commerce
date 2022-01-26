@@ -1,0 +1,58 @@
+uuid: be76c7fd-1292-4ff5-a5e0-b81c1b40e925
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.social_post.body
+    - field.field.node.social_post.field_media
+    - field.field.node.social_post.field_post_url
+    - node.type.social_post
+  module:
+    - smart_trim
+    - user
+id: node.social_post.teaser
+targetEntityType: node
+bundle: social_post
+mode: teaser
+content:
+  body:
+    type: smart_trim
+    label: hidden
+    settings:
+      trim_length: 190
+      trim_type: chars
+      trim_suffix: ''
+      wrap_output: false
+      wrap_class: trimmed
+      more_link: false
+      more_class: more-link
+      more_text: More
+      summary_handler: full
+      trim_options:
+        text: false
+        trim_zero: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_media:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_post_url:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  langcode: true
+  links: true
+  search_api_excerpt: true

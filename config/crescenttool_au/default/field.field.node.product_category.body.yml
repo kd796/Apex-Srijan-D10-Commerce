@@ -1,0 +1,31 @@
+uuid: 141e8513-fb59-4801-a3b7-2bde0d3a0bdf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.product_category
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    basic_html: basic_html
+    limited_html: limited_html
+    restricted_html: restricted_html
+    full_html: full_html
+    plain_text: '0'
+id: node.product_category.body
+field_name: body
+entity_type: node
+bundle: product_category
+label: "Lead-in/Summary Text\t"
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

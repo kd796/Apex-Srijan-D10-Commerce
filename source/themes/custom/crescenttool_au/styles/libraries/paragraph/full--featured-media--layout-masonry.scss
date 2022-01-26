@@ -1,0 +1,67 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: Featured Media - Masonry layout
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.component-featured-media--layout-masonry {
+  .component-featured-media__list {
+    // Flex fallback.
+    @include flex();
+    @include flex-x(flex-wrap, wrap);
+
+    display: grid;
+    grid-auto-rows: minmax(2rem, auto);
+    grid-template-columns: repeat(auto-fill, calc(50% - 2rem));
+    grid-column-gap: 4rem;
+    list-style: none;
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 0;
+
+    @include media('<=sm') {
+      display: block;
+    }
+
+    @include media('>md') {
+      grid-column-gap: 5rem;
+      grid-template-columns: repeat(auto-fill, calc(50% - 2.5rem));
+    }
+
+    @include media('>lg') {
+      grid-auto-rows: minmax(7rem, auto);
+      grid-template-columns: repeat(auto-fill, calc(50% - 3rem));
+      grid-column-gap: 6rem;
+    }
+  }
+
+  .component-featured-media__list-item {
+    flex: 1 1 14rem;
+    margin-bottom: 0;
+
+    @include media('>sm') {
+      margin-bottom: 5rem;
+
+      &:last-of-type,
+      &:nth-last-child(2) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  @for $i from 1 through 16 {
+    .component-featured-media__list-item--size-#{$i} {
+      grid-row-end: span $i;
+    }
+  }
+}
+

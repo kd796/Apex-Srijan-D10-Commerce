@@ -1,0 +1,434 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Region: Footer
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * SASS Variables
+ */
+$footer-bp-desktop: '>=sm';
+$footer-bp-tablet-landscape: '<=lg-plus';
+$footer-bp-tablet-portrait: '<=md';
+$footer-bp-mobile: '<sm';
+
+/**
+ * Region
+ */
+.region-footer {
+  @include container-full-width();
+
+  margin-top: 5rem;
+
+  .region-footer__inner-container {
+    display: grid;
+  }
+
+  .region-footer-first {
+    @include container($margin: 0);
+    color: $white;
+
+    a {
+      @include link(light, hover);
+    }
+
+    .block-footer-navigation-block__footer-address-phone {
+      a {
+        @include link(red, hover);
+        font-weight: $fw-bold;
+        font-size: rem(20px);
+      }
+    }
+  }
+
+  .block-footer-navigation-block__nav {
+    @include flex;
+    @include flex-x(flex-direction, column);
+
+    .block-footer-navigation-block__header {
+      padding: 0 0 1rem;
+
+      .block-footer-navigation-block__footer-logo {
+        max-width: 16rem;
+        width: 100%;
+
+        svg {
+          height: 3rem;
+        }
+      }
+    }
+
+    .block-footer-navigation-block__content {
+      @include flex;
+
+      .block-footer-navigation-block__footer-address p {
+        font-size: rem(16px);
+        margin: 0;
+        font-weight: $fw-medium;
+
+        &:first-of-type {
+          margin-top: 0.5rem;
+        }
+
+        &.block-footer-navigation-block__footer-address-phone {
+          margin-top: rem(10px);
+        }
+      }
+
+      .block-footer-navigation-block__footer-social-menu-wrapper {
+        .menu--social {
+          padding-top: rem(10px);
+        }
+      }
+    }
+  }
+
+  .menu {
+    margin: 0;
+    padding: 1rem 0;
+
+    &.menu--depth-1 {
+      padding: 0;
+    }
+
+    &.menu--social {
+      @include flex;
+      @include flex-x(flex-direction, row);
+
+      .menu-item:not(:first-of-type) {
+        margin-left: rem(20px);
+      }
+    }
+
+    .menu-item--visually-hide-title > span {
+      @include visually-hidden;
+    }
+
+    .menu-item__link--icon-only {
+      box-sizing: border-box;
+      display: block;
+      height: 1rem;
+      line-height: 1;
+      position: relative;
+      text-indent: -9999px;
+      width: 1rem;
+      font-size: rem(20px);
+
+      &::before {
+        @extend %icon;
+
+        display: inline-block;
+        height: 1rem;
+        left: 0;
+        position: absolute;
+        text-indent: 0;
+        top: 0;
+        width: 1rem;
+      }
+    }
+  }
+
+  .menu-item {
+    list-style: none;
+    margin: 0.5rem 0;
+    padding-top: 0;
+  }
+
+  .block-footer-navigation-block__footer-menu-wrapper {
+    flex: 1;
+  }
+
+  .menu--footer {
+    display: grid;
+    width: 100%;
+
+    li {
+      padding-right: .5rem;
+    }
+
+    li,
+    li a {
+      font-family: $font-brand;
+      font-size: rem(14px);
+      text-transform: uppercase;
+
+      &.menu-item__link--depth-0 {
+        font-size: 1.15rem;
+        font-weight: 800;
+      }
+    }
+
+    .menu-item--depth-1 {
+      a {
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .region-footer-second {
+    @include container($margin: 0);
+    color: $white;
+
+    a {
+      @include link(light, hover);
+    }
+
+    .region-footer-second__content {
+      .block-webform-block__title {
+        border-bottom: unset;
+      }
+
+      label {
+        color: $white;
+      }
+
+      input,
+      textarea,
+      select {
+        color: $gray-20;
+
+        &::placeholder {
+          color: $gray-20;
+        }
+      }
+
+      input:not([type='submit']) {
+        background: $gray-90;
+        border-color: $gray-20;
+      }
+
+      .webform-button--submit {
+        background-color: $primary-red;
+        border: 1px solid $primary-red;
+        color: $white;
+        width: 100%;
+
+        &:hover,
+        &:focus {
+          background-color: $primary-dark;
+          color: $white;
+        }
+
+        &:disabled {
+          background-color: $gray-30;
+          border-color: $gray-30;
+          color: $black;
+        }
+      }
+    }
+  }
+}
+
+@include media($footer-bp-desktop) {
+  .region-footer {
+    background: linear-gradient(to right, $secondary-black 58%, $gray-90 58%);
+
+    .region-footer__inner-container {
+      max-width: 85em;
+      width: calc(100% - 2rem);
+      margin-left: auto !important;
+      margin-right: auto !important;
+      display: grid;
+      grid-template-columns: 1fr 0.66fr;
+    }
+
+    .region-footer-first {
+      position: relative;
+      z-index: 0;
+    }
+
+    .region-footer-first__content {
+      padding: 3.75rem 0;
+    }
+
+    .region-footer-second__content {
+      padding: 3.75rem 2rem 3.75rem 3rem;
+    }
+
+    .block-footer-navigation-block__nav {
+
+      .block-footer-navigation-block__content {
+        @include flex-x(flex-direction, row);
+      }
+
+    }
+
+    .menu--footer {
+      grid-template-columns: 1fr 1fr 1fr;
+      margin: 0;
+      padding: 0 0 0 3rem;
+    }
+  }
+}
+
+@media (min-width: 1800px) and (max-width: 2499px) {
+  .region-footer {
+    background: linear-gradient(to right, $secondary-black 56%, $gray-90 56%);
+  }
+}
+
+@media (min-width: 2500px) {
+  .region-footer {
+    background: linear-gradient(to right, $secondary-black 54%, $gray-90 54%);
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1150px) {
+  .region-footer {
+    .region-footer-second__content {
+      padding: 3.75rem 0 3.75rem 8rem;
+    }
+
+    .block-footer-navigation-block__nav {
+      .block-footer-navigation-block__content {
+        @include flex-x(flex-direction, column-reverse);
+      }
+    }
+  }
+}
+
+@include media('<1150px') {
+  .region-footer {
+
+    .region-footer__inner-container {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .menu--footer {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1150px) {
+  .region-footer {
+    .region-footer__inner-container {
+      .menu--footer {
+        grid-template-columns: 1fr 1fr 1fr;
+        padding: 0;
+      }
+    }
+  }
+}
+
+@include media($footer-bp-tablet-landscape) {
+  .region-footer {
+    .region-footer__inner-container {
+      @include container-full-width();
+      grid-template-columns: 1fr;
+
+      .region-footer-first {
+        @include container-full-width();
+        background-color: $secondary-black;
+        padding: 0 2rem;
+        order: 2;
+
+        &::after {
+          content: none;
+        }
+      }
+
+      .region-footer-second {
+        @include container-full-width();
+        background-color: $gray-90;
+        padding: 0 2rem;
+        order: 1;
+      }
+    }
+
+    .region-footer-first__content,
+    .region-footer-second__content {
+      padding: 3rem 0;
+    }
+
+    .region-footer-first__content {
+      padding-top: 0;
+    }
+
+    .block-footer-navigation-block__nav {
+      .block-footer-navigation-block__content {
+        @include flex-x(flex-direction, column);
+
+        .block-footer-navigation-block__header {
+          order: 2;
+          margin-top: rem(20px);
+          padding-bottom: 0;
+        }
+
+        .block-footer-navigation-block__footer-address-social-menu-container {
+          @include flex;
+          @include flex-x(flex-direction, column);
+
+          order: 3;
+
+          .block-footer-navigation-block__footer-address {
+            order: 1;
+
+            .block-footer-navigation-block__footer-address-phone {
+              a {
+                font-size: rem(16px);
+              }
+            }
+          }
+
+          .block-footer-navigation-block__footer-social-menu-wrapper {
+            order: 2;
+          }
+        }
+
+        .block-footer-navigation-block__footer-menu-wrapper {
+          @include container-full-width();
+          order: 1;
+        }
+      }
+    }
+
+    .menu--footer {
+      grid-template-columns: 1fr;
+      padding: 0;
+      margin-bottom: rem(20px);
+
+      .menu-item--depth-0 {
+        border-bottom: rem(1px) solid $gray-50;
+        margin: 0;
+        position: relative;
+
+        @include on-event() {
+          background-color: $black;
+        }
+
+        .menu-item__link {
+          padding: 0.5rem 2rem;
+          font-size: rem(16px);
+
+          &.menu-item__link--depth-0 {
+            @include icon('arrow', after, false);
+            display: flex;
+            font-size: rem(20px);
+
+            &::after {
+              position: absolute;
+              top: 2%;
+              right: 2rem;
+              color: $primary-red;
+            }
+
+            @include on-event {
+              &::after {
+                color: $white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

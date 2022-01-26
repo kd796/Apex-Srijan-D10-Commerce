@@ -1,0 +1,90 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Node: Full Default
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.node--type-media-page.node--view-mode-teaser {
+  height: 100%;
+
+  .node__inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @include view-cards('.node__read-more-button');
+
+  .node__content {
+
+    .node__long-description {
+      min-height: 0;
+
+      .field--name-title {
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+      }
+    }
+
+    .node__content-container {
+
+      min-height: 15rem;
+
+      @include media('>=md') {
+
+        min-height: 18rem;
+
+      }
+    }
+
+    .node__listing-image {
+      border-radius: rem(11px);
+
+      @include media('>=md') {
+        border-radius: rem(25px);
+      }
+
+      .media.media--video {
+
+        iframe {
+          position: absolute;
+          top: 0;
+          height: 100%;
+          width: 100%;
+        }
+
+      }
+
+    }
+  }
+
+  .field[data-blazy] {
+    background-color: $black;
+    width: 100%;
+    border-radius: rem(11px);
+
+    @include media('>=md') {
+      border-radius: rem(25px);
+    }
+
+    img {
+      object-fit: contain;
+    }
+  }
+
+  .node__content .node__media .media img {
+    object-fit: contain;
+  }
+
+}

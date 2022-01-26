@@ -1,0 +1,125 @@
+// sass-lint:disable-all
+
+/**
+ * @file
+ * Styling for contextual module.
+ */
+
+/**
+ * Contextual links wrappers.
+ */
+.contextual {
+  position: absolute;
+  right: 0; /* LTR */
+  top: 6px;
+  z-index: 500;
+}
+[dir="rtl"] .contextual {
+  left: 0!important;
+  right: auto!important;
+}
+
+/**
+ * Contextual region.
+ */
+.contextual-region.focus {
+  outline: 1px dashed #d6d6d6!important;
+  outline-offset: 1px!important;
+}
+
+/**
+ * Contextual trigger.
+ */
+.contextual .trigger {
+  background-attachment: scroll!important;
+  background-color: #fff!important;
+  border: 1px solid #ccc!important;
+  border-radius: 13px!important;
+  float: right!important; /* LTR */
+  margin: 0!important;
+  overflow: hidden!important;
+  padding: 0 2px!important;
+  position: relative;
+  right: 6px!important; /* LTR */
+  cursor: pointer!important;
+}
+[dir="rtl"] .contextual .trigger {
+  float: left!important;
+  right: auto!important;
+  left: 6px!important;
+}
+.contextual.open .trigger {
+  border: 1px solid #ccc!important;
+  border-bottom-color: transparent!important;
+  border-radius: 13px 13px 0 0!important;
+  box-shadow: none!important;
+  z-index: 2!important;
+}
+
+/**
+ * Contextual links.
+ *
+ * The following selectors are heavy to discourage theme overriding.
+ */
+.contextual-region .contextual .contextual-links {
+  background-color: #fff!important;
+  border: 1px solid #ccc!important;
+  border-radius: 4px 0 4px 4px!important; /* LTR */
+  clear: both!important;
+  float: right!important; /* LTR */
+  margin: 0!important;
+  padding: 0.25rem 0!important;
+  position: relative!important;
+  right: 6px!important; /* LTR */
+  text-align: left!important; /* LTR */
+  top: -1px!important;
+  white-space: nowrap!important;
+}
+[dir="rtl"] .contextual-region .contextual .contextual-links {
+  border-radius: 0 4px 4px 4px!important;
+  float: left!important;
+  left: 6px!important;
+  right: auto!important;
+  text-align: right!important;
+}
+.contextual-region .contextual .contextual-links li {
+  background-color: #fff!important;
+  border: none!important;
+  display: block!important;
+  list-style: none!important;
+  list-style-image: none!important;
+  margin: 0!important;
+  padding: 0!important;
+  line-height: 100%!important;
+}
+.contextual-region .contextual .contextual-links a {
+  background-color: #fff!important;
+  color: #999!important;
+  display: block!important;
+  font-family: sans-serif!important;
+  font-size: small!important;
+  line-height: 0.8rem!important;
+  margin: 0.25rem 0!important;
+  opacity: 1!important;
+  padding: 0.4rem 0.6rem!important;
+}
+.touchevents .contextual-region .contextual .contextual-links a {
+  font-size: large!important;
+}
+.contextual-region .contextual .contextual-links a,
+.contextual-region .contextual .contextual-links a:hover,
+.contextual-region .contextual .contextual-links a:focus {
+  text-decoration: none!important;
+  font-weight: normal!important;
+}
+.no-touchevents .contextual-region .contextual .contextual-links li a:hover,
+.no-touchevents .contextual-region .contextual .contextual-links li a:focus{
+  color: #000!important;
+  background: #f7fcff!important;
+}
+
+.contextual-region .contextual .contextual-links a:hover,
+.contextual-region .contextual .contextual-links a:focus {
+  color: #000!important;
+  background: #f7fcff!important;
+}

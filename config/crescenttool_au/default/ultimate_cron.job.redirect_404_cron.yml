@@ -1,0 +1,17 @@
+uuid: ae951235-62ea-4c51-bc67-5c35bbf08d0b
+langcode: en
+status: true
+dependencies:
+  module:
+    - redirect_404
+title: 'Default cron handler'
+id: redirect_404_cron
+weight: 0
+module: redirect_404
+callback: redirect_404_cron
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database

@@ -1,0 +1,21 @@
+uuid: 17ef1b7b-a7ef-4ff6-a57d-9ff40518b48a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_class_custom
+    - paragraphs.paragraphs_type.embed_view
+_core:
+  default_config_hash: cuPj0RPAmmsntoGuT3yUHKXCl64WhCYhMqEiDcfGZTE
+id: paragraph.embed_view.field_class_custom
+field_name: field_class_custom
+entity_type: paragraph
+bundle: embed_view
+label: 'Custom Classes'
+description: 'A list of space-separated HTML classes to use on the component. <strong>Allowed characters: a-z 0-9 _ -</strong>'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

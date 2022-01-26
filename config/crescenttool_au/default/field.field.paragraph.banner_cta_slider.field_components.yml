@@ -1,0 +1,97 @@
+uuid: 2bf91ed7-ae9d-4f66-85ed-87743dd77459
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_components
+    - paragraphs.paragraphs_type.banner_cta_slide
+    - paragraphs.paragraphs_type.banner_cta_slider
+  module:
+    - entity_reference_revisions
+id: paragraph.banner_cta_slider.field_components
+field_name: field_components
+entity_type: paragraph
+bundle: banner_cta_slider
+label: Slide
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      banner_cta_slide: banner_cta_slide
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 24
+        enabled: false
+      accordion_item:
+        weight: 25
+        enabled: false
+      banner_cta_slide:
+        weight: 26
+        enabled: true
+      banner_cta_slider:
+        weight: 27
+        enabled: false
+      content:
+        weight: 28
+        enabled: false
+      content_2_column:
+        weight: 29
+        enabled: false
+      content_callout:
+        weight: 30
+        enabled: false
+      content_callout_container:
+        weight: 31
+        enabled: false
+      embed_block:
+        weight: 32
+        enabled: false
+      embed_iframe:
+        weight: 33
+        enabled: false
+      embed_view:
+        weight: 34
+        enabled: false
+      featured_content:
+        weight: 35
+        enabled: false
+      featured_links:
+        weight: 36
+        enabled: false
+      featured_media:
+        weight: 37
+        enabled: false
+      hero:
+        weight: 38
+        enabled: false
+      hero_slide:
+        weight: 39
+        enabled: false
+      product_slider:
+        weight: 40
+        enabled: false
+      pullquote:
+        weight: 41
+        enabled: false
+      section:
+        weight: 42
+        enabled: false
+      step:
+        weight: 43
+        enabled: false
+      steps:
+        weight: 44
+        enabled: false
+      tabs:
+        weight: 45
+        enabled: false
+      tabs_tab:
+        weight: 46
+        enabled: false
+field_type: entity_reference_revisions

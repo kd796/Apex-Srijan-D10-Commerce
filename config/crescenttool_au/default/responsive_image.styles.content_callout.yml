@@ -1,0 +1,33 @@
+uuid: c971eb6e-a2d0-41b7-a94b-00e3902c3d13
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.medium_1x1
+    - image.style.small_1x1
+  theme:
+    - crescenttool
+id: content_callout
+label: 'Content Callout'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: medium_1x1
+    breakpoint_id: crescenttool.large_min
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: small_1x1
+    breakpoint_id: crescenttool.small_min
+    multiplier: 1x
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: 100vw
+      sizes_image_styles:
+        - medium_1x1
+        - small_1x1
+    breakpoint_id: crescenttool.xsmall
+    multiplier: 1x
+breakpoint_group: crescenttool
+fallback_image_style: medium_1x1

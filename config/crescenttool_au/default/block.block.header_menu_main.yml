@@ -1,0 +1,29 @@
+uuid: c6bf2d6d-05e7-4490-a964-becbe68115c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - block_class
+    - system
+  theme:
+    - crescenttool
+third_party_settings:
+  block_class:
+    classes: block--header-menu-main
+id: header_menu_main
+theme: crescenttool_au
+region: header
+weight: -5
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 3
+  expand_all_items: true
+visibility: {  }

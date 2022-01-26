@@ -1,0 +1,25 @@
+uuid: 354ad0a5-f94f-4d90-8aca-bcf756dffeed
+langcode: en
+status: true
+dependencies:
+  config:
+    - webform.webform.email_sign_up
+  module:
+    - webform
+  theme:
+    - crescenttool
+id: webform
+theme: crescenttool_au
+region: footer_second
+weight: 0
+provider: null
+plugin: webform_block
+settings:
+  id: webform_block
+  label: 'Email Sign-Up'
+  label_display: visible
+  provider: webform
+  webform_id: email_sign_up
+  default_data: ''
+  redirect: false
+visibility: {  }

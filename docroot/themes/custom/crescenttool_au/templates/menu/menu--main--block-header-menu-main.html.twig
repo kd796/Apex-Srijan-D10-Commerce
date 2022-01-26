@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Theme override to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ */
+#}
+{% import '@crescenttool_au/menu/menu--can-expand--main--block-header-menu-main.twig' as menus %}
+
+{#
+  We call a macro which calls itself to render the full tree.
+  @see http://twig.sensiolabs.org/doc/tags/macro.html
+#}
+
+<button class="block__menu-toggle" aria-controls="block-header-menu-main--menu" aria-expanded="false">
+  <span class="block__menu-toggle-expand" title="{{ 'Open Menu'|t }}">{{ 'Open Menu'|t }}</span>
+  <span class="block__menu-toggle-collapse" title="{{ 'Close Menu'|t }}">{{ 'Close Menu'|t }}</span>
+</button>
+
+<div class="block__menu" id="block-header-menu-main--menu">
+  {{ menus.menu_links(items, attributes, 0, menu_name, parent_item_id, featured_tools) }}
+</div>

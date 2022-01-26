@@ -1,0 +1,18 @@
+uuid: 1a065944-5d0d-4114-b910-415f013230b5
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: small_landscape_504x310_
+label: 'Small - Landscape (504x310)'
+effects:
+  0504f86c-728c-4dcd-857a-346aed509add:
+    uuid: 0504f86c-728c-4dcd-857a-346aed509add
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 504
+      height: 310
+      crop_type: focal_point
+pipeline: smushit

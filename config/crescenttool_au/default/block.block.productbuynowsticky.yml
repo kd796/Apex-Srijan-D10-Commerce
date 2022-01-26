@@ -1,0 +1,28 @@
+uuid: e7fbe983-426b-4cfe-a224-eca0628f2f5b
+langcode: en
+status: true
+dependencies:
+  module:
+    - crescenttool_core
+    - node
+  theme:
+    - crescenttool
+id: productbuynowsticky
+theme: crescenttool_au
+region: pre_content
+weight: -7
+provider: null
+plugin: product_buy_now_sticky
+settings:
+  id: product_buy_now_sticky
+  label: 'Product: Buy Now Sticky'
+  label_display: '0'
+  provider: crescenttool_core
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      product: product
