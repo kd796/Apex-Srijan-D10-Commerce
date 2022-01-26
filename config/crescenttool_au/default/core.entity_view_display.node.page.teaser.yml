@@ -1,0 +1,92 @@
+uuid: 15256ebf-9e0d-41e3-a592-2faafd4183dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.page.body
+    - field.field.node.page.field_components
+    - field.field.node.page.field_link
+    - field.field.node.page.field_media
+    - field.field.node.page.field_meta_tags
+    - image.style.small_1x1
+    - node.type.page
+  module:
+    - blazy
+    - smart_trim
+    - user
+_core:
+  default_config_hash: UDLaRNf0Y6Ip7i48hyinduYv4c-goGdKzRShKxx40L4
+id: node.page.teaser
+targetEntityType: node
+bundle: page
+mode: teaser
+content:
+  body:
+    type: smart_trim
+    label: hidden
+    settings:
+      trim_length: 200
+      trim_type: chars
+      trim_suffix: ''
+      wrap_output: false
+      wrap_class: trimmed
+      more_link: false
+      more_class: more-link
+      more_text: More
+      summary_handler: full
+      trim_options:
+        text: true
+        trim_zero: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_media:
+    type: blazy_media
+    label: hidden
+    settings:
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      view_mode: default
+      cache: 0
+      current_view_mode: teaser
+      skin: ''
+      fx: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      responsive_image_style: ''
+      box_style: ''
+      image_style: small_1x1
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_components: true
+  field_link: true
+  field_meta_tags: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

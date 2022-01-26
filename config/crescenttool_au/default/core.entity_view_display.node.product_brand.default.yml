@@ -1,0 +1,36 @@
+uuid: 66529bdb-6369-4a5f-a366-8abe36faa325
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.product_brand.body
+    - field.field.node.product_brand.field_link
+    - field.field.node.product_brand.field_media
+    - node.type.product_brand
+  module:
+    - link
+    - user
+id: node.product_brand.default
+targetEntityType: node
+bundle: product_brand
+mode: default
+content:
+  field_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  body: true
+  field_media: true
+  langcode: true
+  links: true
+  products_by_brand: true
+  search_api_excerpt: true

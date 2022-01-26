@@ -1,0 +1,68 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: Section
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Classy Styles
+ */
+.component-section {
+  @include container-full-width();
+  padding: 0 1rem;
+  padding-top: $gap-vertical-md;
+
+  @include media('>=md') {
+    padding-top: $gap-vertical-md-plus;
+  }
+
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .component-section__title {
+    @include type-header(h2, black, included);
+    margin: 0;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .component-section__content {
+    @include container();
+    padding: 6.5rem 0 9.625rem;
+  }
+
+  // gap for components within sections
+  .component-section__content > .paragraph-component:not(:first-child) {
+    @include gap-vertical(
+      $property: margin,
+      $breakpoint: md,
+      $gap-small: 3.75rem,
+      $gap-large: 9.375rem
+    );
+  }
+
+  &.paragraph-component--background-color {
+    position: relative;
+
+    .component-section__content {
+      position: relative;
+      z-index: 1;
+    }
+
+    &:after {
+      @include trbl();
+
+      content: '';
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+    }
+  }
+}

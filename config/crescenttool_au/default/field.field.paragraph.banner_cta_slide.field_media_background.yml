@@ -1,0 +1,29 @@
+uuid: 48b720b9-7879-47f1-a4f8-879b26a5e378
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_media_background
+    - media.type.image
+    - paragraphs.paragraphs_type.banner_cta_slide
+id: paragraph.banner_cta_slide.field_media_background
+field_name: field_media_background
+entity_type: paragraph
+bundle: banner_cta_slide
+label: 'Slide Image'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

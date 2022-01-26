@@ -1,0 +1,22 @@
+uuid: 8d3ca2ad-3304-40ec-aef4-0bea22a8431d
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: product_industry
+label: 'Product Industry'
+type: 'canonical_entities:node'
+pattern: '/all-tools/[node:title]'
+selection_criteria:
+  1b079f27-0b81-4cb4-bc58-886d76bc2cd9:
+    id: node_type
+    negate: false
+    uuid: 1b079f27-0b81-4cb4-bc58-886d76bc2cd9
+    context_mapping:
+      node: node
+    bundles:
+      product_industry: product_industry
+selection_logic: and
+weight: -5
+relationships: {  }

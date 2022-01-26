@@ -1,0 +1,38 @@
+uuid: a1a6bf7b-e988-40d6-be58-02a1cbb0c57f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_media
+    - media.type.image
+    - media.type.remote_video
+    - media.type.video
+    - node.type.product
+  content:
+    - 'media:image:e874c0b1-edfd-4d03-9fb7-0902be93cefc'
+id: node.product.field_media
+field_name: field_media
+entity_type: node
+bundle: product
+label: 'Listing Image'
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    target_uuid: e874c0b1-edfd-4d03-9fb7-0902be93cefc
+    weight: 0
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+      remote_video: remote_video
+      video: video
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: image
+field_type: entity_reference

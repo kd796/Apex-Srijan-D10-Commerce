@@ -1,0 +1,47 @@
+// -----------------------------------------------------------------------------
+// Abstracts/Variables: Layout
+// Horizontal and Vertical gaps and container widths
+// -----------------------------------------------------------------------------
+
+/**
+ * Grid and Grid Gap
+ */
+$spacing-unit: 10px !default;
+$grid-columns: 12 !default;
+
+/**
+ * Vertical Gap
+ */
+$gap-vertical-xsm: 1.5rem !default;
+$gap-vertical-sm: 2.5rem !default;
+$gap-vertical-sm-plus: rem(60px) !default;
+$gap-vertical-md: 4.5rem !default;
+$gap-vertical-md-plus: 6rem !default;
+$gap-vertical-lg: 7.5rem !default;
+$gap-vertical-xl: 9.375rem !default;
+
+/**
+ * Horizontal Gap
+ */
+$gap-horizontal-sm: 1rem !default;
+$gap-horizontal-md: 1.5rem !default;
+$gap-horizontal-md-plus: 3rem !default;
+$gap-horizontal-lg: 5vw !default;
+$gap-horizontal-xl: calc(50vw - (#{$bp-xl} / 2 )) !default;
+$gap-horizontal-max: 80vw !default;
+
+/**
+ * Container widths
+ */
+$container-sm: em(530px, $font-size-base-rem) !default;
+$container-md: em(750px, $font-size-base-rem) !default;
+$container-lg: em(960px, $font-size-base-rem) !default;
+$container-xl: em(1200px, $font-size-base-rem) !default;
+
+// Container Max-width map - used to generate container classes
+$container-width: (
+  sm: $container-sm,
+  md: $container-md,
+  lg: $container-lg,
+  xl: $container-xl
+) !default;

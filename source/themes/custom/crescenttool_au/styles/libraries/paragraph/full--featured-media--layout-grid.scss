@@ -1,0 +1,51 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: Featured Media - Grid layout
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.component-featured-media--layout-grid {
+  .component-featured-media__list {
+    @include grid-row();
+    @include grid-row-gutters(
+      $gutter-horizontal: false,
+      $gutter-vertical: true,
+      $gutter-vertical-size: wide
+    );
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @include media('>sm') {
+      @include grid-row-gutters(
+        $gutter-horizontal-size: wide,
+        $gutter-vertical: true,
+        $gutter-vertical-size: wide
+      );
+    }
+
+    .component-featured-media__list-item {
+      @include grid-col(12);
+      @include grid-clear-vertical-spacing();
+
+      @include media('>=#{$bp-sm}', '<#{$bp-lg}') {
+        @include grid-col(6);
+        @include grid-clear-vertical-spacing(2);
+      }
+
+      @include media('>=#{$bp-lg}') {
+        @include grid-col(4);
+        @include grid-clear-vertical-spacing(3);
+      }
+    }
+  }
+}

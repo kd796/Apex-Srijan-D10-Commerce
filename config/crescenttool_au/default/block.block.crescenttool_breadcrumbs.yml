@@ -1,0 +1,20 @@
+uuid: 5d9e44af-78c1-4288-8e5a-8dcc01df3b30
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - crescenttool
+id: crescenttool_breadcrumbs
+theme: crescenttool_au
+region: content
+weight: -6
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

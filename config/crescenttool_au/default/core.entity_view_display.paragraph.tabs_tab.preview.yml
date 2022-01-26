@@ -1,0 +1,27 @@
+uuid: 14131f02-f8f0-4bd2-9fa0-283a1821cb6c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.tabs_tab.field_components
+    - field.field.paragraph.tabs_tab.field_title
+    - paragraphs.paragraphs_type.tabs_tab
+_core:
+  default_config_hash: IZP4jyZHOvhqacYZUbfdSnXtmRUFylhjIx2soOHctAA
+id: paragraph.tabs_tab.preview
+targetEntityType: paragraph
+bundle: tabs_tab
+mode: preview
+content:
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_components: true
+  search_api_excerpt: true

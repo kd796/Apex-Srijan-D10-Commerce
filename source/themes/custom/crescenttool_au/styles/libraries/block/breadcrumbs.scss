@@ -1,0 +1,53 @@
+// -----------------------------------------------------------------------------
+// Block: Breadcrumbs
+// -----------------------------------------------------------------------------
+
+@import '../../globals';
+
+.block-system-breadcrumb-block {
+  font-size: 1rem;
+  padding-top: 3rem;
+
+  .block-system-breadcrumb-block__content {
+    &:empty {
+      display: none;
+    }
+  }
+
+  .breadcrumb li,
+  .breadcrumb li a {
+    font-size: $body-font-size;
+    font-family: $font-brand;
+    font-weight: $fw-medium;
+    color: $secondary-black;
+  }
+
+  .breadcrumb li {
+    &:nth-child(n+2) {
+      &:before {
+        content: ' > ';
+      }
+    }
+  }
+
+  a {
+    @include link-base();
+    @include icon(chevron-thin, before);
+    @include type-header(h4, dark, included);
+    text-decoration: none;
+
+    &:before {
+      color: $secondary-black;
+      display: inline-block;
+      margin-right: 0.25rem;
+      transform: rotate(180deg);
+      transition: $transition-base;
+      transition-delay: $transition-base-time / 2;
+      vertical-align: top;
+    }
+
+    &:hover:before {
+      color: $secondary-black;
+    }
+  }
+}

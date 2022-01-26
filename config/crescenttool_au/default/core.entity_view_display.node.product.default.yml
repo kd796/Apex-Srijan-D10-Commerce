@@ -1,0 +1,55 @@
+uuid: e79a9d97-8b52-4c73-a720-01f6dfb60be0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.product.body
+    - field.field.node.product.field_brand
+    - field.field.node.product.field_featured_product
+    - field.field.node.product.field_keywords
+    - field.field.node.product.field_launch_date
+    - field.field.node.product.field_long_description
+    - field.field.node.product.field_media
+    - field.field.node.product.field_meta_tags
+    - field.field.node.product.field_new_product
+    - field.field.node.product.field_product_classifications
+    - field.field.node.product.field_product_features
+    - field.field.node.product.field_product_images
+    - field.field.node.product.field_product_specifications
+    - field.field.node.product.field_related_products
+    - field.field.node.product.field_set
+    - field.field.node.product.field_set_components
+    - field.field.node.product.field_sku_group
+    - field.field.node.product.field_trade
+    - field.field.node.product.field_upc
+    - node.type.product
+  module:
+    - user
+id: node.product.default
+targetEntityType: node
+bundle: product
+mode: default
+content: {  }
+hidden:
+  body: true
+  field_brand: true
+  field_featured_product: true
+  field_keywords: true
+  field_launch_date: true
+  field_long_description: true
+  field_media: true
+  field_meta_tags: true
+  field_new_product: true
+  field_product_classifications: true
+  field_product_features: true
+  field_product_images: true
+  field_product_specifications: true
+  field_related_products: true
+  field_set: true
+  field_set_components: true
+  field_sku_group: true
+  field_trade: true
+  field_upc: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

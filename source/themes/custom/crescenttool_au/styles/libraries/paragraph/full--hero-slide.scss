@@ -1,0 +1,219 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: hero slide
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.component-hero-slide,
+.component-hero-slide.swiper-slide {
+  // The "!important" tags are set to override swiper-slider styles.
+  @include flex();
+  @include flex-x(flex-direction, row);
+  @include flex-x(justify-content, flex-end);
+  @include flex-x(align-items, center);
+
+  background-color: $white;
+  height: 40rem;
+  position: relative;
+  width: 100vw !important;
+
+  @include media('<=sm') {
+    height: 80vh;
+  }
+
+  @include media('>sm', '<=md') {
+    height: 68vh;
+  }
+
+  .field--name-field-media-background {
+    .media {
+      @include trbl();
+      height: 60vh;
+      overflow: hidden;
+      width: 100%;
+      z-index: 0;
+
+      .media__media {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+
+        > picture,
+        img {
+          display: block;
+          height: 100%;
+          left: 50%;
+          min-height: 100%;
+          min-width: 100%;
+          object-fit: cover;
+          position: absolute;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: auto;
+          object-fit: cover;
+        }
+      }
+
+      @include media('>md') {
+        height: 100%;
+      }
+    }
+  }
+
+  .component-hero-slide__inner {
+    @include container($container-xl, 0, center, false);
+    @include flex();
+    @include flex-x(justify-content, center);
+    @include flex-x(align-items, flex-end);
+
+    color: $color-white;
+    height: 100%;
+
+    @include media('>md') {
+      @include flex-x(justify-content, left);
+      @include flex-x(align-items, center);
+    }
+  }
+
+  .component-hero-slide__content-container,
+  .component-hero-slide__title-image {
+    background-color: rgba($black, 0.6);
+    box-sizing: border-box;
+    margin: 0;
+    max-width: 100%;
+    padding: 1.625rem .875rem 1rem;
+    position: relative;
+
+    @include media('>xs-plus') {
+      max-width: 90%;
+    }
+
+    @include media('>=sm') {
+      max-width: 75%;
+    }
+
+    @include media('>md') {
+      filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.75));
+      max-width: 530px;
+      padding: 2.75rem 2rem 1.375rem;
+    }
+
+    >* {
+      position: relative;
+      z-index: 2;
+    }
+
+    .component-hero-slide__title {
+      margin-bottom: 1rem;
+
+      @include media('>md') {
+        margin-bottom: 0;
+      }
+
+      h2 {
+        @include type-header(h4, light, included);
+        text-transform: uppercase;
+        display: block;
+        margin: 0;
+
+        @include media('>md') {
+          @include type-header(display-headline-4, light, included);
+          line-height: rem(48px);
+          margin: 0;
+        }
+      }
+    }
+
+    .component-hero-slide__content {
+      display: block;
+    }
+  }
+
+  .component-hero-slide__link {
+    @include btn();
+    border: 1px solid $primary-red !important;
+  }
+
+  .component-hero-slide__footer:not(:empty) {
+    margin-top: 1rem;
+  }
+
+  .component-hero-slide__footer {
+    @include flex;
+    @include flex-x(flex-direction, row);
+    @include flex-x(justify-content, space-between);
+    @include flex-x(align-items, center);
+  }
+
+  .component-hero-slide__button-container {
+    @include flex;
+    @include flex-x(flex-direction, row);
+    @include flex-x(justify-content, center);
+    @include flex-x(align-items, center);
+
+    align-self: stretch;
+
+    .component-hero-slide__button {
+      @include trbl();
+
+      background-color: $primary-red;
+      background-size: rem(10px) rem(16px);
+      border: 1px solid $primary-red;
+      height: 100%;
+      min-width: rem(47px);
+      margin: 0;
+      padding: 0;
+      opacity: 1;
+      position: relative;
+
+      @include on-event() {
+        background-color: $primary-dark;
+        border-color: $primary-dark;
+      }
+
+      &.component-hero-slide__button-prev {
+        background-image: url('../../../icons/chevron-left-white.svg');
+        margin-right: 1px;
+      }
+
+      &.component-hero-slide__button-next {
+        background-image: url('../../../icons/chevron-right-white.svg');
+        margin-left: 1px;
+      }
+
+      &[aria-disabled='true'] {
+        background-color: $gray-30;
+        border-color: $gray-30;
+      }
+    }
+  }
+
+  .component-hero-slide__pagination {
+    display: none;
+    margin: 2rem 0 0;
+
+    @include media('>md') {
+      display: block;
+    }
+
+    .swiper-pagination-bullet {
+      background: transparent;
+      border-color: $white;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: $primary-red;
+    }
+  }
+}

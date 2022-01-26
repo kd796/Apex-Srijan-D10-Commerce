@@ -1,0 +1,89 @@
+// -----------------------------------------------------------------------------
+// Abstracts/Mixin: Typography
+// Global typography for site
+// Place on elements as desired
+//
+// Options:
+// • $version(value = h1 - h6) - default = h1 - heading to apply styles to
+// • $color(value = light or dark) - default = dark - heading color
+// • $globals(value = included or excluded) - default = excluded - include the globals or just override
+//
+// === h1 === //
+// @include type-header(h1, dark, included);
+//
+// === h2 === //
+// @include type-header(h2, dark, included);
+//
+// === h3 === //
+// @include type-header(h3, dark, included);
+//
+// === h4 === //
+// @include type-header(h4, dark, included);
+//
+// === h5 === //
+// @include type-header(h5, dark, included);
+//
+// === h6 === //
+// @include type-header(h6, dark, included);
+//
+// -----------------------------------------------------------------------------
+
+@mixin type-header (
+  $version: h1,
+  $color: null,
+  $globals: excluded) {
+  // Include if the globals only if explicitly included.
+  @if $globals == included {
+    font-family: $font-brand;
+    font-weight: $fw-extra-bold;
+    letter-spacing: inherit;
+    line-height: 1.2;
+    margin: 1.25rem 0 0.5rem;
+    padding: 0;
+  }
+  @if $color == light {
+    color: $color-white;
+  } @else if $color == dark {
+    color: $primary-red;
+  } @else if $color == black {
+    color: $secondary-black;
+  }
+  @if $version == h1 {
+    font-size: 2.5rem;
+    @include media('<md') {
+      font-size: 1.75rem;
+    }
+  } @else if $version == h2 {
+    font-size: rem(40px);
+    line-height: rem(48px);
+
+    @include media('<md') {
+      font-size: rem(26px);
+      line-height: rem(31px);
+    }
+  } @else if $version == h3 {
+    font-size: rem(28px);
+    line-height: rem(32px);
+
+    @include media('<md') {
+      font-size: rem(23px);
+      line-height: rem(27px);
+    }
+  } @else if $version == h4 {
+    font-size: rem(24px);
+    line-height: rem(32px);
+  } @else if $version == h5 {
+    font-size: rem(20px);
+  } @else if $version == h6 {
+    font-size:  rem(16px);
+  } @else if $version == display-headline-1 {
+    font-size: 4.5rem !important;
+  } @else if $version == display-headline-2 {
+    font-size: 4rem !important;
+    letter-spacing: -0.02rem;
+  } @else if $version == display-headline-3 {
+    font-size: 3.625rem !important;
+  } @else if $version == display-headline-4 {
+    font-size: 3.25rem !important;
+  }
+}

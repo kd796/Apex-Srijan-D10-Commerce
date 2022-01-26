@@ -1,0 +1,53 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: Pull-Quote
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.component-pullquote {
+  @include container-full-width();
+  @include gap-vertical(margin);
+  background-color: $color-dark-grey;
+  font-size: 1rem;
+
+  .component-pullquote__footer,
+  .component-pullquote__content {
+    @include type-header(h4, light, included);
+    @include container($container-lg);
+    @include gap-horizontal();
+    text-transform: none;
+  }
+
+  .component-pullquote__content {
+    text-align: center;
+    padding-top: $gap-vertical-md-plus;
+  }
+
+  .component-pullquote__footer {
+    font-size: 0.75rem;
+    padding-bottom: $gap-vertical-md-plus;
+    text-align: right;
+
+    .field--name-field-attribution {
+      display: inline-block;
+      padding-left: 1.5rem;
+
+      &:before {
+        content: '\2013';
+        display: inline-block;
+        margin-left: -1.5rem;
+        text-align: center;
+        width: 1.5rem;
+      }
+    }
+  }
+}

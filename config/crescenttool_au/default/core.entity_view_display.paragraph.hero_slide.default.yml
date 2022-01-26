@@ -1,0 +1,86 @@
+uuid: 6fd53563-4015-46ba-bc6a-a904c5f2c331
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hero_slide.field_class_custom
+    - field.field.paragraph.hero_slide.field_content
+    - field.field.paragraph.hero_slide.field_link
+    - field.field.paragraph.hero_slide.field_media_background
+    - field.field.paragraph.hero_slide.field_style
+    - field.field.paragraph.hero_slide.field_title
+    - field.field.paragraph.hero_slide.field_title_image
+    - paragraphs.paragraphs_type.hero_slide
+  module:
+    - link
+    - text
+_core:
+  default_config_hash: r_VvHzf2ARjDzxXgwkOpp8gZ6tuwYl1CnWFZsEg6bz4
+id: paragraph.hero_slide.default
+targetEntityType: paragraph
+bundle: hero_slide
+mode: default
+content:
+  field_class_custom:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_content:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_media_background:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_style:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_title_image:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 6
+    region: content
+hidden:
+  search_api_excerpt: true

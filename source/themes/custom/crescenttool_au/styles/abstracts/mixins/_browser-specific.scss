@@ -1,0 +1,52 @@
+// -----------------------------------------------------------------------------
+// Browser specific - Mixins for browser targeting
+//
+// === bs-ie === //
+// Will target IE 10+
+// more info @ https://paper-leaf.com/blog/2014/09/targeting-ie-10-11-browsers-css/
+//
+// @include bs-ie() {
+//  @content;
+// }
+//
+// === bs-edge === //
+// Will target Edge 15+
+// more info @ https://jeffclayton.wordpress.com/2015/04/07/css-hacks-for-windows-10-and-spartan-browser-preview/
+//
+// @include bs-edge() {
+//  @content;
+// }
+//
+// === bs-microsoft === //
+// Will target IE 10+ AND Edge 15+
+//
+// @include bs-microsoft() {
+//  @content;
+// }
+//
+// -----------------------------------------------------------------------------
+
+// bs-ie = IE 10+
+@mixin bs-ie() {
+  @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+    @content;
+  }
+}
+
+// bs-edge = Edge 15+
+@mixin bs-edge() {
+  @supports (-ms-ime-align: auto) {
+    @content;
+  }
+}
+
+// bs-microsoft = IE 10+ AND Edge 15+
+@mixin bs-microsoft() {
+  @include bs-ie() {
+    @content
+  }
+
+  @include bs-edge() {
+    @content;
+  }
+}

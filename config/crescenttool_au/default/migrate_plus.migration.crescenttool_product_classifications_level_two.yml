@@ -1,0 +1,130 @@
+uuid: 3dfa221a-fd25-4f14-8fc6-dd1d03e4960d
+langcode: en
+status: true
+dependencies: {  }
+id: crescenttool_product_classifications_level_two
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: crescenttool
+label: 'Product Classifications - Level Two'
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: 'http://www.stibosystems.com/step'
+  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 2"]'
+  fields:
+    -
+      name: remote_term_id
+      label: ID
+      selector: '@ID'
+    -
+      name: remote_term_name
+      label: 'Term Name'
+      selector: Name
+    -
+      name: remote_parent_name
+      label: 'Parent Term Name'
+      selector: ../../Classification
+  ids:
+    remote_term_id:
+      type: string
+process:
+  name:
+    plugin: skip_on_empty
+    method: row
+    source: remote_term_name
+  field_classification_id:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_term_id
+    method: row
+    value:
+      - W2_803415
+      - W2_803417
+      - W2_803411
+      - W2_803416
+      - W2_803412
+      - W2_803413
+      - W2_803421
+      - W2_803422
+      - W2_803420
+      - W2_803418
+      - W2_803424
+      - W2_719546
+      - W2_806638
+      - W2_803429
+      - W2_803430
+      - W2_803435
+      - W2_719536
+      - W2_744962
+      - W2_719533
+      - W2_777129
+      - W2_803427
+      - W2_803436
+      - W2_710176
+      - W2_26512
+      - W2_26513
+      - W2_26514
+      - W2_26511
+      - W2_783453
+      - W2_28101
+      - W2_809734
+      - W2_809735
+      - W2_806583
+      - W2_806584
+      - W2_806585
+      - W2_806586
+      - W2_806587
+      - W2_796847
+      - W2_26521
+      - W2_728125
+      - W2_728127
+      - W2_728126
+      - W2_728130
+      - W2_806576
+      - W2_806577
+      - W2_806578
+      - W2_806579
+      - W2_806580
+      - W2_22492
+      - W2_792073
+      - W2_800174
+      - W2_803455
+      - W2_803456
+      - W2_803457
+      - W2_792079
+      - W2_803454
+      - W2_792547
+      - W2_792546
+      - W2_803458
+      - W2_26534
+      - W2_26532
+      - W2_26535
+      - W2_26533
+      - W2_26531
+      - W2_26530
+      - W2_802906
+      - W2_802907
+      - W2_802908
+      - W2_802909
+      - W2_803507
+      - W2_22489
+      - W2_22490
+      - W2_761733
+      - W2_22491
+  parent:
+    -
+      plugin: apex_get_classification_parent_term
+      source: remote_parent_name
+    -
+      plugin: default_value
+      default_value: 0
+destination:
+  plugin: 'entity:taxonomy_term'
+  default_bundle: product_classifications
+migration_dependencies: null

@@ -1,0 +1,26 @@
+uuid: bd65922e-4f1e-4f06-9072-eecf3df22b96
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.banner_cta_slider.field_components
+    - paragraphs.paragraphs_type.banner_cta_slider
+  module:
+    - entity_reference_revisions
+id: paragraph.banner_cta_slider.preview
+targetEntityType: paragraph
+bundle: banner_cta_slider
+mode: preview
+content:
+  field_components:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: preview
+      link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  search_api_excerpt: true
