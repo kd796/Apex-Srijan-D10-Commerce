@@ -32,7 +32,7 @@ class GetProductClassificationChildren extends ProcessPluginBase {
     $id_to_check = NULL;
     $properties = [];
 
-    if (!empty($value->attributes()->ID) && !empty($value->Name)) {
+    if (is_object($value) && !empty($value->attributes()->ID) && !empty($value->Name)) {
       $classification_id = (string) $value->attributes()->ID;
       $parent_name = (string) $value->Name;
     }
@@ -81,6 +81,10 @@ class GetProductClassificationChildren extends ProcessPluginBase {
       }
 
       $terms_array = json_encode($terms_array);
+    }
+
+    if (empty($terms_array)) {
+      return [];
     }
 
     return json_decode($terms_array, TRUE);
