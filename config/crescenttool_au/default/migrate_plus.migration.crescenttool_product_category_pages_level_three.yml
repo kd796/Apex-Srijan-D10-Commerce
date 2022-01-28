@@ -62,12 +62,16 @@ process:
     source: remote_name
     depth: 2
   field_product_classifications:
-    plugin: sub_process
-    source: '@product_classifications_array'
-    include_source: true
-    process:
-      vocabulary_id: vid
-      target_id: target_id
+    - plugin: skip_on_empty
+      method: process
+      source: '@product_classifications_array'
+    -
+      plugin: sub_process
+      source: '@product_classifications_array'
+      include_source: true
+      process:
+        vocabulary_id: vid
+        target_id: target_id
   category_facets_array:
     plugin: get_all_level_3_category_facets
     source: remote_id

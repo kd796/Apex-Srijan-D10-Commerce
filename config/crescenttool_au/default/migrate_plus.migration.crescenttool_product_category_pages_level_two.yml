@@ -132,12 +132,16 @@ process:
     plugin: apex_get_product_classification_children
     source: remote_classification
   field_product_classifications:
-    plugin: sub_process
-    source: '@product_classifications_array'
-    include_source: true
-    process:
-      vocabulary_id: vid
-      target_id: target_id
+    - plugin: skip_on_empty
+      method: process
+      source: '@product_classifications_array'
+    -
+      plugin: sub_process
+      source: '@product_classifications_array'
+      include_source: true
+      process:
+        vocabulary_id: vid
+        target_id: target_id
   category_facets_array:
     plugin: get_all_level_2_category_facets
     source: remote_id
