@@ -71,7 +71,8 @@ process:
     source: remote_name
     depth: 2
   field_product_classifications:
-    - plugin: skip_on_empty
+    -
+      plugin: skip_on_empty
       method: process
       source: '@product_classifications_array'
     -
