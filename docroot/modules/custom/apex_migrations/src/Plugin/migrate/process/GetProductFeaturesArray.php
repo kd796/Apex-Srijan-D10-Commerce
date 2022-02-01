@@ -54,9 +54,10 @@ class GetProductFeaturesArray extends ProcessPluginBase {
       }
 
       $copy_array = json_encode($copy_array);
+      return json_decode($copy_array, TRUE);
     }
 
-    return json_decode($copy_array, TRUE);
+    return $copy_array;
   }
 
 }
