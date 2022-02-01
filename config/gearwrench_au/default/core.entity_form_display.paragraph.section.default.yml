@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.section.field_background_color
     - field.field.paragraph.section.field_class_custom
     - field.field.paragraph.section.field_components
     - field.field.paragraph.section.field_html_anchor
@@ -11,6 +12,7 @@ dependencies:
     - image.style.thumbnail
     - paragraphs.paragraphs_type.section
   module:
+    - color_field
     - field_group
     - focal_point
     - paragraphs
@@ -22,6 +24,7 @@ third_party_settings:
         - field_style
         - field_class_custom
         - field_html_anchor
+        - field_background_color
         - field_image_background
       label: Settings
       region: content
@@ -38,6 +41,13 @@ targetEntityType: paragraph
 bundle: section
 mode: default
 content:
+  field_background_color:
+    type: color_field_widget_box
+    weight: 10
+    region: content
+    settings:
+      default_colors: '#ffffff,#f4f5f5,#e9eceb,#d4d8d7,#b4bbb9,#949e9b,#eb8900'
+    third_party_settings: {  }
   field_class_custom:
     type: string_textfield
     weight: 8
@@ -75,7 +85,7 @@ content:
     third_party_settings: {  }
   field_image_background:
     type: image_focal_point
-    weight: 10
+    weight: 11
     region: content
     settings:
       progress_indicator: throbber
@@ -98,5 +108,4 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
-  field_background_color: true
   uid: true
