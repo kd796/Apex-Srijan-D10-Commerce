@@ -12,6 +12,7 @@ dependencies:
     - paragraphs.paragraphs_type.hero_slide
   module:
     - field_group
+    - link
     - media_library
     - text
 third_party_settings:
@@ -51,9 +52,17 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+  field_link:
+    type: link_default
+    weight: 3
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
   field_media_background:
     type: media_library_widget
-    weight: 3
+    weight: 4
     region: content
     settings:
       media_types: {  }
@@ -74,6 +83,5 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
-  field_link: true
   status: true
   uid: true

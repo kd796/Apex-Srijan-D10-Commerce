@@ -11,6 +11,7 @@ dependencies:
     - paragraphs.paragraphs_type.featured_content
     - paragraphs.paragraphs_type.featured_links
     - paragraphs.paragraphs_type.featured_media
+    - paragraphs.paragraphs_type.product_slider
     - paragraphs.paragraphs_type.pullquote
     - paragraphs.paragraphs_type.section
     - paragraphs.paragraphs_type.tabs
@@ -32,7 +33,6 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       content: content
       embed_block: embed_block
@@ -44,6 +44,8 @@ settings:
       pullquote: pullquote
       section: section
       tabs: tabs
+      product_slider: product_slider
+    negate: 0
     target_bundles_drag_drop:
       accordion:
         weight: -31
@@ -52,42 +54,60 @@ settings:
         weight: -30
         enabled: false
       content:
-        enabled: true
         weight: -29
-      embed_block:
         enabled: true
-        weight: -28
-      embed_iframe:
-        enabled: true
-        weight: -27
-      embed_view:
-        enabled: true
-        weight: -26
-      featured_content:
-        enabled: true
-        weight: -25
-      featured_links:
-        enabled: true
-        weight: -24
-      featured_media:
-        enabled: true
-        weight: -23
-      pullquote:
-        enabled: true
-        weight: -22
-      section:
-        enabled: true
-        weight: -21
-      tabs:
-        enabled: true
-        weight: -20
-      tabs_tab:
-        weight: -19
+      content_2_column:
+        weight: 25
         enabled: false
+      content_callout:
+        weight: 26
+        enabled: false
+      content_callout_container:
+        weight: 27
+        enabled: false
+      embed_block:
+        weight: -28
+        enabled: true
+      embed_iframe:
+        weight: -27
+        enabled: true
+      embed_view:
+        weight: -26
+        enabled: true
+      featured_content:
+        weight: -25
+        enabled: true
+      featured_links:
+        weight: -24
+        enabled: true
+      featured_media:
+        weight: -23
+        enabled: true
       hero:
         weight: -18
         enabled: false
       hero_slide:
         weight: -17
+        enabled: false
+      product_slider:
+        weight: 36
+        enabled: true
+      pullquote:
+        weight: -22
+        enabled: true
+      section:
+        weight: -21
+        enabled: true
+      step:
+        weight: 39
+        enabled: false
+      steps:
+        weight: 40
+        enabled: false
+      tabs:
+        weight: -20
+        enabled: true
+      tabs_tab:
+        weight: -19
         enabled: false
 field_type: entity_reference_revisions
