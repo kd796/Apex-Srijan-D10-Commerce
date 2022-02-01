@@ -10,11 +10,13 @@ description: ''
 weight: 0
 folder: ../config/gearwrench_au/remote_dev
 module:
+  acquia_connector: 0
   dblog: 0
-  shield: 0
   stage_file_proxy: 0
+  shield: 0
 theme: {  }
-blacklist: {  }
+blacklist:
+  - purge.logger_channels
 graylist: {  }
 graylist_dependents: true
 graylist_skip_equal: true
