@@ -18,3 +18,29 @@
   @include container();
   @include gap-horizontal();
 }
+
+#node-page-form,
+#node-page-edit-form {
+  #edit-field-meta-tags-0 {
+    #edit-field-meta-tags-0- {
+      &favicons,
+      &facebook,
+      &twitter-cards,
+      &site-verification,
+      &mobile,
+      &apple-mobile,
+      &android-mobile,
+      &windows-mobile {
+        display: none;
+      }
+    }
+
+    .form-item:not(.form-item-field-meta-tags-0-basic-title):not(.form-item-field-meta-tags-0-basic-description):not(.form-item-field-meta-tags-0-advanced-canonical-url):not(#edit-field-meta-tags-0-advanced-robots--wrapper):not(.form-item-field-meta-tags-0-advanced-shortlink):not(.form-item-field-meta-tags-0-advanced-image-src):not(.form-item-field-meta-tags-0-open-graph-og-title):not(.form-item-field-meta-tags-0-open-graph-og-description):not(.form-item-field-meta-tags-0-open-graph-og-image):not(.form-item-field-meta-tags-0-open-graph-og-video):not(.form-item-field-meta-tags-0-hreflang-hreflang-xdefault):not(.form-item-field-meta-tags-0-hreflang-hreflang-per-languagehreflang-en) {
+      display: none;
+    }
+  }
+
+  #edit-simple-sitemap {
+    display: none;
+  }
+}
