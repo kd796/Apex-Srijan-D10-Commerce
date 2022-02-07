@@ -9,6 +9,7 @@ dependencies:
     - paragraphs.paragraphs_type.content
     - paragraphs.paragraphs_type.content_2_column
     - paragraphs.paragraphs_type.content_callout_container
+    - paragraphs.paragraphs_type.digital_resources
     - paragraphs.paragraphs_type.embed_block
     - paragraphs.paragraphs_type.embed_iframe
     - paragraphs.paragraphs_type.embed_view
@@ -43,6 +44,7 @@ settings:
       content: content
       content_2_column: content_2_column
       content_callout_container: content_callout_container
+      digital_resources: digital_resources
       embed_block: embed_block
       embed_iframe: embed_iframe
       embed_view: embed_view
@@ -58,66 +60,69 @@ settings:
     negate: 0
     target_bundles_drag_drop:
       accordion:
-        weight: -43
+        weight: -45
         enabled: true
       accordion_item:
-        weight: -39
+        weight: -40
         enabled: false
       content:
-        weight: -42
+        weight: -44
         enabled: true
       content_2_column:
-        weight: -41
+        weight: -43
         enabled: true
       content_callout:
-        weight: -24
+        weight: -25
         enabled: false
       content_callout_container:
-        weight: -40
+        weight: -42
+        enabled: true
+      digital_resources:
+        weight: -41
         enabled: true
       embed_block:
-        weight: -38
+        weight: -39
         enabled: true
       embed_iframe:
-        weight: -37
+        weight: -38
         enabled: true
       embed_view:
-        weight: -36
+        weight: -37
         enabled: true
       featured_content:
-        weight: -35
+        weight: -36
         enabled: true
       featured_links:
-        weight: -34
+        weight: -35
         enabled: true
       featured_media:
-        weight: -33
+        weight: -34
         enabled: true
       hero:
-        weight: -32
+        weight: -33
         enabled: true
       hero_slide:
-        weight: -31
+        weight: -32
         enabled: false
       product_slider:
-        weight: -30
+        weight: -31
         enabled: true
       pullquote:
-        weight: -29
+        weight: -30
         enabled: true
       section:
-        weight: -28
+        weight: -29
         enabled: true
       step:
-        weight: -23
+        weight: -24
         enabled: false
       steps:
-        weight: -27
+        weight: -28
         enabled: true
       tabs:
-        weight: -26
+        weight: -27
         enabled: true
       tabs_tab:
-        weight: -25
+        weight: -26
         enabled: false
 field_type: entity_reference_revisions
