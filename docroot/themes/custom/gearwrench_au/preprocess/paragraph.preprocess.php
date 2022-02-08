@@ -223,6 +223,18 @@ function gearwrench_au_preprocess_paragraph__content_callout__full(array &$varia
 }
 
 /**
+ * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for content_callout, full.
+ */
+function gearwrench_au_preprocess_paragraph__digital_resources__full(array &$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  if (!empty($variables['content']['field_media_item'])) {
+    $variables['content']['field_media_item']['attributes']['class'][] = "media-pages__list";
+  }
+}
+
+/**
  * Implements hook_preprocess_paragraph__VIEW_MODE() for steps, full.
  */
 function gearwrench_au_preprocess_paragraph__steps__full(array &$variables) {
