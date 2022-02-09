@@ -1,0 +1,29 @@
+uuid: 78e4b8a7-b0c6-4f14-b64f-cd9c682fe58b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_media_pages
+    - node.type.media_page
+    - paragraphs.paragraphs_type.digital_resources
+id: paragraph.digital_resources.field_media_pages
+field_name: field_media_pages
+entity_type: paragraph
+bundle: digital_resources
+label: 'Media Page(s)'
+description: 'Select the media pages to load the resources you want to display.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      media_page: media_page
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
