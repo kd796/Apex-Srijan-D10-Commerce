@@ -11,6 +11,7 @@
  * @see gearwrench_preprocess_node__tile()
  * @see gearwrench_preprocess_node__page__full()
  * @see gearwrench_preprocess_node__media_page__full()
+ * @see gearwrench_preprocess_node__media_page__resource()
  * @see gearwrench_preprocess_node__media_page__teaser()
  * @see gearwrench_preprocess_node__product__full()
  * @see gearwrench_preprocess_node__search_result()
@@ -163,6 +164,63 @@ function gearwrench_au_preprocess_node__media_page__full(&$variables) {
   if (!empty($variables['content']['field_preferred_listing_image'][0])) {
     $variables['media'] = $variables['content']['field_preferred_listing_image'];
     unset($variables['content']['field_preferred_listing_image']);
+  }
+}
+
+/**
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for media page full.
+ */
+function gearwrench_au_preprocess_node__media_page__resource(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $bundle = $node->bundle();
+  $view_mode = $variables['view_mode'];
+
+  $variables['title'] = $node->title->value;
+  $variables['mediaType'] = $node->get('field_media_type')->getValue()[0]['value'];
+
+  unset($variables['content']['field_category']);
+  unset($variables['content']['field_link']);
+  unset($variables['content']['field_tags']);
+  unset($variables['content']['body']);
+
+  // Track variables that should be converted to attribute objects.
+  $variables['#attribute_variables'][] = 'media_attributes';
+
+  // Move media to media variable.
+  $variables['file'] = NULL;
+
+  if (isset($variables['content']['field_preferred_listing_image'][0])) {
+    unset($variables['media']['#theme']);
+
+    if (isset($variables['content']['field_media'][0])) {
+      $mediaItem = Media::load($node->get('field_media')->getValue()[0]['target_id']);
+
+      if ($mediaItem->bundle() == 'remote_video') {
+        $url = $mediaItem->get('field_media_video_embed_field')->getValue()[0]['value'];
+      }
+      elseif ($mediaItem->bundle() == 'file' || $mediaItem->bundle() == 'image') {
+        switch ($mediaItem->bundle()) {
+          case 'file':
+            $fid = $mediaItem->get('field_media_file')->getValue()[0]['target_id'];
+            break;
+
+          case 'image':
+            $fid = $mediaItem->get('field_media_image')->getValue()[0]['target_id'];
+            break;
+        }
+
+        $file = File::load($fid);
+        $url = $file->createFileUrl();
+      }
+
+      $variables['file'] = $url;
+    }
+
+    unset($variables['content']['field_media'][0]);
+  }
+  else {
+    $variables['media_attributes']['class'][] = 'node__media--no-media';
   }
 }
 
