@@ -17,7 +17,7 @@ use Drupal\migrate\Row;
 /**
  * Implements hook_migrate_prepare_row().
  */
-function gearwrench_migrations_migrate_prepare_row(Row $row, MigrateSourceInterface $source, MigrationInterface $migration) {
+function gearwrench_au_migrations_migrate_prepare_row(Row $row, MigrateSourceInterface $source, MigrationInterface $migration) {
   // Skip rows that have a 'migration_error' value.
   if ($row->getSourceProperty('migration_error')) {
     throw new MigrateSkipRowException();
