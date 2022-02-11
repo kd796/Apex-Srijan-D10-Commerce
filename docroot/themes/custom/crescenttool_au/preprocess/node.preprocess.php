@@ -12,6 +12,7 @@
  * @see crescenttool_au_preprocess_node__landing_page__full()
  * @see crescenttool_au_preprocess_node__page__full()
  * @see crescenttool_au_preprocess_node__media_page__full()
+ * @see crescenttool_au_preprocess_node__media_page__resource()
  * @see crescenttool_au_preprocess_node__media_page__teaser()
  * @see crescenttool_au_preprocess_node__search_result()
  * @see crescenttool_au_preprocess_node__product__teaser()
@@ -297,6 +298,63 @@ function crescenttool_au_preprocess_node__product__full(array &$variables) {
   $variables['#cache']['max-age'] = Cache::mergeMaxAges($variables['#cache']['max-age'], $main_view->storage->getCacheMaxAge());
 
   $variables['related_items'] = $main_view->buildRenderable($view_display, $main_view->args);
+}
+
+/**
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for media page full.
+ */
+function crescenttool_au_preprocess_node__media_page__resource(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $bundle = $node->bundle();
+  $view_mode = $variables['view_mode'];
+
+  $variables['title'] = $node->title->value;
+  $variables['mediaType'] = $node->get('field_media_type')->getValue()[0]['value'];
+
+  unset($variables['content']['field_category']);
+  unset($variables['content']['field_link']);
+  unset($variables['content']['field_tags']);
+  unset($variables['content']['body']);
+
+  // Track variables that should be converted to attribute objects.
+  $variables['#attribute_variables'][] = 'media_attributes';
+
+  // Move media to media variable.
+  $variables['file'] = NULL;
+
+  if (isset($variables['content']['field_preferred_listing_image'][0])) {
+    unset($variables['media']['#theme']);
+
+    if (isset($variables['content']['field_media'][0])) {
+      $mediaItem = Media::load($node->get('field_media')->getValue()[0]['target_id']);
+
+      if ($mediaItem->bundle() == 'remote_video') {
+        $url = $mediaItem->get('field_media_video_embed_field')->getValue()[0]['value'];
+      }
+      elseif ($mediaItem->bundle() == 'file' || $mediaItem->bundle() == 'image') {
+        switch ($mediaItem->bundle()) {
+          case 'file':
+            $fid = $mediaItem->get('field_media_file')->getValue()[0]['target_id'];
+            break;
+
+          case 'image':
+            $fid = $mediaItem->get('field_media_image')->getValue()[0]['target_id'];
+            break;
+        }
+
+        $file = File::load($fid);
+        $url = $file->createFileUrl();
+      }
+
+      $variables['file'] = $url;
+    }
+
+    unset($variables['content']['field_media'][0]);
+  }
+  else {
+    $variables['media_attributes']['class'][] = 'node__media--no-media';
+  }
 }
 
 /**
