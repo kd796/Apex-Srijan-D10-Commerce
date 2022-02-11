@@ -163,7 +163,7 @@ class CtCliService extends DrushCommands {
     ];
     $address_fields = ['city', 'state_province', 'country', 'zip_code'];
     $new_data = [
-      'wrf_vendor_code' => 'APEX-GWW-POR',
+      'wrf_vendor_code' => 'APEX-CRS-POR',
       'wrf_item_number' => '',
     ];
 
