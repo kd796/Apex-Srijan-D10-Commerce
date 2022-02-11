@@ -6,22 +6,22 @@
  *
  * Index:
  *
- * @see gearwrench_preprocess_node()
- * @see gearwrench_preprocess_node__full()
- * @see gearwrench_preprocess_node__tile()
- * @see gearwrench_preprocess_node__page__full()
- * @see gearwrench_preprocess_node__media_page__full()
- * @see gearwrench_preprocess_node__media_page__resource()
- * @see gearwrench_preprocess_node__media_page__teaser()
- * @see gearwrench_preprocess_node__product__full()
- * @see gearwrench_preprocess_node__search_result()
- * @see gearwrench_preprocess_node__product__teaser()
- * @see gearwrench_preprocess_node__search_index()
- * @see gearwrench_preprocess_node__product__search_index()
- * @see gearwrench_preprocess_node__product_category__full()
- * @see gearwrench_preprocess_node__product_category__tile()
- * @see gearwrench_preprocess_node__social_post__teaser()
- * @see gearwrench_preprocess_node__product_industry__full()
+ * @see gearwrench_au_preprocess_node()
+ * @see gearwrench_au_preprocess_node__full()
+ * @see gearwrench_au_preprocess_node__tile()
+ * @see gearwrench_au_preprocess_node__page__full()
+ * @see gearwrench_au_preprocess_node__media_page__full()
+ * @see gearwrench_au_preprocess_node__media_page__resource()
+ * @see gearwrench_au_preprocess_node__media_page__teaser()
+ * @see gearwrench_au_preprocess_node__product__full()
+ * @see gearwrench_au_preprocess_node__search_result()
+ * @see gearwrench_au_preprocess_node__product__teaser()
+ * @see gearwrench_au_preprocess_node__search_index()
+ * @see gearwrench_au_preprocess_node__product__search_index()
+ * @see gearwrench_au_preprocess_node__product_category__full()
+ * @see gearwrench_au_preprocess_node__product_category__tile()
+ * @see gearwrench_au_preprocess_node__social_post__teaser()
+ * @see gearwrench_au_preprocess_node__product_industry__full()
  */
 
 use Drupal\Core\Cache\Cache;
