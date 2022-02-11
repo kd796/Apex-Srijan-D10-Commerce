@@ -1,0 +1,93 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: content
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+
+.component-digital-resources {
+  @include container-full-width();
+  background-color: $gray-10;
+  padding: 6rem 8rem;
+
+  .component-digital-resources__title {
+    @include type-header(
+      $version: h3,
+      $color: $black,
+      $globals: included
+    );
+
+    margin-bottom: 2.5rem;
+    text-align: center;
+    text-transform: uppercase;
+
+    @include media('<sm') {
+      @include type-header(
+        $version: h4,
+        $color: $black,
+        $globals: included
+      );
+
+      margin-bottom: 2rem;
+      padding: 0;
+    }
+  }
+
+  .component-digital-resources__content {
+    .media-pages__list {
+      @include grid-row();
+      @include grid-row-gutters(
+        $gutter-horizontal: false,
+        $gutter-vertical: true,
+        $gutter-vertical-size: wide
+      );
+
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      @include media('>sm', '<=xl') {
+        @include grid-row-gutters(
+          $gutter-horizontal-size: narrow,
+          $gutter-vertical: true,
+          $gutter-vertical-size: wide
+        );
+      }
+
+      @include media('>xl') {
+        @include grid-row-gutters(
+          $gutter-horizontal-size: wide,
+          $gutter-vertical: true,
+          $gutter-vertical-size: wide
+        );
+      }
+
+      > .field__item {
+        @include grid-col(12);
+        @include grid-clear-vertical-spacing();
+
+        margin-bottom: 0 !important;
+
+        @include media('>=sm', '<lg') {
+          @include grid-col(6);
+          @include grid-clear-vertical-spacing(2);
+        }
+
+        @include media('>=lg') {
+          @include grid-col(4);
+          @include grid-clear-vertical-spacing(3);
+        }
+      }
+    }
+  }
+}
+

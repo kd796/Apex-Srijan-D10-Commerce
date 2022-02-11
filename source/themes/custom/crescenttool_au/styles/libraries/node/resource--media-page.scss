@@ -1,0 +1,41 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Node: Full Default
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.node--view-mode-resource .node__content {
+  display: flex;
+
+  .icon-image {
+    flex: 50%;
+    margin-right: 20px;
+    max-width: 57px;
+  }
+
+  .details {
+    flex: 50%;
+    margin-top: 0.25rem;
+
+    .download-link {
+      font-weight: 600;
+      text-transform: uppercase;
+
+      .node__cta {
+        @include icon('download', after);
+      }
+    }
+  }
+
+  @include media('>=md') {
+  }
+}

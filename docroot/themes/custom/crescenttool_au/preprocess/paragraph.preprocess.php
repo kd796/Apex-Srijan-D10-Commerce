@@ -12,6 +12,7 @@
  * @see crescenttool_au_preprocess_paragraph__content__full()
  * @see crescenttool_au_preprocess_paragraph__hero__full()
  * @see crescenttool_au_preprocess_paragraph__hero_slide__full()
+ * @see crescenttool_au_preprocess_paragraph__digital_resources__full()
  * @see crescenttool_au_preprocess_paragraph__steps__full()
  * @see crescenttool_au_preprocess_paragraph__step__full()
  * @see crescenttool_au_preprocess_paragraph__embed_iframe__full()
@@ -199,6 +200,18 @@ function crescenttool_au_preprocess_paragraph__content__full(array &$variables) 
  */
 function crescenttool_au_preprocess_paragraph__content_callout__full(array &$variables) {
   // Nothing to see here.
+}
+
+/**
+ * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for content_callout, full.
+ */
+function crescenttool_au_preprocess_paragraph__digital_resources__full(array &$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  if (!empty($variables['content']['field_media_item'])) {
+    $variables['content']['field_media_item']['attributes']['class'][] = "media-pages__list";
+  }
 }
 
 /**
