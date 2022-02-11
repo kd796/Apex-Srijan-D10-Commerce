@@ -337,7 +337,9 @@ function gearwrench_au_preprocess_node__product__full(array &$variables) {
         $message = 'No target ID';
       }
     }
-    elseif (!empty($media->field_media_video_embed_field) || $media->bundle() == 'remote_video') {
+    elseif (is_object($media)
+        && (!empty($media->field_media_video_embed_field)
+          || $media->bundle() == 'remote_video')) {
       $video_thumbnail_fid = $media->get('thumbnail')->target_id;
 
       /** @var \Drupal\file\Entity\File $file */
