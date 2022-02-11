@@ -124,12 +124,7 @@ class GetAllLevel3CategoryFacets extends ProcessPluginBase {
    */
   protected function mapCategoryToCustomFacets($category_remote_id) {
     $mapping = [
-      'W3_792548' => ['ATT802893', 'ATT345', 'ATT205', 'ATT159'],
-      'W3_792549' => ['ATT802893', 'ATT345', 'ATT205', 'ATT159'],
-      'W3_792550' => ['ATT802893', 'ATT345', 'ATT205', 'ATT159'],
-      'W3_792551' => ['ATT802893', 'ATT345', 'ATT205', 'ATT159'],
-      'W3_792552' => ['ATT802893', 'ATT345', 'ATT205', 'ATT159'],
-      'W3_803453' => ['ATT802893', 'ATT345', 'ATT205', 'ATT159'],
+      'W3_743707' => ['ATT802893', 'ATT778642', 'ATT763883'],
     ];
 
     if (!empty($mapping[$category_remote_id])) {
