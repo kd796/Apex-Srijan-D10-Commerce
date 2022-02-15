@@ -1,14 +1,13 @@
-uuid: 0b40ee54-13a9-4b50-b3a5-22a25e4e9817
 langcode: en
 status: true
 dependencies: {  }
-id: crescenttool_product_category_pages_level_three
+id: gearwrench_au_product_category_pages_level_one
 class: null
 field_plugin_method: null
 cck_plugin_method: null
 migration_tags: null
-migration_group: crescenttool
-label: 'Crescenttool Product Listing Pages - Level Three'
+migration_group: gearwrench_au
+label: 'Gearwrench AU Product Listing Pages - Level One'
 source:
   constants:
     bool_0: 0
@@ -20,7 +19,7 @@ source:
   urls: 'public://import/pim_data/pim_export_with_schema.xml'
   namespaces:
     stibo: 'http://www.stibosystems.com/step'
-  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 3"]'
+  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 1"]'
   fields:
     -
       name: remote_id
@@ -40,26 +39,25 @@ process:
     source: remote_id
     method: row
     value:
-      - W3_729189
-      - W3_729190
-      - W3_729191
-      - W3_729192
-      - W3_729193
-      - W3_729194
-      - W3_729195
-      - W3_729196
-      - W3_729197
-      - W3_729892
-      - W3_729199
-      - W3_729201
-      - W3_729202
-      - W3_729203
-      - W3_729204
-      - W3_729205
-      - W3_729208
-      - W3_729209
-      - W3_729211
-      - W3_743707
+      - W1_743930
+      - W1_743899
+      - W1_743831
+      - W1_743769
+      - W1_743784
+      - W1_743905
+      - W1_743878
+      - W1_743917
+      - W1_743927
+      - W1_743953
+      - W1_743803
+      - W1_743867
+      - W1_743771
+      - W1_743819
+      - W1_743911
+      - W1_743772
+      - W1_743786
+      - W1_743860
+      - W1_743846
   type:
     plugin: default_value
     default_value: product_category
@@ -83,7 +81,7 @@ process:
       vocabulary_id: vid
       target_id: target_id
   category_facets_array:
-    plugin: get_all_level_3_category_facets
+    plugin: get_all_category_facets
     source: remote_id
   field_category_facets:
     plugin: sub_process
@@ -96,12 +94,20 @@ process:
     plugin: apex_determine_set_filter_show
     source: remote_id
     allowed_categories:
-      - W3_792548
-      - W3_792549
-      - W3_792550
-      - W3_792551
-      - W3_792552
-      - W3_803453
+      - W1_743930
+      - W1_743899
+      - W1_743831
+      - W1_743905
+      - W1_743878
+      - W1_743917
+      - W1_743927
+      - W1_743953
+      - W1_743803
+      - W1_743867
+      - W1_743819
+      - W1_743911
+      - W1_743860
+      - W1_743846
 destination:
   plugin: 'entity:node'
 migration_dependencies: {  }
