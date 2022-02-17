@@ -66,11 +66,10 @@ class ApexProduct extends EntityContentBase {
 
         if (!empty($entity->get('field_product_images'))) {
           foreach ($entity->get('field_product_images') as $image) {
-            $mid = $image->target_id;
-            $media = Media::load($mid);
-            $fid = $media->field_media_image->target_id;
+            if (isset($image->target_id)) {
+              $mid = $image->target_id;
+              $media = Media::load($mid);
 
-            if ($mid) {
               $media_storage_handler = \Drupal::entityTypeManager()->getStorage('media');
               $media_item = $media_storage_handler->load($mid);
 
@@ -79,7 +78,8 @@ class ApexProduct extends EntityContentBase {
               }
             }
 
-            if ($fid) {
+            if (isset($media->field_media_image->target_id)) {
+              $fid = $media->field_media_image->target_id;
               $file_storage_handler = \Drupal::entityTypeManager()->getStorage('file');
               $file = $file_storage_handler->load($fid);
 
