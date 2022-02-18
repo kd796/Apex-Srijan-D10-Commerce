@@ -1,132 +1,181 @@
-// -----------------------------------------------------------------------------
-// Block: Torque Conversion Calculator
-// -----------------------------------------------------------------------------
+.block-torque-conversion-calculator .block-torque-conversion-calculator__form-wrapper,
+.block-torque-conversion-calculator .block-torque-conversion-calculator__results-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  -webkit-column-gap: 1.5rem;
+  -moz-column-gap: 1.5rem;
+  column-gap: 1.5rem;
+  row-gap: 1.5rem;
+}
 
-@import '../../globals';
-
-.block-torque-conversion-calculator {
-  .block-torque-conversion-calculator__form-wrapper,
-  .block-torque-conversion-calculator__results-wrapper {
-    display: grid;
-    grid-template-columns: 1fr;
-    column-gap: rem(24px);
-    row-gap: rem(24px); // sass-lint:disable-line no-misspelled-properties
-
-    @include media('>=md') {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  .block-torque-conversion-calculator__form-wrapper {
-    @include media('>=lg') {
-      max-width: 50%;
-    }
-  }
-
-  .block-torque-conversion-calculator__form-input-heading {
-    order: 1;
-
-    p {
-      margin: 0;
-    }
-  }
-
-  .block-torque-conversion-calculator__form-input {
-    order: 2;
-
-    @include media('>=md') {
-      order: 3;
-    }
-  }
-
-  .block-torque-conversion-calculator__form-measure-heading {
-    order: 3;
-
-    p {
-      margin: 0;
-    }
-
-    @include media('>=md') {
-      order: 2;
-    }
-  }
-
-  .block-torque-conversion-calculator__form-measure {
-    order: 4;
-  }
-
-  .block-torque-conversion-calculator__form-buttons {
-    order: 5;
-    margin-bottom: rem(48px);
-    display: grid;
+@media (min-width: 48em) {
+  .block-torque-conversion-calculator .block-torque-conversion-calculator__form-wrapper,
+  .block-torque-conversion-calculator .block-torque-conversion-calculator__results-wrapper {
     grid-template-columns: repeat(2, 1fr);
-    column-gap: rem(24px);
-
-    @include media('>=md') {
-      max-width: 100%;
-      grid-column: 1/3;
-    }
-
-    .block-torque-conversion-calculator__button-reset {
-      @include btn(secondary);
-      padding: 0;
-    }
   }
+}
 
-  .block-torque-conversion-calculator__results {
-    table {
-      border: 1px solid $secondary-black;
-
-      p {
-        margin: 0;
-        padding: rem(20px 0);
-      }
-
-      tbody {
-        tr td {
-          border: 1px solid $color-black;
-
-          &:last-of-type {
-            padding: rem(0 25px);
-          }
-        }
-
-        tr td input[type='text'] {
-          color: $color-black;
-          border: 0;
-        }
-
-        tr:nth-of-type(odd) {
-          background-color: $secondary-light;
-          color: $color-black;
-        }
-
-        tr:nth-of-type(even) {
-          background-color: $gray-20;
-          color: $color-black;
-        }
-
-        th:nth-of-type(odd) {
-          border-right: 1px solid;
-        }
-
-        tr:first-of-type {
-          background-color: $secondary-black;
-          color: $color-white;
-        }
-      }
-    }
+@media (min-width: 61.25em) {
+  .block-torque-conversion-calculator .block-torque-conversion-calculator__form-wrapper {
+    max-width: 50%;
   }
+}
 
-  .block-torque-conversion-calculator__results-copy {
-    h3 {
-      margin-top: 0;
-    }
+.block-torque-conversion-calculator .block-torque-conversion-calculator__form-input-heading {
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+  order: 1;
+}
 
-    p {
-      &:last-of-type {
-        margin-bottom: 0;
-      }
-    }
+.block-torque-conversion-calculator .block-torque-conversion-calculator__form-input-heading p {
+  margin: 0;
+}
+
+.block-torque-conversion-calculator .block-torque-conversion-calculator__form-input {
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
+  order: 2;
+}
+
+@media (min-width: 48em) {
+  .block-torque-conversion-calculator .block-torque-conversion-calculator__form-input {
+    -webkit-box-ordinal-group: 4;
+    -ms-flex-order: 3;
+    order: 3;
   }
+}
+
+.block-torque-conversion-calculator .block-torque-conversion-calculator__form-measure-heading {
+  -webkit-box-ordinal-group: 4;
+  -ms-flex-order: 3;
+  order: 3;
+}
+
+.block-torque-conversion-calculator .block-torque-conversion-calculator__form-measure-heading p {
+  margin: 0;
+}
+
+@media (min-width: 48em) {
+  .block-torque-conversion-calculator .block-torque-conversion-calculator__form-measure-heading {
+    -webkit-box-ordinal-group: 3;
+    -ms-flex-order: 2;
+    order: 2;
+  }
+}
+
+.block-torque-conversion-calculator .block-torque-conversion-calculator__form-measure {
+  -webkit-box-ordinal-group: 5;
+  -ms-flex-order: 4;
+  order: 4;
+}
+
+.block-torque-conversion-calculator .block-torque-conversion-calculator__form-buttons {
+  -webkit-box-ordinal-group: 6;
+  -ms-flex-order: 5;
+  order: 5;
+  margin-bottom: 3rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  -webkit-column-gap: 1.5rem;
+  -moz-column-gap: 1.5rem;
+  column-gap: 1.5rem;
+}
+
+@media (min-width: 48em) {
+  .block-torque-conversion-calculator .block-torque-conversion-calculator__form-buttons {
+    max-width: 100%;
+    grid-column: 1/3;
+  }
+}
+
+.block-torque-conversion-calculator .block-torque-conversion-calculator__form-buttons .block-torque-conversion-calculator__button-reset {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  color: #000000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: 400;
+  padding: 3.75rem 0 2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+  white-space: nowrap;
+  padding: 0;
+}
+
+.block-torque-conversion-calculator .block-torque-conversion-calculator__form-buttons .block-torque-conversion-calculator__button-reset:after {
+  content: "";
+}
+
+.block-torque-conversion-calculator .block-torque-conversion-calculator__form-buttons .block-torque-conversion-calculator__button-reset:after {
+  font-size: 1.25rem;
+  margin-left: 1rem;
+}
+
+.block-torque-conversion-calculator .block-torque-conversion-calculator__form-buttons .block-torque-conversion-calculator__button-reset:hover,
+.block-torque-conversion-calculator .block-torque-conversion-calculator__form-buttons .block-torque-conversion-calculator__button-reset:active {
+  color: #616B68;
+}
+
+@media (max-width: 35.49em) {
+  .block-torque-conversion-calculator .block-torque-conversion-calculator__form-buttons .block-torque-conversion-calculator__button-reset {
+    padding: 1rem 0;
+  }
+  .block-torque-conversion-calculator .block-torque-conversion-calculator__form-buttons .block-torque-conversion-calculator__button-reset:after {
+    margin-left: .5rem;
+  }
+}
+
+.block-torque-conversion-calculator .block-torque-conversion-calculator__results table {
+  border: 1px solid #1D201F;
+}
+
+.block-torque-conversion-calculator .block-torque-conversion-calculator__results table p {
+  margin: 0;
+  padding: 1.25rem 0;
+}
+
+.block-torque-conversion-calculator .block-torque-conversion-calculator__results table tbody tr td {
+  border: 1px solid #000000;
+}
+
+.block-torque-conversion-calculator .block-torque-conversion-calculator__results table tbody tr td:last-of-type {
+  padding: 0 1.5625rem;
+}
+
+.block-torque-conversion-calculator .block-torque-conversion-calculator__results table tbody tr td input[type='text'] {
+  color: #000000;
+  border: 0;
+}
+
+.block-torque-conversion-calculator .block-torque-conversion-calculator__results table tbody tr:nth-of-type(odd) {
+  background-color: #BCBCBE;
+  color: #000000;
+}
+
+.block-torque-conversion-calculator .block-torque-conversion-calculator__results table tbody tr:nth-of-type(even) {
+  background-color: #E9ECEB;
+  color: #000000;
+}
+
+.block-torque-conversion-calculator .block-torque-conversion-calculator__results table tbody th:nth-of-type(odd) {
+  border-right: 1px solid;
+}
+
+.block-torque-conversion-calculator .block-torque-conversion-calculator__results table tbody tr:first-of-type {
+  background-color: #1D201F;
+  color: #FFFFFF;
+}
+
+.block-torque-conversion-calculator .block-torque-conversion-calculator__results-copy h3 {
+  margin-top: 0;
+}
+
+.block-torque-conversion-calculator .block-torque-conversion-calculator__results-copy p:last-of-type {
+  margin-bottom: 0;
 }

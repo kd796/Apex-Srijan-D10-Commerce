@@ -19,9 +19,12 @@ class TorqueConversionCalculator extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-    return [
+    $build = [];
+    $build['#attached']['library'][] = 'torque_conversion_calculator/torque_conversion_calculator';
+    $build['output'] = [
       '#theme' => 'torque_conversion_calculator',
     ];
+    return $build;
   }
 
 }

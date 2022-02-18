@@ -1,12 +1,13 @@
-# Custom module library for general purposes.
-apex_tools_instagram_feed:
+# Torque conversion calculator custom module library.
+torque_conversion_calculator:
+  version: VERSION
   js:
-    js/apex-tools-instagram-feed.js: {}
+    js/torque-conversion-calculator.js: {}
   css:
     component:
-      css/apex-tools-instagram-feed.css: {}
+      css/torque-conversion-calculator.css: {}
   dependencies:
     - core/drupalSettings
-    - apex_tools_instagram_feed/jquery-labelauty
-
-
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
