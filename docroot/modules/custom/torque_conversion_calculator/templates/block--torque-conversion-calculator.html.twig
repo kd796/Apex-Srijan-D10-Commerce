@@ -25,118 +25,116 @@
  * @see template_preprocess_block()
  */
 #}
-
-<section{{ attributes.addClass(classes) }}>
-  <div id="torque_conversion_calculator">
+{{ attach_library('gearwrench_au/block--custom-torque-conversion-calculator') }}
+<div id="torque_conversion_calculator">
+  <div>
     <div>
-      <div>
-        <div class="torque-top-right">
-          <p>** SiteName ** provides the calculator below to convert units of measure common in torque applications.  Enter the number you know then select the current unit of measure from the drop down options.  Press convert and the calculator will convert to all units of measure.</p>
-        </div>
-
-        <div class="torque-top-left">
-          <p><b>Enter the number you want to convert</b></p>
-          <input type="text" id="conversionInput" name="selectedUnit" size="10">
-        </div>
+      <div class="torque-top-right">
+        <p>** SiteName ** provides the calculator below to convert units of measure common in torque applications.  Enter the number you know then select the current unit of measure from the drop down options.  Press convert and the calculator will convert to all units of measure.</p>
       </div>
 
-      <div class="torque-top-bottom">
-        <div class="torque-top-bottom-left">
-          <p><b>Current Unit of measure</b></p>
-
-          <select name="units" id="conversipnType">
-            <option value="ozf_in" selected="selected">ozf.in</option>
-            <option value="lbf_in">lbf.in</option>
-            <option value="lbf_ft">lbf.ft</option>
-            <option value="mN_m">mN.m</option>
-            <option value="cN_m">cN.m</option>
-            <option value="N_m">N.m</option>
-            <option value="gf_cm">gf.cm</option>
-            <option value="kgf_cm">kgf.cm</option>
-            <option value="kgf_m">kgf.m</option>
-          </select>
-        </div>
-
-        <div class="torque-top-bottom-right">
-          <input class="torque-btn" onclick="torqueConversion();" type="submit" name="button" value="Convert">
-          <input class="torque-btn" type="reset" name="Reset" onclick="clearFields();" value="Clear">
-        </div>
+      <div class="torque-top-left">
+        <p><b>Enter the number you want to convert</b></p>
+        <input type="text" id="conversionInput" name="selectedUnit" size="10">
       </div>
     </div>
 
-    <div class="">
-      <div class="torque-result">
-        <table>
-          <tbody>
-            <tr>
-              <th>
-                <p>Results</p>
-              </th>
-              <th>
-                <p>Units</p>
-              </th>
-            </tr>
-            <tr>
-              <td><input id="gf_cm_input" type="text" name="result01"></td>
-              <td>gf·cm</td>
-            </tr>
-            <tr class="even">
-              <td><input id="kgf_cm_input" type="text" name="result02"></td>
-              <td>kgf·cm</td>
-            </tr>
-            <tr>
-              <td><input id="kgf_m_input" type="text" name="result03"></td>
-              <td>kgf·m</td>
-            </tr>
-            <tr>
-              <td><input id="mN_m_input" type="text" name="result04"></td>
-              <td>mN·m</td>
-            </tr>
-            <tr>
-              <td><input id="cN_m_input" type="text" name="result05"></td>
-              <td>cN·m(N·cm)</td>
-            </tr>
-            <tr>
-              <td><input id="N_m_input" type="text" name="result06"></td>
-              <td>N·m</td>
-            </tr>
-            <tr>
-              <td><input id="ozf_in_input" type="text" name="result07"></td>
-              <td>ozf·in</td>
-            </tr>
-            <tr>
-              <td><input id="lbf_in_input" type="text" name="result08"></td>
-              <td>lbf·in</td>
-            </tr>
-            <tr>
-              <td><input id="lbf_ft_input" type="text" name="result09"></td>
-              <td>lbf·ft</td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="torque-top-bottom">
+      <div class="torque-top-bottom-left">
+        <p><b>Current Unit of measure</b></p>
+
+        <select name="units" id="conversipnType">
+          <option value="ozf_in" selected="selected">ozf.in</option>
+          <option value="lbf_in">lbf.in</option>
+          <option value="lbf_ft">lbf.ft</option>
+          <option value="mN_m">mN.m</option>
+          <option value="cN_m">cN.m</option>
+          <option value="N_m">N.m</option>
+          <option value="gf_cm">gf.cm</option>
+          <option value="kgf_cm">kgf.cm</option>
+          <option value="kgf_m">kgf.m</option>
+        </select>
       </div>
 
-      <div class="measuring-description">
-        <div class="trq-des">
-          <h3>International Torque Measuring Systems</h3>
-          <p>
-            <strong>American</strong><br>
-            ozf.in - ounce force inch (referred as inch-ounces)<br>
-            lbf.in - pound force inch (referred as inch-pounds)<br>
-            lbf.ft - pound force foot (referred as foot-pounds)<br>
-            &nbsp;<br>
-            <strong>International Standard - S.I.</strong><br>
-            mN.m - milli Newton meter<br>
-            cN.m - centi- Newton meter<br>
-            N.m - Newton meter<br>
-            &nbsp;<br>
-            <strong>Metric</strong><br>
-            gf.cm - gram force centimeter<br>
-            kgf.cm - kilogram force centimeter<br>
-            kgf.m - kilogram force meter
-          </p>
-        </div>
+      <div class="torque-top-bottom-right">
+        <input class="torque-btn" id="block--torque-conversion-calculator__button-convert" type="submit" name="button" value="Convert">
+        <input class="torque-btn" id="block--torque-conversion-calculator__button-reset" type="reset" name="Reset" value="Clear">
       </div>
     </div>
   </div>
-</section>
+
+  <div class="">
+    <div class="torque-result">
+      <table>
+        <tbody>
+          <tr>
+            <th>
+              <p>Results</p>
+            </th>
+            <th>
+              <p>Units</p>
+            </th>
+          </tr>
+          <tr>
+            <td><input id="gf_cm_input" type="text" name="result01"></td>
+            <td>gf·cm</td>
+          </tr>
+          <tr class="even">
+            <td><input id="kgf_cm_input" type="text" name="result02"></td>
+            <td>kgf·cm</td>
+          </tr>
+          <tr>
+            <td><input id="kgf_m_input" type="text" name="result03"></td>
+            <td>kgf·m</td>
+          </tr>
+          <tr>
+            <td><input id="mN_m_input" type="text" name="result04"></td>
+            <td>mN·m</td>
+          </tr>
+          <tr>
+            <td><input id="cN_m_input" type="text" name="result05"></td>
+            <td>cN·m(N·cm)</td>
+          </tr>
+          <tr>
+            <td><input id="N_m_input" type="text" name="result06"></td>
+            <td>N·m</td>
+          </tr>
+          <tr>
+            <td><input id="ozf_in_input" type="text" name="result07"></td>
+            <td>ozf·in</td>
+          </tr>
+          <tr>
+            <td><input id="lbf_in_input" type="text" name="result08"></td>
+            <td>lbf·in</td>
+          </tr>
+          <tr>
+            <td><input id="lbf_ft_input" type="text" name="result09"></td>
+            <td>lbf·ft</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="measuring-description">
+      <div class="trq-des">
+        <h3>International Torque Measuring Systems</h3>
+        <p>
+          <strong>American</strong><br>
+          ozf.in - ounce force inch (referred as inch-ounces)<br>
+          lbf.in - pound force inch (referred as inch-pounds)<br>
+          lbf.ft - pound force foot (referred as foot-pounds)<br>
+          &nbsp;<br>
+          <strong>International Standard - S.I.</strong><br>
+          mN.m - milli Newton meter<br>
+          cN.m - centi- Newton meter<br>
+          N.m - Newton meter<br>
+          &nbsp;<br>
+          <strong>Metric</strong><br>
+          gf.cm - gram force centimeter<br>
+          kgf.cm - kilogram force centimeter<br>
+          kgf.m - kilogram force meter
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
