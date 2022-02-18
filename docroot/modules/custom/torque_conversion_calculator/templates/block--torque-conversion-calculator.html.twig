@@ -29,18 +29,18 @@
 
 <div class="block-torque-conversion-calculator" id="torque_conversion_calculator">
   <div class="block-torque-conversion-calculator__copy">
-    <p>** SiteName ** provides the calculator below to convert units of measure common in torque applications.  Enter the number you know then select the current unit of measure from the drop down options.  Press convert and the calculator will convert to all units of measure.</p>
+    <p>{{ 'We provide the calculator below to convert units of measure common in torque applications.  Enter the number you know then select the current unit of measure from the drop down options.  Press convert and the calculator will convert to all units of measure.'|t }}</p>
   </div>
 
   <div class="block-torque-conversion-calculator__form-wrapper">
     <div class="block-torque-conversion-calculator__form-input-heading">
-      <p><b>Enter the number to convert</b></p>
+      <p><b>{{ 'Enter the number to convert'|t }}</b></p>
     </div>
     <div class="block-torque-conversion-calculator__form-input">
       <input type="text" id="conversionInput" name="selectedUnit" size="10" placeholder="10">
     </div>
     <div class="block-torque-conversion-calculator__form-measure-heading">
-      <p><b>Current Unit of measure</b></p>
+      <p><b>{{ 'Current Unit of measure'|t }}</b></p>
     </div>
     <div class="block-torque-conversion-calculator__form-measure">
       <div class="form-select__wrapper">
@@ -60,7 +60,7 @@
 
     <div class="block-torque-conversion-calculator__form-buttons">
       <input class="block-torque-conversion-calculator__button-convert" id="block-torque-conversion-calculator-button-convert" type="submit" name="button" placeholder="10">
-      <button class="block-torque-conversion-calculator__button-reset" id="block-torque-conversion-calculator-button-reset">Clear Results</button>
+      <button class="block-torque-conversion-calculator__button-reset" id="block-torque-conversion-calculator-button-reset">{{ 'Clear Results'|t }}</button>
     </div>
   </div>
 
@@ -70,69 +70,69 @@
         <tbody>
           <tr>
             <th>
-              <p>Results</p>
+              <p>{{ 'Results'|t }}</p>
             </th>
             <th>
-              <p>Units</p>
+              <p>{{ 'Units'|t }}</p>
             </th>
           </tr>
           <tr>
             <td><input id="gf_cm_input" type="text" name="result01" value="0"></td>
-            <td>gf·cm</td>
+            <td>{{ 'gf·cm'|t }}</td>
           </tr>
           <tr>
             <td><input id="kgf_cm_input" type="text" name="result02" value="0"></td>
-            <td>kgf·cm</td>
+            <td>{{ 'kgf·cm'|t }}</td>
           </tr>
           <tr>
             <td><input id="kgf_m_input" type="text" name="result03" value="0"></td>
-            <td>kgf·m</td>
+            <td>{{ 'kgf·m'|t }}</td>
           </tr>
           <tr>
             <td><input id="mN_m_input" type="text" name="result04" value="0"></td>
-            <td>mN·m</td>
+            <td>{{ 'mN·m'|t }}</td>
           </tr>
           <tr>
             <td><input id="cN_m_input" type="text" name="result05" value="0"></td>
-            <td>cN·m(N·cm)</td>
+            <td>{{ 'cN·m(N·cm)'|t }}</td>
           </tr>
           <tr>
             <td><input id="N_m_input" type="text" name="result06" value="0"></td>
-            <td>N·m</td>
+            <td>{{ 'N·m'|t }}</td>
           </tr>
           <tr>
             <td><input id="ozf_in_input" type="text" name="result07" value="0"></td>
-            <td>ozf·in</td>
+            <td>{{ 'ozf·in'|t }}</td>
           </tr>
           <tr>
             <td><input id="lbf_in_input" type="text" name="result08" value="0"></td>
-            <td>lbf·in</td>
+            <td>{{ 'lbf·in'|t }}</td>
           </tr>
           <tr>
             <td><input id="lbf_ft_input" type="text" name="result09" value="0"></td>
-            <td>lbf·ft</td>
+            <td>{{ 'lbf·ft'|t }}</td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div class="block-torque-conversion-calculator__results-copy">
-      <h3>International Torque Measuring Systems</h3>
+      <h3>{{ 'International Torque Measuring Systems'|t }}</h3>
       <p>
-        <strong>American</strong><br>
-        ozf.in - ounce force inch (referred as inch-ounces)<br>
-        lbf.in - pound force inch (referred as inch-pounds)<br>
-        lbf.ft - pound force foot (referred as foot-pounds)<br>
+        <strong>{{ 'American'|t }}</strong><br>
+        {{ 'ozf.in - ounce force inch (referred as inch-ounces)'|t }}<br>
+        {{ 'lbf.in - pound force inch (referred as inch-pounds)'|t }}<br>
+        {{ 'lbf.ft - pound force foot (referred as foot-pounds)'|t }}<br>
         &nbsp;<br>
-        <strong>International Standard - S.I.</strong><br>
-        mN.m - milli Newton meter<br>
-        cN.m - centi- Newton meter<br>
-        N.m - Newton meter<br>
+        <strong>{{ 'International Standard - S.I.'|t }}</strong><br>
+        {{ 'mN.m - milli Newton meter'|t }}<br>
+        {{ 'cN.m - centi- Newton meter'|t }}<br>
+        {{ 'N.m - Newton meter'|t }}<br>
         &nbsp;<br>
-        <strong>Metric</strong><br>
-        gf.cm - gram force centimeter<br>
-        kgf.cm - kilogram force centimeter<br>
-        kgf.m - kilogram force meter
+        <strong>{{ 'Metric'|t }}</strong><br>
+        {{ 'gf.cm - gram force centimeter'|t }}<br>
+        {{ 'kgf.cm - kilogram force centimeter'|t }}<br>
+        {{ 'kgf.m - kilogram force meter'|t }}
       </p>
     </div>
   </div>
