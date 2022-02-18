@@ -26,24 +26,22 @@
  */
 #}
 {{ attach_library('gearwrench_au/block--custom-torque-conversion-calculator') }}
-<div id="torque_conversion_calculator">
-  <div>
-    <div>
-      <div class="torque-top-right">
-        <p>** SiteName ** provides the calculator below to convert units of measure common in torque applications.  Enter the number you know then select the current unit of measure from the drop down options.  Press convert and the calculator will convert to all units of measure.</p>
-      </div>
 
-      <div class="torque-top-left">
-        <p><b>Enter the number you want to convert</b></p>
-        <input type="text" id="conversionInput" name="selectedUnit" size="10">
-      </div>
+<div class="block-torque-conversion-calculator" id="torque_conversion_calculator">
+  <div class="block-torque-conversion-calculator__copy">
+    <p>** SiteName ** provides the calculator below to convert units of measure common in torque applications.  Enter the number you know then select the current unit of measure from the drop down options.  Press convert and the calculator will convert to all units of measure.</p>
+  </div>
+
+  <div class="block-torque-conversion-calculator__form-wrapper">
+    <div class="block-torque-conversion-calculator__form-input">
+      <p><b>Enter the number you want to convert</b></p>
+      <input type="text" id="conversionInput" name="selectedUnit" size="10">
     </div>
+    <div class="block-torque-conversion-calculator__form-measure">
+      <p><b>Current Unit of measure</b></p>
 
-    <div class="torque-top-bottom">
-      <div class="torque-top-bottom-left">
-        <p><b>Current Unit of measure</b></p>
-
-        <select name="units" id="conversipnType">
+      <div class="form-select__wrapper">
+        <select name="units" id="conversipnType" class="form-select">
           <option value="ozf_in" selected="selected">ozf.in</option>
           <option value="lbf_in">lbf.in</option>
           <option value="lbf_ft">lbf.ft</option>
@@ -55,16 +53,16 @@
           <option value="kgf_m">kgf.m</option>
         </select>
       </div>
+    </div>
 
-      <div class="torque-top-bottom-right">
-        <input class="torque-btn" id="block--torque-conversion-calculator__button-convert" type="submit" name="button" value="Convert">
-        <input class="torque-btn" id="block--torque-conversion-calculator__button-reset" type="reset" name="Reset" value="Clear">
-      </div>
+    <div class="block-torque-conversion-calculator__form-buttons">
+      <input class="block-torque-conversion-calculator__button-convert" id="block-torque-conversion-calculator-button-convert" type="submit" name="button" value="Convert">
+      <input id="block-torque-conversion-calculator-button-reset" type="reset" name="Reset" value="Clear">
     </div>
   </div>
 
-  <div class="">
-    <div class="torque-result">
+  <div class="block-torque-conversion-calculator__results-wrapper">
+    <div class="block-torque-conversion-calculator__results">
       <table>
         <tbody>
           <tr>
@@ -79,7 +77,7 @@
             <td><input id="gf_cm_input" type="text" name="result01"></td>
             <td>gf·cm</td>
           </tr>
-          <tr class="even">
+          <tr>
             <td><input id="kgf_cm_input" type="text" name="result02"></td>
             <td>kgf·cm</td>
           </tr>
@@ -115,26 +113,24 @@
       </table>
     </div>
 
-    <div class="measuring-description">
-      <div class="trq-des">
-        <h3>International Torque Measuring Systems</h3>
-        <p>
-          <strong>American</strong><br>
-          ozf.in - ounce force inch (referred as inch-ounces)<br>
-          lbf.in - pound force inch (referred as inch-pounds)<br>
-          lbf.ft - pound force foot (referred as foot-pounds)<br>
-          &nbsp;<br>
-          <strong>International Standard - S.I.</strong><br>
-          mN.m - milli Newton meter<br>
-          cN.m - centi- Newton meter<br>
-          N.m - Newton meter<br>
-          &nbsp;<br>
-          <strong>Metric</strong><br>
-          gf.cm - gram force centimeter<br>
-          kgf.cm - kilogram force centimeter<br>
-          kgf.m - kilogram force meter
-        </p>
-      </div>
+    <div class="block-torque-conversion-calculator__results-copy">
+      <h3>International Torque Measuring Systems</h3>
+      <p>
+        <strong>American</strong><br>
+        ozf.in - ounce force inch (referred as inch-ounces)<br>
+        lbf.in - pound force inch (referred as inch-pounds)<br>
+        lbf.ft - pound force foot (referred as foot-pounds)<br>
+        &nbsp;<br>
+        <strong>International Standard - S.I.</strong><br>
+        mN.m - milli Newton meter<br>
+        cN.m - centi- Newton meter<br>
+        N.m - Newton meter<br>
+        &nbsp;<br>
+        <strong>Metric</strong><br>
+        gf.cm - gram force centimeter<br>
+        kgf.cm - kilogram force centimeter<br>
+        kgf.m - kilogram force meter
+      </p>
     </div>
   </div>
 </div>

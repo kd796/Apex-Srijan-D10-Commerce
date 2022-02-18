@@ -4,138 +4,72 @@
 
 @import '../../globals';
 
-.block-product-buy-now-sticky__content {
-  @include container-full-width();
+.block-torque-conversion-calculator {
+  .block-torque-conversion-calculator__form-wrapper,
+  .block-torque-conversion-calculator__results-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: rem(24px);
+    row-gap: rem(24px); // sass-lint:disable-line no-misspelled-properties
+  }
 
-  position: fixed;
-  top: -4.8rem;
-  z-index: 500;
+  .block-torque-conversion-calculator__form-buttons {
+    max-width: 50%;
+    margin-bottom: rem(48px);
 
-  -webkit-transition-timing-function: ease-in-out;
-  transition-timing-function: ease-in-out;
-  -webkit-transition: 0.25s;
-  transition: 0.25s;
-
-  &.show--no-nav {
-    top: 1.8rem;
-
-    @media (min-width: 595px) and (max-width: 1154px) {
-      .user-logged-in & {
-        top: 6.7rem;
-      }
+    .block-torque-conversion-calculator__button-convert {
+      margin-bottom: rem(24px);
     }
+  }
 
-    @media (min-width: 1155px) {
-      .user-logged-in & {
-        top: 4.2rem;
+  .block-torque-conversion-calculator__results {
+    table {
+      border: 1px solid $secondary-black;
+
+      p {
+        margin: 0;
+        padding: rem(20px 0);
       }
 
-      .user-logged-in.toolbar-tray-open & {
-        top: 6.7rem;
+      tbody {
+        tr td {
+          border: 1px solid $color-black;
+
+          &:last-of-type {
+            padding: rem(0 25px);
+          }
+        }
+
+        tr td input[type='text'] {
+          color: $color-black;
+          border: 0;
+        }
+
+        tr:nth-of-type(odd) {
+          background-color: #CCCCCC;
+          color: $color-black;
+        }
+
+        tr:nth-of-type(even) {
+          background-color: #DDDDDD;
+          color: $color-black;
+        }
+
+        th:nth-of-type(odd) {
+          border-right: 1px solid;
+        }
+
+        tr:first-of-type {
+          background-color: $secondary-black;
+          color: $color-white;
+        }
       }
     }
   }
 
-  &.show--with-nav {
-    top: 5.8rem;
-
-    @media (min-width: 595px) and (max-width: 1154px) {
-      .user-logged-in & {
-        top: 8.5rem;
-      }
-    }
-
-    @media (min-width: 1155px) {
-      .user-logged-in & {
-        top: 8.5rem;
-      }
-
-      .user-logged-in.toolbar-tray-open & {
-        top: 11rem;
-      }
-    }
-  }
-
-  .block--gw-product-buy-now-sticky {
-    background-color: $black;
-    margin-top: -1.8rem;
-    padding: 1rem 0;
-
-    .block--gw-product-buy-now-sticky__inner-wrapper {
-      @include container();
-      @include flex();
-      @include flex-x(flex-direction, row);
-
-      align-items: center;
-      justify-content: space-between;
-
-      header {
-        @include setfont();
-
-        color: #FFFFFF;
-        font-size: 1.25rem;
-        font-weight: 800;
-        text-transform: uppercase;
-
-        @media (max-width: 767px) {
-          font-size: 1rem;
-        }
-      }
-
-      .sku--mobile {
-        display: none;
-        height: 26px;
-
-        @media (max-width: 767px) {
-          display: block;
-        }
-
-        p {
-          color: $white;
-          font-weight: 800;
-        }
-      }
-
-      footer {
-        @include flex();
-        @include flex-x(flex-direction, row);
-
-        align-items: center;
-
-        .sku {
-          height: 26px;
-
-          p {
-            color: $white;
-            font-weight: 800;
-          }
-
-          &.sku--desktop {
-            padding-right: 1rem;
-
-            @media (max-width: 767px) {
-              display: none;
-            }
-          }
-        }
-
-        .ps-widget {
-          @include btn(primary);
-
-          border: 2px solid $primary-orange !important;
-          float: unset;
-
-          &:hover {
-            cursor: pointer;
-          }
-
-          @media (max-width: 767px) {
-            min-width: 120px;
-            padding-left: 0;
-            padding-right: 0;
-          }
-        }
-      }
+  .block-torque-conversion-calculator__results-copy {
+    h3 {
+      margin-top: 0;
     }
   }
 }
