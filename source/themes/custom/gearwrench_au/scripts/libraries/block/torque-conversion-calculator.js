@@ -24,8 +24,8 @@
       });
 
       $('#block-torque-conversion-calculator-button-reset').on('click', function () {
-        jQuery('input[type="text"]').each(function () {
-          this.value = '';
+        $('input[type="text"]').each(function () {
+          $(this).val('0');
         });
       });
     }
