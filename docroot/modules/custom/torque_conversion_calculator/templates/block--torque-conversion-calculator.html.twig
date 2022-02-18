@@ -33,13 +33,16 @@
   </div>
 
   <div class="block-torque-conversion-calculator__form-wrapper">
-    <div class="block-torque-conversion-calculator__form-input">
+    <div class="block-torque-conversion-calculator__form-input-heading">
       <p><b>Enter the number you want to convert</b></p>
+    </div>
+    <div class="block-torque-conversion-calculator__form-input">
       <input type="text" id="conversionInput" name="selectedUnit" size="10" placeholder="10">
     </div>
-    <div class="block-torque-conversion-calculator__form-measure">
+    <div class="block-torque-conversion-calculator__form-measure-heading">
       <p><b>Current Unit of measure</b></p>
-
+    </div>
+    <div class="block-torque-conversion-calculator__form-measure">
       <div class="form-select__wrapper">
         <select name="units" id="conversipnType" class="form-select">
           <option value="ozf_in" selected="selected">ozf.in</option>
@@ -57,7 +60,7 @@
 
     <div class="block-torque-conversion-calculator__form-buttons">
       <input class="block-torque-conversion-calculator__button-convert" id="block-torque-conversion-calculator-button-convert" type="submit" name="button" placeholder="10">
-      <input id="block-torque-conversion-calculator-button-reset" type="reset" name="Reset" value="Clear">
+      <button class="block-torque-conversion-calculator__button-reset" id="block-torque-conversion-calculator-button-reset">Clear Results</button>
     </div>
   </div>
 
