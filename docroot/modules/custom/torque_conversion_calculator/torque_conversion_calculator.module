@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for torque conversion calculator module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Config;
+
+/**
+ * Implements hook_theme().
+ */
+function torque_conversion_calculator_theme() {
+  $theme['torque_conversion_calculator'] = [
+    'render element' => 'elements',
+    'template' => 'block--torque-conversion-calculator',
+  ];
+
+  return $theme;
+}

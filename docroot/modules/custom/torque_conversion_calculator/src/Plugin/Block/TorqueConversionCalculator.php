@@ -5,7 +5,7 @@ namespace Drupal\torque_conversion_calculator\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 
 /**
- * Plugin implementation of the torque conversion calculator widget.
+ * Plugin implementation of the torque conversion calculator block.
  *
  * @Block(
  *   id = "torque_conversion_calculator",
@@ -20,7 +20,7 @@ class TorqueConversionCalculator extends BlockBase {
    */
   public function build() {
     return [
-      '#markup' => $this->configuration['']
+      '#theme' => 'torque_conversion_calculator',
     ];
   }
 
