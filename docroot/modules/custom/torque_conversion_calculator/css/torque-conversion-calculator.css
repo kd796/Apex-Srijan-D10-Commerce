@@ -75,7 +75,7 @@
   order: 5;
   margin-bottom: 3rem;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1;
   -webkit-column-gap: 1.5rem;
   -moz-column-gap: 1.5rem;
   column-gap: 1.5rem;
@@ -84,6 +84,7 @@
 @media (min-width: 48em) {
   .block-torque-conversion-calculator .block-torque-conversion-calculator__form-buttons {
     max-width: 100%;
+    grid-template-columns: repeat(2, 1fr);
     grid-column: 1/3;
   }
 }
@@ -114,6 +115,14 @@
 
 .block-torque-conversion-calculator .block-torque-conversion-calculator__form-buttons .block-torque-conversion-calculator__button-reset:after {
   font-size: 1.25rem;
+  font-family: "themeIcons";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  text-decoration: none;
+  text-transform: none;
   margin-left: 1rem;
 }
 
