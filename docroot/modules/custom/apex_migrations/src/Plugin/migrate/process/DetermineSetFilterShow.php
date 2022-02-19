@@ -28,7 +28,7 @@ class DetermineSetFilterShow extends ProcessPluginBase {
     $value = (string) $value;
 
     // Enable for all categories except those specified above.
-    if (!in_array((string) $value, $allowed_categories)) {
+    if (in_array((string) $value, $allowed_categories)) {
       return 1;
     }
 
