@@ -1,0 +1,138 @@
+{#
+/**
+ * @file
+ * Theme override to display a block.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ *   - label: The configured label for the block.
+ *   - label_display: The display settings for the label.
+ *   - provider: The module or other provider that provided this block plugin.
+ *   - Block plugin specific settings will also be stored here.
+ * - content: The content of this block.
+ * - attributes: array of HTML attributes populated by modules, intended to
+ *   be added to the main container tag of this template.
+ *   - id: A valid HTML ID and guaranteed unique.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @see template_preprocess_block()
+ */
+#}
+
+<div class="block-torque-conversion-calculator" id="torque_conversion_calculator">
+  <div class="block-torque-conversion-calculator__copy">
+    <p>{{ 'We provide the calculator below to convert units of measure common in torque applications.  Enter the number you know then select the current unit of measure from the drop down options.  Press convert and the calculator will convert to all units of measure.'|t }}</p>
+  </div>
+
+  <div class="block-torque-conversion-calculator__form-wrapper">
+    <div class="block-torque-conversion-calculator__form-input-heading">
+      <p><b>{{ 'Enter the number to convert'|t }}</b></p>
+    </div>
+    <div class="block-torque-conversion-calculator__form-input">
+      <input type="text" id="conversionInput" name="selectedUnit" size="10" placeholder="10">
+    </div>
+    <div class="block-torque-conversion-calculator__form-measure-heading">
+      <p><b>{{ 'Current Unit of measure'|t }}</b></p>
+    </div>
+    <div class="block-torque-conversion-calculator__form-measure">
+      <div class="form-select__wrapper">
+        <select name="units" id="conversipnType" class="form-select">
+          <option value="ozf_in" selected="selected">ozf.in</option>
+          <option value="lbf_in">lbf.in</option>
+          <option value="lbf_ft">lbf.ft</option>
+          <option value="mN_m">mN.m</option>
+          <option value="cN_m">cN.m</option>
+          <option value="N_m">N.m</option>
+          <option value="gf_cm">gf.cm</option>
+          <option value="kgf_cm">kgf.cm</option>
+          <option value="kgf_m">kgf.m</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="block-torque-conversion-calculator__form-buttons">
+      <input class="block-torque-conversion-calculator__button-convert" id="block-torque-conversion-calculator-button-convert" type="submit" name="button" placeholder="10">
+      <button class="block-torque-conversion-calculator__button-reset" id="block-torque-conversion-calculator-button-reset">{{ 'Clear Results'|t }}</button>
+    </div>
+  </div>
+
+  <div class="block-torque-conversion-calculator__results-wrapper">
+    <div class="block-torque-conversion-calculator__results">
+      <table>
+        <tbody>
+          <tr>
+            <th>
+              <p>{{ 'Results'|t }}</p>
+            </th>
+            <th>
+              <p>{{ 'Units'|t }}</p>
+            </th>
+          </tr>
+          <tr>
+            <td><input id="gf_cm_input" type="text" name="result01" value="0"></td>
+            <td>{{ 'gf·cm'|t }}</td>
+          </tr>
+          <tr>
+            <td><input id="kgf_cm_input" type="text" name="result02" value="0"></td>
+            <td>{{ 'kgf·cm'|t }}</td>
+          </tr>
+          <tr>
+            <td><input id="kgf_m_input" type="text" name="result03" value="0"></td>
+            <td>{{ 'kgf·m'|t }}</td>
+          </tr>
+          <tr>
+            <td><input id="mN_m_input" type="text" name="result04" value="0"></td>
+            <td>{{ 'mN·m'|t }}</td>
+          </tr>
+          <tr>
+            <td><input id="cN_m_input" type="text" name="result05" value="0"></td>
+            <td>{{ 'cN·m(N·cm)'|t }}</td>
+          </tr>
+          <tr>
+            <td><input id="N_m_input" type="text" name="result06" value="0"></td>
+            <td>{{ 'N·m'|t }}</td>
+          </tr>
+          <tr>
+            <td><input id="ozf_in_input" type="text" name="result07" value="0"></td>
+            <td>{{ 'ozf·in'|t }}</td>
+          </tr>
+          <tr>
+            <td><input id="lbf_in_input" type="text" name="result08" value="0"></td>
+            <td>{{ 'lbf·in'|t }}</td>
+          </tr>
+          <tr>
+            <td><input id="lbf_ft_input" type="text" name="result09" value="0"></td>
+            <td>{{ 'lbf·ft'|t }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="block-torque-conversion-calculator__results-copy">
+      <h3>{{ 'International Torque Measuring Systems'|t }}</h3>
+      <p>
+        <strong>{{ 'American'|t }}</strong><br>
+        {{ 'ozf.in - ounce force inch (referred as inch-ounces)'|t }}<br>
+        {{ 'lbf.in - pound force inch (referred as inch-pounds)'|t }}<br>
+        {{ 'lbf.ft - pound force foot (referred as foot-pounds)'|t }}<br>
+        &nbsp;<br>
+        <strong>{{ 'International Standard - S.I.'|t }}</strong><br>
+        {{ 'mN.m - milli Newton meter'|t }}<br>
+        {{ 'cN.m - centi- Newton meter'|t }}<br>
+        {{ 'N.m - Newton meter'|t }}<br>
+        &nbsp;<br>
+        <strong>{{ 'Metric'|t }}</strong><br>
+        {{ 'gf.cm - gram force centimeter'|t }}<br>
+        {{ 'kgf.cm - kilogram force centimeter'|t }}<br>
+        {{ 'kgf.m - kilogram force meter'|t }}
+      </p>
+    </div>
+  </div>
+</div>
