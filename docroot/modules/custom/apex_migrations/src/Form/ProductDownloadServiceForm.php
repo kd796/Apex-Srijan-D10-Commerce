@@ -104,6 +104,8 @@ class ProductDownloadServiceForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $lastDownloadedFilename = $this->getConfig('last_downloaded_file_name');
+
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
       '#type' => 'submit',
@@ -111,7 +113,22 @@ class ProductDownloadServiceForm extends FormBase {
       '#button_type' => 'primary',
     ];
 
-    $form['sftp_host'] = [
+    $form['recent_download'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('The Most Recently Downloaded File'),
+    ];
+
+    $form['recent_download']['last_downloaded_file'] = [
+      '#type' => 'markup',
+      '#markup' => '<p>' . $lastDownloadedFilename . '</p>',
+    ];
+
+    $form['sftp_settings'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('SFTP Settings'),
+    ];
+
+    $form['sftp_settings']['sftp_host'] = [
       '#type' => 'textfield',
       '#title' => t('sFTP Host'),
       '#maxlength' => 120,
@@ -119,7 +136,7 @@ class ProductDownloadServiceForm extends FormBase {
       '#value' => $this->getValueOrConfig('sftp_host', $form_state, '199.115.148.13'),
     ];
 
-    $form['sftp_username'] = [
+    $form['sftp_settings']['sftp_username'] = [
       '#type' => 'textfield',
       '#title' => t('sFTP Username'),
       '#maxlength' => 120,
@@ -127,7 +144,7 @@ class ProductDownloadServiceForm extends FormBase {
       '#value' => $this->getValueOrConfig('sftp_username', $form_state, 'StiboAcquiaHTUS'),
     ];
 
-    $form['sftp_password'] = [
+    $form['sftp_settings']['sftp_password'] = [
       '#type' => 'textfield',
       '#title' => t('sFTP Password'),
       '#maxlength' => 120,
@@ -135,7 +152,7 @@ class ProductDownloadServiceForm extends FormBase {
       '#value' => $this->getValueOrConfig('sftp_password', $form_state, 'NRXI37rh'),
     ];
 
-    $form['sftp_directory'] = [
+    $form['sftp_settings']['sftp_directory'] = [
       '#type' => 'textfield',
       '#title' => t('sFTP Directory'),
       '#maxlength' => 512,

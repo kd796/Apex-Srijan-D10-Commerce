@@ -36,13 +36,13 @@ class ProductDownloadService extends DrushCommands {
    * Pulls in the latest XML file from the SFTP server.
    */
   protected function downloadProducts() {
-    $this->output()->writeln('Importing products');
+    $this->output()->writeln('Downloading products');
 
     $sftp_host = $this->config->get('sftp_host');
     $sftp_username = $this->config->get('sftp_username');
     $sftp_password = $this->config->get('sftp_password');
     $sftp_directory = $this->config->get('sftp_directory');
-    $lastDownloadedFilename = $this->config->get('last_downloaded_file_name') ?? 0;
+    $lastDownloadedFilename = $this->config->get('last_downloaded_file_name') ?? '';
 
     $this->output()->writeln('Connecting to host: ' . $sftp_host);
     $this->output()->writeln('Using file root: ' . $sftp_directory);
@@ -62,6 +62,13 @@ class ProductDownloadService extends DrushCommands {
       $allFiles = $filesystem->listContents($sftp_directory)->toArray();
       $simpleFilename = NULL;
       $newestFile = NULL;
+      $name = '';
+
+      $this->output()->writeln('Last downloaded file path: ' . $lastDownloadedFilename);
+      $expandedFilePath = explode('/', $lastDownloadedFilename);
+      $lastDownloadedFilename = array_pop($expandedFilePath);
+      $this->output()->writeln('Last downloaded filename: ' . $lastDownloadedFilename);
+      $this->output()->writeln('Found ' . count($allFiles) . ' files/items. Looping through them.');
 
       /** @var \League\Flysystem\FileAttributes $file */
       foreach ($allFiles as $file) {
@@ -69,6 +76,7 @@ class ProductDownloadService extends DrushCommands {
         $expandedPath = explode('/', $file->path());
         $simpleFilename = array_pop($expandedPath);
         $this->output()->writeln('Inspecting file: ' . $file->path());
+        $this->output()->writeln('Simple filename: ' . $simpleFilename);
 
         if ($file->type() == 'file'
             && stripos($name, 'xml', -3) !== FALSE
@@ -90,13 +98,13 @@ class ProductDownloadService extends DrushCommands {
         $this->output()->writeln('Temp File name: ' . $simpleFilename);
 
         $temp_destination = \Drupal::service('file_system')->saveData($fileStr, 'temporary://' . $simpleFilename);
-
         $this->output()->writeln('Saved to: ' . $temp_destination);
 
         $destination = (string) _apex_migrations_clear_destination_and_pull_in_new($temp_destination);
 
         if (!empty($destination)) {
-          $this->config->set('last_downloaded_file_name', $simpleFilename);
+          $configFactory = \Drupal::service('config.factory');
+          $configFactory->getEditable('apex_migrations.settings')->set('last_downloaded_file_name', $name)->save();
           $this->output()->writeln('Created the file: ' . $destination);
           return TRUE;
         }
