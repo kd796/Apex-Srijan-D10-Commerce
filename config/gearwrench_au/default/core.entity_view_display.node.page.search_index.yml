@@ -6,11 +6,13 @@ dependencies:
     - core.entity_view_mode.node.search_index
     - field.field.node.page.body
     - field.field.node.page.field_components
+    - field.field.node.page.field_link
     - field.field.node.page.field_media
     - field.field.node.page.field_meta_tags
+    - image.style.search_teaser_261x256
     - node.type.page
   module:
-    - entity_reference_revisions
+    - blazy
     - text
     - user
 _core:
@@ -25,20 +27,56 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 0
-    region: content
-  field_components:
-    type: entity_reference_revisions_entity_view
-    label: hidden
-    settings:
-      view_mode: full
-      link: ''
-    third_party_settings: {  }
     weight: 1
     region: content
+  field_media:
+    type: blazy_media
+    label: hidden
+    settings:
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      view_mode: search_teaser
+      cache: 0
+      current_view_mode: search_index
+      skin: ''
+      fx: ''
+      lazy: ''
+      loading: ''
+      preload: false
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      responsive_image_style: ''
+      box_style: ''
+      image_style: search_teaser_261x256
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
+  field_components: true
   field_link: true
-  field_media: true
   field_meta_tags: true
   langcode: true
   links: true
