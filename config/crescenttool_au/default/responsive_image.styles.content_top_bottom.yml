@@ -3,25 +3,42 @@ langcode: en
 status: true
 dependencies:
   config:
-    - image.style.huge_landscape_3x1
-    - image.style.large_landscape_3x1
-    - image.style.medium_landscape_3x1
-    - image.style.small_landscape_3x2
+    - image.style.container_full_width
+    - image.style.scale_width_1080
+    - image.style.scale_width_360
+    - image.style.scale_width_720
   theme:
     - crescenttool_au
 id: content_top_bottom
 label: 'Content - Top/Bottom'
 image_style_mappings:
   -
+    image_mapping_type: image_style
+    image_mapping: scale_width_1080
+    breakpoint_id: crescenttool_au.xlarge_min
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: scale_width_720
+    breakpoint_id: crescenttool_au.large_min
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: scale_width_360
+    breakpoint_id: crescenttool_au.small_min
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: scale_width_360
+    breakpoint_id: crescenttool_au.xsmall
+    multiplier: 1x
+  -
     image_mapping_type: sizes
     image_mapping:
-      sizes: '(min-width: 75em) 75em, 100vw'
+      sizes: '(min-width: 65rem)'
       sizes_image_styles:
-        - huge_landscape_3x1
-        - large_landscape_3x1
-        - medium_landscape_3x1
-        - small_landscape_3x2
+        - container_full_width
     breakpoint_id: crescenttool_au.All
     multiplier: 1x
 breakpoint_group: crescenttool_au
-fallback_image_style: medium_landscape_3x1
+fallback_image_style: scale_width_720

@@ -3,8 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
-    - image.style.medium_1x1
-    - image.style.small_1x1
+    - image.style.scale_width_360
+    - image.style.scale_width_720
   theme:
     - crescenttool
 id: content_half
@@ -12,27 +12,13 @@ label: 'Content Half'
 image_style_mappings:
   -
     image_mapping_type: image_style
-    image_mapping: medium_1x1
-    breakpoint_id: crescenttool.large_min
+    image_mapping: scale_width_720
+    breakpoint_id: crescenttool.grande
     multiplier: 1x
   -
     image_mapping_type: image_style
-    image_mapping: small_1x1
-    breakpoint_id: crescenttool.medium
-    multiplier: 1x
-  -
-    image_mapping_type: image_style
-    image_mapping: medium_1x1
-    breakpoint_id: crescenttool.small
-    multiplier: 1x
-  -
-    image_mapping_type: sizes
-    image_mapping:
-      sizes: 100vw
-      sizes_image_styles:
-        - medium_1x1
-        - small_1x1
+    image_mapping: scale_width_360
     breakpoint_id: crescenttool.xsmall
     multiplier: 1x
 breakpoint_group: crescenttool
-fallback_image_style: small_1x1
+fallback_image_style: scale_width_360
