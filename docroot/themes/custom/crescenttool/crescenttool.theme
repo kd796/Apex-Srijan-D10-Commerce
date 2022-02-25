@@ -197,7 +197,11 @@ function crescenttool_preprocess_blazy(&$variables) {
   }
 
   // Set video iframe attributes for accessibility if they're known.
-  if ($entity instanceof Media && $variables['settings']['type'] === 'video' && isset($variables['settings']['current_view_mode']) && $variables['settings']['current_view_mode'] === 'hero') {
+  if ($entity instanceof Media && $variables['settings']['type'] === 'video'
+      && isset($variables['settings']['current_view_mode'])
+      && $variables['settings']['current_view_mode'] === 'hero'
+      && isset($variables['iframe_attributes'])
+      && is_object($variables['iframe_attributes'])) {
     $variables['iframe_attributes']->setAttribute('title', $entity->label());
     $variables['iframe_attributes']->setAttribute('tabindex', '-1');
   }
