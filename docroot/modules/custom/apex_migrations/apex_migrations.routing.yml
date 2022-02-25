@@ -5,3 +5,11 @@ apex_migrations.pim_upload:
     _title: 'Apex PIM file upload'
   requirements:
     _permission: 'administer site configuration'
+
+apex_migrations.product_download:
+  path: '/admin/config/development/apex_product_download'
+  defaults:
+    _form: '\Drupal\apex_migrations\Form\ProductDownloadServiceForm'
+    _title: 'Apex Product Download Settings'
+  requirements:
+    _permission: 'administer site configuration'
