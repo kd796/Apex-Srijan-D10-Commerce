@@ -165,7 +165,7 @@ function crescenttool_au_preprocess_paragraph__content__full(array &$variables) 
     switch ($layout) {
       case 'content_media_layout__half_left':
       case 'content_media_layout__half_right':
-        $field_settings['settings']['image_style'] = 'content_half';
+        $field_settings['settings']['responsive_image_style'] = 'content_half';
         $media_outside = TRUE;
         break;
 

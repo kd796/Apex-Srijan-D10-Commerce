@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - classy_paragraphs.classy_paragraphs_style.content_media_layout__half_left
     - field.storage.paragraph.field_media_layout
     - paragraphs.paragraphs_type.content
 _core:
@@ -15,7 +16,9 @@ label: 'Media Layout'
 description: ''
 required: false
 translatable: false
-default_value: {  }
+default_value:
+  -
+    target_uuid: 53fa288e-2456-4e95-833c-6a4b83efd785
 default_value_callback: ''
 settings:
   handler: classy_paragraphs
