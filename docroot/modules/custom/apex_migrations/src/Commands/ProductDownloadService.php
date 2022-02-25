@@ -3,6 +3,7 @@
 namespace Drupal\apex_migrations\Commands;
 
 use Drush\Commands\DrushCommands;
+use Drush\Log\LogLevel;
 use League\Flysystem\Filesystem;
 use League\Flysystem\PhpseclibV2\SftpConnectionProvider;
 use League\Flysystem\PhpseclibV2\SftpAdapter;
@@ -29,7 +30,7 @@ class ProductDownloadService extends DrushCommands {
    */
   public function productsDownload() {
     $this->config = \Drupal::config('apex_migrations.settings');
-    $this->downloadProducts();
+    return $this->downloadProducts();
   }
 
   /**
@@ -106,18 +107,22 @@ class ProductDownloadService extends DrushCommands {
           $configFactory = \Drupal::service('config.factory');
           $configFactory->getEditable('apex_migrations.settings')->set('last_downloaded_file_name', $name)->save();
           $this->output()->writeln('Created the file: ' . $destination);
-          return TRUE;
+          drush_log('Successfully downloaded a new file. We will continue with the product import.', LogLevel::SUCCESS);
+
+          // Returning 0 means success.
+          return 0;
         }
       }
       else {
-        $this->output()->writeln('No different file found.');
+        drush_log('No different file found.', LogLevel::ERROR);
       }
     }
     catch (\Exception $e) {
       $this->logger()->error($e->getMessage());
     }
 
-    return FALSE;
+    // Returning 1 means failure.
+    return 1;
   }
 
   /**
