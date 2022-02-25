@@ -62,7 +62,7 @@
     filter: drop-shadow(0 0 1rem rgba(0, 0, 0, .75));
     margin: 0;
 
-    @include media('<sm') {
+    @include media('<md') {
       margin: 0 0 2rem;
     }
 
@@ -114,6 +114,10 @@
 
       @include media('<md') {
         flex-direction: column;
+
+        .component-content__media {
+          margin-bottom: $gap-vertical-sm;
+        }
 
         .media__image {
           margin-left: auto;
