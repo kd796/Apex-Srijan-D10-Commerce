@@ -102,6 +102,10 @@
         margin-bottom: 0;
         margin-top: $gap-vertical-xsm;
         order: 1;
+
+        img {
+          width: 100%;
+        }
       }
     }
 
@@ -123,7 +127,7 @@
 
         .component-content__inner {
           flex: 1;
-          padding: 0 0 $gap-vertical-xsm;
+          padding: $gap-vertical-xsm 0;
 
           .component-content__title {
             margin-top: 0;
@@ -144,48 +148,20 @@
           }
         }
       }
-
-      @include media('>=lg') {
-        .component-content__media {
-          max-width: 40%;
-          width: 40%;
-
-          .media {
-            padding-top: 75%;
-            width: 100%;
-            position: relative;
-          }
-
-          img {
-            display: block;
-            max-height: 100%;
-            min-height: 100%;
-            width: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-          }
-        }
-
-        .field[data-blazy] {
-          min-width: 40%;
-        }
-      }
     }
 
     &.component-content--media-layout-half-left {
       @include media('>=md') {
         .component-content__media {
+          padding-right: 2rem;
           margin-right: 2rem;
         }
       }
 
       @include media('>=lg') {
         .component-content__media {
-          margin-right: 3rem;
+          padding-right: 4rem;
+          margin-right: 4rem;
         }
       }
     }
@@ -193,6 +169,7 @@
     &.component-content--media-layout-half-right {
       @include media('>=md') {
         .component-content__media {
+          padding-left: 2rem;
           margin-left: 2rem;
           order: 1;
         }
@@ -200,7 +177,8 @@
 
       @include media('>=lg') {
         .component-content__media {
-          margin-left: 3rem;
+          padding-left: 4rem;
+          margin-left: 4rem;
         }
       }
     }
