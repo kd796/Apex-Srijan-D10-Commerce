@@ -110,7 +110,7 @@ class ProductDownloadService extends DrushCommands {
         }
       }
       else {
-        $this->output()->writeln('No file found.');
+        $this->output()->writeln('No different file found.');
       }
     }
     catch (\Exception $e) {
