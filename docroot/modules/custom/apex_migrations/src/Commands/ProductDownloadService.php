@@ -2,21 +2,17 @@
 
 namespace Drupal\apex_migrations\Commands;
 
-use Drupal\Core\Config\Config;
-use Drupal\file\Entity\File;
-use Drupal\node\Entity\Node;
 use Drush\Commands\DrushCommands;
 use League\Flysystem\Filesystem;
 use League\Flysystem\PhpseclibV2\SftpConnectionProvider;
 use League\Flysystem\PhpseclibV2\SftpAdapter;
-use League\Flysystem\StorageAttributes;
 
 /**
  * A Drush commandfile.
  *
  * Downloads the product data from the SFTP server and runs the import.
  */
-class ProductImportService extends DrushCommands {
+class ProductDownloadService extends DrushCommands {
 
   /**
    * The config factory.
@@ -28,10 +24,10 @@ class ProductImportService extends DrushCommands {
   /**
    * Brings in the config, pulls in the latest XML file, then runs the import.
    *
-   * @command apex:product-import
-   * @aliases axpi
+   * @command apex:products-download
+   * @aliases axpd
    */
-  public function productImport() {
+  public function productsDownload() {
     $this->config = \Drupal::config('apex_migrations.settings');
     $this->downloadProducts();
   }
@@ -43,17 +39,10 @@ class ProductImportService extends DrushCommands {
     $this->output()->writeln('Importing products');
 
     $sftp_host = $this->config->get('sftp_host');
-    $sftp_port = $this->config->get('sftp_port');
     $sftp_username = $this->config->get('sftp_username');
     $sftp_password = $this->config->get('sftp_password');
     $sftp_directory = $this->config->get('sftp_directory');
-    $newestFileModifiedTimestamp = $this->config->get('newest_file_modified_timestamp');
-    $lastDownloadedFilename = $this->config->get('last_downloaded_file_name');
-
-    $sftp_host = '199.115.148.13';
-    $sftp_username = 'StiboAcquiaHTUS';
-    $sftp_password = 'NRXI37rh';
-    $sftp_directory = '/NA GW/Full';
+    $lastDownloadedFilename = $this->config->get('last_downloaded_file_name') ?? 0;
 
     $this->output()->writeln('Connecting to host: ' . $sftp_host);
     $this->output()->writeln('Using file root: ' . $sftp_directory);
