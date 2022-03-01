@@ -295,7 +295,7 @@ function crescenttool_au_preprocess_page(array &$variables) {
     $contentType = $node->bundle();
 
     if ($contentType == 'landing_page') {
-      unset($variables['page']['content']['crescenttool_breadcrumbs']);
+      unset($variables['page']['content']['crescenttool_au_breadcrumbs']);
     }
   }
 }
