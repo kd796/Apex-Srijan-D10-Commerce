@@ -293,7 +293,7 @@ function gearwrench_au_preprocess_page(array &$variables) {
     $contentType = $node->bundle();
 
     if ($contentType == 'landing_page') {
-      unset($variables['page']['content']['gearwrench_breadcrumbs']);
+      unset($variables['page']['content']['gearwrench_au_breadcrumbs']);
     }
   }
 }
