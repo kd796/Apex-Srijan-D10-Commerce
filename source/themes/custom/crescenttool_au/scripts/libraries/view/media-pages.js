@@ -53,8 +53,13 @@
               var boxInfo = this.dataset.boxinfo.split('_');
               var checkedBox = $('#' + boxInfo[0]);
               checkedBox[0].checked = false;
-              var $mediaView = $('#views-exposed-form-media-pages-block-1');
+              var $mediaViewEmbed = $('#views-exposed-form-media-pages-embed-1');
+              var $mediaViewBlock = $('#views-exposed-form-media-pages-block-1');
+              var $mediaView;
+
+              $mediaView = $mediaViewEmbed.length !== 0 ? $mediaViewEmbed : $mediaViewBlock;
               $mediaView.find('input[type=submit]').click();
+              console.log($mediaView);
             });
           }
         }
