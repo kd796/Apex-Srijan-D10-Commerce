@@ -14,7 +14,6 @@
  * Component
  */
 .node--type-product-category.node--view-mode-full .node__content {
-
   .page-heading {
     @include flex();
     flex-flow: row wrap;
@@ -83,10 +82,11 @@
       grid-template-columns: repeat(3, 1fr);
     }
 
-
     .gearwrench-product-category-filters {
       display: none;
       grid-column: 1;
+      height: 100vh;
+      overflow: auto scroll;
 
       &.mobile-show {
         display: flex;
@@ -159,7 +159,7 @@
         margin-bottom: 1rem;
         padding: 1rem 0;
         position: relative;
-        width: 100%;
+        width: 98%;
 
         .fieldset-legend {
           @include icon('arrow', after, false);
@@ -184,6 +184,12 @@
         }
       }
 
+      .component-accordion-item--open legend {
+        .fieldset-legend:after {
+          transform: rotate(-90deg);
+        }
+      }
+
       fieldset {
         margin: 0;
         padding: 0;
@@ -202,7 +208,6 @@
         top: .125rem;
       }
 
-
       .form-checkboxes input[type='checkbox']:not(:checked) + label:before {
         background-color: transparent;
       }
@@ -219,11 +224,9 @@
         display: none;
         visibility: hidden;
       }
-
     }
 
     .view-product-category {
-
       .view-header {
         @include type-header(h6, black, included);
         @include flex();

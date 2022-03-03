@@ -26,6 +26,7 @@ body {
   font-weight: $fw-medium;
   line-height: $body-line-height;
   overflow-x: hidden;
+  scrollbar-color: $primary-orange;
 
   .ui-widget.ui-widget-content.ui-autocomplete {
     max-width: calc(100% - 4rem);
@@ -64,6 +65,10 @@ body {
       line-height: 1.25;
     }
   }
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: $primary-orange;
 }
 
 html,
