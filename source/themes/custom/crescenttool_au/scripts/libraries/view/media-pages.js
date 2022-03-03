@@ -59,7 +59,6 @@
 
               $mediaView = $mediaViewEmbed.length !== 0 ? $mediaViewEmbed : $mediaViewBlock;
               $mediaView.find('input[type=submit]').click();
-              console.log($mediaView);
             });
           }
         }
