@@ -78,6 +78,9 @@
     attach: function (context, settings) {
       drupalSettings.selectedAttributes = $('#edit-field-product-specifications-target-id').val();
 
+      // Scroll down to the products when loading the category page.
+      $('#system-breadcrumb')[0].scrollIntoView();
+
       let catArray = [];
       let setArray = [];
       let specArray = drupalSettings.selectedAttributes.split(', ');
@@ -133,6 +136,15 @@
     }
   };
 
+  /**
+   * This is the Accordion functionality.
+   *
+   * Business Rules:
+   *   - The first item will open on page load unless the user has selected a different item.
+   *   - If any item is selected, its filter group will be expanded.
+   *
+   * @type {{attach: Drupal.behaviors.productCategoryFilterTabs.attach}}
+   */
   Drupal.behaviors.productCategoryFilterTabs = {
     attach: function (context, settings) {
       $('.crescenttool-product-category-filters').once('product-category-filter-tabs').each(function (index) {
@@ -141,11 +153,27 @@
         var $accordions = $widget.find('fieldset');
         var $accordionHeaders = $accordions.find('legend');
 
-        // Mark that the tabs component has been initialized.
-        // $widget.addClass('crescenttool-product-category-filters--js-initialized');
-
         // Add static roles to elements.
         $widget.attr('role', 'tablist');
+        let isSomethingOpen = false;
+
+        // The first pass will open all accordions with selected content and
+        // will inform whether we need to open the first accordion.
+        $accordions.each(function (accordionIndex) {
+          var $accordion = $(this);
+          var $accordionContent = $accordion.children('.fieldset-wrapper');
+
+          $accordionContent.find('input').each(function () {
+            let checked = $(this).prop('checked');
+            let type = $(this).prop('type');
+
+            if (type !== 'radio' && checked) {
+              $accordion.addClass('component-accordion-item--open');
+              isSomethingOpen = true;
+              return false;
+            }
+          });
+        });
 
         // Attach each accordion item header to its content and hide content
         // that should be hidden.
@@ -158,6 +186,11 @@
           var accordionId = $accordion.attr('data-drupal-selector');
           var headerId = 'product-category-filter-item-' + accordionId + '__header';
           var panelId = 'product-category-filter-item-' + accordionId + '__panel';
+
+          // If no accordions are open, open the first accordion.
+          if (isSomethingOpen === false && accordionIndex === 0) {
+            $accordion.addClass('component-accordion-item--open');
+          }
 
           // Determine whether this accordion needs to be open by default.
           var openByDefault = $accordion.hasClass('component-accordion-item--open');
@@ -200,6 +233,7 @@
             var open = $accordion.hasClass('product-category-filter-item---open');
 
             $accordion.toggleClass('product-category-filter-item---open', (!open));
+            $accordion.toggleClass('component-accordion-item--open', (!open));
             $accordionHeader.attr('aria-selected', (open) ? 'false' : 'true');
             $accordionContent
               .attr('aria-hidden', (open) ? 'true' : 'false')
