@@ -4,7 +4,6 @@
   Drupal.behaviors.componentNewProducts = {
     attach: function (context, settings) {
       $('.view-new-products:not(.view-new-products--js-initialized)').once('new-product-filter').each(function (index) {
-
         if (window.innerWidth <= 768) {
           var $mobileMenuIcon = $('.filter-icon');
           var $mobileCloseIcon;
