@@ -76,7 +76,8 @@
       drupalSettings.selectedAttributes = $('#edit-field-product-specifications-target-id').val();
 
       // Scroll down to the products when loading the category page.
-      $('#system-breadcrumb')[0].scrollIntoView();
+      $('.product-category-view-section').attr('style', 'scroll-margin: 100px !important;');
+      $('.product-category-view-section')[0].scrollIntoView();
 
       let catArray = [];
       let setArray = [];
