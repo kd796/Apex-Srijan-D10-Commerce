@@ -4,7 +4,6 @@
   Drupal.behaviors.componentNewProducts = {
     attach: function (context, settings) {
       $('.view-new-products:not(.view-new-products--js-initialized)').once('new-product-filter').each(function (index) {
-
         if (window.innerWidth <= 768) {
           var $mobileMenuIcon = $('.filter-icon');
           var $mobileCloseIcon;
@@ -59,7 +58,7 @@
               var boxInfo = this.dataset.boxinfo.split('_');
               var checkedBox = $('#' + boxInfo[0]);
               checkedBox[0].checked = false;
-              var $newProductView = $('#views-exposed-form-new-products-default');
+              var $newProductView = $('#views-exposed-form-new-products-default, #views-exposed-form-new-products-new-products-block');
               $newProductView.find('input[type=submit]').click();
             });
           }
