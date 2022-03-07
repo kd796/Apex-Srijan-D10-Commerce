@@ -3,6 +3,12 @@
 
   Drupal.behaviors.componentNewProducts = {
     attach: function (context, settings) {
+      $('.view-new-products').once().each(function () {
+        // Scroll down to the products when loading the category page.
+        $('.view-new-products').attr('style', 'scroll-margin: 50px !important;');
+        $('.view-new-products')[0].scrollIntoView();
+      });
+
       $('.view-new-products:not(.view-new-products--js-initialized)').each(function (index) {
         var $new_products_view = $(this);
         var $viewFilterIcon = $new_products_view.find('.view-header .filter-icon');
