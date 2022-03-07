@@ -14,6 +14,21 @@
  * View
  */
 
+.mobile-view-filter-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.2rem;
+
+  .filter-icon {
+    @include icon('filter', after);
+  }
+
+  @include media('>=md') {
+    .filter-icon {
+      visibility: hidden;
+    }
+  }
+}
 
 .view-media-pages {
   display: grid;
@@ -35,22 +50,6 @@
     .controls {
       text-align: right;
       width: 25%;
-    }
-
-    .filter-icon {
-      @include icon('filter', after);
-
-      cursor: pointer;
-      display: inline-block;
-      font-size: 18px;
-      margin-right: 20px;
-    }
-
-    .sort-icon {
-      @include icon('sort', after);
-
-      cursor: pointer;
-      display: inline-block;
     }
   }
 
@@ -214,6 +213,30 @@
     .views-row {
       .node--view-mode-teaser {
         width: 100%;
+      }
+    }
+  }
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding-left: 0;
+
+  .chip {
+    background-color: $black;
+    color: $white;
+    margin: 0.2rem;
+    padding: 0.2rem 0.4rem;
+    white-space: nowrap;
+
+    .chip-close-icon {
+
+      &::before {
+        font-family: 'themeIcons';
+        content: icon-char('close');
+        margin-left: 1rem;
       }
     }
   }

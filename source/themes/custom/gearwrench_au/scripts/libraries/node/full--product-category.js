@@ -75,9 +75,6 @@
     attach: function (context, settings) {
       drupalSettings.selectedAttributes = $('#edit-field-product-specifications-target-id').val();
 
-      // Scroll down to the products when loading the category page.
-      $('#system-breadcrumb')[0].scrollIntoView();
-
       let catArray = [];
       let setArray = [];
       let specArray = drupalSettings.selectedAttributes.split(', ');
@@ -144,6 +141,9 @@
   Drupal.behaviors.productCategoryFilterTabs = {
     attach: function (context, settings) {
       $('.gearwrench-product-category-filters').once('product-category-filter-tabs').each(function (index) {
+        // Scroll down to the products when loading the category page.
+        $('.product-category-view-section')[0].scrollIntoView();
+
         // Initialize variables.
         var $widget = $(this);
         var $accordions = $widget.find('fieldset');

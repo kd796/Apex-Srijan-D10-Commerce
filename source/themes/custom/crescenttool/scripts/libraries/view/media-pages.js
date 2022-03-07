@@ -53,11 +53,19 @@
               var boxInfo = this.dataset.boxinfo.split('_');
               var checkedBox = $('#' + boxInfo[0]);
               checkedBox[0].checked = false;
-              var $mediaView = $('#views-exposed-form-media-pages-embed-1');
+              var $mediaView = $('#views-exposed-form-media-pages-embed-1, #views-exposed-form-media-pages-block-1');
+
               $mediaView.find('input[type=submit]').click();
             });
           }
         }
+      });
+
+      $(window).bind('load', function () {
+        $('.view-media-pages').once().each(function () {
+          // Scroll down to the products when loading the category page.
+          $('.view-media-pages')[0].scrollIntoView();
+        });
       });
     }
   };
