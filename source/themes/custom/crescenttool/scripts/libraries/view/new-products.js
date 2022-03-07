@@ -64,7 +64,7 @@
               var boxInfo = this.dataset.boxinfo.split('_');
               var checkedBox = $('#' + boxInfo[0]);
               checkedBox[0].checked = false;
-              var $newProductView = $('#views-exposed-form-new-products-default');
+              var $newProductView = $('#views-exposed-form-new-products-default, #views-exposed-form-new-products-new-products-block');
               $newProductView.find('input[type=submit]').click();
             });
           }
