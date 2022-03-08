@@ -1,7 +1,7 @@
 @charset 'UTF-8';
 
 // -----------------------------------------------------------------------------
-// Libraries/Node: Full Default 
+// Libraries/Node: Full Default
 // -----------------------------------------------------------------------------
 
 /**
@@ -124,137 +124,140 @@
       }
     }
 
-    .view-filters {
-      display: none;
-      grid-column: 1;
-
-      @include media('>=md') {
-        display: block;
-        grid-row-start: 1;
-        grid-row-end: 5;
-        padding-right: 4rem;
-      }
-
-      .fieldset-legend {
+    @include media('<md') {
+      .view-filters {
         display: none;
-      }
-
-      &.mobile-show {
-        display: flex;
-        flex-direction: column;
-        background-color: #FFFFFF;
-        box-shadow: 0 0 3rem 5rem rgba(0, 0, 0, 0.6);
-        bottom: 0;
-        overflow: scroll;
-        padding-top: 75px;
-        padding-left: 1rem;
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 85vw;
-        z-index: 499;
-
-        &.hide {
-          display: none;
-          z-index: -5;
-        }
-
-        .views-exposed-form.bef-exposed-form {
-          order: 9;
-        }
-
-        .fieldgroup {
-          //order: 2;
-          width: 85%;
-        }
-
-        .mobile-filter-header {
-          border-bottom: 1px solid #000000;
-          height: 3rem;
-          max-width: 100%;
-          order: 3;
-        }
-
-        .mobile-filter-header-inner {
-          align-items: center;
-          display: flex;
-          height: 3rem;
-          justify-content: space-between;
-          padding-right: 1.5rem;
-        }
-
-        .mobile-close-icon {
-          height: 2rem;
-          width: 2rem;
-
-          &::before {
-            font-family: 'themeIcons';
-            content: icon-char('close');
-          }
-        }
-
-        legend {
-          display: none;
-        }
-      }
-
-      legend {
-        @include type-header(h6, $black, included);
-        margin-bottom: 1rem;
-        padding: 1rem 0;
-        position: relative;
-        width: 100%;
+        grid-column: 1;
 
         .fieldset-legend {
+          display: none;
+        }
+
+        &.mobile-show {
           display: flex;
+          flex-direction: column;
+          background-color: #FFFFFF;
+          box-shadow: 0 0 3rem 5rem rgba(0, 0, 0, 0.6);
+          bottom: 0;
+          left: 15vw;
+          overflow: scroll;
+          padding-top: 75px;
+          padding-left: 1rem;
+          position: fixed;
+          top: 0;
+          right: 0;
+          width: 85vw;
+          z-index: 499;
+
+          &.hide {
+            display: none;
+            z-index: -5;
+          }
+
+          .views-exposed-form.bef-exposed-form {
+            order: 9;
+          }
+
+          .fieldgroup {
+            width: 85%;
+          }
+
+          .mobile-filter-header {
+            border-bottom: 1px solid #000000;
+            height: 3rem;
+            max-width: 100%;
+            order: 3;
+          }
+
+          .mobile-filter-header-inner {
+            align-items: center;
+            display: flex;
+            height: 3rem;
+            justify-content: space-between;
+            padding-right: 1.5rem;
+          }
+
+          .mobile-close-icon {
+            height: 2rem;
+            width: 2rem;
+
+            &::before {
+              font-family: 'themeIcons';
+              content: icon-char('close');
+            }
+          }
+
+          legend {
+            width: 85vw;
+
+            .fieldset-legend {
+              padding-right: 3.8rem;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    @include media('>=md') {
+      .view-filters {
+        display: block;
+        grid-column: 1;
+        grid-row-start: 1;
+        grid-row-end: 5;
+        padding-right: rem(24px);
+
+        legend {
+          @include type-header(h6, black, included);
+          margin-bottom: 1rem;
+          padding: 1rem 0;
           position: relative;
-          align-items: center;
-          justify-content: space-between;
-        }
-      }
+          width: 100%;
 
-      fieldset {
-        margin: 0;
-        padding: 0;
-      }
+          .fieldset-legend {
+            @include icon('arrow', after, false);
+            display: flex;
+            position: relative;
+            align-items: center;
+            justify-content: space-between;
 
-      .form-checkboxes input[type='checkbox'] + label:before {
-        top: -.125rem;
-      }
+            &::after {
+              transform: rotate(90deg);
+            }
+          }
 
-      .form-checkboxes input[type='checkbox'] + label:after {
-        top: .125rem;
-      }
-
-      .form-checkboxes input[type='checkbox']:not(:checked) + label:before {
-        background-color: transparent;
-      }
-
-      .bef-nested {
-        ul {
-          list-style-type: none;
-        }
-
-        > ul {
-          padding-inline-start: 0;
-
-          > li {
-            margin-bottom: 3rem;
+          &:after {
+            background-color: $gray-40;
+            bottom: 0;
+            content: '';
+            height: 1px;
+            left: 0;
+            position: absolute;
+            width: 100%;
           }
         }
 
-        // Target the first level checkboxes for styles.
-        > ul > li > .form-item > label {
-          @include type-header(h6, $black, included);
-
-          display: block;
-          border-bottom: 1px solid #CECACA;
-          padding-bottom: 1rem;
-          padding-left: 1.75rem;
+        fieldset {
+          margin: 0;
+          padding: 0;
         }
 
         .form-item {
-          margin-bottom: 0.5rem !important;
+          font-size: rem(14px);
+          margin-bottom: 1rem !important;
+          width: 100%;
+        }
+
+        .form-checkboxes input[type='checkbox'] + label:before {
+          top: -.125rem;
+        }
+
+        .form-checkboxes input[type='checkbox'] + label:after {
+          top: .125rem;
+        }
+
+        .form-checkboxes input[type='checkbox']:not(:checked) + label:before {
+          background-color: transparent;
         }
       }
     }
