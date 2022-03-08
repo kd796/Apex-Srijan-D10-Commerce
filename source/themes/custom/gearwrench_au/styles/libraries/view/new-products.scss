@@ -81,7 +81,7 @@
 
       ul {
         padding-left: 1.5rem;
-        margin-top: -0.25rem
+        margin-top: -0.25rem;
       }
 
       li > ul li:first-child {
@@ -154,11 +154,13 @@
     }
 
     .form-checkboxes input[type='checkbox'] + label:before {
-      top: -.125rem;
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     .form-checkboxes input[type='checkbox'] + label:after {
-      top: .125rem;
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     .form-checkboxes input[type='checkbox']:not(:checked) + label:before {
