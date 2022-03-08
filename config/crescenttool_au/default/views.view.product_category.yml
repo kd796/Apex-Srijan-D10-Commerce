@@ -393,7 +393,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: false
-          content: '<div class=''filter-icon''></div>'
+          content: ''
           tokenize: false
       footer: {  }
       display_extenders:
@@ -432,10 +432,10 @@ display:
           text_input_required_format: full_html
           bef:
             general:
-              autosubmit: false
+              autosubmit: true
               autosubmit_exclude_textfield: false
               autosubmit_textfield_delay: 500
-              autosubmit_hide: false
+              autosubmit_hide: true
               input_required: false
               allow_secondary: false
               secondary_label: 'Advanced options'
@@ -565,7 +565,7 @@ display:
           exposed: true
           expose:
             operator_id: field_product_classifications_target_id_op
-            label: 'Product Classifications'
+            label: Category
             description: ''
             use_operator: false
             operator: field_product_classifications_target_id_op

@@ -1,7 +1,7 @@
 @charset 'UTF-8';
 
 // -----------------------------------------------------------------------------
-// Libraries/Node: Full Default 
+// Libraries/Node: Full Default
 // -----------------------------------------------------------------------------
 
 /**
@@ -86,10 +86,12 @@
     display: grid;
     gap: rem(24px); // sass-lint:disable-line no-misspelled-properties
     grid-auto-rows: minmax(20px, auto);
+    grid-template-columns: repeat(3, 1fr);
 
     @include media('<md') {
       gap: unset; // sass-lint:disable-line no-misspelled-properties
       gap-column: rem(24px); // sass-lint:disable-line no-misspelled-properties
+      grid-template-columns: repeat(2, 1fr);
     }
 
     .view-header {
@@ -125,136 +127,201 @@
     }
 
     .view-filters {
-      display: none;
-      grid-column: 1;
-
-      @include media('>=md') {
-        display: block;
-        grid-row-start: 1;
-        grid-row-end: 5;
-        padding-right: 4rem;
+      .form-item {
+        margin-bottom: .75rem !important;
       }
 
-      .fieldset-legend {
-        display: none;
+      .form-checkboxes li {
+        list-style: none;
       }
 
-      &.mobile-show {
-        display: flex;
-        flex-direction: column;
-        background-color: #FFFFFF;
-        box-shadow: 0 0 3rem 5rem rgba(0, 0, 0, 0.6);
-        bottom: 0;
-        overflow: scroll;
-        padding-top: 75px;
-        padding-left: 1rem;
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 85vw;
-        z-index: 499;
+      .form-checkboxes > ul {
+        margin-left: 0;
+        padding-left: 0;
 
-        &.hide {
-          display: none;
-          z-index: -5;
+        ul {
+          padding-left: 1.5rem;
+          margin-top: -0.25rem;
         }
 
-        .views-exposed-form.bef-exposed-form {
-          order: 9;
-        }
-
-        .fieldgroup {
-          //order: 2;
-          width: 85%;
-        }
-
-        .mobile-filter-header {
-          border-bottom: 1px solid #000000;
-          height: 3rem;
-          max-width: 100%;
-          order: 3;
-        }
-
-        .mobile-filter-header-inner {
-          align-items: center;
-          display: flex;
-          height: 3rem;
-          justify-content: space-between;
-          padding-right: 1.5rem;
-        }
-
-        .mobile-close-icon {
-          height: 2rem;
-          width: 2rem;
+        li > ul li:first-child {
+          position: relative;
 
           &::before {
-            font-family: 'themeIcons';
-            content: icon-char('close');
+            background-image: url('../../../icons/l-shaped-line.svg');
+            background-size: 12px 20px;
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: -8px;
+            left: -1rem;
+            width: 12px;
+            height: 20px;
           }
         }
-
-        legend {
-          display: none;
-        }
-      }
-
-      legend {
-        @include type-header(h6, $black, included);
-        margin-bottom: 1rem;
-        padding: 1rem 0;
-        position: relative;
-        width: 100%;
-
-        .fieldset-legend {
-          display: flex;
-          position: relative;
-          align-items: center;
-          justify-content: space-between;
-        }
-      }
-
-      fieldset {
-        margin: 0;
-        padding: 0;
       }
 
       .form-checkboxes input[type='checkbox'] + label:before {
-        top: -.125rem;
+        top: 50%;
+        transform: translateY(-50%);
       }
 
       .form-checkboxes input[type='checkbox'] + label:after {
-        top: .125rem;
+        top: 50%;
+        transform: translateY(-50%);
       }
 
       .form-checkboxes input[type='checkbox']:not(:checked) + label:before {
         background-color: transparent;
       }
+    }
 
-      .bef-nested {
-        ul {
-          list-style-type: none;
+    @include media('<md') {
+      .view-filters {
+        display: none;
+
+        .fieldset-legend {
+          display: none;
         }
 
-        > ul {
-          padding-inline-start: 0;
+        &.mobile-show {
+          display: flex;
+          flex-direction: column;
+          background-color: #FFFFFF;
+          box-shadow: 0 0 3rem 5rem rgba(0, 0, 0, 0.6);
+          bottom: 0;
+          left: 15vw;
+          overflow: scroll;
+          padding-top: 75px;
+          padding-left: 1rem;
+          position: fixed;
+          top: 0;
+          right: 0;
+          width: 85vw;
+          z-index: 499;
 
-          > li {
-            margin-bottom: 3rem;
+          &.hide {
+            display: none;
+            z-index: -5;
+          }
+
+          .views-exposed-form.bef-exposed-form {
+            order: 9;
+          }
+
+          .fieldgroup {
+            width: 85%;
+          }
+
+          .mobile-filter-header {
+            border-bottom: 1px solid #000000;
+            height: 3rem;
+            max-width: 100%;
+            order: 3;
+          }
+
+          .mobile-filter-header-inner {
+            align-items: center;
+            display: flex;
+            height: 3rem;
+            justify-content: space-between;
+            padding-right: 1.5rem;
+          }
+
+          .mobile-close-icon {
+            height: 2rem;
+            width: 2rem;
+
+            &::before {
+              font-family: 'themeIcons';
+              content: icon-char('close');
+            }
+          }
+
+          legend {
+            width: 85vw;
+
+            .fieldset-legend {
+              padding-right: 3.8rem;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    @include media('>=md') {
+      .view-filters {
+        display: block;
+        grid-column: 1;
+        grid-row-start: 1;
+        grid-row-end: 5;
+        padding-right: rem(24px);
+        height: 100vh;
+        overflow: auto scroll;
+
+        scrollbar-width: thin; // sass-lint:disable-line no-misspelled-properties
+        scrollbar-color: $primary-red transparent; // sass-lint:disable-line no-misspelled-properties
+
+        &::-webkit-scrollbar {
+          width: 5px;               /* width of the entire scrollbar */
+        }
+
+        &::-webkit-scrollbar-track {
+          background: transparent;        /* color of the tracking area */
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: $primary-red;    /* color of the scroll thumb */
+          border-radius: 20px;       /* roundness of the scroll thumb */
+          border: 3px solid transparent;  /* creates padding around scroll thumb */
+        }
+
+        legend {
+          @include type-header(h6, black, included);
+          margin-bottom: 1rem;
+          padding: 1rem 0;
+          position: relative;
+          width: 100%;
+
+          .fieldset-legend {
+            @include icon('arrow', after, false);
+            display: flex;
+            position: relative;
+            align-items: center;
+            justify-content: space-between;
+
+            &::after {
+              transform: rotate(90deg);
+            }
+          }
+
+          &:after {
+            background-color: $gray-40;
+            bottom: 0;
+            content: '';
+            height: 1px;
+            left: 0;
+            position: absolute;
+            width: 100%;
           }
         }
 
-        // Target the first level checkboxes for styles.
-        > ul > li > .form-item > label {
-          @include type-header(h6, $black, included);
+        .component-accordion-item--open legend {
+          .fieldset-legend:after {
+            transform: rotate(-90deg);
+          }
+        }
 
-          display: block;
-          border-bottom: 1px solid #CECACA;
-          padding-bottom: 1rem;
-          padding-left: 1.75rem;
+        fieldset {
+          margin: 0;
+          padding: 0;
         }
 
         .form-item {
-          margin-bottom: 0.5rem !important;
+          font-size: rem(14px);
+          margin-bottom: 1rem !important;
+          width: 100%;
         }
       }
     }
