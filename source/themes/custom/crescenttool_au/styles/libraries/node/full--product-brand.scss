@@ -86,12 +86,12 @@
     display: grid;
     gap: rem(24px); // sass-lint:disable-line no-misspelled-properties
     grid-auto-rows: minmax(20px, auto);
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
 
     @include media('<md') {
       gap: unset; // sass-lint:disable-line no-misspelled-properties
       gap-column: rem(24px); // sass-lint:disable-line no-misspelled-properties
-      grid-template-columns: repeat(2,1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
 
     .view-header {
@@ -275,12 +275,44 @@
           width: 100%;
         }
 
+        .form-checkboxes li {
+          list-style: none;
+        }
+
+        .form-checkboxes > ul {
+          margin-left: 0;
+          padding-left: 0;
+
+          ul {
+            padding-left: 1.5rem;
+            margin-top: -0.25rem;
+          }
+
+          li > ul li:first-child {
+            position: relative;
+
+            &::before {
+              background-image: url('../../../icons/l-shaped-line.svg');
+              background-size: 12px 20px;
+              content: '';
+              display: inline-block;
+              position: absolute;
+              top: -8px;
+              left: -1rem;
+              width: 12px;
+              height: 20px;
+            }
+          }
+        }
+
         .form-checkboxes input[type='checkbox'] + label:before {
-          top: -.125rem;
+          top: 50%;
+          transform: translateY(-50%);
         }
 
         .form-checkboxes input[type='checkbox'] + label:after {
-          top: .125rem;
+          top: 50%;
+          transform: translateY(-50%);
         }
 
         .form-checkboxes input[type='checkbox']:not(:checked) + label:before {
