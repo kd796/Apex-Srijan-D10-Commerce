@@ -3,6 +3,16 @@
 
   Drupal.behaviors.componentProductBrand = {
     attach: function (context, settings) {
+
+      /**
+       * This is the Accordion functionality.
+       *
+       * Business Rules:
+       *   - The first item will open on page load unless the user has selected a different item.
+       *   - If any item is selected, its filter group will be expanded.
+       *
+       */
+
       $('#views-exposed-form-product-category-products-by-brand').once('product-category-products-by-brand-tabs').each(function (index) {
         // Initialize variables.
         var $widget = $(this);
@@ -19,6 +29,7 @@
           var $accordion = $(this);
           var $accordionContent = $accordion.children('.fieldset-wrapper');
 
+          /* eslint-disable-next-line max-nested-callbacks */
           $accordionContent.find('input').each(function () {
             let checked = $(this).prop('checked');
             let type = $(this).prop('type');
