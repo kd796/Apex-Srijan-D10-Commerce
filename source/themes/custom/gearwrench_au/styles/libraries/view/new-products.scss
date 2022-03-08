@@ -16,6 +16,13 @@
 
 .view-new-products {
   display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: rem(24px); // sass-lint:disable-line no-misspelled-properties
+  grid-auto-rows: minmax(100px, auto);
+
+  @include media('>=md') {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
   .view-header {
     @include type-header(h6, black, included);
@@ -68,11 +75,9 @@
 
     @include media('>=md') {
       display: block;
-      margin-right: 1rem;
-
-      legend {
-        min-width: 15rem;
-      }
+      grid-column: 1;
+      grid-row-start: 1;
+      grid-row-end: 5;
     }
 
     .form-checkboxes > ul {
@@ -151,6 +156,7 @@
     .form-item {
       font-size: rem(14px);
       margin-bottom: 1rem !important;
+      width: 100%;
     }
 
     .form-checkboxes input[type='checkbox'] + label:before {
@@ -238,6 +244,10 @@
 
   .view-container {
     grid-column: 2;
+
+    @include media('>=md') {
+      grid-column: 2 / 4;
+    }
   }
 
   .view-content {
