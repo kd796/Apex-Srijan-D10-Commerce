@@ -4,7 +4,6 @@
   Drupal.behaviors.componentMediaPages = {
     attach: function (context, settings) {
       $('.view-media-pages:not(.view-media-pages--js-initialized)').once('media-filter').each(function (index) {
-
         if (window.innerWidth <= 768) {
           var $viewContainer = $('.views-element-container');
 
