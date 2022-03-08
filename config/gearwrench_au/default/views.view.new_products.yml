@@ -130,8 +130,8 @@ display:
                 select_all_none: false
                 select_all_none_nested: false
                 display_inline: false
-                options_show_only_used: 1
-                options_show_only_used_filtered: 0
+                options_show_only_used: 0
+                options_show_only_used_filtered: 1
       access:
         type: perm
         options:
@@ -295,7 +295,7 @@ display:
           reduce_duplicates: false
           vid: product_classifications
           type: select
-          hierarchy: false
+          hierarchy: true
           limit: true
           error_message: false
       style:

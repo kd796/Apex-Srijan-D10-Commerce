@@ -132,6 +132,9 @@
   Drupal.behaviors.productCategoryFilterTabs = {
     attach: function (context, settings) {
       $('.gearwrench-product-category-filters').once('product-category-filter-tabs').each(function (index) {
+        // Scroll down to the products when loading the category page.
+        $('.product-category-view-section')[0].scrollIntoView();
+
         // Initialize variables.
         var $widget = $(this);
         var $accordions = $widget.find('fieldset');
