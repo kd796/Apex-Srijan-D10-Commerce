@@ -103,14 +103,15 @@
       $('.view-product-category:not(.view-product-category--js-initialized)').once('product-brand-filter').each(function (index) {
         // Logic for mobile filtering menu.
         if (window.innerWidth <= 768) {
-          var $mobileMenuIcon = $('.filter-icon');
-          var $mobileCloseIcon;
           var $mobileProductBrandFilters = $('.view-filters');
           var $viewHeader = $('.view-header');
 
+          $viewHeader.append('<div class="mobile-view-filter-header"><span class="filter-icon"></span></div>');
           $mobileProductBrandFilters.append('<div class="mobile-filter-header"><div class="mobile-filter-header-inner"><span>Filter</span><span class="mobile-close-icon"></span></div></div>');
-          $mobileCloseIcon = $('.mobile-close-icon');
           $viewHeader.after('<div class="chip-container"><ul class="chips" role="list"></ul></div>');
+
+          var $mobileMenuIcon = $('.filter-icon');
+          var $mobileCloseIcon = $('.mobile-close-icon');
 
           $mobileMenuIcon.click(function () {
             $mobileProductBrandFilters.addClass('mobile-show');
