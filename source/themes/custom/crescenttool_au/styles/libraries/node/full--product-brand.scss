@@ -86,10 +86,12 @@
     display: grid;
     gap: rem(24px); // sass-lint:disable-line no-misspelled-properties
     grid-auto-rows: minmax(20px, auto);
+    grid-template-columns: repeat(3,1fr);
 
     @include media('<md') {
       gap: unset; // sass-lint:disable-line no-misspelled-properties
       gap-column: rem(24px); // sass-lint:disable-line no-misspelled-properties
+      grid-template-columns: repeat(2,1fr);
     }
 
     .view-header {
@@ -206,6 +208,25 @@
         grid-row-start: 1;
         grid-row-end: 5;
         padding-right: rem(24px);
+        height: 100vh;
+        overflow: auto scroll;
+
+        scrollbar-width: thin; // sass-lint:disable-line no-misspelled-properties
+        scrollbar-color: $primary-red transparent; // sass-lint:disable-line no-misspelled-properties
+
+        &::-webkit-scrollbar {
+          width: 5px;               /* width of the entire scrollbar */
+        }
+
+        &::-webkit-scrollbar-track {
+          background: transparent;        /* color of the tracking area */
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: $primary-red;    /* color of the scroll thumb */
+          border-radius: 20px;       /* roundness of the scroll thumb */
+          border: 3px solid transparent;  /* creates padding around scroll thumb */
+        }
 
         legend {
           @include type-header(h6, black, included);
@@ -234,6 +255,12 @@
             left: 0;
             position: absolute;
             width: 100%;
+          }
+        }
+
+        .component-accordion-item--open legend {
+          .fieldset-legend:after {
+            transform: rotate(-90deg);
           }
         }
 
