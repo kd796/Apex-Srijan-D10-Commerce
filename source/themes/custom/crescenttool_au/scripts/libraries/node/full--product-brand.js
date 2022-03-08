@@ -13,7 +13,7 @@
        *
        */
 
-      $('#views-exposed-form-product-category-products-by-brand').once('product-category-products-by-brand-tabs').each(function (index) {
+      $('.views-exposed-form').once('product-category-products-by-brand-accordion').each(function (index) {
         // Initialize variables.
         var $widget = $(this);
         var $accordions = $widget.find('fieldset');
