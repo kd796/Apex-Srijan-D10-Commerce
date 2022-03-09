@@ -398,23 +398,6 @@ function crescenttool_au_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
- * Implements hook alter on the new products filter form.
- */
-function crescenttool_au_form_views_exposed_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
-  $view = $form_state->getStorage('view');
-
-  if (($view['view']->id() == 'new_products')) {
-    foreach ($form['category']['#options'] as $key => $v) {
-      $parent = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($key);
-
-      if (!empty($parent)) {
-        unset($form['category']['#options'][$key]);
-      }
-    }
-  }
-}
-
-/**
  * Implements preprocess_taxonomy_term().
  */
 function crescenttool_au_preprocess_taxonomy_term(array &$variables) {

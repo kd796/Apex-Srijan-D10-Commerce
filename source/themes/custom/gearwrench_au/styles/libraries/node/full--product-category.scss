@@ -13,6 +13,7 @@
 /**
  * Component
  */
+
 .node--type-product-category.node--view-mode-full .node__content {
   .page-heading {
     @include flex();
@@ -136,6 +137,7 @@
           height: 3rem;
           max-width: 100%;
           order: 1;
+          margin-bottom: rem(20px);
         }
 
         .mobile-filter-header-inner {
@@ -164,7 +166,6 @@
             width: 100%;
           }
         }
-
       }
 
       @include media('>=md') {
@@ -289,6 +290,30 @@
           .node--view-mode-teaser {
             width: 100%;
           }
+        }
+      }
+    }
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding-left: 0;
+
+    .chip {
+      background-color: $black;
+      color: $white;
+      margin: 0.2rem;
+      padding: 0.2rem 0.4rem;
+      white-space: nowrap;
+
+      .chip-close-icon {
+
+        &::before {
+          font-family: 'themeIcons';
+          content: icon-char('close');
+          margin-left: 1rem;
         }
       }
     }
