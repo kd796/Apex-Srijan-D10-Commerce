@@ -15,12 +15,10 @@
  */
 
 .view-new-products {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: rem(24px); // sass-lint:disable-line no-misspelled-properties
-  grid-auto-rows: minmax(100px, auto);
-
   @include media('>=md') {
+    display: grid;
+    gap: rem(24px); // sass-lint:disable-line no-misspelled-properties
+    grid-auto-rows: minmax(100px, auto);
     grid-template-columns: repeat(3, 1fr);
   }
 
@@ -209,6 +207,7 @@
         height: 3rem;
         max-width: 100%;
         order: 3;
+        margin-bottom: rem(20px);
       }
 
       .mobile-filter-header-inner {
