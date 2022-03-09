@@ -248,7 +248,7 @@
       });
 
       // Logic for mobile filtering menu.
-      if (window.innerWidth <= 768) {
+      if (window.innerWidth < 768) {
         var $mobileMenuIcon = $('.filter-icon');
         var $mobileCloseIcon;
         var $mobileCategoryFilters = $('.crescenttool-product-category-filters');

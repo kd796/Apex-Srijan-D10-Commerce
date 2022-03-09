@@ -13,7 +13,7 @@
        *
        */
 
-      $('#views-exposed-form-product-category-products-by-brand').once('product-category-products-by-brand-tabs').each(function (index) {
+      $('.views-exposed-form').once('product-category-products-by-brand-accordion').each(function (index) {
         // Initialize variables.
         var $widget = $(this);
         var $accordions = $widget.find('fieldset');
@@ -113,7 +113,7 @@
 
       $('.view-product-category:not(.view-product-category--js-initialized)').once('product-brand-filter').each(function (index) {
         // Logic for mobile filtering menu.
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth < 768) {
           var $mobileProductBrandFilters = $('.view-filters');
           var $viewHeader = $('.view-header');
 
