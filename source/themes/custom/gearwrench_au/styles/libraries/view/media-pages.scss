@@ -53,14 +53,105 @@
     }
   }
 
+  .view-filters {
+    legend {
+      @include type-header(h6, black, included);
+      margin-bottom: 1rem;
+      padding: 1rem 0;
+      position: relative;
+      width: 98%;
+
+      .fieldset-legend {
+        @include icon('arrow', after, false);
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: space-between;
+
+        &::after {
+          left: -10px;
+          position: relative;
+          transform: rotate(90deg);
+        }
+      }
+
+      &:after {
+        background-color: $gray-40;
+        bottom: 0;
+        content: '';
+        height: 1px;
+        left: 0;
+        position: absolute;
+        width: 100%;
+      }
+    }
+
+    .component-accordion-item--open legend {
+      .fieldset-legend:after {
+        transform: rotate(-90deg);
+      }
+    }
+
+    fieldset {
+      margin: 0;
+      padding: 0;
+    }
+
+    .form-item {
+      font-size: rem(14px);
+      margin-bottom: .75rem !important;
+      width: 100%;
+    }
+
+    .form-checkboxes li {
+      list-style: none;
+    }
+
+    .form-checkboxes > ul {
+      margin-left: 0;
+      padding-left: 0;
+
+      ul {
+        padding-left: 1.5rem;
+        margin-top: -0.25rem;
+      }
+
+      li > ul li:first-child {
+        position: relative;
+
+        &::before {
+          background-image: url('../../../icons/l-shaped-line.svg');
+          background-size: 12px 20px;
+          content: '';
+          display: inline-block;
+          position: absolute;
+          top: -8px;
+          left: -1rem;
+          width: 12px;
+          height: 20px;
+        }
+      }
+    }
+
+    .form-checkboxes input[type='checkbox'] + label:before {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .form-checkboxes input[type='checkbox'] + label:after {
+      top: 50%;
+      transform: translateY(-50%);
+      padding-top: rem(4px);
+    }
+
+    .form-checkboxes input[type='checkbox']:not(:checked) + label:before {
+      background-color: transparent;
+    }
+  }
+
   @include media('<md') {
     .view-filters {
       display: none;
-      grid-column: 1;
-
-      .fieldset-legend {
-        display: none;
-      }
 
       &.mobile-show {
         display: flex;
@@ -96,6 +187,7 @@
           height: 3rem;
           max-width: 100%;
           order: 3;
+          margin-bottom: rem(20px);
         }
 
         .mobile-filter-header-inner {
@@ -129,61 +221,30 @@
   }
 
   @include media('>=md') {
-    .view-filters .views-exposed-form {
+    .view-filters {
       display: block;
       grid-column: 1;
+      grid-row-start: 1;
+      grid-row-end: 5;
+      padding-right: rem(24px);
+      height: 100vh;
+      overflow: auto scroll;
 
-      legend {
-        @include type-header(h6, black, included);
-        margin-bottom: 1rem;
-        padding: 1rem 0;
-        position: relative;
-        width: 100%;
+      scrollbar-width: thin; // sass-lint:disable-line no-misspelled-properties
+      scrollbar-color: $primary-orange transparent; // sass-lint:disable-line no-misspelled-properties
 
-        .fieldset-legend {
-          @include icon('arrow', after, false);
-          display: flex;
-          position: relative;
-          align-items: center;
-          justify-content: space-between;
-
-          &::after {
-            transform: rotate(90deg);
-          }
-        }
-
-        &:after {
-          background-color: $gray-40;
-          bottom: 0;
-          content: '';
-          height: 1px;
-          left: 0;
-          position: absolute;
-          width: 100%;
-        }
+      &::-webkit-scrollbar {
+        width: 5px; /* width of the entire scrollbar */
       }
 
-      fieldset {
-        margin: 0;
-        padding: 0;
+      &::-webkit-scrollbar-track {
+        background: transparent; /* color of the tracking area */
       }
 
-      .form-item {
-        font-size: rem(14px);
-        margin-bottom: 1rem !important;
-        width: 100%;
-      }
-
-      .form-checkboxes input[type='checkbox'] + label:before {
-        top: -.125rem;
-      }
-
-      .form-checkboxes input[type='checkbox'] + label:after {
-        top: .125rem;
-      }
-
-      .form-checkboxes input[type='checkbox']:not(:checked) + label:before {
-        background-color: transparent;
+      &::-webkit-scrollbar-thumb {
+        background-color: $primary-orange; /* color of the scroll thumb */
+        border-radius: 20px; /* roundness of the scroll thumb */
+        border: 3px solid transparent; /* creates padding around scroll thumb */
       }
     }
   }
@@ -232,7 +293,6 @@
     white-space: nowrap;
 
     .chip-close-icon {
-
       &::before {
         font-family: 'themeIcons';
         content: icon-char('close');

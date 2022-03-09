@@ -127,8 +127,53 @@
     }
 
     .view-filters {
+      legend {
+        @include type-header(h6, black, included);
+        margin-bottom: 1rem;
+        padding: 1rem 0;
+        position: relative;
+        width: 98%;
+
+        .fieldset-legend {
+          @include icon('arrow', after, false);
+          display: flex;
+          position: relative;
+          align-items: center;
+          justify-content: space-between;
+
+          &::after {
+            left: -10px;
+            position: relative;
+            transform: rotate(90deg);
+          }
+        }
+
+        &:after {
+          background-color: $gray-40;
+          bottom: 0;
+          content: '';
+          height: 1px;
+          left: 0;
+          position: absolute;
+          width: 100%;
+        }
+      }
+
+      .component-accordion-item--open legend {
+        .fieldset-legend:after {
+          transform: rotate(-90deg);
+        }
+      }
+
+      fieldset {
+        margin: 0;
+        padding: 0;
+      }
+
       .form-item {
+        font-size: rem(14px);
         margin-bottom: .75rem !important;
+        width: 100%;
       }
 
       .form-checkboxes li {
@@ -181,10 +226,6 @@
       .view-filters {
         display: none;
 
-        .fieldset-legend {
-          display: none;
-        }
-
         &.mobile-show {
           display: flex;
           flex-direction: column;
@@ -219,6 +260,7 @@
             height: 3rem;
             max-width: 100%;
             order: 3;
+            margin-bottom: rem(20px);
           }
 
           .mobile-filter-header-inner {
@@ -265,64 +307,17 @@
         scrollbar-color: $primary-red transparent; // sass-lint:disable-line no-misspelled-properties
 
         &::-webkit-scrollbar {
-          width: 5px;               /* width of the entire scrollbar */
+          width: 5px; /* width of the entire scrollbar */
         }
 
         &::-webkit-scrollbar-track {
-          background: transparent;        /* color of the tracking area */
+          background: transparent; /* color of the tracking area */
         }
 
         &::-webkit-scrollbar-thumb {
-          background-color: $primary-red;    /* color of the scroll thumb */
-          border-radius: 20px;       /* roundness of the scroll thumb */
-          border: 3px solid transparent;  /* creates padding around scroll thumb */
-        }
-
-        legend {
-          @include type-header(h6, black, included);
-          margin-bottom: 1rem;
-          padding: 1rem 0;
-          position: relative;
-          width: 100%;
-
-          .fieldset-legend {
-            @include icon('arrow', after, false);
-            display: flex;
-            position: relative;
-            align-items: center;
-            justify-content: space-between;
-
-            &::after {
-              transform: rotate(90deg);
-            }
-          }
-
-          &:after {
-            background-color: $gray-40;
-            bottom: 0;
-            content: '';
-            height: 1px;
-            left: 0;
-            position: absolute;
-            width: 100%;
-          }
-        }
-
-        .component-accordion-item--open legend {
-          .fieldset-legend:after {
-            transform: rotate(-90deg);
-          }
-        }
-
-        fieldset {
-          margin: 0;
-          padding: 0;
-        }
-
-        .form-item {
-          font-size: rem(14px);
-          margin-bottom: 1rem !important;
-          width: 100%;
+          background-color: $primary-red; /* color of the scroll thumb */
+          border-radius: 20px; /* roundness of the scroll thumb */
+          border: 3px solid transparent; /* creates padding around scroll thumb */
         }
       }
     }
