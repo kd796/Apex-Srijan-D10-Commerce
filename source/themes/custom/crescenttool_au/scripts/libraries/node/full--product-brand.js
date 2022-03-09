@@ -113,7 +113,7 @@
 
       $('.view-product-category:not(.view-product-category--js-initialized)').once('product-brand-filter').each(function (index) {
         // Logic for mobile filtering menu.
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth < 768) {
           var $mobileProductBrandFilters = $('.view-filters');
           var $viewHeader = $('.view-header');
 

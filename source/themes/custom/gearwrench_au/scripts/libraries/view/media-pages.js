@@ -113,7 +113,7 @@
 
       $('.view-media-pages:not(.view-media-pages--js-initialized)').once('media-filter').each(function (index) {
         // Logic for mobile filtering menu.
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth < 768) {
           var $viewContainer = $('.views-element-container');
 
           $viewContainer.prepend('<div class="mobile-view-filter-header"><span class="filter-icon"></span></div>');
