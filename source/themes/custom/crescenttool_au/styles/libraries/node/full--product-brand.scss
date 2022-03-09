@@ -14,13 +14,12 @@
  * Component
  */
 .node--type-product-brand.node--view-mode-full .node__content {
-
   .pager {
-    grid-column-start: 2;
+    grid-column-start: 1;
     grid-column-end: 4;
 
-    @include media('<md') {
-      grid-column-start: 1;
+    @include media('>=md') {
+      grid-column-start: 2;
     }
   }
 

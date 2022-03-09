@@ -32,17 +32,20 @@
 
 .view-media-pages {
   display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: rem(24px); // sass-lint:disable-line no-misspelled-properties
+  grid-auto-rows: minmax(20px, auto);
 
   @include media('>=md') {
-    column-gap: rem(40px);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .pager {
-    grid-column-start: 2;
+    grid-column-start: 1;
     grid-column-end: 4;
 
-    @include media('<md') {
-      grid-column-start: 1;
+    @include media('>=md') {
+      grid-column-start: 2;
     }
   }
 
@@ -258,14 +261,24 @@
     }
   }
 
-  .view-container {
-    grid-column: 2;
+  .views-element-container {
+    grid-column: 1 / 4;
+
+    @include media('>=md') {
+      grid-column: 2 / 4;
+    }
   }
 
   .view-content {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: rem(25px); // sass-lint:disable-line no-misspelled-properties
+
+    grid-column: 1 / 4;
+
+    @include media('>=md') {
+      grid-column: 2 / 4;
+    }
 
     @include media('>=sm') {
       grid-template-columns: repeat(3, 1fr);
@@ -277,7 +290,6 @@
 
     @include media('>=lg') {
       grid-template-columns: repeat(3, 1fr);
-      grid-column: 2 / 4;
     }
 
     .views-row {
@@ -288,24 +300,28 @@
   }
 }
 
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  padding-left: 0;
+.chip-container {
+  grid-column: 1 / 5;
 
-  .chip {
-    background-color: $black;
-    color: $white;
-    margin: 0.2rem;
-    padding: 0.2rem 0.4rem;
-    white-space: nowrap;
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding-left: 0;
 
-    .chip-close-icon {
-      &::before {
-        font-family: 'themeIcons';
-        content: icon-char('close');
-        margin-left: 1rem;
+    .chip {
+      background-color: $black;
+      color: $white;
+      margin: 0.2rem;
+      padding: 0.2rem 0.4rem;
+
+      .chip-close-icon {
+
+        &::before {
+          font-family: 'themeIcons';
+          content: icon-char('close');
+          margin-left: 1rem;
+        }
       }
     }
   }
