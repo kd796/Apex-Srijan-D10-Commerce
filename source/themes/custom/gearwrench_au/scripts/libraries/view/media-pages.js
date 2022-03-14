@@ -48,7 +48,7 @@
           var $accordion = $(this);
           var $accordionHeader = $accordion.children('legend');
           var $accordionContent = $accordion.children('.fieldset-wrapper');
-
+          console.log($accordion);
           // Generate the accordion tab (header) and panel (content) IDs.
           var accordionId = $accordion.attr('data-drupal-selector');
           var headerId = 'product-category-filter-item-' + accordionId + '__header';
@@ -57,6 +57,7 @@
           // If no accordions are open, open the first accordion.
           if (isSomethingOpen === false && accordionIndex === 0) {
             $accordion.addClass('component-accordion-item--open');
+            $accordion.addClass('product-category-filter-item---open');
           }
 
           // Determine whether this accordion needs to be open by default.
@@ -98,7 +99,8 @@
             var $accordionContent = $accordionHeader.siblings('.fieldset-wrapper');
             var $accordion = $accordionHeader.parent();
             var open = $accordion.hasClass('product-category-filter-item---open');
-
+            console.log(open);
+            console.log($accordionHeader);
             $accordion.toggleClass('product-category-filter-item---open', (!open));
             $accordion.toggleClass('component-accordion-item--open', (!open));
             $accordionHeader.attr('aria-selected', (open) ? 'false' : 'true');
