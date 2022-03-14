@@ -48,7 +48,7 @@
           var $accordion = $(this);
           var $accordionHeader = $accordion.children('legend');
           var $accordionContent = $accordion.children('.fieldset-wrapper');
-          console.log($accordion);
+
           // Generate the accordion tab (header) and panel (content) IDs.
           var accordionId = $accordion.attr('data-drupal-selector');
           var headerId = 'product-category-filter-item-' + accordionId + '__header';
@@ -99,8 +99,7 @@
             var $accordionContent = $accordionHeader.siblings('.fieldset-wrapper');
             var $accordion = $accordionHeader.parent();
             var open = $accordion.hasClass('product-category-filter-item---open');
-            console.log(open);
-            console.log($accordionHeader);
+
             $accordion.toggleClass('product-category-filter-item---open', (!open));
             $accordion.toggleClass('component-accordion-item--open', (!open));
             $accordionHeader.attr('aria-selected', (open) ? 'false' : 'true');
