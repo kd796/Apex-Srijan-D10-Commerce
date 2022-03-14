@@ -1197,11 +1197,8 @@ $mobile-menu-item-button-height: 7rem;
  * Offset page since header is fixed.
  */
 .page {
-  padding-top: $header-height-large;
+  padding-top: $header-height;
 
-  @include media('<=lg-plus') {
-    padding-top: $header-height;
-  }
   @include media('<lg') {
     padding-top: $header-height-mobile;
   }
