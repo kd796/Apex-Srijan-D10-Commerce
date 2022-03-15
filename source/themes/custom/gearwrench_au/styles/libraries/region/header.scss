@@ -1197,10 +1197,18 @@ $mobile-menu-item-button-height: 7rem;
  * Offset page since header is fixed.
  */
 .page {
-  padding-top: $header-height;
+  padding-top: $header-height-large;
+
+  @include media('<=lg-plus') {
+    padding-top: $header-height;
+  }
 
   @include media('<lg') {
     padding-top: $header-height-mobile;
+  }
+
+  body.page-node-type-landing-page & {
+    padding-top: $header-height;
   }
 
   .breadcrumb {
