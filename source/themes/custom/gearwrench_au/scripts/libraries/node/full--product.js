@@ -9,6 +9,8 @@
         var $sliderContainer = $component.find('.product-detail-slider__container');
         var $sliderWrapper = $sliderContainer.find('.field--name-field-product-images');
         var $sliderItems = $sliderContainer.find('.field--name-field-product-images .field__item');
+        var $sliderButtonPrev = $component.find('.swiper-button-prev');
+        var $sliderButtonNext = $component.find('.swiper-button-next');
 
         // Thumb Slider
         var $thumbsContainer = $component.find('.product-detail-slider__thumbs-container');
@@ -77,8 +79,8 @@
             effect: 'fade',
             loop: true,
             navigation: {
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev'
+              nextEl: $sliderButtonNext,
+              prevEl: $sliderButtonPrev
             },
             on: {
               init: function () {
@@ -124,6 +126,51 @@
   };
 
   Drupal.behaviors.productDetailModalImageslider = {
+    initModalSlider: function ($modalSliderContainer, $modalSliderButtonPrev, $modalSliderButtonNext) {
+      // eslint-disable-next-line
+      return new Swiper($modalSliderContainer, {
+        slidesPerView: 1,
+        slidesPerGroup: 1,
+        loop: true,
+        navigation: {
+          nextEl: $modalSliderButtonNext,
+          prevEl: $modalSliderButtonPrev
+        },
+        on: {
+          init: function () {
+            Drupal.behaviors.productDetailModalImageslider.updatePointerEvents();
+
+            // Use a timeout on init to make sure to catch contextual links.
+            setTimeout(Drupal.behaviors.swiper.updateSlideAria.bind($(this)[0]), 500);
+
+            if (typeof Drupal.blazy !== 'undefined') {
+              Drupal.blazy.init.revalidate();
+            }
+          },
+          resize: function () {
+            Drupal.behaviors.productDetailModalImageslider.updatePointerEvents();
+            Drupal.behaviors.swiper.updateSlideAria.apply($(this)[0]);
+
+            if (typeof Drupal.blazy !== 'undefined') {
+              Drupal.blazy.init.revalidate();
+            }
+          },
+          slideChangeTransitionEnd: function () {
+            Drupal.behaviors.swiper.updateSlideAria.apply($(this)[0]);
+            Drupal.behaviors.productDetailModalImageslider.updatePointerEvents();
+
+            if (typeof Drupal.blazy !== 'undefined') {
+              Drupal.blazy.init.revalidate();
+            }
+          }
+        },
+        touchEventsTarget: 'container'
+      });
+    },
+    updatePointerEvents: function () {
+      $('.swiper-slide').removeClass('active-pointer');
+      $('.swiper-slide-visible').addClass('active-pointer');
+    },
     attach: function (context, settings) {
       // Product image slider modal
       $('.field--name-field-product-images').click(function (event) {
@@ -133,14 +180,42 @@
         return false;
       });
 
-      // Modal Swiper Image Slider
-      var $modalComponent = $('.product-detail-modal-slider');
-      var $modalSliderContainer = $modalComponent.find('.product-detail-modal-slider__container');
-      var $modalSliderWrapper = $modalSliderContainer.find('.field--name-field-product-images');
-      var $modalSliderItems = $modalSliderContainer.find('.field--name-field-product-images .field__item');
+      // check for initialized
+      $('.product-detail-modal-slider:not(.product-detail-modal-slider--js-initialized)').each(function (index) {
+        // Modal Swiper Image Slider
+        var $modalComponent = $(this);
+        var $modalSliderContainer = $modalComponent.find('.product-detail-modal-slider__container');
+        var $modalSliderWrapper = $modalSliderContainer.find('.field--name-field-product-images');
+        var $modalSliderItems = $modalSliderContainer.find('.field--name-field-product-images .field__item');
+        var $modalSliderButtonPrev = $modalComponent.find('.product-detail-modal-slider__button-prev');
+        var $modalSliderButtonNext = $modalComponent.find('.product-detail-modal-slider__button-next');
 
-      $modalSliderWrapper.addClass('swiper-wrapper');
-      $modalSliderItems.addClass('swiper-slide');
+        // Track that this component has been initialized.
+        $modalComponent.addClass('product-detail-modal-slider--js-initialized');
+
+        $modalSliderContainer.addClass('swiper-container');
+        $modalSliderWrapper.addClass('swiper-wrapper');
+        $modalSliderItems.addClass('swiper-slide');
+
+        var $modalSliderSwiper = Drupal.behaviors.productDetailModalImageslider.initModalSlider($modalSliderContainer, $modalSliderButtonPrev, $modalSliderButtonNext);
+
+        $('.field--name-field-product-images').click(function (event) {
+          setTimeout(function () {
+            if (typeof $modalSliderSwiper !== 'undefined') {
+              $modalSliderSwiper.destroy(true, true);
+              $modalSliderSwiper = Drupal.behaviors.productDetailModalImageslider.initModalSlider($modalSliderContainer, $modalSliderButtonPrev, $modalSliderButtonNext);
+            }
+          }, 500);
+        });
+
+        $($modalSliderButtonPrev).on('click', function () {
+          $('.product-detail-slider__button-prev').trigger('click');
+        });
+
+        $($modalSliderButtonNext).on('click', function () {
+          $('.product-detail-slider__button-next').trigger('click');
+        });
+      });
     }
   };
 

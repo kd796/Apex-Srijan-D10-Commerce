@@ -116,7 +116,7 @@
 
         <div id="product-image-slider-modal" class="modal">
           <div class="product-detail-modal-slider">
-            <div class="product-detail-modal-slider__container swiper-container">
+            <div class="product-detail-modal-slider__container">
               {% if product_image_count > 1 %}
                 <button class="product-detail-modal-slider__button product-detail-modal-slider__button-prev swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide"></button>
               {% endif %}
@@ -124,7 +124,7 @@
               {% if product_image_count > 1 %}
                 <button class="product-detail-modal-slider__button product-detail-modal-slider__button-next swiper-button-next" tabindex="0" role="button" aria-label="Next slide"></button>
               {% endif %}
-              <a href="#" rel="modal:close" style="display: none;">Close</a>
+              <a href="#" rel="modal:close" class="close-modal icon-remove">X</a>
             </div>
           </div>
         </div>
