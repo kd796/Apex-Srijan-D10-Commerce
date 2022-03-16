@@ -37,6 +37,10 @@ $tabs-border-width-active: rem(5px);
       .product-detail-slider__container {
         position: relative;
 
+        .swiper-slide {
+          cursor: pointer;
+        }
+
         .product-detail-slider__pseudo-prev-button,
         .product-detail-slider__pseudo-next-button {
           display: none;
@@ -79,6 +83,10 @@ $tabs-border-width-active: rem(5px);
 
         @include media('>md') {
           width: calc(66.6666666667% - 6px);
+        }
+
+        .swiper-slide {
+          cursor: pointer;
         }
 
         .swiper-slide-thumb-active {
