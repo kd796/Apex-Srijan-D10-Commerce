@@ -599,19 +599,23 @@ $tabs-border-width-active: rem(5px);
       padding: 0;
       opacity: 1;
       box-shadow: 0 8px 28px -6px rgba(0, 0, 0, 0.24), 0 18px 88px -4px rgba(0, 0, 0, 0.1);
-      transform: translateY(-50%);
+      bottom: 0;
+      top: unset;
 
       &:hover {
         background-color: $primary-orange;
         border-color: $primary-orange;
       }
 
+      @include media('>=md') {
+        top: 50%;
+        bottom: unset;
+        transform: translateY(-50%);
+      }
+
       &.product-detail-modal-slider__button-prev {
         background-image: url('../../../icons/chevron-left-molten-orange.svg');
         left: 0;
-        bottom: 0;
-        top: unset;
-        transform: unset;
 
         &:hover {
           background-image: url('../../../icons/chevron-left-black.svg');
@@ -625,9 +629,6 @@ $tabs-border-width-active: rem(5px);
       &.product-detail-modal-slider__button-next {
         background-image: url('../../../icons/chevron-right-molten-orange.svg');
         right: 0;
-        bottom: 0;
-        top: unset;
-        transform: unset;
 
         &:hover {
           background-image: url('../../../icons/chevron-right-black.svg');
