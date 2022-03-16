@@ -119,8 +119,28 @@
         $(document).on('click', '.product-detail-slider__pseudo-next-button', function () {
           $('.swiper-button-next').trigger('click');
         });
-
       });
+    }
+  };
+
+  Drupal.behaviors.productDetailModalImageslider = {
+    attach: function (context, settings) {
+      // Product image slider modal
+      $('.field--name-field-product-images').click(function (event) {
+        $('#product-image-slider-modal').modal({
+          fadeDuration: 100
+        });
+        return false;
+      });
+
+      // Modal Swiper Image Slider
+      var $modalComponent = $('.product-detail-modal-slider');
+      var $modalSliderContainer = $modalComponent.find('.product-detail-modal-slider__container');
+      var $modalSliderWrapper = $modalSliderContainer.find('.field--name-field-product-images');
+      var $modalSliderItems = $modalSliderContainer.find('.field--name-field-product-images .field__item');
+
+      $modalSliderWrapper.addClass('swiper-wrapper');
+      $modalSliderItems.addClass('swiper-slide');
     }
   };
 
