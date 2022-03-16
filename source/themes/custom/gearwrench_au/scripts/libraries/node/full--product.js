@@ -204,6 +204,14 @@
             if (typeof $modalSliderSwiper !== 'undefined') {
               $modalSliderSwiper.destroy(true, true);
               $modalSliderSwiper = Drupal.behaviors.productDetailModalImageslider.initModalSlider($modalSliderContainer, $modalSliderButtonPrev, $modalSliderButtonNext);
+
+              // Get product detail slider active slide and index
+              var $detailSliderContainer = $('.product-detail-slider').find('.product-detail-slider__container');
+              var $detailSliderSlides = $($detailSliderContainer).find('.swiper-slide');
+              var $detailSliderActiveSlide = $($detailSliderContainer).find('.swiper-slide-active');
+              var $slideIndx = $($detailSliderSlides).index($detailSliderActiveSlide);
+
+              $modalSliderSwiper.slideTo($slideIndx);
             }
           }, 500);
         });
