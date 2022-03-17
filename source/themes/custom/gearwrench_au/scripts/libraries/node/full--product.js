@@ -211,7 +211,7 @@
               var $detailSliderActiveSlide = $($detailSliderContainer).find('.swiper-slide-active');
               var $slideIndx = $($detailSliderSlides).index($detailSliderActiveSlide);
 
-              $modalSliderSwiper.slideTo($slideIndx);
+              $modalSliderSwiper.slideTo($slideIndx, 0, false);
             }
           }, 500);
         });
