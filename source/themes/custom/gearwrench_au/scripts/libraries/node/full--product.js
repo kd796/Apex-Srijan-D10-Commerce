@@ -213,7 +213,7 @@
 
               $modalSliderSwiper.slideTo($slideIndx, 0, false);
             }
-          }, 0);
+          }, 500);
         });
 
         $($modalSliderButtonPrev).on('click', function () {
