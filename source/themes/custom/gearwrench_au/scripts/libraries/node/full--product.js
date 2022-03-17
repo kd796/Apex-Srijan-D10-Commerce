@@ -212,7 +212,7 @@
               var $detailSliderActiveSlide = $($detailSliderContainer).find('.swiper-slide-active');
               var $slideIndx = $($detailSliderSlides).index($detailSliderActiveSlide);
 
-              $modalSliderSwiper.slideTo($slideIndx, 0, false);
+              $modalSliderSwiper.slideTo($slideIndx, false, false);
             }
           }, 500);
         });
