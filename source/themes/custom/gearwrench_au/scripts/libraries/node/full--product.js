@@ -175,7 +175,7 @@
       // Product image slider modal
       $('.field--name-field-product-images').click(function (event) {
         $('#product-image-slider-modal').modal({
-          fadeDuration: 100
+          fadeDuration: 200
         });
         return false;
       });
