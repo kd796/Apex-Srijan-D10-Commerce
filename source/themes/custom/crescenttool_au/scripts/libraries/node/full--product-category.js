@@ -191,6 +191,7 @@
           // If no accordions are open, open the first accordion.
           if (isSomethingOpen === false && accordionIndex === 0) {
             $accordion.addClass('component-accordion-item--open');
+            $accordion.addClass('product-category-filter-item---open');
           }
 
           // Determine whether this accordion needs to be open by default.
