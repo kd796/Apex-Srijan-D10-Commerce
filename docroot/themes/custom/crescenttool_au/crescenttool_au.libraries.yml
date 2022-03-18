@@ -69,6 +69,14 @@ library--jquery-linear-navigation:
   js:
     //cdn.jsdelivr.net/npm/jquery-linear-navigation@1.0.1/jquery.linearnavigation.min.js: { type: external, minified: true }
 
+library--jquery-modal:
+  version: 1.x
+  css:
+    component:
+      https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css: { type: external }
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js: { type: external, async: true, minified: true }
+
 library--jquery-prevent-scroll-keys:
   version: 1.x
   js:
@@ -212,16 +220,15 @@ node--full--product:
   css:
     component:
       css/libraries/node/full--product.css: { }
-      css/contrib-overrides/bazaarvoice/bazaarvoice.css: {}
   js:
     js/libraries/node/full--product.js: {}
-    https://apps.bazaarvoice.com/deployments/crescent/main_site_new_brand/production/en_US/bv.js: { type: external, async: true, minified: true }
   dependencies:
     - core/drupal
     - core/jquery
     - core/jquery.once
     - crescenttool_au/library--swiper
     - crescenttool_au/library--jquery-roving-tabindex
+    - crescenttool_au/library--jquery-modal
 
 node--full--product-category:
   version: 1.x
