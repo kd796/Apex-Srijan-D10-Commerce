@@ -126,12 +126,13 @@
   };
 
   Drupal.behaviors.productDetailModalImageslider = {
-    initModalSlider: function ($modalSliderContainer, $modalSliderButtonPrev, $modalSliderButtonNext) {
+    initModalSlider: function ($modalSliderContainer, $modalSliderButtonPrev, $modalSliderButtonNext, $slideIndx) {
       // eslint-disable-next-line
       return new Swiper($modalSliderContainer, {
         slidesPerView: 1,
         slidesPerGroup: 1,
         loop: true,
+        initialSlide: $slideIndx,
         navigation: {
           nextEl: $modalSliderButtonNext,
           prevEl: $modalSliderButtonPrev
@@ -174,10 +175,7 @@
     attach: function (context, settings) {
       // Product image slider modal
       $('.field--name-field-product-images').click(function (event) {
-        $('#product-image-slider-modal').modal({
-          fadeDuration: 300,
-          fadeDelay: 1.55
-        });
+        $('#product-image-slider-modal').modal();
         return false;
       });
 
@@ -190,6 +188,7 @@
         var $modalSliderItems = $modalSliderContainer.find('.field--name-field-product-images .field__item');
         var $modalSliderButtonPrev = $modalComponent.find('.product-detail-modal-slider__button-prev');
         var $modalSliderButtonNext = $modalComponent.find('.product-detail-modal-slider__button-next');
+        var $slideIndx = 0;
 
         // Track that this component has been initialized.
         $modalComponent.addClass('product-detail-modal-slider--js-initialized');
@@ -198,21 +197,18 @@
         $modalSliderWrapper.addClass('swiper-wrapper');
         $modalSliderItems.addClass('swiper-slide');
 
-        var $modalSliderSwiper = Drupal.behaviors.productDetailModalImageslider.initModalSlider($modalSliderContainer, $modalSliderButtonPrev, $modalSliderButtonNext);
-
         $('.field--name-field-product-images').click(function (event) {
+          // Get product detail slider active slide and index
+          var $detailSliderContainer = $('.product-detail-slider').find('.product-detail-slider__container');
+          var $detailSliderSlides = $($detailSliderContainer).find('.swiper-slide');
+          var $detailSliderActiveSlide = $($detailSliderContainer).find('.swiper-slide-active');
+          $slideIndx = $($detailSliderSlides).index($detailSliderActiveSlide) - 1;
+          var $modalSliderSwiper = Drupal.behaviors.productDetailModalImageslider.initModalSlider($modalSliderContainer, $modalSliderButtonPrev, $modalSliderButtonNext, $slideIndx);
+
           setTimeout(function () {
             if (typeof $modalSliderSwiper !== 'undefined') {
               $modalSliderSwiper.destroy(true, true);
-              $modalSliderSwiper = Drupal.behaviors.productDetailModalImageslider.initModalSlider($modalSliderContainer, $modalSliderButtonPrev, $modalSliderButtonNext);
-
-              // Get product detail slider active slide and index
-              var $detailSliderContainer = $('.product-detail-slider').find('.product-detail-slider__container');
-              var $detailSliderSlides = $($detailSliderContainer).find('.swiper-slide');
-              var $detailSliderActiveSlide = $($detailSliderContainer).find('.swiper-slide-active');
-              var $slideIndx = $($detailSliderSlides).index($detailSliderActiveSlide);
-
-              $modalSliderSwiper.slideTo($slideIndx, false, false);
+              $modalSliderSwiper = Drupal.behaviors.productDetailModalImageslider.initModalSlider($modalSliderContainer, $modalSliderButtonPrev, $modalSliderButtonNext, $slideIndx);
             }
           }, 500);
         });
