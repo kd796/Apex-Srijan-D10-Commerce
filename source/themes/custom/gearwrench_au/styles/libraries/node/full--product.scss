@@ -586,27 +586,41 @@ $tabs-border-width-active: rem(5px);
       top: 0;
       right: 0;
       color: $secondary-black;
-      background-image: url('../../../icons/close.svg');
-      width: 15px;
-      height: 15px;
+      background-color: $white;
+      font-size: rem(24px);
+      line-height: 1;
+      padding-left: rem(6px);
+      padding-bottom: rem(3px);
+      background-image: unset;
+      text-indent: unset;
+      width: unset;
+      height: unset;
       z-index: 10;
 
       @include media('>=md') {
-        width: 23px;
-        height: 23px;
+        font-size: rem(35px);
+        padding-left: rem(8px);
       }
     }
 
     .product-detail-modal-slider {
       .swiper-slide {
         z-index: 9;
+
+        @include media('<md') {
+          .media--type-remote-video {
+            background-color: $white;
+            padding-bottom: 25%;
+            padding-top: 25%;
+          }
+        }
       }
     }
 
     .product-detail-modal-slider__button {
       background-color: $secondary-black;
       background-size: rem(10px) rem(16px);
-      border: 1px solid $secondary-black;
+      border: 1px solid $primary-orange;
       height: rem(48px);
       width: rem(48px);
       margin: 0;
