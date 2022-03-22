@@ -607,10 +607,12 @@ $tabs-border-width-active: rem(5px);
       .swiper-slide {
         z-index: 9;
 
-        .media--type-remote-video {
-          background-color: $white;
-          padding-bottom: 25%;
-          padding-top: 25%;
+        @include media('<md') {
+          .media--type-remote-video {
+            background-color: $white;
+            padding-bottom: 25%;
+            padding-top: 25%;
+          }
         }
       }
     }
