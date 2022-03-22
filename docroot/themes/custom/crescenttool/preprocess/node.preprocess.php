@@ -144,6 +144,7 @@ function crescenttool_preprocess_node__product__set_listing(&$variables) {
  * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product, full.
  */
 function crescenttool_preprocess_node__product__full(array &$variables) {
+  /** @var Drupal\node\NodeInterface $node */
   $node = $variables['elements']['#node'];
 
   if ($node instanceof NodeInterface) {
@@ -169,16 +170,10 @@ function crescenttool_preprocess_node__product__full(array &$variables) {
 
   // Count Product Images.
   $variables['product_images'] = NULL;
-  $variables['field_product_images_exist'] = NULL;
 
   if (!empty($node->field_product_images->getValue())) {
     $variables['product_images'] = TRUE;
-    $variables['field_product_images_exist'] = TRUE;
     $variables['product_image_count'] = count($node->field_product_images->getValue());
-  }
-  else {
-    $variables['product_images'] = TRUE;
-    $variables['product_image_count'] = count($node->field_media->getValue());
   }
 
   // Thumb Gallery.
@@ -210,7 +205,7 @@ function crescenttool_preprocess_node__product__full(array &$variables) {
           $thumb_variables['width'] = $thumb_variables['height'] = NULL;
         }
 
-        $variables['thumbnails'][$fid] = [
+        $variables['thumbnails'][] = [
           '#theme' => 'image_style',
           '#width' => $thumb_variables['width'],
           '#height' => $thumb_variables['height'],

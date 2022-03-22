@@ -9,6 +9,8 @@
         var $sliderContainer = $component.find('.product-detail-slider__container');
         var $sliderWrapper = $sliderContainer.find('.field--name-field-product-images');
         var $sliderItems = $sliderContainer.find('.field--name-field-product-images .field__item');
+        var $sliderButtonPrev = $component.find('.swiper-button-prev');
+        var $sliderButtonNext = $component.find('.swiper-button-next');
 
         // Thumb Slider
         var $thumbsContainer = $component.find('.product-detail-slider__thumbs-container');
@@ -25,33 +27,20 @@
         $thumbsContainer.addClass('swiper-container');
         $thumbsItems.addClass('swiper-slide');
         $thumbsWrapper.addClass('swiper-wrapper');
-        var numberOfItems = $component.find('.field__item').length;
 
         // Initialize swiper.
-        if (numberOfItems > 1) {
-          var slidesPerView = 6;
-          var slidesPerViewLarge = 4;
-
-          if (numberOfItems < 6) {
-            slidesPerView = numberOfItems;
-          }
-
-          if (numberOfItems < 4) {
-            slidesPerViewLarge = numberOfItems;
-          }
-
+        if ($component.find('.field__item').length > 1) {
           // eslint-disable-next-line
           var $galleryThumbs = new Swiper($thumbsContainer, {
             spaceBetween: 24,
-            slidesPerView: slidesPerViewLarge,
-            loop: false,
+            slidesPerView: 4,
             breakpoints: {
               568: {
-                slidesPerView: slidesPerView,
+                slidesPerView: 6,
                 spaceBetween: 12
               },
               1024: {
-                slidesPerView: slidesPerViewLarge,
+                slidesPerView: 4,
                 spaceBetween: 16
               }
             },
@@ -65,6 +54,11 @@
                 var $thumbWidth = $thumbsItems.outerWidth();
                 $('.product-detail-slider__button').css('height', $thumbHeight).css('width', $thumbWidth);
               },
+              imagesReady: function () {
+                var $thumbHeight = $thumbsItems.outerHeight();
+                var $thumbWidth = $thumbsItems.outerWidth();
+                $('.product-detail-slider__button').css('height', $thumbHeight).css('width', $thumbWidth);
+              },
               slideChange: function (el) {
                 $('.swiper-slide').each(function () {
                   var youtubePlayer = $(this).find('iframe').get(0);
@@ -74,21 +68,19 @@
                   }
                 });
               },
-              imagesReady: function () {
-                var $thumbHeight = $thumbsItems.outerHeight();
-                var $thumbWidth = $thumbsItems.outerWidth();
-                $('.product-detail-slider__button').css('height', $thumbHeight).css('width', $thumbWidth);
+              slideChangeTransitionEnd: function () {
+                Drupal.behaviors.swiper.updateSlideAria.apply(this);
+                Drupal.blazy.init.revalidate();
               }
             }
           });
-
           // eslint-disable-next-line
           new Swiper($sliderContainer, {
             effect: 'fade',
-            loop: false,
+            loop: true,
             navigation: {
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev'
+              nextEl: $sliderButtonNext,
+              prevEl: $sliderButtonPrev
             },
             on: {
               init: function () {
