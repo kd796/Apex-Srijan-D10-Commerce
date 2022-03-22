@@ -90,15 +90,7 @@
               <button class="product-detail-slider__pseudo-prev-button"></button>
             {% endif %}
 
-            {% if field_product_images_exist %}
-              {{ content.field_product_images }}
-            {% else %}
-              <div class="swiper-wrapper">
-                <div class="field__item swiper-slide">
-                  {{ content.field_media }}
-                </div>
-              </div>
-            {% endif %}
+            {{ content.field_product_images }}
 
             {% if product_image_count > 1 %}
               <button class="product-detail-slider__pseudo-next-button"></button>
