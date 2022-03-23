@@ -4,3 +4,13 @@ services:
     class: Drupal\apex_migrations\Commands\ProductDownloadService
     tags:
       - { name: drush.command }
+
+  pre_migration_subscriber:
+    class: Drupal\apex_migrations\EventSubscriber\PreMigrationSubscriber
+    tags:
+      - { name: 'event_subscriber' }
+
+  post_migration_subscriber:
+    class: Drupal\apex_migrations\EventSubscriber\PostMigrationSubscriber
+    tags:
+      - { name: 'event_subscriber' }
