@@ -61,21 +61,32 @@ class GetProductImages extends ProcessPluginBase {
               $assetId = apex_migrations_clean_asset_id((string) $item->attributes()->AssetID);
 
               if (!empty($assetId) && $item->getName() === 'AssetCrossReference' && $attributeId === $sku) {
-                if ($attributeType === 'Primary Image') {
-                  $primary_image = [
-                    'imagetype' => 'Product Level',
-                    'asset_id' => $assetId,
-                    'drupal_file_path' => 'public://pim_images/' . $assetId . '.jpg',
-                    'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . $assetId . '.jpg',
+                $drupal_file_path = 'public://pim_images/' . $assetId . '.jpg';
+                $media_id = _apex_migrations_get_file_media_id($drupal_file_path);
+
+                // If we find the file then we need to reference it in the return array.
+                if (!empty($media_id)) {
+                  $media_ids[] = [
+                    'media_id' => $media_id
                   ];
                 }
-                elseif (in_array($attributeType, $allowed_types)) {
-                  $assets[] = [
-                    'imagetype' => 'Product Level',
-                    'asset_id' => $assetId,
-                    'drupal_file_path' => 'public://pim_images/' . $assetId . '.jpg',
-                    'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . $assetId . '.jpg',
-                  ];
+                else {
+                  if ($attributeType === 'Primary Image') {
+                    $primary_image = [
+                      'imagetype' => 'Product Level',
+                      'asset_id' => $assetId,
+                      'drupal_file_path' => $drupal_file_path,
+                      'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . $assetId . '.jpg',
+                    ];
+                  }
+                  elseif (in_array($attributeType, $allowed_types)) {
+                    $assets[] = [
+                      'imagetype' => 'Product Level',
+                      'asset_id' => $assetId,
+                      'drupal_file_path' => $drupal_file_path,
+                      'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . $assetId . '.jpg',
+                    ];
+                  }
                 }
               }
 
@@ -98,18 +109,30 @@ class GetProductImages extends ProcessPluginBase {
           }
         }
 
-        if (empty($assets) && empty($primary_image)) {
+        if (empty($assets) && empty($media_ids) && empty($primary_image)) {
           foreach ($sku_group->children() as $child) {
             if ($child->getName() === 'AssetCrossReference' && (string) $child->attributes()->Type === 'Primary Image') {
               $assetId = apex_migrations_clean_asset_id((string) $child->attributes()->AssetID);
 
               if (!empty($assetId)) {
-                $assets[] = [
-                  'imagetype' => 'SKU Group Level',
-                  'asset_id' => $assetId,
-                  'drupal_file_path' => 'public://pim_images/' . $assetId . '.jpg',
-                  'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . $assetId . '.jpg',
-                ];
+                $drupal_file_path = 'public://pim_images/' . $assetId . '.jpg';
+                $media_id = _apex_migrations_get_file_media_id($drupal_file_path);
+
+                // If we find the file then we need to reference it in the return array.
+                if (!empty($media_id)) {
+                  $media_ids[] = [
+                    'media_id' => $media_id
+                  ];
+                }
+                else {
+                  // If we don't find the file then we need to download it.
+                  $assets[] = [
+                    'imagetype' => 'SKU Group Level',
+                    'asset_id' => $assetId,
+                    'drupal_file_path' => $drupal_file_path,
+                    'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . $assetId . '.jpg',
+                  ];
+                }
               }
             }
           }
@@ -128,76 +151,98 @@ class GetProductImages extends ProcessPluginBase {
         $final_asset_list[] = $asset;
       }
 
-      if (empty($final_asset_list)) {
+      if (empty($final_asset_list) && empty($media_ids)) {
         $migrate_executable->saveMessage(
           '[Product Images] While loading the product images for "'
           . $sku . '" - Unable to find product images.'
         );
       }
+      elseif (empty($final_asset_list) && !empty($media_ids)) {
+        $migrate_executable->saveMessage(
+          '[Product Images] While loading the product images for "'
+          . $sku . '" - All images already exist in the system.'
+        );
 
-      // Prep Directory.
-      $image_directory = 'public://pim_images/';
-      \Drupal::service('file_system')->prepareDirectory($image_directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
+        if (empty($videos)) {
+          return $media_ids;
+        }
+      }
 
-      foreach ($final_asset_list as $asset) {
-        try {
-          /*
-           * @todo: Investigate to see if there is a way to check for the existing file before even sending a network request.
-           *
-           * Ideas:
-           *  - Calculate the destination file name and check for that in media/files.
-           *  - Store the origin file path somewhere and relate to imported file.
-           */
-          $headers_array = @get_headers($asset['remote_file_path']);
-          $headers_check = $headers_array[0];
+      $store = \Drupal::service('tempstore.private')->get('apex_migrations');
 
-          if (strpos($headers_check, "200")) {
-            $file_data = file_get_contents($asset['remote_file_path']);
+      if (!empty($final_asset_list) && $store->get('image_server_available') === TRUE) {
+        // Prep Directory.
+        $image_directory = 'public://pim_images/';
 
-            if ($file_data) {
-              $file = file_save_data($file_data, $asset['drupal_file_path'], FileSystemInterface::EXISTS_REPLACE);
+        \Drupal::service('file_system')->prepareDirectory(
+          $image_directory,
+          FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS
+        );
 
-              // See if there's a media item we can use already.
-              $usage = \Drupal::service('file.usage')->listUsage($file);
+        foreach ($final_asset_list as $asset) {
+          try {
+            /*
+             * @todo: Investigate to see if there is a way to check for the existing file before even sending a network request.
+             *
+             * Ideas:
+             *  - Calculate the destination file name and check for that in media/files.
+             *  - Store the origin file path somewhere and relate to imported file.
+             */
+            $headers_array = @get_headers($asset['remote_file_path']);
+            $headers_check = '';
 
-              if (count($usage) > 0 && !empty($usage['file']['media'])) {
-                $media_id = array_key_first($usage['file']['media']);
-                $media_ids[] = [
-                  'media_id' => $media_id
-                ];
-              }
-              else {
-                $media = Media::create([
-                  'bundle'           => 'image',
-                  'uid'              => 1,
-                  'field_media_image' => [
-                    'target_id' => $file->id(),
-                  ],
-                ]);
+            if (!empty($headers_array[0])) {
+              $headers_check = $headers_array[0];
+            }
 
-                $media->setName($asset['asset_id'])->setPublished(TRUE)->save();
-                $media_ids[] = [
-                  'media_id' => $media->id()
-                ];
+            if (strpos($headers_check, "200")) {
+              $file_data = file_get_contents($asset['remote_file_path']);
+
+              if ($file_data) {
+                $file = _apex_migrations_file_save_data($file_data, $asset['drupal_file_path'], FileSystemInterface::EXISTS_REPLACE);
+
+                // See if there's a media item we can use already.
+                $usage = \Drupal::service('file.usage')->listUsage($file);
+
+                if (count($usage) > 0 && !empty($usage['file']['media'])) {
+                  $media_id = array_key_first($usage['file']['media']);
+                  $media_ids[] = [
+                    'media_id' => $media_id
+                  ];
+                }
+                else {
+                  $media = Media::create([
+                    'bundle'           => 'image',
+                    'uid'              => 1,
+                    'field_media_image' => [
+                      'target_id' => $file->id(),
+                    ],
+                  ]);
+
+                  $media->setName($asset['asset_id'])->setPublished(TRUE)->save();
+                  $media_ids[] = [
+                    'media_id' => $media->id()
+                  ];
+                }
               }
             }
+            else {
+              $migrate_executable->saveMessage(
+                '[Product Images] During import of "'
+                . $sku . '" - Unable to load image "'
+                . $asset['remote_file_path']
+                . '". Header response: "' . $headers_check . '"'
+              );
+            }
           }
-          else {
+          catch (\Exception $e) {
             $migrate_executable->saveMessage(
               '[Product Images] During import of "'
-              . $sku . '" - Unable to load image "'
+              . $sku . '" - There was a problem loading image "'
               . $asset['remote_file_path']
-              . '". Header response: "' . $headers_check . '"'
+              . '". Error: ' . $e->getMessage()
             );
           }
-        }
-        catch (\Exception $e) {
-          $migrate_executable->saveMessage(
-            '[Product Images] During import of "'
-            . $sku . '" - There was a problem loading image "'
-            . $asset['remote_file_path']
-            . '". Error: ' . $e->getMessage()
-          );
         }
       }
 
