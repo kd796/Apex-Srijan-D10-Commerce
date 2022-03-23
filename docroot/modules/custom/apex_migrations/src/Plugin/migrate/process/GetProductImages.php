@@ -175,6 +175,10 @@ class GetProductImages extends ProcessPluginBase {
           '[Product Images] While loading the product images for "'
           . $sku . '" - All images already exist in the system.'
         );
+
+        if (empty($videos)) {
+          return $media_ids;
+        }
       }
 
       // Prep Directory.
