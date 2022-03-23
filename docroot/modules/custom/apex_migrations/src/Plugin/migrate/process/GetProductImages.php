@@ -139,19 +139,6 @@ class GetProductImages extends ProcessPluginBase {
         }
       }
 
-      $image_server_available = FALSE;
-
-      // Do a preliminary check to see if the image server is reachable.
-      if (_apex_migrations_ping('http://www.imagesource.apextoolgroup.com')) {
-        $image_server_available = TRUE;
-      }
-      else {
-        $migrate_executable->saveMessage(
-          '[Product Images] While loading the product images for "'
-          . $sku . '" - The image server is unreachable.'
-        );
-      }
-
       // Now plug in the Primary Image at the beginning of the array.
       $final_asset_list = [];
 
@@ -181,11 +168,17 @@ class GetProductImages extends ProcessPluginBase {
         }
       }
 
-      // Prep Directory.
-      $image_directory = 'public://pim_images/';
-      \Drupal::service('file_system')->prepareDirectory($image_directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
+      $store = \Drupal::service('tempstore.private')->get('apex_migrations');
 
-      if (!empty($final_asset_list) && $image_server_available === TRUE) {
+      if (!empty($final_asset_list) && $store->get('image_server_available') === TRUE) {
+        // Prep Directory.
+        $image_directory = 'public://pim_images/';
+
+        \Drupal::service('file_system')->prepareDirectory(
+          $image_directory,
+          FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS
+        );
+
         foreach ($final_asset_list as $asset) {
           try {
             /*
