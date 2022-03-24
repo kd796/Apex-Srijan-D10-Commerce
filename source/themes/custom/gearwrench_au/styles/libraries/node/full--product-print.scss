@@ -46,6 +46,8 @@
 
   .region-header {
     position: unset !important;
+    print-color-adjust: exact; // sass-lint:disable-line no-misspelled-properties
+    -webkit-print-color-adjust: exact; // sass-lint:disable-line no-misspelled-properties
   }
 
   #specifications,
@@ -58,7 +60,8 @@
     break-after: avoid !important;
   }
 
-  .node--type-product-tabs__mobile-nav-item {
+  .node--type-product-tabs__mobile-nav-item,
+  .node--type-product-tabs-tab {
     border-top: unset !important;
 
     &:last-of-type {
@@ -76,7 +79,7 @@
 
     .swiper-slide {
       &:not(.swiper-slide-active) {
-        img {
+        .media {
           display: none !important;
         }
       }

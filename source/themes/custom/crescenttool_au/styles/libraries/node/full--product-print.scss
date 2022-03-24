@@ -46,6 +46,8 @@
 
   .region-header {
     position: unset !important;
+    print-color-adjust: exact; // sass-lint:disable-line no-misspelled-properties
+    -webkit-print-color-adjust: exact; // sass-lint:disable-line no-misspelled-properties
   }
 
   #specifications,
@@ -76,7 +78,7 @@
 
     .swiper-slide {
       &:not(.swiper-slide-active) {
-        img {
+        .media {
           display: none !important;
         }
       }
