@@ -34,15 +34,23 @@ class CtCliService extends DrushCommands {
    */
   public function ctWarrantyExport() {
     $submissions = $this->getLatestWebformSubmissions();
+    $date = new \DateTime();
+    $this->output()->writeln('Starting warranty export at ' . $date->format('Y-m-d H:i:s'));
 
     if (empty($submissions)) {
       $this->output()->writeln('No new submissions found.');
       return;
     }
 
-    $converted_submissions = $this->convertSubmissions($submissions);
-    $xml = $this->buildSubmissionXml($converted_submissions);
-    $this->uploadToWarrantyFtp($xml);
+    try {
+      $converted_submissions = $this->convertSubmissions($submissions);
+      $xml = $this->buildSubmissionXml($converted_submissions);
+      $this->uploadToWarrantyFtp($xml);
+    }
+    catch (\Exception $e) {
+      $this->output()->writeln($e->getMessage());
+      return;
+    }
 
     // Update the highest updated SID.
     $this->updateHighestExportedSid($submissions);
@@ -266,7 +274,7 @@ class CtCliService extends DrushCommands {
         $this->output()->writeln('XML File has been sent to the server.');
       }
       catch (\Exception $e) {
-        echo 'Failure to do something with FTP. Message: ' . $e->getMessage();
+        throw new \Exception('FTP Failure. Message: ' . $e->getMessage());
       }
     }
     else {
