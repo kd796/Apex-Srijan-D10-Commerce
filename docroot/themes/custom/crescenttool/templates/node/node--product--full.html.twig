@@ -112,6 +112,10 @@
                 class="product-detail-slider__button product-detail-slider__button-next swiper-button-next"></button>
             </div>
           {% endif %}
+
+          <span class="download-images-link">
+            <a href="/product-image-download/{{ node.id() }}" class="component-content__link button">{{ 'Download Images'|t }}</a>
+          </span>
         </div>
       {% endif %}
 
