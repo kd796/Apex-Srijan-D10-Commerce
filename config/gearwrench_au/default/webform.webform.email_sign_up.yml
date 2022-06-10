@@ -1,7 +1,9 @@
 uuid: 43efb39b-acc1-4c2d-9a2a-9aa010cc48c4
 langcode: en
 status: open
-dependencies: {  }
+dependencies:
+  module:
+    - webform_mailchimp
 weight: 0
 open: null
 close: null
@@ -55,9 +57,9 @@ elements: |-
 css: ''
 javascript: ''
 settings:
-  ajax: false
+  ajax: true
   ajax_scroll_top: form
-  ajax_progress_type: ''
+  ajax_progress_type: throbber
   ajax_effect: ''
   ajax_speed: null
   page: true
@@ -154,12 +156,12 @@ settings:
   draft_loaded_message: ''
   draft_pending_single_message: ''
   draft_pending_multiple_message: ''
-  confirmation_type: url
-  confirmation_url: /form-submission-thank-you
+  confirmation_type: inline
+  confirmation_url: /newsletter-subscribe-thank-you
   confirmation_title: ''
-  confirmation_message: ''
+  confirmation_message: 'Thank you for subscribing.'
   confirmation_attributes: {  }
-  confirmation_back: true
+  confirmation_back: false
   confirmation_back_label: ''
   confirmation_back_attributes: {  }
   confirmation_exclude_query: true
@@ -233,5 +235,20 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers: {  }
+handlers:
+  mailchimp:
+    id: mailchimp
+    handler_id: mailchimp
+    label: MailChimp
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      list: 0e57960b1e
+      email: email_address
+      double_optin: false
+      mergevars: "FNAME: [webform_submission:values:first_name]\r\nLNAME: [webform_submission:values:last_name]"
+      interest_groups: {  }
+      control: privacy_policy
 variants: {  }
