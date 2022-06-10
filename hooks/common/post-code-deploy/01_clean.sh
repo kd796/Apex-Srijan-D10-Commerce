@@ -20,41 +20,41 @@ repo_type="$6"
 drush_alias=$site'.'$target_env
 
 # Apex Tools
-uri=apextoolgroupdev.prod.acquia-sites.com
-drush9 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
-drush9 @$drush_alias updatedb -y --strict=0 --uri=$uri
-drush9 @$drush_alias cim sync -y --uri=$uri
-drush9 @$drush_alias cr --uri=$uri
-drush9 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
+#uri=apextoolgroupdev.prod.acquia-sites.com
+#drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
+#drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
+#drush10 @$drush_alias cim sync -y --uri=$uri
+#drush10 @$drush_alias cr --uri=$uri
+#drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
 
 # GEARWRENCH
 uri=prod-www.gearwrench.com
-drush9 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
-drush9 @$drush_alias updatedb -y --strict=0 --uri=$uri
-drush9 @$drush_alias cim sync -y --uri=$uri
-drush9 @$drush_alias cr --uri=$uri
-drush9 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
+drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
+drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
+drush10 @$drush_alias cim sync -y --uri=$uri
+drush10 @$drush_alias cr --uri=$uri
+drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
 
 # Crescenttool
 uri=prod-www.crescenttool.com
-drush9 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
-drush9 @$drush_alias updatedb -y --strict=0 --uri=$uri
-drush9 @$drush_alias cim sync -y --uri=$uri
-drush9 @$drush_alias cr --uri=$uri
-drush9 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
+drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
+drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
+drush10 @$drush_alias cim sync -y --uri=$uri
+drush10 @$drush_alias cr --uri=$uri
+drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
 
 # GEARWRENCH Australia
 uri=prod-www.gearwrench.com.au
-drush9 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
-drush9 @$drush_alias updatedb -y --strict=0 --uri=$uri
-drush9 @$drush_alias cim sync -y --uri=$uri
-drush9 @$drush_alias cr --uri=$uri
-drush9 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
+drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
+drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
+drush10 @$drush_alias cim sync -y --uri=$uri
+drush10 @$drush_alias cr --uri=$uri
+drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
 
 # Crescenttool Australia
 uri=prod-www.crescenttool.com.au
-drush9 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
-drush9 @$drush_alias updatedb -y --strict=0 --uri=$uri
-drush9 @$drush_alias cim sync -y --uri=$uri
-drush9 @$drush_alias cr --uri=$uri
-drush9 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
+drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
+drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
+drush10 @$drush_alias cim sync -y --uri=$uri
+drush10 @$drush_alias cr --uri=$uri
+drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
