@@ -171,10 +171,12 @@
       });
 
       $(window).bind('load', function () {
-        $('.view-media-pages').once().each(function () {
-          // Scroll down to the products when loading the category page.
-          $('.view-media-pages')[0].scrollIntoView();
-        });
+        if (window.location.search.length > 0) {
+          $('.view-media-pages').once().each(function () {
+            // Scroll down to the products when loading the category page.
+            $('.view-media-pages')[0].scrollIntoView();
+          });
+        }
       });
     }
   };
