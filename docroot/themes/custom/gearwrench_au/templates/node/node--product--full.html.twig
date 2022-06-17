@@ -114,7 +114,9 @@
           {% endif %}
 
           <span class="download-images-link">
-            <a href="/product-image-download/{{ node.id() }}" class="component-content__link button">{{ 'Download Images'|t }}</a>
+            <a href="/product-image-download/{{ node.id() }}" class="">
+              <span class="link-text">{{ 'Download Images'|t }}</span>
+              {% include directory ~ '/icons/download-black.svg' %}</a>
           </span>
         </div>
 
@@ -128,7 +130,9 @@
               {% if product_image_count > 1 %}
                 <button class="product-detail-modal-slider__button product-detail-modal-slider__button-next swiper-button-next" tabindex="0" role="button" aria-label="Next slide"></button>
               {% endif %}
-              <a href="#" rel="modal:close" class="close-modal icon-remove">X</a>
+              <a href="#" rel="modal:close" class="close-modal icon-remove">
+                {% include directory ~ '/icons/close.svg' %}
+              </a>
             </div>
           </div>
         </div>
