@@ -114,7 +114,9 @@
           {% endif %}
 
           <span class="download-images-link">
-            <a href="/product-image-download/{{ node.id() }}" class="component-content__link button">{{ 'Download Images'|t }}</a>
+            <a href="/product-image-download/{{ node.id() }}" class="">
+              <span class="link-text">{{ 'Download Images'|t }}</span>
+              {% include directory ~ '/icons/download-black.svg' %}</a>
           </span>
         </div>
 

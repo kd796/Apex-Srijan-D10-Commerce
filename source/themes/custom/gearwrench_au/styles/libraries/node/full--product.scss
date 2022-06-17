@@ -549,9 +549,16 @@ $tabs-border-width-active: rem(5px);
   }
 
   .download-images-link {
+    color: $color-black;
     display: block;
-    margin: 2rem auto 0;
-    text-align: center;
+    font-size: rem(16px);
+    font-weight: $fw-bold;
+    margin-top: 20px;
+    text-transform: uppercase;
+
+    .link-text {
+      vertical-align: top;
+    }
   }
 
   .product-detail-content-container__print > span {
