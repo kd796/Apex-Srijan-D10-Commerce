@@ -130,7 +130,9 @@
               {% if product_image_count > 1 %}
                 <button class="product-detail-modal-slider__button product-detail-modal-slider__button-next swiper-button-next" tabindex="0" role="button" aria-label="Next slide"></button>
               {% endif %}
-              <a href="#" rel="modal:close" class="close-modal icon-remove">X</a>
+              <a href="#" rel="modal:close" class="close-modal icon-remove">
+                {% include directory ~ '/icons/close.svg' %}
+              </a>
             </div>
           </div>
         </div>
