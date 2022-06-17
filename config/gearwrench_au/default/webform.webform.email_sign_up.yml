@@ -1,9 +1,7 @@
 uuid: 43efb39b-acc1-4c2d-9a2a-9aa010cc48c4
 langcode: en
 status: open
-dependencies:
-  module:
-    - webform_mailchimp
+dependencies: {  }
 weight: 0
 open: null
 close: null
@@ -57,9 +55,9 @@ elements: |-
 css: ''
 javascript: ''
 settings:
-  ajax: true
+  ajax: false
   ajax_scroll_top: form
-  ajax_progress_type: throbber
+  ajax_progress_type: ''
   ajax_effect: ''
   ajax_speed: null
   page: true
@@ -156,12 +154,12 @@ settings:
   draft_loaded_message: ''
   draft_pending_single_message: ''
   draft_pending_multiple_message: ''
-  confirmation_type: inline
-  confirmation_url: /newsletter-subscribe-thank-you
+  confirmation_type: url
+  confirmation_url: /form-submission-thank-you
   confirmation_title: ''
-  confirmation_message: 'Thank you for subscribing.'
+  confirmation_message: ''
   confirmation_attributes: {  }
-  confirmation_back: false
+  confirmation_back: true
   confirmation_back_label: ''
   confirmation_back_attributes: {  }
   confirmation_exclude_query: true
@@ -236,19 +234,41 @@ access:
     users: {  }
     permissions: {  }
 handlers:
-  mailchimp:
-    id: mailchimp
-    handler_id: mailchimp
-    label: MailChimp
+  email:
+    id: email
+    handler_id: email
+    label: Email
     notes: ''
     status: true
     conditions: {  }
     weight: 0
     settings:
-      list: 0e57960b1e
-      email: email_address
-      double_optin: false
-      mergevars: "FNAME: [webform_submission:values:first_name]\r\nLNAME: [webform_submission:values:last_name]"
-      interest_groups: {  }
-      control: privacy_policy
+      states:
+        - completed
+      to_mail: salesau@apextoolgroup.com
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      theme_name: ''
+      parameters: {  }
+      debug: false
 variants: {  }
