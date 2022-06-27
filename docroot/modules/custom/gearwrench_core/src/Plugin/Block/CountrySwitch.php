@@ -19,10 +19,12 @@ class CountrySwitch extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-    $australia_url = 'http://www.gearwrench.com.au/';
-    $mexico_url = 'http://www.gearwrench.com.mx/';
+    $united_states_url = 'https://www.gearwrench.com';
+    $australia_url = 'https://www.gearwrench.com.au/';
+    $mexico_url = 'https://www.gearwrench.com.mx/';
 
     return [
+      'united_states_url' => $united_states_url,
       'australia_url' => $australia_url,
       'mexico_url' => $mexico_url,
     ];
