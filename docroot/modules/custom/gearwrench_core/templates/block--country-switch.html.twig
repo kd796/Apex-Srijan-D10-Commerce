@@ -40,8 +40,12 @@
 
   <div{{ content_attributes.setAttribute('id', 'country-switch-menu--content') }}>
     <ul class="menu">
-      <li class="menu-item"><a href="/" class="menu-item__link">United States</a></li>
-      <li class="menu-item"><a href="{{ content.australia_url }}" target="_blank" class="menu-item__link">Australia</a></li>
+      <li class="menu-item">
+        <a href="{{ content.united_states_url }}" class="menu-item__link">{{ 'United States'|t }}</a>
+      </li>
+      <li class="menu-item">
+        <a href="{{ content.australia_url }}" target="_blank" class="menu-item__link">{{ 'Australia'|t }}</a>
+      </li>
     </ul>
   </div>
 
