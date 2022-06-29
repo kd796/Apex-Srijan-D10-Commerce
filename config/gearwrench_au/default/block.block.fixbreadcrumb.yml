@@ -1,0 +1,38 @@
+uuid: bf443a00-0ba4-40a0-a16b-194310ad2a2f
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:011f9ef4-2ea0-4bcf-819d-081879913565'
+  module:
+    - block_content
+    - system
+    - user
+  theme:
+    - gearwrench_au
+id: fixbreadcrumb
+theme: gearwrench_au
+region: header
+weight: -5
+provider: null
+plugin: 'block_content:011f9ef4-2ea0-4bcf-819d-081879913565'
+settings:
+  id: 'block_content:011f9ef4-2ea0-4bcf-819d-081879913565'
+  label: 'Fix Breadcrumb'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      authenticated: authenticated
