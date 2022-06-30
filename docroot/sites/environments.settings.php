@@ -3,7 +3,7 @@
 use Drupal\Core\Site\Settings;
 
 // Set hash_salt from file.
-$settings['hash_salt'] = file_get_contents($app_root . '/../config/salt.txt');
+$settings['hash_salt'] = file_get_contents($app_root . '/../config/' . basename($site_path) . '/salt.txt');
 
 // Set config sync directory after server configuration (since Acquia overwrites
 // the directory in their include files.)
