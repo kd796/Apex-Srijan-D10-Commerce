@@ -789,25 +789,9 @@ $databases = [];
 /**
  * Include server-specific configuration.
  */
-# @todo Acquia Configuration
-//if (file_exists('/var/www/site-php')) {
-//  require '/var/www/site-php/PROJECTNAME/PROJECTNAME-settings.inc';
-//}
-# @todo AWS/Custom Configuration (replace $_SERVER variables as needed)
-//$databases['default']['default'] = [
-//  'database' => $_SERVER['RDS_DB_NAME'],
-//  'username' => $_SERVER['RDS_USERNAME'],
-//  'password' => $_SERVER['RDS_PASSWORD'],
-//  'prefix' => '',
-//  'host' => $_SERVER['RDS_HOSTNAME'],
-//  'port' => $_SERVER['RDS_PORT'],
-//  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-//  'driver' => 'mysql',
-//];
-# @todo Pantheon Configuration
-// include __DIR__ . "/settings.pantheon.php";
-# @todo Platform.sh Configuration
-// include __DIR__ . "/settings.platformsh.php";
+if (file_exists('/var/www/site-php')) {
+  require '/var/www/site-php/apextoolgroup/sata_emea-settings.inc';
+}
 
 /**
  * Include environment-specific (local, dev, prod, docksal, etc.) settings.
