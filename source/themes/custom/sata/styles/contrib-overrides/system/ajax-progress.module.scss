@@ -1,0 +1,14 @@
+@charset 'UTF-8';
+
+@import '../../globals';
+
+// Overwriting drupal's default ajax styles.
+.ajax-progress-throbber {
+  @include loading-placeholder();
+  @include trbl();
+
+  .message,
+  .throbber {
+    display: none;
+  }
+}

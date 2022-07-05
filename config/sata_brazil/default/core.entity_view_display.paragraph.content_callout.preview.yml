@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.content_callout.field_link
+    - field.field.paragraph.content_callout.field_media_background
+    - field.field.paragraph.content_callout.field_title
+    - paragraphs.paragraphs_type.content_callout
+id: paragraph.content_callout.preview
+targetEntityType: paragraph
+bundle: content_callout
+mode: preview
+content:
+  field_media_background:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_link: true
+  search_api_excerpt: true

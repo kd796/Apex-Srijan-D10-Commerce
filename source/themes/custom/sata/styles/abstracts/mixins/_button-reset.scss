@@ -1,0 +1,28 @@
+// -----------------------------------------------------------------------------
+// Abstracts/Mixin: Button Reset
+// Resets <a>, <button>, <input type="submit"> styles to build custom styling
+// @include btn-reset();
+// -----------------------------------------------------------------------------
+
+@mixin btn-reset() {
+  background-color: transparent;
+  border: 0 none;
+  border-radius: 0;
+  color: inherit;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: inherit;
+  hyphens: auto;
+  line-height: normal;
+  margin: 0;
+  text-decoration: none;
+  text-transform: none;
+  transition: inherit;
+  user-select: none;
+  white-space: normal;
+
+  @include on-event() {
+    font-style: normal;
+    text-decoration: none;
+  }
+}

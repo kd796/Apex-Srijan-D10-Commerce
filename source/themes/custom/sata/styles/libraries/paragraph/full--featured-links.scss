@@ -1,0 +1,48 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: featured links
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.component-featured-links {
+  .component-featured-links__title {
+    @include type-header(h5, dark, included);
+    text-transform: uppercase;
+  }
+
+  .component-featured-links__list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .component-featured-links__list-item {
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .component-featured-links__list-item a {
+    @include icon(chevron, after);
+    hyphens: auto;
+
+    &:after {
+      color: $color-blue;
+      font-size: 0.75rem;
+      margin-left: 0.25rem;
+      transition: $transition-base;
+      transition-delay: $transition-base-time / 2;
+    }
+
+    &:hover:after {
+      color: $color-dark-blue;
+    }
+  }
+}

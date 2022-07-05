@@ -1,0 +1,110 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Node: Full Product
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+
+@media print {
+  #toolbar-administration,
+  #block-header-menu-main,
+  #block-header-search-block,
+  #block-country-switch-block,
+  #block-productbuynowsticky,
+  #block-crescenttool-breadcrumbs,
+  #block-crescenttool-local-tasks,
+  .product-detail-slider__pseudo-prev-button,
+  .product-detail-slider__pseudo-next-button,
+  .page .is-b-loading:not([data-animation])::before,
+  .product-detail-slider__thumbs-outer-wrapper,
+  .product-detail-content-container__rating-container,
+  .product-detail-content-container__social,
+  .product-detail-content-container h3,
+  .product-detail-content-container .field--name-field-product-features,
+  .node--type-product-tabs__nav-wrapper,
+  .node--type-product-tabs__mobile-nav-item::after,
+  #reviews-questions,
+  .more-features-link,
+  .node--type-product-related-products__nav-wrapper,
+  .views-element-container,
+  .region-footer {
+    display: none !important;
+  }
+
+  .page {
+    padding-top: 0 !important;
+  }
+
+  .region-header {
+    position: unset !important;
+    print-color-adjust: exact; // sass-lint:disable-line no-misspelled-properties
+    -webkit-print-color-adjust: exact; // sass-lint:disable-line no-misspelled-properties
+  }
+
+  #specifications,
+  #features {
+    display: block !important;
+  }
+
+  .node--type-product-tabs-tab {
+    display: table !important;
+    break-after: avoid !important;
+  }
+
+  .node--type-product-tabs__mobile-nav-item,
+  .node--type-product-tabs-tab {
+    border-top: unset !important;
+
+    &:last-of-type {
+      border-bottom: unset !important;
+    }
+  }
+
+  .node--type-product__page-top {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+
+  .product-detail-slider {
+    order: 2 !important;
+    margin-bottom: 20px !important;
+
+    .swiper-slide {
+      &:not(.swiper-slide-active) {
+        .media {
+          display: none !important;
+        }
+      }
+
+      &.swiper-slide-active {
+        width: 400px !important;
+      }
+    }
+  }
+
+  .product-detail-content-container {
+    order: 1 !important;
+    margin-bottom: 20px !important;
+  }
+
+  .node--type-product-tabs__mobile-nav-item {
+    font-size: 1.5rem !important;
+    text-transform: uppercase !important;
+  }
+
+  #specifications {
+    margin-top: 20px !important;
+  }
+
+  @page {
+    margin: 2cm;
+  }
+}

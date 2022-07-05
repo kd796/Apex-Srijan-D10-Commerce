@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Theme override to display a media item.
+ *
+ * Available variables:
+ * - name: Name of the media.
+ * - content: Media content.
+ *
+ * @see template_preprocess_media()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% set content_is_set = content|render|striptags|trim is not empty %}
+
+<figure{{ attributes }}>
+
+  {% if media_embed %}
+    <div{{ media_attributes }}>
+      {{ media_embed }}
+    </div>
+  {% endif %}
+
+  {% if content_is_set %}
+    <figcaption{{ figcaption_attributes }}>
+
+      {% if title %}
+        <header{{ title_attributes }}>
+          {{ title }}
+        </header>
+      {% endif %}
+
+      <div{{ content_attributes }}>
+        {{ content }}
+      </div>
+
+    </figcaption>
+  {% endif %}
+
+</figure>

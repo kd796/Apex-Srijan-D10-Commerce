@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - gearwrench_core
+  theme:
+    - sata
+third_party_settings:
+  block_class:
+    classes: block--country-switch
+id: country_switch_block
+theme: sata
+region: header
+weight: -6
+provider: null
+plugin: country_switch
+settings:
+  id: country_switch
+  label: 'Country Switch Block'
+  label_display: '0'
+  provider: gearwrench_core
+visibility: {  }

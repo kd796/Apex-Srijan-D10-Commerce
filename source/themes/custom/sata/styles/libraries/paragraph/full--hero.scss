@@ -1,0 +1,30 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: hero
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.component-hero {
+  @include container-full-width();
+
+  .component-hero__inner {
+    &:not(.swiper-container-initialized) {
+      .component-hero-slide {
+        display: none;
+
+        &:first-child {
+          display: block;
+        }
+      }
+    }
+  }
+}

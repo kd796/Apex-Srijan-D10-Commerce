@@ -1,0 +1,37 @@
+
+@mixin loading-placeholder() {
+  position: relative;
+
+  &:before {
+    @include icon-styles;
+    @include trbl();
+
+    -webkit-animation: clockwiseRoll 2s infinite ease;
+    animation: clockwiseRoll 2s infinite ease;
+    background-color: $color-white;
+    border-radius: 1rem;
+    content: icon-char(logo);
+    color: $color-dark-blue;
+    display: block;
+    font-size: 38px;
+    height: 38px;
+    line-height: 1;
+    margin: auto;
+    max-width: unset;
+    opacity: 1;
+    padding: 0;
+    width: 38px;
+  }
+
+  @keyframes clockwiseRoll {
+    0%,
+    30% {
+      transform: rotate(0deg);
+    }
+
+    70%,
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

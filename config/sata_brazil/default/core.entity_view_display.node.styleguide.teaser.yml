@@ -1,0 +1,102 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.styleguide.body
+    - field.field.node.styleguide.field_component_hero
+    - field.field.node.styleguide.field_components
+    - field.field.node.styleguide.field_media
+    - field.field.node.styleguide.field_meta_tags
+    - image.style.small_1x1
+    - node.type.styleguide
+  module:
+    - blazy
+    - smart_trim
+    - user
+id: node.styleguide.teaser
+targetEntityType: node
+bundle: styleguide
+mode: teaser
+content:
+  body:
+    type: smart_trim
+    label: hidden
+    settings:
+      trim_length: 200
+      trim_type: chars
+      trim_suffix: ''
+      wrap_output: false
+      wrap_class: trimmed
+      more_link: false
+      more_class: more-link
+      more_text: More
+      summary_handler: full
+      trim_options:
+        text: true
+        trim_zero: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_media:
+    type: blazy_media
+    label: hidden
+    settings:
+      caption:
+        title: '0'
+        alt: '0'
+      optionset: default
+      icon: ''
+      layout: ''
+      view_mode: ''
+      cache: 0
+      current_view_mode: teaser
+      skin: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      responsive_image_style: ''
+      box_style: ''
+      image_style: small_1x1
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
+      breakpoints:
+        xs:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        sm:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        md:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        lg:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        xl:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+      sizes: ''
+      grid_header: ''
+      grid: '0'
+      grid_medium: '0'
+      grid_small: '0'
+      iframe_lazy: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_component_hero: true
+  field_components: true
+  field_meta_tags: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

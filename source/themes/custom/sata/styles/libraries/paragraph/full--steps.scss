@@ -1,0 +1,240 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: Steps
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.component-steps {
+  @include container-full-width();
+  padding: rem(40px) 0;
+
+  &.component-steps--color-light,
+  &.component-steps--color-dark {
+    position: relative;
+
+    .component-steps__content {
+      position: relative;
+      z-index: 1;
+    }
+
+    &:after {
+      @include trbl();
+
+      content: '';
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+    }
+  }
+
+  &.component-steps--color-light {
+    background-color: $gray-10;
+
+    .component-steps__title,
+    .component-step__content {
+      color: $black;
+    }
+  }
+
+  &.component-steps--color-dark {
+    background-color: $black;
+
+    .component-steps__title,
+    .component-step__content {
+      color: $white;
+    }
+  }
+
+  @include media('>=lg-plus') {
+    padding: rem(80px) 0;
+  }
+
+  .component-steps__title {
+    @include container();
+  }
+
+  .component-steps__content {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      margin: 0;
+    }
+
+
+    .component-step {
+      &:nth-child(1) {
+        .component-step__title-wrapper {
+          &::after {
+            top: 45%;
+            height: 50%;
+          }
+
+          @include media('>=lg-plus') {
+            &::after {
+              top: 50%;
+              left: 0;
+              width: 100%;
+              height: unset;
+            }
+          }
+        }
+      }
+
+      &:nth-last-of-type(1) {
+        .component-step__title-wrapper {
+          &::after {
+            top: 0;
+            height: 50%;
+          }
+
+          @include media('>=lg-plus') {
+            &::after {
+              top: 50%;
+              left: 0;
+              width: 0;
+              height: unset;
+              border-top: 0;
+            }
+          }
+        }
+      }
+
+      @include media('<lg-plus') {
+        .component-step__inner {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          position: relative;
+        }
+      }
+
+      @include media('>=lg-plus') {
+        max-width: 100%;
+        flex: 1 0 0;
+      }
+    }
+
+    @include media('>=lg-plus') {
+      @include container();
+      flex-direction: row;
+
+      &::after {
+        border-left: unset;
+        border-top: 2px dashed #EB8900;
+        top: rem(25px);
+        left: rem(25px);
+        width: 83%;
+        z-index: 0;
+      }
+    }
+  }
+
+  .component-steps__title {
+    @include type-header(h2, black, included);
+    font-size: rem(28px);
+    text-align: center;
+    margin-bottom: rem(40px);
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+
+    @include media('>=lg-plus') {
+      font-size: rem(40px);
+      margin-bottom: rem(80px);
+    }
+  }
+
+  .component-step__title-wrapper {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 50%;
+      z-index: 0;
+    }
+
+    @include media('<lg-plus') {
+      flex: 0 0 0;
+      margin-right: rem(24px);
+
+      &::after {
+        height: 95%;
+        border-left: 2px dashed $primary-orange;
+      }
+    }
+
+    @include media('>=lg-plus') {
+      margin-bottom: rem(30px);
+
+      &::after {
+        top: 50%;
+        left: 0;
+        width: 100%;
+        border-top: 2px dashed $primary-orange;
+      }
+    }
+  }
+
+  .component-step__title {
+    position: relative;
+    color: $type-dark;
+    font-family: $font-brand;
+    font-size: rem(16px);
+    font-weight: 800;
+    background-color: $primary-orange;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: rem(5px 5px 5px 10px);
+    z-index: 1;
+
+    &::after {
+      content: '';
+      background-color: $primary-orange;
+      position: absolute;
+      top: 0;
+      right: rem(-8px);
+      width: rem(16px);
+      height: 100%;
+      transform: skew(-14deg);
+      z-index: -1;
+    }
+
+    @include media('<lg-plus') {
+      width: rem(45px);
+      margin: rem(20px 0);
+    }
+
+    @include media('>=lg-plus') {
+      display: inline-flex;
+      font-size: rem(20px);
+      padding: rem(10px 10px 10px 20px);
+
+      &::after {
+        right: rem(-10px);
+        width: rem(20px);
+      }
+    }
+  }
+
+  .component-step__content {
+    padding-right: rem(20px);
+
+    @include media('>=lg-plus') {
+      padding-right: rem(40px);
+    }
+  }
+}

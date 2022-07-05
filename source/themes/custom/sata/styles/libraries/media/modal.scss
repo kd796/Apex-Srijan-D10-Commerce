@@ -1,0 +1,40 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Media: Modal
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.media--view-mode-modal {
+
+  .field--name-thumbnail {
+    .play-icon {
+      cursor: pointer;
+      position: absolute;
+      top: 38%;
+      left: 50%;
+      transform: translate(-50%, 75%);
+      background-color: #000000;
+      height: 40px;
+      border-radius: 10px;
+    }
+
+    &:hover {
+      .play-icon {
+        background-color: #FF0000;
+
+        -webkit-transition: background-color 300ms linear;
+        -ms-transition: background-color 300ms linear;
+        transition: background-color 300ms linear;
+      }
+    }
+  }
+}

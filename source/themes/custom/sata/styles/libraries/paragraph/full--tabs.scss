@@ -1,0 +1,126 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: tabs
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+$tabs-border-width: rem(2px);
+$tabs-border-width-active: rem(5px);
+
+.component-tabs {
+  & > .component-tabs__nav {
+    margin: 0;
+    padding: 0;
+    border-bottom: $tabs-border-width solid $gray-30;
+
+    li {
+      cursor: pointer;
+      list-style: none;
+      margin-bottom: 0;
+    }
+  }
+
+  // @todo need styles for non-js-initialized tabs.
+  &.component-tabs--horizontal {
+    & > .component-tabs__nav {
+      @include flex();
+      @include flex-x(justify-content, space-between);
+
+      li {
+        border-bottom: .23rem solid transparent;
+        padding: 1rem 0;
+        margin: 0 1rem;
+        position: relative;
+
+        &:first-child {
+          margin-left: rem(90px);
+        }
+
+        &:last-child {
+          margin-right: rem(90px);
+        }
+
+        a {
+          text-transform: uppercase;
+          font-weight: 800;
+          font-size: rem(24px);
+          font-family: $font-brand;
+        }
+
+        &[aria-selected='true'] {
+          &:after {
+            @include trl();
+            background-color: $color-white;
+            content: '';
+            display: block;
+            height: $tabs-border-width-active;
+            top: 100%;
+            border-bottom: $tabs-border-width-active solid $primary-orange;
+          }
+        }
+      }
+
+      @include media('<=lg-plus') {
+        li {
+          &:first-child {
+            margin-left: rem(35px);
+          }
+
+          &:last-child {
+            margin-right: rem(35px);
+          }
+        }
+      }
+
+      @include media('<=lg') {
+        li {
+          a {
+            font-size: rem(20px);
+          }
+        }
+      }
+
+      @include media('<md') {
+        @include container-full-width();
+        flex-wrap: nowrap;
+        justify-content: center;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        -ms-overflow-style: none;
+        scrollbar-width: none; // sass-lint:disable-line no-misspelled-properties
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        li {
+          display: flex;
+          flex: 0 0 auto;
+
+          &[aria-selected='false'] {
+            a {
+              color: $gray-30;
+            }
+          }
+        }
+      }
+
+      @include media('<=sm') {
+        justify-content: flex-start;
+      }
+    }
+
+    & > .component-tabs__content {
+      padding: 1rem 0;
+    }
+  }
+}

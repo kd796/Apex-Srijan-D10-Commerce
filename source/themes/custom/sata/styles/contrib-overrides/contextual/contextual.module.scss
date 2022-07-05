@@ -1,0 +1,20 @@
+// sass-lint:disable-all
+
+/**
+ * @file
+ * Generic base styles for contextual module.
+ */
+
+.contextual-region {
+  position: relative;
+}
+.contextual .trigger:focus {
+  /* Override the .focusable position: static */
+  position: relative;
+}
+.contextual-links {
+  display: none!important;
+}
+.contextual.open .contextual-links {
+  display: block!important;
+}
