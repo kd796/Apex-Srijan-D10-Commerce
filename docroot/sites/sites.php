@@ -116,21 +116,21 @@ $sites['prod-www.sata.com.co'] = 'sata_colombia';
 $sites['stg-www.sata.com.co'] = 'sata_colombia';
 $sites['dev-www.sata.com.co'] = 'sata_colombia';
 
-// SATA Colombia
+// SATA Brazil
 $sites['sataferramentas.com.br'] = 'sata_brazil';
 $sites['www.sataferramentas.com.br'] = 'sata_brazil';
 $sites['prod-www.sataferramentas.com.br'] = 'sata_brazil';
 $sites['stg-www.sataferramentas.com.br'] = 'sata_brazil';
 $sites['dev-www.sataferramentas.com.br'] = 'sata_brazil';
 
-// SATA Colombia
+// SATA EMEA
 $sites['satatools.eu'] = 'sata_emea';
 $sites['www.satatools.eu'] = 'sata_emea';
 $sites['prod-www.satatools.eu'] = 'sata_emea';
 $sites['stg-www.satatools.eu'] = 'sata_emea';
 $sites['dev-www.satatools.eu'] = 'sata_emea';
 
-// SATA Colombia
+// SATA US (North America)
 $sites['satatools.us'] = 'sata_us';
 $sites['www.satatools.us'] = 'sata_us';
 $sites['prod-www.satatools.us'] = 'sata_us';
