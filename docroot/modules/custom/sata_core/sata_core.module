@@ -1,0 +1,260 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for sata Core module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+use Drupal\Component\Utility\Html;
+use Drupal\views\ViewExecutable;
+use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
+use Drupal\media\MediaInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function sata_core_theme() {
+  $theme['block__country_switch'] = [
+    'render element' => 'elements',
+    'template' => 'block--country-switch',
+    'base hook' => 'block'
+  ];
+
+  $theme['block__footer_navigation_block'] = [
+    'render element' => 'elements',
+    'template' => 'block--footer-navigation-block',
+    'base hook' => 'block'
+  ];
+
+  $theme['block__header_search'] = [
+    'render element' => 'elements',
+    'template' => 'block--header-search',
+    'base hook' => 'block'
+  ];
+
+  $theme['gw_product_buy_now_sticky'] = [
+    'template' => 'gw--product-buy-now-sticky',
+    'variables' => [
+      'title' => NULL,
+      'sku' => NULL,
+    ],
+  ];
+
+  return $theme;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block.html.twig.
+ */
+function sata_core_preprocess_block(&$variables) {
+  if ($variables['base_plugin_id'] == 'footer_navigation_block') {
+    $plugin_css = Html::cleanCssIdentifier($variables['plugin_id']);
+    $provider_css = Html::cleanCssIdentifier($variables['configuration']['provider']);
+    $block_class = 'block-' . $plugin_css;
+
+    // Figure out title ID and set aria-related attributes.
+    $title_id = $variables['attributes']['id'] . '-footer';
+    $variables['attributes']['role'] = 'navigation';
+    $variables['attributes']['aria-label'] = $title_id;
+
+    // Add wrapper class.
+    $variables['wrapper_attributes']['class'][] = "{$block_class}__wrapper";
+
+    // Track to convert attributes.
+    $variables['#attribute_variables'][] = 'wrapper_attributes';
+  }
+}
+
+/**
+ * Implements hook_views_pre_build().
+ */
+function sata_core_views_pre_build(ViewExecutable $view) {
+  $id = $view->storage->id();
+  $display = $view->current_display;
+
+  if ($id === 'product_category_grid' && $display === 'top_level_items') {
+    $parent_tids = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('product_classifications', 0, 1, FALSE);
+    $parent_tids = array_column($parent_tids, 'tid');
+    $table_mapping = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->getTableMapping();
+    $field_classification_id_table = $table_mapping->getFieldTableName('field_classification_id');
+    $field_classification_id_storage_definitions = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('taxonomy_term')['field_classification_id'];
+    $field_classification_id_column = $table_mapping->getFieldColumnName($field_classification_id_storage_definitions, 'value');
+    $connection = \Drupal::database();
+    $classification_ids = $connection->select($field_classification_id_table, 'f')
+      ->fields('f', [$field_classification_id_column])
+      ->distinct(TRUE)
+      ->condition('bundle', 'product_classifications')
+      ->condition('entity_id', $parent_tids, 'IN')
+      ->execute()->fetchCol();
+    $view_args = [];
+    $view_args[] = implode('+', $classification_ids);
+    $view->args = $view_args;
+  }
+}
+
+/**
+ * Implements hook_entity_prepare_view().
+ */
+function sata_core_entity_prepare_view($entity_type_id, array $entities, array $displays, $view_mode) {
+  if ($entity_type_id == 'node' && $view_mode == 'full') {
+    /** @var Drupal\node\NodeInterface $node */
+    $node = $entities[0];
+
+    if ($node->getType() == 'product') {
+      $primary_image = $node->get('field_media')->getValue();
+      $product_images = $node->get('field_product_images')->getValue();
+
+      if (!empty($primary_image)) {
+        $new_product_image_list = $primary_image;
+
+        // This places the primary image at the front of the list.
+        foreach ($product_images as $img) {
+          $new_product_image_list[] = $img;
+        }
+
+        $node->set('field_product_images', $new_product_image_list);
+      }
+    }
+  }
+}
+
+/**
+ * Implementation of hook_token_info().
+ *
+ * We are creating tokens for up to 3 levels of classification hierarchy.
+ */
+function sata_core_token_info() {
+  $info['tokens']['node']['product_classifications_parent'] = [
+    'name' => t('Product Classifications Parent'),
+    'description' => t('Custom token to provide the top level Product Classification'),
+  ];
+
+  $info['tokens']['node']['product_classifications_child_first'] = [
+    'name' => t('Product Classifications First Child'),
+    'description' => t('Custom token to provide the first child Product Classification'),
+  ];
+
+  $info['tokens']['node']['product_classifications_child_second'] = [
+    'name' => t('Product Classifications Second Child'),
+    'description' => t('Custom token to provide the second child Product Classification'),
+  ];
+
+  $info['tokens']['node']['product_classifications_full_string'] = [
+    'name' => t('Product Classifications Full String'),
+    'description' => t('Custom token to provide the full Product Classification (for metadata)'),
+  ];
+
+  return $info;
+}
+
+/**
+ * Implementation of hook_tokens().
+ */
+function sata_core_tokens($type, $tokens, array $data = [], array $options = []) {
+  $replacements = [];
+
+  if ($type == 'node' && !empty($data['node'])) {
+    $node = $data['node'];
+
+    foreach ($tokens as $name => $original) {
+      $call = FALSE;
+
+      // Loop through the tokens, only react on our custom tokens.
+      switch ($name) {
+        case 'product_classifications_parent':
+          $call = 'parent_level_1';
+          break;
+
+        case 'product_classifications_child_first':
+          $call = 'parent_level_2';
+          break;
+
+        case 'product_classifications_child_second':
+          $call = 'parent_level_3';
+          break;
+
+        case 'product_classifications_full_string':
+          $call = 'full';
+          break;
+
+      }
+
+      if ($call) {
+
+        // Replace the token with the value returned from the function call.
+        $replacements[$original] = _sata_core_return_product_classification($node, $call);
+      }
+    }
+  }
+  return $replacements;
+}
+
+/**
+ * Return a taxonomy value at a specific hierarchy level determined by the caller.
+ *
+ * @param \Drupal\node\Entity\Node $node
+ *   The node object to act upon.
+ * @param string $call
+ *   The call determines which level of the classification hierarchy we want.
+ *
+ * @return string
+ *   Return the name of the Term or a blank string if none is available.
+ */
+function _sata_core_return_product_classification(Node $node, $call) {
+  $parents = [];
+
+  // Load the classifications on the node.
+  $classification_tids = $node->get('field_product_classifications')->getValue();
+  $tid_parents = [];
+
+  // Create an array of each term with its parents.
+  foreach ($classification_tids as $tid) {
+    $tid_parents[$tid['target_id']] = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($tid['target_id']);
+  }
+
+  if (!empty($tid_parents)) {
+
+    // Build the full string of terms for use with metadata.
+    $full_string = '';
+
+    // The longest array provides the full hierarchy.
+    if ($node->getType() == 'product') {
+      foreach (max($tid_parents) as $t) {
+        $full_string .= $t->getName() . ' ';
+      }
+      $longest = array_reverse(max($tid_parents));
+    }
+    elseif ($node->getType() == 'product_category') {
+      foreach (min($tid_parents) as $t) {
+        $full_string .= $t->getName() . ' ';
+      }
+      $longest = array_reverse(min($tid_parents));
+    }
+    $parents['full'] = trim($full_string);
+    $i = 1;
+
+    // Loop through and set the term name at each level.
+    foreach ($longest as $term) {
+      $parents['parent_level_' . $i] = $term->getName();
+      $i++;
+    }
+  }
+
+  // Provide the term name at requested level, empty string if none exists.
+  return array_key_exists($call, $parents) ? $parents[$call] : '';
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function sata_core_media_presave(MediaInterface $entity) {
+  if ($entity->bundle() == 'remote_video') {
+    $url = $entity->get('field_media_video_embed_field')->getValue()[0]['value'];
+    $entity->set('field_media_oembed_video', $url);
+  }
+}
