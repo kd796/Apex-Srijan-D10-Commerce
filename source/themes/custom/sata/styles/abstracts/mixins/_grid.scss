@@ -1,0 +1,243 @@
+// -----------------------------------------------------------------------------
+// Mixin: Grid
+// Grid layout mixins and class generators
+//
+// === grid-row === //
+// @include grid-row();
+// Option(s):
+// • $direction(value = flex-direction) - default = row - change flow of items
+//
+// === grid-row-gutters === //
+// @include grid-row-gutters();
+// Option(s):
+// • $direction(value = flex-direction) - default = row - change flow of items
+// • $gutter-horizontal(value = boolean) - default = true, toggle horizontal gap
+// • $gutter-horizontal-size(value = wide, wide-large, narrow, default) - default = default - width of horizontal gap
+// • $gutter-vertical(value = boolean) - default = false, toggle vertical gap
+// • $gutter-vertical-size(value = wide, wide-large, narrow, default) - default = default - width of vertical gap
+//
+// === grid-col === //
+// @include grid-col();
+// Option(s):
+// • $column-width(value = auto, variable, number) - default = default - width of column
+// -----------------------------------------------------------------------------
+
+/** Grid row
+ * Sets row up for the grid
+ */
+@mixin grid-row($direction: row) {
+  @include flex();
+  @include flex-x(flex, 0 1 auto);
+  @include flex-x(flex-direction, $direction);
+  @include flex-x(flex-wrap, wrap);
+}
+
+/** Grid row gutters
+ * IF $gutter-horizontal = true: set the sides gap width
+ * ELSE $gutter-vertical = false: remove the top and bottom gap width
+ * IF $gutter-vertical = true: set the top and bottom gap width
+ * ELSE $gutter-vertical = false: remove the top and bottom gap width
+ * IF $gutter-horizontal-size & $gutter-vertical-size = wide: large sized space between items
+ * IF $gutter-horizontal-size & $gutter-vertical-size = wide-lg: large sized space between items only on the lg breakpoint
+ * IF $gutter-horizontal-size & $gutter-vertical-size = narrow: small sized space between items
+ * ELSE $gutter-horizontal-size & $gutter-vertical-size = default: regular sized space between items
+ */
+@mixin grid-row-gutters(
+  $gutter-horizontal: true,
+  $gutter-horizontal-size: default,
+  $gutter-vertical: false,
+  $gutter-vertical-size: default
+  ) {
+
+  // IF vertical gutters
+  @if $gutter-vertical == true {
+    @if $gutter-vertical-size == wide {
+      > * {
+        margin-bottom: $gap-vertical-sm;
+        margin-top: $gap-vertical-sm;
+      }
+    } @else if $gutter-vertical-size == wide-large {
+      > * {
+        @include media('>=lg') {
+          margin-bottom: $gap-vertical-md-plus;
+          margin-top: $gap-vertical-md-plus;
+        }
+      }
+    } @else if $gutter-vertical-size == narrow {
+      > * {
+        margin-bottom: $gap-vertical-xsm;
+        margin-top: $gap-vertical-xsm;
+      }
+    } @else if $gutter-vertical-size == gapless {
+      > * {
+        margin-bottom: 0;
+        margin-top: 0;
+      }
+    } @else {
+      > * {
+        margin-bottom: $spacing-unit;
+        margin-top: $spacing-unit;
+      }
+    }
+  }
+
+  @if $gutter-horizontal == true {
+    @if $gutter-horizontal-size == wide {
+      margin-right: -$gap-horizontal-md-plus;
+      margin-left: -$gap-horizontal-md-plus;
+
+      > * {
+        padding-right: $gap-horizontal-md-plus;
+        padding-left: $gap-horizontal-md-plus;
+      }
+    } @else if $gutter-horizontal-size == wide-large {
+      @include media('>=lg') {
+        margin-right: -$gap-horizontal-lg;
+        margin-left: -$gap-horizontal-lg;
+      }
+
+      > * {
+        @include media('>=lg') {
+          padding-right: $gap-horizontal-lg;
+          padding-left: $gap-horizontal-lg;
+        }
+      }
+    } @else if $gutter-horizontal-size == narrow {
+      margin-right: -$gap-horizontal-md;
+      margin-left: -$gap-horizontal-md;
+
+      > * {
+        padding-right: $gap-horizontal-md;
+        padding-left: $gap-horizontal-md;
+      }
+    } @else if $gutter-horizontal-size == gapless {
+      margin-right: 0;
+      margin-left: 0;
+
+      > * {
+        padding-right: 0;
+        padding-left: 0;
+      }
+    } @else {
+      margin-right: rem(-$spacing-unit);
+      margin-left: rem(-$spacing-unit);
+
+      > * {
+        padding-right: rem($spacing-unit);
+        padding-left: rem($spacing-unit);
+      }
+    }
+  }
+}
+
+/** Grid columns
+ * IF = auto: fits the available space
+ * ELSE IF = variable: fits the width of it's content
+ * ELSE span the amount of columns provided
+ */
+@mixin grid-col($column-width: default) {
+  @if $column-width == auto {
+    @include flex-x(flex-basis, 0);
+    @include flex-x(flex-grow, 1);
+    max-width: 100%;
+  } @else if $column-width == variable {
+    @include flex-x(flex, 0 0 auto);
+    width: auto;
+    max-width: none;
+  } @else {
+    @include flex-x(flex, 0 0 auto);
+    flex-basis: ($column-width / $grid-columns) * 100%;
+    max-width: ($column-width / $grid-columns) * 100%;
+  }
+}
+
+/** Grid Spacing Clear
+ * Clears first and last grid row margin or padding
+ * Declare on column class: @include grid-clear-vertical-spacing(2);
+ * Options:
+ * • $columns(value = 1 to n) - default = 1
+ * • $property(value = margin or padding) - default = margin, sets to 0
+ */
+@mixin grid-clear-vertical-spacing ($columns: 1, $property: margin) {
+  @if $columns == 1 {
+    &:first-of-type {
+      #{$property}-top: 0;
+    }
+
+    &:last-of-type {
+      #{$property}-bottom: 0;
+    }
+  } @else {
+    &:nth-of-type(-n+#{$columns}) {
+      #{$property}-top: 0;
+    }
+
+    &:nth-of-type(#{$columns}n+1):nth-last-of-type(-n+#{$columns}),
+    &:nth-of-type(#{$columns}n+1):nth-last-of-type(-n+#{$columns}) ~ * {
+      #{$property}-bottom: 0;
+    }
+  }
+}
+
+/** Grid class generators
+ * Generates classes for each column and offset by default and breakpoint
+ */
+@mixin columns($columns...) {
+  // Generates classes for each column
+  @each $i in $columns {
+    @for $n from 1 through $i {
+      .col-#{$n} {
+        @include grid-col($column-width: $n);
+      }
+    }
+  }
+
+  // Generates classes for each column for each breakpoint
+  @each $breakpoint in map-keys($breakpoints) {
+    @include media(#{'>=' + $breakpoint}) {
+      .#{$breakpoint}\:col-auto {
+        @include flex-x(flex-basis, 0);
+        @include flex-x(flex-grow, 1);
+        max-width: 100%;
+      }
+
+      .#{$breakpoint}\:col-variable {
+        @include flex-x(flex, 0 0 auto);
+        width: auto;
+        max-width: none;
+      }
+
+      @each $i in $columns {
+        @for $n from 1 through $i {
+          .#{$breakpoint}\:col-#{$n} {
+            @include flex-x(flex-basis, ($n / $i) * 100%);
+            max-width: ($n / $i) * 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Generate offset classes for each breakpoint
+@mixin columns-offsets($columns...) {
+  @each $i in $columns {
+    @for $n from 1 through ($i - 1) {
+      .col-offset-#{$n} {
+        margin-left: ($n / $i) * 100%;
+      }
+    }
+  }
+
+  @each $breakpoint in map-keys($breakpoints) {
+    @include media(#{'>=' + $breakpoint}) {
+      @each $i in $columns {
+        @for $n from 1 through ($i - 1) {
+          .#{$breakpoint}\:col-offset-#{$n} {
+            margin-left: ($n / $i) * 100%;
+          }
+        }
+      }
+    }
+  }
+}

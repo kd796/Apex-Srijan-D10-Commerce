@@ -1,0 +1,195 @@
+// -----------------------------------------------------------------------------
+// Base: Base
+// Basic site styles
+// -----------------------------------------------------------------------------
+
+/**
+ * Body font sizing and base
+ */
+@at-root {
+  @viewport {
+    width: device-width;
+  }
+}
+
+html {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: $html-font-size;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: $body-bg-color;
+  color: $color-black;
+  font-family: $font-default;
+  font-weight: $fw-medium;
+  line-height: $body-line-height;
+  overflow-x: hidden;
+
+  .ui-widget.ui-widget-content.ui-autocomplete {
+    max-width: calc(100% - 4rem);
+    padding-top: 10px;
+
+    @include media('>md') {
+      max-width: none;
+    }
+
+    .ui-menu-item {
+      margin: 0 0 5px;
+    }
+
+    .ui-menu-item-wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    .views-field-field-product-images {
+      display: flex;
+      min-width: 50px;
+
+      .field-content {
+        display: flex;
+        margin: auto;
+      }
+    }
+
+    .views-field-title {
+      font-weight: bold;
+      line-height: 1.25;
+      padding-right: 10px;
+    }
+
+    .views-field-field-long-description {
+      line-height: 1.25;
+    }
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+/**
+ * Box sizing
+ * Since `*` has a specificity of 0, it does not override the `html` value
+ * making all elements inheriting from the root box-sizing value
+ * See: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ */
+
+// Set up a decent box model on the root element
+html {
+  box-sizing: border-box;
+}
+
+// Make all elements from the DOM inherit from the parent box-sizing
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/**
+ * Remove focus outline from all elements if not keyboard activated.
+ */
+body:not(.keyboard-activated) *:focus {
+  outline: none;
+}
+
+/**
+ * Basic body styles
+ */
+::-moz-selection {
+  background: $color-blue;
+  color: $color-blue;
+}
+
+::selection {
+  background: $color-blue;
+  color: $color-blue;
+}
+
+// height for page wrappers so the site spans the full height of the window
+.dialog-off-canvas-main-canvas,
+.page {
+  height: 100%;
+}
+
+// Add margin to system messages.
+.messages {
+  margin: 1rem;
+}
+
+// flex on the parent regions wrapper to always keep the footer at the bottom
+.page {
+  @include flex();
+  @include flex-x(flex-direction, column);
+
+  @include bs-ie() {
+    display: block;
+  }
+
+  // custom loader styles
+  .media--loading:not([data-animation])::before,
+  .is-b-loading:not([data-animation])::before {
+    background: url('../../sata/images/GW_Airfoil_OR_BL.png') center no-repeat;
+    background-size: contain;
+    height: 50px;
+    width: 50px;
+    max-width: 50px;
+  }
+
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: top;
+  width: auto;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+// Drupal Toolbar fixes.
+body.toolbar-loading {
+  padding-top: $admin-toolbar;
+
+  .toolbar {
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .toolbar-tray {
+    display: none !important;
+  }
+}
+
+// Make tablet toolbar hover over page instead of pushing all content over.
+body.toolbar-tray-open.toolbar-vertical.toolbar-fixed {
+  margin-left: 0 !important;
+}
+
+// Fix to make tool tray un-"fixed" if toolbar is loading.
+body.toolbar-loading .toolbar-tray {
+  display: none;
+}
+
+// Add background to node-preview container.
+.node-preview-container {
+  background: $color-white;
+  background: rgba($color-white, 0.8);
+}
+
+// Move Drupal edit buttons to the right with performance Device
+.block-local-tasks-block__content {
+  @include media('>lg-plus') {
+    margin-left: 250px;
+  }
+}

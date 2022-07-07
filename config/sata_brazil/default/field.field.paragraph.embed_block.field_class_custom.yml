@@ -1,0 +1,19 @@
+uuid: db587e8e-a2c3-4302-b37b-21e1a44337c5
+langcode: pt-br
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_class_custom
+    - paragraphs.paragraphs_type.embed_block
+id: paragraph.embed_block.field_class_custom
+field_name: field_class_custom
+entity_type: paragraph
+bundle: embed_block
+label: 'Custom Classes'
+description: 'A list of space-separated HTML classes to use on the component. <strong>Allowed characters: a-z 0-9 _ -</strong>'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

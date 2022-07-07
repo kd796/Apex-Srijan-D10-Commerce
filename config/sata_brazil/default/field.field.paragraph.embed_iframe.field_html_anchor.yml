@@ -1,0 +1,19 @@
+uuid: 7f5ee9a7-4333-4962-aa62-a0647ba56b71
+langcode: pt-br
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_html_anchor
+    - paragraphs.paragraphs_type.embed_iframe
+id: paragraph.embed_iframe.field_html_anchor
+field_name: field_html_anchor
+entity_type: paragraph
+bundle: embed_iframe
+label: Âncora
+description: '<strong>Allowed characters: a-z 0-9 -</strong>. All disallowed characters will be converted to hyphens.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

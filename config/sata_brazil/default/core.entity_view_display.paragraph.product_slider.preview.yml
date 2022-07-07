@@ -1,0 +1,23 @@
+uuid: b4b25522-a6eb-476d-bda5-d83b4313110e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.product_slider.field_products
+    - paragraphs.paragraphs_type.product_slider
+id: paragraph.product_slider.preview
+targetEntityType: paragraph
+bundle: product_slider
+mode: preview
+content:
+  field_products:
+    type: entity_reference_label
+    label: visually_hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

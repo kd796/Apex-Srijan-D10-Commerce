@@ -1,0 +1,23 @@
+uuid: d304247f-84fc-436b-8fc6-9ad1f7a7d65b
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.hero_banner
+    - image.style.hero_banner_mobile
+  theme:
+    - sata
+id: hero_basic
+label: 'Hero - Basic'
+image_style_mappings:
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: 100vw
+      sizes_image_styles:
+        - hero_banner
+        - hero_banner_mobile
+    breakpoint_id: sata.All
+    multiplier: 1x
+breakpoint_group: sata
+fallback_image_style: hero_banner

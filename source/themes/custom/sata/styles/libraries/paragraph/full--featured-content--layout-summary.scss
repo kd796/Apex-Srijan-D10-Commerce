@@ -1,0 +1,41 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: Featured Content - Summary layout
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+
+.component-featured-content--layout-summary {
+  .component-featured-content__list {
+    @include grid-row();
+    @include grid-row-gutters(
+      $gutter-horizontal: false,
+      $gutter-vertical: true,
+      $gutter-vertical-size: narrow
+    );
+    list-style: none;
+    padding: 0;
+  }
+
+  .component-featured-content__list-item {
+    @include grid-col(12);
+
+    @include media('>=md') {
+      @include grid-col(6);
+    }
+
+    @include media('>=lg') {
+      @include grid-col(3);
+    }
+  }
+}
+

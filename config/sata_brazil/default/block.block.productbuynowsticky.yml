@@ -1,0 +1,28 @@
+uuid: 56617a40-0acf-4797-b0b0-0a3d8f279d17
+langcode: en
+status: true
+dependencies:
+  module:
+    - gearwrench_core
+    - node
+  theme:
+    - sata
+id: productbuynowsticky
+theme: sata
+region: pre_content
+weight: -8
+provider: null
+plugin: product_buy_now_sticky
+settings:
+  id: product_buy_now_sticky
+  label: 'Product: Buy Now Sticky'
+  label_display: '0'
+  provider: gearwrench_core
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      product: product

@@ -1,0 +1,27 @@
+uuid: 11c98f41-8d61-4ee9-8542-c25f3c63bc63
+langcode: pt-br
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_style
+    - paragraphs.paragraphs_type.content
+id: paragraph.content.field_style
+field_name: field_style
+entity_type: paragraph
+bundle: content
+label: Estilo
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: classy_paragraphs
+  handler_settings:
+    filter:
+      type: starts_with
+      starts_with: content__
+    sort:
+      field: label
+      direction: ASC
+field_type: entity_reference

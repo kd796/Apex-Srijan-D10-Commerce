@@ -1,0 +1,26 @@
+uuid: 0bf44d8c-dad5-4a4e-9193-0c1bc2c64018
+langcode: pt-br
+status: true
+dependencies:
+  config:
+    - filter.format.limited_html
+  module:
+    - filter
+    - media
+    - search
+    - shortcut
+    - system
+id: authenticated
+label: 'Usuário autenticado'
+weight: 1
+is_admin: false
+permissions:
+  - 'access comments'
+  - 'access content'
+  - 'access shortcuts'
+  - 'access site-wide contact form'
+  - 'post comments'
+  - 'search content'
+  - 'skip comment approval'
+  - 'use text format limited_html'
+  - 'view media'

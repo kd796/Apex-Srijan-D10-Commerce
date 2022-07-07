@@ -1,0 +1,88 @@
+uuid: fdeb70c7-5cd0-4b4f-847b-409b0d8e31e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_components
+    - paragraphs.paragraphs_type.step
+    - paragraphs.paragraphs_type.steps
+  module:
+    - entity_reference_revisions
+id: paragraph.steps.field_components
+field_name: field_components
+entity_type: paragraph
+bundle: steps
+label: Step
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      step: step
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 21
+        enabled: false
+      accordion_item:
+        weight: 22
+        enabled: false
+      content:
+        weight: 23
+        enabled: false
+      content_callout:
+        weight: 24
+        enabled: false
+      content_callout_container:
+        weight: 25
+        enabled: false
+      embed_block:
+        weight: 26
+        enabled: false
+      embed_iframe:
+        weight: 27
+        enabled: false
+      embed_view:
+        weight: 28
+        enabled: false
+      featured_content:
+        weight: 29
+        enabled: false
+      featured_links:
+        weight: 30
+        enabled: false
+      featured_media:
+        weight: 31
+        enabled: false
+      hero:
+        weight: 32
+        enabled: false
+      hero_slide:
+        weight: 33
+        enabled: false
+      product_slider:
+        weight: 34
+        enabled: false
+      pullquote:
+        weight: 35
+        enabled: false
+      section:
+        weight: 36
+        enabled: false
+      step:
+        weight: 37
+        enabled: true
+      steps:
+        weight: 38
+        enabled: false
+      tabs:
+        weight: 39
+        enabled: false
+      tabs_tab:
+        weight: 40
+        enabled: false
+field_type: entity_reference_revisions

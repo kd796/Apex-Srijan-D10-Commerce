@@ -1,0 +1,29 @@
+uuid: 7a569779-e793-4c90-ab7b-4521755e9078
+langcode: pt-br
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content
+    - paragraphs.paragraphs_type.pullquote
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    plain_text: plain_text
+    basic_html: '0'
+    limited_html: '0'
+    restricted_html: '0'
+    full_html: '0'
+id: paragraph.pullquote.field_content
+field_name: field_content
+entity_type: paragraph
+bundle: pullquote
+label: Conteúdo
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

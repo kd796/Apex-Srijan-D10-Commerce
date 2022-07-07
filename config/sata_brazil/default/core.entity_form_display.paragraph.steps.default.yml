@@ -1,0 +1,109 @@
+uuid: dfeb21c7-350d-48a6-b3df-05768c99d3bb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.steps.field_class_custom
+    - field.field.paragraph.steps.field_color
+    - field.field.paragraph.steps.field_components
+    - field.field.paragraph.steps.field_html_anchor
+    - field.field.paragraph.steps.field_style
+    - field.field.paragraph.steps.field_title
+    - paragraphs.paragraphs_type.steps
+  module:
+    - field_group
+    - limited_field_widgets
+    - paragraphs
+third_party_settings:
+  field_group:
+    group_settings:
+      children:
+        - status
+        - field_color
+        - field_html_anchor
+        - field_style
+        - field_class_custom
+      label: Settings
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: settings
+      format_settings:
+        id: ''
+        classes: ''
+        visible_for_roles:
+          administrator: 0
+          authenticated: 0
+          site_administrator: 0
+          content_editor: 0
+id: paragraph.steps.default
+targetEntityType: paragraph
+bundle: steps
+mode: default
+content:
+  field_class_custom:
+    type: string_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_color:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_components:
+    type: paragraphs
+    weight: 2
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: step
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings:
+      limited_field_widgets:
+        limit_values: '0'
+  field_html_anchor:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_style:
+    type: options_select
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  created: true

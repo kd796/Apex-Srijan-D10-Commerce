@@ -1,0 +1,31 @@
+uuid: aa4bcdcb-2a0c-4b71-8653-8a841f093d6b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_product_specifications
+    - node.type.product
+    - taxonomy.vocabulary.product_specifications
+    - taxonomy.vocabulary.tags
+id: node.product.field_product_specifications
+field_name: field_product_specifications
+entity_type: node
+bundle: product
+label: 'Product Specifications'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      product_specifications: product_specifications
+      tags: tags
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: product_specifications
+field_type: entity_reference

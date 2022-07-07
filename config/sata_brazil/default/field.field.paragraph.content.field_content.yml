@@ -1,0 +1,29 @@
+uuid: 93f521dc-b471-4b19-a29a-6a71c62a093b
+langcode: pt-br
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content
+    - paragraphs.paragraphs_type.content
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    limited_html: limited_html
+    full_html: full_html
+    basic_html: '0'
+    restricted_html: '0'
+    plain_text: '0'
+id: paragraph.content.field_content
+field_name: field_content
+entity_type: paragraph
+bundle: content
+label: Conteúdo
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
