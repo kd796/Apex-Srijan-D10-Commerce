@@ -1,16 +1,18 @@
-uuid: 1979f104-775f-42ea-b759-f040a6c078d3
-langcode: pt-br
+uuid: 1a30fbdc-79d1-453d-b595-58bcc47c2115
+langcode: en
 status: true
 dependencies:
   config:
     - field.field.node.page.body
     - field.field.node.page.field_components
+    - field.field.node.page.field_link
     - field.field.node.page.field_media
     - field.field.node.page.field_meta_tags
     - node.type.page
   module:
     - field_group
     - limited_field_widgets
+    - link
     - media_library
     - metatag
     - paragraphs
@@ -22,7 +24,8 @@ third_party_settings:
       children:
         - group_main
         - group_content
-      label: Abas
+      label: Tabs
+      region: content
       parent_name: ''
       weight: 0
       format_type: tabs
@@ -35,9 +38,11 @@ third_party_settings:
         - title
         - field_media
         - body
+        - field_link
       label: Main
+      region: content
       parent_name: group_tabs
-      weight: 20
+      weight: 11
       format_type: tab
       format_settings:
         classes: ''
@@ -48,9 +53,11 @@ third_party_settings:
     group_content:
       children:
         - field_components
-      label: Conteúdo
+        - group_primary_tabs
+      label: Content
+      region: content
       parent_name: group_tabs
-      weight: 21
+      weight: 12
       format_type: tab
       format_settings:
         classes: ''
@@ -65,26 +72,27 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 3
+    weight: 4
     region: content
     settings:
       rows: 9
       summary_rows: 3
       placeholder: ''
+      show_summary: false
     third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 4
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   field_components:
     type: paragraphs
-    weight: 2
+    weight: 0
     region: content
     settings:
-      title: Componente
-      title_plural: Componentes
+      title: Component
+      title_plural: Components
       edit_mode: closed
       closed_mode: preview
       autocollapse: all
@@ -99,22 +107,31 @@ content:
     third_party_settings:
       limited_field_widgets:
         limit_values: '0'
+  field_link:
+    type: link_default
+    weight: 5
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
   field_media:
     type: media_library_widget
-    weight: 2
+    weight: 3
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_meta_tags:
     type: metatag_firehose
-    weight: 26
+    weight: 6
     region: content
-    settings: {  }
+    settings:
+      sidebar: true
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 2
+    weight: 1
     region: content
     settings:
       include_locked: true
@@ -127,7 +144,7 @@ content:
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 5
+    weight: 4
     region: content
     settings:
       display_label: true
@@ -141,14 +158,14 @@ content:
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 6
+    weight: 5
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 1
+    weight: 2
     region: content
     settings:
       size: 60
@@ -156,10 +173,11 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 3
+    weight: 2
     region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
@@ -168,5 +186,4 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden:
-  field_link: true
+hidden: {  }

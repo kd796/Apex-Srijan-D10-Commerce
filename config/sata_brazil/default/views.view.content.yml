@@ -1,25 +1,25 @@
-uuid: 6e193ea8-43d6-41a6-ab83-af3efff15108
-langcode: pt-br
+uuid: a18da0c5-a72c-4349-9844-89749919ccbd
+langcode: en
 status: true
 dependencies:
   module:
     - node
     - user
 id: content
-label: Conteúdo
+label: Content
 module: node
-description: 'Encontrar e gerenciar conteúdo.'
+description: 'Find and manage content.'
 tag: default
 base_table: node_field_data
 base_field: nid
 display:
   default:
     id: default
-    display_title: Principal
+    display_title: Master
     display_plugin: default
     position: 0
     display_options:
-      title: Conteúdo
+      title: Content
       fields:
         node_bulk_form:
           id: node_bulk_form
@@ -44,7 +44,7 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: field
-          label: Título
+          label: Title
           exclude: false
           alter:
             alter_text: false
@@ -67,7 +67,7 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: field
-          label: 'Tipo de conteúdo'
+          label: 'Content type'
           exclude: false
           alter:
             alter_text: false
@@ -130,7 +130,7 @@ display:
           entity_type: user
           entity_field: name
           plugin_id: field
-          label: Autor
+          label: Author
           exclude: false
           alter:
             alter_text: false
@@ -161,8 +161,8 @@ display:
           type: boolean
           settings:
             format: custom
-            format_custom_false: 'Não publicado'
-            format_custom_true: Publicado
+            format_custom_false: Unpublished
+            format_custom_true: Published
         changed:
           id: changed
           table: node_field_data
@@ -170,7 +170,7 @@ display:
           entity_type: node
           entity_field: changed
           plugin_id: field
-          label: Atualizado
+          label: Updated
           exclude: false
           alter:
             alter_text: false
@@ -193,7 +193,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: entity_operations
-          label: Operações
+          label: Operations
           exclude: false
           alter:
             alter_text: false
@@ -240,20 +240,20 @@ display:
         options:
           items_per_page: 50
           tags:
-            next: 'Avançar ›'
-            previous: '‹ Voltar'
-            first: '« Primeiro'
-            last: 'Último »'
+            next: 'Next ›'
+            previous: '‹ Previous'
+            first: '« First'
+            last: 'Last »'
       exposed_form:
         type: basic
         options:
-          submit_button: Filtrar
+          submit_button: Filter
           reset_button: true
-          reset_button_label: Reiniciar
-          exposed_sorts_label: 'Ordenar por'
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
           expose_sort_order: true
-          sort_asc_label: Ascendente
-          sort_desc_label: Decrescente
+          sort_asc_label: Asc
+          sort_desc_label: Desc
       access:
         type: perm
         options:
@@ -267,7 +267,7 @@ display:
           field: area_text_custom
           plugin_id: text_custom
           empty: true
-          content: 'Nenhum conteúdo disponível.'
+          content: 'No content available.'
       sorts: {  }
       arguments: {  }
       filters:
@@ -287,7 +287,7 @@ display:
           exposed: true
           expose:
             operator_id: title_op
-            label: Título
+            label: Title
             description: ''
             use_operator: false
             operator: title_op
@@ -329,7 +329,7 @@ display:
           exposed: true
           expose:
             operator_id: type_op
-            label: 'Tipo de conteúdo'
+            label: 'Content type'
             description: ''
             use_operator: false
             operator: type_op
@@ -386,7 +386,7 @@ display:
               authenticated: authenticated
           is_grouped: true
           group_info:
-            label: Status
+            label: 'Published status'
             description: ''
             identifier: status
             optional: true
@@ -397,11 +397,11 @@ display:
             default_group_multiple: {  }
             group_items:
               1:
-                title: Publicado
+                title: Published
                 operator: '='
                 value: '1'
               2:
-                title: 'Não publicado'
+                title: Unpublished
                 operator: '='
                 value: '0'
         langcode:
@@ -420,7 +420,7 @@ display:
           exposed: true
           expose:
             operator_id: langcode_op
-            label: Idioma
+            label: Language
             description: ''
             use_operator: false
             operator: langcode_op
@@ -583,7 +583,7 @@ display:
       tags: {  }
   page_1:
     id: page_1
-    display_title: Página
+    display_title: Page
     display_plugin: page
     position: 1
     display_options:
@@ -591,15 +591,15 @@ display:
       path: admin/content/node
       menu:
         type: 'default tab'
-        title: Conteúdo
+        title: Content
         description: ''
         weight: -10
         menu_name: admin
         context: ''
       tab_options:
         type: normal
-        title: Conteúdo
-        description: 'Buscar e gerenciar conteúdo'
+        title: Content
+        description: 'Find and manage content'
         weight: -10
         menu_name: admin
     cache_metadata:

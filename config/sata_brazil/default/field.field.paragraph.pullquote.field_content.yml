@@ -1,5 +1,5 @@
-uuid: 7a569779-e793-4c90-ab7b-4521755e9078
-langcode: pt-br
+uuid: 021bd90e-639b-4920-ab19-f03a07acf628
+langcode: en
 status: true
 dependencies:
   config:
@@ -10,16 +10,13 @@ dependencies:
     - text
 third_party_settings:
   allowed_formats:
-    plain_text: plain_text
-    basic_html: '0'
-    limited_html: '0'
-    restricted_html: '0'
-    full_html: '0'
+    allowed_formats:
+      - plain_text
 id: paragraph.pullquote.field_content
 field_name: field_content
 entity_type: paragraph
 bundle: pullquote
-label: Conteúdo
+label: Content
 description: ''
 required: true
 translatable: true

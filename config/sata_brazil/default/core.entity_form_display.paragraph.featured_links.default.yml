@@ -1,5 +1,5 @@
-uuid: f67f8108-c1d6-41d0-ba73-bf4426e14656
-langcode: pt-br
+uuid: e896f5af-17bf-4664-82c4-4d4f45e16d00
+langcode: en
 status: true
 dependencies:
   config:
@@ -16,11 +16,12 @@ third_party_settings:
   field_group:
     group_settings:
       children:
-        - status
         - field_style
         - field_class_custom
         - field_html_anchor
-      label: Configurações
+        - status
+      label: Settings
+      region: content
       parent_name: ''
       weight: 0
       format_type: settings
@@ -50,7 +51,7 @@ content:
     third_party_settings: {  }
   field_links:
     type: linkit
-    weight: 5
+    weight: 2
     region: content
     settings:
       placeholder_url: ''
@@ -65,7 +66,7 @@ content:
     third_party_settings: {  }
   field_title:
     type: string_textfield
-    weight: 3
+    weight: 1
     region: content
     settings:
       size: 60
@@ -73,7 +74,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 2
+    weight: 6
     region: content
     settings:
       display_label: true

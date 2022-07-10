@@ -1,5 +1,5 @@
-uuid: 0c95127d-c01d-4871-9199-4aded5d99d5d
-langcode: pt-br
+uuid: c724470b-ecd3-4326-b533-d0f4b41cadd0
+langcode: en
 status: true
 dependencies: {  }
 id: remote_dev
@@ -8,11 +8,13 @@ description: ''
 weight: 0
 folder: ../config/sata_brazil/remote_dev
 module:
+  acquia_connector: 0
   dblog: 0
-  shield: 0
   stage_file_proxy: 0
+  shield: 0
 theme: {  }
-blacklist: {  }
+blacklist:
+  - purge.logger_channels
 graylist: {  }
 graylist_dependents: true
 graylist_skip_equal: true

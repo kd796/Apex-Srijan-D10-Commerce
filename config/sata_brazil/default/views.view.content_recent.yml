@@ -1,25 +1,25 @@
-uuid: 7aa69ad7-8f6e-412f-8474-15c19cca17eb
-langcode: pt-br
+uuid: 22f22881-0ba1-4f48-a286-6755204734ee
+langcode: en
 status: true
 dependencies:
   module:
     - node
     - user
 id: content_recent
-label: 'Conteúdo recente'
+label: 'Recent content'
 module: node
-description: 'Conteúdo recente.'
+description: 'Recent content.'
 tag: default
 base_table: node_field_data
 base_field: nid
 display:
   default:
     id: default
-    display_title: Padrão
+    display_title: Default
     display_plugin: default
     position: 0
     display_options:
-      title: 'Conteúdo recente'
+      title: 'Recent content'
       fields:
         title:
           id: title
@@ -129,13 +129,13 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Aplicar
+          submit_button: Apply
           reset_button: false
-          reset_button_label: Reiniciar
-          exposed_sorts_label: 'Ordenar por'
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
           expose_sort_order: true
-          sort_asc_label: Ascendente
-          sort_desc_label: Decrescente
+          sort_asc_label: Asc
+          sort_desc_label: Desc
       access:
         type: perm
         options:
@@ -153,7 +153,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: true
-          content: 'Nenhum conteúdo disponível.'
+          content: 'No content available.'
           tokenize: false
       sorts:
         changed:
@@ -288,7 +288,7 @@ display:
           required: true
       use_more: false
       use_more_always: false
-      use_more_text: Mais
+      use_more_text: More
       link_display: '0'
       link_url: ''
       header: {  }
@@ -305,7 +305,7 @@ display:
       tags: {  }
   block_1:
     id: block_1
-    display_title: Bloco
+    display_title: Block
     display_plugin: block
     position: 1
     display_options:

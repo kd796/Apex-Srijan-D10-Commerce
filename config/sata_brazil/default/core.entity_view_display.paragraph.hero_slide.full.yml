@@ -1,16 +1,18 @@
-uuid: a9a57c78-a038-4d07-b47b-d562b8553d6b
-langcode: pt-br
+uuid: 0ec0838b-c275-4834-ba43-d4d475f11d0a
+langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.full
     - field.field.paragraph.hero_slide.field_class_custom
     - field.field.paragraph.hero_slide.field_content
+    - field.field.paragraph.hero_slide.field_link
     - field.field.paragraph.hero_slide.field_media_background
     - field.field.paragraph.hero_slide.field_style
     - field.field.paragraph.hero_slide.field_title
     - paragraphs.paragraphs_type.hero_slide
   module:
+    - link
     - text
 id: paragraph.hero_slide.full
 targetEntityType: paragraph
@@ -24,6 +26,18 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
+  field_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
   field_media_background:
     type: entity_reference_entity_view
     label: hidden
@@ -31,7 +45,7 @@ content:
       view_mode: hero
       link: false
     third_party_settings: {  }
-    weight: 2
+    weight: 3
     region: content
   field_title:
     type: string
@@ -43,6 +57,5 @@ content:
     region: content
 hidden:
   field_class_custom: true
-  field_link: true
   field_style: true
   search_api_excerpt: true

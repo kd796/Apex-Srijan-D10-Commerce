@@ -1,5 +1,5 @@
-uuid: 0bf44d8c-dad5-4a4e-9193-0c1bc2c64018
-langcode: pt-br
+uuid: bac80953-72b8-4fe7-8933-0d1fe8741372
+langcode: en
 status: true
 dependencies:
   config:
@@ -7,11 +7,12 @@ dependencies:
   module:
     - filter
     - media
+    - node_view_permissions
     - search
     - shortcut
     - system
 id: authenticated
-label: 'Usuário autenticado'
+label: 'Authenticated user'
 weight: 1
 is_admin: false
 permissions:
@@ -23,4 +24,5 @@ permissions:
   - 'search content'
   - 'skip comment approval'
   - 'use text format limited_html'
+  - 'view any styleguide content'
   - 'view media'

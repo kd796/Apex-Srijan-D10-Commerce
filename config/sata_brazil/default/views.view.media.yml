@@ -1,5 +1,5 @@
-uuid: d186d5ec-5eb2-43a5-9d5c-72b9c2a68389
-langcode: pt-br
+uuid: 2cae238e-4a53-486b-b9c7-93da45785063
+langcode: en
 status: true
 dependencies:
   config:
@@ -9,20 +9,20 @@ dependencies:
     - media
     - user
 id: media
-label: Mídia
+label: Media
 module: views
-description: 'Encontrar e gerenciar mídia.'
+description: 'Find and manage media.'
 tag: ''
 base_table: media_field_data
 base_field: mid
 display:
   default:
     id: default
-    display_title: Padrão
+    display_title: Default
     display_plugin: default
     position: 0
     display_options:
-      title: Mídia
+      title: Media
       fields:
         media_bulk_form:
           id: media_bulk_form
@@ -74,7 +74,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          action_title: Ação
+          action_title: Action
           include_exclude: exclude
           selected_actions: {  }
         thumbnail__target_id:
@@ -87,7 +87,7 @@ display:
           entity_type: media
           entity_field: thumbnail
           plugin_id: field
-          label: Miniatura
+          label: Thumbnail
           exclude: false
           alter:
             alter_text: false
@@ -153,7 +153,7 @@ display:
           entity_type: media
           entity_field: media
           plugin_id: field
-          label: 'Nome da mídia'
+          label: 'Media name'
           exclude: false
           alter:
             alter_text: false
@@ -200,7 +200,7 @@ display:
           entity_type: media
           entity_field: bundle
           plugin_id: field
-          label: Tipo
+          label: Type
           exclude: false
           alter:
             alter_text: false
@@ -265,7 +265,7 @@ display:
           entity_type: media
           entity_field: uid
           plugin_id: field
-          label: Autor
+          label: Author
           exclude: false
           alter:
             alter_text: false
@@ -375,8 +375,8 @@ display:
           type: boolean
           settings:
             format: custom
-            format_custom_false: 'Não publicado'
-            format_custom_true: Publicado
+            format_custom_false: Unpublished
+            format_custom_true: Published
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -397,7 +397,7 @@ display:
           entity_type: media
           entity_field: changed
           plugin_id: field
-          label: Atualizado
+          label: Updated
           exclude: false
           alter:
             alter_text: false
@@ -463,7 +463,7 @@ display:
           admin_label: ''
           entity_type: media
           plugin_id: entity_operations
-          label: Operações
+          label: Operations
           exclude: false
           alter:
             alter_text: false
@@ -513,29 +513,29 @@ display:
           total_pages: null
           id: 0
           tags:
-            next: 'Avançar ›'
-            previous: '‹ Voltar'
-            first: '« Primeiro'
-            last: 'Último »'
+            next: 'Next ›'
+            previous: '‹ Previous'
+            first: '« First'
+            last: 'Last »'
           expose:
             items_per_page: false
-            items_per_page_label: 'Itens por página'
+            items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tudo -'
+            items_per_page_options_all_label: '- All -'
             offset: false
-            offset_label: Deslocamento
+            offset_label: Offset
           quantity: 9
       exposed_form:
         type: basic
         options:
-          submit_button: Filtrar
+          submit_button: Filter
           reset_button: false
-          reset_button_label: Reiniciar
-          exposed_sorts_label: 'Ordenar por'
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
           expose_sort_order: true
-          sort_asc_label: Ascendente
-          sort_desc_label: Decrescente
+          sort_asc_label: Asc
+          sort_desc_label: Desc
       access:
         type: perm
         options:
@@ -553,7 +553,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: true
-          content: 'Nenhuma mídia disponível.'
+          content: 'No media available.'
           tokenize: false
       sorts:
         created:
@@ -590,7 +590,7 @@ display:
           exposed: true
           expose:
             operator_id: name_op
-            label: 'Nome da mídia'
+            label: 'Media name'
             description: ''
             use_operator: false
             operator: name_op
@@ -632,7 +632,7 @@ display:
           exposed: true
           expose:
             operator_id: bundle_op
-            label: Tipo
+            label: Type
             description: ''
             use_operator: false
             operator: bundle_op
@@ -675,7 +675,7 @@ display:
           exposed: true
           expose:
             operator_id: ''
-            label: Verdadeiro
+            label: 'True'
             description: null
             use_operator: false
             operator: status_op
@@ -689,7 +689,7 @@ display:
               authenticated: authenticated
           is_grouped: true
           group_info:
-            label: Status
+            label: 'Published status'
             description: ''
             identifier: status
             optional: true
@@ -700,11 +700,11 @@ display:
             default_group_multiple: {  }
             group_items:
               1:
-                title: Publicado
+                title: Published
                 operator: '='
                 value: '1'
               2:
-                title: 'Não publicado'
+                title: Unpublished
                 operator: '='
                 value: '0'
         status_extra:
@@ -762,7 +762,7 @@ display:
           exposed: true
           expose:
             operator_id: langcode_op
-            label: Idioma
+            label: Language
             description: ''
             use_operator: false
             operator: langcode_op
@@ -878,7 +878,7 @@ display:
       tags: {  }
   media_page_list:
     id: media_page_list
-    display_title: Mídia
+    display_title: Media
     display_plugin: page
     position: 1
     display_options:
@@ -887,7 +887,7 @@ display:
       path: admin/content/media
       menu:
         type: tab
-        title: Mídia
+        title: Media
         description: ''
         weight: 0
         expanded: false

@@ -1,5 +1,5 @@
-uuid: 443e0cfe-de77-4d89-9f79-f4246916e647
-langcode: pt-br
+uuid: 6d7d6157-ae99-4be0-9f6d-93ab7060e92e
+langcode: en
 status: false
 dependencies:
   config:
@@ -8,20 +8,20 @@ dependencies:
     - node
     - user
 id: archive
-label: Arquivar
+label: Archive
 module: node
-description: 'Todo conteúdo, por mês.'
+description: 'All content, by month.'
 tag: default
 base_table: node_field_data
 base_field: nid
 display:
   default:
     id: default
-    display_title: Padrão
+    display_title: Default
     display_plugin: default
     position: 0
     display_options:
-      title: 'Arquivamento mensal'
+      title: 'Monthly archive'
       fields: {  }
       pager:
         type: mini
@@ -35,22 +35,22 @@ display:
             previous: ‹‹
           expose:
             items_per_page: false
-            items_per_page_label: 'Itens por página'
+            items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tudo -'
+            items_per_page_options_all_label: '- All -'
             offset: false
-            offset_label: Deslocamento
+            offset_label: Offset
       exposed_form:
         type: basic
         options:
-          submit_button: Aplicar
+          submit_button: Apply
           reset_button: false
-          reset_button_label: Reiniciar
-          exposed_sorts_label: 'Ordenar por'
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
           expose_sort_order: true
-          sort_asc_label: Ascendente
-          sort_desc_label: Decrescente
+          sort_asc_label: Asc
+          sort_desc_label: Desc
       access:
         type: perm
         options:
@@ -186,7 +186,7 @@ display:
       tags: {  }
   block_1:
     id: block_1
-    display_title: Bloco
+    display_title: Block
     display_plugin: block
     position: 1
     display_options:
@@ -225,7 +225,7 @@ display:
       tags: {  }
   page_1:
     id: page_1
-    display_title: Página
+    display_title: Page
     display_plugin: page
     position: 2
     display_options:

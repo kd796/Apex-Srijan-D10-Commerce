@@ -1,5 +1,5 @@
-uuid: b439ce34-489c-4bf0-ad74-4c7aa0ead5cc
-langcode: pt-br
+uuid: cb075891-62b1-4d4e-8894-4d911666d64f
+langcode: en
 status: true
 dependencies:
   config:
@@ -13,6 +13,7 @@ third_party_settings:
     scheme: public
     directory: inline-files
     extensions: txt
+    max_size: ''
 format: full_html
 editor: ckeditor
 settings:
@@ -29,6 +30,9 @@ settings:
             - Subscript
             - '-'
             - RemoveFormat
+            - JustifyLeft
+            - JustifyCenter
+            - JustifyRight
         -
           name: Linking
           items:
@@ -56,13 +60,13 @@ settings:
             - ShowBlocks
             - Source
   plugins:
+    stylescombo:
+      styles: ''
     drupallink:
       linkit_enabled: true
       linkit_profile: default
     language:
       language_list: un
-    stylescombo:
-      styles: ''
 image_upload:
   status: true
   scheme: public

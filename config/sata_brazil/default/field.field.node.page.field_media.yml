@@ -1,10 +1,12 @@
-uuid: 66894d6b-872b-4596-93e3-7d29e96cb0fd
-langcode: pt-br
+uuid: ee69a40d-d543-4249-be4a-cbd303ddb0f7
+langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_media
     - media.type.image
+    - media.type.remote_video
+    - media.type.video
     - node.type.page
 id: node.page.field_media
 field_name: field_media
@@ -21,8 +23,11 @@ settings:
   handler_settings:
     target_bundles:
       image: image
+      remote_video: remote_video
+      video: video
     sort:
       field: _none
+      direction: ASC
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: image
 field_type: entity_reference

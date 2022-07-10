@@ -1,11 +1,11 @@
-langcode: pt-br
 check:
-  disabled_extensions: false
-  interval_days: 1
+  disabled_extensions: true
+  interval_days: 7
 fetch:
   url: ''
   max_attempts: 2
   timeout: 30
 notification:
-  emails: {  }
-  threshold: all
+  emails:
+    - patrick.thurmond@vmlyr.com
+  threshold: security
