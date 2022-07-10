@@ -1,26 +1,46 @@
-uuid: d7e7dcff-f512-4ace-ab1e-052280e31500
 langcode: en
 status: true
 dependencies:
   config:
+    - image.style.biggest_landscape_3x1
     - image.style.huge_landscape_2x1
-    - image.style.large_landscape_2x1
-    - image.style.medium_landscape_2x1
-    - image.style.small_landscape_2x1
-_core:
-  default_config_hash: '-d1sO-6egFuPPJp3QqF6i3jwDeO22WofLVW6vLhcZhE'
+    - image.style.large_1x1
+    - image.style.medium_1x1
+    - image.style.small_portrait_2x3
+  theme:
+    - sata
 id: hero
 label: Hero
 image_style_mappings:
   -
-    breakpoint_id: responsive_image.viewport_sizing
+    image_mapping_type: image_style
+    image_mapping: biggest_landscape_3x1
+    breakpoint_id: sata.grande
     multiplier: 1x
-    image_mapping_type: sizes
-    image_mapping:
-      sizes: 100vw
-      sizes_image_styles:
-        - huge_landscape_2x1
-        - large_landscape_2x1
-        - medium_landscape_2x1
-breakpoint_group: denim
-fallback_image_style: small_landscape_2x1
+  -
+    image_mapping_type: image_style
+    image_mapping: huge_landscape_2x1
+    breakpoint_id: sata.xlarge
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: large_1x1
+    breakpoint_id: sata.large
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: medium_1x1
+    breakpoint_id: sata.medium
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: small_portrait_2x3
+    breakpoint_id: sata.small
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: small_portrait_2x3
+    breakpoint_id: sata.xsmall
+    multiplier: 1x
+breakpoint_group: sata
+fallback_image_style: biggest_landscape_3x1

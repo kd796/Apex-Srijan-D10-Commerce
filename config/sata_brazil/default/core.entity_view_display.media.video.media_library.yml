@@ -1,4 +1,3 @@
-uuid: b25e7b77-e6d9-45ba-bd26-1c305d05ca9f
 langcode: en
 status: true
 dependencies:
@@ -9,8 +8,6 @@ dependencies:
     - media.type.video
   module:
     - image
-_core:
-  default_config_hash: PDQo9eqAz3D8g87S89zPgXsm7Xy-dYMdEgwKBahFdy0
 id: media.video.media_library
 targetEntityType: media
 bundle: video
@@ -18,15 +15,17 @@ mode: media_library
 content:
   thumbnail:
     type: image
-    weight: 0
-    region: content
     label: hidden
     settings:
-      image_style: thumbnail
       image_link: ''
+      image_style: thumbnail
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   created: true
   field_media_video_file: true
+  langcode: true
   name: true
+  search_api_excerpt: true
   uid: true

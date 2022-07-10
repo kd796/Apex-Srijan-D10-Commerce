@@ -1,4 +1,3 @@
-uuid: 6d5f891c-eb96-42aa-abdd-db9fb5283188
 langcode: en
 status: true
 dependencies:
@@ -7,23 +6,23 @@ dependencies:
     - media.type.file
   module:
     - file
-_core:
-  default_config_hash: uSVDT-Ma6XoarvkxXqv-1rHD4cTRnJT_8NPlYsfWrws
 id: media.file.default
 targetEntityType: media
 bundle: file
 mode: default
 content:
   field_media_file:
+    type: file_default
     label: visually_hidden
     settings:
       use_description_as_link_text: true
     third_party_settings: {  }
-    type: file_default
     weight: 1
     region: content
 hidden:
   created: true
+  langcode: true
   name: true
+  search_api_excerpt: true
   thumbnail: true
   uid: true

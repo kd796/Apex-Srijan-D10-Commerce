@@ -1,4 +1,3 @@
-uuid: 7cacb145-b660-4b5d-ae31-2c00cafe6a56
 langcode: en
 status: true
 dependencies:
@@ -6,13 +5,18 @@ dependencies:
     - core.entity_form_mode.media.media_library
     - field.field.media.file.field_media_file
     - media.type.file
-_core:
-  default_config_hash: RFmywOcuem167havmD4VLgBTO1Swq9hyA-_f5aYTi8c
 id: media.file.media_library
 targetEntityType: media
 bundle: file
 mode: media_library
 content:
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
   name:
     type: string_textfield
     weight: 0

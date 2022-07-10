@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: medium_landscape_16x9
+label: 'Medium - landscape 16:9 (720x405)'
+effects:
+  5af6c012-54f1-4325-8c6c-36ca6322d545:
+    uuid: 5af6c012-54f1-4325-8c6c-36ca6322d545
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 720
+      height: 405
+      crop_type: focal_point
+pipeline: smushit

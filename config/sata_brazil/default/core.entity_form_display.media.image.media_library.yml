@@ -1,4 +1,3 @@
-uuid: dc2b3de7-fa81-4e6c-a186-803295eb486e
 langcode: en
 status: true
 dependencies:
@@ -9,8 +8,6 @@ dependencies:
     - media.type.image
   module:
     - focal_point
-_core:
-  default_config_hash: W27yzmQVr0AyU4OBnMVeFcl0y14RevdhcFgWzY6h5KI
 id: media.image.media_library
 targetEntityType: media
 bundle: image
@@ -21,10 +18,17 @@ content:
     weight: 1
     region: content
     settings:
+      progress_indicator: throbber
       preview_image_style: thumbnail
       preview_link: true
       offsets: '50,50'
-      progress_indicator: throbber
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
     third_party_settings: {  }
   name:
     type: string_textfield

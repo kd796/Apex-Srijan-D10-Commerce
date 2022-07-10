@@ -1,4 +1,3 @@
-uuid: 9e6aedf7-8c3a-4116-bbf5-4b90503a134e
 langcode: en
 status: true
 dependencies:
@@ -10,8 +9,6 @@ dependencies:
     - field.field.paragraph.featured_media.field_media_items
     - field.field.paragraph.featured_media.field_style
     - paragraphs.paragraphs_type.featured_media
-_core:
-  default_config_hash: hwnLxgH1CtO46BAb1d1F4MSspPqDWSObv6YZApaCNsQ
 id: paragraph.featured_media.full
 targetEntityType: paragraph
 bundle: featured_media
@@ -19,15 +16,16 @@ mode: full
 content:
   field_media_items:
     type: entity_reference_entity_view
-    weight: 0
     label: hidden
     settings:
       view_mode: embed
       link: false
     third_party_settings: {  }
+    weight: 0
     region: content
 hidden:
   field_class_custom: true
   field_html_anchor: true
   field_layout: true
   field_style: true
+  search_api_excerpt: true

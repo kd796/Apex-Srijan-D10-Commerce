@@ -1,4 +1,3 @@
-uuid: c917242a-34e8-48d7-b0cb-dabe7337ae79
 langcode: en
 status: true
 dependencies:
@@ -20,65 +19,65 @@ third_party_settings:
         - field_style
         - field_class_custom
         - field_html_anchor
+      label: Settings
+      region: content
       parent_name: ''
       weight: 0
       format_type: settings
       format_settings:
         id: ''
         classes: ''
-      label: Settings
-_core:
-  default_config_hash: _1xfeDsMBv5Y6u5a1hs31a-Q6YsIkXFDwwQy2tgEGL0
 id: paragraph.featured_content.default
 targetEntityType: paragraph
 bundle: featured_content
 mode: default
 content:
   field_class_custom:
+    type: string_textfield
     weight: 9
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_html_anchor:
+    type: string_textfield
     weight: 10
+    region: content
     settings:
       size: 60
       placeholder: 'Example: find-out-more'
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_layout:
-    weight: 4
+    type: options_select
+    weight: 2
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_related_nodes:
-    weight: 5
+    type: entity_reference_autocomplete
+    weight: 3
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_style:
+    type: options_select
     weight: 8
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_title:
-    weight: 3
+    type: string_textfield
+    weight: 1
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   status:
     type: boolean_checkbox
     weight: 7

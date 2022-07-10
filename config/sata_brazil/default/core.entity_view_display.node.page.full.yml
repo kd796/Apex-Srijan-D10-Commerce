@@ -1,4 +1,3 @@
-uuid: 97bda216-e43f-4277-b07e-6188df4bdd34
 langcode: en
 status: true
 dependencies:
@@ -6,37 +5,155 @@ dependencies:
     - core.entity_view_mode.node.full
     - field.field.node.page.body
     - field.field.node.page.field_components
+    - field.field.node.page.field_link
     - field.field.node.page.field_media
     - field.field.node.page.field_meta_tags
     - node.type.page
   module:
+    - blazy
     - entity_reference_revisions
+    - field_group
+    - link
     - text
     - user
-_core:
-  default_config_hash: sAvw4PYKRs5xwOlmxNQr31oWdxUXvkpGbwm1WSeP9T0
+third_party_settings:
+  field_group:
+    group_pag:
+      children:
+        - group_left
+        - group_right
+      label: 'Page Heading'
+      parent_name: ''
+      region: content
+      weight: 0
+      format_type: html_element
+      format_settings:
+        classes: page-heading
+        show_empty_fields: false
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+    group_left:
+      children:
+        - body
+      label: Left
+      parent_name: group_pag
+      region: content
+      weight: 1
+      format_type: html_element
+      format_settings:
+        classes: heading-left
+        show_empty_fields: false
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+    group_right:
+      children:
+        - field_link
+      label: Right
+      parent_name: group_pag
+      region: content
+      weight: 2
+      format_type: html_element
+      format_settings:
+        classes: heading-right
+        show_empty_fields: false
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
 id: node.page.full
 targetEntityType: node
 bundle: page
 mode: full
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 0
-    region: content
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 3
+    region: content
   field_components:
     type: entity_reference_revisions_entity_view
-    weight: 1
     label: hidden
     settings:
       view_mode: full
       link: ''
     third_party_settings: {  }
+    weight: 2
+    region: content
+  field_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_media:
+    type: blazy_media
+    label: hidden
+    settings:
+      caption: {  }
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      icon: ''
+      layout: ''
+      view_mode: ''
+      cache: 0
+      current_view_mode: ''
+      skin: ''
+      fx: ''
+      lazy: ''
+      loading: lazy
+      preload: false
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      responsive_image_style: ''
+      box_style: ''
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
+      _uri: ''
+      breakpoints: {  }
+      sizes: ''
+      grid_header: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+    third_party_settings: {  }
+    weight: 1
     region: content
 hidden:
-  field_media: true
   field_meta_tags: true
+  langcode: true
   links: true
+  search_api_excerpt: true

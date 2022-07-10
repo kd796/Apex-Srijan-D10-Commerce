@@ -1,4 +1,3 @@
-uuid: 95f1f327-6d80-4427-94b4-16351cf16dcd
 langcode: en
 status: true
 dependencies:
@@ -8,28 +7,27 @@ dependencies:
     - paragraphs.paragraphs_type.tabs_tab
   module:
     - entity_reference_revisions
-_core:
-  default_config_hash: NNcuCoQrJL4w0Bt2nImiiNIiuQ4KcWqZKcduOsA1v94
 id: paragraph.tabs_tab.default
 targetEntityType: paragraph
 bundle: tabs_tab
 mode: default
 content:
   field_components:
-    weight: 1
+    type: entity_reference_revisions_entity_view
     label: above
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    type: entity_reference_revisions_entity_view
+    weight: 1
     region: content
   field_title:
-    weight: 0
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 0
     region: content
-hidden: {  }
+hidden:
+  search_api_excerpt: true

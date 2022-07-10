@@ -1,20 +1,26 @@
-uuid: c7c70fa4-a6be-4e0c-9033-bf3ce76a6c37
 langcode: en
 status: true
 dependencies: {  }
-_core:
-  default_config_hash: d__7lDFIA_k4JXAVmqfhm5NKJdkXloI7bh1jFHRc9W4
 id: remote_prod
 label: 'Remote - Prod'
 description: ''
 weight: 0
 folder: ../config/sata_brazil/remote_prod
 module:
+  acquia_connector: 0
   captcha: 0
   recaptcha: 0
   syslog: 0
 theme: {  }
-blacklist: {  }
-graylist: {  }
+blacklist:
+  - purge.logger_channels
+graylist:
+  - sata_core.settings
+  - google_tag.container.google_tag_59x3zt8
+  - google_tag.container.primary
+  - purge.logger_channels
+  - purge.plugins
+  - system.performance
+  - purge_queuer_coretags.settings
 graylist_dependents: true
 graylist_skip_equal: true
