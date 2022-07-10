@@ -1,3 +1,4 @@
+uuid: 5b37fc24-7929-4cdc-9f04-adb9a5f4e868
 langcode: en
 status: true
 dependencies:
@@ -20,13 +21,10 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       hero_slide: hero_slide
+    negate: 0
     target_bundles_drag_drop:
-      hero_slide:
-        enabled: true
-        weight: 18
       accordion:
         weight: 19
         enabled: false
@@ -48,6 +46,9 @@ settings:
       hero:
         weight: 25
         enabled: false
+      hero_slide:
+        weight: 18
+        enabled: true
       media:
         weight: 26
         enabled: false

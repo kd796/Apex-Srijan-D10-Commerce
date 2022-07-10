@@ -1,3 +1,4 @@
+uuid: c1329847-5e72-4992-a9d1-230eb337f053
 langcode: en
 status: true
 dependencies:
@@ -10,6 +11,9 @@ field_name: field_image_background
 entity_type: paragraph
 type: image
 settings:
+  target_type: file
+  display_field: false
+  display_default: false
   uri_scheme: public
   default_image:
     uuid: ''
@@ -17,9 +21,6 @@ settings:
     title: ''
     width: null
     height: null
-  target_type: file
-  display_field: false
-  display_default: false
 module: image
 locked: false
 cardinality: 1
