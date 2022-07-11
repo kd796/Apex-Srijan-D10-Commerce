@@ -1,0 +1,24 @@
+uuid: 39c7af55-9225-4b06-b41a-04ea681a7392
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - sata_core
+  theme:
+    - sata_colombia
+third_party_settings:
+  block_class:
+    classes: block--country-switch
+id: country_switch_block
+theme: sata
+region: header
+weight: -6
+provider: null
+plugin: country_switch
+settings:
+  id: country_switch
+  label: 'Country Switch Block'
+  label_display: '0'
+  provider: sata_core
+visibility: {  }

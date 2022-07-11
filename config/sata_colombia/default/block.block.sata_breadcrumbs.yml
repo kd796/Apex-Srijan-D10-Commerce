@@ -1,0 +1,20 @@
+uuid: 3055060f-7515-4c4c-9d5c-0a687aa69efd
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - sata
+id: sata_breadcrumbs
+theme: sata
+region: content
+weight: -7
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

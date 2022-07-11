@@ -1,12 +1,14 @@
-#!/bin/sh
+ #!/bin/sh
 #
-# Cloud Hook: post-db-copy
+# Cloud Hook: post-code-deploy
 #
-# The post-db-copy hook is run whenever you use the Workflow page to copy a
-# database from one environment to another. See ../README.md for
-# details.
+# The post-code-deploy hook is run whenever you use the Workflow page to
+# deploy new code to an environment, either via drag-drop or by selecting
+# an existing branch or tag from the Code drop-down list. See
+# ../README.md for details.
 #
-# Usage: post-db-copy site target-env db-name source-env
+# Usage: post-code-deploy site target-env source-branch deployed-tag repo-url
+#                         repo-type
 
 site="$1"
 target_env="$2"
@@ -18,12 +20,12 @@ repo_type="$6"
 drush_alias=$site'.'$target_env
 
 # Apex Tools
-uri=apextoolgroupdev.prod.acquia-sites.com
-drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
-drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
-drush10 @$drush_alias cim sync -y --uri=$uri
-drush10 @$drush_alias cr --uri=$uri
-drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
+#uri=apextoolgroupdev.prod.acquia-sites.com
+#drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
+#drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
+#drush10 @$drush_alias cim sync -y --uri=$uri
+#drush10 @$drush_alias cr --uri=$uri
+#drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
 
 # GEARWRENCH
 uri=prod-www.gearwrench.com
@@ -56,3 +58,37 @@ drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
 drush10 @$drush_alias cim sync -y --uri=$uri
 drush10 @$drush_alias cr --uri=$uri
 drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
+
+# SATA Brazil
+uri=prod-www.sataferramentas.com.br
+drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
+drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
+drush10 @$drush_alias cim sync -y --uri=$uri
+drush10 @$drush_alias cr --uri=$uri
+drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
+
+# SATA Colombia
+uri=prod-www.sata.com.co
+drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
+drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
+drush10 @$drush_alias cim sync -y --uri=$uri
+drush10 @$drush_alias cr --uri=$uri
+drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
+ct=0 --uri=$uri
+
+# SATA EMEA
+#uri=prod-www.satatools.eu
+#drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
+#drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
+#drush10 @$drush_alias cim sync -y --uri=$uri
+#drush10 @$drush_alias cr --uri=$uri
+#drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
+#ct=0 --uri=$uri
+
+# SATA US (North America)
+#uri=prod-www.satatools.us
+#drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
+#drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
+#drush10 @$drush_alias cim sync -y --uri=$uri
+#drush10 @$drush_alias cr --uri=$uri
+#drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri

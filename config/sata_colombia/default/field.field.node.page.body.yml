@@ -1,0 +1,29 @@
+uuid: 25fe6592-8ca9-4785-920c-e57fd7e96ea1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.page
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats:
+      - limited_html
+      - plain_text
+id: node.page.body
+field_name: body
+entity_type: node
+bundle: page
+label: 'Lead-in/Summary Text'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

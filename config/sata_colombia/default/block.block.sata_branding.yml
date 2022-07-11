@@ -1,0 +1,27 @@
+uuid: 8827a2fd-e0a4-458f-b2c7-8afd40242795
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - system
+  theme:
+    - sata
+third_party_settings:
+  block_class:
+    classes: block--header-branding
+id: sata_branding
+theme: sata
+region: header
+weight: -9
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: false
+  use_site_slogan: false
+visibility: {  }

@@ -58,3 +58,37 @@ drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
 drush10 @$drush_alias cim sync -y --uri=$uri
 drush10 @$drush_alias cr --uri=$uri
 drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
+
+# SATA Brazil
+uri=prod-www.sataferramentas.com.br
+drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
+drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
+drush10 @$drush_alias cim sync -y --uri=$uri
+drush10 @$drush_alias cr --uri=$uri
+drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
+
+# SATA Colombia
+uri=prod-www.sata.com.co
+drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
+drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
+drush10 @$drush_alias cim sync -y --uri=$uri
+drush10 @$drush_alias cr --uri=$uri
+drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
+ct=0 --uri=$uri
+
+# SATA EMEA
+#uri=prod-www.satatools.eu
+#drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
+#drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
+#drush10 @$drush_alias cim sync -y --uri=$uri
+#drush10 @$drush_alias cr --uri=$uri
+#drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
+#ct=0 --uri=$uri
+
+# SATA US (North America)
+#uri=prod-www.satatools.us
+#drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
+#drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
+#drush10 @$drush_alias cim sync -y --uri=$uri
+#drush10 @$drush_alias cr --uri=$uri
+#drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri

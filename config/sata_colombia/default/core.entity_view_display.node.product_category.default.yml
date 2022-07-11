@@ -1,0 +1,38 @@
+uuid: 1e7a1afc-b274-4bf0-9be6-df2404c718c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.product_category.body
+    - field.field.node.product_category.field_category_facets
+    - field.field.node.product_category.field_classification_id
+    - field.field.node.product_category.field_media
+    - field.field.node.product_category.field_product_classifications
+    - field.field.node.product_category.field_show_set_filter
+    - node.type.product_category
+  module:
+    - user
+id: node.product_category.default
+targetEntityType: node
+bundle: product_category
+mode: default
+content:
+  field_show_set_filter:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  body: true
+  field_category_facets: true
+  field_classification_id: true
+  field_media: true
+  field_product_classifications: true
+  langcode: true
+  links: true
+  search_api_excerpt: true
