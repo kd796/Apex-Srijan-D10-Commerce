@@ -1,0 +1,33 @@
+uuid: 29d150f9-2ff9-4e26-9ba7-06a237a777d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.embed
+    - field.field.media.audio.field_media_audio_file
+    - media.type.audio
+  module:
+    - file
+_core:
+  default_config_hash: r78luDtkr7t9ht49KTv9pNQczS465iC7BGqJeTm0WaY
+id: media.audio.embed
+targetEntityType: media
+bundle: audio
+mode: embed
+content:
+  field_media_audio_file:
+    type: file_audio
+    weight: 0
+    label: visually_hidden
+    settings:
+      controls: true
+      autoplay: false
+      loop: false
+      multiple_file_display_type: tags
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  name: true
+  thumbnail: true
+  uid: true
