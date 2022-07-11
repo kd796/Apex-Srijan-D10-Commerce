@@ -28,6 +28,7 @@ drush_alias=$site'.'$target_env
 #drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
 
 # GEARWRENCH
+echo "GearWrench North America..."
 uri=prod-www.gearwrench.com
 drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
 drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
@@ -36,6 +37,7 @@ drush10 @$drush_alias cr --uri=$uri
 drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
 
 # Crescenttool
+echo "Crescent North America..."
 uri=prod-www.crescenttool.com
 drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
 drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
@@ -44,6 +46,7 @@ drush10 @$drush_alias cr --uri=$uri
 drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
 
 # GEARWRENCH Australia
+echo "GearWrench Australia..."
 uri=prod-www.gearwrench.com.au
 drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
 drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
@@ -52,6 +55,7 @@ drush10 @$drush_alias cr --uri=$uri
 drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
 
 # Crescenttool Australia
+echo "Crescent Australia..."
 uri=prod-www.crescenttool.com.au
 drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
 drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
@@ -60,6 +64,7 @@ drush10 @$drush_alias cr --uri=$uri
 drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
 
 # SATA Brazil
+echo "SATA Brazil..."
 uri=prod-www.sataferramentas.com.br
 drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
 drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
@@ -68,6 +73,7 @@ drush10 @$drush_alias cr --uri=$uri
 drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
 
 # SATA Colombia
+echo "SATA Colombia..."
 uri=prod-www.sata.com.co
 drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
 drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
@@ -77,6 +83,7 @@ drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
 ct=0 --uri=$uri
 
 # SATA EMEA
+#echo "SATA EMEA..."
 #uri=prod-www.satatools.eu
 #drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
 #drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
@@ -86,6 +93,7 @@ ct=0 --uri=$uri
 #ct=0 --uri=$uri
 
 # SATA US (North America)
+#echo "SATA US (North America)..."
 #uri=prod-www.satatools.us
 #drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
 #drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
