@@ -1,13 +1,12 @@
-uuid: cfa20050-5165-447b-9810-36ec618b8073
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_media
     - media.type.image
+    - media.type.remote_video
+    - media.type.video
     - node.type.page
-_core:
-  default_config_hash: jTfhF4NMRJ_dqnKHBUq100as4RBpjR42KllAmpQ-t54
 id: node.page.field_media
 field_name: field_media
 entity_type: node
@@ -23,8 +22,11 @@ settings:
   handler_settings:
     target_bundles:
       image: image
+      remote_video: remote_video
+      video: video
     sort:
       field: _none
+      direction: ASC
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: image
 field_type: entity_reference

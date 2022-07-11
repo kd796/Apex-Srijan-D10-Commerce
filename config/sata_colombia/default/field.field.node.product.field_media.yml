@@ -1,0 +1,36 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_media
+    - media.type.image
+    - media.type.remote_video
+    - media.type.video
+    - node.type.product
+  content:
+    - 'media:image:14b3e79b-4cf6-4718-b0e7-a105c3daf45a'
+id: node.product.field_media
+field_name: field_media
+entity_type: node
+bundle: product
+label: 'Listing Image'
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    'target_    weight': 0
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+      remote_video: remote_video
+      video: video
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: image
+field_type: entity_reference

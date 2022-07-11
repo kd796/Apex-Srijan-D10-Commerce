@@ -1,0 +1,43 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.container_full_width
+    - image.style.scale_width_1080
+    - image.style.scale_width_360
+    - image.style.scale_width_720
+  theme:
+    - sata
+id: content_top_bottom
+label: 'Content - Top/Bottom'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: scale_width_1080
+    breakpoint_id: sata.xlarge_min
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: scale_width_720
+    breakpoint_id: sata.large_min
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: scale_width_360
+    breakpoint_id: sata.small_min
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: scale_width_360
+    breakpoint_id: sata.xsmall
+    multiplier: 1x
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: '(min-width: 65rem)'
+      sizes_image_styles:
+        - container_full_width
+    breakpoint_id: sata.All
+    multiplier: 1x
+breakpoint_group: sata
+fallback_image_style: scale_width_720

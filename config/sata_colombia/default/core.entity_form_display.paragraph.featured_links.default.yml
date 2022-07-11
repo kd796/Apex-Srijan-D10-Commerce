@@ -1,4 +1,3 @@
-uuid: bb47641a-acc4-4a80-96df-906b682f9ffd
 langcode: en
 status: true
 dependencies:
@@ -16,66 +15,65 @@ third_party_settings:
   field_group:
     group_settings:
       children:
-        - status
         - field_style
         - field_class_custom
         - field_html_anchor
+        - status
+      label: Settings
+      region: content
       parent_name: ''
       weight: 0
       format_type: settings
       format_settings:
         id: ''
         classes: ''
-      label: Settings
-_core:
-  default_config_hash: GLucXNLRXBt7ilDoPrpI1ct0PojE_TTucMIEKeMbvLc
 id: paragraph.featured_links.default
 targetEntityType: paragraph
 bundle: featured_links
 mode: default
 content:
   field_class_custom:
+    type: string_textfield
     weight: 4
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_html_anchor:
+    type: string_textfield
     weight: 5
+    region: content
     settings:
       size: 60
       placeholder: 'Example: find-out-more'
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_links:
-    weight: 5
+    type: linkit
+    weight: 2
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
       linkit_profile: default
     third_party_settings: {  }
-    type: linkit
-    region: content
   field_style:
+    type: options_select
     weight: 3
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_title:
-    weight: 3
+    type: string_textfield
+    weight: 1
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   status:
     type: boolean_checkbox
-    weight: 2
+    weight: 6
     region: content
     settings:
       display_label: true

@@ -1,4 +1,3 @@
-uuid: fe2e8583-d9d6-4ccf-8c99-8ff49aaafaba
 langcode: en
 status: true
 dependencies:
@@ -8,8 +7,6 @@ dependencies:
     - paragraphs.paragraphs_type.tabs_tab
   module:
     - entity_reference_revisions
-_core:
-  default_config_hash: w7IhgxHB84KjW61w8zfzFlbKhjbAiqdjhMNVitbz6nQ
 id: paragraph.tabs.field_components
 field_name: field_components
 entity_type: paragraph
@@ -23,13 +20,10 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       tabs_tab: tabs_tab
+    negate: 0
     target_bundles_drag_drop:
-      tabs_tab:
-        enabled: true
-        weight: 12
       content:
         weight: 13
         enabled: false
@@ -48,16 +42,19 @@ settings:
       pod_pea_content:
         weight: 18
         enabled: false
-      slider_slide_video:
-        weight: 19
-        enabled: false
       slider:
         weight: 20
         enabled: false
       slider_slide_photo:
         weight: 21
         enabled: false
+      slider_slide_video:
+        weight: 19
+        enabled: false
       tabs:
         weight: 22
         enabled: false
+      tabs_tab:
+        weight: 12
+        enabled: true
 field_type: entity_reference_revisions

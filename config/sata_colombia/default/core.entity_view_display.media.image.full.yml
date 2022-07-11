@@ -1,4 +1,3 @@
-uuid: 8981e01c-ca2b-4c63-8e8e-956bb8307148
 langcode: en
 status: true
 dependencies:
@@ -8,24 +7,24 @@ dependencies:
     - media.type.image
   module:
     - image
-_core:
-  default_config_hash: QZo39nJ5esBD9eBM9XBquOOKFFUoA1PWXtSG5I6-k4k
 id: media.image.full
 targetEntityType: media
 bundle: image
 mode: full
 content:
   field_media_image:
+    type: image
     label: visually_hidden
     settings:
       image_link: ''
       image_style: ''
     third_party_settings: {  }
-    type: image
     weight: 1
     region: content
 hidden:
   created: true
+  langcode: true
   name: true
+  search_api_excerpt: true
   thumbnail: true
   uid: true

@@ -1,4 +1,3 @@
-uuid: 79cbaa5a-a777-43b4-b60d-afd6f80d5730
 langcode: en
 status: true
 dependencies:
@@ -25,96 +24,97 @@ third_party_settings:
         - field_style
         - field_class_custom
         - field_html_anchor
+      label: Settings
+      region: content
       parent_name: group_content
-      weight: 1
+      weight: 4
       format_type: settings
       format_settings:
         id: ''
         classes: ''
-      label: Settings
-      region: content
     group_tabs:
       children:
-        - group_content
         - group_media
+        - group_content
+      label: Tabs
+      region: content
       parent_name: ''
       weight: 0
       format_type: tabs
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         direction: horizontal
-      label: Tabs
     group_content:
       children:
         - group_settings
         - field_title
         - field_content
         - field_link
+      label: Content
+      region: content
       parent_name: group_tabs
-      weight: 20
+      weight: 3
       format_type: tab
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         formatter: open
         description: ''
         required_fields: true
-      label: Content
     group_media:
       children:
         - field_media_layout
         - field_media_item
+      label: Media
+      region: content
       parent_name: group_tabs
-      weight: 21
+      weight: 2
       format_type: tab
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         formatter: closed
         description: ''
         required_fields: true
-      label: Media
-_core:
-  default_config_hash: JaKrJ_BHXgrxiTdDfqo4ijAe_G7ZOOBLwjtM-MBEmMw
 id: paragraph.content.default
 targetEntityType: paragraph
 bundle: content
 mode: default
 content:
   field_class_custom:
+    type: string_textfield
     weight: 2
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_content:
-    weight: 3
+    type: text_textarea
+    weight: 6
+    region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
-    region: content
   field_html_anchor:
+    type: string_textfield
     weight: 3
+    region: content
     settings:
       size: 60
       placeholder: 'Example: find-out-more'
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_link:
-    weight: 4
+    type: linkit
+    weight: 7
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
       linkit_profile: default
     third_party_settings: {  }
-    type: linkit
-    region: content
   field_media_item:
     type: media_library_widget
     weight: 2
@@ -123,25 +123,25 @@ content:
       media_types: {  }
     third_party_settings: {  }
   field_media_layout:
+    type: options_select
     weight: 1
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_style:
+    type: options_select
     weight: 1
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_title:
-    weight: 2
+    type: string_textfield
+    weight: 5
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   status:
     type: boolean_checkbox
     weight: 0

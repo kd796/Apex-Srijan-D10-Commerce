@@ -1,4 +1,3 @@
-uuid: 29d150f9-2ff9-4e26-9ba7-06a237a777d6
 langcode: en
 status: true
 dependencies:
@@ -8,8 +7,6 @@ dependencies:
     - media.type.audio
   module:
     - file
-_core:
-  default_config_hash: r78luDtkr7t9ht49KTv9pNQczS465iC7BGqJeTm0WaY
 id: media.audio.embed
 targetEntityType: media
 bundle: audio
@@ -17,7 +14,6 @@ mode: embed
 content:
   field_media_audio_file:
     type: file_audio
-    weight: 0
     label: visually_hidden
     settings:
       controls: true
@@ -25,9 +21,12 @@ content:
       loop: false
       multiple_file_display_type: tags
     third_party_settings: {  }
+    weight: 0
     region: content
 hidden:
   created: true
+  langcode: true
   name: true
+  search_api_excerpt: true
   thumbnail: true
   uid: true

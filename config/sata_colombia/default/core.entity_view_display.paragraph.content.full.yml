@@ -1,4 +1,3 @@
-uuid: c420cc46-a21e-464a-af63-d0f80c247fe1
 langcode: en
 status: true
 dependencies:
@@ -18,24 +17,20 @@ dependencies:
     - blazy
     - linkit
     - text
-_core:
-  default_config_hash: KpCo30VG0jTdIP8FDQi7dTMd0rmnR_dm1xaDjjE96WU
 id: paragraph.content.full
 targetEntityType: paragraph
 bundle: content
 mode: full
 content:
   field_content:
-    weight: 2
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 2
     region: content
   field_link:
     type: linkit
-    weight: 3
-    region: content
     label: hidden
     settings:
       trim_length: 80
@@ -45,71 +40,74 @@ content:
       target: '0'
       linkit_profile: default
     third_party_settings: {  }
+    weight: 3
+    region: content
   field_media_item:
     type: blazy_media
-    weight: 1
-    region: content
     label: hidden
     settings:
-      image_style: small
-      thumbnail_style: ''
-      responsive_image_style: ''
-      media_switch: ''
-      ratio: ''
-      sizes: ''
-      breakpoints:
-        xs:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-        sm:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-        md:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-        lg:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-        xl:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-      current_view_mode: full
-      background: false
       caption:
         title: '0'
         alt: '0'
-      iframe_lazy: true
-      icon: ''
+      optionset: default
       layout: ''
       view_mode: ''
       cache: 0
-      optionset: default
       skin: ''
       style: ''
+      background: false
       box_caption: ''
       box_caption_custom: ''
-      box_style: ''
       box_media_style: ''
-      grid: 0
+      responsive_image_style: ''
+      box_style: ''
+      image_style: small
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
+      grid: '0'
+      grid_medium: '0'
+      grid_small: '0'
+      breakpoints:
+        xs:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        sm:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        md:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        lg:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        xl:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+      current_view_mode: full
+      icon: ''
+      sizes: ''
       grid_header: ''
-      grid_medium: 0
-      grid_small: 0
+      iframe_lazy: true
     third_party_settings: {  }
+    weight: 1
+    region: content
   field_title:
     type: string
-    weight: 0
-    region: content
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   field_class_custom: true
   field_html_anchor: true
   field_media_layout: true
   field_style: true
+  search_api_excerpt: true

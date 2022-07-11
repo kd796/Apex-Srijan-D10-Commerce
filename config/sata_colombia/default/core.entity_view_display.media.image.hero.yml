@@ -1,4 +1,3 @@
-uuid: 1a8d276c-b12b-4d42-8f40-240ba1888a8b
 langcode: en
 status: true
 dependencies:
@@ -9,24 +8,24 @@ dependencies:
     - responsive_image.styles.hero
   module:
     - responsive_image
-_core:
-  default_config_hash: ElovzAP6XehM--Rc08EGRGIcjzLQCJK3zofnaIHlpFk
 id: media.image.hero
 targetEntityType: media
 bundle: image
 mode: hero
 content:
   field_media_image:
+    type: responsive_image
     label: visually_hidden
     settings:
       responsive_image_style: hero
       image_link: ''
     third_party_settings: {  }
-    type: responsive_image
     weight: 1
     region: content
 hidden:
   created: true
+  langcode: true
   name: true
+  search_api_excerpt: true
   thumbnail: true
   uid: true
