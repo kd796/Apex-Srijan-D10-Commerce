@@ -2,6 +2,8 @@ uuid: 4408572c-1641-43a3-9721-1c6accb5f5f1
 langcode: en
 status: true
 dependencies: {  }
+_core:
+  default_config_hash: ezZLQaU3x_dePTU7-Z_qfADhPOEXZ_nVYfp9wvYLIzI
 id: request_handler_suggest_default_7_0_0
 label: Suggester
 minimum_solr_version: 7.0.0
@@ -22,7 +24,7 @@ request_handler:
           name: suggest.dictionary
           VALUE: und
         -
-          name: suggest.dictionary
+          name: suggest.count
           VALUE: '10'
   arr:
     -
