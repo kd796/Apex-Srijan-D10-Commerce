@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.section.field_background_color
     - field.field.paragraph.section.field_class_custom
     - field.field.paragraph.section.field_components
     - field.field.paragraph.section.field_html_anchor
@@ -84,6 +85,8 @@ content:
     settings:
       image_link: ''
       image_style: thumbnail_cropped
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
     weight: 8
     region: content

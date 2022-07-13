@@ -2,6 +2,8 @@ uuid: 74faa7ee-80c0-4c48-b3be-5b8a29c1cbe6
 langcode: en
 status: true
 dependencies: {  }
+_core:
+  default_config_hash: qJhff8pEEWhByuO9T2VbbQ-Oyqwxew2TfEf82H45hzk
 id: text_und_7_0_0
 label: 'Language Undefined Text Field'
 minimum_solr_version: 7.0.0
@@ -55,9 +57,9 @@ field_type:
       filters:
         -
           class: solr.SynonymGraphFilterFactory
-          ignoreCase: true
           synonyms: synonyms_und.txt
           expand: true
+          ignoreCase: true
         -
           class: solr.StopFilterFactory
           ignoreCase: true
@@ -186,6 +188,8 @@ solr_configs:
 text_files:
   stopwords: |
 
+  synonyms: |
+    drupal, durpal
   protwords: |
 
   accents: |
@@ -337,5 +341,3 @@ text_files:
     "\uFB05" => "st"
     # ﬆ => st
     "\uFB06" => "st"
-  synonyms: |
-    drupal, durpal

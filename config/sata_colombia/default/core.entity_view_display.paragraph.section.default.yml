@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.section.field_background_color
     - field.field.paragraph.section.field_class_custom
     - field.field.paragraph.section.field_components
     - field.field.paragraph.section.field_html_anchor
@@ -48,6 +49,8 @@ content:
     settings:
       image_link: ''
       image_style: ''
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
     weight: 0
     region: content

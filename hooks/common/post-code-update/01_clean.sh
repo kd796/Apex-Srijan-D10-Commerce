@@ -28,110 +28,121 @@ drush_alias=$site'.'$target_env
 #drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
 
 # GEARWRENCH
-echo "GearWrench North America..."
+echo "[NOTICE] GearWrench North America..."
 uri=prod-www.gearwrench.com
-echo "Setting maintenance mode."
+echo "[NOTICE] Setting maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
-echo "Running database updates."
+echo "[NOTICE] Running database updates."
 drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
-echo "Importing the config for $uri"
+echo "[NOTICE] Importing the config for $uri"
 drush10 @$drush_alias cim sync -y --uri=$uri
-echo "Clearing cache."
+echo "[NOTICE] Clearing cache."
 drush10 @$drush_alias cr --uri=$uri
-echo "Leaving maintenance mode."
+echo "[NOTICE] Leaving maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
-echo "Done with uri: $uri"
+echo "[NOTICE] Done with uri: $uri"
 
 # Crescenttool
-echo "Crescent North America..."
+echo [NOTICE] "Crescent North America..."
 uri=prod-www.crescenttool.com
-echo "Setting maintenance mode."
+echo "[NOTICE] Setting maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
-echo "Running database updates."
+echo "[NOTICE] Running database updates."
 drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
-echo "Importing the config for $uri"
+echo "[NOTICE] Importing the config for $uri"
 drush10 @$drush_alias cim sync -y --uri=$uri
-echo "Clearing cache."
+echo "[NOTICE] Clearing cache."
 drush10 @$drush_alias cr --uri=$uri
-echo "Leaving maintenance mode."
+echo "[NOTICE] Leaving maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
-echo "Done with uri: $uri"
+echo "[NOTICE] Done with uri: $uri"
 
 # GEARWRENCH Australia
-echo "GearWrench Australia..."
+echo "[NOTICE] GearWrench Australia..."
 uri=prod-www.gearwrench.com.au
-echo "Setting maintenance mode."
+echo "[NOTICE] Setting maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
-echo "Running database updates."
+echo "[NOTICE] Running database updates."
 drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
-echo "Importing the config for $uri"
+echo "[NOTICE] Importing the config for $uri"
 drush10 @$drush_alias cim sync -y --uri=$uri
-echo "Clearing cache."
+echo "[NOTICE] Clearing cache."
 drush10 @$drush_alias cr --uri=$uri
-echo "Leaving maintenance mode."
+echo "[NOTICE] Leaving maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
-echo "Done with uri: $uri"
+echo "[NOTICE] Done with uri: $uri"
 
 # Crescenttool Australia
-echo "Crescent Australia..."
+echo "[NOTICE] Crescent Australia..."
 uri=prod-www.crescenttool.com.au
-echo "Setting maintenance mode."
+echo "[NOTICE] Setting maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
-echo "Running database updates."
+echo "[NOTICE] Running database updates."
 drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
-echo "Importing the config for $uri"
+echo "[NOTICE] Importing the config for $uri"
 drush10 @$drush_alias cim sync -y --uri=$uri
-echo "Clearing cache."
+echo "[NOTICE] Clearing cache."
 drush10 @$drush_alias cr --uri=$uri
-echo "Leaving maintenance mode."
+echo "[NOTICE] Leaving maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
-echo "Done with uri: $uri"
+echo "[NOTICE] Done with uri: $uri"
 
 # SATA Brazil
-echo "SATA Brazil..."
+echo "[NOTICE] SATA Brazil..."
 uri=prod-www.sataferramentas.com.br
-echo "Setting maintenance mode."
+echo "[NOTICE] Setting maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
-echo "Running database updates."
+echo "[NOTICE] Running database updates."
 drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
-echo "Importing the config for $uri"
+echo "[NOTICE] Importing the config for $uri"
 drush10 @$drush_alias cim sync -y --uri=$uri
-echo "Clearing cache."
+echo "[NOTICE] Clearing cache."
 drush10 @$drush_alias cr --uri=$uri
-echo "Leaving maintenance mode."
+echo "[NOTICE] Leaving maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
-echo "Done with uri: $uri"
+echo "[NOTICE] Done with uri: $uri"
 
 # SATA Colombia
-echo "SATA Colombia..."
+echo "[NOTICE] SATA Colombia..."
 uri=prod-www.sata.com.co
-echo "Setting maintenance mode."
+echo "[NOTICE] Setting maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
-echo "Running database updates."
+echo "[NOTICE] Running database updates."
 drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
-echo "Importing the config for $uri"
+echo "[NOTICE] Importing the config for $uri"
 drush10 @$drush_alias cim sync -y --uri=$uri
-echo "Clearing cache."
+echo "[NOTICE] Clearing cache."
 drush10 @$drush_alias cr --uri=$uri
-echo "Leaving maintenance mode."
+echo "[NOTICE] Leaving maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
-echo "Done with uri: $uri"
+echo "[NOTICE] Done with uri: $uri"
 
 # SATA EMEA
-#echo "SATA EMEA..."
+#echo "[NOTICE] SATA EMEA..."
 #uri=prod-www.satatools.eu
+#echo "[NOTICE] Setting maintenance mode."
 #drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
+#echo "[NOTICE] Running database updates."
 #drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
+#echo "[NOTICE] Importing the config for $uri"
 #drush10 @$drush_alias cim sync -y --uri=$uri
+#echo "[NOTICE] Clearing cache."
 #drush10 @$drush_alias cr --uri=$uri
+#echo "[NOTICE] Leaving maintenance mode."
 #drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
-#ct=0 --uri=$uri
+#echo "[NOTICE] Done with uri: $uri"
 
 # SATA US (North America)
-#echo "SATA US (North America)..."
+#echo "[NOTICE] SATA US (North America)..."
 #uri=prod-www.satatools.us
+#echo "[NOTICE] Setting maintenance mode."
 #drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
+#echo "[NOTICE] Running database updates."
 #drush10 @$drush_alias updatedb -y --strict=0 --uri=$uri
+#echo "[NOTICE] Importing the config for $uri"
 #drush10 @$drush_alias cim sync -y --uri=$uri
+#echo "[NOTICE] Clearing cache."
 #drush10 @$drush_alias cr --uri=$uri
+#echo "[NOTICE] Leaving maintenance mode."
 #drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
+#echo "[NOTICE] Done with uri: $uri"
