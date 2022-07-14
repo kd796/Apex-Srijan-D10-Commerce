@@ -1,0 +1,24 @@
+uuid: cdbc59fb-e102-4b58-b2ad-d49d2bcbae01
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.restricted_html
+  module:
+    - filter
+    - media
+    - search
+    - system
+_core:
+  default_config_hash: JrtDp8Iu4bDYXyEa3b0ibCCP9Lcj-px3BRoEOpg85_Q
+id: anonymous
+label: 'Anonymous user'
+weight: 0
+is_admin: false
+permissions:
+  - 'access comments'
+  - 'access content'
+  - 'access site-wide contact form'
+  - 'search content'
+  - 'use text format restricted_html'
+  - 'view media'

@@ -1,0 +1,16 @@
+uuid: 099a2d88-2e48-4e14-84a6-661b0cc11d1b
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.site_administrator
+  module:
+    - user
+_core:
+  default_config_hash: kZ_6D1JBNCT6PXoiVEKSax4a94bkreYeNZr2zmVcq78
+id: user_remove_role_action.site_administrator
+label: 'Remove the Site Administrator role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: site_administrator
