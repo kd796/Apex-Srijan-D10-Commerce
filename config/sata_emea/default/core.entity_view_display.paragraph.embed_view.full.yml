@@ -1,4 +1,3 @@
-uuid: 86545cd6-a1ee-4e97-8804-f5a61fd2b427
 langcode: en
 status: true
 dependencies:
@@ -11,8 +10,6 @@ dependencies:
     - paragraphs.paragraphs_type.embed_view
   module:
     - viewsreference
-_core:
-  default_config_hash: 1I7aFmYAoddslXoYYbVkIK-Qf8zxuzpUssYXsZQ9q3A
 id: paragraph.embed_view.full
 targetEntityType: paragraph
 bundle: embed_view
@@ -20,8 +17,6 @@ mode: full
 content:
   field_embed_view:
     type: viewsreference_formatter
-    weight: 0
-    region: content
     label: hidden
     settings:
       plugin_types:
@@ -30,7 +25,10 @@ content:
         page: 0
         feed: 0
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   field_class_custom: true
   field_html_anchor: true
   field_style: true
+  search_api_excerpt: true

@@ -1,4 +1,3 @@
-uuid: 5f440fa4-46cd-4d86-be45-58601a411bbb
 langcode: en
 status: true
 dependencies:
@@ -8,27 +7,27 @@ dependencies:
   module:
     - image
     - user
-_core:
-  default_config_hash: n6jnA7C8YZdCfNr4Oijxec4dGh_YGjQV-uUCUVo81mU
 id: user.user.default
 targetEntityType: user
 bundle: user
 mode: default
 content:
   member_for:
-    weight: 5
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 5
+    region: content
   user_picture:
     type: image
-    weight: 0
-    region: content
+    label: hidden
     settings:
-      image_style: thumbnail
       image_link: content
+      image_style: thumbnail
       image_loading:
         attribute: lazy
     third_party_settings: {  }
-    label: hidden
-hidden: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

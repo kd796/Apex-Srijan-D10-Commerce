@@ -1,4 +1,3 @@
-uuid: 7b38b52c-f6a8-4f23-870f-432255c415cc
 langcode: en
 status: true
 dependencies:
@@ -18,8 +17,6 @@ dependencies:
     - paragraphs.paragraphs_type.tabs
   module:
     - entity_reference_revisions
-_core:
-  default_config_hash: 7ELNhfqqGxCjdH0SR1HZJR31TXJUlW0CB1uHEkj7QPY
 id: paragraph.accordion_item.field_components
 field_name: field_components
 entity_type: paragraph
@@ -33,7 +30,6 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       content: content
       accordion: accordion
@@ -46,34 +42,35 @@ settings:
       pullquote: pullquote
       section: section
       tabs: tabs
+    negate: 0
     target_bundles_drag_drop:
+      accordion:
+        weight: -29
+        enabled: true
       accordion_item:
         weight: -31
         enabled: false
       content:
-        enabled: true
         weight: -30
-      accordion:
         enabled: true
-        weight: -29
       embed_block:
-        enabled: true
         weight: -28
+        enabled: true
       embed_iframe:
-        enabled: true
         weight: -27
+        enabled: true
       embed_view:
-        enabled: true
         weight: -26
+        enabled: true
       featured_content:
-        enabled: true
         weight: -25
+        enabled: true
       featured_links:
-        enabled: true
         weight: -24
-      featured_media:
         enabled: true
+      featured_media:
         weight: -23
+        enabled: true
       hero:
         weight: -22
         enabled: false
@@ -81,14 +78,14 @@ settings:
         weight: -21
         enabled: false
       pullquote:
-        enabled: true
         weight: -20
+        enabled: true
       section:
-        enabled: true
         weight: -19
-      tabs:
         enabled: true
+      tabs:
         weight: -18
+        enabled: true
       tabs_tab:
         weight: -17
         enabled: false

@@ -1,4 +1,3 @@
-uuid: 6d1fdd13-0e72-4c64-970d-fd43a1c50695
 langcode: en
 status: true
 dependencies:
@@ -14,8 +13,6 @@ dependencies:
     - entity_reference_revisions
     - text
     - user
-_core:
-  default_config_hash: MWpmiVUYfi4J5cKI1GD9E1MmSKdmtm-IOemzDLDy8eE
 id: node.landing_page.search_index
 targetEntityType: node
 bundle: landing_page
@@ -23,30 +20,24 @@ mode: search_index
 content:
   body:
     type: text_default
-    weight: 1
-    region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
-  field_component_hero:
-    type: entity_reference_revisions_entity_view
     weight: 0
     region: content
-    label: hidden
-    settings:
-      view_mode: full
-      link: ''
-    third_party_settings: {  }
-  field_components:
+  field_component_hero:
     type: entity_reference_revisions_entity_view
-    weight: 2
-    region: content
     label: hidden
     settings:
-      view_mode: full
+      view_mode: search_index
       link: ''
     third_party_settings: {  }
+    weight: 1
+    region: content
 hidden:
+  field_components: true
   field_media: true
   field_meta_tags: true
+  langcode: true
   links: true
+  search_api_excerpt: true

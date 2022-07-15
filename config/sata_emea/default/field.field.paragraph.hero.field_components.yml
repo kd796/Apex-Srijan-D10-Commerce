@@ -1,4 +1,3 @@
-uuid: bd85e857-bd37-4533-808a-32cf84e73bef
 langcode: en
 status: true
 dependencies:
@@ -8,8 +7,6 @@ dependencies:
     - paragraphs.paragraphs_type.hero_slide
   module:
     - entity_reference_revisions
-_core:
-  default_config_hash: gn38XS6KTX4kG4Lp62TR-tkDDPwfbDX0sfc1AHcUEeo
 id: paragraph.hero.field_components
 field_name: field_components
 entity_type: paragraph
@@ -23,13 +20,10 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       hero_slide: hero_slide
+    negate: 0
     target_bundles_drag_drop:
-      hero_slide:
-        enabled: true
-        weight: 18
       accordion:
         weight: 19
         enabled: false
@@ -51,6 +45,9 @@ settings:
       hero:
         weight: 25
         enabled: false
+      hero_slide:
+        weight: 18
+        enabled: true
       media:
         weight: 26
         enabled: false

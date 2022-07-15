@@ -1,4 +1,3 @@
-uuid: 20b7d60a-d628-498b-b109-ee642444420d
 langcode: en
 status: true
 dependencies:
@@ -10,8 +9,6 @@ dependencies:
     - paragraphs.paragraphs_type.accordion_item
   module:
     - entity_reference_revisions
-_core:
-  default_config_hash: wKph5GCnbuC1rMxy3OCw2T5n9bl5BrilpVMJ2yMHy2o
 id: paragraph.accordion_item.full
 targetEntityType: paragraph
 bundle: accordion_item
@@ -19,20 +16,21 @@ mode: full
 content:
   field_components:
     type: entity_reference_revisions_entity_view
-    weight: 2
-    region: content
     label: hidden
     settings:
       view_mode: full
       link: ''
     third_party_settings: {  }
+    weight: 2
+    region: content
   field_title:
-    weight: 0
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 0
     region: content
 hidden:
   field_enabled: true
+  search_api_excerpt: true

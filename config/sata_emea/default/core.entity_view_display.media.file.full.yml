@@ -1,4 +1,3 @@
-uuid: c8af1cbc-d4a0-4f81-acc1-a4fd1cccee1f
 langcode: en
 status: true
 dependencies:
@@ -8,22 +7,22 @@ dependencies:
     - media.type.file
   module:
     - file
-_core:
-  default_config_hash: g0mqRi9sIyOh4fPVa3eLDZieEBoTsjVFHnTqENvsz-A
 id: media.file.full
 targetEntityType: media
 bundle: file
 mode: full
 content:
   field_media_file:
+    type: file_default
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
-    type: file_default
     weight: 1
     region: content
 hidden:
   created: true
+  langcode: true
   name: true
+  search_api_excerpt: true
   thumbnail: true
   uid: true
