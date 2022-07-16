@@ -1,0 +1,28 @@
+uuid: 1b570cad-c09c-48b2-8dc6-6917d22a2607
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.remote_video.field_media_video_embed_field
+    - media.type.remote_video
+  module:
+    - video_embed_field
+_core:
+  default_config_hash: MJYW88FZlo9dYnLr0zrWDDK3iij-0GHhgOa_dXZg1zA
+id: media.remote_video.default
+targetEntityType: media
+bundle: remote_video
+mode: default
+content:
+  field_media_video_embed_field:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: video_embed_field_textfield
+    region: content
+hidden:
+  created: true
+  name: true
+  path: true
+  status: true
+  uid: true
