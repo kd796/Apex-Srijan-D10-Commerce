@@ -1,0 +1,24 @@
+uuid: c2e562cc-9fa2-4507-8ae1-3cae3b07f96a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.full
+    - field.field.paragraph.product_slider.field_products
+    - paragraphs.paragraphs_type.product_slider
+id: paragraph.product_slider.full
+targetEntityType: paragraph
+bundle: product_slider
+mode: full
+content:
+  field_products:
+    type: entity_reference_entity_view
+    label: visually_hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

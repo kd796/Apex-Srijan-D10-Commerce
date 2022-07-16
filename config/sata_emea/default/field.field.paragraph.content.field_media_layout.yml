@@ -1,0 +1,30 @@
+uuid: eb99f8f0-a21c-48c7-b5c6-34362ac03e39
+langcode: en
+status: true
+dependencies:
+  config:
+    - classy_paragraphs.classy_paragraphs_style.content_media_layout__half_left
+    - field.storage.paragraph.field_media_layout
+    - paragraphs.paragraphs_type.content
+id: paragraph.content.field_media_layout
+field_name: field_media_layout
+entity_type: paragraph
+bundle: content
+label: 'Media Layout'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    target_uuid: ad203eeb-c992-442c-acb3-cedc1ae39d64
+default_value_callback: ''
+settings:
+  handler: classy_paragraphs
+  handler_settings:
+    filter:
+      type: starts_with
+      starts_with: content_media_layout__
+    sort:
+      field: label
+      direction: ASC
+field_type: entity_reference

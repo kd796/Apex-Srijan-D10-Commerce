@@ -1,0 +1,20 @@
+uuid: 1ed4bf63-8d3b-4075-8982-d9744d9a3d5e
+langcode: en
+status: true
+dependencies: {  }
+id: remote_stage
+label: 'Remote - Stage'
+description: ''
+weight: 0
+folder: ../config/sata_us/remote_stage
+module:
+  acquia_connector: 0
+  dblog: 0
+  stage_file_proxy: 0
+  shield: 0
+theme: {  }
+blacklist:
+  - purge.logger_channels
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true

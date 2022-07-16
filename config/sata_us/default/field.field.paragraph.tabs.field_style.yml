@@ -1,0 +1,27 @@
+uuid: d417bb16-dc98-42d1-b175-6c706b9618c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_style
+    - paragraphs.paragraphs_type.tabs
+id: paragraph.tabs.field_style
+field_name: field_style
+entity_type: paragraph
+bundle: tabs
+label: Style
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: classy_paragraphs
+  handler_settings:
+    filter:
+      type: starts_with
+      starts_with: tabs__
+    sort:
+      field: label
+      direction: ASC
+field_type: entity_reference

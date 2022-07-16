@@ -1,0 +1,23 @@
+uuid: 2a577dea-0c52-48bb-a8f2-1fe9e15e8df6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_media_type
+    - node.type.media_page
+  module:
+    - options
+id: node.media_page.field_media_type
+field_name: field_media_type
+entity_type: node
+bundle: media_page
+label: 'Media Type'
+description: 'This is used to help determine how this content is displayed and used.'
+required: true
+translatable: false
+default_value:
+  -
+    value: Brochure
+default_value_callback: ''
+settings: {  }
+field_type: list_string

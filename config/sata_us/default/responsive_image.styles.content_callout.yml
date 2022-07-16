@@ -1,0 +1,33 @@
+uuid: 2941316e-e7fa-4ffe-80b3-63fe7ef4cc52
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.medium_1x1
+    - image.style.small_1x1
+  theme:
+    - sata
+id: content_callout
+label: 'Content Callout'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: medium_1x1
+    breakpoint_id: sata.large_min
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: small_1x1
+    breakpoint_id: sata.small_min
+    multiplier: 1x
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: 100vw
+      sizes_image_styles:
+        - medium_1x1
+        - small_1x1
+    breakpoint_id: sata.All
+    multiplier: 1x
+breakpoint_group: sata
+fallback_image_style: medium_1x1
