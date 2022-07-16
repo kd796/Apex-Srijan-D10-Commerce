@@ -1,0 +1,141 @@
+uuid: 827e3f95-8cf4-4a1b-afc9-160d463948f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.media_page.body
+    - field.field.node.media_page.field_category
+    - field.field.node.media_page.field_components
+    - field.field.node.media_page.field_enable_download_link
+    - field.field.node.media_page.field_link
+    - field.field.node.media_page.field_media
+    - field.field.node.media_page.field_media_type
+    - field.field.node.media_page.field_preferred_listing_image
+    - field.field.node.media_page.field_published_date
+    - field.field.node.media_page.field_tags
+    - image.style.media_page_teaser
+    - node.type.media_page
+  module:
+    - blazy
+    - smart_trim
+    - user
+id: node.media_page.teaser
+targetEntityType: node
+bundle: media_page
+mode: teaser
+content:
+  body:
+    type: smart_trim
+    label: hidden
+    settings:
+      trim_length: 100
+      trim_type: chars
+      trim_suffix: ''
+      wrap_output: true
+      wrap_class: trimmed
+      more_link: false
+      more_class: more-link
+      more_text: More
+      summary_handler: trim
+      trim_options:
+        text: true
+        trim_zero: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_media:
+    type: blazy_media
+    label: hidden
+    settings:
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      layout: ''
+      view_mode: search_teaser
+      cache: 0
+      skin: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      responsive_image_style: ''
+      box_style: ''
+      image_style: media_page_teaser
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
+      grid: '0'
+      grid_medium: '0'
+      grid_small: '0'
+      breakpoints: {  }
+      current_view_mode: teaser
+      fx: ''
+      icon: ''
+      sizes: ''
+      grid_header: ''
+      _uri: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_preferred_listing_image:
+    type: blazy_media
+    label: hidden
+    settings:
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      layout: ''
+      view_mode: search_teaser
+      cache: 0
+      skin: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      responsive_image_style: ''
+      box_style: ''
+      image_style: media_page_teaser
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
+      grid: '0'
+      grid_medium: '0'
+      grid_small: '0'
+      breakpoints: {  }
+      current_view_mode: teaser
+      fx: ''
+      icon: ''
+      sizes: ''
+      grid_header: ''
+      _uri: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_category: true
+  field_components: true
+  field_enable_download_link: true
+  field_link: true
+  field_media_type: true
+  field_published_date: true
+  field_tags: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

@@ -23,67 +23,65 @@ third_party_settings:
         - field_html_anchor
         - field_style_height
         - field_style_width
+      label: Settings
+      region: content
       parent_name: ''
       weight: 0
       format_type: settings
       format_settings:
         id: ''
         classes: ''
-      label: Settings
-      region: content
-_core:
-  default_config_hash: rhxI_tzIzuDOyGcRFKZDmrDgqArfYIKB-xnIPcGTpIk
 id: paragraph.embed_iframe.default
 targetEntityType: paragraph
 bundle: embed_iframe
 mode: default
 content:
   field_class_custom:
+    type: string_textfield
     weight: 7
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_html_anchor:
+    type: string_textfield
     weight: 8
+    region: content
     settings:
       size: 60
       placeholder: 'Example: find-out-more'
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_link:
+    type: link_default
     weight: 3
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
-    type: link_default
-    region: content
   field_style:
+    type: options_select
     weight: 6
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_style_height:
+    type: string_textfield
     weight: 9
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_style_width:
+    type: string_textfield
     weight: 10
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   status:
     type: boolean_checkbox
     weight: 5

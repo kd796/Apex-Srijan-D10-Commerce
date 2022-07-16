@@ -9,38 +9,37 @@ dependencies:
     - paragraphs.paragraphs_type.accordion_item
   module:
     - entity_reference_revisions
-_core:
-  default_config_hash: DEDTsOMxftols7lYB1dVFQOxvfJiSEcYm7D2uBBqUL4
 id: paragraph.accordion_item.default
 targetEntityType: paragraph
 bundle: accordion_item
 mode: default
 content:
   field_components:
-    weight: 3
+    type: entity_reference_revisions_entity_view
     label: above
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    type: entity_reference_revisions_entity_view
+    weight: 3
     region: content
   field_enabled:
-    weight: 2
+    type: boolean
     label: above
     settings:
       format: default
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    type: boolean
+    weight: 2
     region: content
   field_title:
-    weight: 0
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 0
     region: content
-hidden: {  }
+hidden:
+  search_api_excerpt: true

@@ -7,8 +7,6 @@ dependencies:
     - paragraphs.paragraphs_type.section
   module:
     - image
-_core:
-  default_config_hash: Zmt2tpiqqFNUzfxbWGwN_ZkZGfoGTK9tX9ZeEHvK-D4
 id: paragraph.section.field_image_background
 field_name: field_image_background
 entity_type: paragraph
@@ -20,6 +18,8 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
+  handler: 'default:file'
+  handler_settings: {  }
   file_directory: components/section
   file_extensions: 'png gif jpg jpeg'
   max_filesize: ''
@@ -35,6 +35,4 @@ settings:
     title: ''
     width: null
     height: null
-  handler: 'default:file'
-  handler_settings: {  }
 field_type: image

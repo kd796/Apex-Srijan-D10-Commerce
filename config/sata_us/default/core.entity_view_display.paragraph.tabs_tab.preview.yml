@@ -7,20 +7,19 @@ dependencies:
     - field.field.paragraph.tabs_tab.field_components
     - field.field.paragraph.tabs_tab.field_title
     - paragraphs.paragraphs_type.tabs_tab
-_core:
-  default_config_hash: IZP4jyZHOvhqacYZUbfdSnXtmRUFylhjIx2soOHctAA
 id: paragraph.tabs_tab.preview
 targetEntityType: paragraph
 bundle: tabs_tab
 mode: preview
 content:
   field_title:
-    weight: 0
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 0
     region: content
 hidden:
   field_components: true
+  search_api_excerpt: true

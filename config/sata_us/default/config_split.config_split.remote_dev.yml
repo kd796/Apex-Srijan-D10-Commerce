@@ -2,19 +2,19 @@ uuid: 491ad91d-7a5d-4214-b3d9-118405702eab
 langcode: en
 status: true
 dependencies: {  }
-_core:
-  default_config_hash: VVc9lUbBPu5m4WiF1n9abCMVOpvJQYZT3I6NNdtJe3c
 id: remote_dev
 label: 'Remote - Dev'
 description: ''
 weight: 0
 folder: ../config/sata_us/remote_dev
 module:
+  acquia_connector: 0
   dblog: 0
-  shield: 0
   stage_file_proxy: 0
+  shield: 0
 theme: {  }
-blacklist: {  }
+blacklist:
+  - purge.logger_channels
 graylist: {  }
 graylist_dependents: true
 graylist_skip_equal: true

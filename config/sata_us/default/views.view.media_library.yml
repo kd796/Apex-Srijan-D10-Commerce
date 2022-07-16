@@ -13,8 +13,6 @@ dependencies:
   enforced:
     module:
       - media_library
-_core:
-  default_config_hash: GDIFCs-lTKQIMvaNZ95zofFcqpTxDYakxx02_zZFkmM
 id: media_library
 label: 'Media library'
 module: views
@@ -1133,7 +1131,7 @@ display:
             image_link: ''
             image_style: media_library
             image_loading:
-              attribute: eager
+              attribute: lazy
         name:
           id: name
           table: media_field_data

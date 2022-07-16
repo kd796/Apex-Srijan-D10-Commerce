@@ -7,11 +7,10 @@ dependencies:
   module:
     - filter
     - media
+    - node_view_permissions
     - search
     - shortcut
     - system
-_core:
-  default_config_hash: D2X2ptHvNtDj2MldPZaK433GfovwBCAxwj0kdd7JdXU
 id: authenticated
 label: 'Authenticated user'
 weight: 1
@@ -25,4 +24,5 @@ permissions:
   - 'search content'
   - 'skip comment approval'
   - 'use text format limited_html'
+  - 'view any styleguide content'
   - 'view media'

@@ -1,0 +1,31 @@
+uuid: d4e2ca3f-1902-4b87-b9aa-db45fb960c30
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.media_page
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats:
+      - basic_html
+      - limited_html
+      - restricted_html
+      - full_html
+id: node.media_page.body
+field_name: body
+entity_type: node
+bundle: media_page
+label: 'Lead-in/Summary Text'
+description: 'Lead-in/Summary Text'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

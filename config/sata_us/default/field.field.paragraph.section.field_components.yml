@@ -16,8 +16,6 @@ dependencies:
     - paragraphs.paragraphs_type.tabs
   module:
     - entity_reference_revisions
-_core:
-  default_config_hash: H0Ms50T9R96k-HUDdT51oHOqr__jLodyJyXaKNspMn0
 id: paragraph.section.field_components
 field_name: field_components
 entity_type: paragraph
@@ -31,7 +29,6 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       content: content
       embed_block: embed_block
@@ -43,6 +40,7 @@ settings:
       pullquote: pullquote
       section: section
       tabs: tabs
+    negate: 0
     target_bundles_drag_drop:
       accordion:
         weight: -31
@@ -51,26 +49,26 @@ settings:
         weight: -30
         enabled: false
       content:
-        enabled: true
         weight: -29
+        enabled: true
       embed_block:
-        enabled: true
         weight: -28
+        enabled: true
       embed_iframe:
-        enabled: true
         weight: -27
+        enabled: true
       embed_view:
-        enabled: true
         weight: -26
+        enabled: true
       featured_content:
-        enabled: true
         weight: -25
+        enabled: true
       featured_links:
-        enabled: true
         weight: -24
-      featured_media:
         enabled: true
+      featured_media:
         weight: -23
+        enabled: true
       hero:
         weight: -22
         enabled: false
@@ -78,14 +76,14 @@ settings:
         weight: -21
         enabled: false
       pullquote:
-        enabled: true
         weight: -20
+        enabled: true
       section:
-        enabled: true
         weight: -19
-      tabs:
         enabled: true
+      tabs:
         weight: -18
+        enabled: true
       tabs_tab:
         weight: -17
         enabled: false

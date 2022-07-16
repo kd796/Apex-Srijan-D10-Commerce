@@ -8,46 +8,17 @@ dependencies:
     - media.type.remote_video
   module:
     - blazy
-_core:
-  default_config_hash: e0mjO41Lqd_mk33DE8w6MC5Nn3RmcHJKhokfhGYakKQ
 id: media.remote_video.hero
 targetEntityType: media
 bundle: remote_video
 mode: hero
 content:
   field_media_video_embed_field:
-    weight: 0
+    type: blazy_video
     label: hidden
     settings:
-      image_style: ''
-      responsive_image_style: ''
-      media_switch: ''
-      ratio: ''
-      iframe_lazy: true
-      sizes: ''
-      breakpoints:
-        xs:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-        sm:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-        md:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-        lg:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-        xl:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-      current_view_mode: hero
-      background: false
+      caption: {  }
+      optionset: default
       class: ''
       id: ''
       image: ''
@@ -55,24 +26,54 @@ content:
       overlay: ''
       title: ''
       vanilla: false
-      icon: ''
       layout: ''
-      thumbnail_style: ''
       view_mode: ''
       cache: 0
-      optionset: default
       skin: ''
       style: ''
+      background: false
       box_caption: ''
       box_caption_custom: ''
-      box_style: ''
       box_media_style: ''
-      caption: {  }
+      responsive_image_style: ''
+      box_style: ''
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
+      breakpoints:
+        xs:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        sm:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        md:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        lg:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+        xl:
+          breakpoint: ''
+          width: ''
+          image_style: ''
+      current_view_mode: hero
+      icon: ''
+      sizes: ''
+      iframe_lazy: true
     third_party_settings: {  }
-    type: blazy_video
+    weight: 0
     region: content
 hidden:
   created: true
+  field_media_oembed_video: true
+  langcode: true
   name: true
+  search_api_excerpt: true
   thumbnail: true
   uid: true

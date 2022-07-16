@@ -18,29 +18,27 @@ third_party_settings:
         - field_style
         - field_class_custom
         - field_html_anchor
+      label: Settings
       parent_name: ''
+      region: content
       weight: 1
       format_type: details
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         open: false
         required_fields: false
-      label: Settings
-      region: content
     group_component:
       children: {  }
+      label: Component
       parent_name: ''
+      region: content
       weight: 0
       format_type: fieldset
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         description: ''
-      label: Component
-      region: content
-_core:
-  default_config_hash: NG1iRuCGhPDH3cVgK1DZDUvPgjn1QkenBULpDUmLJ8k
 id: paragraph.embed_block.preview
 targetEntityType: paragraph
 bundle: embed_block
@@ -48,27 +46,28 @@ mode: preview
 content:
   field_class_custom:
     type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 2
     region: content
-    label: inline
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   field_html_anchor:
     type: string
-    weight: 3
-    region: content
     label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 3
+    region: content
   field_style:
-    weight: 1
+    type: entity_reference_label
     label: inline
     settings:
       link: false
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 1
     region: content
 hidden:
   field_embed_block: true
+  search_api_excerpt: true

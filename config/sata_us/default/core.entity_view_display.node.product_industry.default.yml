@@ -1,0 +1,23 @@
+uuid: bfeda10b-ca4f-4d32-a015-7583e838ae18
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.product_industry.body
+    - field.field.node.product_industry.field_industry
+    - field.field.node.product_industry.field_media
+    - node.type.product_industry
+  module:
+    - user
+id: node.product_industry.default
+targetEntityType: node
+bundle: product_industry
+mode: default
+content: {  }
+hidden:
+  body: true
+  field_industry: true
+  field_media: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

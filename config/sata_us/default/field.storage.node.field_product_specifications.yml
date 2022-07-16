@@ -1,0 +1,20 @@
+uuid: 69d4ae1f-508b-4989-8865-f2d293135e76
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_product_specifications
+field_name: field_product_specifications
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -12,31 +12,30 @@ dependencies:
     - paragraphs.paragraphs_type.accordion
   module:
     - entity_reference_revisions
-_core:
-  default_config_hash: 2gLW7ZKnJ6CClTSXtGma4eM4oNm87IT7T_wontKdHzM
 id: paragraph.accordion.full
 targetEntityType: paragraph
 bundle: accordion
 mode: full
 content:
   field_components:
-    weight: 1
+    type: entity_reference_revisions_entity_view
     label: hidden
     settings:
       view_mode: full
       link: ''
     third_party_settings: {  }
-    type: entity_reference_revisions_entity_view
+    weight: 1
     region: content
   field_title:
-    weight: 0
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 0
     region: content
 hidden:
   field_class_custom: true
   field_html_anchor: true
   field_style: true
+  search_api_excerpt: true
