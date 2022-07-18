@@ -17,6 +17,7 @@
   {% if site_logo %}
     <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="site-logo">
       {% include directory ~ '/icons/logo.svg' %}
+      {% include directory ~ '/icons/logo-tagline.svg' %}
       {% if site_name %}
         <span class="site-name">{{ site_name }}</span>
       {% endif %}

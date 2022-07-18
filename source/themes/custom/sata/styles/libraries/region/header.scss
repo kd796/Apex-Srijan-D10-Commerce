@@ -42,7 +42,7 @@ $mobile-menu-item-button-height: 7rem;
 
   @include container-full-width();
 
-  background-color: $primary-orange;
+  background-color: $primary-emerald;
   left: 0;
   max-width: none;
   position: fixed;
@@ -53,7 +53,7 @@ $mobile-menu-item-button-height: 7rem;
   z-index: $header-z-index;
 
   &::after {
-    background-color: $primary-orange;
+    background-color: $primary-emerald;
     content: '';
     display: block;
     height: 1px;
@@ -88,7 +88,7 @@ $mobile-menu-item-button-height: 7rem;
     @include flex;
     @include flex-x(align-items, center);
 
-    background-color: $black;
+    background-color: $primary-emerald;
     height: 100%;
     padding-right: rem(34px);
     position: relative;
@@ -105,7 +105,7 @@ $mobile-menu-item-button-height: 7rem;
 
     // Full width Bleed Element
     &::before {
-      background-color: $black;
+      background-color: $primary-emerald;
       position: absolute;
       content: '';
       width: 100vw;
@@ -115,31 +115,25 @@ $mobile-menu-item-button-height: 7rem;
       z-index: -1;
     }
 
-    // Performance Device
-    &::after {
-      background-color: $black;
-      position: absolute;
-      content: '';
-      width: 30px;
-      height: 100%;
-      top: 0;
-      right: -15px;
-      z-index: 0;
-      transform: skew(-14deg);
-    }
-
     .site-logo {
       @include link-base();
 
       display: flex;
+      align-items: center;
       line-height: 1;
 
       svg {
-        height: $header-logo-performance-height-large;
         vertical-align: middle;
 
+        &:first-of-type {
+          max-width: 9.4rem;
+          margin-right: 1.6rem;
+        }
+
         @include media('<=lg-plus') {
-          height: $header-logo-height;
+          &:last-of-type {
+            display: none;
+          }
         }
       }
     }
@@ -155,17 +149,6 @@ $mobile-menu-item-button-height: 7rem;
     }
   }
 
-  // Larger performance device and logo at top
-  .block--header-branding-large {
-    @include media('>lg-plus') {
-      height: rem(100px);
-    }
-
-    @include media('>=gr') {
-      margin-left: rem(-100px);
-    }
-  }
-
   .block--header-menu-main {
     @include contextual-link-position-fixer;
 
@@ -174,7 +157,7 @@ $mobile-menu-item-button-height: 7rem;
 
       background: 0;
       border: 0;
-      color: $black;
+      color: $white;
       font-weight: $fw-bold;
       line-height: 1;
       padding: 1.5rem;
@@ -209,7 +192,7 @@ $mobile-menu-item-button-height: 7rem;
     }
 
     .menu-item {
-      color: $black;
+      color: $white;
       font-family: $font-brand;
       font-size: rem(18px);
       font-weight: $fw-extra-bold;
@@ -234,7 +217,7 @@ $mobile-menu-item-button-height: 7rem;
 
     .menu-item__link {
       display: block;
-      color: $black;
+      color: $white;
 
       &:hover {
         text-decoration: underline;
@@ -283,10 +266,10 @@ $mobile-menu-item-button-height: 7rem;
 
     .menu-item__panel {
       display: block;
-      background-color: $black;
+      background-color: $primary-dark;
 
       @include media($header-bp-desktop) {
-        background-color: $primary-orange;
+        background-color: $primary-emerald;
       }
     }
 
@@ -332,7 +315,7 @@ $mobile-menu-item-button-height: 7rem;
     }
 
     .secondary-menu.secondary-menu__first {
-      background-color: $black;
+      background-color: $primary-dark;
 
       .secondary-menu__menu-wrapper {
         white-space: nowrap;
@@ -343,19 +326,19 @@ $mobile-menu-item-button-height: 7rem;
         width: 100%;
 
         h5 {
-          color: $primary-orange;
+          color: $primary-emerald;
           margin: 0;
           padding: 0;
 
           a {
-            color: $primary-orange;
+            color: $primary-emerald;
           }
         }
       }
 
       li,
       li a {
-        color: $primary-orange;
+        color: $primary-emerald;
       }
 
       .menu-item__link--all {
@@ -380,7 +363,7 @@ $mobile-menu-item-button-height: 7rem;
       h5 {
 
         a {
-          color: $black;
+          color: $white;
         }
       }
     }
@@ -439,7 +422,7 @@ $mobile-menu-item-button-height: 7rem;
           animation-direction: normal;
           animation-name: headerPanelFade;
           content: '';
-          background-color: $black;
+          background-color: $primary-dark;
           position: absolute;
           top: 0;
           width: rem(30px);
@@ -490,7 +473,7 @@ $mobile-menu-item-button-height: 7rem;
       animation-fill-mode: both;
       animation-direction: normal;
       animation-name: headerPanelFade;
-      background-color: $black;
+      background-color: $primary-dark;
       display: block;
       left: rem(-55px);
       opacity: 1;
@@ -507,7 +490,7 @@ $mobile-menu-item-button-height: 7rem;
           @include on-event() {
             text-decoration: underline;
           }
-          color: $primary-orange;
+          color: $primary-emerald;
           font-family: $font-brand;
           font-weight: $fw-bold;
           text-transform: uppercase;
@@ -575,7 +558,7 @@ $mobile-menu-item-button-height: 7rem;
           animation-direction: normal;
           animation-name: headerPanelFade;
           content: '';
-          background-color: $black;
+          background-color: $primary-dark;
           position: absolute;
           top: 0;
           width: rem(30px);
@@ -626,7 +609,7 @@ $mobile-menu-item-button-height: 7rem;
       animation-fill-mode: both;
       animation-direction: normal;
       animation-name: headerPanelFade;
-      background-color: $black;
+      background-color: $primary-dark;
       display: block;
       height: 4.25rem;
       right: 0;
@@ -697,7 +680,7 @@ $mobile-menu-item-button-height: 7rem;
         @include visually-hidden();
 
         background-color: $color-white;
-        color: $black;
+        color: $white;
 
         span {
           white-space: nowrap;
@@ -732,26 +715,26 @@ $mobile-menu-item-button-height: 7rem;
         &.menu-item--in-active-trail {
           padding-left: 0;
           padding-right: 0;
-          background-color: $black;
+          background-color: $primary-dark;
 
           &::after,
           .menu-item__link--depth-0 {
             color: $white;
           }
 
-          .menu-item__link--depth-0  {
+          .menu-item__link--depth-0 {
             position: relative;
             display: flex !important;
             align-items: center;
             height: 100%;
             justify-content: center;
             align-self: center;
-            background-color: $black;
+            background-color: $primary-dark;
 
             &::before,
             &::after {
               content: '';
-              background-color: $black;
+              background-color: $primary-dark;
               position: absolute;
               top: 0;
               width: rem(30px);
@@ -810,7 +793,7 @@ $mobile-menu-item-button-height: 7rem;
         z-index: 1;
 
         &::before {
-          background-color: $primary-orange;
+          background-color: $primary-emerald;
           position: absolute;
           content: '';
           width: 200vw;
@@ -853,7 +836,7 @@ $mobile-menu-item-button-height: 7rem;
       }
 
       .menu-item__panel-image--depth-0 {
-        background-color: $black;
+        background-color: $primary-dark;
         max-width: 356px;
         padding: 2.75rem 55px 3.5rem 0;
         position: relative;
@@ -906,7 +889,7 @@ $mobile-menu-item-button-height: 7rem;
         padding-right: 2rem;
 
         &::before {
-          background-color: $black;
+          background-color: $primary-dark;
           position: absolute;
           content: '';
           width: 100vw;
@@ -925,7 +908,7 @@ $mobile-menu-item-button-height: 7rem;
             padding: 0;
 
             a {
-              color: $primary-orange;
+              color: $primary-emerald;
             }
           }
         }
@@ -994,7 +977,7 @@ $mobile-menu-item-button-height: 7rem;
       }
 
       .block__menu {
-        background-color: $primary-orange;
+        background-color: $primary-emerald;
         animation-delay: 300ms;
         animation-duration: 300ms;
         animation-fill-mode: both;
@@ -1077,7 +1060,7 @@ $mobile-menu-item-button-height: 7rem;
               font-size: rem(22px);
 
               a {
-                color: $primary-orange;
+                color: $primary-emerald;
               }
             }
           }
@@ -1090,7 +1073,7 @@ $mobile-menu-item-button-height: 7rem;
             padding-left: rem(20px);
 
             .menu-item__link {
-              color: $primary-orange;
+              color: $primary-emerald;
             }
           }
         }
@@ -1159,7 +1142,7 @@ $mobile-menu-item-button-height: 7rem;
           }
 
           button.btn {
-            background-color: $black;
+            background-color: $primary-dark;
             color: $white;
             margin: 10px 4%;
             width: 96%;
@@ -1228,7 +1211,7 @@ $mobile-menu-item-button-height: 7rem;
 
 body {
   &::after {
-    background: $black;
+    background: $white;
     bottom: 0;
     content: '';
     left: 0;
