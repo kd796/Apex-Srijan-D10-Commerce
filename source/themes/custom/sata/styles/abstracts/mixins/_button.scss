@@ -6,7 +6,7 @@
 
 // Base button styles
 @mixin btn-base($style: primary) {
-  background-color: $primary-emerald;
+  background-color: $primary-orange;
   border: 0 !important;
   color: $black;
   display: inline-block;
@@ -28,7 +28,7 @@
 
   @if $style == primary {
     @include on-event {
-      color: $primary-emerald;
+      color: $primary-orange;
       background-color: $black;
     }
   }
@@ -59,7 +59,7 @@
     }
 
     @include on-event {
-      color: $primary-emerald;
+      color: $primary-orange;
     }
 
     @include media('<sm') {

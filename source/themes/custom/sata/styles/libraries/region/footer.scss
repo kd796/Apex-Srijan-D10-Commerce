@@ -32,7 +32,7 @@ $footer-bp-mobile: '<sm';
 
   .region-footer-first {
     @include container($margin: 0);
-    color: $white;
+    color: $secondary-light;
 
     a {
       @include link(light, hover);
@@ -155,7 +155,7 @@ $footer-bp-mobile: '<sm';
 
   .region-footer-second {
     @include container($margin: 0);
-    color: $white;
+    color: $black;
 
     .region-footer-second__content {
       .block-webform-block__title {
@@ -165,70 +165,28 @@ $footer-bp-mobile: '<sm';
       input,
       textarea,
       select {
-        color: $type-dark;
+        color: $gray-30;
 
         &::placeholder {
-          color: $type-light;
+          color: $gray-30;
         }
       }
 
       input:not([type='submit']) {
-        background: $white;
-        border-color: $white;
-      }
-
-      .form-checkboxes,
-      .form-radios {
-        // fake input box base
-        input[type='checkbox']:checked + label:before,
-        input[type='checkbox']:not(:checked) + label:before,
-        input[type='radio']:checked + label:before,
-        input[type='radio']:not(:checked) + label:before {
-          border: 1px solid $white;
-        }
-
-        input[type='checkbox']:checked + label:before {
-          background-color: $primary-emerald;
-          border-color: $primary-emerald;
-        }
-
-        input[type='checkbox']:not(:checked):focus + label:before,
-        input[type='checkbox']:checked:focus + label:before {
-          border: 1px solid $white;
-        }
-
-        label {
-          color: $white;
-          a {
-            color: $primary-solar;
-
-            &:hover {
-              color: $white;
-            }
-          }
-        }
-      }
-
-      .form-checkboxes {
-        input[type='checkbox']:checked + label:after,
-        input[type='checkbox']:checked + label.form-required:after,
-        input[type='checkbox']:not(:checked) + label.form-required:after,
-        input[type='checkbox']:not(:checked) + label:after {
-          @include icon-styles;
-          color: $white;
-        }
+        background: $black;
+        border-color: $black;
       }
 
       .webform-button--submit {
-        background-color: $primary-solar;
-        border: 1px solid $primary-solar;
-        color: $type-dark;
+        background-color: $black;
+        border: 1px solid $black;
+        color: $white;
         width: 100%;
 
         &:hover,
         &:focus {
-          background-color: $white;
-          border: 1px solid $primary-solar;
+          background-color: $gray-90;
+          color: $white;
         }
 
         &:disabled {
@@ -257,7 +215,7 @@ $footer-bp-mobile: '<sm';
 
 @include media($footer-bp-desktop) {
   .region-footer {
-    background: linear-gradient(to right, $primary-emerald 50%, $primary-dark 50%);
+    background: linear-gradient(to right, $black 50%, $primary-orange 50%);
 
     .region-footer__inner-container {
       @include container();
@@ -268,6 +226,19 @@ $footer-bp-mobile: '<sm';
     .region-footer-first {
       position: relative;
       z-index: 0;
+
+      // Performance Device
+      &::after {
+        background-color: $black;
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: -14%;
+        z-index: -1;
+        transform: skew(-14deg);
+      }
     }
 
     .region-footer-first__content {
@@ -338,7 +309,7 @@ $footer-bp-mobile: '<sm';
 
       .region-footer-first {
         @include container-full-width();
-        background-color: $primary-emerald;
+        background-color: $black;
         padding: 0 2rem;
         order: 2;
 
@@ -349,7 +320,7 @@ $footer-bp-mobile: '<sm';
 
       .region-footer-second {
         @include container-full-width();
-        background-color: $primary-dark;
+        background-color: $primary-orange;
         padding: 0 2rem;
         order: 1;
       }
