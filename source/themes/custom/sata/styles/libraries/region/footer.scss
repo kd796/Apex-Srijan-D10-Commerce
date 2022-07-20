@@ -181,11 +181,7 @@ $footer-bp-mobile: '<sm';
         input[type='radio']:checked + label:before,
         input[type='radio']:not(:checked) + label:before {
           border: 1px solid $white;
-        }
-
-        input[type='checkbox']:checked + label:before {
-          background-color: $primary-emerald;
-          border-color: $primary-emerald;
+          background-color: $white;
         }
 
         input[type='checkbox']:not(:checked):focus + label:before,
@@ -212,7 +208,7 @@ $footer-bp-mobile: '<sm';
         input[type='checkbox']:not(:checked) + label.form-required:after,
         input[type='checkbox']:not(:checked) + label:after {
           @include icon-styles;
-          color: $white;
+          color: $type-dark;
         }
       }
 
