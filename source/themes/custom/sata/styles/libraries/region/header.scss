@@ -42,7 +42,7 @@ $mobile-menu-item-button-height: 7rem;
 
   @include container-full-width();
 
-  background-color: $primary-orange;
+  background-color: $primary-emerald;
   left: 0;
   max-width: none;
   position: fixed;
@@ -53,7 +53,7 @@ $mobile-menu-item-button-height: 7rem;
   z-index: $header-z-index;
 
   &::after {
-    background-color: $primary-orange;
+    background-color: $primary-emerald;
     content: '';
     display: block;
     height: 1px;
@@ -77,18 +77,11 @@ $mobile-menu-item-button-height: 7rem;
     padding: 0;
   }
 
-  // Larger performance device and logo at top
-  .region-header__content-large {
-    @include media('>lg-plus') {
-      @include flex-x(align-items, start);
-    }
-  }
-
   .block--header-branding {
     @include flex;
     @include flex-x(align-items, center);
 
-    background-color: $black;
+    background-color: $primary-emerald;
     height: 100%;
     padding-right: rem(34px);
     position: relative;
@@ -97,15 +90,9 @@ $mobile-menu-item-button-height: 7rem;
       padding-right: rem(18px);
     }
 
-    @include media('>lg-plus') {
-      &:not(.block--header-branding-large) {
-        position: absolute;
-      }
-    }
-
     // Full width Bleed Element
     &::before {
-      background-color: $black;
+      background-color: $primary-emerald;
       position: absolute;
       content: '';
       width: 100vw;
@@ -115,54 +102,27 @@ $mobile-menu-item-button-height: 7rem;
       z-index: -1;
     }
 
-    // Performance Device
-    &::after {
-      background-color: $black;
-      position: absolute;
-      content: '';
-      width: 30px;
-      height: 100%;
-      top: 0;
-      right: -15px;
-      z-index: 0;
-      transform: skew(-14deg);
-    }
-
     .site-logo {
       @include link-base();
 
       display: flex;
+      align-items: center;
       line-height: 1;
 
       svg {
-        height: $header-logo-performance-height-large;
         vertical-align: middle;
 
+        &:first-of-type {
+          max-width: 9.4rem;
+          margin-right: 1.6rem;
+        }
+
         @include media('<=lg-plus') {
-          height: $header-logo-height;
+          &:last-of-type {
+            display: none;
+          }
         }
       }
-    }
-
-    @include media('>lg-plus') {
-      &:not(.block--header-branding-large) {
-        .site-logo {
-          display: block;
-          width: rem(56px);
-          overflow: hidden;
-        }
-      }
-    }
-  }
-
-  // Larger performance device and logo at top
-  .block--header-branding-large {
-    @include media('>lg-plus') {
-      height: rem(100px);
-    }
-
-    @include media('>=gr') {
-      margin-left: rem(-100px);
     }
   }
 
@@ -174,7 +134,7 @@ $mobile-menu-item-button-height: 7rem;
 
       background: 0;
       border: 0;
-      color: $black;
+      color: $white;
       font-weight: $fw-bold;
       line-height: 1;
       padding: 1.5rem;
@@ -209,7 +169,7 @@ $mobile-menu-item-button-height: 7rem;
     }
 
     .menu-item {
-      color: $black;
+      color: $white;
       font-family: $font-brand;
       font-size: rem(18px);
       font-weight: $fw-extra-bold;
@@ -217,7 +177,6 @@ $mobile-menu-item-button-height: 7rem;
       list-style: none;
       margin: 0;
       padding-top: 0;
-      text-transform: uppercase;
 
       .is-active {
         font-weight: $fw-extra-bold;
@@ -234,7 +193,7 @@ $mobile-menu-item-button-height: 7rem;
 
     .menu-item__link {
       display: block;
-      color: $black;
+      color: $white;
 
       &:hover {
         text-decoration: underline;
@@ -283,10 +242,10 @@ $mobile-menu-item-button-height: 7rem;
 
     .menu-item__panel {
       display: block;
-      background-color: $black;
+      background-color: $primary-dark;
 
       @include media($header-bp-desktop) {
-        background-color: $primary-orange;
+        background-color: $primary-emerald;
       }
     }
 
@@ -332,7 +291,7 @@ $mobile-menu-item-button-height: 7rem;
     }
 
     .secondary-menu.secondary-menu__first {
-      background-color: $black;
+      background-color: $primary-emerald;
 
       .secondary-menu__menu-wrapper {
         white-space: nowrap;
@@ -343,19 +302,19 @@ $mobile-menu-item-button-height: 7rem;
         width: 100%;
 
         h5 {
-          color: $primary-orange;
+          color: $white;
           margin: 0;
           padding: 0;
 
           a {
-            color: $primary-orange;
+            color: $white;
           }
         }
       }
 
       li,
       li a {
-        color: $primary-orange;
+        color: $white;
       }
 
       .menu-item__link--all {
@@ -380,7 +339,7 @@ $mobile-menu-item-button-height: 7rem;
       h5 {
 
         a {
-          color: $black;
+          color: $white;
         }
       }
     }
@@ -439,7 +398,7 @@ $mobile-menu-item-button-height: 7rem;
           animation-direction: normal;
           animation-name: headerPanelFade;
           content: '';
-          background-color: $black;
+          background-color: $primary-dark;
           position: absolute;
           top: 0;
           width: rem(30px);
@@ -482,7 +441,7 @@ $mobile-menu-item-button-height: 7rem;
       }
 
       &:hover {
-        box-shadow: 0 -5px 0 0 $black inset;
+        box-shadow: 0 -12px 0 0 $primary-dark inset;
       }
     }
 
@@ -490,7 +449,7 @@ $mobile-menu-item-button-height: 7rem;
       animation-fill-mode: both;
       animation-direction: normal;
       animation-name: headerPanelFade;
-      background-color: $black;
+      background-color: $primary-dark;
       display: block;
       left: rem(-55px);
       opacity: 1;
@@ -507,7 +466,7 @@ $mobile-menu-item-button-height: 7rem;
           @include on-event() {
             text-decoration: underline;
           }
-          color: $primary-orange;
+          color: $primary-emerald;
           font-family: $font-brand;
           font-weight: $fw-bold;
           text-transform: uppercase;
@@ -575,7 +534,7 @@ $mobile-menu-item-button-height: 7rem;
           animation-direction: normal;
           animation-name: headerPanelFade;
           content: '';
-          background-color: $black;
+          background-color: $primary-dark;
           position: absolute;
           top: 0;
           width: rem(30px);
@@ -618,7 +577,7 @@ $mobile-menu-item-button-height: 7rem;
       }
 
       &:hover {
-        box-shadow: 0 -5px 0 0 $black inset;
+        box-shadow: 0 -12px 0 0 $primary-dark inset;
       }
     }
 
@@ -626,7 +585,7 @@ $mobile-menu-item-button-height: 7rem;
       animation-fill-mode: both;
       animation-direction: normal;
       animation-name: headerPanelFade;
-      background-color: $black;
+      background-color: $primary-dark;
       display: block;
       height: 4.25rem;
       right: 0;
@@ -670,24 +629,6 @@ $mobile-menu-item-button-height: 7rem;
   @include media($header-bp-desktop) {
     .block--header-menu-main {
       @include flex-x(flex, 1);
-      margin-left: rem(360px);
-
-      @include media('<gr') {
-        margin-left: rem(400px);
-      }
-
-      @include media('<xl') {
-        margin-left: rem(380px);
-      }
-
-      //  Right padding is increased for performance device @1130px
-      @include media('>=1130px') {
-        margin-left: rem(398px);
-      }
-
-      @include media('<=lg-plus') {
-        margin-left: 3rem;
-      }
 
       .block__menu-toggle {
         display: none;
@@ -697,7 +638,7 @@ $mobile-menu-item-button-height: 7rem;
         @include visually-hidden();
 
         background-color: $color-white;
-        color: $black;
+        color: $white;
 
         span {
           white-space: nowrap;
@@ -716,7 +657,7 @@ $mobile-menu-item-button-height: 7rem;
 
       .menu--depth-0 {
         @include flex;
-        @include flex-x(justify-content, space-between);
+        @include flex-x(justify-content, end);
       }
 
       .menu-item--depth-0 {
@@ -726,38 +667,35 @@ $mobile-menu-item-button-height: 7rem;
 
         height: $header-height;
         margin: 0;
-        padding-left: rem(10px);
-        padding-right: rem(10px);
+        padding-left: rem(15px);
+        padding-right: rem(15px);
 
         &.menu-item--in-active-trail {
-          padding-left: 0;
-          padding-right: 0;
-          background-color: $black;
+          background-color: $primary-dark;
 
           &::after,
           .menu-item__link--depth-0 {
             color: $white;
           }
 
-          .menu-item__link--depth-0  {
+          .menu-item__link--depth-0 {
             position: relative;
             display: flex !important;
             align-items: center;
             height: 100%;
             justify-content: center;
             align-self: center;
-            background-color: $black;
+            background-color: $primary-dark;
 
             &::before,
             &::after {
               content: '';
-              background-color: $black;
+              background-color: $primary-dark;
               position: absolute;
               top: 0;
               width: rem(30px);
               height: 100%;
               z-index: -1;
-              transform: skew(-14deg);
             }
 
             &::before {
@@ -783,7 +721,7 @@ $mobile-menu-item-button-height: 7rem;
         }
 
         &:hover {
-          box-shadow: 0 -5px 0 0 $black inset;
+          box-shadow: 0 -12px 0 0 $primary-dark inset;
         }
       }
 
@@ -810,7 +748,7 @@ $mobile-menu-item-button-height: 7rem;
         z-index: 1;
 
         &::before {
-          background-color: $primary-orange;
+          background-color: $primary-dark;
           position: absolute;
           content: '';
           width: 200vw;
@@ -853,7 +791,7 @@ $mobile-menu-item-button-height: 7rem;
       }
 
       .menu-item__panel-image--depth-0 {
-        background-color: $black;
+        background-color: $primary-dark;
         max-width: 356px;
         padding: 2.75rem 55px 3.5rem 0;
         position: relative;
@@ -906,7 +844,7 @@ $mobile-menu-item-button-height: 7rem;
         padding-right: 2rem;
 
         &::before {
-          background-color: $black;
+          background-color: $primary-emerald;
           position: absolute;
           content: '';
           width: 100vw;
@@ -925,7 +863,7 @@ $mobile-menu-item-button-height: 7rem;
             padding: 0;
 
             a {
-              color: $primary-orange;
+              color: $white;
             }
           }
         }
@@ -959,16 +897,6 @@ $mobile-menu-item-button-height: 7rem;
         }
       }
     }
-
-    .block--header-branding-large + .block--header-menu-main {
-      @include media('>lg-plus') {
-        margin-left: rem(50px);
-      }
-
-      @include media('>=gr') {
-        margin-left: rem(150px);
-      }
-    }
   }
 
   @include media($header-bp-mobile) {
@@ -994,7 +922,7 @@ $mobile-menu-item-button-height: 7rem;
       }
 
       .block__menu {
-        background-color: $primary-orange;
+        background-color: $primary-emerald;
         animation-delay: 300ms;
         animation-duration: 300ms;
         animation-fill-mode: both;
@@ -1077,7 +1005,7 @@ $mobile-menu-item-button-height: 7rem;
               font-size: rem(22px);
 
               a {
-                color: $primary-orange;
+                color: $primary-emerald;
               }
             }
           }
@@ -1090,7 +1018,7 @@ $mobile-menu-item-button-height: 7rem;
             padding-left: rem(20px);
 
             .menu-item__link {
-              color: $primary-orange;
+              color: $primary-emerald;
             }
           }
         }
@@ -1159,7 +1087,7 @@ $mobile-menu-item-button-height: 7rem;
           }
 
           button.btn {
-            background-color: $black;
+            background-color: $primary-dark;
             color: $white;
             margin: 10px 4%;
             width: 96%;
@@ -1203,10 +1131,6 @@ $mobile-menu-item-button-height: 7rem;
     padding-top: $header-height;
   }
 
-  @include media('>=lg-plus') {
-    padding-top: $header-height-large;
-  }
-
   body.page-node-type-landing-page & {
     padding-top: $header-height;
   }
@@ -1228,7 +1152,7 @@ $mobile-menu-item-button-height: 7rem;
 
 body {
   &::after {
-    background: $black;
+    background: $white;
     bottom: 0;
     content: '';
     left: 0;

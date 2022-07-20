@@ -139,13 +139,13 @@
       h2 {
         @include type-header(h4, light, included);
         text-transform: uppercase;
-        color: $primary-orange;
+        color: $primary-emerald;
         display: block;
         margin: 0;
 
         @include media('>md') {
           @include type-header(display-headline-4, light, included);
-          color: $primary-orange;
+          color: $primary-emerald;
           line-height: rem(48px);
           margin: 0;
         }
@@ -162,7 +162,7 @@
 
   .component-hero-slide__link {
     @include btn();
-    border: 1px solid $primary-orange !important;
+    border: 1px solid $primary-emerald !important;
   }
 
   .component-hero-slide__footer:not(:empty) {
@@ -187,9 +187,9 @@
     .component-hero-slide__button {
       @include trbl();
 
-      background-color: $primary-orange;
+      background-color: $primary-emerald;
       background-size: rem(10px) rem(16px);
-      border: 1px solid $primary-orange;
+      border: 1px solid $primary-emerald;
       height: 100%;
       min-width: rem(47px);
       margin: 0;
@@ -199,7 +199,7 @@
 
       &:hover {
         background-color: $color-black;
-        border-color: $primary-orange;
+        border-color: $primary-emerald;
       }
 
       &.component-hero-slide__button-prev {
@@ -237,11 +237,11 @@
 
     .swiper-pagination-bullet {
       background: transparent;
-      border-color: $primary-orange;
+      border-color: $primary-emerald;
     }
 
     .swiper-pagination-bullet-active {
-      background: $primary-orange;
+      background: $primary-emerald;
     }
   }
 }
