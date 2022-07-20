@@ -77,13 +77,6 @@ $mobile-menu-item-button-height: 7rem;
     padding: 0;
   }
 
-  // Larger performance device and logo at top
-  .region-header__content-large {
-    @include media('>lg-plus') {
-      @include flex-x(align-items, start);
-    }
-  }
-
   .block--header-branding {
     @include flex;
     @include flex-x(align-items, center);
@@ -95,12 +88,6 @@ $mobile-menu-item-button-height: 7rem;
 
     @include media('<1130px') {
       padding-right: rem(18px);
-    }
-
-    @include media('>lg-plus') {
-      &:not(.block--header-branding-large) {
-        position: absolute;
-      }
     }
 
     // Full width Bleed Element
@@ -134,16 +121,6 @@ $mobile-menu-item-button-height: 7rem;
           &:last-of-type {
             display: none;
           }
-        }
-      }
-    }
-
-    @include media('>lg-plus') {
-      &:not(.block--header-branding-large) {
-        .site-logo {
-          display: block;
-          width: rem(56px);
-          overflow: hidden;
         }
       }
     }
@@ -200,7 +177,6 @@ $mobile-menu-item-button-height: 7rem;
       list-style: none;
       margin: 0;
       padding-top: 0;
-      text-transform: uppercase;
 
       .is-active {
         font-weight: $fw-extra-bold;
@@ -315,7 +291,7 @@ $mobile-menu-item-button-height: 7rem;
     }
 
     .secondary-menu.secondary-menu__first {
-      background-color: $primary-dark;
+      background-color: $primary-emerald;
 
       .secondary-menu__menu-wrapper {
         white-space: nowrap;
@@ -326,19 +302,19 @@ $mobile-menu-item-button-height: 7rem;
         width: 100%;
 
         h5 {
-          color: $primary-emerald;
+          color: $white;
           margin: 0;
           padding: 0;
 
           a {
-            color: $primary-emerald;
+            color: $white;
           }
         }
       }
 
       li,
       li a {
-        color: $primary-emerald;
+        color: $white;
       }
 
       .menu-item__link--all {
@@ -465,7 +441,7 @@ $mobile-menu-item-button-height: 7rem;
       }
 
       &:hover {
-        box-shadow: 0 -5px 0 0 $black inset;
+        box-shadow: 0 -12px 0 0 $primary-dark inset;
       }
     }
 
@@ -601,7 +577,7 @@ $mobile-menu-item-button-height: 7rem;
       }
 
       &:hover {
-        box-shadow: 0 -5px 0 0 $black inset;
+        box-shadow: 0 -12px 0 0 $primary-dark inset;
       }
     }
 
@@ -653,24 +629,6 @@ $mobile-menu-item-button-height: 7rem;
   @include media($header-bp-desktop) {
     .block--header-menu-main {
       @include flex-x(flex, 1);
-      margin-left: rem(360px);
-
-      @include media('<gr') {
-        margin-left: rem(400px);
-      }
-
-      @include media('<xl') {
-        margin-left: rem(380px);
-      }
-
-      //  Right padding is increased for performance device @1130px
-      @include media('>=1130px') {
-        margin-left: rem(398px);
-      }
-
-      @include media('<=lg-plus') {
-        margin-left: 3rem;
-      }
 
       .block__menu-toggle {
         display: none;
@@ -699,7 +657,7 @@ $mobile-menu-item-button-height: 7rem;
 
       .menu--depth-0 {
         @include flex;
-        @include flex-x(justify-content, space-between);
+        @include flex-x(justify-content, end);
       }
 
       .menu-item--depth-0 {
@@ -709,8 +667,8 @@ $mobile-menu-item-button-height: 7rem;
 
         height: $header-height;
         margin: 0;
-        padding-left: rem(10px);
-        padding-right: rem(10px);
+        padding-left: rem(15px);
+        padding-right: rem(15px);
 
         &.menu-item--in-active-trail {
           padding-left: 0;
@@ -766,7 +724,7 @@ $mobile-menu-item-button-height: 7rem;
         }
 
         &:hover {
-          box-shadow: 0 -5px 0 0 $black inset;
+          box-shadow: 0 -12px 0 0 $primary-dark inset;
         }
       }
 
@@ -793,7 +751,7 @@ $mobile-menu-item-button-height: 7rem;
         z-index: 1;
 
         &::before {
-          background-color: $primary-emerald;
+          background-color: $primary-dark;
           position: absolute;
           content: '';
           width: 200vw;
@@ -889,7 +847,7 @@ $mobile-menu-item-button-height: 7rem;
         padding-right: 2rem;
 
         &::before {
-          background-color: $primary-dark;
+          background-color: $primary-emerald;
           position: absolute;
           content: '';
           width: 100vw;
@@ -908,7 +866,7 @@ $mobile-menu-item-button-height: 7rem;
             padding: 0;
 
             a {
-              color: $primary-emerald;
+              color: $white;
             }
           }
         }
@@ -940,16 +898,6 @@ $mobile-menu-item-button-height: 7rem;
             columns: 3;
           }
         }
-      }
-    }
-
-    .block--header-branding-large + .block--header-menu-main {
-      @include media('>lg-plus') {
-        margin-left: rem(50px);
-      }
-
-      @include media('>=gr') {
-        margin-left: rem(150px);
       }
     }
   }
@@ -1184,10 +1132,6 @@ $mobile-menu-item-button-height: 7rem;
 
   @include media('>=lg') {
     padding-top: $header-height;
-  }
-
-  @include media('>=lg-plus') {
-    padding-top: $header-height-large;
   }
 
   body.page-node-type-landing-page & {
