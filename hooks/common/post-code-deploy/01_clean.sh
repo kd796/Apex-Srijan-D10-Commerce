@@ -28,7 +28,7 @@ drush_alias=$site'.'$target_env
 #drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
 
 # GEARWRENCH
-echo "[NOTICE] GearWrench North America..."
+echo "[SITE] GearWrench North America..."
 uri=prod-www.gearwrench.com
 echo "[NOTICE] Setting maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
@@ -40,10 +40,10 @@ echo "[NOTICE] Clearing cache."
 drush10 @$drush_alias cr --uri=$uri
 echo "[NOTICE] Leaving maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
-echo "[NOTICE] Done with uri: $uri"
+echo "[DONE] Done with uri: $uri"
 
 # Crescenttool
-echo [NOTICE] "Crescent North America..."
+echo "[SITE] Crescent North America..."
 uri=prod-www.crescenttool.com
 echo "[NOTICE] Setting maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
@@ -55,10 +55,10 @@ echo "[NOTICE] Clearing cache."
 drush10 @$drush_alias cr --uri=$uri
 echo "[NOTICE] Leaving maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
-echo "[NOTICE] Done with uri: $uri"
+echo "[DONE] Done with uri: $uri"
 
 # GEARWRENCH Australia
-echo "[NOTICE] GearWrench Australia..."
+echo "[SITE] GearWrench Australia..."
 uri=prod-www.gearwrench.com.au
 echo "[NOTICE] Setting maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
@@ -70,10 +70,10 @@ echo "[NOTICE] Clearing cache."
 drush10 @$drush_alias cr --uri=$uri
 echo "[NOTICE] Leaving maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
-echo "[NOTICE] Done with uri: $uri"
+echo "[DONE] Done with uri: $uri"
 
 # Crescenttool Australia
-echo "[NOTICE] Crescent Australia..."
+echo "[SITE] Crescent Australia..."
 uri=prod-www.crescenttool.com.au
 echo "[NOTICE] Setting maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
@@ -85,10 +85,10 @@ echo "[NOTICE] Clearing cache."
 drush10 @$drush_alias cr --uri=$uri
 echo "[NOTICE] Leaving maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
-echo "[NOTICE] Done with uri: $uri"
+echo "[DONE] Done with uri: $uri"
 
 # SATA Brazil
-echo "[NOTICE] SATA Brazil..."
+echo "[SITE] SATA Brazil..."
 uri=prod-www.sataferramentas.com.br
 echo "[NOTICE] Setting maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
@@ -100,10 +100,10 @@ echo "[NOTICE] Clearing cache."
 drush10 @$drush_alias cr --uri=$uri
 echo "[NOTICE] Leaving maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
-echo "[NOTICE] Done with uri: $uri"
+echo "[DONE] Done with uri: $uri"
 
 # SATA Colombia
-echo "[NOTICE] SATA Colombia..."
+echo "[SITE] SATA Colombia..."
 uri=prod-www.sata.com.co
 echo "[NOTICE] Setting maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
@@ -115,10 +115,10 @@ echo "[NOTICE] Clearing cache."
 drush10 @$drush_alias cr --uri=$uri
 echo "[NOTICE] Leaving maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
-echo "[NOTICE] Done with uri: $uri"
+echo "[DONE] Done with uri: $uri"
 
 # SATA EMEA
-echo "[NOTICE] SATA EMEA..."
+echo "[SITE] SATA EMEA..."
 uri=prod-www.satatools.eu
 echo "[NOTICE] Setting maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
@@ -130,10 +130,10 @@ echo "[NOTICE] Clearing cache."
 drush10 @$drush_alias cr --uri=$uri
 echo "[NOTICE] Leaving maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
-echo "[NOTICE] Done with uri: $uri"
+echo "[DONE] Done with uri: $uri"
 
 # SATA US (North America)
-echo "[NOTICE] SATA US (North America)..."
+echo "[SITE] SATA US (North America)..."
 uri=prod-www.satatools.us
 echo "[NOTICE] Setting maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
@@ -145,4 +145,4 @@ echo "[NOTICE] Clearing cache."
 drush10 @$drush_alias cr --uri=$uri
 echo "[NOTICE] Leaving maintenance mode."
 drush10 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
-echo "[NOTICE] Done with uri: $uri"
+echo "[DONE] Done with uri: $uri"
