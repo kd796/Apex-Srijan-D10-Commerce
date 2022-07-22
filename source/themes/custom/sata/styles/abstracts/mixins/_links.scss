@@ -13,42 +13,38 @@
 //
 // @include link();
 // Option(s):
-// • $style(value = base | dark | light) - default = base - The version of link we should use. base is used by default, Dark can be used to force the styles to be redeclared.
+// • $style(value = base | light | dark | solar) - default = base - The version of link we should use. base is used by default, light, dark and solar can be used to force the styles to be redeclared.
 // • $underline(value = null | none | hover | full) - default = null - Whether the underline version should be declared, and if so, which version.
 // -----------------------------------------------------------------------------
 
 
 @mixin link-base ($style: dark) {
-  $color: $secondary-black;
+  $color: $type-dark;
   $hover-color: $primary-emerald;
   $hover-weight: null;
 
   // Light overrides.
   @if $style == light {
-    $color: $secondary-light;
-    $hover-color: $secondary-light;
-    $hover-weight: $fw-bold;
+    $color: $white;
+  }
+
+  // Solar overrides.
+  @if $style == solar {
+    $color: $primary-solar;
   }
 
   color: $color;
   text-decoration: none;
   transition: $transition-base;
 
-  &:hover,
-  &:focus,
-  &:active,
   &.is-active {
-    color: $hover-color;
-    outline: none;
-
-    @if $hover-weight != null {
-      font-weight: $hover-weight;
-    }
+    color: $color;
   }
 
-  &:active,
-  &.is-active {
-    font-weight: $fw-medium;
+  &:hover,
+  &:focus,
+  &:active {
+    outline: none;
   }
 }
 

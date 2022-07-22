@@ -307,14 +307,14 @@ $mobile-menu-item-button-height: 7rem;
           padding: 0;
 
           a {
-            color: $white;
+            @include link(light, hover);
           }
         }
       }
 
       li,
       li a {
-        color: $white;
+        @include link(light, hover);
       }
 
       .menu-item__link--all {
@@ -339,7 +339,7 @@ $mobile-menu-item-button-height: 7rem;
       h5 {
 
         a {
-          color: $white;
+          @include link(light, hover);
         }
       }
     }
@@ -865,7 +865,7 @@ $mobile-menu-item-button-height: 7rem;
             padding: 0;
 
             a {
-              color: $white;
+              @include link(light, hover);
             }
           }
         }
