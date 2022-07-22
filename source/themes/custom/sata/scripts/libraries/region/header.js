@@ -175,7 +175,9 @@
       }
 
       // Revalidate Blazy.
-      Drupal.blazy.init.revalidate();
+      if (typeof Drupal.blazy !== 'undefined') {
+        Drupal.blazy.init.revalidate();
+      }
 
       return to_expand;
     },
@@ -198,7 +200,9 @@
       $body.toggleClass('jsa-body-lock', to_expand);
 
       // Revalidate Blazy.
-      Drupal.blazy.init.revalidate();
+      if (typeof Drupal.blazy !== 'undefined') {
+        Drupal.blazy.init.revalidate();
+      }
 
       // @todo event to track for if focus leaves element. destroy event when triggered
     },
