@@ -57,6 +57,7 @@ $footer-bp-mobile: '<sm';
 
       .block-footer-navigation-block__footer-address p {
         font-size: rem(12px);
+        font-weight: $fw-regular;
         margin: 0;
 
         &:first-of-type {
@@ -65,6 +66,7 @@ $footer-bp-mobile: '<sm';
 
         &.block-footer-navigation-block__footer-address-phone {
           margin-top: rem(10px);
+          font-size: rem(14px);
         }
       }
 
@@ -104,23 +106,27 @@ $footer-bp-mobile: '<sm';
     .menu-item__link--icon-only {
       box-sizing: border-box;
       display: block;
-      height: 1rem;
+      height: rem(24px);
       line-height: 1;
       position: relative;
       text-indent: -9999px;
-      width: 1rem;
-      font-size: rem(20px);
+      width: rem(24px);
+      font-size: rem(24px);
 
       &::before {
         @extend %icon;
 
         display: inline-block;
-        height: 1rem;
+        height: rem(24px);
         left: 0;
         position: absolute;
         text-indent: 0;
         top: 0;
-        width: 1rem;
+        width: rem(24px);
+      }
+
+      @include on-event() {
+        color: $primary-solar;
       }
     }
   }
@@ -205,10 +211,20 @@ $footer-bp-mobile: '<sm';
 
         label {
           color: $white;
+          font-size: rem(14px);
 
           a {
             @include link(solar, hover);
           }
+        }
+      }
+
+      .form-checkboxes {
+        input[type='checkbox']:checked + label:before,
+        input[type='checkbox']:not(:checked) + label:before,
+        input[type='checkbox']:checked + label:after,
+        input[type='checkbox']:not(:checked) + label:after {
+          top: -2px;
         }
       }
 
@@ -227,6 +243,7 @@ $footer-bp-mobile: '<sm';
         border: 1px solid $primary-solar;
         color: $type-dark;
         width: 100%;
+        font-weight: $fw-extra-bold;
 
         &:hover,
         &:focus {
@@ -356,7 +373,7 @@ $footer-bp-mobile: '<sm';
       .region-footer-first {
         @include container-full-width();
         background-color: $primary-emerald;
-        padding: 0 2rem;
+        padding: rem(30px) 2rem 0;
         order: 2;
 
         &::after {
@@ -382,30 +399,23 @@ $footer-bp-mobile: '<sm';
     }
 
     .block-footer-navigation-block__nav {
+
+      .block-footer-navigation-block__header {
+        padding-bottom: rem(5px);
+      }
+
       .block-footer-navigation-block__content {
         @include flex-x(flex-direction, column);
-
-        .block-footer-navigation-block__header {
-          order: 2;
-          margin-top: rem(20px);
-          padding-bottom: 0;
-        }
 
 
         .block-footer-navigation-block__footer-address-social-menu-container {
           @include flex;
           @include flex-x(flex-direction, column);
 
-          order: 3;
+          order: 1;
 
           .block-footer-navigation-block__footer-address {
             order: 1;
-
-            .block-footer-navigation-block__footer-address-phone {
-              a {
-                font-size: rem(16px);
-              }
-            }
           }
 
           .block-footer-navigation-block__footer-social-menu-wrapper {
@@ -415,7 +425,7 @@ $footer-bp-mobile: '<sm';
 
         .block-footer-navigation-block__footer-menu-wrapper {
           @include container-full-width();
-          order: 1;
+          order: 2;
         }
       }
     }
@@ -426,7 +436,6 @@ $footer-bp-mobile: '<sm';
       margin-bottom: rem(20px);
 
       .menu-item--depth-0 {
-        border-bottom: rem(1px) solid $gray-50;
         margin: 0;
         position: relative;
 
@@ -435,26 +444,14 @@ $footer-bp-mobile: '<sm';
         }
 
         .menu-item__link {
-          padding: 0.5rem 2rem;
-          font-size: rem(16px);
+          padding: 0.5rem 2rem 0;
+          font-size: rem(14px);
+          line-height: rem(22px);
 
           &.menu-item__link--depth-0 {
-            @include icon('arrow', after, false);
             display: flex;
-            font-size: rem(20px);
-
-            &::after {
-              position: absolute;
-              top: 2%;
-              right: 2rem;
-              color: $black;
-            }
-
-            @include on-event {
-              &::after {
-                color: $white;
-              }
-            }
+            font-size: rem(16px);
+            line-height: rem(24px);
           }
         }
       }
