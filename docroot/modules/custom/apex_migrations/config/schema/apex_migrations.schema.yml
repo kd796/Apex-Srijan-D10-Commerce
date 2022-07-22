@@ -1,0 +1,22 @@
+apex_migrations.settings:
+  type: config_object
+  label: 'APEX Migration Configuration'
+  mapping:
+    sftp_host:
+      type: text
+      label: 'sFTP Host'
+    sftp_username:
+      type: text
+      label: 'sFTP Username'
+    sftp_password:
+      type: text
+      label: 'sFTP Password'
+    sftp_root:
+      type: text
+      label: 'sFTP Root path to upload to'
+    sftp_root_products_full:
+      type: text
+      label: 'The FTP server path for full product files'
+    sftp_root_products_delta:
+      type: text
+      label: 'The FTP server path for delta (or incremental/partial) product files'
