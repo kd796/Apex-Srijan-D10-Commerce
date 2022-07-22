@@ -65,6 +65,16 @@ class ProductDownloadService extends DrushCommands {
       $newestFile = NULL;
       $name = '';
 
+      /*
+       * Thoughts on this:
+       *
+       * We could store the path to both the Delta and the Full product files
+       * then create command options to select which to use.
+       *
+       * We should also keep a DB record of which product files we have downloaded
+       * and imported.
+       */
+
       $this->output()->writeln('Last downloaded file path: ' . $lastDownloadedFilename);
       $expandedFilePath = explode('/', $lastDownloadedFilename);
       $lastDownloadedFilename = array_pop($expandedFilePath);
