@@ -171,7 +171,7 @@ $mobile-menu-item-button-height: 7rem;
     .menu-item {
       color: $white;
       font-family: $font-brand;
-      font-size: rem(18px);
+      font-size: rem(16px);
       font-weight: $fw-extra-bold;
       line-height: 1.2;
       list-style: none;
@@ -183,7 +183,7 @@ $mobile-menu-item-button-height: 7rem;
       }
 
       @include media($header-bp-mobile) {
-        font-size: rem(22px);
+        font-size: rem(16px);
       }
     }
 
@@ -307,14 +307,14 @@ $mobile-menu-item-button-height: 7rem;
           padding: 0;
 
           a {
-            color: $white;
+            @include link(light, hover);
           }
         }
       }
 
       li,
       li a {
-        color: $white;
+        @include link(light, hover);
       }
 
       .menu-item__link--all {
@@ -339,7 +339,7 @@ $mobile-menu-item-button-height: 7rem;
       h5 {
 
         a {
-          color: $white;
+          @include link(light, hover);
         }
       }
     }
@@ -726,6 +726,8 @@ $mobile-menu-item-button-height: 7rem;
       }
 
       .menu-item__link--depth-0 {
+        text-transform: uppercase;
+
         &:hover {
           text-decoration: none;
         }
@@ -791,7 +793,7 @@ $mobile-menu-item-button-height: 7rem;
       }
 
       .menu-item__panel-image--depth-0 {
-        background-color: $primary-dark;
+        background-color: $primary-emerald;
         max-width: 356px;
         padding: 2.75rem 55px 3.5rem 0;
         position: relative;
@@ -863,7 +865,7 @@ $mobile-menu-item-button-height: 7rem;
             padding: 0;
 
             a {
-              color: $white;
+              @include link(light, hover);
             }
           }
         }
@@ -900,8 +902,13 @@ $mobile-menu-item-button-height: 7rem;
   }
 
   @include media($header-bp-mobile) {
+    &::after {
+      top: calc(#{$header-height-mobile} - 1px);
+    }
+
     .region-header__content {
       width: 100%;
+      height: $header-height-mobile;
     }
 
     .block--header-branding {
@@ -930,15 +937,20 @@ $mobile-menu-item-button-height: 7rem;
         animation-name: headerPanelFade;
         bottom: 0;
         display: block;
-        height: calc(100vh - #{$header-height});
+        height: calc(100vh - #{$header-height-mobile});
         left: 0;
-        padding: 1.25rem 0 0;
+        padding: 0;
         opacity: 1;
         overflow: auto;
         position: absolute;
         right: 0;
-        top: $header-height;
+        top: $header-height-mobile;
         z-index: 1;
+      }
+
+      .menu--depth-0 {
+        background-color: $white;
+        padding: rem(15px) 0;
       }
 
       .menu__content-container {
@@ -950,10 +962,16 @@ $mobile-menu-item-button-height: 7rem;
         @include flex-x(flex-wrap, wrap);
         @include flex-x(align-items, center);
 
+        &.menu-item--depth-0 {
+          border-bottom: 0.5px solid $primary-emerald;
+          margin: 0 rem(15px);
+        }
+
         &.menu-item--has-children {
           .menu-item__button {
             @include flex-x(align-items, center);
             @include icon('arrow', after, false);
+            color: $type-dark;
 
             &:after {
               font-size: 1rem;
@@ -979,7 +997,9 @@ $mobile-menu-item-button-height: 7rem;
         }
 
         .menu-item__link {
-          padding: 1.25rem 0 1.25rem 3rem;
+          padding: 1rem 0 1rem 1rem;
+          color: $type-dark;
+          text-transform: uppercase;
         }
 
         .menu-item__button {
@@ -991,7 +1011,7 @@ $mobile-menu-item-button-height: 7rem;
           border: 0;
           padding: 0;
           position: relative;
-          width: 4rem;
+          width: 2rem;
         }
 
         .menu-item__panel {

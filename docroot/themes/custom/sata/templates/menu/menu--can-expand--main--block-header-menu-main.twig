@@ -95,7 +95,7 @@ We call a macro which calls itself to render the full tree.
             <div {{ panel_attributes }}>
               {% set break = false %}
               {% for nested_item in item.below if not break %}
-                {% if nested_item.title == "Featured Tools" %}
+                {% if "Featured" in nested_item.title  %}
                   {% set panel_image_attributes = create_attribute({
                     'class': [
                       'menu-item__panel-image',

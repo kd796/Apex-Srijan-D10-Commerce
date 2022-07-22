@@ -61,18 +61,20 @@
         }
       });
 
-      // Hide Country Toggle Text.
-      $('.block__menu').find('.country-toggle').empty();
+      if ($(selector_header_country_switch_button).length > 0) {
+        // Hide Country Toggle Text.
+        $('.block__menu').find('.country-toggle').empty();
 
-      // Open country switch panel.
-      $(selector_header_country_switch_button).once('header').on({
-        click: function () {
-          var $this = $(this);
+        // Open country switch panel.
+        $(selector_header_country_switch_button).once('header').on({
+          click: function () {
+            var $this = $(this);
 
-          // Either expand or collapse the search panel.
-          behavior_object.togglePanel($this);
-        }
-      });
+            // Either expand or collapse the search panel.
+            behavior_object.togglePanel($this);
+          }
+        });
+      }
 
       // Open mobile menu.
       $(selector_header_menu_button).once('header').on({
@@ -173,7 +175,9 @@
       }
 
       // Revalidate Blazy.
-      Drupal.blazy.init.revalidate();
+      if (typeof Drupal.blazy !== 'undefined') {
+        Drupal.blazy.init.revalidate();
+      }
 
       return to_expand;
     },
@@ -196,7 +200,9 @@
       $body.toggleClass('jsa-body-lock', to_expand);
 
       // Revalidate Blazy.
-      Drupal.blazy.init.revalidate();
+      if (typeof Drupal.blazy !== 'undefined') {
+        Drupal.blazy.init.revalidate();
+      }
 
       // @todo event to track for if focus leaves element. destroy event when triggered
     },
