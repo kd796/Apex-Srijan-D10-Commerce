@@ -212,19 +212,11 @@ $footer-bp-mobile: '<sm';
         label {
           color: $white;
           font-size: rem(14px);
+          line-height: rem(19px);
 
           a {
             @include link(solar, hover);
           }
-        }
-      }
-
-      .form-checkboxes {
-        input[type='checkbox']:checked + label:before,
-        input[type='checkbox']:not(:checked) + label:before,
-        input[type='checkbox']:checked + label:after,
-        input[type='checkbox']:not(:checked) + label:after {
-          top: -2px;
         }
       }
 
