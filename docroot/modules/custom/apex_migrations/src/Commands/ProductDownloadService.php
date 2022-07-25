@@ -2,8 +2,11 @@
 
 namespace Drupal\apex_migrations\Commands;
 
+use Drupal\migrate\Plugin\MigrationInterface;
 use Drush\Commands\DrushCommands;
 use Drush\Log\LogLevel;
+use Drupal\migrate\MigrateMessage;
+use Drupal\migrate_tools\MigrateExecutable;
 use League\Flysystem\DirectoryListing;
 use League\Flysystem\FileAttributes;
 use League\Flysystem\Filesystem;
@@ -41,8 +44,62 @@ class ProductDownloadService extends DrushCommands {
    */
   public function productsDownload($full_or_delta = '', ?int $search_limit = 10, $migration_name = '') {
     $this->config = \Drupal::config('apex_migrations.settings');
+    $result = $this->downloadProducts($full_or_delta, $search_limit);
 
-    return $this->downloadProducts($full_or_delta, $search_limit, $migration_name);
+    // A 0 means success, a 1 means failure, per Drush command silliness.
+    if ($result === 0) {
+      return $this->runProductImport($migration_name);
+    }
+
+    // For failure.
+    return 1;
+  }
+
+  /**
+   * Runs the product import after a successful download.
+   *
+   * @param string|null $migration_name
+   *   The name of the migration to run after this is successful.
+   *
+   * @return int
+   *   Return the response that we give to Drush.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\PluginException
+   */
+  protected function runProductImport(?string $migration_name = '') {
+    if (empty($migration_name)) {
+      $migration_name = $this->config->get('migration_name');
+    }
+
+    /** @var \Drupal\migrate\Plugin\MigrationPluginManager $manager */
+    $manager = \Drupal::service('plugin.manager.migration');
+    $migration = $manager->createInstance($migration_name);
+
+    $migration->getIdMap()->prepareUpdate();
+    $executable = new MigrateExecutable($migration, new MigrateMessage());
+
+    try {
+      // Run the migration.
+      $executable->import();
+    }
+    catch (\Exception $e) {
+      $migration->setStatus(MigrationInterface::STATUS_IDLE);
+
+      $this->output()->writeln('Migration failure: ' . $e->getMessage());
+      drush_log(
+        'Successfully downloaded a new file. We will continue with the product import.',
+        LogLevel::ERROR
+      );
+
+      // Failure.
+      return 1;
+    }
+
+    $this->output()->writeln('Successfully ran the product migration.');
+    drush_log('Successfully ran the product migration.', LogLevel::SUCCESS);
+
+    // Success!
+    return 0;
   }
 
   /**
@@ -50,12 +107,15 @@ class ProductDownloadService extends DrushCommands {
    *
    * @param null|string $full_or_delta
    *   Whether this is a full import or a delta import.
-   * @param null|int $search_limit
+   * @param int|null $search_limit
    *   How many files to search through before stopping.
-   * @param null|string $migration_name
-   *   The name of the migration to run after this is successful.
+   *
+   * @return int
+   *   Return a 0 on success and a 1 on failure, per Drush command silliness.
+   *
+   * @throws \League\Flysystem\FilesystemException
    */
-  protected function downloadProducts($full_or_delta = '', ?int $search_limit = 10, $migration_name = '') {
+  protected function downloadProducts($full_or_delta = '', ?int $search_limit = 10) {
     $this->output()->writeln('Downloading products');
 
     if (!empty($full_or_delta) && $full_or_delta === 'full') {
@@ -63,10 +123,6 @@ class ProductDownloadService extends DrushCommands {
     }
     else {
       $sftp_directory = $this->config->get('sftp_root_products_delta');
-    }
-
-    if (empty($migration_name)) {
-      $migration_name = $this->config->get('migration_name');
     }
 
     $sftp_host = $this->config->get('sftp_host');
@@ -122,7 +178,10 @@ class ProductDownloadService extends DrushCommands {
           $configFactory = \Drupal::service('config.factory');
           $configFactory->getEditable('apex_migrations.settings')->set('last_downloaded_file_name', $name)->save();
           $this->output()->writeln('Created the file: ' . $destination);
-          drush_log('Successfully downloaded a new file. We will continue with the product import.', LogLevel::SUCCESS);
+          drush_log(
+            'Successfully downloaded a new file. We will continue with the product import.',
+            LogLevel::SUCCESS
+          );
 
           // Returning 0 means success.
           return 0;
