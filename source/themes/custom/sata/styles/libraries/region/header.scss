@@ -178,12 +178,9 @@ $mobile-menu-item-button-height: 7rem;
       margin: 0;
       padding-top: 0;
 
-      .is-active {
-        font-weight: $fw-extra-bold;
-      }
-
       @include media($header-bp-mobile) {
         font-size: rem(16px);
+        line-height: rem(24px);
       }
     }
 
@@ -320,7 +317,7 @@ $mobile-menu-item-button-height: 7rem;
       .menu-item__link--all {
         .menu-item__link {
           @include icon(tertiary-link, after, false);
-          font-weight: $fw-bold;
+          font-weight: $fw-extra-bold;
 
           &::after {
             margin-left: 0.5rem;
@@ -833,7 +830,8 @@ $mobile-menu-item-button-height: 7rem;
       }
 
       .menu-item--depth-1 {
-        font-size: .875rem;
+        font-size: 1rem;
+        font-weight: $fw-medium;
         margin: .75rem 0;
 
         &:first-of-type {
@@ -986,20 +984,39 @@ $mobile-menu-item-button-height: 7rem;
           }
 
           &.menu-item--expanded {
+            border-bottom: unset;
+            background-color: $primary-emerald;
+
+            .menu-item__link--depth-0 {
+              color: $white;
+            }
+
             .menu-item__button {
               @include icon('arrow', after, false);
+              color: $white;
 
               &:after {
-                transform: rotate(90deg);
+                transform: rotate(270deg);
+              }
+            }
+
+            &+ .menu-item--depth-0 {
+              .menu-item__link {
+                padding-top: rem(8px);
               }
             }
           }
         }
 
         .menu-item__link {
-          padding: 1rem 0 1rem 1rem;
+          padding: rem(16px) 0 rem(14px) rem(16px);
           color: $type-dark;
           text-transform: uppercase;
+
+          &.menu-item__link--depth-1 {
+            padding-top: rem(8px);
+            padding-bottom: rem(8px);
+          }
         }
 
         .menu-item__button {
@@ -1017,15 +1034,25 @@ $mobile-menu-item-button-height: 7rem;
         .menu-item__panel {
           display: block;
           width: 100%;
+          background-color: $white;
+
+          .secondary-menu.secondary-menu__first {
+            background-color: $white;
+          }
 
           .menu-item__panel-header {
-            padding: 1.25rem 0 1.25rem 3rem;
+            padding: 1rem 0 0.5rem 1rem;
+
+            &:not(:first-of-type) {
+              padding-top: 0.5rem;
+            }
 
             h5 {
-              font-size: rem(22px);
+              font-size: rem(16px);
+              line-height: rem(24px);
 
               a {
-                color: $primary-emerald;
+                color: $type-dark;
               }
             }
           }
@@ -1038,7 +1065,7 @@ $mobile-menu-item-button-height: 7rem;
             padding-left: rem(20px);
 
             .menu-item__link {
-              color: $primary-emerald;
+              color: $type-dark;
             }
           }
         }
