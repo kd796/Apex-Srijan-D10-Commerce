@@ -39,6 +39,13 @@ class ProductDownloadService extends DrushCommands {
    * @param null|string $migration_name
    *   The name of the migration to run after this is successful.
    *
+   * @option FullOrDelta
+   *   Optional. Is this the full feed or the delta feed.
+   * @option SearchLimit
+   *   Optional. How many files you would search through before stopping.
+   * @option MigrationName
+   *   Optional. The name of the migration to run next.
+   *
    * @command apex:products-download
    * @aliases axpd
    */
@@ -224,6 +231,7 @@ class ProductDownloadService extends DrushCommands {
       $simple_filename = array_pop($expanded_path);
       $file_extension = substr($name, -3);
       $file_resource = $filesystem->readStream($file->path());
+      $zip_result = FALSE;
 
       // If we have a zip file then we need to handle it a little different.
       if ($file_extension == 'zip') {
@@ -240,16 +248,23 @@ class ProductDownloadService extends DrushCommands {
           $archive->close();
 
           // Now we need to read the directory and get the one newest file.
-          $dir_listing = $drupal_filesystem->scanDirectory($zip_dir);
-          $temp_destination = array_pop($dir_listing);
+          $dir_listing = $drupal_filesystem->scanDirectory($zip_dir, '.+\.xml$');
+          $file_resource = array_pop($dir_listing);
         }
       }
-      else {
-        $this->output()->writeln('Temp File name: ' . $simple_filename);
 
-        $temp_destination = $drupal_filesystem->saveData($file_resource, 'temporary://' . $simple_filename);
-        $this->output()->writeln('Saved to: ' . $temp_destination);
+      $this->output()->writeln('Temp File name: ' . $simple_filename);
+
+      $temp_destination = $drupal_filesystem->saveData(
+        $file_resource,
+        'temporary://' . $simple_filename
+      );
+
+      if ($zip_result !== FALSE) {
+        $drupal_filesystem->delete($file_resource);
       }
+
+      $this->output()->writeln('Saved to: ' . $temp_destination);
     }
     catch (FilesystemException $e) {
       return FALSE;
