@@ -227,7 +227,7 @@ function sata_preprocess_menu__main__block_header_menu_main(array &$variables) {
     if (isset($item['original_link']) && $item['original_link'] instanceof MenuLinkContent) {
       $nodes = \Drupal::entityTypeManager()
         ->getStorage('node')
-        ->loadByProperties(['title' => 'Featured']);
+        ->loadByProperties(['title' => 'Featured Products']);
 
       if (!empty($nodes)) {
         $node = reset($nodes);
