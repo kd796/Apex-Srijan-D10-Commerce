@@ -1,0 +1,20 @@
+uuid: c1483ef4-2606-44c7-a167-17377491d945
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - sata
+id: sata_messages
+theme: sata
+region: pre_content
+weight: -7
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }

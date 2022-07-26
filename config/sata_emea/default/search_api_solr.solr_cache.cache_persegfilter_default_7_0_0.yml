@@ -1,0 +1,16 @@
+uuid: f6266110-e89e-47dd-8790-242cdb80ee8d
+langcode: en
+status: true
+dependencies: {  }
+id: cache_persegfilter_default_7_0_0
+label: 'Per Segment Filter Cache'
+minimum_solr_version: 7.0.0
+environments: {  }
+cache:
+  name: perSegFilter
+  class: solr.search.LRUCache
+  size: 10
+  initialSize: 0
+  autowarmCount: 10
+  regenerator: solr.NoOpRegenerator
+solr_configs: null

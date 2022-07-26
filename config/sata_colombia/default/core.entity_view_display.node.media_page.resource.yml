@@ -1,0 +1,61 @@
+uuid: 9b8235c2-d952-421d-8753-a1469095b450
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.resource
+    - field.field.node.media_page.body
+    - field.field.node.media_page.field_category
+    - field.field.node.media_page.field_components
+    - field.field.node.media_page.field_enable_download_link
+    - field.field.node.media_page.field_link
+    - field.field.node.media_page.field_media
+    - field.field.node.media_page.field_media_type
+    - field.field.node.media_page.field_preferred_listing_image
+    - field.field.node.media_page.field_published_date
+    - field.field.node.media_page.field_tags
+    - node.type.media_page
+    - responsive_image.styles.teaser
+  module:
+    - media_responsive_thumbnail
+    - text
+    - user
+id: node.media_page.resource
+targetEntityType: node
+bundle: media_page
+mode: resource
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_media:
+    type: entity_reference_entity_id
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_preferred_listing_image:
+    type: media_responsive_thumbnail
+    label: hidden
+    settings:
+      responsive_image_style: teaser
+      image_link: content
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_category: true
+  field_components: true
+  field_enable_download_link: true
+  field_link: true
+  field_media_type: true
+  field_published_date: true
+  field_tags: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

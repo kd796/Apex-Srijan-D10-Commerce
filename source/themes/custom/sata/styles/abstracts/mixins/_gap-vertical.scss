@@ -1,0 +1,53 @@
+// -----------------------------------------------------------------------------
+// Abstracts/Mixin: Gap vertical
+// Apply to container where spacing is needed on the TOP and BOTTOM
+// @include gap-vertical();
+//
+// Options:
+// • $property(value = margin or padding) - default = padding - changes property
+// • $breakpoint(value = breakpoint variable) - default = md - breakpoint trigger
+// • $gap-small(value = gap vertical variable) - default = $gap-vertical-sm - the small/mobile size
+// • $gap-large(value = gap vertical variable) - default = $gap-vertical-md-plus - the large/desktop size
+// • $reset(value = true or false) - default = false - reset the property back to initial
+// • $negative(value = true or false) - default = false - pulls content up the rhythm amount
+// -----------------------------------------------------------------------------
+
+@mixin gap-vertical(
+  $property: padding,
+  $breakpoint: md,
+  $gap-small: $gap-vertical-sm,
+  $gap-large: $gap-vertical-md-plus,
+  $reset: false,
+  $negative: false) {
+
+  // base
+  #{$property}-top: $gap-small;
+
+  @include media('>#{$breakpoint}') {
+    #{$property}-top: $gap-large;
+  }
+
+  // reset
+  @if $reset == true {
+    #{$property}-top: inherit;
+    #{$property}-top: initial;
+
+    @include media('>#{$breakpoint}') {
+      #{$property}-top: inherit;
+      #{$property}-top: initial;
+    }
+  }
+
+  // negative
+  @if $negative == true {
+    margin-top: -$gap-small;
+    #{$property}-top: inherit;
+    #{$property}-top: initial;
+
+    @include media('>#{$breakpoint}') {
+      margin-top: -$gap-large;
+      #{$property}-top: inherit;
+      #{$property}-top: initial;
+    }
+  }
+}

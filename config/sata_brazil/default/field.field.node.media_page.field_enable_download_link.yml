@@ -1,0 +1,23 @@
+uuid: c8b08d0a-7f23-4a2f-b2a6-9f49b7c12b8b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_enable_download_link
+    - node.type.media_page
+id: node.media_page.field_enable_download_link
+field_name: field_enable_download_link
+entity_type: node
+bundle: media_page
+label: 'Enable CTA Download Link'
+description: 'Page CTA automatically directs user to the media selected (no authoring of CTA required). For videos, this should not be checked.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

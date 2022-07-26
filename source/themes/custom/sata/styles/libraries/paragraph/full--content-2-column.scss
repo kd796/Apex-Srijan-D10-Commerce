@@ -1,0 +1,52 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: content
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component - Content 2 Column
+ */
+.component-content-2-column {
+  > header {
+    @include type-header(h2);
+    font-family: $font-brand;
+    font-weight: $fw-extra-bold;
+    text-transform: uppercase;
+  }
+
+  .field__items {
+    .component-content__title {
+      @include type-header(
+        $version: h3,
+        $color: $black,
+        $globals: included
+      );
+      text-transform: unset;
+
+      @include media('<sm') {
+        @include type-header(
+          $version: h4,
+          $color: $black,
+          $globals: included
+        );
+        padding: 0;
+        margin: 0;
+      }
+    }
+
+    @include media('>=md') {
+      @include flex();
+
+      .field__item {
+        flex: 1;
+      }
+    }
+  }
+}

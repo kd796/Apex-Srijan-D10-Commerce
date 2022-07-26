@@ -1,0 +1,60 @@
+{#
+/**
+* @file
+* Default theme implementation to display a block.
+*
+* @see template_preprocess_block()
+*
+* @ingroup themeable
+*/
+#}
+
+{% set title_attributes = title_attributes.addClass('visually-hidden') %}
+{% set regional_classes = [
+  'block-footer-navigation-block__nav'
+] %}
+
+<div{{ wrapper_attributes }}>
+  <nav{{ attributes.addClass('block-footer-navigation-block__nav') }}>
+    <header class="block-footer-navigation-block__header">
+      {{ title_prefix }}
+      <div{{ title_attributes }}>
+        <h2>Footer Navigation</h2>
+      </div>
+      {{ title_suffix }}
+      <a href="/" title="{{ 'sata Home'|t }}" rel="home" class="block-footer-navigation-block__footer-logo">
+        {% include directory ~ '/icons/logo.svg' %}
+      </a>
+    </header>
+    <div{{ content_attributes }}>
+      <section class="block-footer-navigation-block__footer-address-social-menu-container">
+        <div class="block-footer-navigation-block__footer-address">
+          {%  if content.address_line_1 %}
+            <p class="block-footer-navigation-block__footer-address-first">{{ content.address_line_1 }}</p>
+          {% endif %}
+          {%  if content.address_line_2 %}
+            <p class="block-footer-navigation-block__footer-address-second">{{ content.address_line_2 }}</p>
+          {% endif %}
+          {%  if content.address_line_3 %}
+            <p class="block-footer-navigation-block__footer-address-third">{{ content.address_line_3 }}</p>
+          {% endif %}
+          {%  if content.address_line_4 %}
+            <p class="block-footer-navigation-block__footer-address-fourth">{{ content.address_line_4 }}</p>
+          {% endif %}
+          {%  if content.address_line_5 %}
+            <p class="block-footer-navigation-block__footer-address-city">{{ content.address_line_5 }}</p>
+          {% endif %}
+          {%  if content.phone %}
+            <p class="block-footer-navigation-block__footer-address-phone"><a href="tel:{{ content.phone_raw }}">{{ content.phone }}</a></p>
+          {% endif %}
+        </div>
+        <div class="block-footer-navigation-block__footer-social-menu-wrapper">
+          {{ content.social_menu }}
+        </div>
+      </section>
+      <section class="block-footer-navigation-block__footer-menu-wrapper">
+        {{ content.footer_menu }}
+      </section>
+    </div>
+  </nav>
+</div>

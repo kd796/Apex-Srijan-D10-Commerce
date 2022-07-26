@@ -1,0 +1,30 @@
+uuid: f2ed2ef1-66b4-498e-9d79-98ba14441ea0
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+  theme:
+    - sata
+id: sata_page_title
+theme: sata
+region: content
+weight: -5
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      landing_page: landing_page
+      page: page
+      product_category: product_category
+      product_industry: product_industry

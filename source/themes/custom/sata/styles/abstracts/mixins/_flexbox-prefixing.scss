@@ -1,0 +1,106 @@
+// sass-lint:disable no-misspelled-properties, brace-style
+
+// -----------------------------------------------------------------------------
+// Mixin: Flexbox Prefixing
+// Flex container and flex items, prefixes for browser support
+// Includes webkit and -ms prefixes for IE10+
+//
+// === flex === //
+// @include flex();
+//
+// Usage:
+// .flex-container {
+//   @include flex();
+// }
+//
+// === flex-x === //
+// @include flex-x(property, value);
+//
+// Option(s):
+// • $property - flex property
+// • $values - flex value for property
+//
+// Usage:
+// .flex-container {
+//   @include flex-x(flex-direction, row-reverse);
+// }
+// .flex-item {
+//   @include flex-x(flex-basis, 25%);
+// }
+//
+// -----------------------------------------------------------------------------
+
+// === flex === //
+// Main flex display for flex container, enables a flex context for all its direct children
+@mixin flex() {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+// === flex-x === //
+// Individual flex properties for flex container and items
+@mixin flex-x($property, $values) {
+  -ms-#{$property}: $values;
+  -webkit-#{$property}: $values;
+
+  // === IE 10 Prefixing - Parent Properties (flex container) === //
+  // Sets the main-axis, defining the direction flex items are placed in the flex container
+  @if $property == flex-direction {
+    -ms-flex-direction: $values;
+  }
+
+  // Allows the flex items to wrap to multiple lines
+  @else if $property == flex-wrap {
+    -ms-flex-wrap: $values;
+  }
+
+  // Defines the alignment along the main axis
+  @else if $property == justify-content {
+    -ms-flex-pack: $values;
+  }
+
+  // Defines how flex items are laid out along the cross axis on the current line
+  @else if $property == align-items {
+    -ms-flex-align: $values;
+  }
+
+  // Aligns a flex container's lines within when there is extra space in the cross-axis
+  @else if $property == align-content {
+    -ms-flex-line-pack: $values;
+  }
+
+  // === IE 10 Prefixing - Child Properties (flex items) === //
+  // The shorthand for flex-grow, flex-shrink and flex-basis combined
+  @else if $property == flex {
+    -ms-flex: $values;
+  }
+
+  // This defines the ability for a flex item to grow if necessary
+  @else if $property == flex-grow {
+    -ms-flex-positive: $values;
+  }
+
+  // This defines the ability for a flex item to shrink if necessary
+  @else if $property == flex-shrink {
+    -ms-flex-negative: $values;
+  }
+
+  // This defines the default size of an element before the remaining space is distributed
+  @else if $property == flex-basis {
+    -ms-flex-preferred-size: $values;
+  }
+
+  // Allows the default alignment to be overridden for individual flex items
+  @else if $property == align-self {
+    -webkit-align-self: $values;
+  }
+
+  // The order that flex items appear in the flex container
+  @else if $property == order {
+    -ms-flex-order: $values;
+  }
+
+  // === Unprefixed default properties === //
+  #{$property}: $values;
+}

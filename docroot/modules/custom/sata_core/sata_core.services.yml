@@ -1,0 +1,6 @@
+services:
+  # Drush commands
+  sata_core.cli_service:
+    class: Drupal\sata_core\Commands\SataCliService
+    tags:
+      - { name: drush.command }

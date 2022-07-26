@@ -1,0 +1,24 @@
+uuid: 703a4b24-be95-410b-b057-038288b4b0e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.scale_width_360
+    - image.style.scale_width_720
+  theme:
+    - sata
+id: content_half
+label: 'Content Half'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: scale_width_720
+    breakpoint_id: sata.grande
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: scale_width_360
+    breakpoint_id: sata.xsmall
+    multiplier: 1x
+breakpoint_group: sata
+fallback_image_style: scale_width_360

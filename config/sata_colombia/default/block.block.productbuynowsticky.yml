@@ -1,0 +1,28 @@
+uuid: c38aa2d3-75b0-4c19-bb0b-9276d92176aa
+langcode: en
+status: true
+dependencies:
+  module:
+    - sata_core
+    - node
+  theme:
+    - sata
+id: productbuynowsticky
+theme: sata
+region: pre_content
+weight: -8
+provider: null
+plugin: product_buy_now_sticky
+settings:
+  id: product_buy_now_sticky
+  label: 'Product: Buy Now Sticky'
+  label_display: '0'
+  provider: sata_core
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      product: product

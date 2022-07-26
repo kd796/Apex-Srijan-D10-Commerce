@@ -1,0 +1,114 @@
+uuid: a20559a6-f883-4ff7-a35f-5fe4b9361562
+langcode: en
+status: true
+dependencies: {  }
+id: sata_us_product_category_pages_level_one
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: sata_us
+label: 'SATA Product Listing Pages - Level One'
+source:
+  constants:
+    bool_0: 0
+    bool_1: 1
+    uid_root: 1
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: 'http://www.stibosystems.com/step'
+  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 1"]'
+  fields:
+    -
+      name: remote_id
+      label: ID
+      selector: '@ID'
+    -
+      name: remote_name
+      label: 'Classification Name'
+      selector: Name
+  ids:
+    remote_id:
+      type: string
+process:
+  field_classification_id:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_id
+    method: row
+    value:
+      - W1_743930
+      - W1_743899
+      - W1_743831
+      - W1_743769
+      - W1_743784
+      - W1_743905
+      - W1_743878
+      - W1_743917
+      - W1_743927
+      - W1_743953
+      - W1_743803
+      - W1_743867
+      - W1_743771
+      - W1_743819
+      - W1_743911
+      - W1_743772
+      - W1_743786
+      - W1_743860
+      - W1_743846
+  type:
+    plugin: default_value
+    default_value: product_category
+  title: remote_name
+  sticky: constants/bool_0
+  promote: constants/bool_1
+  uid: constants/uid_root
+  name:
+    plugin: skip_on_empty
+    method: row
+    source: remote_name
+  product_classifications_array:
+    plugin: apex_get_all_product_classifications
+    source: remote_name
+    depth: 2
+  field_product_classifications:
+    plugin: sub_process
+    source: '@product_classifications_array'
+    include_source: true
+    process:
+      vocabulary_id: vid
+      target_id: target_id
+  category_facets_array:
+    plugin: get_all_category_facets
+    source: remote_id
+  field_category_facets:
+    plugin: sub_process
+    source: '@category_facets_array'
+    include_source: true
+    process:
+      vocabulary_id: vid
+      target_id: target_id
+  field_show_set_filter:
+    plugin: apex_determine_set_filter_show
+    source: remote_id
+    allowed_categories:
+      - W1_743930
+      - W1_743899
+      - W1_743831
+      - W1_743905
+      - W1_743878
+      - W1_743917
+      - W1_743927
+      - W1_743953
+      - W1_743803
+      - W1_743867
+      - W1_743819
+      - W1_743911
+      - W1_743860
+      - W1_743846
+destination:
+  plugin: 'entity:node'
+migration_dependencies: {  }

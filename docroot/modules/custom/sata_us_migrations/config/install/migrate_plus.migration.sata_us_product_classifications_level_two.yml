@@ -1,0 +1,120 @@
+langcode: en
+status: true
+dependencies: {  }
+id: sata_us_product_classifications_level_two
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: sata_us
+label: 'SATA Product Classifications - Level Two'
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: 'http://www.stibosystems.com/step'
+  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 2"]'
+  fields:
+    -
+      name: remote_term_id
+      label: ID
+      selector: '@ID'
+    -
+      name: remote_term_name
+      label: 'Term Name'
+      selector: Name
+    -
+      name: remote_parent_name
+      label: 'Parent Term Name'
+      selector: ../../Classification
+  ids:
+    remote_term_id:
+      type: string
+process:
+  name:
+    plugin: skip_on_empty
+    method: row
+    source: remote_term_name
+  field_classification_id:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_term_id
+    method: row
+    value:
+      - W2_743935
+      - W2_743936
+      - W2_743934
+      - W2_743931
+      - W2_743937
+      - W2_743935
+      - W2_743936
+      - W2_743934
+      - W2_743931
+      - W2_743933
+      - W2_743937
+      - W2_743832
+      - W2_743838
+      - W2_743943
+      - W2_743906
+      - W2_743907
+      - W2_743908
+      - W2_743884
+      - W2_743885
+      - W2_743879
+      - W2_743882
+      - W2_743881
+      - W2_743883
+      - W2_743880
+      - W2_743887
+      - W2_743918
+      - W2_743919
+      - W2_743954
+      - W2_743955
+      - W2_743809
+      - W2_743808
+      - W2_743805
+      - W2_743804
+      - W2_743806
+      - W2_743807
+      - W2_743952
+      - W2_743869
+      - W2_743873
+      - W2_743868
+      - W2_774131
+      - W2_743820
+      - W2_743821
+      - W2_743822
+      - W2_743823
+      - W2_743824
+      - W2_743826
+      - W2_743825
+      - W2_744933
+      - W2_743912
+      - W2_743913
+      - W2_743773
+      - W2_743774
+      - W2_743775
+      - W2_743776
+      - W2_743777
+      - W2_743778
+      - W2_743789
+      - W2_743794
+      - W2_743792
+      - W2_743785
+      - W2_743861
+      - W2_743862
+      - W2_743847
+      - W2_743853
+  parent:
+    -
+      plugin: apex_get_classification_parent_term
+      source: remote_parent_name
+    -
+      plugin: default_value
+      default_value: 0
+destination:
+  plugin: 'entity:taxonomy_term'
+  default_bundle: product_classifications
+migration_dependencies: null

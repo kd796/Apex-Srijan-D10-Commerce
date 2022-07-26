@@ -1,0 +1,28 @@
+uuid: 7bef5ff4-7b19-4df2-b313-b1dc57dd1d51
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.limited_html
+  module:
+    - filter
+    - media
+    - node_view_permissions
+    - search
+    - shortcut
+    - system
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access comments'
+  - 'access content'
+  - 'access shortcuts'
+  - 'access site-wide contact form'
+  - 'post comments'
+  - 'search content'
+  - 'skip comment approval'
+  - 'use text format limited_html'
+  - 'view any styleguide content'
+  - 'view media'

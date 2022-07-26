@@ -1,3 +1,5 @@
+_core:
+  default_config_hash: 6phbBhcYjncqxncwDHAImFHb0MAKamGB_HQy53AfN9s
 subscription_name: ''
 debug: false
 cron_interval: 30
@@ -32,6 +34,8 @@ spi:
     variables: {  }
     time: 0
   cron_interval: 28800
+  site_environment: dev
+  site_uuid: 8e6640da-9fe2-4d06-a32e-ff1c0e0df141
 mapping:
   acquia_spi_send_node_user:
     - acquia_connector.settings
@@ -159,5 +163,3 @@ mapping:
   http_response_debug_cacheability_headers:
     - container_parameter
     - http.response.debug_cacheability_headers
-_core:
-  default_config_hash: 6phbBhcYjncqxncwDHAImFHb0MAKamGB_HQy53AfN9s

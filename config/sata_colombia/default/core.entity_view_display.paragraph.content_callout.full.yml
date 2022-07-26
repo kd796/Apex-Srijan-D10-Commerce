@@ -1,0 +1,83 @@
+uuid: 64fa3d46-7590-4068-bb9e-9c2b8fabe42c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.full
+    - field.field.paragraph.content_callout.field_link
+    - field.field.paragraph.content_callout.field_media_background
+    - field.field.paragraph.content_callout.field_title
+    - paragraphs.paragraphs_type.content_callout
+    - responsive_image.styles.content_callout
+  module:
+    - blazy
+    - link
+id: paragraph.content_callout.full
+targetEntityType: paragraph
+bundle: content_callout
+mode: full
+content:
+  field_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_media_background:
+    type: blazy_media
+    label: hidden
+    settings:
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      layout: ''
+      view_mode: default
+      cache: 0
+      skin: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      responsive_image_style: content_callout
+      box_style: ''
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
+      grid: '0'
+      grid_medium: '0'
+      grid_small: '0'
+      breakpoints: {  }
+      current_view_mode: full
+      fx: ''
+      icon: ''
+      sizes: ''
+      grid_header: ''
+      _uri: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

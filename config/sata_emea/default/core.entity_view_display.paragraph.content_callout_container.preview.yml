@@ -1,0 +1,24 @@
+uuid: 5947f013-d4cb-491a-bf5b-41f1bfde9b1a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.content_callout_container.field_components
+    - paragraphs.paragraphs_type.content_callout_container
+  module:
+    - paragraphs
+id: paragraph.content_callout_container.preview
+targetEntityType: paragraph
+bundle: content_callout_container
+mode: preview
+content:
+  field_components:
+    type: paragraph_summary
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

@@ -1,0 +1,26 @@
+uuid: 91a3aaaa-b8f7-47ae-bdce-3b88d8f3ce4c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content
+    - paragraphs.paragraphs_type.pullquote
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats:
+      - plain_text
+id: paragraph.pullquote.field_content
+field_name: field_content
+entity_type: paragraph
+bundle: pullquote
+label: Content
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

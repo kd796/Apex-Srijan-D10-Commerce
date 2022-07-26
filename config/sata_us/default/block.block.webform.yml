@@ -1,0 +1,25 @@
+uuid: a0531b56-79df-4885-becb-b0c36692e01e
+langcode: en
+status: true
+dependencies:
+  config:
+    - webform.webform.email_sign_up
+  module:
+    - webform
+  theme:
+    - sata
+id: webform
+theme: sata
+region: footer_second
+weight: -8
+provider: null
+plugin: webform_block
+settings:
+  id: webform_block
+  label: 'Sign Up For Tool News '
+  label_display: visible
+  provider: webform
+  webform_id: email_sign_up
+  default_data: ''
+  redirect: false
+visibility: {  }

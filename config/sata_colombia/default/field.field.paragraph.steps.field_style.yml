@@ -1,0 +1,27 @@
+uuid: 90f04c6c-f55b-48a3-89f9-e0411b653705
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_style
+    - paragraphs.paragraphs_type.steps
+id: paragraph.steps.field_style
+field_name: field_style
+entity_type: paragraph
+bundle: steps
+label: Style
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: classy_paragraphs
+  handler_settings:
+    filter:
+      type: starts_with
+      starts_with: section__
+    sort:
+      field: label
+      direction: ASC
+field_type: entity_reference

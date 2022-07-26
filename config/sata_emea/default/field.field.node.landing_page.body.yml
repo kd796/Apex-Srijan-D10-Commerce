@@ -1,0 +1,29 @@
+uuid: cf25b089-ce26-403f-b5f1-91cc6b523fb3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.landing_page
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats:
+      - limited_html
+      - plain_text
+id: node.landing_page.body
+field_name: body
+entity_type: node
+bundle: landing_page
+label: 'Lead-in/Summary Text'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

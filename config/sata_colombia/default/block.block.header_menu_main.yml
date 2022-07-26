@@ -1,0 +1,29 @@
+uuid: ffda5dbf-b1ee-47c5-8f82-b9379db526f6
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - block_class
+    - system
+  theme:
+    - sata
+third_party_settings:
+  block_class:
+    classes: block--header-menu-main
+id: header_menu_main
+theme: sata
+region: header
+weight: -8
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 3
+  expand_all_items: true
+visibility: {  }

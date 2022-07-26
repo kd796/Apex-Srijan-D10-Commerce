@@ -1,0 +1,81 @@
+uuid: 8d4e270a-5ec8-4c9d-89e1-6ed0b1299774
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_index
+    - field.field.node.page.body
+    - field.field.node.page.field_components
+    - field.field.node.page.field_link
+    - field.field.node.page.field_media
+    - field.field.node.page.field_meta_tags
+    - image.style.search_teaser_261x256
+    - node.type.page
+  module:
+    - blazy
+    - text
+    - user
+id: node.page.search_index
+targetEntityType: node
+bundle: page
+mode: search_index
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_media:
+    type: blazy_media
+    label: hidden
+    settings:
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      layout: ''
+      view_mode: search_teaser
+      cache: 0
+      skin: ''
+      lazy: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      loading: ''
+      preload: false
+      responsive_image_style: ''
+      box_style: ''
+      image_style: search_teaser_261x256
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+      breakpoints: {  }
+      current_view_mode: search_index
+      fx: ''
+      icon: ''
+      sizes: ''
+      grid_header: ''
+      _uri: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_components: true
+  field_link: true
+  field_meta_tags: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

@@ -1,0 +1,29 @@
+uuid: c13fd9d5-6e84-4dce-ab64-6f900467cfff
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_category_facets
+    - node.type.product_category
+    - taxonomy.vocabulary.product_specifications
+id: node.product_category.field_category_facets
+field_name: field_category_facets
+entity_type: node
+bundle: product_category
+label: 'Category Facets'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      product_specifications: product_specifications
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

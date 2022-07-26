@@ -1,0 +1,23 @@
+uuid: 7edf62ee-1b82-4e55-8922-115bb42817c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.small_1x1
+    - image.style.tiny_1x1
+  theme:
+    - sata
+id: teaser
+label: Teaser
+image_style_mappings:
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: '(min-width: 80.01rem) 261px, (min-width: 35.51rem) 43vw, 100vw'
+      sizes_image_styles:
+        - small_1x1
+        - tiny_1x1
+    breakpoint_id: sata.All
+    multiplier: 1x
+breakpoint_group: sata
+fallback_image_style: small_1x1

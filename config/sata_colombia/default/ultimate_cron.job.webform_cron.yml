@@ -1,0 +1,17 @@
+uuid: 940dfc09-ae54-4130-bc5d-0425e9c1dc3a
+langcode: en
+status: true
+dependencies:
+  module:
+    - webform
+title: 'Default cron handler'
+id: webform_cron
+weight: 0
+module: webform
+callback: webform_cron
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database

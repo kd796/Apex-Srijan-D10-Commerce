@@ -24,6 +24,7 @@ elements: |-
       'Sales Quote': 'Sales Quote'
       'Tools Truck': 'Tools Truck'
       'Add/Adjust Your Location Information': 'Add/Adjust Your Location Information'
+      'Hero Card Request': 'Hero Card Request'
     '#required': true
     '#required_error': Required
   brand:
@@ -52,7 +53,10 @@ elements: |-
   business_name:
     '#type': textfield
     '#title': 'Business Name'
-    '#required_error': Required
+    '#states':
+      invisible:
+        ':input[name="select_type"]':
+          value: 'Hero Card Request'
   firstname:
     '#type': webform_name
     '#title': 'First Name'
@@ -79,7 +83,8 @@ elements: |-
     '#type': email
     '#title': 'Email Address'
     '#required': true
-    '#pattern': '^[a-zA-Z0-9.!#$%&''*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$'
+    '#pattern': '(?:[a-z0-9!#$%&''*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&''*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])'
+    '#pattern_error': 'Invalid email entered.'
   address:
     '#type': webform_address
     '#title': Address
@@ -88,14 +93,19 @@ elements: |-
     '#address_2__access': false
     '#city__required': true
     '#state_province__required': true
+    '#postal_code__required': true
     '#country__required': true
   phone_number:
     '#type': tel
     '#title': 'Phone Number'
+    '#required': true
   request_comments:
     '#type': textarea
     '#title': Request/Comments
-    '#required': true
+    '#states':
+      optional:
+        ':input[name="select_type"]':
+          value: 'Hero Card Request'
   upload_an_excel_document:
     '#type': webform_document_file
     '#title': 'Upload an excel document'
@@ -105,6 +115,78 @@ elements: |-
           value: 'Add/Adjust Your Location Information'
     '#file_extensions': xlsx
     '#sanitize': true
+  retailer_preference:
+    '#type': select
+    '#title': 'Retailer Preference'
+    '#options':
+      Amazon: Amazon
+      'Acme Tools': 'Acme Tools'
+      'CPO Outlets': 'CPO Outlets'
+      Fastenal: Fastenal
+      Grainger: Grainger
+      'The Home Depot': 'The Home Depot'
+      'Horizon Solutions': 'Horizon Solutions'
+      'International Tool': 'International Tool'
+      MSC: MSC
+      'NAPA Auto Parts': 'NAPA Auto Parts'
+      'Ohio Power Tool': 'Ohio Power Tool'
+      Toolbarn: Toolbarn
+      Toolup: Toolup
+      Zoro: Zoro
+    '#required': true
+    '#required_error': Required
+    '#states':
+      visible:
+        ':input[name="select_type"]':
+          value: 'Hero Card Request'
+  your_industry:
+    '#type': select
+    '#title': 'Your Industry'
+    '#options':
+      Aerospace: Aerospace
+      Agriculture: Agriculture
+      Automotive: Automotive
+      Diesel: Diesel
+      Energy: Energy
+      Industrial: Industrial
+      'Technician Education': 'Technician Education'
+      Transportation: Transportation
+      Other: Other
+    '#required': true
+    '#required_error': Required
+    '#states':
+      visible:
+        ':input[name="select_type"]':
+          value: 'Hero Card Request'
+  your_favorite_tool_category:
+    '#type': select
+    '#title': 'Your Favorite Tool Category'
+    '#options':
+      'Auto Specialty': 'Auto Specialty'
+      'Cutting Tools': 'Cutting Tools'
+      'Extraction Tools': 'Extraction Tools'
+      'Hex Keys': 'Hex Keys'
+      'Impact Products': 'Impact Products'
+      Lighting: Lighting
+      'Pass-Thru™ Tools': 'Pass-Thru™ Tools'
+      Pliers: Pliers
+      'Pry Bars': 'Pry Bars'
+      'Ratchets and Drive Tools': 'Ratchets and Drive Tools'
+      'Screwdrivers and Nutdrivers': 'Screwdrivers and Nutdrivers'
+      'Shop Equipment': 'Shop Equipment'
+      Sockets: Sockets
+      'Striking and Struck': 'Striking and Struck'
+      'Tethered Products': 'Tethered Products'
+      'Tool Sets': 'Tool Sets'
+      'Tool Storage': 'Tool Storage'
+      'Torque Products': 'Torque Products'
+      Wrenches: Wrenches
+    '#required': true
+    '#required_error': Required
+    '#states':
+      visible:
+        ':input[name="select_type"]':
+          value: 'Hero Card Request'
 css: ''
 javascript: ''
 settings:
@@ -906,6 +988,98 @@ handlers:
       subject: _default
       body: _default
       excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      theme_name: ''
+      parameters: {  }
+      debug: false
+  email_for_hero_card_request_us:
+    id: email
+    handler_id: email_for_hero_card_request_us
+    label: 'Email for "Hero Card Request" - US'
+    notes: ''
+    status: true
+    conditions:
+      enabled:
+        ':input[name="address[country]"]':
+          value: 'United States'
+        ':input[name="select_type"]':
+          value: 'Hero Card Request'
+    weight: 15
+    settings:
+      states:
+        - completed
+      to_mail: sprk-gearwrench@apextoolgroup.com
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: _default
+      body: _default
+      excluded_elements:
+        brand: brand
+        product_model_number: product_model_number
+        business_name: business_name
+        upload_an_excel_document: upload_an_excel_document
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      theme_name: ''
+      parameters: {  }
+      debug: false
+  email_for_hero_card_request_can:
+    id: email
+    handler_id: email_for_hero_card_request_can
+    label: 'Email for "Hero Card Request" - CAN'
+    notes: ''
+    status: true
+    conditions:
+      enabled:
+        ':input[name="address[country]"]':
+          value: Canada
+        ':input[name="select_type"]':
+          value: 'Hero Card Request'
+    weight: 16
+    settings:
+      states:
+        - completed
+      to_mail: sprk-gearwrench@apextoolgroup.com
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: _default
+      body: _default
+      excluded_elements:
+        brand: brand
+        product_model_number: product_model_number
+        business_name: business_name
+        upload_an_excel_document: upload_an_excel_document
       ignore_access: false
       exclude_empty: true
       exclude_empty_checkbox: false

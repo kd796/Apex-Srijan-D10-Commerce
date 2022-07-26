@@ -1,0 +1,32 @@
+uuid: 9e6aedf7-8c3a-4116-bbf5-4b90503a134e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.full
+    - field.field.paragraph.featured_media.field_class_custom
+    - field.field.paragraph.featured_media.field_html_anchor
+    - field.field.paragraph.featured_media.field_layout
+    - field.field.paragraph.featured_media.field_media_items
+    - field.field.paragraph.featured_media.field_style
+    - paragraphs.paragraphs_type.featured_media
+id: paragraph.featured_media.full
+targetEntityType: paragraph
+bundle: featured_media
+mode: full
+content:
+  field_media_items:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: embed
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_class_custom: true
+  field_html_anchor: true
+  field_layout: true
+  field_style: true
+  search_api_excerpt: true

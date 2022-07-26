@@ -1,0 +1,56 @@
+// -----------------------------------------------------------------------------
+// Abstracts/Mixin: Container
+// Apply to container where a max-width is needed
+// @include container();
+//
+// Options:
+// • $width(value = container variable) - default = $container-lg - adds a max-width
+// • $breakpoint(value = breakpoint variable) - default = $md - breakpoint trigger
+// -----------------------------------------------------------------------------
+
+
+@mixin container(
+  $width: $container-xl,
+  $margin: 1rem,
+  $align: center,
+  $reset: false
+) {
+  @if $reset == true {
+    margin-left: inherit !important;
+    margin-right: inherit !important;
+    max-width: inherit;
+    width: inherit;
+  } @else {
+    max-width: $width;
+
+    @if $margin != 0 {
+      width: calc(100% - #{(2 * $margin)});
+    } @else {
+      width: 100%;
+    }
+
+    @if $align == left {
+      margin-right: auto !important;
+    } @else if $align == right {
+      margin-left: auto !important;
+    } @else {
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+  }
+}
+
+@mixin container-full-width($reset: false) {
+  @if $reset == true {
+    left: inherit;
+    max-width: inherit;
+    position: inherit;
+    width: 100%;
+  } @else {
+    left: calc(-50vw + 50%);
+    max-width: none;
+    position: relative;
+    width: 100%;
+    width: 100vw;
+  }
+}

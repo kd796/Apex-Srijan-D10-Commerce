@@ -1,0 +1,66 @@
+langcode: en
+status: true
+dependencies: {  }
+id: sata_brazil_product_classifications_level_one
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: sata_brazil
+label: 'SATA Brazil Product Classifications - Level One'
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: 'http://www.stibosystems.com/step'
+  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 1"]'
+  fields:
+    -
+      name: remote_term_id
+      label: ID
+      selector: '@ID'
+    -
+      name: remote_term_name
+      label: 'Term Name'
+      selector: Name
+  ids:
+    remote_term_id:
+      type: string
+process:
+  name:
+    plugin: skip_on_empty
+    method: row
+    source: remote_term_name
+  vid:
+    plugin: default_value
+    default_value: product_classifications
+  field_classification_id:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_term_id
+    method: row
+    value:
+      - W1_743930
+      - W1_743899
+      - W1_743831
+      - W1_743769
+      - W1_743784
+      - W1_743905
+      - W1_743878
+      - W1_743917
+      - W1_743927
+      - W1_743953
+      - W1_743803
+      - W1_743867
+      - W1_743771
+      - W1_743819
+      - W1_743911
+      - W1_743772
+      - W1_743786
+      - W1_743860
+      - W1_743846
+destination:
+  plugin: 'entity:taxonomy_term'
+migration_dependencies: null

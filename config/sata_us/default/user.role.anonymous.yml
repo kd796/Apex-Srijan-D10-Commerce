@@ -1,0 +1,30 @@
+uuid: 980e6904-1620-4471-b67f-a0c8338687e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.restricted_html
+  module:
+    - filter
+    - media
+    - node_view_permissions
+    - search
+    - system
+id: anonymous
+label: 'Anonymous user'
+weight: 0
+is_admin: false
+permissions:
+  - 'access comments'
+  - 'access content'
+  - 'access site-wide contact form'
+  - 'search content'
+  - 'use text format restricted_html'
+  - 'view any landing_page content'
+  - 'view any media_page content'
+  - 'view any page content'
+  - 'view any product content'
+  - 'view any product_category content'
+  - 'view any product_industry content'
+  - 'view any social_post content'
+  - 'view media'

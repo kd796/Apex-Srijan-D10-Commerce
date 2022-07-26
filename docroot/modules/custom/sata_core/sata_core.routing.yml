@@ -1,0 +1,24 @@
+sata_core.set_default_listing_image:
+  path: '/admin/config/sata-core/set-default-listing-image'
+  defaults:
+    _form: '\Drupal\sata_core\Form\SetDefaultListingImage'
+  requirements:
+    _permission: 'administer nodes'
+sata_core.set_default_listing_image_process:
+  path: '/admin/config/sata-core/set-default-listing-image/process'
+  defaults:
+    _controller: '\Drupal\sata_core\Controller\SetDefaultListingImage::process'
+    _title: 'Set default listing images on products'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+sata_core.publish_all_paragraphs:
+  path: '/admin/config/sata-core/publish-all-paragraphs'
+  defaults:
+    _controller: '\Drupal\sata_core\Controller\PublishAllParagraphs::process'
+    _title: 'Publish all Paragraphs'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE

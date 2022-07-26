@@ -1,0 +1,407 @@
+uuid: eaeb9c96-be65-449c-bfa7-97d64a925275
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_media_image
+    - field.storage.node.field_components
+    - field.storage.paragraph.field_media_item
+    - field.storage.paragraph.field_media_items
+    - field.storage.node.body
+    - field.storage.media.field_media_file
+    - field.storage.node.field_component_hero
+    - field.storage.node.field_media_type
+    - field.storage.paragraph.field_title
+    - field.storage.paragraph.field_content
+    - field.storage.node.field_link
+    - field.storage.paragraph.field_link
+    - field.storage.paragraph.field_links
+    - search_api.server.acquia_search_server
+    - core.entity_view_mode.node.full
+  module:
+    - search_api_solr
+    - media
+    - paragraphs
+    - file
+    - node
+    - search_api
+third_party_settings:
+  search_api_solr:
+    finalize: false
+    commit_before_finalize: false
+    commit_after_finalize: false
+    highlighter:
+      maxAnalyzedChars: 51200
+      fragmenter: gap
+      usePhraseHighlighter: true
+      highlightMultiTerm: true
+      preserveMulti: false
+      regex:
+        slop: 0.5
+        pattern: blank
+        maxAnalyzedChars: 10000
+      highlight:
+        mergeContiguous: false
+        requireFieldMatch: false
+        snippets: 3
+        fragsize: 0
+    mlt:
+      mintf: 1
+      mindf: 1
+      maxdf: 0
+      maxdfpct: 0
+      minwl: 0
+      maxwl: 0
+      maxqt: 100
+      maxntp: 2000
+      boost: false
+      interestingTerms: none
+    term_modifiers:
+      slop: 3
+      fuzzy: 1
+    advanced:
+      index_prefix: ''
+      collection: ''
+      timezone: ''
+    multilingual:
+      limit_to_content_language: false
+      include_language_independent: true
+id: acquia_search_index
+name: 'Acquia Search Solr Index - No Products'
+description: ''
+read_only: false
+field_settings:
+  alt:
+    label: 'Content » Paragraph » Media » Media » Image » Alternative text'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_media_item:entity:field_media_image:alt'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_image
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_media_item
+      module:
+        - media
+        - paragraphs
+  alt_1:
+    label: 'Content » Paragraph » Media » Media » Image » Alternative text'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_media_items:entity:field_media_image:alt'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_image
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_media_items
+      module:
+        - media
+        - paragraphs
+  body:
+    label: Body
+    datasource_id: 'entity:node'
+    property_path: body
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.body
+  body_1:
+    label: 'Lead-in/Summary Text'
+    datasource_id: 'entity:node'
+    property_path: body
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.body
+  description:
+    label: 'Content » Paragraph » Media » Media » File » Description'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_media_items:entity:field_media_file:description'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_file
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_media_items
+      module:
+        - media
+        - paragraphs
+  field_component_hero:
+    label: Hero
+    datasource_id: 'entity:node'
+    property_path: field_component_hero
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_component_hero
+  field_components:
+    label: Content
+    datasource_id: 'entity:node'
+    property_path: field_components
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_components
+  field_media_type:
+    label: 'Media Type'
+    datasource_id: 'entity:node'
+    property_path: field_media_type
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_media_type
+  field_title:
+    label: 'Content » Paragraph » Label'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_title'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_title
+      module:
+        - paragraphs
+  filename:
+    label: 'Content » Paragraph » Media » Media » File » File » Filename'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_media_items:entity:field_media_file:entity:filename'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_file
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_media_items
+      module:
+        - file
+        - media
+        - paragraphs
+  name:
+    label: 'Content » Paragraph » Media » Media » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_media_item:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_media_item
+      module:
+        - media
+        - paragraphs
+  name_1:
+    label: 'Content » Paragraph » Media » Media » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_media_items:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_media_items
+      module:
+        - media
+        - paragraphs
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
+  processed:
+    label: 'Content » Paragraph » Content » Processed text'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_content:processed'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_content
+      module:
+        - paragraphs
+  rendered_item:
+    label: 'Rendered HTML output'
+    property_path: rendered_item
+    type: text
+    boost: 0.5
+    configuration:
+      roles:
+        - anonymous
+      view_mode:
+        'entity:node':
+          landing_page: full
+          page: full
+          social_post: full
+          styleguide: ''
+  status:
+    label: status
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    dependencies:
+      module:
+        - node
+  title_1:
+    label: 'Call to Action » Link text'
+    datasource_id: 'entity:node'
+    property_path: 'field_link:title'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_link
+  title_2:
+    label: 'Content » Paragraph » Call to Action » Link text'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_link:title'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_link
+      module:
+        - paragraphs
+  title_3:
+    label: 'Content » Paragraph » Links » Link text'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_links:title'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_links
+      module:
+        - paragraphs
+  title_4:
+    label: 'Content » Paragraph » Media » Media » Image » Title'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_media_item:entity:field_media_image:title'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_image
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_media_item
+      module:
+        - media
+        - paragraphs
+  title_5:
+    label: 'Content » Paragraph » Media » Media » Image » Title'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:entity:field_media_items:entity:field_media_image:title'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_image
+        - field.storage.node.field_components
+        - field.storage.paragraph.field_media_items
+      module:
+        - media
+        - paragraphs
+  type:
+    label: 'Content type'
+    datasource_id: 'entity:node'
+    property_path: type
+    type: string
+    dependencies:
+      module:
+        - node
+  uid:
+    label: uid
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - landing_page
+        - media_page
+        - page
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
+  entity_status: {  }
+  hierarchy:
+    weights:
+      preprocess_index: -45
+    fields:
+      field_component_hero: paragraph-field_content_items
+      field_components: paragraph-field_content_items
+  highlight:
+    weights:
+      postprocess_query: 0
+    prefix: '<strong>'
+    suffix: '</strong>'
+    excerpt: true
+    excerpt_length: 400
+    exclude_fields:
+      - title
+    highlight: server
+    highlight_partial: false
+  html_filter:
+    weights:
+      preprocess_index: -15
+      preprocess_query: -15
+    all_fields: false
+    fields:
+      - body
+      - body_1
+      - field_component_hero
+      - field_components
+      - field_media_type
+      - rendered_item
+      - title
+      - title_1
+      - type
+    title: true
+    alt: true
+    tags:
+      b: 2
+      em: 1
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+      u: 1
+  language_with_fallback: {  }
+  rendered_item: {  }
+  solr_date_range:
+    weights:
+      preprocess_index: 0
+  type_boost:
+    weights:
+      preprocess_index: 0
+    boosts:
+      'entity:node':
+        datasource_boost: !!float 1
+        bundle_boosts:
+          landing_page: 0.5
+          media_page: 0.8
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  index_directly: true
+  track_changes_in_references: true
+server: acquia_search_server
