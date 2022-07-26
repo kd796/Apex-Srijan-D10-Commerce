@@ -1,17 +1,21 @@
 // -----------------------------------------------------------------------------
 // Abstracts/Mixin: Button Styles
 // Base button style mixin
-// @include btn-base(), @include btn(primary, secondary)
+// @include btn-base(), @include btn(primary | secondary | light or solar, dark | light | solar, sm | md | lg)
+// first param: primary, light, solar are solid colored buttons
+// first param: secondary is a text link with an after icon
+// second param: secondary font color
+// third param: secondary font size
 // -----------------------------------------------------------------------------
 
 // Base button styles
 @mixin btn-base($style: primary) {
   background-color: $primary-emerald;
-  border: 0 !important;
-  color: $black;
+  border: 1px solid $primary-emerald !important;
+  color: $white;
   display: inline-block;
   font-family: $font-brand !important;
-  font-weight: $fw-bold;
+  font-weight: $fw-extra-bold;
   letter-spacing: 0.03rem;
   line-height: 1 !important;
   text-align: center;
@@ -29,24 +33,68 @@
   @if $style == primary {
     @include on-event {
       color: $primary-emerald;
-      background-color: $black;
+      background-color: $white;
+    }
+  }
+
+  @if $style == light {
+    color: $primary-emerald;
+    border-color: $white !important;
+    background-color: $white;
+
+    @include on-event {
+      color: $white;
+      background-color: $primary-dark;
+      border-color: $primary-dark !important;
+    }
+  }
+
+  @if $style == solar {
+    color: $type-dark;
+    background-color: $primary-solar;
+    border-color: $primary-solar !important;
+
+    @include on-event {
+      background-color: $white;
     }
   }
 }
 
 // Apply the button style and hover target
-@mixin btn($style: primary) {
+@mixin btn($style: primary, $color: dark, $size: md) {
+  $font-color: $type-dark;
+  $hover-color: $primary-emerald;
+  $font-size: rem(16px);
+
   @if $style == primary {
     @include btn-base();
+  } @else if $style == light {
+    @include btn-base(light);
+  } @else if $style == solar {
+    @include btn-base(solar);
   } @else if $style == secondary {
+    @if $color == light {
+      $font-color: $white;
+      $hover-color: $type-dark;
+    } @else if $color == solar {
+      $font-color: $primary-solar;
+      $hover-color: $white;
+    }
+    @if $size == sm {
+      $font-size: rem(14px);
+    } @else if $size == lg {
+      $font-size: rem(20px);
+    }
+
     @include icon(tertiary-link, after, true);
     align-items: center;
     background-color: transparent;
-    border: 0;
-    color: $black;
+    border: 0 !important;
+    color: $font-color;
     display: flex;
+    font-size: $font-size;
     font-family: $font-brand;
-    font-weight: $fw-regular;
+    font-weight: $fw-extra-bold;
     padding: 3.75rem 0 2rem;
     text-decoration: none;
     text-transform: uppercase;
@@ -54,12 +102,12 @@
     white-space: nowrap;
 
     &:after {
-      font-size: rem(20px);
-      margin-left: 1rem;
+      font-size: $font-size;
+      margin-left: rem(5px);
     }
 
     @include on-event {
-      color: $primary-emerald;
+      color: $hover-color;
     }
 
     @include media('<sm') {

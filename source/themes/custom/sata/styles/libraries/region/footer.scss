@@ -36,6 +36,9 @@ $footer-bp-mobile: '<sm';
 
     a {
       @include link(light, hover);
+      @include on-event() {
+        color: $white !important;
+      }
     }
   }
 
@@ -126,7 +129,7 @@ $footer-bp-mobile: '<sm';
       }
 
       @include on-event() {
-        color: $primary-solar;
+        color: $primary-solar !important;
       }
     }
   }

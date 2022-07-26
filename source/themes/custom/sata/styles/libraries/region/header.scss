@@ -191,10 +191,7 @@ $mobile-menu-item-button-height: 7rem;
     .menu-item__link {
       display: block;
       color: $white;
-
-      &:hover {
-        text-decoration: underline;
-      }
+      @include link-underline(hover);
 
       &[class^='icon-'],
       &[class*=' icon-'] {
@@ -305,6 +302,9 @@ $mobile-menu-item-button-height: 7rem;
 
           a {
             @include link(light, hover);
+            @include on-event() {
+              color: $white !important;
+            }
           }
         }
       }
@@ -312,6 +312,9 @@ $mobile-menu-item-button-height: 7rem;
       li,
       li a {
         @include link(light, hover);
+        @include on-event() {
+          color: $white !important;
+        }
       }
 
       .menu-item__link--all {
@@ -337,6 +340,9 @@ $mobile-menu-item-button-height: 7rem;
 
         a {
           @include link(light, hover);
+          @include on-event() {
+            color: $white !important;
+          }
         }
       }
     }
