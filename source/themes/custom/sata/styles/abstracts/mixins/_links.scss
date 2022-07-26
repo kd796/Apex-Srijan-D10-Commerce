@@ -26,11 +26,13 @@
   // Light overrides.
   @if $style == light {
     $color: $white;
+    $hover-color: $type-dark;
   }
 
   // Solar overrides.
   @if $style == solar {
     $color: $primary-solar;
+    $hover-color: $white;
   }
 
   color: $color;
@@ -45,6 +47,7 @@
   &:focus,
   &:active {
     outline: none;
+    color: $hover-color;
   }
 }
 
