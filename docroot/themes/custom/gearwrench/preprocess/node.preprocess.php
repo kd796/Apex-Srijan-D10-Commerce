@@ -432,20 +432,26 @@ function gearwrench_preprocess_node__search_index(&$variables) {
   if (isset($variables['content']['field_media'][0]) || isset($variables['content']['field_preferred_listing_image'][0]) || isset($variables['content']['field_component_hero'][0])) {
     $variables['media_attributes']['class'][] = 'node__media--with-media';
 
-    if (array_key_exists('field_component_hero', $variables['content']) && !empty($variables['content']['field_component_hero'][0])) {
+    if (array_key_exists('field_component_hero', $variables['content'])
+        && !empty($variables['content']['field_component_hero'][0])) {
       $slideParagraph = $variables['content']['field_component_hero'][0]['#paragraph'];
-      $sid = $slideParagraph->get('field_components')->getValue()[0]['target_id'];
-      $view_builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
-      $storage = \Drupal::entityTypeManager()->getStorage('paragraph');
-      $slide = $storage->load($sid);
+      $components = $slideParagraph->get('field_components')->getValue();
 
-      if (!empty($slide)) {
-        $build = $view_builder->view($slide, 'search_index');
-        $variables['media'] = $build;
-        unset($variables['content']['field_component_hero']);
+      if (!empty($components[0]['target_id'])) {
+        $sid = $slideParagraph->get('field_components')->getValue()[0]['target_id'];
+        $view_builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
+        $storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+        $slide = $storage->load($sid);
+
+        if (!empty($slide)) {
+          $build = $view_builder->view($slide, 'search_index');
+          $variables['media'] = $build;
+          unset($variables['content']['field_component_hero']);
+        }
       }
     }
-    elseif (array_key_exists('field_preferred_listing_image', $variables['content']) && !empty($variables['content']['field_preferred_listing_image'][0])) {
+    elseif (array_key_exists('field_preferred_listing_image', $variables['content'])
+        && !empty($variables['content']['field_preferred_listing_image'][0])) {
       $variables['media_attributes']['class'][] = 'node__listing-image';
       $variables['media'] = $variables['content']['field_preferred_listing_image'];
       unset($variables['content']['field_preferred_listing_image']);

@@ -50,14 +50,11 @@ h6,
 
 a {
   @include link-base();
+  @include link-underline(full);
 }
 
 p {
   margin: 0 0 1.5rem;
-
-  a {
-    @include link-underline(full);
-  }
 }
 
 b,

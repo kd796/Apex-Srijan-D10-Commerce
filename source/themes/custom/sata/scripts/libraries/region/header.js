@@ -111,6 +111,15 @@
         behavior_object.updateHeaderPlaceholder($menu_item);
       });
 
+      // If desktop menu expanded and click outside, close
+      $(document).once('header').on('click', function (e) {
+        if ($(selector_header_menu_items_with_children).hasClass('menu-item--expanded')) {
+          if (!(($(e.target).closest(selector_header_menu_items_with_children).length > 0))) {
+            behavior_object.toggleMenuPanel($(selector_header_menu_items_with_children).find('.menu-item__button').first());
+          }
+        }
+      });
+
       // Sets large logo with tall performance device
       $('header .block--header-branding').addClass('block--header-branding-large');
       $('header .region-header__content').addClass('region-header__content-large');

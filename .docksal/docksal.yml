@@ -23,3 +23,6 @@ services:
   cli:
     environment:
       - XDEBUG_CONFIG=remote_connect_back=0 remote_host=${DOCKSAL_HOST_IP}
+      - PHP_IDE_CONFIG=serverName=${VIRTUAL_HOST}
+      - DRUSH_ALLOW_XDEBUG=${XDEBUG_ENABLED:-0}
+      - DRUSH_OPTIONS_URI=${VIRTUAL_HOST}
