@@ -2,6 +2,7 @@
 
 namespace Drupal\apex_migrations\Commands;
 
+use Drupal\apex_migrations\Exceptions\PreviouslyImportedException;
 use Drupal\Core\File\Exception\FileException;
 use Drupal\Core\File\Exception\FileWriteException;
 use Drupal\migrate\Plugin\MigrationInterface;
@@ -21,6 +22,11 @@ use League\Flysystem\StorageAttributes;
  * A Drush commandfile.
  *
  * Downloads the product data from the SFTP server and runs the import.
+ * This is a command to run the automated product import process.
+ *
+ * @todo Consider renaming the product_download and download_product functions as that is confusing.
+ *
+ * @see ProductDownloadService::productsDownload()
  */
 class ProductDownloadService extends DrushCommands {
 
@@ -50,6 +56,12 @@ class ProductDownloadService extends DrushCommands {
    *
    * @command apex:products-download
    * @aliases axpd
+   *
+   * @return int
+   *   The Drush code for success or failure.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\PluginException
+   * @throws \League\Flysystem\FilesystemException
    */
   public function productsDownload($full_or_delta = '', ?int $search_limit = 10, $migration_name = '') {
     $this->config = \Drupal::config('apex_migrations.settings');
@@ -217,7 +229,7 @@ class ProductDownloadService extends DrushCommands {
         drush_log('No different file found.', LogLevel::ERROR);
       }
     }
-    catch (\Exception $e) {
+    catch (PreviouslyImportedException | \Exception $e) {
       $this->logger()->error($e->getMessage());
     }
 
@@ -398,6 +410,8 @@ class ProductDownloadService extends DrushCommands {
    *
    * @return null|\League\Flysystem\FileAttributes
    *   The file object to use.
+   *
+   * @throws \Drupal\apex_migrations\Exceptions\PreviouslyImportedException
    */
   protected function findFileToUse(DirectoryListing $all_files, $search_limit) {
     $last_downloaded_filename = $this->config->get('last_downloaded_file_name') ?? '';
@@ -433,6 +447,10 @@ class ProductDownloadService extends DrushCommands {
 
       $file_extension = substr($name, -3);
       $files_searched_count++;
+
+      if ($simple_filename == $last_downloaded_filename) {
+        throw new PreviouslyImportedException($last_downloaded_filename);
+      }
 
       if ($file->type() == 'file' && $simple_filename != $last_downloaded_filename) {
         if ($file_extension == 'xml' || $file_extension == 'zip') {
