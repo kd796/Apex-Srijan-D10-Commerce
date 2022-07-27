@@ -82,6 +82,8 @@ class ProductDownloadService extends DrushCommands {
 
     /** @var \Drupal\migrate\Plugin\MigrationPluginManager $manager */
     $manager = \Drupal::service('plugin.manager.migration');
+
+    /** @var \Drupal\migrate\Plugin\Migration $migration */
     $migration = $manager->createInstance($migration_name);
 
     $migration->getIdMap()->prepareUpdate();

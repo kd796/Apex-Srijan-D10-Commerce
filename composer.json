@@ -62,11 +62,11 @@
         "drupal/config_ignore": "^2.0",
         "drupal/config_split": "^1.0",
         "drupal/config_update": "1.7",
-        "drupal/core-composer-scaffold": "^9.3.4",
-        "drupal/core-dev": "^9.3.4",
-        "drupal/core-project-message": "^9.3.4",
-        "drupal/core-recommended": "^9.3.4",
-        "drupal/core-vendor-hardening": "^9.3.4",
+        "drupal/core-composer-scaffold": "^9.4.3",
+        "drupal/core-dev": "^9.4.3",
+        "drupal/core-project-message": "^9.4.3",
+        "drupal/core-recommended": "^9.4.3",
+        "drupal/core-vendor-hardening": "^9.4.3",
         "drupal/current_page_crumb": "^1.2",
         "drupal/devel": "^4.1",
         "drupal/devel_entity_updates": "^3.0",
@@ -164,6 +164,16 @@
         "sort-packages": true,
         "platform": {
             "php": "7.4"
+        },
+        "allow-plugins": {
+            "composer/installers": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "cweagans/composer-patches": true,
+            "oomphinc/composer-installers-extender": true,
+            "drupal/core-composer-scaffold": true,
+            "drupal/core-project-message": true,
+            "drupal/core-vendor-hardening": true,
+            "topfloor/composer-cleanup-vcs-dirs": true
         }
     },
     "autoload": {
@@ -265,7 +275,9 @@
                 "https://www.drupal.org/node/2827921": "https://www.drupal.org/files/issues/2827921-remove-missing-responsive-image-width-exception.patch",
                 "https://www.drupal.org/project/drupal/issues/2663316": "https://www.drupal.org/files/issues/2019-10-21/2663316-76.drupal.Broken-title-in-modal-dialog-when-title-is-a-render-array.patch",
                 "https://www.drupal.org/node/3006729": "https://www.drupal.org/files/issues/2022-07-08/3006729-21.patch",
-                "https://www.drupal.org/node/3188588": "https://www.drupal.org/files/issues/2020-12-15/3188588-02.patch"
+                "https://www.drupal.org/node/3188588": "https://www.drupal.org/files/issues/2020-12-15/3188588-02.patch",
+                "https://www.drupal.org/project/drupal/issues/3296485": "https://www.drupal.org/files/issues/2022-07-18/ASGS-4866-php8-compatibility_3.patch",
+                "https://www.drupal.org/project/drupal/issues/3255637": "https://www.drupal.org/files/issues/2022-05-13/type-declaration-html-escape-3255637-26.patch"
             },
             "drupal/field_group": {
                 "https://www.drupal.org/node/3059614": "https://www.drupal.org/files/issues/2020-06-15/3059614-37.patch"
