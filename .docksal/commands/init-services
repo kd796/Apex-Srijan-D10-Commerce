@@ -34,6 +34,7 @@ echo-green "NPM is available."
 step_header "Installing Global Codesniffer"
 composer global require drupal/coder:8.3.15 squizlabs/php_codesniffer:^3.7.1
 composer global remove consolidation/cgr
+composer global update --with-dependencies drupal/coder
 
 if [[ "$RUN_AS_CI" = "true" ]]; then
   sudo ln -fs "/home/docker/.composer/vendor/bin/phpcbf" /usr/local/bin/phpcbf
