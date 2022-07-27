@@ -15,30 +15,14 @@ source "${PROJECT_ROOT}/.docksal/functions.sh"
 
 #-------------------------- BEGIN: Execution --------------------------------
 
-header "Service Installation"
-section=Services
+header "Fixes for global composer"
+section=Composer
 step=1
 
-# Make sure NVM is available to register services.
-step_header "Validating NVM"
-. "${HOME}/.nvm/nvm.sh"
-# Register Node.
-step_header "Validating Node"
-sudo ln -fs "/home/docker/.nvm/versions/node/$(nvm current)/bin/node" /usr/local/bin/node
-echo-green "Node is available."
-# Register NPM.
-step_header "Validating NPM"
-sudo ln -fs "/home/docker/.nvm/versions/node/$(nvm current)/bin/npm" /usr/local/bin/npm
-echo-green "NPM is available."
-
-step_header "Installing Global Codesniffer"
+step_header "Updating Drupal coder and PHP Codesniffer"
 composer global require drupal/coder:8.3.15 squizlabs/php_codesniffer:^3.7.1
-composer global remove consolidation/cgr
 
-if [[ "$RUN_AS_CI" = "true" ]]; then
-  sudo ln -fs "/home/docker/.composer/vendor/bin/phpcbf" /usr/local/bin/phpcbf
-  sudo ln -fs "/home/docker/.composer/vendor/bin/phpcs" /usr/local/bin/phpcs
-fi
-phpcs --config-set installed_paths /home/docker/.composer/vendor/drupal/coder/coder_sniffer
+step_header "Removing a package that is incompoatible with PHP 8.1"
+composer global remove consolidation/cgr
 
 #-------------------------- CLOSE: Execution --------------------------------

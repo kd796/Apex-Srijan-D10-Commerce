@@ -382,7 +382,7 @@ function sata_preprocess_responsive_image_formatter(&$variables) {
  * Implements accordion on forms.
  */
 function sata_form_alter(&$form, &$form_state, $form_id) {
-  $webform_id = isset($form['#webform_id']) ? $form['#webform_id'] : $form_id;
+  $webform_id = isset($form['#webform_id']) ?? $form_id;
 
   switch ($webform_id) {
     case 'warranty_replacement_form':

@@ -114,8 +114,8 @@ class SataCliService extends DrushCommands {
     $query->condition('sid', $highest_exported_sid, '>');
 
     // Sort by created and sid in ASC or DESC order.
-    $query->sort('created', isset($export_options['order']) ? $export_options['order'] : 'ASC');
-    $query->sort('sid', isset($export_options['order']) ? $export_options['order'] : 'ASC');
+    $query->sort('created', isset($export_options['order']) ?? 'ASC');
+    $query->sort('sid', isset($export_options['order']) ?? 'ASC');
 
     // Do not check access to submission since the exporter UI and Drush
     // already have access checking.
