@@ -19,11 +19,11 @@ header "Fixes for global composer"
 section=Composer
 step=1
 
+step_header "Removing a package that is incompoatible with PHP 8.1"
+composer global remove consolidation/cgr
+
 step_header "Updating Drupal coder and PHP Codesniffer"
 composer global require drupal/coder:8.3.13 squizlabs/php_codesniffer:^3.7.1
 composer global update --with-dependencies drupal/coder
-
-step_header "Removing a package that is incompoatible with PHP 8.1"
-composer global remove consolidation/cgr
 
 #-------------------------- CLOSE: Execution --------------------------------
