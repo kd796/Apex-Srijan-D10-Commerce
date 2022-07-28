@@ -13,7 +13,7 @@
         var $hero = $component.find('.component-hero__content');
         var $heroItems = $component.find('.component-hero__content article');
         var $heroSlideButtonContainer = $heroItems.find('.component-hero-slide__button-container');
-        var $heroSlideFooter = $heroItems.find('.component-hero-slide__footer');
+        var $heroSlideButtonLink = $heroItems.find('.component-hero-slide__link');
         var $buttonHeight = $heroSlideButtonContainer.outerHeight();
 
         // Track that this component has been initialized.
@@ -23,7 +23,7 @@
         $heroWrapper.addClass('swiper-container');
         $heroItems.addClass('swiper-slide');
         $hero.addClass('swiper-wrapper');
-        $heroSlideFooter.after('<div class="component-hero-slide__pagination swiper-pagination"></div>');
+        $heroSlideButtonLink.after('<div class="component-hero-slide__pagination swiper-pagination"></div>');
         $('.component-hero-slide__button').css('width', $buttonHeight);
 
         // Initialize swiper.
