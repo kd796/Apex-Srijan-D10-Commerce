@@ -90,7 +90,7 @@
     max-width: 100%;
     padding: 1.625rem .875rem 1rem;
     position: relative;
-    clip-path: polygon(0 0, 100% 0, 100% 40%, 0 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 100%, 0 100%);
 
     &::after {
       content: '';
@@ -98,7 +98,7 @@
       inset: 0;
       background-color: $primary-solar;
       z-index: -1;
-      clip-path: polygon(0 95%, 100% 35%, 100% 50%, 0% 100%);
+      clip-path: polygon(0 95%, 100% 40%, 100% 50%, 0% 100%);
     }
 
     @include media('>md') {
