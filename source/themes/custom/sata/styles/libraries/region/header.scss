@@ -1185,7 +1185,11 @@ $mobile-menu-item-button-height: 7rem;
   }
 
   body.page-node-type-landing-page & {
-    padding-top: $header-height;
+    padding-top: $header-height-mobile;
+
+    @include media('>=lg') {
+      padding-top: $header-height;
+    }
   }
 
   .breadcrumb {

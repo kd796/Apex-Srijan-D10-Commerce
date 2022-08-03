@@ -26,18 +26,14 @@
   position: relative;
   width: 100vw !important;
 
-  @include media('<=sm') {
-    height: 75vh;
-  }
-
-  @include media('>sm', '<=md') {
-    height: 68vh;
+  @include media('<md') {
+    height: rem(715px);
   }
 
   .field--name-field-media-background {
     .media {
       @include trbl();
-      height: 60vh;
+      height: rem(270px);
       overflow: hidden;
       width: 100%;
       z-index: 0;
@@ -74,13 +70,15 @@
   .component-hero-slide__inner {
     @include container($container-xl, 0, center, false);
     @include flex();
-    @include flex-x(justify-content, center);
+    @include flex-x(justify-content, left);
     @include flex-x(align-items, flex-end);
 
     color: $color-white;
     height: 100%;
-    @include flex-x(justify-content, left);
-    @include flex-x(align-items, flex-start);
+
+    @include media('>=md') {
+      @include flex-x(align-items, flex-start);
+    }
   }
 
   .component-hero-slide__content-container {
@@ -88,7 +86,7 @@
     box-sizing: border-box;
     margin: 0;
     max-width: 100%;
-    padding: 1.625rem .875rem 1rem;
+    padding: 1.625rem rem(20px) rem(180px) .875rem;
     position: relative;
     clip-path: polygon(0 0, 100% 0, 100% 45%, 0 100%, 0 100%);
 
@@ -98,12 +96,22 @@
       inset: 0;
       background-color: $primary-solar;
       z-index: -1;
-      clip-path: polygon(0 95%, 100% 40%, 100% 50%, 0% 100%);
+      clip-path: polygon(0 93%, 100% 38%, 100% 50%, 0% 100%);
     }
 
-    @include media('>md') {
+    @include media('<md') {
+      width: 100%;
+      height: 100%;
+      max-height: rem(445px);
+    }
+
+    @include media('>=md') {
       max-width: 530px;
       padding: rem(47px) rem(43px) rem(158px) rem(48px);
+
+      &::after {
+        clip-path: polygon(0 95%, 100% 40%, 100% 50%, 0% 100%);
+      }
     }
 
     >* {
@@ -112,7 +120,7 @@
     }
 
     .component-hero-slide__title {
-      margin-bottom: rem(22px);
+      margin-bottom: rem(17px);
 
       @include media('>md') {
         margin-bottom: rem(15px);
@@ -166,12 +174,8 @@
     @include flex-x(align-items, center);
 
     align-self: stretch;
-    order: 2;
-    margin-top: rem(24px);
-
-    @include media('>=md') {
-      order: 3;
-    }
+    order: 3;
+    margin-top: rem(19px);
 
     .component-hero-slide__button {
       @include trbl();
@@ -212,16 +216,15 @@
     display: block;
     position: relative !important;
     text-align: left !important;
-    margin-top: rem(7px);
+    margin-top: rem(19px);
     margin-bottom: 0;
-    order: 3;
+    order: 2;
 
     @include media('<md') {
       width: 100%;
     }
 
     @include media('>=md') {
-      order: 2;
       margin-top: rem(32px);
     }
 
