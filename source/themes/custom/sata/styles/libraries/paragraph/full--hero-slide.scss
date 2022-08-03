@@ -26,18 +26,18 @@
   position: relative;
   width: 100vw !important;
 
-  @include media('<=sm') {
-    height: 75vh;
+  @include media('<md') {
+    height: rem(795px);
   }
 
-  @include media('>sm', '<=md') {
-    height: 68vh;
+  @include media('<xs') {
+    height: rem(715px);
   }
 
   .field--name-field-media-background {
     .media {
       @include trbl();
-      height: 60vh;
+      height: rem(270px);
       overflow: hidden;
       width: 100%;
       z-index: 0;
@@ -65,6 +65,14 @@
         }
       }
 
+      @include media('>=xs') {
+        height: rem(350px);
+      }
+
+      @include media('>=sm') {
+        height: rem(360px);
+      }
+
       @include media('>md') {
         height: 100%;
       }
@@ -80,47 +88,41 @@
     color: $color-white;
     height: 100%;
 
-    @include media('>md') {
-      @include flex-x(justify-content, left);
-      @include flex-x(align-items, center);
+    @include media('>=md') {
+      @include flex-x(align-items, flex-start);
     }
   }
 
   .component-hero-slide__content-container {
-    background-color: $black;
+    background-color: $primary-emerald;
     box-sizing: border-box;
     margin: 0;
-    max-width: 75%;
-    padding: 1.625rem .875rem 1rem;
+    max-width: 100%;
+    padding: 1.625rem rem(20px) rem(180px) .875rem;
     position: relative;
-
-    @include media('<=xs-plus') {
-      max-width: 100%;
-    }
-
-    @include media('>md') {
-      filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.75));
-      max-width: 530px;
-      padding: 2.75rem 2rem 1.375rem;
-    }
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 100%, 0 100%);
 
     &::after {
-      background-color: $black;
-      position: absolute;
       content: '';
-      width: 20vw;
+      position: absolute;
+      inset: 0;
+      background-color: $primary-solar;
+      z-index: -1;
+      clip-path: polygon(0 93%, 100% 38%, 100% 50%, 0% 100%);
+    }
+
+    @include media('<md') {
+      width: 100%;
       height: 100%;
-      top: 0;
-      right: -4rem;
-      z-index: 1 !important;
-      transform: skew(-14deg);
+      max-height: rem(445px);
+    }
 
-      @include media('<=md') {
-        right: -2.5rem;
-      }
+    @include media('>=md') {
+      max-width: 530px;
+      padding: rem(47px) rem(43px) rem(158px) rem(48px);
 
-      @include media('<=xs-plus') {
-        content: none;
+      &::after {
+        clip-path: polygon(0 95%, 100% 40%, 100% 50%, 0% 100%);
       }
     }
 
@@ -130,22 +132,20 @@
     }
 
     .component-hero-slide__title {
-      margin-bottom: 3rem;
+      margin-bottom: rem(17px);
 
       @include media('>md') {
-        margin-bottom: 0;
+        margin-bottom: rem(15px);
       }
 
       h2 {
         @include type-header(h4, light, included);
         text-transform: uppercase;
-        color: $primary-emerald;
         display: block;
         margin: 0;
 
         @include media('>md') {
           @include type-header(display-headline-4, light, included);
-          color: $primary-emerald;
           line-height: rem(48px);
           margin: 0;
         }
@@ -161,63 +161,60 @@
   }
 
   .component-hero-slide__link {
-    @include btn();
-    border: 1px solid $primary-emerald !important;
-  }
+    @include btn(solar);
+    display: flex;
+    align-self: start;
+    order: 1;
 
-  .component-hero-slide__footer:not(:empty) {
-    margin-top: 1rem;
+    @include media('<md') {
+      height: rem(49px);
+      margin-right: rem(8px);
+      min-width: rem(190px);
+      justify-content: center;
+    }
   }
 
   .component-hero-slide__footer {
     @include flex;
-    @include flex-x(flex-direction, row);
-    @include flex-x(justify-content, space-between);
-    @include flex-x(align-items, center);
+    @include flex-x(flex-direction, column);
+    @include flex-x(flex-wrap, wrap);
   }
 
   .component-hero-slide__button-container {
     @include flex;
     @include flex-x(flex-direction, row);
-    @include flex-x(justify-content, center);
     @include flex-x(align-items, center);
 
     align-self: stretch;
+    order: 3;
+    margin-top: rem(19px);
 
     .component-hero-slide__button {
       @include trbl();
 
-      background-color: $primary-emerald;
+      background-color: $primary-solar;
       background-size: rem(10px) rem(16px);
-      border: 1px solid $primary-emerald;
-      height: 100%;
-      min-width: rem(47px);
+      border: 1px solid $primary-solar;
+      color: $type-dark;
+      height: rem(49px);
+      width: rem(49px);
       margin: 0;
       padding: 0;
       opacity: 1;
       position: relative;
 
       &:hover {
-        background-color: $color-black;
-        border-color: $primary-emerald;
+        background-color: $white;
       }
 
       &.component-hero-slide__button-prev {
-        background-image: url('../../../icons/chevron-left-black.svg');
+        background-image: url('../../../icons/chevron-left.svg');
         margin-right: 1px;
-
-        &:hover {
-          background-image: url('../../../icons/chevron-left-molten-orange.svg');
-        }
       }
 
       &.component-hero-slide__button-next {
-        background-image: url('../../../icons/chevron-right-black.svg');
+        background-image: url('../../../icons/chevron-right.svg');
         margin-left: 1px;
-
-        &:hover {
-          background-image: url('../../../icons/chevron-right-molten-orange.svg');
-        }
       }
 
       &[aria-disabled='true'] {
@@ -228,20 +225,38 @@
   }
 
   .component-hero-slide__pagination {
-    display: none;
-    margin: 2rem 0 0;
+    display: block;
+    position: relative !important;
+    text-align: left !important;
+    margin-top: rem(19px);
+    margin-bottom: 0;
+    order: 2;
 
-    @include media('>md') {
-      display: block;
+    @include media('<md') {
+      width: 100%;
+    }
+
+    @include media('>=md') {
+      margin-top: rem(32px);
     }
 
     .swiper-pagination-bullet {
       background: transparent;
-      border-color: $primary-emerald;
+      border-color: $primary-solar;
+      height: rem(12px);
+      width: rem(12px);
+
+      &:not(:last-of-type) {
+        margin-right: rem(12px);
+      }
+
+      &:first-of-type {
+        margin-left: 0;
+      }
     }
 
     .swiper-pagination-bullet-active {
-      background: $primary-emerald;
+      background: $primary-solar;
     }
   }
 }
