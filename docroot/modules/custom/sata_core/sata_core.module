@@ -45,6 +45,12 @@ function sata_core_theme() {
     ],
   ];
 
+  $theme['block__header_utility_nav'] = [
+    'render element' => 'elements',
+    'template' => 'block--header-utility-nav',
+    'base hook' => 'block'
+  ];
+
   return $theme;
 }
 

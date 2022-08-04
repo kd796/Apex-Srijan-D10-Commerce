@@ -25,25 +25,9 @@
  * @see template_preprocess_block()
  */
 #}
-{% set classes = ['block--header-search'] %}
-
-<section{{ attributes.addClass(classes) }} id="headerutilitynavsearch">
-  {{ title_prefix }}
-  {% if label %}
-    <header{{ title_attributes }}>{{ label }}Search</header>
-  {% endif %}
-  {{ title_suffix }}
-
-  <button class="block__content-toggle" aria-controls="header-search-menu--content" aria-expanded="false"> Text
-    <span class="block__content-toggle-expand" title="{{ 'Open Header Search Bar'|t }}">{{ 'Open Header Search Bar'|t }}</span>
-    <span class="block__content-toggle-collapse" title="{{ 'Close Header Search Bar'|t }}">{{ 'Close Header Search Bar'|t }}</span>
-  </button>
-
-  <div{{ content_attributes.setAttribute('id', 'header-search--content') }}>
-    <form action="/search" method="GET">
-      <input type="text" name="search" placeholder="{{ 'Search sata.com'|t }}" />
-    </form>
-  </div>
-
-  <div class="block__pseudo-toggle"></div>
-</section>
+<div class="header--utility-nav">
+  <section{{ attributes.addClass(classes) }}>
+      {{ content.header_utility_nav }}
+  </section>
+  {% include 'block--header-search.html.twig' %}
+</div>
