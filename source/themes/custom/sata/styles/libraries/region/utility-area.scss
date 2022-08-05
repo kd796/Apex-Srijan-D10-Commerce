@@ -201,6 +201,16 @@ $mobile-menu-item-button-height: 7rem;
   @include media($header-bp-mobile) {
     display: none;
   }
+
+  // Hides utility area when scroll up
+  &.region-utility-area--hide {
+    top: -$header-utility-nav-height;
+  }
+
+  &.region-utility-area--ease-in-out {
+    transition-timing-function: $transition-base-style;
+    transition: 0.25s;
+  }
 }
 
 /**

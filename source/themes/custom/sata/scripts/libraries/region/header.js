@@ -52,14 +52,16 @@
       });
 
       // Open search panel.
-      $(selector_header_search_button).once('header').on({
-        click: function () {
-          var $this = $(this);
+      if ($(selector_header_search_button)) {
+        $(selector_header_search_button).once('header').on({
+          click: function () {
+            var $this = $(this);
 
-          // Either expand or collapse the search panel.
-          behavior_object.togglePanel($this);
-        }
-      });
+            // Either expand or collapse the search panel.
+            behavior_object.togglePanel($this);
+          }
+        });
+      }
 
       if ($(selector_header_country_switch_button).length > 0) {
         // Hide Country Toggle Text.
