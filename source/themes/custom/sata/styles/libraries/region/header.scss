@@ -89,6 +89,7 @@ $mobile-menu-item-button-height: 7rem;
     color: $primary-emerald;
     font-weight: $fw-extra-bold;
     font-family: $font-brand;
+    text-transform: uppercase;
     line-height: rem(24px);
 
     // Full width Bleed Element
@@ -111,6 +112,10 @@ $mobile-menu-item-button-height: 7rem;
 
     .menu--header-utility-nav {
       margin: 0 0 0 rem(20px);
+
+      .menu-item--depth-0 {
+        padding-top: 0;
+      }
 
       a {
         color: $primary-emerald;
@@ -555,29 +560,34 @@ $mobile-menu-item-button-height: 7rem;
     }
 
     .block__content-toggle {
-      @include icon('search');
+      @include icon('search', after);
 
       align-items: center;
       background: 0;
       border: 0;
       display: flex;
-      font-weight: $fw-bold;
+      font-weight: $fw-extra-bold;
       height: $header-utility-nav-height;
-      margin-left: 10px;
+      margin-left: rem(20px);
       position: relative;
 
       &::after {
-        transform: rotate(90deg);
-        margin-left: .5rem;
+        margin-left: rem(5px);
+        font-size: rem(13px);
+        font-weight: $fw-extra-bold;
       }
+      //&::after {
+      //  transform: rotate(90deg);
+      //  margin-left: .5rem;
+      //}
 
-      &[aria-expanded='true'] {
-        color: $white;
-
-        &::after {
-          transform: rotate(270deg);
-        }
-      }
+      //&[aria-expanded='true'] {
+      //  color: $white;
+      //
+      //  &::after {
+      //    transform: rotate(270deg);
+      //  }
+      //}
 
       &[aria-expanded='true'] + .block-header-search__content + .block__pseudo-toggle {
         height: $header-height;
@@ -609,13 +619,18 @@ $mobile-menu-item-button-height: 7rem;
         }
       }
 
-      span {
+      span:not(.block__content-label) {
         bottom: 0;
         left: 0;
         position: absolute;
         right: 0;
         text-indent: -9999999em;
         top: 0;
+      }
+
+      .block__content-label {
+        font-weight: $fw-extra-bold;
+        text-transform: uppercase;
       }
 
       &[aria-expanded='false'] .block__content-toggle-collapse,
@@ -633,8 +648,16 @@ $mobile-menu-item-button-height: 7rem;
         display: none;
       }
 
-      &:hover {
-        color: $type-dark;
+      &:hover,
+      &:focus {
+        &::before {
+          content: '';
+          position: absolute;
+          top: 26px;
+          background-color: $primary-emerald;
+          height: rem(1.5px);
+          width: 87%;
+        }
       }
     }
 
