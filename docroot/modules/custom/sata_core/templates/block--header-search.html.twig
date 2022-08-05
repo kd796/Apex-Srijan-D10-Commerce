@@ -25,9 +25,7 @@
  * @see template_preprocess_block()
  */
 #}
-{% set classes = ['block--header-search'] %}
-
-<section{{ attributes.addClass(classes) }} id="headerutilitynavsearch">
+<section{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {% if label %}
     <header{{ title_attributes }}>{{ label }}Search</header>

@@ -1,0 +1,214 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Region: Utility Area
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * SASS Variables
+ */
+$header-bp-desktop: '>=xl';
+$header-bp-mobile: '<xl';
+$header-z-index: 501;
+$mobile-menu-item-button-height: 7rem;
+
+/**
+ * CSS Variables
+ */
+:root {
+  // Note: unit is required with 0 here; having no unit messes up calc() functions below.
+  --admin-toolbar-height: 0px; // sass-lint:disable-line zero-unit
+}
+
+/**
+ * Region
+ */
+.region-utility-area {
+  @include container-full-width();
+
+  background-color: $white;
+  left: 0;
+  max-width: none;
+  position: fixed;
+  right: 0;
+  top: 0; // Fallback for if var() isn't supported.
+  top: var(--admin-toolbar-height);
+  width: 100%;
+  z-index: $header-z-index;
+
+  .region-utility-area__content {
+    @include container();
+    @include flex;
+    @include flex-x(align-items, center);
+    @include flex-x(flex-wrap, nowrap);
+    @include flex-x(justify-content, flex-end);
+
+    position: relative;
+    height: $header-utility-nav-height;
+    color: $primary-emerald;
+    font-weight: $fw-extra-bold;
+    font-family: $font-brand;
+    text-transform: uppercase;
+    line-height: rem(24px);
+    padding: 0 rem(15px) 0 0;
+  }
+
+  .header--utility-nav {
+    .menu--header-utility-nav {
+      margin: 0 0 0 rem(20px);
+
+      .menu-item--depth-0 {
+        padding-top: 0;
+      }
+
+      a {
+        color: $primary-emerald;
+        font-weight: $fw-extra-bold;
+        font-family: $font-brand;
+        line-height: rem(24px);
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    @include media('<xl') {
+      display: none;
+    }
+  }
+
+  .block--header-search {
+    display: flex;
+    padding-left: 0;
+
+    &.contextual-region {
+      position: unset;
+    }
+
+    .block__content-toggle {
+      @include icon('search', after);
+
+      align-items: center;
+      background: 0;
+      border: 0;
+      display: flex;
+      height: $header-utility-nav-height;
+      margin-left: rem(20px);
+      position: relative;
+
+      &::after {
+        margin-left: rem(5px);
+        font-size: rem(13px);
+        font-weight: $fw-extra-bold;
+      }
+
+      span:not(.block__content-label) {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        text-indent: -9999999em;
+        top: 0;
+      }
+
+      .block__content-label {
+        font-weight: $fw-extra-bold;
+        text-transform: uppercase;
+      }
+
+      &[aria-expanded='false'] .block__content-toggle-collapse,
+      &[aria-expanded='true'] .block__content-toggle-expand {
+        display: none;
+      }
+
+      &[aria-expanded='true'] .block__content-toggle-collapse,
+      &[aria-expanded='false'] .block__content-toggle-expand {
+        display: inline-block;
+      }
+
+      &[aria-expanded='false'] + .block__content {
+        animation-direction: reverse;
+        display: none;
+      }
+
+      &:hover,
+      &:focus {
+        &::before {
+          content: '';
+          position: absolute;
+          top: 26px;
+          background-color: $primary-emerald;
+          height: rem(1.5px);
+          width: 87%;
+        }
+      }
+    }
+
+    .block__content {
+      animation-fill-mode: both;
+      animation-direction: normal;
+      animation-name: headerPanelFade;
+      background-color: $primary-dark;
+      display: block;
+      height: 4.25rem;
+      right: 0;
+      opacity: 1;
+      position: absolute;
+      top: $header-height;
+      z-index: 1;
+      width: 100vw;
+
+      form {
+        height: 100%;
+        margin: 0;
+        padding: 0 1rem;
+
+        input {
+          background-color: $white;
+          font-family: $font-brand;
+          font-weight: $fw-bold;
+          text-transform: uppercase;
+          padding: .25rem .75rem;
+          white-space: nowrap;
+
+          height: 70%;
+          margin: 10px auto;
+          position: absolute;
+          right: 10%;
+          width: 55%;
+
+          &:first-of-type {
+            padding-top: 1rem;
+          }
+
+          &:last-of-type {
+            padding-bottom: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  @include media($header-bp-mobile) {
+    display: none;
+  }
+}
+
+/**
+ * Region styles to hide non-header content with menu open.
+ * Needed for accessibility.
+ * Disables tabbing to page content.
+ * @todo this needs to be switched to only when on mobile
+ */
+.region:not(.region-utility-area) {
+  transition: visibility 0ms linear;
+}

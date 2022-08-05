@@ -46,11 +46,15 @@ $mobile-menu-item-button-height: 7rem;
   max-width: none;
   position: fixed;
   right: 0;
-  top: 0; // Fallback for if var() isn't supported.
-  top: var(--admin-toolbar-height);
+  top: $header-utility-nav-height; // Fallback for if var() isn't supported.
+  top: calc(var(--admin-toolbar-height) + 40px);
   width: 100%;
   z-index: $header-z-index;
   box-shadow: 0 8px 28px -6px rgba(0, 0, 0, 0.15);
+
+  @include media('<xl') {
+    top: var(--admin-toolbar-height);
+  }
 
   &::after {
     background-color: $primary-emerald;
@@ -70,70 +74,11 @@ $mobile-menu-item-button-height: 7rem;
     @include container();
     @include flex;
     @include flex-x(align-items, center);
-    @include flex-x(flex-wrap, wrap);
+    @include flex-x(flex-wrap, nowrap);
     @include flex-x(justify-content, space-between);
 
     height: $header-height;
     padding: 0;
-  }
-
-  .header--utility-nav {
-    @include flex;
-    @include flex-x(align-items, center);
-    @include flex-x(justify-content, flex-end);
-
-    position: relative;
-    background-color: $white;
-    height: $header-utility-nav-height;
-    width: 100%;
-    color: $primary-emerald;
-    font-weight: $fw-extra-bold;
-    font-family: $font-brand;
-    text-transform: uppercase;
-    line-height: rem(24px);
-
-    // Full width Bleed Element
-    &::before,
-    &::after {
-      background-color: $white;
-      position: absolute;
-      content: '';
-      width: 100vw;
-      height: 100%;
-      top: 0;
-      left: -100vw;
-      z-index: -1;
-    }
-
-    &::after {
-      left: unset;
-      right: -100vw;
-    }
-
-    .menu--header-utility-nav {
-      margin: 0 0 0 rem(20px);
-
-      .menu-item--depth-0 {
-        padding-top: 0;
-      }
-
-      a {
-        color: $primary-emerald;
-        font-weight: $fw-extra-bold;
-        font-family: $font-brand;
-        line-height: rem(24px);
-        text-decoration: none;
-
-        &:hover,
-        &:focus {
-          text-decoration: underline;
-        }
-      }
-    }
-
-    @include media('<xl') {
-      display: none;
-    }
   }
 
   .block--header-branding {
@@ -141,7 +86,7 @@ $mobile-menu-item-button-height: 7rem;
     @include flex-x(align-items, center);
 
     background-color: $primary-emerald;
-    height: $header-branding-height;
+    height: 100%;
     padding-right: rem(34px);
     position: relative;
 
@@ -553,7 +498,7 @@ $mobile-menu-item-button-height: 7rem;
 
   .block--header-search {
     display: flex;
-    padding-left: 0;
+    padding-left: 1.5rem;
 
     &.contextual-region {
       position: unset;
@@ -567,7 +512,7 @@ $mobile-menu-item-button-height: 7rem;
       border: 0;
       display: flex;
       font-weight: $fw-extra-bold;
-      height: $header-utility-nav-height;
+      height: $header-height;
       margin-left: rem(20px);
       position: relative;
 
@@ -576,18 +521,19 @@ $mobile-menu-item-button-height: 7rem;
         font-size: rem(13px);
         font-weight: $fw-extra-bold;
       }
-      //&::after {
-      //  transform: rotate(90deg);
-      //  margin-left: .5rem;
-      //}
 
-      //&[aria-expanded='true'] {
-      //  color: $white;
-      //
-      //  &::after {
-      //    transform: rotate(270deg);
-      //  }
-      //}
+      &::after {
+        transform: rotate(90deg);
+        margin-left: .5rem;
+      }
+
+      &[aria-expanded='true'] {
+        color: $white;
+
+        &::after {
+          transform: rotate(270deg);
+        }
+      }
 
       &[aria-expanded='true'] + .block-header-search__content + .block__pseudo-toggle {
         height: $header-height;
@@ -650,14 +596,7 @@ $mobile-menu-item-button-height: 7rem;
 
       &:hover,
       &:focus {
-        &::before {
-          content: '';
-          position: absolute;
-          top: 26px;
-          background-color: $primary-emerald;
-          height: rem(1.5px);
-          width: 87%;
-        }
+        box-shadow: 0 -12px 0 0 $primary-dark inset;
       }
     }
 
@@ -745,7 +684,7 @@ $mobile-menu-item-button-height: 7rem;
         @include flex-x(align-items, center);
         @include flex-x(justify-content, center);
 
-        height: $header-branding-height;
+        height: $header-height;
         margin: 0;
         padding-left: rem(15px);
         padding-right: rem(15px);
@@ -988,14 +927,12 @@ $mobile-menu-item-button-height: 7rem;
     }
 
     .region-header__content {
-      @include flex-x(flex-wrap, nowrap);
       width: 100%;
       height: $header-height-mobile;
     }
 
     .block--header-branding {
       @include flex-x(order, 0);
-      height: 100%;
     }
 
     .block--header-menu-main {
@@ -1260,14 +1197,14 @@ $mobile-menu-item-button-height: 7rem;
   padding-top: $header-height-mobile;
 
   @include media('>=xl') {
-    padding-top: $header-height;
+    padding-top: $header-height + $header-utility-nav-height;
   }
 
   body.page-node-type-landing-page & {
     padding-top: $header-height-mobile;
 
     @include media('>=xl') {
-      padding-top: $header-height;
+      padding-top: $header-height + $header-utility-nav-height;
     }
   }
 
