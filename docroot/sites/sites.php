@@ -66,6 +66,8 @@ $sites['apextoolgroup.prod.acquia-sites.com'] = 'apex-tools';
 // gearwrench.com
 $sites['gearwrench.docksal'] = 'gearwrench';
 $sites['www.gearwrench.docksal'] = 'gearwrench';
+$sites['gearwrench.docksal.site'] = 'gearwrench';
+$sites['www.gearwrench.docksal.site'] = 'gearwrench';
 $sites['gearwrench.com'] = 'gearwrench';
 $sites['dev-www.gearwrench.com'] = 'gearwrench';
 $sites['stg-www.gearwrench.com'] = 'gearwrench';
@@ -75,6 +77,8 @@ $sites['www.gearwrench.com'] = 'gearwrench';
 // crescenttool.com
 $sites['crescenttool.docksal'] = 'crescenttool';
 $sites['www.crescenttool.docksal'] = 'crescenttool';
+$sites['crescenttool.docksal.site'] = 'crescenttool';
+$sites['www.crescenttool.docksal.site'] = 'crescenttool';
 $sites['crescenttool.com'] = 'crescenttool';
 $sites['dev-www.crescenttool.com'] = 'crescenttool';
 $sites['stg-www.crescenttool.com'] = 'crescenttool';
@@ -89,6 +93,8 @@ $sites['www.crescenttool.com'] = 'crescenttool';
 // gearwrench.com.au
 $sites['gearwrench.com.au.docksal'] = 'gearwrench_au';
 $sites['www.gearwrench.com.au.docksal'] = 'gearwrench_au';
+$sites['gearwrench.com.au.docksal.site'] = 'gearwrench_au';
+$sites['www.gearwrench.com.au.docksal.site'] = 'gearwrench_au';
 $sites['gearwrench.com.au'] = 'gearwrench_au';
 $sites['dev-www.gearwrench.com.au'] = 'gearwrench_au';
 $sites['stg-www.gearwrench.com.au'] = 'gearwrench_au';
@@ -98,6 +104,8 @@ $sites['www.gearwrench.com.au'] = 'gearwrench_au';
 // crescenttool.com.au
 $sites['crescenttool.com.au.docksal'] = 'crescenttool_au';
 $sites['www.crescenttool.com.au.docksal'] = 'crescenttool_au';
+$sites['crescenttool.com.au.docksal.site'] = 'crescenttool_au';
+$sites['www.crescenttool.com.au.docksal.site'] = 'crescenttool_au';
 $sites['crescenttool.com.au'] = 'crescenttool_au';
 $sites['dev-www.crescenttool.com.au'] = 'crescenttool_au';
 $sites['stg-www.crescenttool.com.au'] = 'crescenttool_au';
@@ -110,33 +118,45 @@ $sites['www.crescenttool.com.au'] = 'crescenttool_au';
  */
 
 // SATA Brazil
+$sites['sataferramentas.com.br.docksal'] = 'sata_brazil';
+$sites['www.sataferramentas.com.br.docksal'] = 'sata_brazil';
+$sites['sataferramentas.com.br.docksal.site'] = 'sata_brazil';
+$sites['www.sataferramentas.com.br.docksal.site'] = 'sata_brazil';
 $sites['sataferramentas.com.br'] = 'sata_brazil';
 $sites['www.sataferramentas.com.br'] = 'sata_brazil';
-$sites['www.sataferramentas.com.br.docksal'] = 'sata_brazil';
 $sites['prod-www.sataferramentas.com.br'] = 'sata_brazil';
 $sites['stg-www.sataferramentas.com.br'] = 'sata_brazil';
 $sites['dev-www.sataferramentas.com.br'] = 'sata_brazil';
 
 // SATA Colombia
+$sites['sata.com.co.docksal'] = 'sata_colombia';
+$sites['www.sata.com.co.docksal'] = 'sata_colombia';
+$sites['sata.com.co.docksal.site'] = 'sata_colombia';
+$sites['www.sata.com.co.docksal.site'] = 'sata_colombia';
 $sites['sata.com.co'] = 'sata_colombia';
 $sites['www.sata.com.co'] = 'sata_colombia';
-$sites['www.sata.com.co.docksal'] = 'sata_colombia';
 $sites['prod-www.sata.com.co'] = 'sata_colombia';
 $sites['stg-www.sata.com.co'] = 'sata_colombia';
 $sites['dev-www.sata.com.co'] = 'sata_colombia';
 
 // SATA EMEA
+$sites['satatools.eu.docksal'] = 'sata_emea';
+$sites['www.satatools.eu.docksal'] = 'sata_emea';
+$sites['satatools.eu.docksal.site'] = 'sata_emea';
+$sites['www.satatools.eu.docksal.site'] = 'sata_emea';
 $sites['satatools.eu'] = 'sata_emea';
 $sites['www.satatools.eu'] = 'sata_emea';
-$sites['www.satatools.eu.docksal'] = 'sata_emea';
 $sites['prod-www.satatools.eu'] = 'sata_emea';
 $sites['stg-www.satatools.eu'] = 'sata_emea';
 $sites['dev-www.satatools.eu'] = 'sata_emea';
 
 // SATA US (North America)
+$sites['satatools.us.docksal'] = 'sata_us';
+$sites['www.satatools.us.docksal'] = 'sata_us';
+$sites['satatools.us.docksal.site'] = 'sata_us';
+$sites['www.satatools.us.docksal.site'] = 'sata_us';
 $sites['satatools.us'] = 'sata_us';
 $sites['www.satatools.us'] = 'sata_us';
-$sites['www.satatools.us.docksal'] = 'sata_us';
 $sites['prod-www.satatools.us'] = 'sata_us';
 $sites['stg-www.satatools.us'] = 'sata_us';
 $sites['dev-www.satatools.us'] = 'sata_us';
