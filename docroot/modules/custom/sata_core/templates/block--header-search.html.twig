@@ -40,7 +40,8 @@
 
   <div{{ content_attributes.setAttribute('id', 'header-search--content') }}>
     <form action="/search" method="GET">
-      <input type="text" name="search" placeholder="{{ 'Search sata.com'|t }}" />
+      <input type="text" name="search" placeholder="{{ 'Search SATA'|t }}" />
+      {% include directory ~ '/icons/search.svg' %}
     </form>
   </div>
 

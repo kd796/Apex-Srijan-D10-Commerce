@@ -4,11 +4,12 @@
   Drupal.behaviors.regionUtilityArea = {
     attach: function (context, settings) {
       var behavior_object = this;
-      var selector_header_search_button = '.region-utility-area .block--header-search .block__content-toggle';
+      var selector_search_button = '.region-utility-area .block--header-search .block__content-toggle';
+      var selector_search_content = '.region-utility-area .block--header-search .block-header-search__content';
       var lastScrollTop = 0;
 
       // Open search panel.
-      $(selector_header_search_button).once('header').on({
+      $(selector_search_button).once('utilityarea').on({
         click: function () {
           var $this = $(this);
           // Either expand or collapse the search panel.
@@ -16,17 +17,16 @@
         }
       });
 
-      // If search expanded and click outside, close
-      $(document).once('header').on('click', function (e) {
-        // Update code for search.
-        // if ($(selector_header_menu_items_with_children).hasClass('menu-item--expanded')) {
-        //   if (!(($(e.target).closest(selector_header_menu_items_with_children).length > 0))) {
-        //     behavior_object.toggleMenuPanel($(selector_header_menu_items_with_children).find('.menu-item__button').first());
-        //   }
-        // }
+      // If search expanded and click outside, close.
+      $(document).once('utilityarea').on('click', function (e) {
+        if ($(selector_search_button).attr('aria-expanded') === 'true') {
+          if (!(($(e.target).closest('.block--header-search').length > 0))) {
+            behavior_object.togglePanel($(selector_search_content));
+          }
+        }
       });
 
-      // On scroll down, header and expanded navigation disappears, scroll up re-appears, logo area resizes
+      // On scroll down, utility area disappears, scroll up re-appears
       window.addEventListener('scroll', function () {
         var $utilityArea = $('.region-utility-area');
         var scrollTopVal = window.pageYOffset || document.documentElement.scrollTop;

@@ -6,7 +6,7 @@
       var behavior_object = this;
       var selector_header_menu_button = '.block--header-menu-main .block__menu-toggle';
       var selector_header_menu_items_with_children = '.block--header-menu-main .menu-item--has-children';
-      var selector_header_search_button = '.block--header-search .block__content-toggle';
+      var selector_header_search_button = '.region-header .block--header-search .block__content-toggle';
       var selector_header_country_switch_button = '.block--country-switch .block__content-toggle';
       var lastScrollTop = 0;
 

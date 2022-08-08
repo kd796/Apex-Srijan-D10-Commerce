@@ -89,6 +89,7 @@ $mobile-menu-item-button-height: 7rem;
   .block--header-search {
     display: flex;
     padding-left: 0;
+    position: relative;
 
     &.contextual-region {
       position: unset;
@@ -157,42 +158,67 @@ $mobile-menu-item-button-height: 7rem;
       animation-fill-mode: both;
       animation-direction: normal;
       animation-name: headerPanelFade;
-      background-color: $primary-dark;
       display: block;
-      height: 4.25rem;
-      right: 0;
       opacity: 1;
-      position: absolute;
-      top: $header-height;
       z-index: 1;
-      width: 100vw;
 
       form {
         height: 100%;
         margin: 0;
-        padding: 0 1rem;
+        padding: 0;
 
         input {
-          background-color: $white;
-          font-family: $font-brand;
-          font-weight: $fw-bold;
-          text-transform: uppercase;
-          padding: .25rem .75rem;
-          white-space: nowrap;
+          @include icon('search', after);
 
-          height: 70%;
-          margin: 10px auto;
+          background-color: $white;
+          font-size: rem(14px);
+          font-family: $font-default;
+          font-weight: $fw-regular;
+          padding: .25rem rem(23px) .25rem rem(8px);
+          white-space: nowrap;
+          color: $black;
+          border: 1px solid $primary-emerald;
+          height: rem(24px);
+          width: rem(213px);
+          max-width: rem(213px);
+          margin: rem(8px) 0;
           position: absolute;
-          right: 10%;
-          width: 55%;
+          right: 0;
+
+          &::placeholder {
+            color: $black;
+            font-size: rem(14px);
+            font-family: $font-default;
+            font-weight: $fw-regular;
+            opacity: 1;
+          }
 
           &:first-of-type {
-            padding-top: 1rem;
+            padding-top: rem(4px);
           }
 
           &:last-of-type {
-            padding-bottom: 1rem;
+            padding-bottom: rem(4px);
           }
+
+          &::after {
+            color: $black;
+            position: absolute;
+            top: 0;
+            right: 0;
+          }
+        }
+
+        svg {
+          font-family: $font-default;
+          font-weight: $fw-regular;
+          height: rem(13px);
+          width: rem(13px);
+          color: $black;
+          position: absolute;
+          top: 50%;
+          right: 8px;
+          transform: translateY(-50%);
         }
       }
     }
