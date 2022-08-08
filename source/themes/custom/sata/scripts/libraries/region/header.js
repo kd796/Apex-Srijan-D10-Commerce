@@ -6,7 +6,7 @@
       var behavior_object = this;
       var selector_header_menu_button = '.block--header-menu-main .block__menu-toggle';
       var selector_header_menu_items_with_children = '.block--header-menu-main .menu-item--has-children';
-      var selector_header_search_button = '.block--header-search .block__content-toggle';
+      var selector_header_search_button = '.region-header .block--header-search .block__content-toggle';
       var selector_header_country_switch_button = '.block--country-switch .block__content-toggle';
       var lastScrollTop = 0;
 
@@ -17,7 +17,7 @@
       var selector_mobile_search_reset = '.mobile-search .search-reset';
 
       // Build the search form.
-      var search_text = Drupal.t('Search');
+      var search_text = Drupal.t('Enter Search');
       var submit_text = Drupal.t('Submit');
       var mobile_search_form = '' +
         '<div class="mobile-search">' +
@@ -52,14 +52,16 @@
       });
 
       // Open search panel.
-      $(selector_header_search_button).once('header').on({
-        click: function () {
-          var $this = $(this);
+      if ($(selector_header_search_button)) {
+        $(selector_header_search_button).once('header').on({
+          click: function () {
+            var $this = $(this);
 
-          // Either expand or collapse the search panel.
-          behavior_object.togglePanel($this);
-        }
-      });
+            // Either expand or collapse the search panel.
+            behavior_object.togglePanel($this);
+          }
+        });
+      }
 
       if ($(selector_header_country_switch_button).length > 0) {
         // Hide Country Toggle Text.

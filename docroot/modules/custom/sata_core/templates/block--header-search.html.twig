@@ -25,22 +25,23 @@
  * @see template_preprocess_block()
  */
 #}
-
 <section{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {% if label %}
-    <header{{ title_attributes }}>{{ label }}</header>
+    <header{{ title_attributes }}>{{ label }}Search</header>
   {% endif %}
   {{ title_suffix }}
 
   <button class="block__content-toggle" aria-controls="header-search-menu--content" aria-expanded="false">
+    <span class="block__content-label">{{ 'Search'|t }}</span>
     <span class="block__content-toggle-expand" title="{{ 'Open Header Search Bar'|t }}">{{ 'Open Header Search Bar'|t }}</span>
     <span class="block__content-toggle-collapse" title="{{ 'Close Header Search Bar'|t }}">{{ 'Close Header Search Bar'|t }}</span>
   </button>
 
   <div{{ content_attributes.setAttribute('id', 'header-search--content') }}>
     <form action="/search" method="GET">
-      <input type="text" name="search" placeholder="{{ 'Search sata.com'|t }}" />
+      <input type="text" name="search" placeholder="{{ 'Type something'|t }}" />
+      {% include directory ~ '/icons/search.svg' %}
     </form>
   </div>
 
