@@ -61,10 +61,20 @@ $mobile-menu-item-button-height: 7rem;
 
   .header--utility-nav {
     .menu--header-utility-nav {
-      margin: 0 0 0 rem(20px);
+      @include flex;
+      @include flex-x(justify-content, flex-end);
+      margin: 0;
 
       .menu-item--depth-0 {
+        @include flex;
+        @include flex-x(align-items, center);
+        @include flex-x(justify-content, center);
         padding-top: 0;
+        margin-left: rem(30px);
+
+        &:first-of-type {
+          margin-left: rem(23px);
+        }
       }
 
       a {
