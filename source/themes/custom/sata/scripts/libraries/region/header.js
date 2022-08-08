@@ -17,7 +17,7 @@
       var selector_mobile_search_reset = '.mobile-search .search-reset';
 
       // Build the search form.
-      var search_text = Drupal.t('Search');
+      var search_text = Drupal.t('Enter Search');
       var submit_text = Drupal.t('Submit');
       var mobile_search_form = '' +
         '<div class="mobile-search">' +
