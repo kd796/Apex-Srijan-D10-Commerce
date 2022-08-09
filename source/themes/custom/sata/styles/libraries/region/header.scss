@@ -46,11 +46,15 @@ $mobile-menu-item-button-height: 7rem;
   max-width: none;
   position: fixed;
   right: 0;
-  top: 0; // Fallback for if var() isn't supported.
-  top: var(--admin-toolbar-height);
+  top: $header-utility-nav-height; // Fallback for if var() isn't supported.
+  top: calc(var(--admin-toolbar-height) + 40px);
   width: 100%;
   z-index: $header-z-index;
   box-shadow: 0 8px 28px -6px rgba(0, 0, 0, 0.15);
+
+  @include media('<xl') {
+    top: var(--admin-toolbar-height);
+  }
 
   &::after {
     background-color: $primary-emerald;
@@ -501,16 +505,22 @@ $mobile-menu-item-button-height: 7rem;
     }
 
     .block__content-toggle {
-      @include icon('search');
+      @include icon('search', after);
 
       align-items: center;
       background: 0;
       border: 0;
       display: flex;
-      font-weight: $fw-bold;
+      font-weight: $fw-extra-bold;
       height: $header-height;
-      margin-left: 10px;
+      margin-left: rem(20px);
       position: relative;
+
+      &::after {
+        margin-left: rem(5px);
+        font-size: rem(13px);
+        font-weight: $fw-extra-bold;
+      }
 
       &::after {
         transform: rotate(90deg);
@@ -555,13 +565,18 @@ $mobile-menu-item-button-height: 7rem;
         }
       }
 
-      span {
+      span:not(.block__content-label) {
         bottom: 0;
         left: 0;
         position: absolute;
         right: 0;
         text-indent: -9999999em;
         top: 0;
+      }
+
+      .block__content-label {
+        font-weight: $fw-extra-bold;
+        text-transform: uppercase;
       }
 
       &[aria-expanded='false'] .block__content-toggle-collapse,
@@ -579,7 +594,8 @@ $mobile-menu-item-button-height: 7rem;
         display: none;
       }
 
-      &:hover {
+      &:hover,
+      &:focus {
         box-shadow: 0 -12px 0 0 $primary-dark inset;
       }
     }
@@ -954,7 +970,8 @@ $mobile-menu-item-button-height: 7rem;
 
       .menu--depth-0 {
         background-color: $white;
-        padding: rem(15px) 0;
+        padding: rem(15px) 0 0;
+        margin-bottom: rem(15px);
       }
 
       .menu__content-container {
@@ -976,9 +993,10 @@ $mobile-menu-item-button-height: 7rem;
             @include flex-x(align-items, center);
             @include icon('arrow', after, false);
             color: $type-dark;
+            width: 1.5rem;
 
             &:after {
-              font-size: 1rem;
+              font-size: rem(13px);
             }
 
             .menu-item__button-collapse,
@@ -1094,24 +1112,34 @@ $mobile-menu-item-button-height: 7rem;
 
         .mobile-search {
           font-size: 16px;
-          margin-bottom: 10px;
-          width: 96%;
+          width: 100%;
+          padding: rem(0 15px);
 
           .search-input-set {
             align-items: center;
             display: flex;
             height: 48px;
-            margin: 10px 4%;
-            width: 96%;
+            margin-top: rem(15px);
+            width: 100%;
           }
 
           input {
             background-color: $white;
             border: 0;
             display: flex;
-            font-weight: $fw-bold;
+            font-family: $font-default;
+            font-weight: $fw-regular;
+            color: $black;
             height: 48px;
-            padding-left: 15px;
+            padding-left: 10px;
+
+            &::placeholder {
+              opacity: 1;
+              font-family: $font-default;
+              font-weight: $fw-regular;
+              font-size: rem(16px);
+              color: $black;
+            }
           }
 
           .search-icon,
@@ -1121,11 +1149,12 @@ $mobile-menu-item-button-height: 7rem;
             height: 48px;
             width: 48px;
 
-            &:before {
+            &::before {
               display: block;
-              font-size: 20px;
+              color: $black;
+              font-size: rem(14px);
               position: relative;
-              right: -5px;
+              right: -20px;
               top: 12px;
             }
           }
@@ -1140,10 +1169,25 @@ $mobile-menu-item-button-height: 7rem;
           }
 
           button.btn {
-            background-color: $primary-dark;
-            color: $white;
-            margin: 10px 4%;
-            width: 96%;
+            @include btn(solar);
+            margin-top: rem(15px);
+            width: 100%;
+          }
+        }
+
+        &.menu-item--depth-0__background {
+          border-bottom: unset;
+          background-color: $primary-emerald;
+          margin: 0;
+        }
+
+        &.menu-item--depth-0__button {
+          margin-top: rem(10px);
+
+          .menu-item__link {
+            @include btn(light);
+            width: 100%;
+            margin: rem(15px 15px 0);
           }
         }
       }
@@ -1164,7 +1208,7 @@ $mobile-menu-item-button-height: 7rem;
 
   // Hides header when scroll up
   &.region-header--hide {
-    top: -$header-height;
+    top: -$header-height - $header-utility-nav-height;
   }
 
   &.region-header--ease-in-out {
@@ -1181,14 +1225,14 @@ $mobile-menu-item-button-height: 7rem;
   padding-top: $header-height-mobile;
 
   @include media('>=xl') {
-    padding-top: $header-height;
+    padding-top: $header-height + $header-utility-nav-height;
   }
 
   body.page-node-type-landing-page & {
     padding-top: $header-height-mobile;
 
     @include media('>=xl') {
-      padding-top: $header-height;
+      padding-top: $header-height + $header-utility-nav-height;
     }
   }
 

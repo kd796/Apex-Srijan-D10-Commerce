@@ -1,0 +1,256 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Region: Utility Area
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * SASS Variables
+ */
+$header-bp-desktop: '>=xl';
+$header-bp-mobile: '<xl';
+$header-z-index: 501;
+$mobile-menu-item-button-height: 7rem;
+
+/**
+ * CSS Variables
+ */
+:root {
+  // Note: unit is required with 0 here; having no unit messes up calc() functions below.
+  --admin-toolbar-height: 0px; // sass-lint:disable-line zero-unit
+}
+
+/**
+ * Region
+ */
+.region-utility-area {
+  @include container-full-width();
+
+  background-color: $white;
+  left: 0;
+  max-width: none;
+  position: fixed;
+  right: 0;
+  top: 0; // Fallback for if var() isn't supported.
+  top: var(--admin-toolbar-height);
+  width: 100%;
+  z-index: $header-z-index;
+
+  .region-utility-area__content {
+    @include container();
+    @include flex;
+    @include flex-x(align-items, center);
+    @include flex-x(flex-wrap, nowrap);
+    @include flex-x(justify-content, flex-end);
+
+    position: relative;
+    height: $header-utility-nav-height;
+    color: $primary-emerald;
+    font-weight: $fw-extra-bold;
+    font-family: $font-brand;
+    text-transform: uppercase;
+    line-height: rem(24px);
+    padding: 0 rem(15px) 0 0;
+  }
+
+  .header--utility-nav {
+    .menu--header-utility-nav {
+      @include flex;
+      @include flex-x(justify-content, flex-end);
+      margin: 0;
+
+      .menu-item--depth-0 {
+        @include flex;
+        @include flex-x(align-items, center);
+        @include flex-x(justify-content, center);
+        padding-top: 0;
+        margin-left: rem(30px);
+
+        &:first-of-type {
+          margin-left: rem(23px);
+        }
+      }
+
+      a {
+        color: $primary-emerald;
+        font-weight: $fw-extra-bold;
+        font-family: $font-brand;
+        line-height: rem(24px);
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    @include media('<xl') {
+      display: none;
+    }
+  }
+
+  .block--header-search {
+    display: flex;
+    padding-left: 0;
+    position: relative;
+
+    .block__content-toggle {
+      @include icon('search', after);
+
+      align-items: center;
+      background: 0;
+      border: 0;
+      display: flex;
+      height: $header-utility-nav-height;
+      margin-left: rem(20px);
+      position: relative;
+
+      &::after {
+        margin-left: rem(5px);
+        font-size: rem(13px);
+        font-weight: $fw-extra-bold;
+      }
+
+      span:not(.block__content-label) {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        text-indent: -9999999em;
+        top: 0;
+      }
+
+      .block__content-label {
+        font-weight: $fw-extra-bold;
+        text-transform: uppercase;
+      }
+
+      &[aria-expanded='false'] .block__content-toggle-collapse,
+      &[aria-expanded='true'] .block__content-toggle-expand {
+        display: none;
+      }
+
+      &[aria-expanded='true'] .block__content-toggle-collapse,
+      &[aria-expanded='false'] .block__content-toggle-expand {
+        display: inline-block;
+      }
+
+      &[aria-expanded='false'] + .block__content {
+        animation-direction: reverse;
+        display: none;
+      }
+
+      &:hover,
+      &:focus {
+        &::before {
+          content: '';
+          position: absolute;
+          top: 26px;
+          background-color: $primary-emerald;
+          height: rem(1.5px);
+          width: 87%;
+        }
+      }
+    }
+
+    .block__content {
+      animation-fill-mode: both;
+      animation-direction: normal;
+      animation-name: headerPanelFade;
+      display: block;
+      opacity: 1;
+      z-index: 1;
+
+      form {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+
+        input {
+          @include icon('search', after);
+
+          background-color: $white;
+          font-size: rem(14px);
+          font-family: $font-default;
+          font-weight: $fw-regular;
+          padding: .25rem rem(23px) .25rem rem(8px);
+          white-space: nowrap;
+          color: $black;
+          border: 1px solid $primary-emerald;
+          height: rem(24px);
+          width: rem(213px);
+          max-width: rem(213px);
+          margin: rem(8px) 0;
+          position: absolute;
+          right: 0;
+
+          &::placeholder {
+            color: $black;
+            font-size: rem(14px);
+            font-family: $font-default;
+            font-weight: $fw-regular;
+            opacity: 1;
+          }
+
+          &:first-of-type {
+            padding-top: rem(4px);
+          }
+
+          &:last-of-type {
+            padding-bottom: rem(4px);
+          }
+
+          &::after {
+            color: $black;
+            position: absolute;
+            top: 0;
+            right: 0;
+          }
+        }
+
+        svg {
+          font-family: $font-default;
+          font-weight: $fw-regular;
+          height: rem(13px);
+          width: rem(13px);
+          color: $black;
+          position: absolute;
+          top: 50%;
+          right: 8px;
+          transform: translateY(-50%);
+        }
+      }
+    }
+  }
+
+  @include media($header-bp-mobile) {
+    display: none;
+  }
+
+  // Hides utility area when scroll up
+  &.region-utility-area--hide {
+    top: -$header-utility-nav-height;
+  }
+
+  &.region-utility-area--ease-in-out {
+    transition-timing-function: $transition-base-style;
+    transition: 0.25s;
+  }
+}
+
+/**
+ * Region styles to hide non-header content with menu open.
+ * Needed for accessibility.
+ * Disables tabbing to page content.
+ * @todo this needs to be switched to only when on mobile
+ */
+.region:not(.region-utility-area) {
+  transition: visibility 0ms linear;
+}
