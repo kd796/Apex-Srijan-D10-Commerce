@@ -41,12 +41,12 @@
 
     .component-steps__title,
     .component-step__content {
-      color: $black;
+      color: $type-dark;
     }
   }
 
   &.component-steps--color-dark {
-    background-color: $black;
+    background-color: $type-dark;
 
     .component-steps__title,
     .component-step__content {
@@ -68,15 +68,26 @@
 
     p {
       margin: 0;
+      font-weight: $fw-regular;
+      line-height: rem(24px);
     }
 
 
     .component-step {
+      &:not(:nth-last-of-type(1)) {
+        .component-step__title-wrapper,
+        .component-step__content {
+          @include media('<lg-plus') {
+            padding-bottom: rem(20px);
+          }
+        }
+      }
+
       &:nth-child(1) {
         .component-step__title-wrapper {
           &::after {
             top: 45%;
-            height: 50%;
+            height: 100%;
           }
 
           @include media('>=lg-plus') {
@@ -109,11 +120,20 @@
         }
       }
 
+      &:only-child {
+        .component-step__title-wrapper {
+          &::after {
+            top: 0;
+            height: 0;
+          }
+        }
+      }
+
       @include media('<lg-plus') {
         .component-step__inner {
           display: flex;
           flex-direction: row;
-          align-items: center;
+          align-items: stretch;
           position: relative;
         }
       }
@@ -148,6 +168,10 @@
     position: relative;
     z-index: 1;
 
+    @include media('<lg-plus') {
+      line-height: rem(36px);
+    }
+
     @include media('>=lg-plus') {
       font-size: rem(40px);
       margin-bottom: rem(80px);
@@ -162,15 +186,36 @@
       content: '';
       top: 0;
       left: 50%;
-      z-index: 0;
+      z-index: -1;
+    }
+
+    .component-step__title-container {
+      position: relative;
+      width: rem(56.7px);
+      max-width: rem(56.7px);
+      max-height: rem(64px);
+
+      svg {
+        z-index: 1;
+      }
+
+      @include media('<lg-plus') {
+        margin: 0;
+      }
+
+      @include media('>=lg-plus') {
+        width: 100%;
+        max-width: rem(101px);
+        max-height: rem(114px);
+      }
     }
 
     @include media('<lg-plus') {
       flex: 0 0 0;
-      margin-right: rem(24px);
+      margin-right: rem(8px);
 
       &::after {
-        height: 95%;
+        height: 100%;
         border-left: 2px dashed $primary-emerald;
       }
     }
@@ -188,50 +233,42 @@
   }
 
   .component-step__title {
-    position: relative;
-    color: $type-dark;
+    color: $white;
     font-family: $font-brand;
     font-size: rem(16px);
     font-weight: 800;
-    background-color: $primary-emerald;
+    text-transform: uppercase;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: rem(5px 5px 5px 10px);
+    padding: rem(5px);
     z-index: 1;
 
-    &::after {
-      content: '';
-      background-color: $primary-emerald;
-      position: absolute;
-      top: 0;
-      right: rem(-8px);
-      width: rem(16px);
-      height: 100%;
-      transform: skew(-14deg);
-      z-index: -1;
-    }
-
     @include media('<lg-plus') {
-      width: rem(45px);
-      margin: rem(20px 0);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      line-height: rem(16px);
     }
 
     @include media('>=lg-plus') {
-      display: inline-flex;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       font-size: rem(20px);
-      padding: rem(10px 10px 10px 20px);
-
-      &::after {
-        right: rem(-10px);
-        width: rem(20px);
-      }
+      line-height: rem(24px);
+      padding: rem(10px);
+      width: 100%;
     }
   }
 
   .component-step__content {
-    padding-right: rem(20px);
+    @include media('<lg-plus') {
+      padding-right: rem(20px);
+    }
 
     @include media('>=lg-plus') {
       padding-right: rem(40px);
