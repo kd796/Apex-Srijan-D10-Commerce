@@ -2,11 +2,13 @@
 
 namespace Drupal\apex_migrations\Plugin\migrate\process;
 
+use Drupal\apex_migrations\ImageFtp;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\media\Entity\Media;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
+use League\Flysystem\FilesystemException;
 
 /**
  * Provides an apex_get_listing_image plugin.
@@ -25,6 +27,22 @@ use Drupal\migrate\Row;
  * )
  */
 class GetListingImage extends ProcessPluginBase {
+
+  /**
+   * The Image FTP class.
+   *
+   * @var \Drupal\apex_migrations\ImageFtp
+   */
+  protected ImageFtp $ftp;
+
+  /**
+   * {@inheritdoc}
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+
+    $this->ftp = new ImageFtp();
+  }
 
   /**
    * {@inheritdoc}
@@ -60,7 +78,7 @@ class GetListingImage extends ProcessPluginBase {
                     'imagetype' => 'Product Level',
                     'asset_id' => $assetId,
                     'drupal_file_path' => $drupal_file_path,
-                    'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . $assetId . '.jpg',
+                    'remote_file_path' => $assetId . '.jpg',
                   ];
                 }
               }
@@ -93,7 +111,7 @@ class GetListingImage extends ProcessPluginBase {
                   'imagetype' => 'SKU Group Level',
                   'asset_id' => $assetId,
                   'drupal_file_path' => $drupal_file_path,
-                  'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . $assetId . '.jpg',
+                  'remote_file_path' => $assetId . '.jpg',
                 ];
               }
             }
@@ -107,13 +125,6 @@ class GetListingImage extends ProcessPluginBase {
         }
       }
 
-      if (empty($assets)) {
-        $migrate_executable->saveMessage(
-          '[Listing Image] While loading the primary image for "'
-          . $sku . '" - Unable to find the primary image.'
-        );
-      }
-
       // Prep Directory.
       $image_directory = 'public://pim_images/';
       \Drupal::service('file_system')->prepareDirectory($image_directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
@@ -125,38 +136,39 @@ class GetListingImage extends ProcessPluginBase {
         if ($store->get('image_server_available') === TRUE) {
           foreach ($assets as $asset) {
             try {
-              $headers_array = @get_headers($asset['remote_file_path']);
-              $headers_check = '';
+              /*
+               * @todo I should add an exception to be thrown when it cannot find
+               *       the file. Then log the fact in the migration logger.
+               *       (maybe do this in the ImageFTP class to simplify).
+               */
+              $file_data = $this->ftp->getImage($asset['remote_file_path']);
 
-              if (!empty($headers_array[0])) {
-                $headers_check = $headers_array[0];
-              }
+              if ($file_data !== FALSE) {
+                /*
+                 * @todo: Can all or most of this be simplified and pushed into
+                 *        the ImageFtp class? An all-in-one solution here? Maybe
+                 *        even feed it all of the IDs to go grab and loop in there.
+                 */
+                $file = _apex_migrations_file_save_data($file_data, $asset['drupal_file_path'], FileSystemInterface::EXISTS_REPLACE);
 
-              if (strpos($headers_check, "200")) {
-                $file_data = file_get_contents($asset['remote_file_path']);
+                // See if there's a media item we can use already.
+                $usage = \Drupal::service('file.usage')->listUsage($file);
 
-                if ($file_data) {
-                  $file = _apex_migrations_file_save_data($file_data, $asset['drupal_file_path'], FileSystemInterface::EXISTS_REPLACE);
+                if (count($usage) > 0 && !empty($usage['file']['media'])) {
+                  $media_id = array_key_first($usage['file']['media']);
+                }
+                else {
+                  $media = Media::create([
+                    'bundle'           => 'image',
+                    'uid'              => 1,
+                    'field_media_image' => [
+                      'target_id' => $file->id(),
+                      'alt' => 'Image of ' . $alt_text
+                    ],
+                  ]);
 
-                  // See if there's a media item we can use already.
-                  $usage = \Drupal::service('file.usage')->listUsage($file);
-
-                  if (count($usage) > 0 && !empty($usage['file']['media'])) {
-                    $media_id = array_key_first($usage['file']['media']);
-                  }
-                  else {
-                    $media = Media::create([
-                      'bundle'           => 'image',
-                      'uid'              => 1,
-                      'field_media_image' => [
-                        'target_id' => $file->id(),
-                        'alt' => 'Image of ' . $alt_text
-                      ],
-                    ]);
-
-                    $media->setName($asset['asset_id'])->setPublished(TRUE)->save();
-                    $media_id = $media->id();
-                  }
+                  $media->setName($asset['asset_id'])->setPublished(TRUE)->save();
+                  $media_id = $media->id();
                 }
               }
               else {
@@ -164,11 +176,10 @@ class GetListingImage extends ProcessPluginBase {
                   '[Listing Image] During import of "'
                   . $sku . '" - Unable to load image "'
                   . $asset['remote_file_path']
-                  . '". Header response: "' . $headers_check . '"'
                 );
               }
             }
-            catch (\Exception $e) {
+            catch (\Exception | FilesystemException $e) {
               $migrate_executable->saveMessage(
                 '[Listing Image] During import of "'
                 . $sku . '" - Unable to load the video. Error: ' . $e->getMessage()
