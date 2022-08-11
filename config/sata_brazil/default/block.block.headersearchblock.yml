@@ -1,0 +1,24 @@
+uuid: eac090e5-8be4-405b-8805-294d3bc366b8
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - sata_core
+  theme:
+    - sata
+third_party_settings:
+  block_class:
+    classes: block--header-search
+id: headersearchblock
+theme: sata
+region: utility_area
+weight: 0
+provider: null
+plugin: header_search
+settings:
+  id: header_search
+  label: 'Header Search Block'
+  label_display: '0'
+  provider: sata_core
+visibility: {  }
