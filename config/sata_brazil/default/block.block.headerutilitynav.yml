@@ -1,0 +1,29 @@
+uuid: 73cdc149-4fa8-471c-94b3-0e7d92091dcc
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.header-utility-nav
+  module:
+    - block_class
+    - system
+  theme:
+    - sata
+third_party_settings:
+  block_class:
+    classes: header--utility-nav
+id: headerutilitynav
+theme: sata
+region: utility_area
+weight: 0
+provider: null
+plugin: 'system_menu_block:header-utility-nav'
+settings:
+  id: 'system_menu_block:header-utility-nav'
+  label: 'Header Utility Nav'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }
