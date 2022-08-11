@@ -57,174 +57,165 @@ class GetAllCategoryFacets extends ProcessPluginBase {
 
   /**
    * Check for list of facets.
+   *
+   * @param string $category_remote_id
+   *   The category ID.
+   *
+   * @return array|string[]
+   *   The resulting array (empty or not).
    */
   protected function mapCategoryToFacetsList($category_remote_id) {
-    $mapping = [
-      // Auto Specialty - W1_743930.
-      'W1_743930' => [
-        'ATT496',
-        'ATT802893',
-      ],
-      // Cutting Tools - W1_743899.
-      'W1_743899' => [
-        'ATT496',
-        'ATT802893',
-      ],
-      // Impact Products - W1_743831.
-      'W1_743831' => [
-        'ATT496',
-        'ATT802893',
-        'ATT484',
-        'ATT499',
-        'ATT804086',
-        'ATT491',
-        'ATT744972',
-        'ATT744973'
-      ],
-      // Lighting - W1_743769.
-      'W1_743769' => [
-        'ATT802893',
-        'ATT714716',
-        'ATT714694',
-        'ATT592'
-      ],
-      // Master Sets - W1_743784.
-      'W1_743784' => [
-        'ATT496',
-        'ATT802893',
-      ],
-      // Measuring & Inspection - W1_743905.
-      'W1_743905' => [
-        'ATT496',
-      ],
-      // Pliers - W1_743878.
-      'W1_743878' => [
-        'ATT802893',
-        'ATT496',
-        'ATT259',
-        'ATT226',
-        'ATT880',
-        'ATT451',
-        'ATT115',
-        'ATT714720'
-      ],
-      // Pry Bars - W1_743917.
-      'W1_743917' => [
-        'ATT496',
-        'ATT802893',
-        'ATT584',
-        'ATT582',
-        'ATT583'
-      ],
-      // Pullers - W1_743927.
-      'W1_743927' => [
-        'ATT496',
-      ],
-      // Ratchets and Socket Sets - W1_743953.
-      'W1_743953' => [
-        'ATT496',
-        'ATT802893',
-        'ATT804086',
-        'ATT585',
-        'ATT589',
-        'ATT631',
-        'ATT491',
-        'ATT586',
-        'ATT749756',
-        'ATT714694',
-        'ATT593',
-        'ATT710',
-        'ATT499',
-        'ATT493',
-        'ATT744972',
-        'ATT744973',
-        'ATT806802'
-      ],
-      // Ratchets and Drive Tools - W1_743803.
-      'W1_743803' => [
-        'ATT496',
-        'ATT802893',
-        'ATT585',
-        'ATT589',
-        'ATT631',
-        'ATT491',
-        'ATT586',
-        'ATT749756',
-        'ATT714694',
-        'ATT593',
-        'ATT710'
-      ],
-      // Screwdrivers and Nutdrivers - W1_743867.
-      'W1_743867' => [
-        'ATT496',
-        'ATT802893',
-        'ATT415',
-        'ATT631'
-      ],
-      // Shop Assist Equipment - W1_743771.
-      'W1_743771' => [
-        'ATT802893'
-      ],
-      // Sockets and Sets - W1_743819.
-      'W1_743819' => [
-        'ATT496',
-        'ATT802893',
-        'ATT499',
-        'ATT493',
-        'ATT491',
-        'ATT744972',
-        'ATT744973',
-        'ATT806802'
-      ],
-      // Striking and Struck - W1_743911.
-      'W1_743911' => [
-        'ATT496',
-        'ATT802893',
-        'ATT807126',
-        'ATT807127',
-        'ATT228',
-        'ATT227',
-        'ATT345'
-      ],
-      // Tool Sets - W1_743772.
-      'W1_743772' => [
-        'ATT496',
-        'ATT802893',
-      ],
-      // Tool Storage - W1_743786.
-      'W1_743786' => [
-        'ATT802893',
-        'ATT753947'
-      ],
-      // Torque Products - W1_743860.
-      'W1_743860' => [
-        'ATT806600',
-        'ATT802893',
-        'ATT484',
-        'ATT585',
-        'ATT714694',
-        'ATT753929'
-      ],
-      // Wrenches - W1_743846.
-      'W1_743846' => [
-        'ATT496',
-        'ATT802893',
-        'ATT499',
-        'ATT491',
-        'ATT585',
-        'ATT749756',
-        'ATT714694',
-        'ATT205',
-        'ATT739685',
-        'ATT739684'
-      ],
-    ];
+    $mapping = self::getLevel1AttributeMapping();
 
     if (isset($mapping[$category_remote_id])) {
       return $mapping[$category_remote_id];
     }
 
     return [];
+  }
+
+  /**
+   * Returns the array of attribute mapping for level 2 categories.
+   *
+   * @return array
+   *   The mapping array.
+   */
+  public static function getLevel1AttributeMapping(): array {
+    return [
+      // Auto Specialty - W1_846447.
+      'W1_846447' => [
+        'ATT497',
+        'ATT495',
+        'ATT494',
+        'ATT948',
+        'ATT781',
+        'ATT254',
+        'ATT176',
+        'ATT450',
+      ],
+      // Clamping - W1_846444.
+      'W1_846444' => [
+        'ATT948',
+        'ATT584880',
+        'ATT584885',
+        'ATT326',
+        'ATT584797',
+      ],
+      // Cutting and Filing - W1_846459.
+      'W1_846459' => [
+        'ATT948',
+        'ATT769436',
+        'ATT176',
+        'ATT781',
+        'ATT128',
+      ],
+      // Hex Keys - W1_846450.
+      'W1_846450' => [
+        'ATT659',
+        'ATT660',
+        'ATT493',
+        'ATT491',
+      ],
+      // Impact Products - W1_846451.
+      'W1_846451' => [
+        'ATT491',
+        'ATT804086',
+        'ATT493',
+      ],
+      // Insulated Tools - W1_846452.
+      'W1_846452' => [
+        'ATT414',
+        'ATT948',
+      ],
+      // Measuring and Layout - W1_846458.
+      'W1_846458' => [
+        'ATT948',
+        'ATT128',
+        'ATT133',
+        'ATT130',
+      ],
+      // Personal Protective Equipment - W1_846456.
+      'W1_846456' => [
+        'ATT345',
+        'ATT948',
+        'ATT425',
+        'ATT867467',
+        'ATT670298',
+        'ATT867471',
+      ],
+      // Pliers - W1_846454.
+      'W1_846454' => [
+        'ATT259',
+        'ATT948',
+        'ATT497',
+      ],
+      // Power Tools - W1_846455.
+      'W1_846455' => [
+        'ATT22507',
+        'ATT662382',
+        'ATT728214',
+        'ATT867472',
+        'ATT837657',
+        'ATT662382',
+      ],
+      // Ratchets & Drive Tools - W1_846457.
+      'W1_846457' => [
+        'ATT585',
+        'ATT484',
+      ],
+      // Screwdrivers & Bitdrivers - W1_846460.
+      'W1_846460' => [
+        'ATT415',
+        'ATT631',
+        'ATT948',
+        'ATT497',
+      ],
+      // Shop Equipment - W1_846461.
+      'W1_846461' => [
+        'ATT867473',
+        'ATT584933',
+        'ATT673955',
+        'ATT867475',
+      ],
+      // Striking and Struck - W1_846463.
+      'W1_846463' => [
+        'ATT345',
+        'ATT236',
+        'ATT728177',
+        'ATT563',
+      ],
+      // Tool and Socket Sets - W1_846464.
+      'W1_846464' => [
+        'ATT497',
+        'ATT484',
+        'ATT493',
+        'ATT496',
+      ],
+      // Tool Storage - W1_846465.
+      'W1_846465' => [
+        'ATT345',
+        'ATT948',
+      ],
+      // Torque Products - W1_846466.
+      'W1_846466' => [
+        'ATT678639',
+        'ATT714694',
+        'ATT585',
+        'ATT484',
+      ],
+      // Wrenches - W1_846467.
+      'W1_846467' => [
+        'ATT491',
+        'ATT496',
+        'ATT714694',
+        'ATT493',
+        'ATT749756',
+        'ATT867476',
+        'ATT948',
+        'ATT781',
+        'ATT254',
+      ],
+    ];
   }
 
 }

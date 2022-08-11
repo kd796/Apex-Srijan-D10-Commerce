@@ -90,180 +90,15 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
 
   /**
    * Maps only the 2nd level categories that differ from their parents.
+   *
+   * @param string $category_remote_id
+   *   The category ID.
+   *
+   * @return array|mixed
+   *   The resulting array (empty or not).
    */
-  protected function mapCategoryToCustomFacets($category_remote_id) {
-    $mapping = [
-      'W2_743832' => [
-        'ATT496',
-        'ATT802893',
-        'ATT484',
-        'ATT499',
-        'ATT804086',
-        'ATT491',
-        'ATT744972',
-        'ATT744973',
-        'ATT806802'
-      ],
-      'W2_743838' => [
-        'ATT496',
-        'ATT802893',
-        'ATT484',
-        'ATT585',
-        'ATT589',
-        'ATT631',
-        'ATT491',
-        'ATT586',
-        'ATT749756',
-        'ATT714694',
-        'ATT593',
-        'ATT710'
-      ],
-      'W2_743906;' => ['ATT496', 'ATT802893'],
-      'W2_743907' => ['ATT496', 'ATT802893'],
-      'W2_743908' => ['ATT496', 'ATT802893'],
-      'W2_743954' => [
-        'ATT496',
-        'ATT802893',
-        'ATT804086',
-        'ATT585',
-        'ATT589',
-        'ATT631',
-        'ATT491',
-        'ATT586',
-        'ATT749756',
-        'ATT714694',
-        'ATT593',
-        'ATT710',
-        'ATT499',
-        'ATT493',
-        'ATT744972',
-        'ATT744973'
-      ],
-      'W2_743955' => [
-        'ATT496',
-        'ATT802893',
-        'ATT804086',
-        'ATT585',
-        'ATT589',
-        'ATT631',
-        'ATT491',
-        'ATT586',
-        'ATT749756',
-        'ATT714694',
-        'ATT593',
-        'ATT710',
-        'ATT499',
-        'ATT493',
-        'ATT744972',
-        'ATT744973'
-      ],
-      'W2_774131' => [
-        'ATT496',
-        'ATT802893',
-        'ATT499',
-        'ATT493',
-        'ATT491',
-        'ATT744972',
-        'ATT744973'
-      ],
-      'W2_743820' => [
-        'ATT496',
-        'ATT802893',
-        'ATT499',
-        'ATT493',
-        'ATT491',
-        'ATT744972',
-        'ATT744973'
-      ],
-      'W2_743821' => [
-        'ATT496',
-        'ATT802893',
-        'ATT499',
-        'ATT493',
-        'ATT491',
-        'ATT744972',
-        'ATT744973'
-      ],
-      'W2_743822' => [
-        'ATT496',
-        'ATT802893',
-        'ATT499',
-        'ATT493',
-        'ATT491',
-        'ATT744972',
-        'ATT744973'
-      ],
-      'W2_743823' => [
-        'ATT496',
-        'ATT802893',
-        'ATT499',
-        'ATT493',
-        'ATT491',
-        'ATT744972',
-        'ATT744973'
-      ],
-      'W2_743824' => [
-        'ATT496',
-        'ATT802893',
-        'ATT499',
-        'ATT493',
-        'ATT491',
-        'ATT744972',
-        'ATT744973'
-      ],
-      'W2_743826' => [
-        'ATT496',
-        'ATT802893',
-        'ATT499',
-        'ATT493',
-        'ATT491',
-        'ATT744972',
-        'ATT744973'
-      ],
-      'W2_743825' => [
-        'ATT496',
-        'ATT802893',
-        'ATT499',
-        'ATT493',
-        'ATT491',
-        'ATT744972',
-        'ATT744973'
-      ],
-      'W2_744933' => [
-        'ATT496',
-        'ATT802893',
-        'ATT499',
-        'ATT493',
-        'ATT491',
-        'ATT744972',
-        'ATT744973'
-      ],
-      'W2_743912' => [
-        'ATT496',
-        'ATT802893',
-        'ATT807126',
-        'ATT228',
-        'ATT227',
-        'ATT345'
-      ],
-      'W2_743913' => [
-        'ATT496',
-        'ATT802893',
-        'ATT807127',
-        'ATT345'
-      ],
-      'W2_743853' => [
-        'ATT496',
-        'ATT802893',
-        'ATT499',
-        'ATT491',
-        'ATT585',
-        'ATT714694',
-        'ATT205',
-        'ATT739685',
-        'ATT739684'
-      ],
-    ];
+  protected function mapCategoryToCustomFacets(string $category_remote_id) {
+    $mapping = self::getLevel2AttributeMapping();
 
     if (!empty($mapping[$category_remote_id])) {
       return $mapping[$category_remote_id];
@@ -274,174 +109,222 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
 
   /**
    * Check for list of facets.
+   *
+   * @param string $category_remote_id
+   *   The category ID.
+   *
+   * @return array|string[]
+   *   The resulting array (empty or not).
    */
-  protected function mapCategoryToFacetsList($category_remote_id) {
-    $mapping = [
-      // Auto Specialty - W1_743930.
-      'W1_743930' => [
-        'ATT496',
-        'ATT802893',
-      ],
-      // Cutting Tools - W1_743899.
-      'W1_743899' => [
-        'ATT496',
-        'ATT802893',
-      ],
-      // Impact Products - W1_743831.
-      'W1_743831' => [
-        'ATT496',
-        'ATT802893',
-        'ATT484',
-        'ATT499',
-        'ATT804086',
-        'ATT491',
-        'ATT744972',
-        'ATT744973'
-      ],
-      // Lighting - W1_743769.
-      'W1_743769' => [
-        'ATT802893',
-        'ATT714716',
-        'ATT714694',
-        'ATT592'
-      ],
-      // Master Sets - W1_743784.
-      'W1_743784' => [
-        'ATT496',
-        'ATT802893',
-      ],
-      // Measuring & Inspection - W1_743905.
-      'W1_743905' => [
-        'ATT496',
-      ],
-      // Pliers - W1_743878.
-      'W1_743878' => [
-        'ATT802893',
-        'ATT496',
-        'ATT259',
-        'ATT226',
-        'ATT880',
-        'ATT451',
-        'ATT115',
-        'ATT714720'
-      ],
-      // Pry Bars - W1_743917.
-      'W1_743917' => [
-        'ATT496',
-        'ATT802893',
-        'ATT584',
-        'ATT582',
-        'ATT583'
-      ],
-      // Pullers - W1_743927.
-      'W1_743927' => [
-        'ATT496',
-      ],
-      // Ratchets and Socket Sets - W1_743953.
-      'W1_743953' => [
-        'ATT496',
-        'ATT802893',
-        'ATT804086',
-        'ATT585',
-        'ATT589',
-        'ATT631',
-        'ATT491',
-        'ATT586',
-        'ATT749756',
-        'ATT714694',
-        'ATT593',
-        'ATT710',
-        'ATT499',
-        'ATT493',
-        'ATT744972',
-        'ATT744973',
-        'ATT806802'
-      ],
-      // Ratchets and Drive Tools - W1_743803.
-      'W1_743803' => [
-        'ATT496',
-        'ATT802893',
-        'ATT585',
-        'ATT589',
-        'ATT631',
-        'ATT491',
-        'ATT586',
-        'ATT749756',
-        'ATT714694',
-        'ATT593',
-        'ATT710'
-      ],
-      // Screwdrivers and Nutdrivers - W1_743867.
-      'W1_743867' => [
-        'ATT496',
-        'ATT802893',
-        'ATT415',
-        'ATT631'
-      ],
-      // Shop Assist Equipment - W1_743771.
-      'W1_743771' => [
-        'ATT802893'
-      ],
-      // Sockets and Sets - W1_743819.
-      'W1_743819' => [
-        'ATT496',
-        'ATT802893',
-        'ATT499',
-        'ATT493',
-        'ATT491',
-        'ATT744972',
-        'ATT744973',
-        'ATT806802'
-      ],
-      // Striking and Struck - W1_743911.
-      'W1_743911' => [
-        'ATT496',
-        'ATT802893',
-        'ATT807126',
-        'ATT807127',
-        'ATT228',
-        'ATT227',
-        'ATT345'
-      ],
-      // Tool Sets - W1_743772.
-      'W1_743772' => [
-        'ATT496',
-        'ATT802893',
-      ],
-      // Tool Storage - W1_743786.
-      'W1_743786' => [
-        'ATT802893',
-        'ATT753947'
-      ],
-      // Torque Products - W1_743860.
-      'W1_743860' => [
-        'ATT806600',
-        'ATT802893',
-        'ATT484',
-        'ATT585',
-        'ATT714694',
-        'ATT753929'
-      ],
-      // Wrenches - W1_743846.
-      'W1_743846' => [
-        'ATT496',
-        'ATT802893',
-        'ATT499',
-        'ATT491',
-        'ATT585',
-        'ATT749756',
-        'ATT714694',
-        'ATT205',
-        'ATT739685',
-        'ATT739684'
-      ],
-    ];
+  protected function mapCategoryToFacetsList(string $category_remote_id) {
+    $mapping = GetAllCategoryFacets::getLevel1AttributeMapping();
 
     if (!empty($mapping[$category_remote_id])) {
       return $mapping[$category_remote_id];
     }
 
     return [];
+  }
+
+  /**
+   * Returns the array of attribute mapping for level 2 categories.
+   *
+   * @return array
+   *   The mapping array.
+   */
+  public static function getLevel2AttributeMapping(): array {
+    return [
+      'W2_852367' => [
+        'ATT497',
+        'ATT495',
+        'ATT494',
+      ],
+      'W2_852368' => ['ATT948'],
+      'W2_852442' => ['ATT948'],
+      'W2_852443' => ['ATT948'],
+      'W2_852444' => ['ATT948'],
+      'W2_852445' => [
+        'ATT948',
+        'ATT781',
+        'ATT254',
+      ],
+      'W2_852446' => ['ATT948'],
+      'W2_852447' => ['ATT948'],
+      'W2_852448' => ['ATT948'],
+      'W2_852449' => ['ATT948'],
+      'W2_852450' => ['ATT948'],
+      'W2_852451' => [],
+      'W2_852452' => [],
+      'W2_852453' => [
+        'ATT176',
+        'ATT781',
+        'ATT450',
+      ],
+      'W2_852454' => ['ATT948'],
+      'W2_852456' => [],
+      'W2_852465' => [
+        'ATT948',
+        'ATT584880',
+        'ATT584885',
+      ],
+      'W2_852466' => [
+        'ATT948',
+        'ATT326',
+        'ATT584880',
+        'ATT584797',
+      ],
+      'W2_848680' => ['ATT948'],
+      'W2_848683' => [
+        'ATT948',
+        'ATT769436',
+        'ATT176',
+      ],
+      'W2_848684' => [],
+      'W2_848685' => [
+        'ATT176',
+        'ATT781',
+      ],
+      'W2_848686' => [],
+      'W2_848687' => ['ATT128'],
+      'W2_852457' => [
+        'ATT659',
+        'ATT660',
+        'ATT493',
+        'ATT491',
+      ],
+      'W2_852458' => ['ATT493'],
+      'W2_852395' => [
+        'ATT491',
+        'ATT804086',
+        'ATT493',
+      ],
+      'W2_852396' => ['ATT804086'],
+      'W2_852397' => ['ATT804086'],
+      'W2_852399' => ['ATT948'],
+      'W2_852400' => ['ATT948'],
+      'W2_852401' => ['ATT948', 'ATT414'],
+      'W2_867885' => ['ATT414'],
+      'W2_852402' => [],
+      'W2_852403' => ['ATT948'],
+      'W2_852404' => ['ATT948'],
+      'W2_852374' => ['ATT948'],
+      'W2_852376' => ['ATT948'],
+      'W2_852377' => [
+        'ATT128',
+        'ATT133',
+        'ATT130',
+      ],
+      'W2_852378' => [],
+      'W2_852379' => [
+        'ATT345',
+        'ATT948',
+        'ATT425',
+      ],
+      'W2_852380' => ['ATT867467'],
+      'W2_852381' => [],
+      'W2_852382' => ['ATT425', 'ATT670298'],
+      'W2_852383' => ['ATT425', 'ATT867471'],
+      'W2_852405' => ['ATT948', 'ATT259'],
+      'W2_852408' => ['ATT948'],
+      'W2_852409' => ['ATT948'],
+      'W2_852410' => ['ATT948'],
+      'W2_852411' => ['ATT948'],
+      'W2_852412' => ['ATT948', 'ATT259'],
+      'W2_852413' => ['ATT948', 'ATT259'],
+      'W2_852419' => ['ATT948'],
+      'W2_852425' => ['ATT947'],
+      'W2_852393' => [
+        'ATT728214',
+        'ATT867472',
+        'ATT22507',
+        'ATT662382',
+      ],
+      'W2_852394' => [
+        'ATT728214',
+        'ATT867472',
+        'ATT837657',
+        'ATT662382',
+      ],
+      'W2_852460' => ['ATT585'],
+      'W2_852461' => ['ATT585'],
+      'W2_852459' => ['ATT585'],
+      'W2_852463' => ['ATT585'],
+      'W2_852464' => ['ATT484', 'ATT585'],
+      'W2_852388' => [
+        'ATT631',
+        'ATT415',
+        'ATT497',
+      ],
+      'W2_852389' => [
+        'ATT415',
+        'ATT497',
+      ],
+      'W2_852390' => ['ATT631', 'ATT497'],
+      'W2_852391' => ['ATT948', 'ATT947'],
+      'W2_852369' => ['ATT584933', 'ATT867473'],
+      'W2_852370' => ['ATT584933'],
+      'W2_852371' => ['ATT673955', 'ATT867475'],
+      'W2_852372' => [],
+      'W2_852384' => [
+        'ATT345',
+        'ATT236',
+        'ATT728177',
+      ],
+      'W2_852385' => [
+        'ATT563',
+        'ATT236',
+        'ATT728177',
+      ],
+      'W2_852386' => [],
+      'W2_852387' => [],
+      'W2_848690' => ['ATT497'],
+      'W2_848691' => ['ATT484'],
+      'W2_848692' => ['ATT493'],
+      'W2_848963' => ['ATT496'],
+      'W2_848574' => [],
+      'W2_848575' => ['ATT948'],
+      'W2_848576' => [],
+      'W2_848577' => ['ATT345', 'ATT948'],
+      'W2_848578' => ['ATT948'],
+      'W2_848580' => ['ATT948'],
+      'W2_848581' => [],
+      'W2_848582' => [],
+      'W2_848572' => [
+        'ATT678639',
+        'ATT714694',
+        'ATT585',
+        'ATT484',
+      ],
+      'W2_848573' => [
+        'ATT678639',
+        'ATT585',
+        'ATT484',
+      ],
+      'W2_846468' => [
+        'ATT491',
+        'ATT496',
+        'ATT714694',
+        'ATT493',
+        'ATT749756',
+      ],
+      'W2_848165' => [
+        'ATT491',
+        'ATT496',
+        'ATT867476',
+        'ATT493',
+      ],
+      'W2_848166' => ['ATT948'],
+      'W2_848168' => [
+        'ATT948',
+        'ATT781',
+        'ATT254'
+      ],
+      'W2_848169' => [
+        'ATT948',
+        'ATT781',
+        'ATT254',
+      ],
+    ];
   }
 
 }
