@@ -2,6 +2,7 @@
 
 namespace Drupal\apex_migrations\EventSubscriber;
 
+use Drupal\apex_migrations\ImageFtp;
 use Drupal\migrate\Event\MigrateEvents;
 use Drupal\migrate\Event\MigrateImportEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -54,7 +55,9 @@ class PreMigrationSubscriber implements EventSubscriberInterface {
    *   TRUE if the image server is available, FALSE otherwise.
    */
   private function checkImageServerStatus() {
-    return _apex_migrations_ping('http://www.imagesource.apextoolgroup.com');
+    $ftp = new ImageFtp();
+
+    return $ftp->hasValidConnection();
   }
 
 }

@@ -3,6 +3,7 @@
 namespace Drupal\apex_migrations\Commands;
 
 use Drupal\apex_migrations\Exceptions\PreviouslyImportedException;
+use Drupal\apex_migrations\FileOperations;
 use Drupal\Core\File\Exception\FileException;
 use Drupal\Core\File\Exception\FileWriteException;
 use Drupal\migrate\Plugin\MigrationInterface;
@@ -205,7 +206,7 @@ class ProductDownloadService extends DrushCommands {
         }
 
         // Now we set this as the file the product import uses.
-        $destination = (string) _apex_migrations_clear_destination_and_pull_in_new($temp_destination);
+        $destination = (string) FileOperations::clearDestinationAndPullInNew($temp_destination);
 
         if ($file_extension == 'zip') {
           // Now we have to do some cleanup.
