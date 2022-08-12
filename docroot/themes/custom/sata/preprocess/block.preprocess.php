@@ -6,7 +6,7 @@
  *
  * Index:
  *
- * @see gearwrench_preprocess_block()
+ * @see sata_preprocess_block()
  */
 
 use Drupal\Component\Utility\Html;
@@ -19,7 +19,7 @@ use Drupal\paragraphs\Entity\Paragraph;
 function sata_preprocess_block(array &$variables) {
   /*
    * Pass id into menu attributes for better hook-suggestions.
-   * @see gearwrench_theme_suggestions_menu_alter();
+   * @see sata_theme_suggestions_menu_alter();
    */
   if (isset($variables['content']['#menu_name'])) {
     $variables['content']['#attributes']['data-block'] = $variables['elements']['#id'];

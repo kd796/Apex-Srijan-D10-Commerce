@@ -1,7 +1,7 @@
 (function ($, Drupal) {
   'use strict';
 
-  Drupal.behaviors.gearwrench = {
+  Drupal.behaviors.sata = {
     attach: function (context, settings) {
       // Form error on submit button click
       $('.webform-submission-form').once().each(function (index) {
