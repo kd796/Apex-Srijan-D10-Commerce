@@ -7,7 +7,6 @@ use League\Flysystem\Filesystem;
 use League\Flysystem\PhpseclibV2\SftpAdapter;
 use League\Flysystem\PhpseclibV2\SftpConnectionProvider;
 use League\Flysystem\PhpseclibV2\UnableToConnectToSftpHost;
-use phpseclib\Net\SFTP;
 
 /**
  * ImageFtp class.
@@ -80,7 +79,7 @@ class ImageFtp {
    * @todo Maybe I should change this to push an error message for the import.
    *
    * @return bool
-   *   Whether or not we have a good connection.
+   *   Whether we have a good connection.
    */
   public function hasValidConnection(): bool {
     try {
@@ -95,18 +94,16 @@ class ImageFtp {
   /**
    * Gets an image from the FTP server or returns false if it doesn't exist.
    *
-   * @todo Modify this to add the file extension, reducing duplication of effort.
-   *
-   * @param string $image
-   *   The image name (with file extension)
+   * @param string $asset_id
+   *   The asset ID used to build the image path.
    *
    * @return false|string
    *   Returns the image contents or FALSE.
    *
    * @throws \League\Flysystem\FilesystemException
    */
-  public function getImage(string $image) {
-    $image_path = $this->imageDirectory . $image;
+  public function getImage(string $asset_id): bool|string {
+    $image_path = $this->imageDirectory . $asset_id . '.jpg';
 
     if ($this->filesystem->fileExists($image_path)) {
       return $this->filesystem->read($image_path);

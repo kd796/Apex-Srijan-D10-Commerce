@@ -2,6 +2,7 @@
 
 namespace Drupal\apex_migrations\Form;
 
+use Drupal\apex_migrations\FileOperations;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\File\Exception\FileException;
@@ -146,7 +147,7 @@ class PimFileUpdateForm extends FormBase {
     if (!empty($filename)) {
       $filename = $this->validatePath($filename);
       \Drupal::messenger()->addStatus("Replacing with file: $filename");
-      $destination = _apex_migrations_clear_destination_and_pull_in_new($filename);
+      $destination = FileOperations::clearDestinationAndPullInNew($filename);
 
       if (!empty($destination)) {
         \Drupal::messenger()->addStatus('Upload was successful.');

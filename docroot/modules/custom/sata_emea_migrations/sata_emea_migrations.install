@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\File\FileSystemInterface;
+use Drupal\apex_migrations\FileOperations;
 
 /**
  * Implements hook_install().
@@ -73,5 +74,5 @@ function sata_emea_migrations_update_8001(&$sandbox) {
     $source_files = $source_files[0];
   }
 
-  _apex_migrations_clear_destination_and_pull_in_new($source_files);
+  FileOperations::clearDestinationAndPullInNew($source_files);
 }

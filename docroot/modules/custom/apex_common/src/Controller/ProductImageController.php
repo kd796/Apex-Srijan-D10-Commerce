@@ -2,6 +2,7 @@
 
 namespace Drupal\apex_common\Controller;
 
+use Drupal\apex_migrations\FileOperations;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\file\Entity\File;
@@ -42,7 +43,7 @@ class ProductImageController extends ControllerBase {
 
     // First check the cache for a previous zip file.
     /** @var \Drupal\file\Entity\File $zip_file */
-    $zip_file = _apex_migrations_load_file_by_uri($zip_filename);
+    $zip_file = FileOperations::loadFileByUri($zip_filename);
     $filesize = 0;
 
     if (is_object($zip_file)) {
@@ -113,7 +114,7 @@ class ProductImageController extends ControllerBase {
   protected function createZip(array $images, string $zip_filename, File $zip_file = NULL) {
     // First we create the file in the file system.
     if (empty($zip_file)) {
-      $zip_file = _apex_migrations_file_save_data('', $zip_filename);
+      $zip_file = FileOperations::fileSaveData('', $zip_filename);
     }
 
     /** @var \Drupal\Core\File\FileSystem $filesystem */
