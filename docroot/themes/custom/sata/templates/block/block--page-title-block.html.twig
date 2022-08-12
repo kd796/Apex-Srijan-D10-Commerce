@@ -47,7 +47,7 @@
 {# If breadcrumbs is set, place below the hero. #}
 {% if sata_breadcrumbs is not null %}
   {{ attach_library('sata/block--system--system-breadcrumb-block') }}
-  <section id="block-gearwrench-breadcrumbs" class="breadcrumbs contextual-region block block-system block-system-breadcrumb-block" data-entity-id="system_breadcrumb_block" data-entity-type="block">
+  <section id="block-sata-breadcrumbs" class="breadcrumbs contextual-region block block-system block-system-breadcrumb-block" data-entity-id="system_breadcrumb_block" data-entity-type="block">
     <div class="block__content block-system-breadcrumb-block__content">
       {% set classes = classes|merge(['visually-hidden']) %}
       {{ sata_breadcrumbs }}

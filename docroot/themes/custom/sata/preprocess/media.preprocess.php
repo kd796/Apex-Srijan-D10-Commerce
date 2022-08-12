@@ -5,8 +5,8 @@
  * Preprocess functions related to media entities.
  *
  * Index:
- * @see gearwrench_preprocess_media()
- * @see gearwrench_preprocess_media__remote_video__hero()
+ * @see sata_preprocess_media()
+ * @see sata_preprocess_media__remote_video__hero()
  */
 
 use Drupal\Component\Utility\UrlHelper;

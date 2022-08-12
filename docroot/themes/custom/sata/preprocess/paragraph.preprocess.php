@@ -303,7 +303,7 @@ function sata_preprocess_paragraph__featured_content__full(array &$variables) {
 
   switch ($layout) {
     case 'featured_content_layout__grid':
-      $variables['#attached']['library'][] = 'gearwrench/paragraph--full--featured-content--layout-grid';
+      $variables['#attached']['library'][] = 'sata/paragraph--full--featured-content--layout-grid';
       $field_settings['type'] = 'entity_reference_entity_view';
       $field_settings['settings']['view_mode'] = 'teaser';
       $field_settings['label'] = 'hidden';
@@ -311,7 +311,7 @@ function sata_preprocess_paragraph__featured_content__full(array &$variables) {
 
     case 'featured_content_layout__list':
     default:
-      $variables['#attached']['library'][] = 'gearwrench/paragraph--full--featured-content--layout-list';
+      $variables['#attached']['library'][] = 'sata/paragraph--full--featured-content--layout-list';
       $field_settings['type'] = 'entity_reference_label';
       $field_settings['settings']['link'] = TRUE;
       $field_settings['label'] = 'hidden';
@@ -380,21 +380,21 @@ function sata_preprocess_paragraph__featured_media__full(array &$variables) {
 
   switch ($layout) {
     case 'featured_media_layout__grid':
-      $variables['#attached']['library'][] = 'gearwrench/paragraph--full--featured-media--layout-grid';
+      $variables['#attached']['library'][] = 'sata/paragraph--full--featured-media--layout-grid';
       $field_settings['type'] = 'entity_reference_entity_view';
       $field_settings['settings']['view_mode'] = 'teaser';
       $field_settings['label'] = 'hidden';
       break;
 
     case 'featured_media_layout__slider':
-      $variables['#attached']['library'][] = 'gearwrench/paragraph--full--featured-media--layout-slider';
+      $variables['#attached']['library'][] = 'sata/paragraph--full--featured-media--layout-slider';
       $field_settings['type'] = 'entity_reference_entity_view';
       $field_settings['settings']['view_mode'] = 'hero';
       $field_settings['label'] = 'hidden';
       break;
 
     case 'featured_media_layout__live_area':
-      $variables['#attached']['library'][] = 'gearwrench/paragraph--full--featured-media--layout-live-area';
+      $variables['#attached']['library'][] = 'sata/paragraph--full--featured-media--layout-live-area';
       $field_settings['type'] = 'entity_reference_entity_view';
       $field_settings['settings']['view_mode'] = 'live_area';
       $field_settings['label'] = 'hidden';
@@ -402,7 +402,7 @@ function sata_preprocess_paragraph__featured_media__full(array &$variables) {
 
     case 'featured_media_layout__full':
     default:
-      $variables['#attached']['library'][] = 'gearwrench/paragraph--full--featured-media--layout-full';
+      $variables['#attached']['library'][] = 'sata/paragraph--full--featured-media--layout-full';
       $field_settings['type'] = 'entity_reference_entity_view';
       $field_settings['settings']['view_mode'] = 'embed';
       $field_settings['label'] = 'hidden';
@@ -602,7 +602,7 @@ function sata_preprocess_paragraph__product_slider__full(&$variables) {
   $field_settings['settings']['view_mode'] = 'teaser';
   $field_settings['label'] = 'hidden';
 
-  $variables['#attached']['library'][] = 'gearwrench/paragraph--full--product-slider';
+  $variables['#attached']['library'][] = 'sata/paragraph--full--product-slider';
   $field_settings['type'] = 'entity_reference_entity_view';
   $field_settings['settings']['view_mode'] = 'teaser';
   $field_settings['label'] = 'hidden';
