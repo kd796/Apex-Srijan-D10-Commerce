@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Functions to support theming in the gearwrench theme.
+ * Functions to support theming in the sata theme.
  */
 
 use Drupal\Component\Utility\NestedArray;
@@ -386,7 +386,7 @@ function sata_form_alter(&$form, &$form_state, $form_id) {
 
   switch ($webform_id) {
     case 'warranty_replacement_form':
-      $form['#attached']['library'][] = 'gearwrench/webform--warranty-replacement-form';
+      $form['#attached']['library'][] = 'sata/webform--warranty-replacement-form';
       break;
 
     default:
