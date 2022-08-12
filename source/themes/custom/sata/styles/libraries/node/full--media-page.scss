@@ -101,13 +101,33 @@
           }
 
           a {
+            @include btn(solar);
+
+            @include media('>md') {
+              padding: rem(10px 50px);
+            }
+          }
+        }
+      }
+    }
+
+    .node__tags {
+      .field--label-inline {
+        .field__item {
+          a {
             @include btn(primary);
-            background-color: transparent;
+            color: $type-dark;
+            background-color: $white;
             border: 2px solid $primary-emerald !important;
             padding: .5rem .75rem;
 
             @include media('>md') {
               padding: .5rem 1rem;
+            }
+
+            @include on-event() {
+              color: $white;
+              background-color: $primary-emerald;
             }
           }
         }
