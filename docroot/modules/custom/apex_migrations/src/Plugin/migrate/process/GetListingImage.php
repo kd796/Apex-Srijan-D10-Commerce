@@ -2,11 +2,11 @@
 
 namespace Drupal\apex_migrations\Plugin\migrate\process;
 
-use Drupal\Core\File\FileSystemInterface;
-use Drupal\media\Entity\Media;
+use Drupal\apex_migrations\ImageOperations;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
+use League\Flysystem\FilesystemException;
 
 /**
  * Provides an apex_get_listing_image plugin.
@@ -27,6 +27,24 @@ use Drupal\migrate\Row;
 class GetListingImage extends ProcessPluginBase {
 
   /**
+   * The image operations class.
+   *
+   * @var \Drupal\apex_migrations\ImageOperations
+   */
+  protected ImageOperations $imageOps;
+
+  /**
+   * {@inheritdoc}
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->imageOps = new ImageOperations();
+
+    // Prep Directory.
+    ImageOperations::prepImageDirectory();
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
@@ -44,11 +62,10 @@ class GetListingImage extends ProcessPluginBase {
         if ($child->getName() === 'Product' && (string) $child->attributes()->ID === $sku) {
           foreach ($child->children() as $item) {
             if ($item->getName() === 'AssetCrossReference' && ((string) $item->attributes()->Type === 'Primary Image')) {
-              $assetId = apex_migrations_clean_asset_id((string) $item->attributes()->AssetID);
+              $assetId = ImageOperations::cleanAssetId((string) $item->attributes()->AssetID);
 
               if (!empty($assetId)) {
-                $drupal_file_path = 'public://pim_images/' . $assetId . '.jpg';
-                $media_id = _apex_migrations_get_file_media_id($drupal_file_path);
+                $media_id = ImageOperations::getImageMediaId($assetId);
 
                 // If we find the file then we need to reference it in the return array.
                 if (!empty($media_id)) {
@@ -59,8 +76,6 @@ class GetListingImage extends ProcessPluginBase {
                     'sku' => $sku,
                     'imagetype' => 'Product Level',
                     'asset_id' => $assetId,
-                    'drupal_file_path' => $drupal_file_path,
-                    'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . $assetId . '.jpg',
                   ];
                 }
               }
@@ -78,11 +93,10 @@ class GetListingImage extends ProcessPluginBase {
       if (empty($assets)) {
         foreach ($sku_group->children() as $child) {
           if ($child->getName() === 'AssetCrossReference' && (string) $child->attributes()->Type === 'Primary Image') {
-            $assetId = apex_migrations_clean_asset_id((string) $child->attributes()->AssetID);
+            $assetId = ImageOperations::cleanAssetId((string) $child->attributes()->AssetID);
 
             if (!empty($assetId)) {
-              $drupal_file_path = 'public://pim_images/' . $assetId . '.jpg';
-              $media_id = _apex_migrations_get_file_media_id($drupal_file_path);
+              $media_id = ImageOperations::getImageMediaId($assetId);
 
               // If we find the file then we need to reference it in the return array.
               if (!empty($media_id)) {
@@ -92,8 +106,6 @@ class GetListingImage extends ProcessPluginBase {
                 $assets[] = [
                   'imagetype' => 'SKU Group Level',
                   'asset_id' => $assetId,
-                  'drupal_file_path' => $drupal_file_path,
-                  'remote_file_path' => 'http://www.imagesource.apextoolgroup.com/website/' . $assetId . '.jpg',
                 ];
               }
             }
@@ -107,17 +119,6 @@ class GetListingImage extends ProcessPluginBase {
         }
       }
 
-      if (empty($assets)) {
-        $migrate_executable->saveMessage(
-          '[Listing Image] While loading the primary image for "'
-          . $sku . '" - Unable to find the primary image.'
-        );
-      }
-
-      // Prep Directory.
-      $image_directory = 'public://pim_images/';
-      \Drupal::service('file_system')->prepareDirectory($image_directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
-
       if (!empty($assets)) {
         $store = \Drupal::service('tempstore.private')->get('apex_migrations');
 
@@ -125,50 +126,17 @@ class GetListingImage extends ProcessPluginBase {
         if ($store->get('image_server_available') === TRUE) {
           foreach ($assets as $asset) {
             try {
-              $headers_array = @get_headers($asset['remote_file_path']);
-              $headers_check = '';
+              $media_id = $this->imageOps->getAndSaveImageMedia($asset['asset_id'], $alt_text);
 
-              if (!empty($headers_array[0])) {
-                $headers_check = $headers_array[0];
-              }
-
-              if (strpos($headers_check, "200")) {
-                $file_data = file_get_contents($asset['remote_file_path']);
-
-                if ($file_data) {
-                  $file = _apex_migrations_file_save_data($file_data, $asset['drupal_file_path'], FileSystemInterface::EXISTS_REPLACE);
-
-                  // See if there's a media item we can use already.
-                  $usage = \Drupal::service('file.usage')->listUsage($file);
-
-                  if (count($usage) > 0 && !empty($usage['file']['media'])) {
-                    $media_id = array_key_first($usage['file']['media']);
-                  }
-                  else {
-                    $media = Media::create([
-                      'bundle'           => 'image',
-                      'uid'              => 1,
-                      'field_media_image' => [
-                        'target_id' => $file->id(),
-                        'alt' => 'Image of ' . $alt_text
-                      ],
-                    ]);
-
-                    $media->setName($asset['asset_id'])->setPublished(TRUE)->save();
-                    $media_id = $media->id();
-                  }
-                }
-              }
-              else {
+              if ($media_id === FALSE) {
                 $migrate_executable->saveMessage(
                   '[Listing Image] During import of "'
                   . $sku . '" - Unable to load image "'
-                  . $asset['remote_file_path']
-                  . '". Header response: "' . $headers_check . '"'
+                  . $asset['asset_id']
                 );
               }
             }
-            catch (\Exception $e) {
+            catch (\Exception | FilesystemException $e) {
               $migrate_executable->saveMessage(
                 '[Listing Image] During import of "'
                 . $sku . '" - Unable to load the video. Error: ' . $e->getMessage()

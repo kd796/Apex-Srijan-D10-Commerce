@@ -100,13 +100,13 @@
         $('.node--type-product-category__attribute-filter').find('input[value="' + value + '"]').prop('checked', true);
       });
 
-      $('.gearwrench-product-category-filters:not(.gearwrench-product-category-filters--js-initialized)').once('product-category-filters').each(function (index) {
+      $('.sata-product-category-filters:not(.sata-product-category-filters--js-initialized)').once('product-category-filters').each(function (index) {
         var $categoryFilter = $('.node--type-product-category__category-filter');
         var $attributeFilter = $('.node--type-product-category__attribute-filter');
         var $setFilter = $('.node--type-product-category__set-filter');
 
         // Track that this component has been initialized.
-        $(this).addClass('gearwrench-product-category-filters--js-initialized');
+        $(this).addClass('sata-product-category-filters--js-initialized');
 
         $categoryFilter.find('.form-checkbox').bind('change', function (e) {
           Drupal.behaviors.productCategoryFilters.filtering($(this), 'category');
@@ -142,7 +142,7 @@
    */
   Drupal.behaviors.productCategoryFilterTabs = {
     attach: function (context, settings) {
-      $('.gearwrench-product-category-filters').once('product-category-filter-tabs').each(function (index) {
+      $('.sata-product-category-filters').once('product-category-filter-tabs').each(function (index) {
         if (window.location.search.length > 0) {
           // Scroll down to the products when loading the category page.
           $('.product-category-view-section')[0].scrollIntoView();
@@ -248,7 +248,7 @@
         if (window.innerWidth < 768) {
           var $mobileMenuIcon = $('.filter-icon');
           var $mobileCloseIcon;
-          var $mobileCategoryFilters = $('.gearwrench-product-category-filters');
+          var $mobileCategoryFilters = $('.sata-product-category-filters');
           var $viewHeader = $('.view-header');
 
           $mobileCategoryFilters.append('<div class="mobile-filter-header"><div class="mobile-filter-header-inner"><span>Filter</span><span class="mobile-close-icon"></span></div></div>');

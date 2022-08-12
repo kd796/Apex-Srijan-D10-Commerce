@@ -6,7 +6,7 @@
  *
  * Index:
  *
- * @see gearwrench_preprocess_views_view()
+ * @see sata_preprocess_views_view()
  */
 
 /**

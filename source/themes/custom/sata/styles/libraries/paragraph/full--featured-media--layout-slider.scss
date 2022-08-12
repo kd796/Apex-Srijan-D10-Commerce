@@ -18,26 +18,32 @@
     position: relative;
 
     .component-featured-media__button {
-      background-color: $gray-90;
+      background-color: $primary-emerald;
       background-size: rem(10px) rem(16px);
-      border: 1px solid $gray-90;
+      border: 1px solid $primary-emerald;
       height: rem(48px);
       width: rem(48px);
+      color: $white !important;
       margin: 0;
       padding: 0;
       opacity: 1;
 
+      svg {
+        color: $primary-solar !important;
+      }
+
       &:hover {
-        background-color: $primary-emerald;
+        background-color: $white;
         border-color: $primary-emerald;
+        color: $primary-emerald;
       }
 
       &.component-featured-media__button-prev {
-        background-image: url('../../../icons/chevron-left-molten-orange.svg');
+        background-image: url('../../../icons/chevron-left-white.svg');
         left: rem(-98px);
 
         &:hover {
-          background-image: url('../../../icons/chevron-left-black.svg');
+          background-image: url('../../../icons/chevron-left-emerald.svg');
         }
 
         @include media('<1401px') {
@@ -50,11 +56,11 @@
       }
 
       &.component-featured-media__button-next {
-        background-image: url('../../../icons/chevron-right-molten-orange.svg');
+        background-image: url('../../../icons/chevron-right-white.svg');
         right: rem(-98px);
 
         &:hover {
-          background-image: url('../../../icons/chevron-right-black.svg');
+          background-image: url('../../../icons/chevron-right-emerald.svg');
         }
 
         @include media('<1400px') {
@@ -130,11 +136,11 @@
     width: 100%;
 
     .component-featured-media__button {
-      background-color: $gray-90;
+      background-color: $primary-emerald;
       background-position: center;
       background-repeat: no-repeat;
       background-size: rem(10px) rem(16px);
-      border: 1px solid $gray-90;
+      border: 1px solid $primary-emerald;
       display: none;
       height: rem(48px);
       width: rem(48px);
@@ -153,12 +159,12 @@
       }
 
       &.component-featured-media__pseudo-button-prev {
-        background-image: url('../../../icons/chevron-left-molten-orange.svg');
+        background-image: url('../../../icons/chevron-left-white.svg');
         margin-right: 1rem;
       }
 
       &.component-featured-media__pseudo-button-next {
-        background-image: url('../../../icons/chevron-right-molten-orange.svg');
+        background-image: url('../../../icons/chevron-right-white.svg');
         margin-left: 1rem;
       }
     }
@@ -168,11 +174,11 @@
 
       .swiper-pagination-bullet {
         background: transparent;
-        border-color: $gray-90;
+        border-color: $primary-emerald;
       }
 
       .swiper-pagination-bullet-active {
-        background: $gray-90;
+        background: $primary-emerald;
       }
     }
   }
