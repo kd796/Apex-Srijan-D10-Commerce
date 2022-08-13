@@ -24,7 +24,6 @@ class ImageOperations extends FileOperations {
    * {@inheritdoc}
    */
   public function __construct() {
-    parent::__construct();
     $this->ftp = new ImageFtp();
   }
 
