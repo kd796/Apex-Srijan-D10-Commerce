@@ -2,6 +2,7 @@
 
 namespace Drupal\apex_migrations\Plugin\migrate\process;
 
+use Drupal\apex_migrations\ImageNotFoundOnFtpException;
 use Drupal\apex_migrations\ImageOperations;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\ProcessPluginBase;
@@ -135,6 +136,14 @@ class GetListingImage extends ProcessPluginBase {
                   . $asset['asset_id']
                 );
               }
+            }
+            catch (ImageNotFoundOnFtpException $e) {
+              $migrate_executable->saveMessage(
+                '[Listing Image] During import of "'
+                . $sku . '" - Unable to find the image on the FTP server for asset: "'
+                . $asset['asset_id'] . '.jpg". '
+                . $e->getMessage()
+              );
             }
             catch (\Exception | FilesystemException $e) {
               $migrate_executable->saveMessage(

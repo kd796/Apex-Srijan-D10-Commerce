@@ -98,6 +98,7 @@ class ImageOperations extends FileOperations {
    *   Returns the media ID or FALSE.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
+   * @throws \Drupal\apex_migrations\ImageNotFoundOnFtpException
    * @throws \League\Flysystem\FilesystemException
    */
   public function getAndSaveImageMedia(string $asset_id, string $alt_text = ''): mixed {
