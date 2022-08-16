@@ -149,6 +149,12 @@
       position: relative;
       opacity: 1;
 
+      @include on-event {
+        background-color: $white;
+        border-color: $primary-emerald;
+        color: $primary-emerald;
+      }
+
       @include media('<md') {
         height: rem(40px);
         width: rem(40px);
@@ -161,11 +167,19 @@
       &.component-featured-media__pseudo-button-prev {
         background-image: url('../../../icons/chevron-left-white.svg');
         margin-right: 1rem;
+
+        @include on-event {
+          background-image: url('../../../icons/chevron-left-emerald.svg');
+        }
       }
 
       &.component-featured-media__pseudo-button-next {
         background-image: url('../../../icons/chevron-right-white.svg');
         margin-left: 1rem;
+
+        @include on-event {
+          background-image: url('../../../icons/chevron-right-emerald.svg');
+        }
       }
     }
 
