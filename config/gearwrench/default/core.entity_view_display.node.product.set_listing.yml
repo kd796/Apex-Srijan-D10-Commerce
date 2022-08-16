@@ -1,9 +1,9 @@
-uuid: fa62c303-ec9d-41b1-8737-bedaa7f0040c
+uuid: 1fb1e7d1-6918-42e7-89b9-ab09690fa676
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.full
+    - core.entity_view_mode.node.set_listing
     - field.field.node.product.body
     - field.field.node.product.field_featured_product
     - field.field.node.product.field_industry
@@ -25,10 +25,10 @@ dependencies:
     - node.type.product
   module:
     - user
-id: node.product.full
+id: node.product.set_listing
 targetEntityType: node
 bundle: product
-mode: full
+mode: set_listing
 content:
   field_long_description:
     type: string
@@ -36,41 +36,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
-    region: content
-  field_product_features:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 2
-    region: content
-  field_product_images:
-    type: entity_reference_entity_view
-    label: hidden
-    settings:
-      view_mode: product_detail_slider
-      link: false
-    third_party_settings: {  }
     weight: 0
-    region: content
-  field_product_specifications:
-    type: entity_reference_label
-    label: hidden
-    settings:
-      link: false
-    third_party_settings: {  }
-    weight: 4
-    region: content
-  field_set_components:
-    type: entity_reference_entity_view
-    label: hidden
-    settings:
-      view_mode: set_listing
-      link: false
-    third_party_settings: {  }
-    weight: 3
     region: content
 hidden:
   body: true
@@ -82,8 +48,12 @@ hidden:
   field_meta_tags: true
   field_new_product: true
   field_product_classifications: true
+  field_product_features: true
+  field_product_images: true
+  field_product_specifications: true
   field_related_products: true
   field_set: true
+  field_set_components: true
   field_sku_group: true
   field_upc: true
   langcode: true
