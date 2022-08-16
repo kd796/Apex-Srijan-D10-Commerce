@@ -19,24 +19,47 @@
 .node--type-landing-page.node--view-mode-search-index,
 .node--type-media-page.node--view-mode-search-index {
   height: 100%;
+  background-color: $primary-emerald;
 
   .node__inner {
     height: 100%;
     display: flex;
     flex-direction: column;
+
+    a {
+      text-decoration: none;
+
+      @include on-event() {
+        color: $white;
+      }
+    }
   }
 
   .node__content {
     height: 100%;
 
+    a {
+      text-decoration: none;
+      color: $white;
+
+      @include on-event() {
+        color: $white;
+      }
+    }
+
     .node__listing-image {
       @include flex();
       @include flex-x(align-items, center);
       @include flex-x(justify-content, center);
-      background-color: $white;
+      background-color: $primary-emerald;
       display: flex;
       overflow: hidden;
-      padding-top: 0;
+      padding: rem(5px 5px 0);
+
+      @include media('>md') {
+        border: 0;
+        padding: rem(8px 8px 0);
+      }
 
       .field[data-blazy] {
         min-width: 100%;
@@ -75,17 +98,16 @@
     }
 
     .node__content-container {
-      padding: 1rem;
+      padding: rem(10px);
 
-      @include media('<lg') {
-        padding-left: 0;
-        padding-right: 0;
+      @include media('>=md') {
+        padding: rem(16px);
       }
     }
 
     .node__long-description {
       .field--name-title {
-        @include type-header(h4, black, included);
+        @include type-header(h4, light, included);
         margin-top: 0;
         text-transform: uppercase;
         -webkit-line-clamp: 3;
@@ -111,29 +133,35 @@
   }
 
   .node__read-more-button {
-    @include btn(primary);
+    @include btn(secondary, light);
 
     box-sizing: border-box;
-    display: inline-block !important;
     float: none;
     font-size: 1rem !important;
+    font-weight: $fw-bold;
+    line-height: rem(28px);
+    text-align: left;
     transition: $transition-base;
     width: 100%;
+    padding: 1rem;
+
+    @include on-event() {
+      color: $white;
+    }
 
     @include media('<md') {
       white-space: normal;
       min-width: 100%;
+      padding-left: rem(10px);
+      padding-right: rem(10px);
+      font-size: rem(14px) !important;
+      line-height: rem(22px) !important;
     }
   }
 
   @include on-event {
     box-shadow: 0 0 16px 5px rgba(0, 0, 0, 0.2);
     outline: 2px solid $black;
-
-    .node__read-more-button {
-      color: $primary-emerald;
-      background-color: $black;
-    }
 
     @include media('<md') {
       box-shadow: none;

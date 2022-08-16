@@ -100,16 +100,45 @@ class ImageFtp {
    * @return false|string
    *   Returns the image contents or FALSE.
    *
+   * @throws \Drupal\apex_migrations\ImageNotFoundOnFtpException
    * @throws \League\Flysystem\FilesystemException
    */
   public function getImage(string $asset_id): bool|string {
-    $image_path = $this->imageDirectory . $asset_id . '.jpg';
+    $image_path = $this->buildImagePath($asset_id);
 
-    if ($this->filesystem->fileExists($image_path)) {
+    if ($this->checkFileExists($image_path)) {
       return $this->filesystem->read($image_path);
     }
 
-    return FALSE;
+    throw new ImageNotFoundOnFtpException('image path: ' . $image_path);
+  }
+
+  /**
+   * Construct the image path to use.
+   *
+   * @param string $asset_id
+   *   The asset ID used to build the image path.
+   *
+   * @return string
+   *   Returns the constructed image path.
+   */
+  public function buildImagePath(string $asset_id): string {
+    return $this->imageDirectory . $asset_id . '.jpg';
+  }
+
+  /**
+   * Checks to see if the file exists.
+   *
+   * @param string $image_path
+   *   The path to the image on the FTP server.
+   *
+   * @return bool
+   *   Returns TRUE or FALSE.
+   *
+   * @throws \League\Flysystem\FilesystemException
+   */
+  public function checkFileExists(string $image_path): bool {
+    return $this->filesystem->fileExists($image_path);
   }
 
 }
