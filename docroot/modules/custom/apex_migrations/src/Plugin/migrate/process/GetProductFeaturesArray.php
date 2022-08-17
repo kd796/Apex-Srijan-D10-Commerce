@@ -28,31 +28,54 @@ class GetProductFeaturesArray extends ProcessPluginBase {
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $copy_array = [];
-    $value_to_skip = [
-      'Brand',
-      'ATT919',
-      'ATT17711',
-      'ATT493',
-      'ATT499',
-      'UNSPSC_V7.0901'
+    $attribute_to_position = [
+      'ATT100' => 0,
+      'ATT101' => 1,
+      'ATT102' => 2,
+      'ATT103' => 3,
+      'ATT104' => 4,
+      'ATT105' => 5,
+      'ATT106' => 6,
+      'ATT107' => 7,
+      'ATT108' => 8,
+      'ATT109' => 9,
+      'ATT22085' => 10,
+      'ATT22086' => 11,
+      'ATT22087' => 12,
+      'ATT22088' => 13,
+      'ATT22089' => 14,
+      'ATT22090' => 15,
+      'ATT22091' => 16,
+      'ATT22092' => 17,
+      'ATT22093' => 18,
+      'ATT22094' => 19,
+      'ATT17711' => 20,
     ];
+    $attribute_ids_to_use = array_keys($attribute_to_position);
 
     if (!empty($value)) {
+      /** @var \SimpleXMLElement $child */
       foreach ($value->children() as $child) {
-        if (!in_array((string) $child->attributes()->AttributeID, $value_to_skip)) {
+        $att_id = (string) $child->attributes()->AttributeID;
+        if (in_array($att_id, $attribute_ids_to_use)) {
+          // Get the sorting position.
+          $delta = $attribute_to_position[$att_id];
+
           if ($child->getName() !== 'MultiValue') {
-            $copy_array[] = [
-              'copy_point' => (string) $child
+            $copy_array[$delta] = [
+              'copy_point' => (string) $child,
             ];
           }
           else {
-            $copy_array[] = [
+            $copy_array[$delta] = [
               'copy_point' => (string) $child->Value,
             ];
           }
         }
       }
 
+      // This forces it to sort in the order we want them in.
+      ksort($copy_array);
       $copy_array = json_encode($copy_array);
       return json_decode($copy_array, TRUE);
     }
