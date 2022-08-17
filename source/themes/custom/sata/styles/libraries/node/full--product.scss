@@ -417,11 +417,33 @@ $tabs-border-width-active: rem(5px);
 
         .node--type-product-tabs__mobile-nav-item {
           @include type-header(h6, $globals: included);
+          @include icon('chevron-left-carbon', after, false);
 
-          border-top: 1px solid $primary-solar;
+          border-top: 1px solid $primary-dark;
           margin: 0;
           padding: rem(20px) 0;
+          position: relative;
           cursor: pointer;
+
+          a {
+            text-decoration: none;
+
+            @include on-event() {
+              color: $type-dark;
+            }
+          }
+
+          &::after {
+            position: absolute;
+            right: 28px;
+            transform: rotate(90deg);
+          }
+
+          &.node--type-product-tabs__mobile-nav-item--open {
+            &::after {
+              transform: rotate(270deg);
+            }
+          }
 
           @include media('>md') {
             display: none;
@@ -429,7 +451,7 @@ $tabs-border-width-active: rem(5px);
         }
 
         .node--type-product-tabs-tab {
-          border-top: 1px solid $primary-solar;
+          border-top: 1px solid $primary-dark;
 
           @include media('>md') {
             border-top: 0;
@@ -504,29 +526,35 @@ $tabs-border-width-active: rem(5px);
     @include container-full-width();
     @include flex();
     @include flex-x(flex-direction, row);
-    max-width: rem(600px);
+    max-width: rem(359px);
     height: rem(58px);
     margin-bottom: 2.5rem;
 
-    @include media('>lg-plus') {
+    &::after {
+      background-color: $primary-solar;
+      position: absolute;
+      content: '';
+      width: 7px;
+      height: 58px;
+      bottom: 0;
+      right: 47px;
+      z-index: 0;
+      transform: skew(300deg);
+      border-bottom-right-radius: 20px;
+    }
+
+    @include media('>gr') {
+      max-width: rem(600px);
+
       &::after {
-        background-color: $primary-solar;
-        position: absolute;
-        content: '';
-        width: 7px;
-        height: 58px;
-        bottom: 0;
-        right: 46px;
-        z-index: 0;
-        transform: skew(300deg);
-        border-bottom-right-radius: 20px;
+        right: 45px;
       }
     }
 
     .node--type-product-related-products__nav-logo-wrapper {
       display: none;
 
-      @include media('>lg-plus') {
+      @include media('>gr') {
         @include flex;
         @include flex-x(align-items, center);
 
@@ -537,7 +565,7 @@ $tabs-border-width-active: rem(5px);
         z-index: 1;
       }
 
-      // Performance Device
+      // blade after logo
       &::after {
         background-color: $primary-emerald;
         position: absolute;
@@ -554,9 +582,13 @@ $tabs-border-width-active: rem(5px);
         @include link-base();
         background-color: $primary-emerald;
         display: block;
-        width: rem(184px);
+        width: rem(56px);
         overflow: hidden;
         line-height: 1;
+
+        @include media('>xl') {
+          width: rem(184px);
+        }
 
         svg {
           height: $header-logo-performance-height-large;
@@ -570,11 +602,25 @@ $tabs-border-width-active: rem(5px);
     }
 
     .node--type-product-related-products__nav-content {
-      text-align: center;
+      background-color: $primary-emerald;
+      max-width: rem(370px);
+      text-align: left;
+      position: relative;
       width: 100%;
+      z-index: 0;
+      clip-path: polygon(0 0, 100% 0, 71% 100%, 0% 100%);
 
-      @include media('<=lg-plus') {
-        height: $header-logo-height;
+      // Blade
+      &::after {
+        background-color: $primary-solar;
+        position: absolute;
+        content: '';
+        width: 30px;
+        height: 58px;
+        top: 0;
+        right: 50px;
+        z-index: 0;
+        transform: skew(300deg);
       }
 
       @include media('>lg-plus') {
@@ -604,9 +650,9 @@ $tabs-border-width-active: rem(5px);
         text-transform: uppercase;
         color: $white;
         margin: 0;
+        padding: rem(14px 0 16px 48px);
 
         @include media('>lg-plus') {
-          color: $white;
           padding: rem(14px 0 16px 48px);
         }
       }
