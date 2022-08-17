@@ -70,16 +70,16 @@
         opacity: 1;
 
         &:hover {
-          background-color: $color-black;
+          background-color: $white;
           border-color: $primary-emerald;
         }
 
         &.view-related-products-slider__button-prev {
-          background-image: url('../../../icons/chevron-left-black.svg');
+          background-image: url('../../../icons/chevron-left-white.svg');
           left: rem(-98px);
 
           &:hover {
-            background-image: url('../../../icons/chevron-left-molten-orange.svg');
+            background-image: url('../../../icons/chevron-left-emerald.svg');
           }
 
           @include media('<1401px') {
@@ -92,11 +92,11 @@
         }
 
         &.view-related-products-slider__button-next {
-          background-image: url('../../../icons/chevron-right-black.svg');
+          background-image: url('../../../icons/chevron-right-white.svg');
           right: rem(-98px);
 
           &:hover {
-            background-image: url('../../../icons/chevron-right-molten-orange.svg');
+            background-image: url('../../../icons/chevron-right-emerald.svg');
           }
 
           @include media('<1400px') {
@@ -136,6 +136,11 @@
         position: relative;
         opacity: 1;
 
+        @include on-event() {
+          background-color: $white;
+          border-color: $primary-emerald;
+        }
+
         @include media('<md') {
           height: rem(40px);
           width: rem(40px);
@@ -146,13 +151,21 @@
         }
 
         &.view-related-products-slider__pseudo-button-prev {
-          background-image: url('../../../icons/chevron-left-black.svg');
+          background-image: url('../../../icons/chevron-left-white.svg');
           margin-right: 1rem;
+
+          @include on-event() {
+            background-image: url('../../../icons/chevron-left-emerald.svg');
+          }
         }
 
         &.view-related-products-slider__pseudo-button-next {
-          background-image: url('../../../icons/chevron-right-black.svg');
+          background-image: url('../../../icons/chevron-right-white.svg');
           margin-left: 1rem;
+
+          @include on-event() {
+            background-image: url('../../../icons/chevron-right-emerald.svg');
+          }
         }
       }
 
