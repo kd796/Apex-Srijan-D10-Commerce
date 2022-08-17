@@ -1,3 +1,4 @@
+uuid: 3efcfb07-3cfa-4e6d-bd76-4528326b1883
 langcode: en
 status: true
 dependencies: {  }
@@ -39,25 +40,8 @@ process:
     source: remote_id
     method: row
     value:
-      - W1_743930
-      - W1_743899
-      - W1_743831
-      - W1_743769
-      - W1_743784
-      - W1_743905
-      - W1_743878
-      - W1_743917
-      - W1_743927
-      - W1_743953
-      - W1_743803
-      - W1_743867
-      - W1_743771
-      - W1_743819
-      - W1_743911
-      - W1_743772
-      - W1_743786
-      - W1_743860
-      - W1_743846
+      - W1_777147
+      - W1_777148
   type:
     plugin: default_value
     default_value: product_category
@@ -94,20 +78,7 @@ process:
     plugin: apex_determine_set_filter_show
     source: remote_id
     allowed_categories:
-      - W1_743930
-      - W1_743899
-      - W1_743831
-      - W1_743905
-      - W1_743878
-      - W1_743917
-      - W1_743927
-      - W1_743953
-      - W1_743803
-      - W1_743867
-      - W1_743819
-      - W1_743911
-      - W1_743860
-      - W1_743846
+      - NONE
 destination:
   plugin: 'entity:node'
 migration_dependencies: {  }
