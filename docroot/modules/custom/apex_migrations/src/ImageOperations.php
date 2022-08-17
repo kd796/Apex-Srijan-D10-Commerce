@@ -74,19 +74,6 @@ class ImageOperations extends FileOperations {
   }
 
   /**
-   * Does some common cleaning on asset IDs.
-   *
-   * @param string $asset_id
-   *   The Asset ID for the image.
-   *
-   * @return string
-   *   The cleaned Asset ID.
-   */
-  public static function cleanAssetId(string $asset_id): string {
-    return str_replace(' ', '%20', $asset_id);
-  }
-
-  /**
    * Gets the asset image from FTP and then saves it to Drupal.
    *
    * @param string $asset_id

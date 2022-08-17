@@ -38,8 +38,6 @@ function sata_colombia_migrations_uninstall() {
   \Drupal::configFactory()->getEditable('migrate_plus.migration.sata_product_attributes')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.sata_product_attribute_values')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.sata_product_classifications_level_one')->delete();
-  \Drupal::configFactory()->getEditable('migrate_plus.migration.sata_product_classifications_level_two')->delete();
-  \Drupal::configFactory()->getEditable('migrate_plus.migration.sata_product_classifications_level_three')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.sata_products')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.sata_product_sets')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.sata_product_category_pages')->delete();
