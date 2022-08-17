@@ -63,7 +63,7 @@ class GetListingImage extends ProcessPluginBase {
         if ($child->getName() === 'Product' && (string) $child->attributes()->ID === $sku) {
           foreach ($child->children() as $item) {
             if ($item->getName() === 'AssetCrossReference' && ((string) $item->attributes()->Type === 'Primary Image')) {
-              $assetId = ImageOperations::cleanAssetId((string) $item->attributes()->AssetID);
+              $assetId = (string) $item->attributes()->AssetID;
 
               if (!empty($assetId)) {
                 $media_id = ImageOperations::getImageMediaId($assetId);
@@ -94,7 +94,7 @@ class GetListingImage extends ProcessPluginBase {
       if (empty($assets)) {
         foreach ($sku_group->children() as $child) {
           if ($child->getName() === 'AssetCrossReference' && (string) $child->attributes()->Type === 'Primary Image') {
-            $assetId = ImageOperations::cleanAssetId((string) $child->attributes()->AssetID);
+            $assetId = (string) $child->attributes()->AssetID;
 
             if (!empty($assetId)) {
               $media_id = ImageOperations::getImageMediaId($assetId);
