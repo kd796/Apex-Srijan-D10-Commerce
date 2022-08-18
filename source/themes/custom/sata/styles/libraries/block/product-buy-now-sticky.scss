@@ -82,8 +82,8 @@
         font-weight: 800;
         text-transform: uppercase;
 
-        @media (max-width: 767px) {
-          font-size: rem(20px);
+        @include media('>=md') {
+          font-size: rem(16px);
         }
       }
 
@@ -97,7 +97,8 @@
 
         p {
           color: $white;
-          font-weight: 800;
+          font-weight: $fw-regular;
+          font-size: rem(12px);
         }
       }
 
