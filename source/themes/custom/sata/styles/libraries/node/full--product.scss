@@ -525,31 +525,16 @@ $tabs-border-width-active: rem(5px);
 
   .node--type-product-related-products__nav-wrapper {
     @include container-full-width();
-    @include flex();
     @include flex-x(flex-direction, row);
-    max-width: rem(359px);
+
+    display: inline-flex;
+    width: unset;
     height: rem(58px);
     margin-bottom: 2.5rem;
 
-    &::after {
-      background-color: $primary-solar;
-      position: absolute;
-      content: '';
-      width: 7px;
-      height: 58px;
-      bottom: 0;
-      right: 47px;
-      z-index: 0;
-      transform: skew(300deg);
-      border-bottom-right-radius: 20px;
-    }
-
-    @include media('>gr') {
-      max-width: rem(600px);
-
-      &::after {
-        right: 45px;
-      }
+    @include media('<sm') {
+      min-height: rem(58px);
+      height: auto;
     }
 
     .node--type-product-related-products__nav-logo-wrapper {
@@ -604,58 +589,32 @@ $tabs-border-width-active: rem(5px);
 
     .node--type-product-related-products__nav-content {
       background-color: $primary-emerald;
-      max-width: rem(370px);
       text-align: left;
       position: relative;
-      width: 100%;
       z-index: 0;
-      clip-path: polygon(0 0, 100% 0, 71% 100%, 0% 100%);
-
-      // Blade
-      &::after {
-        background-color: $primary-solar;
-        position: absolute;
-        content: '';
-        width: 30px;
-        height: 58px;
-        top: 0;
-        right: 50px;
-        z-index: 0;
-        transform: skew(300deg);
-      }
-
-      @include media('>lg-plus') {
-        background-color: $primary-emerald;
-        max-width: rem(370px);
-        text-align: left;
-        position: relative;
-        width: 100%;
-        z-index: 0;
-        clip-path: polygon(0 0, 100% 0, 71% 100%, 0% 100%);
-
-        // Blade
-        &::after {
-          background-color: $primary-solar;
-          position: absolute;
-          content: '';
-          width: 30px;
-          height: 58px;
-          top: 0;
-          right: 50px;
-          z-index: 0;
-          transform: skew(300deg);
-        }
-      }
 
       h4 {
         text-transform: uppercase;
         color: $white;
         margin: 0;
-        padding: rem(14px 0 16px 48px);
+        padding: rem(14px 0 16px 15px);
 
         @include media('>lg-plus') {
           padding: rem(14px 0 16px 48px);
         }
+      }
+    }
+
+    .node--type-product-related-products__nav-blade {
+      height: rem(58px);
+
+      img {
+        height: 100%;
+      }
+
+      @include media('<sm') {
+        min-height: rem(58px);
+        height: auto;
       }
     }
   }
