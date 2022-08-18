@@ -258,7 +258,11 @@
           .last()
           .attr('tabindex', '0')
           .attr('aria-selected', 'true');
-        $mobileTabs.attr('aria-selected', 'false');
+        $mobileTabs.attr('aria-selected', 'false')
+          .last()
+          .attr('tabindex', '0')
+          .attr('aria-selected', 'true')
+          .addClass('node--type-product-tabs__mobile-nav-item--open');
         $panels.prop('hidden', true)
           .last()
           .prop('hidden', false);
@@ -311,6 +315,35 @@
             .attr('aria-labelledby', tabId);
         });
 
+
+
+        $mobileTabs.each(function (tabIndex) {
+          var $tab = $(this);
+          var $tabLink = $tab.find('a');
+          var $tabLinkHref = $tabLink.attr('href');
+          var panelId;
+          if (typeof $tabLinkHref !== 'undefined' && $tabLinkHref !== false) {
+            panelId = $tabLink.attr('href').substring($tabLink.attr('href').indexOf('#') + 1);
+            $tabLink.attr('id', panelId);
+          }
+          else {
+            panelId = $tabLink.attr('id').substring($tabLink.attr('id').indexOf('#') + 1);
+          }
+          var tabId = panelId + '-tab';
+
+          // Remove link from href.
+          $tabLink.removeAttr('href');
+
+          // Link tab to panel.
+          $tab.attr('id', tabId)
+            .attr('aria-controls', panelId);
+
+          // Link panel to tab.
+          $panels.eq(tabIndex)
+            .attr('id', panelId)
+            .attr('aria-labelledby', tabId);
+        });
+
         // Initialize the roving tabindex.
         $tablist.rovingTabindex('[role=tab]');
         $('.node--type-product-tabs__content').rovingTabindex('[role=tab]');
@@ -322,17 +355,17 @@
           $mobileTab.attr('aria-selected', 'true');
         });
 
-        $mobileTablist.on('click keydown', '[role=tab]', function (e, data) {
-          var $keyCode = e.keyCode || e.which;
-          if (e.type === 'click' || ($keyCode === 13 && e.type === 'keydown')) {
+        $mobileTablist.on('click keyup', '[role=tab]', function (e, data) {
+          if (e.type === 'click' || (e.type === 'keyup' && [13, 32].indexOf(e.keyCode) !== -1)) {
             var $mobileTab = $(this);
-            if ($panels.filter('#' + $mobileTab.attr('aria-controls')).prop('hidden') === true) {
-              $panels.prop('hidden', true);
-              $panels.filter('#' + $mobileTab.attr('aria-controls')).prop('hidden', false);
-            }
-            else {
-              $panels.filter('#' + $mobileTab.attr('aria-controls')).prop('hidden', true);
-            }
+            var $mobileTabContent = $panels.filter('#' + $mobileTab.attr('aria-controls'));
+            var open = $mobileTab.hasClass('node--type-product-tabs__mobile-nav-item--open');
+
+            $mobileTab.toggleClass('node--type-product-tabs__mobile-nav-item--open', (!open));
+            $mobileTab.attr('aria-selected', (open) ? 'false' : 'true');
+            $mobileTabContent
+              .attr('aria-hidden', (open) ? 'true' : 'false')
+              .attr('hidden', open);
             Drupal.blazy.init.revalidate();
           }
         });

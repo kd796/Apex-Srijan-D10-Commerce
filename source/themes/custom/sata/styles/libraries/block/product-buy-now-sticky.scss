@@ -37,27 +37,31 @@
   }
 
   &.show--with-nav {
-    top: 5.8rem;
+    top: 9.3rem;
+
+    @include media('<md') {
+      top: 5.5rem;
+    }
 
     @media (min-width: 595px) and (max-width: 1154px) {
       .user-logged-in & {
-        top: 8.5rem;
+        top: 11.3rem;
       }
     }
 
     @media (min-width: 1155px) {
       .user-logged-in & {
-        top: 8.5rem;
+        top: 11.3rem;
       }
 
       .user-logged-in.toolbar-tray-open & {
-        top: 11rem;
+        top: 14.25rem; // +2.5rem
       }
     }
   }
 
   .block--gw-product-buy-now-sticky {
-    background-color: $black;
+    background-color: $primary-emerald;
     margin-top: -1.8rem;
     padding: 1rem 0;
 
@@ -72,13 +76,14 @@
       header {
         @include setfont();
 
+        font-family: $font-brand;
         color: #FFFFFF;
-        font-size: 1.25rem;
+        font-size: rem(24px);
         font-weight: 800;
         text-transform: uppercase;
 
-        @media (max-width: 767px) {
-          font-size: 1rem;
+        @include media('>=md') {
+          font-size: rem(16px);
         }
       }
 
@@ -92,7 +97,8 @@
 
         p {
           color: $white;
-          font-weight: 800;
+          font-weight: $fw-regular;
+          font-size: rem(12px);
         }
       }
 
@@ -108,6 +114,7 @@
           p {
             color: $white;
             font-weight: 800;
+            font-family: $font-brand;
           }
 
           &.sku--desktop {
@@ -120,19 +127,29 @@
         }
 
         .ps-widget {
-          @include btn(primary);
+          @include btn(solar);
 
-          border: 2px solid $primary-emerald !important;
           float: unset;
 
           &:hover {
             cursor: pointer;
           }
 
+          &.ps-disabled {
+            background-color: $gray-50;
+            border-color: $gray-50 !important;
+
+            > small {
+              line-height: rem(26px);
+              font-weight: $fw-extra-bold;
+              font-family: $font-brand;
+            }
+          }
+
           @media (max-width: 767px) {
             min-width: 120px;
-            padding-left: 0;
-            padding-right: 0;
+            padding-left: rem(5px);
+            padding-right: rem(5px);
           }
         }
       }
