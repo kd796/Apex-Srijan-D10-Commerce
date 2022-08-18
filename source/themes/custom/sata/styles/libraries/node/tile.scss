@@ -15,6 +15,8 @@
  */
 
 .node--view-mode-tile {
+  border: 3px solid $primary-emerald;
+
   .node__grid-image .field--name-field-media .media {
     picture {
       width: 100%;
@@ -32,7 +34,7 @@
   .node__grid-title {
     font-size: rem(16px);
     width: 100%;
-    background-color: transparent;
+    background-color: $primary-emerald;
     padding: 1rem .85rem .85rem;
     white-space: normal;
 
@@ -60,14 +62,17 @@
         }
       }
 
-      .node__grid-title {
-        @include icon('chevron-right-black', after, false);
+      .btn {
         background-color: $primary-emerald;
-        color: $black;
+        color: $white;
+      }
+
+      .node__grid-title {
+        @include icon('tertiary-link', after, false);
 
         &::after {
-          font-size: rem(12px);
-          padding-left: rem(5px);
+          font-size: rem(17px);
+          padding-left: rem(2px);
         }
       }
     }
