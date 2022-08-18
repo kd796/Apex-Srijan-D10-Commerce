@@ -45,7 +45,10 @@
               },
               resize: function () {
                 setTimeout(Drupal.behaviors.swiper.updateSlideAria.bind(this), Drupal.behaviors.componentHero.resizeButtons($heroSlideButtonContainer), 500);
-                Drupal.blazy.init.revalidate();
+
+                if (typeof Drupal.blazy !== 'undefined') {
+                  Drupal.blazy.init.revalidate();
+                }
               },
               slideChange: function (el) {
                 $('.swiper-slide').each(function () {
@@ -58,7 +61,10 @@
               },
               slideChangeTransitionEnd: function () {
                 Drupal.behaviors.swiper.updateSlideAria.apply(this);
-                Drupal.blazy.init.revalidate();
+
+                if (typeof Drupal.blazy !== 'undefined') {
+                  Drupal.blazy.init.revalidate();
+                }
               }
             },
             pagination: {
