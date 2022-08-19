@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - classy_paragraphs.classy_paragraphs_style.featured_media_layout__full
     - field.storage.paragraph.field_layout
     - paragraphs.paragraphs_type.featured_media
 id: paragraph.featured_media.field_layout
@@ -13,7 +14,9 @@ label: Layout
 description: ''
 required: true
 translatable: true
-default_value: {  }
+default_value:
+  -
+    target_uuid: d81a3a2b-2860-4d69-922b-56a4842d70cd
 default_value_callback: ''
 settings:
   handler: classy_paragraphs
