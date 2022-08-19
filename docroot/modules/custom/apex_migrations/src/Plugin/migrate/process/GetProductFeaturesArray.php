@@ -57,6 +57,8 @@ class GetProductFeaturesArray extends ProcessPluginBase {
       /** @var \SimpleXMLElement $child */
       foreach ($value->children() as $child) {
         $att_id = (string) $child->attributes()->AttributeID;
+        $data = '';
+
         if (in_array($att_id, $attribute_ids_to_use)) {
           // Get the sorting position.
           $delta = $attribute_to_position[$att_id];
@@ -65,12 +67,24 @@ class GetProductFeaturesArray extends ProcessPluginBase {
             $copy_array[$delta] = [
               'copy_point' => (string) $child,
             ];
+            $data = (string) $child;
           }
           else {
-            $copy_array[$delta] = [
-              'copy_point' => (string) $child->Value,
-            ];
+            $data = (string) $child->Value;
           }
+
+          if (strlen($data) >= 1000) {
+            // The field has a string limit of 1,000 characters.
+            $data = substr($data, 0, 1000);
+
+            // We also need to report this as an issue.
+            $sku = $row->getSourceIdValues()['remote_sku'];
+            $migrate_executable->saveMessage("[Product Features Array] When importing Attribute ID $att_id for SKU $sku, we had to trim the field down to 1,000 characters to avoid errors.");
+          }
+
+          $copy_array[$delta] = [
+            'copy_point' => $data,
+          ];
         }
       }
 
