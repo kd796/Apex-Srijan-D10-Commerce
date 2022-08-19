@@ -4,25 +4,37 @@ status: true
 dependencies:
   config:
     - filter.format.basic_html
+    - filter.format.full_html
     - filter.format.restricted_html
     - media.type.audio
     - media.type.file
     - media.type.image
     - media.type.remote_video
+    - node.type.landing_page
+    - node.type.media_page
     - node.type.page
+    - node.type.product
+    - node.type.product_category
+    - node.type.product_industry
+    - node.type.styleguide
+    - taxonomy.vocabulary.media_page_categories
+    - taxonomy.vocabulary.product_industry
     - taxonomy.vocabulary.tags
   module:
     - contextual
     - environment_indicator
+    - field_group_settings
     - file
     - filter
     - media
     - node
     - paragraphs
     - path
+    - quick_node_clone
     - system
     - taxonomy
     - toolbar
+    - webform
 id: content_editor
 label: 'Content Editor'
 weight: 4
@@ -38,40 +50,89 @@ permissions:
   - 'access taxonomy overview'
   - 'access toolbar'
   - 'access user profiles'
+  - 'access webform help'
+  - 'access webform overview'
   - 'administer nodes'
+  - 'bypass field_group_settings field visibility'
+  - 'clone landing_page content'
+  - 'clone media_page content'
+  - 'clone page content'
+  - 'clone product_industry content'
   - 'create audio media'
   - 'create file media'
   - 'create image media'
+  - 'create landing_page content'
   - 'create media'
+  - 'create media_page content'
   - 'create page content'
+  - 'create product_industry content'
   - 'create remote_video media'
+  - 'create terms in media_page_categories'
+  - 'create terms in product_industry'
   - 'create terms in tags'
   - 'create url aliases'
+  - 'create webform'
   - 'delete all revisions'
+  - 'delete any audio media'
+  - 'delete any file media'
+  - 'delete any image media'
   - 'delete any page content'
+  - 'delete any remote_video media'
+  - 'delete landing_page revisions'
+  - 'delete media_page revisions'
+  - 'delete own audio media'
+  - 'delete own file media'
+  - 'delete own image media'
+  - 'delete own landing_page content'
+  - 'delete own media_page content'
   - 'delete own page content'
+  - 'delete own product_industry content'
+  - 'delete own remote_video media'
+  - 'delete own webform'
   - 'delete page revisions'
+  - 'delete product_industry revisions'
+  - 'delete terms in media_page_categories'
+  - 'delete terms in product_industry'
   - 'delete terms in tags'
   - 'edit any audio media'
   - 'edit any file media'
   - 'edit any image media'
+  - 'edit any landing_page content'
+  - 'edit any media_page content'
   - 'edit any page content'
+  - 'edit any product content'
+  - 'edit any product_category content'
+  - 'edit any product_industry content'
   - 'edit any remote_video media'
+  - 'edit any styleguide content'
   - 'edit own audio media'
   - 'edit own file media'
   - 'edit own image media'
+  - 'edit own landing_page content'
+  - 'edit own media_page content'
   - 'edit own page content'
+  - 'edit own product_industry content'
   - 'edit own remote_video media'
+  - 'edit own styleguide content'
+  - 'edit terms in media_page_categories'
+  - 'edit terms in product_industry'
   - 'edit terms in tags'
   - 'revert all revisions'
+  - 'revert landing_page revisions'
+  - 'revert media_page revisions'
   - 'revert page revisions'
+  - 'revert product_industry revisions'
   - 'update any media'
   - 'update media'
   - 'use text format basic_html'
+  - 'use text format full_html'
   - 'use text format restricted_html'
   - 'view all media revisions'
   - 'view all revisions'
+  - 'view landing_page revisions'
+  - 'view media_page revisions'
   - 'view own unpublished content'
   - 'view page revisions'
+  - 'view product_industry revisions'
   - 'view the administration theme'
   - 'view unpublished paragraphs'
