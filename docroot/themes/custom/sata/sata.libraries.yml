@@ -348,6 +348,33 @@ paragraph--full--content-callout:
     component:
       css/libraries/paragraph/full--content-callout.css: {}
 
+# Content Driver #
+paragraph--full--content-driver:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--content-driver.css: {}
+  js:
+    js/libraries/paragraph/full--content-driver.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - sata/library--swiper
+
+# Content Driver Item #
+paragraph--full--content-driver-item:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--content-driver-item.css: {}
+  js:
+    js/libraries/paragraph/full--content-driver-item.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
 # Digital Resources #
 paragraph--full--digital-resources:
   version: 1.x
@@ -361,7 +388,6 @@ paragraph--full--embed-view:
   css:
     component:
       css/libraries/paragraph/full--embed-view.css: {}
-
 
 # Hero #
 paragraph--full--hero:

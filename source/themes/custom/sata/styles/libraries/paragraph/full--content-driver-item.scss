@@ -1,0 +1,262 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: hero slide
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+.component-content-driver-item,
+.component-content-driver-item.swiper-slide {
+  // The "!important" tags are set to override swiper-slider styles.
+  @include flex();
+  @include flex-x(flex-direction, row);
+  @include flex-x(justify-content, flex-end);
+  @include flex-x(align-items, center);
+
+  background-color: $white;
+  height: 40rem;
+  position: relative;
+  width: 100vw !important;
+
+  @include media('<md') {
+    height: rem(795px);
+  }
+
+  @include media('<xs') {
+    height: rem(715px);
+  }
+
+  .field--name-field-media-background {
+    .media {
+      @include trbl();
+      height: rem(270px);
+      overflow: hidden;
+      width: 100%;
+      z-index: 0;
+
+      .media__media {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+
+        > picture,
+        img {
+          display: block;
+          height: 100%;
+          left: 50%;
+          min-height: 100%;
+          min-width: 100%;
+          object-fit: cover;
+          position: absolute;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: auto;
+          object-fit: cover;
+        }
+      }
+
+      @include media('>=xs') {
+        height: rem(350px);
+      }
+
+      @include media('>=sm') {
+        height: rem(360px);
+      }
+
+      @include media('>md') {
+        height: 100%;
+      }
+    }
+  }
+
+  .component-content-driver-item__inner {
+    @include container($container-xl, 0, center, false);
+    @include flex();
+    @include flex-x(justify-content, left);
+    @include flex-x(align-items, flex-end);
+
+    color: $color-white;
+    height: 100%;
+
+    @include media('>=md') {
+      @include flex-x(align-items, flex-start);
+    }
+  }
+
+  .component-content-driver-item__content-container {
+    background-color: $primary-emerald;
+    box-sizing: border-box;
+    margin: 0;
+    max-width: 100%;
+    padding: 1.625rem rem(20px) rem(180px) .875rem;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 100%, 0 100%);
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: $primary-solar;
+      z-index: -1;
+      clip-path: polygon(0 93%, 100% 38%, 100% 50%, 0% 100%);
+    }
+
+    @include media('<md') {
+      width: 100%;
+      height: 100%;
+      max-height: rem(445px);
+    }
+
+    @include media('>=md') {
+      max-width: 530px;
+      padding: rem(47px) rem(43px) rem(158px) rem(48px);
+
+      &::after {
+        clip-path: polygon(0 95%, 100% 40%, 100% 50%, 0% 100%);
+      }
+    }
+
+    >* {
+      position: relative;
+      z-index: 2;
+    }
+
+    .component-content-driver-item__title {
+      margin-bottom: rem(17px);
+
+      @include media('>md') {
+        margin-bottom: rem(15px);
+      }
+
+      h2 {
+        @include type-header(h4, light, included);
+        text-transform: uppercase;
+        display: block;
+        margin: 0;
+
+        @include media('>md') {
+          @include type-header(display-headline-4, light, included);
+          line-height: rem(48px);
+          margin: 0;
+        }
+      }
+    }
+
+    .component-content-driver-item__content {
+      display: block;
+      @include media('<=md') {
+        display: none;
+      }
+    }
+  }
+
+  .component-content-driver-item__link {
+    @include btn(solar);
+    display: flex;
+    align-self: start;
+    order: 1;
+
+    @include media('<md') {
+      height: rem(49px);
+      margin-right: rem(8px);
+      min-width: rem(190px);
+      justify-content: center;
+    }
+  }
+
+  .component-content-driver-item__footer {
+    @include flex;
+    @include flex-x(flex-direction, column);
+    @include flex-x(flex-wrap, wrap);
+  }
+
+  .component-content-driver-item__button-container {
+    @include flex;
+    @include flex-x(flex-direction, row);
+    @include flex-x(align-items, center);
+
+    align-self: stretch;
+    order: 3;
+    margin-top: rem(19px);
+
+    .component-content-driver-item__button {
+      @include trbl();
+
+      background-color: $primary-solar;
+      background-size: rem(10px) rem(16px);
+      border: 1px solid $primary-solar;
+      color: $type-dark;
+      height: rem(49px);
+      width: rem(49px);
+      margin: 0;
+      padding: 0;
+      opacity: 1;
+      position: relative;
+
+      &:hover {
+        background-color: $white;
+      }
+
+      &.component-content-driver-item__button-prev {
+        background-image: url('../../../icons/chevron-left-carbon.svg');
+        margin-right: 1px;
+      }
+
+      &.component-content-driver-item__button-next {
+        background-image: url('../../../icons/chevron-right-carbon.svg');
+        margin-left: 1px;
+      }
+
+      &[aria-disabled='true'] {
+        background-color: $gray-30;
+        border-color: $gray-30;
+      }
+    }
+  }
+
+  .component-content-driver-item__pagination {
+    display: block;
+    position: relative !important;
+    text-align: left !important;
+    margin-top: rem(19px);
+    margin-bottom: 0;
+    order: 2;
+
+    @include media('<md') {
+      width: 100%;
+    }
+
+    @include media('>=md') {
+      margin-top: rem(32px);
+    }
+
+    .swiper-pagination-bullet {
+      background: transparent;
+      border-color: $primary-solar;
+      height: rem(12px);
+      width: rem(12px);
+
+      &:not(:last-of-type) {
+        margin-right: rem(12px);
+      }
+
+      &:first-of-type {
+        margin-left: 0;
+      }
+    }
+
+    .swiper-pagination-bullet-active {
+      background: $primary-solar;
+    }
+  }
+}
