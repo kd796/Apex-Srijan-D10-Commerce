@@ -1,0 +1,34 @@
+uuid: c66c3541-2ac5-4861-a0d7-e21fd67793a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.content_driver.field_content_driver_items
+    - field.field.paragraph.content_driver.field_title
+    - paragraphs.paragraphs_type.content_driver
+  module:
+    - entity_reference_revisions
+id: paragraph.content_driver.default
+targetEntityType: paragraph
+bundle: content_driver
+mode: default
+content:
+  field_content_driver_items:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true
