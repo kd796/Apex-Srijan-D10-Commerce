@@ -6,6 +6,8 @@ dependencies:
     - field.storage.node.field_media
     - media.type.image
     - node.type.landing_page
+  content:
+    - 'media:image:acddd3f2-e9c1-469a-a5e0-f54fc071d797'
 id: node.landing_page.field_media
 field_name: field_media
 entity_type: node
@@ -14,7 +16,10 @@ label: 'Listing Image'
 description: ''
 required: false
 translatable: false
-default_value: {  }
+default_value:
+  -
+    target_uuid: acddd3f2-e9c1-469a-a5e0-f54fc071d797
+    weight: 0
 default_value_callback: ''
 settings:
   handler: 'default:media'
@@ -23,6 +28,7 @@ settings:
       image: image
     sort:
       field: _none
+      direction: ASC
     auto_create: false
     auto_create_bundle: ''
 field_type: entity_reference
