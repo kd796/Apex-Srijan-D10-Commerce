@@ -69,7 +69,6 @@ function sata_preprocess_node__landing_page__full(array &$variables) {
  */
 function sata_preprocess_node__page__full(array &$variables) {
   $node = $variables['node'];
-  $contentType = $node->bundle();
 
   if ($node->hasField('field_show_listing_image_on_full')) {
     $showListingImage = $node->get('field_show_listing_image_on_full')->getValue()[0]['value'];
