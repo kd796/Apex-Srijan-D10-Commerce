@@ -68,8 +68,16 @@ function sata_preprocess_node__landing_page__full(array &$variables) {
  * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for page, full.
  */
 function sata_preprocess_node__page__full(array &$variables) {
-  // Nothing to see here.
-  $something_to_see = 'NOTHING';
+  $node = $variables['node'];
+  $contentType = $node->bundle();
+
+  if ($node->hasField('field_show_listing_image_on_full')) {
+    $showListingImage = $node->get('field_show_listing_image_on_full')->getValue()[0]['value'];
+    
+    if ($showListingImage === '0') {
+      unset($variables['content']['field_media']);
+    }
+  }
 }
 
 /**
