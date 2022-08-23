@@ -14,6 +14,8 @@
  * @see sata_preprocess_paragraph__hero_slide__full()
  * @see sata_preprocess_paragraph__content_callout_container__full()
  * @see sata_preprocess_paragraph__content_callout__full()
+ * @see sata_preprocess_paragraph__content_driver__full()
+ * @see sata_preprocess_paragraph__content_driver_item__full()
  * @see sata_preprocess_paragraph__digital_resources__full()
  * @see sata_preprocess_paragraph__steps__full()
  * @see sata_preprocess_paragraph__step__full()
@@ -220,6 +222,55 @@ function sata_preprocess_paragraph__content_callout__full(array &$variables) {
     ];
     $variables['content']['field_media_background'] = $paragraph->get('field_media_background')->view($field_settings);
     unset($variables['content']['single_image']);
+  }
+}
+
+/**
+ * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for hero, full.
+ */
+function sata_preprocess_paragraph__content_driver__full(array &$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $base_class = $variables['component_base_class'];
+
+  // Track that inner_attributes should get converted.
+  $variables['#attribute_variables'][] = 'inner_attributes';
+
+  // Set inner attributes.
+  $variables['inner_attributes']['class'][] = "{$base_class}__inner";
+}
+
+/**
+ * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for hero_slide, full.
+ */
+function sata_preprocess_paragraph__content_driver_item__full(array &$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $base_class = $variables['component_base_class'];
+
+  // Initialize variables.
+  $variables['inner_attributes']['class'][] = "{$base_class}__inner";
+
+  // Move media field to new variable.
+  if (isset($variables['content']['field_media_item']) && !empty($variables['content']['field_media_item'])) {
+    $variables['attributes']['class'][] = "{$base_class}--with-media";
+
+    $field_settings = [
+      'type' => 'blazy_media',
+      'label' => 'hidden',
+      'responsive_image_style' => 'teaser',
+    ];
+
+    $variables['media'] = $paragraph->get('field_media_item')->view($field_settings);
+    $variables['media']['#attributes']['class'][] = "{$base_class}__media";
+    unset($variables['content']['field_media_item']);
+  }
+
+  // Move cta link to footer and add class.
+  if (array_key_exists('field_link', $variables['content']) && !empty($variables['content']['field_link'])) {
+    $variables['footer']['field_link'] = $variables['content']['field_link'];
+    $variables['footer']['field_link'][0]['#options']['attributes']['class'] = "{$base_class}__link button";
+    unset($variables['content']['field_link'], $variables['footer']['field_link']['#theme']);
   }
 }
 

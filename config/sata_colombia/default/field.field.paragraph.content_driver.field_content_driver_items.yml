@@ -1,0 +1,100 @@
+uuid: 88100616-2591-49a2-8609-dc056fc22cc5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content_driver_items
+    - paragraphs.paragraphs_type.content_driver
+    - paragraphs.paragraphs_type.content_driver_item
+  module:
+    - entity_reference_revisions
+id: paragraph.content_driver.field_content_driver_items
+field_name: field_content_driver_items
+entity_type: paragraph
+bundle: content_driver
+label: 'Content Driver Items'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      content_driver_item: content_driver_item
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 25
+        enabled: false
+      accordion_item:
+        weight: 26
+        enabled: false
+      content:
+        weight: 27
+        enabled: false
+      content_2_column:
+        weight: 28
+        enabled: false
+      content_callout:
+        weight: 29
+        enabled: false
+      content_callout_container:
+        weight: 30
+        enabled: false
+      content_driver:
+        weight: 31
+        enabled: false
+      content_driver_item:
+        weight: 32
+        enabled: true
+      digital_resources:
+        weight: 33
+        enabled: false
+      embed_block:
+        weight: 34
+        enabled: false
+      embed_iframe:
+        weight: 35
+        enabled: false
+      embed_view:
+        weight: 36
+        enabled: false
+      featured_content:
+        weight: 37
+        enabled: false
+      featured_links:
+        weight: 38
+        enabled: false
+      featured_media:
+        weight: 39
+        enabled: false
+      hero:
+        weight: 40
+        enabled: false
+      hero_slide:
+        weight: 41
+        enabled: false
+      product_slider:
+        weight: 42
+        enabled: false
+      pullquote:
+        weight: 43
+        enabled: false
+      section:
+        weight: 44
+        enabled: false
+      step:
+        weight: 45
+        enabled: false
+      steps:
+        weight: 46
+        enabled: false
+      tabs:
+        weight: 47
+        enabled: false
+      tabs_tab:
+        weight: 48
+        enabled: false
+field_type: entity_reference_revisions

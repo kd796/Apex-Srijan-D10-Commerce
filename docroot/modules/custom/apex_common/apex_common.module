@@ -5,6 +5,8 @@
  * Primary module hooks for the Apex Common module.
  */
 
+use Drupal\media\Entity\Media;
+
 /**
  * Alter webform options by id.
  *
@@ -13,7 +15,7 @@
  * @param array $element
  *   The webform element that the options is for.
  */
-function apex_common_webform_options_state_province_names_alter(array &$options, array &$element) {
+function apex_common_webform_options_state_province_names_alter(array &$options, array &$element): void {
   if (!empty($options)) {
     $options_to_remove = [
       'Federated States of Micronesia',
@@ -38,4 +40,79 @@ function apex_common_webform_options_state_province_names_alter(array &$options,
       }
     }
   }
+}
+
+/**
+ * Loads the default image for the site.
+ *
+ * @param bool $product_image
+ *   Should we focus on loading the product default image?
+ *
+ * @return \Drupal\media\Entity\Media|null
+ *   The image or nothing.
+ *
+ * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+ * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+ */
+function apex_common_load_default_image(bool $product_image = FALSE): ?Media {
+  $image = NULL;
+
+  if ($product_image === FALSE) {
+    $image = apex_common_load_media_by_name('Default Image');
+  }
+
+  if (empty($image)) {
+    // Next try the product default image.
+    $image = apex_common_load_media_by_name('Product Default Image');
+  }
+
+  if (!empty($image)) {
+    return array_shift($image);
+  }
+
+  return NULL;
+}
+
+/**
+ * Load a media file by name.
+ *
+ * @param string $name
+ *   The name of the media file.
+ *
+ * @return \Drupal\media\Entity\Media[]
+ *   An array of media entities.
+ *
+ * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+ * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+ */
+function apex_common_load_media_by_name(string $name): array {
+  $properties = [
+    'name' => $name
+  ];
+
+  return apex_common_load_media_by_properties($properties);
+}
+
+/**
+ * This helps load media entities by properties.
+ *
+ * Since these helpers were removed from Drupal for dumb reasons.
+ *
+ * @param array $properties
+ *   The properties to search by.
+ *
+ * @return \Drupal\media\Entity\Media[]
+ *   An array of media entities.
+ *
+ * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+ * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+ */
+function apex_common_load_media_by_properties(array $properties = []): array {
+  $entity_type_repository = \Drupal::service('entity_type.repository');
+  $entity_type_manager = \Drupal::entityTypeManager();
+
+  /** @var \Drupal\media\MediaStorage $storage */
+  $storage = $entity_type_manager->getStorage($entity_type_repository->getEntityTypeFromClass(Media::class));
+
+  return $storage->loadByProperties($properties);
 }
