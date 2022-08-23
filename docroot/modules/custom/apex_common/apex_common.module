@@ -6,6 +6,7 @@
  */
 
 use Drupal\media\Entity\Media;
+use Drupal\node\Entity\Node;
 
 /**
  * Alter webform options by id.
@@ -113,6 +114,47 @@ function apex_common_load_media_by_properties(array $properties = []): array {
 
   /** @var \Drupal\media\MediaStorage $storage */
   $storage = $entity_type_manager->getStorage($entity_type_repository->getEntityTypeFromClass(Media::class));
+
+  return $storage->loadByProperties($properties);
+}
+
+/**
+ * Just loads nodes by type then resaves them.
+ *
+ * @param string $type
+ *   The bundle name. Examples: product or page.
+ *
+ * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+ * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+ * @throws \Drupal\Core\Entity\EntityStorageException
+ */
+function apex_common_resave_node_by_type(string $type) {
+  /** @var \Drupal\node\NodeInterface[] $items */
+  $items = apex_common_load_nodes_by_properties(['bundle' => $type]);
+
+  foreach ($items as $item) {
+    $item->save();
+  }
+}
+
+/**
+ * Loads nodes by properties.
+ *
+ * @param array $properties
+ *   The properties to search by.
+ *
+ * @return array|\Drupal\node\NodeInterface[]
+ *   An array of nodes.
+ *
+ * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+ * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+ */
+function apex_common_load_nodes_by_properties(array $properties): array {
+  $entity_type_repository = \Drupal::service('entity_type.repository');
+  $entity_type_manager = \Drupal::entityTypeManager();
+
+  /** @var \Drupal\node\NodeStorage $storage */
+  $storage = $entity_type_manager->getStorage($entity_type_repository->getEntityTypeFromClass(Node::class));
 
   return $storage->loadByProperties($properties);
 }
