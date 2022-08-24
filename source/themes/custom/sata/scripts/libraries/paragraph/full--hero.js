@@ -23,7 +23,7 @@
         $heroWrapper.addClass('swiper-container');
         $heroItems.addClass('swiper-slide');
         $hero.addClass('swiper-wrapper');
-        $heroSlideButtonLink.after('<div class="component-hero-slide__pagination swiper-pagination"></div>');
+        $heroSlideButtonContainer.before('<div class="component-hero-slide__pagination swiper-pagination"></div>');
         $('.component-hero-slide__button').css('width', $buttonHeight);
 
         // Initialize swiper.
