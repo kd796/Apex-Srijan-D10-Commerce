@@ -359,17 +359,6 @@ $mobile-menu-item-button-height: 7rem;
         padding-top: 0;
       }
     }
-
-    // Brazil modifications
-    &.brazil-main-menu .block__menu {
-      .secondary-menu:nth-child(2) {
-        margin-left: 1em;
-      }
-
-      .secondary-menu:not(.secondary-menu__first) {
-        flex: 1;
-      }
-    }
   }
 
   .block--country-switch {
@@ -924,6 +913,37 @@ $mobile-menu-item-button-height: 7rem;
 
           ul.menu--depth-1 {
             columns: 3;
+          }
+        }
+      }
+
+
+
+      // Brazil modifications
+      &.brazil-main-menu .block__menu {
+        .secondary-menu {
+          flex: 0 0 auto;
+          width: auto;
+          max-width: rem(250px);
+
+          &:first-child {
+            padding-right: rem(100px);
+            max-width: rem(300px);
+          }
+
+          &:nth-child(2) {
+            margin-left: rem(25px);
+          }
+
+          &:last-child {
+            max-width: rem(600px);
+            padding-left: rem(50px);
+
+            .secondary-menu__content-container {
+              ul.menu--depth-1 {
+                columns: 2;
+              }
+            }
           }
         }
       }
