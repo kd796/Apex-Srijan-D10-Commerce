@@ -1,13 +1,15 @@
 uuid: 476eb221-75ca-407f-932c-8767b5b1b5e0
-langcode: en
+langcode: pt-br
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.page.body
     - field.field.node.page.field_components
+    - field.field.node.page.field_link
     - field.field.node.page.field_media
     - field.field.node.page.field_meta_tags
+    - field.field.node.page.field_show_listing_image_on_full
     - image.style.small_1x1
     - node.type.page
   module:
@@ -97,6 +99,7 @@ hidden:
   field_components: true
   field_link: true
   field_meta_tags: true
+  field_show_listing_image_on_full: true
   langcode: true
   links: true
   search_api_excerpt: true

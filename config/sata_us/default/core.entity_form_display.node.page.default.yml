@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.page.field_link
     - field.field.node.page.field_media
     - field.field.node.page.field_meta_tags
+    - field.field.node.page.field_show_listing_image_on_full
     - node.type.page
   module:
     - field_group
@@ -36,6 +37,7 @@ third_party_settings:
     group_main:
       children:
         - title
+        - field_show_listing_image_on_full
         - field_media
         - body
         - field_link
@@ -53,7 +55,6 @@ third_party_settings:
     group_content:
       children:
         - field_components
-        - group_primary_tabs
       label: Content
       region: content
       parent_name: group_tabs
@@ -72,7 +73,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 4
+    weight: 5
     region: content
     settings:
       rows: 9
@@ -109,7 +110,7 @@ content:
         limit_values: '0'
   field_link:
     type: link_default
-    weight: 5
+    weight: 6
     region: content
     settings:
       placeholder_url: ''
@@ -117,7 +118,7 @@ content:
     third_party_settings: {  }
   field_media:
     type: media_library_widget
-    weight: 3
+    weight: 4
     region: content
     settings:
       media_types: {  }
@@ -128,6 +129,14 @@ content:
     region: content
     settings:
       sidebar: true
+      use_details: true
+    third_party_settings: {  }
+  field_show_listing_image_on_full:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   langcode:
     type: language_select

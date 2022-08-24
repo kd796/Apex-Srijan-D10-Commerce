@@ -1,5 +1,5 @@
 uuid: 97bda216-e43f-4277-b07e-6188df4bdd34
-langcode: en
+langcode: pt-br
 status: true
 dependencies:
   config:
@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.page.field_link
     - field.field.node.page.field_media
     - field.field.node.page.field_meta_tags
+    - field.field.node.page.field_show_listing_image_on_full
     - node.type.page
   module:
     - blazy
@@ -155,6 +156,7 @@ content:
     region: content
 hidden:
   field_meta_tags: true
+  field_show_listing_image_on_full: true
   langcode: true
   links: true
   search_api_excerpt: true

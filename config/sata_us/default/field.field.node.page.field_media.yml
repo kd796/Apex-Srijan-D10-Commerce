@@ -8,6 +8,8 @@ dependencies:
     - media.type.remote_video
     - media.type.video
     - node.type.page
+  content:
+    - 'media:image:e1b8781d-db85-46e8-bcd7-ac7d1b19ca69'
 id: node.page.field_media
 field_name: field_media
 entity_type: node
@@ -16,7 +18,10 @@ label: 'Listing Image'
 description: ''
 required: false
 translatable: true
-default_value: {  }
+default_value:
+  -
+    target_uuid: e1b8781d-db85-46e8-bcd7-ac7d1b19ca69
+    weight: 0
 default_value_callback: ''
 settings:
   handler: 'default:media'
