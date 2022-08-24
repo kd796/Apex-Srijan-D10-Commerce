@@ -5,6 +5,57 @@ Welcome to the Apex Tools Build doc.
 
 ## List of relevant links
 
+### GEARWRENCH North America
+Prod: https://www.gearwrench.com/
+Stage: https://stg-www.gearwrench.com/
+Dev: http://dev-www.gearwrench.com/
+
+### Crescent Tools North America
+Prod: https://www.crescenttool.com/
+Stage: https://stg-www.crescenttool.com/
+Dev: http://dev-www.crescenttool.com/
+
+
+### GEARWRENCH Australia
+Prod: https://prod-www.gearwrench.com.au/
+Stage: https://stg-www.gearwrench.com.au/
+Dev: https://dev-www.gearwrench.com.au/
+
+### Crescent Tools Australia
+Prod: https://prod-www.crescenttool.com.au/
+Stage: https://stg-www.crescenttool.com.au/
+Dev: http://dev-www.crescenttool.com.au/
+
+
+### SATA Brazil
+Final Prod: http://sataferramentas.com.br (old site until launch)
+Prod: https://prod-www.sataferramentas.com.br (8/8: not setup)
+Stage: https://stg-www.sataferramentas.com.br (8/8: setup, no nav)
+Dev: https://dev-www.sataferramentas.com.br  (8/8: setup, no nav)
+Local (developers only): https://www.sataferramentas.com.br.docksal
+
+### SATA Colombia
+Final Prod: http://sata.com.co (old site until launch)
+Prod: https://prod-www.sata.com.co (8/8: not setup)
+Stage: https://stg-www.sata.com.co  (8/8: setup, no nav)
+Dev: https://dev-www.sata.com.co  (8/8: setup, no nav)
+Local (developers only): https://www.sata.com.co.docksal
+
+### SATA EMEA
+Final Prod: http://satatools.eu (old site until launch)
+Prod: https://prod-www.satatools.eu (8/8: not setup)
+Stage: https://stg-www.satatools.eu  (8/8: setup, no nav, no https)
+Dev: https://dev-www.satatools.eu  (8/8: setup, no nav, no https)
+Local (developers only): https://www.satatools.eu.docksal
+
+### SATA US (North America)
+Final Prod: http://satatools.us (old site until launch)
+Prod: https://prod-www.satatools.us (8/8 not setup, no https)
+Stage: https://stg-www.satatools.us  (8/8: setup, has nav!!, no https)
+Dev: https://dev-www.satatools.us (8/8: setup, has nav!!, no https)
+Local (developers only): https://www.satatools.us.docksal
+
+
 
 ## Table of Contents
 
