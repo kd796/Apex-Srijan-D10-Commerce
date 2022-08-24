@@ -37,6 +37,9 @@ drush11 --version
 echo "Trying a direct referencing of ../vendor/bin/drush..."
 ../vendor/bin/drush --version
 
+echo "Current Directory Is..."
+pwd
+
 echo "\n\nRunning per site deploy commands...\n\n\n\n"
 
 # GEARWRENCH
