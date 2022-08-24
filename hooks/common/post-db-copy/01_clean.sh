@@ -18,15 +18,9 @@ repo_url="$5"
 repo_type="$6"
 
 drush_alias=$site'.'$target_env
-alias drush11=../vendor/bin/drush
 
-# Apex Tools
-#uri=apextoolgroupdev.prod.acquia-sites.com
-#drush9 @$drush_alias sset system.maintenance_mode 1 --strict=0 --uri=$uri
-#drush9 @$drush_alias updatedb -y --strict=0 --uri=$uri
-#drush9 @$drush_alias cim sync -y --uri=$uri
-#drush9 @$drush_alias cr --uri=$uri
-#drush9 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
+cd /var/www/html/docroot
+alias drush11=../vendor/bin/drush
 
 echo "\n\n\nDrush version check...\n"
 drush --version
