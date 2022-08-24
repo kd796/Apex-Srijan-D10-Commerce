@@ -56,7 +56,6 @@ Dev: https://dev-www.satatools.us (8/8: setup, has nav!!, no https)
 Local (developers only): https://www.satatools.us.docksal
 
 
-
 ## Table of Contents
 
 - [Content Types](#content-types)
