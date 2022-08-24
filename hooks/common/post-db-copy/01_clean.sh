@@ -28,9 +28,15 @@ alias drush11=../vendor/bin/drush
 #drush9 @$drush_alias cr --uri=$uri
 #drush9 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
 
-echo `\n\n\nDrush version check...\n`
+echo "\n\n\nDrush version check...\n"
 drush --version
+
+echo "Trying drush11 alias..."
 drush11 --version
+
+echo "Trying a direct referencing of ../vendor/bin/drush..."
+../vendor/bin/drush --version
+
 echo "\n\nRunning per site deploy commands...\n\n\n\n"
 
 # GEARWRENCH
