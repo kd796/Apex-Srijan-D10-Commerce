@@ -18,6 +18,7 @@ repo_url="$5"
 repo_type="$6"
 
 drush_alias=$site'.'$target_env
+alias drush11=../vendor/bin/drush
 
 # Apex Tools
 #uri=apextoolgroupdev.prod.acquia-sites.com
@@ -27,9 +28,10 @@ drush_alias=$site'.'$target_env
 #drush9 @$drush_alias cr --uri=$uri
 #drush9 @$drush_alias sset system.maintenance_mode 0 --strict=0 --uri=$uri
 
-echo "\n\n\ndrush9 version check...\n"
+echo `\n\n\nDrush version check...\n`
 drush --version
-echo "\n\nRunning per site deploy commands...\n\n\n\n"
+drush11 --version
+echo `\n\nRunning per site deploy commands...\n\n\n\n`
 
 # GEARWRENCH
 echo "[SITE] GearWrench North America..."
