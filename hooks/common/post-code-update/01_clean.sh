@@ -31,14 +31,17 @@ alias drush11=../vendor/bin/drush
 echo "\n\n\nDrush version check...\n"
 drush --version
 
-echo "Trying drush11 alias..."
-drush11 --version
+#echo "Trying drush11 alias..."
+#drush11 --version
 
-echo "Trying a direct referencing of ../vendor/bin/drush..."
-../vendor/bin/drush --version
+#echo "Trying a direct referencing of ../vendor/bin/drush..."
+#../vendor/bin/drush --version
 
 echo "Current Directory Is..."
 pwd
+
+echo "Target Env: $target_env"
+echo "Site: $site"
 
 echo "\n\nRunning per site deploy commands...\n\n\n\n"
 
