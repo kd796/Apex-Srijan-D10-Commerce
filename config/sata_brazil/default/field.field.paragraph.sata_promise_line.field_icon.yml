@@ -1,0 +1,30 @@
+uuid: 82d27fd7-3b99-4fbc-82e8-d7594702e0bb
+langcode: pt-br
+status: true
+dependencies:
+  config:
+    - classy_paragraphs.classy_paragraphs_style.sata_promise_line__hand_holding_checkmark_circle
+    - field.storage.paragraph.field_icon
+    - paragraphs.paragraphs_type.sata_promise_line
+id: paragraph.sata_promise_line.field_icon
+field_name: field_icon
+entity_type: paragraph
+bundle: sata_promise_line
+label: Icon
+description: 'The icon to use for the SATA Promise line.'
+required: true
+translatable: false
+default_value:
+  -
+    target_uuid: dfb9d42f-7a82-4083-ba1e-9e37c1d0f1ac
+default_value_callback: ''
+settings:
+  handler: classy_paragraphs
+  handler_settings:
+    filter:
+      type: starts_with
+      starts_with: sata_promise_line__
+    sort:
+      field: label
+      direction: ASC
+field_type: entity_reference
