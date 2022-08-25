@@ -17,6 +17,7 @@ dependencies:
     - paragraphs.paragraphs_type.featured_links
     - paragraphs.paragraphs_type.featured_media
     - paragraphs.paragraphs_type.product_slider
+    - paragraphs.paragraphs_type.sata_promise
     - paragraphs.paragraphs_type.section
     - paragraphs.paragraphs_type.steps
     - paragraphs.paragraphs_type.tabs
@@ -48,81 +49,88 @@ settings:
       featured_links: featured_links
       featured_media: featured_media
       product_slider: product_slider
+      sata_promise: sata_promise
       section: section
       steps: steps
       tabs: tabs
     negate: 0
     target_bundles_drag_drop:
       accordion:
-        weight: -49
+        weight: -53
         enabled: true
       accordion_item:
-        weight: -43
+        weight: -47
         enabled: false
       content:
-        weight: -48
+        weight: -52
         enabled: true
       content_2_column:
-        weight: -47
+        weight: -51
         enabled: true
       content_callout:
-        weight: -46
+        weight: -50
         enabled: true
       content_callout_container:
-        weight: -45
+        weight: -49
         enabled: false
       content_driver:
-        weight: -27
+        weight: -30
         enabled: false
       content_driver_item:
-        weight: -26
+        weight: -29
         enabled: false
       digital_resources:
-        weight: -44
+        weight: -48
         enabled: true
       embed_block:
-        weight: -42
+        weight: -46
         enabled: true
       embed_iframe:
-        weight: -41
+        weight: -45
         enabled: true
       embed_view:
-        weight: -40
+        weight: -44
         enabled: true
       featured_content:
-        weight: -39
+        weight: -43
         enabled: true
       featured_links:
-        weight: -38
+        weight: -42
         enabled: true
       featured_media:
-        weight: -37
+        weight: -41
         enabled: true
       hero:
-        weight: -36
+        weight: -40
         enabled: false
       hero_slide:
-        weight: -35
+        weight: -39
         enabled: false
       product_slider:
-        weight: -34
+        weight: -38
         enabled: true
       pullquote:
-        weight: -33
+        weight: -37
         enabled: false
-      section:
-        weight: -32
+      sata_promise:
+        weight: -36
         enabled: true
-      step:
+      sata_promise_line:
         weight: -28
         enabled: false
-      steps:
+      section:
+        weight: -35
+        enabled: true
+      step:
         weight: -31
+        enabled: false
+      steps:
+        weight: -34
         enabled: true
       tabs:
-        weight: -30
+        weight: -33
         enabled: true
       tabs_tab:
-        weight: -29
+        weight: -32
         enabled: false
 field_type: entity_reference_revisions

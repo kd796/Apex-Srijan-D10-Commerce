@@ -1,0 +1,33 @@
+uuid: 0dced185-a464-455b-bad2-c3d979a64a65
+langcode: pt-br
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.sata_promise_line.field_icon
+    - field.field.paragraph.sata_promise_line.field_subline
+    - field.field.paragraph.sata_promise_line.field_title
+    - paragraphs.paragraphs_type.sata_promise_line
+id: paragraph.sata_promise_line.default
+targetEntityType: paragraph
+bundle: sata_promise_line
+mode: default
+content:
+  field_subline:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_icon: true
+  search_api_excerpt: true

@@ -1,0 +1,106 @@
+uuid: f5b7c7bf-c1a3-4d84-82a0-6c198e22ccc4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_components
+    - paragraphs.paragraphs_type.sata_promise
+    - paragraphs.paragraphs_type.sata_promise_line
+  module:
+    - entity_reference_revisions
+id: paragraph.sata_promise.field_components
+field_name: field_components
+entity_type: paragraph
+bundle: sata_promise
+label: 'Promise Lines'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      sata_promise_line: sata_promise_line
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 27
+        enabled: false
+      accordion_item:
+        weight: 28
+        enabled: false
+      content:
+        weight: 29
+        enabled: false
+      content_2_column:
+        weight: 30
+        enabled: false
+      content_callout:
+        weight: 31
+        enabled: false
+      content_callout_container:
+        weight: 32
+        enabled: false
+      content_driver:
+        weight: 33
+        enabled: false
+      content_driver_item:
+        weight: 34
+        enabled: false
+      digital_resources:
+        weight: 35
+        enabled: false
+      embed_block:
+        weight: 36
+        enabled: false
+      embed_iframe:
+        weight: 37
+        enabled: false
+      embed_view:
+        weight: 38
+        enabled: false
+      featured_content:
+        weight: 39
+        enabled: false
+      featured_links:
+        weight: 40
+        enabled: false
+      featured_media:
+        weight: 41
+        enabled: false
+      hero:
+        weight: 42
+        enabled: false
+      hero_slide:
+        weight: 43
+        enabled: false
+      product_slider:
+        weight: 44
+        enabled: false
+      pullquote:
+        weight: 45
+        enabled: false
+      sata_promise:
+        weight: 46
+        enabled: false
+      sata_promise_line:
+        weight: 47
+        enabled: true
+      section:
+        weight: 48
+        enabled: false
+      step:
+        weight: 49
+        enabled: false
+      steps:
+        weight: 50
+        enabled: false
+      tabs:
+        weight: 51
+        enabled: false
+      tabs_tab:
+        weight: 52
+        enabled: false
+field_type: entity_reference_revisions

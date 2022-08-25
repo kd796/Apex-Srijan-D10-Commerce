@@ -1,0 +1,48 @@
+uuid: a5b1a9e5-8b3a-4fc1-8f01-3f272646f6eb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.sata_promise.field_components
+    - field.field.paragraph.sata_promise.field_title
+    - paragraphs.paragraphs_type.sata_promise
+  module:
+    - limited_field_widgets
+    - paragraphs
+id: paragraph.sata_promise.default
+targetEntityType: paragraph
+bundle: sata_promise
+mode: default
+content:
+  field_components:
+    type: paragraphs
+    weight: 1
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: preview
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: sata_promise_line
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings:
+      limited_field_widgets:
+        limit_values: '0'
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
