@@ -24,10 +24,22 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: rem(25px); // sass-lint:disable-line no-misspelled-properties
 
-    @include media('>=md') {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+    @include media('>=lg') {
+      grid-template-columns: repeat(auto-fit, minmax(0, 215px));
+      justify-content: center;
+    }
+
+    @include media('>=1107px') {
+      grid-template-columns: repeat(auto-fit, minmax(0, 250px));
+      justify-content: center;
+    }
+
+    @include media('>=xl') {
+      grid-template-columns: repeat(auto-fit, minmax(0, 280px));
+      justify-content: center;
     }
   }
+
   .field__item {
     margin: 0;
 
@@ -77,6 +89,7 @@
 
           .field[data-blazy] {
             min-width: 100%;
+            padding: 0;
           }
 
           .media {
@@ -160,6 +173,7 @@
         transition: $transition-base;
         width: 100%;
         padding: rem(0 16px 16px);
+        white-space: unset;
 
         &::after {
           margin-left: rem(15px);
