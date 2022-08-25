@@ -226,7 +226,7 @@ function sata_preprocess_paragraph__content_callout__full(array &$variables) {
 }
 
 /**
- * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for hero, full.
+ * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for content driver, full.
  */
 function sata_preprocess_paragraph__content_driver__full(array &$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -241,7 +241,7 @@ function sata_preprocess_paragraph__content_driver__full(array &$variables) {
 }
 
 /**
- * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for hero_slide, full.
+ * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for content driver item, full.
  */
 function sata_preprocess_paragraph__content_driver_item__full(array &$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -269,7 +269,8 @@ function sata_preprocess_paragraph__content_driver_item__full(array &$variables)
   // Move cta link to footer and add class.
   if (array_key_exists('field_link', $variables['content']) && !empty($variables['content']['field_link'])) {
     $variables['footer']['field_link'] = $variables['content']['field_link'];
-    $variables['footer']['field_link'][0]['#options']['attributes']['class'] = "{$base_class}__link button";
+    $variables['footer']['field_link'][0]['#options']['attributes']['class'] = "btn component-content-driver-item__read-more-button";
+    $variables['url'] = $variables['footer']['field_link'][0]['#url'];
     unset($variables['content']['field_link'], $variables['footer']['field_link']['#theme']);
   }
 }
