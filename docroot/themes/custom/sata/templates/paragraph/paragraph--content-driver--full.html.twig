@@ -45,23 +45,21 @@
 {% set title_is_set = title|render|striptags|trim is not empty %}
 
 {% block paragraph %}
-  {% if has_slides %}
-    <section{{ attributes.addClass(classes) }}>
-      <div{{ inner_attributes.addClass(inner_classes) }}>
+  <section{{ attributes.addClass(classes) }}>
+    <div{{ inner_attributes.addClass(inner_classes) }}>
 
-        {% if title %}
-          {{ title_prefix }}
-          <header{{ title_attributes.addClass(title_classes) }}>
-            <h2>{{- title -}}</h2>
-          </header>
-          {{ title_suffix }}
-        {% endif %}
+      {% if title %}
+        {{ title_prefix }}
+        <header{{ title_attributes.addClass(title_classes) }}>
+          <h2>{{- title -}}</h2>
+        </header>
+        {{ title_suffix }}
+      {% endif %}
 
-        <div{{ content_attributes.addClass(content_classes) }}>
-          {{- content -}}
-        </div>
-
+      <div{{ content_attributes.addClass(content_classes) }}>
+        {{- content -}}
       </div>
-    </section>
-  {% endif %}
+
+    </div>
+  </section>
 {% endblock paragraph %}

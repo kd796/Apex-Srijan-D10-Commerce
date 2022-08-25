@@ -49,32 +49,30 @@
 {% block paragraph %}
   <article{{ attributes.addClass(classes) }}>
     <div{{ inner_attributes.addClass(inner_classes) }}>
-
-      <div class="image-teaser">
-        {{ media }}
-      </div>
-
-      <div class="component-content-driver-item__content-container">
-        {% if title %}
-          {{ title_prefix }}
-          <header{{ title_attributes.addClass(title_classes) }}>
-            <h2>{{- title -}}</h2>
-          </header>
-          {{ title_suffix }}
-        {% endif %}
-
-        <div{{ content_attributes.addClass(content_classes) }}>
-          {{- content -}}
-        </div>
-
-        <footer{{ footer_attributes }}>
-          {{- footer -}}
-          <div class="component-content-driver-item__button-container">
+      <div class="component-content-driver-item__content-wrapper">
+        <a href="{{ url }}" rel="bookmark">
+          <div class="component-content-driver-item__media">
+            {{ media }}
           </div>
-        </footer>
+          <div class="component-content-driver-item__content-container">
+            {% if title %}
+              {{ title_prefix }}
+              <header{{ title_attributes.addClass(title_classes) }}>
+                <div class="component-content-driver-item__long-description">
+                  <h3>{{- title -}}</h3>
+                </div>
+              </header>
+              {{ title_suffix }}
+            {% endif %}
 
+            <div{{ content_attributes.addClass(content_classes) }}>
+              {{- content -}}
+            </div>
+          </div>
+        </a>
       </div>
 
+      {{- footer -}}
     </div>
   </article>
 {% endblock paragraph %}

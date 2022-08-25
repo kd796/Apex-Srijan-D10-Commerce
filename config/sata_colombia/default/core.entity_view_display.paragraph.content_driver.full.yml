@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.paragraph.full
     - field.field.paragraph.content_driver.field_content_driver_items
+    - field.field.paragraph.content_driver.field_style
     - field.field.paragraph.content_driver.field_title
     - paragraphs.paragraphs_type.content_driver
   module:
@@ -32,4 +33,5 @@ content:
     weight: 0
     region: content
 hidden:
+  field_style: true
   search_api_excerpt: true

@@ -21,10 +21,13 @@ $footer-bp-mobile: '<sm';
 /**
  * Region
  */
+
+$footer-margin-top: 5em;
+
 .region-footer {
   @include container-full-width();
 
-  margin-top: 5em;
+  margin-top: $footer-margin-top;
 
   .region-footer__inner-container {
     display: grid;
@@ -449,4 +452,8 @@ $footer-bp-mobile: '<sm';
       }
     }
   }
+}
+
+.footer__mt--none {
+  margin-bottom: -$footer-margin-top !important;
 }
