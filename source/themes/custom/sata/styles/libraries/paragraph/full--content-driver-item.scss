@@ -1,7 +1,7 @@
 @charset 'UTF-8';
 
 // -----------------------------------------------------------------------------
-// Libraries/Paragraph: hero slide
+// Libraries/Paragraph: Content Driver Item
 // -----------------------------------------------------------------------------
 
 /**
@@ -13,250 +13,185 @@
 /**
  * Component
  */
-.component-content-driver-item,
-.component-content-driver-item.swiper-slide {
-  // The "!important" tags are set to override swiper-slider styles.
-  @include flex();
-  @include flex-x(flex-direction, row);
-  @include flex-x(justify-content, flex-end);
-  @include flex-x(align-items, center);
 
-  background-color: $white;
-  height: 40rem;
-  position: relative;
-  width: 100vw !important;
+.component-content-driver__content {
+  padding: 0;
+  width: 100%;
 
-  @include media('<md') {
-    height: rem(795px);
-  }
-
-  @include media('<xs') {
-    height: rem(715px);
-  }
-
-  .field--name-field-media-background {
-    .media {
-      @include trbl();
-      height: rem(270px);
-      overflow: hidden;
-      width: 100%;
-      z-index: 0;
-
-      .media__media {
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-
-        > picture,
-        img {
-          display: block;
-          height: 100%;
-          left: 50%;
-          min-height: 100%;
-          min-width: 100%;
-          object-fit: cover;
-          position: absolute;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          width: auto;
-          object-fit: cover;
-        }
-      }
-
-      @include media('>=xs') {
-        height: rem(350px);
-      }
-
-      @include media('>=sm') {
-        height: rem(360px);
-      }
-
-      @include media('>md') {
-        height: 100%;
-      }
-    }
-  }
-
-  .component-content-driver-item__inner {
-    @include container($container-xl, 0, center, false);
-    @include flex();
-    @include flex-x(justify-content, left);
-    @include flex-x(align-items, flex-end);
-
-    color: $color-white;
-    height: 100%;
+  .field--name-field-content-driver-items {
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: rem(25px); // sass-lint:disable-line no-misspelled-properties
 
     @include media('>=md') {
-      @include flex-x(align-items, flex-start);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
-
-  .component-content-driver-item__content-container {
-    background-color: $primary-emerald;
-    box-sizing: border-box;
+  .field__item {
     margin: 0;
-    max-width: 100%;
-    padding: 1.625rem rem(20px) rem(180px) .875rem;
-    position: relative;
-    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 100%, 0 100%);
 
-    &::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-color: $primary-solar;
-      z-index: -1;
-      clip-path: polygon(0 93%, 100% 38%, 100% 50%, 0% 100%);
-    }
-
-    @include media('<md') {
-      width: 100%;
+    .component-content-driver-item {
       height: 100%;
-      max-height: rem(445px);
-    }
+      background-color: $white;
 
-    @include media('>=md') {
-      max-width: 530px;
-      padding: rem(47px) rem(43px) rem(158px) rem(48px);
+      .component-content-driver-item__inner {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
 
-      &::after {
-        clip-path: polygon(0 95%, 100% 40%, 100% 50%, 0% 100%);
-      }
-    }
+        a {
+          text-decoration: none;
 
-    >* {
-      position: relative;
-      z-index: 2;
-    }
-
-    .component-content-driver-item__title {
-      margin-bottom: rem(17px);
-
-      @include media('>md') {
-        margin-bottom: rem(15px);
-      }
-
-      h2 {
-        @include type-header(h4, light, included);
-        text-transform: uppercase;
-        display: block;
-        margin: 0;
-
-        @include media('>md') {
-          @include type-header(display-headline-4, light, included);
-          line-height: rem(48px);
-          margin: 0;
+          @include on-event() {
+            color: $type-dark;
+          }
         }
       }
-    }
 
-    .component-content-driver-item__content {
-      display: block;
-      @include media('<=md') {
-        display: none;
+      .component-content-driver-item__content-wrapper {
+        height: 100%;
+
+        a {
+          text-decoration: none;
+          color: $type-dark;
+
+          @include on-event() {
+            color: $type-dark;
+          }
+        }
+
+        .component-content-driver-item__media {
+          @include flex();
+          @include flex-x(align-items, center);
+          @include flex-x(justify-content, center);
+          background-color: $white;
+          display: flex;
+          overflow: hidden;
+          padding: rem(5px 5px 0);
+
+          @include media('>md') {
+            border: 0;
+            padding: rem(8px 8px 0);
+          }
+
+          .field[data-blazy] {
+            min-width: 100%;
+          }
+
+          .media {
+            display: flex;
+            position: relative;
+            padding-top: 100%;
+            width: 100%;
+
+            img,
+            iframe {
+              height: 100%;
+              width: 100%;
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+            }
+
+            img {
+              object-fit: cover;
+            }
+          }
+        }
+
+        .component-content-driver-item__content-container {
+          padding: rem(10px);
+
+          @include media('>=md') {
+            padding: rem(16px);
+          }
+        }
+
+        .component-content-driver-item__long-description {
+          h3 {
+            @include type-header(h4, dark, included);
+            color: $type-dark;
+            font-size: rem(22px);
+            line-height: rem(26px);
+            margin-top: 0;
+            text-transform: uppercase;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            min-height: rem(100px);
+
+            @include media('<md') {
+              font-size:  rem(16px);
+              line-height: rem(20px);
+              min-height: rem(60px);
+            }
+          }
+        }
+
+        .component-content-driver-item__content {
+          display: -webkit-box;
+          -webkit-line-clamp: 5;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          font-size: rem(16px);
+          font-weight: $fw-regular;
+          line-height: rem(24px);
+
+          @include media('<md') {
+            font-size: rem(12px);
+            line-height: rem(20px);
+          }
+        }
       }
-    }
-  }
 
-  .component-content-driver-item__link {
-    @include btn(solar);
-    display: flex;
-    align-self: start;
-    order: 1;
+      .component-content-driver-item__read-more-button {
+        @include btn(secondary, dark, lg);
 
-    @include media('<md') {
-      height: rem(49px);
-      margin-right: rem(8px);
-      min-width: rem(190px);
-      justify-content: center;
-    }
-  }
+        box-sizing: border-box;
+        float: none;
+        font-size: 1rem !important;
+        font-weight: $fw-extra-bold;
+        line-height: rem(28px);
+        text-align: left;
+        transition: $transition-base;
+        width: 100%;
+        padding: rem(0 16px 16px);
 
-  .component-content-driver-item__footer {
-    @include flex;
-    @include flex-x(flex-direction, column);
-    @include flex-x(flex-wrap, wrap);
-  }
+        &::after {
+          margin-left: rem(15px);
+        }
 
-  .component-content-driver-item__button-container {
-    @include flex;
-    @include flex-x(flex-direction, row);
-    @include flex-x(align-items, center);
+        @include on-event() {
+          color: $type-dark;
+        }
 
-    align-self: stretch;
-    order: 3;
-    margin-top: rem(19px);
+        @include media('<md') {
+          white-space: normal;
+          min-width: 100%;
+          padding: rem(0 10px 16px);
+          font-size: rem(14px) !important;
+          line-height: rem(22px) !important;
 
-    .component-content-driver-item__button {
-      @include trbl();
-
-      background-color: $primary-solar;
-      background-size: rem(10px) rem(16px);
-      border: 1px solid $primary-solar;
-      color: $type-dark;
-      height: rem(49px);
-      width: rem(49px);
-      margin: 0;
-      padding: 0;
-      opacity: 1;
-      position: relative;
-
-      &:hover {
-        background-color: $white;
+          &::after {
+            font-size: rem(14px);
+            margin-left: rem(5px);
+          }
+        }
       }
 
-      &.component-content-driver-item__button-prev {
-        background-image: url('../../../icons/chevron-left-carbon.svg');
-        margin-right: 1px;
+      @include on-event {
+        box-shadow: 0 0 16px 5px rgba(0, 0, 0, 0.2);
+        outline: 1px solid $primary-solar;
+
+        @include media('<md') {
+          box-shadow: none;
+          outline: none;
+        }
       }
-
-      &.component-content-driver-item__button-next {
-        background-image: url('../../../icons/chevron-right-carbon.svg');
-        margin-left: 1px;
-      }
-
-      &[aria-disabled='true'] {
-        background-color: $gray-30;
-        border-color: $gray-30;
-      }
-    }
-  }
-
-  .component-content-driver-item__pagination {
-    display: block;
-    position: relative !important;
-    text-align: left !important;
-    margin-top: rem(19px);
-    margin-bottom: 0;
-    order: 2;
-
-    @include media('<md') {
-      width: 100%;
-    }
-
-    @include media('>=md') {
-      margin-top: rem(32px);
-    }
-
-    .swiper-pagination-bullet {
-      background: transparent;
-      border-color: $primary-solar;
-      height: rem(12px);
-      width: rem(12px);
-
-      &:not(:last-of-type) {
-        margin-right: rem(12px);
-      }
-
-      &:first-of-type {
-        margin-left: 0;
-      }
-    }
-
-    .swiper-pagination-bullet-active {
-      background: $primary-solar;
     }
   }
 }
