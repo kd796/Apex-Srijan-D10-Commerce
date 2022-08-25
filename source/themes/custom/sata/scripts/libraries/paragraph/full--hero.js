@@ -13,7 +13,6 @@
         var $hero = $component.find('.component-hero__content');
         var $heroItems = $component.find('.component-hero__content article');
         var $heroSlideButtonContainer = $heroItems.find('.component-hero-slide__button-container');
-        var $heroSlideButtonLink = $heroItems.find('.component-hero-slide__link');
         var $buttonHeight = $heroSlideButtonContainer.outerHeight();
 
         // Track that this component has been initialized.
