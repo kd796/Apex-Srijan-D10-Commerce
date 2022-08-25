@@ -1,0 +1,35 @@
+uuid: 9e859447-470b-483f-9747-e998a4173c9e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.full
+    - field.field.paragraph.sata_promise.field_components
+    - field.field.paragraph.sata_promise.field_title
+    - paragraphs.paragraphs_type.sata_promise
+  module:
+    - entity_reference_revisions
+id: paragraph.sata_promise.full
+targetEntityType: paragraph
+bundle: sata_promise
+mode: full
+content:
+  field_components:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

@@ -1,17 +1,63 @@
 uuid: d47ea806-da33-40cb-974f-87394356f442
-langcode: en
+langcode: pt-br
 status: true
 dependencies:
   config:
+    - field.field.paragraph.content_callout.field_class_custom
+    - field.field.paragraph.content_callout.field_content
+    - field.field.paragraph.content_callout.field_html_anchor
+    - field.field.paragraph.content_callout.field_layout
     - field.field.paragraph.content_callout.field_link
     - field.field.paragraph.content_callout.field_media_background
+    - field.field.paragraph.content_callout.field_style
     - field.field.paragraph.content_callout.field_title
     - paragraphs.paragraphs_type.content_callout
+  module:
+    - text
 id: paragraph.content_callout.default
 targetEntityType: paragraph
 bundle: content_callout
 mode: default
-content: {  }
+content:
+  field_class_custom:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_content:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_html_anchor:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_layout:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_style:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
 hidden:
   field_link: true
   field_media_background: true

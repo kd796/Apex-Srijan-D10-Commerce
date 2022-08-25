@@ -1,22 +1,35 @@
 uuid: 67520b80-d777-4746-9e14-e2c825dc7b21
-langcode: en
+langcode: pt-br
 status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.full
+    - field.field.paragraph.content_callout.field_class_custom
+    - field.field.paragraph.content_callout.field_content
+    - field.field.paragraph.content_callout.field_html_anchor
+    - field.field.paragraph.content_callout.field_layout
     - field.field.paragraph.content_callout.field_link
     - field.field.paragraph.content_callout.field_media_background
+    - field.field.paragraph.content_callout.field_style
     - field.field.paragraph.content_callout.field_title
     - paragraphs.paragraphs_type.content_callout
     - responsive_image.styles.content_callout
   module:
     - blazy
     - link
+    - text
 id: paragraph.content_callout.full
 targetEntityType: paragraph
 bundle: content_callout
 mode: full
 content:
+  field_content:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
   field_link:
     type: link
     label: hidden
@@ -27,7 +40,7 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 1
+    weight: 3
     region: content
   field_media_background:
     type: blazy_media
@@ -47,11 +60,14 @@ content:
       view_mode: default
       cache: 0
       skin: ''
+      lazy: ''
       style: ''
       background: false
       box_caption: ''
       box_caption_custom: ''
       box_media_style: ''
+      loading: lazy
+      preload: false
       responsive_image_style: content_callout
       box_style: ''
       image_style: ''
@@ -61,15 +77,8 @@ content:
       grid: '0'
       grid_medium: '0'
       grid_small: '0'
-      breakpoints: {  }
-      current_view_mode: full
-      fx: ''
-      icon: ''
-      sizes: ''
-      grid_header: ''
-      _uri: ''
     third_party_settings: {  }
-    weight: 2
+    weight: 0
     region: content
   field_title:
     type: string
@@ -77,7 +86,11 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
 hidden:
+  field_class_custom: true
+  field_html_anchor: true
+  field_layout: true
+  field_style: true
   search_api_excerpt: true

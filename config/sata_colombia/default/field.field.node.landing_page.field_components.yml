@@ -8,7 +8,7 @@ dependencies:
     - paragraphs.paragraphs_type.accordion
     - paragraphs.paragraphs_type.content
     - paragraphs.paragraphs_type.content_2_column
-    - paragraphs.paragraphs_type.content_callout_container
+    - paragraphs.paragraphs_type.content_callout
     - paragraphs.paragraphs_type.content_driver
     - paragraphs.paragraphs_type.digital_resources
     - paragraphs.paragraphs_type.embed_block
@@ -18,6 +18,7 @@ dependencies:
     - paragraphs.paragraphs_type.featured_links
     - paragraphs.paragraphs_type.featured_media
     - paragraphs.paragraphs_type.product_slider
+    - paragraphs.paragraphs_type.sata_promise
     - paragraphs.paragraphs_type.section
     - paragraphs.paragraphs_type.steps
     - paragraphs.paragraphs_type.tabs
@@ -40,7 +41,7 @@ settings:
       accordion: accordion
       content: content
       content_2_column: content_2_column
-      content_callout_container: content_callout_container
+      content_callout: content_callout
       content_driver: content_driver
       digital_resources: digital_resources
       embed_block: embed_block
@@ -50,81 +51,88 @@ settings:
       featured_links: featured_links
       featured_media: featured_media
       product_slider: product_slider
+      sata_promise: sata_promise
       section: section
       steps: steps
       tabs: tabs
     negate: 0
     target_bundles_drag_drop:
       accordion:
-        weight: -49
+        weight: -53
         enabled: true
       accordion_item:
-        weight: -48
+        weight: -52
         enabled: false
       content:
-        weight: -47
+        weight: -51
         enabled: true
       content_2_column:
-        weight: -46
+        weight: -50
         enabled: true
       content_callout:
-        weight: -34
-        enabled: false
-      content_callout_container:
-        weight: -45
+        weight: -49
         enabled: true
+      content_callout_container:
+        weight: -48
+        enabled: false
       content_driver:
-        weight: -44
+        weight: -47
         enabled: true
       content_driver_item:
-        weight: -43
+        weight: -46
         enabled: false
       digital_resources:
-        weight: -42
+        weight: -45
         enabled: true
       embed_block:
-        weight: -41
+        weight: -44
         enabled: true
       embed_iframe:
-        weight: -40
+        weight: -43
         enabled: true
       embed_view:
-        weight: -39
+        weight: -42
         enabled: true
       featured_content:
-        weight: -38
+        weight: -41
         enabled: true
       featured_links:
-        weight: -37
+        weight: -40
         enabled: true
       featured_media:
-        weight: -36
+        weight: -39
         enabled: true
       hero:
-        weight: -35
+        weight: -38
         enabled: false
       hero_slide:
-        weight: -33
+        weight: -37
         enabled: false
       product_slider:
-        weight: -32
+        weight: -36
         enabled: true
       pullquote:
-        weight: -31
+        weight: -35
+        enabled: false
+      sata_promise:
+        weight: -34
+        enabled: true
+      sata_promise_line:
+        weight: -28
         enabled: false
       section:
-        weight: -30
+        weight: -33
         enabled: true
       step:
-        weight: -26
+        weight: -29
         enabled: false
       steps:
-        weight: -29
+        weight: -32
         enabled: true
       tabs:
-        weight: -28
+        weight: -31
         enabled: true
       tabs_tab:
-        weight: -27
+        weight: -30
         enabled: false
 field_type: entity_reference_revisions

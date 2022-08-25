@@ -1,0 +1,39 @@
+uuid: 809b6942-3f86-4278-bcbb-fa09c0e01472
+langcode: pt-br
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.sata_promise_line.field_icon
+    - field.field.paragraph.sata_promise_line.field_subline
+    - field.field.paragraph.sata_promise_line.field_title
+    - paragraphs.paragraphs_type.sata_promise_line
+id: paragraph.sata_promise_line.default
+targetEntityType: paragraph
+bundle: sata_promise_line
+mode: default
+content:
+  field_icon:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_subline:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 120
+      placeholder: ''
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 120
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
