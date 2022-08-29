@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.full
     - field.field.node.product.body
+    - field.field.node.product.field_components
     - field.field.node.product.field_featured_product
     - field.field.node.product.field_industry
     - field.field.node.product.field_keywords
@@ -24,12 +25,22 @@ dependencies:
     - field.field.node.product.field_upc
     - node.type.product
   module:
+    - entity_reference_revisions
     - user
 id: node.product.full
 targetEntityType: node
 bundle: product
 mode: full
 content:
+  field_components:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
   field_long_description:
     type: string
     label: hidden

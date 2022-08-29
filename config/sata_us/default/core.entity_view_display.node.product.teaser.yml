@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.product.body
+    - field.field.node.product.field_components
     - field.field.node.product.field_featured_product
     - field.field.node.product.field_industry
     - field.field.node.product.field_keywords
@@ -84,6 +85,7 @@ content:
     region: content
 hidden:
   body: true
+  field_components: true
   field_featured_product: true
   field_industry: true
   field_keywords: true
