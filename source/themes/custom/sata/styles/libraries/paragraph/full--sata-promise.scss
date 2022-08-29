@@ -27,11 +27,11 @@
     position: relative;
     z-index: 1;
 
-    @include media('<lg-plus') {
+    @include media('<md') {
       line-height: rem(40px);
     }
 
-    @include media('>=lg-plus') {
+    @include media('>=md') {
       font-size: rem(52px);
       margin-bottom: rem(43px);
     }
@@ -41,7 +41,7 @@
     &:nth-child(even) {
       margin-left: calc((175px / 2) + 12px); // half of image container width
 
-      @include media('<lg-plus') {
+      @include media('<md') {
         margin-left: calc(79px / 2); // half of image container width
       }
     }
@@ -49,7 +49,7 @@
     &:not(:first-child) {
       margin-top: rem(-38px);
 
-      @include media('<lg-plus') {
+      @include media('<md') {
         margin-top: rem(-10px);
       }
     }
@@ -91,7 +91,7 @@
       min-height: rem(200px);
       background: no-repeat;
 
-      @include media('<lg-plus') {
+      @include media('<md') {
         width: rem(79px);
         min-width: rem(79px);
         height: rem(90px);
@@ -102,7 +102,7 @@
     .component-sata-promise-line__copy {
       margin-left: rem(65px);
 
-      @include media('<lg-plus') {
+      @include media('<md') {
         margin-left: rem(13px);
       }
     }
