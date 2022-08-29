@@ -40,10 +40,18 @@
   .component-sata-promise-line {
     &:nth-child(even) {
       margin-left: calc((175px / 2) + 12px); // half of image container width
+
+      @include media('<lg-plus') {
+        margin-left: calc(79px / 2); // half of image container width
+      }
     }
 
     &:not(:first-child) {
       margin-top: rem(-38px);
+
+      @include media('<lg-plus') {
+        margin-top: rem(-10px);
+      }
     }
 
     &.sata-promise-line--hand-holding-checkmark-circle {
@@ -78,8 +86,25 @@
 
     .component-sata-promise-line__icon-container {
       width: rem(175px);
+      min-width: rem(175px);
       height: rem(200px);
-      margin-right: rem(65px);
+      min-height: rem(200px);
+      background: no-repeat;
+
+      @include media('<lg-plus') {
+        width: rem(79px);
+        min-width: rem(79px);
+        height: rem(90px);
+        min-height: rem(90px);
+      }
+    }
+
+    .component-sata-promise-line__copy {
+      margin-left: rem(65px);
+
+      @include media('<lg-plus') {
+        margin-left: rem(13px);
+      }
     }
 
     .field--name-field-title,
@@ -97,8 +122,8 @@
       line-height: rem(40px);
 
       @include media('<md') {
-        font-size: rem(22px);
-        line-height: rem(30px);
+        font-size: rem(20px);
+        line-height: rem(19px);
       }
     }
 
