@@ -1,7 +1,7 @@
 @charset 'UTF-8';
 
 // -----------------------------------------------------------------------------
-// Libraries/Paragraph: Steps
+// Libraries/Paragraph: SATA Promise
 // -----------------------------------------------------------------------------
 
 /**
@@ -14,5 +14,122 @@
  * Component
  */
 .component-sata-promise {
-  display: inherit;
+  .component-sata-promise__title {
+    @include type-header(h2, black, included);
+
+    font-size: rem(32px);
+    line-height: rem(60px);
+    color: $type-dark;
+    text-align: center;
+    margin: 0;
+    margin-bottom: rem(41px);
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+
+    @include media('<lg-plus') {
+      line-height: rem(40px);
+    }
+
+    @include media('>=lg-plus') {
+      font-size: rem(52px);
+      margin-bottom: rem(43px);
+    }
+  }
+
+  .component-sata-promise-line {
+    &:nth-child(even) {
+      margin-left: calc((175px / 2) + 12px); // half of image container width
+    }
+
+    &:not(:first-child) {
+      margin-top: rem(-38px);
+    }
+
+    &.sata-promise-line--hand-holding-checkmark-circle {
+      .component-sata-promise-line__icon-container {
+        background-image: url('../../../icons/promise-trust.svg');
+      }
+    }
+
+    &.sata-promise-line--stock-going-up {
+      .component-sata-promise-line__icon-container {
+        background-image: url('../../../icons/promise-stock-chart.svg');
+      }
+    }
+
+    &.sata-promise-line--gear-and-tools {
+      .component-sata-promise-line__icon-container {
+        background-image: url('../../../icons/promise-tools.svg');
+      }
+    }
+
+    &.sata-promise-line--sata-lifetime-warranty {
+      .component-sata-promise-line__icon-container {
+        background-image: url('../../../icons/promise-warranty-en.svg');
+      }
+    }
+
+    .component-sata-promise-line__content {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .component-sata-promise-line__icon-container {
+      width: rem(175px);
+      height: rem(200px);
+      margin-right: rem(65px);
+    }
+
+    .field--name-field-title,
+    .field--name-field-subline {
+      color: $primary-emerald;
+      text-transform: uppercase;
+      font-weight: $fw-extra-bold;
+      font-family: $font-brand;
+      font-size: rem(16px);
+      line-height: rem(24px);
+    }
+
+    .field--name-field-title {
+      font-size: rem(32px);
+      line-height: rem(40px);
+
+      @include media('<md') {
+        font-size: rem(22px);
+        line-height: rem(30px);
+      }
+    }
+
+    .field--name-field-subline {
+      @include media('<md') {
+        display: none;
+      }
+    }
+  }
+}
+
+html:lang(es) {
+  .component-sata-promise {
+    .component-sata-promise-line {
+      &.sata-promise-line--sata-lifetime-warranty {
+        .component-sata-promise-line__icon-container {
+          background-image: url('../../../icons/promise-warranty-es.svg');
+        }
+      }
+    }
+  }
+}
+
+html:lang(pt-br) {
+  .component-sata-promise {
+    .component-sata-promise-line {
+      &.sata-promise-line--sata-lifetime-warranty {
+        .component-sata-promise-line__icon-container {
+          background-image: url('../../../icons/promise-warranty-pt-br.svg');
+        }
+      }
+    }
+  }
 }
