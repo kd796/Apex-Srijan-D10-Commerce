@@ -29,8 +29,8 @@ class SataCliService extends DrushCommands {
   /**
    * Load the warranty webform submission and upload to FTP.
    *
-   * @command gw:warranty-export
-   * @aliases gwwe
+   * @command sata:warranty-export
+   * @aliases swe
    */
   public function gwWarrantyExport() {
     $submissions = $this->getLatestWebformSubmissions();
