@@ -18,6 +18,22 @@ $tabs-border-width: rem(2px);
 $tabs-border-width-active: rem(5px);
 
 .node--type-product.node--view-mode-full .node__content {
+  & .node--type-product__page-bottom > .paragraph-component {
+    margin-top: $gap-vertical-md;
+
+    @include media('>=md') {
+      margin-top: $gap-vertical-md-plus;
+    }
+
+    &:last-of-type {
+      margin-bottom: 5rem;
+    }
+
+    &.component-content__media {
+      filter: none;
+    }
+  }
+
   .node--type-product__page-top {
     display: flex;
     width: 100%;

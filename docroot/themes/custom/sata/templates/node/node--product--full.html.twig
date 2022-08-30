@@ -236,6 +236,8 @@
         </div>
       </div>
 
+      {{ content|without('field_long_description','field_product_images', 'field_product_features', 'field_product_specifications',) }}
+
       {% if related_items %}
         <div class="node--type-product-related-products__nav-wrapper">
           <div class="node--type-product-related-products__nav-logo-wrapper">
@@ -255,8 +257,6 @@
 
         {{ related_items }}
       {% endif %}
-
-      {{ content|without('field_long_description','field_product_images', 'field_product_features', 'field_product_specifications',) }}
     </div>
   </div>
 </article>
