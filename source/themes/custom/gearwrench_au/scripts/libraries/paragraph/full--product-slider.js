@@ -160,7 +160,7 @@
 
           // On tab click initialize Swiper in tab to activate.
           if ($($component).parents('.component-tabs').length > 0) {
-            $($component).parents().find('.component-tabs__nav-item').once().click(function () {
+            $($component).parents('.component-tabs').find('.component-tabs__nav-item').once('component-tabs__nav-item').click(function () {
               var $navItemControls = $(this).attr('aria-controls');
               var $tabsTab = $($component).parents('.component-tabs__content').find('#' + $navItemControls);
               $productSliderWrapper = $tabsTab.find('.component-product-slider__list-wrapper');
@@ -168,10 +168,10 @@
               $buttonPrev = $tabsTab.find('.component-product-slider__button-prev');
               $buttonNext = $tabsTab.find('.component-product-slider__button-next');
 
-              $productSwiper.destroy(true, true);
-              setTimeout(function () {
-                $productSwiper = Drupal.behaviors.componentProductSlider.initProductSlider($productSliderWrapper, $swiperPagination, $buttonPrev, $buttonNext);
-              }, 100);
+              if (typeof $productSwiper !== 'undefined') {
+                $productSwiper.destroy(true, true);
+                setTimeout(function () { $productSwiper = Drupal.behaviors.componentProductSlider.initProductSlider($productSliderWrapper, $swiperPagination, $buttonPrev, $buttonNext); }, 100);
+              }
             });
           }
         }
