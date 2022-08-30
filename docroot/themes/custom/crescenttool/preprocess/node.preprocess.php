@@ -258,38 +258,40 @@ function crescenttool_preprocess_node__product__full(array &$variables) {
   $main_view->preExecute();
   $main_view->execute();
 
-  // Initialize cache contexts.
-  if (!isset($variables['#cache']['contexts'])) {
-    $variables['#cache']['contexts'] = [];
+  if (count($main_view->result) > 0) {
+    // Initialize cache contexts.
+    if (!isset($variables['#cache']['contexts'])) {
+      $variables['#cache']['contexts'] = [];
+    }
+
+    // Initialize cache tags.
+    if (!isset($variables['#cache']['tags'])) {
+      $variables['#cache']['tags'] = [];
+    }
+
+    // Initialize cache max-age.
+    if (!isset($variables['#cache']['max-age'])) {
+      $variables['#cache']['max-age'] = Cache::PERMANENT;
+    }
+
+    // Merge display cache tags.
+    $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'], $main_view->display_handler->getCacheMetadata()
+      ->getCacheContexts());
+
+    $variables['#cache']['tags'] = Cache::mergeTags($variables['#cache']['tags'], $main_view->display_handler->getCacheMetadata()
+      ->getCacheTags());
+
+    $variables['#cache']['max-age'] = Cache::mergeMaxAges($variables['#cache']['max-age'], $main_view->display_handler->getCacheMetadata()
+      ->getCacheMaxAge());
+
+    // Merge storage cache tags.
+    $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'], $main_view->storage->getCacheContexts());
+
+    $variables['#cache']['tags'] = Cache::mergeTags($variables['#cache']['tags'], $main_view->getCacheTags());
+    $variables['#cache']['max-age'] = Cache::mergeMaxAges($variables['#cache']['max-age'], $main_view->storage->getCacheMaxAge());
+
+    $variables['related_items'] = $main_view->buildRenderable($view_display, $main_view->args);
   }
-
-  // Initialize cache tags.
-  if (!isset($variables['#cache']['tags'])) {
-    $variables['#cache']['tags'] = [];
-  }
-
-  // Initialize cache max-age.
-  if (!isset($variables['#cache']['max-age'])) {
-    $variables['#cache']['max-age'] = Cache::PERMANENT;
-  }
-
-  // Merge display cache tags.
-  $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'], $main_view->display_handler->getCacheMetadata()
-    ->getCacheContexts());
-
-  $variables['#cache']['tags'] = Cache::mergeTags($variables['#cache']['tags'], $main_view->display_handler->getCacheMetadata()
-    ->getCacheTags());
-
-  $variables['#cache']['max-age'] = Cache::mergeMaxAges($variables['#cache']['max-age'], $main_view->display_handler->getCacheMetadata()
-    ->getCacheMaxAge());
-
-  // Merge storage cache tags.
-  $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'], $main_view->storage->getCacheContexts());
-
-  $variables['#cache']['tags'] = Cache::mergeTags($variables['#cache']['tags'], $main_view->getCacheTags());
-  $variables['#cache']['max-age'] = Cache::mergeMaxAges($variables['#cache']['max-age'], $main_view->storage->getCacheMaxAge());
-
-  $variables['related_items'] = $main_view->buildRenderable($view_display, $main_view->args);
 }
 
 /**
