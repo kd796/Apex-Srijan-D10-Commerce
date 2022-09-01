@@ -1,9 +1,9 @@
-uuid: 2f44f950-ed32-43a0-a169-8110ba26cc6f
-langcode: pt-br
+uuid: 927cc10f-3324-4614-ad49-3b5a1972cd27
+langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.full
+    - core.entity_view_mode.node.set_listing
     - field.field.node.product.body
     - field.field.node.product.field_components
     - field.field.node.product.field_featured_product
@@ -25,66 +25,23 @@ dependencies:
     - field.field.node.product.field_upc
     - node.type.product
   module:
-    - entity_reference_revisions
     - user
-id: node.product.full
+id: node.product.set_listing
 targetEntityType: node
 bundle: product
-mode: full
+mode: set_listing
 content:
-  field_components:
-    type: entity_reference_revisions_entity_view
-    label: hidden
-    settings:
-      view_mode: full
-      link: ''
-    third_party_settings: {  }
-    weight: 5
-    region: content
   field_long_description:
     type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
-    region: content
-  field_product_features:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 2
-    region: content
-  field_product_images:
-    type: entity_reference_entity_view
-    label: hidden
-    settings:
-      view_mode: product_detail_slider
-      link: false
-    third_party_settings: {  }
     weight: 0
-    region: content
-  field_product_specifications:
-    type: entity_reference_label
-    label: hidden
-    settings:
-      link: false
-    third_party_settings: {  }
-    weight: 4
-    region: content
-  field_set_components:
-    type: entity_reference_entity_view
-    label: hidden
-    settings:
-      view_mode: set_listing
-      link: false
-    third_party_settings: {  }
-    weight: 3
     region: content
 hidden:
   body: true
+  field_components: true
   field_featured_product: true
   field_industry: true
   field_keywords: true
@@ -93,8 +50,12 @@ hidden:
   field_meta_tags: true
   field_new_product: true
   field_product_classifications: true
+  field_product_features: true
+  field_product_images: true
+  field_product_specifications: true
   field_related_products: true
   field_set: true
+  field_set_components: true
   field_sku_group: true
   field_upc: true
   langcode: true
