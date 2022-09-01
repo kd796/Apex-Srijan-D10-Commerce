@@ -14,109 +14,107 @@
  * Component
  */
 
-.component-content-callout-container {
+.component-content-callout {
   @include container-full-width();
-}
 
-.component-content-callout-container__content {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  .component-content-callout__content-wrapper {
+    position: relative;
+  }
 
-  .component-content-callout {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 1 50%;
+  .component-content-callout__content--position {
+    @include container();
 
     .component-content-callout__content {
-      position: relative;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      max-width: rem(454px);
+      padding: rem(20px);
+      z-index: 5;
 
-      .component-content-callout__content--position {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        padding: rem(20px);
-        z-index: 5;
+      @include media('<md') {
+        max-width: 100%;
+      }
 
-        .component-content-callout__title {
-          color: $white;
-          text-align: center;
-          font-size: rem(28px);
-          margin-bottom: rem(30px);
+      .component-content-callout__title {
+        @include type-header(h2, black, included);
 
-          @include media('>=md') {
-            font-size: rem(32px);
-          }
-        }
+        color: $white;
+        text-align: left;
+        text-transform: uppercase;
+        font-weight: $fw-extra-bold;
+        font-family: $font-brand;
+        font-size: rem(52px);
+        line-height: rem(48px);
+        margin-bottom: rem(20px);
 
-        .field--name-field-link {
-          text-align: center;
-        }
-
-        .field--name-field-link a {
-          @include btn(secondary);
-          color: $primary-emerald;
-          font-weight: $fw-extra-bold;
-          font-size: rem(24px);
-          border: 1px solid $primary-emerald;
-          background-color: $black;
-          display: inline-flex;
-          justify-content: center;
-          padding: rem(25px) rem(20px);
-          flex: auto;
-
-          &:hover {
-            color: $black;
-            border-color: $black;
-            background-color: $primary-emerald;
-          }
-
-          @include media('<sm') {
-            padding: rem(25px) rem(20px);
-
-            &:after {
-              margin-left: .5rem;
-            }
-          }
-
-          @include media('>=lg-plus') {
-            font-size: rem(32px);
-            padding: rem(35px) rem(30px);
-          }
+        @include media('<md') {
+          font-size: rem(40px);
+          line-height: rem(48px);
         }
       }
 
-      img {
-        width: 100%;
-      }
-    }
-  }
+      .field--name-field-content {
+        color: $white;
+        font-weight: $fw-regular;
+        line-height: rem(24px);
+        margin-bottom: rem(28px);
 
-  section:only-child {
-    @include media('>md') {
-      .component-content-callout__content {
-        max-height: rem(650px);
-
-        .media {
-          height: 0;
-          padding-bottom: 56.25%;
-
-          .media__image {
-            height: 100%;
-            max-height: rem(650px);
-            object-fit: cover;
-            position: absolute;
-          }
+        @include media('<md') {
+          font-size: rem(14);
+          line-height: rem(24);
         }
+      }
+
+      .field--name-field-link {
+        text-align: left;
+      }
+
+      .field--name-field-link a {
+        @include btn(solar);
+        //color: $primary-emerald;
+        //font-weight: $fw-extra-bold;
+        //font-size: rem(24px);
+        //border: 1px solid $primary-emerald;
+        //background-color: $black;
+        //display: inline-flex;
+        //justify-content: center;
+        //padding: rem(25px) rem(20px);
+        //flex: auto;
+        //
+        //&:hover {
+        //  color: $black;
+        //  border-color: $black;
+        //  background-color: $primary-emerald;
+        //}
+        //
+        //@include media('<sm') {
+        //  padding: rem(25px) rem(20px);
+        //
+        //  &:after {
+        //    margin-left: .5rem;
+        //  }
+        //}
+        //
+        //@include media('>=lg-plus') {
+        //  font-size: rem(32px);
+        //  padding: rem(35px) rem(30px);
+        //}
       }
     }
   }
 
-  @include media('>=md') {
-    flex-direction: row;
-    flex-wrap: wrap;
+  .blazy {
+    width: 100%;
+
+    &.field[data-blazy] {
+      min-width: 100%;
+    }
+
+    img {
+      width: 100%;
+    }
   }
 }
+

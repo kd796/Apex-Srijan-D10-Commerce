@@ -1,0 +1,18 @@
+uuid: 4a251f01-51d3-414a-89d2-4abee869669a
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: small_scaled_480x500_
+label: 'Small - scaled (480x500)'
+effects:
+  bdeda19e-cbb1-4c7f-beec-378f4935046b:
+    uuid: bdeda19e-cbb1-4c7f-beec-378f4935046b
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 480
+      height: 500
+      crop_type: focal_point
+pipeline: smushit

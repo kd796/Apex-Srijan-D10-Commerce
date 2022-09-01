@@ -48,22 +48,25 @@
 
 {% block paragraph %}
   <section{{ attributes.addClass(classes) }}>
+    <div class="component-content-callout__content-wrapper">
+      {{ content.field_media_background }}
 
-    <div{{ content_attributes.addClass(content_classes) }}>
       <div class="component-content-callout__content--position">
-        {{ title_prefix }}
-        {% if title_is_set %}
-          <header{{ title_attributes.addClass(title_classes) }}>
-            {{- title -}}
-          </header>
-        {% endif %}
-        {{ title_suffix }}
-
-        {{ content.field_link }}
+        <div{{ content_attributes.addClass(content_classes) }}>
+          {{ title_prefix }}
+          {% if title_is_set %}
+            <header{{ title_attributes.addClass(title_classes) }}>
+              {{- title -}}
+            </header>
+          {% endif %}
+          {{ title_suffix }}
+          {{ content.field_content }}
+          {{ content.field_link }}
+        </div>
       </div>
-
-      {{ content|without('field_link') }}
     </div>
+
+    {{ content|without('field_link', 'field_content', 'field_media_background') }}
 
     {% if footer_is_set %}
       <footer{{ footer_attributes.addClass(footer_classes) }}>
