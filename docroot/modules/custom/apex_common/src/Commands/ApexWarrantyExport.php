@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\gearwrench_core\Commands;
+namespace Drupal\apex_common\Commands;
 
 use Drupal\Core\Config\Config;
 use Drupal\file\Entity\File;
@@ -18,14 +18,14 @@ use Symfony\Component\Serializer\Serializer;
 /**
  * Drush version agnostic commands.
  */
-class GwCliService extends DrushCommands {
+class ApexWarrantyExport extends DrushCommands {
 
   /**
    * The config object for the current module.
    *
    * @var \Drupal\Core\Config\Config
    */
-  protected Config $gwCoreConfig;
+  protected Config $apexConfig;
 
   /**
    * The FTP Root directory.
@@ -60,12 +60,12 @@ class GwCliService extends DrushCommands {
    */
   public function __construct() {
     parent::__construct();
-    $this->getGwCoreConfig();
+    $this->getApexConfig();
 
-    $sftp_host = $this->getGwCoreConfig()->get('warranty_sftp_host');
-    $sftp_username = $this->getGwCoreConfig()->get('warranty_sftp_username');
-    $sftp_password = $this->getGwCoreConfig()->get('warranty_sftp_password');
-    $this->root = $this->getGwCoreConfig()->get('warranty_sftp_root');
+    $sftp_host = $this->getApexConfig()->get('warranty_sftp_host');
+    $sftp_username = $this->getApexConfig()->get('warranty_sftp_username');
+    $sftp_password = $this->getApexConfig()->get('warranty_sftp_password');
+    $this->root = $this->getApexConfig()->get('warranty_sftp_root');
 
     $this->connection = new SftpConnectionProvider(
       $sftp_host,
@@ -94,10 +94,10 @@ class GwCliService extends DrushCommands {
   /**
    * Load the warranty webform submission and upload to FTP.
    *
-   * @command gw:warranty-export
-   * @aliases gwwe
+   * @command atg:warranty-export
+   * @aliases atgwe
    */
-  public function gwWarrantyExport() {
+  public function warrantyExport() {
     $submissions = $this->getLatestWebformSubmissions();
     $date = new \DateTime();
     $this->output()->writeln('Starting warranty export at ' . $date->format('Y-m-d H:i:s'));
@@ -142,26 +142,26 @@ class GwCliService extends DrushCommands {
     }
 
     $this->output()->writeln('To SID:' . $highest_sid);
-    $this->getGwCoreConfig()->set('warranty_highest_exported_sid', $highest_sid);
-    $this->getGwCoreConfig()->save();
+    $this->getApexConfig()->set('warranty_highest_exported_sid', $highest_sid);
+    $this->getApexConfig()->save();
   }
 
   /**
    * Gets the config object for the current module.
    */
-  protected function getGwCoreConfig() {
-    if (empty($this->gwCoreConfig)) {
-      $this->gwCoreConfig = \Drupal::configFactory()->getEditable('gearwrench_core.settings');
+  protected function getApexConfig() {
+    if (empty($this->apexConfig)) {
+      $this->apexConfig = \Drupal::configFactory()->getEditable('apex_common.settings');
     }
 
-    return $this->gwCoreConfig;
+    return $this->apexConfig;
   }
 
   /**
    * Gets the last highest exported SID.
    */
   protected function getHighestExportedSid() {
-    return (int) $this->getGwCoreConfig()->get('warranty_highest_exported_sid');
+    return (int) $this->getApexConfig()->get('warranty_highest_exported_sid');
   }
 
   /**
@@ -172,7 +172,7 @@ class GwCliService extends DrushCommands {
     $highest_exported_sid = $this->getHighestExportedSid();
     $query = $this->getSubmissionStorage()->getQuery()->condition(
       'webform_id',
-    'warranty_replacement_form'
+      'warranty_replacement_form'
     );
 
     // Only the SIDs that come after the last highest exported SID.
@@ -236,7 +236,7 @@ class GwCliService extends DrushCommands {
     ];
     $address_fields = ['city', 'state_province', 'country', 'zip_code'];
     $new_data = [
-      'wrf_vendor_code' => 'APEX-GWW-POR',
+      'wrf_vendor_code' => $this->getApexConfig()->get('warranty_vendor_code'),
       'wrf_item_number' => '',
     ];
 
@@ -311,8 +311,8 @@ class GwCliService extends DrushCommands {
       $this->output()->writeln('XML content not empty');
 
       // Load config values.
-      $host = $this->getGwCoreConfig()->get('warranty_sftp_host');
-      $root = $this->getGwCoreConfig()->get('warranty_sftp_root');
+      $host = $this->getApexConfig()->get('warranty_sftp_host');
+      $root = $this->getApexConfig()->get('warranty_sftp_root');
 
       $this->output()->writeln('Connecting to host: ' . $host);
       $this->output()->writeln('Using file root: ' . $root);
