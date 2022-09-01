@@ -1,0 +1,338 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: Callout Diagram
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+
+.component-callout-diagram {
+  @include media('>=lg-plus') {
+    background-color: $primary-emerald;
+  }
+
+  .component-callout-diagram__content {
+    .field--name-field-callout-diagram-item {
+      display: flex;
+      flex-direction: column;
+
+      @include media('>=lg-plus') {
+        flex-direction: row;
+        padding: rem(25px 0 25px 25px);
+      }
+    }
+
+    .field--name-field-callout-diagram-item > .field__item {
+      width: 25%;
+
+      @include media('<lg-plus') {
+        width: 100%;
+
+        &:not(:last-child) {
+          margin-bottom: rem(12px);
+        }
+      }
+    }
+
+    .component-callout-diagram-item {
+      position: relative;
+
+      .component-callout-diagram-item__content {
+        @include media('<lg-plus') {
+          background-color: $primary-emerald;
+          display: flex;
+          align-items: center;
+          clip-path: polygon(0 0, 100% 0, 100% 65%, 88% 100%, 0 100%);
+
+          &::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: rem(17px);
+            width: 100%;
+            background-color: $primary-solar;
+            z-index: 2;
+          }
+
+          &::after {
+            content: '';
+            position: absolute;
+            height: 17px;
+            width: 80px;
+            bottom: 9px;
+            right: -10px;
+            background-color: $primary-solar;
+            transform: rotate(330deg);
+          }
+        }
+      }
+
+      .field--name-field-media-item {
+        width: 25%;
+        z-index: 3;
+
+        @include media('>=lg-plus') {
+          width: 100%;
+          padding-right: rem(25px);
+        }
+      }
+
+      .field--name-field-subline {
+        position: relative;
+        color: $white;
+        text-transform: uppercase;
+        font-family: $font-brand;
+        font-weight: $fw-extra-bold;
+        font-size: rem(16px);
+        line-height: rem(20px);
+        width: 100%;
+        padding: rem(15px 20px 15px 15px);
+
+        @include media('>=lg-plus') {
+          font-size: rem(20px);
+          line-height: rem(26px);
+          margin-top: rem(20px);
+          padding: rem(0 25px 0 0);
+        }
+      }
+
+      @include media('<lg-plus') {
+        .component-step__inner {
+          display: flex;
+          flex-direction: row;
+          align-items: stretch;
+          position: relative;
+        }
+      }
+
+      @include media('>=lg-plus') {
+        max-width: 100%;
+        flex: 1 0 0;
+      }
+    }
+  }
+}
+
+.component-steps {
+  .component-steps__content {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      margin: 0;
+      font-weight: $fw-regular;
+      line-height: rem(24px);
+    }
+
+
+    .component-step {
+      &:not(:nth-last-of-type(1)) {
+        .component-step__title-wrapper,
+        .component-step__content {
+          @include media('<lg-plus') {
+            padding-bottom: rem(20px);
+          }
+        }
+      }
+
+      &:nth-child(1) {
+        .component-step__title-wrapper {
+          &::after {
+            top: 45%;
+            height: 100%;
+          }
+
+          @include media('>=lg-plus') {
+            &::after {
+              top: 50%;
+              left: 0;
+              width: 100%;
+              height: unset;
+            }
+          }
+        }
+      }
+
+      &:nth-last-of-type(1) {
+        .component-step__title-wrapper {
+          &::after {
+            top: 0;
+            height: 50%;
+          }
+
+          @include media('>=lg-plus') {
+            &::after {
+              top: 50%;
+              left: 0;
+              width: 0;
+              height: unset;
+              border-top: 0;
+            }
+          }
+        }
+      }
+
+      &:only-child {
+        .component-step__title-wrapper {
+          &::after {
+            top: 0;
+            height: 0;
+          }
+        }
+      }
+
+      @include media('<lg-plus') {
+        .component-step__inner {
+          display: flex;
+          flex-direction: row;
+          align-items: stretch;
+          position: relative;
+        }
+      }
+
+      @include media('>=lg-plus') {
+        max-width: 100%;
+        flex: 1 0 0;
+      }
+    }
+
+    @include media('>=lg-plus') {
+      @include container();
+      flex-direction: row;
+
+      &::after {
+        border-left: unset;
+        border-top: 2px dashed #EB8900;
+        top: rem(25px);
+        left: rem(25px);
+        width: 83%;
+        z-index: 0;
+      }
+    }
+  }
+
+  .component-steps__title {
+    @include type-header(h2, black, included);
+    font-size: rem(28px);
+    text-align: center;
+    margin-bottom: rem(40px);
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+
+    @include media('<lg-plus') {
+      line-height: rem(36px);
+    }
+
+    @include media('>=lg-plus') {
+      font-size: rem(40px);
+      margin-bottom: rem(80px);
+    }
+  }
+
+  .component-step__title-wrapper {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 50%;
+      z-index: -1;
+    }
+
+    .component-step__title-container {
+      position: relative;
+      width: rem(56.7px);
+      max-width: rem(56.7px);
+      max-height: rem(64px);
+
+      svg {
+        z-index: 1;
+      }
+
+      @include media('<lg-plus') {
+        margin: 0;
+      }
+
+      @include media('>=lg-plus') {
+        width: 100%;
+        max-width: rem(101px);
+        max-height: rem(114px);
+      }
+    }
+
+    @include media('<lg-plus') {
+      flex: 0 0 0;
+      margin-right: rem(8px);
+
+      &::after {
+        height: 100%;
+        border-left: 2px dashed $primary-emerald;
+      }
+    }
+
+    @include media('>=lg-plus') {
+      margin-bottom: rem(30px);
+
+      &::after {
+        top: 50%;
+        left: 0;
+        width: 100%;
+        border-top: 2px dashed $primary-emerald;
+      }
+    }
+  }
+
+  .component-step__title {
+    color: $white;
+    font-family: $font-brand;
+    font-size: rem(16px);
+    font-weight: 800;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: rem(5px);
+    z-index: 1;
+
+    @include media('<lg-plus') {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      line-height: rem(16px);
+    }
+
+    @include media('>=lg-plus') {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: rem(20px);
+      line-height: rem(24px);
+      padding: rem(10px);
+      width: 100%;
+    }
+  }
+
+  .component-step__content {
+    @include media('<lg-plus') {
+      padding-right: rem(20px);
+    }
+
+    @include media('>=lg-plus') {
+      padding-right: rem(40px);
+    }
+  }
+}
