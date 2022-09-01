@@ -268,6 +268,20 @@ function sata_preprocess_node__media_page__teaser(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product, set listing.
+ */
+function sata_preprocess_node__product__set_listing(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  $sku = $node->title->value;
+  $variables['sku'] = $sku;
+
+  // Track variables that should be converted to attribute objects.
+  $variables['inner_attributes']['class'][] = 'node__inner';
+}
+
+/**
  * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product, full.
  */
 function sata_preprocess_node__product__full(array &$variables) {
