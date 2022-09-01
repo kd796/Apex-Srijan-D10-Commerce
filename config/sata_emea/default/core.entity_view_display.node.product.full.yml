@@ -39,7 +39,7 @@ content:
       view_mode: full
       link: ''
     third_party_settings: {  }
-    weight: 4
+    weight: 5
     region: content
   field_long_description:
     type: string
@@ -72,6 +72,15 @@ content:
     settings:
       link: false
     third_party_settings: {  }
+    weight: 4
+    region: content
+  field_set_components:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: set
+      link: false
+    third_party_settings: {  }
     weight: 3
     region: content
 hidden:
@@ -86,7 +95,6 @@ hidden:
   field_product_classifications: true
   field_related_products: true
   field_set: true
-  field_set_components: true
   field_sku_group: true
   field_upc: true
   langcode: true
