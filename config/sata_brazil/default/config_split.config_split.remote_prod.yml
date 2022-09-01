@@ -8,20 +8,14 @@ description: ''
 weight: 0
 folder: ../config/sata_brazil/remote_prod
 module:
-  acquia_connector: 0
-  captcha: 0
-  recaptcha: 0
   syslog: 0
 theme: {  }
 blacklist:
   - purge.logger_channels
 graylist:
-  - sata_core.settings
-  - google_tag.container.google_tag_59x3zt8
-  - google_tag.container.primary
   - purge.logger_channels
   - purge.plugins
-  - system.performance
   - purge_queuer_coretags.settings
+  - sata_core.settings
 graylist_dependents: true
 graylist_skip_equal: true
