@@ -6,14 +6,12 @@
  */
 
 use Drupal\Component\Utility\NestedArray;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\media\Entity\Media;
 use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
-use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
-use Drupal\taxonomy\Entity\Term;
-use Drupal\Core\Form\FormStateInterface;
 
 include_once 'preprocess/block.preprocess.php';
 include_once 'preprocess/media.preprocess.php';
@@ -22,14 +20,64 @@ include_once 'preprocess/paragraph.preprocess.php';
 include_once 'preprocess/view.preprocess.php';
 
 /**
+ * Implements hook_form_system_theme_settings_alter().
+ */
+function sata_form_system_theme_settings_alter(&$form, FormStateInterface $form_state) {
+  $form['price_spider'] = [
+    '#type' => 'details',
+    '#title' => t('Price Spider'),
+    '#open' => TRUE,
+    '#description' => t("Your Price Spider settings."),
+  ];
+
+  $form['price_spider']['price_spider_hide'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Hide Price Spider?'),
+    '#default_value' => theme_get_setting('price_spider_hide'),
+  ];
+
+  $form['price_spider']['price_spider_generic_key'] = [
+    '#type' => 'textfield',
+    '#title' => t('Generic Key'),
+    '#default_value' => theme_get_setting('price_spider_generic_key'),
+  ];
+
+  $form['price_spider']['price_spider_product_key'] = [
+    '#type' => 'textfield',
+    '#title' => t('Product Key'),
+    '#default_value' => theme_get_setting('price_spider_product_key'),
+  ];
+
+  $form['price_spider']['price_spider_country'] = [
+    '#type' => 'textfield',
+    '#title' => t('Country Code'),
+    '#default_value' => theme_get_setting('price_spider_country'),
+  ];
+
+  $form['price_spider']['price_spider_language'] = [
+    '#type' => 'textfield',
+    '#title' => t('Language Code'),
+    '#default_value' => theme_get_setting('price_spider_language'),
+  ];
+}
+
+/**
  * Implements hook_preprocess_html().
  */
 function sata_preprocess_html(&$variables) {
+  $priceSpiderHide = [
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'ps-hide',
+      'content' => theme_get_setting('price_spider_hide'),
+    ],
+  ];
+
   $priceSpiderProductKey = [
     '#tag' => 'meta',
     '#attributes' => [
       'name' => 'ps-key',
-      'content' => '5366-624632736838100151699313',
+      'content' => theme_get_setting('price_spider_product_key'),
     ],
   ];
 
@@ -37,7 +85,7 @@ function sata_preprocess_html(&$variables) {
     '#tag' => 'meta',
     '#attributes' => [
       'name' => 'ps-key',
-      'content' => '5366-6246328482aa75014537df97',
+      'content' => theme_get_setting('price_spider_generic_key'),
     ],
   ];
 
@@ -45,7 +93,7 @@ function sata_preprocess_html(&$variables) {
     '#tag' => 'meta',
     '#attributes' => [
       'name' => 'ps-country',
-      'content' => 'AU',
+      'content' => theme_get_setting('price_spider_country'),
     ],
   ];
 
@@ -53,9 +101,11 @@ function sata_preprocess_html(&$variables) {
     '#tag' => 'meta',
     '#attributes' => [
       'name' => 'ps-language',
-      'content' => 'en',
+      'content' => theme_get_setting('price_spider_language'),
     ],
   ];
+
+  $variables['#attached']['html_head'][] = [$priceSpiderHide, 'ps-hide'];
 
   // If page where-buy use generic key, else product key.
   if (str_contains($_SERVER['REQUEST_URI'], 'where-to-buy')) {
@@ -67,6 +117,11 @@ function sata_preprocess_html(&$variables) {
 
   $variables['#attached']['html_head'][] = [$priceSpiderCountry, 'ps-country'];
   $variables['#attached']['html_head'][] = [$priceSpiderLanguage, 'ps-language'];
+
+  // Add the class to hide the Price Spider elements throughout the website.
+  if (theme_get_setting('price_spider_hide')) {
+    $variables['attributes']['class'][] = 'price-spider-hide';
+  }
 }
 
 /**
