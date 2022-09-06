@@ -1,0 +1,254 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Libraries/Paragraph: Callout Diagram
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+/**
+ * Component
+ */
+
+
+.component-callout-diagram {
+  position: relative;
+
+  .component-callout-diagram__content {
+    .field--name-field-callout-diagram-item {
+      display: flex;
+      flex-direction: column;
+
+      @include media('>=md') {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      @include media('>=lg-plus') {
+        padding: rem(25px 0 0 25px);
+        flex-wrap: unset;
+        background-color: $primary-emerald;
+      }
+    }
+
+    .field--name-field-callout-diagram-item > .field__item {
+      width: 100%;
+
+      @include media('>=md') {
+        width: 50%;
+
+        &:first-child,
+        &:nth-child(3) {
+          padding-right: rem(5px);
+        }
+
+        &:last-child,
+        &:nth-child(2) {
+          padding-left: rem(5px);
+        }
+      }
+
+      @include media('<lg-plus') {
+        &:not(:last-child) {
+          margin-bottom: rem(10px);
+        }
+      }
+
+      @include media('>=lg-plus') {
+        width: 25%;
+
+        &:first-child,
+        &:nth-child(3),
+        &:last-child,
+        &:nth-child(2) {
+          padding: 0;
+        }
+      }
+    }
+
+    .component-callout-diagram-item {
+      position: relative;
+
+      @include media('<xs') {
+        @include container-full-width();
+      }
+
+      @include media('<lg-plus') {
+        display: flex;
+        flex-direction: row;
+        height: rem(120px);
+        max-width: rem(420px);
+        overflow: hidden;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 17px;
+          right: -10px;
+          background-color: $primary-solar;
+          height: 7px;
+          width: 81px;
+          border-bottom-left-radius: 80%;
+          transform: rotate(328deg);
+        }
+      }
+
+      .component-callout-diagram-item__content {
+        position: relative;
+
+        @include media('<lg-plus') {
+          background-color: $primary-emerald;
+          display: flex;
+          align-items: center;
+
+          &::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: rem(17px);
+            width: 100%;
+            background-color: $primary-solar;
+            z-index: 2;
+          }
+        }
+      }
+
+      .component-callout-diagram-item__blade {
+        background-color: $primary-emerald;
+        clip-path: polygon(0 0, 100% 0, 100% 65%, 0% 100%, 0 100%);
+
+        &::after {
+          content: '';
+          position: absolute;
+          height: 17px;
+          width: 90px;
+          bottom: 17px;
+          right: -10px;
+          background-color: $primary-solar;
+          transform: rotate(330deg);
+        }
+
+        .component-callout-diagram-item__blade-content {
+          width: 67px;
+        }
+
+        @include media('>lg-plus') {
+          display: none;
+        }
+      }
+
+      .field--name-field-media-item {
+        z-index: 3;
+
+        @include media('<lg-plus') {
+          max-width: rem(120px);
+        }
+        @include media('>=lg-plus') {
+          width: 100%;
+          padding-right: rem(25px);
+        }
+      }
+
+      .field--name-field-subline {
+        position: relative;
+        color: $white;
+        text-transform: uppercase;
+        font-family: $font-brand;
+        font-weight: $fw-extra-bold;
+        font-size: rem(16px);
+        line-height: rem(20px);
+        width: 100%;
+        padding: rem(0 0 15px 5px);
+        z-index: 2;
+
+        @include media('<lg-plus') {
+          margin-right: -30px;
+        }
+
+        @include media('>=lg-plus') {
+          font-size: rem(20px);
+          line-height: rem(26px);
+          margin-top: rem(20px);
+          padding: rem(0 25px 0 0);
+        }
+      }
+
+      @include media('<lg-plus') {
+        .component-step__inner {
+          display: flex;
+          flex-direction: row;
+          align-items: stretch;
+          position: relative;
+        }
+      }
+
+      @include media('>=lg-plus') {
+        max-width: 100%;
+        flex: 1 0 0;
+      }
+    }
+  }
+
+  @include media('>=lg-plus') {
+    .component-callout-diagram__bottom-container {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      margin-top: -24px;
+      overflow: hidden;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 15px;
+        right: -9px;
+        background-color: $primary-solar;
+        height: 7px;
+        width: 81px;
+        border-bottom-left-radius: 80%;
+        transform: rotate(331deg);
+      }
+
+      .component-callout-diagram__bar-solar {
+        position: relative;
+        width: 100%;
+        height: 60px;
+        background-color: $primary-emerald;
+
+        .component-callout-diagram__bar-solar-content {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          background-color: $primary-solar;
+          height: rem(17px);
+        }
+      }
+
+      .component-callout-diagram__blade {
+        background-color: $primary-emerald;
+        clip-path: polygon(0 0, 100% 0, 100% 45%, 0% 100%, 0 100%);
+
+        &::before {
+          content: '';
+          position: absolute;
+          height: 17px;
+          width: 90px;
+          bottom: 15px;
+          right: -8px;
+          background-color: $primary-solar;
+          transform: rotate(334deg);
+        }
+
+        .component-callout-diagram__blade-content {
+          width: 70px;
+          height: 60px;
+        }
+      }
+    }
+  }
+}

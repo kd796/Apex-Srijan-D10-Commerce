@@ -1,0 +1,112 @@
+uuid: cbb7f469-1bc6-4c66-9eba-86d214953294
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_callout_diagram_item
+    - paragraphs.paragraphs_type.callout_diagram
+    - paragraphs.paragraphs_type.callout_diagram_item
+  module:
+    - entity_reference_revisions
+id: paragraph.callout_diagram.field_callout_diagram_item
+field_name: field_callout_diagram_item
+entity_type: paragraph
+bundle: callout_diagram
+label: 'Callout Diagram Item'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      callout_diagram_item: callout_diagram_item
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 29
+        enabled: false
+      accordion_item:
+        weight: 30
+        enabled: false
+      callout_diagram:
+        weight: 31
+        enabled: false
+      callout_diagram_item:
+        weight: 32
+        enabled: true
+      content:
+        weight: 33
+        enabled: false
+      content_2_column:
+        weight: 34
+        enabled: false
+      content_callout:
+        weight: 35
+        enabled: false
+      content_callout_container:
+        weight: 36
+        enabled: false
+      content_driver:
+        weight: 37
+        enabled: false
+      content_driver_item:
+        weight: 38
+        enabled: false
+      digital_resources:
+        weight: 39
+        enabled: false
+      embed_block:
+        weight: 40
+        enabled: false
+      embed_iframe:
+        weight: 41
+        enabled: false
+      embed_view:
+        weight: 42
+        enabled: false
+      featured_content:
+        weight: 43
+        enabled: false
+      featured_links:
+        weight: 44
+        enabled: false
+      featured_media:
+        weight: 45
+        enabled: false
+      hero:
+        weight: 46
+        enabled: false
+      hero_slide:
+        weight: 47
+        enabled: false
+      product_slider:
+        weight: 48
+        enabled: false
+      pullquote:
+        weight: 49
+        enabled: false
+      sata_promise:
+        weight: 50
+        enabled: false
+      sata_promise_line:
+        weight: 51
+        enabled: false
+      section:
+        weight: 52
+        enabled: false
+      step:
+        weight: 53
+        enabled: false
+      steps:
+        weight: 54
+        enabled: false
+      tabs:
+        weight: 55
+        enabled: false
+      tabs_tab:
+        weight: 56
+        enabled: false
+field_type: entity_reference_revisions
