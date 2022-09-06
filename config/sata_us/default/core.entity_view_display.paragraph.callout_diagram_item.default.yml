@@ -1,0 +1,64 @@
+uuid: 01300104-7716-4618-8d41-d5482c2b6fc9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.callout_diagram_item.field_media_item
+    - field.field.paragraph.callout_diagram_item.field_subline
+    - image.style.product_small
+    - paragraphs.paragraphs_type.callout_diagram_item
+  module:
+    - blazy
+id: paragraph.callout_diagram_item.default
+targetEntityType: paragraph
+bundle: callout_diagram_item
+mode: default
+content:
+  field_media_item:
+    type: blazy_media
+    label: hidden
+    settings:
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      layout: ''
+      view_mode: search_index
+      cache: 0
+      skin: ''
+      lazy: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      loading: ''
+      preload: false
+      responsive_image_style: ''
+      box_style: ''
+      image_style: product_small
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_subline:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  search_api_excerpt: true

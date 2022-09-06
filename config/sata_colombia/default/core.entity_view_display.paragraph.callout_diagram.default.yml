@@ -1,0 +1,25 @@
+uuid: 884fbf00-5f7c-4d89-9b2c-da7f8fffdc8d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.callout_diagram.field_callout_diagram_item
+    - paragraphs.paragraphs_type.callout_diagram
+  module:
+    - entity_reference_revisions
+id: paragraph.callout_diagram.default
+targetEntityType: paragraph
+bundle: callout_diagram
+mode: default
+content:
+  field_callout_diagram_item:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true
