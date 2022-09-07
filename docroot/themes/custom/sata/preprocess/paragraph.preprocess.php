@@ -136,6 +136,27 @@ function sata_preprocess_paragraph__accordion_item__full(array &$variables) {
 }
 
 /**
+ * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for accordion, full.
+ */
+function sata_preprocess_paragraph__callout_diagram__full(array &$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $base_class = $variables['component_base_class'];
+  $diagramItems = $paragraph->get('field_callout_diagram_item')->getValue();
+  $diagramItemsNum = count($diagramItems);
+
+  if ($diagramItemsNum == '3') {
+    $variables['attributes']['class'][] = "{$base_class}--three";
+  }
+  elseif ($diagramItemsNum == '2') {
+    $variables['attributes']['class'][] = "{$base_class}--two";
+  }
+  elseif ($diagramItemsNum == '1') {
+    $variables['attributes']['class'][] = "{$base_class}--one";
+  }
+}
+
+/**
  * Implements hook_preprocess_paragraph__BUNDLE__VIEW_MODE() for content, full.
  */
 function sata_preprocess_paragraph__content__full(array &$variables) {
