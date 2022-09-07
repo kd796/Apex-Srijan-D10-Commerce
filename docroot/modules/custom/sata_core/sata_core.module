@@ -93,6 +93,28 @@ function sata_core_views_pre_build(ViewExecutable $view) {
         foreach ($product_classifications as $classification) {
           $parent_tids[] = $classification['target_id'];
         }
+
+        // Load all the products that have one of the provided categories.
+        $product_query = \Drupal::entityQuery('node')
+          ->condition('type', 'product')
+          ->condition('field_product_classifications', $parent_tids, 'IN')
+          ->execute();
+        $product_nids = array_values($product_query);
+
+        // Now narrow the list of categories to only those that have products.
+        $table_mapping = \Drupal::entityTypeManager()->getStorage('node')->getTableMapping();
+        $field_product_classifications_table = $table_mapping->getFieldTableName('field_product_classifications');
+        $field_product_classifications_storage_definitions = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('node')['field_product_classifications'];
+        $field_product_classifications_column = $table_mapping->getFieldColumnName($field_product_classifications_storage_definitions, 'target_id');
+
+        $connection = \Drupal::database();
+        $available_classification_ids = $connection->select($field_product_classifications_table, 'f')
+          ->fields('f', [$field_product_classifications_column])
+          ->distinct(TRUE)
+          ->condition('bundle', 'product')
+          ->condition('entity_id', $product_nids, 'IN')
+          ->execute()->fetchCol();
+        $parent_tids = array_unique($available_classification_ids);
       }
     }
 
