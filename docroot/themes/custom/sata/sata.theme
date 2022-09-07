@@ -342,8 +342,8 @@ function sata_preprocess_page(array &$variables) {
   // Basic attribute variables.
   $variables['footer_attributes']['class'][] = 'region';
 
-  /** @var \Drupal\node\NodeInterface $node */
-  if (isset($variables['node'])) {
+  if (isset($variables['node']) && is_object($variables['node'])) {
+    /** @var \Drupal\node\NodeInterface $node */
     $node = $variables['node'];
     $contentType = $node->bundle();
 
