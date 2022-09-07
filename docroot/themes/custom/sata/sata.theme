@@ -23,6 +23,19 @@ include_once 'preprocess/view.preprocess.php';
  * Implements hook_form_system_theme_settings_alter().
  */
 function sata_form_system_theme_settings_alter(&$form, FormStateInterface $form_state) {
+  $form['product_categories'] = [
+    '#type' => 'details',
+    '#title' => t('Product Categories'),
+    '#open' => TRUE,
+    '#description' => t("Your Product Category settings."),
+  ];
+
+  $form['product_categories']['enable_w1_grid'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Enable Subcategory Grid on Level 1 (W1) category pages?'),
+    '#default_value' => theme_get_setting('enable_w1_grid'),
+  ];
+
   $form['price_spider'] = [
     '#type' => 'details',
     '#title' => t('Price Spider'),
