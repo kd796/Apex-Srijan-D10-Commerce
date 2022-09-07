@@ -29,9 +29,7 @@
       }
 
       @include media('>=lg-plus') {
-        padding: rem(25px 0 0 25px);
         flex-wrap: unset;
-        background-color: $primary-emerald;
       }
     }
 
@@ -60,12 +58,13 @@
 
       @include media('>=lg-plus') {
         width: 25%;
+        background-color: $primary-emerald;
 
         &:first-child,
         &:nth-child(3),
         &:last-child,
         &:nth-child(2) {
-          padding: 0;
+          padding: rem(25px 25px 0);
         }
       }
     }
@@ -150,7 +149,6 @@
         }
         @include media('>=lg-plus') {
           width: 100%;
-          padding-right: rem(25px);
         }
       }
 
@@ -174,7 +172,7 @@
           font-size: rem(20px);
           line-height: rem(26px);
           margin-top: rem(20px);
-          padding: rem(0 25px 0 0);
+          padding: 0;
         }
       }
 
