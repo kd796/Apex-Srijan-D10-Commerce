@@ -195,6 +195,30 @@
   }
 
   @include media('>=lg-plus') {
+    &.component-callout-diagram--three {
+      max-width: 75%;
+
+      .field--name-field-callout-diagram-item > .field__item {
+        width: 33.3333333%;
+      }
+    }
+
+    &.component-callout-diagram--two {
+      max-width: 50%;
+
+      .field--name-field-callout-diagram-item > .field__item {
+        width: 50%;
+      }
+    }
+
+    &.component-callout-diagram--one {
+      max-width: 25%;
+
+      .field--name-field-callout-diagram-item > .field__item {
+        width: 100%;
+      }
+    }
+
     .component-callout-diagram__bottom-container {
       position: relative;
       display: flex;
