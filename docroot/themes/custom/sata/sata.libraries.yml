@@ -302,6 +302,14 @@ node--tile:
     component:
       css/libraries/node/tile.css: { }
 
+# === Node: Set Listing === #
+
+node--set-listing--product:
+  version: 1.x
+  css:
+    component:
+      css/libraries/node/set-listing--product.css: { }
+
 # ========= Paragraphs ========= #
 
 # === Paragraph: Full === #
@@ -326,6 +334,19 @@ paragraph--full--accordion:
     - core/jquery
     - core/jquery.once
     - sata/library--jquery-roving-tabindex
+
+# Callout Diagram #
+paragraph--full--callout-diagram:
+  version: 1.x
+  css:
+    component:
+      css/libraries/paragraph/full--callout-diagram.css: {}
+  js:
+    js/libraries/paragraph/full--callout-diagram.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
 
 # Content #
 paragraph--full--content:
