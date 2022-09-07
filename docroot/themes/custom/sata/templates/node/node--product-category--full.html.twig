@@ -84,6 +84,13 @@
 
   <div{{ content_attributes }}>
     {{ content }}
+
+    {% if category_grid %}
+      <div class="category-grid">
+        {{ category_grid }}
+      </div>
+    {% endif %}
+
     <div class="product-category-view-section">
       {{ filters }}
       {{ view }}

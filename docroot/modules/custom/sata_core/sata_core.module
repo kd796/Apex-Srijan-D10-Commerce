@@ -77,23 +77,44 @@ function sata_core_views_pre_build(ViewExecutable $view) {
   $id = $view->storage->id();
   $display = $view->current_display;
 
-  if ($id === 'product_category_grid' && $display === 'top_level_items') {
-    $parent_tids = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('product_classifications', 0, 1, FALSE);
-    $parent_tids = array_column($parent_tids, 'tid');
-    $table_mapping = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->getTableMapping();
-    $field_classification_id_table = $table_mapping->getFieldTableName('field_classification_id');
-    $field_classification_id_storage_definitions = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('taxonomy_term')['field_classification_id'];
-    $field_classification_id_column = $table_mapping->getFieldColumnName($field_classification_id_storage_definitions, 'value');
-    $connection = \Drupal::database();
-    $classification_ids = $connection->select($field_classification_id_table, 'f')
-      ->fields('f', [$field_classification_id_column])
-      ->distinct(TRUE)
-      ->condition('bundle', 'product_classifications')
-      ->condition('entity_id', $parent_tids, 'IN')
-      ->execute()->fetchCol();
-    $view_args = [];
-    $view_args[] = implode('+', $classification_ids);
-    $view->args = $view_args;
+  if ($id === 'product_category_grid') {
+    $parent_tids = [];
+
+    if ($display == 'top_level_items') {
+      $parent_tids = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('product_classifications', 0, 1, FALSE);
+      $parent_tids = array_column($parent_tids, 'tid');
+    }
+    elseif ($display === 'second_level_items') {
+      $node = \Drupal::routeMatch()->getParameter('node');
+
+      if ($node instanceof NodeInterface) {
+        $product_classifications = $node->get('field_product_classifications')->getValue();
+
+        foreach ($product_classifications as $classification) {
+          $parent_tids[] = $classification['target_id'];
+        }
+      }
+    }
+
+    if (!empty($parent_tids)) {
+      $table_mapping = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->getTableMapping();
+
+      $field_classification_id_table = $table_mapping->getFieldTableName('field_classification_id');
+      $field_classification_id_storage_definitions = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('taxonomy_term')['field_classification_id'];
+      $field_classification_id_column = $table_mapping->getFieldColumnName($field_classification_id_storage_definitions, 'value');
+      $connection = \Drupal::database();
+
+      $classification_ids = $connection->select($field_classification_id_table, 'f')
+        ->fields('f', [$field_classification_id_column])
+        ->distinct(TRUE)
+        ->condition('bundle', 'product_classifications')
+        ->condition('entity_id', $parent_tids, 'IN')
+        ->execute()->fetchCol();
+
+      $view_args = [];
+      $view_args[] = implode('+', $classification_ids);
+      $view->args = $view_args;
+    }
   }
 }
 
