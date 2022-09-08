@@ -14,13 +14,21 @@
  */
 #}
 {% block content %}
-  {% if site_logo %}
-    <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="site-logo">
+  <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="site-logo">
+    {% if site_logo %}
+      <img class="uploaded-logo" src="{{ site_logo }}" alt="{{ 'SATA logo'|t }}" width="150" height="83" />
+    {% else %}
       {% include directory ~ '/icons/logo.svg' %}
-      {% include directory ~ '/icons/logo-tagline.svg' %}
-      {% if site_name %}
-        <span class="site-name">{{ site_name }}</span>
-      {% endif %}
-    </a>
-  {% endif %}
+    {% endif %}
+      <span class="tagline">
+        {% if site_logo_tagline %}
+          <img class="uploaded-logo" src="{{ site_logo_tagline }}" alt="{{ 'SATA tagline logo'|t }}" width="187" height="83" />
+        {% else %}
+          {% include directory ~ '/icons/logo-tagline.svg' %}
+        {% endif %}
+      </span>
+    {% if site_name %}
+      <span class="site-name">{{ site_name }}</span>
+    {% endif %}
+  </a>
 {% endblock %}
