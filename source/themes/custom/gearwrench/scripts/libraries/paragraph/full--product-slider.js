@@ -169,7 +169,6 @@
               $buttonNext = $tabsTab.find('.component-product-slider__button-next');
 
               if (typeof $productSwiper !== 'undefined') {
-                $productSwiper.destroy(true, true);
                 setTimeout(function () { $productSwiper = Drupal.behaviors.componentProductSlider.initProductSlider($productSliderWrapper, $swiperPagination, $buttonPrev, $buttonNext); }, 100);
               }
             });
