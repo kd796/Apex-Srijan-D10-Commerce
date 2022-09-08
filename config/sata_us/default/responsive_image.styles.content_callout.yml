@@ -3,10 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - image.style.biggest_landscape_1440x668_
+    - image.style.biggest_landscape_1620x752_
     - image.style.huge_landscape_1260_x_585_
-    - image.style.medium_scaled_720x600_
-    - image.style.small_scaled_480x500_
+    - image.style.medium_landscape_5x4
+    - image.style.small_portrait_2x3
   theme:
     - sata
 id: content_callout
@@ -14,7 +14,7 @@ label: 'Content Callout'
 image_style_mappings:
   -
     image_mapping_type: image_style
-    image_mapping: biggest_landscape_1440x668_
+    image_mapping: biggest_landscape_1620x752_
     breakpoint_id: sata.grande
     multiplier: 1x
   -
@@ -24,18 +24,18 @@ image_style_mappings:
     multiplier: 1x
   -
     image_mapping_type: image_style
-    image_mapping: medium_scaled_720x600_
+    image_mapping: medium_landscape_5x4
     breakpoint_id: sata.large_min
     multiplier: 1x
   -
     image_mapping_type: image_style
-    image_mapping: small_scaled_480x500_
+    image_mapping: small_portrait_2x3
     breakpoint_id: sata.small_min
     multiplier: 1x
   -
     image_mapping_type: image_style
-    image_mapping: small_scaled_480x500_
+    image_mapping: small_portrait_2x3
     breakpoint_id: sata.xsmall
     multiplier: 1x
 breakpoint_group: sata
-fallback_image_style: medium_scaled_720x600_
+fallback_image_style: huge_landscape_1260_x_585_

@@ -1,0 +1,65 @@
+uuid: ef8db61f-5aad-45b4-bbcc-a63f503d03dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_theme_color
+    - paragraphs.paragraphs_type.content_callout
+id: paragraph.content_callout.field_theme_color
+field_name: field_theme_color
+entity_type: paragraph
+bundle: content_callout
+label: 'Theme Color'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: classy_paragraphs
+  handler_settings:
+    filter:
+      type: target_bundles
+      target_bundles:
+        color_theme_emerald: color_theme_emerald
+        content_callout_layout__blade_edge: 0
+        content__button_cta: 0
+        content__text_cta: 0
+        content_callout_style__dark: 0
+        accordion__example: 0
+        content__example: 0
+        embed_block__example: 0
+        embed_iframe__example: 0
+        embed_view__example: 0
+        featured_content__example: 0
+        featured_links__example: 0
+        featured_media__example: 0
+        pullquote__example: 0
+        section__example: 0
+        slider__example: 0
+        tabs__example: 0
+        footer_margin_top_none: 0
+        featured_media_layout__full: 0
+        sata_promise_line__gear_and_tools: 0
+        featured_content_layout__grid: 0
+        featured_media_layout__grid: 0
+        sata_promise_line__hand_holding_checkmark_circle: 0
+        content_callout_style__light: 0
+        featured_content_layout__list: 0
+        featured_media_layout__live_area: 0
+        featured_content_layout__masonry: 0
+        featured_media_layout__masonry: 0
+        content_media_layout__bottom: 0
+        content_media_layout__half_left: 0
+        content_media_layout__half_right: 0
+        content_media_layout__top: 0
+        sata_promise_line__sata_lifetime_warranty: 0
+        featured_media_layout__slider: 0
+        steps_color_dark: 0
+        steps_color_light: 0
+        sata_promise_line__stock_going_up: 0
+        content_callout_layout__straight_edge: 0
+      negate: 0
+    sort:
+      field: _none
+field_type: entity_reference

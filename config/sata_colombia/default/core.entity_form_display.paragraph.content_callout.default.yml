@@ -6,10 +6,9 @@ dependencies:
     - field.field.paragraph.content_callout.field_class_custom
     - field.field.paragraph.content_callout.field_content
     - field.field.paragraph.content_callout.field_html_anchor
-    - field.field.paragraph.content_callout.field_layout
     - field.field.paragraph.content_callout.field_link
     - field.field.paragraph.content_callout.field_media_background
-    - field.field.paragraph.content_callout.field_style
+    - field.field.paragraph.content_callout.field_theme_color
     - field.field.paragraph.content_callout.field_title
     - paragraphs.paragraphs_type.content_callout
   module:
@@ -21,9 +20,8 @@ third_party_settings:
   field_group:
     group_settings:
       children:
-        - field_style
-        - field_layout
         - field_html_anchor
+        - field_theme_color
         - field_class_custom
         - status
       label: Settings
@@ -47,7 +45,7 @@ mode: default
 content:
   field_class_custom:
     type: string_textfield
-    weight: 9
+    weight: 10
     region: content
     settings:
       size: 60
@@ -55,7 +53,7 @@ content:
     third_party_settings: {  }
   field_content:
     type: text_textarea
-    weight: 4
+    weight: 3
     region: content
     settings:
       rows: 5
@@ -69,15 +67,9 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_layout:
-    type: options_select
-    weight: 7
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_link:
     type: link_default
-    weight: 3
+    weight: 4
     region: content
     settings:
       placeholder_url: ''
@@ -90,9 +82,9 @@ content:
     settings:
       media_types: {  }
     third_party_settings: {  }
-  field_style:
+  field_theme_color:
     type: options_select
-    weight: 6
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -106,11 +98,10 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 10
+    weight: 11
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
 hidden:
   created: true
-  status: true
