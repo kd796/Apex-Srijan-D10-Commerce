@@ -199,6 +199,16 @@
               </div>
 
               {{ content.field_product_features }}
+
+              {% if content.field_set_components|render|trim|length > 0 %}
+                <div class="product-set-components">
+                  <div class="node--type-product__accordion-content-header">
+                    {{ 'Contains' }}
+                  </div>
+
+                  {{ content.field_set_components }}
+                </div>
+              {% endif %}
             </div>
           </section>
 
@@ -236,7 +246,7 @@
         </div>
       </div>
 
-      {{ content|without('field_long_description','field_product_images', 'field_product_features', 'field_product_specifications',) }}
+      {{ content|without('field_long_description','field_product_images', 'field_product_features', 'field_product_specifications', 'field_set_components') }}
 
       {% if related_items %}
         <div class="node--type-product-related-products__nav-wrapper">

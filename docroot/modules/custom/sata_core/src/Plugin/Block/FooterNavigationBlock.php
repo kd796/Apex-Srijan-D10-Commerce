@@ -127,8 +127,10 @@ class FooterNavigationBlock extends BlockBase {
   public function getCacheTags() {
     // Node change rebuilds block.
     if ($node = \Drupal::routeMatch()->getParameter('node')) {
-      // If node add cachetag.
-      return Cache::mergeTags(parent::getCacheTags(), ['node:' . $node->id()]);
+      if (is_object($node)) {
+        // If node add cachetag.
+        return Cache::mergeTags(parent::getCacheTags(), ['node:' . $node->id()]);
+      }
     }
     // Return default tags instead.
     return parent::getCacheTags();
