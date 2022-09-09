@@ -94,3 +94,10 @@ function sata_preprocess_block__page_title_block(&$variables) {
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_block__HOOK() for system_branding_block.
+ */
+function sata_preprocess_block__system_branding_block(&$variables) {
+  // Branding block processing.
+}

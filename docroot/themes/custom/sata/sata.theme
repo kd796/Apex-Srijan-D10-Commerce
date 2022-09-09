@@ -23,6 +23,31 @@ include_once 'preprocess/view.preprocess.php';
  * Implements hook_form_system_theme_settings_alter().
  */
 function sata_form_system_theme_settings_alter(&$form, FormStateInterface $form_state) {
+  $form['logo_tagline'] = [
+    '#type' => 'details',
+    '#title' => t('Logo Tagline Image'),
+    '#open' => TRUE,
+    '#description' => t("Your logo tagline image settings."),
+  ];
+
+  $form['logo_tagline']['default_logo_tagline'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Use the logo tagline supplied by the theme'),
+    '#default_value' => theme_get_setting('logo_tagline_default'),
+  ];
+
+  $form['logo_tagline']['logo_tagline_path'] = [
+    '#type' => 'textfield',
+    '#title' => t('Path to custom logo tagline image'),
+    '#default_value' => theme_get_setting('logo_tagline_path'),
+  ];
+
+  $form['logo_tagline']['logo_upload'] = [
+    '#type' => 'file',
+    '#title' => t('Upload logo tagline image.'),
+    '#default_value' => theme_get_setting('logo_upload'),
+  ];
+
   $form['product_categories'] = [
     '#type' => 'details',
     '#title' => t('Product Categories'),
