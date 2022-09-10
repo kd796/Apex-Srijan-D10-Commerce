@@ -34,7 +34,7 @@ class ApexWarrantyExport extends DrushCommands {
    *
    * @var string
    */
-  protected string|null $root;
+  protected string $root;
 
   /**
    * The string that we prepend on the SID number for each entry.
