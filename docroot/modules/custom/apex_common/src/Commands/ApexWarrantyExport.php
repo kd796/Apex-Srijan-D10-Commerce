@@ -17,6 +17,8 @@ use Symfony\Component\Serializer\Serializer;
 
 /**
  * Drush version agnostic commands.
+ *
+ * For this to work, the webform must have an ID of "warranty_replacement_form".
  */
 class ApexWarrantyExport extends DrushCommands {
 
@@ -32,7 +34,14 @@ class ApexWarrantyExport extends DrushCommands {
    *
    * @var string
    */
-  protected string $root;
+  protected string|null $root;
+
+  /**
+   * The string that we prepend on the SID number for each entry.
+   *
+   * @var string
+   */
+  protected string $sidPrepend;
 
   /**
    * The FTP Connection.
@@ -56,48 +65,13 @@ class ApexWarrantyExport extends DrushCommands {
   protected Filesystem $filesystem;
 
   /**
-   * Initializes the ftp connection.
-   */
-  public function __construct() {
-    parent::__construct();
-    $this->getApexConfig();
-
-    $sftp_host = $this->getApexConfig()->get('warranty_sftp_host');
-    $sftp_username = $this->getApexConfig()->get('warranty_sftp_username');
-    $sftp_password = $this->getApexConfig()->get('warranty_sftp_password');
-    $this->root = $this->getApexConfig()->get('warranty_sftp_root');
-
-    $this->connection = new SftpConnectionProvider(
-      $sftp_host,
-      $sftp_username,
-      $sftp_password
-    );
-
-    $this->adapter = new SftpAdapter($this->connection, $this->root);
-
-    // Load up our SFTP connection.
-    $this->filesystem = new Filesystem($this->adapter);
-
-    try {
-      $this->connection->provideConnection();
-    }
-    catch (UnableToConnectToSftpHost $e) {
-      $this->output()->writeln($e->getMessage());
-      return;
-    }
-    catch (\Exception $e) {
-      $this->output()->writeln($e->getMessage());
-      return;
-    }
-  }
-
-  /**
    * Load the warranty webform submission and upload to FTP.
    *
    * @command atg:warranty-export
    * @aliases atgwe
    */
   public function warrantyExport() {
+    $this->loadConfig();
     $submissions = $this->getLatestWebformSubmissions();
     $date = new \DateTime();
     $this->output()->writeln('Starting warranty export at ' . $date->format('Y-m-d H:i:s'));
@@ -155,6 +129,42 @@ class ApexWarrantyExport extends DrushCommands {
     }
 
     return $this->apexConfig;
+  }
+
+  /**
+   * Load the needed config for this command and initiate the FTP connection.
+   */
+  protected function loadConfig() {
+    $this->getApexConfig();
+
+    $sftp_host = $this->getApexConfig()->get('warranty_sftp_host');
+    $sftp_username = $this->getApexConfig()->get('warranty_sftp_username');
+    $sftp_password = $this->getApexConfig()->get('warranty_sftp_password');
+    $this->root = $this->getApexConfig()->get('warranty_sftp_root');
+    $this->sidPrepend = $this->getApexConfig()->get('warranty_sid_prepend');
+
+    $this->connection = new SftpConnectionProvider(
+      $sftp_host,
+      $sftp_username,
+      $sftp_password
+    );
+
+    $this->adapter = new SftpAdapter($this->connection, $this->root);
+
+    // Load up our SFTP connection.
+    $this->filesystem = new Filesystem($this->adapter);
+
+    try {
+      $this->connection->provideConnection();
+    }
+    catch (UnableToConnectToSftpHost $e) {
+      $this->output()->writeln($e->getMessage());
+      return;
+    }
+    catch (\Exception $e) {
+      $this->output()->writeln($e->getMessage());
+      return;
+    }
   }
 
   /**
@@ -241,7 +251,7 @@ class ApexWarrantyExport extends DrushCommands {
     ];
 
     if (!empty($data['sid'])) {
-      $new_data['wrf_sid'] = 'GW-' . $data['sid'];
+      $new_data['wrf_sid'] = $this->sidPrepend . '-' . $data['sid'];
     }
 
     foreach ($data['data'] as $field => $value) {
