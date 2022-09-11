@@ -1,0 +1,6 @@
+services:
+  # Drush commands
+  apex_common.warranty_export:
+    class: Drupal\apex_common\Commands\ApexWarrantyExport
+    tags:
+      - { name: drush.command }
