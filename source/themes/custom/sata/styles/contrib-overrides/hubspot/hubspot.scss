@@ -1,0 +1,179 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// Contrib Overrides/Hubspot
+// -----------------------------------------------------------------------------
+
+/**
+ * Globals
+ * An import of all abstracts
+ */
+@import '../../globals';
+
+.hbspt-form {
+  fieldset.form-columns-2,
+  fieldset.form-columns-1 {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    .hs-form-field,
+    .hs-input {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    .hs-form-field {
+      float: unset !important;
+      margin-bottom: 1.875rem !important;
+      margin-top: 0 !important;
+    }
+
+    .input {
+      margin-right: 0 !important;
+
+      .inputs-list {
+        padding-left: 0 !important;
+        margin: 0 !important;
+      }
+    }
+  }
+
+  // Checkbox & Radio buttons
+  $marker-to-text-space: 1.625rem;
+  $active-width: 1.125rem;
+  $active-gap: 8px; // the math likes px values
+
+  .hs-form-booleancheckbox,
+  .hs-form-radio {
+    input {
+      width: inherit;
+    }
+
+    // hide the default input box but keep under fake input box for html error
+    input[type='checkbox']:checked,
+    input[type='checkbox']:not(:checked),
+    input[type='radio']:checked,
+    input[type='radio']:not(:checked) {
+      position: absolute;
+      left: 0;
+      opacity: 0;
+      height: 10px;
+    }
+
+    // create a fake input box
+    input[type='checkbox']:checked + label,
+    input[type='checkbox']:not(:checked) + label,
+    input[type='radio']:checked + label,
+    input[type='radio']:not(:checked) + label {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      line-height: 1;
+      padding-left: $marker-to-text-space;
+    }
+
+    // fake input box base
+    input[type='checkbox']:checked + label:before,
+    input[type='checkbox']:not(:checked) + label:before,
+    input[type='radio']:checked + label:before,
+    input[type='radio']:not(:checked) + label:before {
+      border: 1px solid $black;
+      content: '';
+      height: $active-width;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: $active-width;
+    }
+
+    input[type='checkbox']:checked + label:before {
+      background-color: $primary-emerald;
+      border-color: $primary-emerald;
+    }
+
+    // fake input box active indicator
+    input[type='checkbox']:checked + label:after,
+    input[type='checkbox']:checked + .form-required:after,
+    input[type='checkbox']:not(:checked) + label:after,
+    input[type='radio']:checked + label:after,
+    input[type='radio']:not(:checked) + label:after {
+      background-image: none;
+      display: block;
+      left: $active-gap / 2;
+      height: 0;
+      margin: 0;
+      position: absolute;
+      top: $active-gap / 2;
+      transition: $transition-base;
+      width: 0;
+    }
+
+    // fake input box active indicator NOT checked
+    input[type='checkbox']:not(:checked) + label:after,
+    input[type='checkbox']:not(:checked) + .form-required:after,
+    input[type='radio']:not(:checked) + label:after {
+      opacity: 0;
+      //transform: scale(0);
+    }
+
+    // fake input box active indicator checked
+    input[type='checkbox']:checked + label:after,
+    input[type='checkbox']:checked + label.form-required:after,
+    input[type='radio']:checked + label:after {
+      opacity: 1;
+      //transform: scale(1);
+    }
+
+    input[type='checkbox']:not(:checked):focus + label:before,
+    input[type='checkbox']:checked:focus + label:before {
+      border: 1px solid $black;
+    }
+  }
+
+  // Radio buttons
+  .hs-form-radio {
+
+    // fake input box base
+    input[type='radio']:checked + label:before,
+    input[type='radio']:not(:checked) + label:before {
+      border-radius: 100%;
+    }
+
+    // fake input box active indicator
+    input[type='radio']:checked + label:after,
+    input[type='radio']:not(:checked) + label:after {
+      background: $primary-emerald;
+      border-radius: 100%;
+      content: '';
+      height: calc(#{$active-width} - #{$active-gap});
+      width: calc(#{$active-width} - #{$active-gap});
+    }
+  }
+
+  // Checkbox buttons
+  .hs-form-booleancheckbox {
+    input[type='checkbox']:checked + label:after,
+    input[type='checkbox']:checked + label.form-required:after,
+    input[type='checkbox']:not(:checked) + label.form-required:after,
+    input[type='checkbox']:not(:checked) + label:after {
+      @include icon-styles;
+      color: $black;
+      content: icon-char(checkmark);
+      font-size: rem(10px);
+      height: $active-width;
+      width: $active-width;
+      left: .15rem;
+    }
+  }
+
+  .hs-submit {
+    max-width: rem(200px);
+    margin: 0 0 1rem !important;
+  }
+
+  @include media('<md') {
+    .hs-submit {
+      margin: 0 0 1rem !important;
+    }
+  }
+}
