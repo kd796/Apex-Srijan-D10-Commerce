@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.page.field_meta_tags
     - field.field.node.page.field_show_listing_image_on_full
     - node.type.page
+    - responsive_image.styles.short_hero
   module:
     - blazy
     - entity_reference_revisions
@@ -115,7 +116,9 @@ content:
     type: blazy_media
     label: hidden
     settings:
-      caption: {  }
+      caption:
+        title: '0'
+        alt: '0'
       class: ''
       id: ''
       image: ''
@@ -124,7 +127,7 @@ content:
       title: ''
       vanilla: false
       layout: ''
-      view_mode: ''
+      view_mode: default
       cache: 0
       skin: ''
       lazy: ''
@@ -133,9 +136,9 @@ content:
       box_caption: ''
       box_caption_custom: ''
       box_media_style: ''
-      loading: lazy
+      loading: ''
       preload: false
-      responsive_image_style: ''
+      responsive_image_style: short_hero
       box_style: ''
       image_style: ''
       media_switch: ''
