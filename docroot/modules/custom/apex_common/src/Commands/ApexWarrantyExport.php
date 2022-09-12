@@ -171,7 +171,13 @@ class ApexWarrantyExport extends DrushCommands {
    * Gets the last highest exported SID.
    */
   protected function getHighestExportedSid() {
-    return (int) $this->getApexConfig()->get('warranty_highest_exported_sid');
+    $sid = $this->getApexConfig()->get('warranty_highest_exported_sid');
+
+    if ($sid === NULL) {
+      $sid = 0;
+    }
+
+    return (int) $sid;
   }
 
   /**
