@@ -108,8 +108,10 @@ function sata_preprocess_block__system_branding_block(&$variables) {
 
   // Generate the path to the logo image.
   if (theme_get_setting('logo_tagline.use_default')) {
-    $logo_tagline = \Drupal::service('theme.initialization')->getActiveThemeByName('sata')->getLogo();
-    $logo_tagline_url = $file_url_generator->generateString($logo_tagline);
+    /** @var Drupal\Core\Theme\ActiveTheme $active_theme */
+    $active_theme = \Drupal::service('theme.initialization')->getActiveThemeByName('sata');
+
+    $logo_tagline_url = $active_theme->getPath() . '/icons/logo-tagline.svg';
     $config->set('logo_tagline.url', $logo_tagline_url);
   }
   elseif (theme_get_setting('logo_tagline.path')) {
