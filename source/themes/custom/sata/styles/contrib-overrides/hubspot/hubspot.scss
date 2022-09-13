@@ -50,6 +50,7 @@ $input-height: 3.75rem;
   $active-gap: 8px; // the math likes px values
 
   .hs-form-booleancheckbox,
+  .hs-form-checkbox,
   .hs-form-radio {
     input {
       width: inherit !important;
@@ -155,8 +156,10 @@ $input-height: 3.75rem;
   }
 
   // Checkbox buttons
-  .hs-form-booleancheckbox {
-    .hs-form-booleancheckbox-display {
+  .hs-form-booleancheckbox,
+  .hs-form-checkbox {
+    .hs-form-booleancheckbox-display,
+    .hs-form-checkbox-display {
       > span {
         margin-left: 0 !important;
       }
