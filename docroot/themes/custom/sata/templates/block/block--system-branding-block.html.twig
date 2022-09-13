@@ -22,7 +22,7 @@
     {% endif %}
       <span class="tagline">
         {% if site_logo_tagline %}
-          <img class="uploaded-logo" src="{{ site_logo_tagline }}" alt="{{ 'SATA tagline logo'|t }}" width="187" height="83" />
+          {{ site_logo_tagline }}
         {% else %}
           {% include directory ~ '/icons/logo-tagline.svg' %}
         {% endif %}

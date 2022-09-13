@@ -100,4 +100,26 @@ function sata_preprocess_block__page_title_block(&$variables) {
  */
 function sata_preprocess_block__system_branding_block(&$variables) {
   // Branding block processing.
+  $config = \Drupal::service('config.factory')->getEditable('sata.settings');
+
+  /** @var \Drupal\Core\File\FileUrlGeneratorInterface $file_url_generator */
+  $file_url_generator = \Drupal::service('file_url_generator');
+  $logo_tagline_url = '';
+
+  // Generate the path to the logo image.
+  if (theme_get_setting('logo_tagline.use_default')) {
+    $logo_tagline = \Drupal::service('theme.initialization')->getActiveThemeByName('sata')->getLogo();
+    $logo_tagline_url = $file_url_generator->generateString($logo_tagline);
+    $config->set('logo_tagline.url', $logo_tagline_url);
+  }
+  elseif (theme_get_setting('logo_tagline.path')) {
+    $logo_tagline_url = $file_url_generator->generateString(theme_get_setting('logo_tagline.path'));
+    $config->set('logo_tagline.url', $logo_tagline_url);
+  }
+
+  $variables['site_logo_tagline'] = [
+    '#theme' => 'image',
+    '#uri' => $logo_tagline_url,
+    '#alt' => t('SATA tagline logo'),
+  ];
 }
