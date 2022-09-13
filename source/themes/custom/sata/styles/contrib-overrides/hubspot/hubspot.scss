@@ -10,6 +10,8 @@
  */
 @import '../../globals';
 
+$input-height: 3.75rem;
+
 .hbspt-form {
   fieldset.form-columns-2,
   fieldset.form-columns-1 {
@@ -38,6 +40,10 @@
     }
   }
 
+  .inputs-list {
+    list-style: none !important;
+  }
+
   // Checkbox & Radio buttons
   $marker-to-text-space: 1.625rem;
   $active-width: 1.125rem;
@@ -46,7 +52,7 @@
   .hs-form-booleancheckbox,
   .hs-form-radio {
     input {
-      width: inherit;
+      width: inherit !important;
     }
 
     // hide the default input box but keep under fake input box for html error
@@ -54,79 +60,77 @@
     input[type='checkbox']:not(:checked),
     input[type='radio']:checked,
     input[type='radio']:not(:checked) {
-      position: absolute;
-      left: 0;
-      opacity: 0;
-      height: 10px;
+      position: absolute !important;
+      left: 0 !important;
+      opacity: 0 !important;
+      height: 10px !important;
     }
 
     // create a fake input box
-    input[type='checkbox']:checked + label,
-    input[type='checkbox']:not(:checked) + label,
-    input[type='radio']:checked + label,
-    input[type='radio']:not(:checked) + label {
-      cursor: pointer;
-      display: inline-block;
-      position: relative;
-      line-height: 1;
+    input[type='checkbox']:checked + span,
+    input[type='checkbox']:not(:checked) + span,
+    input[type='radio']:checked + span,
+    input[type='radio']:not(:checked) + span {
+      cursor: pointer !important;
+      display: inline-block !important;
+      position: relative !important;
+      line-height: 1 !important;
       padding-left: $marker-to-text-space;
     }
 
     // fake input box base
-    input[type='checkbox']:checked + label:before,
-    input[type='checkbox']:not(:checked) + label:before,
-    input[type='radio']:checked + label:before,
-    input[type='radio']:not(:checked) + label:before {
-      border: 1px solid $black;
+    input[type='checkbox']:checked + span:before,
+    input[type='checkbox']:not(:checked) + span:before,
+    input[type='radio']:checked + span:before,
+    input[type='radio']:not(:checked) + span:before {
+      border: 1px solid $type-dark !important;
       content: '';
-      height: $active-width;
-      left: 0;
-      position: absolute;
-      top: 0;
-      width: $active-width;
+      height: $active-width !important;
+      left: 0 !important;
+      position: absolute !important;
+      top: 0 !important;
+      width: $active-width !important;
     }
 
-    input[type='checkbox']:checked + label:before {
-      background-color: $primary-emerald;
-      border-color: $primary-emerald;
+    input[type='checkbox']:checked + span:before {
+      background-color: $primary-emerald !important;
+      border-color: $primary-emerald !important;
     }
 
     // fake input box active indicator
-    input[type='checkbox']:checked + label:after,
+    input[type='checkbox']:checked + span:after,
     input[type='checkbox']:checked + .form-required:after,
-    input[type='checkbox']:not(:checked) + label:after,
-    input[type='radio']:checked + label:after,
-    input[type='radio']:not(:checked) + label:after {
-      background-image: none;
-      display: block;
-      left: $active-gap / 2;
-      height: 0;
-      margin: 0;
-      position: absolute;
-      top: $active-gap / 2;
-      transition: $transition-base;
-      width: 0;
+    input[type='checkbox']:not(:checked) + span:after,
+    input[type='radio']:checked + span:after,
+    input[type='radio']:not(:checked) + span:after {
+      background-image: none !important;
+      display: block !important;
+      left: $active-gap / 2 !important;
+      height: 0 !important;
+      margin: 0 !important;
+      position: absolute !important;
+      top: $active-gap / 2 !important;
+      transition: $transition-base !important;
+      width: 0 !important;
     }
 
     // fake input box active indicator NOT checked
-    input[type='checkbox']:not(:checked) + label:after,
+    input[type='checkbox']:not(:checked) + span:after,
     input[type='checkbox']:not(:checked) + .form-required:after,
-    input[type='radio']:not(:checked) + label:after {
-      opacity: 0;
-      //transform: scale(0);
+    input[type='radio']:not(:checked) + span:after {
+      opacity: 0 !important;
     }
 
     // fake input box active indicator checked
-    input[type='checkbox']:checked + label:after,
+    input[type='checkbox']:checked + span:after,
     input[type='checkbox']:checked + label.form-required:after,
-    input[type='radio']:checked + label:after {
-      opacity: 1;
-      //transform: scale(1);
+    input[type='radio']:checked + span:after {
+      opacity: 1 !important;
     }
 
-    input[type='checkbox']:not(:checked):focus + label:before,
-    input[type='checkbox']:checked:focus + label:before {
-      border: 1px solid $black;
+    input[type='checkbox']:not(:checked):focus + span:before,
+    input[type='checkbox']:checked:focus + span:before {
+      border: 1px solid $type-dark !important;
     }
   }
 
@@ -134,41 +138,98 @@
   .hs-form-radio {
 
     // fake input box base
-    input[type='radio']:checked + label:before,
-    input[type='radio']:not(:checked) + label:before {
-      border-radius: 100%;
+    input[type='radio']:checked + span:before,
+    input[type='radio']:not(:checked) + span:before {
+      border-radius: 100% !important;
     }
 
     // fake input box active indicator
-    input[type='radio']:checked + label:after,
-    input[type='radio']:not(:checked) + label:after {
-      background: $primary-emerald;
-      border-radius: 100%;
+    input[type='radio']:checked + span:after,
+    input[type='radio']:not(:checked) + span:after {
+      background: $primary-emerald !important;
+      border-radius: 100% !important;
       content: '';
-      height: calc(#{$active-width} - #{$active-gap});
-      width: calc(#{$active-width} - #{$active-gap});
+      height: calc(#{$active-width} - #{$active-gap}) !important;
+      width: calc(#{$active-width} - #{$active-gap}) !important;
     }
   }
 
   // Checkbox buttons
   .hs-form-booleancheckbox {
-    input[type='checkbox']:checked + label:after,
-    input[type='checkbox']:checked + label.form-required:after,
-    input[type='checkbox']:not(:checked) + label.form-required:after,
-    input[type='checkbox']:not(:checked) + label:after {
+    .hs-form-booleancheckbox-display {
+      > span {
+        margin-left: 0 !important;
+      }
+    }
+
+    input[type='checkbox']:checked + span:after,
+    input[type='checkbox']:checked + span.form-required:after,
+    input[type='checkbox']:not(:checked) + span.form-required:after,
+    input[type='checkbox']:not(:checked) + span:after {
       @include icon-styles;
-      color: $black;
+      color: $type-dark !important;
       content: icon-char(checkmark);
-      font-size: rem(10px);
-      height: $active-width;
-      width: $active-width;
-      left: .15rem;
+      font-size: rem(10px) !important;
+      height: $active-width !important;
+      width: $active-width !important;
+      left: .15rem !important;
+    }
+  }
+
+  // Select
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    &:focus {
+      outline: 0 none;
+    }
+  }
+
+  // Dark square with chevron aligned right
+  //Select
+  .hs-fieldtype-select .input,
+  .form-input-file__wrapper {
+    position: relative;
+
+    &::after {
+      color: $color-white;
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: $input-height;
+      width: $input-height;
+      background-color: $secondary-black;
+    }
+  }
+
+  .hs-fieldtype-select .input {
+    @include icon(chevron, after, false);
+
+    &::after {
+      font-size: rem(15px);
+      transform: rotate(90deg);
     }
   }
 
   .hs-submit {
     max-width: rem(200px);
     margin: 0 0 1rem !important;
+  }
+
+  .hs-error-msgs {
+    list-style: none !important;
+    padding: 0 !important;
+
+    .hs-error-msg,
+    .hs-main-font-element {
+      color: $danger-red !important;
+    }
   }
 
   @include media('<md') {
