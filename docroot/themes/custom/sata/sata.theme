@@ -284,11 +284,7 @@ function sata_theme_settings_submit(array &$form, FormStateInterface &$form_stat
 
   // Generate the path to the logo image.
   if ($values['default_logo_tagline']) {
-    /** @var Drupal\Core\Theme\ActiveTheme $active_theme */
-    $active_theme = \Drupal::service('theme.initialization')->getActiveThemeByName('sata');
-
-    $logo_tagline_url = $active_theme->getPath() . '/icons/logo-tagline.svg';
-    $config->set('logo_tagline.url', $logo_tagline_url);
+    $config->set('logo_tagline.url', sata_get_default_tagline());
   }
   elseif ($values['logo_tagline_path']) {
     $config->set('logo_tagline.url', $file_url_generator->generateString($values['logo_tagline_path']));
@@ -337,6 +333,19 @@ function sata_validate_path($path) {
   }
 
   return FALSE;
+}
+
+/**
+ * Gets the default tagline.
+ *
+ * @return string
+ *   The path to the default image.
+ */
+function sata_get_default_tagline(): string {
+  /** @var Drupal\Core\Theme\ActiveTheme $active_theme */
+  $active_theme = \Drupal::service('theme.initialization')->getActiveThemeByName('sata');
+
+  return $active_theme->getPath() . '/icons/logo-tagline.svg';
 }
 
 /**
