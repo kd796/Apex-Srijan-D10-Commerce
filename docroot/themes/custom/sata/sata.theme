@@ -6,6 +6,7 @@
  */
 
 use Drupal\Component\Utility\NestedArray;
+use Drupal\Core\Block\BlockPluginInterface;
 use Drupal\Core\File\Exception\FileException;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
@@ -276,6 +277,18 @@ function sata_theme_settings_submit(array &$form, FormStateInterface &$form_stat
     elseif ($key != 'logo_tagline_upload') {
       $config->set($key, $value);
     }
+  }
+
+  /** @var \Drupal\Core\File\FileUrlGeneratorInterface $file_url_generator */
+  $file_url_generator = \Drupal::service('file_url_generator');
+
+  // Generate the path to the logo image.
+  if ($values['default_logo_tagline']) {
+    $logo = \Drupal::service('theme.initialization')->getActiveThemeByName('sata')->getLogo();
+    $config->set('logo_tagline.url', $file_url_generator->generateString($logo));
+  }
+  elseif ($values['logo_tagline_path']) {
+    $config->set('logo_tagline.url', $file_url_generator->generateString($values['logo_tagline_path']));
   }
 
   $config->save();
