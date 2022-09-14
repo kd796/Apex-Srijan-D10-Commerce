@@ -342,10 +342,20 @@ function sata_validate_path($path) {
  *   The path to the default image.
  */
 function sata_get_default_tagline(): string {
+  return sata_get_theme_path() . '/icons/logo-tagline.svg';
+}
+
+/**
+ * Get the path to the current SATA theme.
+ *
+ * @return string
+ *   The path to the current SATA theme.
+ */
+function sata_get_theme_path(): string {
   /** @var Drupal\Core\Theme\ActiveTheme $active_theme */
   $active_theme = \Drupal::service('theme.initialization')->getActiveThemeByName('sata');
 
-  return $active_theme->getPath() . '/icons/logo-tagline.svg';
+  return $active_theme->getPath();
 }
 
 /**
@@ -733,6 +743,17 @@ function sata_form_alter(&$form, &$form_state, $form_id) {
 
     default:
       break;
+  }
+
+  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-search-page-1') {
+    $form['actions']['submit']['#attributes']['class'][] = 'submit-btn';
+
+    $form['actions']['search'] = [
+      '#type' => 'image_button',
+      '#name' => 'search',
+      '#src' => sata_get_theme_path() . '/icons/search.svg',
+      '#attributes' => ['class' => ['search-btn']]
+    ];
   }
 }
 
