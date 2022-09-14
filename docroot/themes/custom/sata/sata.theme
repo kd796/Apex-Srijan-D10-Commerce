@@ -6,8 +6,13 @@
  */
 
 use Drupal\Component\Utility\NestedArray;
+use Drupal\Core\Block\BlockPluginInterface;
+use Drupal\Core\File\Exception\FileException;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
+use Drupal\Core\StreamWrapper\PublicStream;
+use Drupal\Core\StreamWrapper\StreamWrapperManager;
+use Drupal\file\FileInterface;
 use Drupal\media\Entity\Media;
 use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
 use Drupal\node\NodeInterface;
@@ -33,20 +38,62 @@ function sata_form_system_theme_settings_alter(&$form, FormStateInterface $form_
   $form['logo_tagline']['default_logo_tagline'] = [
     '#type' => 'checkbox',
     '#title' => t('Use the logo tagline supplied by the theme'),
-    '#default_value' => theme_get_setting('logo_tagline_default'),
+    '#default_value' => theme_get_setting('logo_tagline.use_default'),
   ];
 
-  $form['logo_tagline']['logo_tagline_path'] = [
+  $form['logo_tagline']['settings'] = [
+    '#type' => 'container',
+    '#states' => [
+      // Hide the logo settings when using the default logo.
+      'invisible' => [
+        'input[name="default_logo_tagline"]' => ['checked' => TRUE],
+      ],
+    ],
+  ];
+
+  $form['logo_tagline']['settings']['logo_tagline_path'] = [
     '#type' => 'textfield',
     '#title' => t('Path to custom logo tagline image'),
-    '#default_value' => theme_get_setting('logo_tagline_path'),
+    '#default_value' => theme_get_setting('logo_tagline.path'),
   ];
 
-  $form['logo_tagline']['logo_upload'] = [
+  $form['logo_tagline']['settings']['logo_tagline_upload'] = [
     '#type' => 'file',
     '#title' => t('Upload logo tagline image.'),
-    '#default_value' => theme_get_setting('logo_upload'),
+    '#maxlength' => 40,
+    '#description' => t("If you don't have direct file access to the server, use this field to upload your logo tagline."),
+    '#upload_validators' => [
+      'sata_file_validate_is_image' => [],
+      'file_validate_extensions' => ['jpg jpeg gif png svg'],
+    ],
   ];
+
+  $element = &$form['logo_tagline']['settings']['logo_tagline_path'];
+  $default = 'logo_tagline.svg';
+
+  // If path is a public:// URI, display the path relative to the files
+  // directory; stream wrappers are not end-user friendly.
+  $original_path = $element['#default_value'];
+  $friendly_path = NULL;
+
+  if (StreamWrapperManager::getScheme($original_path) == 'public') {
+    $friendly_path = StreamWrapperManager::getTarget($original_path);
+    $element['#default_value'] = $friendly_path;
+  }
+
+  // Prepare local file path for description.
+  if ($original_path && isset($friendly_path)) {
+    $local_file = strtr($original_path, ['public:/' => PublicStream::basePath()]);
+  }
+  else {
+    $local_file = \Drupal::service('theme.initialization')->getActiveThemeByName('sata')->getPath() . '/' . $default;
+  }
+
+  $element['#description'] = t('Examples: <code>@implicit-public-file</code> (for a file in the public filesystem), <code>@explicit-file</code>, or <code>@local-file</code>.', [
+    '@implicit-public-file' => $friendly_path ?? $default,
+    '@explicit-file' => StreamWrapperManager::getScheme($original_path) !== FALSE ? $original_path : 'public://' . $default,
+    '@local-file' => $local_file,
+  ]);
 
   $form['product_categories'] = [
     '#type' => 'details',
@@ -97,6 +144,218 @@ function sata_form_system_theme_settings_alter(&$form, FormStateInterface $form_
     '#title' => t('Language Code'),
     '#default_value' => theme_get_setting('price_spider_language'),
   ];
+
+  $form['#validate'][] = 'sata_theme_settings_validate';
+  $form['#submit'][] = 'sata_theme_settings_submit';
+}
+
+/**
+ * Checks that the file is recognized as a valid image.
+ *
+ * @param \Drupal\file\FileInterface $file
+ *   A file entity.
+ *
+ * @return array
+ *   An empty array if the file is a valid image or an array containing an error
+ *   message if it's not.
+ *
+ * @see hook_file_validate()
+ */
+function sata_file_validate_is_image(FileInterface $file) {
+  $errors = [];
+
+  $image_factory = \Drupal::service('image.factory');
+  $image = $image_factory->get($file->getFileUri());
+
+  if (!$image->isValid()) {
+    // Now just check to see if this is an SVG file.
+    if ($file->getMimeType() !== 'image/svg+xml') {
+      $supported_extensions = $image_factory->getSupportedExtensions();
+      $supported_extensions[] = 'svg';
+
+      $errors[] = t('The image file is invalid or the image type is not allowed. Allowed types: %types', ['%types' => implode(', ', $supported_extensions)]);
+    }
+  }
+
+  return $errors;
+}
+
+/**
+ * Validates the settings so that we can upload files.
+ *
+ * @param array $form
+ *   The form we are processing.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The state of the form as submitted.
+ */
+function sata_theme_settings_validate(array &$form, FormStateInterface $form_state) {
+  // Check for a new uploaded logo.
+  if (isset($form['logo_tagline'])) {
+    $file = _file_save_upload_from_form($form['logo_tagline']['settings']['logo_tagline_upload'], $form_state, 0);
+
+    if ($file) {
+      // Put the temporary file in form_values so we can save it on submit.
+      $form_state->setValue('logo_tagline_upload', $file);
+    }
+  }
+
+  // When intending to use the default logo, unset the logo_path.
+  if ($form_state->getValue('default_logo_tagline')) {
+    $form_state->unsetValue('logo_tagline_path');
+  }
+
+  // If the user provided a path for a logo or favicon file, make sure a file
+  // exists at that path.
+  if ($form_state->getValue('logo_tagline_path')) {
+    $path = sata_validate_path($form_state->getValue('logo_tagline_path'));
+
+    if (!$path) {
+      $form_state->setErrorByName('logo_tagline_path', t('The custom logo path is invalid.'));
+    }
+  }
+}
+
+/**
+ * Process the theme settings submit.
+ *
+ * @param array $form
+ *   The form we are processing.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The state of the form as submitted.
+ */
+function sata_theme_settings_submit(array &$form, FormStateInterface &$form_state) {
+  $config_key = $form_state->getValue('config_key');
+  $config = \Drupal::service('config.factory')->getEditable($config_key);
+
+  // Exclude unnecessary elements before saving.
+  $form_state->cleanValues();
+  $form_values = $form_state->getValues();
+  $values = [];
+
+  if (isset($form_values['logo_tagline_upload'])) {
+    $values['logo_tagline_upload'] = $form_values['logo_tagline_upload'];
+  }
+
+  if (isset($form_values['logo_tagline_path'])) {
+    $values['logo_tagline_path'] = $form_values['logo_tagline_path'];
+  }
+
+  if (isset($form_values['default_logo_tagline'])) {
+    $values['default_logo_tagline'] = $form_values['default_logo_tagline'];
+  }
+
+  // If the user uploaded a new logo or favicon, save it to a permanent location
+  // and use it in place of the default theme-provided file.
+  $default_scheme = \Drupal::config('system.file')->get('default_scheme');
+
+  try {
+    if (!empty($values['logo_tagline_upload'])) {
+      $filename = \Drupal::service('file_system')->copy($values['logo_tagline_upload']->getFileUri(), $default_scheme . '://');
+      $values['default_logo_tagline'] = 0;
+      $values['logo_tagline_path'] = $filename;
+    }
+  }
+  catch (FileException $e) {
+    // Ignore.
+  }
+
+  unset($values['logo_tagline_upload']);
+
+  // If the user entered a path relative to the system files directory for
+  // a logo or favicon, store a public:// URI so the theme system can handle it.
+  if (!empty($values['logo_tagline_path'])) {
+    $values['logo_tagline_path'] = sata_validate_path($values['logo_tagline_path']);
+  }
+
+  foreach ($values as $key => $value) {
+    if ($key == 'default_logo_tagline') {
+      $config->set('logo_tagline.use_default', $value);
+    }
+    elseif ($key == 'logo_tagline_path') {
+      $config->set('logo_tagline.path', $value);
+    }
+    elseif ($key != 'logo_tagline_upload') {
+      $config->set($key, $value);
+    }
+  }
+
+  /** @var \Drupal\Core\File\FileUrlGeneratorInterface $file_url_generator */
+  $file_url_generator = \Drupal::service('file_url_generator');
+
+  // Generate the path to the logo image.
+  if ($values['default_logo_tagline']) {
+    $config->set('logo_tagline.url', sata_get_default_tagline());
+  }
+  elseif ($values['logo_tagline_path']) {
+    $config->set('logo_tagline.url', $file_url_generator->generateString($values['logo_tagline_path']));
+  }
+
+  $config->save();
+
+  $form_state->unsetValue('logo_tagline_upload');
+  $form_state->unsetValue('logo_tagline_path');
+  $form_state->unsetValue('default_logo_tagline');
+}
+
+/**
+ * Helper function for the system_theme_settings form.
+ *
+ * Attempts to validate normal system paths, paths relative to the public files
+ * directory, or stream wrapper URIs. If the given path is any of the above,
+ * returns a valid path or URI that the theme system can display.
+ *
+ * @param string $path
+ *   A path relative to the Drupal root or to the public files directory, or
+ *   a stream wrapper URI.
+ *
+ * @return mixed
+ *   A valid path that can be displayed through the theme system, or FALSE if
+ *   the path could not be validated.
+ */
+function sata_validate_path($path) {
+  // Absolute local file paths are invalid.
+  if (\Drupal::service('file_system')->realpath($path) == $path) {
+    return FALSE;
+  }
+
+  // A path relative to the Drupal root or a fully qualified URI is valid.
+  if (is_file($path)) {
+    return $path;
+  }
+
+  // Prepend 'public://' for relative file paths within public filesystem.
+  if (StreamWrapperManager::getScheme($path) === FALSE) {
+    $path = 'public://' . $path;
+  }
+
+  if (is_file($path)) {
+    return $path;
+  }
+
+  return FALSE;
+}
+
+/**
+ * Gets the default tagline.
+ *
+ * @return string
+ *   The path to the default image.
+ */
+function sata_get_default_tagline(): string {
+  return sata_get_theme_path() . '/icons/logo-tagline.svg';
+}
+
+/**
+ * Get the path to the current SATA theme.
+ *
+ * @return string
+ *   The path to the current SATA theme.
+ */
+function sata_get_theme_path(): string {
+  /** @var Drupal\Core\Theme\ActiveTheme $active_theme */
+  $active_theme = \Drupal::service('theme.initialization')->getActiveThemeByName('sata');
+
+  return $active_theme->getPath();
 }
 
 /**
@@ -484,6 +743,21 @@ function sata_form_alter(&$form, &$form_state, $form_id) {
 
     default:
       break;
+  }
+
+  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-search-page-1') {
+    $form['actions']['submit']['#attributes']['class'][] = 'submit-btn';
+
+    $form['actions']['search'] = [
+      '#type' => 'image_button',
+      '#name' => 'search',
+      '#src' => sata_get_theme_path() . '/icons/search.svg',
+      '#attributes' => [
+        'class' => ['search-btn'],
+        'title' => t('Search'),
+        'aria-label' => t('Search'),
+      ]
+    ];
   }
 }
 
