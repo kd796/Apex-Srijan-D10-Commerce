@@ -51,17 +51,10 @@
   }
 
   .form-item-search {
-    @include icon('search', after, true);
+    display: inline-block;
+    margin-right: 0;
     position: relative;
-    width: 100%;
-
-    &::after {
-      position: absolute;
-      top: 50%;
-      right: rem(15px);
-      transform: translateY(-50%);
-      font-size: rem(20px);
-    }
+    width: 40%;
 
     @include media('>=md') {
       width: 75%;
@@ -77,6 +70,7 @@
     }
 
     .form-text {
+      border-right: 0;
       padding-right: rem(40px);
 
       @include media('>md') {
@@ -110,7 +104,23 @@
   .view-filters {
     form {
       .form-actions {
-        display: none;
+        display: inline-block;
+        margin-top: -1px;
+
+        input.submit-btn {
+          display: none;
+        }
+
+        input.search-btn {
+          background: none;
+          border: 1px solid $color-black !important;
+          border-left: 0 !important;
+          color: $color-white;
+          height: 60px;
+          margin-left: -6px;
+          position: relative;
+          top: 1px;
+        }
       }
     }
   }
