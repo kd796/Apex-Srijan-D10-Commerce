@@ -1,9 +1,9 @@
-uuid: 0421554f-04a4-43f9-aca5-48e3e806ea73
+uuid: b64e5a38-94c9-483a-8aee-506d1593d43b
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.set
+    - core.entity_view_mode.node.set_listing
     - field.field.node.product.body
     - field.field.node.product.field_components
     - field.field.node.product.field_featured_product
@@ -26,10 +26,10 @@ dependencies:
     - node.type.product
   module:
     - user
-id: node.product.set
+id: node.product.set_listing
 targetEntityType: node
 bundle: product
-mode: set
+mode: set_listing
 content:
   field_long_description:
     type: string
