@@ -172,31 +172,38 @@
     }
   }
 
-  // Section title with Performance Device
+  // Section title
   .node--type-product-related-products__nav-wrapper {
     @include container-full-width();
-    @include flex();
     @include flex-x(flex-direction, row);
-    height: $header-height;
+
+    display: inline-flex;
+    width: unset;
+    height: rem(58px);
     margin-bottom: 2.5rem;
+
+    @include media('<sm') {
+      min-height: rem(58px);
+      height: auto;
+    }
 
     .node--type-product-related-products__nav-logo-wrapper {
       display: none;
 
-      @include media('>lg-plus') {
+      @include media('>gr') {
         @include flex;
         @include flex-x(align-items, center);
 
-        background-color: $black;
+        background-color: $primary-emerald;
         height: 100%;
         padding: 0 2rem;
         position: relative;
         z-index: 1;
       }
 
-      // Performance Device
+      // blade after logo
       &::after {
-        background-color: $black;
+        background-color: $primary-emerald;
         position: absolute;
         content: '';
         width: 30px;
@@ -209,15 +216,20 @@
 
       .site-logo {
         @include link-base();
-        background-color: $black;
+        background-color: $primary-emerald;
         display: block;
         width: rem(56px);
         overflow: hidden;
         line-height: 1;
 
+        @include media('>xl') {
+          width: rem(184px);
+        }
+
         svg {
           height: $header-logo-performance-height-large;
           vertical-align: middle;
+          display: none;
 
           @include media('<=lg-plus') {
             height: $header-logo-height;
@@ -227,43 +239,33 @@
     }
 
     .node--type-product-related-products__nav-content {
-      text-align: center;
-      width: 100%;
-
-      @include media('<=lg-plus') {
-        height: $header-logo-height;
-      }
-
-      @include media('>lg-plus') {
-        background-color: $primary-emerald;
-        max-width: rem(455px);
-        text-align: left;
-        position: relative;
-        width: 100%;
-        z-index: 0;
-
-        // Performance Device
-        &::after {
-          background-color: $primary-emerald;
-          position: absolute;
-          content: '';
-          width: 30px;
-          height: 100%;
-          top: 0;
-          right: -15px;
-          z-index: 0;
-          transform: skew(-14deg);
-        }
-      }
+      background-color: $primary-emerald;
+      text-align: left;
+      position: relative;
+      z-index: 0;
 
       h4 {
         text-transform: uppercase;
-        color: $primary-emerald;
+        color: $white;
+        margin: 0;
+        padding: rem(14px 0 16px 15px);
 
         @include media('>lg-plus') {
-          color: $black;
-          padding-left: 3rem;
+          padding: rem(14px 0 16px 48px);
         }
+      }
+    }
+
+    .node--type-product-related-products__nav-blade {
+      height: rem(58px);
+
+      img {
+        height: 100%;
+      }
+
+      @include media('<sm') {
+        min-height: rem(58px);
+        height: auto;
       }
     }
   }
