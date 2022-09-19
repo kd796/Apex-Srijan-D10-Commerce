@@ -47,7 +47,7 @@ class GetAllProductClassifications extends ProcessPluginBase {
     foreach ($parent_term_array as $parent_term) {
       $classification = $parent_term->get('field_classification_id')->getValue()[0]['value'];
 
-      if  ($classification != $category_classification_id) {
+      if ($classification != $category_classification_id) {
         continue;
       }
 
@@ -56,7 +56,6 @@ class GetAllProductClassifications extends ProcessPluginBase {
         'vid' => $vid,
         'target_id' => $parent_tid
       ];
-
 
       // True will return loaded entities rather than ids.
       $load_entities = FALSE;
