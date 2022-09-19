@@ -601,6 +601,19 @@ function sata_preprocess_node__product_category__full(array &$variables) {
   }
 
   if ($enable_w1_subcategory_grid) {
+    // Only display the category grid if there are sub-categories as defined by categories on the node.
+    $node_classifications = $node->get('field_product_classifications')->getValue();
+    if (count($node_classifications) == 1) {
+      $terms = \Drupal::service('entity_type.manager')
+        ->getStorage("taxonomy_term")
+        ->loadTree('product_classifications', $parent = $node_classifications[0]['target_id'], $max_depth = NULL, $load_entities = FALSE);
+      if (count($terms) === 0) {
+        $enable_w1_subcategory_grid = FALSE;
+      }
+    }
+  }
+
+  if ($enable_w1_subcategory_grid) {
     $variables['category_grid'] = views_embed_view('product_category_grid', 'second_level_items');
   }
   else {

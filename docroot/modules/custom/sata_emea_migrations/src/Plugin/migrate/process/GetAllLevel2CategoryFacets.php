@@ -608,12 +608,16 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
    */
   protected function mapCategoryToCustomFacets($category_remote_id) {
     $mapping = self::$mapping;
+    $facets = [];
 
     if (!empty($mapping[$category_remote_id])) {
-      return $mapping[$category_remote_id];
+      $facets = $mapping[$category_remote_id];
+    }
+    if (!is_array($facets)) {
+      $facets = [$facets];
     }
 
-    return [];
+    return $facets;
   }
 
   /**
@@ -621,12 +625,16 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
    */
   protected function mapCategoryToFacetsList($category_remote_id) {
     $mapping = GetAllCategoryFacets::$mapping;
+    $facets = [];
 
     if (!empty($mapping[$category_remote_id])) {
-      return $mapping[$category_remote_id];
+      $facets = $mapping[$category_remote_id];
+    }
+    if (!is_array($facets)) {
+      $facets = [$facets];
     }
 
-    return [];
+    return $facets;
   }
 
 }
