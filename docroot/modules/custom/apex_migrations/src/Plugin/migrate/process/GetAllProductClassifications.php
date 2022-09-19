@@ -33,7 +33,7 @@ class GetAllProductClassifications extends ProcessPluginBase {
     $properties = [];
     $vid = 'product_classifications';
     $name = $value;
-
+    $category_classification_id = $row->getSourceIdValues()['remote_id'];
     if (!empty($name)) {
       $properties['name'] = $name;
     }
@@ -45,6 +45,12 @@ class GetAllProductClassifications extends ProcessPluginBase {
     $parent_term_array = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties($properties);
 
     foreach ($parent_term_array as $parent_term) {
+      $classification = $parent_term->get('field_classification_id')->getValue()[0]['value'];
+
+      if ($classification != $category_classification_id) {
+        continue;
+      }
+
       $parent_tid = $parent_term->id();
       $all_terms_array[] = [
         'vid' => $vid,
@@ -64,7 +70,6 @@ class GetAllProductClassifications extends ProcessPluginBase {
     }
 
     $all_terms_array = json_encode($all_terms_array);
-
     return json_decode($all_terms_array, TRUE);
   }
 
