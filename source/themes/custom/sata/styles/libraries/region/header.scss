@@ -1280,14 +1280,22 @@ $mobile-menu-item-button-height: 7rem;
   padding-top: $header-height-mobile;
 
   @include media('>=xl') {
-    padding-top: $header-height + $header-utility-nav-height;
+    padding-top: $header-height;
+
+    &.page-utility-area {
+      padding-top: $header-height + $header-utility-nav-height;
+    }
   }
 
   body.page-node-type-landing-page & {
     padding-top: $header-height-mobile;
 
     @include media('>=xl') {
-      padding-top: $header-height + $header-utility-nav-height;
+      padding-top: $header-height;
+
+      &.page-utility-area {
+        padding-top: $header-height + $header-utility-nav-height;
+      }
     }
   }
 
