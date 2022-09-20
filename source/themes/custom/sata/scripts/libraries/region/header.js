@@ -16,6 +16,14 @@
       var selector_mobile_search_icon = '.mobile-search .search-icon';
       var selector_mobile_search_reset = '.mobile-search .search-reset';
 
+      // Get .page and utility area and add class if utility area exists.
+      var $page = $('.page');
+      var $utilityArea = $('.region-utility-area'); console.log($utilityArea);
+
+      if ($utilityArea.length > 0) {
+        $page.addClass('page-utility-area');
+      }
+
       // Build the search form.
       var search_text = Drupal.t('Enter Search');
       var submit_text = Drupal.t('Submit');
