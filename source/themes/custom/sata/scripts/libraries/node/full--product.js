@@ -238,6 +238,7 @@
         var $mobileTablist = $mobileTabsWidget.find('.node--type-product-tabs__content');
         var $mobileTabs = $mobileTablist.find('.node--type-product-tabs__mobile-nav-item');
         var $mobileLinks = $mobileTablist.find('a');
+        var $hidePriceSpider = $('body').hasClass('price-spider-hide');
 
         // Mark that the tabs component has been initialized.
         $tabsWidget.addClass('node--type-product-tabs--js-initialized');
@@ -253,19 +254,33 @@
         $mobileTabs.attr('role', 'tab');
         $mobileLinks.attr('role', 'presentation');
 
-        // Default to last item as selected.
-        $tabs.attr('aria-selected', 'false')
-          .last()
-          .attr('tabindex', '0')
-          .attr('aria-selected', 'true');
-        $mobileTabs.attr('aria-selected', 'false')
-          .last()
-          .attr('tabindex', '0')
-          .attr('aria-selected', 'true')
-          .addClass('node--type-product-tabs__mobile-nav-item--open');
-        $panels.prop('hidden', true)
-          .last()
-          .prop('hidden', false);
+        // Default to first item as selected if price spider hidden. Also see further below 'Set active tab onload'.
+        $tabs.attr('aria-selected', 'false');
+        $mobileTabs.attr('aria-selected', 'false');
+        $panels.prop('hidden', true);
+
+        if ($hidePriceSpider) {
+          $tabs.first()
+            .attr('tabindex', '0')
+            .attr('aria-selected', 'true');
+          $mobileTabs.first()
+            .attr('tabindex', '0')
+            .attr('aria-selected', 'true')
+            .addClass('node--type-product-tabs__mobile-nav-item--open');
+          $panels.first()
+            .prop('hidden', false);
+        }
+        else {
+          $tabs.last()
+            .attr('tabindex', '0')
+            .attr('aria-selected', 'true');
+          $mobileTabs.last()
+            .attr('tabindex', '0')
+            .attr('aria-selected', 'true')
+            .addClass('node--type-product-tabs__mobile-nav-item--open');
+          $panels.last()
+            .prop('hidden', false);
+        }
 
         // Label panel and mark that each is controlled by their respective tab.
         $tabs.each(function (tabIndex) {
@@ -314,8 +329,6 @@
             .attr('id', panelId)
             .attr('aria-labelledby', tabId);
         });
-
-
 
         $mobileTabs.each(function (tabIndex) {
           var $tab = $(this);
@@ -405,8 +418,13 @@
 
         // Set active tab onload.
         setTimeout(function () {
+          var $tabIndex = 2;
+
+          if ($hidePriceSpider) {
+            $tabIndex = 0;
+          }
           $tabs.each(function (i, obj) {
-            if (i === 2) {
+            if (i === $tabIndex) {
               $(this).trigger('click');
               $(this).removeAttr('tabindex');
             }
