@@ -201,6 +201,12 @@ body.toolbar-loading .toolbar-tray {
   }
 }
 
-body.price-spider-hide .page #main-content .ps-widget {
+body.price-spider-hide .page #main-content .ps-widget,
+body.price-spider-hide .page .block-product-buy-now-sticky .ps-widget,
+body.price-spider-hide .page .node--type-product.node--view-mode-full  #reviews-questions-tab {
   display: none !important;
+}
+
+body.price-spider-hide .page .node--type-product.node--view-mode-full .node__content .node--type-product-tabs.node--type-product-tabs--horizontal .node--type-product-tabs__nav-wrapper > .node--type-product-tabs__nav {
+  @include flex-x(justify-content, space-around);
 }
