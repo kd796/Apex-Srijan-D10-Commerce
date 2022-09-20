@@ -434,7 +434,10 @@ function sata_preprocess_html(&$variables) {
     $variables['attributes']['class'][] = 'price-spider-hide';
   }
 
-  if ($cookiebot_cbid = theme_get_setting('cookiebot_cbid')) {
+  if (
+    \Drupal::currentUser()->isAnonymous()
+    && $cookiebot_cbid = theme_get_setting('cookiebot_cbid')
+  ) {
     $cookie_bot = [
       '#tag' => 'script',
       '#attributes' => [
