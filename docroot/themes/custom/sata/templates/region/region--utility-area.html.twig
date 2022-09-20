@@ -15,10 +15,12 @@
 
 {% set classes = [] %}
 
-<div{{ attributes.addClass(classes) }}>
-  <div{{ create_attribute({'class': ['region-utility-area__inner']}) }}>
-    <div{{ content_attributes }}>
-      {{ content }}
+{% if content %}
+  <div{{ attributes.addClass(classes) }}>
+    <div{{ create_attribute({'class': ['region-utility-area__inner']}) }}>
+      <div{{ content_attributes }}>
+        {{ content }}
+      </div>
     </div>
   </div>
-</div>
+{% endif %}

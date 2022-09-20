@@ -10,6 +10,7 @@ use Drupal\Core\Block\BlockPluginInterface;
 use Drupal\Core\File\Exception\FileException;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
+use Drupal\Core\Render\Markup;
 use Drupal\Core\StreamWrapper\PublicStream;
 use Drupal\Core\StreamWrapper\StreamWrapperManager;
 use Drupal\file\FileInterface;
@@ -143,6 +144,19 @@ function sata_form_system_theme_settings_alter(&$form, FormStateInterface $form_
     '#type' => 'textfield',
     '#title' => t('Language Code'),
     '#default_value' => theme_get_setting('price_spider_language'),
+  ];
+
+  $form['cookiebot'] = [
+    '#type' => 'details',
+    '#title' => t('Cookiebot'),
+    '#open' => TRUE,
+  ];
+
+  $form['cookiebot']['cookiebot_cbid'] = [
+    '#type' => 'textfield',
+    '#title' => t('Cookiebot CBID'),
+    '#default_value' => theme_get_setting('cookiebot_cbid'),
+    '#description' => t("The 'data-cbid' property of the Cookiebot script in the site <head> tag. If empty, no Cookiebot script will be run."),
   ];
 
   $form['#validate'][] = 'sata_theme_settings_validate';
@@ -418,6 +432,24 @@ function sata_preprocess_html(&$variables) {
   // Add the class to hide the Price Spider elements throughout the website.
   if (theme_get_setting('price_spider_hide')) {
     $variables['attributes']['class'][] = 'price-spider-hide';
+  }
+
+  if (
+    \Drupal::currentUser()->isAnonymous()
+    && $cookiebot_cbid = theme_get_setting('cookiebot_cbid')
+  ) {
+    $cookie_bot = [
+      '#tag' => 'script',
+      '#attributes' => [
+        'id' => 'Cookiebot',
+        'src' => 'https://consent.cookiebot.com/uc.js',
+        'data-cbid' => $cookiebot_cbid,
+        'data-blockingmode' => 'auto',
+        'type' => 'text/javascript',
+      ],
+      '#weight' => -100,
+    ];
+    $variables['#attached']['html_head'][] = [$cookie_bot, 'cookiebot'];
   }
 }
 
