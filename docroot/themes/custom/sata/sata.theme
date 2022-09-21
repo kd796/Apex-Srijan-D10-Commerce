@@ -803,3 +803,22 @@ function sata_preprocess_taxonomy_term(array &$variables) {
     }
   }
 }
+
+/**
+ * Implements hook_js_alter().
+ */
+function sata_js_alter(&$js) {
+  // Ignore cookieconsent for all JS except those that set cookies.
+  // - The HubSpot script sets cookies.
+  // - The PriceSpider scripts may set cookies; don't ignore just in case.
+  if (theme_get_setting('cookiebot_cbid')) {
+    foreach ($js as $key => &$item) {
+      if (
+        strpos($key, 'pricespider.com') === FALSE
+        && strpos($key, 'hs-scripts.com') === FALSE
+      ) {
+        $item['attributes']['data-cookieconsent'] = 'ignore';
+      }
+    }
+  }
+}
