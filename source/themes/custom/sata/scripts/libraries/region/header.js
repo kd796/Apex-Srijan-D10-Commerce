@@ -18,7 +18,7 @@
 
       // Get .page and utility area and add class if utility area exists.
       var $page = $('.page');
-      var $utilityArea = $('.region-utility-area'); console.log($utilityArea);
+      var $utilityArea = $('.region-utility-area');
 
       if ($utilityArea.length > 0) {
         $page.addClass('page-utility-area');

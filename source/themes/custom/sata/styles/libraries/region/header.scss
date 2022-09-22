@@ -90,6 +90,11 @@ $mobile-menu-item-button-height: 7rem;
 
     height: $header-height;
     padding: 0;
+
+    @include media('<md') {
+      width: 100%;
+      height: $header-height-mobile;
+    }
   }
 
   .block--header-branding {
@@ -102,7 +107,7 @@ $mobile-menu-item-button-height: 7rem;
     position: relative;
 
     @include media('<1130px') {
-      padding-right: rem(18px);
+      padding-right: 0;
     }
 
     // Full width Bleed Element
@@ -141,12 +146,6 @@ $mobile-menu-item-button-height: 7rem;
           max-width: 9.4rem;
           margin-right: 1.6rem;
         }
-
-        @include media('<=lg-plus') {
-          &:last-of-type {
-            display: none;
-          }
-        }
       }
     }
   }
@@ -162,7 +161,7 @@ $mobile-menu-item-button-height: 7rem;
       color: $white;
       font-weight: $fw-bold;
       line-height: 1;
-      padding: 1.5rem;
+      width: 3rem;
       position: relative;
 
       span {
@@ -975,17 +974,13 @@ $mobile-menu-item-button-height: 7rem;
       top: calc(#{$header-height-mobile} - 1px);
     }
 
-    .region-header__content {
-      width: 100%;
-      height: $header-height-mobile;
-    }
-
     .block--header-branding {
       @include flex-x(order, 0);
 
       .site-logo {
-        .tagline {
-          display: none;
+        img.uploaded-logo {
+          margin-right: 1rem;
+          width: 130px;
         }
       }
     }
