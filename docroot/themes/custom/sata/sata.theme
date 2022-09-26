@@ -776,21 +776,6 @@ function sata_form_alter(&$form, &$form_state, $form_id) {
     default:
       break;
   }
-
-  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-search-page-1') {
-    $form['actions']['submit']['#attributes']['class'][] = 'submit-btn';
-
-    $form['actions']['search'] = [
-      '#type' => 'image_button',
-      '#name' => 'search',
-      '#src' => sata_get_theme_path() . '/icons/search.svg',
-      '#attributes' => [
-        'class' => ['search-btn'],
-        'title' => t('Search'),
-        'aria-label' => t('Search'),
-      ]
-    ];
-  }
 }
 
 /**

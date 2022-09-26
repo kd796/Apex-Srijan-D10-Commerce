@@ -54,7 +54,7 @@
     display: inline-block;
     margin-right: 0;
     position: relative;
-    width: 40%;
+    width: 70%;
 
     @include media('>=md') {
       width: 75%;
@@ -71,7 +71,7 @@
 
     .form-text {
       border-right: 0;
-      padding-right: rem(40px);
+      padding-right: rem(5px);
 
       @include media('>md') {
         padding-right: rem(50px);
@@ -104,22 +104,24 @@
   .view-filters {
     form {
       .form-actions {
+        position: relative;
         display: inline-block;
         margin-top: -1px;
+        background: $white url('../../../icons/search.svg') no-repeat center;
+        background-size: rem(24px) rem(24px);
+        width: rem(50px);
 
-        input.submit-btn {
-          display: none;
-        }
-
-        input.search-btn {
+        input.button {
           background: none;
           border: 1px solid $color-black !important;
           border-left: 0 !important;
-          color: $color-white;
+          color: transparent;
           height: 60px;
-          margin-left: -6px;
           position: relative;
           top: 1px;
+          padding: 0;
+          max-width: rem(50px) !important;
+          width: rem(50px) !important;
         }
       }
     }
