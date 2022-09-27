@@ -108,7 +108,7 @@ function gearwrench_core_entity_prepare_view($entity_type_id, array $entities, a
     /** @var Drupal\node\NodeInterface $node */
     $node = $entities[0];
 
-    if ($node->getType() == 'product' && empty($node->get('field_product_images')->getValue()) && !empty($node->get('field_media')->getValue())) {
+    if ($node->getType() == 'product' && $node->get('field_product_images')->isEmpty() && !$node->get('field_media')->isEmpty()) {
       $primary_image = $node->get('field_media')->getValue();
       $product_images = $node->get('field_product_images')->getValue();
 
