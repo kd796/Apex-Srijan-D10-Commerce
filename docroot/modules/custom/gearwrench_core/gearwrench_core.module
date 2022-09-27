@@ -108,20 +108,18 @@ function gearwrench_core_entity_prepare_view($entity_type_id, array $entities, a
     /** @var Drupal\node\NodeInterface $node */
     $node = $entities[0];
 
-    if ($node->getType() == 'product') {
+    if ($node->getType() == 'product' && empty($node->get('field_product_images')->getValue()) && !empty($node->get('field_media')->getValue())) {
       $primary_image = $node->get('field_media')->getValue();
       $product_images = $node->get('field_product_images')->getValue();
 
-      if (!empty($primary_image)) {
-        $new_product_image_list = $primary_image;
+      $new_product_image_list = $primary_image;
 
-        // This places the primary image at the front of the list.
-        foreach ($product_images as $img) {
-          $new_product_image_list[] = $img;
-        }
-
-        $node->set('field_product_images', $new_product_image_list);
+      // This places the primary image at the front of the list.
+      foreach ($product_images as $img) {
+        $new_product_image_list[] = $img;
       }
+
+      $node->set('field_product_images', $new_product_image_list);
     }
   }
 }
