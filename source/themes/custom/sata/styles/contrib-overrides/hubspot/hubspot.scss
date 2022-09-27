@@ -137,7 +137,6 @@ $input-height: 3.75rem;
 
   // Radio buttons
   .hs-form-radio {
-
     // fake input box base
     input[type='radio']:checked + span:before,
     input[type='radio']:not(:checked) + span:before {
@@ -191,9 +190,9 @@ $input-height: 3.75rem;
   }
 
   // Dark square with chevron aligned right
-  //Select
+  //Select and file
   .hs-fieldtype-select .input,
-  .form-input-file__wrapper {
+  .hs-fieldtype-file .input {
     position: relative;
 
     &::after {
@@ -217,6 +216,14 @@ $input-height: 3.75rem;
     &::after {
       font-size: rem(15px);
       transform: rotate(90deg);
+    }
+  }
+
+  .hs-fieldtype-file .input {
+    @include icon(upload, after, false);
+
+    &::after {
+      font-size: rem(20px);
     }
   }
 
