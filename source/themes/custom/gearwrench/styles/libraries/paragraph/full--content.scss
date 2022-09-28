@@ -189,12 +189,14 @@
       @include media('<md') {
         flex-direction: column;
       }
+
       @include media('>=md') {
         align-items: center;
         .component-content__inner {
           flex: 1;
           padding: $gap-vertical-xsm 0;
         }
+
         .component-content__media {
           max-width: 50%;
           width: 50%;
