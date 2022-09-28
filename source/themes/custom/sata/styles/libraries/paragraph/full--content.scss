@@ -180,50 +180,6 @@
         }
       }
     }
-
-    &.component-content--media-layout-performance-device-left,
-    &.component-content--media-layout-performance-device-right {
-      display: flex;
-
-      @include media('<md') {
-        flex-direction: column;
-      }
-
-      @include media('>=md') {
-        align-items: center;
-
-        .component-content__inner {
-          flex: 1;
-          padding: $gap-vertical-xsm 0;
-        }
-
-        .component-content__media {
-          max-width: 50%;
-          width: 50%;
-
-          img {
-            display: block;
-          }
-        }
-      }
-    }
-
-    &.component-content--media-layout-performance-device-left {
-      @include media('>=md') {
-        .component-content__media {
-          margin-right: 4rem;
-        }
-      }
-    }
-
-    &.component-content--media-layout-performance-device-right {
-      @include media('>=md') {
-        .component-content__media {
-          margin-left: 4rem;
-          order: 1;
-        }
-      }
-    }
   }
 }
 
