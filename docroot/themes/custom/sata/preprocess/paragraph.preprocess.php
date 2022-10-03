@@ -29,6 +29,7 @@
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Element;
+use Drupal\media\Entity\Media;
 use Drupal\Core\Url;
 use Drupal\paragraphs\ParagraphInterface;
 
@@ -480,6 +481,16 @@ function sata_preprocess_paragraph__featured_media__full(array &$variables) {
       $field_settings['settings']['view_mode'] = 'embed';
       $field_settings['label'] = 'hidden';
       break;
+  }
+
+  // In grid layout, loop through media and set remote video view_mode to modal.
+  if ($layout == 'featured_media_layout__grid') {
+    foreach ($paragraph->get('field_media_items') as $fieldMediaItem) {
+      $mediaItem = Media::load($fieldMediaItem->getValue()['target_id']);
+      if ($mediaItem->bundle() == 'remote_video') {
+        $field_settings['settings']['view_mode'] = 'modal';
+      }
+    }
   }
 
   // Replace field with new settings.
