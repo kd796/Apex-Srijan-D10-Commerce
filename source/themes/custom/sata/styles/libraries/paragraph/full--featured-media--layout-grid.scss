@@ -37,6 +37,10 @@
       @include grid-col(12);
       @include grid-clear-vertical-spacing();
 
+      .field--name-thumbnail {
+        position: relative;
+      }
+
       @include media('>=#{$bp-sm}', '<#{$bp-lg}') {
         @include grid-col(6);
         @include grid-clear-vertical-spacing(2);
