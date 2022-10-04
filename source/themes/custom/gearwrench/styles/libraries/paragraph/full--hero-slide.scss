@@ -108,7 +108,7 @@
       background-color: $black;
       position: absolute;
       content: '';
-      width: 20vw;
+      width: rem(150px);
       height: 100%;
       top: 0;
       right: -4rem;
@@ -130,11 +130,7 @@
     }
 
     .component-hero-slide__title {
-      margin-bottom: 3rem;
-
-      @include media('>md') {
-        margin-bottom: 0;
-      }
+      margin-bottom: 0;
 
       h2 {
         @include type-header(h4, light, included);
@@ -154,8 +150,9 @@
 
     .component-hero-slide__content {
       display: block;
-      @include media('<=md') {
-        display: none;
+
+      @include media('<md') {
+        font-size: rem(14px);
       }
     }
   }
@@ -163,6 +160,7 @@
   .component-hero-slide__link {
     @include btn();
     border: 1px solid $primary-orange !important;
+    margin-right: rem(5px);
   }
 
   .component-hero-slide__footer:not(:empty) {
