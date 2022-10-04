@@ -158,3 +158,41 @@ function apex_common_load_nodes_by_properties(array $properties): array {
 
   return $storage->loadByProperties($properties);
 }
+
+/**
+ * Get the featured page.
+ *
+ * Gets the featured page for the current site by checking for a basic page or
+ * landing page that has both the promote and sticky options checked at the same
+ * time. This will allow more flexibility without adding a new field to config.
+ *
+ * This includes a fallback option for the old way of doing this.
+ *
+ * @return array|null
+ *   The featured node in an array or NULL.
+ *
+ * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+ * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+ */
+function apex_common_get_featured_page(): ?array {
+  $nodes = apex_common_load_nodes_by_properties(
+    [
+      'promote' => '1',
+      'sticky' => 1,
+      'type' => ['page', 'landing_page']
+    ]
+  );
+
+  if (!empty($nodes)) {
+    return $nodes;
+  }
+
+  // Fallback to the old, bad way to do this.
+  $nodes = apex_common_load_nodes_by_properties(['title' => 'Featured Products']);
+
+  if (!empty($nodes)) {
+    return $nodes;
+  }
+
+  return NULL;
+}
