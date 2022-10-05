@@ -609,9 +609,7 @@ function sata_preprocess_menu__main__block_header_menu_main(array &$variables) {
 
     // Only render content if link is a MenuLinkContent plugin.
     if (isset($item['original_link']) && $item['original_link'] instanceof MenuLinkContent) {
-      $nodes = \Drupal::entityTypeManager()
-        ->getStorage('node')
-        ->loadByProperties(['title' => 'Featured Products']);
+      $nodes = apex_common_get_featured_page();
 
       if (!empty($nodes)) {
         $node = reset($nodes);
