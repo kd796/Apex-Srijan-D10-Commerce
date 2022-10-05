@@ -22,6 +22,7 @@
   #block-productbuynowsticky,
   #block-sata-breadcrumbs,
   #block-sata-local-tasks,
+  button.trigger,
   .region-utility-area,
   .product-detail-slider__pseudo-prev-button,
   .product-detail-slider__pseudo-next-button,
@@ -42,7 +43,9 @@
   .region-footer-second,
   .block-footer-navigation-block__header,
   .block-footer-navigation-block__footer-social-menu-wrapper,
-  .block-footer-navigation-block__footer-menu-wrapper {
+  .block-footer-navigation-block__footer-menu-wrapper,
+  // sass-lint:disable id-name-format
+  #CybotCookiebotDialog {
     display: none !important;
   }
 
@@ -99,14 +102,15 @@
     margin-bottom: 0 !important;
 
     .swiper-slide {
-      &:not(.swiper-slide-active) {
+      &.swiper-slide-active,
+      &:only-child {
+        width: 440px !important;
+      }
+
+      &:not(:only-child):not(.swiper-slide-active) {
         .media {
           display: none !important;
         }
-      }
-
-      &.swiper-slide-active {
-        width: 440px !important;
       }
     }
   }
@@ -202,8 +206,15 @@
     margin-top: 0 !important;
   }
 
+  .block-footer-navigation-block__footer-address {
+    p {
+      page-break-inside: avoid;
+    }
+  }
+
   @page {
-    margin: 1cm !important;
+    size: auto;
+    margin: 0;
   }
 
   @include media('<=xl') {
