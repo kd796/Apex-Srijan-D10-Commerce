@@ -49,6 +49,12 @@
 {% block paragraph %}
   <section{{ attributes.addClass(classes) }}>
     <div class="component-content-callout__content-wrapper">
+      <div class="component-content-callout__content-blade">
+        <img src="/{{ directory }}/images/blade-gold-full-width-mb.png" class="component-content-callout__content-blade--mobile" alt="Background image with SATA blade">
+        <img src="/{{ directory }}/images/blade-gold-full-width-tab.png" class="component-content-callout__content-blade--tab" alt="Background image with SATA blade">
+        <img src="/{{ directory }}/images/blade-gold-full-width.png" class="component-content-callout__content-blade--desktop" alt="Background image with SATA blade">
+      </div>
+
       {{ content.field_media_background }}
 
       <div class="component-content-callout__content--position">
