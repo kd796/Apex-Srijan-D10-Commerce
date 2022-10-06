@@ -1,0 +1,26 @@
+uuid: 3715dfe6-17ba-4571-8a85-072e2d4c0b77
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content_callout_layout
+    - paragraphs.paragraphs_type.content_callout
+id: paragraph.content_callout.field_content_callout_layout
+field_name: field_content_callout_layout
+entity_type: paragraph
+bundle: content_callout
+label: Layout
+description: 'Choose the layout to show at the bottom of the image.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: classy_paragraphs
+  handler_settings:
+    filter:
+      type: starts_with
+      starts_with: content_callout_layout__
+    sort:
+      field: _none
+field_type: entity_reference

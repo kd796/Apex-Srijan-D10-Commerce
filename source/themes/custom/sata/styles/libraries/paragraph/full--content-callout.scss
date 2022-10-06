@@ -17,17 +17,91 @@
 .component-content-callout {
   @include container-full-width();
 
+  &.component-content-callout__layout-straight {
+    .component-content-callout__content-wrapper {
+      border-bottom: rem(20px) solid $primary-solar;
+
+      @include media('>=lg-plus') {
+        border-bottom: rem(20px) solid $primary-solar;
+      }
+    }
+  }
+
+  &.component-content-callout__layout-blade {
+    .component-content-callout__content-blade {
+      display: block !important;
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: auto;
+      z-index: 3;
+
+      img {
+        width: 100%;
+      }
+
+      .component-content-callout__content-blade--tab,
+      .component-content-callout__content-blade--desktop {
+        display: none;
+      }
+
+      @include media('>=sm') {
+        .component-content-callout__content-blade--tab {
+          display: block;
+        }
+
+        .component-content-callout__content-blade--mobile {
+          display: none;
+        }
+      }
+
+      @include media('>=lg-plus') {
+        .component-content-callout__content-blade--desktop {
+          display: block;
+        }
+
+        .component-content-callout__content-blade--tab {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &.component-content-callout__color-theme--emerald {
+    .component-content-callout__content {
+      @include media('>=lg-plus') {
+        background-color: $primary-emerald;
+        padding: rem(20px 30px 30px);
+        max-width: rem(570px) !important;
+      }
+
+      @include media('>=lg-plus', '<=1180px') {
+        max-width: rem(500px) !important;
+        padding: rem(15px);
+
+        .component-content-callout__title {
+          margin-top: 0 !important;
+        }
+      }
+    }
+  }
+
   .component-content-callout__content-wrapper {
     position: relative;
 
+    .component-content-callout__content-blade {
+      display: none;
+    }
+
     @include media('<lg-plus') {
       background-color: $primary-emerald;
-      border-bottom: rem(20px) solid $primary-solar;
     }
   }
 
   .component-content-callout__content--position {
     @include container();
+    z-index: 5;
 
     .component-content-callout__content {
       @include media('>=lg-plus') {
@@ -55,8 +129,10 @@
         font-size: rem(52px);
         line-height: rem(48px);
         margin-bottom: rem(20px);
+        position: relative;
+        z-index: 5;
 
-        @include media('<lg-plus') {
+        @include media('<=1180px') {
           font-size: rem(40px);
           line-height: rem(48px);
         }
@@ -67,15 +143,19 @@
         font-weight: $fw-regular;
         line-height: rem(24px);
         margin-bottom: rem(28px);
+        position: relative;
+        z-index: 5;
 
-        @include media('<lg-plus') {
-          font-size: rem(14);
-          line-height: rem(24);
+        @include media('<=1180px') {
+          font-size: rem(14px);
+          line-height: rem(24px);
         }
       }
 
       .field--name-field-link {
         text-align: left;
+        position: relative;
+        z-index: 5;
       }
 
       .field--name-field-link a {
@@ -86,6 +166,7 @@
 
   .blazy {
     width: 100%;
+    z-index: 1;
 
     &.field[data-blazy] {
       min-width: 100%;
@@ -99,15 +180,6 @@
       display: none;
     }
   }
-
-  @include media('>=lg-plus') {
-    &.component-content-callout__color-theme--emerald {
-      .component-content-callout__content {
-        background-color: $primary-emerald;
-        padding: rem(20px 90px 30px 30px);
-        max-width: rem(570px);
-      }
-    }
-  }
 }
+
 
