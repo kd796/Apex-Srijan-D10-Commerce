@@ -50,6 +50,14 @@
           $('body').removeClass('ui-dialog-open');
         }
       });
+
+      // Add class to body on landing page without hero.
+      var $landingPage = $('body.page-node-type-landing-page');
+      var $hero = $('.component-hero');
+
+      if ($landingPage.length > 0 && $hero.length < 1) {
+        $landingPage.addClass('landing-page-no-hero');
+      }
     }
   };
 })(jQuery, Drupal);
