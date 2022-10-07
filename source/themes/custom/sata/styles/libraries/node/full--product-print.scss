@@ -61,6 +61,14 @@
     padding-top: 0 !important;
   }
 
+  .region-content,
+  .region-footer,
+  .region-footer__inner-container,
+  .region-footer-first {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
   .region-header {
     position: unset !important;
     print-color-adjust: exact; // sass-lint:disable-line no-misspelled-properties
@@ -167,6 +175,7 @@
   .field--name-field-product-features,
   .field--name-field-set-components,
   .field--name-field-product-specifications {
+
     > .field__item {
       padding-left: 5px !important;
       padding-right: 5px !important;
