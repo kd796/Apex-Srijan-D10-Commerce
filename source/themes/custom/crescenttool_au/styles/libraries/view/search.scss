@@ -184,11 +184,14 @@
 
   // Section title with Performance Device
   .node--type-product-related-products__nav-wrapper {
-    @include container-full-width();
     @include flex();
     @include flex-x(flex-direction, row);
     height: $header-height;
     margin-bottom: 2.5rem;
+
+    @include media('>lg-plus') {
+      @include container-full-width();
+    }
 
     .node--type-product-related-products__nav-logo-wrapper {
       display: none;
@@ -257,7 +260,8 @@
 
       h4 {
         text-transform: uppercase;
-        color: $primary-red;
+        color: $white;
+        text-align: left;
 
         @include media('>lg-plus') {
           color: $black;
@@ -327,4 +331,26 @@
       }
     }
   }
+}
+
+.region-post-content {
+  background-color: $primary-red;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-top: 5rem;
+  max-width: 100%;
+  padding-bottom: 3.75rem;
+  width: 100%;
+  position: relative;
+
+  .view-empty {
+    max-width: 75em;
+    width: calc(100% - 2rem);
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+.region-footer {
+  margin-top: 0 !important;
 }

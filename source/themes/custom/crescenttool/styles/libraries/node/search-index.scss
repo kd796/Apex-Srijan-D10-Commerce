@@ -135,13 +135,6 @@
 }
 
 .region-post-content {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  margin-top: 5rem;
-  max-width: 100%;
-  padding-bottom: 3.75rem;
-  width: 100%;
-
   .view-content {
     max-width: 75em;
     width: calc(100% - 2rem);
@@ -151,9 +144,6 @@
 }
 
 .region-post-content {
-  background-color: $primary-red;
-  position: relative;
-
   .view-search__header-product-results {
     display: none;
   }
@@ -182,7 +172,6 @@
     }
 
     .node__read-more-button {
-
       @include btn(secondary);
 
       border-radius: 0;
@@ -196,6 +185,7 @@
       width: unset;
       white-space: normal;
       min-width: unset;
+      text-align: left;
 
       @include media('<md') {
         font-size: rem(13px) !important;

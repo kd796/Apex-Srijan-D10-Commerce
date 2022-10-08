@@ -8,6 +8,7 @@ use Drupal\media\Entity\Media;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
+use Drush\Log\LogLevel;
 use League\Flysystem\FilesystemException;
 
 /**
@@ -36,6 +37,53 @@ class GetProductImages extends ProcessPluginBase {
   protected ImageOperations $imageOps;
 
   /**
+   * The list of types of Asset Cross References we use as images.
+   *
+   * @var array|string[]
+   */
+  protected static array $allowedTypes = [
+    'Beauty-Glamour Image', 'Cutaway Image', 'Highlight Image',
+    'In Package Image', 'In Use Image', 'Literature', 'Part Shot 1',
+    'Part Shot 2', 'Part Shot 3', 'Part Shot 4', 'Part Shot 5',
+    'Product Logo', 'Secondary Image', 'Warning Image', 'ICON'
+  ];
+
+  /**
+   * The media IDs for existing media elements.
+   *
+   * @var array
+   */
+  protected $mediaIds = [];
+
+  /**
+   * The media ID for an existing primary image.
+   *
+   * @var null|int|string
+   */
+  protected $primaryImageMediaId;
+
+  /**
+   * The primary image asset to download.
+   *
+   * @var array
+   */
+  protected $primaryImageAsset = [];
+
+  /**
+   * The list of image assets to download.
+   *
+   * @var array
+   */
+  protected $imageAssets = [];
+
+  /**
+   * The list of video URLs to use on the product.
+   *
+   * @var array
+   */
+  protected $videos = [];
+
+  /**
    * {@inheritdoc}
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition) {
@@ -50,9 +98,11 @@ class GetProductImages extends ProcessPluginBase {
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
-    $assets = [];
-    $media_ids = [];
-    $alt_text = NULL;
+    $this->mediaIds = [];
+    $this->primaryImageMediaId = NULL;
+    $this->primaryImageAsset = [];
+    $this->imageAssets = [];
+    $this->videos = [];
     $sku = NULL;
 
     if (!empty($value)) {
@@ -61,94 +111,32 @@ class GetProductImages extends ProcessPluginBase {
       // Are there product level images?
       if ($value->getName() === 'Product') {
         $sku_group = $value;
-        $primary_image = NULL;
-        $videos = [];
-
-        $allowed_types = [
-          'Beauty-Glamour Image', 'Cutaway Image', 'Highlight Image',
-          'In Package Image', 'In Use Image', 'Literature', 'Part Shot 1',
-          'Part Shot 2', 'Part Shot 3', 'Part Shot 4', 'Part Shot 5',
-          'Product Logo', 'Secondary Image', 'Warning Image', 'ICON'
-        ];
-
         $sku = $row->getSourceIdValues()['remote_sku'];
 
+        // Check the product level first.
         foreach ($sku_group->children() as $child) {
+          // Specifically this is where it finds the product and digs in... Sorta.
           if ($child->getName() === 'Product') {
-            foreach ($child->children() as $item) {
-              $attributeId = (string) $child->attributes()->ID;
-              $attributeType = (string) $item->attributes()->Type;
-              $assetId = (string) $item->attributes()->AssetID;
+            $currentProductId = (string) $child->attributes()->ID;
 
-              if (!empty($assetId) && $item->getName() === 'AssetCrossReference' && $attributeId === $sku) {
-                $media_id = ImageOperations::getImageMediaId($assetId);
-
-                // If we find the file then we need to reference it in the return array.
-                if (!empty($media_id)) {
-                  $media_ids[] = [
-                    'media_id' => $media_id
-                  ];
-                }
-                else {
-                  if ($attributeType === 'Primary Image') {
-                    $primary_image = [
-                      'imagetype' => 'Product Level',
-                      'asset_id' => $assetId,
-                      'remote_file_path' => $assetId . '.jpg',
-                    ];
-                  }
-                  elseif (in_array($attributeType, $allowed_types)) {
-                    $assets[] = [
-                      'imagetype' => 'Product Level',
-                      'asset_id' => $assetId,
-                    ];
-                  }
-                }
-              }
-
-              // Now we have to add in the video stuff.
-              if ($item->getName() === 'Values' && $attributeId === $sku) {
-                foreach ($item->children() as $single_value) {
-                  $single_value_attribute_id = (string) $single_value->attributes()->AttributeID;
-
-                  if ($single_value->getName() === 'MultiValue' && $single_value_attribute_id == 'ExternalVideoURL') {
-                    foreach ($single_value->children() as $single_value_child) {
-                      $videos[] = $single_value_child;
-                    }
-
-                    // We only visited the "Values" attribute group so that we could get the video. So leave. NOW!
-                    break;
-                  }
-                }
-              }
+            if ($currentProductId !== $sku) {
+              // This is not the droid... I mean product you are looking for.
+              continue;
             }
+
+            // Scan at the current, product, level.
+            $this->scanElementForImages($child);
           }
         }
 
-        if (empty($assets) && empty($media_ids) && empty($primary_image)) {
-          foreach ($sku_group->children() as $child) {
-            if ($child->getName() === 'AssetCrossReference' && (string) $child->attributes()->Type === 'Primary Image') {
-              $assetId = (string) $child->attributes()->AssetID;
+        // If we didn't find anything at the product level then we scan at the parent level.
+        if (empty($this->imageAssets) && empty($this->mediaIds)) {
+          $this->scanElementForImages($sku_group, 'SKU Group Level');
+        }
 
-              if (!empty($assetId)) {
-                $media_id = ImageOperations::getImageMediaId($assetId);
-
-                // If we find the file then we need to reference it in the return array.
-                if (!empty($media_id)) {
-                  $media_ids[] = [
-                    'media_id' => $media_id
-                  ];
-                }
-                else {
-                  // If we don't find the file then we need to download it.
-                  $assets[] = [
-                    'imagetype' => 'SKU Group Level',
-                    'asset_id' => $assetId,
-                  ];
-                }
-              }
-            }
-          }
+        // We want to make sure we have a primary image selected.
+        if (empty($this->primaryImageMediaId) && empty($this->primaryImageAsset)) {
+          $this->scanParentForPrimaryImage($sku_group);
         }
       }
 
@@ -156,18 +144,22 @@ class GetProductImages extends ProcessPluginBase {
       $final_asset_list = [];
 
       // This final array will now allow the primary image to be the priority.
-      if (!empty($primary_image)) {
-        $final_asset_list[] = $primary_image;
+      if (!empty($this->primaryImageAsset)) {
+        $final_asset_list[] = $this->primaryImageAsset;
       }
 
-      foreach ($assets as $asset) {
+      foreach ($this->imageAssets as $asset) {
         $final_asset_list[] = $asset;
       }
 
-      if (empty($final_asset_list) && !empty($media_ids)) {
-        if (empty($videos)) {
-          return $media_ids;
+      // If we have no assets to download, no videos to process, and media IDs available then return.
+      if (empty($final_asset_list) && !empty($this->mediaIds) && empty($this->videos)) {
+        if (!empty($this->primaryImageMediaId)) {
+          // Combines the media ID of the primary image with the rest of the media IDs while placing at the beginning of the array.
+          return array_merge([0 => ['media_id' => $this->primaryImageMediaId]], $this->mediaIds);
         }
+
+        return $this->mediaIds;
       }
 
       $store = \Drupal::service('tempstore.private')->get('apex_migrations');
@@ -185,7 +177,7 @@ class GetProductImages extends ProcessPluginBase {
               );
             }
             else {
-              $media_ids[] = [
+              $this->mediaIds[] = [
                 'media_id' => $media_id
               ];
             }
@@ -210,8 +202,8 @@ class GetProductImages extends ProcessPluginBase {
       }
 
       // Take all the videos and create media items.
-      if (!empty($videos)) {
-        foreach ($videos as $video) {
+      if (!empty($this->videos)) {
+        foreach ($this->videos as $video) {
           try {
             // Process the video down to a normal URL, not a video series.
             $video_json = ImageOperations::getYoutubeData($video);
@@ -227,7 +219,7 @@ class GetProductImages extends ProcessPluginBase {
               ]);
 
               $media->setName($video_json->title)->setPublished(TRUE)->save();
-              $media_ids[] = [
+              $this->mediaIds[] = [
                 'media_id' => $media->id()
               ];
             }
@@ -249,7 +241,105 @@ class GetProductImages extends ProcessPluginBase {
       }
     }
 
-    return $media_ids;
+    if (!empty($this->primaryImageMediaId)) {
+      // Combines the media ID of the primary image with the rest of the media IDs while placing at the beginning of the array.
+      return array_merge([0 => ['media_id' => $this->primaryImageMediaId]], $this->mediaIds);
+    }
+
+    return $this->mediaIds;
+  }
+
+  /**
+   * Scans a given XML element for child elements that contain images.
+   *
+   * @param \SimpleXMLElement|mixed $element
+   *   The SimpleXMLElement we are processing.
+   * @param string $level
+   *   The level we want to indicate for reporting purposes.
+   */
+  private function scanElementForImages($element, string $level = 'Product Level') {
+    foreach ($element->children() as $item) {
+      $attributeType = (string) $item->attributes()->Type;
+      $assetId = (string) $item->attributes()->AssetID;
+
+      if (!empty($assetId) && $item->getName() === 'AssetCrossReference') {
+        $media_id = ImageOperations::getImageMediaId($assetId);
+
+        // If we find the file then we need to reference it in the return array.
+        if (!empty($media_id)) {
+          if ($attributeType === 'Primary Image') {
+            $this->primaryImageMediaId = $media_id;
+          }
+          else {
+            $this->mediaIds[] = [
+              'media_id' => $media_id
+            ];
+          }
+        }
+        else {
+          if ($attributeType === 'Primary Image') {
+            $this->primaryImageAsset = [
+              'imagetype' => $level,
+              'asset_id' => $assetId,
+              'remote_file_path' => $assetId . '.jpg',
+            ];
+          }
+          elseif (in_array($attributeType, self::$allowedTypes)) {
+            $this->imageAssets[] = [
+              'imagetype' => $level,
+              'asset_id' => $assetId,
+            ];
+          }
+        }
+      }
+
+      // Now we have to add in the video stuff.
+      if ($item->getName() === 'Values') {
+        foreach ($item->children() as $single_value) {
+          $single_value_attribute_id = (string) $single_value->attributes()->AttributeID;
+
+          if ($single_value->getName() === 'MultiValue' && $single_value_attribute_id == 'ExternalVideoURL') {
+            foreach ($single_value->children() as $single_value_child) {
+              $this->videos[] = $single_value_child;
+            }
+
+            // We only visited the "Values" attribute group so that we could get the video. So leave. NOW!
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * Scan the parent element for the primary image.
+   *
+   * @param \SimpleXMLElement|mixed $element
+   *   The parent element.
+   */
+  private function scanParentForPrimaryImage($element) {
+    foreach ($element->children() as $item) {
+      $attributeType = (string) $item->attributes()->Type;
+      $assetId = (string) $item->attributes()->AssetID;
+
+      if (!empty($assetId) && $item->getName() === 'AssetCrossReference') {
+        if ($attributeType === 'Primary Image') {
+          $media_id = ImageOperations::getImageMediaId($assetId);
+
+          // If we find the file then we need to reference it in the return array.
+          if (!empty($media_id)) {
+            $this->primaryImageMediaId = $media_id;
+          }
+          else {
+            $this->primaryImageAsset = [
+              'imagetype' => 'SKU Group Level',
+              'asset_id' => $assetId,
+              'remote_file_path' => $assetId . '.jpg',
+            ];
+          }
+        }
+      }
+    }
   }
 
 }
