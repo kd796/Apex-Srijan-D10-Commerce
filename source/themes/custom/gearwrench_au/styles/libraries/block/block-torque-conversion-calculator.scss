@@ -1,0 +1,52 @@
+// -----------------------------------------------------------------------------
+// Block: Torque Conversion Calculator
+// -----------------------------------------------------------------------------
+
+@import '../../globals';
+
+.block-torque-conversion-calculator {
+  .block-torque-conversion-calculator__form-buttons {
+    .block-torque-conversion-calculator__button-reset {
+      @include btn(secondary);
+      padding: 0;
+
+      @include media('<=md') {
+        padding-top: 1.5rem;
+        justify-content: center;
+      }
+    }
+  }
+
+  .block-torque-conversion-calculator__results {
+    table {
+      border: 1px solid $secondary-black;
+
+      tbody {
+        tr {
+          &:nth-of-type(odd) {
+            background-color: $secondary-light;
+            color: $black;
+          }
+
+          &:nth-of-type(even) {
+            background-color: $gray-20;
+            color: $black;
+          }
+
+          &:first-of-type {
+            background-color: $secondary-black;
+            color: $white;
+          }
+
+          td {
+            border: 1px solid $black;
+
+            input[type='text'] {
+              color: $black;
+            }
+          }
+        }
+      }
+    }
+  }
+}
