@@ -9,9 +9,12 @@
 }
 
 @media (min-width: 48em) {
-  .block-torque-conversion-calculator .block-torque-conversion-calculator__form-wrapper,
-  .block-torque-conversion-calculator .block-torque-conversion-calculator__results-wrapper {
+  .block-torque-conversion-calculator .block-torque-conversion-calculator__form-wrapper {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .block-torque-conversion-calculator .block-torque-conversion-calculator__results-wrapper {
+    grid-template-columns: 1fr 2fr;
   }
 }
 
