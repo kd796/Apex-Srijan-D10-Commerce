@@ -23,9 +23,7 @@
   }
 
   @include view-cards('.node__read-more-button');
-
   .node__content {
-
     .node__long-description {
       min-height: 0;
 
@@ -38,13 +36,10 @@
     }
 
     .node__content-container {
-
       min-height: 15rem;
 
       @include media('>=md') {
-
         min-height: 18rem;
-
       }
     }
 
@@ -56,16 +51,13 @@
       }
 
       .media.media--video {
-
         iframe {
           position: absolute;
           top: 0;
           height: 100%;
           width: 100%;
         }
-
       }
-
     }
   }
 
@@ -86,5 +78,4 @@
   .node__content .node__media .media img {
     object-fit: contain;
   }
-
 }
