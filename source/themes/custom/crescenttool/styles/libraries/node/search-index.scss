@@ -103,7 +103,7 @@
         min-height: rem(100px);
 
         @include media('<md') {
-          font-size:  rem(16px);
+          font-size: rem(16px);
           line-height: rem(20px);
           min-height: rem(60px);
         }
@@ -118,6 +118,10 @@
 
       .field--type-text-with-summary {
         display: inline;
+
+        p {
+          display: inline;
+        }
       }
     }
   }
