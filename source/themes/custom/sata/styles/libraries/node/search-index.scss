@@ -121,7 +121,7 @@
         overflow: hidden;
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        min-height: rem(100px);
+        min-height: rem(80px);
 
         @include media('<md') {
           font-size:  rem(16px);
@@ -139,6 +139,10 @@
       font-size: rem(16px);
       font-weight: $fw-regular;
       line-height: rem(24px);
+
+      .field--type-text-with-summary {
+        display: inline;
+      }
 
       @include media('<md') {
         font-size: rem(12px);

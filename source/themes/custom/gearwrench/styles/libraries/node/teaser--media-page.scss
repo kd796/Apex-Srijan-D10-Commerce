@@ -27,6 +27,15 @@
     height: 100%;
     word-break: break-word;
 
+    a {
+      text-decoration: none;
+      color: $black;
+
+      @include on-event() {
+        color: $black;
+      }
+    }
+
     .node__listing-image {
       @include flex();
       @include flex-x(align-items, center);
@@ -40,7 +49,6 @@
       .field[data-blazy] {
         min-width: 100%;
       }
-
 
       .media {
         background-color: $black;
@@ -60,12 +68,9 @@
           bottom: 0;
         }
 
-
         img {
           object-fit: contain;
         }
-
-
       }
     }
 
@@ -76,9 +81,7 @@
         padding-left: 0;
         padding-right: 0;
       }
-
     }
-
 
     .node__long-description {
       .field--name-title {
