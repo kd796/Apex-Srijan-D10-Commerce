@@ -1,7 +1,7 @@
 // -----------------------------------------------------------------------------
 // Abstracts/Mixin: Button Styles
 // Base button style mixin
-// @include btn-base(), @include btn(primary | secondary | light | solar, dark | light | solar, sm | md | lg)
+// @include btn-base(), @include btn(primary | secondary | light | solar | print, dark | light | solar, sm | md | lg)
 // first param: primary, light, solar are solid colored buttons
 // first param: secondary is a text link with an after icon
 // second param: secondary font color
@@ -31,7 +31,7 @@
     padding: 1rem 3.5rem .85rem;
   }
 
-  @if $style == primary {
+  @if $style == primary or $style == print {
     @include on-event {
       color: $primary-emerald;
       background-color: $white;
@@ -117,6 +117,21 @@
       &:after {
         margin-left: .5rem;
       }
+    }
+  } @else if $style == print {
+    @include btn-base();
+
+    @include icon(printer, before, true);
+    align-items: center;
+    display: inline-flex;
+
+    &::before {
+      font-size: rem(16px);
+      margin-right: rem(10px);
+    }
+
+    @include on-event {
+      color: $hover-color;
     }
   }
 }
