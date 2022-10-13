@@ -671,10 +671,7 @@ $tabs-border-width-active: rem(5px);
 
   .product-detail-content-container__print > span {
     cursor: pointer;
-
-    @include on-event() {
-      color: $primary-emerald;
-    }
+    @include btn(print);
   }
 }
 

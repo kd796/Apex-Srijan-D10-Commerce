@@ -151,11 +151,11 @@
             <div class="node__buy-now-button ps-widget" ps-sku="{{ sku }}"></div>
           </div>
 
-          <div class="product-detail-content-container__social">
-            <div class="product-detail-content-container__print">
-              <span onclick="window.print()">{% include directory ~ '/icons/printer.svg' %}</span>
-            </div>
+          <div class="product-detail-content-container__print">
+            <span onclick="window.print()">{{ 'Data Sheet'|t }}</span>
           </div>
+
+          <div class="product-detail-content-container__social"></div>
         </header>
         <div class="product-detail-content-container__utility-container"></div>
 
