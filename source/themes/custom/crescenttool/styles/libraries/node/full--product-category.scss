@@ -263,8 +263,24 @@
         }
 
         .views-row {
+          padding-bottom: rem(47px);
+          height: 100%;
+
+          @include media('<md') {
+            padding-bottom: rem(42px);
+          }
+
           .node--view-mode-teaser {
             width: 100%;
+            height: 100%;
+
+            .node__inner {
+              height: 100%;
+
+              .node__content {
+                height: 100%;
+              }
+            }
           }
         }
       }
