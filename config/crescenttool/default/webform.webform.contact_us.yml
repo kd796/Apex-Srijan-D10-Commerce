@@ -26,6 +26,23 @@ elements: |-
       'Add/Adjust Your Location Information': 'Add/Adjust Your Location Information'
     '#required': true
     '#required_error': Required
+  product_model_number:
+    '#type': textfield
+    '#title': 'Product Model Number'
+    '#required': true
+    '#states':
+      visible:
+        - ':input[name="select_type"]':
+            value: 'Product Feedback'
+        - or
+        - ':input[name="select_type"]':
+            value: 'Product Technical Question'
+        - or
+        - ':input[name="select_type"]':
+            value: 'Warranty/Replacement Parts/Repair'
+        - or
+        - ':input[name="select_type"]':
+            value: 'Zipper Warranty Registration'
   business_name:
     '#type': textfield
     '#title': 'Business Name'
