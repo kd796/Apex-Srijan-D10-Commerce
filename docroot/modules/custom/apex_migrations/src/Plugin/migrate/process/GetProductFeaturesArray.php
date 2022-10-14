@@ -49,7 +49,6 @@ class GetProductFeaturesArray extends ProcessPluginBase {
       'ATT22092' => 17,
       'ATT22093' => 18,
       'ATT22094' => 19,
-      'ATT17711' => 20,
     ];
     $attribute_ids_to_use = array_keys($attribute_to_position);
 
