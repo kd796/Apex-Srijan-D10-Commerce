@@ -79,6 +79,7 @@
       .field--name-field-long-description {
         @include type-header(h4, black, included);
         margin-top: 0;
+        word-break: break-all;
 
         @include media('<md') {
           font-size:  rem(16px);
@@ -90,6 +91,10 @@
     .node__sku {
       font-size: rem(14px);
       margin: 0;
+
+      .field--name-title {
+        color: $type-dark;
+      }
 
       @include media('<md') {
         font-size: rem(12px);
@@ -104,7 +109,9 @@
     display: inline-block !important;
     float: none;
     font-size: 1rem !important;
+    padding: 1rem 1.75rem .85rem !important;
     transition: $transition-base;
+    white-space: inherit !important;
     width: 100%;
 
     @include media('<md') {
@@ -116,11 +123,28 @@
       background-color: $gray-50;
 
       > small {
-        line-height: 1.625;
+        line-height: 1.2;
         font-weight: $fw-bold;
+        font-family: $font-brand;
+        font-size: rem(16px);
+        display: inherit;
 
-        &:hover {
+        @include media('<=md') {
+          line-height: 1;
+        }
+      }
+
+      &:hover {
+        background-color: $gray-50;
+
+        > small {
           font-weight: $fw-bold;
+          font-family: $font-brand;
+          font-size: rem(16px);
+
+          @include media('<=md') {
+            line-height: 1;
+          }
         }
       }
     }
@@ -130,8 +154,13 @@
       background-color: $black;
 
       &.ps-disabled > small {
-        line-height: 1.625;
+        line-height: 1.2;
         font-weight: $fw-bold;
+        font-family: $font-brand;
+
+        @include media('<=md') {
+          line-height: 1;
+        }
       }
     }
   }
@@ -139,6 +168,14 @@
   @include on-event {
     box-shadow: 0 0 16px 5px rgba(0, 0, 0, 0.2);
     outline: 2px solid $black;
+
+    .node__sku {
+      color: $type-dark;
+
+      .field--name-title {
+        color: $type-dark;
+      }
+    }
 
     @include media('<md') {
       box-shadow: none;

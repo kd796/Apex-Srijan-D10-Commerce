@@ -89,6 +89,7 @@
       .field--name-field-long-description {
         @include type-header(h4, light, included);
         margin-top: 0;
+        word-break: break-all;
 
         @include media('<md') {
           font-size:  rem(16px);
@@ -100,6 +101,10 @@
     .node__sku {
       font-size: rem(14px);
       margin: 0;
+
+      .field--name-title {
+        color: $white;
+      }
 
       @include media('<md') {
         font-size: rem(12px);
@@ -113,7 +118,7 @@
     box-sizing: border-box;
     display: inline-block !important;
     float: none;
-    font-size: 1rem !important;
+    font-size: rem(16px) !important;
     line-height: rem(24px) !important;
     padding: 1rem 1.75rem .85rem !important;
     transition: $transition-base;
@@ -133,6 +138,27 @@
         line-height: rem(24px);
         font-weight: $fw-extra-bold;
         font-family: $font-brand;
+        font-size: rem(16px);
+        display: inherit;
+
+        @include media('<=md') {
+          line-height: 1;
+        }
+      }
+
+      &:hover {
+        background-color: $gray-50;
+
+        > small {
+          line-height: rem(24px);
+          font-weight: $fw-extra-bold;
+          font-family: $font-brand;
+          font-size: rem(16px);
+
+          @include media('<=md') {
+            line-height: 1;
+          }
+        }
       }
     }
 
@@ -151,6 +177,11 @@
           line-height: rem(24px);
           font-weight: $fw-extra-bold;
           font-family: $font-brand;
+          font-size: rem(16px);
+
+          @include media('<=md') {
+            line-height: 1;
+          }
         }
       }
     }
@@ -158,6 +189,14 @@
 
   @include on-event {
     outline: 1px solid $primary-solar;
+
+    .node__sku {
+      color: $white;
+
+      .field--name-title {
+        color: $white;
+      }
+    }
 
     @include media('<md') {
       box-shadow: none;
