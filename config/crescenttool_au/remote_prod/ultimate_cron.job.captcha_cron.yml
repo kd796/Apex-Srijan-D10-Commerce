@@ -1,13 +1,14 @@
+uuid: 0e4b4a56-5226-4b64-8bec-e9f9b14a683e
 langcode: en
 status: true
 dependencies:
   module:
-    - acquia_connector
+    - captcha
 title: 'Default cron handler'
-id: acquia_connector_cron
+id: captcha_cron
 weight: 0
-module: acquia_connector
-callback: acquia_connector_cron
+module: captcha
+callback: captcha_cron
 scheduler:
   id: simple
 launcher:
