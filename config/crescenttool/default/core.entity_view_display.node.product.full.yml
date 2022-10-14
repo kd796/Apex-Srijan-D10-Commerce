@@ -27,12 +27,20 @@ dependencies:
     - node.type.product
   module:
     - blazy
+    - text
     - user
 id: node.product.full
 targetEntityType: node
 bundle: product
 mode: full
 content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
   field_long_description:
     type: string
     label: hidden
@@ -55,28 +63,24 @@ content:
       overlay: ''
       title: ''
       vanilla: false
-      icon: ''
       layout: ''
       view_mode: product_detail_slider
       cache: 0
-      current_view_mode: full
       skin: ''
-      fx: ''
+      lazy: ''
       style: ''
       background: false
       box_caption: ''
       box_caption_custom: ''
       box_media_style: ''
+      loading: lazy
+      preload: false
       responsive_image_style: ''
       box_style: ''
       image_style: product_medium
       media_switch: ''
       ratio: ''
       thumbnail_style: ''
-      _uri: ''
-      breakpoints: {  }
-      sizes: ''
-      grid_header: ''
       grid: ''
       grid_medium: ''
       grid_small: ''
@@ -89,7 +93,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 3
+    weight: 4
     region: content
   field_product_images:
     type: entity_reference_entity_view
@@ -106,7 +110,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 5
+    weight: 6
     region: content
   field_set_components:
     type: entity_reference_entity_view
@@ -115,10 +119,9 @@ content:
       view_mode: set_listing
       link: false
     third_party_settings: {  }
-    weight: 4
+    weight: 5
     region: content
 hidden:
-  body: true
   field_brand: true
   field_featured_product: true
   field_keywords: true

@@ -159,6 +159,10 @@
         </header>
         <div class="product-detail-content-container__utility-container"></div>
 
+        <div class="product-body">
+          {{ content.body }}
+        </div>
+
         <h3>Features</h3>
 
         {{ page_top_products_features }}
@@ -262,7 +266,7 @@
         {{ related_items }}
       {% endif %}
 
-      {{ content|without('field_long_description','field_product_images', 'field_product_features', 'field_product_specifications', 'field_set_components') }}
+      {{ content|without('field_long_description','field_product_images', 'field_product_features', 'field_product_specifications', 'field_set_components', 'body') }}
     </div>
   </div>
 </article>
