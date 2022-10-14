@@ -110,7 +110,7 @@
       display: inline-block !important;
       float: none;
       font-size: 1rem !important;
-      padding: 1rem 1.75rem .85rem !important;
+      padding: 1rem 0.85rem 0.85rem !important;
       transition: $transition-base;
       width: 100%;
       border: 1px solid $primary-red;
@@ -127,6 +127,7 @@
 
       @include media('<md') {
         font-size: rem(13px) !important;
+        padding: 1rem 0.3rem 0.85rem !important;
       }
 
       &.ps-disabled {
