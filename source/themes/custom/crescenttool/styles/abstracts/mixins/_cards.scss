@@ -104,6 +104,11 @@ $radius-desktop: rem(25px);
       .field--name-field-long-description {
         @include type-header(h4, black, included);
         margin-top: 0;
+        word-break: break-word;
+        -webkit-line-clamp: 4;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
 
         @include media('<md') {
           font-size:  rem(13px);
@@ -122,6 +127,7 @@ $radius-desktop: rem(25px);
     .node__sku {
       font-size: rem(14px);
       margin: 0;
+      color: $type-dark;
 
       @include media('<md') {
         font-size: rem(12px);

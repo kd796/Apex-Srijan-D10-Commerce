@@ -80,6 +80,11 @@
         .field--name-field-long-description {
           @include type-header(h4, black, included);
           margin-top: 0;
+          word-break: break-word;
+          -webkit-line-clamp: 4;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
 
           @include media('<md') {
             font-size:  rem(13px);
@@ -91,6 +96,10 @@
       .node__sku {
         font-size: rem(14px);
         margin: 0;
+
+        .field--name-title {
+          color: $type-dark;
+        }
 
         @include media('<md') {
           font-size: rem(11px);
@@ -105,6 +114,7 @@
       display: inline-block !important;
       float: none;
       font-size: 1rem !important;
+      padding: 1rem 0.85rem 0.85rem !important;
       transition: $transition-base;
       width: 100%;
       border: 1px solid $primary-red;
@@ -121,6 +131,7 @@
 
       @include media('<md') {
         font-size: rem(13px) !important;
+        padding: 1rem 0.3rem 0.85rem !important;
       }
 
       &.ps-disabled {
@@ -128,17 +139,30 @@
         border-color: $gray-50;
 
         > small {
-          line-height: 1.625;
+          line-height: 1.2;
           font-weight: $fw-bold;
+          font-family: $font-brand;
+          display: inherit;
+
+          @include media('<=md') {
+            line-height: 1;
+            font-size: rem(13px);
+          }
 
           &:hover {
             color: $white;
             font-weight: $fw-bold;
+
+            @include media('<=md') {
+              line-height: 1;
+            }
           }
         }
 
         &:hover {
           background-color: $gray-50;
+          border-top-left-radius: unset;
+          border-top-right-radius: unset;
         }
       }
 
@@ -168,6 +192,10 @@
 
       .node__sku {
         color: $white;
+
+        .field--name-title {
+          color: $white;
+        }
       }
     }
   }

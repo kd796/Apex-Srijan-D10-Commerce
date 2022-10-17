@@ -78,11 +78,12 @@
   display: inline-block !important;
   float: none;
   font-size: 1rem !important;
+  padding: 1rem 0.85rem 0.85rem !important;
   transition: $transition-base;
   width: 100%;
   border: 1px solid $primary-red;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  border-top-left-radius: unset;
+  border-top-right-radius: unset;
   white-space: normal;
   min-width: 100%;
   border-bottom-left-radius: rem(25px);
@@ -90,16 +91,51 @@
 
   @include media('<md') {
     font-size: rem(13px) !important;
+    padding: 1rem 0.3rem 0.85rem !important;
   }
 
-  > small {
-    line-height: 1.625;
+  &.ps-disabled {
+    background-color: $gray-50;
+    border-color: $gray-50;
+    font-family: $font-brand;
     font-weight: $fw-bold;
+    border-top-left-radius: unset;
+    border-top-right-radius: unset;
 
-    &:hover,
-    &:focus {
-      color: $white;
+    > small {
+      line-height: 1.2;
       font-weight: $fw-bold;
+      font-family: $font-brand;
+      display: inherit;
+
+      @include media('<=md') {
+        line-height: 1;
+        font-size: rem(13px);
+      }
+
+      &:hover {
+        color: $white;
+        font-family: $font-brand;
+        font-weight: $fw-bold;
+
+        @include media('<=md') {
+          line-height: 1;
+        }
+      }
+    }
+
+    &:hover {
+      background-color: $gray-50;
+      border-top-left-radius: unset;
+      border-top-right-radius: unset;
+
+      &.ps-disabled {
+        > small {
+          color: $white;
+          font-family: $font-brand;
+          font-weight: $fw-bold;
+        }
+      }
     }
   }
 
