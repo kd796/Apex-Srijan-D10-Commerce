@@ -88,6 +88,11 @@
       .field--name-field-long-description {
         @include type-header(h4, light, included);
         margin-top: 0;
+        word-break: break-word;
+        -webkit-line-clamp: 4;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
 
         @include media('<md') {
           font-size:  rem(16px);
@@ -99,6 +104,7 @@
     .node__sku {
       font-size: rem(14px);
       margin: 0;
+      color: $white;
 
       @include media('<md') {
         font-size: rem(12px);
@@ -112,7 +118,7 @@
     box-sizing: border-box;
     display: inline-block !important;
     float: none;
-    font-size: 1rem !important;
+    font-size: rem(16px) !important;
     line-height: rem(24px) !important;
     padding: 1rem 1.75rem .85rem !important;
     transition: $transition-base;
@@ -122,6 +128,8 @@
     @include media('<md') {
       white-space: normal;
       min-width: 100%;
+      font-size: rem(13px) !important;
+      padding: 1rem 0.3rem 0.85rem !important;
     }
 
     &.ps-disabled {
@@ -132,10 +140,17 @@
         line-height: rem(24px);
         font-weight: $fw-extra-bold;
         font-family: $font-brand;
+        font-size: rem(16px);
+        display: inherit;
+
+        @include media('<md') {
+          line-height: 1;
+          font-size: rem(13px) !important;
+        }
       }
     }
 
-    &:hover {
+    @include on-event() {
       color: $type-dark;
       font-weight: $fw-extra-bold;
       border-left-color: transparent !important;
@@ -146,10 +161,17 @@
         background-color: $gray-50;
         border-color: $gray-50 !important;
 
-        & > small {
+        > small {
           line-height: rem(24px);
           font-weight: $fw-extra-bold;
           font-family: $font-brand;
+          font-size: rem(16px);
+          display: inherit;
+
+          @include media('<md') {
+            line-height: 1;
+            font-size: rem(13px) !important;
+          }
         }
       }
     }
