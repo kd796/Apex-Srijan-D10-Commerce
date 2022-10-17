@@ -132,16 +132,10 @@
           line-height: 1;
           font-size: rem(13px) !important;
         }
-
-        &:hover {
-          font-weight: $fw-bold;
-          font-family: $font-brand;
-          font-size: rem(16px);
-        }
       }
     }
 
-    &:hover {
+    @include on-event() {
       color: $primary-orange;
       background-color: $black;
 
@@ -154,6 +148,11 @@
           font-family: $font-brand;
           font-size: rem(16px);
           display: inherit;
+
+          @include media('<md') {
+            line-height: 1;
+            font-size: rem(13px) !important;
+          }
         }
       }
     }

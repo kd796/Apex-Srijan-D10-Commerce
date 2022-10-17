@@ -150,7 +150,7 @@
       }
     }
 
-    &:hover {
+    @include on-event() {
       color: $type-dark;
       font-weight: $fw-extra-bold;
       border-left-color: transparent !important;
@@ -167,6 +167,11 @@
           font-family: $font-brand;
           font-size: rem(16px);
           display: inherit;
+
+          @include media('<md') {
+            line-height: 1;
+            font-size: rem(13px) !important;
+          }
         }
       }
     }
