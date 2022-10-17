@@ -88,6 +88,11 @@
       .field--name-field-long-description {
         @include type-header(h4, light, included);
         margin-top: 0;
+        word-break: break-word;
+        -webkit-line-clamp: 4;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
 
         @include media('<md') {
           font-size:  rem(16px);
