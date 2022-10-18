@@ -111,8 +111,19 @@ class ProductCleanupService extends ProductServices {
 
         // Identify all the products that are valid.
         foreach ($products as $product) {
-          $status = (string) $product->xpath(".//*[@AttributeID='SAP_SALES_ORG_STATUS']")[0];
-          $sales_org = (string) $product->xpath(".//*[@AttributeID='SalesOrg']")[0];
+          $status_obj = $product->xpath(".//*[@AttributeID='SAP_SALES_ORG_STATUS']");
+          $sales_org_obj = $product->xpath(".//*[@AttributeID='SalesOrg']");
+          $status = NULL;
+          $sales_org = NULL;
+
+          if (isset($status_obj[0])) {
+            $status = (string) $status_obj[0];
+          }
+
+          if (isset($sales_org_obj[0])) {
+            $sales_org = (string) $sales_org_obj['0'];
+          }
+
           $progress_bar->advance();
 
           // Get all the SKUs we need to then look for products in Drupal.
