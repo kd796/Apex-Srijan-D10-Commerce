@@ -100,10 +100,30 @@ source:
       name: remote_brand
       label: Brand
       selector: '//*[@AttributeID=''Brand'']'
+    -
+      name: remote_sales_org_status
+      label: 'Sales Org Status'
+      selector: '//*[@AttributeID=''SAP_SALES_ORG_STATUS'']'
+    -
+      name: remote_sales_org
+      label: 'Sales Org'
+      selector: '//*[@AttributeID=''SalesOrg'']'
   ids:
     remote_sku:
       type: string
 process:
+  sales_org_status:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_sales_org_status
+    method: row
+    value: Active
+  sales_org:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_sales_org
+    method: row
+    value: 6201
   type:
     plugin: default_value
     default_value: product
