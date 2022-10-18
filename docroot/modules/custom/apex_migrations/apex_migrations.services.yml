@@ -5,6 +5,11 @@ services:
     tags:
       - { name: drush.command }
 
+  apex_common.product_cleanup_service:
+    class: Drupal\apex_migrations\Commands\ProductCleanupService
+    tags:
+      - { name: drush.command }
+
   pre_migration_subscriber:
     class: Drupal\apex_migrations\EventSubscriber\PreMigrationSubscriber
     tags:
