@@ -153,9 +153,12 @@
     @include on-event() {
       color: $type-dark;
       font-weight: $fw-extra-bold;
-      border-left-color: transparent !important;
-      border-right-color: transparent !important;
-      border-bottom-color: transparent !important;
+
+      @include media('>=md') {
+        border-left-color: transparent !important;
+        border-right-color: transparent !important;
+        border-bottom-color: transparent !important;
+      }
 
       &.ps-disabled {
         background-color: $gray-50;
