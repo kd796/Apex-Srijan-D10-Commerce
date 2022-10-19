@@ -418,7 +418,7 @@ function sata_preprocess_html(&$variables) {
 
   $variables['#attached']['html_head'][] = [$priceSpiderHide, 'ps-hide'];
 
-  // If page where-buy use generic key, else product key.
+  // If where buy checkbox checked use generic key, else product key.
   $node = \Drupal::routeMatch()->getParameter('node');
   $variables['#attached']['html_head'][] = [$priceSpiderProductKey, 'ps-key'];
 
