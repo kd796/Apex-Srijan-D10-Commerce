@@ -159,12 +159,13 @@ $footer-bp-mobile: '<sm';
 
     a {
       @include link(dark, hover);
+      text-decoration: underline;
 
       &:hover,
       &:focus,
       &:active,
       &.is-active {
-        color: $type-dark;
+        color: $gray-80;
       }
     }
 
