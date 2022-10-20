@@ -113,6 +113,10 @@
         z-index: 5;
       }
 
+      @include media('>=2300px') {
+        max-width: rem(550px);
+      }
+
       @include media('<lg-plus') {
         padding: rem(10px 0 50px);
         max-width: rem(450px);
