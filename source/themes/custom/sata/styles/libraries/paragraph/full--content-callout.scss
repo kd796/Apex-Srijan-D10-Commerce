@@ -127,7 +127,7 @@
         font-weight: $fw-extra-bold;
         font-family: $font-brand;
         font-size: rem(52px);
-        line-height: rem(48px);
+        line-height: 1;
         margin-bottom: rem(20px);
         position: relative;
         z-index: 5;
@@ -136,19 +136,27 @@
           font-size: rem(40px);
           line-height: rem(48px);
         }
+
+        @include media('>=2300px') {
+          font-size: rem(58px);
+        }
       }
 
       .field--name-field-content {
         color: $white;
         font-weight: $fw-regular;
-        line-height: rem(24px);
+        line-height: 1.5;
         margin-bottom: rem(28px);
         position: relative;
         z-index: 5;
 
         @include media('<=1180px') {
           font-size: rem(14px);
-          line-height: rem(24px);
+          line-height: 1.5;
+        }
+
+        @include media('>=2300px') {
+          font-size: rem(22px);
         }
       }
 
@@ -156,10 +164,14 @@
         text-align: left;
         position: relative;
         z-index: 5;
-      }
 
-      .field--name-field-link a {
-        @include btn(solar);
+        a {
+          @include btn(solar);
+        }
+
+        @include media('>=2300px') {
+          font-size: rem(22px);
+        }
       }
     }
   }
