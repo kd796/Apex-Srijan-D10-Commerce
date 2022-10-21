@@ -1,0 +1,23 @@
+uuid: b94dbf93-b572-484b-bdb0-bccaa4575acb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_make_where_to_buy_page
+    - node.type.page
+id: node.page.field_make_where_to_buy_page
+field_name: field_make_where_to_buy_page
+entity_type: node
+bundle: page
+label: 'Make Where To Buy Page'
+description: 'Check this box to make this page a where to buy page with the price spider where to buy widget.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
