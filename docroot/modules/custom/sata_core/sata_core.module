@@ -116,7 +116,20 @@ function sata_core_views_pre_build(ViewExecutable $view) {
               ->condition('bundle', 'product')
               ->condition('entity_id', $product_nids, 'IN')
               ->execute()->fetchCol();
-            $parent_tids = array_unique($available_classification_ids);
+
+            $populated_tids = array_unique($available_classification_ids);
+
+            if (!empty($populated_tids)) {
+              $tmp_tids = [];
+
+              foreach ($parent_tids as $tid) {
+                if (in_array($tid, $populated_tids)) {
+                  $tmp_tids[] = $tid;
+                }
+              }
+
+              $parent_tids = $tmp_tids;
+            }
           }
         }
       }
