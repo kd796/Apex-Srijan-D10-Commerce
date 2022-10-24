@@ -5,6 +5,7 @@ namespace Drupal\apex_migrations\Plugin\migrate\process;
 use Drupal\apex_migrations\ImageNotFoundOnFtpException;
 use Drupal\apex_migrations\ImageOperations;
 use Drupal\migrate\MigrateExecutableInterface;
+use Drupal\migrate\MigrateSkipProcessException;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 use League\Flysystem\FilesystemException;
@@ -54,16 +55,48 @@ class GetListingImage extends ProcessPluginBase {
     $alt_text = NULL;
     $sku = NULL;
 
+    // #value is the Product.
     if (!empty($value)) {
-      $sku_group = $value;
       $alt_text = $value->Name;
       $sku = $row->getSourceIdValues()['remote_sku'];
 
-      foreach ($value->children() as $child) {
-        if ($child->getName() === 'Product' && (string) $child->attributes()->ID === $sku) {
-          foreach ($child->children() as $item) {
-            if ($item->getName() === 'AssetCrossReference' && ((string) $item->attributes()->Type === 'Primary Image')) {
-              $assetId = (string) $item->attributes()->AssetID;
+      foreach ($value->children() as $item) {
+        if ($item->getName() === 'AssetCrossReference' && ((string) $item->attributes()->Type === 'Primary Image')) {
+          $assetId = (string) $item->attributes()->AssetID;
+
+          if (!empty($assetId)) {
+            $media_id = ImageOperations::getImageMediaId($assetId);
+
+            // If we find the file then we need to reference it in the return array.
+            if (!empty($media_id)) {
+              return $media_id;
+            }
+            else {
+              $assets[] = [
+                'sku' => $sku,
+                'imagetype' => 'Product Level',
+                'asset_id' => $assetId,
+              ];
+            }
+          }
+          else {
+            $migrate_executable->saveMessage(
+              '[Listing Image] Product Level Asset ID empty for "'
+              . $sku
+            );
+          }
+        }
+      }
+
+      if (empty($assets)) {
+        $parentProduct = $value->xpath('parent::Product');
+
+        if (!empty($parentProduct[0])) {
+          $sku_group = $parentProduct[0];
+
+          foreach ($sku_group->children() as $child) {
+            if ($child->getName() === 'AssetCrossReference' && (string) $child->attributes()->Type === 'Primary Image') {
+              $assetId = (string) $child->attributes()->AssetID;
 
               if (!empty($assetId)) {
                 $media_id = ImageOperations::getImageMediaId($assetId);
@@ -74,47 +107,17 @@ class GetListingImage extends ProcessPluginBase {
                 }
                 else {
                   $assets[] = [
-                    'sku' => $sku,
-                    'imagetype' => 'Product Level',
+                    'imagetype' => 'SKU Group Level',
                     'asset_id' => $assetId,
                   ];
                 }
               }
               else {
                 $migrate_executable->saveMessage(
-                  '[Listing Image] Product Level Asset ID empty for "'
+                  '[Listing Image] SKU Group Level Asset ID empty for "'
                   . $sku
                 );
               }
-            }
-          }
-        }
-      }
-
-      if (empty($assets)) {
-        foreach ($sku_group->children() as $child) {
-          if ($child->getName() === 'AssetCrossReference' && (string) $child->attributes()->Type === 'Primary Image') {
-            $assetId = (string) $child->attributes()->AssetID;
-
-            if (!empty($assetId)) {
-              $media_id = ImageOperations::getImageMediaId($assetId);
-
-              // If we find the file then we need to reference it in the return array.
-              if (!empty($media_id)) {
-                return $media_id;
-              }
-              else {
-                $assets[] = [
-                  'imagetype' => 'SKU Group Level',
-                  'asset_id' => $assetId,
-                ];
-              }
-            }
-            else {
-              $migrate_executable->saveMessage(
-                '[Listing Image] SKU Group Level Asset ID empty for "'
-                . $sku
-              );
             }
           }
         }
@@ -156,7 +159,11 @@ class GetListingImage extends ProcessPluginBase {
       }
     }
 
-    return $media_id;
+    if (!empty($media_id)) {
+      return $media_id;
+    }
+
+    throw new MigrateSkipProcessException();
   }
 
 }

@@ -6,6 +6,7 @@ use Drupal\apex_migrations\ImageNotFoundOnFtpException;
 use Drupal\apex_migrations\ImageOperations;
 use Drupal\media\Entity\Media;
 use Drupal\migrate\MigrateExecutableInterface;
+use Drupal\migrate\MigrateSkipProcessException;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 use Drush\Log\LogLevel;
@@ -105,38 +106,31 @@ class GetProductImages extends ProcessPluginBase {
     $this->videos = [];
     $sku = NULL;
 
+    // $value is the Product.
     if (!empty($value)) {
       $alt_text = $value->Name;
 
       // Are there product level images?
       if ($value->getName() === 'Product') {
-        $sku_group = $value;
         $sku = $row->getSourceIdValues()['remote_sku'];
+        $this->scanElementForImages($value);
 
-        // Check the product level first.
-        foreach ($sku_group->children() as $child) {
-          // Specifically this is where it finds the product and digs in... Sorta.
-          if ($child->getName() === 'Product') {
-            $currentProductId = (string) $child->attributes()->ID;
+        if (empty($this->imageAssets) || empty($this->primaryImageMediaId)) {
+          $parentProduct = $value->xpath('parent::Product');
 
-            if ($currentProductId !== $sku) {
-              // This is not the droid... I mean product you are looking for.
-              continue;
+          if (!empty($parentProduct[0])) {
+            $sku_group = $parentProduct[0];
+
+            // If we didn't find anything at the product level then we scan at the parent level.
+            if (empty($this->imageAssets) && empty($this->mediaIds)) {
+              $this->scanElementForImages($sku_group, 'SKU Group Level');
             }
 
-            // Scan at the current, product, level.
-            $this->scanElementForImages($child);
+            // We want to make sure we have a primary image selected.
+            if (empty($this->primaryImageMediaId) && empty($this->primaryImageAsset)) {
+              $this->scanParentForPrimaryImage($sku_group);
+            }
           }
-        }
-
-        // If we didn't find anything at the product level then we scan at the parent level.
-        if (empty($this->imageAssets) && empty($this->mediaIds)) {
-          $this->scanElementForImages($sku_group, 'SKU Group Level');
-        }
-
-        // We want to make sure we have a primary image selected.
-        if (empty($this->primaryImageMediaId) && empty($this->primaryImageAsset)) {
-          $this->scanParentForPrimaryImage($sku_group);
         }
       }
 
@@ -246,7 +240,11 @@ class GetProductImages extends ProcessPluginBase {
       return array_merge([0 => ['media_id' => $this->primaryImageMediaId]], $this->mediaIds);
     }
 
-    return $this->mediaIds;
+    if (!empty($this->mediaIds)) {
+      return $this->mediaIds;
+    }
+
+    throw new MigrateSkipProcessException();
   }
 
   /**
@@ -257,7 +255,7 @@ class GetProductImages extends ProcessPluginBase {
    * @param string $level
    *   The level we want to indicate for reporting purposes.
    */
-  private function scanElementForImages($element, string $level = 'Product Level') {
+  private function scanElementForImages(mixed $element, string $level = 'Product Level') {
     foreach ($element->children() as $item) {
       $attributeType = (string) $item->attributes()->Type;
       $assetId = (string) $item->attributes()->AssetID;
@@ -317,7 +315,7 @@ class GetProductImages extends ProcessPluginBase {
    * @param \SimpleXMLElement|mixed $element
    *   The parent element.
    */
-  private function scanParentForPrimaryImage($element) {
+  private function scanParentForPrimaryImage(mixed $element) {
     foreach ($element->children() as $item) {
       $attributeType = (string) $item->attributes()->Type;
       $assetId = (string) $item->attributes()->AssetID;

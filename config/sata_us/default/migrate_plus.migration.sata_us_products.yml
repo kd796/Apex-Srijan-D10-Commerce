@@ -16,11 +16,11 @@ source:
     bool_1: 1
     uid_root: 1
   plugin: url
-  data_fetcher_plugin: http
-  data_parser_plugin: xml
+  data_fetcher_plugin: file
+  data_parser_plugin: simple_xml
   urls: 'public://import/pim_data/pim_export_with_schema.xml'
   namespaces: 'http://www.stibosystems.com/step'
-  item_selector: /STEP-ProductInformation/Products/Product/Product
+  item_selector: '//Product[@UserTypeID=''SKU-Set'']|//Product[@UserTypeID=''SKU'']'
   fields:
     -
       name: remote_sku
@@ -33,7 +33,7 @@ source:
     -
       name: remote_sku_group
       label: 'SKU Group'
-      selector: ../../Product
+      selector: ../Product
     -
       name: remote_set
       label: 'Set?'
@@ -53,7 +53,7 @@ source:
     -
       name: remote_product_classifications
       label: 'Product Classifications'
-      selector: ../../Product
+      selector: ../Product
     -
       name: remote_launch_date
       label: 'Launch Date'
@@ -81,11 +81,11 @@ source:
     -
       name: remote_listing_image
       label: 'Listing Image'
-      selector: ../../Product
+      selector: ../Product
     -
       name: remote_product_images
       label: 'Product Images'
-      selector: ../../Product
+      selector: ../Product
     -
       name: remote_related_products
       label: 'Related Products'
@@ -93,15 +93,15 @@ source:
     -
       name: remote_keywords
       label: Keywords
-      selector: '//*[@AttributeID=''ATT737269'']'
+      selector: './/*[@AttributeID=''ATT737269'']'
     -
       name: remote_sales_org_status
       label: 'Sales Org Status'
-      selector: '//*[@AttributeID=''SAP_SALES_ORG_STATUS'']'
+      selector: './/*[@AttributeID=''SAP_SALES_ORG_STATUS'']'
     -
       name: remote_sales_org
       label: 'Sales Org'
-      selector: '//*[@AttributeID=''SalesOrg'']'
+      selector: './/*[@AttributeID=''SalesOrg'']'
   ids:
     remote_sku:
       type: string
