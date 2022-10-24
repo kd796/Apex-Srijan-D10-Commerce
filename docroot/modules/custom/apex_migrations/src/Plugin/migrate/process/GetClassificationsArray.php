@@ -63,7 +63,7 @@ class GetClassificationsArray extends ProcessPluginBase {
    *   The SimpleXmlElement to check.
    * @param array $terms
    *   Array of Term Entities.
-   * @param int $vid
+   * @param string $vid
    *   The vocabulary ID.
    *
    * @return array
@@ -72,7 +72,7 @@ class GetClassificationsArray extends ProcessPluginBase {
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  protected function findCategories(mixed $value, array $terms, int $vid): array {
+  protected function findCategories(mixed $value, array $terms, string $vid): array {
     $values_array = [];
 
     foreach ($value->children() as $child) {
