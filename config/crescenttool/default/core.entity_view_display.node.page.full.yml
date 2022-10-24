@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.page.field_link
     - field.field.node.page.field_media
     - field.field.node.page.field_meta_tags
+    - field.field.node.page.field_top_message_cta_bar
     - node.type.page
     - responsive_image.styles.short_hero
   module:
@@ -94,7 +95,7 @@ content:
       view_mode: full
       link: ''
     third_party_settings: {  }
-    weight: 4
+    weight: 2
     region: content
   field_link:
     type: link
@@ -141,12 +142,21 @@ content:
       ratio: ''
       thumbnail_style: ''
       _uri: ''
-      breakpoints: {  }
+      breakpoints: { }
       sizes: ''
       grid_header: ''
       grid: ''
       grid_medium: ''
       grid_small: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_top_message_cta_bar:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
     third_party_settings: {  }
     weight: 3
     region: content
