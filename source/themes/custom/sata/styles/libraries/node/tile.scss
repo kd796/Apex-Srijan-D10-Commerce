@@ -28,6 +28,9 @@
 
     a {
       text-decoration: none;
+      display: flex;
+      height: 100%;
+      flex-direction: column;
     }
   }
 
@@ -56,26 +59,20 @@
     text-transform: uppercase;
     line-height: 1 ;
     width: 100%;
-    // height: 37%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 1rem .85rem .85rem;
     transition: $transition-base;
 
-    //.field--name-title {
-    //  position: absolute;
-    //  top: 50%;
-    //  left: 0;
-    //  right: 0;
-    //  transform: translateY(-50%);
-    //}
+    @include media('>=sm') {
+      padding: 1rem rem(35px) .85rem;
+    }
 
     @include media('>=md') {
       font-size: rem(20px);
-      padding: 1rem 1.1rem .85rem;
       line-height: 1.625 !important;
-      // height: 26%;
     }
 
   }
@@ -89,25 +86,18 @@
         box-shadow: none;
       }
 
-      .node__product-category-grid-image,
       .node__grid-title {
-        box-shadow: 0 0 0 2px $primary-emerald;
-        @include media('<md') {
-          box-shadow: none;
-        }
-      }
+        @include media('>=sm') {
+          @include icon('tertiary-link', after, false);
 
-      .btn {
-        background-color: $primary-emerald;
-        color: $white;
-      }
-
-      .node__grid-title {
-        @include icon('tertiary-link', after, false);
-
-        &::after {
-          font-size: rem(17px);
-          padding-left: rem(5px);
+          &::after {
+            position: absolute;
+            top: 50%;
+            right: rem(10px);
+            transform: translateY(-50%);
+            font-size: rem(17px);
+            padding-left: rem(5px);
+          }
         }
       }
     }
