@@ -1,0 +1,36 @@
+uuid: ced7e80c-b199-4036-abab-a7054fe88383
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.top_message_cta_bar.field_top_message_cta_bar_cta
+    - field.field.paragraph.top_message_cta_bar.field_top_message_cta_bar_title
+    - paragraphs.paragraphs_type.top_message_cta_bar
+  module:
+    - link
+id: paragraph.top_message_cta_bar.default
+targetEntityType: paragraph
+bundle: top_message_cta_bar
+mode: default
+content:
+  field_top_message_cta_bar_cta:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_top_message_cta_bar_title:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true
