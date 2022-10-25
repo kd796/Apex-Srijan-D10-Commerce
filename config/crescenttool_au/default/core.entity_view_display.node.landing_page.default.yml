@@ -11,7 +11,6 @@ dependencies:
     - field.field.node.landing_page.field_top_message_cta_bar
     - node.type.landing_page
   module:
-    - entity_reference_revisions
     - metatag
     - user
 _core:
@@ -28,28 +27,20 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
   field_meta_tags:
     type: metatag_empty_formatter
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 2
-    region: content
-  field_top_message_cta_bar:
-    type: entity_reference_revisions_entity_view
-    label: above
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    weight: 3
+    weight: 1
     region: content
 hidden:
   body: true
   field_component_hero: true
   field_components: true
+  field_top_message_cta_bar: true
   langcode: true
   links: true
   search_api_excerpt: true
