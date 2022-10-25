@@ -5,9 +5,13 @@
 @import '../../globals';
 
 .region-utility-area {
-  ~ .region-content .component-top-message-cta-bar__content.show--with-nav {
+  ~ .region-content .component-top-message-cta-bar__content {
     &.show--with-nav {
       top: 5.5rem !important;
+
+      @include media('>=md') {
+        top: 6.8rem !important;
+      }
 
       @media (min-width: 595px) and (max-width: 979px) {
         .user-logged-in & {
@@ -17,17 +21,21 @@
 
       @media (min-width: 980px) and (max-width: 1154px) {
         .user-logged-in & {
-          top: 10.5rem !important;
+          top: 11.7rem !important;
+        }
+
+        .user-logged-in.toolbar-tray-open & {
+          top: 11.8rem !important;
         }
       }
 
       @media (min-width: 1155px) {
         .user-logged-in & {
-          top: 11.3rem !important;
+          top: 11.8rem !important;
         }
 
         .user-logged-in.toolbar-tray-open & {
-          top: 10.5rem !important;
+          top: 11.8rem !important;
         }
       }
 
@@ -35,7 +43,7 @@
         top: 9.3rem !important;
 
         .user-logged-in.toolbar-tray-open & {
-          top: 14.3rem !important;
+          top: 14.2rem !important;
         }
       }
     }
@@ -125,12 +133,16 @@
       align-items: center;
       justify-content: space-between;
 
+      .title {
+        padding-right: rem(10px);
+      }
+
       header .field--name-field-top-message-cta-bar-title {
         @include setfont();
 
         font-family: $font-brand;
         color: #FFFFFF;
-        font-size: rem(24px);
+        font-size: rem(16px);
         font-weight: 800;
         text-transform: uppercase;
 
