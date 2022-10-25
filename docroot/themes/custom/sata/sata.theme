@@ -422,7 +422,7 @@ function sata_preprocess_html(&$variables) {
   $node = \Drupal::routeMatch()->getParameter('node');
   $variables['#attached']['html_head'][] = [$priceSpiderProductKey, 'ps-key'];
 
-  if (!is_null($node)
+  if (!empty($node)
     && $node->hasField('field_make_where_to_buy_page')
     && $node->get('field_make_where_to_buy_page')->getValue()[0]['value'] === '1'
   ) {
