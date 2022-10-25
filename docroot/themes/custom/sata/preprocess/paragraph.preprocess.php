@@ -289,7 +289,7 @@ function sata_preprocess_paragraph__content_driver_item__full(array &$variables)
   }
 
   // Move cta link to footer and add class.
-  if (array_key_exists('field_link', $variables['content']) && !empty($variables['content']['field_link'])) {
+  if (!empty($variables['content']['field_link']) && !empty($variables['footer']['field_link'][0]['#url'])) {
     $variables['footer']['field_link'] = $variables['content']['field_link'];
     $variables['footer']['field_link'][0]['#options']['attributes']['class'] = "btn component-content-driver-item__read-more-button";
     $variables['url'] = $variables['footer']['field_link'][0]['#url'];
