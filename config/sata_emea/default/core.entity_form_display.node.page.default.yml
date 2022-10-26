@@ -14,7 +14,6 @@ dependencies:
     - node.type.page
   module:
     - field_group
-    - limited_field_widgets
     - link
     - media_library
     - metatag
@@ -43,6 +42,7 @@ third_party_settings:
         - field_show_listing_image_on_full
         - body
         - field_link
+        - field_top_message_cta_bar
       label: Main
       region: content
       parent_name: group_tabs
@@ -120,7 +120,7 @@ content:
     third_party_settings: {  }
   field_make_where_to_buy_page:
     type: boolean_checkbox
-    weight: 11
+    weight: 9
     region: content
     settings:
       display_label: true
@@ -149,7 +149,7 @@ content:
     third_party_settings: {  }
   field_top_message_cta_bar:
     type: paragraphs
-    weight: 10
+    weight: 7
     region: content
     settings:
       title: Paragraph
@@ -187,7 +187,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 9
+    weight: 10
     region: content
     settings:
       display_label: true
