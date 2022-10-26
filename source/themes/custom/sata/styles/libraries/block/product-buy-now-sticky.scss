@@ -129,9 +129,9 @@
         @include setfont();
 
         font-family: $font-brand;
-        color: #FFFFFF;
+        color: $white;
         font-size: rem(24px);
-        font-weight: 800;
+        font-weight: $fw-extra-bold;
         text-transform: uppercase;
 
         @include media('>=md') {
@@ -165,7 +165,7 @@
 
           p {
             color: $white;
-            font-weight: 800;
+            font-weight: $fw-extra-bold;
             font-family: $font-brand;
           }
 
