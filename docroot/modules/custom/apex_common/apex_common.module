@@ -3,6 +3,8 @@
 /**
  * @file
  * Primary module hooks for the Apex Common module.
+ *
+ * @see apex_common_metatags_attachments_alter()
  */
 
 use Drupal\media\Entity\Media;
@@ -195,4 +197,19 @@ function apex_common_get_featured_page(): ?array {
   }
 
   return NULL;
+}
+
+/**
+ * Implements hook_metatags_attachments_alter().
+ */
+function apex_common_metatags_attachments_alter(array &$metatag_attachments): void {
+  if (\Drupal::service('path.matcher')->isFrontPage() && !empty($metatag_attachments['#attached']['html_head'])) {
+    foreach ($metatag_attachments['#attached']['html_head'] as $idx => $link) {
+      // Remove "/home" from any hreflang metatags.
+      if (stristr($link[1], 'hreflang_external') || $link[1] == 'hreflang_xdefault') {
+        $href = str_ireplace('/home', '/', $link[0]['#attributes']['href']);
+        $metatag_attachments['#attached']['html_head'][$idx][0]['#attributes']['href'] = $href;
+      }
+    }
+  }
 }
