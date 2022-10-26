@@ -22,7 +22,7 @@ source:
   data_parser_plugin: simple_xml
   urls: 'public://import/pim_data/pim_export_with_schema.xml'
   namespaces: 'http://www.stibosystems.com/step'
-  item_selector: /STEP-ProductInformation/Products/Product/Product
+  item_selector: '//Product[@UserTypeID=''SKU-Set'']|//Product[@UserTypeID=''SKU'']'
   fields:
     -
       name: remote_sku
