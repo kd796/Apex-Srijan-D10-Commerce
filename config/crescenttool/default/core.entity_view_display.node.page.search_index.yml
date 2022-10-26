@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.page.field_link
     - field.field.node.page.field_media
     - field.field.node.page.field_meta_tags
+    - field.field.node.page.field_top_message_cta_bar
     - image.style.search_teaser_261x256
     - node.type.page
   module:
@@ -41,13 +42,10 @@ content:
       overlay: ''
       title: ''
       vanilla: false
-      icon: ''
       layout: ''
       view_mode: search_teaser
       cache: 0
-      current_view_mode: search_index
       skin: ''
-      fx: ''
       style: ''
       background: false
       box_caption: ''
@@ -59,13 +57,16 @@ content:
       media_switch: ''
       ratio: ''
       thumbnail_style: ''
-      _uri: ''
-      breakpoints: {  }
-      sizes: ''
-      grid_header: ''
       grid: ''
       grid_medium: ''
       grid_small: ''
+      breakpoints: {  }
+      current_view_mode: search_index
+      fx: ''
+      icon: ''
+      sizes: ''
+      grid_header: ''
+      _uri: ''
     third_party_settings: {  }
     weight: 0
     region: content
@@ -73,6 +74,7 @@ hidden:
   field_components: true
   field_link: true
   field_meta_tags: true
+  field_top_message_cta_bar: true
   langcode: true
   links: true
   search_api_excerpt: true

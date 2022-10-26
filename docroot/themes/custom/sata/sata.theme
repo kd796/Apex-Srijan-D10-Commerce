@@ -419,14 +419,23 @@ function sata_preprocess_html(&$variables) {
   $variables['#attached']['html_head'][] = [$priceSpiderHide, 'ps-hide'];
 
   // If where buy checkbox checked use generic key, else product key.
+  /** @var \Drupal\node\Entity\Node $node */
   $node = \Drupal::routeMatch()->getParameter('node');
   $variables['#attached']['html_head'][] = [$priceSpiderProductKey, 'ps-key'];
 
-  if (!is_null($node)
-    && $node->hasField('field_make_where_to_buy_page')
-    && $node->get('field_make_where_to_buy_page')->getValue()[0]['value'] === '1'
-  ) {
-    $variables['#attached']['html_head'][] = [$priceSpiderGenericKey, 'ps-key'];
+  if (!empty($node) && $node->hasField('field_make_where_to_buy_page') && !empty($node->get('field_make_where_to_buy_page'))) {
+    $fieldVal = $node->get('field_make_where_to_buy_page')->getValue();
+
+    if (!empty($fieldVal[0]['value'])) {
+      $makeWhereToBuyPageValue = $fieldVal[0]['value'];
+
+      if ($makeWhereToBuyPageValue === '1') {
+        $variables['#attached']['html_head'][] = [
+          $priceSpiderGenericKey,
+          'ps-key'
+        ];
+      }
+    }
   }
 
   $variables['#attached']['html_head'][] = [$priceSpiderCountry, 'ps-country'];

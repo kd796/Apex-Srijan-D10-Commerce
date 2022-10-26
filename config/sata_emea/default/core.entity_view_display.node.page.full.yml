@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.page.field_media
     - field.field.node.page.field_meta_tags
     - field.field.node.page.field_show_listing_image_on_full
+    - field.field.node.page.field_top_message_cta_bar
     - node.type.page
     - responsive_image.styles.short_hero
   module:
@@ -150,6 +151,15 @@ content:
       grid_small: ''
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_top_message_cta_bar:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: ''
+    third_party_settings: {  }
+    weight: 3
     region: content
 hidden:
   field_make_where_to_buy_page: true
