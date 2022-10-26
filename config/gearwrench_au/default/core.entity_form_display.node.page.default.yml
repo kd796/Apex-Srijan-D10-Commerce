@@ -12,7 +12,6 @@ dependencies:
     - node.type.page
   module:
     - field_group
-    - limited_field_widgets
     - link
     - media_library
     - metatag
@@ -54,7 +53,6 @@ third_party_settings:
     group_content:
       children:
         - field_components
-        - group_primary_tabs
       label: Content
       region: content
       parent_name: group_tabs
@@ -131,6 +129,8 @@ content:
     region: content
     settings:
       sidebar: true
+      use_details: true
+    third_party_settings: {  }
   field_top_message_cta_bar:
     type: paragraphs
     weight: 26
