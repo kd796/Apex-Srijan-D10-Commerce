@@ -1127,6 +1127,10 @@ $mobile-menu-item-button-height: 7rem;
 
               a {
                 color: $type-dark;
+
+                @include on-event() {
+                  color: $type-dark !important;
+                }
               }
             }
           }
@@ -1139,7 +1143,7 @@ $mobile-menu-item-button-height: 7rem;
             padding-left: rem(20px);
 
             .menu-item__link {
-              color: $type-dark;
+              color: $type-dark !important;
             }
           }
         }
