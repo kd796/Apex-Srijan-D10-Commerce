@@ -14,7 +14,6 @@ dependencies:
     - node.type.page
   module:
     - field_group
-    - limited_field_widgets
     - link
     - media_library
     - metatag
@@ -43,6 +42,7 @@ third_party_settings:
         - field_media
         - body
         - field_link
+        - field_top_message_cta_bar
       label: Main
       region: content
       parent_name: group_tabs
@@ -85,7 +85,7 @@ content:
     third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 3
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -120,7 +120,7 @@ content:
     third_party_settings: {  }
   field_make_where_to_buy_page:
     type: boolean_checkbox
-    weight: 11
+    weight: 10
     region: content
     settings:
       display_label: true
@@ -134,7 +134,7 @@ content:
     third_party_settings: {  }
   field_meta_tags:
     type: metatag_firehose
-    weight: 6
+    weight: 7
     region: content
     settings:
       sidebar: true
@@ -149,7 +149,7 @@ content:
     third_party_settings: {  }
   field_top_message_cta_bar:
     type: paragraphs
-    weight: 10
+    weight: 7
     region: content
     settings:
       title: Paragraph
@@ -174,27 +174,27 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 7
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 4
+    weight: 5
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 9
+    weight: 11
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 5
+    weight: 6
     region: content
     settings:
       display_label: true
@@ -223,7 +223,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 8
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }

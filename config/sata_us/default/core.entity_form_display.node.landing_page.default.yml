@@ -40,6 +40,7 @@ third_party_settings:
         - body
         - field_component_hero
         - field_media
+        - field_top_message_cta_bar
       label: Main
       region: content
       parent_name: group_tabs
@@ -85,7 +86,7 @@ content:
         hide_guidelines: '1'
   created:
     type: datetime_timestamp
-    weight: 3
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -131,7 +132,7 @@ content:
     third_party_settings: {  }
   field_meta_tags:
     type: metatag_firehose
-    weight: 9
+    weight: 10
     region: content
     settings:
       sidebar: true
@@ -139,7 +140,7 @@ content:
     third_party_settings: {  }
   field_top_message_cta_bar:
     type: paragraphs
-    weight: 26
+    weight: 15
     region: content
     settings:
       title: Paragraph
@@ -164,27 +165,27 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 6
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 4
+    weight: 5
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 8
+    weight: 9
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 5
+    weight: 6
     region: content
     settings:
       display_label: true
@@ -208,7 +209,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 7
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
