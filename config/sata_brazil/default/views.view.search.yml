@@ -23,7 +23,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: Search
+      title: Procurar
       fields:
         body:
           id: body
@@ -120,14 +120,14 @@ display:
       exposed_form:
         type: bef
         options:
-          submit_button: Search
+          submit_button: Procurar
           reset_button: false
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
-          text_input_required: 'Type your search in the search box to see results.'
+          text_input_required: 'Digite sua pesquisa na caixa de pesquisa para ver os resultados.'
           text_input_required_format: basic_html
           bef:
             general:
@@ -139,14 +139,18 @@ display:
               allow_secondary: false
               secondary_label: 'Advanced options'
               secondary_open: false
+              reset_button_always_show: false
             filter:
               search_api_fulltext:
                 plugin_id: default
                 advanced:
+                  placeholder_text: ''
                   rewrite:
                     filter_rewrite_values: ''
                   collapsible: false
                   is_secondary: false
+                options_show_only_used: false
+                options_show_only_used_filtered: false
       access:
         type: none
         options: {  }
@@ -350,7 +354,7 @@ display:
               site_administrator: '0'
               content_editor: '0'
             expose_fields: false
-            placeholder: 'Search SATA Brazil'
+            placeholder: 'Pesquisar SATA Brasil'
             searched_fields_id: search_api_fulltext_searched_fields
           is_grouped: false
           group_info:
@@ -462,7 +466,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: true
-          content: "<div class=\"view-search__header-results\">Your search returned @total results.</div>\r\n<div class=\"view-search__header-product-results\">Products (@total)</div>"
+          content: "<div class=\"view-search__header-results\">Sua pesquisa retornou @total resultados.</div>\r\n<div class=\"view-search__header-product-results\">Produtos (@total)</div>"
       footer: {  }
       exposed_block: false
       display_extenders: {  }
