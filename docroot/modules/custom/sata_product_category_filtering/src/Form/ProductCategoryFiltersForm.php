@@ -107,7 +107,7 @@ class ProductCategoryFiltersForm extends FormBase {
         $form['category-filter'] = [
           '#type' => 'checkboxes',
           '#options' => $category_facet_options,
-          '#title' => $this->t('Category'),
+          '#title' => t('Category'),
           '#weight' => '0',
           '#required' => FALSE,
           '#attributes' => [
@@ -169,7 +169,7 @@ class ProductCategoryFiltersForm extends FormBase {
           $form['attribute_filter'][$selected_attribute_facet_titles[$delta]] = [
             '#type' => 'checkboxes',
             '#options' => $selected_attribute_facet_option_array,
-            '#title' => $this->t($selected_attribute_facet_titles[$delta]),
+            '#title' => t($selected_attribute_facet_titles[$delta]),
             '#weight' => '0',
             '#required' => FALSE,
             '#attributes' => [
