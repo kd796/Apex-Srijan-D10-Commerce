@@ -140,7 +140,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: 'No results have been found within your selection.'
+            value: 'Nenhum resultado foi encontrado em sua seleção.'
             format: basic_html
           tokenize: false
       sorts:
@@ -382,7 +382,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: false
-          content: 'Showing @current_record_count of @total results'
+          content: 'Mostrando @current_record_count de @total resultados'
         area_text_custom:
           id: area_text_custom
           table: views
@@ -623,13 +623,13 @@ display:
         filter_groups: false
       use_ajax: false
       display_description: ''
+      rendering_language: pt-br
       display_extenders:
         ajax_history:
           enable_history: false
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - url.query_args

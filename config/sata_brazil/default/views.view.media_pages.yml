@@ -232,7 +232,7 @@ display:
           exposed: true
           expose:
             operator_id: field_media_type_value_op
-            label: Type
+            label: Modelo
             description: ''
             use_operator: false
             operator: field_media_type_value_op
@@ -276,7 +276,7 @@ display:
           exposed: true
           expose:
             operator_id: field_category_target_id_op
-            label: Category
+            label: Categoria
             description: ''
             use_operator: false
             operator: field_category_target_id_op
@@ -398,11 +398,11 @@ display:
                 options_show_only_used_filtered: 1
       defaults:
         exposed_form: false
+      rendering_language: pt-br
       display_extenders: {  }
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - url.query_args
