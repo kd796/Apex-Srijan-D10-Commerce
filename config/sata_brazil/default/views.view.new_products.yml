@@ -26,7 +26,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'New Products'
+      title: 'Novos Produtos'
       fields:
         title:
           id: title
@@ -99,7 +99,7 @@ display:
       exposed_form:
         type: bef
         options:
-          submit_button: Apply
+          submit_button: Aplicar
           reset_button: false
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
@@ -118,6 +118,7 @@ display:
               allow_secondary: false
               secondary_label: 'Advanced options'
               secondary_open: false
+              reset_button_always_show: false
             filter:
               field_product_classifications_target_id:
                 plugin_id: bef
@@ -150,7 +151,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: 'No results have been found within your selection.'
+            value: 'Nenhum resultado foi encontrado em sua seleção.'
             format: basic_html
           tokenize: false
       sorts:
@@ -263,7 +264,7 @@ display:
           exposed: true
           expose:
             operator_id: field_product_classifications_target_id_op
-            label: Category
+            label: Categoria
             description: ''
             use_operator: false
             operator: field_product_classifications_target_id_op
@@ -324,7 +325,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: true
-          content: 'Showing @current_record_count of @total results'
+          content: 'Mostrando @current_record_count de @total resultados'
         area_text_custom:
           id: area_text_custom
           table: views

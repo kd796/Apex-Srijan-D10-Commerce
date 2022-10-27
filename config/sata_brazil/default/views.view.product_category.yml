@@ -115,13 +115,13 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Apply
+          submit_button: Aplicar
           reset_button: false
           reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          exposed_sorts_label: 'Ordenar por'
           expose_sort_order: true
           sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_desc_label: Descrição
       access:
         type: perm
         options:
@@ -140,7 +140,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: 'No results have been found within your selection.'
+            value: 'Nenhum resultado foi encontrado em sua seleção.'
             format: basic_html
           tokenize: false
       sorts:
@@ -382,7 +382,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: false
-          content: 'Showing @current_record_count of @total results'
+          content: 'Mostrando @current_record_count de @total resultados'
         area_text_custom:
           id: area_text_custom
           table: views
@@ -585,7 +585,7 @@ display:
           exposed: true
           expose:
             operator_id: ''
-            label: 'Set? (field_set)'
+            label: 'Definir?'
             description: ''
             use_operator: false
             operator: field_set_value_op
@@ -623,6 +623,7 @@ display:
         filter_groups: false
       use_ajax: false
       display_description: ''
+      rendering_language: '***LANGUAGE_entity_translation***'
       display_extenders:
         ajax_history:
           enable_history: false
