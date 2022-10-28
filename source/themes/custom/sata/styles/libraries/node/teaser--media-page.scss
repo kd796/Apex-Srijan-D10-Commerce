@@ -119,6 +119,7 @@
     font-size: 1rem !important;
     transition: $transition-base;
     width: 100%;
+    border-radius: unset;
 
     @include media('<md') {
       white-space: normal;
@@ -133,6 +134,7 @@
     .node__read-more-button {
       color: $primary-emerald;
       background-color: $black;
+      border-color: $black !important;
     }
 
     @include media('<md') {

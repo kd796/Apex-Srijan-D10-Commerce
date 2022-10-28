@@ -1,0 +1,115 @@
+uuid: 41667fa3-43cf-46f6-adc6-f52c5e2d4b5a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_top_message_cta_bar
+    - node.type.page
+    - paragraphs.paragraphs_type.top_message_cta_bar
+  module:
+    - entity_reference_revisions
+id: node.page.field_top_message_cta_bar
+field_name: field_top_message_cta_bar
+entity_type: node
+bundle: page
+label: 'Top Message CTA Bar'
+description: 'A bar below the header bar with text on the left, a Call to action button on the right, that appears as the visitor scrolls down.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      top_message_cta_bar: top_message_cta_bar
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 30
+        enabled: false
+      accordion_item:
+        weight: 31
+        enabled: false
+      callout_diagram:
+        weight: 32
+        enabled: false
+      callout_diagram_item:
+        weight: 33
+        enabled: false
+      content:
+        weight: 34
+        enabled: false
+      content_2_column:
+        weight: 35
+        enabled: false
+      content_callout:
+        weight: 36
+        enabled: false
+      content_callout_container:
+        weight: 37
+        enabled: false
+      content_driver:
+        weight: 38
+        enabled: false
+      content_driver_item:
+        weight: 39
+        enabled: false
+      digital_resources:
+        weight: 40
+        enabled: false
+      embed_block:
+        weight: 41
+        enabled: false
+      embed_iframe:
+        weight: 42
+        enabled: false
+      embed_view:
+        weight: 43
+        enabled: false
+      featured_content:
+        weight: 44
+        enabled: false
+      featured_links:
+        weight: 45
+        enabled: false
+      featured_media:
+        weight: 46
+        enabled: false
+      hero:
+        weight: 47
+        enabled: false
+      hero_slide:
+        weight: 48
+        enabled: false
+      product_slider:
+        weight: 49
+        enabled: false
+      pullquote:
+        weight: 50
+        enabled: false
+      sata_promise:
+        weight: 51
+        enabled: false
+      sata_promise_line:
+        weight: 52
+        enabled: false
+      section:
+        weight: 53
+        enabled: false
+      step:
+        weight: 54
+        enabled: false
+      steps:
+        weight: 55
+        enabled: false
+      tabs:
+        weight: 56
+        enabled: false
+      tabs_tab:
+        weight: 57
+        enabled: false
+      top_message_cta_bar:
+        weight: 58
+        enabled: true
+field_type: entity_reference_revisions

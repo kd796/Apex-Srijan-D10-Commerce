@@ -1,0 +1,163 @@
+// -----------------------------------------------------------------------------
+// Paragraph: Top Message CTA BAR
+// -----------------------------------------------------------------------------
+
+@import '../../globals';
+
+.component-top-message-cta-bar__content {
+  @include container-full-width();
+
+  position: fixed;
+  top: -4.8rem;
+  z-index: 500;
+
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+
+  &.show--no-nav {
+    top: 1.7rem;
+
+    @media (min-width: 595px) and (max-width: 1154px) {
+      .user-logged-in & {
+        top: 6.7rem;
+      }
+    }
+
+    @media (min-width: 1155px) {
+      .user-logged-in & {
+        top: 4.2rem;
+      }
+
+      .user-logged-in.toolbar-tray-open & {
+        top: 6.7rem;
+      }
+    }
+  }
+
+  &.show--with-nav {
+    top: 5.8rem;
+
+    @media (min-width: 976px) and (max-width: 1154px) {
+      .user-logged-in & {
+        top: 11rem;
+      }
+    }
+
+    @media (min-width: 1155px) {
+      .user-logged-in & {
+        top: 8.5rem;
+      }
+
+      .user-logged-in.toolbar-tray-open & {
+        top: 10.7rem;
+      }
+    }
+  }
+
+  .component-top-message-cta-bar__wrapper {
+    background-color: $black;
+    margin-top: -1.8rem;
+    padding: 1rem 0;
+
+    .component-top-message-cta-bar__inner-wrapper {
+      @include container();
+      @include flex();
+      @include flex-x(flex-direction, row);
+
+      align-items: center;
+      justify-content: space-between;
+
+      .title {
+        padding-right: rem(10px);
+      }
+
+      header .field--name-field-top-message-cta-bar-title {
+        @include setfont();
+
+        color: $white;
+        font-size: 1.25rem;
+        font-weight: $fw-extra-bold;
+        text-transform: uppercase;
+
+        @media (max-width: 767px) {
+          font-size: 1rem;
+        }
+      }
+
+      .sku--mobile {
+        display: none;
+        height: 26px;
+
+        @media (max-width: 767px) {
+          display: block;
+        }
+
+        p {
+          color: $white;
+          font-weight: $fw-extra-bold;
+        }
+      }
+
+      footer {
+        @include flex();
+        @include flex-x(flex-direction, row);
+
+        align-items: center;
+
+        .sku {
+          height: 26px;
+
+          p {
+            color: $white;
+            font-weight: $fw-extra-bold;
+          }
+
+          &.sku--desktop {
+            padding-right: 1rem;
+
+            @media (max-width: 767px) {
+              display: none;
+            }
+          }
+        }
+
+        .node__buy-now-button {
+          @include btn(primary);
+
+          border: 2px solid $primary-red !important;
+          float: unset;
+
+          a {
+            color: $white;
+            font-family: $font-brand;
+            text-decoration: none;
+            font-size: rem(16px);
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
+
+          @include media ('<md') {
+            min-width: 120px;
+            padding-left: rem(15px);
+            padding-right: rem(15px);
+
+            a {
+              font-size: rem(14px);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// For logged in-specific styling differences
+.user-logged-in .component-top-message-cta-bar__content {
+  .block--ct-product-buy-now-sticky {
+    margin-top: -2.8rem;
+  }
+}
