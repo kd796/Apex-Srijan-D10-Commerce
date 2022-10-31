@@ -28,19 +28,26 @@ class GetIDAttribute extends ProcessPluginBase {
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
-    $attributes = $value->attributes();
+    if (!empty($value)) {
+      $product = $value->xpath('parent::Product');
 
-    if (isset($attributes->ParentID)) {
-      return $attributes->ParentID;
-    }
+      if (!empty($product[0])) {
+        $product = $product[0];
+        $attributes = $product->attributes();
 
-    $parentProduct = $value->xpath('parent::Product');
+        if (isset($attributes->ParentID)) {
+          return $attributes->ParentID;
+        }
 
-    if (isset($parentProduct[0])) {
-      $parentAttributes = $parentProduct[0]->attributes();
+        $parentProduct = $product->xpath('parent::Product');
 
-      if (isset($parentAttributes)) {
-        return $parentAttributes->ID;
+        if (isset($parentProduct[0])) {
+          $parentAttributes = $parentProduct[0]->attributes();
+
+          if (isset($parentAttributes)) {
+            return $parentAttributes->ID;
+          }
+        }
       }
     }
 

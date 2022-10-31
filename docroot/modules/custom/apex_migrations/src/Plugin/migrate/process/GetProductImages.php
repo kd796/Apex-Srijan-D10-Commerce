@@ -108,28 +108,32 @@ class GetProductImages extends ProcessPluginBase {
 
     // $value is the Product.
     if (!empty($value)) {
-      $alt_text = $value->Name;
+      $product = $value->xpath('parent::Product');
+
+      if (!empty($product[0])) {
+        $product = $product[0];
+        $alt_text = $product->Name;
+      }
+
+      $asset_cross_reference = $value->xpath('parent::Product/AssetCrossReference');
 
       // Are there product level images?
-      if ($value->getName() === 'Product') {
-        $sku = $row->getSourceIdValues()['remote_sku'];
-        $this->scanElementForImages($value);
+      $sku = $row->getSourceIdValues()['remote_sku'];
+      $this->scanElementForImages($asset_cross_reference);
 
-        if (empty($this->imageAssets) || empty($this->primaryImageMediaId)) {
-          $parentProduct = $value->xpath('parent::Product');
+      if (!empty($product)
+        && (empty($this->imageAssets) || empty($this->primaryImageMediaId))) {
+        $parentProductAssets = $product->xpath('parent::Product/AssetCrossReference');
 
-          if (!empty($parentProduct[0])) {
-            $sku_group = $parentProduct[0];
+        if (!empty($parentProductAssets)) {
+          // If we didn't find anything at the product level then we scan at the parent level.
+          if (empty($this->imageAssets) && empty($this->mediaIds)) {
+            $this->scanElementForImages($parentProductAssets, 'SKU Group Level');
+          }
 
-            // If we didn't find anything at the product level then we scan at the parent level.
-            if (empty($this->imageAssets) && empty($this->mediaIds)) {
-              $this->scanElementForImages($sku_group, 'SKU Group Level');
-            }
-
-            // We want to make sure we have a primary image selected.
-            if (empty($this->primaryImageMediaId) && empty($this->primaryImageAsset)) {
-              $this->scanParentForPrimaryImage($sku_group);
-            }
+          // We want to make sure we have a primary image selected.
+          if (empty($this->primaryImageMediaId) && empty($this->primaryImageAsset)) {
+            $this->scanParentForPrimaryImage($parentProductAssets);
           }
         }
       }
@@ -256,11 +260,11 @@ class GetProductImages extends ProcessPluginBase {
    *   The level we want to indicate for reporting purposes.
    */
   private function scanElementForImages(mixed $element, string $level = 'Product Level') {
-    foreach ($element->children() as $item) {
+    foreach ($element as $item) {
       $attributeType = (string) $item->attributes()->Type;
       $assetId = (string) $item->attributes()->AssetID;
 
-      if (!empty($assetId) && $item->getName() === 'AssetCrossReference') {
+      if (!empty($assetId)) {
         $media_id = ImageOperations::getImageMediaId($assetId);
 
         // If we find the file then we need to reference it in the return array.
@@ -292,6 +296,7 @@ class GetProductImages extends ProcessPluginBase {
       }
 
       // Now we have to add in the video stuff.
+      // Gotta change this too.
       if ($item->getName() === 'Values') {
         foreach ($item->children() as $single_value) {
           $single_value_attribute_id = (string) $single_value->attributes()->AttributeID;
@@ -316,11 +321,11 @@ class GetProductImages extends ProcessPluginBase {
    *   The parent element.
    */
   private function scanParentForPrimaryImage(mixed $element) {
-    foreach ($element->children() as $item) {
+    foreach ($element as $item) {
       $attributeType = (string) $item->attributes()->Type;
       $assetId = (string) $item->attributes()->AssetID;
 
-      if (!empty($assetId) && $item->getName() === 'AssetCrossReference') {
+      if (!empty($assetId)) {
         if ($attributeType === 'Primary Image') {
           $media_id = ImageOperations::getImageMediaId($assetId);
 

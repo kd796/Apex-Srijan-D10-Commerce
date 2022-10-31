@@ -37,20 +37,25 @@ class GetClassificationsArray extends ProcessPluginBase {
     $values_array = [];
 
     if (!empty($value)) {
-      $values_array = $this->findCategories($value, $terms, $vid);
+      $product = $value->xpath('parent::Product');
 
-      if (empty($values_array)) {
-        $parentProduct = $value->xpath('parent::Product');
+      if (!empty($product[0])) {
+        $product = $product[0];
+        $values_array = $this->findCategories($product, $terms, $vid);
 
-        if (!empty($parentProduct[0])) {
-          $values_array = $this->findCategories($parentProduct[0], $terms, $vid);
+        if (empty($values_array)) {
+          $parentProduct = $product->xpath('parent::Product');
+
+          if (!empty($parentProduct[0])) {
+            $values_array = $this->findCategories($parentProduct[0], $terms, $vid);
+          }
+          else {
+            throw new MigrateSkipProcessException();
+          }
         }
-        else {
-          throw new MigrateSkipProcessException();
-        }
+
+        $values_array = json_encode($values_array);
       }
-
-      $values_array = json_encode($values_array);
     }
 
     return json_decode($values_array, TRUE);
@@ -75,38 +80,39 @@ class GetClassificationsArray extends ProcessPluginBase {
   protected function findCategories(mixed $value, array $terms, string $vid): array {
     $values_array = [];
 
-    foreach ($value->children() as $child) {
-      if (!empty($child->attributes()->Type) && $child->attributes()->Type == 'Web Reference') {
-        foreach ($terms as $term) {
-          if (isset($term->get('field_classification_id')->value)) {
-            $classification_id = $term->get('field_classification_id')->value;
+    $classifications = $value->xpath(".//ClassificationReference[@Type='Web Reference']");
 
-            if ($classification_id == $child->attributes()->ClassificationID) {
+    foreach ($classifications AS $class) {
+      // Note: There has got to be a more efficient way to find the category in Drupal.
+      foreach ($terms as $term) {
+        if (isset($term->get('field_classification_id')->value)) {
+          $classification_id = $term->get('field_classification_id')->value;
+
+          if ($classification_id == $class->attributes()->ClassificationID) {
+            $values_array[] = [
+              'vid' => $vid,
+              'target_id' => $term->id()
+            ];
+
+            // Does Item have Parent?
+            $parent_term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($term->id());
+
+            if (!empty(reset($parent_term))) {
+              $parent = reset($parent_term);
               $values_array[] = [
                 'vid' => $vid,
-                'target_id' => $term->id()
+                'target_id' => $parent->id()
               ];
 
-              // Does Item have Parent?
-              $parent_term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($term->id());
+              // Does Item have Grandparent?
+              $grandparent_term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($parent->id());
 
-              if (!empty(reset($parent_term))) {
-                $parent = reset($parent_term);
+              if (!empty(reset($grandparent_term))) {
+                $grandparent = reset($grandparent_term);
                 $values_array[] = [
                   'vid' => $vid,
-                  'target_id' => $parent->id()
+                  'target_id' => $grandparent->id()
                 ];
-
-                // Does Item have Grandparent?
-                $grandparent_term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($parent->id());
-
-                if (!empty(reset($grandparent_term))) {
-                  $grandparent = reset($grandparent_term);
-                  $values_array[] = [
-                    'vid' => $vid,
-                    'target_id' => $grandparent->id()
-                  ];
-                }
               }
             }
           }
