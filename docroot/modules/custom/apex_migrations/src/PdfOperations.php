@@ -6,24 +6,24 @@ use Drupal\Core\File\FileSystemInterface;
 use Drupal\media\Entity\Media;
 
 /**
- * ImageOperations class.
+ * PdfOperations class.
  *
- * Performs ATG product image-specific operations.
+ * Performs ATG product pdf-specific operations.
  */
-class ImageOperations extends FileOperations {
+class PdfOperations extends FileOperations {
 
   /**
    * The Image FTP class.
    *
-   * @var \Drupal\apex_migrations\ImageFtp
+   * @var \Drupal\apex_migrations\PdfFtp
    */
-  protected ImageFtp $ftp;
+  protected PdfFtp $ftp;
 
   /**
    * {@inheritdoc}
    */
   public function __construct() {
-    $this->ftp = new ImageFtp();
+    $this->ftp = new PdfFtp();
   }
 
   /**
@@ -31,14 +31,14 @@ class ImageOperations extends FileOperations {
    *
    * @var string
    */
-  public static string $localImageDirectory = 'public://pim_images/';
+  public static string $localPdfDirectory = 'public://pim_pdfs/';
 
   /**
    * Preps the image directory.
    */
-  public static function prepImageDirectory(): void {
+  public static function prepPdfDirectory(): void {
     \Drupal::service('file_system')->prepareDirectory(
-      self::$localImageDirectory,
+      self::$localPdfDirectory,
       FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS
     );
   }
@@ -52,8 +52,8 @@ class ImageOperations extends FileOperations {
    * @return string
    *   The path to store/find these images locally.
    */
-  public static function buildLocalAssetImagePath(string $asset_id) {
-    return self::$localImageDirectory . $asset_id . '.jpg';
+  public static function buildLocalAssetPdfPath(string $asset_id) {
+    return self::$localPdfDirectory . $asset_id . '.pdf';
   }
 
   /**
@@ -67,8 +67,8 @@ class ImageOperations extends FileOperations {
    *
    * @NOTE: May not be needed.
    */
-  public static function getImageMediaId(string $asset_id) {
-    $drupal_file_path = self::buildLocalAssetImagePath($asset_id);
+  public static function getPdfMediaId(string $asset_id) {
+    $drupal_file_path = self::buildLocalAssetPdfPath($asset_id);
     return self::getMediaId($drupal_file_path);
   }
 
@@ -87,12 +87,12 @@ class ImageOperations extends FileOperations {
    * @throws \Drupal\apex_migrations\ImageNotFoundOnFtpException
    * @throws \League\Flysystem\FilesystemException
    */
-  public function getAndSaveImageMedia(string $asset_id, string $alt_text = ''): mixed {
-    $file_data = $this->ftp->getImage($asset_id);
+  public function getAndSavePdfMedia(string $asset_id, string $alt_text = ''): mixed {
+    $file_data = $this->ftp->getPdf($asset_id);
 
     if ($file_data !== FALSE) {
-      $drupal_file_path = self::buildLocalAssetImagePath($asset_id);
-      $file = ImageOperations::fileSaveData(
+      $drupal_file_path = self::buildLocalAssetPdfPath($asset_id);
+      $file = PdfOperations::fileSaveData(
         $file_data,
         $drupal_file_path,
         FileSystemInterface::EXISTS_REPLACE
@@ -106,11 +106,11 @@ class ImageOperations extends FileOperations {
       }
       else {
         $media = Media::create([
-          'bundle'           => 'image',
+          'bundle'           => 'file',
           'uid'              => 1,
-          'field_media_image' => [
+          'field_media_file' => [
             'target_id' => $file->id(),
-            'alt' => 'Image of ' . $alt_text
+            'alt' => 'PDF of ' . $alt_text
           ],
         ]);
 

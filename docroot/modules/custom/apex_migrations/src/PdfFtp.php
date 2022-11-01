@@ -3,12 +3,12 @@
 namespace Drupal\apex_migrations;
 
 /**
- * ImageFtp class.
+ * PdfFtp class.
  *
- * This class goes out to the client's FTP server, validates that an image exists,
+ * This class goes out to the client's FTP server, validates that a PDF exists,
  * then downloads it for use in the import processes.
  */
-class ImageFtp extends Ftp {
+class PdfFtp extends Ftp {
 
   /**
    * Gets an image from the FTP server or returns false if it doesn't exist.
@@ -22,8 +22,8 @@ class ImageFtp extends Ftp {
    * @throws \Drupal\apex_migrations\ImageNotFoundOnFtpException
    * @throws \League\Flysystem\FilesystemException
    */
-  public function getImage(string $asset_id): bool|string {
-    $image_path = $this->buildImagePath($asset_id);
+  public function getPdf(string $asset_id): bool|string {
+    $image_path = $this->buildPdfPath($asset_id);
 
     if ($this->checkFileExists($image_path)) {
       return $this->filesystem->read($image_path);
@@ -41,8 +41,8 @@ class ImageFtp extends Ftp {
    * @return string
    *   Returns the constructed image path.
    */
-  public function buildImagePath(string $asset_id): string {
-    return $this->assetDirectory . $asset_id . '.jpg';
+  public function buildPdfPath(string $asset_id): string {
+    return $this->assetDirectory . $asset_id . '.pdf';
   }
 
 }
