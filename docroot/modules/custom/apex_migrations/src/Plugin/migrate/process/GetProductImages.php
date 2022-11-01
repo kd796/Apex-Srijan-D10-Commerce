@@ -6,6 +6,7 @@ use Drupal\apex_migrations\ImageNotFoundOnFtpException;
 use Drupal\apex_migrations\ImageOperations;
 use Drupal\media\Entity\Media;
 use Drupal\migrate\MigrateExecutableInterface;
+use Drupal\migrate\MigrateSkipProcessException;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 use Drush\Log\LogLevel;
@@ -105,38 +106,55 @@ class GetProductImages extends ProcessPluginBase {
     $this->videos = [];
     $sku = NULL;
 
+    // $value is the Product.
     if (!empty($value)) {
-      $alt_text = $value->Name;
+      $product = $value->xpath('parent::Product');
+
+      if (!empty($product[0])) {
+        $product = $product[0];
+        $alt_text = $product->Name;
+      }
+
+      $asset_cross_reference = $value->xpath('parent::Product/AssetCrossReference');
 
       // Are there product level images?
-      if ($value->getName() === 'Product') {
-        $sku_group = $value;
-        $sku = $row->getSourceIdValues()['remote_sku'];
+      $sku = $row->getSourceIdValues()['remote_sku'];
+      $this->scanElementForImages($asset_cross_reference);
 
-        // Check the product level first.
-        foreach ($sku_group->children() as $child) {
-          // Specifically this is where it finds the product and digs in... Sorta.
-          if ($child->getName() === 'Product') {
-            $currentProductId = (string) $child->attributes()->ID;
+      if (!empty($product)) {
+        $multivalue_elements = $product->xpath('.//Values/MultiValue');
 
-            if ($currentProductId !== $sku) {
-              // This is not the droid... I mean product you are looking for.
-              continue;
-            }
+        if (!empty($multivalue_elements)) {
+          $this->scanForVideos($multivalue_elements);
+        }
+      }
 
-            // Scan at the current, product, level.
-            $this->scanElementForImages($child);
+      if (!empty($product)
+        && (empty($this->imageAssets) || empty($this->primaryImageMediaId))) {
+        $parentProductAssets = $product->xpath('parent::Product/AssetCrossReference');
+
+        if (!empty($parentProductAssets)) {
+          // If we didn't find anything at the product level then we scan at the parent level.
+          if (empty($this->imageAssets) && empty($this->mediaIds)) {
+            $this->scanElementForImages($parentProductAssets, 'SKU Group Level');
           }
-        }
 
-        // If we didn't find anything at the product level then we scan at the parent level.
-        if (empty($this->imageAssets) && empty($this->mediaIds)) {
-          $this->scanElementForImages($sku_group, 'SKU Group Level');
-        }
+          if (empty($this->videos)) {
+            $parent = $product->xpath('parent::Product');
 
-        // We want to make sure we have a primary image selected.
-        if (empty($this->primaryImageMediaId) && empty($this->primaryImageAsset)) {
-          $this->scanParentForPrimaryImage($sku_group);
+            if (!empty($parent[0])) {
+              $multivalue_elements = $parent[0]->xpath('.//Values/MultiValue');
+
+              if (!empty($multivalue_elements)) {
+                $this->scanForVideos($multivalue_elements);
+              }
+            }
+          }
+
+          // We want to make sure we have a primary image selected.
+          if (empty($this->primaryImageMediaId) && empty($this->primaryImageAsset)) {
+            $this->scanParentForPrimaryImage($parentProductAssets);
+          }
         }
       }
 
@@ -246,7 +264,11 @@ class GetProductImages extends ProcessPluginBase {
       return array_merge([0 => ['media_id' => $this->primaryImageMediaId]], $this->mediaIds);
     }
 
-    return $this->mediaIds;
+    if (!empty($this->mediaIds)) {
+      return $this->mediaIds;
+    }
+
+    throw new MigrateSkipProcessException();
   }
 
   /**
@@ -257,12 +279,12 @@ class GetProductImages extends ProcessPluginBase {
    * @param string $level
    *   The level we want to indicate for reporting purposes.
    */
-  private function scanElementForImages($element, string $level = 'Product Level') {
-    foreach ($element->children() as $item) {
+  private function scanElementForImages(mixed $element, string $level = 'Product Level') {
+    foreach ($element as $item) {
       $attributeType = (string) $item->attributes()->Type;
       $assetId = (string) $item->attributes()->AssetID;
 
-      if (!empty($assetId) && $item->getName() === 'AssetCrossReference') {
+      if (!empty($assetId)) {
         $media_id = ImageOperations::getImageMediaId($assetId);
 
         // If we find the file then we need to reference it in the return array.
@@ -292,20 +314,27 @@ class GetProductImages extends ProcessPluginBase {
           }
         }
       }
+    }
+  }
 
-      // Now we have to add in the video stuff.
-      if ($item->getName() === 'Values') {
-        foreach ($item->children() as $single_value) {
-          $single_value_attribute_id = (string) $single_value->attributes()->AttributeID;
+  /**
+   * Scan for videos directly.
+   *
+   * @param mixed $element
+   *   The array of multivalue elements.
+   */
+  private function scanForVideos(mixed $element) {
+    if (!empty($element)) {
+      foreach ($element as $single_value) {
+        $single_value_attribute_id = (string) $single_value->attributes()->AttributeID;
 
-          if ($single_value->getName() === 'MultiValue' && $single_value_attribute_id == 'ExternalVideoURL') {
-            foreach ($single_value->children() as $single_value_child) {
-              $this->videos[] = $single_value_child;
-            }
-
-            // We only visited the "Values" attribute group so that we could get the video. So leave. NOW!
-            break;
+        if ($single_value->getName() === 'MultiValue' && $single_value_attribute_id == 'ExternalVideoURL') {
+          foreach ($single_value->children() as $single_value_child) {
+            $this->videos[] = $single_value_child;
           }
+
+          // We only visited the "Values" attribute group so that we could get the video. So leave. NOW!
+          break;
         }
       }
     }
@@ -317,12 +346,12 @@ class GetProductImages extends ProcessPluginBase {
    * @param \SimpleXMLElement|mixed $element
    *   The parent element.
    */
-  private function scanParentForPrimaryImage($element) {
-    foreach ($element->children() as $item) {
+  private function scanParentForPrimaryImage(mixed $element) {
+    foreach ($element as $item) {
       $attributeType = (string) $item->attributes()->Type;
       $assetId = (string) $item->attributes()->AssetID;
 
-      if (!empty($assetId) && $item->getName() === 'AssetCrossReference') {
+      if (!empty($assetId)) {
         if ($attributeType === 'Primary Image') {
           $media_id = ImageOperations::getImageMediaId($assetId);
 
