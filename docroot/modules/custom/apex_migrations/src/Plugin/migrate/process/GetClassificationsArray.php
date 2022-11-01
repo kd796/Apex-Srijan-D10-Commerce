@@ -82,7 +82,7 @@ class GetClassificationsArray extends ProcessPluginBase {
 
     $classifications = $value->xpath(".//ClassificationReference[@Type='Web Reference']");
 
-    foreach ($classifications AS $class) {
+    foreach ($classifications as $class) {
       // Note: There has got to be a more efficient way to find the category in Drupal.
       foreach ($terms as $term) {
         if (isset($term->get('field_classification_id')->value)) {

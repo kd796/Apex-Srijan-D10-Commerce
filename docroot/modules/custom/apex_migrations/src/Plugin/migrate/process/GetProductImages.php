@@ -121,6 +121,14 @@ class GetProductImages extends ProcessPluginBase {
       $sku = $row->getSourceIdValues()['remote_sku'];
       $this->scanElementForImages($asset_cross_reference);
 
+      if (!empty($product)) {
+        $multivalue_elements = $product->xpath('.//Values/MultiValue');
+
+        if (!empty($multivalue_elements)) {
+          $this->scanForVideos($multivalue_elements);
+        }
+      }
+
       if (!empty($product)
         && (empty($this->imageAssets) || empty($this->primaryImageMediaId))) {
         $parentProductAssets = $product->xpath('parent::Product/AssetCrossReference');
@@ -129,6 +137,18 @@ class GetProductImages extends ProcessPluginBase {
           // If we didn't find anything at the product level then we scan at the parent level.
           if (empty($this->imageAssets) && empty($this->mediaIds)) {
             $this->scanElementForImages($parentProductAssets, 'SKU Group Level');
+          }
+
+          if (empty($this->videos)) {
+            $parent = $product->xpath('parent::Product');
+
+            if (!empty($parent[0])) {
+              $multivalue_elements = $parent[0]->xpath('.//Values/MultiValue');
+
+              if (!empty($multivalue_elements)) {
+                $this->scanForVideos($multivalue_elements);
+              }
+            }
           }
 
           // We want to make sure we have a primary image selected.
@@ -294,21 +314,27 @@ class GetProductImages extends ProcessPluginBase {
           }
         }
       }
+    }
+  }
 
-      // Now we have to add in the video stuff.
-      // Gotta change this too.
-      if ($item->getName() === 'Values') {
-        foreach ($item->children() as $single_value) {
-          $single_value_attribute_id = (string) $single_value->attributes()->AttributeID;
+  /**
+   * Scan for videos directly.
+   *
+   * @param mixed $element
+   *   The array of multivalue elements.
+   */
+  private function scanForVideos(mixed $element) {
+    if (!empty($element)) {
+      foreach ($element as $single_value) {
+        $single_value_attribute_id = (string) $single_value->attributes()->AttributeID;
 
-          if ($single_value->getName() === 'MultiValue' && $single_value_attribute_id == 'ExternalVideoURL') {
-            foreach ($single_value->children() as $single_value_child) {
-              $this->videos[] = $single_value_child;
-            }
-
-            // We only visited the "Values" attribute group so that we could get the video. So leave. NOW!
-            break;
+        if ($single_value->getName() === 'MultiValue' && $single_value_attribute_id == 'ExternalVideoURL') {
+          foreach ($single_value->children() as $single_value_child) {
+            $this->videos[] = $single_value_child;
           }
+
+          // We only visited the "Values" attribute group so that we could get the video. So leave. NOW!
+          break;
         }
       }
     }
