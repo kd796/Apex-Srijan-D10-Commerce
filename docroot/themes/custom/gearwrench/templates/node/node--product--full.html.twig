@@ -188,6 +188,16 @@
                   {{ content.field_set_components }}
                 </div>
               {% endif %}
+
+              {% if content.field_pdfs|render|trim|length > 0 %}
+                <div class="product-set-components">
+                  <div class="node--type-product__accordion-content-header">
+                    {{ 'PDFs' }}
+                  </div>
+
+                  {{ content.field_pdfs }}
+                </div>
+              {% endif %}
             </div>
           </section>
 
@@ -241,7 +251,7 @@
         {{ related_items }}
       {% endif %}
 
-      {{ content|without('field_long_description','field_product_images', 'field_product_features', 'field_product_specifications', 'field_set_components', 'body') }}
+      {{ content|without('field_long_description','field_product_images', 'field_product_features', 'field_product_specifications', 'field_set_components', 'body', 'field_pdfs') }}
     </div>
   </div>
 </article>
