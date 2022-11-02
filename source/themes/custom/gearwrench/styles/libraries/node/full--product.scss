@@ -451,7 +451,8 @@ $tabs-border-width-active: rem(5px);
               }
             }
 
-            .product-set-components {
+            .product-set-components,
+            .product-pdfs {
               margin-top: 4rem;
 
               .node__sku {
@@ -563,5 +564,60 @@ $tabs-border-width-active: rem(5px);
     display: block;
     margin: 2rem auto 0;
     text-align: center;
+  }
+
+  .product-pdfs {
+    .node--type-product__accordion-content-header {
+      @include media('<lg') {
+        display: block;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .pdf-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    @include media('<lg') {
+      grid-template-columns: 1fr;
+      margin-bottom: 6rem;
+    }
+
+    .product-pdf {
+      max-width: 300px;
+
+      @include media('<lg') {
+        margin-top: 2rem;
+      }
+
+      a {
+        display: grid;
+        grid-template-columns: 57px 300px;
+
+        .pdf-icon {
+          height: 64px;
+          width: 57px;
+        }
+
+        .pdf-info {
+          align-items: center;
+          display: inline-grid;
+          margin-left: 12px;
+          max-width: 300px;
+
+          .download {
+            @include icon('download', 'after');
+
+            font-weight: bold;
+            text-transform: uppercase;
+
+            &::after {
+              margin-left: 5px;
+            }
+          }
+        }
+      }
+    }
   }
 }

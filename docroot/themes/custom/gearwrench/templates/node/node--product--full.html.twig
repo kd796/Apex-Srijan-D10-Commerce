@@ -182,20 +182,10 @@
               {% if content.field_set_components|render|trim|length > 0 %}
                 <div class="product-set-components">
                   <div class="node--type-product__accordion-content-header">
-                    {{ 'Contains' }}
+                    {{ 'Contains'|t }}
                   </div>
 
                   {{ content.field_set_components }}
-                </div>
-              {% endif %}
-
-              {% if content.field_pdfs|render|trim|length > 0 %}
-                <div class="product-set-components">
-                  <div class="node--type-product__accordion-content-header">
-                    {{ 'PDFs' }}
-                  </div>
-
-                  {{ content.field_pdfs }}
                 </div>
               {% endif %}
             </div>
@@ -212,6 +202,30 @@
               </div>
 
               {{ content.field_product_specifications }}
+
+              {% if pdfs is not null %}
+                <div class="product-pdfs">
+                  <div class="node--type-product__accordion-content-header">
+                    {{ 'Additional Resources'|t }}
+                  </div>
+
+                  <div class="pdf-list">
+                    {% for pdf in pdfs %}
+                      <div class="product-pdf">
+                        <a href="{{ pdf['uri'] }}" target="_blank">
+                          <div class="pdf-icon">
+                            <img src="/{{ base_path ~ directory }}/icons/pdf.svg"  alt="{{ 'PDF'|t }}" width="57" height="64"/>
+                          </div>
+                          <div class="pdf-info">
+                            <div class="row">{{ pdf['name'] }}</div>
+                            <div class="row download">{{ 'Download'|t }}</div>
+                          </div>
+                        </a>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
             </div>
           </section>
 
