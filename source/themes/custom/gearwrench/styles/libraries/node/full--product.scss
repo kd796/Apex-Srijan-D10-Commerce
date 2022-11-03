@@ -186,12 +186,17 @@ $tabs-border-width-active: rem(5px);
       }
     }
 
-    .more-features-link a {
+    .more-links {
+      margin: 3.75rem 0;
+    }
+
+    .more-features-link a,
+    .additional-resources-link a {
       @include btn($style: secondary);
 
+      padding: 0;
       text-transform: uppercase;
       font-weight: 600;
-      margin-bottom: rem(55px);
       display: none;
 
       @include media('>sm') {
@@ -272,7 +277,6 @@ $tabs-border-width-active: rem(5px);
             }
           }
         }
-
 
         & > .node--type-product-tabs__nav {
           @include container();
@@ -566,8 +570,19 @@ $tabs-border-width-active: rem(5px);
     text-align: center;
   }
 
+  a#additional-resources {
+    display: block;
+    margin-bottom: 7rem;
+    margin-top: -7rem;
+  }
+
   .product-pdfs {
-    .node--type-product__accordion-content-header {
+    margin-bottom: 8rem;
+
+    h4 {
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+
       @include media('<lg') {
         display: block;
         margin-bottom: 0;
