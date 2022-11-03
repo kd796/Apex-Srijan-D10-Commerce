@@ -320,7 +320,7 @@ class GetProductImages extends ProcessPluginBase {
   /**
    * Scan for videos directly.
    *
-   * @param mixed $element
+   * @param \SimpleXMLElement|mixed $element
    *   The array of multivalue elements.
    */
   private function scanForVideos(mixed $element) {
