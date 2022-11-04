@@ -1,0 +1,29 @@
+uuid: 03e73f27-6e40-4a40-ac5b-fb30b93b1bb0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pdfs
+    - media.type.file
+    - node.type.product
+id: node.product.field_pdfs
+field_name: field_pdfs
+entity_type: node
+bundle: product
+label: PDFs
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      file: file
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

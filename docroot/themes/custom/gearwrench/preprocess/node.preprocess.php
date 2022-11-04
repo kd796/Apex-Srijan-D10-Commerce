@@ -315,6 +315,29 @@ function gearwrench_preprocess_node__product__full(array &$variables) {
     }
   }
 
+  $variables['pdfs'] = NULL;
+
+  // List PDFs.
+  if (!$node->get('field_pdfs')->isEmpty()) {
+    $files = $node->get('field_pdfs')->getValue();
+    $pdfs = [];
+
+    foreach ($files as $pdf_file) {
+      $pdf_media = Media::load($pdf_file['target_id']);
+      $fid = $pdf_media->get('field_media_file')->getValue()[0]['target_id'];
+      $file = File::load($fid);
+
+      $pdfs[] = [
+        'uri' => $file->createFileUrl(),
+        'name' => $pdf_media->label(),
+      ];
+    }
+
+    if (!empty($pdfs)) {
+      $variables['pdfs'] = $pdfs;
+    }
+  }
+
   // Related Products.
   /** @var \Drupal\views\ViewExecutable $main_view */
   $main_view = \Drupal::entityTypeManager()

@@ -9,10 +9,12 @@
  * @see sata_preprocess_node()
  * @see sata_preprocess_node__full()
  * @see sata_preprocess_node__tile()
+ * @see sata_preprocess_node__landing_page__full()
  * @see sata_preprocess_node__page__full()
  * @see sata_preprocess_node__media_page__full()
  * @see sata_preprocess_node__media_page__resource()
  * @see sata_preprocess_node__media_page__teaser()
+ * @see sata_preprocess_node__product__set_listing()
  * @see sata_preprocess_node__product__full()
  * @see sata_preprocess_node__search_result()
  * @see sata_preprocess_node__product__teaser()
@@ -379,6 +381,29 @@ function sata_preprocess_node__product__full(array &$variables) {
     }
     else {
       $message = 'No field media image';
+    }
+  }
+
+  $variables['pdfs'] = NULL;
+
+  // List PDFs.
+  if (!$node->get('field_pdfs')->isEmpty()) {
+    $files = $node->get('field_pdfs')->getValue();
+    $pdfs = [];
+
+    foreach ($files as $pdf_file) {
+      $pdf_media = Media::load($pdf_file['target_id']);
+      $fid = $pdf_media->get('field_media_file')->getValue()[0]['target_id'];
+      $file = File::load($fid);
+
+      $pdfs[] = [
+        'uri' => $file->createFileUrl(),
+        'name' => $pdf_media->label(),
+      ];
+    }
+
+    if (!empty($pdfs)) {
+      $variables['pdfs'] = $pdfs;
     }
   }
 

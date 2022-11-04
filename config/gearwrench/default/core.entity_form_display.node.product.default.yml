@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.product.field_media
     - field.field.node.product.field_meta_tags
     - field.field.node.product.field_new_product
+    - field.field.node.product.field_pdfs
     - field.field.node.product.field_product_classifications
     - field.field.node.product.field_product_features
     - field.field.node.product.field_product_images
@@ -34,8 +35,8 @@ third_party_settings:
     group_tabs:
       children:
         - group_main
-        - group_content
         - group_pim_data
+        - group_content
       label: Tabs
       region: content
       parent_name: ''
@@ -51,6 +52,10 @@ third_party_settings:
         - field_industry
         - body
         - field_media
+        - field_new_product
+        - field_featured_product
+        - field_launch_date
+        - field_keywords
       label: Main
       region: content
       parent_name: group_tabs
@@ -67,7 +72,7 @@ third_party_settings:
       label: Content
       region: content
       parent_name: group_tabs
-      weight: 2
+      weight: 3
       format_type: tab
       format_settings:
         classes: ''
@@ -84,12 +89,14 @@ third_party_settings:
         - field_product_specifications
         - field_product_classifications
         - field_product_images
+        - field_pdfs
         - field_set
         - field_set_components
+        - field_related_products
       label: 'PIM Data'
       region: content
       parent_name: group_tabs
-      weight: 3
+      weight: 2
       format_type: tab
       format_settings:
         classes: ''
@@ -120,7 +127,7 @@ content:
     third_party_settings: {  }
   field_featured_product:
     type: boolean_checkbox
-    weight: 11
+    weight: 6
     region: content
     settings:
       display_label: true
@@ -137,7 +144,7 @@ content:
     third_party_settings: {  }
   field_keywords:
     type: string_textarea
-    weight: 26
+    weight: 8
     region: content
     settings:
       rows: 5
@@ -145,7 +152,7 @@ content:
     third_party_settings: {  }
   field_launch_date:
     type: datetime_default
-    weight: 14
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -173,13 +180,21 @@ content:
     region: content
     settings:
       sidebar: true
+      use_details: true
     third_party_settings: {  }
   field_new_product:
     type: boolean_checkbox
-    weight: 10
+    weight: 5
     region: content
     settings:
       display_label: true
+    third_party_settings: {  }
+  field_pdfs:
+    type: media_library_widget
+    weight: 21
+    region: content
+    settings:
+      media_types: {  }
     third_party_settings: {  }
   field_product_classifications:
     type: entity_reference_autocomplete
@@ -218,7 +233,7 @@ content:
     third_party_settings: {  }
   field_related_products:
     type: entity_reference_autocomplete
-    weight: 12
+    weight: 24
     region: content
     settings:
       match_operator: CONTAINS
@@ -228,14 +243,14 @@ content:
     third_party_settings: {  }
   field_set:
     type: boolean_checkbox
-    weight: 21
+    weight: 22
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_set_components:
     type: entity_reference_autocomplete
-    weight: 22
+    weight: 23
     region: content
     settings:
       match_operator: CONTAINS
