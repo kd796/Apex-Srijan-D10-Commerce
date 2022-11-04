@@ -168,7 +168,14 @@
 
         {{ page_top_products_features }}
 
-        <span class="more-features-link"><a href="#features">See More Features</a> </span>
+        <div class="more-links">
+          <span class="more-features-link">
+            <a href="#features">{{ 'See More Features'|t }}</a>
+          </span>
+          <span class="additional-resources-link">
+            <a href="#additional-resources">{{ 'See Additional Resources'|t }}</a>
+          </span>
+        </div>
       </div>
     </div>
 
@@ -248,6 +255,29 @@
         </div>
       </div>
 
+      {% if pdfs is not null %}
+        <a role="presentation" id="additional-resources"></a>
+        <div class="product-pdfs">
+          <h4>{{ 'Additional Resources'|t }}</h4>
+
+          <div class="pdf-list">
+            {% for pdf in pdfs %}
+              <div class="product-pdf">
+                <a href="{{ pdf['uri'] }}" target="_blank">
+                  <div class="pdf-icon">
+                    <img src="/{{ base_path ~ directory }}/icons/pdf.svg"  alt="{{ 'PDF'|t }}" width="57" height="64"/>
+                  </div>
+                  <div class="pdf-info">
+                    <div class="row">{{ pdf['name'] }}</div>
+                    <div class="row download">{{ 'Download'|t }}</div>
+                  </div>
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+
       {% if related_items %}
         <div class="node--type-product-related-products__nav-wrapper">
           <div class="node--type-product-related-products__nav-logo-wrapper">
@@ -264,7 +294,7 @@
         {{ related_items }}
       {% endif %}
 
-      {{ content|without('field_long_description','field_product_images', 'field_product_features', 'field_product_specifications', 'field_media', 'field_set_components', 'body') }}
+      {{ content|without('field_long_description','field_product_images', 'field_product_features', 'field_product_specifications', 'field_media', 'field_set_components', 'body', 'field_pdfs') }}
     </div>
   </div>
 </article>
