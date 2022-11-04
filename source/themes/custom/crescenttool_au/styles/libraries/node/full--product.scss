@@ -219,13 +219,17 @@ $tabs-border-width-active: rem(5px);
       }
     }
 
-    .more-features-link a {
+    .more-links {
+      margin: 3.75rem 0;
+    }
+
+    .more-features-link a,
+    .additional-resources-link a {
       @include btn($style: secondary);
 
+      padding: 0;
       text-transform: uppercase;
       font-weight: 600;
-      color: $type-dark;
-      margin-bottom: rem(55px);
       display: none;
 
       @include media('>sm') {
@@ -568,6 +572,72 @@ $tabs-border-width-active: rem(5px);
 
     .link-text {
       vertical-align: top;
+    }
+  }
+
+  a#additional-resources {
+    display: block;
+    margin-bottom: 7rem;
+    margin-top: -7rem;
+  }
+
+  .product-pdfs {
+    margin-bottom: 8rem;
+
+    h4 {
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+
+      @include media('<lg') {
+        display: block;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .pdf-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    @include media('<md') {
+      grid-template-columns: 1fr;
+      margin-bottom: 6rem;
+    }
+
+    .product-pdf {
+      max-width: 300px;
+
+      @include media('<md') {
+        margin-top: 2rem;
+      }
+
+      a {
+        display: grid;
+        grid-template-columns: 57px 300px;
+
+        .pdf-icon {
+          height: 64px;
+          width: 57px;
+        }
+
+        .pdf-info {
+          align-items: center;
+          display: inline-grid;
+          margin-left: 12px;
+          max-width: 300px;
+
+          .download {
+            @include icon('download', 'after');
+
+            font-weight: bold;
+            text-transform: uppercase;
+
+            &::after {
+              margin-left: 5px;
+            }
+          }
+        }
+      }
     }
   }
 

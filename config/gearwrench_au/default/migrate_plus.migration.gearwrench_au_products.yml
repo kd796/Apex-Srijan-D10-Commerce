@@ -89,6 +89,10 @@ source:
       label: 'Product Images'
       selector: Values
     -
+      name: remote_pdfs
+      label: PDFs
+      selector: Values
+    -
       name: remote_related_products
       label: 'Related Products'
       selector: Values
@@ -168,6 +172,15 @@ process:
   field_product_images:
     plugin: sub_process
     source: '@product_images_array'
+    include_source: true
+    process:
+      target_id: media_id
+  pdf_array:
+    source: remote_pdfs
+    plugin: apex_get_pdfs
+  field_pdfs:
+    plugin: sub_process
+    source: '@pdf_array'
     include_source: true
     process:
       target_id: media_id

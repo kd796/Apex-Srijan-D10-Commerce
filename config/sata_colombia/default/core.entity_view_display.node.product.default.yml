@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.product.field_media
     - field.field.node.product.field_meta_tags
     - field.field.node.product.field_new_product
+    - field.field.node.product.field_pdfs
     - field.field.node.product.field_product_classifications
     - field.field.node.product.field_product_features
     - field.field.node.product.field_product_images
@@ -46,6 +47,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_pdfs:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 3
     region: content
 hidden:
   body: true
