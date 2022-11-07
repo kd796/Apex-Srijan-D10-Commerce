@@ -61,9 +61,9 @@ class GetProductFeaturesArray extends ProcessPluginBase {
   /**
    * The array of final copy we return.
    *
-   * @var array
+   * @var array|string
    */
-  protected array $copyArray = [];
+  protected array|string $copyArray = [];
 
   /**
    * {@inheritdoc}
@@ -94,7 +94,7 @@ class GetProductFeaturesArray extends ProcessPluginBase {
 
           // We should now be in the "Product" tag that is the actual product. Going for it's parent.
           $parentProductValues = $product->xpath('parent::Product/Values');
-          $this->findFeatures($parentProductValues, $migrate_executable, $row);
+          $this->findFeatures($parentProductValues[0], $migrate_executable, $row);
         }
       }
 
@@ -110,14 +110,14 @@ class GetProductFeaturesArray extends ProcessPluginBase {
   /**
    * Finds and stores the features list for the product. Checks product and group.
    *
-   * @param \SimpleXMLElement $value
+   * @param \SimpleXMLElement|array|mixed $value
    *   The SimpleXMLElement used to navigate the data.
    * @param \Drupal\migrate\MigrateExecutableInterface $migrate_executable
    *   The migration executable.
    * @param \Drupal\migrate\Row $row
    *   The current row object.
    */
-  protected function findFeatures(\SimpleXMLElement $value, MigrateExecutableInterface $migrate_executable, Row $row) {
+  protected function findFeatures(mixed $value, MigrateExecutableInterface $migrate_executable, Row $row) {
     foreach ($value->children() as $child) {
       $att_id = (string) $child->attributes()->AttributeID;
 
