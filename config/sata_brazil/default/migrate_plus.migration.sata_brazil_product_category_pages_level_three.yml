@@ -15,12 +15,12 @@ source:
     bool_1: 1
     uid_root: 1
   plugin: url
-  data_fetcher_plugin: http
-  data_parser_plugin: xml
+  data_fetcher_plugin: file
+  data_parser_plugin: simple_xml
   urls: 'public://import/pim_data/pim_export_with_schema.xml'
   namespaces:
     stibo: 'http://www.stibosystems.com/step'
-  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 3"]'
+  item_selector: '//Classification[@UserTypeID="Web Level 3"]|//Classification[@UserTypeID="Web Level 4"]'
   fields:
     -
       name: remote_id
@@ -40,6 +40,9 @@ process:
     source: remote_id
     method: row
     value:
+      - W3_777844
+      - W3_777845
+      - W3_870823
       - W3_777734
       - W3_777735
       - W3_777817
@@ -50,9 +53,10 @@ process:
       - W3_777823
       - W3_777824
       - W3_777825
-      - W4_777747
-      - W3_777759
+      - W3_777841
+      - W3_869841
       - W3_777736
+      - W3_777759
       - W3_788105
       - W3_777738
       - W3_777753
@@ -63,9 +67,10 @@ process:
       - W3_777763
       - W3_777764
       - W3_777765
-      - W3_777768
+      - W3_777766
       - W3_799005
       - W3_799006
+      - W3_870888
       - W3_777739
       - W3_777770
       - W3_777787
@@ -86,13 +91,15 @@ process:
       - W3_777744
       - W3_777786
       - W3_777749
-      - W3_777739
+      - W3_777767
       - W3_777776
       - W3_777777
       - W3_777790
+      - W3_777792
       - W3_777794
       - W3_777804
       - W3_777812
+      - W3_777828
       - W3_777751
       - W3_777754
       - W3_777755
@@ -102,12 +109,19 @@ process:
       - W3_777769
       - W3_777771
       - W3_777772
-      - W3_777777
-      - W3_777776
+      - W3_777773
+      - W3_777774
       - W3_777775
       - W3_777843
       - W3_799009
       - W3_799010
+      - W3_777778
+      - W3_777781
+      - W3_777805
+      - W3_777806
+      - W3_777807
+      - W3_777808
+      - W3_777809
       - W3_777810
       - W3_777811
       - W3_777813
@@ -120,16 +134,16 @@ process:
       - W3_777784
       - W3_777833
       - W3_777785
-      - W3_777790
+      - W3_777789
       - W3_777791
-      - W3_777792
-      - W3_777794
-      - W4_777743
+      - W3_777793
+      - W3_777795
+      - W3_777796
       - W3_777797
       - W3_777798
-      - W4_777741
-      - W4_777744
-      - W4_777745
+      - W3_777830
+      - W3_777831
+      - W3_777832
       - W3_777834
       - W3_777840
       - W3_777842
@@ -144,6 +158,16 @@ process:
       - W3_777827
       - W3_777837
       - W3_777839
+      - W4_777737
+      - W4_777738
+      - W4_777739
+      - W4_777740
+      - W4_777741
+      - W4_777742
+      - W4_777743
+      - W4_777744
+      - W4_777745
+      - W4_777746
   type:
     plugin: default_value
     default_value: product_category
