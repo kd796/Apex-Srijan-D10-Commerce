@@ -61,9 +61,9 @@ class GetProductFeaturesArray extends ProcessPluginBase {
   /**
    * The array of final copy we return.
    *
-   * @var array|string
+   * @var array|int[]|string[]
    */
-  protected array|string $copyArray = [];
+  protected array $copyArray = [];
 
   /**
    * {@inheritdoc}

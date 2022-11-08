@@ -3,6 +3,7 @@
 namespace Drupal\apex_migrations\Plugin\migrate\process;
 
 use Drupal\migrate\MigrateExecutableInterface;
+use Drupal\migrate\MigrateSkipProcessException;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 
@@ -40,9 +41,16 @@ class GetSkuGroupAttributeValue extends ProcessPluginBase {
         if (!empty($product[0])) {
           $product = $product[0];
           $groupValues = $product->xpath('parent::Product/Values');
-          $attribute_value = $this->findAttribute($groupValues[0], $attribute);
+
+          if (!empty($groupValues[0])) {
+            $attribute_value = $this->findAttribute($groupValues[0], $attribute);
+          }
         }
       }
+    }
+
+    if (empty($attribute_value)) {
+      throw new MigrateSkipProcessException();
     }
 
     return $attribute_value;
