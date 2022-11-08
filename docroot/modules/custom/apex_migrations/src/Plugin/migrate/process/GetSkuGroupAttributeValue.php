@@ -3,6 +3,7 @@
 namespace Drupal\apex_migrations\Plugin\migrate\process;
 
 use Drupal\migrate\MigrateExecutableInterface;
+use Drupal\migrate\MigrateSkipProcessException;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 
@@ -32,10 +33,46 @@ class GetSkuGroupAttributeValue extends ProcessPluginBase {
     $attribute = $this->configuration['attribute'];
 
     if (!empty($value)) {
-      foreach ($value->children() as $child) {
-        if ($child->attributes()->AttributeID == $attribute) {
-          $attribute_value = (string) $child;
+      $attribute_value = $this->findAttribute($value, $attribute);
+
+      if (empty($attribute_value)) {
+        $product = $value->xpath('parent::Product');
+
+        if (!empty($product[0])) {
+          $product = $product[0];
+          $groupValues = $product->xpath('parent::Product/Values');
+
+          if (!empty($groupValues[0])) {
+            $attribute_value = $this->findAttribute($groupValues[0], $attribute);
+          }
         }
+      }
+    }
+
+    if (empty($attribute_value)) {
+      throw new MigrateSkipProcessException();
+    }
+
+    return $attribute_value;
+  }
+
+  /**
+   * Find the attribute given.
+   *
+   * @param \SimpleXMLElement|mixed $element
+   *   The XML object.
+   * @param string $attribute
+   *   The attribute ID.
+   *
+   * @return string|null
+   *   The value we found.
+   */
+  protected function findAttribute($element, $attribute) {
+    $attribute_value = NULL;
+
+    foreach ($element->children() as $child) {
+      if ($child->attributes()->AttributeID == $attribute) {
+        $attribute_value = (string) $child;
       }
     }
 
