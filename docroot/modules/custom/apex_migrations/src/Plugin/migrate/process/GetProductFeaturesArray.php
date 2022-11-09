@@ -94,17 +94,20 @@ class GetProductFeaturesArray extends ProcessPluginBase {
 
           // We should now be in the "Product" tag that is the actual product. Going for it's parent.
           $parentProductValues = $product->xpath('parent::Product/Values');
-          $this->findFeatures($parentProductValues[0], $migrate_executable, $row);
+
+          if (!empty($parentProductValues[0])) {
+            $this->findFeatures($parentProductValues[0], $migrate_executable, $row);
+          }
         }
       }
 
       // This forces it to sort in the order we want them in.
       ksort($this->copyArray);
-      $this->copyArray = json_encode($this->copyArray);
-      return json_decode($this->copyArray, TRUE);
+      $list = json_encode($this->copyArray);
+      return json_decode($list, TRUE);
     }
 
-    return $this->copyArray;
+    return [];
   }
 
   /**
@@ -118,32 +121,34 @@ class GetProductFeaturesArray extends ProcessPluginBase {
    *   The current row object.
    */
   protected function findFeatures(mixed $value, MigrateExecutableInterface $migrate_executable, Row $row) {
-    foreach ($value->children() as $child) {
-      $att_id = (string) $child->attributes()->AttributeID;
+    if (!empty($value)) {
+      foreach ($value->children() as $child) {
+        $att_id = (string) $child->attributes()->AttributeID;
 
-      if (in_array($att_id, $this->attributeIdsToUse)) {
-        // Get the sorting position.
-        $delta = self::$attributeToPosition[$att_id];
+        if (in_array($att_id, $this->attributeIdsToUse)) {
+          // Get the sorting position.
+          $delta = self::$attributeToPosition[$att_id];
 
-        if ($child->getName() !== 'MultiValue') {
-          $data = (string) $child;
+          if ($child->getName() !== 'MultiValue') {
+            $data = (string) $child;
+          }
+          else {
+            $data = (string) $child->Value;
+          }
+
+          if (strlen($data) >= 1000) {
+            // The field has a string limit of 1,000 characters.
+            $data = substr($data, 0, 1000);
+
+            // We also need to report this as an issue.
+            $sku = $row->getSourceIdValues()['remote_sku'];
+            $migrate_executable->saveMessage("[Product Features Array] When importing Attribute ID $att_id for SKU $sku, we had to trim the field down to 1,000 characters to avoid errors.");
+          }
+
+          $this->copyArray[$delta] = [
+            'copy_point' => $data,
+          ];
         }
-        else {
-          $data = (string) $child->Value;
-        }
-
-        if (strlen($data) >= 1000) {
-          // The field has a string limit of 1,000 characters.
-          $data = substr($data, 0, 1000);
-
-          // We also need to report this as an issue.
-          $sku = $row->getSourceIdValues()['remote_sku'];
-          $migrate_executable->saveMessage("[Product Features Array] When importing Attribute ID $att_id for SKU $sku, we had to trim the field down to 1,000 characters to avoid errors.");
-        }
-
-        $this->copyArray[$delta] = [
-          'copy_point' => $data,
-        ];
       }
     }
   }

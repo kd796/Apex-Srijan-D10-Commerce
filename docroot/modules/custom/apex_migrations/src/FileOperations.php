@@ -133,19 +133,23 @@ class FileOperations {
       $youtube_api_url = "https://www.youtube.com/oembed?format=json&url=$clean_url";
       $good_response = self::urlHasGoodResponse($youtube_api_url);
 
-      if ($good_response === TRUE) {
+      if ($good_response !== TRUE) {
+        throw new \Exception(
+          'Unable to connect to remote URL: '
+          . $clean_url . '. Header response: '
+          . $good_response
+        );
+      }
+
+      try {
         $data = file_get_contents($youtube_api_url);
 
         if (!empty($data)) {
           $result = json_decode($data);
         }
       }
-      else {
-        throw new \Exception(
-          'Unable to connect to remote URL: '
-          . $clean_url . '. Header response: '
-          . $good_response
-        );
+      catch (\Exception $e) {
+        throw new \Exception('Error loading Youtube URL. Message: ' . $e->getMessage());
       }
     }
 
