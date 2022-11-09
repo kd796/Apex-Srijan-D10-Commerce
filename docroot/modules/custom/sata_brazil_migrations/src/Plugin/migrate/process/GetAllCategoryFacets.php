@@ -29,13 +29,14 @@ class GetAllCategoryFacets extends ProcessPluginBase {
    * @var array|\string[][]
    */
   public static array $mapping = [
-    'W1_777147' => ['ATT584933'],
+    'W1_777147' => ['ATT779365', 'ATT584933'],
     'W1_777148' => [
       'ATT497',
       'ATT948',
       'ATT493',
       'ATT420',
       'ATT835',
+      'ATT779365',
       'ATT755881',
       'ATT425',
       'ATT687593',
