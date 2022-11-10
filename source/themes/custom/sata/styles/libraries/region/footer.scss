@@ -85,6 +85,17 @@ $footer-margin-top: 5em;
           padding-top: rem(10px);
         }
       }
+
+      .block-footer-navigation-block__footer-copyright {
+        margin-top: rem(10px);
+        font-size: rem(14px);
+      }
+
+      @include media('>lg-plus') {
+        .block-footer-navigation-block__footer-address-social-menu-container {
+          max-width: rem(180px);
+        }
+      }
     }
   }
 
@@ -424,11 +435,19 @@ $footer-margin-top: 5em;
           .block-footer-navigation-block__footer-social-menu-wrapper {
             order: 2;
           }
+
+          .block-footer-navigation-block__footer-copyright {
+            order: 3;
+          }
         }
 
         .block-footer-navigation-block__footer-menu-wrapper {
           @include container-full-width();
           order: 2;
+        }
+
+        .block-footer-navigation-block__footer-copyright {
+          order: 3;
         }
       }
     }

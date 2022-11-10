@@ -72,6 +72,17 @@ $footer-bp-mobile: '<sm';
           text-decoration: underline;
         }
       }
+
+      .block-footer-navigation-block__footer-copyright {
+        margin-top: rem(10px);
+        font-size: rem(14px);
+      }
+
+      @include media('>lg-plus') {
+        .block-footer-navigation-block__footer-address-social-menu-container {
+          max-width: rem(180px);
+        }
+      }
     }
   }
 
@@ -359,6 +370,10 @@ $footer-bp-mobile: '<sm';
 
           .block-footer-navigation-block__footer-social-menu-wrapper {
             order: 1;
+          }
+
+          .block-footer-navigation-block__footer-copyright {
+            order: 3;
           }
         }
 
