@@ -93,9 +93,14 @@ $footer-bp-mobile: '<sm';
     &.menu--social {
       @include flex;
       @include flex-x(flex-direction, row);
+      @include flex-x(flex-wrap, wrap);
 
-      .menu-item:not(:first-of-type) {
-        margin-left: rem(20px);
+      .menu-item:not(:last-of-type) {
+        margin-right: rem(20px);
+      }
+
+      @include media('>lg-plus') {
+        max-width: rem(150px);
       }
     }
 

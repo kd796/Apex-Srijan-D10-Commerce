@@ -110,13 +110,14 @@ $footer-margin-top: 5em;
     &.menu--social {
       @include flex;
       @include flex-x(flex-direction, row);
+      @include flex-x(flex-wrap, wrap);
 
       .menu-item:first-of-type {
         margin-right: rem(-10px);
       }
 
-      .menu-item:not(:first-of-type) {
-        margin-left: rem(28px);
+      .menu-item:not(:last-of-type) {
+        margin-right: rem(28px);
       }
     }
 
