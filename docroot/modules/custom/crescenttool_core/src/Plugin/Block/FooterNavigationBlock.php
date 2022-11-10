@@ -32,12 +32,18 @@ class FooterNavigationBlock extends BlockBase {
       ['#plain_text' => \Drupal::state()->get('footer_address_line_2')] : '';
     $address_line_3 = \Drupal::state()->get('footer_address_line_3') ?
       ['#plain_text' => \Drupal::state()->get('footer_address_line_3')] : '';
+    $address_line_4 = \Drupal::state()->get('footer_address_line_4') ?
+      ['#plain_text' => \Drupal::state()->get('footer_address_line_4')] : '';
+    $address_line_5 = \Drupal::state()->get('footer_address_line_5') ?
+      ['#plain_text' => \Drupal::state()->get('footer_address_line_5')] : '';
     $phone = \Drupal::state()->get('footer_phone') ?
       ['#plain_text' => \Drupal::state()->get('footer_phone')] : '';
     $phone_raw = '';
     if ($phone) {
       $phone_raw = preg_replace('~\D~', '', \Drupal::state()->get('footer_phone'));
     }
+    $copyright = \Drupal::state()->get('footer_copyright') ?
+      ['#markup' => \Drupal::state()->get('footer_copyright')] : '';
 
     return [
       'footer_menu' => $footer_menu,
@@ -45,8 +51,11 @@ class FooterNavigationBlock extends BlockBase {
       'address_line_1' => $address_line_1,
       'address_line_2' => $address_line_2,
       'address_line_3' => $address_line_3,
+      'address_line_4' => $address_line_4,
+      'address_line_5' => $address_line_5,
       'phone_raw' => $phone_raw,
       'phone' => $phone,
+      'copyright' => $copyright,
     ];
   }
 
@@ -72,9 +81,23 @@ class FooterNavigationBlock extends BlockBase {
 
     $form['address_line_3'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('City, State Zip'),
+      '#title' => $this->t('Address Line 3'),
       '#description' => $this->t(''),
       '#default_value' => \Drupal::state()->get('footer_address_line_3') ?? '',
+    ];
+
+    $form['address_line_4'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Address Line 4'),
+      '#description' => $this->t(''),
+      '#default_value' => \Drupal::state()->get('footer_address_line_4') ?? '',
+    ];
+
+    $form['address_line_5'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Address Line 5'),
+      '#description' => $this->t(''),
+      '#default_value' => \Drupal::state()->get('footer_address_line_5') ?? '',
     ];
 
     $form['phone'] = [
@@ -82,6 +105,13 @@ class FooterNavigationBlock extends BlockBase {
       '#title' => $this->t('Phone Number'),
       '#description' => $this->t(''),
       '#default_value' => \Drupal::state()->get('footer_phone') ?? '',
+    ];
+
+    $form['copyright'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Copyright statement'),
+      '#description' => $this->t(''),
+      '#default_value' => \Drupal::state()->get('footer_copyright') ?? '',
     ];
 
     return $form;
@@ -97,7 +127,10 @@ class FooterNavigationBlock extends BlockBase {
     \Drupal::state()->set('footer_address_line_1', $values['address_line_1']);
     \Drupal::state()->set('footer_address_line_2', $values['address_line_2']);
     \Drupal::state()->set('footer_address_line_3', $values['address_line_3']);
+    \Drupal::state()->set('footer_address_line_4', $values['address_line_4']);
+    \Drupal::state()->set('footer_address_line_5', $values['address_line_5']);
     \Drupal::state()->set('footer_phone', $values['phone']);
+    \Drupal::state()->set('footer_copyright', $values['copyright']);
   }
 
   /**
