@@ -51,6 +51,11 @@
         <div class="block-footer-navigation-block__footer-social-menu-wrapper">
           {{ content.social_menu }}
         </div>
+        {% if content.copyright %}
+          <div class="block-footer-navigation-block__footer-copyright">
+            {{ content.copyright }}
+          </div>
+        {% endif %}
       </section>
       <section class="block-footer-navigation-block__footer-menu-wrapper">
         {{ content.footer_menu }}

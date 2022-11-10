@@ -14,6 +14,7 @@ use Drupal\Core\Form\FormStateInterface;
  * @Block(
  *  id = "footer_navigation_block",
  *  admin_label = @Translation("Footer navigation block"),
+ *  category = @Translation("Sata Tool Core")
  * )
  */
 class FooterNavigationBlock extends BlockBase {
@@ -41,6 +42,8 @@ class FooterNavigationBlock extends BlockBase {
     if ($phone) {
       $phone_raw = preg_replace('~\D~', '', \Drupal::state()->get('footer_phone'));
     }
+    $copyright = \Drupal::state()->get('footer_copyright') ?
+      ['#markup' => \Drupal::state()->get('footer_copyright')] : '';
 
     return [
       'footer_menu' => $footer_menu,
@@ -52,6 +55,7 @@ class FooterNavigationBlock extends BlockBase {
       'address_line_5' => $address_line_5,
       'phone_raw' => $phone_raw,
       'phone' => $phone,
+      'copyright' => $copyright,
     ];
   }
 
@@ -103,6 +107,13 @@ class FooterNavigationBlock extends BlockBase {
       '#default_value' => \Drupal::state()->get('footer_phone') ?? '',
     ];
 
+    $form['copyright'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Copyright statement'),
+      '#description' => $this->t(''),
+      '#default_value' => \Drupal::state()->get('footer_copyright') ?? '',
+    ];
+
     return $form;
   }
 
@@ -119,6 +130,7 @@ class FooterNavigationBlock extends BlockBase {
     \Drupal::state()->set('footer_address_line_4', $values['address_line_4']);
     \Drupal::state()->set('footer_address_line_5', $values['address_line_5']);
     \Drupal::state()->set('footer_phone', $values['phone']);
+    \Drupal::state()->set('footer_copyright', $values['copyright']);
   }
 
   /**
