@@ -1,7 +1,5 @@
 subscription_name: 'Apex Tool Group, LLC'
 debug: false
-cron_interval: 30
-cron_interval_override: 0
 hide_signup_messages: 0
 spi:
   server: 'https://nspi.acquia.com'
@@ -10,7 +8,6 @@ spi:
   admin_priv: 1
   send_node_user: 1
   send_watchdog: 1
-  use_cron: 1
   dynamic_banner: 0
   set_variables_override: 0
   set_variables_automatic:
@@ -32,7 +29,7 @@ spi:
     variables: {  }
     time: 0
   cron_interval: 28800
-  site_environment: null
+  site_environment: prod
   site_uuid: 43f68812-2b44-412f-86ba-502e2e130945
   env_detection_enabled: true
 mapping:
