@@ -190,13 +190,18 @@
             </a>
           </div>
 
-          <ul class="node--type-product-tabs__nav">
+          <ul class="node--type-product-tabs__nav{% if not price_spider_reviews_key %} node--type-product-tabs__nav-no-reviews{% endif %}">
             <li class="node--type-product-tabs__nav-item">
-              <a href="#features">{{ 'Features'|t }}</a></li>
+              <a href="#features">{{ 'Features'|t }}</a>
+            </li>
             <li class="node--type-product-tabs__nav-item">
-              <a href="#specifications">{{ 'Specifications'|t }}</a></li>
+              <a href="#specifications">{{ 'Specifications'|t }}</a>
+            </li>
+            {% if price_spider_reviews_key %}
             <li class="node--type-product-tabs__nav-item">
-              <a href="#reviews-questions">{{ 'Reviews & Questions'|t }}</a></li>
+              <a href="#reviews-questions">{{ 'Reviews & Questions'|t }}</a>
+            </li>
+            {% endif %}
           </ul>
         </div>
 
@@ -239,23 +244,25 @@
             </div>
           </section>
 
-          <div class="node--type-product-tabs__mobile-nav-item">
-            <a href="#reviews-questions">{{ 'Reviews & Questions'|t }}</a>
-          </div>
-
-          <section class="node--type-product-tabs-tab">
-            <div class="node--type-product__accordion-content">
-              <div class="node--type-product__accordion-content-header">
-                {{ 'Reviews & Questions'|t }}
-              </div>
-
-              <div class="node--type-product__ps-reviews-container">
-                <div class="ps-widget" ps-config="{{ price_spider_reviews_key }}" ps-sku="{{ sku }}"></div>
-              </div>
-
-              <div data-bv-show="reviews" data-bv-product-id="{{ sku }}"></div>
+          {% if price_spider_reviews_key %}
+            <div class="node--type-product-tabs__mobile-nav-item">
+              <a href="#reviews-questions">{{ 'Reviews & Questions'|t }}</a>
             </div>
-          </section>
+
+            <section class="node--type-product-tabs-tab">
+              <div class="node--type-product__accordion-content">
+                <div class="node--type-product__accordion-content-header">
+                  {{ 'Reviews & Questions'|t }}
+                </div>
+
+                <div class="node--type-product__ps-reviews-container">
+                  <div class="ps-widget" ps-config="{{ price_spider_reviews_key }}" ps-sku="{{ sku }}"></div>
+                </div>
+
+                <div data-bv-show="reviews" data-bv-product-id="{{ sku }}"></div>
+              </div>
+            </section>
+          {% endif %}
         </div>
       </div>
 
