@@ -146,9 +146,11 @@
           <span class="more-features-link">
             <a href="#features">{{ 'See More Features'|t }}</a>
           </span>
+          {% if pdfs is not null %}
             <span class="additional-resources-link">
-            <a href="#additional-resources">{{ 'See Additional Resources'|t }}</a>
-          </span>
+              <a href="#additional-resources">{{ 'See Additional Resources'|t }}</a>
+            </span>
+          {% endif %}
         </div>
       </div>
     </div>
