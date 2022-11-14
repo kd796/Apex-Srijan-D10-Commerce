@@ -36,7 +36,7 @@
   {% endif %}
   {{ title_suffix }}
   <div{{ content_attributes }}>
-    <div class="ps-widget" ps-sku=""></div>
+    <div class="ps-widget" ps-config="{{ price_spider_generic_key }}" ps-sku=""></div>
     {% block content %}
       {{ content }}
     {% endblock %}

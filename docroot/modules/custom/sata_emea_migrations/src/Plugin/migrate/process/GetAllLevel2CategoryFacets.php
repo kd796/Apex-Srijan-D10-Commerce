@@ -37,7 +37,7 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
     'W2_867130' => ['ATT948', 'ATT789490'],
     'W2_867131' => ['ATT948'],
     'W2_867132' => ['ATT948', 'ATT789490'],
-    'W2_867133' => ['ATT948', 'ATT789490', 'ATT497'],
+    'W2_867133' => ['ATT948', 'ATT789490', 'ATT497', 'ATT664422', 'ATT354'],
     'W2_867134' => [
       'ATT835',
       'ATT493',
