@@ -24,6 +24,9 @@ function sata_preprocess_block(array &$variables) {
   if (isset($variables['content']['#menu_name'])) {
     $variables['content']['#attributes']['data-block'] = $variables['elements']['#id'];
   }
+
+  // Add the Price Spider Generic and Product keys.
+  $variables['price_spider_product_key'] = theme_get_setting('price_spider_product_key');
 }
 
 /**
