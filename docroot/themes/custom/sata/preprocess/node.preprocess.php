@@ -50,6 +50,10 @@ function sata_preprocess_node(array &$variables) {
   if (array_key_exists('field_components', $variables['content'])) {
     unset($variables['content']['field_components']['#theme']);
   }
+
+  // Add the Price Spider Product and Reviews key.
+  $variables['price_spider_product_key'] = theme_get_setting('price_spider_product_key');
+  $variables['price_spider_reviews_key'] = theme_get_setting('price_spider_reviews_key');
 }
 
 /**

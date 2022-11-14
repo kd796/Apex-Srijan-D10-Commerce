@@ -19,6 +19,9 @@ function price_spider_where_to_buy_theme() {
   $theme['price_spider_where_to_buy'] = [
     'render element' => 'elements',
     'template' => 'block--price-spider-where-to-buy',
+    'variables' => [
+      'price_spider_generic_key' => NULL,
+    ],
   ];
 
   return $theme;

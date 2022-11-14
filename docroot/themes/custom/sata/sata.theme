@@ -122,6 +122,12 @@ function sata_form_system_theme_settings_alter(&$form, FormStateInterface $form_
     '#default_value' => theme_get_setting('price_spider_hide'),
   ];
 
+  $form['price_spider']['price_spider_account_key'] = [
+    '#type' => 'textfield',
+    '#title' => t('Account Key'),
+    '#default_value' => theme_get_setting('price_spider_account_key'),
+  ];
+
   $form['price_spider']['price_spider_generic_key'] = [
     '#type' => 'textfield',
     '#title' => t('Generic Key'),
@@ -132,6 +138,12 @@ function sata_form_system_theme_settings_alter(&$form, FormStateInterface $form_
     '#type' => 'textfield',
     '#title' => t('Product Key'),
     '#default_value' => theme_get_setting('price_spider_product_key'),
+  ];
+
+  $form['price_spider']['price_spider_reviews_key'] = [
+    '#type' => 'textfield',
+    '#title' => t('Ratings & Reviews Key'),
+    '#default_value' => theme_get_setting('price_spider_reviews_key'),
   ];
 
   $form['price_spider']['price_spider_country'] = [
@@ -384,19 +396,11 @@ function sata_preprocess_html(&$variables) {
     ],
   ];
 
-  $priceSpiderProductKey = [
+  $priceSpiderAccountKey = [
     '#tag' => 'meta',
     '#attributes' => [
-      'name' => 'ps-key',
-      'content' => theme_get_setting('price_spider_product_key'),
-    ],
-  ];
-
-  $priceSpiderGenericKey = [
-    '#tag' => 'meta',
-    '#attributes' => [
-      'name' => 'ps-key',
-      'content' => theme_get_setting('price_spider_generic_key'),
+      'name' => 'ps-account',
+      'content' => theme_get_setting('price_spider_account_key'),
     ],
   ];
 
@@ -416,30 +420,18 @@ function sata_preprocess_html(&$variables) {
     ],
   ];
 
-  $variables['#attached']['html_head'][] = [$priceSpiderHide, 'ps-hide'];
-
-  // If where buy checkbox checked use generic key, else product key.
-  /** @var \Drupal\node\Entity\Node $node */
-  $node = \Drupal::routeMatch()->getParameter('node');
-  $variables['#attached']['html_head'][] = [$priceSpiderProductKey, 'ps-key'];
-
-  if (!empty($node) && $node->hasField('field_make_where_to_buy_page') && !empty($node->get('field_make_where_to_buy_page'))) {
-    $fieldVal = $node->get('field_make_where_to_buy_page')->getValue();
-
-    if (!empty($fieldVal[0]['value'])) {
-      $makeWhereToBuyPageValue = $fieldVal[0]['value'];
-
-      if ($makeWhereToBuyPageValue === '1') {
-        $variables['#attached']['html_head'][] = [
-          $priceSpiderGenericKey,
-          'ps-key'
-        ];
-      }
-    }
-  }
-
-  $variables['#attached']['html_head'][] = [$priceSpiderCountry, 'ps-country'];
-  $variables['#attached']['html_head'][] = [$priceSpiderLanguage, 'ps-language'];
+  $variables['#attached']['html_head'][] = [$priceSpiderHide,
+    'ps-hide'
+  ];
+  $variables['#attached']['html_head'][] = [$priceSpiderAccountKey,
+    'ps-account'
+  ];
+  $variables['#attached']['html_head'][] = [$priceSpiderCountry,
+    'ps-country'
+  ];
+  $variables['#attached']['html_head'][] = [$priceSpiderLanguage,
+    'ps-language'
+  ];
 
   // Add the class to hide the Price Spider elements throughout the website.
   if (theme_get_setting('price_spider_hide')) {
