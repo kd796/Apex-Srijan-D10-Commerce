@@ -41,14 +41,6 @@ function gearwrench_au_preprocess_html(&$variables) {
     ],
   ];
 
-  $priceSpiderAccount = [
-    '#tag' => 'meta',
-    '#attributes' => [
-      'name' => 'ps-account',
-      'content' => '2377',
-    ],
-  ];
-
   $priceSpiderCountry = [
     '#tag' => 'meta',
     '#attributes' => [
@@ -75,7 +67,6 @@ function gearwrench_au_preprocess_html(&$variables) {
 
   $variables['#attached']['html_head'][] = [$priceSpiderCountry, 'ps-country'];
   $variables['#attached']['html_head'][] = [$priceSpiderLanguage, 'ps-language'];
-  $variables['#attached']['html_head'][] = [$priceSpiderAccount, 'ps-account'];
 }
 
 /**
