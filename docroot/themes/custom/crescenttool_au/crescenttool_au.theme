@@ -70,7 +70,7 @@ function crescenttool_au_preprocess_html(&$variables) {
     $variables['#attached']['html_head'][] = [$priceSpiderGenericKey, 'ps-key'];
   }
   else {
-    $variables['#attached']['html_head'][] = [$priceSpiderAccount, 'ps-account'];
+    $variables['#attached']['html_head'][] = [$priceSpiderProductKey, 'ps-key'];
   }
 
   $variables['#attached']['html_head'][] = [$priceSpiderCountry, 'ps-country'];
