@@ -22,6 +22,24 @@ include_once 'preprocess/paragraph.preprocess.php';
 include_once 'preprocess/view.preprocess.php';
 
 /**
+ * Implements hook_form_system_theme_settings_alter().
+ */
+function crescenttool_form_system_theme_settings_alter(&$form, FormStateInterface $form_state) {
+  $form['cookiebot'] = [
+    '#type' => 'details',
+    '#title' => t('Cookiebot'),
+    '#open' => TRUE,
+  ];
+
+  $form['cookiebot']['cookiebot_cbid'] = [
+    '#type' => 'textfield',
+    '#title' => t('Cookiebot CBID'),
+    '#default_value' => theme_get_setting('cookiebot_cbid'),
+    '#description' => t("The 'data-cbid' property of the Cookiebot script in the site <head> tag. If empty, no Cookiebot script will be run."),
+  ];
+}
+
+/**
  * Implements hook_preprocess_html().
  */
 function crescenttool_preprocess_html(&$variables) {
@@ -75,6 +93,22 @@ function crescenttool_preprocess_html(&$variables) {
 
   $variables['#attached']['html_head'][] = [$priceSpiderCountry, 'ps-country'];
   $variables['#attached']['html_head'][] = [$priceSpiderLanguage, 'ps-language'];
+
+  if (\Drupal::currentUser()->isAnonymous()
+    && $cookiebot_cbid = theme_get_setting('cookiebot_cbid')) {
+    $cookie_bot = [
+      '#tag' => 'script',
+      '#attributes' => [
+        'id' => 'Cookiebot',
+        'src' => 'https://consent.cookiebot.com/uc.js',
+        'data-cbid' => $cookiebot_cbid,
+        'data-blockingmode' => 'auto',
+        'type' => 'text/javascript',
+      ],
+      '#weight' => -100,
+    ];
+    $variables['#attached']['html_head'][] = [$cookie_bot, 'cookiebot'];
+  }
 }
 
 /**
@@ -421,6 +455,26 @@ function crescenttool_preprocess_taxonomy_term(array &$variables) {
   foreach ($variables['title_attributes']['class'] as $k => $v) {
     if ($v == 'visually-hidden') {
       unset($variables['title_attributes']['class'][$k]);
+    }
+  }
+}
+
+/**
+ * Implements hook_js_alter().
+ *
+ * Ignore cookieconsent for all JS except those that set cookies.
+ * - The HubSpot script sets cookies.
+ * - The PriceSpider scripts may set cookies; don't ignore just in case.
+ */
+function crescenttool_js_alter(&$js) {
+  if (theme_get_setting('cookiebot_cbid')) {
+    foreach ($js as $key => &$item) {
+      if (
+        strpos($key, 'pricespider.com') === FALSE
+        && strpos($key, 'hs-scripts.com') === FALSE
+      ) {
+        $item['attributes']['data-cookieconsent'] = 'ignore';
+      }
     }
   }
 }
