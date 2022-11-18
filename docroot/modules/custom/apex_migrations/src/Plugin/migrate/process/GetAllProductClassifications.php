@@ -34,6 +34,7 @@ class GetAllProductClassifications extends ProcessPluginBase {
     $vid = 'product_classifications';
     $name = $value;
     $category_classification_id = $row->getSourceIdValues()['remote_id'];
+
     if (!empty($name)) {
       $properties['name'] = $name;
     }
