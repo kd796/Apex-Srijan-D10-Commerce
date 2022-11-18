@@ -13,8 +13,8 @@ migration_group: crescenttool_au
 label: 'Crescent Australia Product Classifications - Level Three'
 source:
   plugin: url
-  data_fetcher_plugin: http
-  data_parser_plugin: xml
+  data_fetcher_plugin: file
+  data_parser_plugin: simple_xml
   urls: 'public://import/pim_data/pim_export_with_schema.xml'
   namespaces:
     stibo: 'http://www.stibosystems.com/step'
@@ -31,7 +31,7 @@ source:
     -
       name: remote_parent_name
       label: 'Parent Term Name'
-      selector: ../../Classification
+      selector: 'parent::Classification'
   ids:
     remote_term_id:
       type: string
