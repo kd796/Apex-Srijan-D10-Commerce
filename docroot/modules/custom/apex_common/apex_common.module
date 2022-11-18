@@ -9,6 +9,7 @@
 
 use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Alter webform options by id.
@@ -211,5 +212,15 @@ function apex_common_metatags_attachments_alter(array &$metatag_attachments): vo
         $metatag_attachments['#attached']['html_head'][$idx][0]['#attributes']['href'] = $href;
       }
     }
+  }
+}
+
+/**
+ * Implements form_views_exposed_form_alter() to reset the view id max length and clear error.
+ */
+function apex_common_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $view = $form_state->getStorage('view');
+  if ($form_id == 'views_exposed_form' && $view['view']->id() === 'product_category') {
+    $form['field_product_specifications_target_id']['#maxlength'] = NULL;
   }
 }
