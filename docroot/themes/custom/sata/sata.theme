@@ -3,9 +3,29 @@
 /**
  * @file
  * Functions to support theming in the sata theme.
+ *
+ * @see sata_form_system_theme_settings_alter
+ * @see sata_file_validate_is_image
+ * @see sata_theme_settings_validate
+ * @see sata_theme_settings_submit
+ * @see sata_preprocess_html
+ * @see sata_form_search_block_form_alter
+ * @see sata_form_search_form_alter
+ * @see sata_theme_registry_alter
+ * @see sata_theme_suggestions_menu_alter
+ * @see sata_preprocess_blazy
+ * @see sata_preprocess_breadcrumb
+ * @see sata_preprocess_menu__main__block_header_menu_main
+ * @see sata_preprocess_page
+ * @see sata_preprocess_responsive_image
+ * @see sata_preprocess_responsive_image_formatter
+ * @see sata_form_alter
+ * @see sata_preprocess_taxonomy_term
+ * @see sata_js_alter
  */
 
 use Drupal\Component\Utility\NestedArray;
+use Drupal\Core\Asset\AttachedAssetsInterface;
 use Drupal\Core\Block\BlockPluginInterface;
 use Drupal\Core\File\Exception\FileException;
 use Drupal\Core\Form\FormStateInterface;
@@ -451,6 +471,7 @@ function sata_preprocess_html(&$variables) {
       ],
       '#weight' => -100,
     ];
+
     $variables['#attached']['html_head'][] = [$cookie_bot, 'cookiebot'];
   }
 }
@@ -796,15 +817,24 @@ function sata_preprocess_taxonomy_term(array &$variables) {
  * - The HubSpot script sets cookies.
  * - The PriceSpider scripts may set cookies; don't ignore just in case.
  */
-function sata_js_alter(&$js) {
+function sata_js_alter(&$js, AttachedAssetsInterface $assets) {
   if (theme_get_setting('cookiebot_cbid')) {
     foreach ($js as $key => &$item) {
       if (
-        strpos($key, 'pricespider.com') === FALSE
-        && strpos($key, 'hs-scripts.com') === FALSE
+        !str_contains($key, 'pricespider.com')
+        && !str_contains($key, 'hs-scripts.com')
       ) {
         $item['attributes']['data-cookieconsent'] = 'ignore';
       }
     }
+  }
+
+  // Change the account key token in the JS URL.
+  $account_key = theme_get_setting('price_spider_account_key');
+
+  if (!empty($account_key)) {
+    $original_url = '//cdn.pricespider.com/1/ACCOUNT_KEY/ps-utid.js';
+    $new_url = str_replace('ACCOUNT_KEY', $account_key, $original_url);
+    $js[$original_url]['data'] = $new_url;
   }
 }
