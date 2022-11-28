@@ -24,11 +24,14 @@ dependencies:
     - admin_toolbar_search
     - block
     - block_class
+    - config_translation
+    - content_translation
     - contextual
     - environment_indicator
     - field_group_settings
     - file
     - filter
+    - locale
     - media
     - menu_link_attributes
     - node
@@ -77,6 +80,7 @@ permissions:
   - 'clone page content'
   - 'clone product_industry content'
   - 'create audio media'
+  - 'create content translations'
   - 'create file media'
   - 'create image media'
   - 'create media'
@@ -144,7 +148,12 @@ permissions:
   - 'revert media_page revisions'
   - 'revert page revisions'
   - 'revert product_industry revisions'
+  - 'translate any entity'
+  - 'translate configuration'
+  - 'translate editable entities'
+  - 'translate interface'
   - 'update any media'
+  - 'update content translations'
   - 'update media'
   - 'use admin toolbar search'
   - 'use advanced search'
