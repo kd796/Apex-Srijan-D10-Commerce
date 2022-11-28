@@ -21,6 +21,7 @@ dependencies:
     - taxonomy.vocabulary.product_industry
     - taxonomy.vocabulary.tags
   module:
+    - content_translation
     - contextual
     - environment_indicator
     - field_group_settings
@@ -59,6 +60,7 @@ permissions:
   - 'clone page content'
   - 'clone product_industry content'
   - 'create audio media'
+  - 'create content translations'
   - 'create file media'
   - 'create image media'
   - 'create media'
@@ -119,7 +121,10 @@ permissions:
   - 'revert media_page revisions'
   - 'revert page revisions'
   - 'revert product_industry revisions'
+  - 'translate any entity'
+  - 'translate editable entities'
   - 'update any media'
+  - 'update content translations'
   - 'update media'
   - 'use text format basic_html'
   - 'use text format full_html'
