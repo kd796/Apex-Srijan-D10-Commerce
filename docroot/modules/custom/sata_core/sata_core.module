@@ -43,6 +43,7 @@ function sata_core_theme() {
       'title' => NULL,
       'sku' => NULL,
       'price_spider_product_key' => NULL,
+      'price_spider_generic_product_button' => NULL,
     ],
   ];
 
@@ -316,4 +317,30 @@ function sata_core_media_presave(MediaInterface $entity) {
     $url = $entity->get('field_media_video_embed_field')->getValue()[0]['value'];
     $entity->set('field_media_oembed_video', $url);
   }
+}
+
+/**
+ * Gets Where to buy page url when box checked.
+ */
+function sata_core_get_wtb_url() {
+  $url = &drupal_static(__FUNCTION__);
+
+  if (!empty($url)) {
+    return $url;
+  }
+
+  $node = \Drupal::entityTypeManager()
+    ->getStorage('node')
+    ->loadByProperties([
+      'field_make_where_to_buy_page' => 1
+    ]);
+
+  if (!empty($node)) {
+    $node = array_pop($node);
+    $url = $node->toUrl()->toString();
+
+    return $url;
+  }
+
+  return NULL;
 }

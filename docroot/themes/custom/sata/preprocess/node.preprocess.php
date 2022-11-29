@@ -51,9 +51,10 @@ function sata_preprocess_node(array &$variables) {
     unset($variables['content']['field_components']['#theme']);
   }
 
-  // Add the Price Spider Product and Reviews key.
+  // Add the Price Spider Product and Reviews key and Generic product checkbox value.
   $variables['price_spider_product_key'] = theme_get_setting('price_spider_product_key');
   $variables['price_spider_reviews_key'] = theme_get_setting('price_spider_reviews_key');
+  $variables['price_spider_generic_product_button'] = theme_get_setting('price_spider_generic_product_button');
 }
 
 /**
@@ -520,6 +521,8 @@ function sata_preprocess_node__product__teaser(&$variables) {
   else {
     $variables['media_attributes']['class'][] = 'node__media--no-media';
   }
+
+  $variables['wtb_url'] = sata_core_get_wtb_url();
 }
 
 /**
