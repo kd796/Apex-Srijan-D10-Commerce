@@ -100,6 +100,13 @@
         </div>
       </a>
     </div>
-    <div class="btn node__buy-now-button ps-widget" ps-config="{{ price_spider_product_key }}" ps-sku="{{sku}}"></div>
+
+    {% if price_spider_generic_product_button == 1 and wtb_url|render|trim is not empty %}
+      <div class="node__buy-now-button-generic">
+        <a href="{{ wtb_url }}" class="btn"><span class="ps-button-label">{{ 'Where To Buy'|t }}</span></a>
+      </div>
+    {% else %}
+      <div class="node__buy-now-button ps-widget" ps-config="{{ price_spider_product_key }}" ps-sku="{{sku}}"></div>
+    {% endif %}
   </div>
 </article>

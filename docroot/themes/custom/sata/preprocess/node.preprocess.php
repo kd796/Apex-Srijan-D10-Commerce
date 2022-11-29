@@ -301,6 +301,7 @@ function sata_preprocess_node__product__full(array &$variables) {
 
   $sku = $node->title->value;
   $variables['sku'] = $sku;
+  $variables['wtb_url'] = sata_core_get_wtb_url();
 
   // Product Features.
   $page_top_products_features = $variables['content']['field_product_features'];
@@ -593,6 +594,7 @@ function sata_preprocess_node__product__search_index(&$variables) {
 
   $sku = $node->title->value;
   $variables['sku'] = $sku;
+  $variables['wtb_url'] = sata_core_get_wtb_url();
 
   $bundle_css = Html::cleanCssIdentifier($bundle);
   $view_mode_css = Html::cleanCssIdentifier($view_mode);
