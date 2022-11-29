@@ -239,6 +239,7 @@
         var $mobileTabs = $mobileTablist.find('.node--type-product-tabs__mobile-nav-item');
         var $mobileLinks = $mobileTablist.find('a');
         var $hidePriceSpider = $('body').hasClass('price-spider-hide');
+        var $hideReviews = $('body').hasClass('price-spider-reviews-hide');
 
         // Mark that the tabs component has been initialized.
         $tabsWidget.addClass('node--type-product-tabs--js-initialized');
@@ -259,7 +260,7 @@
         $mobileTabs.attr('aria-selected', 'false');
         $panels.prop('hidden', true);
 
-        if ($hidePriceSpider) {
+        if ($hidePriceSpider || $hideReviews) {
           $tabs.first()
             .attr('tabindex', '0')
             .attr('aria-selected', 'true');
@@ -420,7 +421,7 @@
         setTimeout(function () {
           var $tabIndex = 2;
 
-          if ($hidePriceSpider) {
+          if ($hidePriceSpider || $hideReviews) {
             $tabIndex = 0;
           }
           $tabs.each(function (i, obj) {

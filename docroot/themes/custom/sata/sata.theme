@@ -142,6 +142,12 @@ function sata_form_system_theme_settings_alter(&$form, FormStateInterface $form_
     '#default_value' => theme_get_setting('price_spider_hide'),
   ];
 
+  $form['price_spider']['price_spider_generic_product_button'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Use Generic Product Button?'),
+    '#default_value' => theme_get_setting('price_spider_generic_product_button'),
+  ];
+
   $form['price_spider']['price_spider_account_key'] = [
     '#type' => 'textfield',
     '#title' => t('Account Key'),
@@ -456,6 +462,11 @@ function sata_preprocess_html(&$variables) {
   // Add the class to hide the Price Spider elements throughout the website.
   if (theme_get_setting('price_spider_hide')) {
     $variables['attributes']['class'][] = 'price-spider-hide';
+  }
+
+  // Add the class to body when hiding reviews.
+  if (!theme_get_setting('price_spider_reviews_key')) {
+    $variables['attributes']['class'][] = 'price-spider-reviews-hide';
   }
 
   if (\Drupal::currentUser()->isAnonymous()
