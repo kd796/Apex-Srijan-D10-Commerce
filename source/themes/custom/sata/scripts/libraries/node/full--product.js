@@ -419,7 +419,7 @@
 
         // Set active tab onload.
         setTimeout(function () {
-          var $tabIndex = 1;
+          var $tabIndex = 2;
 
           if ($hidePriceSpider || $hideReviews) {
             $tabIndex = 0;
