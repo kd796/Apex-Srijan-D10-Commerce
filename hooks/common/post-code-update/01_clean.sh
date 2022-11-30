@@ -19,7 +19,12 @@ repo_type="$6"
 
 drush_alias=$site'.'$target_env
 
-cd /var/www/html/docroot
+if [[ $target_env -eq 'prod']]
+then
+  cd /var/www/html/apextoolgroup.prod/docroot
+else
+  cd /var/www/html/docroot
+fi
 
 echo "\n\n\nDrush version check...\n"
 drush --version
