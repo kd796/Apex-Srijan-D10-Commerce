@@ -19,7 +19,7 @@ repo_type="$6"
 
 drush_alias=$site'.'$target_env
 
-if [[ $target_env -eq 'prod']]
+if [[ $target_env == 'prod' ]]
 then
   cd /var/www/html/apextoolgroup.prod/docroot
 else
