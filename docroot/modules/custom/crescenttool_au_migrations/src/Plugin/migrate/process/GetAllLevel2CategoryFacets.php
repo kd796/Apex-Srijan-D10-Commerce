@@ -29,32 +29,31 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
    * @var array|\string[][]
    */
   public static array $mapping = [
-    'W2_743706' => ['ATT802893', 'ATT778642' , 'ATT763883'],
     'W2_729180' => ['ATT802893', 'ATT807193'],
-    'W2_729138' => [
-      'ATT496',
-      'ATT802893',
-      'ATT804086',
-      'ATT714694',
-      'ATT593',
-      'ATT710'
-    ],
-    'W2_729139' => [
-      'ATT496',
-      'ATT802893',
-      'ATT804086',
-      'ATT714694',
-      'ATT593',
-      'ATT710'
-    ],
     'W2_729140' => [
       'ATT496',
       'ATT802893',
       'ATT491',
       'ATT205',
+      'ATT278',
+      'ATT948',
+      'ATT115'
+    ],
+    'W2_871841' => [
+      'ATT496',
+      'ATT802893',
+      'ATT491',
+      'ATT205',
+      'ATT278',
+      'ATT948',
+      'ATT115'
     ],
     'W2_729142' => ['ATT496', 'ATT802893', 'ATT714694'],
     'W2_729143' => ['ATT496', 'ATT802893', 'ATT491', 'ATT205'],
+    // Chalk Reels - W2_872955
+    'W2_872955' => ['ATT802893', 'ATT778642', 'ATT763883', 'ATT22387'],
+    // Rules & Squares - W2_872955
+    'W2_872955' => ['ATT802893', 'ATT807193', 'ATT22387', 'ATT948'],
   ];
 
   /**

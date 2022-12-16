@@ -57,11 +57,6 @@ class GetAllCategoryFacets extends ProcessPluginBase {
       'ATT714694',
       'ATT592'
     ],
-    // Master Sets - W1_743784.
-    'W1_743784' => [
-      'ATT496',
-      'ATT802893',
-    ],
     // Measuring & Inspection - W1_743905.
     'W1_743905' => [
       'ATT496',
@@ -88,26 +83,6 @@ class GetAllCategoryFacets extends ProcessPluginBase {
     // Pullers - W1_743927.
     'W1_743927' => [
       'ATT496',
-    ],
-    // Ratchets and Socket Sets - W1_743953.
-    'W1_743953' => [
-      'ATT496',
-      'ATT802893',
-      'ATT804086',
-      'ATT585',
-      'ATT589',
-      'ATT631',
-      'ATT491',
-      'ATT586',
-      'ATT749756',
-      'ATT714694',
-      'ATT593',
-      'ATT710',
-      'ATT499',
-      'ATT493',
-      'ATT744972',
-      'ATT744973',
-      'ATT806802'
     ],
     // Ratchets and Drive Tools - W1_743803.
     'W1_743803' => [
@@ -155,7 +130,7 @@ class GetAllCategoryFacets extends ProcessPluginBase {
       'ATT227',
       'ATT345'
     ],
-    // Tool Sets - W1_743772.
+    // Tool Kits - W1_743772.
     'W1_743772' => [
       'ATT496',
       'ATT802893',
@@ -187,6 +162,19 @@ class GetAllCategoryFacets extends ProcessPluginBase {
       'ATT739685',
       'ATT739684'
     ],
+    // Eva Trays - W1_872461
+    'W1_872461' => ['ATT496', 'ATT802893'],
+    // Extraction Tools - W1_872462
+    'W1_872462' => ['ATT496', 'ATT493', 'ATT484', 'ATT491'],
+    // Pass-Thru Tools - W1_872467
+    'W1_872467' => [
+      'ATT496',
+      'ATT802893',
+      'ATT804086',
+      'ATT484',
+      'ATT499',
+      'ATT493',
+    ]
   ];
 
   /**
