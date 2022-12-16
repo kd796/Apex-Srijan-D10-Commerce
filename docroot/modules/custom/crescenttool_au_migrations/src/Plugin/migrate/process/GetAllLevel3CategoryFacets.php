@@ -30,9 +30,7 @@ class GetAllLevel3CategoryFacets extends ProcessPluginBase {
    *
    * @var array|\string[][]
    */
-  public static array $mapping = [
-    'W3_743707' => ['ATT802893', 'ATT778642', 'ATT763883'],
-  ];
+  public static array $mapping = [];
 
   /**
    * {@inheritdoc}
