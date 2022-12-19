@@ -29,19 +29,8 @@ class GetAllCategoryFacets extends ProcessPluginBase {
    * @var array|\string[][]
    */
   public static array $mapping = [
-    // Bolt Cutters - W1_729125.
-    'W1_729125' => [
-      'ATT496',
-      'ATT802893',
-      'ATT278',
-    ],
     // Cable Ties - W1_729889.
     'W1_729889' => [
-      'ATT496',
-      'ATT802893',
-    ],
-    // Clamps - W1_729121.
-    'W1_729121' => [
       'ATT496',
       'ATT802893',
     ],
@@ -60,14 +49,6 @@ class GetAllCategoryFacets extends ProcessPluginBase {
       'ATT802893',
       'ATT582',
       'ATT583',
-    ],
-    // Hammers - W1_729124.
-    'W1_729124' => [
-      'ATT496',
-      'ATT802893',
-      'ATT228',
-      'ATT227',
-      'ATT345',
     ],
     // Hand Files - W1_729128.
     'W1_729128' => [
@@ -128,21 +109,6 @@ class GetAllCategoryFacets extends ProcessPluginBase {
       'ATT115',
       'ATT714720'
     ],
-    // Ratchets and Drive Tools - W1_729115.
-    'W1_729115' => [
-      'ATT496',
-      'ATT802893',
-      'ATT804086',
-      'ATT585',
-      'ATT589',
-      'ATT631',
-      'ATT491',
-      'ATT586',
-      'ATT749756',
-      'ATT714694',
-      'ATT593',
-      'ATT710'
-    ],
     // Screwdrivers and Nutdrivers - W1_729118.
     'W1_729118' => [
       'ATT496',
@@ -150,18 +116,6 @@ class GetAllCategoryFacets extends ProcessPluginBase {
       'ATT415',
       'ATT631',
       'ATT806593'
-    ],
-    // Sockets and Sets - W1_729114.
-    'W1_729114' => [
-      'ATT496',
-      'ATT802893',
-      'ATT484',
-      'ATT499',
-      'ATT493',
-      'ATT491',
-      'ATT744972',
-      'ATT744973',
-      'ATT806802'
     ],
     // Storage and Tool Holders - W1_729887.
     'W1_729887' => [
@@ -175,15 +129,6 @@ class GetAllCategoryFacets extends ProcessPluginBase {
       'ATT496',
       'ATT802893',
     ],
-    // Torque Wrenches - W1_729122.
-    'W1_729122' => [
-      'ATT806600',
-      'ATT802893',
-      'ATT484',
-      'ATT585',
-      'ATT714694',
-      'ATT753929',
-    ],
     // Wrenches - W1_729116.
     'W1_729116' => [
       'ATT496',
@@ -195,6 +140,54 @@ class GetAllCategoryFacets extends ProcessPluginBase {
       'ATT205',
       'ATT739685',
       'ATT739684'
+    ],
+    // Holesaw Sets - W1_872922.
+    'W1_872922' => ['ATT496', 'ATT802893', 'ATT948'],
+    // HVAC Tools - W1_872921.
+    'W1_872921' => [
+      'ATT496',
+      'ATT802893',
+      'ATT226',
+      'ATT880',
+      'ATT451',
+      'ATT948',
+      'ATT115',
+    ],
+    // Mechanic Tool Sets - W1_873634.
+    'W1_873634' => [
+      'ATT496',
+      'ATT802893',
+      'ATT804086',
+      'ATT585',
+      'ATT589',
+      'ATT631',
+      'ATT491',
+      'ATT586',
+      'ATT749756',
+      'ATT714694',
+      'ATT593',
+      'ATT710',
+      'ATT493',
+    ],
+    // Striking & Struck - W1_873415.
+    'W1_873415' => [
+      'ATT496',
+      'ATT802893',
+      'ATT804086',
+      'ATT491',
+      'ATT631',
+      'ATT22387',
+      'ATT948',
+      'ATT115',
+    ],
+    // Utility Knives & Blades - W1_872925.
+    'W1_872925' => [
+      'ATT496',
+      'ATT802893',
+      'ATT278',
+      'ATT340',
+      'ATT769436',
+      'ATT804086',
     ],
   ];
 
