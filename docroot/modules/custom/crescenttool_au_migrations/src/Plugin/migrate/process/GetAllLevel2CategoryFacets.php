@@ -50,10 +50,10 @@ class GetAllLevel2CategoryFacets extends ProcessPluginBase {
     ],
     'W2_729142' => ['ATT496', 'ATT802893', 'ATT714694'],
     'W2_729143' => ['ATT496', 'ATT802893', 'ATT491', 'ATT205'],
-    // Chalk Reels - W2_872955
+    // Chalk Reels - W2_872955.
     'W2_872955' => ['ATT802893', 'ATT778642', 'ATT763883', 'ATT22387'],
-    // Rules & Squares - W2_872955
-    'W2_872955' => ['ATT802893', 'ATT807193', 'ATT22387', 'ATT948'],
+    // Rules & Squares - W2_729179.
+    'W2_729179' => ['ATT802893', 'ATT807193', 'ATT22387', 'ATT948'],
   ];
 
   /**
