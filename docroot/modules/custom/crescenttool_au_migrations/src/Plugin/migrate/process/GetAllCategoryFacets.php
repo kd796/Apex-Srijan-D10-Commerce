@@ -141,25 +141,53 @@ class GetAllCategoryFacets extends ProcessPluginBase {
       'ATT739685',
       'ATT739684'
     ],
-    // Holesaw Sets - W1_872922
-    'W1_872922' => [
-      ''
-    ],
-    // HVAC Tools - W1_872921
+    // Holesaw Sets - W1_872922.
+    'W1_872922' => ['ATT496', 'ATT802893', 'ATT948'],
+    // HVAC Tools - W1_872921.
     'W1_872921' => [
-      ''
+      'ATT496',
+      'ATT802893',
+      'ATT226',
+      'ATT880',
+      'ATT451',
+      'ATT948',
+      'ATT115',
     ],
-    // Mechanic Tool Sets - W1_873634
+    // Mechanic Tool Sets - W1_873634.
     'W1_873634' => [
-      ''
+      'ATT496',
+      'ATT802893',
+      'ATT804086',
+      'ATT585',
+      'ATT589',
+      'ATT631',
+      'ATT491',
+      'ATT586',
+      'ATT749756',
+      'ATT714694',
+      'ATT593',
+      'ATT710',
+      'ATT493',
     ],
-    // Striking & Struck - W1_873415
+    // Striking & Struck - W1_873415.
     'W1_873415' => [
-      ''
+      'ATT496',
+      'ATT802893',
+      'ATT804086',
+      'ATT491',
+      'ATT631',
+      'ATT22387',
+      'ATT948',
+      'ATT115',
     ],
-    // Utility Knives & Blades - W1_872925
+    // Utility Knives & Blades - W1_872925.
     'W1_872925' => [
-      ''
+      'ATT496',
+      'ATT802893',
+      'ATT278',
+      'ATT340',
+      'ATT769436',
+      'ATT804086',
     ],
   ];
 

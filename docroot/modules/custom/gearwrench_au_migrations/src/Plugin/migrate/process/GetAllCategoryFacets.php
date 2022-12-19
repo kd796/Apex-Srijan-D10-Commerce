@@ -162,11 +162,11 @@ class GetAllCategoryFacets extends ProcessPluginBase {
       'ATT739685',
       'ATT739684'
     ],
-    // Eva Trays - W1_872461
+    // Eva Trays - W1_872461.
     'W1_872461' => ['ATT496', 'ATT802893'],
-    // Extraction Tools - W1_872462
+    // Extraction Tools - W1_872462.
     'W1_872462' => ['ATT496', 'ATT493', 'ATT484', 'ATT491'],
-    // Pass-Thru Tools - W1_872467
+    // Pass-Thru Tools - W1_872467.
     'W1_872467' => [
       'ATT496',
       'ATT802893',
