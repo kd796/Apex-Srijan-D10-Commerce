@@ -174,6 +174,15 @@ class GetAllCategoryFacets extends ProcessPluginBase {
       'ATT484',
       'ATT499',
       'ATT493',
+    ],
+    // Hex Keys - W1_834310.
+    'W1_834310' => [
+      'ATT496',
+      'ATT802893',
+      'ATT493',
+      'ATT660',
+      'ATT592',
+      'ATT659',
     ]
   ];
 
