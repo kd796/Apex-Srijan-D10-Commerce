@@ -189,6 +189,19 @@ class GetAllCategoryFacets extends ProcessPluginBase {
       'ATT769436',
       'ATT804086',
     ],
+    // Wrecking & Pry Bars - W1_872968.
+    'W1_872968' => [
+      'ATT496',
+      'ATT802893',
+      'ATT584',
+      'ATT582',
+      'ATT583',
+      'ATT278',
+      'ATT491',
+      'ATT804086',
+      'ATT115',
+      'ATT948',
+    ],
   ];
 
   /**
