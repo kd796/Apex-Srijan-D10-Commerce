@@ -1,0 +1,51 @@
+<?php
+
+use Drupal\Core\Database\Database;
+
+/**
+ * Implements hook_update_N().
+ * Add field_products_alt_name to Product realationship field
+ */
+// function step_update_8005(&$sandbox) {
+//     $spec = array(
+//       'type' => 'varchar',
+//       'description' => "alt_name",
+//       'length' => 255
+//     ); 
+//     $schema = Database::getConnection()->schema();
+//     $schema->addField('paragraph__field_products', 'field_products_alt_name', $spec);
+//     $schema->addField('paragraph_revision__field_products', 'field_products_alt_name', $spec);
+// }
+
+/**
+ * Implements hook_update_N().
+ * Add field_products_alt_url to Product realationship field
+ */
+// function step_update_8101(&$sandbox) {
+//     $spec = array(
+//       'type' => 'varchar',
+//       'description' => "alt_url",
+//       'length' => 255
+//     ); 
+//     $schema = Database::getConnection()->schema();
+//     $schema->addField('paragraph__field_products', 'field_products_alt_url', $spec);
+//     $schema->addField('paragraph_revision__field_products', 'field_products_alt_url', $spec);
+// }
+
+/**
+ * Implements hook_update_N().
+ * Update field_products_alt_url length
+ */
+function step_update_8103(&$sandbox) {
+
+    $schema = Database::getConnection()->schema();
+    $schema->changeField('paragraph__field_products', 'field_products_alt_url', 'field_products_alt_url', [
+      'type' => 'varchar',
+      'length' => 512
+    ]);
+    $schema->changeField('paragraph_revision__field_products', 'field_products_alt_url', 'field_products_alt_url', [
+      'type' => 'varchar',
+      'length' => 512
+    ]);
+}
+

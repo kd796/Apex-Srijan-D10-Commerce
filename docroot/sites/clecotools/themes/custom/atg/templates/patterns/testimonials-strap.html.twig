@@ -1,0 +1,15 @@
+{% set image = image | default(null) %}
+{% if testimonials is not null %}
+  <div class="testimonials-strap">
+    <div class="testimonials-strap-image">
+      {% if image is not null %}
+        <img src="{{ image }}" class="testimonials-strap-img">
+      {% endif %}
+    </div>
+    <div class="testimonials-strap-content">
+      {% include '@atg/patterns/testimonials.html.twig' with {
+        testimonials: testimonials
+      } %}
+    </div>
+  </div>
+{% endif %}

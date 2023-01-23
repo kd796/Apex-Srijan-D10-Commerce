@@ -1,0 +1,22 @@
+uuid: 4a3160dc-50ef-4388-bb1a-fd095e955328
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.advanced_selector_email
+id: node.advanced_selector_email.promote
+field_name: promote
+entity_type: node
+bundle: advanced_selector_email
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

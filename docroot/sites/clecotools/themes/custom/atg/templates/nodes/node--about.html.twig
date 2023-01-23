@@ -1,0 +1,20 @@
+{{ content }}
+
+<geoui api="/jsonapi/node/company_locations?include=field_term_department,field_term_continent">
+	<template slot="infowindow" slot-scope="scope" v-if="scope.selected">
+		{% filter raw %}
+			<h3>{{ scope.selected.attributes.title }}</h3>
+			<p v-html="$options.filters.formatAddress(scope.selected.attributes.field_address)"></p>
+			<p v-if="scope.selected.attributes.field_phone">
+				<template v-for="(phone, index) in scope.selected.attributes.field_phone">
+					<br v-if="index > 0"><a :href="'tel:' + phone">{{ phone }}</a>
+				</template>
+			</p>
+			<p v-if="scope.selected.relationships.field_term_department.data">
+				<template v-for="(department, index) in scope.selected.relationships.field_term_department.data">
+					<br v-if="index > 0">{{ department.attributes.name }}
+				</template>
+			</p>
+		{% endfilter %}
+	</template>
+</geoui>

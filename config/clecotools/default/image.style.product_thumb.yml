@@ -1,0 +1,43 @@
+uuid: 4d029152-5e1b-4e95-a40c-4baeb92c9b7e
+langcode: en
+status: true
+dependencies:
+  module:
+    - image_effects
+name: product_thumb
+label: 'Product Thumb (285×350)'
+effects:
+  100f6fe5-9ef9-4f6e-9e6c-7690dd9d5e46:
+    uuid: 100f6fe5-9ef9-4f6e-9e6c-7690dd9d5e46
+    id: image_scale
+    weight: 1
+    data:
+      width: 285
+      height: null
+      upscale: false
+  015092f1-228a-4ab0-bb35-cfb7415bc375:
+    uuid: 015092f1-228a-4ab0-bb35-cfb7415bc375
+    id: image_effects_set_canvas
+    weight: 2
+    data:
+      canvas_size: exact
+      canvas_color: '#FFFFFFFF'
+      exact:
+        width: '285'
+        height: '350'
+        placement: center-center
+        x_offset: 0
+        y_offset: 0
+      relative:
+        left: 0
+        right: 0
+        top: 0
+        bottom: 0
+  6c35ef67-7078-472d-952e-e5e9b32f8296:
+    uuid: 6c35ef67-7078-472d-952e-e5e9b32f8296
+    id: image_crop
+    weight: 3
+    data:
+      width: 285
+      height: 350
+      anchor: center-center

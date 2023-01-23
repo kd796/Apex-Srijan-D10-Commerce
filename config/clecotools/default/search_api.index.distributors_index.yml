@@ -1,0 +1,114 @@
+uuid: 34b86e62-d7c3-4c82-8e78-01a81cb2e365
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_phone
+    - field.storage.node.field_products_offered
+    - field.storage.node.field_term_distributor_level
+    - field.storage.node.field_geographic_data
+    - field.storage.node.field_address
+    - search_api.server.localhost
+  module:
+    - node
+    - search_api
+id: distributors_index
+name: 'Distributors Index'
+description: ''
+read_only: false
+field_settings:
+  field_phone:
+    label: Phone
+    datasource_id: 'entity:node'
+    property_path: field_phone
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_phone
+  field_products_offered:
+    label: 'Products Offered'
+    datasource_id: 'entity:node'
+    property_path: field_products_offered
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_products_offered
+  field_term_distributor_level:
+    label: 'Distributor Level'
+    datasource_id: 'entity:node'
+    property_path: field_term_distributor_level
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_term_distributor_level
+  lat:
+    label: 'Geographic Data » Centroid Latitude'
+    datasource_id: 'entity:node'
+    property_path: 'field_geographic_data:lat'
+    type: decimal
+    dependencies:
+      config:
+        - field.storage.node.field_geographic_data
+  locality:
+    label: 'Address » The locality (i.e. city).'
+    datasource_id: 'entity:node'
+    property_path: 'field_address:locality'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_address
+  lon:
+    label: 'Geographic Data » Centroid Longitude'
+    datasource_id: 'entity:node'
+    property_path: 'field_geographic_data:lon'
+    type: decimal
+    dependencies:
+      config:
+        - field.storage.node.field_geographic_data
+  nid:
+    label: ID
+    datasource_id: 'entity:node'
+    property_path: nid
+    type: integer
+    dependencies:
+      module:
+        - node
+  postal_code:
+    label: 'Address » The postal code.'
+    datasource_id: 'entity:node'
+    property_path: 'field_address:postal_code'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_address
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: string
+    dependencies:
+      module:
+        - node
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - distributors
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  entity_type: {  }
+  language_with_fallback: {  }
+  rendered_item: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  index_directly: true
+  track_changes_in_references: true
+server: localhost

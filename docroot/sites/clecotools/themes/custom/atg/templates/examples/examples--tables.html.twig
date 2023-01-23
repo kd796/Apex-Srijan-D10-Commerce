@@ -1,0 +1,77 @@
+<main class="main">
+  <section class="section">
+
+    <h1>Tables</h1>
+    <table width="100%">
+      <thead>
+      <tr>
+        <th>Table Heading</th>
+        <th>Table Heading</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>table data</td>
+        <td>table data</td>
+      </tr>
+      <tr>
+        <td>table data</td>
+        <td>table data</td>
+      </tr>
+      <tr>
+        <th>table data</th>
+        <td>table data</td>
+      </tr>
+      <tr>
+        <th>table data</th>
+        <td>table data</td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <th>Table Heading</th>
+        <th>Table Heading</th>
+      </tr>
+      </tfoot>
+    </table>
+
+  </section>
+  <section class="section">
+    <h1>Vue</h1>
+
+    <table-header-groups inline-template :groups="[
+                {name: 'Torque <em>(ft-lb)</em>', start: 3, span: 2},
+                {name: 'Free Speed <em>(rpm)</em>', start: 5, span: 2}
+                ]">
+      <table-component
+        :data="[
+          { modelNumber: '47BAYSB15AM1', torqueMin: 1, torqueMax: 10, freeSpeed26V: 100, freeSpeed44V: 1000, weight: 0.1 },
+          { modelNumber: '47BAYSB15AM2', torqueMin: 2, torqueMax: 20, freeSpeed26V: 200, freeSpeed44V: 2000, weight: 0.2 },
+          { modelNumber: '47BAYSB15AM3', torqueMin: 3, torqueMax: 30, freeSpeed26V: 300, freeSpeed44V: 3000, weight: 0.3 },
+          { modelNumber: '47BAYSB15AM4', torqueMin: 4, torqueMax: 40, freeSpeed26V: 400, freeSpeed44V: 4000, weight: 0.4 },
+     ]"
+        sort-by="modelNumber"
+        sort-order="asc"
+        :show-filter="false"
+        :show-caption="false"
+      >
+        <table-column label="Compare" :sortable="false" :filterable="false">
+          <template slot-scope="row">
+            <label class="checkbox">
+              <input type="checkbox" :value="row.modelNumber" class="checkbox-input">
+              <span class="checkbox-label"></span>
+            </label>
+          </template>
+        </table-column>
+        <table-column show="modelNumber" label="Model"></table-column>
+        <table-column show="torqueMin" label="Min" data-type="numeric"></table-column>
+        <table-column show="torqueMax" label="Max" data-type="numeric"></table-column>
+        <table-column show="freeSpeed26V" label="26V" data-type="numeric"></table-column>
+        <table-column show="freeSpeed44V" label="44V" data-type="numeric"></table-column>
+        <table-column show="weight" label="Weight (lbs)" data-type="numeric">
+          Test
+        </table-column>
+      </table-component>
+    </table-header-groups>
+  </section>
+</main>

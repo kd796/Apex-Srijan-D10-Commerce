@@ -1,0 +1,65 @@
+{% set size = size | default(null) %}
+{% set icon = icon | default(null) %}
+{% set title = title | default(null) %}
+{% set subtitle = subtitle | default(null) %}
+{% set body = body | default(null) %}
+{% set action = action | default(null) %}
+{% set url = url | default(null) %}
+{% set target = target | default(null) %}
+{% set image = image | default(null) %}
+{% set inverse = inverse | default(false) %}
+{% set centered = centered | default(false) %}
+{% set bordered = bordered | default(false) %}
+
+{% set attributes = create_attribute().addClass('callout') %}
+{% if image %}{% set attributes = attributes.addClass('callout--image') %}{% endif %}
+{% if icon %}{% set attributes = attributes.addClass('callout--icon') %}{% endif %}
+{% if inverse %}{% set attributes = attributes.addClass('callout--inverse') %}{% endif %}
+{% if centered %}{% set attributes = attributes.addClass('callout--centered') %}{% endif %}
+{% if bordered %}{% set attributes = attributes.addClass('callout--bordered') %}{% endif %}
+{% if size %}{% set attributes = attributes.addClass('callout--' ~ size) %}{% endif %}
+
+<div{{ attributes }}>
+    <div class="callout-content">
+        {% if image %}
+            <div class="callout-block callout-block--image">
+                {% if url %}
+                    {% set image_link_attributes = create_attribute({ href: url, target: target}) %}
+                    {% set image_tag_attributes = create_attribute({ src: image.entity.uri.value | image_style('image_browser_thumbnail'), alt: image.alt }) %}
+                    <a{{ image_link_attributes }}>
+                    <img{{ image_tag_attributes }}>
+                    </a>
+                {% else %}
+                    <img{{ image_tag_attributes }}>
+                {% endif %}
+            </div>
+        {% endif %}
+        <div class="callout-block callout-block--title">
+            {% if icon %}
+                {{ svg('dist/img/icons/' ~ icon ~ '.svg') }}
+            {% endif %}
+            {% if title %}
+                <h3 class="callout-title">{{ title }}</h3>
+            {% endif %}
+            {% if subtitle %}
+                <p class="callout-subtitle">{{ subtitle }}</p>
+            {% endif %}
+        </div>
+        <div class="callout-block callout-block--body">
+            {% if body %}
+                <div class="callout-body">
+                    <p>{{ body }}</p>
+                </div>
+            {% endif %}
+            {% if url and action %}
+                {% set link_attributes = create_attribute({ href: url, target: target}).addClass(['button', 'button--primary']) %}
+                {% if inverse %}
+                    {% set link_attributes = link_attributes.addClass('button--primary-inverse') %}
+                {% endif %}
+                <p class="callout-action">
+                    <a{{ link_attributes }}>{{ action }}</a>
+                </p>
+            {% endif %}
+        </div>
+    </div>
+</div>

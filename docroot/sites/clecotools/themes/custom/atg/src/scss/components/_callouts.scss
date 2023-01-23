@@ -1,0 +1,116 @@
+.callout {
+  @include property-scale((padding-top, padding-bottom), $container-padding-map);
+  @include section-padding(horizontal);
+}
+
+.callout-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  @include property-scale((margin-left, margin-right), map-multiplier($container-padding-map, -1));
+}
+
+.callout-block {
+  @include property-scale(padding, $container-padding-map);
+
+  h1, .h1,
+  h2, .h2,
+  h3, .h3,
+  h4, .h4,
+  h5, .h5,
+  h6, .h6,
+  p {
+    max-width: 40rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.callout-block--image {
+  a {
+    display: block;
+    box-shadow: 0 0 0.5em rgba(#000, 0.1);
+  }
+
+  img {
+    display: block;
+    max-width: 180px;
+    height: auto;
+  }
+}
+
+.callout-body {
+  margin-bottom: 1rem;
+}
+
+.callout-icon {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  color: $color-gray-medium;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.callout--large {
+  @include section-padding(vertical);
+}
+
+.callout--centered {
+  .callout-content {
+    justify-content: center;
+  }
+}
+
+.callout--image {
+  .callout-content {
+    align-items: center;
+  }
+}
+
+.callout--inverse {
+  color: #fff;
+}
+
+.callout--bordered {
+  border-top: 1px solid rgba($color-gray-light, 0.6);
+}
+
+.callout--auto {
+  .callout-content {
+    justify-content: flex-start;
+  }
+
+  .callout-block {
+    min-width: 25%;
+  }
+}
+
+.callout--icon {
+  .callout-content {
+    align-items: center;
+  }
+
+  .callout-block--title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .callout-icon {
+    margin: 0.5rem 1rem;
+  }
+
+  .callout-title {
+    font-size: 1.75em;
+    font-weight: bold;
+    letter-spacing: -0.03875em;
+  }
+}

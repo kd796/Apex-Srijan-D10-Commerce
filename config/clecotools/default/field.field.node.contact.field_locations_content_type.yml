@@ -1,0 +1,23 @@
+uuid: 93ead5ea-4e88-4e1c-a3b5-e436ca262578
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_locations_content_type
+    - node.type.contact
+id: node.contact.field_locations_content_type
+field_name: field_locations_content_type
+entity_type: node
+bundle: contact
+label: 'Locations Content Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node_type'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: entity_reference

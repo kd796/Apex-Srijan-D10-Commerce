@@ -1,0 +1,22 @@
+uuid: 6f165cc9-10ca-4985-8e40-65ac75f15834
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.advanced_selector_download
+id: node.advanced_selector_download.promote
+field_name: promote
+entity_type: node
+bundle: advanced_selector_download
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

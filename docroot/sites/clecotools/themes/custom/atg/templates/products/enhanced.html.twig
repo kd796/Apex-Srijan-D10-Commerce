@@ -1,0 +1,255 @@
+{% set locale        = get_locale() %}
+{# Get correct alias based on selected language #}
+{% set alias         = alias_by_path('/products/product-catalog', locale.code) %}
+{% set translations  = get_translations() %}
+{% set productName   = product.values.coupon_headline is defined ? product.values.coupon_headline : product.name %}
+{% set base_url      = step_asset_base_url() %}
+{% set hero_classes  = ['hero', 'hero-enhanced', 'hero--no-animate'] %}
+{% set enhanced      = get_enhanced_product(product.id, product.slug) %}
+{% set images        = enhanced.images %}
+{% set product_image = images.product %}
+{% set loading_image = images.loading %}
+{% set product_line  = enhanced.product_line %}
+{% set hero_video    = enhanced.video_bg|default(product_line.video)|default(null) %}
+{% if hero_video %}
+{% set hero_classes = hero_classes|merge(['hero-enhanced--video']) %}
+{% endif %}
+{% set video_popup   = enhanced.node.field_video_popup.0.value|default(null) %}
+
+<main class="main enhanced-product product-line--{{ product_line.name|lower }}">
+    <section class="{{ hero_classes|join(' ') }}">
+        <div class="contain">
+            {% if hero_video %}
+            <div class="video-embed">
+                <video playsinline="playsinline" autoplay="autoplay" muted="muted">
+                {# <video playsinline="playsinline" muted="muted" controls="controls"> #}
+                {# <video playsinline="playsinline" muted="muted"> #}
+                    <source src="{{ hero_video }}" type="video/mp4">
+                </video>
+            </div>
+            {% endif %}
+            {% if video_popup %}
+            <video-button url="{{ video_popup }}"></video-button>
+            {% endif %}
+        </div>
+        <div class="hero-enhanced--description">
+            {{ product_line.description|striptags('<span><b><strong>')|raw }} {#{ svg('dist/img/icons/signal.svg') }#}
+        </div>
+    </section>
+
+    <section class="section section--product-features" id="section--product-features">
+        <product-features product-name="{{ enhanced.node.label|raw }}" :assets="{{ carousel_assets(product.assets)|json_encode }}" :locale="{{ locale|json_encode }}" :translations="{{ translations|json_encode }}" :product-features="{{ enhanced.features|json_encode }}" :hotspots="{{ enhanced.hotspots|json_encode }}" :images="{{ images|json_encode }}" product-image-frames="{{ images.frames }}" product-image="{{ product_image }}" loading-image="{{ loading_image }}" :other-products="{{ enhanced.other|json_encode }}" product-id="{{ product.id }}">
+            {{ enhanced.node.field_features_copy.0.value|raw }}
+        </product-features>
+    </section>
+
+    <section class="section text-center section--find-out" id="section--find-out">
+        <div class="contain">
+            <h2 class="section-title">{{ product_line.connect|t }}</h2>
+            {# <h3>{{ 'Connect With Us'|t }}</h3> #}
+            <div class="button-wrap">
+                <a href="#schedule-demo" class="button button--primary button--simple">{{ 'Schedule a Demo'|t }}</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--product-information" id="section--product-information">
+        <header class="section-header">
+            <div class="section-header-content">
+                <h2 class="section-title">{{ 'Product Information'|t }}</h2>
+            </div>
+        </header>
+
+        {% if enhanced.other|length > 1 %}
+            <basic-cards{% if enhanced.other|length < 4 and enhanced.other|length > 1 %} :options="{ perPage: {{ enhanced.other|length }} }"{% endif %}>
+                {% for other in enhanced.other %}
+                    <basic-card :active="{{ other.id == product.id ? 'true' : 'false' }}">
+                        {% include '@atg/patterns/listing.html.twig' with {
+                            title: other.title,
+                            url: locale.path ~ alias ~ '/' ~ other.slug ~ '#section--product-information',
+                            image: other.large,
+                            backgroundColor: '#ffffff'
+                        } %}
+                    </basic-card>
+                {% endfor %}
+            </basic-cards>
+        {% endif %}
+
+        <tabs>
+            {% if product.models is defined and product.models|length > 0 %}
+                {% set definition = modelTableDefinition(product) %}
+                <tab name="{{ 'Specifications'|t }}" id="models" cache-lifetime="0">
+                    <product-comparison-table
+                        {# removed to disable default Model Number sorting #}
+                        id-key="{{ definition.columns.0.slug }}"
+                        :groups="{{ definition.groups|json_encode }}"
+                        :data="{{ definition.data|json_encode }}"
+                        compare-label="{{ 'Compare'|t }}"
+                        :compare-btn-label="{ singular: '{{ 'Compare Model'|t }}', plural: '{{ 'Compare Models'|t }}', langCode: '{{ locale.code }}' }"
+                        units="{{ locale.code == 'en' ? 'imperial' : 'metric' }}"
+                        units-label="{{ 'Unit of Measurement'|t }}"
+                        :units-options="{imperial: '{{ 'Imperial'|t }}', metric: '{{ 'Metric'|t }}'}">
+                        <template slot-scope="comparison">
+                            {% for column in definition.columns %}
+                                {% set label = column.label %}
+                                {% if label is iterable %}
+                                    {% set label = label|json_encode %}
+                                    {% set label = 'comparison.unitsValue(' ~ label ~ ')' %}
+                                {% else %}
+                                    {% set label = "'" ~ label ~ "'" %}
+                                {% endif %}
+
+                                <table-column
+                                    show="{{ column.slug }}.sort"
+                                    :label="{{ label }}"
+                                    header-class="col--{{ create_key(label) }}"
+                                    cell-class="col--{{ create_key(label) }}"
+                                    data-type="{{ column.type }}">
+                                    <template slot-scope="row">
+                                        <span v-html="{{ 'row.' ~ column.slug ~ '.display' }}"></span>
+                                    </template>
+                                </table-column>
+                            {% endfor %}
+                        </template>
+                    </product-comparison-table>
+
+                    {# About #}
+                    {% if product.values.footnotes is defined %}
+                        <p>{{ product.values.footnotes|raw }}</p>
+                    {% endif %}
+                </tab>
+            {% endif %}
+
+            {% if product.assets is defined %}
+                {% set hasDownloads = false %}
+                <tab name="{{ 'Downloads'|t }}">
+                    <ul class="listings">
+                        {% set downloadTypes = getDownloadTypes() %}
+                        {% for asset in product.assets %}
+                            {% if asset.type in downloadTypes|keys %}
+                                {% set hasDownloads = true %}
+                                <li class="listings-item">
+                                    {% set url = '#' %}
+                                    {% if (downloadTypes[asset.type] is defined) %}
+                                        {% set url = download_link(asset, asset.type) %}
+                                        {% set thumb = step_asset([asset], 'pro_tools_jpg_of_pdf') %}
+                                    {% endif %}
+                                    {% include '@atg/patterns/listing.html.twig' with {
+                                        url: url,
+                                        title: asset.id,
+                                        body: asset.type,
+                                        image: thumb,
+                                        target: '_blank'
+                                    } %}
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    {% if hasDownloads == false %}
+                    <p>{{ 'Currently there are no downloads available for this product.'|t }}</p>
+                    {% endif %}
+                </tab>
+            {% endif %}
+        </tabs>
+    </section><!-- /.section--product-information -->
+
+    {% if enhanced.related.hits.hits is defined %}
+        {% if enhanced.related.hits.hits|length > 0 %}
+            <section class="section section--related-products">
+                <header class="section-header">
+                    <div class="section-header-content">
+                        <h2 class="section-title">{{ '<em>Related</em> Products'|t }}</h2>
+                    </div>
+                </header>
+
+                <basic-cards{% if enhanced.related.hits.hits|length < 4 and enhanced.related.hits.hits|length > 1 %} :options="{ perPage: {{ enhanced.related.hits.hits|length }} }"{% endif %}>
+                    {% for related in enhanced.related.hits.hits %}
+                        {% if related._source.name != productName %}
+                            <basic-card>
+                                {% set data = related._source %}
+                                {% set relatedUrl = locale.path ~ alias ~ '/' ~ data.slug %}
+                                {% set target = null %}
+                                {% if 'NeoTek' in data.filters.product_family or 'NeoTek' in data.values.product_family %}
+                                    {% set relatedUrl = 'https://cleconeotek.com' %}
+                                    {% set target = '_blank' %}
+                                    {% if locale.code == 'de' %}
+                                        {% set relatedUrl = 'https://cleconeotek.de' %}
+                                    {% endif %}
+                                {% elseif 'CellCore' in data.filters.product_family or 'CellCore' in data.values.product_family %}
+                                    {% set relatedUrl = 'https://clecocellcore.com' %}
+                                    {% set target = '_blank' %}
+                                    {% if locale.code == 'de' %}
+                                        {% set relatedUrl = 'https://clecocellcore.de' %}
+                                    {% endif %}
+                                {% endif %}
+                                {% include '@atg/patterns/listing.html.twig' with {
+                                    title: data.name,
+                                    body: data.values.sku_overview,
+                                    url: relatedUrl,
+                                    target: target,
+                                    size: 'large',
+                                    image: (data.assets is not empty) ? step_asset(data.assets) : '',
+                                    backgroundColor: '#ffffff'
+                                } %}
+                            </basic-card>
+                        {% endif %}
+                    {% endfor %}
+                </basic-cards>
+            </section><!-- /.section--related-products -->
+        {% endif %}
+    {% endif %}
+
+    <section class="section section--centered section--schedule-demo" id="schedule-demo" style="background-image: url({{ theme_asset('/dist/img/enhanced-form-bg-' ~ (product_line.name|lower) ~ '.jpg') }}); ">
+        <div class="contain">
+            <h2 class="section-title">{{ 'Schedule a Demo'|t }}</h2>
+            <p>{{ product_line.form_intro }}</p>
+            {{ { '#type': 'webform', '#webform': 'schedule_demo_celltek' } }}
+        </div>
+    </section>
+
+    {% if locale.code != 'de' %}
+        <section class="section section--insights section--gray">
+            <header class="contain section-header">
+                <h2 class="section-title">{{ 'Insights'|t }}</h2>
+                <a href="{{ locale.path }}/news-insights" class="infowindow-action">
+                    {{ svg('dist/img/icons/nut.svg') }}
+                    {{ 'View All Insights'|t }}
+                </a>
+            </header>
+            <div class="contain media-card-contain">
+                <div class="media-card-layout">
+                    {{ drupal_view('news_insights_archive', 'block_3') }}
+                </div>
+            </div>
+            {# <div class="contain text-center">
+                <a href="#" class="button button--primary open-modal" data-modal="stay-connected">{{ 'Subscribe to Insights'|t }}</a>
+            </div> #}
+        </section>
+    {% endif %}
+
+    <section class="section section--callouts">
+         {{ drupal_region('product_detail_page_callouts') }}
+    </section>
+
+    {% if locale.code == 'en' %}
+        <section class="section section--centered section--learn-more" id="learn-more">
+            <h2 class="section-title">{{ 'Learn More'|t }}</h2>
+            <p>{{ 'Sign up to learn more and stay connected with the latest product news, promotions, and event information regarding the Cleco Production Tools.'|t }}</p>
+            {{ { '#type': 'webform', '#webform': 'learn_more_celltek' } }}
+        </section>
+    {% endif %}
+</main>
+
+<a href="#schedule-demo" class="enhanced-fixed-link">{{ 'Schedule a Demo'|t }}{{ svg('dist/img/icons/nut.svg') }}</a>
+
+<div class="modal-mask">
+    <div class="modal" id="modal-stay-connected">
+        <div class="modal-header">
+            {# <h3>Modal header title</h3> #}
+            <button type="button" class="close-modal">{{ svg('dist/img/icons/close.svg') }}</button>
+        </div>
+        <div class="modal-body">
+            {{ { '#type': 'webform', '#webform': 'stay_connected' } }}
+        </div>
+    </div>
+</div>

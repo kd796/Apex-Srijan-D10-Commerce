@@ -1,0 +1,20 @@
+uuid: f98f8385-7d87-47d9-b0e1-0f7a26ee4b8f
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+    - taxonomy
+id: taxonomy_term.field_product_line_video
+field_name: field_product_line_video
+entity_type: taxonomy_term
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,67 @@
+uuid: 3990669e-5ec4-4cda-912a-ef035584c76a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.featured_section.field_body_basic
+    - field.field.paragraph.featured_section.field_cta
+    - field.field.paragraph.featured_section.field_featured_block
+    - field.field.paragraph.featured_section.field_title
+    - paragraphs.paragraphs_type.featured_section
+  module:
+    - paragraphs
+    - text
+id: paragraph.featured_section.default
+targetEntityType: paragraph
+bundle: featured_section
+mode: default
+content:
+  field_body_basic:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_cta:
+    type: entity_reference_paragraphs
+    weight: 2
+    region: content
+    settings:
+      title: CTA
+      title_plural: CTA
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: cta
+    third_party_settings: {  }
+  field_featured_block:
+    type: entity_reference_paragraphs
+    weight: 3
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

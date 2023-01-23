@@ -1,0 +1,64 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ *
+ * Defines the database tables used by this module.
+ *
+ * cid = Clone ID for establishing relationships between other entities.
+ * sid = Source's ID the clone was created from. When creating clones we'll check to see if a sid exist and we'll use its cid.
+ * nid = The node ID of the saved entity.
+ * langcode = Language code
+ *
+ */
+function atg_clone_schema()
+{
+    $schema['atg_clone'] = [
+        'fields'       => [
+            'uid'      => [
+                'type'     => 'serial',
+                'unsigned' => true,
+                'not null' => true
+            ],
+            'cid'      => [
+                'description' => 'Clone ID.',
+                'type'        => 'char',
+                'length'      => 32,
+                'not null'    => true
+            ],
+            'sid'      => [
+                'description' => 'Source’s ID.',
+                'type'        => 'int',
+                'unsigned'    => true,
+                'not null'    => true
+            ],
+            'nid'      => [
+                'type'     => 'int',
+                'unsigned' => true,
+                'not null' => true
+            ],
+            'langcode' => [
+                'type'     => 'varchar',
+                'length'   => 12,
+                'not null' => true
+            ]
+        ],
+        // Documentation onl, Drupal doesn't actually use Foreign Keys
+        'foreign keys' => [
+            'fk_nid' => [
+                'table'   => 'node',
+                'columns' => [
+                    'nid' => 'nid'
+                ]
+            ]
+        ],
+        'unique keys'  => [
+            'nid' => [
+                'nid'
+            ]
+        ],
+        'primary key'  => ['uid']
+    ];
+
+    return $schema;
+}
