@@ -1,0 +1,52 @@
+<?php
+
+function customsearch_theme($existing, $type, $theme, $path) {
+  $templates = [
+    'customsearch' => [
+      'template'  => 'search',
+      'variables' => [
+        'search' => NULL,
+        'total_results' => null,
+        'search_query' => null,
+      ],
+    ],
+  ];
+
+  return $templates;
+}
+
+function customsearch_form_search_form_alter(&$variables) {
+  $basic          = $variables['basic'];
+  $keys           = $basic['keys'];
+  $processed_keys = $basic['processed_keys'];
+  $submit         = $basic['submit'];
+
+  $submit['#attributes']['class'][] = 'button--simple';
+
+  unset($variables['basic']);
+
+  $variables['form-bar'] = [
+    '#type'                 => 'container',
+    '#attributes'           => [
+      'class' => 'form-bar',
+    ],
+    'form-bar-item--keys'   => [
+      '#type'          => 'container',
+      '#attributes'    => [
+        'class' => 'form-bar-item',
+      ],
+      'keys'           => $keys,
+      'processed_keys' => $processed_keys,
+    ],
+    'form-bar-item--submit' => [
+      '#type'       => 'container',
+      '#attributes' => [
+        'class' => 'form-bar-item',
+      ],
+      'submit'      => $submit,
+    ],
+  ];
+
+  unset($variables['help_link']);
+  unset($variables['advanced']);
+}

@@ -1,0 +1,71 @@
+<?php
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\redirect\Entity\Redirect;
+
+/**
+ * Implements hook_entity_presave().
+ */
+function atg_product_redirect_entity_presave(EntityInterface $entity) {
+  // dump('atg_product_redirect_entity_presave', $entity);
+  // die();
+  atg_product_redirect_create_update_redirect($entity);
+}
+
+/**
+ * Implements hook_entity_create().
+ */
+function atg_product_redirect_entity_create(EntityInterface $entity) {
+  // dump('atg_product_redirect_entity_create', $entity);
+  // die();
+  atg_product_redirect_create_update_redirect($entity);
+}
+
+/**
+ * Function to handle both create and update of Enhanced Product nodes.
+ */
+function atg_product_redirect_create_update_redirect(EntityInterface $entity) {
+  $entityId = $entity->id();
+
+  if ($entityId) {
+    $entityType = $entity->getEntityTypeId();
+    $values     = $entity->toArray();
+    $type       = $values['type'] ?? null;
+
+    if (!is_null($type) && ((is_array($values['type']) || is_object($values['type'])) && count($values['type']))) {
+      $contentType = null;
+
+      if (array_key_exists('target_id', $values['type'][0])) {
+        $contentType = $values['type'][0]['target_id'];
+      } else if (array_key_exists('value', $values['type'][0])) {
+        $contentType = $values['type'][0]['value'];
+      }
+
+      if ($entityType === 'node' && $contentType === 'enhanced_product') {
+        $langcode = $entity->get('langcode')->value;
+        $slug     = $values['field_slug'][0]['value'];
+        $alias    = \Drupal::service('path_alias.manager')->getAliasByPath('/products/product-catalog', $langcode);
+        $redirect = \Drupal::service('redirect.repository')->findMatchingRedirect("/node/{$entityId}", [], $langcode);
+
+        if (is_null($redirect)) {
+          // doesn't exist, create
+          Redirect::create([
+            'redirect_source'   => "node/$entityId",
+            'redirect_redirect' => "internal:$alias/$slug",
+            'language'          => $langcode,
+            'status_code'       => '301',
+          ])->save();
+        } else {
+          $old = $redirect->getRedirect()['uri'];
+          $new = "{$alias}/{$slug}";
+
+          if ($old !== "internal:{$new}") {
+            // does exist, update
+            $redirect->setRedirect($new);
+            $redirect->save();
+            \Drupal::logger('atg_product_redirect')->notice("Redirect changed from {$old} to {$new}");
+          }
+        }
+      }
+    }
+  }
+}

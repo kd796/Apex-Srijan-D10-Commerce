@@ -1,0 +1,41 @@
+<main class="main">
+  <section class="section">
+    <h1>Actions</h1>
+
+    {% for slug,background in {'primary': null, 'inverse': '#000', 'knockout': '#E35205'} %}
+      <h2>{{ slug|capitalize }}</h2>
+      <div style="{{ background ? 'background: ' ~ background ~ '; background-size: cover; color: #fff; padding: 1em;' }}">
+        <h3>Default Style</h3>
+        <p>
+          <a href="#" class="action action--{{ slug }}">Let Us Help You</a>
+        </p>
+        <p>
+          <input type="button" class="action action--{{ slug }}" value="Input">
+        </p>
+        <p>
+          <button type="button" class="action action--{{ slug }}">Button</button>
+        </p>
+        <p>
+          <a href="#" class="action action--{{ slug }}">Longer Text Hyperlink</a>
+        </p>
+        <p>
+          <input type="button" class="action action--{{ slug }}" value="Longer Text Input">
+        </p>
+        <p>
+          <button type="button" class="action action--{{ slug }}">Longer Text Button</button>
+        </p>
+
+        <h4>Small Size</h4>
+        <p>
+          <a href="#" class="action action--{{ slug }} action--small">Let Us Help You</a>
+        </p>
+        <p>
+          <input type="button" class="action action--{{ slug }} action--small" value="Input">
+        </p>
+        <p>
+          <button type="button" class="action action--{{ slug }} action--small">Button</button>
+        </p>
+      </div>
+    {% endfor %}
+  </section>
+</main>

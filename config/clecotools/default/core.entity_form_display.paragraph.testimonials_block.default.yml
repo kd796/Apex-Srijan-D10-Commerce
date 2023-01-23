@@ -1,0 +1,45 @@
+uuid: 936231ac-b8fe-4ce7-82df-901b04b42cf7
+langcode: en
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.media_entity_browser
+    - field.field.paragraph.testimonials_block.field_media_src
+    - field.field.paragraph.testimonials_block.field_testimonials
+    - paragraphs.paragraphs_type.testimonials_block
+  module:
+    - entity_browser
+id: paragraph.testimonials_block.default
+targetEntityType: paragraph
+bundle: testimonials_block
+mode: default
+content:
+  field_media_src:
+    type: entity_browser_entity_reference
+    weight: 1
+    region: content
+    settings:
+      entity_browser: media_entity_browser
+      field_widget_display: rendered_entity
+      field_widget_edit: false
+      field_widget_remove: false
+      field_widget_replace: false
+      open: true
+      field_widget_display_settings:
+        view_mode: default
+      selection_mode: selection_append
+    third_party_settings: {  }
+  field_testimonials:
+    type: entity_reference_autocomplete
+    weight: 2
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

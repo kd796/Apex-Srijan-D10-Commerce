@@ -1,0 +1,5 @@
+services:
+  customsearch.route_subscriber:
+    class: Drupal\customsearch\Routing\RouteSubscriber
+    tags:
+    - { name: event_subscriber }

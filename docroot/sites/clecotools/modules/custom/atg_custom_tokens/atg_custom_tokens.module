@@ -1,0 +1,56 @@
+<?php
+
+/**
+ * Implements hook_token_info().
+ */
+function atg_custom_tokens_token_info()
+{
+  $type = [
+    'name' => t('News & Insights'),
+    'description' => t('Tokens related to News & Insights content.'),
+  ];
+
+  $node['pdf-link'] = [
+        'name' => t('PDF Link'),
+        'description' => t('Public URL for attached PDF.'),
+  ];
+
+  $node['pdf-image'] = [
+    'name' => t('PDF Image URL'),
+    'description' => t('Public URL for the attached PDF cover image.'),
+  ];
+
+  return [
+    'types' => ['news_insights' => $type],
+    'tokens' => ['news_insights' => $node],
+  ];
+}
+/**
+ * Implements hook_tokens().
+ */
+function atg_custom_tokens_tokens($type, $tokens, array $data, array $options, \Drupal\Core\Render\BubbleableMetadata $bubbleable_metadata)
+{
+  $replacements = [];
+
+  if ($type == 'news_insights') {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    $nid = $node->id();
+    $node = node_load($nid);
+    $field_attachments = $node->get('field_attachments');
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'pdf-link':
+          $replacements[$original] = file_create_url($field_attachments->entity->getFileUri());
+          break;
+        case 'pdf-image':
+          $attachment_id = $field_attachments[0]->getValue()['target_id'];
+          $attachment_file = \Drupal\file\Entity\File::load($attachment_id);
+          $preview_uri = \Drupal::service('pdfpreview.generator')->getPDFPreview($attachment_file);
+          $replacements[$original] = file_create_url($preview_uri);
+          break;
+      }
+    }
+  }
+
+  return $replacements;
+}

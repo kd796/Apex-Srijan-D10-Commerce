@@ -1,0 +1,127 @@
+uuid: ff267cb1-2ed1-4b97-999c-d869b3ce8c0a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hero
+    - node.type.form_page
+    - paragraphs.paragraphs_type.hero
+  module:
+    - entity_reference_revisions
+id: node.form_page.field_hero
+field_name: field_hero
+entity_type: node
+bundle: form_page
+label: Hero
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      hero: hero
+    negate: 0
+    target_bundles_drag_drop:
+      basic_card:
+        weight: 34
+        enabled: false
+      basic_card_section:
+        weight: 35
+        enabled: false
+      callout_section_footer:
+        weight: 36
+        enabled: false
+      callout_section_page_end:
+        weight: 37
+        enabled: false
+      card:
+        weight: 38
+        enabled: false
+      content_bundle:
+        weight: 39
+        enabled: false
+      content_section:
+        weight: 40
+        enabled: false
+      content_section_simple:
+        weight: 41
+        enabled: false
+      cta:
+        weight: 42
+        enabled: false
+      excerpt:
+        weight: 43
+        enabled: false
+      faq:
+        weight: 44
+        enabled: false
+      faqs_group:
+        weight: 45
+        enabled: false
+      faqs_section:
+        weight: 46
+        enabled: false
+      featured_block:
+        weight: 47
+        enabled: false
+      featured_products:
+        weight: 48
+        enabled: false
+      featured_section:
+        weight: 49
+        enabled: false
+      find_a_distributor:
+        weight: 50
+        enabled: false
+      form_section:
+        weight: 51
+        enabled: false
+      from_library:
+        weight: 52
+        enabled: false
+      grid_item:
+        weight: 53
+        enabled: false
+      grid_section:
+        weight: 54
+        enabled: false
+      hero:
+        weight: 55
+        enabled: true
+      intro:
+        weight: 56
+        enabled: false
+      media_block:
+        weight: 57
+        enabled: false
+      media_image:
+        weight: 58
+        enabled: false
+      message_block:
+        weight: 59
+        enabled: false
+      product_categories:
+        weight: 60
+        enabled: false
+      product_search:
+        weight: 61
+        enabled: false
+      products_category_section:
+        weight: 62
+        enabled: false
+      products_section:
+        weight: 63
+        enabled: false
+      testimonials_block:
+        weight: 64
+        enabled: false
+      testimonials_section:
+        weight: 65
+        enabled: false
+      video_bundle:
+        weight: 66
+        enabled: false
+field_type: entity_reference_revisions

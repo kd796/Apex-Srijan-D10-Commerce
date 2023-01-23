@@ -1,0 +1,386 @@
+<main class="main">
+	<section class="section">
+		<h1>Forms</h1>
+		<form>
+			<fieldset>
+				<legend>Fieldset</legend>
+
+				<p>
+					<label for="input">Text Input</label><br>
+					<input type="text" id="input" placeholder="Placeholder text"/>
+				</p>
+			</fieldset>
+
+			<h2>Inputs</h2>
+
+			<p>
+				<label for="input">Text Input</label><br>
+				<input type="text" id="input" placeholder="Placeholder text"/>
+			</p>
+			<p>
+				<label for="input">Disabled Input</label><br>
+				<input type="text" id="input" placeholder="Disabled placeholder text" disabled/>
+			</p>
+			<p>
+				<label for="input">Readonly Input</label><br>
+				<input type="text" id="input" value="Can't touch this" readonly/>
+			</p>
+			<p>
+				<label for="search">Search Input</label><br>
+				<input type="search" id="search" placeholder="Placeholder text"/>
+			</p>
+
+			<h2>Text Areas</h2>
+			<p>
+				<label for="textarea">Textarea</label><br>
+				<textarea id="textarea"></textarea>
+			</p>
+			<p>
+				<label for="textarea">Disabled Textarea</label><br>
+				<textarea id="textarea" disabled></textarea>
+			</p>
+			<p>
+				<label for="textarea">Taller</label><br>
+				<textarea id="textarea" rows="10"></textarea>
+			</p>
+			<p>
+				<label for="textarea">Filled Textarea</label><br>
+				<textarea id="textarea">Vestibulum id ligula porta felis euismod semper.</textarea>
+			</p>
+			<p>
+				<label for="textarea">Readonly Textarea</label><br>
+				<textarea id="textarea" readonly>Vestibulum id ligula porta felis euismod semper.</textarea>
+			</p>
+
+			<h2>Select Dropdowns</h2>
+			<p>
+				<label for="select">Select</label><br>
+				<select id="select">
+					<option value="">Default option</option>
+					<option value="1">Pellentesque</option>
+					<option value="2">Ullamcorper</option>
+					<option value="3">Egestas</option>
+					<option value="4">Malesuada Ipsum</option>
+				</select>
+			</p>
+			<p>
+				<label for="select">With Option Pre-Selected</label><br>
+				<select id="select">
+					<option value="">Default option</option>
+					<option value="1">Pellentesque</option>
+					<option value="2" checked>Ullamcorper</option>
+					<option value="3">Egestas</option>
+					<option value="4">Malesuada Ipsum</option>
+				</select>
+			</p>
+			<p>
+				<label for="select">Disabled</label><br>
+				<select id="select" disabled>
+					<option value="">Default option</option>
+					<option value="1">Pellentesque</option>
+					<option value="2" checked>Ullamcorper</option>
+					<option value="3">Egestas</option>
+					<option value="4">Malesuada Ipsum</option>
+				</select>
+			</p>
+
+			<h2>Checkboxes/Radios</h2>
+			<h3>Default Styling</h3>
+			<p>
+				<label><input type="checkbox" name="checkbox"> Basic checkbox inside label</label>
+			</p>
+			<p>
+				<input type="checkbox" name="checkbox" id="checkbox-adjacent-label">
+				<label for="checkbox-adjacent-label">Basic checkbox adjacent label</label>
+			</p>
+			<p>
+				<label><input type="radio" name="radio" value="1"> Basic radio inside label</label>
+				<br>
+				<label><input type="radio" name="radio" value="2"> Basic radio inside label</label>
+			</p>
+			<p>
+				<input type="radio" name="checkbox" id="radio-adjacent-label-1">
+				<label for="radio-adjacent-label-1">Basic radio inside label</label>
+				<br>
+				<input type="radio" name="checkbox" id="radio-adjacent-label-2">
+				<label for="radio-adjacent-label-2">Basic radio inside label</label>
+			</p>
+
+			<h3>Custom Styling</h3>
+			<p>
+				<label class="checkbox checkbox--inline">
+					<input type="checkbox" name="checkbox" class="checkbox-input"/>
+					<span class="checkbox-label">Checkbox</span>
+				</label>
+				<label class="checkbox checkbox--inline">
+					<input type="checkbox" name="checkbox" class="checkbox-input" checked/>
+					<span class="checkbox-label">Checkbox</span>
+				</label>
+			</p>
+
+			<p>
+				<label class="radio radio--inline">
+					<input type="radio" name="radio" class="radio-input" checked/>
+					<span class="radio-label">Radio</span>
+				</label>
+				<label class="radio radio--inline">
+					<input type="radio" name="radio" class="radio-input"/>
+					<span class="radio-label">Radio</span>
+				</label>
+			</p>
+
+			<h2>Default Buttons</h2>
+			<p>
+				<button type="submit">Default Submit Button</button>
+			</p>
+			<p>
+				<button type="reset">Default Reset Button</button>
+			</p>
+			<p>
+				<button type="button">Default Button Button</button>
+			</p>
+		</form>
+
+	</section>
+
+	<section class="section">
+		<h1>Form bar</h1>
+
+		<h2>Input and Button</h2>
+		<form class="form-bar">
+			<div class="form-bar-item">
+				<input type="search" placeholder="Search by name">
+			</div>
+			<div class="form-bar-item">
+				<button type="submit" class="button button--primary button--simple">Search</button>
+			</div>
+		</form>
+		<br>
+
+		<h2>Multiple Inputs</h2>
+		<form class="form-bar">
+			<div class="form-bar-item">
+				<input type="text" placeholder="Min">
+			</div>
+			<div class="form-bar-item">
+				<input type="text" placeholder="Max">
+			</div>
+		</form>
+		<br>
+
+	</section>
+
+	<section class="section">
+		<h1>Float Label</h1>
+
+		<p>
+			<float-label label="Float Label" required></float-label>
+		</p>
+		<p>
+			<float-label label="Float Label" placeholder="With Placeholder"></float-label>
+		</p>
+		<p>
+			<float-label label="Float Label" value="Existing Value"></float-label>
+		</p>
+		<p>
+			<float-label label="Float Label" element="textarea"></float-label>
+		</p>
+		<p>
+			<float-label label="Float Label" element="textarea" value="Existing value"></float-label>
+		</p>
+
+		<div class="form-bar">
+			<div class="form-bar-item">
+				<float-label label="Min" type="number" placeholder="Any"></float-label>
+			</div>
+			<div class="form-bar-item">
+				<float-label label="Max" type="number" placeholder="Any"></float-label>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<h1>Form Grid</h1>
+
+		<div class="form-grid">
+			<div class="form-grid-row">
+				<div class="form-grid-item">
+					<float-label label="First Name" required></float-label>
+				</div>
+				<div class="form-grid-item">
+					<float-label label="Last Name" required></float-label>
+				</div>
+			</div>
+			<div class="form-grid-row">
+				<div class="form-grid-item">
+					<p>
+						<label class="radio">
+							<input type="radio" name="radio" class="radio-input" checked/>
+							<span class="radio-label">Radio</span>
+						</label>
+						<label class="radio">
+							<input type="radio" name="radio" class="radio-input"/>
+							<span class="radio-label">Radio</span>
+						</label>
+					</p>
+				</div>
+				<div class="form-grid-item">
+					<label class="checkbox">
+						<input type="checkbox" name="checkbox" class="checkbox-input"/>
+						<span class="checkbox-label">Checkbox</span>
+					</label>
+				</div>
+			</div>
+			<div class="form-grid-row">
+				<div class="form-grid-item">
+					<label for="select">Select</label><br>
+					<select id="select">
+						<option value="">Default option</option>
+						<option value="1">Pellentesque</option>
+						<option value="2">Ullamcorper</option>
+						<option value="3">Egestas</option>
+						<option value="4">Malesuada Ipsum</option>
+					</select>
+				</div>
+				<div class="form-grid-item">
+					<label for="input">Text Input</label><br>
+					<input type="text" id="input" placeholder="Placeholder text"/>
+				</div>
+			</div>
+			<div class="form-grid-row">
+				<div class="form-grid-item">
+					<float-label label="Email" type="email" required></float-label>
+				</div>
+				<div class="form-grid-item">
+					<float-label label="Phone" type="tel"></float-label>
+				</div>
+			</div>
+			<div class="form-grid-row">
+				<div class="form-grid-item">
+					<float-label label="Company"></float-label>
+				</div>
+				<div class="form-grid-item">
+					<float-label label="Title"></float-label>
+				</div>
+			</div>
+			<div class="form-grid-row">
+				<div class="form-grid-item">
+					<float-label label="Leave a note…" element="textarea"></float-label>
+				</div>
+			</div>
+		</div>
+
+		<button type="submit" class="button button--primary">Submit</button>
+	</section>
+
+	<section class="section">
+		<h1>Filter Bar</h1>
+	</section>
+</main>
+
+{% include '@atg/patterns/hero.html.twig' with { title: 'Find a distributor' } %}
+<ul class="filter-bar">
+	<li class="filter-bar-item">
+		<div class="filter">
+			<label for="zip" class="filter-label">ZIP Code</label>
+			<input id="zip" type="text" maxlength="5" size="8" class="filter-input" placeholder="Enter ZIP"/>
+		</div>
+	</li>
+	<li class="filter-bar-item">
+		<div class="filter">
+			<label for="distance" class="filter-label">Distance</label>
+			<select id="distance" class="filter-input">
+				<option value="10">10 Miles</option>
+				<option value="25">25 Miles</option>
+				<option value="50" selected>50 Miles</option>
+			</select>
+		</div>
+	</li>
+	<li class="filter-bar-item">
+		<div class="filter">
+			<label for="distance" class="filter-label">Distributor Level</label>
+			<select id="distance" class="filter-input">
+				<option value="">All</option>
+				<option value="platinum">Platinum</option>
+				<option value="gold">Gold</option>
+				<option value="silver">Silver</option>
+				<option value="bronze">Bronze</option>
+				<option value="authorized">Authorized</option>
+			</select>
+		</div>
+	</li>
+	<li class="filter-bar-item">
+		<div class="filter">
+			<label for="distance" class="filter-label">Available Tools</label>
+			<select id="distance" class="filter-input">
+				<option value="">All</option>
+				<option value="Air Motors">Air Motors</option>
+				<option value="Grinders">Grinders</option>
+				<option value="Nutrunners">Nutrunners</option>
+				<option value="Pulse Tools">Pulse Tools</option>
+				<option value="Sanders + Polishers">Sanders + Polishers</option>
+			</select>
+		</div>
+	</li>
+	<li class="filter-bar-item filter-bar-item--push">
+		<div class="filter-bar-action">
+			<a href="#" class="button button--primary button--simple">Find Distributors</a>
+		</div>
+	</li>
+</ul>
+
+<main class="main">
+	<section class="section">
+		<h1>Radio Cards</h1>
+
+		<div class="checkable-cards">
+			<label class="checkable-cards-item">
+				<input type="radio" name="radio_card" class="checkable-card-input" value="1" checked>
+				<span class="checkable-card">
+					<span class="checkable-card-icon">{{ svg('dist/img/icons/globe.svg') }}</span>
+					<span class="checkable-card-label" data-selected-text="Selected">Request Longer Product Information</span>
+				</span>
+			</label>
+			<label class="checkable-cards-item">
+				<input type="radio" name="radio_card" class="checkable-card-input" value="2">
+				<span class="checkable-card">
+					<span class="checkable-card-icon">{{ svg('dist/img/icons/magnifying-glass.svg') }}</span>
+					<span class="checkable-card-label" data-selected-text="Selected">Request a Demo</span>
+				</span>
+			</label>
+			<label class="checkable-cards-item">
+				<input type="radio" name="radio_card" class="checkable-card-input" value="3">
+				<span class="checkable-card">
+					<span class="checkable-card-icon">{{ svg('dist/img/icons/camera.svg') }}</span>
+					<span class="checkable-card-label" data-selected-text="Selected">Request a Quote</span>
+				</span>
+			</label>
+		</div>
+
+		<h1>Checkbox Cards</h1>
+
+		<div class="checkable-cards">
+			<label class="checkable-cards-item">
+				<input type="checkbox" name="checkbox_cards[]" class="checkable-card-input" value="1">
+				<span class="checkable-card">
+					<span class="checkable-card-icon">{{ svg('dist/img/icons/globe.svg') }}</span>
+					<span class="checkable-card-label" data-selected-text="Selected">Request Longer Product Information</span>
+				</span>
+			</label>
+			<label class="checkable-cards-item">
+				<input type="checkbox" name="checkbox_cards[]" class="checkable-card-input" value="2">
+				<span class="checkable-card">
+					<span class="checkable-card-icon">{{ svg('dist/img/icons/magnifying-glass.svg') }}</span>
+					<span class="checkable-card-label" data-selected-text="Selected">Request a Demo</span>
+				</span>
+			</label>
+			<label class="checkable-cards-item">
+				<input type="checkbox" name="checkbox_cards[]" class="checkable-card-input" value="3">
+				<span class="checkable-card">
+					<span class="checkable-card-icon">{{ svg('dist/img/icons/camera.svg') }}</span>
+					<span class="checkable-card-label" data-selected-text="Selected">Request a Quote</span>
+				</span>
+			</label>
+		</div>
+	</section>
+</main>

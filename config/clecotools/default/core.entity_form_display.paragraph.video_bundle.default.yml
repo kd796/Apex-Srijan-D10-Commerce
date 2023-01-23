@@ -1,0 +1,61 @@
+uuid: ba703d70-f1cc-4d12-a7dc-bd195858ac50
+langcode: en
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.media_entity_browser
+    - field.field.paragraph.video_bundle.field_body_plain
+    - field.field.paragraph.video_bundle.field_media_src
+    - field.field.paragraph.video_bundle.field_title
+    - field.field.paragraph.video_bundle.field_youtube_url
+    - paragraphs.paragraphs_type.video_bundle
+  module:
+    - entity_browser
+id: paragraph.video_bundle.default
+targetEntityType: paragraph
+bundle: video_bundle
+mode: default
+content:
+  field_body_plain:
+    type: string_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  field_media_src:
+    type: entity_browser_entity_reference
+    weight: 4
+    region: content
+    settings:
+      entity_browser: media_entity_browser
+      field_widget_display: rendered_entity
+      field_widget_edit: false
+      field_widget_remove: false
+      field_widget_replace: false
+      open: true
+      field_widget_display_settings:
+        view_mode: default
+      selection_mode: selection_append
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_youtube_url:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

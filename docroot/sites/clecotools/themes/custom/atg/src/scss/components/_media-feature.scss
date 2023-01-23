@@ -1,0 +1,100 @@
+.media-feature {
+    position: relative;
+    left: 50%;
+    width: 100vw;
+    margin: 0;
+    margin-left: -50vw;
+}
+
+.media-feature-caption {
+    overflow: hidden;
+    @include watermark(#fff);
+    background: $color-orange;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: -0.044375em;
+    line-height: 1.1;
+    @include property-scale(font-size, (
+        0: 1.5em,
+        $breakpoint-layout-horizontal: 2em,
+    ));
+    @include property-scale(padding, (
+        0: 1rem,
+        $breakpoint-nav-inline: 1.5rem,
+        $breakpoint-layout-horizontal: 3rem 4rem,
+    ));
+
+    > * {
+        position: relative;
+    }
+
+    > :last-child {
+        margin: 0;
+    }
+}
+
+.media-feature-link {
+    @include link-reset;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: cover;
+}
+
+.media-feature-link--video {
+    &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: inline-block;
+        background: $color-orange url(svg-background($svg-play, #fff)) no-repeat 52% center;
+        color: #fff;
+        border-radius: 50%;
+        box-shadow: 0 2px 1.25em rgba(#000, 0.33);
+        @include property-scale(background-size, (
+            0: auto 0.75em,
+            $breakpoint-nav-inline: auto 1.5em,
+        ));
+        @include property-scale((width, height), (
+            0: 3em,
+            $breakpoint-nav-inline: 5em,
+        ));
+    }
+
+    &:hover {
+        &::before {
+            box-shadow: 0 2px 1.25em rgba(#000, 0.5);
+        }
+    }
+}
+
+.media-feature img,
+.media-feature-img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width: $breakpoint-notches) {
+    .media-feature {
+        background: #fff;
+        padding-top: 2rem;
+    }
+
+    .media-feature-caption {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        max-width: 40rem;
+    }
+}
+
+@media (min-width: $breakpoint-wide) {
+    .media-feature {
+        padding-top: 4.5rem;
+    }
+}

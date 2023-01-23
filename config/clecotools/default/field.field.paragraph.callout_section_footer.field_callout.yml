@@ -1,0 +1,25 @@
+uuid: 725168f2-4158-4680-bc75-9d561b4df22d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_callout
+    - paragraphs.paragraphs_type.callout_section_footer
+id: paragraph.callout_section_footer.field_callout
+field_name: field_callout
+entity_type: paragraph
+bundle: callout_section_footer
+label: Callout
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: entity_reference_callout_content
+      display_name: entity_reference_content_callout
+      arguments: {  }
+field_type: entity_reference

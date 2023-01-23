@@ -1,0 +1,77 @@
+uuid: 6ff441a3-b966-4265-8c72-098aa917fd9f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_product_categories
+    - paragraphs.paragraphs_type.products_category_section
+    - taxonomy.vocabulary.products
+  module:
+    - dynamic_entity_reference
+id: paragraph.products_category_section.field_product_categories
+field_name: field_product_categories
+entity_type: paragraph
+bundle: products_category_section
+label: 'Product Categories'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  taxonomy_term:
+    handler: 'default:taxonomy_term'
+    handler_settings:
+      target_bundles:
+        products: products
+      sort:
+        field: name
+        direction: asc
+      auto_create: false
+      auto_create_bundle: ''
+  comment:
+    handler: 'default:comment'
+    handler_settings: {  }
+  contact_message:
+    handler: 'default:contact_message'
+    handler_settings: {  }
+  node:
+    handler: 'default:node'
+    handler_settings: {  }
+  block_content:
+    handler: 'default:block_content'
+    handler_settings: {  }
+  menu_link_content:
+    handler: 'default:menu_link_content'
+    handler_settings: {  }
+  feeds_feed:
+    handler: 'default:feeds_feed'
+    handler_settings: {  }
+  file:
+    handler: 'default:file'
+    handler_settings: {  }
+  media:
+    handler: 'default:media'
+    handler_settings: {  }
+  paragraph:
+    handler: 'default:paragraph'
+    handler_settings: {  }
+  paragraphs_library_item:
+    handler: 'default:paragraphs_library_item'
+    handler_settings: {  }
+  salesforce_mapped_object:
+    handler: 'default:salesforce_mapped_object'
+    handler_settings: {  }
+  search_api_task:
+    handler: 'default:search_api_task'
+    handler_settings: {  }
+  shortcut:
+    handler: 'default:shortcut'
+    handler_settings: {  }
+  feeds_subscription:
+    handler: 'default:feeds_subscription'
+    handler_settings: {  }
+  user:
+    handler: 'default:user'
+    handler_settings: {  }
+field_type: dynamic_entity_reference

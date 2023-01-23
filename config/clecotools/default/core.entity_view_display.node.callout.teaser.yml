@@ -1,0 +1,31 @@
+uuid: 97d01659-043b-4c9f-bab0-c473f301cd81
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.callout.field_cta
+    - field.field.node.callout.field_textarea
+    - node.type.callout
+  module:
+    - user
+id: node.callout.teaser
+targetEntityType: node
+bundle: callout
+mode: teaser
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_cta: true
+  field_textarea: true
+  langcode: true
+  search_api_excerpt: true

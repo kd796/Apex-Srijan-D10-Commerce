@@ -1,0 +1,33 @@
+uuid: 851dcba3-76fc-44c9-97aa-416e61f3e2b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main--de
+  module:
+    - language
+    - system
+  theme:
+    - atg
+id: mainnavigationeuropede
+theme: atg
+region: main_nav
+weight: -12
+provider: null
+plugin: 'system_menu_block:main--de'
+settings:
+  id: 'system_menu_block:main--de'
+  label: 'Main navigation (Europe / DE)'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      de: de

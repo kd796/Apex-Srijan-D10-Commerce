@@ -160,3 +160,9 @@ $sites['www.satatools.us'] = 'sata_us';
 $sites['prod-www.satatools.us'] = 'sata_us';
 $sites['stg-www.satatools.us'] = 'sata_us';
 $sites['dev-www.satatools.us'] = 'sata_us';
+
+// CLECOTOOLS
+$sites['clecotools.ddev.site'] = 'clecotools';
+
+// CAMPBELL
+$sites['campbell.ddev.site'] = 'campbell';
