@@ -1,0 +1,12 @@
+additional_hostnames:
+  - gearwrench
+  - clecotools
+  - campbell
+hooks:
+  post-start:
+  - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS gearwrench; GRANT ALL ON gearwrench.* to 'db'@'%';"
+    service: db
+  - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS clecotools; GRANT ALL ON clecotools.* to 'db'@'%';"
+    service: db
+  - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS campbell; GRANT ALL ON campbell.* to 'db'@'%';"
+    service: db
