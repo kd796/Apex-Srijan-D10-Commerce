@@ -58,10 +58,10 @@ definitions:
 
           # Set variables needed for the commit.
           - COMMIT_MESSAGE=$(git log -1 --pretty=%B)
-          - TAG="build-${BITBUCKET_BUILD_NUMBER}"
+          - TAG="build-atg-${BITBUCKET_BUILD_NUMBER}"
           - TAG_MESSAGE="Bitbucket Pipelines build ${BITBUCKET_BUILD_NUMBER}"
           - USER_NAME="bitbucket-pipelines"
-          - USER_EMAIL="commits-noreply@bitbucket.org"
+          - USER_EMAIL="regadmin@apextoolgroup.com"
 
           # Run pre-deploy script, then remove files unwanted for deploy.
           - .docksal/commands/pre-deploy ci
@@ -91,6 +91,11 @@ definitions:
 pipelines:
   branches:
     master:
+      - step: *build-package
+      - step:
+          <<: *deploy-package
+          deployment: Master
+    stage:
       - step: *build-package
       - step:
           <<: *deploy-package

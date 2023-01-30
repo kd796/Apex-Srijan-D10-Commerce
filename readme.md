@@ -1,6 +1,6 @@
 # Drupal 8 KIT
 
-VMLY&R's Drupal 8 KIT is a distribution which helps build and maintain
+ATG-Global's Drupal 8 KIT is a distribution which helps build and maintain
 Drupal 8 projects.
 
 * [About KIT](#about-kit)
@@ -66,15 +66,15 @@ commands that come included in the project:
  from another environment. The command takes an optional parameter
  `builder`, which is explained in detail below under the
  "Docksal + CI and build processes" section.
- - `init-deps` – Used when project dependencies need to be redownloaded 
+ - `init-deps` – Used when project dependencies need to be redownloaded
  and installed. Currently consists of Composer and NPM.
  - `init-services` – Used when project-based command and tool dependencies
- need to be redownloaded and installed. Currently consists of validating 
+ need to be redownloaded and installed. Currently consists of validating
  that nvm, npm, and node are available in the container.
  - `k` – A simple wrapper command to make it easier to run kit commands.
  For example, `fin k gulp` instead of `fin kit/gulp`.
- - `pre-deploy` – This is used in situations where there needs to be 
- pre-deployment cleanup / modifications. Currently used to remove files 
+ - `pre-deploy` – This is used in situations where there needs to be
+ pre-deployment cleanup / modifications. Currently used to remove files
  from build artifact that don't need to be on an external environment.
 
 Additional commands are included via the `vmlyr-drupal/kit-docksal-commands`
@@ -113,7 +113,7 @@ This composer project comes with 2 VMLY&R-created Drupal profiles:
  a little more opinionated. It includes helpful Paragraph components,
  Image Styles, Media implementations, among a slew of additional
  configuration. To get the full use of the additional components, make
- sure to run `fin kit/theme` and generate a new theme off of the 
+ sure to run `fin kit/theme` and generate a new theme off of the
  "Blackbird" option of the same name.
 
 ### Multi-environment configuration and development
@@ -232,7 +232,7 @@ Getting a running site takes only a few steps for a project.
         ```
         git remote add origin [REMOTE_REPOSITORY_URL_HERE]
         ```
-        
+
 1. Run `fin start` in the project to create the Docksal project.
 1. Open each site's Drush alias file (`/drush/sites/` to update the
 local URI as well as any relevant server information if it's already
@@ -288,25 +288,25 @@ the site's sync directory and import as the local environment.
 1. To start building your own theme, run `fin kit/theme` to
 generate a new theme + theme source setup based on our example scaffold
 themes. If the _Blackbird_ profile was installed, we suggest scaffolding
-from the _Blackbird_ theme option of the same name. If you're not using 
-_Blackbird_ and want a more simple starting point for you theme we 
+from the _Blackbird_ theme option of the same name. If you're not using
+_Blackbird_ and want a more simple starting point for you theme we
 suggest scaffolding from Biplane scaffold theme.
 
 ## Post-installation and provider-related configuration
-Based on the hosting provider, some configuration needs to be created or 
-updated. Similarly, some configuration will also be unneeded and can be 
+Based on the hosting provider, some configuration needs to be created or
+updated. Similarly, some configuration will also be unneeded and can be
 removed.
 
 ### Jenkins
 @TODO Jenkins setup walk-through.
 
 ### Bitbucket pipelines
-To enable bitbucket pipeline builds, rename `bitbucket-pipelines-example.yml` 
-to `bitbucket-pipelines.yml`. Note: Bitbucket Pipelines needs to be 
+To enable bitbucket pipeline builds, rename `bitbucket-pipelines-example.yml`
+to `bitbucket-pipelines.yml`. Note: Bitbucket Pipelines needs to be
 enabled in bitbucket to work.
 #### Setup
-There is a small amount of configuration to get pipelines talking to 
-your external repository after copying the pipelines file into the 
+There is a small amount of configuration to get pipelines talking to
+your external repository after copying the pipelines file into the
 repository. In your Bitbucket account:
 - go to Settings > Pipelines > Settings and toggle "Enable Pipelines"
 - go to Settings > Pipelines > Repository Variables and add a variable named `DESTINATION_REPOSITORY` with the url to your hosting providers repository (example: `ssh://codeserver.example.drush.in:2222/~/repository.git` for Pantheon).
@@ -317,7 +317,7 @@ repository. In your Bitbucket account:
   - Generate a key pair. _Note: Acquia requires a stronger key-pair than the default that Bitbucket generates. Instead of clicking the generate button that Bitbucket provides, you will need to create the keypair manually by running `ssh-keygen -b 4096` in your local terminal (consider naming it something descriptive) and then adding its private and public keys to Bitbucket._
   - Take the public key and add it to a user on the hosting provider repository. It's best to use either a deployment key if the provider supports it, or create a service account solely for connecting the provider to pipelines (example: a user on the provider with pipelines@yourwebsite.com that is solely for holding the connection to pipelines).
   - Take the host address of the hosting provider's repository and place it in the "Host addresses" field in the Known Hosts area, then fetch the fingerprint to make sure the connection is validated.
-You should now be able to push up your change and watch the pipelines kick off. 
+You should now be able to push up your change and watch the pipelines kick off.
 
 _Note: sometimes it takes some playing-around-with to make sure that pipelines can connect to the hosting-provider repository, such as recreating the key pairs._
 
@@ -325,13 +325,13 @@ _Note: sometimes it takes some playing-around-with to make sure that pipelines c
 ##### Branch: Master
 This pipeline watches the master branch, and when code is merged into it, automatically builds and deploys the code to the relevant "Development" environment repository.
 
-This pipeline uses the default "Build package" and "Deploy package" pipeline steps. The "Deploy package" step defaults to run the "Development" deployment. 
+This pipeline uses the default "Build package" and "Deploy package" pipeline steps. The "Deploy package" step defaults to run the "Development" deployment.
 
 _In scenarios where there should be a development branch building to the Development environment, and the master branch building to Stage or Production environments, the `deployment` would be changed to the relevant environment name, and a new branch-based pipeline would be created to push to Development._
 ##### Custom: Feature
 This pipeline takes any branch and allows to build to a custom "feature" branch on the hosting provider repository. This allows for easily creating "Feature" environments on the hosting provider.
 
-This pipeline uses the default "Build package" and "Deploy package" pipeline steps. "The Deploy package" step defaults to run a "Feature" deployment, which will need to be created under the Settings > Pipelines > Deployments tab on Bitbucket Pipelines. 
+This pipeline uses the default "Build package" and "Deploy package" pipeline steps. "The Deploy package" step defaults to run a "Feature" deployment, which will need to be created under the Settings > Pipelines > Deployments tab on Bitbucket Pipelines.
 
 To run this pipeline:
 - go to the "Branches" section of your Bitbucket account
@@ -347,7 +347,7 @@ This pipeline automatically runs on pull-requests. It does a full build and then
 This pipeline uses the default "Build package" and "Test package" pipeline steps. It does not deploy code.
 
 ### Files included in KIT
-The following are grouped to give context for which 
+The following are grouped to give context for which
 files/directories can be modified or removed.
 
 ###### Provider-specific files: Acquia
@@ -369,7 +369,7 @@ files/directories can be modified or removed.
 - `/travis.yml` (we don't typically use travis; kept for reference if needed in the project)
 
 ### Provider-specific modifications
-Modifications to make to the project based on which hosting provider is 
+Modifications to make to the project based on which hosting provider is
 chosen.
 
 ###### Provider-specific modifications: Acquia
@@ -414,7 +414,7 @@ chosen.
     1. Open `/web/sites/www/settings.php` and find the "Include server-specific configuration." section.
     1. Uncomment the Pantheon portion.
     1. Remove uneeded server-specific configuration from other providers.
-    
+
 ###### Provider-specific modifications: Platform.sh
 1. Remove unnecessary files and directories for Platform.sh:
     - [List of universal files to remove](#universal-files)
@@ -467,7 +467,7 @@ Gulp is used to process the files in _source_ and writes the corresponding outpu
 The following functionality is provided by the default gulp file:
 
 - Sass - Processes all of the scss files under _styles_ in each theme directory and generates source maps. The output is places in _docroot/themes/custom/yourtheme/css_.
-- Javascript - Copies and generates source maps for all js files under _scripts_ in each theme directory. The output is placed in _docroot/custom/yourtheme/js_. 
+- Javascript - Copies and generates source maps for all js files under _scripts_ in each theme directory. The output is placed in _docroot/custom/yourtheme/js_.
 - Images - Minifies all images under _images_ and places the output in _docroot/custom/yourtheme/images_.
 - Fonts - Copies all the files under _fonts_ to _docroot/custom/yourtheme/fonts_.
 - Icons - Compiles all the svg files under _icons_ and writes the out put to the _docroot/custom/yourtheme/styles/vendor_ and _docroot/custom/yourtheme/fonts/icons_ directories.
