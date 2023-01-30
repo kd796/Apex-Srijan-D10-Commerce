@@ -1,0 +1,44 @@
+uuid: 38e7dda5-06d7-4bd9-8985-18e5cdbea652
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.multisite_featured.body
+    - field.field.node.multisite_featured.field_list_type
+    - field.field.node.multisite_featured.field_listing_image
+    - field.field.node.multisite_featured.field_listing_text_for_video
+    - field.field.node.multisite_featured.field_media
+    - field.field.node.multisite_featured.field_read_more
+    - field.field.node.multisite_featured.field_short_description
+    - node.type.multisite_featured
+  module:
+    - text
+    - user
+id: node.multisite_featured.teaser
+targetEntityType: node
+bundle: multisite_featured
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_list_type: true
+  field_listing_image: true
+  field_listing_text_for_video: true
+  field_media: true
+  field_read_more: true
+  field_short_description: true
+  langcode: true
+  search_api_excerpt: true
