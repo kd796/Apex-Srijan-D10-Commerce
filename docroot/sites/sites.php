@@ -161,6 +161,21 @@ $sites['prod-www.satatools.us'] = 'sata_us';
 $sites['stg-www.satatools.us'] = 'sata_us';
 $sites['dev-www.satatools.us'] = 'sata_us';
 
+// New Sites for CLECOTOOLS
+$sites['dev-www.clecotools.com'] = 'clecotools';
+$sites['stg-www.clecotools.com'] = 'clecotools';
+$sites['prod-www.clecotools.com'] = 'clecotools';
+
+// New Sites for CAMPBELL
+$sites['dev-www.campbellchainandfittings.com'] = 'campbell';
+$sites['stg-www.campbellchainandfittings.com'] = 'campbell';
+$sites['prod-www.campbellchainandfittings.com'] = 'campbell';
+
+// New Sites for APEXTOOLGROUP
+$sites['dev-www.apextoolgroup.com'] = 'campbell';
+$sites['stg-www.apextoolgroup.com'] = 'campbell';
+$sites['prod-www.apextoolgroup.com'] = 'campbell';
+
 // CLECOTOOLS
 $sites['clecotools.ddev.site'] = 'clecotools';
 
