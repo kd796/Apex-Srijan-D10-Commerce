@@ -10,10 +10,12 @@ description: ''
 weight: -5
 folder: ../config/campbell/local
 module:
+  acquia_connector: 0
+  acquia_purge: 0
   dblog: 0
-  devel: 0
   stage_file_proxy: 0
   views_ui: 0
+  devel: 0
 theme: {  }
 blacklist: {  }
 graylist:
@@ -22,4 +24,4 @@ graylist:
   - advagg_js_minify.settings
   - system.performance
 graylist_dependents: true
-graylist_skip_equal: false
+graylist_skip_equal: true
