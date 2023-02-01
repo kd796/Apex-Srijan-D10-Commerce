@@ -1,0 +1,51 @@
+uuid: 178c9d17-33f0-4581-a802-b35c5e3f8b14
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.brand_timeline.body
+    - field.field.node.brand_timeline.field_event_date
+    - field.field.node.brand_timeline.field_media
+    - node.type.brand_timeline
+  module:
+    - datetime
+    - text
+    - user
+id: node.brand_timeline.default
+targetEntityType: node
+bundle: brand_timeline
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_event_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_media:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true
