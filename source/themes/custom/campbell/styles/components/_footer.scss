@@ -1,0 +1,143 @@
+.footer-container {
+  address {
+    background: url('#{$image-base-path}/footer_back.png') repeat-x scroll left bottom $nero;
+    border-top: 1px solid $black;
+    color: $white;
+    padding: 15px 0 20px;
+    text-align: center;
+    font-style: normal;
+    margin-bottom: 0;
+  }
+
+  .footer-columns {
+    background: url('#{$image-base-path}/footer_back.png') repeat-x left top $nero;
+    padding: 50px 0 10px;
+    font-family: $arial;
+    color: $white;
+    @media only screen and (max-width: $tablet-max) {
+      padding: 25px 25px 10px;
+    }
+  }
+
+  .search-block-form {
+    .form-type-search {
+      background: url('#{$image-base-path}/campbell_search_footer.png') left top no-repeat;
+      width: 190px;
+
+      input {
+        top: 28%;
+        left: 2px;
+        right: 0;
+        width: 85px;
+      }
+    }
+  }
+}
+
+.footer-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+
+  @media only screen and (max-width: $tablet) {
+    flex-direction: column;
+  }
+
+  &__item {
+    padding: 0 25px;
+    float: left;
+    width: 130px;
+    background: url('#{$image-base-path}/footer_seprator.png') right top no-repeat;
+    min-height: 118px;
+    @media only screen and (max-width: $tablet) {
+      background: none;
+      min-height: unset;
+      margin-bottom: 0;
+      width: 90%;
+      padding: 0;
+      
+    }
+
+    &:first-child {
+      width: 225px;
+      padding-left: 0;
+
+      @media only screen and (max-width: $tablet)  {
+        width: 90%;
+      }
+
+      .first {
+        div {
+          font-size: 11px;
+          margin-bottom: 15px;
+        }
+      }
+    }
+
+    &:nth-child(2),
+    &:nth-child(3) {
+      @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+        width: 90px;
+      }
+    }
+
+    &:last-child {
+      background: none;
+      @media only screen and (min-width: $tablet-max) {
+        padding-right: 0;
+      }
+      @media only screen and (max-width: $tablet-max)  {
+        padding-left: 0;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: $white;
+      font-size: 13px;
+      font-weight: $bold;
+      display: block;
+      margin-bottom: 8px;
+
+      &:hover {
+        color: $pantone;
+      }
+
+      @media only screen and (max-width: $tablet-max) {
+        margin-bottom: 0;
+        line-height: 1.3;
+      }
+    }
+
+    .pnumber-color {
+      color: $pantone;
+      font-size: 11px;
+      margin-bottom: 0;
+    }
+
+    .description {
+      font-size: 11px;
+      padding: 8px 0;
+    }
+  }
+
+  .awrf-pad {
+    margin-top: 20px;
+    @media only screen and (max-width: $tablet) {
+      margin-top: 15px;
+    }
+  }
+
+  .nacm-pad {
+    margin-top: 35px;
+    @media only screen and (max-width: $tablet) {
+      margin-top: 15px;
+    }
+  }
+
+  .footer-social-out {
+    h2 {
+      font-size: 13px;
+      font-weight: bold;
+    }
+  }
+}
