@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.brand_timeline.body
     - field.field.node.brand_timeline.field_event_date
+    - field.field.node.brand_timeline.field_event_media_link
     - field.field.node.brand_timeline.field_media
     - node.type.brand_timeline
   module:
@@ -31,6 +32,7 @@ content:
     region: content
 hidden:
   field_event_date: true
+  field_event_media_link: true
   field_media: true
   langcode: true
   search_api_excerpt: true

@@ -5,10 +5,12 @@ dependencies:
   config:
     - field.field.node.brand_timeline.body
     - field.field.node.brand_timeline.field_event_date
+    - field.field.node.brand_timeline.field_event_media_link
     - field.field.node.brand_timeline.field_media
     - node.type.brand_timeline
   module:
     - datetime
+    - link
     - text
     - user
 id: node.brand_timeline.default
@@ -31,6 +33,18 @@ content:
       format_type: medium
     third_party_settings: {  }
     weight: 103
+    region: content
+  field_event_media_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 104
     region: content
   field_media:
     type: entity_reference_entity_view
