@@ -61,7 +61,7 @@ let config = [];
 
 // Removes hidden files and update the key value
 for (const value of files) {
-  if (value.startsWith(".")) {
+  if (value.startsWith(".") || value !== 'atg') {
     continue;
   }
   config.push({themeName: value});
