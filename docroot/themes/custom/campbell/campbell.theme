@@ -1,0 +1,24 @@
+
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the campbell theme.
+ */
+
+use Drupal\Component\Utility\NestedArray;
+use Drupal\Core\Render\Element;
+use Drupal\media\Entity\Media;
+use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
+use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
+use Drupal\responsive_image\Entity\ResponsiveImageStyle;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter() for search_form.
+ */
+function campbell_form_alter(&$form, &$form_state, &$form_id) {
+  $form['search_block_form']['#attributes']['placeholder'][] = t('Search');
+}
