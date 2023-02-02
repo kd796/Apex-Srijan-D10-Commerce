@@ -6,12 +6,16 @@ dependencies:
     - field.storage.node.body
     - node.type.markets
   module:
+    - allowed_formats
     - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats: {  }
 id: node.markets.body
 field_name: body
 entity_type: node
 bundle: markets
-label: Body
+label: Overview
 description: ''
 required: false
 translatable: true

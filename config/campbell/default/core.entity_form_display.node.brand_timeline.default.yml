@@ -5,10 +5,12 @@ dependencies:
   config:
     - field.field.node.brand_timeline.body
     - field.field.node.brand_timeline.field_event_date
+    - field.field.node.brand_timeline.field_event_media_link
     - field.field.node.brand_timeline.field_media
     - node.type.brand_timeline
   module:
     - datetime
+    - link
     - media_library
     - path
     - text
@@ -38,6 +40,14 @@ content:
     weight: 123
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_event_media_link:
+    type: link_default
+    weight: 124
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
     third_party_settings: {  }
   field_media:
     type: media_library_widget
