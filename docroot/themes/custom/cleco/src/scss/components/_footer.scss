@@ -1,0 +1,75 @@
+.footer {
+  display: flex;
+  color: #fff;
+  flex-flow: row wrap;
+  @include section-padding(horizontal);
+  border-top: 1px solid rgba($color-gray-light, 0.18);
+  @include property-scale(padding-bottom, $container-padding-map);
+  @include property-scale(padding-top, map-multiplier($container-padding-map, 2));
+}
+
+.footer-branding {
+  flex-grow: 1;
+  margin-bottom: 1em;
+  @include property-scale(padding-right, $container-padding-map);
+}
+
+.footer-primary {
+  flex-grow: 1;
+}
+
+.footer-secondary {
+  width: 100%;
+  display: flex;
+  font-size: 0.875em;
+  flex-flow: row wrap;
+  letter-spacing: 0.03125em;
+  color: $color-gray-medium;
+  justify-content: space-between;
+  border-top: 1px solid rgba($color-gray-light, 0.18);
+  @include property-scale((padding-top), $container-padding-map);
+}
+
+.footer-copyright {
+  margin-right: 2em;
+}
+
+@media (max-width: 779px) {
+  .nav--social {
+    order: 1;
+    margin-bottom: 1em;
+  }
+
+  .footer-primary,
+  .footer-secondary {
+    order: 2;
+    width: 100%;
+  }
+}
+
+@media (min-width: 800px) {
+  .footer-branding {
+    flex: 0 0 25%;
+  }
+}
+
+
+// -----------------------------------------------------------------------------
+//! Merchandise button
+// -----------------------------------------------------------------------------
+
+.footer-branding .button {
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+
+    &:not([disabled]):hover:not(.button--outline),
+    &:not([disabled]):focus:not(.button--outline) {
+        background: lighten($color-orange, 4%);
+        border-color: lighten($color-orange, 4%);
+    }
+
+    @include min( 780px ) {
+      margin-bottom: 0;
+      margin-top: 6.2rem;
+    }
+}

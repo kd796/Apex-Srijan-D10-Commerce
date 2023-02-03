@@ -1,0 +1,195 @@
+$hero-height-map: (
+  medium: 28rem,
+  large: 40rem,
+);
+
+/**
+ * GENERAL
+ */
+.hero {
+  position: relative;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  overflow: hidden;
+  padding-top: 3.375em;
+  padding-bottom: 3.375em;
+  @include section-padding(horizontal);
+
+  &--enhanced {
+    .hero-text {
+      margin-left: 0;
+      margin-right: 0;
+      color: $color-off-black;
+      font-weight: 500;
+
+      p {
+        margin-bottom: 2.25em;
+      }
+
+      :last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+/**
+ * HERO IMAGE
+ */
+.hero-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-image img,
+.hero-image-img {
+  object-fit: cover;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+/**
+ * HERO TEXT
+ */
+.hero-text {
+  position: relative;
+}
+
+.hero-title-prefix,
+.hero-title {
+  margin: 0;
+
+  [data-quickedit-field-id] {
+    display: inline;
+  }
+}
+
+.hero-title-prefix {
+  font-weight: 500;
+  font-size: fluid-value(1rem, 1.5rem, 20rem, 87.5rem);
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.1;
+  margin-bottom: 0.5em;
+}
+
+.hero-title {
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  font-size: fluid-value(2rem, 3rem, 20rem, 87.5rem);
+  line-height: 1.13;
+
+  &::after {
+    content: "\00a0";
+    padding-left: 0.0625em;
+    background: url(svg-background($svg-circle, $color-orange)) no-repeat right 78%;
+    background-size: 0.25em 0.25em;
+  }
+}
+
+.hero-action {
+  margin-top: 1rem;
+}
+
+@media (min-width: $breakpoint-nav-inline) {
+  .hero-text {
+    margin-left: 8.3%;
+    margin-right: 8.3%;
+  }
+}
+
+/**
+ * TEXT WIDTH VARIANT
+ */
+@media (min-width: 800px) {
+  .hero:not(.hero--text-full) {
+    .hero-text {
+      flex-basis: 37%;
+      min-width: 32rem;
+    }
+  }
+}
+
+/**
+ * SIZE VARIANT
+ */
+.hero--medium {
+  min-height: fluid-value(14rem, map-get($hero-height-map, medium), 20rem, 87.5rem);
+
+  .hero-title-prefix {
+    font-size: fluid-value(1rem, 1.5rem, 20rem, 87.5rem);
+  }
+
+  .hero-title {
+    font-size: fluid-value(2.5rem, 4rem, 20rem, 87.5rem);
+    line-height: 1.1;
+  }
+
+  .hero-action {
+    margin-top: 2rem;
+  }
+}
+
+.hero--large {
+  min-height: fluid-value(24rem, map-get($hero-height-map, large), 20rem, 87.5rem);
+
+  .hero-title-prefix {
+    font-size: fluid-value(1.125rem, 2rem, 20rem, 87.5rem);
+  }
+
+  .hero-title {
+    font-size: fluid-value(3rem, 4.75rem, 20rem, 87.5rem);
+    line-height: 0.89;
+  }
+
+  .hero-action {
+    margin-top: 3.25rem;
+  }
+}
+
+.hero--align-left {
+  .hero-text {
+    margin-left: 0;
+  }
+}
+
+.hero-form {
+  position: relative;
+  max-width: 20rem;
+  margin-left: auto;
+
+  .main {
+    background: $color-accent-bg;
+    padding: 3rem;
+  }
+
+  h3 {
+    text-transform: uppercase;
+    color: $color-orange;
+  }
+
+  p {
+    color: $color-off-black;
+  }
+
+  .button {
+    width: 100%;
+
+    &:not(.button--simple) {
+      &:not(.button--small) {
+        min-width: 6rem;
+      }
+    }
+  }
+}

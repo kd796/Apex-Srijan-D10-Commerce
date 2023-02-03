@@ -1,0 +1,67 @@
+/**
+ * BOX SIZING
+ * Set global box-sizing to inherit, allowing overrides at component level.
+ */
+html {
+  box-sizing: border-box;
+
+  *,
+  :before,
+  :after {
+    box-sizing: inherit;
+  }
+}
+
+/**
+ * BODY
+ */
+html {
+  background: #fff;
+}
+
+html.is-captive {
+  &,
+  body {
+    overflow: hidden;
+  }
+
+  &.is-captive--scroll {
+    &,
+    body {
+      overflow: scroll;
+    }
+  }
+
+  .app {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+  }
+}
+
+.app {
+  background: $color-off-black url('../img/bg-texture.jpg') fixed repeat center center;
+}
+
+.main {
+  background: #fff;
+}
+
+
+.is-centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contain {
+    max-width: 1220px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-center {
+    text-align: center;
+}
