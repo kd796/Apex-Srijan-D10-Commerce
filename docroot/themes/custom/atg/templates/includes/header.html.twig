@@ -14,7 +14,9 @@
       </a>
     </div>
 
-    {{ page.main_nav }}
+    <div class="masthead-navigation">
+      {{ page.main_nav }}
+    </div>
 
     <div class="masthead-search">
       <button class="dropdown-toggle masthead-search-toggle masthead-search-toggle--open">
@@ -26,6 +28,10 @@
         <span class="dropdown-toggle-label">Close</span>
       </button>
     </div>
+
+    <a href="#" class="toggle">
+      <span>Menu</span>
+    </a>
     {# /search/node #}
     <form method="GET" action="{{ get_locale().path }}/search/results" id="search-form" class="masthead-search-form">
       <input type="search" name="q" class="masthead-search-form-input">
