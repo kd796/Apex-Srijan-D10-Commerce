@@ -1,2 +1,0 @@
-webpackJsonp([2],{0:function(e,n,t){t("gc0w"),t("Od0P"),t("z3pU"),e.exports=t("boEG")},Od0P:function(e,n){},boEG:function(e,n){},gc0w:function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var o=t("I3G/"),c=t.n(o);Drupal.behaviors.reVue={attach:function(e,n){e.children.length>0&&app.$el.contains(e)&&(new(c.a.extend({template:e.outerHTML}))).$mount(e)}}},z3pU:function(e,n){}},[0]);
-//# sourceMappingURL=drupal.js.map

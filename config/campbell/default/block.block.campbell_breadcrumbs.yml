@@ -1,0 +1,22 @@
+uuid: 2772a78a-fd4b-4878-a9eb-57a6e10bf16e
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - campbell
+_core:
+  default_config_hash: oXUb3JZR2WW5VOdw4HrhRicCsq51mCgLfRyvheG68ck
+id: campbell_breadcrumbs
+theme: campbell
+region: pre_content
+weight: -5
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

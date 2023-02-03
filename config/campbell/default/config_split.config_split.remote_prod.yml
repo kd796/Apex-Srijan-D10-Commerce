@@ -10,11 +10,14 @@ description: ''
 weight: 0
 folder: ../config/campbell/remote_prod
 module:
+  acquia_connector: 0
   captcha: 0
   recaptcha: 0
   syslog: 0
 theme: {  }
-blacklist: {  }
-graylist: {  }
+blacklist:
+  - purge.logger_channels
+graylist:
+  - system.performance
 graylist_dependents: true
 graylist_skip_equal: true

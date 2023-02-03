@@ -1,0 +1,23 @@
+name: Cleco
+type: theme
+base theme: atg
+description: Global Theme for Cleco and Apex
+#core: 8.x
+core_version_requirement: ^8 || ^9
+libraries:
+  - cleco/base-css
+  - cleco/base-js
+  - cleco/drupal
+regions:
+  header: 'Header'
+  header_language: 'Language Selector'
+  main_nav: 'Main Nav'
+  header_utils_nav: 'Header Utils Nav'
+  footer_nav: 'Footer Nav'
+  footer_utils_nav: 'Footer Utils Nav'
+  breadcrumb: 'Breadcrumb'
+  content: 'Content'
+  product_detail_page_callouts: 'Product Detail Page Callouts'
+  form: 'Forms'
+ckeditor_stylesheets:
+  - dist/css/editor.css
