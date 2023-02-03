@@ -1,0 +1,154 @@
+/**
+ * GENERAL
+ */
+body {
+  font-family: $font-default;
+  line-height: $line-height-default;
+  color: $color-off-black;
+  -webkit-text-size-adjust: none;
+}
+
+i,
+em {
+  font-style: italic;
+}
+
+b,
+strong {
+  font-weight: bold;
+}
+
+/**
+ * LINE LENGTH
+ */
+p,
+li,
+dt,
+dd,
+blockquote {
+  max-width: 50em;
+}
+
+/**
+ * HEADINGS
+ */
+%h1,
+.h1,
+h1 {
+  @include fluid-property(font-size, 1.5em, 2em, 20rem, 40rem);
+  font-weight: 500;
+  letter-spacing: -0.04375em;
+  line-height: 1.3;
+  margin-bottom: 1em;
+}
+
+%h2,
+.h2,
+h2 {
+  font-size: 1.375em;
+  font-weight: bold;
+  letter-spacing: -0.03125em;
+  line-height: 1.3;
+  margin-bottom: 1em;
+}
+
+%h3,
+.h3,
+h3 {
+  font-size: 1.125em;
+  font-weight: bold;
+  line-height: 1.3;
+  margin-bottom: 1em;
+}
+
+%h4,
+.h4,
+h4 {
+  font-size: 0.9375em;
+  font-weight: bold;
+  font-stretch: condensed;
+  letter-spacing: 0.0625em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  margin-bottom: 1em;
+}
+
+%h5,
+.h5,
+h5 {
+  font-size: 1em;
+  font-weight: bold;
+  line-height: $line-height-tight;
+  margin-bottom: 1em;
+}
+
+%h6,
+.h6,
+h6 {
+  font-size: 0.75em;
+  font-weight: bold;
+  font-stretch: condensed;
+  text-transform: uppercase;
+  letter-spacing: 0.0625em;
+  line-height: $line-height-tight;
+  margin-bottom: 1em;
+}
+
+.hmeta {
+  display: inline-block;
+  font-size: 0.6825em;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  color: $color-gray-medium;
+  letter-spacing: -0.03125em;
+}
+
+/**
+ * MARGINS
+ */
+p,
+ul,
+ol,
+dl,
+blockquote {
+  margin-bottom: 1em * $line-height-default;
+}
+
+/**
+ * PREFORMATTED
+ */
+%pre,
+.pre,
+pre {
+  white-space: pre;
+  background: $color-accent-bg;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+/**
+ * COLUMNS
+ */
+.text-columns {
+  column-width: 20em;
+  column-gap: 3em;
+}
+
+/**
+ * SUP / SUB
+ */
+sup {
+    vertical-align: super;
+    font-size: 80%;
+    top: 0.1rem;
+    position: relative;
+}
+
+
+sub {
+    vertical-align: sub;
+    font-size: 80%;
+    bottom: 0.1rem;
+    position: relative;
+}

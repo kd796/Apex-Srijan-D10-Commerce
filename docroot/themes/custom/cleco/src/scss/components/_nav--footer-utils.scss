@@ -1,0 +1,21 @@
+.nav--footer-utils,
+nav[class*='nav--footer-utils'] {
+  .nav-menu {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+
+  .nav-link {
+    color: inherit;
+
+    &:hover {
+      color: $color-gray-light;
+      box-shadow: none;
+    }
+  }
+
+  .nav-item + .nav-item {
+    @include property-scale(margin-left, $container-padding-map);
+  }
+}

@@ -1,0 +1,40 @@
+.nav--header-utils,
+nav[class*='nav--header-utils'] {
+  display: flex;
+  margin-right: -0.5em;
+
+  .nav-menu,
+  .nav-item {
+    display: flex;
+  }
+
+  /**
+   * GENERAL
+   */
+  .nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75em 0.5em;
+    font-size: 0.75em;
+    font-weight: 500;
+    line-height: $line-height-tight;
+    color: $color-off-black;
+    text-align: center;
+    margin-bottom: -1px;
+
+    &:hover {
+      box-shadow: inset 0 -0.25em 0 $color-orange;
+    }
+
+    @media (min-width: $breakpoint-nav-inline) {
+      padding-top: 0.9375em;
+      padding-bottom: 0.9375em;
+    }
+  }
+}
+
+.nav--header-utils--gb,
+.nav--header-utils--de {
+    margin-left: auto;
+}
