@@ -8,17 +8,17 @@
 .masthead {
   z-index: 10;
   position: relative;
-  background: #fff;
+  background: $color-white;
 }
 
 .toggle {
-  width: 30px;
   height: auto;
   float: right;
   display: none;
+  width: 1.875rem;
   cursor: pointer;
-  margin: 0 0 0 15px;
   position: relative;
+  margin: 0 0 0 0.9375rem;
 
   @media only screen and (max-width: $media-screen-medium) {
     display: block;
@@ -26,9 +26,9 @@
 
   span {
     width: 100%;
-    height: 3px;
+    height: 0.1875rem;
     display: block;
-    border-radius: 2px;
+    border-radius: 0.125rem;
     text-indent: -9999px;
     background: $color-red;
     transform: translateY(-50%);
@@ -40,10 +40,10 @@
     &:before,
     &:after {
       width: 100%;
-      height: 3px;
+      height: 0.1875rem;
       content: '';
       display: block;
-      border-radius: 2px;
+      border-radius: 0.125rem;
       background: $color-red;
       transition: all 0.3s ease;
       position: absolute;
@@ -51,11 +51,11 @@
     }
 
     &:before {
-      top: -10px;
+      top: -0.625rem;
     }
 
     &:after {
-      bottom: -10px;
+      bottom: -0.625rem;
     }
   }
 
@@ -84,7 +84,7 @@
   }
 }
 
-@media (max-width: 700px) {
+@media only screen and (max-width: 700px) {
   .masthead-utility {
     font-size: 0.875em;
   }
@@ -97,11 +97,11 @@
 .logo {
   @include link-reset;
   display: inline-block;
-  width: 106px;
-  height: 24px;
+  width: 6.625rem;
+  height: 1.5rem;
 
   @media only screen and (max-width: $media-screen-mobile) {
-    width: 100px;
+    width: 6.25rem;
   }
 
   svg {
@@ -109,9 +109,9 @@
     height: 100%;
   }
 
-  @media (min-width: 800px) {
-    width: 141px;
-    height: 32px;
+  @media only screen and (min-width: 800px) {
+    width: 8.8125rem;
+    height: 2rem;
   }
 }
 
@@ -253,8 +253,8 @@
 .masthead-utility {
   border-bottom: 1px solid rgba($color-gray-light, 0.43);
   @media only screen and (max-width: $media-screen-mobile) {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
   }
 }
 
@@ -266,7 +266,7 @@
 
   @media only screen and (max-width: $media-screen-mobile) {
     width: 100%;
-    padding-bottom: 5px;
+    padding-bottom: 0.3125rem;
   }
 }
 /**
@@ -351,7 +351,7 @@
               &.nav-link--depth-0 {
                 @media only screen and (max-width: $media-screen-medium) {
                   margin: 0;
-                  padding: 12px 0;
+                  padding: 0.75rem 0;
                   overflow: visible;
                 }
 
@@ -369,17 +369,17 @@
               &:after {
                 @media only screen and (max-width: $media-screen-medium) {
                   opacity: 1;
-                  width: 10px;
+                  width: 0.625rem;
                   content: "";
-                  height: 10px;
+                  height: 0.625rem;
                   bottom: unset;
                   position: static;
-                  margin-left: 15px;
+                  margin-left: 0.9375rem;
                   display: inline-block !important;
                   transform: rotate(135deg);
                   background-color: transparent;
-                  border-top: 2px solid $color-off-black;
-                  border-left: 2px solid $color-off-black;
+                  border-top: 0.125rem solid $color-off-black;
+                  border-left: 0.125rem solid $color-off-black;
                 }
               }
 
