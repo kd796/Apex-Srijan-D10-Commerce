@@ -45,7 +45,7 @@ class GetProductImages extends ProcessPluginBase {
     'Beauty-Glamour Image', 'Cutaway Image', 'Highlight Image',
     'In Package Image', 'In Use Image', 'Literature', 'Part Shot 1',
     'Part Shot 2', 'Part Shot 3', 'Part Shot 4', 'Part Shot 5',
-    'Product Logo', 'Secondary Image', 'Warning Image', 'ICON'
+    'Product Logo', 'Secondary Image', 'Warning Image', 'ICON', 'eGraphics'
   ];
 
   /**
