@@ -1,11 +1,15 @@
+body {
+  &.user-logged-in {
+    @media only screen and (max-width: $tablet-max) {
+      padding-top: 78px !important;
+    }
+  }
+}
+
 #wrapper {
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
-
-  // .user-logged-in & {
-  //   min-height: calc(100vh - 78px);
-  // }
 }
 
 .wrapper-content {

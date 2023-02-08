@@ -25,7 +25,7 @@
       width: 190px;
 
       input {
-        top: 28%;
+        top: 32%;
         left: 2px;
         right: 0;
         width: 85px;
@@ -45,24 +45,27 @@
   &__item {
     padding: 0 25px;
     float: left;
-    width: 130px;
+    width: 175px;
     background: url('#{$image-base-path}/footer_seprator.png') right top no-repeat;
     min-height: 118px;
-    @media only screen and (max-width: $tablet) {
+    @media only screen and (max-width: $tablet-max) {
       background: none;
       min-height: unset;
       margin-bottom: 0;
-      width: 90%;
+    }
+    @media only screen and (max-width: $tablet) {
+      width: 95%;
       padding: 0;
-      
+      margin-top: 10px;
     }
 
     &:first-child {
-      width: 225px;
+      width: 260px;
       padding-left: 0;
 
       @media only screen and (max-width: $tablet)  {
-        width: 90%;
+        width: 95%;
+        margin-top: 0;
       }
 
       .first {
@@ -76,7 +79,14 @@
     &:nth-child(2),
     &:nth-child(3) {
       @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
-        width: 90px;
+        width: 140px;
+      }
+    }
+
+    &:nth-child(4) {
+      @media only screen and (min-width: $tablet) and (max-width: $tablet-max)  {
+        width: 160px;
+        padding-right: 0;
       }
     }
 

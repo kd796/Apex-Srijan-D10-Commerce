@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac68f159da12d2b560cea83e3f9bbb20",
+    "content-hash": "e238cab1f0031bf5073dc02a4f05fbf1",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -11928,6 +11928,66 @@
             }
         },
         {
+            "name": "drupal/views_tree",
+            "version": "2.0.0-rc1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/views_tree.git",
+                "reference": "8.x-2.0-rc1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/views_tree-8.x-2.0-rc1.zip",
+                "reference": "8.x-2.0-rc1",
+                "shasum": "04da08c0dfac48dc008f0757cdc12bb406589127"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-2.0-rc1",
+                    "datestamp": "1671654510",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Crell",
+                    "homepage": "https://www.drupal.org/user/26398"
+                },
+                {
+                    "name": "dawehner",
+                    "homepage": "https://www.drupal.org/user/99340"
+                },
+                {
+                    "name": "gaurav.kapoor",
+                    "homepage": "https://www.drupal.org/user/3495331"
+                },
+                {
+                    "name": "geerlingguy",
+                    "homepage": "https://www.drupal.org/user/389011"
+                },
+                {
+                    "name": "jhedstrom",
+                    "homepage": "https://www.drupal.org/user/208732"
+                }
+            ],
+            "description": "A Views style plugin to display a tree of elements using the adjacency model.",
+            "homepage": "https://www.drupal.org/project/views_tree",
+            "support": {
+                "source": "https://git.drupalcode.org/project/views_tree"
+            }
+        },
+        {
             "name": "drupal/viewsreference",
             "version": "2.0.0-beta4",
             "source": {
@@ -12034,6 +12094,64 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/viewsreference_filter",
                 "issues": "https://www.drupal.org/project/issues/viewsreference_filter"
+            }
+        },
+        {
+            "name": "drupal/we_megamenu",
+            "version": "1.13.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/we_megamenu.git",
+                "reference": "8.x-1.13"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/we_megamenu-8.x-1.13.zip",
+                "reference": "8.x-1.13",
+                "shasum": "b74e32bedf549354c4aa60280e7788382ede7fb3"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.13",
+                    "datestamp": "1624951526",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Hai Nguyen Ngoc (HaiNN)",
+                    "homepage": "https://www.drupal.org/u/hainn",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Dinh Bao Tran",
+                    "homepage": "https://www.drupal.org/user/3635964"
+                },
+                {
+                    "name": "Hai Nguyen",
+                    "homepage": "https://www.drupal.org/user/1229130"
+                },
+                {
+                    "name": "WeebPal",
+                    "homepage": "https://www.drupal.org/user/1861072"
+                }
+            ],
+            "description": "This powerful Drupal module helps you create custom menu, video and Drupal Blocks.",
+            "homepage": "https://www.drupal.org/project/we_megamenu",
+            "support": {
+                "source": "https://git.drupalcode.org/project/we_megamenu",
+                "issues": "https://www.drupal.org/project/issues/we_megamenu"
             }
         },
         {
@@ -23332,6 +23450,7 @@
         "drupal/telephone_formatter": 10,
         "drupal/ultimate_cron": 15,
         "drupal/views_taxonomy_term_name_into_id": 15,
+        "drupal/views_tree": 5,
         "drupal/viewsreference": 15,
         "vmlyr-drupal/kit-docksal-commands": 20
     },

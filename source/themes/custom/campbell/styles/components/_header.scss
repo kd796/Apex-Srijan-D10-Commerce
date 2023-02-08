@@ -21,6 +21,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    position: relative;
     @media only screen and (min-width: 768px) and (max-width: $tablet-max) {
       justify-content: unset;
     }
@@ -33,7 +34,6 @@
   }
 
   .region-header {
-
     .main-nav {
       margin: 0;
       padding: 0;
@@ -65,10 +65,11 @@
       a {
         display: block;
         color: $white;
-        padding: 12px 20px;
+        padding: 11px 20px;
 
         &:hover {
           background: $dark-gray;
+          color: $white;
         }
       }
     }
@@ -92,9 +93,10 @@
 
   .mobile-header {
     position: absolute;
-    right: 0;
+    right: -20px;
     z-index: 3;
     min-height: 300px;
+    width: calc(100% + 40px);
 
     .region-header .main-nav {
       flex-direction: column;
@@ -115,6 +117,10 @@
 
   .mobile-nav {
     position: relative;
+
+    @media only screen and (max-width: $tablet-max) {
+      position: unset;
+    }
   }
 
   .mobile-search {
@@ -133,7 +139,7 @@
     .mobile-search-block {
       position: absolute;
       right: -56px;
-      top: 125%;
+      top: 100%;
       background: $white;
       padding: 10px;
       border-radius: 0 10px 10px;
@@ -156,16 +162,15 @@
         content: '';
         width: 0;
         height: 0;
-        border-left: 12px solid transparent;
-        border-right: 12px solid transparent;
-        border-bottom: 15px solid $black;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 10px solid $hamburger-menu;
         position: absolute;
-        right: 58px;
-        top: -15px;
+        right: 62px;
+        top: -10px;
       }
     }
   }
-
 
   .mobile-nav-icon {
     width: 40px;
@@ -201,27 +206,61 @@
   }
 }
 
-.we-mega-menu-ul>.we-mega-menu-li>a,
-.we-mega-menu-ul>.we-mega-menu-li.active>a {
-  color: $white;
-  padding: 12px 20px;
-  font-size: 13px;
-  font-weight: bold;
-  font-family: $arial;
-  text-transform: inherit;
-  text-align: left;
-  background: url('#{$image-base-path}/main_nav_sep.png') no-repeat center right;
+.we-mega-menu-ul {
+  @media only screen and (max-width: $tablet-max) {
+    position: relative;
+    z-index: 6;
+  }
 
-  &:hover,
-  &:focus {
-    background: $dark-gray;
-    color: $light-gray;
+  &>.we-mega-menu-li {
+    &>a,
+    &>.we-mega-menu-li.active>a {
+      color: $white;
+      padding: 11px 20px;
+      font-size: 13px;
+      font-weight: bold;
+      font-family: $arial;
+      text-transform: inherit;
+      text-align: left;
+      background: url('#{$image-base-path}/main_nav_sep.png') no-repeat center right;
+
+      &:hover,
+      &:focus {
+        background: $dark-gray;
+        color: $white;
+      }
+
+      @media only screen and (max-width: $tablet-max) {
+        font-size: 18px;
+        font-weight: $normal;
+        background-color: $hamburger-menu;
+        color: $white;
+      }
+    }
+
+    &:hover {
+      color: $white;
+    }
+  }
+  @media only screen and (min-width: $tablet-max) {
+    .dropdown-menu {
+      &:hover {
+        a {
+          color: $white;
+          background-color: $dark-gray;
+        }
+      }
+    }
   }
 }
 
 .we-mega-menu-submenu {
   background-color: $dark-gray;
   padding: 0;
+  @media only screen and (max-width: $tablet-max) {
+    position: relative;
+    z-index: 10;
+  }
 
   & >.we-mega-menu-submenu-inner {
     min-height: auto;
@@ -234,21 +273,29 @@
     display: block;
   }
 
-  li.we-mega-menu-li>a,
-  li.we-mega-menu-li.active>a {
-    color: $white;
-    font-size: 13px;
-    font-weight: bold;
-    font-family: $arial;
-    text-transform: inherit;
-    padding: 10px;
-    border: 0;
-    margin: unset;
-
-    &:hover,
-    &:focus {
-      background: $black;
+  li.we-mega-menu-li {
+    &>a,
+    &.active>a {
       color: $white;
+      font-size: 13px;
+      font-weight: bold;
+      font-family: $arial;
+      text-transform: inherit;
+      padding: 10px;
+      border: 0;
+      margin: unset;
+
+      &:hover,
+      &:focus {
+        background: $black;
+        color: $white;
+      }
+    }
+
+    &:first-child>a {
+      @media only screen and (min-width: $tablet-max) {
+        padding-top: 10px;
+      }
     }
   }
 
@@ -271,7 +318,7 @@
         &:hover,
         &:focus {
           background: $dark-gray;
-          color: $light-gray;
+          color: $white;
         }
       }
 
@@ -288,6 +335,7 @@
 
       .type-of-block a {
         color: $nero;
+        background-color: unset;
         line-height: normal;
         font-weight: $bold;
         letter-spacing: 0.2px;
@@ -349,10 +397,7 @@
 // mega menu responsive
 .region-we-mega-menu {
   @media only screen and (max-width: $tablet-max) {
-    position: absolute;
-    right: -20px;
     padding: 0;
-    top: 5px;
 
     .navbar-toggle {
       display: none;
@@ -363,6 +408,8 @@
         position: unset;
         display: block;
         padding: 0;
+        width: 100%;
+        max-height: 400px;
 
         &::after {
           content: '';
@@ -370,16 +417,25 @@
           height: 0;
           border-left: 12px solid transparent;
           border-right: 12px solid transparent;
-          border-bottom: 15px solid $black;
+          border-bottom: 15px solid $hamburger-menu;
           position: absolute;
           right: 20px;
-          top: -15px;
+          top: -10px;
         }
 
         ul>li {
           ul {
             padding-top: 0;
             padding-bottom: 0;
+            background-color: $hamburger-menu;
+
+            li a {
+              padding-top: 10px;
+              padding-bottom: 10px;
+              font-size: 18px;
+              color: $white;
+              font-weight: $normal;
+            }
           }
 
           & > ul {
@@ -403,12 +459,19 @@
               &::after {
                 content: '';
                 width: 25px;
-                height: 30px;
-                background: url('#{$image-base-path}/mobile_right_arrow.png') no-repeat scroll center center $dark-gray; 
+                height: 36px;
+                background: url('#{$image-base-path}/mobile_right_arrow.png') no-repeat scroll center center; 
                 position: absolute;
-                right: 0;
+                right: 10px;
                 top: 0;
                 bottom: 0;
+                transition: transform 0.5s;
+              }
+
+              &.open {
+                &::after {
+                  transform: rotate(90deg);
+                }
               }
             }
           }
@@ -419,23 +482,31 @@
             &::after {
               content: '';
               width: 25px;
-              height: 30px;
-              background: url('#{$image-base-path}/mobile_right_arrow.png') no-repeat scroll center center $dark-gray; 
+              height: 36px;
+              background: url('#{$image-base-path}/mobile_right_arrow.png') no-repeat scroll center center; 
               position: absolute;
-              right: 0;
+              right: 10px;
               top: 0;
               bottom: 0;
+              transition: transform 0.5s;
             }
+
+            &.open {
+              &::after {
+                transform: rotate(90deg);
+              }
+            }
+          }
+
+          a {
+            color: $white;
+            padding: 6px 15px;
           }
         }
 
-        // .dropdown-menu > .we-mega-menu-submenu {
-        //   display: none !important;
-
-        //   &.open-class {
-        //     display: block !important;
-        //   }
-        // }
+        .nav-tabs>li.active>a {
+          background-color: $hamburger-menu;
+        }
       }
 
       .type-of-block {
@@ -450,12 +521,19 @@
         &::after {
           content: '';
           width: 25px;
-          height: 41px;
-          background: url('#{$image-base-path}/mobile_right_arrow.png') no-repeat scroll center center $dark-gray; 
+          height: 39px;
+          background: url('#{$image-base-path}/mobile_right_arrow.png') no-repeat scroll center center; 
           position: absolute;
-          right: 0;
+          right: 10px;
           top: 0;
           bottom: 0;
+          transition: transform 0.5s;
+        }
+
+        &.open {
+          &::after {
+            transform: rotate(90deg);
+          }
         }
       }
     }
