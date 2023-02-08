@@ -62,6 +62,36 @@
             e.stopPropagation();
           });
       });
+      // slider.
+      $(function () {
+        var homeSlider = $('.slider');
+        var activeLink = $('.home-text');
+        homeSlider.owlCarousel({
+          items: 1,
+          loop: false,
+          rewind: true,
+          margin: 10,
+          autoplay: 5000,
+          nav: false,
+          dots: false,
+          animateOut: 'fadeOut'
+        });
+        activeLink.owlCarousel({
+          items: 1,
+          loop: false,
+          rewind: true,
+          autoplay: 5000,
+          nav: false,
+          dots: false,
+          animateOut: 'fadeOut'
+        });
+      });
+      // Footer youtube icon change on hover.
+      $('.footer-social-out img').mouseover(function () {
+        $(this).attr('src', $(this).data('hover'));
+      }).mouseout(function () {
+        $(this).attr('src', $(this).data('src'));
+      });
 
       /* end */
     }
