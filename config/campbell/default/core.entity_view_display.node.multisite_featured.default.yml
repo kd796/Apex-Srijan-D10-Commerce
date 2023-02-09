@@ -7,13 +7,11 @@ dependencies:
     - field.field.node.multisite_featured.field_list_type
     - field.field.node.multisite_featured.field_listing_image
     - field.field.node.multisite_featured.field_listing_text_for_video
-    - field.field.node.multisite_featured.field_media
     - field.field.node.multisite_featured.field_read_more
     - field.field.node.multisite_featured.field_short_description
+    - field.field.node.multisite_featured.field_video
     - node.type.multisite_featured
   module:
-    - link
-    - options
     - text
     - user
 id: node.multisite_featured.default
@@ -26,62 +24,23 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 101
+    weight: 1
     region: content
-  field_list_type:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 108
-    region: content
-  field_listing_image:
-    type: entity_reference_label
-    label: above
+  field_video:
+    type: entity_reference_entity_view
+    label: hidden
     settings:
-      link: true
+      view_mode: default
+      link: false
     third_party_settings: {  }
-    weight: 102
-    region: content
-  field_listing_text_for_video:
-    type: text_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 104
-    region: content
-  field_media:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 107
-    region: content
-  field_read_more:
-    type: link
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    weight: 106
-    region: content
-  field_short_description:
-    type: text_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 103
-    region: content
-  links:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 100
+    weight: 2
     region: content
 hidden:
+  field_list_type: true
+  field_listing_image: true
+  field_listing_text_for_video: true
+  field_read_more: true
+  field_short_description: true
   langcode: true
+  links: true
   search_api_excerpt: true
