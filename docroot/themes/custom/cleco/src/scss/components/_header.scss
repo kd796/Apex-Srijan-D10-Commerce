@@ -12,13 +12,13 @@
 }
 
 .toggle {
+  width: 1.875rem;
   height: auto;
   float: right;
   display: none;
-  width: 1.875rem;
   cursor: pointer;
-  position: relative;
   margin: 0 0 0 0.9375rem;
+  position: relative;
 
   @media only screen and (max-width: $media-screen-medium) {
     display: block;
@@ -51,11 +51,11 @@
     }
 
     &:before {
-      top: -0.625rem;
+      top: -10px;
     }
 
     &:after {
-      bottom: -0.625rem;
+      bottom: -10px;
     }
   }
 
@@ -84,7 +84,7 @@
   }
 }
 
-@media only screen and (max-width: 700px) {
+@media (max-width: 700px) {
   .masthead-utility {
     font-size: 0.875em;
   }
@@ -101,7 +101,7 @@
   height: 1.5rem;
 
   @media only screen and (max-width: $media-screen-mobile) {
-    width: 6.25rem;
+    width: 100px;
   }
 
   svg {
@@ -109,7 +109,7 @@
     height: 100%;
   }
 
-  @media only screen and (min-width: 800px) {
+  @media (min-width: 800px) {
     width: 8.8125rem;
     height: 2rem;
   }
@@ -251,7 +251,7 @@
  * UTILITY
  */
 .masthead-utility {
-  border-bottom: 1px solid rgba($color-gray-light, 0.43);
+  border-bottom: 0.0625rem solid rgba($color-gray-light, 0.43);
   @media only screen and (max-width: $media-screen-mobile) {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
@@ -348,6 +348,9 @@
             }
 
             a {
+              text-align: left;
+              line-height: 1.5;
+
               &.nav-link--depth-0 {
                 @media only screen and (max-width: $media-screen-medium) {
                   margin: 0;
@@ -365,7 +368,7 @@
           }
 
           &.menu-item--has-children {
-            > a {
+            .arrow {
               &:after {
                 @media only screen and (max-width: $media-screen-medium) {
                   opacity: 1;
@@ -375,9 +378,9 @@
                   bottom: unset;
                   position: static;
                   margin-left: 0.9375rem;
-                  display: inline-block !important;
                   transform: rotate(135deg);
                   background-color: transparent;
+                  display: inline-block !important;
                   border-top: 0.125rem solid $color-off-black;
                   border-left: 0.125rem solid $color-off-black;
                 }
@@ -394,7 +397,7 @@
             }
 
             &.is-active {
-              > a {
+              .arrow {
                 &:after {
                   @media only screen and (max-width: $media-screen-medium) {
                     transform: rotate(220deg);

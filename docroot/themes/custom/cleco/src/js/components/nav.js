@@ -65,4 +65,8 @@ jQuery(document).ready(function ($) {
         $('.masthead-navigation').toggleClass('is-active');
         $('body').toggleClass('mobile-menu-opened');
     });
+
+    $(".toggle").one("click",function(){
+        $(".menu-item--has-children > .nav-link--depth-0").append(" <span class='arrow'></span>");
+    });
 });
