@@ -18,6 +18,9 @@ $hero-height-map: (
   padding-top: 3.375em;
   padding-bottom: 3.375em;
   @include section-padding(horizontal);
+  @media only screen and (max-width: $media-screen-medium) {
+    flex-wrap: wrap;
+  }
 
   &--enhanced {
     .hero-text {
@@ -112,11 +115,15 @@ $hero-height-map: (
 /**
  * TEXT WIDTH VARIANT
  */
-@media (min-width: 800px) {
-  .hero:not(.hero--text-full) {
-    .hero-text {
-      flex-basis: 37%;
-      min-width: 32rem;
+
+.hero:not(.hero--text-full) {
+  .hero-text {
+    flex-basis: 37%;
+    min-width: 32rem;
+    @media only screen and (max-width: $media-screen-medium) {
+      flex-basis: 100%;
+      min-width: 100%;
+      margin-right: 0;
     }
   }
 }
@@ -165,13 +172,25 @@ $hero-height-map: (
 }
 
 .hero-form {
-  position: relative;
   max-width: 20rem;
   margin-left: auto;
+  position: relative;
+
+  @media only screen and (max-width: $media-screen-medium) {
+    width: 100%;
+    margin-left: 0;
+    max-width: 100%;
+  }
 
   .main {
     background: $color-accent-bg;
     padding: 3rem;
+    @media only screen and (max-width: $media-screen-medium) {
+      padding: 2rem;
+    }
+    @media only screen and (max-width: $media-screen-tablet) {
+      padding: 1rem;
+    }
   }
 
   h3 {
