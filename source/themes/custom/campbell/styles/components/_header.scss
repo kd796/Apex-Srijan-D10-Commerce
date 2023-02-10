@@ -219,7 +219,7 @@
       padding: 11px 20px;
       font-size: 13px;
       font-weight: bold;
-      font-family: $arial;
+      font-family: $helvetica;
       text-transform: inherit;
       text-align: left;
       background: url('#{$image-base-path}/main_nav_sep.png') no-repeat center right;
@@ -235,6 +235,11 @@
         font-weight: $normal;
         background-color: $hamburger-menu;
         color: $white;
+      }
+
+      &::before,
+      &::after {
+        display: none;
       }
     }
 
@@ -278,8 +283,8 @@
     &.active>a {
       color: $white;
       font-size: 13px;
-      font-weight: bold;
-      font-family: $arial;
+      font-weight: $bold;
+      font-family: $helvetica;
       text-transform: inherit;
       padding: 10px;
       border: 0;
@@ -311,8 +316,8 @@
       li.we-mega-menu-li.active>a {
         color: $black;
         font-size: 13px;
-        font-weight: bold;
-        font-family: $arial;
+        font-weight: $bold;
+        font-family: $helvetica;
         text-transform: inherit;
 
         &:hover,
@@ -340,7 +345,7 @@
         font-weight: $bold;
         letter-spacing: 0.2px;
         font-size: 12px;
-        font-family: $arial;
+        font-family: $helvetica;
 
         &:hover {
           color: $menu-hover;
