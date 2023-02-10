@@ -19,5 +19,8 @@ use Drupal\Core\Form\FormStateInterface;
  * Implements hook_form_FORM_ID_alter() for search_form.
  */
 function campbell_form_alter(&$form, &$form_state, &$form_id) {
-  $form['search_block_form']['#attributes']['placeholder'][] = t('Search');
+  if (in_array($form_id, ['search_block_form'])) {
+    $form['keys']['#attributes']['placeholder'] = t('Search');
 }
+}
+
