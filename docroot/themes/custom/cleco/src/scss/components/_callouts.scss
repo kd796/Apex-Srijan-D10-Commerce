@@ -5,14 +5,25 @@
 
 .callout-content {
   display: flex;
-  flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
   @include property-scale((margin-left, margin-right), map-multiplier($container-padding-map, -1));
+
+  @media only screen and (max-width: $media-screen-medium) {
+    margin: 0;
+    flex-wrap: wrap;
+  }
 }
 
 .callout-block {
   @include property-scale(padding, $container-padding-map);
+
+  @media only screen and (max-width: $media-screen-medium) {
+    width: 100%;
+    text-align: center;
+    padding: 1.5rem 0 0;
+
+  }
 
   h1, .h1,
   h2, .h2,
@@ -22,6 +33,10 @@
   h6, .h6,
   p {
     max-width: 40rem;
+
+    @media only screen and (max-width: $media-screen-medium) {
+      max-width: 100%;
+    }
 
     &:last-child {
       margin-bottom: 0;
