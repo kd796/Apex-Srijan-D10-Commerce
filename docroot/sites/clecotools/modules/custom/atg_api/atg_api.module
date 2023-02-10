@@ -2,16 +2,18 @@
 
 use Drupal\atg_api\DistanceCalculator;
 use Drupal\Core\Database\Query\SelectInterface;
+use Drupal\Core\Database\Database;
 use Drupal\search_api\Query\QueryInterface;
 
 
 function atg_api_search_api_db_query_alter(SelectInterface &$db_query, QueryInterface $query) {
+  $connection = Database::getConnection();
   if ($query->hasTag('haversine')) {
     $options = $query->getOption('atg_api.haversine');
 
     if ($options['center']) {
       $table     = sprintf('search_api_db_%s', $query->getIndex()->id());
-      $sub_query = db_select($table, 'haversine');
+      $sub_query = $connection->select($table, 'haversine');
       $sub_query->fields('haversine', ['item_id', 'lat', 'lon']);
 
       $params = [
