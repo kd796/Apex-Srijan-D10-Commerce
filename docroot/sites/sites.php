@@ -160,3 +160,15 @@ $sites['www.satatools.us'] = 'sata_us';
 $sites['prod-www.satatools.us'] = 'sata_us';
 $sites['stg-www.satatools.us'] = 'sata_us';
 $sites['dev-www.satatools.us'] = 'sata_us';
+
+
+// Local config with DDEV for all local sites
+$sites['apex-tools-local.ddev.site'] = 'apex-tools';
+$sites['crescenttool-local.ddev.site'] = 'crescenttool';
+$sites['crescenttool-au-local.ddev.site'] = 'crescenttool_au';
+$sites['gearwrench-local.ddev.site'] = 'gearwrench';
+$sites['gearwrench-au-local.ddev.site'] = 'gearwrench_au';
+$sites['sata-brazil-local.ddev.site'] = 'sata_brazil';
+$sites['sata-colombia-local.ddev.site'] = 'sata_colombia';
+$sites['sata-emea-local.ddev.site'] = 'sata_emea';
+$sites['sata-us-local.ddev.site'] = 'sata_us';
