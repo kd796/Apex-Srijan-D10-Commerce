@@ -8,16 +8,16 @@
 .masthead {
   z-index: 10;
   position: relative;
-  background: #fff;
+  background: $color-white;
 }
 
 .toggle {
-  width: 30px;
+  width: 1.875rem;
   height: auto;
   float: right;
   display: none;
   cursor: pointer;
-  margin: 0 0 0 15px;
+  margin: 0 0 0 0.9375rem;
   position: relative;
 
   @media only screen and (max-width: $media-screen-medium) {
@@ -26,9 +26,9 @@
 
   span {
     width: 100%;
-    height: 3px;
+    height: 0.1875rem;
     display: block;
-    border-radius: 2px;
+    border-radius: 0.125rem;
     text-indent: -9999px;
     background: $color-red;
     transform: translateY(-50%);
@@ -40,10 +40,10 @@
     &:before,
     &:after {
       width: 100%;
-      height: 3px;
+      height: 0.1875rem;
       content: '';
       display: block;
-      border-radius: 2px;
+      border-radius: 0.125rem;
       background: $color-red;
       transition: all 0.3s ease;
       position: absolute;
@@ -97,8 +97,8 @@
 .logo {
   @include link-reset;
   display: inline-block;
-  width: 106px;
-  height: 24px;
+  width: 6.625rem;
+  height: 1.5rem;
 
   @media only screen and (max-width: $media-screen-mobile) {
     width: 100px;
@@ -110,8 +110,8 @@
   }
 
   @media (min-width: 800px) {
-    width: 141px;
-    height: 32px;
+    width: 8.8125rem;
+    height: 2rem;
   }
 }
 
@@ -251,10 +251,10 @@
  * UTILITY
  */
 .masthead-utility {
-  border-bottom: 1px solid rgba($color-gray-light, 0.43);
+  border-bottom: 0.0625rem solid rgba($color-gray-light, 0.43);
   @media only screen and (max-width: $media-screen-mobile) {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
   }
 }
 
@@ -266,7 +266,7 @@
 
   @media only screen and (max-width: $media-screen-mobile) {
     width: 100%;
-    padding-bottom: 5px;
+    padding-bottom: 0.3125rem;
   }
 }
 /**
@@ -348,10 +348,13 @@
             }
 
             a {
+              text-align: left;
+              line-height: 1.5;
+
               &.nav-link--depth-0 {
                 @media only screen and (max-width: $media-screen-medium) {
                   margin: 0;
-                  padding: 12px 0;
+                  padding: 0.75rem 0;
                   overflow: visible;
                 }
 
@@ -365,21 +368,21 @@
           }
 
           &.menu-item--has-children {
-            > a {
+            .arrow {
               &:after {
                 @media only screen and (max-width: $media-screen-medium) {
                   opacity: 1;
-                  width: 10px;
+                  width: 0.625rem;
                   content: "";
-                  height: 10px;
+                  height: 0.625rem;
                   bottom: unset;
                   position: static;
-                  margin-left: 15px;
-                  display: inline-block !important;
+                  margin-left: 0.9375rem;
                   transform: rotate(135deg);
                   background-color: transparent;
-                  border-top: 2px solid $color-off-black;
-                  border-left: 2px solid $color-off-black;
+                  display: inline-block !important;
+                  border-top: 0.125rem solid $color-off-black;
+                  border-left: 0.125rem solid $color-off-black;
                 }
               }
 
@@ -394,7 +397,7 @@
             }
 
             &.is-active {
-              > a {
+              .arrow {
                 &:after {
                   @media only screen and (max-width: $media-screen-medium) {
                     transform: rotate(220deg);

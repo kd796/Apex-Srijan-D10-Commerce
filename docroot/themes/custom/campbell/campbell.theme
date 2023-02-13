@@ -1,4 +1,3 @@
-
 <?php
 
 /**
@@ -20,5 +19,17 @@ use Drupal\Core\Form\FormStateInterface;
  * Implements hook_form_FORM_ID_alter() for search_form.
  */
 function campbell_form_alter(&$form, &$form_state, &$form_id) {
-  $form['search_block_form']['#attributes']['placeholder'][] = t('Search');
+  if (in_array($form_id, ['search_block_form'])) {
+    $form['keys']['#attributes']['placeholder'] = t('Search');
+}
+}
+
+/**
+ * Implements template_preprocess_views_view_unformatted() for homepage carousel.
+ */
+function campbell_preprocess_views_view_unformatted(&$vars) {
+  $view = $vars['view'];
+  if ( $view->id() == "homepage_slider" ) {
+   $vars['all_titles'] = views_embed_view('homepage_slider', 'all_slider_titles');
+   }
 }
