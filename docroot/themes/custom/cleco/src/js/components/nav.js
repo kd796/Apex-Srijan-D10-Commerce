@@ -66,7 +66,8 @@ jQuery(document).ready(function ($) {
         $('body').toggleClass('mobile-menu-opened');
     });
 
-    $(".toggle").one("click",function(){
-        $(".menu-item--has-children > .nav-link--depth-0").append(" <span class='arrow'></span>");
-    });
+    $( '.nav-item--depth-0 .arrow' ).click( function( event ) {
+        event.preventDefault();
+        $( this ).parent( 'li' ).toggleClass( 'opened' ).siblings( 'li' ).removeClass( 'opened' );
+    } );
 });

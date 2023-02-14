@@ -54,9 +54,18 @@ nav[class*='nav--main'] {
       padding-bottom: 0;
       transition: opacity 0.2s ease, padding-top 0.2s ease, padding-bottom 0.2s ease, visibility 0s ease 0.2s, max-height 0s ease 0.2s, overflow 0s ease 0.2s;
     }
-
     &.is-active .nav-menu--depth-1 {
       transition: opacity 0.2s ease, padding-top 0.2s ease, padding-bottom 0.2s ease;
+    }
+
+    &.menu-item--has-children {
+      &.opened {
+        .nav-menu--depth-1 {
+          opacity: 1;
+          max-height: 9999em;
+          visibility: visible;
+        }
+      }
     }
   }
 
