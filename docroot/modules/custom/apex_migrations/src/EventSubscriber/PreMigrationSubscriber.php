@@ -35,7 +35,7 @@ class PreMigrationSubscriber implements EventSubscriberInterface {
   public function onMigratePreImport(MigrateImportEvent $event) {
     $migration_id = $event->getMigration()->getBaseId();
 
-    if (strpos($migration_id, '_products', -9)) {
+    if (strpos($migration_id, '_products', -9) || str_starts_with($migration_id, 'campbell_product_category_pages')) {
       $store = \Drupal::service('tempstore.private')->get('apex_migrations');
 
       if ($this->checkImageServerStatus()) {
