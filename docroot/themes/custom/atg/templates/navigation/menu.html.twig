@@ -38,6 +38,7 @@
           {{ link(item.title, item.url, {class: ['nav-link', 'nav-link--depth-' ~ menu_level]}) }}
           {% if item.below %}
             {{ menus.menu_links(item.below, attributes.removeClass('nav-menu--depth-' ~ menu_level), menu_level + 1) }}
+            <span class='arrow'></span>
           {% endif %}
         </li>
       {% endfor %}
