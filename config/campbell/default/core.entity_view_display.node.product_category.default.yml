@@ -1,0 +1,66 @@
+uuid: becd358e-2744-4f44-83f1-db0079f5c95c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.product_category.body
+    - field.field.node.product_category.field_category_facets
+    - field.field.node.product_category.field_classification_id
+    - field.field.node.product_category.field_media
+    - field.field.node.product_category.field_product_classifications
+    - node.type.product_category
+  module:
+    - text
+    - user
+id: node.product_category.default
+targetEntityType: node
+bundle: product_category
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_category_facets:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_classification_id:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_media:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_product_classifications:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true
