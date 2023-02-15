@@ -1,5 +1,9 @@
 <?php
 
+use Drupal\node\Entity\Node;
+use Drupal\Core\File\FileUrlGeneratorInterface;
+use Drupal\file\Entity\File;
+
 /**
  * Implements hook_token_info().
  */
@@ -34,19 +38,20 @@ function atg_custom_tokens_tokens($type, $tokens, array $data, array $options, \
 
   if ($type == 'news_insights') {
     $node = \Drupal::routeMatch()->getParameter('node');
+    $entityTypeManager = \Drupal::entityTypeManager();
     $nid = $node->id();
-    $node = node_load($nid);
+    $node = $entityTypeManager->getStorage('node')->load($nid);
     $field_attachments = $node->get('field_attachments');
     foreach ($tokens as $name => $original) {
       switch ($name) {
         case 'pdf-link':
-          $replacements[$original] = file_create_url($field_attachments->entity->getFileUri());
+          $replacements[$original] = \Drupal::service('file_url_generator')->generateAbsoluteString($field_attachments->entity->getFileUri());
           break;
         case 'pdf-image':
           $attachment_id = $field_attachments[0]->getValue()['target_id'];
-          $attachment_file = \Drupal\file\Entity\File::load($attachment_id);
+          $attachment_file = $entityTypeManager->getStorage('file')->load($attachment_id);
           $preview_uri = \Drupal::service('pdfpreview.generator')->getPDFPreview($attachment_file);
-          $replacements[$original] = file_create_url($preview_uri);
+          $replacements[$original] = \Drupal::service('file_url_generator')->generateAbsoluteString($preview_uri);
           break;
       }
     }
