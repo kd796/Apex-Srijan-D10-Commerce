@@ -1,7 +1,11 @@
 additional_hostnames:
   - gearwrench
   - clecotools
+  - de.clecotools
+  - uk.clecotools
   - campbell
+  - apex-tools
+  - apextoolgroup
 hooks:
   post-start:
   - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS gearwrench; GRANT ALL ON gearwrench.* to 'db'@'%';"
@@ -9,4 +13,8 @@ hooks:
   - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS clecotools; GRANT ALL ON clecotools.* to 'db'@'%';"
     service: db
   - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS campbell; GRANT ALL ON campbell.* to 'db'@'%';"
+    service: db
+  - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS apex_tools; GRANT ALL ON apex_tools.* to 'db'@'%';"
+    service: db
+  - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS apextoolgroup; GRANT ALL ON apextoolgroup.* to 'db'@'%';"
     service: db
