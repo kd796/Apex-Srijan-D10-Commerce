@@ -1,23 +1,27 @@
-uuid: 0c319d63-2db1-42f0-8918-71b3a1c80c39
+uuid: e580b8e4-21f0-47d0-88b9-d4dc6fcd4762
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:basic:9f5db83d-73ae-4f2e-a1e1-877194a6cc67'
+    - 'block_content:youtube_icon_block:ea132e82-d440-4c9d-bdbf-af32a9983616'
   module:
+    - block_class
     - block_content
   theme:
     - campbell
+third_party_settings:
+  block_class:
+    classes: footer-social-out
 id: connect
 theme: campbell
 region: footer_fifth
 weight: 0
 provider: null
-plugin: 'block_content:9f5db83d-73ae-4f2e-a1e1-877194a6cc67'
+plugin: 'block_content:ea132e82-d440-4c9d-bdbf-af32a9983616'
 settings:
-  id: 'block_content:9f5db83d-73ae-4f2e-a1e1-877194a6cc67'
-  label: Connect
-  label_display: '0'
+  id: 'block_content:ea132e82-d440-4c9d-bdbf-af32a9983616'
+  label: 'Connect '
+  label_display: visible
   provider: block_content
   status: true
   info: ''

@@ -1,33 +1,13 @@
-.search-block-form  {
-  .form-type-search {
-    background: url('#{$image-base-path}/campbell_search_header.png') left top no-repeat;
-    display: inline-block;
-    width: 312px;
-    height: 45px;
-    position: relative;
-    margin: 0;
-    border-radius: 5px;
+input {
+  width: 100%;
+  border-top: 1px solid $dim-gray;
+  border-right: 1px solid $gray;
+  border-bottom: 1px solid $gray;
+  border-left: 1px solid $dim-gray;
+  padding: 6px 5px;
+  background: linear-gradient(180deg, $gray, $white, 5%);
 
-    input {
-      position: absolute;
-      top: 30%;
-      left: 5px;
-      right: 0;
-      width: 143px;
-      height: 10px;
-      margin: auto;
-      border: 0;
-      padding: 1px;
-      font-size: 10px;
-      color: $black;
-
-      &::placeholder {
-        padding: 0 10px;
-      }
-    }
-  }
-
-  .form-actions {
-    display: none;
+  &::placeholder {
+    padding: 0 10px;
   }
 }

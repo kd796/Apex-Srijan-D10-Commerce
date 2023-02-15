@@ -1,0 +1,34 @@
+uuid: ace23bc7-e5e6-4e98-bb24-461cbc079e21
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:media_block:6b919157-adc7-4418-be21-3c4daec04f56'
+  module:
+    - block_class
+    - block_content
+    - system
+  theme:
+    - campbell
+third_party_settings:
+  block_class:
+    classes: 'homepage-sidebar-block block-capbell-reference'
+id: referencematerial
+theme: campbell
+region: sidebar_second
+weight: -19
+provider: null
+plugin: 'block_content:6b919157-adc7-4418-be21-3c4daec04f56'
+settings:
+  id: 'block_content:6b919157-adc7-4418-be21-3c4daec04f56'
+  label: 'Reference Material'
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

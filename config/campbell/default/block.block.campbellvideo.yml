@@ -1,0 +1,34 @@
+uuid: d919fc55-3fee-4e4b-8bd9-e5238c757cc5
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:media_block:56772551-5d83-4cb0-9c26-13eb5fd8a07e'
+  module:
+    - block_class
+    - block_content
+    - system
+  theme:
+    - campbell
+third_party_settings:
+  block_class:
+    classes: 'homepage-sidebar-block block-capbell-video'
+id: campbellvideo
+theme: campbell
+region: sidebar_first
+weight: -17
+provider: null
+plugin: 'block_content:56772551-5d83-4cb0-9c26-13eb5fd8a07e'
+settings:
+  id: 'block_content:56772551-5d83-4cb0-9c26-13eb5fd8a07e'
+  label: 'Campbell Video'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

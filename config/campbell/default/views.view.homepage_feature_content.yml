@@ -1,4 +1,4 @@
-uuid: 65fe355d-4cec-4c92-ae70-a35f43fb8a84
+uuid: 413beb5d-6d54-4afb-83ed-d57e191cc7ed
 langcode: en
 status: true
 dependencies:
@@ -15,7 +15,7 @@ dependencies:
     - options
     - text
     - user
-id: homepage_feature_content_
+id: homepage_feature_content
 label: 'Homepage feature content '
 module: views
 description: ''
@@ -371,7 +371,7 @@ display:
           admin_label: ''
           plugin_id: field
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -434,7 +434,7 @@ display:
           admin_label: ''
           plugin_id: field
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -497,7 +497,7 @@ display:
           admin_label: ''
           plugin_id: field
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -559,78 +559,11 @@ display:
           admin_label: ''
           plugin_id: field
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: true
             text: ''
             make_link: false
-            path: ''
-            absolute: true
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: uri
-          type: link
-          settings:
-            trim_length: 80
-            url_only: false
-            url_plain: false
-            rel: '0'
-            target: '0'
-          group_column: ''
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_read_more_1:
-          id: field_read_more_1
-          table: node__field_read_more
-          field: field_read_more
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: true
             path: ''
             absolute: true
             external: false
@@ -684,19 +617,19 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        nothing:
-          id: nothing
-          table: views
-          field: nothing
+        field_read_more_1:
+          id: field_read_more_1
+          table: node__field_read_more
+          field: field_read_more
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: custom
+          plugin_id: field
           label: ''
           exclude: false
           alter:
-            alter_text: true
-            text: "<div class=\"feature-image-block\">\r\n<a href=\"{{ field_read_more_1 }} \">\r\n{{ field_listing_image }} \r\n</a>\r\n{{ title }}\r\n{{ field_read_more }} \r\n</div>"
+            alter_text: false
+            text: ''
             make_link: false
             path: ''
             absolute: false
@@ -732,7 +665,25 @@ display:
           empty: ''
           hide_empty: false
           empty_zero: false
-          hide_alter_empty: false
+          hide_alter_empty: true
+          click_sort_column: uri
+          type: link
+          settings:
+            trim_length: 80
+            url_only: false
+            url_plain: false
+            rel: '0'
+            target: '0'
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
       defaults:
         fields: false
       display_description: ''
@@ -797,8 +748,8 @@ display:
           element_label_type: ''
           element_label_class: ''
           element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: div
+          element_wrapper_class: feature-top
           element_default_classes: true
           empty: ''
           hide_empty: false
@@ -943,73 +894,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_read_more:
-          id: field_read_more
-          table: node__field_read_more
-          field: field_read_more
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: uri
-          type: link
-          settings:
-            trim_length: 80
-            url_only: false
-            url_plain: false
-            rel: '0'
-            target: '0'
-          group_column: ''
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
       filters:
         status:
           id: status
@@ -1097,5 +981,4 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_listing_text_for_video'
-        - 'config:field.storage.node.field_read_more'
         - 'config:field.storage.node.field_video'

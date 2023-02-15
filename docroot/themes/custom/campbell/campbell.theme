@@ -33,3 +33,14 @@ function campbell_preprocess_views_view_unformatted(&$vars) {
    $vars['all_titles'] = views_embed_view('homepage_slider', 'all_slider_titles');
    }
 }
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for form templates.
+ * @param array $suggestions
+ * @param array $variables
+ */
+function campbell_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  if (isset($variables['elements']['content']['#block_content'])) {
+    array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
+  }
+}
