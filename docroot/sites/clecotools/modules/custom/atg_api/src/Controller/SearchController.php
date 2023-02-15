@@ -80,7 +80,7 @@ class SearchController extends ControllerBase
     $includes = $this->request->query->get('include');
 
     if ($includes) {
-      $includes = array_map('trim', explode(',', $includes));
+      $includes = array_map('trim', explode(',', $includes ?? ''));
 
       foreach ($includes as $include) {
         if (empty($include)) continue;
@@ -95,7 +95,7 @@ class SearchController extends ControllerBase
         foreach ($items as $item) {
           if (empty($this->includes[$item->id])) {
             if(count($item) > 0 ) {
-              $taxonomy = explode('--', $item->type);
+              $taxonomy = explode('--', $item->type ?? '');
               $taxonomy = array_shift($taxonomy);
 
               $entity = \Drupal::service('entity.repository')
@@ -187,7 +187,7 @@ class SearchController extends ControllerBase
     $includes = $this->request->query->get('include');
 
     if ($includes) {
-      $includes = array_map('trim', explode(',', $includes));
+      $includes = array_map('trim', explode(',', $includes ?? ''));
 
       foreach ($includes as $include) {
         if (empty($include)) continue;
@@ -201,7 +201,7 @@ class SearchController extends ControllerBase
 
         foreach ($items as $item) {
           if (empty($this->includes[$item->id])) {
-            $taxonomy = explode('--', $item->type);
+            $taxonomy = explode('--', $item->type ?? '');
             $taxonomy = array_shift($taxonomy);
 
             $entity = \Drupal::service('entity.repository')
