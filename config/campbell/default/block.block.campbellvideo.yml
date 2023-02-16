@@ -1,12 +1,12 @@
-uuid: d919fc55-3fee-4e4b-8bd9-e5238c757cc5
+uuid: c948a7df-da17-465f-9593-b236c84a800b
 langcode: en
 status: true
 dependencies:
-  content:
-    - 'block_content:media_block:56772551-5d83-4cb0-9c26-13eb5fd8a07e'
+  config:
+    - fixed_block_content.fixed_block_content.campbell_video
   module:
     - block_class
-    - block_content
+    - fixed_block_content
     - system
   theme:
     - campbell
@@ -16,17 +16,15 @@ third_party_settings:
 id: campbellvideo
 theme: campbell
 region: sidebar_first
-weight: -17
+weight: 0
 provider: null
-plugin: 'block_content:56772551-5d83-4cb0-9c26-13eb5fd8a07e'
+plugin: 'fixed_block_content:campbell_video'
 settings:
-  id: 'block_content:56772551-5d83-4cb0-9c26-13eb5fd8a07e'
+  id: 'fixed_block_content:campbell_video'
   label: 'Campbell Video'
   label_display: '0'
-  provider: block_content
-  status: true
-  info: ''
-  view_mode: full
+  provider: fixed_block_content
+  view_mode: ''
 visibility:
   request_path:
     id: request_path

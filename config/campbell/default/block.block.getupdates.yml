@@ -1,32 +1,30 @@
-uuid: 488b9fc7-5914-4dcb-a330-dbdb0f2d6c66
+uuid: b1686cd7-ef14-4623-a1da-1aa6d4d0aa4b
 langcode: en
 status: true
 dependencies:
-  content:
-    - 'block_content:youtube_icon_block:78c2dbc4-8601-43ca-be4d-94d44dd2cedb'
+  config:
+    - fixed_block_content.fixed_block_content.get_updates
   module:
     - block_class
-    - block_content
+    - fixed_block_content
     - system
   theme:
     - campbell
 third_party_settings:
   block_class:
-    classes: 'homepage-sidebar-block block-get-update '
+    classes: 'homepage-sidebar-block block-get-update'
 id: getupdates
 theme: campbell
 region: sidebar_second
 weight: 0
 provider: null
-plugin: 'block_content:78c2dbc4-8601-43ca-be4d-94d44dd2cedb'
+plugin: 'fixed_block_content:get_updates'
 settings:
-  id: 'block_content:78c2dbc4-8601-43ca-be4d-94d44dd2cedb'
+  id: 'fixed_block_content:get_updates'
   label: 'Get Updates'
   label_display: visible
-  provider: block_content
-  status: true
-  info: ''
-  view_mode: full
+  provider: fixed_block_content
+  view_mode: ''
 visibility:
   request_path:
     id: request_path
