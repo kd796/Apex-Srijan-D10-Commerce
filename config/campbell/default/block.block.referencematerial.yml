@@ -1,0 +1,32 @@
+uuid: 13686d3b-b643-4da6-9997-7e9afbb1fa71
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.reference_material
+  module:
+    - block_class
+    - fixed_block_content
+    - system
+  theme:
+    - campbell
+third_party_settings:
+  block_class:
+    classes: 'homepage-sidebar-block block-capbell-reference'
+id: referencematerial
+theme: campbell
+region: sidebar_second
+weight: -18
+provider: null
+plugin: 'fixed_block_content:reference_material'
+settings:
+  id: 'fixed_block_content:reference_material'
+  label: 'Reference Material'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

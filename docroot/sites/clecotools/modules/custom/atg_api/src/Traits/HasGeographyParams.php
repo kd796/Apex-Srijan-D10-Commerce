@@ -2,7 +2,6 @@
 
 namespace Drupal\atg_api\Traits;
 
-use Drupal;
 use Drupal\atg_api\Coordinates;
 use Drupal\atg_api\DistanceCalculator;
 use Drupal\Core\Entity\Entity;
@@ -13,7 +12,7 @@ trait HasGeographyParams {
 
   public function __construct()
   {
-    $this->request = Drupal::request();
+    $this->request = \Drupal::request();
   }
 
   /**
@@ -23,7 +22,7 @@ trait HasGeographyParams {
    * @return \Symfony\Component\HttpFoundation\Request
    */
   protected function getRequest() {
-    return Drupal::request();
+    return \Drupal::request();
   }
 
   /**
@@ -87,8 +86,7 @@ trait HasGeographyParams {
     $plugins = ['googlemaps'];
     $query   = $this->request->query->get('q');
 
-    $addresses = Drupal::service('geocoder')->geocode($query, $plugins);
-
+    $addresses = \Drupal::service('geocoder')->geocode($query, $plugins);
     if ($addresses === FALSE) {
       return FALSE;
     }

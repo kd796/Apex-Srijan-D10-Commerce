@@ -41,7 +41,7 @@ class Coordinates {
 
       return new Coordinates($value[0], $value[1]);
     } elseif (is_string($value)) {
-      list($latitude, $longitude) = array_map('floatval', explode(',', $value));
+      list($latitude, $longitude) = array_map('floatval', explode(',', $value ?? ''));
 
       return new Coordinates($latitude, $longitude);
     }
