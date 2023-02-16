@@ -22,12 +22,12 @@
     align-items: center;
     width: 100%;
     position: relative;
-    @media only screen and (min-width: 768px) and (max-width: $tablet-max) {
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
       justify-content: unset;
     }
 
     .region-top-page {
-      @media only screen and (min-width: 768px) and (max-width: $tablet-max) {
+      @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
         margin-right: auto;
       }
     }
@@ -80,7 +80,7 @@
     @media only screen and (max-width: $tablet) {
       display: none;
     }
-    @media only screen and (min-width: 768px) and (max-width: $tablet-max) {
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
       display: none;
     }
   }
@@ -94,13 +94,12 @@
   .mobile-header {
     position: absolute;
     right: -20px;
+    top: 110%;
     z-index: 3;
-    min-height: 300px;
-    width: calc(100% + 40px);
+    width: calc(100% + 40px) !important; // Using important to overwrite a js from module.
 
     .region-header .main-nav {
       flex-direction: column;
-      min-width: 300px;
     }
     @media only screen and (min-width: $tablet) {
       display: none;
@@ -164,7 +163,7 @@
         height: 0;
         border-left: 14px solid transparent;
         border-right: 14px solid transparent;
-        border-bottom: 15px solid $hamburger-menu;
+        border-bottom: 15px solid $black;
         position: absolute;
         right: 56px;
         top: -15px;
@@ -231,6 +230,15 @@
 
     &.views-field-image {
       @media only screen and (max-width: $tablet-max) {
+        display: none;
+      }
+    }
+  }
+
+  .dropdown-menu {
+    &>a,
+    &>.we-megamenu-nolink {
+      &:after {
         display: none;
       }
     }
@@ -445,18 +453,17 @@
         display: block;
         padding: 0;
         width: 100%;
-        max-height: 400px;
 
         &::after {
           content: '';
           width: 0;
           height: 0;
-          border-left: 12px solid transparent;
-          border-right: 12px solid transparent;
+          border-left: 14px solid transparent;
+          border-right: 14px solid transparent;
           border-bottom: 15px solid $hamburger-menu;
           position: absolute;
           right: 20px;
-          top: -10px;
+          top: -15px;
         }
 
         ul>li {
@@ -542,6 +549,14 @@
 
         .nav-tabs>li.active>a {
           background-color: $hamburger-menu;
+        }
+
+        .we-mega-menu-ul>li {
+          &>a,
+          &>.we-megamenu-nolink {
+            border-top: 0;
+            box-shadow: none;
+          }
         }
       }
 
