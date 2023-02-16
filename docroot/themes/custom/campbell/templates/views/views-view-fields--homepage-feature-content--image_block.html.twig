@@ -1,8 +1,10 @@
+{% set read_more_url = fields.field_read_more.content %}
 <div class="feature-top">
-	<a href="{{fields.view_node.content}}">{{ fields.field_listing_image.content }}</a>
+	<a href="{{ read_more_url|render|trim|striptags }}">{{ fields.field_listing_image.content }}</a>
 </div>
 <div class="feature-desc">
 	<h3>{{ fields.title.content }}</h3>
 	{{ fields.field_short_description.content }}
 	{{ fields.field_read_more_1.content }}
 </div>
+

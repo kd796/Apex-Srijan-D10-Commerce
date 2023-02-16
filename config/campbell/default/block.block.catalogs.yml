@@ -1,12 +1,12 @@
-uuid: b9d63381-ff73-4d60-af7f-b0d6a95e44fe
+uuid: dfd45c24-eab3-4649-ac59-8bf635286fd2
 langcode: en
 status: true
 dependencies:
-  content:
-    - 'block_content:media_block:85fb3b7c-0e16-477a-b297-ff7327370aaa'
+  config:
+    - fixed_block_content.fixed_block_content.catalogs
   module:
     - block_class
-    - block_content
+    - fixed_block_content
     - system
   theme:
     - campbell
@@ -16,17 +16,15 @@ third_party_settings:
 id: catalogs
 theme: campbell
 region: sidebar_first
-weight: -19
+weight: -17
 provider: null
-plugin: 'block_content:85fb3b7c-0e16-477a-b297-ff7327370aaa'
+plugin: 'fixed_block_content:catalogs'
 settings:
-  id: 'block_content:85fb3b7c-0e16-477a-b297-ff7327370aaa'
+  id: 'fixed_block_content:catalogs'
   label: Catalogs
   label_display: visible
-  provider: block_content
-  status: true
-  info: ''
-  view_mode: full
+  provider: fixed_block_content
+  view_mode: ''
 visibility:
   request_path:
     id: request_path

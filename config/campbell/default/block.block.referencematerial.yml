@@ -1,12 +1,12 @@
-uuid: ace23bc7-e5e6-4e98-bb24-461cbc079e21
+uuid: 13686d3b-b643-4da6-9997-7e9afbb1fa71
 langcode: en
 status: true
 dependencies:
-  content:
-    - 'block_content:media_block:6b919157-adc7-4418-be21-3c4daec04f56'
+  config:
+    - fixed_block_content.fixed_block_content.reference_material
   module:
     - block_class
-    - block_content
+    - fixed_block_content
     - system
   theme:
     - campbell
@@ -16,17 +16,15 @@ third_party_settings:
 id: referencematerial
 theme: campbell
 region: sidebar_second
-weight: -19
+weight: -18
 provider: null
-plugin: 'block_content:6b919157-adc7-4418-be21-3c4daec04f56'
+plugin: 'fixed_block_content:reference_material'
 settings:
-  id: 'block_content:6b919157-adc7-4418-be21-3c4daec04f56'
+  id: 'fixed_block_content:reference_material'
   label: 'Reference Material'
-  label_display: visible
-  provider: block_content
-  status: true
-  info: ''
-  view_mode: full
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
 visibility:
   request_path:
     id: request_path
