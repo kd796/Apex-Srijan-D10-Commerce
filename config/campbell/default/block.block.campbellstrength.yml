@@ -1,0 +1,34 @@
+uuid: 24460c6f-0a03-4285-a887-7a4e65e27bf1
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:media_block:b2517093-1cd0-40a5-8871-402dcb371223'
+  module:
+    - block_class
+    - block_content
+    - system
+  theme:
+    - campbell
+third_party_settings:
+  block_class:
+    classes: 'homepage-sidebar-block block-campbell-strength'
+id: campbellstrength
+theme: campbell
+region: sidebar_first
+weight: -18
+provider: null
+plugin: 'block_content:b2517093-1cd0-40a5-8871-402dcb371223'
+settings:
+  id: 'block_content:b2517093-1cd0-40a5-8871-402dcb371223'
+  label: 'Campbell Strength'
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

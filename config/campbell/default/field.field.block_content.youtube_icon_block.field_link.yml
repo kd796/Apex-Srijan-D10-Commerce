@@ -1,0 +1,23 @@
+uuid: 1025ef1b-ca7b-4b11-bbdb-e27b73181928
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.youtube_icon_block
+    - field.storage.block_content.field_link
+  module:
+    - link
+id: block_content.youtube_icon_block.field_link
+field_name: field_link
+entity_type: block_content
+bundle: youtube_icon_block
+label: 'Youtube Link'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 0
+  link_type: 17
+field_type: link
