@@ -1,0 +1,79 @@
+# Migration configuration for campbell_product_classifications content.
+id: campbell_product_classifications_level_three
+label: Product Classifications - Level Three
+migration_group: campbell
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: "http://www.stibosystems.com/step"
+  item_selector: /STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 3"]
+  fields:
+    -
+     name: remote_term_id
+     label: ID
+     selector: '@ID'
+    -
+      name: remote_term_name
+      label: Term Name
+      selector: Name
+    -
+      name: remote_parent_name
+      label: Parent Term Name
+      selector: ../../Classification
+  ids:
+    remote_term_id:
+      type: string
+process:
+  name:
+    plugin: skip_on_empty
+    method: row
+    source: remote_term_name
+  parent:
+    plugin: apex_get_classification_parent_term
+    source: remote_parent_name
+  field_classification_id:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_term_id
+    method: row
+    value:
+      - W3_26984
+      - W3_26986
+      - W3_26987
+      - W3_26989
+      - W3_26990
+      - W3_27259
+      - W3_27091
+      - W3_26991
+      - W3_26992
+      - W3_27061
+      - W3_27062
+      - W3_27017
+      - W3_27018
+      - W3_27019
+      - W3_27020
+      - W3_27021
+      - W3_27048
+      - W3_27049
+      - W3_27088
+      - W3_27087
+      - W3_27089
+      - W3_27066
+      - W3_27067
+      - W3_27069
+      - W3_27070
+      - W3_27071
+      - W3_27072
+      - W3_27074
+      - W3_27075
+      - W3_27077
+      - W3_27078
+      - W3_27079
+      - W3_27080
+      - W3_27081
+destination:
+  plugin: entity:taxonomy_term
+  default_bundle: product_classifications

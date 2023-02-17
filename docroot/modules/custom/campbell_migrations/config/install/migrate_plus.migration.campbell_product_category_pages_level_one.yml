@@ -85,4 +85,9 @@ process:
       target_id: target_id
 destination:
   plugin: entity:node
-migration_dependencies: {}
+migration_dependencies:
+  required:
+    - campbell_product_classifications_level_one
+  optional:
+    - campbell_product_classifications_level_two
+    - campbell_product_classifications_level_three
