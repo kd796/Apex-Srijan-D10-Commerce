@@ -5,6 +5,7 @@ namespace Drupal\campbell_migrations\Plugin\migrate\process;
 use Drupal\apex_migrations\ImageNotFoundOnFtpException;
 use Drupal\apex_migrations\ImageOperations;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\MigrateSkipProcessException;
 use Drupal\migrate\ProcessPluginBase;
@@ -57,12 +58,12 @@ class GetCategoryMenuImage extends ProcessPluginBase implements ContainerFactory
    *
    * @var \Drupal\Core\TempStore\PrivateTempStore
    */
-  protected PrivateTempStore $tempStore;
+  protected PrivateTempStoreFactory $tempStore;
 
   /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, PrivateTempStore $temp_store) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, PrivateTempStoreFactory $temp_store) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->tempStore = $temp_store;
     $this->imageOps = new ImageOperations();
