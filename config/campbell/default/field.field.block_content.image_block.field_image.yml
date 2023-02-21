@@ -1,17 +1,17 @@
-uuid: bc9d3c30-ef78-4e28-8290-20b20eee9c93
+uuid: 6f6717f8-4c5a-4f8f-8682-773657cd70ef
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_listing_image
+    - block_content.type.image_block
+    - field.storage.block_content.field_image
     - media.type.image
-    - node.type.multisite_featured
-id: node.multisite_featured.field_listing_image
-field_name: field_listing_image
-entity_type: node
-bundle: multisite_featured
-label: 'Listing Image(Homepage)'
-description: 'This image is used for Homepage middle block section.'
+id: block_content.image_block.field_image
+field_name: field_image
+entity_type: block_content
+bundle: image_block
+label: Image
+description: ''
 required: false
 translatable: true
 default_value: {  }

@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.markets.body
     - field.field.node.markets.field_banner_image
     - field.field.node.markets.field_listing_image
+    - field.field.node.markets.field_related_products
     - field.field.node.markets.field_short_description
     - node.type.markets
   module:
@@ -46,6 +47,16 @@ content:
     region: content
     settings:
       media_types: {  }
+    third_party_settings: {  }
+  field_related_products:
+    type: entity_reference_autocomplete
+    weight: 125
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_short_description:
     type: text_textarea

@@ -4,14 +4,19 @@ status: true
 dependencies:
   config:
     - field.field.node.multisite_featured.body
+    - field.field.node.multisite_featured.field_footer_note
+    - field.field.node.multisite_featured.field_image_and_text_component
     - field.field.node.multisite_featured.field_list_type
     - field.field.node.multisite_featured.field_listing_image
+    - field.field.node.multisite_featured.field_listing_page_image
     - field.field.node.multisite_featured.field_listing_text_for_video
     - field.field.node.multisite_featured.field_read_more
+    - field.field.node.multisite_featured.field_related_featured_products
     - field.field.node.multisite_featured.field_short_description
     - field.field.node.multisite_featured.field_video
     - node.type.multisite_featured
   module:
+    - entity_reference_revisions
     - text
     - user
 id: node.multisite_featured.default
@@ -19,12 +24,30 @@ targetEntityType: node
 bundle: multisite_featured
 mode: default
 content:
-  body:
+  field_footer_note:
     type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 2
+    region: content
+  field_image_and_text_component:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
     weight: 1
+    region: content
+  field_related_featured_products:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: featured_content
+      link: false
+    third_party_settings: {  }
+    weight: 3
     region: content
   field_video:
     type: entity_reference_entity_view
@@ -33,11 +56,13 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
-    weight: 2
+    weight: 0
     region: content
 hidden:
+  body: true
   field_list_type: true
   field_listing_image: true
+  field_listing_page_image: true
   field_listing_text_for_video: true
   field_read_more: true
   field_short_description: true

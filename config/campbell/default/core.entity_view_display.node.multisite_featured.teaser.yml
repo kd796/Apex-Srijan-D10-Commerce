@@ -5,10 +5,14 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.multisite_featured.body
+    - field.field.node.multisite_featured.field_footer_note
+    - field.field.node.multisite_featured.field_image_and_text_component
     - field.field.node.multisite_featured.field_list_type
     - field.field.node.multisite_featured.field_listing_image
+    - field.field.node.multisite_featured.field_listing_page_image
     - field.field.node.multisite_featured.field_listing_text_for_video
     - field.field.node.multisite_featured.field_read_more
+    - field.field.node.multisite_featured.field_related_featured_products
     - field.field.node.multisite_featured.field_short_description
     - field.field.node.multisite_featured.field_video
     - node.type.multisite_featured
@@ -34,10 +38,14 @@ content:
     weight: 100
     region: content
 hidden:
+  field_footer_note: true
+  field_image_and_text_component: true
   field_list_type: true
   field_listing_image: true
+  field_listing_page_image: true
   field_listing_text_for_video: true
   field_read_more: true
+  field_related_featured_products: true
   field_short_description: true
   field_video: true
   langcode: true
