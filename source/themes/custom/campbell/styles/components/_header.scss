@@ -364,7 +364,7 @@
         .we-mega-menu-row {
           width: 250px;
           padding: 0 15px;
-          border-right: solid 1.5px $gray;
+          border-right: solid 1px $gray;
         }
       }
 
@@ -404,6 +404,11 @@
           .views-field-field-name a {
             text-transform: uppercase;
             color: $pantone;
+
+            &:hover,
+            &:focus {
+              color: $black;
+            }
           }
         }
       }
@@ -424,8 +429,11 @@
     margin-bottom: 10px;
     color: $lighter-gray;
   }
-  @media only screen and (max-width: $tablet-max) {
-    display: none;
+
+  .products-menu & {
+    @media only screen and (max-width: $tablet-max) {
+      display: none;
+    }
   }
 }
 
