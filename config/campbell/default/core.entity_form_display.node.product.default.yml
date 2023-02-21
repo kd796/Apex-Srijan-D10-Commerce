@@ -5,10 +5,12 @@ dependencies:
   config:
     - field.field.node.product.body
     - field.field.node.product.field_featured_product
+    - field.field.node.product.field_keywords
     - field.field.node.product.field_launch_date
     - field.field.node.product.field_long_description
     - field.field.node.product.field_media
     - field.field.node.product.field_new_product
+    - field.field.node.product.field_pdfs
     - field.field.node.product.field_product_classifications
     - field.field.node.product.field_product_features
     - field.field.node.product.field_product_images
@@ -31,7 +33,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 121
+    weight: 9
     region: content
     settings:
       rows: 9
@@ -41,26 +43,34 @@ content:
     third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 10
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   field_featured_product:
     type: boolean_checkbox
-    weight: 122
+    weight: 10
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
+  field_keywords:
+    type: string_textarea
+    weight: 25
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
   field_launch_date:
     type: datetime_default
-    weight: 123
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
   field_long_description:
     type: string_textfield
-    weight: 125
+    weight: 12
     region: content
     settings:
       size: 60
@@ -68,7 +78,7 @@ content:
     third_party_settings: {  }
   field_media:
     type: entity_reference_autocomplete
-    weight: 136
+    weight: 23
     region: content
     settings:
       match_operator: CONTAINS
@@ -78,14 +88,24 @@ content:
     third_party_settings: {  }
   field_new_product:
     type: boolean_checkbox
-    weight: 126
+    weight: 13
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
+  field_pdfs:
+    type: entity_reference_autocomplete
+    weight: 24
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_product_classifications:
     type: entity_reference_autocomplete
-    weight: 127
+    weight: 14
     region: content
     settings:
       match_operator: CONTAINS
@@ -95,7 +115,7 @@ content:
     third_party_settings: {  }
   field_product_features:
     type: string_textfield
-    weight: 128
+    weight: 15
     region: content
     settings:
       size: 60
@@ -103,14 +123,14 @@ content:
     third_party_settings: {  }
   field_product_images:
     type: media_library_widget
-    weight: 129
+    weight: 16
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_product_specifications:
     type: entity_reference_autocomplete
-    weight: 130
+    weight: 17
     region: content
     settings:
       match_operator: CONTAINS
@@ -120,7 +140,7 @@ content:
     third_party_settings: {  }
   field_related_products:
     type: entity_reference_autocomplete
-    weight: 131
+    weight: 18
     region: content
     settings:
       match_operator: CONTAINS
@@ -130,14 +150,14 @@ content:
     third_party_settings: {  }
   field_set:
     type: boolean_checkbox
-    weight: 132
+    weight: 19
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_set_components:
     type: entity_reference_autocomplete
-    weight: 133
+    weight: 20
     region: content
     settings:
       match_operator: CONTAINS
@@ -147,7 +167,7 @@ content:
     third_party_settings: {  }
   field_sku_group:
     type: string_textfield
-    weight: 134
+    weight: 21
     region: content
     settings:
       size: 60
@@ -155,7 +175,7 @@ content:
     third_party_settings: {  }
   field_upc:
     type: string_textfield
-    weight: 135
+    weight: 22
     region: content
     settings:
       size: 60
@@ -163,41 +183,41 @@ content:
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 2
+    weight: 1
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   path:
     type: path
-    weight: 30
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 15
+    weight: 4
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 120
+    weight: 8
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 16
+    weight: 5
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: -5
+    weight: 0
     region: content
     settings:
       size: 60
@@ -205,7 +225,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 2
     region: content
     settings:
       match_operator: CONTAINS
@@ -214,7 +234,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 50
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
