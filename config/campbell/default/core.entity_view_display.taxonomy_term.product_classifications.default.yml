@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.product_classifications.field_classification_id
+    - field.field.taxonomy_term.product_classifications.field_listing_menu_image
     - taxonomy.vocabulary.product_classifications
   module:
     - text
@@ -26,6 +27,15 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_listing_menu_image:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 2
     region: content
 hidden:
   langcode: true

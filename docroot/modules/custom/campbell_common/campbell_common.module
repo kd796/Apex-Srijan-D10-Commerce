@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Campbell Common module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function campbell_common_theme($existing, $type, $theme, $path) {
+    return [
+      'taxonomy_terms_view' => [
+        'variables' => [
+          'welded_chain' => NULL,
+          'forged_fittings' => NULL,
+          'cable_and_wire_rope' => NULL,
+          'weldless_chain' => NULL,
+          'hobby_craft_and_deco' => NULL,
+          'assemblies' => NULL,
+          'overhead_lifting' => NULL,
+          'lifting_clamps' => NULL,
+          'blocks' => NULL,
+          'accessories' => NULL,
+          'pre_cut_packaged' => NULL,
+          'chain_and_cable_cutters' => NULL,
+          'featuredblock' => NULL,
+        ],
+      ],
+    ];
+  }
