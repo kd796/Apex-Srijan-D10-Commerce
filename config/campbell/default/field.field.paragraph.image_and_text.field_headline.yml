@@ -1,0 +1,25 @@
+uuid: 05491842-add8-4d1b-9e8a-a6afb759133f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_headline
+    - paragraphs.paragraphs_type.image_and_text
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats: {  }
+id: paragraph.image_and_text.field_headline
+field_name: field_headline
+entity_type: paragraph
+bundle: image_and_text
+label: Headline
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

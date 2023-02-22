@@ -1,26 +1,26 @@
-uuid: bc9d3c30-ef78-4e28-8290-20b20eee9c93
+uuid: 0cb8e8fa-a409-402f-b05f-c24b243ddd8c
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_listing_image
-    - media.type.image
+    - field.storage.node.field_related_featured_products
     - node.type.multisite_featured
-id: node.multisite_featured.field_listing_image
-field_name: field_listing_image
+    - node.type.product
+id: node.multisite_featured.field_related_featured_products
+field_name: field_related_featured_products
 entity_type: node
 bundle: multisite_featured
-label: 'Listing Image(Homepage)'
-description: 'This image is used for Homepage middle block section.'
+label: 'Related Products'
+description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:media'
+  handler: 'default:node'
   handler_settings:
     target_bundles:
-      image: image
+      product: product
     sort:
       field: _none
       direction: ASC
