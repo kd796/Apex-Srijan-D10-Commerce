@@ -37,6 +37,12 @@ process:
         - remote_term_id
         - constants/TEXT
         - remote_term_name
+  field_long_name:
+    - plugin: concat
+      source:
+        - remote_term_id
+        - constants/TEXT
+        - remote_term_name
 destination:
   plugin: 'entity:taxonomy_term'
   default_bundle: product_specifications

@@ -1,3 +1,4 @@
+// Featured homepage.
 .feature-top {
   img {
     width: 100%;
@@ -123,6 +124,92 @@
     @media only screen and (max-width: $tablet) {
       text-align: center;
       display: block;
+    }
+  }
+}
+
+// Featured listing page.
+.feature-list-wrap {
+  .views-row {
+    padding: 0 5px;
+  }
+
+  .feature-list {
+    position: relative;
+    display: block;
+    color: $white;
+    overflow: hidden;
+    width: 240px;
+    height: 240px;
+    margin-bottom: 20px;
+
+    &:hover {
+      .overlay {
+        background: none;
+      }
+    }
+
+    @media only screen and (max-width: $tablet) {
+      width: 100%;
+      height: 300px;
+    }
+
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 230px;
+      height: 230px;
+    }
+  }
+
+  .image {
+    // width: 230px;
+    // height: 230px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .overlay {
+    background: linear-gradient(to top, $lighter-gray 0%, $pantone 100%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    opacity: 0.7;
+  }
+
+  .overlay-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    padding: 10px;
+
+    h3 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      margin: 0;
+      text-align: center;
+      font-size: 18px;
+      text-shadow: 0 0 3px $para, 0 0 3px $para;
+    }
+
+    .bottom-text {
+      position: absolute;
+      bottom: 10px;
+
+      p {
+        margin-bottom: 0;
+        font-weight: $bold;
+      }
     }
   }
 }
