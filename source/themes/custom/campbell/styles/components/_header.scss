@@ -8,7 +8,6 @@
     background: $pantone;
     padding-top: 5px;
     @media only screen and (max-width: $tablet-max) {
-      padding: 5px 20px 0;
       border-bottom: 5px solid $black;
     }
     @media only screen and (max-width: $tablet) {
@@ -93,10 +92,10 @@
 
   .mobile-header {
     position: absolute;
-    right: -20px;
+    right: 0;
     top: 110%;
-    z-index: 3;
-    width: calc(100% + 40px) !important; // Using important to overwrite a js from module.
+    z-index: 10;
+    width: 100% !important; // Using important to overwrite a js from module.
 
     .region-header .main-nav {
       flex-direction: column;
@@ -310,7 +309,8 @@
 
   li.we-mega-menu-li {
     &>a,
-    &.active>a {
+    &.active>a,
+    &.active-trail>a {
       color: $white;
       font-size: 13px;
       font-weight: $bold;
@@ -419,8 +419,15 @@
 .featured-menu {
   text-align: center;
 
+  @media only screen and (max-width: $tablet) {
+    border-top: solid 1px $light-gray;
+    padding-top: 15px;
+    margin-top: 15px;
+  }
+
   .featured-text {
     color: $pantone;
+    text-transform: uppercase;
   }
 
   h1 {
