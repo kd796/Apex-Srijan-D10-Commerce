@@ -50,25 +50,28 @@
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
     
-    {% set dir = content.field_direction|render|trim %}
-    {% if dir %}
-    {% set styleClasses = "display:flex" %}
-    {% set flexDir = "flex-direction:row-reverse" %}
+    {% set dir = content.field_direction|render|trim|striptags %}
+    {% if dir == '1' %}
+      {% set classes = [
+        'featured-detail',
+        'right-image',
+      ] %}
     {% else %}
-    {% set styleClasses = "display:flex" %}
-    {% set flexDir = "flex-direction:row" %}
+      {% set classes = [
+        'featured-detail',
+        'left-image',
+      ] %}
     {% endif %}
    
-    <div style={{ styleClasses}}>
-     <div class='main-image'>
-      {{ content.field_featured_image }}
-    </div>
-    <div class='text-section'>
-    {{ content.field_headline }}
-    {{ content.field_description }}
-    {{ content.field_small_featured_image }}
-    {{ content.field_direction }}
-    </div>
+    <div{{ attributes.addClass(classes) }}>
+      <div class='text-section'>
+      <div class="headline">{{ content.field_headline }}</div>
+      {{ content.field_description }}
+      {{ content.field_small_featured_image }}
+      </div>
+      <div class='main-image'>
+        {{ content.field_featured_image }}
+      </div>
     </div>
     {% endblock %}
   </div>
