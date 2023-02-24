@@ -7,6 +7,7 @@
 
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\apex_migrations\FileOperations;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Implements hook_install().
@@ -14,7 +15,6 @@ use Drupal\apex_migrations\FileOperations;
  * Copies migration source files to the public:// directory.
  */
 function sata_brazil_migrations_install() {
-
   // Prepare destination directory.
   $dest_directory = 'public://import/pim_data';
   \Drupal::service('file_system')->prepareDirectory($dest_directory, FileSystemInterface::CREATE_DIRECTORY);
@@ -23,7 +23,6 @@ function sata_brazil_migrations_install() {
   foreach (_sata_brazil_migrations_source_files() as $filename => $file) {
     \Drupal::service('file_system')->copy($file->uri, $dest_directory . '/' . $file->filename, FileSystemInterface::EXISTS_RENAME);
   }
-
 }
 
 /**
@@ -75,4 +74,109 @@ function sata_brazil_migrations_update_8001(&$sandbox) {
   }
 
   FileOperations::clearDestinationAndPullInNew($source_files);
+}
+
+/**
+ * Implements hook_update_N().
+ */
+function sata_brazil_migrations_update_8007() {
+  try {
+    $termNames = ["ATT667758", "CurrencyCode", "ATT667761", "ATT570", "ATT667760",
+      "ATT584477", "ATT563", "ATT584476", "ATT584466", "ATT584472", "ATT590",
+      "ATT591", "ATT585", "ATT533", "ATT536", "ATT537", "ATT539", "ATT525",
+      "ATT870166", "ATT552", "ATT551", "ATT678995", "ATT540",
+      "Overall Length", "DrawerSortOrder", "ATT584067", "ATT500", "ATT501",
+      "ATT502", "ATT503", "ATT504", "ATT505", "ATT507", "ATT509", "ATT661603",
+      "ATT661605", "ATT802893", "ATT931", "ATT938", "ATT923", "ATT922",
+      "ATT682576", "DeliveryUnit", "ATT872735", "ATT943", "ATT806802",
+      "ATT584926", "ATT684653", "ATT584927", "ATT584928", "ATT584921",
+      "ATT584923", "ATT584920", "ATT670486", "ATT663723", "ATT584913",
+      "ATT663726", "ATT584919", "ATT915", "ATT916", "ATT917", "ATT918",
+      "ATT584907", "ATT584909", "ATT907", "ATT808243", "DistChannel",
+      "ATT584945", "ATT669088", "ATT584933", "Overall Height",
+      "Display Sequence", "ATT678833", "ATT496", "ATT498", "ATT494",
+      "ATT480", "ATT484", "ATT675361", "ATT675362", "ATT674029",
+      "ATT674028", "ATT838030", "ATT667743", "ATT675367", "ATT675366",
+      "ATT666304", "ATT666305", "ATT666302", "ATT666303", "ATT666311",
+      "ATT666312", "ATT693", "ATT684", "ATT683", "ATT685", "ATT687",
+      "ATT675269", "DimensionA", "ATT235", "Set", "ATT236", "ATT238",
+      "ATT18068", "ATT225", "ATT684", "ATT683", "ATT685", "ATT687",
+      "ATT675269", "DimensionA", "ATT235", "Set", "ATT236", "ATT238",
+      "ATT18068", "ATT225", "ATT676136", "ATT677", "ATT679", "ATT667222",
+      "ATT667221", "ATT667223", "ATT662", "ATT666", "ATT584379", "ATT584374",
+      "CustomerPrice", "ATT584376", "ATT584380", "ATT613", "ATT614", "ATT617",
+      "ATT619", "ATT618", "ATT607", "ATT609", "ATT661950", "ATT633", "ATT635",
+      "ATT634", "ATT867476", "ATT620", "COO", "UNSPSC_V7.0901", "ATT673955",
+      "ATT775480", "Table Sort Order Set Components", "ATT705183",
+      "ATT674831", "ATT584804", "ATT687601", "ATT687600", "ATT687603",
+      "ATT687602", "ATT584816", "ATT584817", "ATT584818", "ATT584811",
+      "ATT730509", "ATT19800", "ATT763889", "ATT179", "ATT584889",
+      "ATT584884", "ATT584885", "ATT584880", "ATT584881", "ATT584882",
+      "ATT584883", "ATT584890", "ATT783458", "ATT584866", "ATT713558",
+      "ATT584856", "ATT662382", "ATT182", "ATT662381", "UnitsOfMeasure",
+      "Footnotes", "ATT128", "ATT665424", "ATT23474", "ATT664103",
+      "ATT584896", "ATT583565", "ATT584891", "ATT584892", "ATT584893",
+      "ATT675246", "ATT666300", "ATT665453", "ATT339", "ATT664496",
+      "ATT323", "ATT687599", "ATT326", "ATT355", "ATT349",
+      "Table Display Sequence", "ATT763", "ATT765", "ATT764", "Brand",
+      "ATT836043", "Warning Footnote", "ATT787", "ATT786", "ATT684932",
+      "ATT738", "ATT737", "CasePackQty", "Description RDS", "ATT728",
+      "ATT867591", "ATT867592", "ATT867594", "ATT728181", "ATT867585",
+      "ATT748", "ATT684966", "ATT713", "ATT728142", "ATT728145", "ATT703",
+      "ATT709", "ATT28581", "ATT728153", "ATT728151", "ATT799771",
+      "ATT804086", "ATT16688", "ATT679091", "ATT16694", "ATT584720",
+      "ATT584721", "ATT584722", "ATT584716", "ATT584717", "ATT584719",
+      "ATT584713", "ATT584714", "ATT584715", "ATT670298", "ATT16676",
+      "ATT672487", "ATT584763", "ATT584765", "ATT584760", "DivCode",
+      "ATT584761", "ATT583415", "ATT584741", "ATT584742", "ATT584740",
+      "ATT584734", "ATT584735", "ATT584736", "ATT584737", "ATT584731",
+      "Publish Date", "Competitor Cross Reference 1",
+      "Competitor Cross Reference 2", "Competitor Cross Reference 3",
+      "ATT256", "ATT664443", "ATT258", "ATT15738", "ATT687574", "ATT687575",
+      "ATT250", "ATT243", "ATT249", "ATT584798", "ATT696024", "ATT687589",
+      "ATT687587", "ATT584781", "ATT687592", "ATT687593", "ATT687590",
+      "ATT687591", "ATT687596", "ATT687597", "ATT687594", "ATT687595",
+      "ATT687576", "ATT687577", "ATT584778", "ATT584779", "ATT678643",
+      "ATT678642", "ATT584780", "ATT684075", "ATT261", "ATT477", "ATT476",
+      "ATT479", "ATT466", "ATT467", "ATT584578", "ATT414", "ATT703620",
+      "ATT883", "ATT406", "ATT666138", "ATT850", "WeightSAP", "ATT870897",
+      "ATT870896", "ATT842", "ForeignTradeCode", "ATT845", "ATT871",
+      "ATT872", "ATT875", "ATT874", "ATT667020", "ATT666181", "ATT667033",
+      "ATT667039", "ATT809", "ATT744972", "ATT744973", "ATT802", "ATT803",
+      "ATT833", "ATT835", "ATT17339", "ATT17332", "ATT754794", "ATT683444",
+      "ATT786321", "ATT683434", "ATT683433", "ATT683436", "ATT683437",
+      "ATT777862", "ATT670138", "ATT683462", "ATT659434", "ATT659428",
+      "ATT659427", "ATT683452", "ATT683454", "ATT659426", "ATT670156",
+      "ATT684339", "ListPrice", "JawThicknessLower", "JawWidthUpper",
+      "ATT684345", "ATT684344", "Table Sort Order", "ATT675402",
+      "ATT672392", "ATT675417", "ATT870099", "ATT583309", "ATT666968",
+      "ATT666966", "JawWidthLower", "ATT664790", "ATT376", "ATT375",
+      "DrawerDescription", "ATT665662", "ATT685257", "ATT685258",
+      "ATT685259", "ATT361", "ATT678995", "ATT714694", "ATT678997",
+      "ATT678998", "BaseUnitOfMeasure", "ATT383", "ATT382", "ATT749756",
+    ];
+    foreach ($termNames as $term_name) {
+      $vid = 'product_specifications';
+      $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid);
+      foreach ($terms as $term) {
+        // Check the desired attribute found.
+        if (str_contains($term->name, $term_name)) {
+          $log = "termName:$term->name term_name:$term_name.";
+          \Drupal::logger('sata_brazil_migrations')->notice($log);
+          $tid = $term->tid;
+          // Load the taxonomy term to be deleted by ID.
+          $term = Term::load($tid);
+          // Remove the term from all content items.
+          if ($term->delete()) {
+            $log = "term $tid deleted successfully";
+            \Drupal::logger('sata_brazil_migrations')->notice($log);
+          }
+        }
+      }
+    }
+  }
+  catch (Exception $e) {
+    echo 'Message: ' . $e->getMessage();
+    \Drupal::logger('sata_brazil_migrations')->error($e->getMessage());
+  }
 }
