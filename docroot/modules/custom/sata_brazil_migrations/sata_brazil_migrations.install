@@ -161,7 +161,7 @@ function sata_brazil_migrations_update_8007() {
       foreach ($terms as $term) {
         // Check the desired attribute found.
         if (str_contains($term->name, $term_name)) {
-          $log = "termName:$term->name term_name:$term_name.\n";
+          $log = "termName:$term->name term_name:$term_name.";
           \Drupal::logger('sata_brazil_migrations')->notice($log);
           $tid = $term->tid;
           // Load the taxonomy term to be deleted by ID.
@@ -171,10 +171,6 @@ function sata_brazil_migrations_update_8007() {
             $log = "term $tid deleted successfully";
             \Drupal::logger('sata_brazil_migrations')->notice($log);
           }
-        }
-        else {
-          // \Drupal::logger('sata_brazil_migrations')
-          // ->notice('No matching terms found');
         }
       }
     }
