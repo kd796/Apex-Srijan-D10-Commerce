@@ -77,14 +77,11 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_media:
-    type: entity_reference_autocomplete
+    type: media_library_widget
     weight: 23
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      media_types: {  }
     third_party_settings: {  }
   field_new_product:
     type: boolean_checkbox
@@ -94,15 +91,14 @@ content:
       display_label: true
     third_party_settings: {  }
   field_pdfs:
-    type: entity_reference_autocomplete
+    type: media_library_widget
     weight: 24
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
+      media_types: {  }
+    third_party_settings:
+      limited_field_widgets:
+        limit_values: '0'
   field_product_classifications:
     type: entity_reference_autocomplete
     weight: 14
