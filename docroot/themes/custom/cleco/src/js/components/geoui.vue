@@ -83,7 +83,7 @@
             },
             markerIcon() {
                 return {
-                    url: "/themes/cleco/dist/img/marker.svg",
+                    url: "/themes/custom/cleco/dist/img/marker.svg",
                     size: this.google ? new this.google.maps.Size(45, 45) : null,
                     anchor: this.google ? new this.google.maps.Point(22, 13) : null,
                 }
