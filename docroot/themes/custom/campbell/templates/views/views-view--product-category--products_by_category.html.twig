@@ -37,6 +37,8 @@
     'view-id-' ~ id,
     'view-display-id-' ~ display_id,
     dom_id ? 'js-view-dom-id-' ~ dom_id,
+    'wrapper-content',
+    'product-listing',
   ]
 %}
 <div{{ attributes.addClass(classes) }}>
@@ -60,7 +62,12 @@
       {{ attachment_before }}
     </div>
   {% endif %}
-
+  <div class="title-row">
+    <div class="views-media"></div>
+    <div class="views-title"><span>{{ 'Part#' | t }}</span></div>
+    <div class="views-description"><span>{{ 'Description' | t }}</span></div>
+    <div class="views-nothing"></div>
+  </div>
   {% if rows %}
     <div class="view-content">
       {{ rows }}
