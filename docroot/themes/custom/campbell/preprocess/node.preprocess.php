@@ -67,5 +67,6 @@ function campbell_preprocess_node__product_category__full(array &$variables) {
   $variables['#cache']['max-age'] = Cache::mergeMaxAges($variables['#cache']['max-age'], $main_view->storage->getCacheMaxAge());
 
   $variables['view'] = $main_view->buildRenderable($view_display, $main_view->args);
+  $variables['filters'] = \Drupal::formBuilder()->getForm('Drupal\campbell_product_category_filtering\Form\ProductCategoryFiltersForm');
 
 }
