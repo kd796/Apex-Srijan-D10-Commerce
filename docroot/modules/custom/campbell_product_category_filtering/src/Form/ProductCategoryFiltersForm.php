@@ -2,10 +2,8 @@
 
 namespace Drupal\campbell_product_category_filtering\Form;
 
-use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\taxonomy\Entity\Term;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
@@ -45,8 +43,22 @@ class ProductCategoryFiltersForm extends FormBase {
    */
   protected $entityFieldManager;
 
-  public function __construct(RouteMatchInterface $route_match, EntityTypeManagerInterface $entity_type_manager,
-  Connection $database, EntityFieldManagerInterface $entity_field_manager) {
+  /**
+   * Constructs a ContentEntityStorageBase object.
+   *
+   * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
+   *   The current route match.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
+   * @param \DDrupal\Core\Database\Connection $database
+   *   The connection for database.
+   * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager
+   *   The entity field manager.
+   */
+  public function __construct(RouteMatchInterface $route_match,
+  EntityTypeManagerInterface $entity_type_manager,
+  Connection $database,
+  EntityFieldManagerInterface $entity_field_manager) {
     $this->routeMatch = $route_match;
     $this->entityTypeManager = $entity_type_manager;
     $this->database = $database;
@@ -76,8 +88,7 @@ class ProductCategoryFiltersForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    /** @var \Drupal\node\Entity\Node $node */
-    $node = \$this->routeMatch->getParameter('node');
+    $node = $this->routeMatch->getParameter('node');
     $available_classification_ids = [];
     $child_terms = [];
     // Get Product Classification ID's.
@@ -99,11 +110,10 @@ class ProductCategoryFiltersForm extends FormBase {
 
       $table_mapping = $this->entityTypeManager->getStorage('node')->getTableMapping();
       $field_product_specifications_table = $table_mapping->getFieldTableName('field_product_specifications');
-      $field_product_specifications_storage_definitions = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('node')['field_product_specifications'];
+      $field_product_specifications_storage_definitions = $this->entityFieldManager->getFieldStorageDefinitions('node')['field_product_specifications'];
       $field_product_specifications_column = $table_mapping->getFieldColumnName($field_product_specifications_storage_definitions, 'target_id');
 
-      $connection = \Drupal::database();
-      $available_attribute_ids = $connection->select($field_product_specifications_table, 'f')
+      $available_attribute_ids = $this->database->select($field_product_specifications_table, 'f')
         ->fields('f', [$field_product_specifications_column])
         ->distinct(TRUE)
         ->condition('bundle', 'product')
@@ -111,10 +121,10 @@ class ProductCategoryFiltersForm extends FormBase {
         ->execute()->fetchCol();
 
       $field_product_classifications_table = $table_mapping->getFieldTableName('field_product_classifications');
-      $field_product_classifications_storage_definitions = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('node')['field_product_classifications'];
+      $field_product_classifications_storage_definitions = $this->entityFieldManager->getFieldStorageDefinitions('node')['field_product_classifications'];
       $field_product_classifications_column = $table_mapping->getFieldColumnName($field_product_classifications_storage_definitions, 'target_id');
 
-      $available_classification_ids = $connection->select($field_product_classifications_table, 'f')
+      $available_classification_ids = $this->database->select($field_product_classifications_table, 'f')
         ->fields('f', [$field_product_classifications_column])
         ->distinct(TRUE)
         ->condition('bundle', 'product')
@@ -128,12 +138,13 @@ class ProductCategoryFiltersForm extends FormBase {
       // Classification/Category Filtering.
       $active_classification_id = $node->field_classification_id->value;
 
-      // Get all children of active classification. I.E. Top level has multiple, Bottom level has none.
+      // Get all children of active classification.
+      // I.E. Top level has multiple, Bottom level has none.
       $classification_query = $this->entityTypeManager->getStorage('taxonomy_term')->getQuery();
       $classification_result = $classification_query->condition('vid', 'product_classifications')
         ->condition('field_classification_id', $active_classification_id);
       $classification_tids = $classification_result->execute();
-      $classification_terms = Term::loadMultiple($classification_tids);
+      $classification_terms = $this->entityTypeManager->getStorage('taxonomy_term')->loadMultiple($classification_tids);
 
       foreach ($classification_terms as $classification_term) {
         $child_terms = $this->entityTypeManager->getStorage('taxonomy_term')->loadTree('product_classifications', $classification_term->id(), $max_depth = 1, $load_entities = FALSE);
@@ -163,7 +174,7 @@ class ProductCategoryFiltersForm extends FormBase {
         '#attributes' => [
           'class' => [
             'node--type-product-category__category-filter',
-          ]
+          ],
         ],
       ];
     }
@@ -224,34 +235,12 @@ class ProductCategoryFiltersForm extends FormBase {
             '#attributes' => [
               'class' => [
                 'node--type-product-category__attribute-filter',
-              ]
+              ],
             ],
           ];
         }
       }
     }
-
-    // if ($node->hasField('field_show_set_filter')
-    //     && !empty($node->get('field_show_set_filter')->getValue()[0]['value'])
-    //     && $node->get('field_show_set_filter')->getValue()[0]['value'] == 1) {
-    //   $form['set_filter'] = [
-    //     '#type' => 'radios',
-    //     '#options' => [
-    //       'All' => t('Any'),
-    //       '1' => t('Yes'),
-    //       '0' => t('No'),
-    //     ],
-    //     '#title' => 'Set?',
-    //     '#weight' => '0',
-    //     '#required' => FALSE,
-    //     '#default_value' => 'All',
-    //     '#attributes' => [
-    //       'class' => [
-    //         'node--type-product-category__set-filter',
-    //       ]
-    //     ],
-    //   ];
-    // }
 
     return $form;
   }

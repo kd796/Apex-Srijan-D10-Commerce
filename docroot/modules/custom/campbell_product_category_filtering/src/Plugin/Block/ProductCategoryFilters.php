@@ -16,7 +16,7 @@ use Drupal\Core\Form\FormBuilderInterface;
  */
 class ProductCategoryFilters extends BlockBase {
 
-    /**
+  /**
    * Form builder will be used via Dependency Injection.
    *
    * @var \Drupal\Core\Form\FormBuilderInterface
