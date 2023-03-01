@@ -29,3 +29,29 @@ function campbell_common_theme($existing, $type, $theme, $path) {
       ],
     ];
   }
+
+
+/**
+ * Implements hook_preprocess_breadcrumb().
+ * 
+ * Adding long description as last element in Breadcrumb for products.
+ */
+function campbell_common_preprocess_breadcrumb(&$variables) {
+
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof \Drupal\node\NodeInterface) {
+    // Check if the content type is "product".
+    if ($node->getType() == 'product') {
+     
+      //Getting long description field value for products
+      $long_description_value = $node->get('field_long_description')->value;
+     
+      //Getting the last key of breadcrumb
+      $last_key = array_key_last($variables['breadcrumb']);
+      
+      //Setting the text value of last key of product's breadcrumb
+      $variables['breadcrumb'][$last_key]['text'] = $long_description_value;
+    }
+  }
+}
+
