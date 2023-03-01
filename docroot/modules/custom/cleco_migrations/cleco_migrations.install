@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * @file
+ * Handle install / uninstall events for the module.
+ */
+
+use Drupal\Core\File\FileSystemInterface;
+use Drupal\apex_migrations\FileOperations;
+
+/**
+ * Implements hook_install().
+ *
+ * Copies migration source files to the public:// directory.
+ */
+function cleco_migrations_install() {
+
+  // Prepare destination directory.
+  $dest_directory = 'public://import/pim_data';
+  \Drupal::service('file_system')->prepareDirectory($dest_directory, FileSystemInterface::CREATE_DIRECTORY);
+
+  // Copy files to destination directory.
+  foreach (_cleco_migrations_source_files() as $filename => $file) {
+    \Drupal::service('file_system')->copy($file->uri, $dest_directory . '/' . $file->filename, FileSystemInterface::EXISTS_RENAME);
+  }
+
+}
+
+/**
+ * Implements hook_uninstall().
+ *
+ * Deletes migration source files created during installation.
+ */
+function cleco_migrations_uninstall() {
+  \Drupal::configFactory()->getEditable('migrate_plus.migration_group.cleco')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_products')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_classifications')->delete();
+}
+
+/**
+ * Get a list of import source files.
+ *
+ * @return array
+ *   Import source files.
+ */
+function _cleco_migrations_source_files() {
+  $dirname = drupal_get_path('module', 'cleco_migrations') . '/import/pim_data';
+  return \Drupal::service('file_system')->scanDirectory($dirname, '/.*/', [
+    'recurse' => FALSE,
+    'key' => 'filename',
+  ]);
+}
+
