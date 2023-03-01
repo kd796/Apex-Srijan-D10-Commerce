@@ -13,10 +13,18 @@
             align-items: flex-start;
             max-width: 830px;
             margin: 0 auto;
+            @media only screen and (max-width: $media-screen-tablet) {
+                flex-wrap: wrap;
+                max-width: 100%;
+            }
         }
 
         .mailing-list-title {
             flex-basis: 45%;
+
+            @media only screen and (max-width: $media-screen-tablet) {
+                flex-basis: 100%;
+            }
 
             svg {
                 vertical-align: text-bottom;
@@ -27,6 +35,10 @@
 
         .mailing-list-form {
             flex-basis: 55%;
+
+            @media only screen and (max-width: $media-screen-tablet) {
+                flex-basis: 100%;
+            }
         }
     }
 

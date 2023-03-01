@@ -1,8 +1,10 @@
-.form-submit {
+.form-submit,
+.btn,
+.btn-primary {
   min-width: 115px;
   display: block;
-  height: 29px;
-  padding-right: 7px !important;
+  min-height: 29px;
+  padding: 6px 5px;
   text-decoration: none;
   font-weight: bold;
   width: auto;
@@ -13,5 +15,6 @@
 
   &:hover {
     color: $black;
+    border: solid 1px $pantone;
   }
 }

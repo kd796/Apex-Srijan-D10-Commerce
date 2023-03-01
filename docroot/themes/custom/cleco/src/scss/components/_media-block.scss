@@ -28,6 +28,16 @@
     @media (min-width: 1500px) {
         justify-content: space-around;
     }
+
+    .media-block-media {
+        .paragraph--type--media-image {
+            img {
+                @media only screen and (max-width: $media-screen-medium) {
+                    width: 100%;
+                }
+            }
+        }
+    }
 }
 
 @media (max-width: $breakpoint-layout-horizontal - 1) {

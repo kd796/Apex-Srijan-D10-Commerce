@@ -15,6 +15,9 @@ use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\Core\Form\FormStateInterface;
 
+//Including all the preprocesses.
+include_once 'preprocess/node.preprocess.php';
+
 /**
  * Implements hook_form_FORM_ID_alter() for search_form.
  */

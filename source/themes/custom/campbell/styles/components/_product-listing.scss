@@ -1,0 +1,161 @@
+.product-listing {
+  .view-filters {
+    display: none;
+  }
+
+  .view-header {
+    font-size: 16px;
+    font-weight: $bold;
+    margin: 20px 0;
+  }
+
+  .views-row {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    font-size: 12px;
+    border-bottom: solid 1px $gray;
+    display: flex;
+    width: 100%;
+    @media only screen and (max-width: $tablet) {
+      flex-direction: column;
+    }
+
+    .views-field {
+      @media only screen and (min-width: $tablet) {
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+    }
+  }
+
+  .views-field-field-media {
+    @media only screen and (min-width: $tablet) {
+      width: 20%;
+      padding-right: 10px;
+    }
+
+    img {
+      width: 160px;
+      height: 160px;
+      object-fit: contain;
+      @media only screen and (max-width: $tablet) {
+        margin: auto;
+        display: block;
+      }
+    }
+  }
+
+  .views-field-title {
+    color: $pantone;
+    font-weight: $bold;
+    text-align: center;
+    @media only screen and (min-width: $tablet) {
+      width: 15%;
+    }
+    @media only screen and (max-width: $tablet) {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .title-row {
+    display: flex;
+    width: 100%;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    border-bottom: solid 1px $gray;
+
+    @media only screen and (max-width: $tablet) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  .views-media {
+    @media only screen and (min-width: $tablet) {
+      width: 20%;
+    }
+  }
+
+  .views-title {
+    @media only screen and (min-width: $tablet) {
+      width: 15%;
+      text-align: center;
+    }
+
+    span {
+      color: $lighter-gray;
+    }
+  }
+
+  .views-description {
+    @media only screen and (min-width: $tablet) {
+      width: 40%;
+      padding: 0 10px;
+    }
+
+    span {
+      color: $lighter-gray;
+    }
+  }
+
+  .views-nothing {
+    @media only screen and (min-width: $tablet) {
+      width: 25%;
+    }
+  }
+
+  .views-field-field-long-description {
+    color: $black;
+    font-weight: $bold;
+    display: block;
+    @media only screen and (min-width: $tablet) {
+      width: 40%;
+      padding: 0 10px;
+    }
+    @media only screen and (max-width: $tablet) {
+      text-align: center;
+    }
+
+    a {
+      color: $black;
+      font-weight: $bold;
+      display: block;
+    }
+  }
+
+  .views-field-nothing {
+    @media only screen and (min-width: $tablet) {
+      width: 25%;
+    }
+    @media only screen and (max-width: $tablet) {
+      text-align: center;
+      margin-top: 30px;
+    }
+  }
+
+  .btn-distributor {
+    font-size: 12px;
+    padding: 3px 20px;
+    display: inline-flex;
+    align-items: center;
+    @media only screen and (min-width: $tablet) {
+      float: right;
+    }
+
+    &:hover {
+      color: $white;
+    }
+
+    &::before {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background: url('#{$image-base-path}/small_icons.png') left -238px no-repeat;
+      display: inline-block;
+      padding-left: 32px;
+      vertical-align: middle;
+      line-height: 22px;
+    }
+  }
+}

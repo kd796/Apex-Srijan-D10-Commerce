@@ -154,7 +154,7 @@ trait HasGeographyParams {
    * @see \atg_api_search_api_db_query_alter()
    * @param \Drupal\search_api\Query\Query $query
    */
-  protected function applyGeoParameters(Drupal\search_api\Query\Query &$query) {
+  protected function applyGeoParameters(\Drupal\search_api\Query\Query &$query) {
     $center = $this->getCenter();
     $radius = $this->getRadius();
     $units  = $this->getUnits() ?: 'mi';

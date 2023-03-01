@@ -13,6 +13,10 @@ $feature-height-map: (
   @media (min-width: $breakpoint-layout-horizontal) {
     min-height: map-get($feature-height-map, default);
   }
+
+  @media only screen and (max-width: $media-screen-medium) {
+    max-width: 100%;
+  }
 }
 
 /**
@@ -165,6 +169,10 @@ $feature-height-map: (
 .feature--large {
   max-width: 48em;
   align-items: center;
+
+  @media only screen and (max-width: $breakpoint-listing-peek){
+    max-width: 100%;
+  }
 
   .feature-body {
     padding: fluid-value(2rem, 5rem, 20rem, 87.5rem);

@@ -13,6 +13,7 @@ $breakpoint-checkable-card-vertical: $breakpoint-nav-inline;
 .checkable-cards-item {
     position: relative;
     display: flex;
+    flex-basis: 100%;
     @include property-scale(padding, map-multiplier($checkable-card-gap-map, 0.5));
     -webkit-tap-highlight-color: transparent;
 }
@@ -20,7 +21,7 @@ $breakpoint-checkable-card-vertical: $breakpoint-nav-inline;
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     background: #fff;
     border-radius: 0.25em;
     border: 1px solid rgba($color-gray-light, 0.5);
@@ -38,6 +39,10 @@ $breakpoint-checkable-card-vertical: $breakpoint-nav-inline;
     align-items: center;
     justify-content: center;
     transition: transform 200ms ease;
+    @media only screen and (max-width: $media-screen-tablet) {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
 
     svg {
         width: 2.5em;
@@ -46,6 +51,9 @@ $breakpoint-checkable-card-vertical: $breakpoint-nav-inline;
 }
 .checkable-card-label {
     letter-spacing: -0.025em;
+    @media only screen and (max-width: $media-screen-tablet) {
+        width: calc(100% - 3.125rem);
+    }
 
     &::before {
         content: attr(data-selected-text);
@@ -53,6 +61,10 @@ $breakpoint-checkable-card-vertical: $breakpoint-nav-inline;
         font-weight: normal;
         transition: 200ms ease;
         color: #fff;
+
+        @media only screen and (max-width: $media-screen-tablet) {
+            display: none;
+        }
     }
 }
 /**
@@ -111,7 +123,13 @@ $breakpoint-checkable-card-vertical: $breakpoint-nav-inline;
         }
     }
 }
-@media (min-width: $breakpoint-checkable-card-vertical) {
+@media (min-width: $sm) {
+    .checkable-cards-item {
+        flex-basis: 50%;
+    }
+}
+
+@media (min-width: $md) {
     .checkable-cards-item {
         flex-basis: 33.3333%;
         min-width: 8.5em;
