@@ -1,0 +1,30 @@
+// Breadcrumb.
+
+.breadcrumb {
+  font-size: 12px;
+  padding: 7px 6px;
+  display: block;
+  color: $spanish-gray;
+  background: url('#{$image-base-path}/breadcrumb_back.png') left top no-repeat;
+  @media only screen and (min-width: $tablet-max) {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  @media only screen and (max-width: $tablet-max) {
+    background-size: cover;
+  }
+
+  li {
+    a {
+      color: $spanish-gray;
+
+      &:hover {
+        color: $spanish-gray;
+      }
+    }
+
+    &::before {
+      content: '>';
+    }
+  }
+}
