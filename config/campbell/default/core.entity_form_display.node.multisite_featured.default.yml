@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.multisite_featured.field_read_more
     - field.field.node.multisite_featured.field_related_featured_products
     - field.field.node.multisite_featured.field_short_description
+    - field.field.node.multisite_featured.field_showed_on_listing_page
     - field.field.node.multisite_featured.field_video
     - node.type.multisite_featured
   module:
@@ -96,7 +97,7 @@ content:
     third_party_settings: {  }
   field_related_featured_products:
     type: entity_reference_autocomplete
-    weight: 18
+    weight: 19
     region: content
     settings:
       match_operator: CONTAINS
@@ -111,6 +112,13 @@ content:
     settings:
       rows: 5
       placeholder: ''
+    third_party_settings: {  }
+  field_showed_on_listing_page:
+    type: boolean_checkbox
+    weight: 18
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   field_video:
     type: media_library_widget
