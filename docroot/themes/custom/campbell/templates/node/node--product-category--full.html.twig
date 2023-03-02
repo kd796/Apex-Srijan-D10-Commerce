@@ -68,10 +68,11 @@
  * @ingroup themeable
  */
 #}
-{% set classes = [] %}
 
+{% set classes = [ 
+  'wrapper-content',
+] %}
 <article{{ attributes.addClass(classes) }}>
-
   {{ title_prefix }}
   {% if not page %}
     <header{{ title_attributes }}>
@@ -83,9 +84,13 @@
   {{ title_suffix }}
   <div{{ content_attributes }}>
     {{ content }}
-    <div class="product-category-view-section">
+    <div class="row product-category-view-section">
+      <div class="col-filter">
+        {{ filters }}
+      </div>
+      <div class="col-list">
       {{ view }}
+      </div>
     </div>
   </div>
-
 </article>
