@@ -1,11 +1,15 @@
 uuid: 2772a78a-fd4b-4878-a9eb-57a6e10bf16e
 langcode: en
-status: false
+status: true
 dependencies:
   module:
+    - block_class
     - system
   theme:
     - campbell
+third_party_settings:
+  block_class:
+    classes: breadcrumb-style
 _core:
   default_config_hash: oXUb3JZR2WW5VOdw4HrhRicCsq51mCgLfRyvheG68ck
 id: campbell_breadcrumbs
@@ -23,4 +27,4 @@ visibility:
   request_path:
     id: request_path
     negate: true
-    pages: /products
+    pages: /productlanding
