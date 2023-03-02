@@ -126,6 +126,12 @@
     }
   }
 
+  &.no-result {
+    .title-row {
+      display: none;
+    }
+  }
+
   .views-media {
     @media only screen and (min-width: $tablet-max) {
       width: 20%;
@@ -270,4 +276,16 @@
       }
     }
   }
+}
+
+//Empty result.
+.view-empty {
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  border: solid 1px $mustard;
+  background-color: $ivory;
+  color: $dark-olive;
+  margin-bottom: 30px;
 }

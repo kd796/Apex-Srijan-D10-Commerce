@@ -62,6 +62,11 @@
             e.stopPropagation();
           });
       });
+      // Adding empty view class for product listing pages.
+      let view = $('.view');
+      if (view.find('.view-empty').length !== 0) {
+        view.addClass('no-result');
+      }
 
       /* end */
     }

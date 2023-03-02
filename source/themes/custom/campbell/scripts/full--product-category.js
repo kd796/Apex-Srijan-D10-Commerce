@@ -4,7 +4,7 @@
     filtering: function ($item, $filterType) {
       let newVal = '';
       let newArray = [];
-      if (typeof drupalSettings.selectedCategories == 'undefined' || drupalSettings.selectedCategories === 'All') {
+      if (typeof drupalSettings.selectedCategories == 'undefined' || drupalSettings.selectedCategories.toString() === 'All') {
         drupalSettings.selectedCategories = [];
       }
 
@@ -62,7 +62,6 @@
     },
     attach: function (context, settings) {
       drupalSettings.selectedAttributes = $('#edit-field-product-specifications-target-id').val();
-
       let catArray = [];
       let specArray = drupalSettings.selectedAttributes.split(', ');
 
