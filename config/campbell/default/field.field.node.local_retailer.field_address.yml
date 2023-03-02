@@ -22,6 +22,14 @@ settings:
     CA: CA
     US: US
   langcode_override: ''
-  field_overrides: {  }
+  field_overrides:
+    givenName:
+      override: optional
+    familyName:
+      override: optional
+    locality:
+      override: optional
+    administrativeArea:
+      override: optional
   fields: {  }
 field_type: address
