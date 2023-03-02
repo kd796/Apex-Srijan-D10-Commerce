@@ -4,7 +4,7 @@
     filtering: function ($item, $filterType) {
       let newVal = '';
       let newArray = [];
-      if (typeof drupalSettings.selectedCategories == 'undefined' || drupalSettings.selectedCategories == 'All') {
+      if (typeof drupalSettings.selectedCategories == 'undefined' || drupalSettings.selectedCategories === 'All') {
         drupalSettings.selectedCategories = [];
       }
 

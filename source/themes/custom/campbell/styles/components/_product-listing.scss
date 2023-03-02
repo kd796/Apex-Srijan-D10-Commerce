@@ -1,3 +1,8 @@
+// product listing.
+.product-category-view-section {
+  margin: 30px 0;
+}
+
 .product-listing {
   .view-filters {
     display: none;
@@ -6,7 +11,10 @@
   .view-header {
     font-size: 16px;
     font-weight: $bold;
-    margin: 20px 0;
+    margin-bottom: 20px;
+    @media only screen and (max-width: $tablet) {
+      margin-top: 20px;
+    }
   }
 
   .views-row {
@@ -19,6 +27,9 @@
     @media only screen and (max-width: $tablet) {
       flex-direction: column;
     }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      flex-wrap: wrap;
+    }
 
     .views-field {
       @media only screen and (min-width: $tablet) {
@@ -29,9 +40,12 @@
   }
 
   .views-field-field-media {
-    @media only screen and (min-width: $tablet) {
+    @media only screen and (min-width: $tablet-max) {
       width: 20%;
       padding-right: 10px;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 25%;
     }
 
     img {
@@ -49,8 +63,11 @@
     color: $pantone;
     font-weight: $bold;
     text-align: center;
-    @media only screen and (min-width: $tablet) {
+    @media only screen and (min-width: $tablet-max) {
       width: 15%;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 25%;
     }
     @media only screen and (max-width: $tablet) {
       margin-top: 10px;
@@ -58,60 +75,16 @@
     }
   }
 
-  .title-row {
-    display: flex;
-    width: 100%;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-    border-bottom: solid 1px $gray;
-
-    @media only screen and (max-width: $tablet) {
-      flex-direction: column;
-      text-align: center;
-    }
-  }
-
-  .views-media {
-    @media only screen and (min-width: $tablet) {
-      width: 20%;
-    }
-  }
-
-  .views-title {
-    @media only screen and (min-width: $tablet) {
-      width: 15%;
-      text-align: center;
-    }
-
-    span {
-      color: $lighter-gray;
-    }
-  }
-
-  .views-description {
-    @media only screen and (min-width: $tablet) {
-      width: 40%;
-      padding: 0 10px;
-    }
-
-    span {
-      color: $lighter-gray;
-    }
-  }
-
-  .views-nothing {
-    @media only screen and (min-width: $tablet) {
-      width: 25%;
-    }
-  }
-
   .views-field-field-long-description {
     color: $black;
     font-weight: $bold;
     display: block;
-    @media only screen and (min-width: $tablet) {
+    @media only screen and (min-width: $tablet-max) {
       width: 40%;
       padding: 0 10px;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 50%;
     }
     @media only screen and (max-width: $tablet) {
       text-align: center;
@@ -125,8 +98,11 @@
   }
 
   .views-field-nothing {
-    @media only screen and (min-width: $tablet) {
+    @media only screen and (min-width: $tablet-max) {
       width: 25%;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 100%;
     }
     @media only screen and (max-width: $tablet) {
       text-align: center;
@@ -134,6 +110,70 @@
     }
   }
 
+  // List header.
+  .title-row {
+    display: flex;
+    width: 100%;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    border-bottom: solid 1px $gray;
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      flex-wrap: wrap;
+    }
+    @media only screen and (max-width: $tablet) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  .views-media {
+    @media only screen and (min-width: $tablet-max) {
+      width: 20%;
+      padding-right: 10px;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 25%;
+    }
+  }
+
+  .views-title {
+    @media only screen and (min-width: $tablet-max) {
+      width: 15%;
+      text-align: center;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 25%;
+    }
+
+    span {
+      color: $lighter-gray;
+    }
+  }
+
+  .views-description {
+    @media only screen and (min-width: $tablet-max) {
+      width: 40%;
+      padding: 0 10px;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 50%;
+    }
+
+    span {
+      color: $lighter-gray;
+    }
+  }
+
+  .views-nothing {
+    @media only screen and (min-width: $tablet-max) {
+      width: 25%;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 100%;
+    }
+  }
+
+  // Button distributor.
   .btn-distributor {
     font-size: 12px;
     padding: 3px 20px;
@@ -141,6 +181,9 @@
     align-items: center;
     @media only screen and (min-width: $tablet) {
       float: right;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      margin-top: 25px;
     }
 
     &:hover {
@@ -156,6 +199,75 @@
       padding-left: 32px;
       vertical-align: middle;
       line-height: 22px;
+    }
+  }
+}
+
+// Filter section.
+
+.col-filter {
+  width: 100%;
+  @media only screen and (min-width: $tablet-max) {
+    width: 22%;
+    margin-right: 4%;
+  }
+  @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+    width: 31%;
+    margin-right: 4%;
+  }
+}
+
+.col-list {
+  width: 100%;
+  @media only screen and (min-width: $tablet-max) {
+    width: 74%;
+  }
+  @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+    width: 65%;
+  }
+}
+
+.mobile-filter-header {
+  display: none;
+}
+
+.campbell-product-category-filters {
+  background: $filter-bg url('#{$image-base-path}/left_nav_bg.png') left top repeat-x;
+  border-radius: 10px;
+  border: 1px solid $gray;
+  padding: 5px 15px;
+
+  fieldset {
+    .fieldset-legend {
+      display: block;
+      font-weight: $bold;
+      margin-bottom: 5px;
+    }
+
+    .fieldset-wrapper {
+      max-height: 135px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      border: 1px solid $gray;
+      padding: 10px 5px;
+      background: $filter-bg;
+
+      .option {
+        color: $lighter-gray;
+        margin-bottom: 0;
+      }
+
+      .form-type-checkbox {
+        display: flex;
+        width: 100%;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 0;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
     }
   }
 }

@@ -1,0 +1,44 @@
+
+.form-type-checkbox {
+  .form-checkbox {
+    & + label {
+      padding-left: 20px;
+      position: relative;
+      cursor: pointer;
+
+      &::before {
+        content: '';
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        left: 0;
+        top: 2px;
+        background: transparent url('#{$image-base-path}/checkbox_unchecked.png') 0 0 no-repeat;
+      }
+
+      &:hover {
+        &::before {
+          background-image: url('#{$image-base-path}/checkbox_unchecked_hover.png');
+        }
+      }
+    }
+
+    &:checked {
+      & + label {
+        &::before {
+          background-image: url('#{$image-base-path}/checkbox_checked.png');
+        }
+
+        &:hover {
+          &::before {
+            background-image: url('#{$image-base-path}/checkbox_checked_hover.png');
+          }
+        }
+      }
+    }
+  }
+
+  .form-checkbox {
+    display: none;
+  }
+}
