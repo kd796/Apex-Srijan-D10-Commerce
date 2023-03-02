@@ -2,10 +2,14 @@
 
 namespace Drupal\cleco_migrations\Plugin\migrate\process;
 
+use Drupal\Core\Database\Connection;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\ProcessPluginBase;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\migrate\Plugin\MigrationInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\migrate\Row;
-use Drupal\taxonomy\Entity\Term;
+use Drupal\Core\Entity\EntityTypeManager;
 
 /**
  * Get Classification Parent Name.
@@ -22,7 +26,44 @@ use Drupal\taxonomy\Entity\Term;
  *   source: text
  * @endcode
  */
-class SetClassificationParentTerm extends ProcessPluginBase {
+class SetClassificationParentTerm extends ProcessPluginBase implements ContainerFactoryPluginInterface {
+
+  /**
+   * The database connection to use.
+   *
+   * @var \Drupal\Core\Database\Connection
+   */
+  protected $connection;
+
+  /**
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManager
+   */
+
+  protected EntityTypeManager $entityTypeManager;
+
+  /**
+   * {@inheritdoc}
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, Connection $connection, EntityTypeManager $entity_type_manager) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->connection = $connection;
+    $this->entityTypeManager = $entity_type_manager;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $pluginId, $pluginDefinition, MigrationInterface $migration = NULL) {
+    return new static(
+      $configuration,
+      $pluginId,
+      $pluginDefinition,
+      $container->get('database'),
+      $container->get('entity_type.manager')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -37,7 +78,7 @@ class SetClassificationParentTerm extends ProcessPluginBase {
     }
 
     // Check for Skip condition.
-    $skipped = SetClassificationParentTerm::getSkipParameter($this->configuration, $row);
+    $skipped = $this->getSkipParameter($this->configuration, $row);
     if (!empty($skipped)) {
       return $tid;
     }
@@ -45,7 +86,7 @@ class SetClassificationParentTerm extends ProcessPluginBase {
     // Check presence of source tid.
     $source_migration_id = ($this->configuration['source_migration_id']) ? $this->configuration['source_migration_id'] : '';
     if (!empty($source_migration_id)) {
-      $tid = SetClassificationParentTerm::getMigratedTaxonomyTid($source_tid, $source_migration_id);
+      $tid = $this->getMigratedTaxonomyTid($source_tid, $source_migration_id);
     }
     if (!empty($tid)) {
       return $tid;
@@ -53,9 +94,9 @@ class SetClassificationParentTerm extends ProcessPluginBase {
 
     // Create taxonomy.
     if (empty($tid) && isset($this->configuration['params']['create_term']) && $this->configuration['params']['create_term'] == 1) {
-      $term_data = SetClassificationParentTerm::getTaxonomyTermData($this->configuration, $row);
-      $tid = SetClassificationParentTerm::createTaxonomyTerm($term_data, $this->configuration, $this->configuration['vocabulary']);
-      SetClassificationParentTerm::mapAddedTaxonomyTerm($tid, $source_tid, $source_migration_id);
+      $term_data = $this->getTaxonomyTermData($this->configuration, $row);
+      $tid = $this->createTaxonomyTerm($term_data, $this->configuration, $this->configuration['vocabulary']);
+      $this->mapAddedTaxonomyTerm($tid, $source_tid, $source_migration_id);
     }
     return $tid;
   }
@@ -71,10 +112,10 @@ class SetClassificationParentTerm extends ProcessPluginBase {
    * @return int
    *   Returns migrated tid.
    */
-  public static function getMigratedTaxonomyTid($source_id1, $migration_id) {
+  public function getMigratedTaxonomyTid($source_id1, $migration_id) {
     $tid = NULL;
     $table = ($migration_id) ? 'migrate_map_' . $migration_id : '';
-    $query = \Drupal::database()->select($table, 't');
+    $query = $this->connection->select($table, 't');
     $query->addField('t', 'destid1');
     $query->condition('t.sourceid1', $source_id1, '=');
     $tid = $query->execute()->fetchField();
@@ -90,7 +131,7 @@ class SetClassificationParentTerm extends ProcessPluginBase {
    * @return string
    *   Return hashed data.
    */
-  public static function getHashKey($data) {
+  public function getHashKey($data) {
     $value = (!is_array($data)) ? (array) $data : $data;
     return hash('sha256', serialize(array_map('strval', $value)));
   }
@@ -139,8 +180,8 @@ class SetClassificationParentTerm extends ProcessPluginBase {
    * @return int
    *   Returns created taxonomy tid.
    */
-  public static function createTaxonomyTerm(array $term_data, array $configuration, $vocabulary_name) {
-    $term = Term::create([
+  public function createTaxonomyTerm(array $term_data, array $configuration, $vocabulary_name) {
+    $term = $this->entityTypeManager->getStorage('taxonomy_term')->create([
       'vid' => $vocabulary_name,
     ]);
     foreach ($configuration['create_term'] as $data) {
@@ -170,7 +211,7 @@ class SetClassificationParentTerm extends ProcessPluginBase {
    * @return mixed
    *   Returns skip if mapping should be skipped otherwise blank.
    */
-  public static function getTaxonomyTermData(array $config, Row $row) {
+  public function getTaxonomyTermData(array $config, Row $row) {
     $output = [];
     foreach ($config['create_term'] as $configuration) {
       $source_field = (isset($configuration['source'])) ? trim($configuration['source']) : "";
@@ -192,15 +233,14 @@ class SetClassificationParentTerm extends ProcessPluginBase {
    * @param string $migration_id
    *   Name of the migration of source taxonomy.
    */
-  public static function mapAddedTaxonomyTerm($tid, $source_id, $migration_id) {
-    $db = \Drupal::database();
+  public function mapAddedTaxonomyTerm($tid, $source_id, $migration_id) {
     $table = ($migration_id) ? 'migrate_map_' . $migration_id : '';
-    $db->insert($table)
+    $this->connection->insert($table)
       ->fields(
         [
           'sourceid1' => $source_id,
           'destid1' => $tid,
-          'source_ids_hash' => SetClassificationParentTerm::getHashKey($source_id),
+          'source_ids_hash' => $this->getHashKey($source_id),
         ]
       )->execute();
   }
