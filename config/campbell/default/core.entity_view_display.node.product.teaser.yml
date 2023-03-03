@@ -6,10 +6,12 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.product.body
     - field.field.node.product.field_featured_product
+    - field.field.node.product.field_keywords
     - field.field.node.product.field_launch_date
     - field.field.node.product.field_long_description
     - field.field.node.product.field_media
     - field.field.node.product.field_new_product
+    - field.field.node.product.field_pdfs
     - field.field.node.product.field_product_classifications
     - field.field.node.product.field_product_features
     - field.field.node.product.field_product_images
@@ -21,6 +23,7 @@ dependencies:
     - field.field.node.product.field_upc
     - node.type.product
   module:
+    - blazy
     - text
     - user
 id: node.product.teaser
@@ -34,19 +37,58 @@ content:
     settings:
       trim_length: 600
     third_party_settings: {  }
-    weight: 101
+    weight: 1
+    region: content
+  field_media:
+    type: blazy_media
+    label: hidden
+    settings:
+      caption:
+        title: '0'
+        alt: '0'
+      class: ''
+      id: ''
+      image: ''
+      link: ''
+      overlay: ''
+      title: ''
+      vanilla: false
+      layout: ''
+      view_mode: default
+      cache: 0
+      skin: ''
+      lazy: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
+      loading: ''
+      preload: false
+      responsive_image_style: ''
+      box_style: ''
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      thumbnail_style: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+    third_party_settings: {  }
+    weight: 2
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 0
     region: content
 hidden:
   field_featured_product: true
+  field_keywords: true
   field_launch_date: true
   field_long_description: true
-  field_media: true
   field_new_product: true
+  field_pdfs: true
   field_product_classifications: true
   field_product_features: true
   field_product_images: true
