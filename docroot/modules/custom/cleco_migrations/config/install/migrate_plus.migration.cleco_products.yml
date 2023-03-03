@@ -36,10 +36,12 @@ source:
     - name: foot_notes
       label: Product Footnotes
       selector: Values
-
     - name: remote_sku_overview
       label: SKU Overview
       selector: Values
+    - name: product_classification_reference
+      label: ClassificationReference
+      selector: 'ClassificationReference[@Type="Web Reference"]'
   ids:
     remote_sku:
       type: string
@@ -94,6 +96,25 @@ process:
   'field_footnotes/format':
     plugin: default_value
     default_value: basic_html
+
+  # Copy Points
+  product_classification_reference_array:
+    plugin: cleco_get_classification_reference_type_value
+    source: product_classification_reference
+    attribute: Web Reference
+    compare_atrribute: Type
+    fetch_attribute: ClassificationID
+  
+  field_product_classifications:
+    plugin: cleco_set_taxonomy_term
+    source: '@product_classification_reference_array'
+    source_migration_id: cleco_product_classifications
+    mutiple: 0
+
+  language: 
+    plugin: default_value
+    default_value: en
+
 destination:
   plugin: apex_product
   bundle: product
