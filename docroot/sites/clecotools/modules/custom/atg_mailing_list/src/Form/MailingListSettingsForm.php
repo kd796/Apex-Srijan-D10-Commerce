@@ -4,7 +4,6 @@ namespace Drupal\atg_mailing_list\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-// use Drupal\file\Entity\File;
 use Drupal\Component\Utility\SafeMarkup;
 use Drupal\webform\Entity\Webform;
 
