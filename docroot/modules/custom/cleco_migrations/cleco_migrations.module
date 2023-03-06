@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for cleco migration module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function cleco_migrations_theme($existing, $type, $theme, $path) {
+  return [
+    'product_listing' => [
+    ],
+    'product_details' => [
+    ],
+  ];
+
+}
