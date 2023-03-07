@@ -1,7 +1,16 @@
-# Migration configuration for cleco_products content.
+uuid: 0f3a18c1-2018-4e4f-94b4-8c9400755dcb
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 0NhkH7Kp-enbngPobAEn48vkPpE7aFJkxRKxf8x_e7Q
 id: cleco_products
-label: Products
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
 migration_group: cleco
+label: Products
 source:
   constants:
     bool_0: 0
@@ -11,37 +20,41 @@ source:
   data_fetcher_plugin: file
   data_parser_plugin: simple_xml
   urls: 'public://import/pim_data/pim_export_with_schema.xml'
-  namespaces:
-     "http://www.stibosystems.com/step"
-  item_selector: //Product[@UserTypeID="SKU Group"]
+  namespaces: 'http://www.stibosystems.com/step'
+  item_selector: '//Product[@UserTypeID="SKU Group"]'
   fields:
-    - name: remote_sku
+    -
+      name: remote_sku
       label: SKU
       selector: '@ID'
-    - name: remote_name
-      label: SKU Group
+    -
+      name: remote_name
+      label: 'SKU Group'
       selector: Name
-    - name: remote_sku_group
-      label: SKU Group
+    -
+      name: remote_sku_group
+      label: 'SKU Group'
       selector: Values
-    - name: remote_product_long_description
-      label: Product Long Description
+    -
+      name: remote_product_long_description
+      label: 'Product Long Description'
       selector: Values
-    - name: remote_product_upc
-      label: Product UPC
+    -
+      name: remote_product_upc
+      label: 'Product UPC'
       selector: Values
-    - name: remote_product_features
-      label: Product Features
+    -
+      name: remote_product_features
+      label: 'Product Features'
       selector: Values
-    - name: foot_notes
-      label: Product Footnotes
+    -
+      name: foot_notes
+      label: 'Product Footnotes'
       selector: Values
-    - name: remote_sku_overview
-      label: SKU Overview
+    -
+      name: remote_sku_overview
+      label: 'SKU Overview'
       selector: Values
-    - name: product_classification_reference
-      label: ClassificationReference
-      selector: 'ClassificationReference[@Type="Web Reference"]'
   ids:
     remote_sku:
       type: string
@@ -53,32 +66,25 @@ process:
   sticky: constants/bool_0
   promote: constants/bool_1
   uid: constants/uid_root
-
-  'body/value':
+  body/value:
     plugin: apex_get_sku_group_attribute_value
     source: remote_sku_overview
     attribute: ATT17711
-  'body/format':
+  body/format:
     plugin: default_value
     default_value: basic_html
-  
   field_sku: remote_sku
-
   field_sku_group:
     plugin: apex_get_id_attribute
     source: remote_sku_group
-  
   field_long_description:
     plugin: apex_get_attribute_value
     source: remote_product_long_description
     attribute: ATT919
-  
   field_upc:
     plugin: apex_get_attribute_value
     source: remote_product_upc
     attribute: ATT539
-
-  # Copy Points
   product_features_array:
     plugin: apex_get_product_features_array
     source: remote_product_features
@@ -88,33 +94,13 @@ process:
     include_source: true
     process:
       value: copy_point
-
-  'field_footnotes/value':
+  field_footnotes/value:
     plugin: apex_get_attribute_value
     source: foot_notes
     attribute: Footnotes
-  'field_footnotes/format':
+  field_footnotes/format:
     plugin: default_value
     default_value: basic_html
-
-  # Copy Points
-  product_classification_reference_array:
-    plugin: cleco_get_classification_reference_type_value
-    source: product_classification_reference
-    attribute: Web Reference
-    compare_atrribute: Type
-    fetch_attribute: ClassificationID
-  
-  field_product_classifications:
-    plugin: cleco_set_taxonomy_term
-    source: '@product_classification_reference_array'
-    source_migration_id: cleco_product_classifications
-    mutiple: 0
-
-  language: 
-    plugin: default_value
-    default_value: en
-
 destination:
   plugin: apex_product
   bundle: product

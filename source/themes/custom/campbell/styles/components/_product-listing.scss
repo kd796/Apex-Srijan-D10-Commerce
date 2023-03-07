@@ -1,12 +1,10 @@
-// product listing.
+/****** Products Listing page ******/
+
 .product-category-view-section {
   margin: 30px 0;
 }
 
 .product-listing {
-  .view-filters {
-    display: none;
-  }
 
   .view-header {
     font-size: 16px;
@@ -143,9 +141,9 @@
   }
 
   .views-title {
+    text-align: center;
     @media only screen and (min-width: $tablet-max) {
       width: 15%;
-      text-align: center;
     }
     @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
       width: 25%;
@@ -237,13 +235,17 @@
   display: none;
 }
 
-.campbell-product-category-filters {
+.campbell-product-category-filters,
+.view-filters {
   background: $filter-bg url('#{$image-base-path}/left_nav_bg.png') left top repeat-x;
   border-radius: 10px;
   border: 1px solid $gray;
   padding: 5px 15px;
 
   fieldset {
+    margin-right: 0;
+    margin-left: 0;
+
     .fieldset-legend {
       display: block;
       font-weight: $bold;
@@ -278,7 +280,7 @@
   }
 }
 
-//Empty result.
+// Empty result.
 .view-empty {
   text-align: center;
   padding: 10px;
@@ -288,4 +290,12 @@
   background-color: $ivory;
   color: $dark-olive;
   margin-bottom: 30px;
+}
+
+// Product category.
+
+.product-category {
+  .view-filters {
+    display: none;
+  }
 }

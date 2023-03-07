@@ -18,12 +18,6 @@ function cleco_migrations_install() {
   // Prepare destination directory.
   $dest_directory = 'public://import/pim_data';
   \Drupal::service('file_system')->prepareDirectory($dest_directory, FileSystemInterface::CREATE_DIRECTORY);
-
-  // Copy files to destination directory.
-  foreach (_cleco_migrations_source_files() as $filename => $file) {
-    \Drupal::service('file_system')->copy($file->uri, $dest_directory . '/' . $file->filename, FileSystemInterface::EXISTS_RENAME);
-  }
-
 }
 
 /**
