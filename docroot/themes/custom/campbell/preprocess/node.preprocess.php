@@ -70,3 +70,106 @@ function campbell_preprocess_node__product_category__full(array &$variables) {
   $variables['filters'] = \Drupal::formBuilder()->getForm('Drupal\campbell_product_category_filtering\Form\ProductCategoryFiltersForm');
 
 }
+
+/**
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product, full.
+ */
+function campbell_preprocess_node__product__full(array &$variables) {
+  /** @var Drupal\node\NodeInterface $node */
+  $node = $variables['elements']['#node'];
+  $entity_type_manager = \Drupal::entityTypeManager();
+
+  // Count Product Images.
+  $variables['product_images'] = NULL;
+
+  if (!empty($node->field_product_images->getValue())) {
+    $variables['product_images'] = TRUE;
+    $variables['product_image_count'] = count($node->field_product_images->getValue());
+  }
+
+  // Thumb Gallery.
+  $thumbs = $node->field_product_images->getValue();
+
+  foreach ($thumbs as $thumb) {
+    $media = $entity_type_manager->getStorage('media')->load($thumb['target_id']);
+
+    if (!empty($media->field_media_image)) {
+      $field_media_image = $media->field_media_image;
+
+      if (!empty($field_media_image->target_id)) {
+        $fid = $media->field_media_image->target_id;
+        $file = $entity_type_manager->getStorage('file')->load($fid);
+
+        $thumb_variables = [
+          'style_name' => 'thumbnail_cropped',
+          'uri' => $file->getFileUri(),
+        ];
+
+        // The image.factory service will check if our image is valid.
+        $image = \Drupal::service('image.factory')->get($file->getFileUri());
+
+        if ($image->isValid()) {
+          $thumb_variables['width'] = $image->getWidth();
+          $thumb_variables['height'] = $image->getHeight();
+        }
+        else {
+          $thumb_variables['width'] = $thumb_variables['height'] = NULL;
+        }
+
+        $variables['thumbnails'][] = [
+          '#theme' => 'image_style',
+          '#width' => $thumb_variables['width'],
+          '#height' => $thumb_variables['height'],
+          '#style_name' => $thumb_variables['style_name'],
+          '#uri' => $thumb_variables['uri'],
+        ];
+      }
+      else {
+        $message = 'No target ID';
+      }
+    }
+    elseif (!empty($media->field_media_video_embed_field) || $media->bundle() == 'remote_video') {
+      $video_thumbnail_fid = $media->get('thumbnail')->target_id;
+
+      /** @var \Drupal\file\Entity\File $file */
+      $file = $entity_type_manager->getStorage('file')->load($video_thumbnail_fid);
+      $uri = $file->getFileUri();
+
+      if (!empty($uri)) {
+        $variables['thumbnails'][] = [
+          '#theme' => 'image_style',
+          '#width' => 100,
+          '#height' => 100,
+          '#style_name' => 'thumbnail_cropped',
+          '#uri' => $uri,
+        ];
+      }
+    }
+    else {
+      $message = 'No field media image';
+    }
+  }
+
+  $variables['pdfs'] = NULL;
+
+  // List PDFs.
+  if (!$node->get('field_pdfs')->isEmpty()) {
+    $files = $node->get('field_pdfs')->getValue();
+    $pdfs = [];
+
+    foreach ($files as $pdf_file) {
+      $pdf_media = $entity_type_manager->getStorage('media')->load($pdf_file['target_id']);
+      $fid = $pdf_media->get('field_media_file')->getValue()[0]['target_id'];
+      $file = $entity_type_manager->getStorage('file')->load($fid);
+
+      $pdfs[] = [
+        'uri' => $file->createFileUrl(),
+        'name' => $pdf_media->label(),
+      ];
+    }
+
+    if (!empty($pdfs)) {
+      $variables['pdfs'] = $pdfs;
+    }
+  }
+}
