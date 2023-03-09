@@ -111,3 +111,59 @@
     line-height: 36px;
   }
 }
+
+// Related Products.
+
+.field--name-field-related-featured-products {
+  & > .field {
+    &__label {
+      background: none repeat scroll 0 0 $platinum;
+      border: 1px solid $alto;
+      padding: 5px;
+      font-size: 14px;
+    }
+
+    &__items {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+
+      & > .field__item {
+        width: 20%;
+        padding: 6px;
+        height: 270px;
+        text-align: center;
+        margin-bottom: 15px;
+        color: $lighter-gray;
+        @media only screen and (min-width: $tablet) and (max-width: $tablet-max)  {
+          width: 25%;
+        }
+        @media only screen and (max-width: $tablet) {
+          width: 100%;
+        }
+
+        h2 {
+          font-size: 13px;
+          color: $lighter-gray;
+          font-weight: $normal;
+          margin-bottom: 0;
+          margin-top: 10px;
+        }
+
+        img {
+          width: 135px;
+          height: 135px;
+          object-fit: contain;
+          margin: auto;
+        }
+
+        span {
+          color: $pantone;
+          font-size: 12px;
+          font-weight: $bold;
+        }
+      }
+    }
+  }
+}
