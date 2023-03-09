@@ -1,0 +1,32 @@
+uuid: e3b24749-8703-435f-ad66-3deec327b546
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.product_specifications.field_long_name
+    - taxonomy.vocabulary.product_specifications
+  module:
+    - text
+id: taxonomy_term.product_specifications.default
+targetEntityType: taxonomy_term
+bundle: product_specifications
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_long_name:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true
+  uuid: true
