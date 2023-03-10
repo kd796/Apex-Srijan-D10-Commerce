@@ -6,9 +6,11 @@ dependencies:
     - block_content.type.media_center_landing_page
     - field.field.block_content.media_center_landing_page.body
     - field.field.block_content.media_center_landing_page.field_display_name
+    - field.field.block_content.media_center_landing_page.field_icon_type
     - field.field.block_content.media_center_landing_page.field_link
   module:
     - link
+    - options
 id: block_content.media_center_landing_page.default
 targetEntityType: block_content
 bundle: media_center_landing_page
@@ -21,6 +23,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_icon_type:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
     region: content
   field_link:
     type: link
