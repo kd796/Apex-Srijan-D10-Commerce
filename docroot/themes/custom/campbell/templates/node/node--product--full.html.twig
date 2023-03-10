@@ -68,10 +68,8 @@
  * @ingroup themeable
  */
 #}
-{{ attach_library('campbell/node--product-category') }}
-{% set classes = [ 
-  'wrapper-content',
-] %}
+{% set classes = [] %}
+
 <article{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {% if not page %}
@@ -82,15 +80,106 @@
     </header>
   {% endif %}
   {{ title_suffix }}
+
   <div{{ content_attributes }}>
-    {{ content }}
-    <div class="row product-category-view-section">
-      <div class="col-filter">
-        {{ filters }}
-      </div>
-      <div class="col-list">
-      {{ view }}
-      </div>
+    <div class="node--type-product__page-top">
+      {% if product_images %}
+        <div class="product-detail-slider">
+          <div class="product-detail-slider__container">
+            {% if product_image_count > 1 %}
+              <button class="product-detail-slider__pseudo-prev-button"></button>
+            {% endif %}
+
+            {{ content.field_product_images }}
+
+            {% if product_image_count > 1 %}
+              <button class="product-detail-slider__pseudo-next-button"></button>
+            {% endif %}
+          </div>
+
+          {% if product_image_count > 1 %}
+            <div class="product-detail-slider__thumbs-outer-wrapper">
+              <button
+                class="product-detail-slider__button product-detail-slider__button-prev swiper-button-prev"></button>
+
+              <div class="product-detail-slider__thumbs-container">
+                <div class="product-detail-slider__thumbs-wrapper">
+                  {{ thumbnails }}
+                </div>
+              </div>
+
+              <button
+                class="product-detail-slider__button product-detail-slider__button-next swiper-button-next"></button>
+            </div>
+          {% endif %}
+
+          <span class="download-images-link">
+            <a href="/product-image-download/{{ node.id() }}" class="component-content__link button">{{ 'Download Images'|t }}</a>
+          </span>
+        </div>
+      {% endif %}
+
+      <div class="product-detail-content-container">
+        <header{{ title_attributes.addClass('product-detail-content-container__title') }}>
+          <h1>
+            {{ content.field_long_description }}
+          </h1>
+        </header>
     </div>
+
+    <div class="node--type-product-tabs__content">
+        <div class="node--type-product-tabs__mobile-nav-item">
+          <a href="#features">{{ 'Features'|t }}</a>
+        </div>
+
+        <section class="node--type-product-tabs-tab">
+          <div class="node--type-product__accordion-content">
+            <div class="node--type-product__accordion-content-header">
+              {{ 'Features'|t }}
+            </div>
+
+            {{ content.field_product_features }}
+
+          </div>
+        </section>
+
+        <div class="node--type-product-tabs__mobile-nav-item">
+          <a href="#specifications">{{ 'Specifications'|t }}</a>
+        </div>
+
+        <section class="node--type-product-tabs-tab">
+          <div class="node--type-product__accordion-content">
+            <div class="node--type-product__accordion-content-header">
+              {{ 'Specifications'|t }}
+            </div>
+
+            {{ content.field_product_specifications }}
+          </div>
+        </section>
+      </div>
+
+    {% if pdfs is not null %}
+        <a role="presentation" id="additional-resources"></a>
+        <div class="product-pdfs">
+          <h4>{{ 'Additional Resources'|t }}</h4>
+
+          <div class="pdf-list">
+            {% for pdf in pdfs %}
+              <div class="product-pdf">
+                <a href="{{ pdf['uri'] }}" target="_blank">
+                  <div class="pdf-icon">
+                    <img src="/{{ base_path ~ directory }}/icons/pdf.svg"  alt="{{ 'PDF'|t }}" width="57" height="64"/>
+                  </div>
+                  <div class="pdf-info">
+                    <div class="row">{{ pdf['name'] }}</div>
+                    <div class="row download">{{ 'Download'|t }}</div>
+                  </div>
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+
   </div>
 </article>
