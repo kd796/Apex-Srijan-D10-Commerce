@@ -6,6 +6,7 @@ dependencies:
     - block_content.type.media_center_landing_page
     - field.field.block_content.media_center_landing_page.body
     - field.field.block_content.media_center_landing_page.field_display_name
+    - field.field.block_content.media_center_landing_page.field_icon_type
     - field.field.block_content.media_center_landing_page.field_link
   module:
     - link
@@ -21,6 +22,12 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_icon_type:
+    type: options_select
+    weight: 26
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_link:
     type: link_default
