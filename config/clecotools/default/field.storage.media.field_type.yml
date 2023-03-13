@@ -1,0 +1,93 @@
+uuid: e0046156-8139-41dc-bee4-e897d2668ce0
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+    - options
+id: media.field_type
+field_name: field_type
+entity_type: media
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: user_guide
+      label: 'User Guide'
+    -
+      value: system_manual
+      label: 'System Manual'
+    -
+      value: software
+      label: Software
+    -
+      value: service_manual
+      label: 'Service Manual'
+    -
+      value: quick_installation_guide
+      label: 'Quick Installation Guide'
+    -
+      value: programming_manual
+      label: 'Programming Manual'
+    -
+      value: parts_list
+      label: 'Parts List'
+    -
+      value: owners_manual
+      label: 'Owners Manual'
+    -
+      value: operating_instructions
+      label: 'Operating Instructions'
+    -
+      value: manual
+      label: Manual
+    -
+      value: msds
+      label: MSDS
+    -
+      value: legacy
+      label: Legacy
+    -
+      value: instruction_manual
+      label: 'Instruction Manual'
+    -
+      value: installation_manual
+      label: 'Installation Manual'
+    -
+      value: homologation
+      label: Homologation
+    -
+      value: hardware_manual
+      label: 'Hardware Manual'
+    -
+      value: flyer_brochure
+      label: Flyer/Brochure
+    -
+      value: engineering_drawings
+      label: 'Engineering Drawings'
+    -
+      value: dimensional_diagram
+      label: 'Dimensional Diagram'
+    -
+      value: data_sheet
+      label: 'Data Sheet'
+    -
+      value: catalog
+      label: Catalog
+    -
+      value: ce_documentation
+      label: 'CE Documentation'
+    -
+      value: assembly_instruction
+      label: 'Assembly Instruction'
+    -
+      value: 3d_model
+      label: '3d Model'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

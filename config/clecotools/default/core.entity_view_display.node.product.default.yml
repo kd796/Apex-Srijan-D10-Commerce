@@ -8,16 +8,15 @@ dependencies:
     - field.field.node.product.field_footnotes
     - field.field.node.product.field_long_description
     - field.field.node.product.field_media
-    - field.field.node.product.field_model_specification
     - field.field.node.product.field_product_classifications
     - field.field.node.product.field_product_features_cp
     - field.field.node.product.field_product_images
+    - field.field.node.product.field_product_models
     - field.field.node.product.field_related_products_ref
     - field.field.node.product.field_sku_group
     - field.field.node.product.field_upc
     - node.type.product
   module:
-    - entity_reference_revisions
     - text
     - user
 id: node.product.default
@@ -65,15 +64,6 @@ content:
     third_party_settings: {  }
     weight: 107
     region: content
-  field_model_specification:
-    type: entity_reference_revisions_entity_view
-    label: above
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    weight: 111
-    region: content
   field_product_classifications:
     type: entity_reference_label
     label: above
@@ -98,6 +88,14 @@ content:
       link: false
     third_party_settings: {  }
     weight: 108
+    region: content
+  field_product_models:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 113
     region: content
   field_related_products_ref:
     type: entity_reference_label
