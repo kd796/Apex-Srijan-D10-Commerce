@@ -1,0 +1,30 @@
+uuid: f98f1c90-8f99-41e7-ba7f-72cfe9d043a1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.product_downloads.field_media_file
+    - media.type.product_downloads
+  module:
+    - file
+id: media.product_downloads.default
+targetEntityType: media
+bundle: product_downloads
+mode: default
+content:
+  field_media_file:
+    type: file_default
+    label: visually_hidden
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  langcode: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true
+  uuid: true

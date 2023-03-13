@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.node.product.body
+    - field.field.node.product.field_downloads
     - field.field.node.product.field_footnotes
     - field.field.node.product.field_long_description
     - field.field.node.product.field_media
+    - field.field.node.product.field_model_specification
     - field.field.node.product.field_product_classifications
     - field.field.node.product.field_product_features_cp
     - field.field.node.product.field_product_images
@@ -15,6 +17,7 @@ dependencies:
     - field.field.node.product.field_upc
     - node.type.product
   module:
+    - entity_reference_revisions
     - text
     - user
 id: node.product.default
@@ -28,6 +31,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 101
+    region: content
+  field_downloads:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 112
     region: content
   field_footnotes:
     type: text_default
@@ -52,6 +64,15 @@ content:
       link: false
     third_party_settings: {  }
     weight: 107
+    region: content
+  field_model_specification:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 111
     region: content
   field_product_classifications:
     type: entity_reference_label

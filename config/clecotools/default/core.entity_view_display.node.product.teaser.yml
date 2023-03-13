@@ -5,9 +5,11 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.product.body
+    - field.field.node.product.field_downloads
     - field.field.node.product.field_footnotes
     - field.field.node.product.field_long_description
     - field.field.node.product.field_media
+    - field.field.node.product.field_model_specification
     - field.field.node.product.field_product_classifications
     - field.field.node.product.field_product_features_cp
     - field.field.node.product.field_product_images
@@ -37,9 +39,11 @@ content:
     weight: 100
     region: content
 hidden:
+  field_downloads: true
   field_footnotes: true
   field_long_description: true
   field_media: true
+  field_model_specification: true
   field_product_classifications: true
   field_product_features_cp: true
   field_product_images: true
