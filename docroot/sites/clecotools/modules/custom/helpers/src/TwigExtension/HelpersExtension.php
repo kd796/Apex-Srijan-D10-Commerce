@@ -146,7 +146,7 @@ class HelpersExtension extends \Twig_Extension
         $theme_handler = \Drupal::service('theme_handler');
         $default_theme = $theme_handler->getDefault();
 
-        $path = drupal_get_path('theme', $default_theme) . '/' . $filename;
+        $path = \Drupal::service('extension.list.theme')->getPath($default_theme) . '/' . $filename;
         if (file_exists($path)) {
             $name = pathinfo($path, PATHINFO_FILENAME);
             $svg  = file_get_contents($path);
@@ -241,7 +241,7 @@ class HelpersExtension extends \Twig_Extension
     {
         $theme_handler = \Drupal::service('theme_handler');
         $default_theme = $theme_handler->getDefault();
-        $theme_path    = drupal_get_path('theme', $default_theme);
+        $theme_path = \Drupal::service('extension.list.theme')->getPath($default_theme);
 
         return $theme_path;
     }
@@ -420,7 +420,8 @@ class HelpersExtension extends \Twig_Extension
      */
     public function getNodeCount(string $type)
     {
-        $query = db_select('node', 'n');
+        // $query = db_select('node', 'n');
+        $query = \Drupal::database()->select('node', 'n');
         $query->condition('n.type', $type);
         $query->addExpression('COUNT(*)');
 

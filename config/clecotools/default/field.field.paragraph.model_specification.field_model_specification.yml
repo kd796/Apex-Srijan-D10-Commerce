@@ -1,0 +1,29 @@
+uuid: d11de60a-7562-4c92-b5c4-1de41f76c89f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_model_specification
+    - paragraphs.paragraphs_type.model_specification
+    - taxonomy.vocabulary.model_specification
+id: paragraph.model_specification.field_model_specification
+field_name: field_model_specification
+entity_type: paragraph
+bundle: model_specification
+label: 'Model Specification'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      model_specification: model_specification
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
