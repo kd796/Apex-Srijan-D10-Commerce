@@ -8,6 +8,7 @@ dependencies:
     - field.field.block_content.media_center_landing_page.field_display_name
     - field.field.block_content.media_center_landing_page.field_icon_type
     - field.field.block_content.media_center_landing_page.field_link
+    - field.field.block_content.media_center_landing_page.field_weight_media_center
   module:
     - link
     - options
@@ -42,6 +43,15 @@ content:
       target: ''
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_weight_media_center:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
     region: content
 hidden:
   body: true
