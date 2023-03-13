@@ -3,15 +3,35 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.media.product_downloads.field_language
+    - field.field.media.product_downloads.field_listing_image
     - field.field.media.product_downloads.field_media_file
+    - field.field.media.product_downloads.field_type
     - media.type.product_downloads
   module:
     - file
+    - options
 id: media.product_downloads.default
 targetEntityType: media
 bundle: product_downloads
 mode: default
 content:
+  field_language:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_listing_image:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
   field_media_file:
     type: file_default
     label: visually_hidden
@@ -19,6 +39,13 @@ content:
       use_description_as_link_text: true
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
     region: content
 hidden:
   created: true

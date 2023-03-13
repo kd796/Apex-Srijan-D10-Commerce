@@ -1,0 +1,75 @@
+uuid: 1eb48a54-7cd1-4300-a21b-9534c8704af2
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+    - options
+id: media.field_language
+field_name: field_language
+entity_type: media
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: turkish
+      label: Turkish
+    -
+      value: spanish
+      label: Spanish
+    -
+      value: slovakian
+      label: Slovakian
+    -
+      value: russian
+      label: Russian
+    -
+      value: romanian
+      label: Romanian
+    -
+      value: portuguese
+      label: Portuguese
+    -
+      value: polish
+      label: Polish
+    -
+      value: korean
+      label: Korean
+    -
+      value: japanese
+      label: Japanese
+    -
+      value: italian
+      label: Italian
+    -
+      value: hungarian
+      label: Hungarian
+    -
+      value: german
+      label: German
+    -
+      value: french
+      label: French
+    -
+      value: english
+      label: English
+    -
+      value: dutch
+      label: Dutch
+    -
+      value: danish
+      label: Danish
+    -
+      value: czech
+      label: Czech
+    -
+      value: chinese
+      label: Chinese
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

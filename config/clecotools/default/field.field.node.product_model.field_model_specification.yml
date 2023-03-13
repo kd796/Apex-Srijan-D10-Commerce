@@ -1,21 +1,21 @@
-uuid: 1659700b-fe5f-4ced-bd1e-7c5b4a407e0c
+uuid: 603b76d3-4075-4570-a0da-ca34b9626d26
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_model_specification
-    - node.type.product
+    - node.type.product_model
     - paragraphs.paragraphs_type.model_specification
   module:
     - entity_reference_revisions
-id: node.product.field_model_specification
+id: node.product_model.field_model_specification
 field_name: field_model_specification
 entity_type: node
-bundle: product
+bundle: product_model
 label: 'Model Specification'
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
@@ -128,16 +128,16 @@ settings:
         weight: 76
         enabled: true
       product_categories:
-        weight: 79
-        enabled: false
-      product_search:
-        weight: 80
-        enabled: false
-      products_category_section:
         weight: 77
         enabled: false
-      products_section:
+      product_search:
         weight: 78
+        enabled: false
+      products_category_section:
+        weight: 79
+        enabled: false
+      products_section:
+        weight: 80
         enabled: false
       schedule_a_demo:
         weight: 81
