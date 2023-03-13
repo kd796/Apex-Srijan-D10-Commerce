@@ -254,7 +254,20 @@ display:
         type: tag
         options: {  }
       empty: {  }
-      sorts: {  }
+      sorts:
+        field_weight_media_center_value:
+          id: field_weight_media_center_value
+          table: block_content__field_weight_media_center
+          field: field_weight_media_center_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
       arguments: {  }
       filters:
         status:
