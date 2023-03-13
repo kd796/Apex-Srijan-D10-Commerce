@@ -1,0 +1,34 @@
+uuid: 7bec02cf-fe35-4bb5-b44a-bc626861d676
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.model_specification.field_model_specification
+    - field.field.paragraph.model_specification.field_model_specification_value
+    - paragraphs.paragraphs_type.model_specification
+id: paragraph.model_specification.default
+targetEntityType: paragraph
+bundle: model_specification
+mode: default
+content:
+  field_model_specification:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_model_specification_value:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
