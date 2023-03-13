@@ -69,6 +69,9 @@ source:
     - name: remote_pdfs
       label: PDFs
       selector: Values
+    - name: status
+      label: Status
+      selector: './Values/Value[@AttributeID="SAP_SALES_ORG_STATUS"]/@ID'
     - name: remote_keywords
       label: Keywords
       selector: './/*[@AttributeID=''ATT737269'']'
@@ -77,6 +80,12 @@ source:
       type: string
 process:
   # Basic Info
+  product_status:
+    plugin: skip_on_value
+    source: status
+    method: row
+    value:
+      - Z4
   type:
     plugin: default_value
     default_value: product
