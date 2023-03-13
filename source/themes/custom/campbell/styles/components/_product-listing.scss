@@ -5,7 +5,6 @@
 }
 
 .product-listing {
-
   .view-header {
     font-size: 16px;
     font-weight: $bold;
@@ -47,8 +46,8 @@
     }
 
     img {
-      width: 160px;
-      height: 160px;
+      width: 130px;
+      height: 130px;
       object-fit: contain;
       @media only screen and (max-width: $tablet) {
         margin: auto;
@@ -177,38 +176,18 @@
     }
   }
 
-  // Button distributor.
   .btn-distributor {
-    font-size: 12px;
-    padding: 3px 20px;
-    display: inline-flex;
-    align-items: center;
     @media only screen and (min-width: $tablet) {
       float: right;
     }
+
     @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
       margin-top: 25px;
-    }
-
-    &:hover {
-      color: $white;
-    }
-
-    &::before {
-      content: '';
-      width: 20px;
-      height: 20px;
-      background: url('#{$image-base-path}/small_icons.png') left -238px no-repeat;
-      display: inline-block;
-      padding-left: 32px;
-      vertical-align: middle;
-      line-height: 22px;
     }
   }
 }
 
 // Filter section.
-
 .col-filter {
   width: 100%;
   @media only screen and (min-width: $tablet-max) {
@@ -277,6 +256,16 @@
           margin-bottom: 0;
         }
       }
+    }
+  }
+}
+
+.view-new-products {
+  margin: 30px 0;
+
+  .view-filters {
+    .fieldset-wrapper {
+      max-height: unset;
     }
   }
 }
