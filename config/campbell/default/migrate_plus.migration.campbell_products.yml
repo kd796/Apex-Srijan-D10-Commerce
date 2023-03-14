@@ -94,6 +94,10 @@ source:
       label: PDFs
       selector: Values
     -
+      name: status
+      label: Status
+      selector: './Values/Value[@AttributeID="SAP_SALES_ORG_STATUS"]/@ID'
+    -
       name: remote_keywords
       label: Keywords
       selector: './/*[@AttributeID=''ATT737269'']'
@@ -101,6 +105,11 @@ source:
     remote_sku:
       type: string
 process:
+  status:
+    plugin: unpublish_discontinued_products
+    source: status
+    value:
+      - Z4
   type:
     plugin: default_value
     default_value: product

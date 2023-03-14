@@ -80,10 +80,9 @@ source:
       type: string
 process:
   # Basic Info
-  product_status:
-    plugin: skip_on_value
+  status:
+    plugin: unpublish_discontinued_products
     source: status
-    method: row
     value:
       - Z4
   type:
