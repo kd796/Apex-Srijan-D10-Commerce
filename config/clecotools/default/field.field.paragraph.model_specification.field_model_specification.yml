@@ -5,7 +5,7 @@ dependencies:
   config:
     - field.storage.paragraph.field_model_specification
     - paragraphs.paragraphs_type.model_specification
-    - taxonomy.vocabulary.model_specification
+    - taxonomy.vocabulary.model_specifications
 id: paragraph.model_specification.field_model_specification
 field_name: field_model_specification
 entity_type: paragraph
@@ -20,7 +20,7 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      model_specification: model_specification
+      model_specifications: model_specifications
     sort:
       field: name
       direction: asc
