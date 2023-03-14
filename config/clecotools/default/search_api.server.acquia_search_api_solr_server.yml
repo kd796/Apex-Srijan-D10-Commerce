@@ -1,0 +1,52 @@
+uuid: cbedc23f-3536-442f-b7fc-5d4d969b3920
+langcode: en
+status: true
+dependencies:
+  module:
+    - acquia_search
+    - search_api_solr
+id: acquia_search_api_solr_server
+name: 'Acquia Search API Solr server'
+description: ''
+backend: search_api_solr
+backend_config:
+  retrieve_data: false
+  highlight_data: false
+  site_hash: true
+  server_prefix: ''
+  domain: generic
+  environment: default
+  connector: solr_acquia_connector
+  connector_config:
+    identifier: AGQV-204467
+    api_key: 7a8b05544b5e601d98d16d51452d676f
+    uuid: 118e52af-17d6-4350-a54c-2a2e659b1657
+    api_host: 'https://api.sr-prod02.acquia.com'
+    skip_schema_check: true
+    scheme: http
+    host: s-4oem10j3hz7-us-east-1.sr-prod02.acquia.com
+    port: 8983
+    path: /solr/AGQV-204467.dev.clecotools
+    core: AGQV-204467.dev.clecotools
+    timeout: 5
+    index_timeout: 5
+    optimize_timeout: 10
+    finalize_timeout: 30
+    solr_version: ''
+    http_method: AUTO
+    commit_within: 1000
+    jmx: false
+    jts: false
+    solr_install_dir: ''
+    key: search_api_solr
+    overridden_by_acquia_search: 1
+  optimize: false
+  fallback_multiple: false
+  disabled_field_types: {  }
+  disabled_caches: {  }
+  disabled_request_handlers: {  }
+  disabled_request_dispatchers: {  }
+  rows: 10
+  index_single_documents_fallback_count: 10
+  index_empty_text_fields: false
+  suppress_missing_languages: false
