@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.markets.field_market_logo
     - field.field.node.markets.field_related_products
     - field.field.node.markets.field_short_description
+    - field.field.node.markets.field_weight
     - node.type.markets
   module:
     - media_library
@@ -72,6 +73,13 @@ content:
     region: content
     settings:
       rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_weight:
+    type: number
+    weight: 26
+    region: content
+    settings:
       placeholder: ''
     third_party_settings: {  }
   langcode:
