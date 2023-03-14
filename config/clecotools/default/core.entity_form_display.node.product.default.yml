@@ -8,10 +8,10 @@ dependencies:
     - field.field.node.product.field_footnotes
     - field.field.node.product.field_long_description
     - field.field.node.product.field_media
-    - field.field.node.product.field_model_specification
     - field.field.node.product.field_product_classifications
     - field.field.node.product.field_product_features_cp
     - field.field.node.product.field_product_images
+    - field.field.node.product.field_product_models
     - field.field.node.product.field_related_products_ref
     - field.field.node.product.field_sku_group
     - field.field.node.product.field_upc
@@ -19,7 +19,6 @@ dependencies:
   module:
     - content_moderation
     - media_library
-    - paragraphs
     - path
     - text
 id: node.product.default
@@ -73,24 +72,6 @@ content:
     settings:
       media_types: {  }
     third_party_settings: {  }
-  field_model_specification:
-    type: paragraphs
-    weight: 131
-    region: content
-    settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
-      closed_mode: summary
-      autocollapse: none
-      closed_mode_threshold: 0
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: ''
-      features:
-        collapse_edit_all: collapse_edit_all
-        duplicate: duplicate
-    third_party_settings: {  }
   field_product_classifications:
     type: entity_reference_autocomplete
     weight: 130
@@ -115,6 +96,16 @@ content:
     region: content
     settings:
       media_types: {  }
+    third_party_settings: {  }
+  field_product_models:
+    type: entity_reference_autocomplete
+    weight: 133
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_related_products_ref:
     type: entity_reference_autocomplete
