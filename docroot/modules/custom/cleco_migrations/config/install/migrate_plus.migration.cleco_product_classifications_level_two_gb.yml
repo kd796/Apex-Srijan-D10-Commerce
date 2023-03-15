@@ -1,42 +1,35 @@
-uuid: 0a2b31b5-32f1-44b2-9a48-f0929f2af684
-langcode: en
-status: true
-dependencies: {  }
-id: cleco_product_classifications_level_two
-class: null
-field_plugin_method: null
-cck_plugin_method: null
-migration_tags: null
+# Migration configuration for cleco_product_classifications content.
+id: cleco_product_classifications_level_two_gb
+label: Product Classifications - Level Two (Language gb)
 migration_group: cleco
-label: 'Product Classifications - Level Two'
 source:
   plugin: url
   data_fetcher_plugin: file
   data_parser_plugin: simple_xml
-  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  urls: 'public://import/pim_data/pim_export_with_schema_gb.xml'
   namespaces:
-    stibo: 'http://www.stibosystems.com/step'
-  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 2"]'
+    stibo: "http://www.stibosystems.com/step"
+  item_selector: /STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 2"]
   fields:
     -
-      name: remote_term_id
-      label: ID
-      selector: '@ID'
+     name: remote_term_id
+     label: ID
+     selector: '@ID'
     -
       name: remote_term_name
-      label: 'Term Name'
+      label: Term Name
       selector: Name
     -
       name: remote_parent_name
-      label: 'Parent Term Name'
+      label: Parent Term Name
       selector: 'parent::Classification'
     -
       name: term_description
-      label: 'Parent Term Name'
+      label: Parent Term Name
       selector: 'MetaData/Value[@AttributeID="Pro Landing Body"]'
     -
       name: term_position
-      label: 'Term Position'
+      label: Term Position
       selector: 'MetaData/Value[@AttributeID="ATT15738"]'
   ids:
     remote_term_id:
@@ -46,20 +39,26 @@ process:
     plugin: skip_on_empty
     method: row
     source: remote_term_name
+
   field_classification_id:
     plugin: skip_on_value
     not_equals: true
     source: remote_term_id
     method: row
     value:
+      # Parent: W1_877094 Name: Drilling & Riveting
       - W2_877104
       - W2_877106
       - W2_877107
       - W2_877108
+
+      # Parent: W1_877095 Name: Material Removal
       - W2_877109
       - W2_877110
       - W2_877112
       - W2_877113
+
+      # Parent: W1_877093 Name: Assembly Tools
       - W2_877096
       - W2_877097
       - W2_877098
@@ -69,7 +68,7 @@ process:
       - W2_877102
       - W2_877103
   description: term_description
-  weight:
+  weight: 
     plugin: cleco_get_default_value
     source: term_position
     set_default_value: 1
@@ -78,16 +77,16 @@ process:
     -
       plugin: cleco_get_classification_parent_term
       source: remote_parent_name
-      langcode: en
+      langcode: gb
     -
       plugin: default_value
       default_value: 0
   langcode:
     plugin: default_value
-    default_value: en
+    default_value: gb
 destination:
-  plugin: 'entity:taxonomy_term'
+  plugin: entity:taxonomy_term
   default_bundle: product_classifications
 migration_dependencies:
   required:
-    - cleco_product_classifications_level_one
+    - cleco_product_classifications_level_one_gb
