@@ -12,12 +12,12 @@ dependencies:
 id: heroimage_product_category
 theme: campbell
 region: pre_content
-weight: -20
+weight: -19
 provider: null
 plugin: 'fixed_block_content:hero_image_for_product_category'
 settings:
   id: 'fixed_block_content:hero_image_for_product_category'
-  label: 'Hero Image - Product Category'
+  label: 'Hero Image - Product Category and Product'
   label_display: '0'
   provider: fixed_block_content
   view_mode: ''
@@ -28,4 +28,5 @@ visibility:
     context_mapping:
       node: '@node.node_route_context:node'
     bundles:
+      product: product
       product_category: product_category
