@@ -265,11 +265,21 @@ function gearwrench_core_media_presave(MediaInterface $entity) {
  */
 function gearwrench_core_form_views_exposed_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
   $view = $form_state->getStorage('view');
-  if ($view['view']->id() == 'new_products') {
+  if ($view['view']->id() == 'new_products' && isset($form['category']['#options'])) {
     foreach ($form['category']['#options'] as $key => $value) {
-      $parent = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($key);
-      if (!empty($parent)) {
-        unset($form['category']['#options'][$key]);
+      if (is_numeric($key)) {
+        // Start database query.
+        $query = \Drupal::database()->select('taxonomy_index', 'category');
+        $query->fields('category', ['nid']);
+        $query->condition('category.tid', $key);
+        $nodes = $query->execute()->fetchAssoc();
+        if (isset($nodes['nid'])) {
+          $node = \Drupal::entityTypeManager()->getStorage('node')->load($nodes['nid']);
+          // Remove option if term has no instance.
+          if ($node->bundle() == "product") {
+            unset($form['category']['#options'][$key]);
+          }
+        }
       }
     }
   }
