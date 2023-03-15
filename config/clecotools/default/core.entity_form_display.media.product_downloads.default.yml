@@ -6,6 +6,7 @@ dependencies:
     - field.field.media.product_downloads.field_language
     - field.field.media.product_downloads.field_listing_image
     - field.field.media.product_downloads.field_media_file
+    - field.field.media.product_downloads.field_product_category
     - field.field.media.product_downloads.field_type
     - media.type.product_downloads
   module:
@@ -42,6 +43,16 @@ content:
     region: content
     settings:
       progress_indicator: throbber
+    third_party_settings: {  }
+  field_product_category:
+    type: entity_reference_autocomplete
+    weight: 26
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_type:
     type: options_select
