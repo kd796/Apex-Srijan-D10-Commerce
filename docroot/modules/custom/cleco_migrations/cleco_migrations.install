@@ -33,7 +33,13 @@ function cleco_migrations_uninstall() {
   \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_classifications_level_two')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_category_pages_level_one')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_category_pages_level_two')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_classifications_level_one_de')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_classifications_level_two_de')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_classifications_level_one_gb')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_classifications_level_two_gb')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_specifications')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_specifications_de')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_specifications_gb')->delete();
 }
 
 /**
