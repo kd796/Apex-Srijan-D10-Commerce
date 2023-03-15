@@ -144,7 +144,7 @@
 
     </section>
 
-    {% set criteria = product.filters|merge({
+    {#{% set criteria = product.filters|merge({
         'product_category': product.product_category,
         'product_line': product.product_line,
         'product_line_ids': product.product_line_ids
@@ -163,7 +163,7 @@
                 <ul class="listings">
 
                     {# Get correct alias based on selected language #}
-                    {% set alias = alias_by_path('/products/product-catalog', locale.code) %}
+                   {#} {% set alias = alias_by_path('/products/product-catalog', locale.code) %}
 
                     {% for related in relatedProducts.hits %}
                         {% if related._source.name != productName %}
@@ -182,7 +182,7 @@
                 </ul>
             </section>
         {% endif %}
-    {% endif %}
+    {% endif %}#}
 
     <section class="section">
          {{ drupal_region('product_detail_page_callouts') }}
