@@ -42,6 +42,12 @@ source:
     - name: product_classification_reference
       label: ClassificationReference
       selector: 'ClassificationReference[@Type="Web Reference"]'
+    - name: remote_listing_image
+      label: Listing Image
+      selector: Values
+    - name: remote_product_images
+      label: Product Images
+      selector: Values
   ids:
     remote_sku:
       type: string
@@ -115,6 +121,22 @@ process:
     plugin: default_value
     default_value: en
 
+  # Primary Image.
+  listing_image:
+    source: remote_listing_image
+    plugin: apex_get_listing_image
+  'field_media/target_id': '@listing_image'
+
+  # Product Images.
+  product_images_array:
+    source: remote_product_images
+    plugin: apex_get_product_images
+  field_product_images:
+    plugin: sub_process
+    source: '@product_images_array'
+    include_source: true
+    process:
+      target_id: media_id
 destination:
   plugin: apex_product
   bundle: product
