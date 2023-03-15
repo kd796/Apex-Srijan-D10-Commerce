@@ -27,8 +27,8 @@ class GetDefaultValue extends ProcessPluginBase {
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
-    $default_value = (isset($this->configuration['default_value'])) ? $this->configuration['default_value'] : 0;
-    $set_default_value = (isset($this->configuration['set_default_value'])) ? $this->configuration['set_default_value'] : 1;
+    $default_value = $this->configuration['default_value'] ?? 0;
+    $set_default_value = $this->configuration['set_default_value'] ?? 1;
 
     if (empty($value) && $set_default_value) {
       $value = $default_value;
