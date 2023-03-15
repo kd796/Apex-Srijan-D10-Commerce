@@ -2,8 +2,6 @@ uuid: 7506701a-62a5-434c-bc6c-35260198bd79
 langcode: en
 status: true
 dependencies: {  }
-_core:
-  default_config_hash: '-tQVpTxcU9qqLT71pCOVeAFr3fzp6WwNaD4te1eM__g'
 id: cleco_product_classifications
 class: null
 field_plugin_method: null
@@ -18,7 +16,7 @@ source:
   urls: 'public://import/pim_data/pim_export_with_schema.xml'
   namespaces:
     stibo: 'http://www.stibosystems.com/step'
-  item_selector: '//Classification[@UserTypeID="Website"]|//Classification[@UserTypeID="Web Level 1"]'
+  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 2"]'
   fields:
     -
       name: remote_term_id
@@ -39,11 +37,11 @@ source:
     -
       name: remote_parent_id
       label: 'Parent Term Name'
-      selector: 'parent::Classification[@UserTypeID="Website"]/@ID'
+      selector: 'parent::Classification[@UserTypeID="Web Level 1"]/@ID'
     -
       name: remote_parent_name
       label: 'Parent Term Name'
-      selector: 'parent::Classification[@UserTypeID="Website"]/Name'
+      selector: 'parent::Classification[@UserTypeID="Web Level 1"]/Name'
   ids:
     remote_term_id:
       type: string
@@ -57,11 +55,11 @@ process:
     default_value: product_classifications
   field_classification_id:
     plugin: skip_on_value
-    equals: true
+    not_equals: true
     source: remote_term_id
     method: row
     value:
-      - W1_26966
+      - W1_26966123
   parent:
     plugin: cleco_set_classification_parent_term
     source: remote_parent_id
@@ -71,7 +69,7 @@ process:
       create_term: 1
       check_skip_params: 1
     skip_params:
-      term: Website
+      term: 'Web Level 1'
       source: source_type_id
       source_from: source
     create_term:
