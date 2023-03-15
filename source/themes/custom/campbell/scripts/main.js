@@ -67,6 +67,19 @@
       if (view.find('.view-empty').length !== 0) {
         view.addClass('no-result');
       }
+      // tabs
+      $(function () {
+        $('.tabs-nav a').click(function () {
+          // Check for active
+          $('.tabs-nav li').removeClass('active');
+          $(this).parent().addClass('active');
+          // Display active tab
+          let currentTab = $(this).attr('href');
+          $('.tabs-content .tabs-content__inner').removeClass('active');
+          $(currentTab).addClass('active');
+          return false;
+        });
+      });
 
       /* end */
     }

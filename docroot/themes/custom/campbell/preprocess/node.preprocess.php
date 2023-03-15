@@ -122,6 +122,8 @@ function campbell_preprocess_node__product__full(array &$variables) {
           '#height' => $thumb_variables['height'],
           '#style_name' => $thumb_variables['style_name'],
           '#uri' => $thumb_variables['uri'],
+          '#prefix' => '<div class="swiper-slide">',
+          '#suffix' => '</div>',
         ];
       }
       else {
@@ -135,13 +137,19 @@ function campbell_preprocess_node__product__full(array &$variables) {
       $file = $entity_type_manager->getStorage('file')->load($video_thumbnail_fid);
       $uri = $file->getFileUri();
 
+      $variables['is_video_image'] = 1;
       if (!empty($uri)) {
-        $variables['thumbnails'][] = [
+        $variables['video_thumbnails'][] = [
           '#theme' => 'image_style',
           '#width' => 100,
           '#height' => 100,
           '#style_name' => 'thumbnail_cropped',
           '#uri' => $uri,
+          '#prefix' => '<div class="swiper-slide">',
+          '#suffix' => '</div>',
+          '#attributes' => [
+            'class' => 'video-thumbnail',
+          ]
         ];
       }
     }
