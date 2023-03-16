@@ -1,0 +1,25 @@
+uuid: 712a2f7b-6717-4f13-ab02-385d8db9ad07
+langcode: en
+status: true
+dependencies:
+  module:
+    - addtothis_apex
+    - system
+  theme:
+    - campbell
+id: addthis
+theme: campbell
+region: pre_content
+weight: -15
+provider: null
+plugin: addtothis_apex_custom
+settings:
+  id: addtothis_apex_custom
+  label: AddThis
+  label_display: '0'
+  provider: addtothis_apex
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/markets\r\n/markets/*\r\n/about/\r\n/about/*\r\n/featured-products\r\n/featured-products/*\r\n/media-center/*\r\n/where-to-buy"
