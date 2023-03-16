@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * @file
+ * Contains campbell_where_to_buy.module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements form_views_exposed_form_alter().
+ */
+function campbell_where_to_buy_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $view_ids = ['markers_map'];
+  $view = $form_state->getStorage('view');
+  if ($form_id == 'views_exposed_form' && in_array($view['view']->id(), $view_ids)) {
+    $form_state->setValue('state_codes', $form['field_address_administrative_area']['#options']);
+    $form['field_address_administrative_area']['#access'] = FALSE;
+    $form['field_address_administrative_area_textfield'] = [
+      '#type' => 'textfield',
+      '#title' => t('state'),
+    ];
+    $form['field_location_proximity']['#options'] = [
+      '5' => t('5'),
+      '10' => t('10'),
+      '20' => t('20'),
+      '50' => t('50'),
+      '100' => t('100'),
+    ];
+    array_unshift($form['#validate'], 'campbell_where_to_buy_form_views_exposed_form_validate');
+  }
+}
+
+/**
+ * Implements form_views_exposed_form_validate().
+ */
+function campbell_where_to_buy_form_views_exposed_form_validate(&$form, FormStateInterface $form_state) {
+  // Get the submitted state value.
+  $state_name = $form_state->getValue('field_address_administrative_area_textfield');
+
+  if (!($state_name)) {
+    return;
+  }
+  $state_name = ucfirst(strtolower($state_name));
+  // Get the state value option to its state code.
+  $state_codes = $form['field_address_administrative_area']['#options'];
+  $state_value = array_search($state_name, $state_codes);
+  if ($state_value) {
+    $form_state->setValue('field_address_administrative_area', $state_value);
+    return;
+  }
+  $form_state->setValue('field_address_administrative_area_textfield', '');
+  $form_state->setValue('field_address_administrative_area', '');
+  $form_state->setRebuild(TRUE);
+}
