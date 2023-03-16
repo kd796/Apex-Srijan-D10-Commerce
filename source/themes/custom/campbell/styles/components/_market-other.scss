@@ -50,3 +50,94 @@
     }
   }
 }
+
+// Market landing.
+.market-content {
+  font-size: 14px;
+  color: $spanish-gray;
+}
+
+.market-landing {
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 7px;
+  @media only screen and (min-width: $tablet-max) {
+    width: 90%;
+  }
+  @media only screen and (max-width: $tablet) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__list {
+
+    &.first {
+      grid-column: 1 / span 2;
+    }
+  }
+
+  .market-image {
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 250px;
+      @media only screen and (min-width: $tablet-max) {
+        height: 200px;
+      }
+    }
+  }
+
+  .market-desc {
+    position: relative;
+    background: url('#{$image-base-path}/home_feature_desc.png') repeat-x scroll left top $pantone;
+    background-color: $pantone;
+    color: $white;
+    padding: 10px 10px 30px;
+    min-height: 110px;
+
+    h3 {
+      font-size: 30px;
+      font-family: $helvetica-bold;
+      font-weight: $bold;
+      margin: 0;
+      color: inherit;
+      line-height: 45px;
+      width: 85%;
+      @media only screen and (min-width: $tablet-max) {
+        font-size: 24px;
+        line-height: 35px;
+      }
+    }
+
+    p {
+      margin-bottom: 0;
+      display: inline-block;
+      line-height: 1;
+      font-size: 12px;
+    }
+
+    .mkt-logo {
+      min-width: 40px;
+      text-align: right;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+  }
+
+  a {
+    display: block;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+
+      h3,
+      p {
+        text-shadow: 0 0 4px $lighter-gray;
+      }
+    }
+  }
+}

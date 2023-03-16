@@ -149,7 +149,7 @@ function campbell_preprocess_node__product__full(array &$variables) {
           '#suffix' => '</div>',
           '#attributes' => [
             'class' => 'video-thumbnail',
-          ]
+          ],
         ];
       }
     }
@@ -179,5 +179,9 @@ function campbell_preprocess_node__product__full(array &$variables) {
     if (!empty($pdfs)) {
       $variables['pdfs'] = $pdfs;
     }
+  }
+  $block = $entity_type_manager->getStorage('block')->load('addthis');
+  if ($block) {
+    $variables['addtothis_block_output'] = $entity_type_manager->getViewBuilder('block')->view($block);
   }
 }
