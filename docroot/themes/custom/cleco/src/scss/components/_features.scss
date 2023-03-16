@@ -32,7 +32,7 @@ $feature-height-map: (
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: rgba(56,55,57,1); 
+  background: rgba(56,55,57,1);
 }
 
 .feature-image img,
@@ -159,6 +159,7 @@ $feature-height-map: (
 }
 
 .feature--brand {
+  height: 100%;
   @include watermark(#fff);
   background-color: $color-orange;
 }
@@ -199,13 +200,22 @@ $feature-height-map: (
  * LIST
  */
 .features {
+  .features-item {
+    > div {
+      height: 100%;
+
+      > div {
+        height: 100%;
+      }
+    }
+  }
   @media (max-width: $breakpoint-layout-horizontal - 1) {
     .features-item {
       margin-bottom: 1em;
     }
   }
 
-  @media (min-width: $breakpoint-layout-horizontal) {
+  @media (min-width: $media-screen-medium + 1) {
     display: flex;
     justify-content: center;
     margin-left: -0.75em;

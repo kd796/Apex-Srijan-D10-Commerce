@@ -25,6 +25,15 @@
         }
     }
 
+    .media-block-media {
+        img {
+            @media only screen and(max-width: $breakpoint-listing-peek) {
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
     @media (min-width: 1500px) {
         justify-content: space-around;
     }
@@ -97,7 +106,7 @@
 /**
  * ANIMATIONS
  */
-body:not(.anim-disabled) { 
+body:not(.anim-disabled) {
 
     .media-block-media,
     .media-block-content {
