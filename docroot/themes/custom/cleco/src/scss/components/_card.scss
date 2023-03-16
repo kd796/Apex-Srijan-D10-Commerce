@@ -25,6 +25,14 @@ $card-arrow-size-map: (
   color: #fff;
 }
 
+.card-grid-column {
+  &:not(:last-child) {
+    @media only screen and (max-width: $breakpoint-card-grid){
+      margin-bottom: 16px;
+    }
+  }
+}
+
 a.card {
   @include link-reset;
 }
@@ -39,6 +47,11 @@ a.card {
  * HOVER
  */
 a.card {
+  &:not(:last-child) {
+    @media only screen and (max-width: $breakpoint-card-grid){
+      margin-bottom: 16px;
+    }
+  }
   &::before {
     content: "";
     position: absolute;
