@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a block.
+ *
+ * Available variables:
+ * - addthis_content: The ID of the block implementation.
+ *
+ * @see template_preprocess_block()
+ *
+ * @ingroup themeable
+ */
+#}
+{{ attach_library('addtothis_apex/add-this') }}
+<!-- ADDTHIS BUTTON BEGIN -->
+<script type='text/javascript'>
+var addthis_config = {
+     pubid : 'ra-52f3a9d94a57dd32',
+	 services_expanded : 'twitter, pinterest_share, google_plusone_share',
+}
+</script>
+<!-- AddThis API Config END -->
+{{ addthis_content|raw }}
