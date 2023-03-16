@@ -27,6 +27,11 @@ global:
   js:
     js/main.js: {}
 
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
 slider:
   css:
     theme:
@@ -43,6 +48,21 @@ node--product-category:
   version: 1.x
   js:
     js/full--product-category.js: { }
+
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
+product-detail:
+  css:
+    theme:
+      //cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css: { type: external, minified: true }
+      //cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css: { type: external, minified: true }
+  js:
+    //cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js: { type: external, minified: true }
+    //cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js: { type: external, minified: true }
+    js/product-detail.js: { }
 
   dependencies:
     - core/drupal

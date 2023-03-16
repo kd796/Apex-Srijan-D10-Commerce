@@ -1,0 +1,93 @@
+uuid: ccba8c4e-2d61-43fb-b1b7-5b03cccc4fbd
+langcode: en
+status: true
+dependencies: {  }
+id: cleco_product_classifications_level_two_gb
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: cleco
+label: 'Product Classifications - Level Two (Language gb)'
+source:
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: simple_xml
+  urls: 'public://import/pim_data/pim_export_with_schema_gb.xml'
+  namespaces:
+    stibo: 'http://www.stibosystems.com/step'
+  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 2"]'
+  fields:
+    -
+      name: remote_term_id
+      label: ID
+      selector: '@ID'
+    -
+      name: remote_term_name
+      label: 'Term Name'
+      selector: Name
+    -
+      name: remote_parent_name
+      label: 'Parent Term Name'
+      selector: 'parent::Classification'
+    -
+      name: term_description
+      label: 'Parent Term Name'
+      selector: 'MetaData/Value[@AttributeID="Pro Landing Body"]'
+    -
+      name: term_position
+      label: 'Term Position'
+      selector: 'MetaData/Value[@AttributeID="ATT15738"]'
+  ids:
+    remote_term_id:
+      type: string
+process:
+  name:
+    plugin: skip_on_empty
+    method: row
+    source: remote_term_name
+  field_classification_id:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_term_id
+    method: row
+    value:
+      - W2_877104
+      - W2_877106
+      - W2_877107
+      - W2_877108
+      - W2_877109
+      - W2_877110
+      - W2_877112
+      - W2_877113
+      - W2_877096
+      - W2_877097
+      - W2_877098
+      - W2_877099
+      - W2_877100
+      - W2_877101
+      - W2_877102
+      - W2_877103
+  description: term_description
+  weight:
+    plugin: cleco_get_default_value
+    source: term_position
+    set_default_value: 1
+    default_value: 0
+  parent:
+    -
+      plugin: cleco_get_classification_parent_term
+      source: remote_parent_name
+      langcode: gb
+    -
+      plugin: default_value
+      default_value: 0
+  langcode:
+    plugin: default_value
+    default_value: gb
+destination:
+  plugin: 'entity:taxonomy_term'
+  default_bundle: product_classifications
+migration_dependencies:
+  required:
+    - cleco_product_classifications_level_one_gb

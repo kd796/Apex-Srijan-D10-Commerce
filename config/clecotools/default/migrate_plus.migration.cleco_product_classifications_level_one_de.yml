@@ -1,0 +1,68 @@
+uuid: 3b728405-ef41-4313-8aab-2b3fc769c7a4
+langcode: en
+status: true
+dependencies: {  }
+id: cleco_product_classifications_level_one_de
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: cleco
+label: 'Product Classifications - Level One (Language DE)'
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: 'public://import/pim_data/pim_export_with_schema_de.xml'
+  namespaces:
+    stibo: 'http://www.stibosystems.com/step'
+  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 1"]'
+  fields:
+    -
+      name: remote_term_id
+      label: ID
+      selector: '@ID'
+    -
+      name: remote_term_name
+      label: 'Term Name'
+      selector: Name
+    -
+      name: term_description
+      label: 'Parent Term Name'
+      selector: 'MetaData/Value[@AttributeID="Pro Landing Body"]'
+    -
+      name: term_position
+      label: 'Term Position'
+      selector: 'MetaData/Value[@AttributeID="ATT15738"]'
+  ids:
+    remote_term_id:
+      type: string
+process:
+  name:
+    plugin: skip_on_empty
+    method: row
+    source: remote_term_name
+  vid:
+    plugin: default_value
+    default_value: product_classifications
+  field_classification_id:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_term_id
+    method: row
+    value:
+      - W1_877093
+      - W1_877094
+      - W1_877095
+  description: term_description
+  weight:
+    plugin: cleco_get_default_value
+    source: term_position
+    set_default_value: 1
+    default_value: 0
+  langcode:
+    plugin: default_value
+    default_value: de
+destination:
+  plugin: 'entity:taxonomy_term'
+migration_dependencies: null

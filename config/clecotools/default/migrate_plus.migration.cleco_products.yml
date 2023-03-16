@@ -1,9 +1,7 @@
-uuid: 0f3a18c1-2018-4e4f-94b4-8c9400755dcb
+uuid: fb87246a-e820-4ef0-b393-fb9f258cae9c
 langcode: en
 status: true
 dependencies: {  }
-_core:
-  default_config_hash: 0NhkH7Kp-enbngPobAEn48vkPpE7aFJkxRKxf8x_e7Q
 id: cleco_products
 class: null
 field_plugin_method: null
@@ -55,6 +53,18 @@ source:
       name: remote_sku_overview
       label: 'SKU Overview'
       selector: Values
+    -
+      name: product_classification_reference
+      label: ClassificationReference
+      selector: 'ClassificationReference[@Type="Web Reference"]'
+    -
+      name: remote_listing_image
+      label: 'Listing Image'
+      selector: Values
+    -
+      name: remote_product_images
+      label: 'Product Images'
+      selector: Values
   ids:
     remote_sku:
       type: string
@@ -101,6 +111,33 @@ process:
   field_footnotes/format:
     plugin: default_value
     default_value: basic_html
+  product_classification_reference_array:
+    plugin: cleco_get_classification_reference_type_value
+    source: product_classification_reference
+    attribute: 'Web Reference'
+    compare_atrribute: Type
+    fetch_attribute: ClassificationID
+  field_product_classifications:
+    plugin: cleco_set_taxonomy_term
+    source: '@product_classification_reference_array'
+    source_migration_id: cleco_product_classifications
+    mutiple: 0
+  language:
+    plugin: default_value
+    default_value: en
+  listing_image:
+    source: remote_listing_image
+    plugin: apex_get_listing_image
+  field_media/target_id: '@listing_image'
+  product_images_array:
+    source: remote_product_images
+    plugin: apex_get_product_images
+  field_product_images:
+    plugin: sub_process
+    source: '@product_images_array'
+    include_source: true
+    process:
+      target_id: media_id
 destination:
   plugin: apex_product
   bundle: product

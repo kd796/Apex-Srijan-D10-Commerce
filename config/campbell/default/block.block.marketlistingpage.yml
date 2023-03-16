@@ -1,0 +1,28 @@
+uuid: e9a77b8d-887f-41f0-aaf3-ec319778e5ec
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.market_listing_page
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - campbell
+id: marketlistingpage
+theme: campbell
+region: pre_content
+weight: -15
+provider: null
+plugin: 'fixed_block_content:market_listing_page'
+settings:
+  id: 'fixed_block_content:market_listing_page'
+  label: 'Market listing page'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /markets
