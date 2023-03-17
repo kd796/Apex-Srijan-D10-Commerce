@@ -46,8 +46,21 @@
   }
 
   &__links {
-    @media only screen and (min-width: $tablet) {
+    @media only screen and (min-width: $tablet-max) {
       width: 30%;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 45%;
+    }
+
+    .wrapper-content {
+      padding: 0;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .addthis-containers {
+      justify-content: flex-start;
     }
   }
 
