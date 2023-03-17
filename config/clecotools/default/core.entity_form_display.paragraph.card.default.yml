@@ -3,14 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.media_entity_browser
     - field.field.paragraph.card.field_body_plain
     - field.field.paragraph.card.field_cta
     - field.field.paragraph.card.field_media_src
     - field.field.paragraph.card.field_title
     - paragraphs.paragraphs_type.card
   module:
-    - entity_browser
+    - media_library
     - paragraphs
 id: paragraph.card.default
 targetEntityType: paragraph
@@ -38,19 +37,11 @@ content:
       default_paragraph_type: cta
     third_party_settings: {  }
   field_media_src:
-    type: entity_browser_entity_reference
+    type: media_library_widget
     weight: 3
     region: content
     settings:
-      entity_browser: media_entity_browser
-      field_widget_display: rendered_entity
-      field_widget_edit: true
-      field_widget_remove: true
-      field_widget_replace: false
-      open: true
-      field_widget_display_settings:
-        view_mode: default
-      selection_mode: selection_append
+      media_types: {  }
     third_party_settings: {  }
   field_title:
     type: string_textfield
