@@ -3,14 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.media_entity_browser
     - field.field.paragraph.grid_item.field_body_plain
     - field.field.paragraph.grid_item.field_link
     - field.field.paragraph.grid_item.field_media_src
     - field.field.paragraph.grid_item.field_title
     - paragraphs.paragraphs_type.grid_item
   module:
-    - entity_browser
+    - media_library
 id: paragraph.grid_item.default
 targetEntityType: paragraph
 bundle: grid_item
@@ -33,19 +32,11 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_media_src:
-    type: entity_browser_entity_reference
+    type: media_library_widget
     weight: 3
     region: content
     settings:
-      entity_browser: media_entity_browser
-      field_widget_display: rendered_entity
-      field_widget_edit: true
-      field_widget_remove: true
-      field_widget_replace: false
-      open: true
-      field_widget_display_settings:
-        view_mode: full
-      selection_mode: selection_append
+      media_types: {  }
     third_party_settings: {  }
   field_title:
     type: string_textfield

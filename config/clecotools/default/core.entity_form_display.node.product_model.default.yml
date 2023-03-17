@@ -8,7 +8,6 @@ dependencies:
     - node.type.product_model
   module:
     - content_moderation
-    - entity_reference_revisions
     - path
     - text
 id: node.product_model.default
@@ -33,7 +32,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_model_specification:
-    type: entity_reference_revisions_autocomplete
+    type: entity_reference_autocomplete
     weight: 122
     region: content
     settings:

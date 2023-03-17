@@ -3,14 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.media_entity_browser
     - field.field.paragraph.video_bundle.field_body_plain
     - field.field.paragraph.video_bundle.field_media_src
     - field.field.paragraph.video_bundle.field_title
     - field.field.paragraph.video_bundle.field_youtube_url
     - paragraphs.paragraphs_type.video_bundle
   module:
-    - entity_browser
+    - media_library
 id: paragraph.video_bundle.default
 targetEntityType: paragraph
 bundle: video_bundle
@@ -25,19 +24,11 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_media_src:
-    type: entity_browser_entity_reference
+    type: media_library_widget
     weight: 4
     region: content
     settings:
-      entity_browser: media_entity_browser
-      field_widget_display: rendered_entity
-      field_widget_edit: false
-      field_widget_remove: false
-      field_widget_replace: false
-      open: true
-      field_widget_display_settings:
-        view_mode: default
-      selection_mode: selection_append
+      media_types: {  }
     third_party_settings: {  }
   field_title:
     type: string_textfield

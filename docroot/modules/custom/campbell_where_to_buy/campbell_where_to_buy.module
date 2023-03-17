@@ -19,6 +19,8 @@ function campbell_where_to_buy_form_views_exposed_form_alter(&$form, FormStateIn
     $form['field_address_administrative_area_textfield'] = [
       '#type' => 'textfield',
       '#title' => t('state'),
+      '#placeholder' => t('State'),
+      '#weight' => '3',
     ];
     $form['field_location_proximity']['#options'] = [
       '5' => t('5'),
@@ -27,6 +29,10 @@ function campbell_where_to_buy_form_views_exposed_form_alter(&$form, FormStateIn
       '50' => t('50'),
       '100' => t('100'),
     ];
+    $form['field_address_postal_code']['#weight'] = 1;
+    $form['field_address_locality']['#weight'] = 2;
+    $form['field_address_country_code']['#weight'] = 4;
+    $form['field_location_proximity']['#weight'] = 5;
     array_unshift($form['#validate'], 'campbell_where_to_buy_form_views_exposed_form_validate');
   }
 }
