@@ -7,7 +7,6 @@ dependencies:
     - field.field.node.product_model.field_model_specification
     - node.type.product_model
   module:
-    - entity_reference_revisions
     - text
     - user
 id: node.product_model.default
@@ -23,11 +22,10 @@ content:
     weight: 101
     region: content
   field_model_specification:
-    type: entity_reference_revisions_entity_view
+    type: entity_reference_label
     label: above
     settings:
-      view_mode: default
-      link: ''
+      link: true
     third_party_settings: {  }
     weight: 102
     region: content

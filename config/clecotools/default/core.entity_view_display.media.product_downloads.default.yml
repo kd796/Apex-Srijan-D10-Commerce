@@ -6,6 +6,7 @@ dependencies:
     - field.field.media.product_downloads.field_language
     - field.field.media.product_downloads.field_listing_image
     - field.field.media.product_downloads.field_media_file
+    - field.field.media.product_downloads.field_product_category
     - field.field.media.product_downloads.field_type
     - media.type.product_downloads
   module:
@@ -39,6 +40,14 @@ content:
       use_description_as_link_text: true
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_product_category:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 5
     region: content
   field_type:
     type: list_default
