@@ -1,4 +1,5 @@
-input {
+input,
+select {
   width: 100%;
   border-top: 1px solid $dim-gray;
   border-right: 1px solid $gray;
@@ -6,8 +7,10 @@ input {
   border-left: 1px solid $dim-gray;
   padding: 6px 5px;
   background: linear-gradient(180deg, $gray, $white, 5%);
+  color: $dim-gray;
 
   &::placeholder {
     padding: 0 10px;
+    color: $dim-gray;
   }
 }

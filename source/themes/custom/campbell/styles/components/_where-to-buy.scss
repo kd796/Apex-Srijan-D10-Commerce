@@ -1,0 +1,136 @@
+/****** Where to buy ******/
+
+.where-to-buy-top {
+  font-size: 17px;
+  color: $spanish-gray;
+  margin: 5px 0 15px;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  strong {
+    color: $black;
+  }
+}
+
+.where-to-buy {
+  .view-filters {
+    padding: 15px;
+    border-radius: 0;
+    border: 0;
+    margin-bottom: 30px;
+  }
+
+  h4 {
+    text-align: center;
+    color: $pantone;
+    font-size: 24px;
+    font-weight: $bold;
+  }
+
+  input,
+  select {
+    width: 185px;
+    height: 30px;
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max)  {
+      width: 220px;
+    }
+    @media only screen and (max-width: $tablet) {
+      width: 100%;
+    }
+
+    &::placeholder {
+      padding: 0 5px;
+    }
+  }
+
+  .form-actions {
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+
+  .form-submit {
+    width: fit-content;
+    min-width: 80px;
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      margin-top: 13px;
+      display: initial;
+    }
+  }
+
+  .views-exposed-form {
+    .form-item {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        text-transform: uppercase;
+        color: $lighter-gray;
+        font-weight: normal;
+      }
+    }
+  }
+
+  .form--inline {
+    display: flex;
+    flex-wrap: wrap;
+    @media only screen and (max-width: $tablet) {
+      flex-direction: column;
+    }
+    @media only screen and (min-width: $tablet) { 
+      justify-content: center;
+    }
+  }
+
+  .view-footer {
+    margin-bottom: 30px;
+
+    a {
+      color: $pantone;
+      text-decoration: underline;
+      text-transform: uppercase;
+    }
+  }
+
+  .attachment {
+    margin: 20px 0;
+
+    .view-content {
+      display: flex;
+      flex-wrap: wrap;
+      @media only screen and (max-width: $tablet) {
+        flex-direction: column;
+      }
+
+      .organization {
+        font-weight: bold;
+      }
+
+      .views-row {
+        padding: 0 10px;
+        margin-bottom: 15px;
+        @media only screen and (max-width: $tablet) {
+          padding: 0;
+        }
+      }
+    }
+
+    .address {
+      margin-bottom: 0;
+    }
+
+    .views-field-field-phone-number {
+      display: flex;
+
+      .views-label {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .views-field-nothing a {
+    color: $pantone;
+    text-decoration: underline;
+  }
+}

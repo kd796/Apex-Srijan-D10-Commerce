@@ -80,6 +80,11 @@
           return false;
         });
       });
+      // Remove empty div in where to buy page.
+      var $noMatch = $('.where-to-buy .view-empty').text().replace(/^\s+|\s+$/g, '').length;
+      if ($noMatch === 0) {
+        $('.where-to-buy .view-empty').remove();
+      }
 
       /* end */
     }
