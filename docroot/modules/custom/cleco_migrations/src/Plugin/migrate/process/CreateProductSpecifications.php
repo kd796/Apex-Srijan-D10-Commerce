@@ -165,7 +165,6 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
     $term->save();
 
     if ($tid = $this->getTidByName($term_name, $vid, $langcode)) {
-      // $term = Term::load($tid);
       $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($tid);
     }
 
