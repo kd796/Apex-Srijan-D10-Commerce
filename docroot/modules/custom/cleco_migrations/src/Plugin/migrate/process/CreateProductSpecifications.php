@@ -148,6 +148,7 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
       return '';
     }
     $term_name = $parent_label . ' :~: ' . (string) $item_label;
+    $full_name = $term_name;
     $term_name = $this->truncateString($term_name);
 
     if ($tid = $this->getTidByName($term_name, $vid, $langcode)) {
@@ -157,6 +158,7 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
       $term = $this->entityTypeManager->getStorage('taxonomy_term')->create([
         'name' => $term_name,
         'vid' => $vid,
+        'field_long_name' => $full_name,
         'langcode' => $langcode,
       ]);
     }
