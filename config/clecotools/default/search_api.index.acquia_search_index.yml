@@ -3,11 +3,51 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.field_address
     - field.storage.node.body
+    - field.storage.node.field_category_facets
+    - field.storage.node.field_classification_id
+    - field.storage.node.field_long_description
+    - field.storage.node.field_term_department
+    - field.storage.node.field_downloads
+    - field.storage.node.field_email
+    - field.storage.node.field_product_features_cp
+    - field.storage.node.field_featured_products
+    - field.storage.node.field_features_copy
+    - field.storage.node.field_footnotes
+    - field.storage.node.field_geographic_data
+    - field.storage.node.field_media
+    - field.storage.node.field_locations_content_type
+    - field.storage.node.field_model_specification
+    - field.storage.node.field_phone
+    - field.storage.node.field_product_classifications
+    - field.storage.node.field_product_features
+    - field.storage.node.field_product_line
+    - field.storage.node.field_product_models
+    - field.storage.node.field_products_category_section
+    - field.storage.node.field_product_search
+    - field.storage.node.field_products_offered
+    - field.storage.node.field_related_products
+    - field.storage.node.field_related_products_ref
+    - field.storage.node.field_sku
+    - field.storage.node.field_sku_group
+    - field.storage.node.field_slug
+    - field.storage.node.field_subtitle
+    - field.storage.node.field_upc
+    - field.storage.taxonomy_term.field_classification_id
+    - field.storage.taxonomy_term.field_es_desc
+    - field.storage.taxonomy_term.field_form_intro_text
+    - field.storage.taxonomy_term.field_long_name
+    - field.storage.taxonomy_term.field_es_range_max
+    - field.storage.taxonomy_term.field_es_range_min
+    - field.storage.taxonomy_term.field_es_id
+    - field.storage.taxonomy_term.field_tagline
     - search_api.server.acquia_search_api_solr_server
   module:
     - search_api_solr
     - node
+    - content_moderation
+    - taxonomy
     - search_api
 third_party_settings:
   search_api_solr:
@@ -64,6 +104,350 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.body
+  changed:
+    label: Changed
+    datasource_id: 'entity:node'
+    property_path: changed
+    type: date
+    dependencies:
+      module:
+        - node
+  description:
+    label: Description
+    datasource_id: 'entity:taxonomy_term'
+    property_path: description
+    type: text
+    dependencies:
+      module:
+        - taxonomy
+  field_address:
+    label: Address
+    datasource_id: 'entity:node'
+    property_path: field_address
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_address
+  field_category_facets:
+    label: 'Category Facets'
+    datasource_id: 'entity:node'
+    property_path: field_category_facets
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_category_facets
+  field_category_facets_1:
+    label: 'Category Facets'
+    datasource_id: 'entity:node'
+    property_path: field_category_facets
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_category_facets
+  field_classification_id:
+    label: 'Classification ID'
+    datasource_id: 'entity:node'
+    property_path: field_classification_id
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_classification_id
+  field_classification_id_1:
+    label: 'Classification ID'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: field_classification_id
+    type: string
+    dependencies:
+      config:
+        - field.storage.taxonomy_term.field_classification_id
+  field_downloads:
+    label: Downloads
+    datasource_id: 'entity:node'
+    property_path: field_downloads
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_downloads
+  field_email:
+    label: Email
+    datasource_id: 'entity:node'
+    property_path: field_email
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_email
+  field_es_desc:
+    label: Description
+    datasource_id: 'entity:taxonomy_term'
+    property_path: field_es_desc
+    type: text
+    dependencies:
+      config:
+        - field.storage.taxonomy_term.field_es_desc
+  field_es_id:
+    label: 'STEP AttributeID'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: field_es_id
+    type: string
+    dependencies:
+      config:
+        - field.storage.taxonomy_term.field_es_id
+  field_es_range_max:
+    label: 'Range Max'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: field_es_range_max
+    type: string
+    dependencies:
+      config:
+        - field.storage.taxonomy_term.field_es_range_max
+  field_es_range_min:
+    label: 'Range Min'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: field_es_range_min
+    type: string
+    dependencies:
+      config:
+        - field.storage.taxonomy_term.field_es_range_min
+  field_featured_products:
+    label: 'Featured Products'
+    datasource_id: 'entity:node'
+    property_path: field_featured_products
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_featured_products
+  field_features_copy:
+    label: 'Features Copy'
+    datasource_id: 'entity:node'
+    property_path: field_features_copy
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_features_copy
+  field_footnotes:
+    label: 'Footer Note'
+    datasource_id: 'entity:node'
+    property_path: field_footnotes
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_footnotes
+  field_form_intro_text:
+    label: 'Form Intro Text'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: field_form_intro_text
+    type: text
+    dependencies:
+      config:
+        - field.storage.taxonomy_term.field_form_intro_text
+  field_geographic_data:
+    label: 'Geographic Data'
+    datasource_id: 'entity:node'
+    property_path: field_geographic_data
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_geographic_data
+  field_locations_content_type:
+    label: 'Locations Content Type'
+    datasource_id: 'entity:node'
+    property_path: field_locations_content_type
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_locations_content_type
+  field_long_description:
+    label: 'Coupon heading'
+    datasource_id: 'entity:node'
+    property_path: field_long_description
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_long_description
+  field_long_name:
+    label: 'Long Name'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: field_long_name
+    type: text
+    dependencies:
+      config:
+        - field.storage.taxonomy_term.field_long_name
+  field_media:
+    label: 'Listing Image'
+    datasource_id: 'entity:node'
+    property_path: field_media
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_media
+  field_model_specification:
+    label: 'Model Specification'
+    datasource_id: 'entity:node'
+    property_path: field_model_specification
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_model_specification
+  field_phone:
+    label: Phone
+    datasource_id: 'entity:node'
+    property_path: field_phone
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_phone
+  field_product_classifications:
+    label: 'Product Categories'
+    datasource_id: 'entity:node'
+    property_path: field_product_classifications
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_product_classifications
+  field_product_features:
+    label: 'Product Features'
+    datasource_id: 'entity:node'
+    property_path: field_product_features
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_product_features
+  field_product_features_cp:
+    label: Feature
+    datasource_id: 'entity:node'
+    property_path: field_product_features_cp
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_product_features_cp
+  field_product_line:
+    label: 'Product Line'
+    datasource_id: 'entity:node'
+    property_path: field_product_line
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_product_line
+  field_product_models:
+    label: 'Product Models'
+    datasource_id: 'entity:node'
+    property_path: field_product_models
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_product_models
+  field_product_search:
+    label: 'Product Search'
+    datasource_id: 'entity:node'
+    property_path: field_product_search
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_product_search
+  field_products_category_section:
+    label: 'Products Category Section'
+    datasource_id: 'entity:node'
+    property_path: field_products_category_section
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_products_category_section
+  field_products_offered:
+    label: 'Products Offered'
+    datasource_id: 'entity:node'
+    property_path: field_products_offered
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_products_offered
+  field_related_products:
+    label: 'Related Products'
+    datasource_id: 'entity:node'
+    property_path: field_related_products
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_related_products
+  field_related_products_ref:
+    label: 'Related Products'
+    datasource_id: 'entity:node'
+    property_path: field_related_products_ref
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_related_products_ref
+  field_sku:
+    label: 'SKU (Group)'
+    datasource_id: 'entity:node'
+    property_path: field_sku
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_sku
+  field_sku_group:
+    label: 'SKU Group'
+    datasource_id: 'entity:node'
+    property_path: field_sku_group
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_sku_group
+  field_slug:
+    label: Slug
+    datasource_id: 'entity:node'
+    property_path: field_slug
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_slug
+  field_subtitle:
+    label: Subtitle
+    datasource_id: 'entity:node'
+    property_path: field_subtitle
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_subtitle
+  field_tagline:
+    label: Tagline
+    datasource_id: 'entity:taxonomy_term'
+    property_path: field_tagline
+    type: text
+    dependencies:
+      config:
+        - field.storage.taxonomy_term.field_tagline
+  field_term_department:
+    label: Department
+    datasource_id: 'entity:node'
+    property_path: field_term_department
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_term_department
+  field_upc:
+    label: UPC
+    datasource_id: 'entity:node'
+    property_path: field_upc
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_upc
+  moderation_state:
+    label: 'Moderation state'
+    datasource_id: 'entity:node'
+    property_path: moderation_state
+    type: string
+    dependencies:
+      module:
+        - content_moderation
+  name:
+    label: Name
+    datasource_id: 'entity:taxonomy_term'
+    property_path: name
+    type: string
+    dependencies:
+      module:
+        - taxonomy
   nid:
     label: ID
     datasource_id: 'entity:node'
@@ -72,6 +456,38 @@ field_settings:
     dependencies:
       module:
         - node
+  parent:
+    label: 'Term Parents'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: parent
+    type: integer
+    dependencies:
+      module:
+        - taxonomy
+  status:
+    label: Published
+    datasource_id: 'entity:taxonomy_term'
+    property_path: status
+    type: boolean
+    dependencies:
+      module:
+        - taxonomy
+  status_1:
+    label: Published
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    dependencies:
+      module:
+        - node
+  tid:
+    label: 'Term ID'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: tid
+    type: integer
+    dependencies:
+      module:
+        - taxonomy
   title:
     label: Title
     datasource_id: 'entity:node'
@@ -88,11 +504,80 @@ field_settings:
     dependencies:
       module:
         - node
+  uid:
+    label: 'Authored by'
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    dependencies:
+      module:
+        - node
+  uuid:
+    label: UUID
+    datasource_id: 'entity:node'
+    property_path: uuid
+    type: string
+    dependencies:
+      module:
+        - node
+  vid:
+    label: Vocabulary
+    datasource_id: 'entity:taxonomy_term'
+    property_path: vid
+    type: string
+    dependencies:
+      module:
+        - taxonomy
+  weight:
+    label: Weight
+    datasource_id: 'entity:taxonomy_term'
+    property_path: weight
+    type: integer
+    dependencies:
+      module:
+        - taxonomy
 datasource_settings:
   'entity:node':
     bundles:
+      default: false
+      selected:
+        - advanced_selector
+        - advanced_selector_download
+        - advanced_selector_email
+        - article
+        - company_locations
+        - contact
+        - distributors
+        - downloads
+        - enhanced_product
+        - form_page
+        - geo_directory
+        - news_insights
+        - news_insights_landing
+        - product
+        - product_category
+        - product_detail_page_callouts
+        - product_model
+        - products_landing
+        - service_support
+        - solutions
+        - solutions_landing
+        - testimonials
+        - webform
+    languages:
       default: true
       selected: {  }
+  'entity:taxonomy_term':
+    bundles:
+      default: false
+      selected:
+        - news_insights
+        - product_classifications
+        - product_filters
+        - product_lines
+        - product_specifications
+        - products
+        - products_offered
     languages:
       default: true
       selected: {  }
