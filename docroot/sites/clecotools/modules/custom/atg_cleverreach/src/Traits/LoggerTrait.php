@@ -49,7 +49,7 @@ trait LoggerTrait
     {
         if ($this->logger == null) {
             $this->logger = new Logger('CleverReach');
-            $this->logger->pushHandler(new StreamHandler('sites/clecotools/files/logs/cleverreach.log', Logger::DEBUG));
+            $this->logger->pushHandler(new StreamHandler('logs/cleverreach.log', Logger::DEBUG));
         }
 
         $this->logger->{$level}($msg);
