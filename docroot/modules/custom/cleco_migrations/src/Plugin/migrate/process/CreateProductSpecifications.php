@@ -2,6 +2,7 @@
 
 namespace Drupal\cleco_migrations\Plugin\migrate\process;
 
+use Drupal\Core\Database\Connection;
 use Drupal\migrate\MigrateException;
 use Drupal\migrate\ProcessPluginBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -10,6 +11,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\Row;
 use Drupal\Core\Entity\EntityTypeManager;
+use Drupal\cleco_migrations\Helper\Traits\MigrationHelperTrait;
 
 /**
  * Check if term exists and creates a new one if doesn't.
@@ -19,6 +21,15 @@ use Drupal\Core\Entity\EntityTypeManager;
  * )
  */
 class CreateProductSpecifications extends ProcessPluginBase implements ContainerFactoryPluginInterface {
+
+  use MigrationHelperTrait;
+
+  /**
+   * The database connection to use.
+   *
+   * @var \Drupal\Core\Database\Connection
+   */
+  protected $connection;
 
   /**
    * The entity type manager.
@@ -31,8 +42,9 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
   /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManager $entity_type_manager) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, Connection $connection, EntityTypeManager $entity_type_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->connection = $connection;
     $this->entityTypeManager = $entity_type_manager;
   }
 
@@ -44,6 +56,7 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
       $configuration,
       $pluginId,
       $pluginDefinition,
+      $container->get('database'),
       $container->get('entity_type.manager')
     );
   }
@@ -59,20 +72,11 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
     $values_array = [];
     $vid = 'product_specifications';
     $langcode = $this->configuration['langcode'] ?? 'en';
+    $parent_migration_id = $this->configuration['parent_migration_id'] ?? '';
+    $migration_id = $this->configuration['migration_id'] ?? '';
+
     $parent_id = NULL;
     $parent_term_id = NULL;
-
-    $properties = [];
-
-    if (!empty($vid)) {
-      $properties['vid'] = $vid;
-    }
-
-    if (!empty($langcode)) {
-      $properties['langcode'] = $langcode;
-    }
-
-    $product_specifications = $this->entityTypeManager->getStorage('taxonomy_term')->loadByProperties($properties);
 
     if (!empty($value)) {
       foreach ($value->children() as $child) {
@@ -80,41 +84,47 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
         $parent_term_id = NULL;
         $parent_id = (string) $child->attributes()->AttributeID;
         $validAttribute = $this->validateAttributeName($parent_id);
+        if (!$validAttribute) {
+          continue;
+        }
 
-        if ($validAttribute) {
-          foreach ($product_specifications as $product_specification) {
-            if (str_contains($product_specification->label(), $parent_id) && str_contains($product_specification->label(), ' |~| ')) {
-              $parent_label = str_replace($parent_id . ' |~| ', '', $product_specification->label());
-              $parent_term_id = $product_specification->id();
-              break;
+        if (!empty($parent_migration_id)) {
+          $parent_term_id = $this->getMigratedTaxonomyTid($parent_id, $parent_migration_id);
+        }
+
+        // If parent term is not present, skip the record.
+        if (empty($parent_term_id)) {
+          continue;
+        }
+        $parent_term = $this->entityTypeManager->getStorage('taxonomy_term')->load($parent_term_id);
+        $parent_name = $parent_term->label();
+        $parent_label = str_replace($parent_id . ' |~| ', '', $parent_name);
+        if (empty($parent_label)) {
+          continue;
+        }
+
+        $term = NULL;
+        if ($child->getName() === 'MultiValue') {
+          if (count($child->children()) > 1) {
+            foreach ($child->children() as $item) {
+              $term = $this->loadOrCreateChildTerm($parent_id, $parent_label, $parent_term_id, $item, $vid, $langcode, $migration_id);
             }
           }
-
-          if (!empty($parent_term_id) && !empty($parent_label)) {
-            $term = NULL;
-
-            if ($child->getName() === 'MultiValue') {
-              if (count($child->children()) > 1) {
-                foreach ($child->children() as $item) {
-                  $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $item, $vid, $langcode);
-                }
-              }
-              else {
-                $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $child->Value, $vid, $langcode);
-              }
-            }
-            else {
-              $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $child, $vid, $langcode);
-            }
-
-            if (is_object($term)) {
-              $values_array[] = [
-                'vid' => $vid,
-                'target_id' => $term->id(),
-              ];
-            }
+          else {
+            $term = $this->loadOrCreateChildTerm($parent_id, $parent_label, $parent_term_id, $child->Value, $vid, $langcode, $migration_id);
           }
         }
+        else {
+          $term = $this->loadOrCreateChildTerm($parent_id, $parent_label, $parent_term_id, $child, $vid, $langcode, $migration_id);
+        }
+
+        if (is_object($term)) {
+          $values_array[] = [
+            'vid' => $vid,
+            'target_id' => $term->id(),
+          ];
+        }
+
       }
 
       $values_array = json_encode($values_array);
@@ -126,6 +136,8 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
   /**
    * Creates a term with a parent. Then returns the loaded or created term.
    *
+   * @param string $parent_id
+   *   ID of the parent term.
    * @param string $parent_label
    *   The name/label of the parent term.
    * @param int $parent_term_id
@@ -136,22 +148,47 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
    *   The vocabulary ID you are adding this term to.
    * @param string $langcode
    *   The language of the term.
+   * @param string $migration_id
+   *   Name of the migration ID.
    *
    * @return \Drupal\Core\Entity\EntityBase|\Drupal\Core\Entity\EntityInterface|\Drupal\taxonomy\Entity\Term|null
    *   The term object or NULL.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function loadOrCreateChildTerm($parent_label, $parent_term_id, $item_label, $vid = 'product_specifications', $langcode = 'en') {
-    $term_label = trim($item_label, ' ');
-    if (empty($term_label)) {
+  protected function loadOrCreateChildTerm($parent_id, $parent_label, $parent_term_id, $item_label, $vid = 'product_specifications', $langcode = 'en', $migration_id = '') {
+    $item_label = trim($item_label, ' ');
+    if (empty($item_label)) {
       return '';
     }
+
+    // Prepare hashkey for term search in the migration.
+    $child_key = strtolower($parent_id . $langcode . $item_label);
+    $hashKey = $this->getHashKey($child_key);
+
+    // Look into migration table and if found return the term.
+    if (!empty($migration_id)) {
+      $tid = $this->getMigratedTaxonomyTid($hashKey, $migration_id);
+    }
+    if (!empty($tid)) {
+      $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($tid);
+      $tid = NULL;
+      if (is_object($term)) {
+        $tid = $term->id();
+      }
+    }
+    if ($tid && is_object($term)) {
+      return $term;
+    }
+
+    // Prepare term name pattern.
     $term_name = $parent_label . ' :~: ' . (string) $item_label;
     $full_name = $term_name;
     $term_name = $this->truncateString($term_name);
 
+    // Now look for term and create if not found.
     if ($tid = $this->getTidByName($term_name, $vid, $langcode)) {
+      $this->updateMigrationRecord($hashKey, $hashKey, $tid, $migration_id, 0);
       $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($tid);
     }
     else {
@@ -165,6 +202,12 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
 
     $term->set('parent', $parent_term_id);
     $term->save();
+
+    // Map the created term in the migration.
+    if (is_object($term)) {
+      $tid = $term->id();
+      $this->updateMigrationRecord($hashKey, $hashKey, $tid, $migration_id, 0);
+    }
 
     if ($tid = $this->getTidByName($term_name, $vid, $langcode)) {
       $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($tid);
