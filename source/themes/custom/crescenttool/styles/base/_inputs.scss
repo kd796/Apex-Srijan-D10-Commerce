@@ -399,20 +399,49 @@ $active-gap: 8px; // the math likes px values
 }
 
 //input checbox for hubspot form
-input#privacy_policy-c6fb962f-da94-4cb5-a141-7f7a5f937fc5 {
-  background: $white;
-  border: 1px solid #272525;
-  content: '';
-  height: 1.125rem;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 1.125rem;
-  border-radius: 1px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.hs-privacy_policy {
+  .hs-form-booleancheckbox {
+    .hs-form-booleancheckbox-display {
+
+      input[type='checkbox'] {
+        background: $white;
+        border: 1px solid #272525;
+        content: '';
+        height: 1.125rem;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 1.125rem;
+        border-radius: 1px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &::after {
+          @include icon-styles;
+          color: $white;
+          content: icon-char(checkmark);
+          font-size: rem(10px);
+          height: $active-width;
+          width: $active-width;
+          position: absolute;
+          top: 3px;
+          left: 0.1rem;
+          display: none;
+        }
+
+        &:checked {
+          background-color: #F16F43;
+
+          &::after {
+            background-color: #F16F43;
+            display: block;
+          }
+        }
+      }
+    } 
+  }
 }
 
 label.hs-form-booleancheckbox-display {
@@ -421,28 +450,6 @@ label.hs-form-booleancheckbox-display {
   position: relative;
   line-height: 1;
   padding-left: 1.625rem;
-}
-
-input#privacy_policy-c6fb962f-da94-4cb5-a141-7f7a5f937fc5:after {
-  @include icon-styles;
-  color: $white;
-  content: icon-char(checkmark);
-  font-size: rem(10px);
-  height: $active-width;
-  width: $active-width;
-  position: absolute;
-  top: 3px;
-  left: 0.1rem;
-  display: none;
-}
-
-input#privacy_policy-c6fb962f-da94-4cb5-a141-7f7a5f937fc5:checked {
-  background-color: #F16F43;
-}
-
-input#privacy_policy-c6fb962f-da94-4cb5-a141-7f7a5f937fc5:checked:after {
-  background-color: #F16F43;
-  display: block;
 }
 
 .hs_privacy_policy {
