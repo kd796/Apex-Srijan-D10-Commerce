@@ -64,4 +64,34 @@ trait MigrationHelperTrait {
     return $tid;
   }
 
+  /**
+   * Update hash information.
+   *
+   * @param string $hash_key
+   *   Hash data of the image.
+   * @param string $sourceid1
+   *   Source id.
+   * @param int $destid1
+   *   Destination id.
+   * @param string $migration_id
+   *   Migraion instance.
+   * @param string $source_row_status
+   *   Migraion source row status.
+   */
+  public function updateMigrationRecord($hash_key, $sourceid1, $destid1, $migration_id, $source_row_status = 0) {
+    $table = ($migration_id) ? 'migrate_map_' . $migration_id : '';
+    if (empty($table)) {
+      return;
+    }
+    $this->connection->merge($table)
+      ->key('source_ids_hash', $hash_key)
+      ->fields([
+        'source_ids_hash' => $hash_key,
+        'sourceid1' => $sourceid1,
+        'destid1' => $destid1,
+        'source_row_status' => $source_row_status,
+      ])
+      ->execute();
+  }
+
 }
