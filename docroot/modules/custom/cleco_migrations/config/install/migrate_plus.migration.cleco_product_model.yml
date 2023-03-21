@@ -1,41 +1,38 @@
-id: cleco_product_specifications_child
-label: Product Specifications
+id: cleco_product_model
+label: Product Model content migration
 migration_group: cleco
 source:
-  constants:
-    DESCRIPTION_PREFIX: 'PIM Attribute ID'
-    TEXT: ' | '
-    WEIGHT: 0
   plugin: url
   data_fetcher_plugin: file
   data_parser_plugin: simple_xml
   urls: 'public://import/pim_data/pim_export_with_schema.xml'
   namespaces:
     stibo: "http://www.stibosystems.com/step"
-  item_selector: //Product[@UserTypeID="SKU Group"]|//Product[@UserTypeID="SKU"]
+  item_selector: //Product[@UserTypeID="SKU"]
   fields:
     - name: remote_sku
       label: SKU
       selector: '@ID'
     - name: remote_name
-      label: SKU Group
+      label: Product Model Name
       selector: Name
-    - name: remote_sku_group
-      label: SKU Group
-      selector: Values
     - name: remote_product_specifications
       label: Product Specifications
       selector: Values
-    - name: skip_record
-      label: Skip Record
-      selector: skip_record
   ids:
     remote_sku:
       type: string
 process:
-  type:
+  title:
+    plugin: skip_on_empty
+    method: row
+    source: remote_name
+  type: 
     plugin: default_value
-    default_value: product
+    default_value: product_model
+  status:
+    plugin: default_value
+    default_value: 1
   # Product Specifications
   product_specifications_array:
     plugin: cleco_create_product_specifications
@@ -45,21 +42,17 @@ process:
     migration_id: cleco_product_specifications_list
     # allowed_attributes is populated/fetched from get_predefined_attributelist
     get_predefined_attributelist: 1
-  field_product_specifications:
+
+  field_model_specification:
     plugin: sub_process
     source: '@product_specifications_array'
     include_source: true
     process:
       vocabulary_id: vid
       target_id: target_id
-
-  skip:
-    plugin: skip_on_empty
-    method: row
-    source: skip_record
+  langcode:
+    plugin: default_value
+    default_value: en
 destination:
   plugin: 'entity:node'
-  bundle: article
-migration_dependencies:
-  required:
-    - cleco_product_specifications
+  bundle: product_model

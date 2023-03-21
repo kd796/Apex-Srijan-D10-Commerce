@@ -65,6 +65,12 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
+    // Get attributelist, if we have predefined list.
+    $get_predefined_attributelist = $this->configuration['get_predefined_attributelist'] ?? 0;
+    if ($get_predefined_attributelist) {
+      $this->configuration['allowed_attributes'] = $this->getAttributeList();
+    }
+
     if (empty($this->configuration['allowed_attributes']) && !array_key_exists('allowed_attributes', $this->configuration)) {
       throw new MigrateException('Skip on value plugin is missing the allowed attributes configuration.');
     }
@@ -72,6 +78,7 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
     $values_array = [];
     $vid = 'product_specifications';
     $langcode = $this->configuration['langcode'] ?? 'en';
+
     $parent_migration_id = $this->configuration['parent_migration_id'] ?? '';
     $migration_id = $this->configuration['migration_id'] ?? '';
 
