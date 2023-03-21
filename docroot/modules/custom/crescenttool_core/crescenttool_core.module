@@ -17,6 +17,7 @@ use Drupal\node\NodeInterface;
 use Drupal\views\Views;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\redirect\Entity\Redirect;
 
 /**
  * Implements hook_theme().
@@ -293,5 +294,39 @@ function crescenttool_core_media_presave(MediaInterface $entity) {
   if ($entity->bundle() == 'remote_video') {
     $url = $entity->get('field_media_video_embed_field')->getValue()[0]['value'];
     $entity->set('field_media_oembed_video', $url);
+  }
+}
+
+/**
+ * Implements hook_node_predelete() for deleting a node and adding a redirect on it.
+ */
+function crescenttool_core_node_predelete($node) {
+  if ($node->getEntityTypeId() == 'node') {
+    // Get the path of the deleted node.
+    $nid = $node->id();
+    $path = \Drupal::service('path_alias.manager')->getAliasByPath('/node/' . $nid);
+    $path = trim($path, "/");
+    $node_type = \Drupal::request()->attributes->get('node')->getType();
+    if ($node_type == 'product' || $node_type == 'product_category' || $node_type == 'product_listing'
+        || $node_type == 'product_brand' || $node_type == 'product_trade') {
+      // Create a new redirect entity for product pages.
+      $redirect = Redirect::create([
+        'redirect_source' => $path,
+        'redirect_redirect' => 'internal:/all-tools',
+        'language' => 'en',
+        'status_code' => '301',
+      ]);
+    }
+    else {
+      // Create a new redirect entity.
+      $redirect = Redirect::create([
+        'redirect_source' => $path,
+        'redirect_redirect' => 'internal:/home',
+        'language' => 'en',
+        'status_code' => '301',
+      ]);
+    }
+    // Save the redirect entity.
+    $redirect->save();
   }
 }
