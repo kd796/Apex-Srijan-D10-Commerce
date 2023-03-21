@@ -1,0 +1,89 @@
+/****** Contact page ******/
+
+.contact-accordion {
+  .accordion-title {
+    position: relative;
+    color: $pantone;
+    font-size: 18px;
+    display: block;
+    padding: 10px 40px 10px 10px;
+    word-break: break-word;
+    text-decoration: none;
+    background-image: linear-gradient($light-gray, $white);
+
+    &::after {
+      content: '';
+      width: 40px;
+      height: 20px;
+      display: block;
+      position: absolute;
+      right: 15px;
+      top: 40%;
+      background: url('#{$image-base-path}/accord_arrow_down.png') no-repeat;
+      @media only screen and (max-width: $tablet) {
+        right: 0;
+      }
+    }
+
+    &.active {
+      &::after {
+        background: url('#{$image-base-path}/accord_arrow_up.png') no-repeat;
+      }
+    }
+  }
+
+  .accordion-content {
+    padding: 10px 0;
+
+    p {
+      font-size: 13px;
+    }
+  }
+}
+
+.contact-sidebar {
+  font-size: 15px;
+  color: $lighter-gray;
+  margin-bottom: 15px;
+  line-height: 1.1;
+
+  .sidebar-title {
+    font-size: 16.94px;
+    color: $black;
+    font-weight: bold;
+    margin-bottom: 15px;
+    margin-top: 0;
+  }
+
+  a {
+    color: $pantone;
+    text-decoration: underline;
+
+    &:hover {
+      color: $pantone;
+    }
+  }
+
+  p {
+    margin: 0 0 5px;
+  }
+}
+
+.want-to-hear {
+  p {
+    font-size: 17px;
+    color: $para;
+    margin: 20px 0;
+    line-height: 1.2;
+  }
+
+  strong {
+    color: $black;
+  }
+
+  a {
+    font-size: 12px;
+    text-decoration: none;
+    color: $pantone;
+  }
+}
