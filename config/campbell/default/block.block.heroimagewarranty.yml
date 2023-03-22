@@ -1,23 +1,23 @@
-uuid: 3e968b10-df07-433c-a9d8-4a7358b328a9
+uuid: fcc6bafa-16a8-47eb-88e3-272e9f11489f
 langcode: en
 status: true
 dependencies:
   config:
-    - fixed_block_content.fixed_block_content.hero_image_catalogs
+    - fixed_block_content.fixed_block_content.hero_image_warranty
   module:
     - fixed_block_content
     - system
   theme:
     - campbell
-id: heroimagecatalogs
+id: heroimagewarranty
 theme: campbell
 region: pre_content
-weight: -14
+weight: -21
 provider: null
-plugin: 'fixed_block_content:hero_image_catalogs'
+plugin: 'fixed_block_content:hero_image_warranty'
 settings:
-  id: 'fixed_block_content:hero_image_catalogs'
-  label: 'Hero Image - Catalogs'
+  id: 'fixed_block_content:hero_image_warranty'
+  label: 'Hero Image - Warranty'
   label_display: '0'
   provider: fixed_block_content
   view_mode: ''
@@ -25,4 +25,4 @@ visibility:
   request_path:
     id: request_path
     negate: false
-    pages: /media-center/catalogs
+    pages: /warranty
