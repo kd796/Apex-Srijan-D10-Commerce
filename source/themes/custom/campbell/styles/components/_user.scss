@@ -11,6 +11,22 @@
     }
   }
 
+  .user-login-form,
+  .user-pass {
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    @media only screen and(max-width: $tablet-max) {
+      padding-top: 35px;
+      padding-bottom: 35px;
+    }
+
+    @media only screen and(max-width: $tablet-max) {
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+  }
+
   .block-local-tasks-block {
     display: flex;
     flex-wrap: wrap;
@@ -39,9 +55,9 @@
           &:before {
             top: 2px;
             left: -2px;
-            color: $nero;
             content: '|';
             position: absolute;
+            color: $light-black;
           }
         }
       }
@@ -49,9 +65,9 @@
       a {
         margin: 0;
         padding: 0;
-        color: $nero;
         font-size: 16px;
         font-weight: 400;
+        color: $light-black;
         letter-spacing: 0.2px;
         background-color: transparent;
 
@@ -65,10 +81,10 @@
   .main-contane {
     form {
       label {
-        color: $nero;
         font-size: 16px;
         margin: 0 0 8px;
         font-weight: 400;
+        color: $light-black;
         letter-spacing: 0.2px;
 
         &:after {
@@ -94,10 +110,10 @@
         }
 
         .description {
-          color: $nero;
           font-size: 14px;
           font-weight: 400;
           margin: 5px 0 0;
+          color: $light-black;
           letter-spacing: 0.1px;
         }
       }
@@ -126,10 +142,10 @@
         }
 
         p {
-          color: $nero;
           margin: 5px 0 0;
           font-size: 14px;
           font-weight: 400;
+          color: $light-black;
           letter-spacing: 0.1px;
         }
 
