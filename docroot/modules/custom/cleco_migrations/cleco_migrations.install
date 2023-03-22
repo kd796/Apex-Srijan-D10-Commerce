@@ -35,6 +35,8 @@ function cleco_migrations_uninstall() {
   // TODO: to be depreciated.
   \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_classifications')->delete();
 
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_specifications_list')->delete();
+
   \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_classifications_level_one')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_classifications_level_two')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_classifications_level_one_de')->delete();
@@ -48,6 +50,10 @@ function cleco_migrations_uninstall() {
   \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_specifications_child')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_specifications_child_de')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_specifications_child_gb')->delete();
+
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_model')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_model_de')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_model_gb')->delete();
 }
 
 /**
