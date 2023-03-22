@@ -4,7 +4,7 @@ namespace Drupal\helpers\TwigExtension;
 
 use DOMDocument;
 use Drupal\paragraphs\Entity\Paragraph;
-use Drupal\step\Utils\StepHelper;
+use Drupal\cleco_vuejs\Utils\StepHelper;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\Core\Language\LanguageInterface;
 use const PHP_URL_QUERY;

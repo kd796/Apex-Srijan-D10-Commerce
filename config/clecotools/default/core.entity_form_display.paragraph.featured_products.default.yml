@@ -3,23 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.featured_products.field_products
     - field.field.paragraph.featured_products.field_title
     - paragraphs.paragraphs_type.featured_products
-  module:
-    - step
 id: paragraph.featured_products.default
 targetEntityType: paragraph
 bundle: featured_products
 mode: default
 content:
-  field_products:
-    type: products_default
-    weight: 1
-    region: content
-    settings:
-      size: 255
-    third_party_settings: {  }
   field_title:
     type: string_textfield
     weight: 0
