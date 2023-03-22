@@ -1,0 +1,24 @@
+uuid: 00d6ceb7-2e11-43d0-becf-c8eb0159b297
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - campbell
+id: pagetitle
+theme: campbell
+region: pre_content
+weight: -19
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /about-us
