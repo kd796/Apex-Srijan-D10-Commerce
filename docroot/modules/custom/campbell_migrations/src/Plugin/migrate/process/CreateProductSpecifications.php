@@ -4,6 +4,7 @@ namespace Drupal\campbell_migrations\Plugin\migrate\process;
 
 use Drupal\apex_migrations\Plugin\migrate\process\CreateProductSpecifications as ApexProductSpecifications;
 use Drupal\Core\Entity\EntityTypeManager;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\migrate\MigrateException;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\Row;
@@ -17,7 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   id = "campbell_create_product_specifications"
  * )
  */
-class CreateProductSpecifications extends ApexProductSpecifications {
+class CreateProductSpecifications extends ApexProductSpecifications implements ContainerFactoryPluginInterface {
 
   /**
    * The entity type manager.
@@ -121,6 +122,7 @@ class CreateProductSpecifications extends ApexProductSpecifications {
    */
   protected function loadOrCreateChildTerm($parent_label, $parent_term_id, $item_label, $vid = 'product_specifications') {
     $full_term_name = $parent_label . ' : ' . (string) $item_label;
+    $full_term_name = strip_tags($full_term_name);
     $term_name = $this->truncateString($full_term_name);
 
     if ($tid = $this->getTidByName($term_name, $vid)) {
