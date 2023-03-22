@@ -44,67 +44,125 @@
 #}
 <div id="wrapper"  {{ attributes }}>
   <header class="header">
-  {% if  page.top_page %}
-      <div class="top-page">
-        <div class="wrapper-content">
-        {{ page.top_page }}
-        {% if  page.search %}
-          <div class="default-search">
-          {{ page.search }}
-          </div>
-        {% endif %}
-        <div class="middle-h-right">
-          <div class="mobile-search">
-            <div class="mobile-search-icon">
+    {% if  page.top_page %}
+        <div class="top-page">
+          <div class="wrapper-content">
+          {{ page.top_page }}
+          {% if  page.search %}
+            <div class="default-search">
+            {{ page.search }}
             </div>
-            <div class="mobile-search-block d-none">
-              {% if  page.search %}
-                {{ page.search }}
-              {% endif %}
-              <div class="m-s-close">Close</div>
-            </div>
-          </div>
-          <div class="mobile-nav">
-            <div class="mobile-nav-icon">
-            </div>
-            {% if  page.header %}
-              <div class="mobile-header d-none">
-              {{ page.header }}
+          {% endif %}
+          <div class="middle-h-right">
+            <div class="mobile-search">
+              <div class="mobile-search-icon">
               </div>
-            {% endif %}
+              <div class="mobile-search-block d-none">
+                {% if  page.search %}
+                  {{ page.search }}
+                {% endif %}
+                <div class="m-s-close">Close</div>
+              </div>
+            </div>
+            <div class="mobile-nav">
+              <div class="mobile-nav-icon">
+              </div>
+              {% if  page.header %}
+                <div class="mobile-header d-none">
+                {{ page.header }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
           </div>
         </div>
+    {% endif %}
+    {% if  page.header %}
+      <div class="page-header">
+        <div class="wrapper-content">
+          {{ page.header }}
         </div>
       </div>
-  {% endif %}
-  {% if  page.header %}
-    <div class="page-header">
-      <div class="wrapper-content">
-        {{ page.header }}
+    {% endif %}
+  </header>
+  {% if page.sidebar_second %}
+    {{ page.pre_content }}
+    <div class="wrapper-content">
+      <div class="row">
+        <div class="main-content">
+          {{ page.content }}
+        </div>
+        <div class="sidebar-second">
+          {{ page.sidebar_second }}
+        </div>
       </div>
     </div>
+    {{ page.post_content }}
+    {% if page.triptych_first %}
+      {{ page.triptych_first }}
+    {% endif %}
+    {% if page.triptych_middle %}
+      {{ page.triptych_middle }}
+    {% endif %}
+    {% if page.triptych_last %}
+      {{ page.triptych_last }}
+    {% endif %}
+    {% if page.bottom_page %}
+    {{ page.bottom_page }}
+    {% endif %}
+    {% if page.help %}
+      {{ page.help }}
+    {% endif %}
+  {% elseif page.sidebar_first %}
+    {{ page.pre_content }}
+    <div class="wrapper-content">
+      <div class="row">
+        <div class="sidebar-first">
+          {{ page.sidebar_first }}
+        </div>
+        <div class="main-content">
+          {{ page.content }}
+        </div>
+      </div>
+    </div>
+    {{ page.post_content }}
+    {% if page.triptych_first %}
+      {{ page.triptych_first }}
+    {% endif %}
+    {% if page.triptych_middle %}
+      {{ page.triptych_middle }}
+    {% endif %}
+    {% if page.triptych_last %}
+      {{ page.triptych_last }}
+    {% endif %}
+    {% if page.bottom_page %}
+    {{ page.bottom_page }}
+    {% endif %}
+    {% if page.help %}
+      {{ page.help }}
+    {% endif %}
+  {% else %}
+    <div class="main-contane">
+      {{ page.pre_content }}
+    {{ page.content }}
+    {{ page.post_content }}
+    {% if page.triptych_first %}
+      {{ page.triptych_first }}
+    {% endif %}
+    {% if page.triptych_middle %}
+      {{ page.triptych_middle }}
+    {% endif %}
+    {% if page.triptych_last %}
+      {{ page.triptych_last }}
+    {% endif %}
+    {% if page.bottom_page %}
+    {{ page.bottom_page }}
+    {% endif %}
+    {% if page.help %}
+      {{ page.help }}
+    {% endif %}
+    </div>
   {% endif %}
-  </header>
-  <div class="main-contane">
-  {{ page.pre_content }}
-  {{ page.content }}
-  {{ page.post_content }}
-  {% if page.help %}
-    {{ page.help }}
-  {% endif %}
-  {% if page.triptych_first %}
-    {{ page.triptych_first }}
-  {% endif %}
-  {% if page.triptych_middle %}
-    {{ page.triptych_middle }}
-  {% endif %}
-  {% if page.triptych_last %}
-    {{ page.triptych_last }}
-  {% endif %}
-  {% if page.bottom_page %}
-  {{ page.bottom_page }}
-  {% endif %}
-  </div>
   <footer{{ footer_attributes }}>
     <div class="footer-container">
       <div id="footer-columns" class="region-footer__inner-container footer-columns clearfix">

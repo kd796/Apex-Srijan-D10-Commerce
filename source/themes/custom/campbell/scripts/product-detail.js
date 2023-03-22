@@ -1,4 +1,3 @@
-// import {Swiper} from 'swiper';
 (function ($, Drupal) {
   'use strict';
 

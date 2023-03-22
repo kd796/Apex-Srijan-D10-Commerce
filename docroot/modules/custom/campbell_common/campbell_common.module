@@ -33,7 +33,7 @@ function campbell_common_theme($existing, $type, $theme, $path) {
 
 /**
  * Implements hook_preprocess_breadcrumb().
- * 
+ *
  * Adding long description as last element in Breadcrumb for products.
  */
 function campbell_common_preprocess_breadcrumb(&$variables) {
@@ -42,16 +42,34 @@ function campbell_common_preprocess_breadcrumb(&$variables) {
   if ($node instanceof \Drupal\node\NodeInterface) {
     // Check if the content type is "product".
     if ($node->getType() == 'product') {
-     
+
       //Getting long description field value for products
       $long_description_value = $node->get('field_long_description')->value;
-     
+
       //Getting the last key of breadcrumb
       $last_key = array_key_last($variables['breadcrumb']);
-      
+
       //Setting the text value of last key of product's breadcrumb
       $variables['breadcrumb'][$last_key]['text'] = $long_description_value;
     }
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function campbell_common_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+  if (strpos($form_id, 'webform_submission_contact_us_') === 0) {
+    $form['#prefix'] = '<div class="contact-title">Email us:</div>';
+    $form['actions']['reset'] = [
+      '#type' => 'button',
+      '#value' => t('Clear Form'),
+      '#weight' => 51,
+      '#attributes' => array('onclick' => 'this.form.reset(); return false;'),
+      '#suffix' => '<div class="required-fields-contact"><span class="color-red">*</span>Required field.</div>',
+
+    ];
   }
 }
 
