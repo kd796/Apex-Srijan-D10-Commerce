@@ -1,0 +1,28 @@
+uuid: 3ea90ddc-ce26-4de9-b8c4-93829f606d48
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.hero_image_contact_us
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - campbell
+id: heroimagecontactus
+theme: campbell
+region: pre_content
+weight: -19
+provider: null
+plugin: 'fixed_block_content:hero_image_contact_us'
+settings:
+  id: 'fixed_block_content:hero_image_contact_us'
+  label: 'Hero Image - Contact Us'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /contact-us

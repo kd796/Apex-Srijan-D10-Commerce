@@ -1,0 +1,28 @@
+uuid: 3e968b10-df07-433c-a9d8-4a7358b328a9
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.hero_image_catalogs
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - campbell
+id: heroimagecatalogs
+theme: campbell
+region: pre_content
+weight: -14
+provider: null
+plugin: 'fixed_block_content:hero_image_catalogs'
+settings:
+  id: 'fixed_block_content:hero_image_catalogs'
+  label: 'Hero Image - Catalogs'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /media-center/catalogs

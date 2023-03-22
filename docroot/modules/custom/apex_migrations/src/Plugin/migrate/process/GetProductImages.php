@@ -278,7 +278,7 @@ class GetProductImages extends ProcessPluginBase {
    * @param string $level
    *   The level we want to indicate for reporting purposes.
    */
-  private function scanElementForImages(mixed $element, string $level = 'Product Level') {
+  protected function scanElementForImages(mixed $element, string $level = 'Product Level') {
     foreach ($element as $item) {
       $attributeType = (string) $item->attributes()->Type;
       $assetId = (string) $item->attributes()->AssetID;
@@ -322,7 +322,7 @@ class GetProductImages extends ProcessPluginBase {
    * @param \SimpleXMLElement|mixed $element
    *   The array of multivalue elements.
    */
-  private function scanForVideos(mixed $element) {
+  protected function scanForVideos(mixed $element) {
     if (!empty($element)) {
       foreach ($element as $single_value) {
         $single_value_attribute_id = (string) $single_value->attributes()->AttributeID;
@@ -345,7 +345,7 @@ class GetProductImages extends ProcessPluginBase {
    * @param \SimpleXMLElement|mixed $element
    *   The parent element.
    */
-  private function scanParentForPrimaryImage(mixed $element) {
+  protected function scanParentForPrimaryImage(mixed $element) {
     foreach ($element as $item) {
       $attributeType = (string) $item->attributes()->Type;
       $assetId = (string) $item->attributes()->AssetID;

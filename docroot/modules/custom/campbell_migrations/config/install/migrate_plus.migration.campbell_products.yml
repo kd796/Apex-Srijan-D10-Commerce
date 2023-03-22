@@ -130,7 +130,7 @@ process:
   'field_media/target_id': '@listing_image'
   product_images_array:
     source: remote_product_images
-    plugin: apex_get_product_images
+    plugin: campbell_get_product_images
   field_product_images:
     plugin: sub_process
     source: '@product_images_array'
@@ -552,7 +552,7 @@ process:
       target_id: target_id
   # Copy Points
   product_features_array:
-    plugin: apex_get_product_features_array
+    plugin: campbell_get_product_features_array
     source: remote_product_features
   field_product_features:
     plugin: sub_process

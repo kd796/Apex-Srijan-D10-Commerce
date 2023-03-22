@@ -17,6 +17,9 @@ body.user-logged-in {
   @media only screen and (max-width: $tablet-max) {
     padding: 0 20px;
   }
+  @media only screen and (min-width: $tablet-max) {
+    width: 1000px;
+  }
 }
 
 .px-0 {
@@ -76,5 +79,57 @@ body.user-logged-in {
   @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
     flex: 0 0 33.333%;
     max-width: 33.333%;
+  }
+}
+
+// content
+.main-content {
+  flex: 0 0 67.5%;
+  max-width: 67.5%;
+  margin-right: 2.5%;
+  @media only screen and (max-width: $tablet) {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+    flex: 0 0 62.5%;
+    max-width: 62.5%;
+  }
+}
+
+.sidebar-second {
+  flex: 0 0 30%;
+  max-width: 30%;
+  padding: 30px;
+  text-shadow: 0 1px 0 $white;
+  font-size: 13px;
+  background: url('#{$image-base-path}/img_newsbg_right.png') left top repeat-y;
+  @media only screen and (max-width: $tablet) {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-top: 30px;
+  }
+  @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+    flex: 0 0 35%;
+    max-width: 35%;
+  }
+
+  .block {
+    margin: 0 0 15px;
+    padding: 5px 0 15px;
+    background: url('#{$image-base-path}/contactus_right_block_sep.png') left bottom no-repeat;
+
+    &:last-child {
+      background: none;
+      margin: 0;
+    }
+
+    h4 {
+      margin: 0;
+    }
+
+    p {
+      margin: 0 0 5px;
+    }
   }
 }
