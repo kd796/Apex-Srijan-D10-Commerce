@@ -4,3 +4,9 @@ services:
     class: Drupal\apex_common\Commands\ApexWarrantyExport
     tags:
       - { name: drush.command }
+
+  # Get Abuser emails service
+  apex_common.get_abuser_emails:
+    class: Drupal\apex_common\GetAbuserEmails
+    tags:
+      - { name: get_abuser_emails }
