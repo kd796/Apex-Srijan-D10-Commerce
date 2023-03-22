@@ -1,97 +1,71 @@
 <?php
 
-namespace Drupal\apex_migrations\Plugin\migrate\process;
+namespace Drupal\campbell_migrations\Plugin\migrate\process;
 
 use Drupal\apex_migrations\ImageNotFoundOnFtpException;
 use Drupal\apex_migrations\ImageOperations;
+use Drupal\apex_migrations\Plugin\migrate\process\GetProductImages as ApexGetProductImages;
+use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\media\Entity\Media;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\MigrateSkipProcessException;
-use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 use League\Flysystem\FilesystemException;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\TempStore\PrivateTempStoreFactory;
 
 /**
- * Provides a apex_get_product_images plugin.
+ * Provides a campbell_get_product_images plugin.
  *
  * Usage:
  *
  * @code
  * process:
  *   bar:
- *     plugin: apex_get_product_images
+ *     plugin: campbell_get_product_images
  *     source: foo
  * @endcode
  *
  * @MigrateProcessPlugin(
- *   id = "apex_get_product_images"
+ *   id = "campbell_get_product_images"
  * )
  */
-class GetProductImages extends ProcessPluginBase {
+class GetProductImages extends ApexGetProductImages {
 
   /**
-   * The image operations class.
+   * The entity type manager.
    *
-   * @var \Drupal\apex_migrations\ImageOperations
+   * @var \Drupal\Core\Entity\EntityTypeManager
    */
-  protected ImageOperations $imageOps;
+  protected EntityTypeManager $entityTypeManager;
 
   /**
-   * The list of types of Asset Cross References we use as images.
+   * The temp store object.
    *
-   * @var array|string[]
+   * @var \Drupal\Core\TempStore\PrivateTempStoreFactory
    */
-  protected static array $allowedTypes = [
-    'Beauty-Glamour Image', 'Cutaway Image', 'Highlight Image',
-    'In Package Image', 'In Use Image', 'Literature', 'Part Shot 1',
-    'Part Shot 2', 'Part Shot 3', 'Part Shot 4', 'Part Shot 5',
-    'Product Logo', 'Secondary Image', 'Warning Image', 'ICON'
-  ];
-
-  /**
-   * The media IDs for existing media elements.
-   *
-   * @var array
-   */
-  protected $mediaIds = [];
-
-  /**
-   * The media ID for an existing primary image.
-   *
-   * @var null|int|string
-   */
-  protected $primaryImageMediaId;
-
-  /**
-   * The primary image asset to download.
-   *
-   * @var array
-   */
-  protected $primaryImageAsset = [];
-
-  /**
-   * The list of image assets to download.
-   *
-   * @var array
-   */
-  protected $imageAssets = [];
-
-  /**
-   * The list of video URLs to use on the product.
-   *
-   * @var array
-   */
-  protected $videos = [];
+  private PrivateTempStoreFactory $tempStoreFactory;
 
   /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, PrivateTempStoreFactory $temp_store_factory, EntityTypeManager $entity_type_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->imageOps = new ImageOperations();
+    $this->tempStoreFactory = $temp_store_factory;
+    $this->entityTypeManager = $entity_type_manager;
+  }
 
-    // Prep Directory.
-    ImageOperations::prepImageDirectory();
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('tempstore.private'),
+      $container->get('entity_type.manager')
+    );
   }
 
   /**
@@ -179,7 +153,7 @@ class GetProductImages extends ProcessPluginBase {
         return $this->mediaIds;
       }
 
-      $store = \Drupal::service('tempstore.private')->get('apex_migrations');
+      $store = $this->tempStoreFactory->get('apex_migrations');
 
       if (!empty($final_asset_list) && $store->get('image_server_available') === TRUE) {
         foreach ($final_asset_list as $asset) {
@@ -227,6 +201,16 @@ class GetProductImages extends ProcessPluginBase {
             $clean_url = ImageOperations::getYoutubeCleanUrl($video);
 
             if (!empty($video_json->title)) {
+              $query = $this->entityTypeManager->getStorage('media')->getQuery();
+              $id = $query->condition('bundle', 'remote_video')
+                ->condition('field_media_video_embed_field.value', $clean_url)
+                ->execute();
+              if (count($id)) {
+                $this->mediaIds[] = [
+                  'media_id' => reset($id)
+                ];
+                continue;
+              }
               $media = Media::create([
                 'bundle'           => 'remote_video',
                 'uid'              => 1,
@@ -269,105 +253,4 @@ class GetProductImages extends ProcessPluginBase {
 
     throw new MigrateSkipProcessException();
   }
-
-  /**
-   * Scans a given XML element for child elements that contain images.
-   *
-   * @param \SimpleXMLElement|mixed $element
-   *   The SimpleXMLElement we are processing.
-   * @param string $level
-   *   The level we want to indicate for reporting purposes.
-   */
-  protected function scanElementForImages(mixed $element, string $level = 'Product Level') {
-    foreach ($element as $item) {
-      $attributeType = (string) $item->attributes()->Type;
-      $assetId = (string) $item->attributes()->AssetID;
-
-      if (!empty($assetId)) {
-        $media_id = ImageOperations::getImageMediaId($assetId);
-
-        // If we find the file then we need to reference it in the return array.
-        if (!empty($media_id)) {
-          if ($attributeType === 'Primary Image') {
-            $this->primaryImageMediaId = $media_id;
-          }
-          else {
-            $this->mediaIds[] = [
-              'media_id' => $media_id
-            ];
-          }
-        }
-        else {
-          if ($attributeType === 'Primary Image') {
-            $this->primaryImageAsset = [
-              'imagetype' => $level,
-              'asset_id' => $assetId,
-              'remote_file_path' => $assetId . '.jpg',
-            ];
-          }
-          elseif (in_array($attributeType, self::$allowedTypes)) {
-            $this->imageAssets[] = [
-              'imagetype' => $level,
-              'asset_id' => $assetId,
-            ];
-          }
-        }
-      }
-    }
-  }
-
-  /**
-   * Scan for videos directly.
-   *
-   * @param \SimpleXMLElement|mixed $element
-   *   The array of multivalue elements.
-   */
-  protected function scanForVideos(mixed $element) {
-    if (!empty($element)) {
-      foreach ($element as $single_value) {
-        $single_value_attribute_id = (string) $single_value->attributes()->AttributeID;
-
-        if ($single_value->getName() === 'MultiValue' && $single_value_attribute_id == 'ExternalVideoURL') {
-          foreach ($single_value->children() as $single_value_child) {
-            $this->videos[] = $single_value_child;
-          }
-
-          // We only visited the "Values" attribute group so that we could get the video. So leave. NOW!
-          break;
-        }
-      }
-    }
-  }
-
-  /**
-   * Scan the parent element for the primary image.
-   *
-   * @param \SimpleXMLElement|mixed $element
-   *   The parent element.
-   */
-  protected function scanParentForPrimaryImage(mixed $element) {
-    foreach ($element as $item) {
-      $attributeType = (string) $item->attributes()->Type;
-      $assetId = (string) $item->attributes()->AssetID;
-
-      if (!empty($assetId)) {
-        if ($attributeType === 'Primary Image') {
-          $media_id = ImageOperations::getImageMediaId($assetId);
-
-          // If we find the file then we need to reference it in the return array.
-          if (!empty($media_id)) {
-            $this->primaryImageMediaId = $media_id;
-          }
-          else {
-            $this->primaryImageAsset = [
-              'imagetype' => 'SKU Group Level',
-              'asset_id' => $assetId,
-              'remote_file_path' => $assetId . '.jpg',
-            ];
-          }
-        }
-      }
-    }
-  }
-
 }
