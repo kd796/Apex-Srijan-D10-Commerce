@@ -499,4 +499,41 @@ trait MigrationHelperTrait {
     ];
   }
 
+  /**
+   * List of Excluded atrribite ID.
+   *
+   * @return mixed
+   *   Returns attribute ids.
+   */
+  public function getExcludedAttributeList() {
+    return [
+      // Generic attribute IDs.
+      // Footnotes.
+      "Footnotes",
+      // SKU Overview.
+      "ATT17711",
+      // Coupon Headline.
+      "ATT919",
+      // UPC.
+      "ATT539",
+      // Feature atrribute IDs [Copy Point 01 - Copy Point 16].
+      "ATT100",
+      "ATT101",
+      "ATT102",
+      "ATT103",
+      "ATT104",
+      "ATT105",
+      "ATT106",
+      "ATT107",
+      "ATT108",
+      "ATT109",
+      "ATT22085",
+      "ATT22086",
+      "ATT22087",
+      "ATT22088",
+      "ATT22089",
+      "ATT22090",
+    ];
+  }
+
 }
