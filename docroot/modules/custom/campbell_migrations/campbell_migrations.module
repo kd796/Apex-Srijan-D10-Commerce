@@ -13,6 +13,7 @@ use Drupal\migrate\MigrateSkipRowException;
 use Drupal\migrate\Plugin\MigrateSourceInterface;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\Row;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
 
 /**
  * Implements hook_migrate_prepare_row().
@@ -418,5 +419,46 @@ function campbell_migrations_migrate_prepare_row(Row $row, MigrateSourceInterfac
     if (!in_array($row->getSource()['remote_term_id'], $attributes_to_include)) {
       throw new MigrateSkipRowException('', TRUE);
     }
+  }
+}
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function campbell_migrations_views_query_alter($view, QueryPluginBase $query) {
+  if ($view->id() !== 'taxonomy_menu') {
+    return;
+  }
+
+  $tableQueue = $query->getTableQueue();
+  if (isset($tableQueue['node__field_product_classifications'])) {
+    // Only select the first term reference from product_category content.
+    $join = &$tableQueue['node__field_product_classifications']['join'];
+    $join->extra[] = [
+      'field' => 'delta',
+      'value' => 0,
+      'numeric' => true
+    ];
+  }
+}
+
+/**
+ * Implements hook_views_pre_view().
+ */
+function campbell_migrations_views_pre_view($view, $display_id, &$args) {
+  if ($view->id() !== 'taxonomy_menu' || !empty($args)) {
+    return;
+  }
+
+  // If no args set and term name is given as default, convert to tid.
+  $default = $view->display_handler->display['display_options']['arguments']['term_node_tid_depth']['default_argument_options']['argument'];
+  if (!$default || is_numeric($default)) {
+    return;
+  }
+
+  $term_query = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->getQuery();
+  $term = $term_query->condition('name', $default)->execute();
+  if (count($term)) {
+    $args[] = reset($term);
   }
 }
