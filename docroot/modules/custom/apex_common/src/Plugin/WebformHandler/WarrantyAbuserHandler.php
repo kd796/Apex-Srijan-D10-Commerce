@@ -19,20 +19,21 @@ use Drupal\webform\WebformSubmissionInterface;
  *   submission = \Drupal\webform\Plugin\WebformHandlerInterface::SUBMISSION_REQUIRED,
  * )
  */
-class WarrantyAbuserHandler extends WebformHandlerBase{
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function validateForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission){
-        $web_form_id = 'warranty_abusers';
-        $service = \Drupal::service('apex_common.get_abuser_emails');    
-        $abuser_emails =  $service->get_abuser_emails($web_form_id);
-      
-        //Get warranty_replacement_form submission data
-        $data = $webform_submission->getData();
-        if (!empty($abuser_emails) && in_array($data['email_address'], $abuser_emails)) {
-            $form_state->setErrorByName('element', $this->t('Access Denied: You have been blocked from accessing this page. Please contact the site administrator if you believe this is an error.'));
-        }
+class WarrantyAbuserHandler extends WebformHandlerBase {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function validateForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
+    $web_form_id = 'warranty_abusers';
+    $service = \Drupal::service('apex_common.get_abuser_emails');
+    $abuser_emails = $service->getAbuserEmails($web_form_id);
+
+    // Get warranty_replacement_form submission data.
+    $data = $webform_submission->getData();
+    if (!empty($abuser_emails) && in_array($data['email_address'], $abuser_emails)) {
+      $form_state->setErrorByName('element', $this->t('Access Denied: You have been blocked from accessing this page. Please contact the site administrator if you believe this is an error.'));
     }
+  }
+
 }

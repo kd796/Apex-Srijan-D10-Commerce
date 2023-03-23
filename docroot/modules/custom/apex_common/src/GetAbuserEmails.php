@@ -1,30 +1,51 @@
 <?php
 
-namespace  Drupal\apex_common;
+namespace Drupal\apex_common;
+
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 /**
- * @file providing the service that generate random number between 1000 to 9999.
- *
+ * Get all the abusers email by submitting the form id.
  */
+class GetAbuserEmails {
 
-class GetAbuserEmails{
+  /**
+   * Protected entityTypeManager variable.
+   *
+   * @var entityTypeManager
+   */
+  protected $entityTypeManager;
 
-    public function get_abuser_emails($web_form_id){
-        //Get Warranty Abusers Form submissions
-        $query = \Drupal::entityQuery('webform_submission')
-            ->condition('webform_id', $web_form_id);
-        $result = $query->execute();
+  /**
+   * Constructor.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
+   */
+  public function __construct(EntityTypeManagerInterface $entity_type_manager) {
+    $this->entityTypeManager = $entity_type_manager;
+  }
 
-        $storage = \Drupal::entityTypeManager()->getStorage('webform_submission');
-        $submissions = $storage->loadMultiple($result);
-        $abuser_emails = [];
-        foreach ($submissions as $submission) {
-            foreach ($submission->getData() as $key => $item) {
-                if ($key == 'email') {
-                    $abuser_emails[] = $item;
-                }
-            }
+  /**
+   * Get the abuser emails.
+   */
+  public function getAbuserEmails($web_form_id) {
+    // Get Warranty Abusers Form submissions.
+    $query = $this->entityTypeManager->getStorage('webform_submission')->getQuery();
+    $query->condition('webform_id', $web_form_id);
+    $result = $query->execute();
+
+    $storage = $this->entityTypeManager->getStorage('webform_submission');
+    $submissions = $storage->loadMultiple($result);
+    $abuser_emails = [];
+    foreach ($submissions as $submission) {
+      foreach ($submission->getData() as $key => $item) {
+        if ($key == 'email') {
+          $abuser_emails[] = $item;
         }
-        return $abuser_emails;
+      }
     }
+    return $abuser_emails;
+  }
+
 }

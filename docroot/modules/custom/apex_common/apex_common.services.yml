@@ -8,6 +8,7 @@ services:
   # Get Abuser emails service
   apex_common.get_abuser_emails:
     class: Drupal\apex_common\GetAbuserEmails
+    arguments: ['@entity_type.manager']
     tags:
       - { name: get_abuser_emails }
 

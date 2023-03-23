@@ -68,19 +68,19 @@ class RoleNegotiator implements ThemeNegotiatorInterface {
     $is_admin_route = $this->adminRoute->isAdminRoute($route);
 
     if ($is_admin_route === TRUE && $this->account->hasPermission('view the administration theme') === TRUE) {
-        $change_theme = FALSE;
+      $change_theme = FALSE;
     }
-   
+
     // Get current roles a user has.
     $roles = $this->account->getRoles();
-    if(!empty($roles) && in_array('customer_support', $roles)){
-        $this->theme = 'seven';
-    }else{
-        $this->theme = NULL;
+    if (!empty($roles) && in_array('customer_support', $roles)) {
+      $this->theme = 'seven';
+    }
+    else {
+      $this->theme = NULL;
     }
     return $change_theme;
   }
-
 
   /**
    * Determine the active theme for the request.
