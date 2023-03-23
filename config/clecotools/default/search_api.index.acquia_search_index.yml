@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.field_360_image
     - field.storage.node.field_address
     - field.storage.node.body
     - field.storage.node.field_category_facets
@@ -13,9 +14,12 @@ dependencies:
     - field.storage.node.field_email
     - field.storage.node.field_product_features_cp
     - field.storage.node.field_featured_products
+    - field.storage.node.field_feature_hotspots
     - field.storage.node.field_features_copy
     - field.storage.node.field_footnotes
     - field.storage.node.field_geographic_data
+    - field.storage.node.field_video_background
+    - field.storage.node.field_video_popup
     - field.storage.node.field_media
     - field.storage.node.field_locations_content_type
     - field.storage.node.field_model_specification
@@ -120,6 +124,14 @@ field_settings:
     dependencies:
       module:
         - taxonomy
+  field_360_image:
+    label: '360° Product Image'
+    datasource_id: 'entity:node'
+    property_path: field_360_image
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_360_image
   field_address:
     label: Address
     datasource_id: 'entity:node'
@@ -208,6 +220,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.taxonomy_term.field_es_range_min
+  field_feature_hotspots:
+    label: 'Feature Hotspots'
+    datasource_id: 'entity:node'
+    property_path: field_feature_hotspots
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_feature_hotspots
   field_featured_products:
     label: 'Featured Products'
     datasource_id: 'entity:node'
@@ -432,6 +452,22 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_upc
+  field_video_background:
+    label: 'Hero Video'
+    datasource_id: 'entity:node'
+    property_path: field_video_background
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_video_background
+  field_video_popup:
+    label: 'Hero Video Popup'
+    datasource_id: 'entity:node'
+    property_path: field_video_popup
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_video_popup
   moderation_state:
     label: 'Moderation state'
     datasource_id: 'entity:node'

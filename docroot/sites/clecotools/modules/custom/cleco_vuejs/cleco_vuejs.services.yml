@@ -1,0 +1,28 @@
+services:
+
+  step.breadcrumbs:
+    class: Drupal\cleco_vuejs\Breadcrumbs\StepProductCategoryBreadcrumbBuilder
+    tags:
+      - { name: breadcrumb_builder, priority: 2000 }
+
+  step.elastic_search_service:
+    class: Drupal\cleco_vuejs\Services\SolrSearchService
+
+  step.step_service:
+    class: Drupal\cleco_vuejs\Services\StepService
+
+  step.step_legacy_service:
+    class: Drupal\cleco_vuejs\Services\StepLegacyService
+
+  step.drupal_node_service:
+    class: Drupal\cleco_vuejs\Services\DrupalNodeService
+
+  step.image_styles_service:
+    class: Drupal\cleco_vuejs\Services\ImageStylesService
+
+  step.step_twig_extension:
+    class: Drupal\cleco_vuejs\TwigExtensions\StepTwigExtension
+    tags:
+      - {name: twig.extension}
+
+  
