@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.product_model.body
     - field.field.node.product_model.field_model_specification
+    - field.field.node.product_model.field_upc
     - node.type.product_model
   module:
     - text
@@ -30,6 +31,7 @@ content:
     region: content
 hidden:
   field_model_specification: true
+  field_upc: true
   langcode: true
   search_api_excerpt: true
   uuid: true
