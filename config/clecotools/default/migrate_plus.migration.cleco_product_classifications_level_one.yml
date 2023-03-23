@@ -16,7 +16,7 @@ source:
   urls: 'public://import/pim_data/pim_export_with_schema.xml'
   namespaces:
     stibo: 'http://www.stibosystems.com/step'
-  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 1"]'
+  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification[@UserTypeID="Website"]'
   fields:
     -
       name: remote_term_id
@@ -54,7 +54,10 @@ process:
       - Website_718104
       - Website_718081
       - Website_718028
-  description: term_description
+  description/value: term_description
+  description/format:
+    plugin: default_value
+    default_value: full_html
   weight:
     plugin: cleco_get_default_value
     source: term_position
