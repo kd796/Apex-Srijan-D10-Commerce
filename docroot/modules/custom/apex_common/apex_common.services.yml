@@ -10,3 +10,10 @@ services:
     class: Drupal\apex_common\GetAbuserEmails
     tags:
       - { name: get_abuser_emails }
+
+  # Theme negotiator service
+  theme.negotiator.apex_common:
+    class: Drupal\apex_common\Theme\RoleNegotiator
+    arguments: ['@config.factory', '@router.admin_context', '@current_route_match', '@current_user']
+    tags:
+      - { name: theme_negotiator, priority: 10 }
