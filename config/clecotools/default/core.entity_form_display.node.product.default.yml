@@ -14,6 +14,7 @@ dependencies:
     - field.field.node.product.field_product_models
     - field.field.node.product.field_related_products_ref
     - field.field.node.product.field_sku_group
+    - field.field.node.product.field_slug
     - field.field.node.product.field_upc
     - node.type.product
   module:
@@ -127,6 +128,14 @@ content:
   field_sku_group:
     type: string_textfield
     weight: 124
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_slug:
+    type: string_textfield
+    weight: 134
     region: content
     settings:
       size: 60
