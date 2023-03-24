@@ -516,6 +516,13 @@ trait MigrationHelperTrait {
       "ATT919",
       // UPC.
       "ATT539",
+      "Pro Landing Body",
+      "Table Sort Order",
+      "Table Sort Order Set Components",
+      // Web Display Sort Order.
+      "ATT15738",
+      // Attribute Sort Order.
+      "ATT676136",
       // Feature atrribute IDs [Copy Point 01 - Copy Point 16].
       "ATT100",
       "ATT101",
