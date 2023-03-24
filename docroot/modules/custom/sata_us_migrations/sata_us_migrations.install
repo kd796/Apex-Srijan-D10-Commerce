@@ -7,6 +7,7 @@
 
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\apex_migrations\FileOperations;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
 
 /**
  * Implements hook_install().
@@ -75,4 +76,30 @@ function sata_us_migrations_update_8001(&$sandbox) {
   }
 
   FileOperations::clearDestinationAndPullInNew($source_files);
+}
+
+/**
+ * Implements hook_update_N().
+ * Create a custom administration menu and link to a webform
+ */
+function sata_us_migrations_update_8005(){
+    try {
+      $items = array(
+          '1' => 'Customer Support',
+      );
+      foreach ($items as $key => $title) {
+          $menu_link = MenuLinkContent::create([
+              'title' => $title,
+              'link' => ['uri' => 'internal:/admin/warranty-abusers'],
+              'menu_name' => 'system.admin',
+              'expanded' => TRUE,
+              'parent' => 'system.admin',
+              'weight' => 0,
+          ]);
+          $menu_link->save();
+      }
+  } catch (Exception $e) {
+      echo 'Message: ' . $e->getMessage();
+      \Drupal::logger('gearwrench_migrations')->error($e->getMessage());
+  }
 }
