@@ -14,6 +14,7 @@ dependencies:
     - field.field.node.product.field_product_models
     - field.field.node.product.field_related_products_ref
     - field.field.node.product.field_sku_group
+    - field.field.node.product.field_slug
     - field.field.node.product.field_upc
     - node.type.product
   module:
@@ -112,6 +113,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 104
+    region: content
+  field_slug:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 114
     region: content
   field_upc:
     type: string
