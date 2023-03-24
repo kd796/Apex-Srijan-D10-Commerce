@@ -18,7 +18,6 @@ dependencies:
     - field.storage.node.field_event_media_link
     - field.storage.node.field_fax
     - field.storage.node.field_featured_product
-    - field.storage.taxonomy_term.field_image
     - field.storage.node.field_is_featured
     - field.storage.node.field_launch_date
     - field.storage.node.field_list_type
@@ -245,14 +244,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_featured_product
-  field_image:
-    label: image
-    datasource_id: 'entity:taxonomy_term'
-    property_path: field_image
-    type: integer
-    dependencies:
-      config:
-        - field.storage.taxonomy_term.field_image
   field_is_featured:
     label: 'Is Featured'
     datasource_id: 'entity:node'
@@ -593,7 +584,6 @@ datasource_settings:
         - brand
         - product_classifications
         - product_specifications
-        - products
     languages:
       default: true
       selected: {  }
