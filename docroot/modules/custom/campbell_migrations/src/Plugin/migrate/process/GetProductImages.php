@@ -6,6 +6,7 @@ use Drupal\apex_migrations\ImageNotFoundOnFtpException;
 use Drupal\apex_migrations\ImageOperations;
 use Drupal\apex_migrations\Plugin\migrate\process\GetProductImages as ApexGetProductImages;
 use Drupal\Core\Entity\EntityTypeManager;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\media\Entity\Media;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\MigrateSkipProcessException;
@@ -30,7 +31,7 @@ use Drupal\Core\TempStore\PrivateTempStoreFactory;
  *   id = "campbell_get_product_images"
  * )
  */
-class GetProductImages extends ApexGetProductImages {
+class GetProductImages extends ApexGetProductImages implements ContainerFactoryPluginInterface {
 
   /**
    * The entity type manager.
