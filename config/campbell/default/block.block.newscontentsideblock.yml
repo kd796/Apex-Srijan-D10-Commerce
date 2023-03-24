@@ -1,0 +1,31 @@
+uuid: e08b10cf-f7c8-476b-a514-a59da3cd7de5
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.news_content_side_block
+  module:
+    - fixed_block_content
+    - node
+  theme:
+    - campbell
+id: newscontentsideblock
+theme: campbell
+region: sidebar_second
+weight: 0
+provider: null
+plugin: 'fixed_block_content:news_content_side_block'
+settings:
+  id: 'fixed_block_content:news_content_side_block'
+  label: 'News content side block'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      news: news

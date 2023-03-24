@@ -5,31 +5,74 @@
  * Primary module hooks for Campbell Common module.
  */
 
+use Drupal\node\NodeInterface;
+
 /**
  * Implements hook_theme().
  */
 function campbell_common_theme($existing, $type, $theme, $path) {
-    return [
-      'taxonomy_terms_view' => [
-        'variables' => [
-          'welded_chain' => NULL,
-          'forged_fittings' => NULL,
-          'cable_and_wire_rope' => NULL,
-          'weldless_chain' => NULL,
-          'hobby_craft_and_deco' => NULL,
-          'assemblies' => NULL,
-          'overhead_lifting' => NULL,
-          'lifting_clamps' => NULL,
-          'blocks' => NULL,
-          'accessories' => NULL,
-          'pre_cut_packaged' => NULL,
-          'chain_and_cable_cutters' => NULL,
-          'featuredblock' => NULL,
-        ],
+  return [
+    'taxonomy_terms_view' => [
+      'variables' => [
+        'welded_chain' => NULL,
+        'forged_fittings' => NULL,
+        'cable_and_wire_rope' => NULL,
+        'weldless_chain' => NULL,
+        'hobby_craft_and_deco' => NULL,
+        'assemblies' => NULL,
+        'overhead_lifting' => NULL,
+        'lifting_clamps' => NULL,
+        'blocks' => NULL,
+        'accessories' => NULL,
+        'pre_cut_packaged' => NULL,
+        'chain_and_cable_cutters' => NULL,
+        'featuredblock' => NULL,
       ],
-    ];
-  }
+    ],
+  ];
+}
 
+/**
+ * Implements hook_views_pre_view().
+ *
+ * Adding Year exposed filters in view.
+ */
+function campbell_common_views_pre_view($view, $display_id) {
+  if ($view->id() == 'campbell_news') {
+    $ops = $view->display_handler->getOption('filters');
+    $years = [];
+    $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+    // Getting nids with conditions.
+    $query = $node_storage->getQuery()
+      ->condition('type', 'news')
+      ->condition('field_date', NULL, 'IS NOT NULL')
+      ->condition('field_news_type', $display_id == 'campbell_news_release' ?
+        'newsrelease' : 'inthenews', '=');
+    $nodes = $node_storage->loadMultiple($query->execute());
+    foreach ($nodes as $node) {
+      $event_date = $node->get('field_date')->getValue();
+      $date = \DateTime::createFromFormat('Y-m-d', $event_date[0]['value']);
+      $years[] = $date->format('Y');
+    }
+    // Removing duplicate values and sort them in descending order.
+    $years = array_unique($years);
+    rsort($years);
+
+    $ops['field_date_value']['group_info']['group_items'] = [];
+    foreach ($years as $year) {
+      $ops['field_date_value']['group_info']['group_items'][] = [
+        'title' => $year,
+        'operator' => 'between',
+        'value' => [
+          'min' => $year . '-01-01',
+          'max' => $year . '-12-31',
+          'type' => 'date',
+        ],
+      ];
+    }
+    $view->display_handler->overrideOption('filters', $ops);
+  }
+}
 
 /**
  * Implements hook_preprocess_breadcrumb().
@@ -39,17 +82,14 @@ function campbell_common_theme($existing, $type, $theme, $path) {
 function campbell_common_preprocess_breadcrumb(&$variables) {
 
   $node = \Drupal::routeMatch()->getParameter('node');
-  if ($node instanceof \Drupal\node\NodeInterface) {
+  if ($node instanceof NodeInterface) {
     // Check if the content type is "product".
     if ($node->getType() == 'product') {
-
-      //Getting long description field value for products
+      // Getting long description field value for products.
       $long_description_value = $node->get('field_long_description')->value;
-
-      //Getting the last key of breadcrumb
+      // Getting the last key of breadcrumb.
       $last_key = array_key_last($variables['breadcrumb']);
-
-      //Setting the text value of last key of product's breadcrumb
+      // Setting the text value of last key of product's breadcrumb.
       $variables['breadcrumb'][$last_key]['text'] = $long_description_value;
     }
   }
