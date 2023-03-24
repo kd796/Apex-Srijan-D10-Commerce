@@ -1,0 +1,109 @@
+<?php
+
+/**
+ * @file
+ * Provides primary Drupal hook implementations for sata emea site.
+ */
+
+/**
+ * Implements hook_page_attachments_alter.
+ */
+function sata_emea_migrations_page_attachments_alter(array &$attachments) {
+  $html_head = $attachments['#attached']['html_head'];
+  foreach ($html_head as $html_head_key => $html_head_value) {
+    $is_google_tag = $html_head_value[1];
+    if (isset($is_google_tag) && $is_google_tag == "google_tag_script_tag__primary") {
+      unset($attachments['#attached']['html_head'][$html_head_key]);
+    }
+  }
+}
+
+/**
+ * Implements hook_page_attachments_alter.
+ *
+ * Add the custom google tag script which works with Cookiebot (for only Sata EU site)
+ */
+function sata_emea_migrations_page_attachments(&$attachments) {
+  $config = \Drupal::config('google_tag.settings');
+  $include_classes = $config->get('include_classes');
+  $types = $include_classes ? ['data_layer', 'script'] : ['script'];
+  $weight = 9;
+  $config_key = "container_id";
+  foreach ($types as $type) {
+    $gtm_script = sata_emea_inline_tag($type, $config_key, $weight++);
+    if (!empty($gtm_script)) {
+      $attachments['#attached']['html_head'][] = $gtm_script;
+    }
+  }
+}
+
+/**
+ * Helper function to clean up the google tag variables.
+ */
+function sata_emea_gtm_variable_clean($variable) {
+  $config = \Drupal::config('google_tag.container.primary');
+  return trim(json_encode($config->get($variable)), '"');
+}
+
+/**
+ * Helper function to read the envirnoment variables of google tag config.
+ */
+function sata_emea_gtm_environment_query() {
+  $config = \Drupal::config('google_tag.container.primary');
+  if (!$config->get('include_environment')) {
+    return '';
+  }
+  $environment_id = sata_emea_gtm_variable_clean('environment_id');
+  $environment_token = sata_emea_gtm_variable_clean('environment_token');
+  return "&gtm_auth=$environment_token&gtm_preview=$environment_id&gtm_cookies_win=x";
+}
+
+/**
+ * Helper function to manupulate the script of google tag.
+ */
+function sata_emea_inline_tag($type, $config_key, $weight) {
+  $func_name = 'sata_emea_' . $type . '_snippet';
+  $contents = $func_name($config_key);
+  $attachment = $contents ? [
+  [
+    '#type' => 'html_tag',
+    '#tag' => 'script',
+    '#value' => $contents,
+    '#weight' => $weight,
+  ],
+    "google_tag_{$type}_tag",
+  ] : [];
+  return $attachment;
+}
+
+/**
+ * Helper function to add the script of google tag.
+ */
+function sata_emea_script_snippet($config_key) {
+  $config = \Drupal::config('google_tag.settings');
+  $compact = $config->get('compact_snippet');
+  $container_id = sata_emea_gtm_variable_clean('container_id');
+  $data_layer = sata_emea_gtm_variable_clean('data_layer');
+  $query = sata_emea_gtm_environment_query();
+  $script = <<<EOS
+              if (Cookiebot.consent.statistics) {
+                (function(w,d,s,l,i){
+                  w[l]=w[l]||[];
+                  w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+                  var f=d.getElementsByTagName(s)[0];
+                  var j=d.createElement(s);
+                  var dl=l!='dataLayer'?'&l='+l:'';
+                  j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+'$query';
+                  j.async=true;
+                  f.parentNode.insertBefore(j,f);
+                })(window,document,'script','$data_layer','$container_id');
+              }
+              else {
+                  console.log("no cookiebot consent given")
+              };
+              EOS;
+  if ($compact) {
+    $script = str_replace(["\n", '  '], '', $script);
+  }
+  return $script;
+}
