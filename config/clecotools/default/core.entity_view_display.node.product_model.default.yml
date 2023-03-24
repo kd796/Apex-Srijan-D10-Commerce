@@ -5,7 +5,9 @@ dependencies:
   config:
     - field.field.node.product_model.body
     - field.field.node.product_model.field_model_specification
+    - field.field.node.product_model.field_sr_number
     - field.field.node.product_model.field_upc
+    - field.field.node.product_model.field_web_display_sort_order
     - node.type.product_model
   module:
     - text
@@ -30,6 +32,14 @@ content:
     third_party_settings: {  }
     weight: 102
     region: content
+  field_sr_number:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 105
+    region: content
   field_upc:
     type: string
     label: above
@@ -37,6 +47,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 103
+    region: content
+  field_web_display_sort_order:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 104
     region: content
   links:
     settings: {  }

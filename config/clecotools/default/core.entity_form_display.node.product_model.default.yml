@@ -5,7 +5,9 @@ dependencies:
   config:
     - field.field.node.product_model.body
     - field.field.node.product_model.field_model_specification
+    - field.field.node.product_model.field_sr_number
     - field.field.node.product_model.field_upc
+    - field.field.node.product_model.field_web_display_sort_order
     - node.type.product_model
   module:
     - content_moderation
@@ -34,7 +36,7 @@ content:
     third_party_settings: {  }
   field_model_specification:
     type: entity_reference_autocomplete
-    weight: 12
+    weight: 14
     region: content
     settings:
       match_operator: CONTAINS
@@ -42,9 +44,25 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_sr_number:
+    type: string_textfield
+    weight: 13
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_upc:
     type: string_textfield
     weight: 10
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_web_display_sort_order:
+    type: string_textfield
+    weight: 12
     region: content
     settings:
       size: 60
