@@ -6,7 +6,9 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.product_model.body
     - field.field.node.product_model.field_model_specification
+    - field.field.node.product_model.field_sr_number
     - field.field.node.product_model.field_upc
+    - field.field.node.product_model.field_web_display_sort_order
     - node.type.product_model
   module:
     - text
@@ -31,7 +33,9 @@ content:
     region: content
 hidden:
   field_model_specification: true
+  field_sr_number: true
   field_upc: true
+  field_web_display_sort_order: true
   langcode: true
   search_api_excerpt: true
   uuid: true
