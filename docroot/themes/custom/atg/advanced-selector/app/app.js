@@ -3,27 +3,27 @@ Cleco.config(function($routeProvider) {
   $routeProvider
     .when('/business', {
       controller: 'businessController',
-      templateUrl: '/themes/atg/advanced-selector/app/views/businessView.html'
+      templateUrl: '/themes/custom/atg/advanced-selector/app/views/businessView.html'
     })
     .when('/general', {
       controller: 'generalController',
-      templateUrl: '/themes/atg/advanced-selector/app/views/generalView.html'
+      templateUrl: '/themes/custom/atg/advanced-selector/app/views/generalView.html'
     })
     .when('/application', {
       controller: 'applicationController',
-      templateUrl: '/themes/atg/advanced-selector/app/views/applicationView.html'
+      templateUrl: '/themes/custom/atg/advanced-selector/app/views/applicationView.html'
     })
     .when('/accessories', {
       controller: 'accessoriesController',
-      templateUrl: '/themes/atg/advanced-selector/app/views/accessoriesView.html'
+      templateUrl: '/themes/custom/atg/advanced-selector/app/views/accessoriesView.html'
     })
     .when('/solution', {
       controller: 'solutionController',
-      templateUrl: '/themes/atg/advanced-selector/app/views/solutionView.html'
+      templateUrl: '/themes/custom/atg/advanced-selector/app/views/solutionView.html'
     })
     .when('/complete', {
       controller: 'completeController',
-      templateUrl: '/themes/atg/advanced-selector/app/views/completeView.html'
+      templateUrl: '/themes/custom/atg/advanced-selector/app/views/completeView.html'
     })
     .otherwise({
       redirectTo: '/business'
@@ -36,7 +36,7 @@ Cleco.nontranslatable = [];
 Cleco.formContainer = document.getElementsByClassName('sel-ade')[0];
 
 Cleco.run(function($http) {
-  $http.get('/themes/atg/advanced-selector/api/translations.php')
+  $http.get('/themes/custom/atg/advanced-selector/api/translations.php')
     .success(function(data, status) {
       // console.log({ data, status });
       Cleco.language = data.language;

@@ -5,7 +5,7 @@ Cleco.controller('businessController',
     $scope.loadData = function() {
       $scope.loading = true;
       $scope.submitted = false;
-      $http.get('/themes/atg/advanced-selector/api/read.php')
+      $http.get('/themes/custom/atg/advanced-selector/api/read.php')
         .success(function(data, status) {
           // console.log({ data, status });
           $scope.loading = false;
@@ -26,7 +26,7 @@ Cleco.controller('businessController',
       if (!$scope.businessform.$valid) return false;
 
       data.refer = 'business';
-      $http.post('/themes/atg/advanced-selector/api/update.php', data)
+      $http.post('/themes/custom/atg/advanced-selector/api/update.php', data)
         .success(function(result) {
           $scope.loading = false;
           $scope.submitted = false;

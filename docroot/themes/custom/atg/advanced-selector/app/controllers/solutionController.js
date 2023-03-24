@@ -5,11 +5,16 @@ Cleco.controller('solutionController',
     $scope.loadData = function() {
       $scope.loading = true;
       $scope.submitted = false;
-      $http.get('/themes/atg/advanced-selector/api/read.php')
+      $http.get('/themes/custom/atg/advanced-selector/api/read.php')
         .success(function(data, status) {
           // console.log({ data, status });
           $scope.loading = false;
           $scope.user = data.user;
+          if (data.user == undefined) {
+            // Define the $scope.user object if it is undefined
+            data.user = {};
+          }
+          data.user.de_solution_issue_sortingLog = '';
           if (!data.user.de_solution_issue_sortingLog) {
             data.user.de_solution_issue_sortingLog = 'Hole Quality, Ergonomics, Drill Cycle Time, Overall Productivity, Error Proofing, Other';
           }
@@ -29,7 +34,12 @@ Cleco.controller('solutionController',
                 }
                 return i;
               }).join(', ');
-              $scope.user.de_solution_issue_sortingLog = logEntry;
+              $scope.user = {};
+              if ($scope.user) { // Check if $scope.user is defined and not null
+                $scope.user.de_solution_issue_sortingLog = logEntry;
+              } else {
+                console.log("");
+              }
               console.log({ logEntry });
             },
             axis: 'y'
@@ -47,11 +57,17 @@ Cleco.controller('solutionController',
     $scope.saveSolutions = function(data) {
       $scope.loading = true;
       $scope.submitted = true;
-      data.refer = 'solutions';
+      if (data == undefined) {
+        // Define the $scope.user object if it is undefined
+        data = {refer: {}};
+      }
+      else {
+        data.refer = 'solutions';
+      }
       if (data.de_solution_issue_other_value && data.de_solution_issue_sortingLog.indexOf(data.de_solution_issue_other_value) == -1) {
         data.de_solution_issue_sortingLog = data.de_solution_issue_sortingLog.replace('Other', 'Other (' + data.de_solution_issue_other_value + ')');
       }
-      $http.post('/themes/atg/advanced-selector/api/update.php', data)
+      $http.post('/themes/custom/atg/advanced-selector/api/update.php', data)
         .success(function(result) {
           $scope.loading = false;
           $scope.submitted = false;

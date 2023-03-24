@@ -5,12 +5,20 @@ Cleco.controller('generalController',
     $scope.loadData = function() {
       $scope.loading = true;
       $scope.submitted = false;
-      $http.get('/themes/atg/advanced-selector/api/read.php')
+      $http.get('/themes/custom/atg/advanced-selector/api/read.php')
         .success(function(data, status) {
           // console.log({ data, status });
           $scope.loading = false;
           $scope.user = data.user;
-          $scope.user.apps[0].show = 1;
+          // Add this line to check if the "apps" property exists before accessing it
+          if ($scope.user && $scope.user.apps) {
+            $scope.user.apps[0].show = 1;
+          }
+          if ($scope.user == undefined) {
+            // Define the $scope.user object if it is undefined
+            $scope.user = {};
+          }
+          $scope.user.de_inquiry_product_types = '';
           if ($scope.user.de_inquiry_product_types !== undefined) {
             $scope.user.de_inquiry_product_types = $scope.user.de_inquiry_product_types.split(', ');
           }
@@ -49,7 +57,7 @@ Cleco.controller('generalController',
           return value !== '' && value !== false;
         }).join(', ')
       }
-      $http.post('/themes/atg/advanced-selector/api/update.php', data)
+      $http.post('/themes/custom/atg/advanced-selector/api/update.php', data)
         .success(function(result) {
           $scope.loading = false;
           $scope.submitted = false;
