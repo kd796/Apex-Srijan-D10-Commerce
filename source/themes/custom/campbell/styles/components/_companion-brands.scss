@@ -3,9 +3,10 @@
     .block-addtothis-apex-custom,
     .block-page-title-block,
     .node__content {
-      max-width: 1000px;
       margin: 0 auto;
+      max-width: 1000px;
       word-wrap: break-word;
+
       @media only screen and (max-width: $tablet-max) {
         padding: 0 20px;
       }
@@ -18,9 +19,7 @@
         margin: 18px 0 0;
 
         p {
-          font-size: 17px;
           margin: 0 0 15px;
-          color: $light-black;
         }
 
         .left {
@@ -30,6 +29,7 @@
           display: flex;
           margin: 25px 0;
           align-items: center;
+
           @media only screen and(max-width: $tablet) {
             margin: 20px auto 0;
             width: 100%;
@@ -41,6 +41,7 @@
             width: 100%;
             height: auto;
             display: block;
+
             @media only screen and(max-width: $tablet) {
               width: 150px;
               margin: 0 auto;
@@ -51,9 +52,9 @@
         .right {
           margin: 0;
           float: right;
-          font-size: 17px;
           color: $spanish-gray;
           width: calc(100% - 170px);
+
           @media only screen and(max-width: $tablet) {
             width: 100%;
           }
@@ -143,9 +144,10 @@
 
     .description,
     .title {
-      font-weight: 700;
-      font-size: 11px;
       color: $white;
+      font-size: 13px;
+      line-height: 1.5;
+      font-weight: 700;
     }
   }
 }

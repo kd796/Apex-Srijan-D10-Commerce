@@ -1,5 +1,5 @@
-.access-denied,
-.page-not-found {
+article[about='/page-not-found'],
+article[about='/access-denied'] {
   .node__content {
     margin: 0 auto;
     min-height: 500px;
@@ -13,29 +13,12 @@
 
     h2 {
       float: left;
-      color: $pantone;
-      font-size: 40px;
-      font-weight: 700;
-      line-height: 48px;
       margin: 20px 0 8px;
-
-      @media only screen and(max-width: $tablet-max) {
-        font-size: 35px;
-        line-height: 40px;
-      }
-
-      @media only screen and(max-width: $tablet) {
-        font-size: 30px;
-        line-height: 35px;
-      }
     }
 
     p {
       clear: both;
-      font-size: 16px;
       margin: 0 0 24px;
-      line-height: 26px;
-      color: $light-black;
 
       &.left {
         float: left;
@@ -80,11 +63,7 @@
       &.full-image {
         clear: both;
         width: 100%;
-        width: 100vw;
-        max-width: none;
-        position: relative;
         margin-bottom: 48px;
-        left: calc(-50vw + 50%);
 
         @media only screen and(max-width: $tablet-max) {
           margin-bottom: 38px;
