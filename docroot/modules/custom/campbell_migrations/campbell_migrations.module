@@ -211,7 +211,7 @@ function campbell_migrations_views_query_alter($view, QueryPluginBase $query) {
  * Implements hook_views_pre_view().
  */
 function campbell_migrations_views_pre_view($view, $display_id, &$args) {
-  if ($view->id() !== 'taxonomy_menu' || !empty($args)) {
+  if ($view->id() !== 'taxonomy_menu' || isset($args[0])) {
     return;
   }
 
@@ -224,6 +224,6 @@ function campbell_migrations_views_pre_view($view, $display_id, &$args) {
   $term_query = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->getQuery();
   $term = $term_query->condition('name', $default)->execute();
   if (count($term)) {
-    $args[] = reset($term);
+    $args = [reset($term)];
   }
 }
