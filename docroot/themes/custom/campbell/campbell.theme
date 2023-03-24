@@ -61,7 +61,7 @@ function campbell_preprocess_html(&$vars) {
   // Get the current path
   $current_path = \Drupal::service('path.current')->getPath();
   $internal = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
-  $custom_class_path = ['/access-denied', '/page-not-found', '/user/login', '/user/password', '/about-us', '/warranty'];
+  $custom_class_path = ['/access-denied', '/page-not-found', '/user/login', '/user/password', '/about-us', '/warranty', '/return-policy', '/privacy-policy', '/companion-brands'];
   if(in_array($internal, $custom_class_path )){
     $vars['attributes']['class'][] = str_replace("/", "", $internal);
   }

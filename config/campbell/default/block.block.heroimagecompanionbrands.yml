@@ -1,0 +1,28 @@
+uuid: 9779d291-067f-4248-8c25-72ed54602655
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.hero_image_companion_brands
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - campbell
+id: heroimagecompanionbrands
+theme: campbell
+region: pre_content
+weight: -20
+provider: null
+plugin: 'fixed_block_content:hero_image_companion_brands'
+settings:
+  id: 'fixed_block_content:hero_image_companion_brands'
+  label: 'Hero Image - Companion Brands'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /companion-brands

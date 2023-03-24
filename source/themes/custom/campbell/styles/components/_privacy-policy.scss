@@ -1,0 +1,85 @@
+.privacy-policy {
+  #wrapper {
+    .node__content,
+    .block-page-title-block {
+      max-width: 1000px;
+      margin: 0 auto;
+      word-wrap: break-word;
+      @media only screen and (max-width: $tablet-max) {
+        padding: 0 20px;
+      }
+
+      @media only screen and (min-width: $tablet-max) {
+        width: 1000px;
+      }
+
+      .page-title {
+        margin: 15px 0 25px;
+      }
+    }
+
+    .field--name-body {
+      h2 {
+        color: $pantone;
+        font-size: 24px;
+        line-height: 24px;
+        margin: 0 0 16px;
+
+        @media only screen and(max-width: $tablet-max) {
+          font-size: 22px;
+          line-height: 22px;
+        }
+
+        @media only screen and(max-width: $tablet) {
+          font-size: 18px;
+          line-height: 18px;
+        }
+      }
+
+      strong {
+        margin: 0;
+        padding: 0;
+        font-weight: 700;
+        color: $light-black;
+      }
+
+      p {
+        font-size: 14px;
+        margin: 0 0 16px;
+        line-height: 22px;
+        color: $light-black;
+      }
+
+      > ul {
+        padding: 0;
+        margin: 0 0 18px 15px;
+
+        @media only screen and(max-width: $tablet) {
+          margin: 0 0 16px 15px;
+        }
+
+        > li {
+          padding: 0;
+          margin: 0 0 10px;
+          font-size: 14px;
+          list-style: disc;
+          color: $light-black;
+
+          > ul {
+            margin: 18px 0 18px 25px;
+
+            @media only screen and(max-width: $tablet) {
+              margin: 16px 0 16px 20px;
+            }
+
+            > li {
+              padding: 0;
+              margin: 0 0 10px;
+              list-style: circle;
+            }
+          }
+        }
+      }
+    }
+  }
+}
