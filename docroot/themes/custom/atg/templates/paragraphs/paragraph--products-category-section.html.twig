@@ -24,7 +24,7 @@
                         body: body,
                         peek: true,
                         size: 'large',
-                        image: (image is not empty) ? step_asset_base_url() ~ 'styles/thumb/' ~ image : ''
+                        image: (image is not empty) ? image : ''
                     } %}
                 </li>
             {% endfor %}

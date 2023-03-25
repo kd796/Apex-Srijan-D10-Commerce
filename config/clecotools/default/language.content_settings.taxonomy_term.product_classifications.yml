@@ -4,8 +4,13 @@ status: true
 dependencies:
   config:
     - taxonomy.vocabulary.product_classifications
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
 id: taxonomy_term.product_classifications
 target_entity_type_id: taxonomy_term
 target_bundle: product_classifications
 default_langcode: site_default
-language_alterable: true
+language_alterable: false
