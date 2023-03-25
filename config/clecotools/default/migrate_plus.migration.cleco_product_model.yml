@@ -34,6 +34,14 @@ source:
       name: remote_product_upc
       label: 'Product UPC'
       selector: Values
+    -
+      name: remote_table_sort_order
+      label: 'Table Sort Order'
+      selector: Values
+    -
+      name: remote_web_display_sort_order
+      label: 'Web Display Sort Order'
+      selector: Values
   ids:
     remote_sku:
       type: string
@@ -55,6 +63,7 @@ process:
     parent_migration_id: cleco_product_specifications
     migration_id: cleco_product_specifications_list
     get_predefined_attributelist: 1
+    get_excluded_attributelist: 1
   field_model_specification:
     plugin: sub_process
     source: '@product_specifications_array'
@@ -69,6 +78,14 @@ process:
     plugin: apex_get_attribute_value
     source: remote_product_upc
     attribute: ATT539
+  field_sr_number:
+    plugin: apex_get_attribute_value
+    source: remote_table_sort_order
+    attribute: 'Table Sort Order'
+  field_web_display_sort_order:
+    plugin: apex_get_attribute_value
+    source: remote_web_display_sort_order
+    attribute: ATT15738
 destination:
   plugin: 'entity:node'
   bundle: product_model

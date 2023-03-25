@@ -72,7 +72,7 @@
 .want-to-hear {
   p {
     font-size: 17px;
-    color: $para;
+    color: $spanish-gray;
     margin: 20px 0;
     line-height: 1.2;
   }
@@ -86,4 +86,72 @@
     text-decoration: none;
     color: $pantone;
   }
+}
+
+.contact-title {
+  font-size: 17px;
+  font-weight: $bold;
+  margin-top: 15px;
+}
+
+.webform-submission-contact-us-form {
+  label,
+  .fieldset-legend {
+    font-weight: $normal;
+    color: $lighter-gray;
+  }
+
+  .form-type-radio {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .form-radio {
+    width: unset;
+    margin-top: 0;
+    margin-right: 3px;
+  }
+
+  .option {
+    margin-bottom: 0;
+  }
+
+  .form-required {
+    &:after {
+      margin: 0 0.2em;
+      background-size: 4px 4px;
+    }
+  }
+
+  .captcha  {
+    border: 0;
+
+    summary,
+    .details-description {
+      display: none;
+    }
+
+    .details-wrapper {
+      padding: 0;
+    }
+  }
+
+  .form-actions  {
+    display: flex;
+
+    .webform-button--reset {
+      color: $lighter-gray;
+      background: $gray;
+      border-color: $gray;
+
+      &:hover {
+        color: $black;
+      }
+    }
+  }
+}
+
+.required-fields-contact {
+  color: $racing-red;
 }

@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.product.field_sku_group
     - field.field.node.product.field_slug
     - field.field.node.product.field_upc
+    - field.field.node.product.field_web_display_sort_order
     - node.type.product
   module:
     - content_moderation
@@ -144,6 +145,14 @@ content:
   field_upc:
     type: string_textfield
     weight: 123
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_web_display_sort_order:
+    type: string_textfield
+    weight: 135
     region: content
     settings:
       size: 60
