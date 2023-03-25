@@ -287,19 +287,25 @@ class StepTwigExtension extends \Twig_Extension
             if ($term->hasTranslation($curSite['code'])) {
                 $term = $term->getTranslation($curSite['code']);
             }
-
-            $image = $term->get('field_es_image')->value ?? $default->get('field_es_image')->value;
-
+            $media_field = [];
+            $media_url = '';
+            $image = $term->get('field_category_image')->getString() ?? $default->get('field_category_image')->getString();
+            if (empty($media_field) && !empty($image)) {
+                $media_field = explode(',', $image);
+                $image_load = Media::load($media_field[0]);
+                $image_file = File::load($image_load->field_media_image->target_id);
+                $image_url  = $image_file->getFileUri();
+                $media_url = file_create_url($image_url);
+            }
             $data[] = [
-                'id'    => $term->get('field_es_id')->value,
+                'id'    => $term->get('field_classification_id')->value,
                 'name'  => $term->get('name')->value,
-                'body'  => $term->get('field_es_desc')->value,
-                'order' => $term->get('field_es_order')->value,
+                'body'  => $term->get('field_category_description')->value,
+                'order' => $term->get('field_product_display_order')->value,
                 'url'   => $alias . '?product_category=' . urlencode(preg_replace('/,/', '%2C', $term->get('name')->value)),
-                'image' => !empty($image) ? $image : ''
+                'image' => !empty($media_url) ? $media_url : ''
             ];
         }
-
         return json_encode($data);
     }
 

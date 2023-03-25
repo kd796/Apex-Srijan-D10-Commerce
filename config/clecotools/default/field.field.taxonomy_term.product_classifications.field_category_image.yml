@@ -1,32 +1,37 @@
-uuid: 6ff441a3-b966-4265-8c72-098aa917fd9f
+uuid: dc96cc13-5f3b-4fc6-9874-e3f851af9c1a
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_product_categories
-    - paragraphs.paragraphs_type.products_category_section
+    - field.storage.taxonomy_term.field_category_image
+    - media.type.image
     - taxonomy.vocabulary.product_classifications
+  content:
+    - 'media:image:ec13f503-609a-450c-8759-5e14107a8aa5'
   module:
     - dynamic_entity_reference
-id: paragraph.products_category_section.field_product_categories
-field_name: field_product_categories
-entity_type: paragraph
-bundle: products_category_section
-label: 'Product Categories'
+id: taxonomy_term.product_classifications.field_category_image
+field_name: field_category_image
+entity_type: taxonomy_term
+bundle: product_classifications
+label: 'Category Image'
 description: ''
 required: false
 translatable: false
-default_value: {  }
+default_value:
+  -
+    target_uuid: ec13f503-609a-450c-8759-5e14107a8aa5
+    target_type: media
 default_value_callback: ''
 settings:
-  taxonomy_term:
-    handler: 'default:taxonomy_term'
+  media:
+    handler: 'default:media'
     handler_settings:
       target_bundles:
-        product_classifications: product_classifications
+        image: image
       sort:
-        field: name
-        direction: asc
+        field: _none
+        direction: ASC
       auto_create: false
       auto_create_bundle: ''
   block:
@@ -107,9 +112,6 @@ settings:
   media_type:
     handler: 'default:media_type'
     handler_settings: {  }
-  media:
-    handler: 'default:media'
-    handler_settings: {  }
   metatag_defaults:
     handler: 'default:metatag_defaults'
     handler_settings: {  }
@@ -175,6 +177,9 @@ settings:
     handler_settings: {  }
   menu:
     handler: 'default:menu'
+    handler_settings: {  }
+  taxonomy_term:
+    handler: 'default:taxonomy_term'
     handler_settings: {  }
   taxonomy_vocabulary:
     handler: 'default:taxonomy_vocabulary'
