@@ -53,3 +53,16 @@ function campbell_theme_suggestions_block_alter(array &$suggestions, array $vari
     array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
   }
 }
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function campbell_preprocess_html(&$vars) {
+  // Get the current path
+  $current_path = \Drupal::service('path.current')->getPath();
+  $internal = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+  $custom_class_path = ['/user/login', '/user/password', '/about-us', '/warranty', '/return-policy', '/privacy-policy', '/companion-brands', '/about-us/contact-us'];
+  if(in_array($internal, $custom_class_path )){
+    $vars['attributes']['class'][] = str_replace("/", "", $internal);
+  }
+}

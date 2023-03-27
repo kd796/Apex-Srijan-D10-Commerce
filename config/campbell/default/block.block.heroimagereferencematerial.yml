@@ -1,0 +1,28 @@
+uuid: fa21d295-fc3f-4005-80ea-cc998ddf4cb8
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.hero_image_reference_material
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - campbell
+id: heroimagereferencematerial
+theme: campbell
+region: pre_content
+weight: -14
+provider: null
+plugin: 'fixed_block_content:hero_image_reference_material'
+settings:
+  id: 'fixed_block_content:hero_image_reference_material'
+  label: 'Hero Image - Reference Material'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /media-center/reference-material

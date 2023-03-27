@@ -1,0 +1,28 @@
+uuid: f3355e8c-862b-42eb-bfd2-35a40460c343
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.hero_image_brochures
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - campbell
+id: heroimagebrochures
+theme: campbell
+region: pre_content
+weight: -17
+provider: null
+plugin: 'fixed_block_content:hero_image_brochures'
+settings:
+  id: 'fixed_block_content:hero_image_brochures'
+  label: 'Hero Image - Brochures'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /media-center/brochures

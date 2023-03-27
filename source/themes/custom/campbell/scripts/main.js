@@ -86,6 +86,46 @@
         $('.where-to-buy .view-empty').remove();
       }
 
+      // accordions
+      $('.accordion-title').once('accordion').on('click', function (e) {
+        e.preventDefault();
+        if ($(this).hasClass('active')) {
+          $(this).removeClass('active');
+          $(this)
+            .siblings('.accordion-content')
+            .slideUp(200);
+        }
+        else {
+          $('.accordion-title').removeClass('active');
+          $(this).addClass('active');
+          $('.accordion-content').slideUp(200);
+          $(this)
+            .siblings('.accordion-content')
+            .slideDown(200);
+        }
+      });
+
+      // News Accordions
+      $('.news-accordion-title').once('new-accordion').on('click', function (e) {
+        e.preventDefault();
+        if ($(this).hasClass('active')) {
+          $(this).removeClass('active');
+          $(this)
+            .siblings('.news-accordion-content')
+            .removeClass('open')
+            .slideUp(200);
+        }
+        else {
+          $('.news-accordion-title').removeClass('active');
+          $(this).addClass('active');
+          $('.news-accordion-content').removeClass('open').slideUp(200);
+          $(this)
+            .siblings('.news-accordion-content')
+            .addClass('open')
+            .slideDown(200);
+        }
+      });
+
       /* end */
     }
   };

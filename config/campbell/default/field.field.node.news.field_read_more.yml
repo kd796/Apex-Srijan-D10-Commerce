@@ -1,0 +1,23 @@
+uuid: 23f6260c-c5b0-4a1b-a8fa-9063fbcaebd5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_read_more
+    - node.type.news
+  module:
+    - link
+id: node.news.field_read_more
+field_name: field_read_more
+entity_type: node
+bundle: news
+label: 'News article link'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 0
+  link_type: 16
+field_type: link

@@ -322,22 +322,35 @@ display:
         options: {  }
       empty: {  }
       sorts:
-        created:
-          id: created
+        field_date_value:
+          id: field_date_value
+          table: node__field_date
+          field: field_date_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: datetime
+          order: DESC
+          expose:
+            label: 'Release date'
+            field_identifier: field_date_value
+          exposed: true
+          granularity: second
+        title:
+          id: title
           table: node_field_data
-          field: created
+          field: title
           relationship: none
           group_type: group
           admin_label: ''
           entity_type: node
-          entity_field: created
-          plugin_id: date
+          entity_field: title
+          plugin_id: standard
           order: DESC
           expose:
-            label: ''
-            field_identifier: ''
-          exposed: false
-          granularity: second
+            label: Title
+            field_identifier: title
+          exposed: true
       arguments: {  }
       filters:
         status:
@@ -405,6 +418,8 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -495,13 +510,15 @@ display:
         filter_groups: false
       display_description: ''
       display_extenders: {  }
-      path: brand-elements
+      path: media-center/brand-elements
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -592,13 +609,15 @@ display:
         filter_groups: false
       display_description: ''
       display_extenders: {  }
-      path: brochures
+      path: media-center/brochures
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -687,13 +706,15 @@ display:
         filter_groups: false
       display_description: ''
       display_extenders: {  }
-      path: catalogs
+      path: media-center/catalogs
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -784,13 +805,15 @@ display:
         filter_groups: false
       display_description: ''
       display_extenders: {  }
-      path: reference-material
+      path: media-center/reference-material
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
         - 'user.node_grants:view'
         - user.permissions
       tags:

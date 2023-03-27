@@ -1,4 +1,4 @@
-uuid: 1e2e0fd9-2e03-47bd-a8aa-a98a11799848
+uuid: 512ff3c2-e545-4aca-bb37-0d25420b1b32
 langcode: en
 status: true
 dependencies: {  }
@@ -16,7 +16,7 @@ source:
   urls: 'public://import/pim_data/pim_export_with_schema.xml'
   namespaces:
     stibo: 'http://www.stibosystems.com/step'
-  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 1"]'
+  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification[@UserTypeID="Website"]'
   fields:
     -
       name: remote_term_id
@@ -51,10 +51,13 @@ process:
     source: remote_term_id
     method: row
     value:
-      - W1_877093
-      - W1_877094
-      - W1_877095
-  description: term_description
+      - Website_718104
+      - Website_718081
+      - Website_718028
+  description/value: term_description
+  description/format:
+    plugin: default_value
+    default_value: full_html
   weight:
     plugin: cleco_get_default_value
     source: term_position

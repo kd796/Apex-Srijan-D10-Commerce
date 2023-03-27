@@ -1,30 +1,33 @@
-// import {Swiper} from 'swiper';
 (function ($, Drupal) {
   'use strict';
 
   Drupal.behaviors.productdetail = {
     attach: function (context, settings) {
       // slider.
-      // eslint-disable-next-line no-undef
-      var galleryThumbs = new Swiper('.gallery-thumbs', {
-        spaceBetween: 10,
-        slidesPerView: 4,
-        freeMode: true,
-        watchSlidesVisibility: true,
-        watchSlidesProgress: true
-      });
+      $(function () {
+        // eslint-disable-next-line no-undef
+        var galleryThumbs = new Swiper('.gallery-thumbs', {
+          spaceBetween: 10,
+          slidesPerView: 4,
+          observer: true,
+          observeParents: true,
+          freeMode: true,
+          watchSlidesVisibility: true,
+          watchSlidesProgress: true
+        });
 
-      // eslint-disable-next-line no-unused-vars, no-undef
-      const galleryTop = new Swiper('.gallery-top', {
-        spaceBetween: 10,
-        effect: 'fade',
-        navigation: {
-          nextEl: '.image-next',
-          prevEl: '.image-prev'
-        },
-        thumbs: {
-          swiper: galleryThumbs
-        }
+        // eslint-disable-next-line no-unused-vars, no-undef
+        const galleryTop = new Swiper('.gallery-top', {
+          spaceBetween: 10,
+          effect: 'fade',
+          navigation: {
+            nextEl: '.image-next',
+            prevEl: '.image-prev'
+          },
+          thumbs: {
+            swiper: galleryThumbs
+          }
+        });
       });
       // Remove empty div for Specifications.
       var $specskey = $('.specs-key');
@@ -46,26 +49,30 @@
         }
       });
       // video slider.
-      // eslint-disable-next-line no-undef
-      var videoThumbs = new Swiper('.video-thumbs', {
-        spaceBetween: 10,
-        slidesPerView: 4,
-        freeMode: true,
-        watchSlidesVisibility: true,
-        watchSlidesProgress: true
-      });
+      $(function () {
+        // eslint-disable-next-line no-undef
+        var videoThumbs = new Swiper('.video-thumbs', {
+          spaceBetween: 10,
+          slidesPerView: 4,
+          observer: true,
+          observeParents: true,
+          freeMode: true,
+          watchSlidesVisibility: true,
+          watchSlidesProgress: true
+        });
 
-      // eslint-disable-next-line no-unused-vars, no-undef
-      const videoTop = new Swiper('.video-top', {
-        spaceBetween: 10,
-        effect: 'fade',
-        navigation: {
-          nextEl: '.video-next',
-          prevEl: '.video-prev'
-        },
-        thumbs: {
-          swiper: videoThumbs
-        }
+        // eslint-disable-next-line no-unused-vars, no-undef
+        const videoTop = new Swiper('.video-top', {
+          spaceBetween: 10,
+          effect: 'fade',
+          navigation: {
+            nextEl: '.video-next',
+            prevEl: '.video-prev'
+          },
+          thumbs: {
+            swiper: videoThumbs
+          }
+        });
       });
 
       // end

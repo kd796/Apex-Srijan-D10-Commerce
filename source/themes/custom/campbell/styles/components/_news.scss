@@ -1,0 +1,329 @@
+/****** News Page ******/
+
+.tab-filters {
+  background: 0;
+  border: 0;
+  padding: 0;
+
+  .form-wrapper {
+    margin: 0;
+    display: flex;
+    align-items: center;
+
+    legend {
+      @media only screen and(min-width: $tablet) {
+        display: contents;
+      }
+
+      .fieldset-legend {
+        font-weight: $normal;
+        color: $spanish-gray;
+        margin-bottom: 0;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  fieldset {
+    .fieldset-wrapper {
+      margin: 0;
+      background: 0;
+      border: 0;
+    }
+  }
+
+  .form-radios {
+    display: flex;
+    flex-wrap: wrap;
+
+    .form-type-radio {
+      padding-right: 10px;
+      margin-right: 10px;
+      line-height: 1;
+      border-right: solid 1.5px $light-gray;
+
+      &:last-child {
+        border-right: 0;
+        margin-right: 0;
+      }
+
+      label {
+        color: $spanish-gray;
+        font-size: 14px;
+      }
+    }
+
+    .form-radio {
+      display: none;
+
+      &:checked + label {
+        color: $black;
+      }
+    }
+  }
+}
+
+.campbell-in-news-page {
+  .view-footer {
+    p {
+      color: $spanish-gray;
+      font-size: 17px;
+      margin: 25px 0;
+
+      a {
+        color: $black;
+        font-weight: $bold;
+      }
+    }
+  }
+}
+
+.news-accordion {
+  margin-top: 20px;
+}
+
+.news-accordion-item {
+  position: relative;
+  margin-bottom: 10px;
+
+  .read-more {
+    display: block;
+    font-size: 12px;
+    font-weight: $bold;
+    color: $pantone;
+    text-decoration: none;
+    position: absolute;
+    left: 15%;
+    padding: 0 2%;
+    bottom: 25%;
+
+    @media only screen and (max-width: $tablet) {
+      left: 0;
+      bottom: 11%;
+    }
+  }
+}
+
+.content-wrap {
+  display: flex;
+  width: 100%;
+  position: relative;
+
+  @media only screen and (max-width: $tablet) {
+    flex-direction: column;
+  }
+
+  .image {
+    width: 13%;
+    margin-right: 2%;
+    @media only screen and (max-width: $tablet) {
+      width: 100%;
+      padding: 2%;
+      margin-right: 0;
+    }
+
+    img {
+      height: 100px;
+      width: 100px;
+      object-fit: contain;
+    }
+  }
+
+  .date {
+    font-size: 13px;
+    font-weight: $bold;
+    color: $pantone;
+    display: block;
+    margin: 15px 0;
+  }
+
+  .news-title {
+    width: 85%;
+    padding: 2% 6.5% 2% 2%;
+    background: $light-gray url('#{$image-base-path}/img_news_bg_tile.png') left top repeat-x;
+    position: relative;
+    @media only screen and (max-width: $tablet) {
+      width: 100%;
+      padding: 2% 8% 13% 2%;
+    }
+
+    .trimmed-title p {
+      color: $lighter-gray;
+      font-size: 20px;
+      font-weight: $bold;
+      @media only screen and (min-width: $tablet) {
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+.news-accordion-title {
+  &:hover {
+    text-decoration: none;
+  }
+
+  &.active {
+    display: none;
+
+    & + .read-more {
+      display: none;
+    }
+  }
+
+  &.close-link {
+    display: block !important;
+    background: url('#{$image-base-path}/acc_close_icon.png') center right no-repeat;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+
+    @media only screen and (max-width: $tablet) {
+      right: 10px;
+      bottom: 10px;
+      background-size: 30px 40px;
+    }
+  }
+}
+
+.news-accordion-content {
+  &.open {
+    .trimmed-title p {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// News Release page.
+.campbell-news-release-page {
+  .view-header {
+    p {
+      a {
+        color: $pantone;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .news-list {
+    padding: 2%;
+    background: $light-gray url('#{$image-base-path}/img_news_bg_tile.png') left top repeat-x;
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    @media only screen and(max-width: $tablet) {
+      flex-direction: column;
+      margin-bottom: 10px;
+      padding: 5% 2%;
+    }
+
+    .date {
+      width: 15%;
+      margin-right: 2%;
+      color: $pantone;
+      @media only screen and(max-width: $tablet) {
+        margin-bottom: 10px;
+        width: 100%;
+        margin-right: 0;
+      }
+
+      .month {
+        display: block;
+        font-size: 37.47px;
+        line-height: 44px;
+        text-transform: uppercase;
+      }
+
+      .year {
+        display: block;
+        font-size: 18.39px;
+        font-weight: bold;
+        line-height: 19px;
+      }
+    }
+
+    .image {
+      width: 12%;
+      margin-right: 2%;
+      min-height: 95px;
+      vertical-align: middle;
+      @media only screen and(max-width: $tablet) {
+        margin-bottom: 10px;
+        width: 100%;
+        margin-right: 0;
+      }
+    }
+
+    .txt-block {
+      width: 69%;
+      @media only screen and(max-width: $tablet) {
+        width: 100%;
+      }
+    }
+
+    .trimmed-title p {
+      font-size: 20px;
+      color: $pantone;
+      text-decoration: none;
+      line-height: 24px;
+      margin: 0;
+    }
+
+    a {
+      color: $pantone;
+      text-decoration: none;
+    }
+
+    .more-link {
+      text-align: left;
+    }
+  }
+}
+
+// News Detail page.
+.news-detail {
+  &__top {
+    display: flex;
+    justify-content: space-between;
+
+    h2 {
+      &.subtitle {
+        font-size: 24px;
+        font-weight: normal;
+        line-height: normal;
+        margin-bottom: 0;
+        color: $lighter-gray;
+      }
+    }
+  }
+
+  .date-formate {
+    .date {
+      display: block;
+      line-height: 1;
+      font-size: 37px;
+      color: $pantone;
+    }
+
+    .year {
+      display: block;
+      color: $pantone;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+
+  .download-pdf {
+    a {
+      color: $pantone;
+      text-decoration: underline;
+    }
+  }
+
+  .news-image {
+    margin-bottom: 10px;
+  }
+}

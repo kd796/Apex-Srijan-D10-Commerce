@@ -1,0 +1,28 @@
+uuid: e258fc16-a8bf-41aa-85d9-4ff6102e40f6
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.hero_image_about_us
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - campbell
+id: heroimageaboutus
+theme: campbell
+region: pre_content
+weight: -24
+provider: null
+plugin: 'fixed_block_content:hero_image_about_us'
+settings:
+  id: 'fixed_block_content:hero_image_about_us'
+  label: 'Hero Image - About Us'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /about-us

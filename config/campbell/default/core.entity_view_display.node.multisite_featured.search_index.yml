@@ -1,0 +1,57 @@
+uuid: c428c02c-6c2f-4efd-8b91-910eefb6a6f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_index
+    - field.field.node.multisite_featured.body
+    - field.field.node.multisite_featured.field_footer_note
+    - field.field.node.multisite_featured.field_image_and_text_component
+    - field.field.node.multisite_featured.field_list_type
+    - field.field.node.multisite_featured.field_listing_image
+    - field.field.node.multisite_featured.field_listing_page_image
+    - field.field.node.multisite_featured.field_listing_text_for_video
+    - field.field.node.multisite_featured.field_read_more
+    - field.field.node.multisite_featured.field_related_featured_products
+    - field.field.node.multisite_featured.field_short_description
+    - field.field.node.multisite_featured.field_showed_on_listing_page
+    - field.field.node.multisite_featured.field_video
+    - node.type.multisite_featured
+  module:
+    - paragraphs
+    - user
+id: node.multisite_featured.search_index
+targetEntityType: node
+bundle: multisite_featured
+mode: search_index
+content:
+  field_image_and_text_component:
+    type: paragraph_summary
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_video:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  field_footer_note: true
+  field_list_type: true
+  field_listing_image: true
+  field_listing_page_image: true
+  field_listing_text_for_video: true
+  field_read_more: true
+  field_related_featured_products: true
+  field_short_description: true
+  field_showed_on_listing_page: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

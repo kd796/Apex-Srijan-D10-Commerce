@@ -65,6 +65,18 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
+    // Get attributelist, if we have predefined list.
+    $get_predefined_attributelist = $this->configuration['get_predefined_attributelist'] ?? 0;
+    if ($get_predefined_attributelist) {
+      $this->configuration['allowed_attributes'] = $this->getAttributeList();
+    }
+
+    $get_excluded_attributelist = $this->configuration['get_excluded_attributelist'] ?? 0;
+    $this->configuration['excluded_attributes'] = [];
+    if ($get_excluded_attributelist) {
+      $this->configuration['excluded_attributes'] = $this->getExcludedAttributeList();
+    }
+
     if (empty($this->configuration['allowed_attributes']) && !array_key_exists('allowed_attributes', $this->configuration)) {
       throw new MigrateException('Skip on value plugin is missing the allowed attributes configuration.');
     }
@@ -72,6 +84,7 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
     $values_array = [];
     $vid = 'product_specifications';
     $langcode = $this->configuration['langcode'] ?? 'en';
+
     $parent_migration_id = $this->configuration['parent_migration_id'] ?? '';
     $migration_id = $this->configuration['migration_id'] ?? '';
 
@@ -85,6 +98,12 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
         $parent_id = (string) $child->attributes()->AttributeID;
         $validAttribute = $this->validateAttributeName($parent_id);
         if (!$validAttribute) {
+          continue;
+        }
+
+        // Skip if term is excluded.
+        $excludedAttribute = $this->validateExcludedAttribute($parent_id);
+        if ($excludedAttribute) {
           continue;
         }
 
@@ -246,6 +265,19 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
     $attributes_to_include = $this->configuration['allowed_attributes'];
 
     if (in_array($attribute, $attributes_to_include)) {
+      return TRUE;
+    }
+
+    return FALSE;
+  }
+
+  /**
+   * Check for excluded term.
+   */
+  protected function validateExcludedAttribute($attribute = NULL) {
+    $attributes_to_exclude = $this->configuration['excluded_attributes'];
+
+    if (in_array($attribute, $attributes_to_exclude)) {
       return TRUE;
     }
 
