@@ -14,7 +14,6 @@ use Drupal\views\ViewExecutable;
 use Drupal\node\Entity\Node;
 use Drupal\media\MediaInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\redirect\Entity\Redirect;
 
 /**
  * Implements hook_theme().
@@ -273,38 +272,5 @@ function gearwrench_core_form_views_exposed_form_alter(array &$form, FormStateIn
         unset($form['category']['#options'][$key]);
       }
     }
-  }
-}
-
-/**
- * Implements hook_node_predelete() for deleting a node and adding a redirect on it.
- */
-function gearwrench_core_node_predelete($node) {
-  if ($node->getEntityTypeId() == 'node') {
-    // Get the path of the deleted node.
-    $nid = $node->id();
-    $path = \Drupal::service('path_alias.manager')->getAliasByPath('/node/' . $nid);
-    $path = trim($path, "/");
-    $node_type = \Drupal::request()->attributes->get('node')->getType();
-    if ($node_type == 'product' || $node_type == 'product_category' || $node_type == 'product_industry') {
-      // Create a new redirect entity for product pages.
-      $redirect = Redirect::create([
-        'redirect_source' => $path,
-        'redirect_redirect' => 'internal:/all-tools',
-        'language' => 'en',
-        'status_code' => '301',
-      ]);
-    }
-    else {
-      // Create a new redirect entity.
-      $redirect = Redirect::create([
-        'redirect_source' => $path,
-        'redirect_redirect' => 'internal:/home',
-        'language' => 'en',
-        'status_code' => '301',
-      ]);
-    }
-    // Save the redirect entity.
-    $redirect->save();
   }
 }

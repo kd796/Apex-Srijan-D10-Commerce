@@ -10,6 +10,7 @@
 use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\redirect\Entity\Redirect;
 
 /**
  * Alter webform options by id.
@@ -222,5 +223,24 @@ function apex_common_form_views_exposed_form_alter(&$form, FormStateInterface $f
   $view = $form_state->getStorage('view');
   if ($form_id == 'views_exposed_form' && $view['view']->id() === 'product_category') {
     $form['field_product_specifications_target_id']['#maxlength'] = NULL;
+  }
+}
+
+/**
+ * Helper to add URL Redirects for 5xx or 4xx URLs.
+ */
+function apex_common_helper_add_url_redirects($entity, $redirect_path) {
+  try {
+    $source_path = trim(\Drupal::service('path_alias.manager')->getAliasByPath('/node/' . $entity->id()), "/");
+    $redirect = Redirect::create([
+      'redirect_source' => $source_path,
+      'redirect_redirect' => $redirect_path,
+      'language' => 'en',
+      'status_code' => '301',
+    ]);
+    $redirect->save();
+  }
+  catch (\Exception $exception) {
+    \Drupal::logger('apex_common')->error($exception->getMessage());
   }
 }
