@@ -105,6 +105,27 @@
         }
       });
 
+      // News Accordions
+      $('.news-accordion-title').once('new-accordion').on('click', function (e) {
+        e.preventDefault();
+        if ($(this).hasClass('active')) {
+          $(this).removeClass('active');
+          $(this)
+            .siblings('.news-accordion-content')
+            .removeClass('open')
+            .slideUp(200);
+        }
+        else {
+          $('.news-accordion-title').removeClass('active');
+          $(this).addClass('active');
+          $('.news-accordion-content').removeClass('open').slideUp(200);
+          $(this)
+            .siblings('.news-accordion-content')
+            .addClass('open')
+            .slideDown(200);
+        }
+      });
+
       /* end */
     }
   };

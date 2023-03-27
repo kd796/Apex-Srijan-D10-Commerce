@@ -158,7 +158,7 @@ elements: |-
     '#type': webform_actions
     '#title': 'Submit button(s)'
     '#delete__label': 'Clear Form'
-css: ''
+css: wrapper-content
 javascript: ''
 settings:
   ajax: false
@@ -264,7 +264,9 @@ settings:
   confirmation_url: /about/contact-us/submission
   confirmation_title: 'Contact Us'
   confirmation_message: 'Thank you, your submission has been received.'
-  confirmation_attributes: {  }
+  confirmation_attributes:
+    class:
+      - wrapper-content
   confirmation_back: false
   confirmation_back_label: ''
   confirmation_back_attributes: {  }

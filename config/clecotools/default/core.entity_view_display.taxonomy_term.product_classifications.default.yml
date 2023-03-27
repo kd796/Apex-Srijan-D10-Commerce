@@ -1,0 +1,53 @@
+uuid: c86d5da8-5881-4502-bc53-2822cd0fb91d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.product_classifications.field_category_description
+    - field.field.taxonomy_term.product_classifications.field_category_image
+    - field.field.taxonomy_term.product_classifications.field_classification_id
+    - field.field.taxonomy_term.product_classifications.field_product_display_order
+    - taxonomy.vocabulary.product_classifications
+  module:
+    - dynamic_entity_reference
+    - text
+id: taxonomy_term.product_classifications.default
+targetEntityType: taxonomy_term
+bundle: product_classifications
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_category_description:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_category_image:
+    type: dynamic_entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_product_display_order:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_classification_id: true
+  langcode: true
+  search_api_excerpt: true
+  uuid: true
