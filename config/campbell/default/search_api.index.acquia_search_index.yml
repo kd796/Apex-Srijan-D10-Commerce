@@ -4,52 +4,16 @@ status: true
 dependencies:
   config:
     - field.storage.node.body
-    - field.storage.node.field_address
-    - field.storage.node.field_business_hours
-    - field.storage.node.field_category_facets
-    - field.storage.node.field_classification_id
-    - field.storage.taxonomy_term.field_classification_id
-    - field.storage.node.field_component_hero
-    - field.storage.node.field_components
-    - field.storage.node.field_county
-    - field.storage.node.field_date
-    - field.storage.node.field_email
-    - field.storage.node.field_event_date
-    - field.storage.node.field_event_media_link
-    - field.storage.node.field_fax
-    - field.storage.node.field_featured_product
-    - field.storage.node.field_is_featured
-    - field.storage.node.field_launch_date
-    - field.storage.node.field_list_type
-    - field.storage.node.field_listing_image
-    - field.storage.node.field_listing_text_for_video
-    - field.storage.node.field_location
-    - field.storage.node.field_long_description
-    - field.storage.node.field_media
-    - field.storage.node.field_media_center_type
-    - field.storage.node.field_new_product
-    - field.storage.node.field_news_release_document
-    - field.storage.node.field_news_type
-    - field.storage.node.field_phone_number
-    - field.storage.node.field_product_classifications
-    - field.storage.node.field_product_features
-    - field.storage.node.field_product_images
-    - field.storage.node.field_product_specifications
-    - field.storage.node.field_read_more
-    - field.storage.node.field_related_products
-    - field.storage.node.field_set
-    - field.storage.node.field_set_components
+    - field.storage.node.field_footer_note
     - field.storage.node.field_short_description
-    - field.storage.node.field_sku_group
-    - field.storage.node.field_sub_heading
-    - field.storage.node.field_upc
-    - field.storage.node.field_video
+    - field.storage.node.field_image_and_text_component
+    - field.storage.paragraph.field_headline
+    - field.storage.paragraph.field_description
     - search_api.server.acquia_search_server
   module:
     - search_api_solr
+    - paragraphs
     - node
-    - taxonomy
-    - token
     - search_api
 third_party_settings:
   search_api_solr:
@@ -96,322 +60,26 @@ third_party_settings:
 _core:
   default_config_hash: m3BA7ry9oerhED2EXWWHra57A4vZj7Eobsr5-29dq4M
 id: acquia_search_index
-name: 'Acquia Search Solr Index'
+name: 'Acquia Search Solr Index-No Product'
 description: ''
 read_only: false
 field_settings:
   body:
-    label: Body
+    label: Overview
     datasource_id: 'entity:node'
     property_path: body
     type: text
     dependencies:
       config:
         - field.storage.node.body
-  default_langcode:
-    label: 'Default translation'
+  field_footer_note:
+    label: 'Footer Note'
     datasource_id: 'entity:node'
-    property_path: default_langcode
-    type: boolean
-    dependencies:
-      module:
-        - node
-  default_langcode_1:
-    label: 'Default translation'
-    datasource_id: 'entity:taxonomy_term'
-    property_path: default_langcode
-    type: boolean
-    dependencies:
-      module:
-        - taxonomy
-  description:
-    label: Description
-    datasource_id: 'entity:taxonomy_term'
-    property_path: description
-    type: text
-    dependencies:
-      module:
-        - taxonomy
-  field_address:
-    label: Address
-    datasource_id: 'entity:node'
-    property_path: field_address
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_address
-  field_business_hours:
-    label: 'Business Hours'
-    datasource_id: 'entity:node'
-    property_path: field_business_hours
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_business_hours
-  field_category_facets:
-    label: 'Category Facets'
-    datasource_id: 'entity:node'
-    property_path: field_category_facets
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_category_facets
-  field_classification_id:
-    label: 'Classification ID'
-    datasource_id: 'entity:node'
-    property_path: field_classification_id
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_classification_id
-  field_classification_id_1:
-    label: 'Classification ID'
-    datasource_id: 'entity:taxonomy_term'
-    property_path: field_classification_id
-    type: string
-    dependencies:
-      config:
-        - field.storage.taxonomy_term.field_classification_id
-  field_component_hero:
-    label: Hero
-    datasource_id: 'entity:node'
-    property_path: field_component_hero
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_component_hero
-  field_components:
-    label: Content
-    datasource_id: 'entity:node'
-    property_path: field_components
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_components
-  field_county:
-    label: Country
-    datasource_id: 'entity:node'
-    property_path: field_county
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_county
-  field_date:
-    label: 'Release Date'
-    datasource_id: 'entity:node'
-    property_path: field_date
-    type: date
-    dependencies:
-      config:
-        - field.storage.node.field_date
-  field_email:
-    label: Email
-    datasource_id: 'entity:node'
-    property_path: field_email
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_email
-  field_event_date:
-    label: 'Event date'
-    datasource_id: 'entity:node'
-    property_path: field_event_date
-    type: date
-    dependencies:
-      config:
-        - field.storage.node.field_event_date
-  field_event_media_link:
-    label: 'Event Media Link'
-    datasource_id: 'entity:node'
-    property_path: field_event_media_link
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_event_media_link
-  field_fax:
-    label: Fax
-    datasource_id: 'entity:node'
-    property_path: field_fax
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_fax
-  field_featured_product:
-    label: 'Featured Product'
-    datasource_id: 'entity:node'
-    property_path: field_featured_product
-    type: boolean
-    dependencies:
-      config:
-        - field.storage.node.field_featured_product
-  field_is_featured:
-    label: 'Is Featured'
-    datasource_id: 'entity:node'
-    property_path: field_is_featured
-    type: boolean
-    dependencies:
-      config:
-        - field.storage.node.field_is_featured
-  field_launch_date:
-    label: 'Launch Date'
-    datasource_id: 'entity:node'
-    property_path: field_launch_date
-    type: date
-    dependencies:
-      config:
-        - field.storage.node.field_launch_date
-  field_list_type:
-    label: 'List Type'
-    datasource_id: 'entity:node'
-    property_path: field_list_type
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_list_type
-  field_listing_image:
-    label: 'Listing Image'
-    datasource_id: 'entity:node'
-    property_path: field_listing_image
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_listing_image
-  field_listing_text_for_video:
-    label: 'Listing text for video'
-    datasource_id: 'entity:node'
-    property_path: field_listing_text_for_video
+    property_path: field_footer_note
     type: text
     dependencies:
       config:
-        - field.storage.node.field_listing_text_for_video
-  field_location:
-    label: Location
-    datasource_id: 'entity:node'
-    property_path: field_location
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_location
-  field_long_description:
-    label: 'Long Description'
-    datasource_id: 'entity:node'
-    property_path: field_long_description
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_long_description
-  field_media:
-    label: 'Event Image'
-    datasource_id: 'entity:node'
-    property_path: field_media
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_media
-  field_media_center_type:
-    label: 'Media Center Type'
-    datasource_id: 'entity:node'
-    property_path: field_media_center_type
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_media_center_type
-  field_new_product:
-    label: 'New Product'
-    datasource_id: 'entity:node'
-    property_path: field_new_product
-    type: boolean
-    dependencies:
-      config:
-        - field.storage.node.field_new_product
-  field_news_release_document:
-    label: 'PDF Link'
-    datasource_id: 'entity:node'
-    property_path: field_news_release_document
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_news_release_document
-  field_news_type:
-    label: 'News Type'
-    datasource_id: 'entity:node'
-    property_path: field_news_type
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_news_type
-  field_phone_number:
-    label: 'Phone number'
-    datasource_id: 'entity:node'
-    property_path: field_phone_number
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_phone_number
-  field_product_classifications:
-    label: 'Product Classifications'
-    datasource_id: 'entity:node'
-    property_path: field_product_classifications
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_product_classifications
-  field_product_features:
-    label: 'Product Features'
-    datasource_id: 'entity:node'
-    property_path: field_product_features
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_product_features
-  field_product_images:
-    label: 'Product Images'
-    datasource_id: 'entity:node'
-    property_path: field_product_images
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_product_images
-  field_product_specifications:
-    label: 'Product Specifications'
-    datasource_id: 'entity:node'
-    property_path: field_product_specifications
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_product_specifications
-  field_read_more:
-    label: 'Read more url'
-    datasource_id: 'entity:node'
-    property_path: field_read_more
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_read_more
-  field_related_products:
-    label: 'Related Products'
-    datasource_id: 'entity:node'
-    property_path: field_related_products
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_related_products
-  field_set:
-    label: 'Set?'
-    datasource_id: 'entity:node'
-    property_path: field_set
-    type: boolean
-    dependencies:
-      config:
-        - field.storage.node.field_set
-  field_set_components:
-    label: 'Set Components'
-    datasource_id: 'entity:node'
-    property_path: field_set_components
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_set_components
+        - field.storage.node.field_footer_note
   field_short_description:
     label: 'Short Description'
     datasource_id: 'entity:node'
@@ -420,78 +88,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_short_description
-  field_sku_group:
-    label: 'SKU Group'
-    datasource_id: 'entity:node'
-    property_path: field_sku_group
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_sku_group
-  field_sub_heading:
-    label: Website
-    datasource_id: 'entity:node'
-    property_path: field_sub_heading
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_sub_heading
-  field_upc:
-    label: UPC
-    datasource_id: 'entity:node'
-    property_path: field_upc
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_upc
-  field_video:
-    label: Video
-    datasource_id: 'entity:node'
-    property_path: field_video
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_video
-  langcode:
-    label: Language
-    datasource_id: 'entity:node'
-    property_path: langcode
-    type: string
-    dependencies:
-      module:
-        - node
-  langcode_1:
-    label: Language
-    datasource_id: 'entity:taxonomy_term'
-    property_path: langcode
-    type: string
-    dependencies:
-      module:
-        - taxonomy
-  menu_link:
-    label: 'Menu link'
-    datasource_id: 'entity:node'
-    property_path: menu_link
-    type: integer
-    dependencies:
-      module:
-        - token
-  name:
-    label: Name
-    datasource_id: 'entity:taxonomy_term'
-    property_path: name
-    type: string
-    dependencies:
-      module:
-        - taxonomy
-  nid:
-    label: ID
-    datasource_id: 'entity:node'
-    property_path: nid
-    type: integer
-    dependencies:
-      module:
-        - node
   node_grants:
     label: 'Node access information'
     property_path: search_api_node_grants
@@ -499,14 +95,28 @@ field_settings:
     indexed_locked: true
     type_locked: true
     hidden: true
-  parent:
-    label: 'Term Parents'
-    datasource_id: 'entity:taxonomy_term'
-    property_path: parent
-    type: integer
+  processed_2:
+    label: 'Image and Text Component » Paragraph » Headline » Processed text'
+    datasource_id: 'entity:node'
+    property_path: 'field_image_and_text_component:entity:field_headline:processed'
+    type: string
     dependencies:
+      config:
+        - field.storage.node.field_image_and_text_component
+        - field.storage.paragraph.field_headline
       module:
-        - taxonomy
+        - paragraphs
+  processed_3:
+    label: 'Image and Text Component » Paragraph » Description » Processed text'
+    datasource_id: 'entity:node'
+    property_path: 'field_image_and_text_component:entity:field_description:processed'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_image_and_text_component
+        - field.storage.paragraph.field_description
+      module:
+        - paragraphs
   rendered_item:
     label: 'Rendered HTML output'
     property_path: rendered_item
@@ -525,26 +135,10 @@ field_settings:
     dependencies:
       module:
         - node
-  tid:
-    label: 'Term ID'
-    datasource_id: 'entity:taxonomy_term'
-    property_path: tid
-    type: integer
-    dependencies:
-      module:
-        - taxonomy
   title:
     label: Title
     datasource_id: 'entity:node'
     property_path: title
-    type: text
-    dependencies:
-      module:
-        - node
-  type:
-    label: 'Content type'
-    datasource_id: 'entity:node'
-    property_path: type
     type: string
     dependencies:
       module:
@@ -564,26 +158,11 @@ datasource_settings:
     bundles:
       default: false
       selected:
-        - brand_timeline
-        - landing_page
-        - local_retailer
         - markets
         - media_center
         - multisite_featured
         - news
-        - product
-        - product_category
-        - webform
-    languages:
-      default: true
-      selected: {  }
-  'entity:taxonomy_term':
-    bundles:
-      default: false
-      selected:
-        - brand
-        - product_classifications
-        - product_specifications
+        - page
     languages:
       default: true
       selected: {  }
@@ -604,8 +183,7 @@ processor_settings:
     excerpt: true
     excerpt_always: false
     excerpt_length: 400
-    exclude_fields:
-      - title
+    exclude_fields: {  }
     highlight: server
     highlight_partial: false
   html_filter:
@@ -615,44 +193,20 @@ processor_settings:
     all_fields: true
     fields:
       - body
-      - description
-      - field_address
-      - field_business_hours
-      - field_classification_id
-      - field_classification_id_1
-      - field_county
-      - field_email
-      - field_event_media_link
-      - field_fax
-      - field_list_type
-      - field_listing_text_for_video
-      - field_location
-      - field_long_description
-      - field_media_center_type
-      - field_news_type
-      - field_phone_number
-      - field_product_features
-      - field_read_more
+      - field_footer_note
       - field_short_description
-      - field_sku_group
-      - field_sub_heading
-      - field_upc
-      - langcode
-      - langcode_1
-      - name
+      - processed_2
+      - processed_3
       - rendered_item
       - title
-      - type
     title: true
     alt: true
     tags:
       b: 2
-      em: 1
       h1: 5
       h2: 3
       h3: 2
       strong: 2
-      u: 1
   language_with_fallback: {  }
   rendered_item: {  }
   solr_date_range:
@@ -664,6 +218,9 @@ processor_settings:
     boosts:
       'entity:node':
         datasource_boost: !!float 1
+        bundle_boosts:
+          media_center: 0.5
+          news: 0.5
 tracker_settings:
   default:
     indexing_order: fifo
