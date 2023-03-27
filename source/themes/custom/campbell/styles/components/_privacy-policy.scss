@@ -1,6 +1,7 @@
 .privacy-policy {
   #wrapper {
     .node__content,
+    .block-addtothis-apex-custom,
     .block-page-title-block {
       max-width: 1000px;
       margin: 0 auto;
@@ -19,21 +20,28 @@
     }
 
     .field--name-body {
+      .privacy-policy-logo {
+        width: 100%;
+        margin: 0 auto;
+        @media only screen and(min-width: $mobile) {
+          width: 500px;
+        }
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+
       h4 {
-        font-size: 24px;
-        line-height: 24px;
+        font-size: 16px;
+        line-height: 16px;
         margin: 0 0 16px;
         color: $pantone;
+      }
 
-        @media only screen and(max-width: $tablet-max) {
-          font-size: 22px;
-          line-height: 22px;
-        }
-
-        @media only screen and(max-width: $tablet) {
-          font-size: 18px;
-          line-height: 18px;
-        }
+      hr {
+        border: 1px solid $gray;
       }
 
       strong {
