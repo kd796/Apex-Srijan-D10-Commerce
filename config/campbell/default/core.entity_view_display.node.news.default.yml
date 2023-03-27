@@ -10,10 +10,13 @@ dependencies:
     - field.field.node.news.field_media
     - field.field.node.news.field_news_release_document
     - field.field.node.news.field_news_type
+    - field.field.node.news.field_read_more
     - field.field.node.news.field_sub_heading
+    - image.style.thumbnail
     - node.type.news
   module:
     - datetime
+    - media
     - text
     - user
 id: node.news.default
@@ -29,10 +32,11 @@ content:
     weight: 3
     region: content
   field_banner_image:
-    type: entity_reference_label
+    type: entity_reference_entity_view
     label: hidden
     settings:
-      link: true
+      view_mode: embed
+      link: false
     third_party_settings: {  }
     weight: 2
     region: content
@@ -41,23 +45,26 @@ content:
     label: hidden
     settings:
       timezone_override: ''
-      date_format: 'D,d/m/Y'
+      date_format: 'M j Y'
     third_party_settings: {  }
     weight: 0
     region: content
   field_media:
-    type: entity_reference_label
+    type: media_thumbnail
     label: hidden
     settings:
-      link: true
+      image_link: ''
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
     weight: 1
     region: content
   field_news_release_document:
     type: entity_reference_entity_view
-    label: above
+    label: hidden
     settings:
-      view_mode: default
+      view_mode: embed
       link: false
     third_party_settings: {  }
     weight: 5
@@ -73,6 +80,7 @@ content:
 hidden:
   field_is_featured: true
   field_news_type: true
+  field_read_more: true
   langcode: true
   links: true
   search_api_excerpt: true
