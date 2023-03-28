@@ -66,29 +66,30 @@ function crescenttool_migrations_update_9001() {
   crescenttool_migrations_install();
 }
 
-
 /**
  * Implements hook_update_N().
- * Create a custom administration menu and link to a webform
+ *
+ * Create a custom administration menu and link to a webform.
  */
-function crescenttool_migrations_update_9005(){
-    try {
-      $items = array(
-          '1' => 'Customer Support',
-      );
-      foreach ($items as $key => $title) {
-          $menu_link = MenuLinkContent::create([
-              'title' => $title,
-              'link' => ['uri' => 'internal:/admin/warranty-abusers'],
-              'menu_name' => 'system.admin',
-              'expanded' => TRUE,
-              'parent' => 'system.admin',
-              'weight' => 0,
-          ]);
-          $menu_link->save();
-      }
-  } catch (Exception $e) {
-      echo 'Message: ' . $e->getMessage();
-      \Drupal::logger('gearwrench_migrations')->error($e->getMessage());
+function crescenttool_migrations_update_9005() {
+  try {
+    $items = [
+      '1' => 'Customer Support',
+    ];
+    foreach ($items as $key => $title) {
+      $menu_link = MenuLinkContent::create([
+        'title' => $title,
+        'link' => ['uri' => 'internal:/admin/warranty-abusers'],
+        'menu_name' => 'system.admin',
+        'expanded' => TRUE,
+        'parent' => 'system.admin',
+        'weight' => 0,
+      ]);
+      $menu_link->save();
+    }
+  }
+  catch (Exception $e) {
+    echo 'Message: ' . $e->getMessage();
+    \Drupal::logger('gearwrench_migrations')->error($e->getMessage());
   }
 }

@@ -80,26 +80,28 @@ function gearwrench_migrations_update_8001(&$sandbox) {
 
 /**
  * Implements hook_update_N().
- * Create a custom administration menu and link to a webform
+ *
+ * Create a custom administration menu and link to a webform.
  */
-function gearwrench_migrations_update_8005(){
-    try {
-      $items = array(
-          '1' => 'Customer Support',
-      );
-      foreach ($items as $key => $title) {
-          $menu_link = MenuLinkContent::create([
-              'title' => $title,
-              'link' => ['uri' => 'internal:/admin/warranty-abusers'],
-              'menu_name' => 'system.admin',
-              'expanded' => TRUE,
-              'parent' => 'system.admin',
-              'weight' => 0,
-          ]);
-          $menu_link->save();
-      }
-  } catch (Exception $e) {
-      echo 'Message: ' . $e->getMessage();
-      \Drupal::logger('gearwrench_migrations')->error($e->getMessage());
+function gearwrench_migrations_update_8005() {
+  try {
+    $items = [
+      '1' => 'Customer Support',
+    ];
+    foreach ($items as $key => $title) {
+      $menu_link = MenuLinkContent::create([
+        'title' => $title,
+        'link' => ['uri' => 'internal:/admin/warranty-abusers'],
+        'menu_name' => 'system.admin',
+        'expanded' => TRUE,
+        'parent' => 'system.admin',
+        'weight' => 0,
+      ]);
+      $menu_link->save();
+    }
+  }
+  catch (Exception $e) {
+    echo 'Message: ' . $e->getMessage();
+    \Drupal::logger('gearwrench_migrations')->error($e->getMessage());
   }
 }
