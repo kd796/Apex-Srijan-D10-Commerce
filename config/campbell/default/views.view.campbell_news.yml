@@ -1408,14 +1408,14 @@ display:
             suffix: ''
             target: ''
             nl2br: false
-            max_length: 0
+            max_length: 300
             word_boundary: true
             ellipsis: true
             more_link: false
             more_link_text: ''
             more_link_path: ''
             strip_tags: true
-            trim: false
+            trim: true
             preserve_tags: '<p><a>'
             html: false
           element_type: ''
@@ -1431,23 +1431,8 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: smart_trim
-          settings:
-            trim_length: 300
-            trim_type: words
-            trim_suffix: ''
-            wrap_output: false
-            wrap_class: trimmed
-            more_link: true
-            more_class: more-link
-            more_text: 'Read More'
-            more_aria_label: 'Read more about [node:title]'
-            summary_handler: ignore
-            trim_options:
-              text: false
-              trim_zero: false
-              replace_tokens: false
-            token_browser: ''
+          type: text_default
+          settings: {  }
           group_column: value
           group_columns: {  }
           group_rows: true
