@@ -66,15 +66,29 @@ class CreateProductSpecifications extends ApexProductSpecifications implements C
       return $values_array;
     }
 
+    // Load units data.
+    $units = $value->xpath('/*/UnitList/Unit');
+    $unit_list = [];
+    foreach ($units as $item) {
+      $unit_list[(string)$item->attributes()->ID] = (string) $item->Name;
+    }
+
     foreach ($value->children() as $child) {
       $parent_label = NULL;
       $parent_term_id = NULL;
       $parent_id = (string) $child->attributes()->AttributeID;
       $validAttribute = $this->validateAttributeName($parent_id);
 
+      $unit = '';
+      if (isset($child->attributes()->UnitID) && isset($unit_list[(string)$child->attributes()->UnitID])) {
+        $unit = ' ' . $unit_list[(string)$child->attributes()->UnitID];
+      }
+
       if (!$validAttribute) {
         continue;
       }
+
+      $attributeWeight = array_search($parent_id, $this->configuration['allowed_attributes']);
 
       foreach ($product_specifications as $product_specification) {
         if (str_starts_with($product_specification->label(), $parent_id . ' | ')) {
@@ -93,24 +107,27 @@ class CreateProductSpecifications extends ApexProductSpecifications implements C
       if ($child->getName() === 'MultiValue') {
         if (count($child->children()) > 1) {
           foreach ($child->children() as $item) {
-            $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $item);
+            $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $item . $unit);
           }
         }
         else {
-          $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $child->Value);
+          $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $child->Value . $unit);
         }
       }
       else {
-        $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $child);
+        $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $child . $unit);
       }
 
       if (is_object($term)) {
-        $values_array[] = [
+        $values_array[$attributeWeight] = [
           'vid' => $vid,
           'target_id' => $term->id()
         ];
       }
     }
+
+    // Sort the specifications by key (weight).
+    ksort($values_array);
 
     $values_array = json_encode($values_array);
 
