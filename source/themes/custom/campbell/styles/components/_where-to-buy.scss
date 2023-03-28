@@ -69,11 +69,20 @@
     .form-item {
       display: flex;
       flex-direction: column;
+      position: relative;
 
       label {
         text-transform: uppercase;
         color: $lighter-gray;
         font-weight: normal;
+      }
+
+      .form-item--error-message {
+        position: absolute;
+        bottom: -17px;
+        @media only screen and (min-width: $tablet-max) {
+          bottom: 0;
+        }
       }
     }
   }
