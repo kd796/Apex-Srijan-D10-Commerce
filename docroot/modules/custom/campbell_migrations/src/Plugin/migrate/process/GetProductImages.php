@@ -48,6 +48,19 @@ class GetProductImages extends ApexGetProductImages implements ContainerFactoryP
   private PrivateTempStoreFactory $tempStoreFactory;
 
   /**
+   * The list of types of Asset Cross References we use as images.
+   *
+   * @var array|string[]
+   */
+  protected static array $allowedTypes = [
+    'Beauty-Glamour Image', 'Cutaway Image', 'Highlight Image',
+    'In Package Image', 'In Use Image', 'Literature', 'Part Shot 1',
+    'Part Shot 2', 'Part Shot 3', 'Part Shot 4', 'Part Shot 5',
+    'Product Logo', 'Secondary Image', 'Warning Image', 'ICON',
+    'Dimensional Diagram'
+  ];
+
+  /**
    * {@inheritdoc}
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, PrivateTempStoreFactory $temp_store_factory, EntityTypeManager $entity_type_manager) {
@@ -253,5 +266,49 @@ class GetProductImages extends ApexGetProductImages implements ContainerFactoryP
     }
 
     throw new MigrateSkipProcessException();
+  }
+
+  /**
+   * @inerhitDoc
+   */
+  protected function scanElementForImages(mixed $element, string $level = 'Product Level') {
+    foreach ($element as $item) {
+      $attributeType = (string) $item->attributes()->Type;
+      $assetId = (string) $item->attributes()->AssetID;
+
+      if (empty($assetId)) {
+        continue;
+      }
+
+      $media_id = ImageOperations::getImageMediaId($assetId);
+
+      // If we find the file then we need to reference it in the return array.
+      if (!empty($media_id)) {
+        if ($attributeType === 'Primary Image') {
+          $this->primaryImageMediaId = $media_id;
+        }
+        else {
+          $this->mediaIds[] = [
+            'media_id' => $media_id
+          ];
+        }
+
+        continue;
+      }
+
+      if ($attributeType === 'Primary Image') {
+        $this->primaryImageAsset = [
+          'imagetype' => $level,
+          'asset_id' => $assetId,
+          'remote_file_path' => $assetId . '.jpg',
+        ];
+      }
+      elseif (in_array($attributeType, self::$allowedTypes)) {
+        $this->imageAssets[] = [
+          'imagetype' => $level,
+          'asset_id' => $assetId,
+        ];
+      }
+    }
   }
 }
