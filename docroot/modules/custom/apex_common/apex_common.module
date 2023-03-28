@@ -215,12 +215,82 @@ function apex_common_metatags_attachments_alter(array &$metatag_attachments): vo
   }
 }
 
+
+/**
+ * Implements hook_views_pre_view().
+ *
+ * Adding Year exposed filters in view.
+ */
+function apex_common_views_pre_view($view, $display_id) {
+  if ($view->id() == 'brand_timeline') {
+    $ops = $view->display_handler->getOption('filters');
+    $years = [];
+    $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+    // Getting nids with conditions.
+    $query = $node_storage->getQuery()
+      ->condition('type', 'brand_timeline')
+      ->condition('field_event_date', NULL, 'IS NOT NULL');
+    $nodes = $node_storage->loadMultiple($query->execute());
+    foreach ($nodes as $node) {
+      $event_date = $node->get('field_event_date')->getValue();
+      $date = \DateTime::createFromFormat('Y-m-d', $event_date[0]['value']);
+      $years[] = $date->format('Y');
+    }
+
+    // Removing duplicate values and sort them in descending order.
+    $years = array_unique($years);
+
+    $ops['field_event_date_value']['group_info']['group_items'] = [];
+    $decades = array();
+    foreach ($years as $year) {
+      $decade = floor($year / 10) * 10;
+      $decades[] = $decade;
+    }
+    $decades = array_unique($decades);
+    foreach ($decades as $decade) {
+      $decade_str = strval($decade);
+      $ops['field_event_date_value']['group_info']['group_items'][] = [
+        'title' => $decade_str,
+        'operator' => 'between',
+        'value' => [
+          'min' => $decade_str . '-01-01',
+          'max' => $decade_str + 9 . '-12-31',
+          'type' => 'date',
+        ],
+      ];
+    }
+
+    $view->display_handler->overrideOption('filters', $ops);
+  }
+}
+
+
 /**
  * Implements form_views_exposed_form_alter() to reset the view id max length and clear error.
  */
 function apex_common_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id !== 'views_exposed_form') {
+    return;
+  }
+
   $view = $form_state->getStorage('view');
-  if ($form_id == 'views_exposed_form' && $view['view']->id() === 'product_category') {
-    $form['field_product_specifications_target_id']['#maxlength'] = NULL;
+  $view_id = $view['view']->id();
+
+  switch ($view_id) {
+    case 'product_category':
+      $form['field_product_specifications_target_id']['#maxlength'] = NULL;
+      break;
+
+    case 'brand_timeline':
+      // Start from initial year.
+      $form['field_event_date_value']['#default_value'] = '0';
+      // Remove any option.
+      unset($form['field_event_date_value']['#options']['All']);
+      break;
+
+    default:
+      // Do nothing for other views.
+      break;
   }
 }
+
