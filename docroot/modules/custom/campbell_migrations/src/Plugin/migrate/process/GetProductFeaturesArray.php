@@ -27,15 +27,42 @@ class GetProductFeaturesArray extends ApexGetProductFeaturesArray {
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
-    $data = parent::transform($value, $migrate_executable, $row, $destination_property);
+    $this->copyArray = [];
 
-    foreach ($data as &$item) {
-      if (!isset($item['copy_point'])) {
-        continue;
+    if (!empty($value)) {
+      /** @var \SimpleXMLElement $child */
+
+      // Find the parent Product and get all features.
+      $product = $value->xpath('parent::Product');
+
+      if (!empty($product[0])) {
+        $product = $product[0];
+
+        // We should now be in the "Product" tag that is the actual product. Going for it's parent.
+        $parentProductValues = $product->xpath('parent::Product/Values');
+
+        if (!empty($parentProductValues[0])) {
+          $this->findFeatures($parentProductValues[0], $migrate_executable, $row);
+        }
       }
-      $item['copy_point'] = strip_tags($item['copy_point']);
+
+      // overwrite child level features.
+      $this->findFeatures($value, $migrate_executable, $row);
+
+      // Strip HTML from copy points if any.
+      foreach ($this->copyArray as &$item) {
+        if (!isset($item['copy_point'])) {
+          continue;
+        }
+        $item['copy_point'] = strip_tags($item['copy_point']);
+      }
+
+      // This forces it to sort in the order we want them in.
+      ksort($this->copyArray);
+      $list = json_encode($this->copyArray);
+      return json_decode($list, TRUE);
     }
 
-    return $data;
+    return [];
   }
 }
