@@ -288,6 +288,11 @@ function apex_common_form_views_exposed_form_alter(&$form, FormStateInterface $f
       unset($form['field_event_date_value']['#options']['All']);
       break;
 
+    case 'campbell_news':
+      // Override any option label.
+      $form['field_date_value']['#options']['All'] = t('All');
+      break;
+
     default:
       // Do nothing for other views.
       break;
