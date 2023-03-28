@@ -267,15 +267,15 @@ display:
             suffix: ''
             target: ''
             nl2br: false
-            max_length: 0
+            max_length: 100
             word_boundary: true
             ellipsis: true
             more_link: false
             more_link_text: ''
             more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
+            strip_tags: true
+            trim: true
+            preserve_tags: '<p> <br>'
             html: false
           element_type: ''
           element_class: ''
@@ -802,7 +802,7 @@ display:
             external: false
             replace_spaces: false
             path_case: none
-            trim_whitespace: false
+            trim_whitespace: true
             alt: ''
             rel: ''
             link_class: ''
@@ -810,15 +810,15 @@ display:
             suffix: ''
             target: ''
             nl2br: false
-            max_length: 0
+            max_length: 100
             word_boundary: true
             ellipsis: true
             more_link: false
             more_link_text: ''
             more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
+            strip_tags: true
+            trim: true
+            preserve_tags: '<p><a>'
             html: false
           element_type: ''
           element_class: ''
@@ -1345,14 +1345,14 @@ display:
             suffix: ''
             target: ''
             nl2br: false
-            max_length: 0
+            max_length: 100
             word_boundary: true
             ellipsis: true
             more_link: false
             more_link_text: ''
             more_link_path: ''
             strip_tags: false
-            trim: false
+            trim: true
             preserve_tags: ''
             html: false
           element_type: ''
@@ -1400,7 +1400,7 @@ display:
             external: false
             replace_spaces: false
             path_case: none
-            trim_whitespace: false
+            trim_whitespace: true
             alt: ''
             rel: ''
             link_class: ''
@@ -1414,9 +1414,9 @@ display:
             more_link: false
             more_link_text: ''
             more_link_path: ''
-            strip_tags: false
+            strip_tags: true
             trim: false
-            preserve_tags: ''
+            preserve_tags: '<p><a>'
             html: false
           element_type: ''
           element_class: ''
@@ -1434,7 +1434,7 @@ display:
           type: smart_trim
           settings:
             trim_length: 300
-            trim_type: chars
+            trim_type: words
             trim_suffix: ''
             wrap_output: false
             wrap_class: trimmed
@@ -1442,7 +1442,7 @@ display:
             more_class: more-link
             more_text: 'Read More'
             more_aria_label: 'Read more about [node:title]'
-            summary_handler: full
+            summary_handler: ignore
             trim_options:
               text: false
               trim_zero: false

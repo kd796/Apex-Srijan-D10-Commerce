@@ -85,14 +85,23 @@
         <span class="date">{{ content.field_date['#items'].value | date('M j') }}</span>
         <span class="year">{{ content.field_date['#items'].value | date('Y') }}</span>
       </div>
-      <div class="download-pdf"><a href="#" download>{{ 'Download Document' | t}}</a></div>
-      <div class="download-pdf">{{content.field_news_release_document.0}}</div>
+      {% if content.field_news_release_document is not empty %}
+        <div class="download-pdf"><a href={{ news_release_document_path }} download>{{ 'Download Document' | t}}</a></div>
+      {% endif %}
+      {% if content.field_media is not empty %}
+        <div class="logo-image">{{ content.field_media }}</div>
+      {% endif %}
+      <h2 class="subtitle">{{ node.label }}</h2>
+      {% if content.field_sub_heading is not empty %}
+        <div class="sub-heading">{{ content.field_sub_heading.0 }}</div>
+      {% endif %}
+      {% if content.field_banner_image is not empty %}
+        <div class="news-image">{{ content.field_banner_image.0 }}</div>
+      {% endif %}
+      {% if content.body is not empty %}
+        {{ content.body.0 }}
+      {% endif %}
     </div>
-    <div class="logo-image">{{content.field_media.0}}</div>
   </div>
-    <h2 class="subtitle">{{ node.label }}</h2>
-    <div class="sub-heading">{{content.field_sub_heading.0}}</div>
-    <div class="news-image">{{content.field_banner_image.0}}</div>
-    {{content.body.0}}
 </article>
 
