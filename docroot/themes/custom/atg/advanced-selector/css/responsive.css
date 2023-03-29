@@ -1,0 +1,47 @@
+.sel-ade .grid-6 .offset {
+  padding: 0;
+}
+
+.sel-ade .grid-6 .offset:before,
+.sel-ade .grid-6 .offset:after {
+  display: none;
+}
+
+@media only screen and (max-width: 1024px) {
+  .contain {
+    width: 100%;
+    min-width: 100%;
+  }
+  .sel-hd {
+    padding: 1em;
+  }
+  .sel-form {
+    padding: 1em;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .sel-form p {
+    padding-left: 0;
+  }
+
+  #sortable {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .grid-6 {
+    margin-bottom: 1em;
+  }
+  .sel-ade .grid-12 .sel-btn {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+  .button:not(.button--simple):not(.button--small) {
+    display: flex;
+    min-width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+}
