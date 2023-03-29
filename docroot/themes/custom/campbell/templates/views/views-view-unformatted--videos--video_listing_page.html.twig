@@ -18,6 +18,7 @@
  */
 #}
 <div class="wrapper-content">
+  <div class="page-title">{{ view.getTitle() }}</div>
   <div class="video-gallery">
     {% for row in rows %}
       {% set row_classes = [
