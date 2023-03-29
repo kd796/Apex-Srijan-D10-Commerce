@@ -10,7 +10,7 @@ dependencies:
     - field.field.node.page.field_meta_tags
     - node.type.page
   module:
-    - text
+    - smart_trim
     - user
 _core:
   default_config_hash: Y3aiPggsJuAmkPyyQSzTQzGPtJcrss2oaaNxaTrN_Fc
@@ -20,9 +20,23 @@ bundle: page
 mode: search_index
 content:
   body:
-    type: text_default
+    type: smart_trim
     label: hidden
-    settings: {  }
+    settings:
+      trim_length: 250
+      trim_type: chars
+      trim_suffix: ...
+      wrap_output: false
+      wrap_class: trimmed
+      more_link: false
+      more_class: more-link
+      more_text: More
+      more_aria_label: 'Read more about [node:title]'
+      summary_handler: full
+      trim_options:
+        text: false
+        trim_zero: false
+        replace_tokens: false
     third_party_settings: {  }
     weight: 0
     region: content

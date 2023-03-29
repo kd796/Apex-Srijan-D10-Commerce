@@ -18,20 +18,12 @@ dependencies:
     - field.field.node.multisite_featured.field_video
     - node.type.multisite_featured
   module:
-    - paragraphs
     - user
 id: node.multisite_featured.search_index
 targetEntityType: node
 bundle: multisite_featured
 mode: search_index
 content:
-  field_image_and_text_component:
-    type: paragraph_summary
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 1
-    region: content
   field_video:
     type: entity_reference_entity_view
     label: hidden
@@ -44,6 +36,7 @@ content:
 hidden:
   body: true
   field_footer_note: true
+  field_image_and_text_component: true
   field_list_type: true
   field_listing_image: true
   field_listing_page_image: true
