@@ -72,6 +72,24 @@ function campbell_preprocess_node__product_category__full(array &$variables) {
 }
 
 /**
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for news, full.
+ */
+function campbell_preprocess_node__news__full(array &$variables) {
+  $node = $variables['elements']['#node'];
+  $file_path = '';
+
+  if (!empty($node->field_news_release_document->getValue())) {
+    $entity_type_manager = \Drupal::entityTypeManager();
+    $document_id = $node->field_news_release_document->getValue()[0]['target_id'];
+    $media_entity = $entity_type_manager->getStorage('media')->load($document_id);
+    $file_entity = $entity_type_manager->getStorage('file')->load($media_entity->field_media_file->target_id);
+    $file_path = $file_entity->createFileUrl();
+  }
+
+  $variables['news_release_document_path'] = $file_path;
+}
+
+/**
  * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for product, full.
  */
 function campbell_preprocess_node__product__full(array &$variables) {

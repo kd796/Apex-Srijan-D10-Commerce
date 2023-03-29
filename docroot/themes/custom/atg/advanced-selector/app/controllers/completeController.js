@@ -5,10 +5,15 @@ Cleco.controller('completeController',
     $scope.loadData = function() {
       $scope.loading = true;
       $scope.submitted = false;
-      $http.get('/themes/atg/advanced-selector/api/read.php')
+      $http.get('/themes/custom/atg/advanced-selector/api/read.php')
         .success(function(data, status) {
           $scope.loading = false;
           $scope.user = data.user;
+          if ($scope.user == undefined) {
+            // Define the $scope.user object if it is undefined
+            $scope.user = {};
+          }
+          $scope.user.de_contact_name =''; 
           $scope.friend.from_name = $scope.user.de_contact_name;
         })
         .error(function(data, status, headers, config) {
@@ -30,7 +35,7 @@ Cleco.controller('completeController',
       $scope.loading = true;
       $scope.submitted = true;
       data.refer = 'colleague';
-      $http.post('/themes/atg/advanced-selector/api/update.php', data)
+      $http.post('/themes/custom/atg/advanced-selector/api/update.php', data)
         .success(function(result) {
           $scope.loading = false;
           $scope.submitted = false;
