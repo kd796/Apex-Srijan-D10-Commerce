@@ -543,4 +543,99 @@ trait MigrationHelperTrait {
     ];
   }
 
+  /**
+   * Get migrated taxonomy tids.
+   *
+   * @param string $type_id
+   *   Test to be processed.
+   *
+   * @return array
+   *   Returns allowed download type.
+   */
+  public function allowedDownloadTypes($type_id) {
+    $allowed_type = '';
+    $download_type_list = [
+      'certificates' => 'NA',
+      'dxf file' => 'NA',
+      'igs file' => 'NA',
+      'line art' => 'NA',
+      'repair manual' => 'NA',
+      'stp file' => 'NA',
+      'trouble shooting' => 'NA',
+      'warranty' => 'NA',
+      'installation note' => 'NA',
+      'maintenance instruction' => 'NA',
+      '3d model' => '3d_model',
+      'assembly instruction' => 'assembly_instruction',
+      'catalog' => 'catalog',
+      'ce documentation' => 'ce_documentation',
+      'data sheet' => 'data_sheet',
+      'dimensional diagram' => 'dimensional_diagram',
+      'engineering drawings' => 'engineering_drawings',
+      'flyer/brochure' => 'flyer_brochure',
+      'hardware manual' => 'hardware_manual',
+      'homologation' => 'homologation',
+      'installation manual' => 'installation_manual',
+      'instruction manual' => 'instruction_manual',
+      'manual' => 'manual',
+      'msds' => 'msds',
+      'operating instructions' => 'operating_instructions',
+      'parts list' => 'parts_list',
+      'programming manual' => 'programming_manual',
+      'quick installation guide' => 'quick_installation_guide',
+      'service manual' => 'service_manual',
+      'software' => 'software',
+      'system manual' => 'system_manual',
+      'user guide' => 'user_guide',
+      'owners manual' => 'owners_manual',
+    ];
+    if (array_key_exists(strtolower($type_id), $download_type_list)) {
+      $allowed_type = $download_type_list[strtolower($type_id)];
+    }
+    return $allowed_type;
+  }
+
+  /**
+   * Get migrated taxonomy tids.
+   *
+   * @param array $source_id1
+   *   Test to be processed.
+   * @param string $migration_id
+   *   Sourceid of the migration.
+   *
+   * @return array
+   *   Returns migrated tids.
+   */
+  public function getAllMigratedTaxonomyTid(array $source_id1, $migration_id) {
+    $tid = NULL;
+    if (empty($source_id1)) {
+      return $tid;
+    }
+    $table = ($migration_id) ? 'migrate_map_' . $migration_id : '';
+    $query = $this->connection->select($table, 't');
+    $query->addField('t', 'destid1');
+    $query->condition('t.sourceid1', $source_id1, 'IN');
+    $tid = $query->execute()->fetchCol();
+    return $tid;
+  }
+
+  /**
+   * Write various log information in the file.
+   *
+   * @param string $logfile
+   *   Name of the log file.
+   * @param string $message
+   *   Log message to be written.
+   */
+  public function logMessage($logfile, $message) {
+    if (empty($logfile)) {
+      return;
+    }
+    $dir = dirname($logfile);
+    if (!file_exists($dir)) {
+      mkdir($dir, 0770, TRUE);
+    }
+    file_put_contents($logfile, $message . PHP_EOL, FILE_APPEND);
+  }
+
 }
