@@ -182,12 +182,6 @@ function campbell_migrations_migrate_prepare_row(Row $row, MigrateSourceInterfac
       'ATT378',
       'ATT395',
       'ATT145',
-      'ATT379',
-      'ATT679',
-      'ATT776',
-      'ATT817',
-      'ATT857',
-      'ATT113',
     ];
 
     if (!in_array($row->getSource()['remote_term_id'], $attributes_to_include)) {
