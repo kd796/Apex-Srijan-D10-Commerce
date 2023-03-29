@@ -6,6 +6,8 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\views\ViewExecutable;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
 
 /**
  * Implements form_views_exposed_form_alter().
@@ -14,6 +16,9 @@ function campbell_where_to_buy_form_views_exposed_form_alter(&$form, FormStateIn
   $view_ids = ['markers_map'];
   $view = $form_state->getStorage('view');
   if ($form_id == 'views_exposed_form' && in_array($view['view']->id(), $view_ids)) {
+
+    $form['field_address_postal_code']['#suffix'] = '<div class="find-local-or"> -or- </div>';
+
     $form_state->setValue('state_codes', $form['field_address_administrative_area']['#options']);
     $form['field_address_administrative_area']['#access'] = FALSE;
     $form['field_address_administrative_area_textfield'] = [
@@ -44,12 +49,37 @@ function campbell_where_to_buy_form_views_exposed_form_validate(&$form, FormStat
   // Get the submitted state value.
   $state_name = $form_state->getValue('field_address_administrative_area_textfield');
 
+  $query_perms = \Drupal::request()->query;
+  $country_code = $query_perms->get('field_address_country_code');
+  $city_name = $query_perms->get('field_address_locality');
+  $postal_code = $query_perms->get('field_address_postal_code');
+
+  /*
+   * All three field Country, State, City must be selected.
+   */
+  if (($query_perms->count() != 0) &&
+     ($country_code == 'All' || !$state_name || !$city_name) &&
+     ($postal_code == NULL)) {
+    if ($country_code == 'All') {
+      $form_state->setErrorByName('field_address_country_code', t('Please select the Country.'));
+    }
+    if (!$state_name) {
+      $form_state->setErrorByName('field_address_administrative_area_textfield', t('Please enter the State.'));
+    }
+    if (!$city_name) {
+      $form_state->setErrorByName('field_address_locality', t('Please enter the City.'));
+    }
+  }
+
   if (!($state_name)) {
     return;
   }
+
   $state_name = ucfirst(strtolower($state_name));
+
   // Get the state value option to its state code.
   $state_codes = $form['field_address_administrative_area']['#options'];
+  \Drupal::service('campbell_where_to_buy.where_to_buy_map')->setStateAddress($state_codes);
   $state_value = array_search($state_name, $state_codes);
   if ($state_value) {
     $form_state->setValue('field_address_administrative_area', $state_value);
@@ -57,5 +87,94 @@ function campbell_where_to_buy_form_views_exposed_form_validate(&$form, FormStat
   }
   $form_state->setValue('field_address_administrative_area_textfield', '');
   $form_state->setValue('field_address_administrative_area', '');
-  $form_state->setRebuild(TRUE);
+
+}
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function campbell_where_to_buy_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+  \Drupal::service('page_cache_kill_switch')->trigger();
+  if ($view->id() == 'markers_map') {
+    $postal_code_filter = $other_filters = FALSE;
+    $query_perms = \Drupal::request()->query;
+    $postal_code = $query_perms->get('field_address_postal_code') ?? NULL;
+    $location_proximity = $query_perms->get('field_location_proximity') ?? 20;
+    $city = $query_perms->get('field_address_locality') ?? NULL;
+    $state = $query_perms->get('field_address_administrative_area_textfield') ?? NULL;
+
+    if ($postal_code) {
+      $nids = \Drupal::service('campbell_where_to_buy.where_to_buy_map')->findZipCodeProximitySearchZip($postal_code, $location_proximity);
+      if (!empty($nids)) {
+        $postal_code_filter = TRUE;
+        $query->addWhere(0, 'node_field_data.nid', $nids, 'IN');
+      }
+    }
+    else {
+      $nids = \Drupal::service('campbell_where_to_buy.where_to_buy_map')->findZipCodeProximitySearchFromAddress($query_perms, $location_proximity);
+      if (!empty($nids)) {
+        $other_filters = TRUE;
+        $query->addWhere(0, 'node_field_data.nid', $nids, 'IN');
+      }
+    }
+
+    foreach ($query->where as &$condition_group) {
+      foreach ($condition_group['conditions'] as $key_inner => &$condition) {
+
+        if ($condition['field'] == 'node__field_address.field_address_postal_code') {
+          if ($postal_code && $postal_code_filter) {
+            unset($condition_group['conditions'][$key_inner]);
+          }
+        }
+        if ($condition['field'] == 'node__field_address.field_address_country_code') {
+          if ($postal_code && $postal_code_filter) {
+            unset($condition_group['conditions'][$key_inner]);
+          }
+        }
+
+        if ($condition['field'] == 'node__field_address.field_address_locality') {
+          if ($other_filters) {
+            unset($condition_group['conditions'][$key_inner]);
+          }
+        }
+        if ($condition['field'] == 'node__field_address.field_address_administrative_area') {
+          if ($other_filters) {
+            unset($condition_group['conditions'][$key_inner]);
+          }
+        }
+        if ($condition['field'] == 'node__field_address.field_address_country_code') {
+          if ($other_filters) {
+            if ($city || $state) {
+              unset($condition_group['conditions'][$key_inner]);
+            }
+          }
+        }
+
+      }
+    }
+
+  }
+}
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function campbell_where_to_buy_views_pre_render(ViewExecutable $view) {
+  if ($view->id() === 'markers_map') {
+
+    $query_perms = \Drupal::request()->query;
+    if ($view->display_handler->getBaseId() == 'page') {
+      if ($query_perms->count() == 0 || count($view->result) == 0) {
+        $view->element['#attached']['drupalSettings']['queryPermsCount'] = 0;
+        $view->element['#attached']['library'][] = 'campbell_where_to_buy/campbell-where-to-buy';
+      }
+    }
+
+    foreach ($view->result as $key => $value) {
+      if ($query_perms->count() == 0) {
+        unset($view->result[$key]);
+      }
+    }
+
+  }
 }
