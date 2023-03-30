@@ -104,7 +104,7 @@ pipelines:
       - step: *build-package
       - step:
           <<: *deploy-package
-          deployment: Staging SEO
+          deployment: Staging
     development:
       - step: *build-package
       - step:
