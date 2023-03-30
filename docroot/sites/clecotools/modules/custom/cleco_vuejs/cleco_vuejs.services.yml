@@ -7,6 +7,8 @@ services:
 
   step.elastic_search_service:
     class: Drupal\cleco_vuejs\Services\SolrSearchService
+    arguments:
+      - '@entity_type.manager'
 
   step.step_service:
     class: Drupal\cleco_vuejs\Services\StepService

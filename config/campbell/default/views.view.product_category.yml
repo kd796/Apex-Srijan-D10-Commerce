@@ -421,13 +421,15 @@ display:
             format: basic_html
           tokenize: false
       sorts:
-        field_long_description_value:
-          id: field_long_description_value
-          table: node__field_long_description
-          field: field_long_description_value
+        title:
+          id: title
+          table: node_field_data
+          field: title
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
           plugin_id: standard
           order: ASC
           expose:

@@ -306,13 +306,13 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Apply
+          submit_button: Sort
           reset_button: false
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: Ascending
+          sort_desc_label: Descending
       access:
         type: perm
         options:
@@ -957,6 +957,7 @@ display:
         groups:
           1: AND
       defaults:
+        exposed_form: true
         fields: false
         filters: false
         filter_groups: false
@@ -984,6 +985,16 @@ display:
     position: 4
     display_options:
       title: 'Reference Material'
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Apply
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
       filters:
         status:
           id: status
@@ -1057,6 +1068,7 @@ display:
           1: AND
       defaults:
         title: false
+        exposed_form: false
         filters: false
         filter_groups: false
       display_description: ''
