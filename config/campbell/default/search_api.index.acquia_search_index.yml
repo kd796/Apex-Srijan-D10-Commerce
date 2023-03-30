@@ -4,11 +4,11 @@ status: true
 dependencies:
   config:
     - field.storage.node.body
-    - field.storage.node.field_footer_note
-    - field.storage.node.field_short_description
     - field.storage.node.field_image_and_text_component
-    - field.storage.paragraph.field_headline
     - field.storage.paragraph.field_description
+    - field.storage.node.field_footer_note
+    - field.storage.paragraph.field_headline
+    - field.storage.node.field_short_description
     - search_api.server.acquia_search_server
   module:
     - search_api_solr
@@ -72,6 +72,17 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.body
+  field_description:
+    label: 'Image and Text Component » Paragraph » Description'
+    datasource_id: 'entity:node'
+    property_path: 'field_image_and_text_component:entity:field_description'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_image_and_text_component
+        - field.storage.paragraph.field_description
+      module:
+        - paragraphs
   field_footer_note:
     label: 'Footer Note'
     datasource_id: 'entity:node'
@@ -80,6 +91,17 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_footer_note
+  field_headline:
+    label: 'Image and Text Component » Paragraph » Headline'
+    datasource_id: 'entity:node'
+    property_path: 'field_image_and_text_component:entity:field_headline'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_image_and_text_component
+        - field.storage.paragraph.field_headline
+      module:
+        - paragraphs
   field_short_description:
     label: 'Short Description'
     datasource_id: 'entity:node'
@@ -95,28 +117,6 @@ field_settings:
     indexed_locked: true
     type_locked: true
     hidden: true
-  processed_2:
-    label: 'Image and Text Component » Paragraph » Headline » Processed text'
-    datasource_id: 'entity:node'
-    property_path: 'field_image_and_text_component:entity:field_headline:processed'
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_image_and_text_component
-        - field.storage.paragraph.field_headline
-      module:
-        - paragraphs
-  processed_3:
-    label: 'Image and Text Component » Paragraph » Description » Processed text'
-    datasource_id: 'entity:node'
-    property_path: 'field_image_and_text_component:entity:field_description:processed'
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_image_and_text_component
-        - field.storage.paragraph.field_description
-      module:
-        - paragraphs
   rendered_item:
     label: 'Rendered HTML output'
     property_path: rendered_item
@@ -193,10 +193,10 @@ processor_settings:
     all_fields: true
     fields:
       - body
+      - field_description
       - field_footer_note
+      - field_headline
       - field_short_description
-      - processed_2
-      - processed_3
       - rendered_item
       - title
     title: true

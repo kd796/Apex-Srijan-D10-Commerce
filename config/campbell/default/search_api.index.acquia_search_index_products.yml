@@ -16,6 +16,7 @@ dependencies:
     - field.storage.node.field_new_product
     - field.storage.node.field_product_features
     - field.storage.node.field_set
+    - field.storage.node.field_upc
     - search_api.server.acquia_search_server
     - core.entity_view_mode.node.full
   module:
@@ -132,7 +133,7 @@ field_settings:
     label: 'Long Description'
     datasource_id: 'entity:node'
     property_path: field_long_description
-    type: string
+    type: text
     dependencies:
       config:
         - field.storage.node.field_long_description
@@ -179,6 +180,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_set
+  field_upc:
+    label: UPC
+    datasource_id: 'entity:node'
+    property_path: field_upc
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_upc
   name:
     label: 'Product Classifications » Taxonomy term » Name'
     datasource_id: 'entity:node'
@@ -240,7 +249,7 @@ field_settings:
     label: Title
     datasource_id: 'entity:node'
     property_path: title
-    type: string
+    type: text
     dependencies:
       module:
         - node
