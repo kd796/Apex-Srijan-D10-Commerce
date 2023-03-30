@@ -76,15 +76,11 @@
   ]
 %}
 
+<div class="related-products">
 <a href={{ url }}>
-  {{ content.field_media }}
+{{ content.field_listing_image }}
+<span class="lable">{{ label }}</span>
+{{ content.field_short_description }}
+{{ 'Read More' }}
 </a>
-<a href={{ url }}>
-  <h2>
-    {{ content.field_long_description }}
-  </h2>
-</a>
-<span class="lable">
-  {{ label }}
-</span>
-
+</div>

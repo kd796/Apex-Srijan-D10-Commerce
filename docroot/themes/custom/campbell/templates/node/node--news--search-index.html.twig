@@ -76,15 +76,10 @@
   ]
 %}
 
-<a href={{ url }}>
-  {{ content.field_media }}
-</a>
-<a href={{ url }}>
-  <h2>
-    {{ content.field_long_description }}
-  </h2>
-</a>
-<span class="lable">
-  {{ label }}
-</span>
-
+<div class="related-products">
+  <a href={{ url }}>
+    <span class="lable">{{ label }}</span>
+    {{ content.body }}
+    {{ 'Read More' }}
+  </a>
+</div>
