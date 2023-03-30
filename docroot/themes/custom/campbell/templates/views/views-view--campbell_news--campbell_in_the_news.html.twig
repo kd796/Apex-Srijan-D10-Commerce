@@ -40,7 +40,6 @@
 {% endif %}
 
 <div class="wrapper-content">
-  <div class="page-title"> {{ view.title }} </div>
   {%
     set classes = [
       'view',
@@ -51,11 +50,9 @@
     ]
   %}
   <div{{ attributes.addClass(classes) }}>
-    {{ title_prefix }}
-    {% if title %}
-      {{- title -}}
-    {% endif %}
-    {{ title_suffix }}
+    <div class="page-title">
+      {{ view.title }}
+    </div>
     
     {% if exposed %}
       <div class="view-filters tab-filters">
