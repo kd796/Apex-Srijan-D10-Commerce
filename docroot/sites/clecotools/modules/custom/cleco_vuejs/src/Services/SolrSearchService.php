@@ -1438,6 +1438,7 @@ class SolrSearchService
     $count = $results->getresultCount();
     foreach ($results as $result11) {
       $product_category_name = [];
+      $product_category = [];
       $resultItemFields = $result11->getFields();
       $lang = $resultItemFields['field_language']->getvalues();
       $listing_image = $resultItemFields['field_listing_image']->getvalues();
@@ -1455,11 +1456,18 @@ class SolrSearchService
         $download_file_path = file_create_url($download_file_url);
       }
       $product_category = $resultItemFields['field_product_category']->getvalues();
+      if(!empty($product_category)) {
       foreach ($product_category as $key => $value) {
         $term = $this->entityManager->getStorage('taxonomy_term')->load($value);
+        if(!empty($term)){
         $product_category_name[] = $term->get('name')->value;
+        }
       }
       $category = implode(', ', $product_category_name);
+    }
+    else {
+        $category = '';
+    }
       $type = $resultItemFields['field_type']->getvalues();
       $name = $resultItemFields['name']->getvalues();
       $name = implode(', ', $name);
