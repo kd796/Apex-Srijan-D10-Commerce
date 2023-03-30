@@ -9,9 +9,9 @@
             transformResponseData(data) {
                 return data.hits.hits.map((item) => {
                     let download = item._source;
-                    let url = process.env.MIX_STEP_DIR + this.getUrl(download);
+                    let url = this.getUrl(download);
                     let filepath = (download.assets.source_to_jpg != undefined) ? download.assets.source_to_jpg : download.assets.pro_tools_jpg_of_pdf;
-                    let image = filepath ? process.env.MIX_STEP_DIR + 'styles/thumb/' + filepath : '';
+                    let image = filepath ? filepath : '';
 
                     return {
                         id: download._id,
@@ -46,7 +46,7 @@
                         source = values['asset_filename'] || assets['3d_model_igs'] || assets['3d_model'] || filename;
                     break;
                     default:
-                        source = (ext.toLowerCase() === 'tif') ? imgSrcPrimeOne : `${id}.${ext}`;
+                        source = (ext.toLowerCase() === 'tif') ? imgSrcPrimeOne : filename;
                     break;
                 }
 

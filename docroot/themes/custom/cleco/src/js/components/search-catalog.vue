@@ -19,8 +19,8 @@
                         case "downloads" :
                             let asset =  result.assets['3d_model_igs'] || result.assets['3d_model'] || result.assets.original_source_file;
 
-                            url = process.env.MIX_STEP_DIR + asset;
-                            thumb = process.env.MIX_STEP_DIR + 'styles/thumb/' + result.assets.pro_tools_jpg_of_pdf;
+                            url = asset;
+                            thumb = result.assets.pro_tools_jpg_of_pdf;
                             break;
 
                         case "products" :
