@@ -91,7 +91,6 @@ class FileOperations {
    * @see \Drupal\Core\File\FileSystemInterface::saveData()
    */
   public static function fileSaveData(string $data, string $destination = NULL, int $replace = FileSystemInterface::EXISTS_RENAME): bool|FileInterface {
-    echo "\nCleco class:: fileoperations...filesavedata...\n";
     if (empty($destination)) {
       $destination = \Drupal::config('system.file')->get('default_scheme') . '://';
     }

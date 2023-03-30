@@ -60,7 +60,6 @@ class ImageOperations extends FileOperations {
    *   The path to store/find these images locally.
    */
   public static function buildLocalAssetImagePath(string $asset_id) {
-    echo "\nCleco class:: imageoperations...buildLocalAssetImagePath...\n";
     return self::$localImageDirectory . $asset_id . '.jpg';
   }
 
@@ -76,7 +75,6 @@ class ImageOperations extends FileOperations {
    * @NOTE: May not be needed.
    */
   public static function getImageMediaId(string $asset_id) {
-    echo "\nCleco class:: imageoperations...getImageMediaId...\n";
     $drupal_file_path = self::buildLocalAssetImagePath($asset_id);
     return self::getMediaId($drupal_file_path);
   }
@@ -143,7 +141,6 @@ class ImageOperations extends FileOperations {
    *   The path to store/find these images locally.
    */
   public static function buildLocalAssetPdfPath(string $asset_id) {
-    echo "\nCleco class:: imageoperations...buildLocalAssetPdfPath...\n";
     return self::$localPdfDirectory . $asset_id . '.pdf';
   }
 
@@ -182,7 +179,6 @@ class ImageOperations extends FileOperations {
     if (!empty($fid)) {
       return $fid;
     }
-    echo "\nReturn Fid:: $fid \n";
     return FALSE;
   }
 

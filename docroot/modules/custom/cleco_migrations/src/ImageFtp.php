@@ -24,7 +24,6 @@ class ImageFtp extends Ftp {
    * @throws \League\Flysystem\FilesystemException
    */
   public function getImage(string $asset_id): bool|string {
-    echo "\nCleco class:: ImageFtp...getImage...\n";
     $image_path = $this->buildImagePath($asset_id);
 
     if ($this->checkFileExists($image_path)) {
