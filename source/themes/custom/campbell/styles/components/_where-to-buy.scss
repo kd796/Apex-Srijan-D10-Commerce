@@ -48,6 +48,12 @@
   .form-actions {
     margin-top: 20px;
     margin-bottom: 0;
+    @media only screen and(min-width: $tablet-max) {
+      margin-top: 33px;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max)  {
+      margin-top: 0;
+    }
   }
 
   .form-submit {
@@ -138,5 +144,15 @@
   .views-field-nothing a {
     color: $pantone;
     text-decoration: underline;
+  }
+
+  .find-local-or {
+    display: flex;
+    align-items: center;
+    margin-right: 7px;
+    @media only screen and(min-width: $tablet) {
+      position: relative;
+      top: 10px;
+    }
   }
 }
