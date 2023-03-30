@@ -278,18 +278,15 @@ class StepTwigExtension extends \Twig_Extension
         if (!empty($tid)) {
             $terms = \Drupal::EntityTypeManager()->getStorage('taxonomy_term')->loadChildren($tid);
         }
-
         foreach ($terms as $term) {
             $term = \Drupal\taxonomy\Entity\Term::load($term->get('tid')->value);
-            // Set default term in case we need to get EN values
-            $default = $term->getTranslation('en');
             // Translated term
             if ($term->hasTranslation($curSite['code'])) {
                 $term = $term->getTranslation($curSite['code']);
             }
             $media_field = [];
             $media_url = '';
-            $image = $term->get('field_category_image')->getString() ?? $default->get('field_category_image')->getString();
+            $image = $term->get('field_category_image')->getString() ?? '';
             if (empty($media_field) && !empty($image)) {
                 $media_field = explode(',', $image);
                 $image_load = Media::load($media_field[0]);
