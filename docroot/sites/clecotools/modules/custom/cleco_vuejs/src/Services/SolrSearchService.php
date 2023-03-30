@@ -10,6 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\cleco_vuejs\Services\StepHelper;
 use Drupal\search_api\Entity\Index;
 use Drupal\search_api\ParseMode\ParseModePluginManager;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 
 class SolrSearchService
@@ -25,10 +26,23 @@ class SolrSearchService
     private $settings;
 
     /**
+     * The entity manager.
+     *
+     * @var \Drupal\Core\Entity\EntityManagerInterface
+     */
+    protected $entityManager;
+
+    /**
+     * Constructs a solr search service.
+     * 
+     * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
+     *   The entity manager.
+     * 
      * @return null
      */
-    public function __construct()
+    public function __construct(EntityTypeManagerInterface $entity_manager)
     {
+        $this->entityManager = $entity_manager;
         $this->settings = Drupal::config('step.settings');
 
         $hosts = $this->getElasticHosts();
@@ -274,7 +288,7 @@ class SolrSearchService
     {
         $must         = [];
         $query        = [];
-        $productTerms = Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('products', 0, null, true);
+        $productTerms = $this->entityManager->getStorage('taxonomy_term')->loadTree('products', 0, null, true);
 
         // All possible MUST criteria matched via Classification IDs
         // If a product has a classfication under one of the keys below, a MUST criterion will be applied for the given key
@@ -1410,4 +1424,72 @@ class SolrSearchService
     {
         return explode(', ', $this->settings->get('step_es_hosts'));
     }
+
+  /**
+   * Downloads data.
+   *
+   * @return array
+   *   returning output array
+   */
+  public function getMediaDownload() {
+    $index = Index::load('downloads_index');
+    $query = $index->query();
+    $results = $query->execute();
+    $count = $results->getresultCount();
+    foreach ($results as $result11) {
+      $product_category_name = [];
+      $resultItemFields = $result11->getFields();
+      $lang = $resultItemFields['field_language']->getvalues();
+      $listing_image = $resultItemFields['field_listing_image']->getvalues();
+      if (!empty($listing_image)) {
+        $image_load = $this->entityManager->getStorage('media')->load($listing_image[0]);
+        $image_file = $this->entityManager->getStorage('file')->load($image_load->field_media_image->target_id);
+        $image_url  = $image_file->getFileUri();
+        $media_url = file_create_url($image_url);
+      }
+      $media_file = $resultItemFields['field_media_file']->getvalues();
+      if (!empty($media_file)) {
+        $download_file = $this->entityManager->getStorage('file')->load($media_file[0]);
+        $download_file_url  = $download_file->getFileUri();
+        $download_file_name = $download_file->getFilename();
+        $download_file_path = file_create_url($download_file_url);
+      }
+      $product_category = $resultItemFields['field_product_category']->getvalues();
+      foreach ($product_category as $key => $value) {
+        $term = $this->entityManager->getStorage('taxonomy_term')->load($value);
+        $product_category_name[] = $term->get('name')->value;
+      }
+      $category = implode(', ', $product_category_name);
+      $type = $resultItemFields['field_type']->getvalues();
+      $name = $resultItemFields['name']->getvalues();
+      $name = implode(', ', $name);
+      $output[] = [
+        "_type" => "downloads",
+        "_source" => [
+          "id" => $download_file_name,
+          "name" => $name,
+          "type" => "Engineering Drawings",
+          "product_category" => [$category],
+          "values" => [
+            "asset_extension" => 'pdf',
+            "asset_size" => $download_file->getSize(),
+            "asset_format" => "PDF (Portable Document Format application)",
+            "asset_mime_type" => $download_file->getMimeType(),
+          ],
+          "assets" => [
+            "original_source_file" => $download_file_path,
+            "pro_tools_jpg_of_pdf" => "$media_url",
+            "pro_tools_pdf" => $download_file_path,
+          ],
+        ],
+      ];
+    }
+    $json['hits'] = [
+      "total" => $count,
+      "max_score" => NULL,
+      "hits" => $output,
+    ];
+    return($json);
+  }
+
 }

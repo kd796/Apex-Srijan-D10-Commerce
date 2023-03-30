@@ -132,16 +132,19 @@ class ApiController extends ControllerBase
         return new JsonResponse(json_decode($json), 200);   
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return JsonResponse
-     */
-    public function actionSearchDownloads(Request $request)
-    {
-        $json = file_get_contents(__DIR__ .'/sample-search.json');
-        return new JsonResponse(json_decode($json), 200);
-    }
+  /**
+   * Search download action.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   Accepting request parameter.
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   *   Returning json response.
+   */
+  public function actionSearchDownloads(Request $request) {
+    $json = $this->getElasticService()->getMediaDownload();
+    return new JsonResponse($json, 200);
+  }
 
     /**
      * Drupal custom field
@@ -183,4 +186,15 @@ class ApiController extends ControllerBase
 
         return $params;
     }
+
+  /**
+   * GET ELASTIC SERVICE - Return a reference to ElasticSearchService.
+   *
+   * @return array
+   *   Returning service.
+   */
+  private function getElasticService() {
+    return \Drupal::service('step.elastic_search_service');
+  }
+
 }
