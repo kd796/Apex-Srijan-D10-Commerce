@@ -76,10 +76,16 @@
   ]
 %}
 
-<div class="related-products">
-<a href={{ url }}>
-<span class="lable">{{ label }}</span>
-{{ content.body }}
-{{ 'Read More' }}
-</a>
+<div class="page-search-card">
+  <span class="lable">
+    {{ label }}
+  </span>
+
+  <a href={{ url }} class="title">
+    {{ content.body }}
+  </a>
+
+  <a href={{ url }} class="read-more">
+    {{ 'Read More' | t }}
+  </a>
 </div>

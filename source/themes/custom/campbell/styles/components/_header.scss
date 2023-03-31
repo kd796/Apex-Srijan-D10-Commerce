@@ -129,7 +129,7 @@
       width: 40px;
       height: 40px;
       background: url('#{$image-base-path}/search_mobile.png') no-repeat center right;
-  
+
       @media only screen and (min-width: $tablet) {
         display: none;
       }
@@ -183,7 +183,11 @@
 }
 
 // Search form.
+.views-exposed-form,
 .search-block-form  {
+  position: relative;
+
+  .form-item-search,
   .form-type-search {
     background: url('#{$image-base-path}/campbell_search_header.png') left top no-repeat;
     display: inline-block;
@@ -511,7 +515,7 @@
                 content: '';
                 width: 25px;
                 height: 36px;
-                background: url('#{$image-base-path}/mobile_right_arrow.png') no-repeat scroll center center; 
+                background: url('#{$image-base-path}/mobile_right_arrow.png') no-repeat scroll center center;
                 position: absolute;
                 right: 10px;
                 top: 0;
@@ -534,7 +538,7 @@
               content: '';
               width: 25px;
               height: 36px;
-              background: url('#{$image-base-path}/mobile_right_arrow.png') no-repeat scroll center center; 
+              background: url('#{$image-base-path}/mobile_right_arrow.png') no-repeat scroll center center;
               position: absolute;
               right: 10px;
               top: 0;
@@ -581,7 +585,7 @@
           content: '';
           width: 25px;
           height: 39px;
-          background: url('#{$image-base-path}/mobile_right_arrow.png') no-repeat scroll center center; 
+          background: url('#{$image-base-path}/mobile_right_arrow.png') no-repeat scroll center center;
           position: absolute;
           right: 10px;
           top: 0;

@@ -76,11 +76,20 @@
   ]
 %}
 
-<div class="related-products">
-<a href={{ url }}>
-{{ content.field_listing_image }}
-<span class="lable">{{ label }}</span>
-{{ content.field_short_description }}
-{{ 'Read More' }}
-</a>
+<div class="markets-search-card">
+  <a href={{ url }} class="image">
+    {{ content.field_listing_image }}
+  </a>
+
+  <span class="lable">
+    {{ label }}
+  </span>
+
+  <a href={{ url }} class="title">
+    {{ content.field_short_description }}
+  </a>
+
+  <a href={{ url }} class="read-more">
+    {{ 'Read More' | t }}
+  </a>
 </div>

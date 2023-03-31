@@ -76,17 +76,22 @@
   ]
 %}
 
-<a href={{ url }}>
-  {{ content.field_media }}
-</a>
+<div class="product-search-card">
+  <a href={{ url }} class="image">
+    {{ content.field_media }}
+  </a>
 
-<a href={{ url }}>
-  <h2>
-    {{ content.field_long_description }}
-  </h2>
-</a>
+  <a href={{ url }} class="title">
+    <h2>
+      {{ content.field_long_description }}
+    </h2>
+  </a>
 
-<span class="lable">
-  {{ label }}
-</span>
+  <span class="lable">
+    {{ label }}
+  </span>
 
+  <a href={{ url }} class="read-more">
+    {{ 'Read More'|t }}
+  </a>
+</div>
