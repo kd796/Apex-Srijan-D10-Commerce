@@ -1,0 +1,187 @@
+/****** Brand Timeline Page ******/
+
+.brand-timeline {
+  position: relative;
+
+  .brand-timeline-years {
+    background: none;
+    border: 0;
+    padding: 0;
+
+    fieldset {
+      margin: 0 0 25px;
+
+      .fieldset-wrapper {
+        background: none;
+        border: 0;
+        padding: 0;
+
+        &::after {
+          content: '';
+          display: block;
+          width: 100%;
+          height: 1px;
+          background: $light-gray;
+          opacity: 0.62;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+        }
+      }
+    }
+
+    .form-radios {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .form-type-radio {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0;
+
+      .form-radio {
+        display: none;
+
+        &:checked + label {
+          display: block;
+          background-color: $pantone;
+          color: $white;
+
+          &.ajax-load-class {
+            color: $spanish-gray;
+            background: $white;
+          }
+        }
+
+        &.active + label {
+          background-color: $pantone;
+          color: $white;
+        }
+      }
+
+      label {
+        font-size: 20px;
+        font-weight: $bold;
+        line-height: 24px;
+        color: $spanish-gray;
+        background: $white;
+        padding: 10px;
+        cursor: pointer;
+
+        &.ajax-load-class {
+          color: $spanish-gray;
+          background: $white;
+        }
+      }
+    }
+  }
+
+  .brand-timeline-content {
+    margin-bottom: 50px;
+
+    .slick-slide {
+      &:nth-child(4) {
+        .b-content {
+          margin-right: 0;
+        }
+      }
+
+      &:nth-child(5) {
+        .b-content {
+          margin-left: 16px;
+          margin-right: 0;
+        }
+      }
+
+      @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+        &:nth-child(3) {
+          .b-content {
+            margin-right: 0;
+          }
+        }
+
+        &:nth-child(4) {
+          .b-content {
+            margin-left: 16px;
+            margin-right: 0;
+          }
+        }
+      }
+    }
+
+    .b-content {
+      min-height: 486px;
+      border: 0.5px solid $pantone;
+      margin-right: 16px;
+      @media only screen and (max-width: $tablet) {
+        margin-right: 0;
+      }
+
+      &__image {
+        position: relative;
+        height: 210px;
+        background: #EEEEEE;
+        overflow: hidden;
+
+        .year {
+          position: absolute;
+          left: 0;
+          top: 20px;
+          background-color: $pantone;
+          color: $white;
+          font-size: 20px;
+          padding: 5px;
+        }
+
+        img {
+          height: 210px !important;
+          object-fit: cover;
+          width: 100%;
+        }
+      }
+
+      &__desc {
+        padding: 10px;
+
+        h3 {
+          font-size: 20px;
+          margin: 0 0 10px;
+        }
+
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+.slick-track {
+  margin-left: unset !important;
+}
+
+.slick-prev,
+.slick-next {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.slick-arrow {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50%;
+  border: solid 1px $pantone;
+  position: absolute;
+  z-index: 6;
+  top: 38%;
+
+  &.slick-prev {
+    background: $white url('#{$image-base-path}/back.png') center 10px no-repeat;
+    left: -20px;
+  }
+
+  &.slick-next {
+    background: $white url('#{$image-base-path}/next.png') center 10px no-repeat;
+    right: -20px;
+  }
+}
