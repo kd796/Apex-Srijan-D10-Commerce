@@ -1,0 +1,60 @@
+.multisite-featured-search-card {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  padding: 0 0 60px;
+  position: relative;
+  transition: all 0.3s ease;
+  outline: 2px solid transparent;
+
+  a,
+  span {
+    display: flex;
+    text-decoration: none;
+  }
+
+  .lable {
+    color: $black;
+    padding: 16px;
+    font-size: 24px;
+    line-height: 1.1;
+    font-weight: 700;
+    min-height: 100px;
+  }
+
+  .field--name-field-video {
+    .media {
+      .field {
+        display: flex;
+        padding-top: 0;
+        overflow: hidden;
+        align-items: center;
+        justify-content: center;
+        background-color: $white;
+
+        .video-embed-field-provider-youtube {
+          width: 100%;
+          display: flex;
+          padding-top: 35%;
+          position: relative;
+
+          iframe {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+          }
+        }
+      }
+    }
+  }
+
+  &:hover,
+  &:focus {
+    outline-color: $black;
+    box-shadow: 0 0 16px 5px rgba($color: $black, $alpha: 0.2);
+  }
+}

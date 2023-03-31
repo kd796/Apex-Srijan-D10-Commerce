@@ -1,0 +1,66 @@
+.news-search-card {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  padding: 0 0 60px;
+  position: relative;
+  transition: all 0.3s ease;
+  outline: 2px solid transparent;
+
+  a {
+    text-decoration: none;
+  }
+
+  .lable,
+  .body {
+    padding: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    text-decoration: none;
+  }
+
+  .lable {
+    color: $black;
+    padding: 16px;
+    font-size: 24px;
+    line-height: 1.1;
+    font-weight: 700;
+    min-height: 100px;
+  }
+
+  .body {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+      padding: 0;
+      font-size: 20px;
+      line-height: 1.3;
+      font-weight: 700;
+      margin: 0 0 16px;
+    }
+
+    a {
+      color: $pantone;
+      text-decoration: underline;
+    }
+
+    p {
+      margin: 0 0 16px;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    outline-color: $black;
+    box-shadow: 0 0 16px 5px rgba($color: $black, $alpha: 0.2);
+  }
+}

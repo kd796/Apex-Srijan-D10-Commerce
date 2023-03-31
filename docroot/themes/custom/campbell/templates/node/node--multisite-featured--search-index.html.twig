@@ -76,10 +76,14 @@
   ]
 %}
 
-<div class="related-products">
+<div class="multisite-featured-search-card">
   {{ content.field_video }}
-  <a href={{ url }}>
-    <span class="lable">{{ label }}</span>
-    {{ 'Read More' }}
+
+  <span class="lable">
+    {{ label }}
+  </span>
+
+  <a href={{ url }} class="read-more">
+    {{ 'Read More'|t }}
   </a>
 </div>
