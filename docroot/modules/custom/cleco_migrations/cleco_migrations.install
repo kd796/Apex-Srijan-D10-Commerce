@@ -54,6 +54,13 @@ function cleco_migrations_uninstall() {
   \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_model')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_model_de')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_model_gb')->delete();
+
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_media')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_products_asset_category')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration._de')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_products_asset_category_de')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_product_media_gb')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.cleco_products_asset_category_gb')->delete();
 }
 
 /**
