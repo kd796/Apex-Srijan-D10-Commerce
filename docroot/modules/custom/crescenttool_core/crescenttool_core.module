@@ -13,7 +13,6 @@ use Drupal\Component\Utility\Html;
 use Drupal\views\ViewExecutable;
 use Drupal\media\MediaInterface;
 use Drupal\node\Entity\Node;
-use Drupal\node\NodeInterface;
 use Drupal\views\Views;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
@@ -25,19 +24,19 @@ function crescenttool_core_theme() {
   $theme['block__country_switch'] = [
     'render element' => 'elements',
     'template' => 'block--country-switch',
-    'base hook' => 'block'
+    'base hook' => 'block',
   ];
 
   $theme['block__footer_navigation_block'] = [
     'render element' => 'elements',
     'template' => 'block--footer-navigation-block',
-    'base hook' => 'block'
+    'base hook' => 'block',
   ];
 
   $theme['block__header_search'] = [
     'render element' => 'elements',
     'template' => 'block--header-search',
-    'base hook' => 'block'
+    'base hook' => 'block',
   ];
 
   $theme['ct_product_buy_now_sticky'] = [
@@ -60,7 +59,7 @@ function crescenttool_core_entity_extra_field_info() {
   $extra['node']['product_brand']['display']['products_by_brand'] = [
     'label' => t('View Block - Products by Brand'),
     'description' => t('Lists Products filtered to current brand'),
-    'weight' => 0
+    'weight' => 0,
   ];
 
   return $extra;
