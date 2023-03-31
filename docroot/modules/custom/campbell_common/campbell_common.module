@@ -6,6 +6,7 @@
  */
 
 use Drupal\node\NodeInterface;
+use Drupal\Core\Entity\EntityInterface;
 
 /**
  * Implements hook_theme().
@@ -93,6 +94,46 @@ function campbell_common_preprocess_breadcrumb(&$variables) {
       $variables['breadcrumb'][$last_key]['text'] = $long_description_value;
     }
   }
+}
+
+
+/**
+ * Implements hook_node_presave().
+ *
+ * Setting 2nd and 3rd level category facets for child product categories.
+ */
+function campbell_common_node_presave(EntityInterface $entity) {
+  if ($entity->bundle() !== 'product_category') {
+    return;
+  }
+
+  $classification_id = $entity->get('field_classification_id')->getValue()[0]['value'];
+  $classification_array = explode('_', $classification_id);
+
+  if ($classification_array[0] !== 'W2' && $classification_array[0] !== 'W3') {
+    return;
+  }
+
+  $term_id = $entity->get('field_product_classifications')->getValue();
+  if (!$term_id) {
+    return;
+  }
+
+  $child_term_id = isset($term_id[0]) ? $term_id[0] : $term_id['target_id'];
+  $child_term = end(\Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($child_term_id));
+  $term_classification_id = $child_term->get('field_classification_id')->getValue()[0]['value'];
+
+  $parent_nid = \Drupal::entityQuery('node')
+    ->condition('field_classification_id', $term_classification_id)
+    ->range(0, 1)
+    ->execute();
+  if (!$parent_nid) {
+    return;
+  }
+
+  $parent_node = \Drupal::entityTypeManager()->getStorage('node')->load(reset($parent_nid));
+  $field_category_facets_value = $parent_node->get('field_category_facets')->getValue();
+  $entity->set('field_category_facets', $field_category_facets_value);
 }
 
 /**
