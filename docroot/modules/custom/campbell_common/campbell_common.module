@@ -114,12 +114,15 @@ function campbell_common_node_presave(EntityInterface $entity) {
     return;
   }
 
-  $term_id = $entity->get('field_product_classifications')->getValue();
-  if (!$term_id) {
+  $term_ids = $entity->get('field_product_classifications')->getValue();
+  if (empty($term_ids)) {
     return;
   }
 
-  $child_term_id = isset($term_id[0]) ? $term_id[0] : $term_id['target_id'];
+  // Get the first term ID from the array of entity references.
+  $first_term_id = reset($term_ids);
+  $child_term_id = isset($first_term_id['target_id']) ? $first_term_id['target_id'] : NULL;
+
   $child_term = end(\Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($child_term_id));
   $term_classification_id = $child_term->get('field_classification_id')->getValue()[0]['value'];
 
