@@ -29,8 +29,7 @@ class CampbellCommonController extends ControllerBase {
     $chain_and_cable_cutters = views_embed_view('taxonomy_menu', 'chain_and_cable_cutters');
     // Render a Feature block.
     $entityTypeManager = $this->entityTypeManager();
-    $block = $entityTypeManager->getStorage('block')->load('featuredmenu');
-    $featuredblock = $entityTypeManager->getViewBuilder('block')->view($block);
+    $featuredblock = views_embed_view('featured_menu_product', 'featureed_product_menu');
 
     // Return a render array that includes both views.
     return [

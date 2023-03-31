@@ -2069,6 +2069,21 @@ display:
         arguments: false
         filters: false
         filter_groups: false
+        footer: false
+      footer:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: 'Need to add or update your location information in our database? <a href="/about/contact-us?select_type=Add/Adjust Your Location Information">CLICK HERE</a>'
+            format: basic_html
+          tokenize: false
       display_extenders: {  }
       path: where-to-buy
     cache_metadata:
