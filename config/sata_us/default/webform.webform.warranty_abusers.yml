@@ -16,15 +16,21 @@ elements: |-
   name:
     '#type': textfield
     '#title': Name
-    '#description': 'First Name and Last Name of the abuser'
-    '#help': 'Please enter the name'
+    '#description': 'First and Last name of the abuser'
+    '#help': 'Please enter the first and last name of the abuser'
     '#required': true
   email:
     '#type': email
     '#title': Email
     '#description': 'Email id of the abuser'
-    '#help': 'Please enter email of the abuser'
+    '#help': 'Please enter email id'
     '#required': true
+    '#unique': true
+  mailing_adress:
+    '#type': textarea
+    '#title': 'Mailing Adress'
+    '#description': 'Mailing address of the abuser'
+    '#help': 'Address of the abuser, if any'
 css: ''
 javascript: ''
 settings:

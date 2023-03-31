@@ -32,7 +32,7 @@ class WarrantyAbuserHandler extends WebformHandlerBase {
     // Get warranty_replacement_form submission data.
     $data = $webform_submission->getData();
     if (!empty($abuser_emails) && in_array($data['email_address'], $abuser_emails)) {
-      $form_state->setErrorByName('element', $this->t('Access Denied: You have been blocked from accessing this page. Please contact the site administrator if you believe this is an error.'));
+      $form_state->setErrorByName('element', $this->t('User is blocked. Please contact our live support staff directly at 1.866.907.9716 Monday-Friday 9am-5pm ET.'));
     }
   }
 
