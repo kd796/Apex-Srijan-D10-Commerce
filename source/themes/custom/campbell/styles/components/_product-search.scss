@@ -36,6 +36,7 @@
 
     .views-exposed-form {
       margin: 16px 0 0;
+      display: none;
 
       form {
         margin: 0 0 16px;
@@ -69,7 +70,7 @@
         .view-search__header-results {
           color: $black;
           font-size: 24px;
-          margin: 0 0 30px;
+          margin: 30px 0;
           line-height: 1.2;
           font-weight: 700;
 
@@ -202,7 +203,13 @@
 
             &:hover {
               box-shadow: 0 0 16px 5px rgba($color: $black, $alpha: 0.2);
-              outline: 2px solid $black;
+              outline: 2px solid $pantone;
+
+              a {
+                &.read-more {
+                  background-color: $pantone;
+                }
+              }
             }
           }
         }
