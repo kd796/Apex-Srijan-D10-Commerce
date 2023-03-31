@@ -1,7 +1,9 @@
 uuid: 8b1e98c1-544a-4bd8-8dc2-7f90d3f7316e
 langcode: en
 status: open
-dependencies: {  }
+dependencies:
+  module:
+    - apex_common
 weight: 0
 open: null
 close: null
@@ -365,4 +367,13 @@ handlers:
       theme_name: ''
       parameters: {  }
       debug: false
+  warrantyabuserhandler:
+    id: WarrantyAbuserHandler
+    handler_id: warrantyabuserhandler
+    label: WarrantyAbuserHandler
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings: {  }
 variants: {  }
