@@ -399,48 +399,74 @@ $active-gap: 8px; // the math likes px values
 }
 
 //input checbox for hubspot form
-.hs-privacy_policy {
-  .hs-form-booleancheckbox {
-    .hs-form-booleancheckbox-display {
-
-      input[type='checkbox'] {
-        background: $white;
-        border: 1px solid #272525;
-        content: '';
-        height: 1.125rem;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 1.125rem;
-        border-radius: 1px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        &::after {
-          @include icon-styles;
-          color: $white;
-          content: icon-char(checkmark);
-          font-size: rem(10px);
-          height: $active-width;
-          width: $active-width;
+.hbspt-form{
+  .hs-privacy_policy {
+    .hs-form-booleancheckbox {
+      .hs-form-booleancheckbox-display {
+  
+        input[type='checkbox'] {
+          background: $white;
+          border: 1px solid #272525;
+          content: '';
+          height: 1.125rem;
+          left: 0;
           position: absolute;
-          top: 3px;
-          left: 0.1rem;
-          display: none;
-        }
-
-        &:checked {
-          background-color: #F16F43;
-
+          top: 0;
+          width: 1.125rem;
+          border-radius: 1px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+  
           &::after {
+            @include icon-styles;
+            color: $white;
+            content: icon-char(checkmark);
+            font-size: rem(10px);
+            height: $active-width;
+            width: $active-width;
+            position: absolute;
+            top: 3px;
+            left: 0.1rem;
+            display: none;
+          }
+  
+          &:checked {
             background-color: #F16F43;
-            display: block;
+  
+            &::after {
+              background-color: #F16F43;
+              display: block;
+            }
           }
         }
+      } 
+    }
+  }
+  .form-columns-2 {
+    .hs-firstname, .hs-lastname{
+      .input{
+        margin-right: unset;
       }
-    } 
+    }
+    .hs-firstname{
+      padding-right: 6px;
+    }
+    .hs-lastname{
+      padding-left: 6px;
+    }
+  }
+  .form-columns-1{
+    .hs-email {
+      margin-top: 6px;
+      .input {
+        margin-right: unset;
+        .hs-input {
+          width: 100%;
+        }
+      }
+    }
   }
 }
 
