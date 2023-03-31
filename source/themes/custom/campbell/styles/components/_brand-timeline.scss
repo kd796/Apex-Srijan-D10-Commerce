@@ -15,6 +15,7 @@
         background: none;
         border: 0;
         padding: 0;
+        overflow: unset;
 
         &::after {
           content: '';
@@ -31,6 +32,7 @@
     .form-radios {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
     .form-type-radio {
@@ -64,7 +66,7 @@
         line-height: 24px;
         color: $spanish-gray;
         background: $white;
-        padding: 10px;
+        padding: 10px 20px;
         cursor: pointer;
 
         &.ajax-load-class {
@@ -76,50 +78,24 @@
   }
 
   .brand-timeline-content {
-    margin-bottom: 50px;
-
-    .slick-slide {
-      &:nth-child(4) {
-        .b-content {
-          margin-right: 0;
-        }
-      }
-
-      &:nth-child(5) {
-        .b-content {
-          margin-left: 16px;
-          margin-right: 0;
-        }
-      }
-
-      @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
-        &:nth-child(3) {
-          .b-content {
-            margin-right: 0;
-          }
-        }
-
-        &:nth-child(4) {
-          .b-content {
-            margin-left: 16px;
-            margin-right: 0;
-          }
-        }
-      }
+    margin: 0 auto 50px;
+    @media only screen and (min-width: $tablet-max) {
+      width: 800px;
     }
 
     .b-content {
-      min-height: 486px;
+      min-height: 400px;
       border: 0.5px solid $pantone;
       margin-right: 16px;
       @media only screen and (max-width: $tablet) {
         margin-right: 0;
+        width: 300px;
       }
 
       &__image {
         position: relative;
         height: 210px;
-        background: #EEEEEE;
+        background: $light-gray;
         overflow: hidden;
 
         .year {
@@ -155,10 +131,6 @@
   }
 }
 
-.slick-track {
-  margin-left: unset !important;
-}
-
 .slick-prev,
 .slick-next {
   display: block !important;
@@ -176,12 +148,12 @@
   top: 38%;
 
   &.slick-prev {
-    background: $white url('#{$image-base-path}/back.png') center 10px no-repeat;
+    background: $white url('#{$image-base-path}/back.png') 12px 9px no-repeat;
     left: -20px;
   }
 
   &.slick-next {
-    background: $white url('#{$image-base-path}/next.png') center 10px no-repeat;
-    right: -20px;
+    background: $white url('#{$image-base-path}/next.png') 14px 9px no-repeat;
+    right: -5px;
   }
 }
