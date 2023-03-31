@@ -13,8 +13,8 @@
           infinite: false,
           centerMode: false,
           speed: 300,
-          slidesToShow: 4,
-          slidesToScroll: 4,
+          slidesToShow: 2,
+          slidesToScroll: 2,
           arrows: false
         });
       }
@@ -23,8 +23,8 @@
           infinite: false,
           centerMode: false,
           speed: 300,
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 2,
+          slidesToScroll: 2,
           arrows: false
         });
       }
@@ -48,8 +48,8 @@
             infinite: false,
             centerMode: false,
             speed: 300,
-            slidesToShow: 4,
-            slidesToScroll: 4,
+            slidesToShow: 2,
+            slidesToScroll: 2,
             arrows: false
           });
         }
@@ -59,8 +59,8 @@
             infinite: false,
             centerMode: false,
             speed: 300,
-            slidesToShow: 3,
-            slidesToScroll: 3,
+            slidesToShow: 2,
+            slidesToScroll: 2,
             arrows: false
           });
         }
