@@ -139,6 +139,7 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
     }
 
     // Process for Media product_downloads for Image media .
+    $mid = NULL;
     if ($process_pdf && $get_type == "mid" && $media_type == "image") {
       try {
         $mid = $this->imageOps->getAndSaveDownloadsImageMedia($asset_id, $alt_text, $langcode);
@@ -166,7 +167,7 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
         $this->logMessage($this->configuration['notification_logfile'], $message);
       }
       if ($fid) {
-        return ['target_id' => $fid];
+        return ['target_id' => $fid, 'alt' => $alt_text];
       }
     }
 

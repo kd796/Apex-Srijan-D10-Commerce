@@ -1,16 +1,7 @@
-uuid: 0dcc09bf-f754-4741-bf16-11a185cfe581
-langcode: en
-status: true
-dependencies: {  }
-_core:
-  default_config_hash: bGPGIAMEev9Fc-msUg6FdHmqgpQjpT8J8Amm-a0UUuQ
-id: cleco_products
-class: null
-field_plugin_method: null
-cck_plugin_method: null
-migration_tags: null
+# Migration configuration for cleco_products content.
+id: cleco_products_gb
+label: Product migration for Language GB
 migration_group: cleco
-label: 'Product migration'
 source:
   constants:
     bool_0: 0
@@ -19,78 +10,63 @@ source:
   plugin: url
   data_fetcher_plugin: file
   data_parser_plugin: simple_xml
-  urls: 'public://import/pim_data/pim_export_with_schema.xml'
-  namespaces: 'http://www.stibosystems.com/step'
-  item_selector: '//Product[@UserTypeID="SKU Group"]'
+  urls: 'public://import/pim_data/pim_export_with_schema_gb.xml'
+  namespaces:
+     "http://www.stibosystems.com/step"
+  item_selector: //Product[@UserTypeID="SKU Group"]
   fields:
-    -
-      name: remote_sku
+    - name: remote_sku
       label: SKU
       selector: '@ID'
-    -
-      name: remote_name
-      label: 'SKU Group'
+    - name: remote_name
+      label: SKU Group
       selector: Name
-    -
-      name: remote_sku_group
-      label: 'SKU Group'
+    - name: remote_sku_group
+      label: SKU Group
       selector: Values
-    -
-      name: remote_product_long_description
-      label: 'Product Long Description'
+    - name: remote_product_long_description
+      label: Product Long Description
       selector: Values
-    -
-      name: remote_product_upc
-      label: 'Product UPC'
+    - name: remote_product_upc
+      label: Product UPC
       selector: Values
-    -
-      name: remote_product_features
-      label: 'Product Features'
+    - name: remote_product_features
+      label: Product Features
       selector: Values
-    -
-      name: foot_notes
-      label: 'Product Footnotes'
+    - name: foot_notes
+      label: Product Footnotes
       selector: Values
-    -
-      name: remote_sku_overview
-      label: 'SKU Overview'
+    - name: remote_sku_overview
+      label: SKU Overview
       selector: Values
-    -
-      name: product_classification_reference
+    - name: product_classification_reference
       label: ClassificationReference
       selector: 'ClassificationReference[@Type="Web Reference"]'
-    -
-      name: remote_listing_image
-      label: 'Listing Image'
+    - name: remote_listing_image
+      label: Listing Image
       selector: Values
-    -
-      name: remote_product_images
-      label: 'Product Images'
+    - name: remote_product_images
+      label: Product Images
       selector: Values
-    -
-      name: remote_product_downloads
-      label: 'Product downloads'
+    - name: remote_product_downloads
+      label: Product downloads
       selector: Values
-    -
-      name: remote_product_model
-      label: 'Product model content'
+    - name: remote_product_model
+      label: Product model content
       selector: Values
-    -
-      name: remote_product_web_display_sort_order
-      label: 'Web display sort order'
+    - name: remote_product_web_display_sort_order
+      label: Web display sort order
       selector: Values
-    -
-      name: remote_product_classifications
-      label: 'Product classification'
+    - name: remote_product_classifications
+      label: Product classification
       selector: Values
-    -
-      name: remote_product_primary_image
-      label: 'Product Primary Image'
+    - name: remote_product_primary_image
+      label: Product Primary Image
       selector: Values
-    -
-      name: remote_product_status
-      label: 'Product Status'
+    - name: remote_product_status
+      label: Product Status
       selector: Values
+
   ids:
     remote_sku:
       type: string
@@ -102,25 +78,32 @@ process:
   sticky: constants/bool_0
   promote: constants/bool_1
   uid: constants/uid_root
-  body/value:
+
+  'body/value':
     plugin: apex_get_sku_group_attribute_value
     source: remote_sku_overview
     attribute: ATT17711
-  body/format:
+  'body/format':
     plugin: default_value
     default_value: basic_html
+  
   field_sku: remote_sku
+
   field_sku_group:
     plugin: apex_get_id_attribute
     source: remote_sku_group
+  
   field_long_description:
     plugin: apex_get_attribute_value
     source: remote_product_long_description
     attribute: ATT919
+  
   field_upc:
     plugin: apex_get_attribute_value
     source: remote_product_upc
     attribute: ATT539
+
+  # Fet features array.
   product_features_array:
     plugin: cleco_get_product_features_array
     source: remote_product_features
@@ -130,71 +113,87 @@ process:
     include_source: true
     process:
       value: copy_point
-  field_footnotes/value:
+
+  'field_footnotes/value':
     plugin: apex_get_attribute_value
     source: foot_notes
     attribute: Footnotes
-  field_footnotes/format:
+  'field_footnotes/format':
     plugin: default_value
     default_value: basic_html
-  language:
+
+  language: 
     plugin: default_value
-    default_value: en
+    default_value: gb
+
+  # Newly added Mappings.
   field_web_display_sort_order:
     plugin: apex_get_attribute_value
     source: remote_product_web_display_sort_order
     attribute: ATT15738
+
+  # Process product downloads.
   field_downloads:
     plugin: cleco_map_product_downloads
     source: remote_product_downloads
-    migration_instance: cleco_product_media
-    langcode: en
+    migration_instance: cleco_product_media_gb
+    langcode: gb
+
+  # Process product model content.
   field_product_models:
     plugin: cleco_map_product_model
     source: remote_product_model
-    migration_instance: cleco_product_model
-    langcode: en
+    migration_instance: cleco_product_model_gb
+    langcode: gb
+
+  #Process product classification
   field_product_classifications:
     plugin: cleco_map_product_classification
     source: remote_product_classifications
-    migration_instance: cleco_product_classifications_level_two
+    migration_instance: cleco_product_classifications_level_two_gb
     classification_type:
-      - 'Web Reference'
-    langcode: en
+      - Web Reference
+    langcode: gb
+
+  #Process product primary image
   field_media:
     plugin: cleco_map_product_images
     source: remote_product_primary_image
-    migration_instance: cleco_product_media
+    migration_instance: cleco_product_media_gb
     asset_type:
-      - 'Primary Image'
-    langcode: en
+      - Primary Image
+    langcode: gb
+
+  #Process product media all images
   field_product_images:
     plugin: cleco_map_product_images
     source: remote_product_primary_image
-    migration_instance: cleco_product_media
+    migration_instance: cleco_product_media_gb
     asset_type:
-      - 'Beauty-Glamour Image'
-      - 'Cutaway Image'
-      - 'Highlight Image'
-      - 'In Package Image'
-      - 'In Use Image'
+      - Beauty-Glamour Image
+      - Cutaway Image
+      - Highlight Image
+      - In Package Image
+      - In Use Image
       - Literature
-      - 'Part Shot 1'
-      - 'Part Shot 2'
-      - 'Part Shot 3'
-      - 'Part Shot 4'
-      - 'Part Shot 5'
-      - 'Product Logo'
-      - 'Secondary Image'
-      - 'Warning Image'
+      - Part Shot 1
+      - Part Shot 2
+      - Part Shot 3
+      - Part Shot 4
+      - Part Shot 5
+      - Product Logo
+      - Secondary Image
+      - Warning Image
       - ICON
-    langcode: en
+    langcode: gb
+
   status:
     plugin: cleco_map_product_status
     source: remote_product_status
     condition:
       AttributeID: SAP_SALES_ORG_STATUS
       ID: Z2
+
 destination:
   plugin: apex_product
   bundle: product

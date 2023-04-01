@@ -117,7 +117,7 @@ class ImageOperations extends FileOperations {
           'uid'              => 1,
           'field_media_image' => [
             'target_id' => $file->id(),
-            'alt' => 'Image of ' . $alt_text,
+            'alt' => $alt_text,
           ],
         ]);
 
@@ -262,7 +262,7 @@ class ImageOperations extends FileOperations {
           'uid'              => 1,
           'field_media_image' => [
             'target_id' => $file->id(),
-            'alt' => 'Image of ' . $alt_text,
+            'alt' => $alt_text,
           ],
         ]);
 
