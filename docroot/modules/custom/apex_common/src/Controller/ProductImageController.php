@@ -41,34 +41,20 @@ class ProductImageController extends ControllerBase {
     $base_filename = $node->id() . '-product-images.zip';
     $zip_filename = $zip_directory . $base_filename;
 
-    // First check the cache for a previous zip file.
-    /** @var \Drupal\file\Entity\File $zip_file */
-    $zip_file = FileOperations::loadFileByUri($zip_filename);
-    $filesize = 0;
-
-    if (is_object($zip_file)) {
-      $filesize = $zip_file->getSize();
+    // Check if the file already exists.
+    if (file_exists($zip_filename)) {
+      // Delete the existing zip file to prevent adding multiple files.
+      $zip_file = FileOperations::loadFileByUri($zip_filename);
+      if ($zip_file) {
+        $zip_file->delete();
+      }
     }
 
-    // If not found, create a new zip file.
-    if (empty($zip_file) || empty($filesize)) {
-      // Now get all the images.
-      $images = $this->getImages($node);
-
-      // Prep Directory.
-      \Drupal::service('file_system')->prepareDirectory($zip_directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
-
-      // Let's make a new zip file.
-      $realpath = $this->createZip($images, $zip_filename, $zip_file);
-    }
-    else {
-      /** @var \Drupal\Core\File\FileSystem $filesystem */
-      $filesystem = \Drupal::service('file_system');
-      $realpath = $filesystem->realpath($zip_filename);
-    }
+    // Create a new zip file.
+    $new_zip_file = $this->createZip($this->getImages($node), $zip_filename);
 
     // Return the zip file.
-    return $this->sendFile($realpath, $base_filename);
+    return $this->sendFile($new_zip_file, $base_filename);
   }
 
   /**
@@ -92,6 +78,7 @@ class ProductImageController extends ControllerBase {
     $response->headers->set('Content-Disposition', $disposition);
     $response->headers->set('Content-Transfer-Encoding', 'binary');
     $response->headers->set('Content-length', strlen($contents));
+    ob_clean();
 
     return $response;
   }
