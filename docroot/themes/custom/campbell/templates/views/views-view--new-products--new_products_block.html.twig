@@ -58,55 +58,97 @@
     {% endif %}
     {{ title_suffix }}
     <div class="row">
-      <div class="col-filter">
-        {% if exposed %}
-          <div class="view-filters">
-            {{ exposed }}
-          </div>
-        {% endif %}
-      </div>
-      <div class="col-list">
-
-        {% if attachment_before %}
-          <div class="attachment attachment-before">
-            {{ attachment_before }}
-          </div>
-        {% endif %}
-
-        <div class="view-container">
-          <div class="view-header">
-            {% if header %}
-              {{ header }}
-            {% endif %}
-          </div>
-          <div{{ content_attributes.addClass(content_classes) }}>
-            <div class="title-row">
-              <div class="views-media"></div>
-              <div class="views-title"><span>{{ 'Part#' | t }}</span></div>
-              <div class="views-description"><span>{{ 'Description' | t }}</span></div>
-              <div class="views-nothing"></div>
+      {% if exposed %}
+        <div class="col-filter">
+          {% if exposed %}
+            <div class="view-filters">
+              {{ exposed }}
             </div>
-            {% if rows %}
-              {{ rows }}
-            {% elseif empty %}
-              {{ empty }}
+        </div>
+        <div class="col-list">
+          {% if attachment_before %}
+            <div class="attachment attachment-before">
+              {{ attachment_before }}
+            </div>
+          {% endif %}
+
+          <div class="view-container">
+            <div class="view-header">
+              {% if header %}
+                {{ header }}
+              {% endif %}
+            </div>
+            <div{{ content_attributes.addClass(content_classes) }}>
+              <div class="title-row">
+                <div class="views-media"></div>
+                <div class="views-title"><span>{{ 'Part#' | t }}</span></div>
+                <div class="views-description"><span>{{ 'Description' | t }}</span></div>
+                <div class="views-nothing"></div>
+              </div>
+              {% if rows %}
+                {{ rows }}
+              {% elseif empty %}
+                {{ empty }}
+              {% endif %}
+            </div>
+
+            {% if pager %}
+              {{ pager }}
             {% endif %}
           </div>
 
-          {% if pager %}
-            {{ pager }}
+          {% if attachment_after %}
+            <div class="attachment attachment-after">
+              {{ attachment_after }}
+            </div>
+          {% endif %}
+          {% if more %}
+            {{ more }}
           {% endif %}
         </div>
+      {% else %}
+        <div class="col">
+          {% if attachment_before %}
+            <div class="attachment attachment-before">
+              {{ attachment_before }}
+            </div>
+          {% endif %}
 
-        {% if attachment_after %}
-          <div class="attachment attachment-after">
-            {{ attachment_after }}
+          <div class="view-container">
+            <div class="view-header">
+              {% if header %}
+                {{ header }}
+              {% endif %}
+            </div>
+            <div{{ content_attributes.addClass(content_classes) }}>
+              <div class="title-row">
+                <div class="views-media"></div>
+                <div class="views-title"><span>{{ 'Part#' | t }}</span></div>
+                <div class="views-description"><span>{{ 'Description' | t }}</span></div>
+                <div class="views-nothing"></div>
+              </div>
+              {% if rows %}
+                {{ rows }}
+              {% elseif empty %}
+                {{ empty }}
+              {% endif %}
+            </div>
+
+            {% if pager %}
+              {{ pager }}
+            {% endif %}
           </div>
-        {% endif %}
-        {% if more %}
-          {{ more }}
-        {% endif %}
-      </div>
+
+          {% if attachment_after %}
+            <div class="attachment attachment-after">
+              {{ attachment_after }}
+            </div>
+          {% endif %}
+          {% if more %}
+            {{ more }}
+          {% endif %}
+        </div>
+      {% endif %} 
     </div>
 
 
