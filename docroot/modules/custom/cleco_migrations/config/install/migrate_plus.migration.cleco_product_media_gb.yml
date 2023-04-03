@@ -1,7 +1,9 @@
 id: cleco_product_media_gb
-label: Product Media asset migration for language gb
+label: Product Media asset migration for language GB
 migration_group: cleco
 source:
+  constants:
+    uid_root: 1
   plugin: url
   data_fetcher_plugin: file
   data_parser_plugin: simple_xml
@@ -46,6 +48,7 @@ process:
   status:
     plugin: default_value
     default_value: 1
+  uid: constants/uid_root
   langcode:
     plugin: default_value
     default_value: gb

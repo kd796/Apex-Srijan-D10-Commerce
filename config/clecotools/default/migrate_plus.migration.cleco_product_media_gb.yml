@@ -1,15 +1,19 @@
-uuid: 8d93167a-5314-4015-bae3-08a5e0f3fe75
+uuid: 17b62884-2cd3-406d-b725-bb52d09134b6
 langcode: en
 status: true
 dependencies: {  }
+_core:
+  default_config_hash: kr2DFXxN2NulPlx_KL9rQa4gGxO5OVzwe9Gc_kuPxRg
 id: cleco_product_media_gb
 class: null
 field_plugin_method: null
 cck_plugin_method: null
 migration_tags: null
 migration_group: cleco
-label: 'Product Media asset migration for language gb'
+label: 'Product Media asset migration for language GB'
 source:
+  constants:
+    uid_root: 1
   plugin: url
   data_fetcher_plugin: file
   data_parser_plugin: simple_xml
@@ -61,6 +65,7 @@ process:
   status:
     plugin: default_value
     default_value: 1
+  uid: constants/uid_root
   langcode:
     plugin: default_value
     default_value: gb

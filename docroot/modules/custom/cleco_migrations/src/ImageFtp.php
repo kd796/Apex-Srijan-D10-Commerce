@@ -24,8 +24,9 @@ class ImageFtp extends Ftp {
    * @throws \League\Flysystem\FilesystemException
    */
   public function getImage(string $asset_id): bool|string {
+    // To be corrected and removed.
+    $asset_id = str_ireplace(" ", "%20", $asset_id);
     $image_path = $this->buildImagePath($asset_id);
-
     if ($this->checkFileExists($image_path)) {
       return $this->filesystem->read($image_path);
     }
