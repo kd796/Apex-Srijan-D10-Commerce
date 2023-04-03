@@ -2,6 +2,8 @@ id: cleco_product_media
 label: Product Media asset migration
 migration_group: cleco
 source:
+  constants:
+    uid_root: 1
   plugin: url
   data_fetcher_plugin: file
   data_parser_plugin: simple_xml
@@ -43,6 +45,7 @@ process:
     plugin: skip_on_empty
     method: row
     source: asset_id
+  uid: constants/uid_root
   status:
     plugin: default_value
     default_value: 1

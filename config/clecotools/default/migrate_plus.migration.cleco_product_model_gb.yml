@@ -1,15 +1,19 @@
-uuid: e236cfbc-80e6-4eba-86a8-f88ddbd6d9da
+uuid: 04405b64-0060-46e0-b546-16b17bcd0d26
 langcode: en
 status: true
 dependencies: {  }
+_core:
+  default_config_hash: eHqIfWFT7WnoVS8W-3-B__yrohoVcRXH1VJUQkTsM-M
 id: cleco_product_model_gb
 class: null
 field_plugin_method: null
 cck_plugin_method: null
 migration_tags: null
 migration_group: cleco
-label: 'Product Model content migration for language gb'
+label: 'Product Model content migration for language GB'
 source:
+  constants:
+    uid_root: 1
   plugin: url
   data_fetcher_plugin: file
   data_parser_plugin: simple_xml
@@ -42,6 +46,10 @@ source:
       name: remote_web_display_sort_order
       label: 'Web Display Sort Order'
       selector: Values
+    -
+      name: remote_product_status
+      label: 'Product Status'
+      selector: Values
   ids:
     remote_sku:
       type: string
@@ -54,8 +62,12 @@ process:
     plugin: default_value
     default_value: product_model
   status:
-    plugin: default_value
-    default_value: 1
+    plugin: cleco_map_product_status
+    source: remote_product_status
+    condition:
+      AttributeID: SAP_SALES_ORG_STATUS
+      ID: Z2
+  uid: constants/uid_root
   product_specifications_array:
     plugin: cleco_create_product_specifications
     source: remote_product_specifications

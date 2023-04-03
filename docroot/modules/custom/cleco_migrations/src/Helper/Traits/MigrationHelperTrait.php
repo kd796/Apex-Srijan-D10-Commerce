@@ -629,13 +629,92 @@ trait MigrationHelperTrait {
    */
   public function logMessage($logfile, $message) {
     if (empty($logfile)) {
-      return;
+      $logfile = $this->getDefaultLogfile();
     }
     $dir = dirname($logfile);
     if (!file_exists($dir)) {
       mkdir($dir, 0770, TRUE);
     }
     file_put_contents($logfile, $message . PHP_EOL, FILE_APPEND);
+  }
+
+  /**
+   * Write various log information in the file.
+   */
+  public function getDefaultLogfile() {
+    $default_logfile = "public://import/pim_data/logs/notification.txt";
+    return $default_logfile;
+  }
+
+  /**
+   * Get product classification list.
+   *
+   * @param mixed $classification_reference
+   *   Classification data.
+   *
+   * @return array
+   *   Returns all classification tid.
+   */
+  public function getClassificationList($classification_reference) {
+    $list = [];
+    $match_type_list = $this->configuration['classification_type'];
+    foreach ($classification_reference as $child) {
+      $id = (string) $child->attributes()->ClassificationID;
+      $type = (string) $child->attributes()->Type;
+      if (in_array($type, $match_type_list)) {
+        $list[] = $id;
+      }
+    }
+    return $list;
+  }
+
+  /**
+   * Get product image asset list.
+   *
+   * @param mixed $asset_crossreference
+   *   Asset data.
+   *
+   * @return array
+   *   Returns all asset mid.
+   */
+  public function getImageList($asset_crossreference) {
+    $list = [];
+    $match_type_list = $this->configuration['asset_type'];
+    foreach ($asset_crossreference as $child) {
+      $id = (string) $child->attributes()->AssetID;
+      $type = (string) $child->attributes()->Type;
+      if (in_array($type, $match_type_list)) {
+        $list[] = $id;
+      }
+    }
+    return $list;
+  }
+
+  /**
+   * Get migrated mapped Ids.
+   *
+   * @param array $source_id1
+   *   Source Id list to be processed.
+   * @param string $migration_id
+   *   Instance of the migration.
+   *
+   * @return array
+   *   Returns migrated Ids.
+   */
+  public function getAllMigratedMapId(array $source_id1, $migration_id) {
+    $migrated_ids = NULL;
+    if (empty($source_id1)) {
+      return $migrated_ids;
+    }
+    if (empty($migration_id)) {
+      return $migrated_ids;
+    }
+    $table = ($migration_id) ? 'migrate_map_' . $migration_id : '';
+    $query = $this->connection->select($table, 't');
+    $query->fields('t', ['sourceid1', 'destid1']);
+    $query->condition('t.sourceid1', $source_id1, 'IN');
+    $migrated_ids = $query->execute()->fetchAllKeyed();
+    return $migrated_ids;
   }
 
 }

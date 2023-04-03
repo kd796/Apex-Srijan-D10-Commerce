@@ -2,6 +2,8 @@ id: cleco_product_model
 label: Product Model content migration
 migration_group: cleco
 source:
+  constants:
+    uid_root: 1
   plugin: url
   data_fetcher_plugin: file
   data_parser_plugin: simple_xml
@@ -28,6 +30,9 @@ source:
     - name: remote_web_display_sort_order
       label: Web Display Sort Order
       selector: Values
+    - name: remote_product_status
+      label: Product Status
+      selector: Values
 
   ids:
     remote_sku:
@@ -41,8 +46,12 @@ process:
     plugin: default_value
     default_value: product_model
   status:
-    plugin: default_value
-    default_value: 1
+    plugin: cleco_map_product_status
+    source: remote_product_status
+    condition:
+      AttributeID: SAP_SALES_ORG_STATUS
+      ID: Z2
+  uid: constants/uid_root
   # Product Specifications
   product_specifications_array:
     plugin: cleco_create_product_specifications
