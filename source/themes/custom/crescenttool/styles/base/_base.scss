@@ -154,3 +154,17 @@ body.toolbar-loading .toolbar-tray {
   background: $color-white;
   background: rgba($color-white, 0.8);
 }
+
+//hide country dropdown and search
+.path-sitemap {
+	ul {
+		li {
+			&:has(.country-toggle) {
+				display: none;
+			}
+			&:has(.search-toggle) {
+				display: none;
+			}
+		}
+	}
+}
