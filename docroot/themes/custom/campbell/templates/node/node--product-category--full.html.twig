@@ -85,12 +85,18 @@
   <div{{ content_attributes }}>
     {{ content }}
     <div class="row product-category-view-section">
-      <div class="col-filter">
-        {{ filters }}
-      </div>
-      <div class="col-list">
-      {{ view }}
-      </div>
+      {% if filters %}
+        <div class="col-filter">
+          {{ filters }}
+        </div>
+        <div class="col-list">
+        {{ view }}
+        </div>
+      {% else %}
+        <div class="col">
+        {{ view }}
+        </div>
+      {% endif %}
     </div>
   </div>
 </article>
