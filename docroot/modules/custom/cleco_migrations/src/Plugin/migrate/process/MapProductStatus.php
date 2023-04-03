@@ -98,7 +98,7 @@ class MapProductStatus extends ProcessPluginBase implements ContainerFactoryPlug
    *   Returns all category tid.
    */
   public function getActiveStatusCondition() {
-    $condition = (isset($this->configuration['condition'])) ? $this->configuration['condition'] : [];
+    $condition = $this->configuration['condition'] ?? [];
     return $condition;
   }
 

@@ -123,6 +123,7 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
     }
 
     // Process for Media product_downloads for File.
+    $fid = NULL;
     if ($process_pdf && $get_type == "fid" && $media_type == "pdf") {
       try {
         $fid = $this->imageOps->getAndSavePdf($asset_id, $alt_text, $langcode);
