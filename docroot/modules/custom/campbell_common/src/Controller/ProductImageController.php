@@ -1,13 +1,14 @@
 <?php
 
-namespace Drupal\apex_common\Controller;
+namespace Drupal\campbell_common\Controller;
 
 use Drupal\apex_migrations\FileOperations;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\file\Entity\File;
-use Drupal\media\Entity\Media;
 use Drupal\node\NodeInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
@@ -17,10 +18,47 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 class ProductImageController extends ControllerBase {
 
   /**
+   * The file system service.
+   *
+   * @var \Drupal\Core\File\FileSystemInterface
+   */
+  protected $fileSystem;
+
+  /**
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
+   * Constructs a new ProductImageController object.
+   *
+   * @param \Drupal\Core\File\FileSystemInterface $fileSystem
+   *   The file system service.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   *   The entity type manager service.
+   */
+  public function __construct(FileSystemInterface $fileSystem, EntityTypeManagerInterface $entityTypeManager) {
+    $this->fileSystem = $fileSystem;
+    $this->entityTypeManager = $entityTypeManager;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('file_system'),
+      $container->get('entity_type.manager')
+    );
+  }
+
+  /**
    * {@inheritdoc}
    */
   protected function getModuleName() {
-    return 'apex_common';
+    return 'campbell_common';
   }
 
   /**
@@ -41,34 +79,20 @@ class ProductImageController extends ControllerBase {
     $base_filename = $node->id() . '-product-images.zip';
     $zip_filename = $zip_directory . $base_filename;
 
-    // First check the cache for a previous zip file.
-    /** @var \Drupal\file\Entity\File $zip_file */
-    $zip_file = FileOperations::loadFileByUri($zip_filename);
-    $filesize = 0;
-
-    if (is_object($zip_file)) {
-      $filesize = $zip_file->getSize();
+    // Check if the file already exists.
+    if (file_exists($zip_filename)) {
+      // Delete the existing zip file to prevent adding multiple files.
+      $zip_file = FileOperations::loadFileByUri($zip_filename);
+      if ($zip_file) {
+        $zip_file->delete();
+      }
     }
 
-    // If not found, create a new zip file.
-    if (empty($zip_file) || empty($filesize)) {
-      // Now get all the images.
-      $images = $this->getImages($node);
-
-      // Prep Directory.
-      \Drupal::service('file_system')->prepareDirectory($zip_directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
-
-      // Let's make a new zip file.
-      $realpath = $this->createZip($images, $zip_filename, $zip_file);
-    }
-    else {
-      /** @var \Drupal\Core\File\FileSystem $filesystem */
-      $filesystem = \Drupal::service('file_system');
-      $realpath = $filesystem->realpath($zip_filename);
-    }
+    // Create a new zip file.
+    $new_zip_file = $this->createZip($this->getImages($node), $zip_filename);
 
     // Return the zip file.
-    return $this->sendFile($realpath, $base_filename);
+    return $this->sendFile($new_zip_file, $base_filename);
   }
 
   /**
@@ -92,6 +116,7 @@ class ProductImageController extends ControllerBase {
     $response->headers->set('Content-Disposition', $disposition);
     $response->headers->set('Content-Transfer-Encoding', 'binary');
     $response->headers->set('Content-length', strlen($contents));
+    ob_clean();
 
     return $response;
   }
@@ -117,9 +142,7 @@ class ProductImageController extends ControllerBase {
       $zip_file = FileOperations::fileSaveData('', $zip_filename);
     }
 
-    /** @var \Drupal\Core\File\FileSystem $filesystem */
-    $filesystem = \Drupal::service('file_system');
-    $realpath = $filesystem->realpath($zip_filename);
+    $realpath = $this->fileSystem->realpath($zip_filename);
 
     $zip = new \ZipArchive();
     $zip->open($realpath);
@@ -152,16 +175,15 @@ class ProductImageController extends ControllerBase {
   protected function getImages(NodeInterface $node) {
     $images = [];
     $product_images = $node->get('field_product_images')->getValue();
-    $fileSystem = \Drupal::service('file_system');
 
     foreach ($product_images as $image) {
-      $media = Media::load($image['target_id']);
+      $media = $this->entityTypeManager->getStorage('media')->load($image['target_id']);
 
       if (!empty($media->field_media_image) && !empty($media->field_media_image->target_id)) {
         $fid = $media->field_media_image->target_id;
-        $file = File::load($fid);
+        $file = $this->entityTypeManager->getStorage('file')->load($fid);
         $file_uri = $file->getFileUri();
-        $file_realpath = $fileSystem->realpath($file_uri);
+        $file_realpath = $this->fileSystem->realpath($file_uri);
 
         $images[] = $file_realpath;
       }
