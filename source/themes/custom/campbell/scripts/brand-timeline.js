@@ -5,30 +5,15 @@
 
       var brandTimelineSlider = $('.brand-timeline-content');
       var windowWidth = window.innerWidth;
-      var tablet = 766.9;
-      var tabletMax = 959;
+      var tabletBreakpoint = 766.9;
+
+      // Set the selected year for dropdown.
+      var seletedLabel = $('.selected-year-display .year-label');
+      var checkedValue = $('.brand-timeline-years.select-view .form-radios .form-radio:checked').siblings('label').text();
+      seletedLabel.text(checkedValue);
+
       // Initialize the slider based on width.
-      if (windowWidth >= tabletMax) {
-        brandTimelineSlider.not('.slick-initialized').slick({
-          infinite: false,
-          centerMode: false,
-          speed: 300,
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          arrows: false
-        });
-      }
-      if (windowWidth > tablet && windowWidth < tabletMax) {
-        brandTimelineSlider.not('.slick-initialized').slick({
-          infinite: false,
-          centerMode: false,
-          speed: 300,
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          arrows: false
-        });
-      }
-      if (windowWidth < tablet) {
+      if (windowWidth < tabletBreakpoint) {
         brandTimelineSlider.not('.slick-initialized').slick({
           infinite: false,
           centerMode: false,
@@ -38,33 +23,21 @@
           arrows: false
         });
       }
+      else {
+        brandTimelineSlider.not('.slick-initialized').slick({
+          infinite: false,
+          centerMode: false,
+          speed: 300,
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          arrows: false
+        });
+      }
 
       // add a window resize event listener to update the actions when the window size changes
       $(window).on('resize', _.debounce(function () {
         windowWidth = window.innerWidth;
-        if (windowWidth >= tabletMax) {
-          brandTimelineSlider.slick('unslick');
-          brandTimelineSlider.not('.slick-initialized').slick({
-            infinite: false,
-            centerMode: false,
-            speed: 300,
-            slidesToShow: 2,
-            slidesToScroll: 2,
-            arrows: false
-          });
-        }
-        if (windowWidth > tablet && windowWidth < tabletMax) {
-          brandTimelineSlider.slick('unslick');
-          brandTimelineSlider.not('.slick-initialized').slick({
-            infinite: false,
-            centerMode: false,
-            speed: 300,
-            slidesToShow: 2,
-            slidesToScroll: 2,
-            arrows: false
-          });
-        }
-        if (windowWidth < tablet) {
+        if (windowWidth < tabletBreakpoint) {
           brandTimelineSlider.slick('unslick');
           brandTimelineSlider.not('.slick-initialized').slick({
             infinite: false,
@@ -72,6 +45,17 @@
             speed: 300,
             slidesToShow: 1,
             slidesToScroll: 1,
+            arrows: false
+          });
+        }
+        else {
+          brandTimelineSlider.slick('unslick');
+          brandTimelineSlider.not('.slick-initialized').slick({
+            infinite: false,
+            centerMode: false,
+            speed: 300,
+            slidesToShow: 2,
+            slidesToScroll: 2,
             arrows: false
           });
         }
@@ -113,12 +97,12 @@
         }
       }
       // Check slider change.
+      // Set first and last slide.
+      var firstSlide = $('.slick-track .slick-slide:first-child');
+      var lastSlide = $('.slick-track .slick-slide:last-child');
+      var firstRadioVal = 0;
+      var lastRadioVal = $('.brand-timeline-years.tab-view .form-radios .form-type-radio').length - 1;
       $('.slick-prev, .slick-next').once('sliderChange').on('click', function () {
-        // Set first and last slide.
-        var firstSlide = $('.slick-track .slick-slide:first-child');
-        var lastSlide = $('.slick-track .slick-slide:last-child');
-        var firstRadioVal = 0;
-        var lastRadioVal = $('.form-radios .form-type-radio').length - 1;
         // Clicked Prev button.
         if ($(this).hasClass('slick-prev')) {
           if (firstSlide.hasClass('slick-active')) {
@@ -160,6 +144,27 @@
           }
         }
       });
+
+      // Responsive select view of radio button.
+      function menuGroup() {
+        $('body').click(function () {
+          if ($('.menu-trigger').hasClass('active')) {
+            $('.menu-trigger').removeClass('active');
+          }
+          if ($('.menu-dropdown').hasClass('open')) {
+            $('.menu-dropdown').removeClass('open');
+          }
+        });
+        // Open menu
+        $('.menu-trigger').once('trigger').click(function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          $(this).toggleClass('active');
+          $(this).next('.menu-dropdown').toggleClass('open');
+        });
+      }
+      menuGroup();
+
     }
   };
 })(jQuery);

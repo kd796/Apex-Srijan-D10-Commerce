@@ -108,8 +108,18 @@
 
     <div class="filter">
       {% if exposed %}
-        <div class="view-filters brand-timeline-years">
+        <div class="view-filters brand-timeline-years tab-view">
           {{ exposed }}
+        </div>
+        <div class="view-filters brand-timeline-years select-view">
+          <span class="menu-label">{{ 'Select Year' | t }}</span>
+            <span class="menu-block selected-year-display">
+              <span class="year-label">year</span>
+            </span> 
+            <a href="" class="menu-trigger"></a>
+            <nav class="menu-dropdown" role="navigation">
+            {{ exposed }}
+            </nav>
         </div>
       {% endif %}
     </div>
