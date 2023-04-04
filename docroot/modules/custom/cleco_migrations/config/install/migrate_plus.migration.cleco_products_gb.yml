@@ -122,10 +122,6 @@ process:
     plugin: default_value
     default_value: basic_html
 
-  language: 
-    plugin: default_value
-    default_value: gb
-
   # Newly added Mappings.
   field_web_display_sort_order:
     plugin: apex_get_attribute_value
@@ -193,6 +189,10 @@ process:
     condition:
       AttributeID: SAP_SALES_ORG_STATUS
       ID: Z2
+
+  langcode:
+    plugin: default_value
+    default_value: gb
 
 destination:
   plugin: apex_product
