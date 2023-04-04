@@ -164,7 +164,30 @@
         });
       }
       menuGroup();
+      // Hide arrows when slider reaches last and first slide.
+      function disableArrow() {
+        if ($('.brand-timeline-years.select-view .form-radios .form-radio').first().is(':checked')) {
+          if ($('.slick-track .slick-slide').first().hasClass('slick-current')) {
+            $('.slick-prev').addClass('disabled');
+          }
+          else {
+            $('.slick-prev').removeClass('disabled');
+          }
+        }
 
+        if ($('.brand-timeline-years.select-view .form-radios .form-radio').last().is(':checked')) {
+          if ($('.slick-track .slick-slide').last().hasClass('slick-current')) {
+            $('.slick-next').addClass('disabled');
+          }
+          else {
+            $('.slick-next').removeClass('disabled');
+          }
+        }
+      }
+      disableArrow();
+      brandTimelineSlider.on('afterChange', function (event, slick, currentSlide, nextSlide) {
+        disableArrow();
+      });
     }
   };
 })(jQuery);

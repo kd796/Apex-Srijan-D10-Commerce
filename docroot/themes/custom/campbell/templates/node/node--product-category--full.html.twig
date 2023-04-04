@@ -69,7 +69,7 @@
  */
 #}
 {{ attach_library('campbell/node--product-category') }}
-{% set classes = [ 
+{% set classes = [
   'wrapper-content',
 ] %}
 <article{{ attributes.addClass(classes) }}>
@@ -85,7 +85,7 @@
   <div{{ content_attributes }}>
     {{ content }}
     <div class="row product-category-view-section">
-      {% if filters %}
+      {% if check_filter %}
         <div class="col-filter">
           {{ filters }}
         </div>
