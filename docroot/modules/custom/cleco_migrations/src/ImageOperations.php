@@ -162,7 +162,7 @@ class ImageOperations extends FileOperations {
    * @throws \League\Flysystem\FilesystemException
    */
   public function getAndSaveImage(string $asset_id, string $alt_text = '', $lang_code = "en"): mixed {
-    $asset_id_lang_code = $asset_id . $lang_code;
+    $asset_id_lang_code = $asset_id . "_" . $lang_code;
     $file_data = $this->ftp->getImage($asset_id);
 
     if ($file_data !== FALSE) {
@@ -200,7 +200,7 @@ class ImageOperations extends FileOperations {
    * @throws \League\Flysystem\FilesystemException
    */
   public function getAndSavePdf(string $asset_id, string $alt_text = '', $lang_code = 'en'): mixed {
-    $asset_id_lang_code = $asset_id . $lang_code;
+    $asset_id_lang_code = $asset_id . "_" . $lang_code;
     $file_data = $this->ftp->getPdf($asset_id);
 
     if ($file_data !== FALSE) {
@@ -239,8 +239,7 @@ class ImageOperations extends FileOperations {
    */
   public function getAndSaveDownloadsImageMedia(string $asset_id, string $alt_text = '', $lang_code = 'en'): mixed {
     $file_data = $this->ftp->getImage($asset_id);
-    $asset_id_lang_code = $asset_id . $lang_code;
-
+    $asset_id_lang_code = $asset_id . "_" . $lang_code;
     if ($file_data !== FALSE) {
       $drupal_file_path = self::buildLocalAssetImagePath($asset_id_lang_code);
       $file = ImageOperations::fileSaveData(
