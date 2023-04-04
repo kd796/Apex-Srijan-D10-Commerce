@@ -437,6 +437,31 @@ $active-gap: 8px; // the math likes px values
       }
     }
   }
+  .form-columns-2 {
+    .hs-firstname, .hs-lastname{
+      .input{
+        margin-right: unset;
+      }
+    }
+    .hs-firstname{
+      padding-right: 6px;
+    }
+    .hs-lastname{
+      padding-left: 6px;
+    }
+  }
+  .form-columns-1{
+    .hs-email {
+      margin-top: 6px;
+      .input {
+        margin-right: unset;
+        .hs-input {
+          width: 100%;
+        }
+      }
+    }
+  }
+  
   .hs_submit {
     .actions {
       .hs-button {
