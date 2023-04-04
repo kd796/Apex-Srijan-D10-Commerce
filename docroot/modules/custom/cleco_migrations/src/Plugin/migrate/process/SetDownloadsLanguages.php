@@ -31,6 +31,9 @@ class SetDownloadsLanguages extends ProcessPluginBase {
 
     $language_name = '';
     $attribute = $this->configuration['attribute'];
+    if (empty($value)) {
+      return $languages;
+    }
 
     foreach ($value->children() as $child) {
       if ($child->attributes()->AttributeID == $attribute) {
