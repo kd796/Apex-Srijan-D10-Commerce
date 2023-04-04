@@ -115,9 +115,15 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
       : trim($row->getDestinationProperty($source));
 
     $params = $this->configuration['params'];
-    $asset_id = $row->getSourceProperty($params['asset_id']);
-    $alt_text = $row->getSourceProperty($params['asset_name']);
+    $asset_id = $row->getSourceProperty($params['asset_id']) ?? "";
+    $alt_text = $row->getSourceProperty($params['asset_name']) ?? $asset_id;
 
+    if (empty($asset_id)) {
+      return [];
+    }
+    if (empty($$alt_text)) {
+      $alt_text = "";
+    }
     if ($current_bundle != $compare_bundle) {
       return [];
     }
