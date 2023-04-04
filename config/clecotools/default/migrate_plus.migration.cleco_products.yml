@@ -1,9 +1,9 @@
-uuid: 0dcc09bf-f754-4741-bf16-11a185cfe581
+uuid: 1882246c-a40b-4d8b-919e-879af02b0d31
 langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: bGPGIAMEev9Fc-msUg6FdHmqgpQjpT8J8Amm-a0UUuQ
+  default_config_hash: es-UCmmo9t6W35PdIgJyNoU03SXtaaQmteryONmLdFI
 id: cleco_products
 class: null
 field_plugin_method: null
@@ -137,9 +137,6 @@ process:
   field_footnotes/format:
     plugin: default_value
     default_value: basic_html
-  language:
-    plugin: default_value
-    default_value: en
   field_web_display_sort_order:
     plugin: apex_get_attribute_value
     source: remote_product_web_display_sort_order
@@ -195,6 +192,9 @@ process:
     condition:
       AttributeID: SAP_SALES_ORG_STATUS
       ID: Z2
+  langcode:
+    plugin: default_value
+    default_value: en
 destination:
   plugin: apex_product
   bundle: product
