@@ -100,7 +100,7 @@ class ProductCategoryFiltersForm extends FormBase {
 
       $product_query = $this->entityTypeManager->getStorage('node')->getQuery();
       $result = $product_query->condition('type', 'product')
-        ->condition('status',1)
+        ->condition('status', 1)
         ->condition('field_product_classifications', $classifications[0])
         ->execute();
       $product_nids = array_values($result);
