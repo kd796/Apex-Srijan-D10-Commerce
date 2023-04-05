@@ -59,7 +59,7 @@ class CreateProductSpecifications extends ApexProductSpecifications implements C
     $vid = 'product_specifications';
 
     $product_specifications = $this->entityTypeManager->getStorage('taxonomy_term')->loadByProperties([
-      'vid' => 'product_specifications'
+      'vid' => 'product_specifications',
     ]);
 
     if (empty($value)) {
@@ -70,7 +70,7 @@ class CreateProductSpecifications extends ApexProductSpecifications implements C
     $units = $value->xpath('/*/UnitList/Unit');
     $unit_list = [];
     foreach ($units as $item) {
-      $unit_list[(string)$item->attributes()->ID] = (string) $item->Name;
+      $unit_list[(string) $item->attributes()->ID] = (string) $item->Name;
     }
 
     foreach ($value->children() as $child) {
@@ -80,8 +80,8 @@ class CreateProductSpecifications extends ApexProductSpecifications implements C
       $validAttribute = $this->validateAttributeName($parent_id);
 
       $unit = '';
-      if (isset($child->attributes()->UnitID) && isset($unit_list[(string)$child->attributes()->UnitID])) {
-        $unit = ' ' . $unit_list[(string)$child->attributes()->UnitID];
+      if (isset($child->attributes()->UnitID) && isset($unit_list[(string) $child->attributes()->UnitID])) {
+        $unit = ' ' . $unit_list[(string) $child->attributes()->UnitID];
       }
 
       if (!$validAttribute) {
@@ -121,7 +121,7 @@ class CreateProductSpecifications extends ApexProductSpecifications implements C
       if (is_object($term)) {
         $values_array[$attributeWeight] = [
           'vid' => $vid,
-          'target_id' => $term->id()
+          'target_id' => $term->id(),
         ];
       }
     }
@@ -135,7 +135,7 @@ class CreateProductSpecifications extends ApexProductSpecifications implements C
   }
 
   /**
-   * @inerhitDoc
+   * The Function loadOrCreateChildTerm.
    */
   protected function loadOrCreateChildTerm($parent_label, $parent_term_id, $item_label, $vid = 'product_specifications') {
     $full_term_name = $parent_label . ' : ' . (string) $item_label;
@@ -164,6 +164,8 @@ class CreateProductSpecifications extends ApexProductSpecifications implements C
   }
 
   /**
+   * The function truncateString.
+   *
    * @param string $string
    *   The string to be truncated.
    * @param int $length
@@ -185,4 +187,5 @@ class CreateProductSpecifications extends ApexProductSpecifications implements C
 
     return $string;
   }
+
 }

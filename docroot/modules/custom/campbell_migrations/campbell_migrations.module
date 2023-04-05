@@ -205,7 +205,7 @@ function campbell_migrations_views_query_alter($view, QueryPluginBase $query) {
     $join->extra[] = [
       'field' => 'delta',
       'value' => 0,
-      'numeric' => true
+      'numeric' => TRUE,
     ];
   }
 }

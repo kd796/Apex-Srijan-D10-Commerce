@@ -38,7 +38,8 @@ class GetProductFeaturesArray extends ApexGetProductFeaturesArray {
       if (!empty($product[0])) {
         $product = $product[0];
 
-        // We should now be in the "Product" tag that is the actual product. Going for it's parent.
+        // We should now be in the "Product" tag that is the actual product.
+        // Going for it's parent.
         $parentProductValues = $product->xpath('parent::Product/Values');
 
         if (!empty($parentProductValues[0])) {
@@ -46,7 +47,7 @@ class GetProductFeaturesArray extends ApexGetProductFeaturesArray {
         }
       }
 
-      // overwrite child level features.
+      // Overwrite child level features.
       $this->findFeatures($value, $migrate_executable, $row);
 
       // Strip HTML from copy points if any.
@@ -65,4 +66,5 @@ class GetProductFeaturesArray extends ApexGetProductFeaturesArray {
 
     return [];
   }
+
 }
