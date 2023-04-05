@@ -57,7 +57,7 @@ class GetProductImages extends ApexGetProductImages implements ContainerFactoryP
     'In Package Image', 'In Use Image', 'Literature', 'Part Shot 1',
     'Part Shot 2', 'Part Shot 3', 'Part Shot 4', 'Part Shot 5',
     'Product Logo', 'Secondary Image', 'Warning Image', 'ICON',
-    'Dimensional Diagram'
+    'Dimensional Diagram',
   ];
 
   /**
@@ -183,7 +183,7 @@ class GetProductImages extends ApexGetProductImages implements ContainerFactoryP
             }
             else {
               $this->mediaIds[] = [
-                'media_id' => $media_id
+                'media_id' => $media_id,
               ];
             }
           }
@@ -221,7 +221,7 @@ class GetProductImages extends ApexGetProductImages implements ContainerFactoryP
                 ->execute();
               if (count($id)) {
                 $this->mediaIds[] = [
-                  'media_id' => reset($id)
+                  'media_id' => reset($id),
                 ];
                 continue;
               }
@@ -235,7 +235,7 @@ class GetProductImages extends ApexGetProductImages implements ContainerFactoryP
 
               $media->setName($video_json->title)->setPublished(TRUE)->save();
               $this->mediaIds[] = [
-                'media_id' => $media->id()
+                'media_id' => $media->id(),
               ];
             }
             else {
@@ -269,7 +269,7 @@ class GetProductImages extends ApexGetProductImages implements ContainerFactoryP
   }
 
   /**
-   * @inerhitDoc
+   * The function scanElementForImages.
    */
   protected function scanElementForImages(mixed $element, string $level = 'Product Level') {
     foreach ($element as $item) {
@@ -289,7 +289,7 @@ class GetProductImages extends ApexGetProductImages implements ContainerFactoryP
         }
         else {
           $this->mediaIds[] = [
-            'media_id' => $media_id
+            'media_id' => $media_id,
           ];
         }
 
@@ -311,4 +311,5 @@ class GetProductImages extends ApexGetProductImages implements ContainerFactoryP
       }
     }
   }
+
 }

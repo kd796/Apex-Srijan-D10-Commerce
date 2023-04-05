@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Contains cleco_migrations.module.
+ */
+
 use Drupal\migrate\MigrateSkipRowException;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\Plugin\MigrateSourceInterface;
@@ -414,7 +419,7 @@ function cleco_migrations_migrate_prepare_row(Row $row, MigrateSourceInterface $
       "asset.format-version",
       "ATT665438",
       "ATT434",
-      "ATT674033"
+      "ATT674033",
     ];
 
     if (!in_array(strtolower($row->getSource()['remote_term_id']), array_map('strtolower', $attributes_to_include))) {

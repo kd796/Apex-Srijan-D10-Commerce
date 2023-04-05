@@ -36,3 +36,27 @@ index 0000000..bb4ddb7
 +cd ${PROJECT_ROOT}/docroot/themes/custom/cleco/
 +npm "$@"
 +#-------------------------- CLOSE: Execution --------------------------------
+diff --git a/phpcbf b/phpcbf
+index 4bd7cbf..0d5d4ac 100755
+--- a/phpcbf
++++ b/phpcbf
+@@ -17,6 +17,6 @@ set -e
+ phpcbf \
+   --standard=Drupal -n \
+   --extensions="php,module,inc,install,test,profile,theme" \
+-  --ignore="*.pages*.inc,*.yml,.docksal,*.js,*.jpg,*.png,settings*.php,*.txt" \
++  --ignore="*.pages*.inc,*.yml,.docksal,*.js,*.jpg,*.png,settings*.php,*.txt,*/custom/atg/*,*/custom/cleco/*" \
+   "$@"
+ #-------------------------- END: Execution --------------------------------
+diff --git a/phpcs b/phpcs
+index 38c3847..e5b6c52 100755
+--- a/phpcs
++++ b/phpcs
+@@ -18,6 +18,6 @@ set -e
+ phpcs \
+   --standard=Drupal -n \
+   --extensions="php,module,inc,install,test,profile,theme" \
+-  --ignore="*.pages*.inc,*.yml,.docksal,*.js,*.jpg,*.png,settings*.php,*.txt" \
++  --ignore="*.pages*.inc,*.yml,.docksal,*.js,*.jpg,*.png,settings*.php,*.txt,*/custom/atg/*,*/custom/cleco/*" \
+   "$@"
+ #-------------------------- END: Execution --------------------------------

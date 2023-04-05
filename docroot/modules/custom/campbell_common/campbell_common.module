@@ -5,6 +5,7 @@
  * Primary module hooks for Campbell Common module.
  */
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\NodeInterface;
 use Drupal\Core\Entity\EntityInterface;
 
@@ -96,7 +97,6 @@ function campbell_common_preprocess_breadcrumb(&$variables) {
   }
 }
 
-
 /**
  * Implements hook_node_presave().
  *
@@ -121,7 +121,7 @@ function campbell_common_node_presave(EntityInterface $entity) {
 
   // Get the first term ID from the array of entity references.
   $first_term_id = reset($term_ids);
-  $child_term_id = isset($first_term_id['target_id']) ? $first_term_id['target_id'] : NULL;
+  $child_term_id = $first_term_id['target_id'] ?? NULL;
 
   $child_term = end(\Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($child_term_id));
   $term_classification_id = $child_term->get('field_classification_id')->getValue()[0]['value'];
@@ -142,7 +142,7 @@ function campbell_common_node_presave(EntityInterface $entity) {
 /**
  * Implements hook_form_alter().
  */
-function campbell_common_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+function campbell_common_form_alter(&$form, FormStateInterface $form_state, $form_id) {
 
   if (strpos($form_id, 'webform_submission_contact_us_') === 0) {
     $form['#prefix'] = '<div class="contact-title">Email us:</div>';
@@ -150,4 +150,3 @@ function campbell_common_form_alter(&$form, \Drupal\Core\Form\FormStateInterface
     $form['actions']['reset']['#value'] = t('Clear Form');
   }
 }
-

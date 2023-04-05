@@ -12,7 +12,6 @@ use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 use League\Flysystem\FilesystemException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\TempStore\PrivateTempStore;
 
 /**
  * Provides an apex_get_category_menu_image plugin.

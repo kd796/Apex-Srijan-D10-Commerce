@@ -35,7 +35,7 @@ function apex_common_webform_options_state_province_names_alter(array &$options,
       'Prince Edward Island',
       'Quebec',
       'Saskatchewan',
-      'Yukon'
+      'Yukon',
     ];
 
     foreach ($options as $idx => $option) {
@@ -91,7 +91,7 @@ function apex_common_load_default_image(bool $product_image = FALSE): ?Media {
  */
 function apex_common_load_media_by_name(string $name): array {
   $properties = [
-    'name' => $name
+    'name' => $name,
   ];
 
   return apex_common_load_media_by_properties($properties);
@@ -182,7 +182,7 @@ function apex_common_get_featured_page(): ?array {
     [
       'promote' => '1',
       'sticky' => 1,
-      'type' => ['page', 'landing_page']
+      'type' => ['page', 'landing_page'],
     ]
   );
 
@@ -215,7 +215,6 @@ function apex_common_metatags_attachments_alter(array &$metatag_attachments): vo
   }
 }
 
-
 /**
  * Implements hook_views_pre_view().
  *
@@ -241,7 +240,7 @@ function apex_common_views_pre_view($view, $display_id) {
     $years = array_unique($years);
 
     $ops['field_event_date_value']['group_info']['group_items'] = [];
-    $decades = array();
+    $decades = [];
     foreach ($years as $year) {
       $decade = floor($year / 10) * 10;
       $decades[] = $decade;
@@ -264,9 +263,8 @@ function apex_common_views_pre_view($view, $display_id) {
   }
 }
 
-
 /**
- * Implements form_views_exposed_form_alter() to reset the view id max length and clear error.
+ * Implements form_views_exposed_form_alter().
  */
 function apex_common_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   if ($form_id !== 'views_exposed_form') {
@@ -298,4 +296,3 @@ function apex_common_form_views_exposed_form_alter(&$form, FormStateInterface $f
       break;
   }
 }
-
