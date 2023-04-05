@@ -121,7 +121,7 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
     if (empty($asset_id)) {
       return [];
     }
-    if (empty($$alt_text)) {
+    if (empty($alt_text)) {
       $alt_text = "";
     }
     if ($current_bundle != $compare_bundle) {

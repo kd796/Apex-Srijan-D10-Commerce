@@ -113,8 +113,8 @@ class ImageOperations extends FileOperations {
       }
       else {
         $media = Media::create([
-          'bundle'           => 'image',
-          'uid'              => 1,
+          'bundle' => 'image',
+          'uid' => 1,
           'field_media_image' => [
             'target_id' => $file->id(),
             'alt' => $alt_text,
@@ -254,11 +254,25 @@ class ImageOperations extends FileOperations {
 
       if (count($usage) > 0 && !empty($usage['file']['media'])) {
         $media_id = array_key_first($usage['file']['media']);
+
+        // Process for missing alt text.
+        if ($media_id) {
+          $media = Media::load($media_id);
+          $bundle_info = $media->bundle->getValue();
+          if ($bundle_info[0]['target_id'] == "image") {
+            $image_info = $media->field_media_image->getValue();
+            if (isset($image_info[0]['alt']) && empty($image_info[0]['alt'])) {
+              $image_info[0]['alt'] = $alt_text;
+              $media->field_media_image->setValue($image_info);
+              $media->save();
+            }
+          }
+        }
       }
       else {
         $media = Media::create([
-          'bundle'           => 'image',
-          'uid'              => 1,
+          'bundle' => 'image',
+          'uid' => 1,
           'field_media_image' => [
             'target_id' => $file->id(),
             'alt' => $alt_text,
@@ -273,6 +287,44 @@ class ImageOperations extends FileOperations {
     }
 
     return FALSE;
+  }
+
+  /**
+   * Create download media.
+   *
+   * @param string $fid
+   *   The File FID for the pdf.
+   * @param string $mid
+   *   The Media MID for the image.
+   * @param string $alt_text
+   *   The alt text for the image. (Optional)
+   * @param string $lang_code
+   *   The language code. (Optional)
+   *
+   * @return false|string
+   *   Returns the media ID or FALSE.
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   * @throws \Drupal\cleco_migrations\ImageNotFoundOnFtpException
+   * @throws \League\Flysystem\FilesystemException
+   */
+  public function createDownloadMedia(string $fid, string $mid, string $alt_text = '', $lang_code = 'en'): mixed {
+    $media = Media::create([
+      'bundle' => 'product_downloads',
+      'uid' => 1,
+      'field_listing_image' => [
+        'target_id' => $mid,
+        'alt' => $alt_text,
+      ],
+      'field_media_file' => [
+        'target_id' => $fid,
+      ],
+    ]);
+
+    $media->setName($asset_id)->setPublished(TRUE)->save();
+    $media_id = $media->id();
+
+    return $media_id;
   }
 
 }

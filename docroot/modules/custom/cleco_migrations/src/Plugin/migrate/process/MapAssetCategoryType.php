@@ -77,6 +77,7 @@ class MapAssetCategoryType extends ProcessPluginBase implements ContainerFactory
       $type = (string) $child->attributes()->Type;
       $asset_id = (string) $child->attributes()->AssetID;
       $mapped_type = $this->allowedDownloadTypes($type);
+
       if (empty($mapped_type)) {
         continue;
       }
@@ -84,15 +85,20 @@ class MapAssetCategoryType extends ProcessPluginBase implements ContainerFactory
       if (empty($mid)) {
         continue;
       }
+
       $changed = 0;
       $media = $this->entityTypeManager->getStorage('media')->load($mid);
 
-      // Process for Type.
-      if (empty($media->field_type->value) && $mapped_type != "NA") {
-        $media->field_type->value = $mapped_type;
-        $changed = 1;
+      // Process for Type and category for product downloads only.
+      $bundle_info = $media->bundle->getValue();
+      if ($bundle_info[0]['target_id'] != "product_downloads") {
+        continue;
       }
 
+      if (empty($media->field_type->value)) {
+        $media->field_type->setValue($mapped_type);
+        $changed = 1;
+      }
       $category_list = $media->field_product_category->getValue();
       $existing_category_list = $this->getCategoryTids($category_list);
 
