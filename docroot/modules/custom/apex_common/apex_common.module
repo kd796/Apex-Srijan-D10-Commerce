@@ -10,6 +10,7 @@
 use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\redirect\Entity\Redirect;
 
 /**
  * Alter webform options by id.
@@ -295,4 +296,108 @@ function apex_common_form_views_exposed_form_alter(&$form, FormStateInterface $f
       // Do nothing for other views.
       break;
   }
+}
+
+/**
+ * Helper to add URL Redirects for 5xx or 4xx URLs.
+ */
+function apex_common_helper_add_url_redirects($entity, $redirect_path) {
+  try {
+    $source_path = trim(\Drupal::service('path_alias.manager')->getAliasByPath('/node/' . $entity->id()), "/");
+    $redirect = Redirect::create([
+      'redirect_source' => $source_path,
+      'redirect_redirect' => $redirect_path,
+      'language' => 'en',
+      'status_code' => '301',
+    ]);
+    $redirect->save();
+  }
+  catch (\Exception $exception) {
+    \Drupal::logger('apex_common')->error($exception->getMessage());
+  }
+}
+
+/**
+ * Helper to remove default google tag types.
+ */
+function apex_common_helper_get_google_tag_get_types() {
+  $config = \Drupal::config('google_tag.settings');
+  $include_classes = $config->get('include_classes');
+  return $include_classes ? ['data_layer', 'script'] : ['script'];
+}
+
+/**
+ * Helper function to manupulate the script of google tag.
+ */
+function apex_common_helper_get_google_tag_inline_script($type, $config_key, $weight) {
+  try {
+    $func_name = 'apex_common_helper_get_google_tag_inline_script_' . $type . '_snippet';
+    $contents = $func_name($config_key);
+    $attachment = $contents ? [
+    [
+      '#type' => 'html_tag',
+      '#tag' => 'script',
+      '#value' => $contents,
+      '#weight' => $weight,
+    ],
+      "google_tag_{$type}_tag",
+    ] : [];
+    return $attachment;
+  }
+  catch (\Exception $exception) {
+    \Drupal::logger('apex_common')->error($exception->getMessage());
+  }
+}
+
+/**
+ * Helper function to add the script of google tag.
+ */
+function apex_common_helper_get_google_tag_inline_script_script_snippet($config_key) {
+  $config = \Drupal::config('google_tag.settings');
+  $compact = $config->get('compact_snippet');
+  $container_id = apex_common_helper_gtm_variable_clean('container_id');
+  $data_layer = apex_common_helper_gtm_variable_clean('data_layer');
+  $query = apex_common_helper_gtm_environment_query();
+  $script = <<<EOS
+              if (Cookiebot.consent.statistics) {
+                (function(w,d,s,l,i){
+                  w[l]=w[l]||[];
+                  w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+                  var f=d.getElementsByTagName(s)[0];
+                  var j=d.createElement(s);
+                  var dl=l!='dataLayer'?'&l='+l:'';
+                  j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+'$query';
+                  j.async=true;
+                  f.parentNode.insertBefore(j,f);
+                })(window,document,'script','$data_layer','$container_id');
+              }
+              else {
+                  console.log("no cookiebot consent given")
+              };
+              EOS;
+  if ($compact) {
+    $script = str_replace(["\n", '  '], '', $script);
+  }
+  return $script;
+}
+
+/**
+ * Helper function to clean up the google tag variables.
+ */
+function apex_common_helper_gtm_variable_clean($variable) {
+  $config = \Drupal::config('google_tag.container.primary');
+  return trim(json_encode($config->get($variable)), '"');
+}
+
+/**
+ * Helper function to read the envirnoment variables of google tag config.
+ */
+function apex_common_helper_gtm_environment_query() {
+  $config = \Drupal::config('google_tag.container.primary');
+  if (!$config->get('include_environment')) {
+    return '';
+  }
+  $environment_id = apex_common_helper_gtm_variable_clean('environment_id');
+  $environment_token = apex_common_helper_gtm_variable_clean('environment_token');
+  return "&gtm_auth=$environment_token&gtm_preview=$environment_id&gtm_cookies_win=x";
 }

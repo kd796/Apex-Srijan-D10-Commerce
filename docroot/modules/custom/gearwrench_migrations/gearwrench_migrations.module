@@ -240,3 +240,18 @@ function gearwrench_migrations_migrate_prepare_row(Row $row, MigrateSourceInterf
     }
   }
 }
+
+/**
+ * Implements hook_node_predelete() for deleting a node and adding a redirect on it.
+ */
+function gearwrench_migrations_node_predelete($entity) {
+  if ($entity->getEntityTypeId() == 'node') {
+    if ($entity->bundle() == 'product' || $entity->bundle() == 'product_category'
+      || $entity->bundle() == 'product_industry') {
+      apex_common_helper_add_url_redirects($entity, 'internal:/all-tools');
+    }
+    else {
+      apex_common_helper_add_url_redirects($entity, 'internal:/home');
+    }
+  }
+}

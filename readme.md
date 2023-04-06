@@ -478,3 +478,24 @@ Tasks provided by the default gulp file are:
 - default - Builds the Sass, Javascript, Images, Fonts, and Icons as described above.
 - test - Runs the sass and javascript linters.
 - watch - Builds everything included in the default task as file change in the _source_ directory structure.
+
+## DDEV Local Environment Setup
+
+```
+$ git clone git@bitbucket.org:atg-global/apex-tools.git
+$ ddev start
+$ ddev composer install
+```
+Copy `example.settings.ddev.php` and change db name in `settings.ddev.php` for each site (or site needed)
+```
+$ ddev import-db --target-db=<db-name> --src=<dump.sql.gz>
+$ ddev restart
+$ ddev describe
+```
+Compiling the themes
+```
+$ ddev ssh
+$ cd source
+$ npm install (Only once during the setup)
+$ gulp default
+```
