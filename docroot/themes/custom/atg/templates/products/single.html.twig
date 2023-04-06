@@ -1,6 +1,5 @@
 {% set locale = get_locale() %}
-{% set productName = product.values.coupon_headline is defined ? product.values.coupon_headline : product.name %}
-
+{% set productName = product.name %} 
 <main class="main">
     <section class="section section--focus">
         <div class="product-hero">
@@ -11,8 +10,8 @@
                         {% for index, asset in product.assets | sort_assets %}
                             {% set zoomable = step_asset([asset], 'source_to_jpg', 'large') %}
                             {% set thumb = step_asset([asset], 'source_to_jpg', 'product_zoom_thumb') %}
-                            <carousel-item id="carousel-{{ index }}" thumb="{{ thumb }}" class="product-hero-media-item">
-                                <zoomable src="{{ thumb }}" full="{{ zoomable }}" alt="Product image"></zoomable>
+                            <carousel-item id="carousel-{{ index }}" thumb="{{ product.product_image }}" class="product-hero-media-item">
+                                <zoomable src="{{ product.product_image }}" full="{{ product.product_image }}" alt="Product image"></zoomable>
                             </carousel-item>
                         {% endfor %}
                     </carousel>
@@ -39,11 +38,11 @@
                 {% endif %}
             {% endfor %}
         {% endif %}
-        {% if copyPoints|length > 0 %}
+        {% if product.copyPoints|length > 0 %}
         <div class="product-hero-body wysiwyg-content">
             <h3 class="product-hero-body-title">{{ 'Features' | t }}</h3>
             <ul>
-              {% for key, copyPoint in copyPoints | ksort %}
+              {% for key, copyPoint in product.copyPoints | ksort %}
                   <li>{{ copyPoint|raw }}</li>
               {% endfor %}
             </ul>
