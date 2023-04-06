@@ -368,7 +368,7 @@ class ImageOperations extends FileOperations {
       $file_extension = 'jpg';
     }
     $list = [
-      'esp' => 'jpg',
+      'eps' => 'jpg',
       'png' => 'jpg',
       'gif' => 'jpg',
       'tif' => 'jpg',

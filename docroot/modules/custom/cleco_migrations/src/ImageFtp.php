@@ -106,7 +106,7 @@ class ImageFtp extends Ftp {
       $file_extension = 'jpg';
     }
     $list = [
-      'esp' => 'jpg',
+      'eps' => 'jpg',
       'png' => 'jpg',
       'gif' => 'jpg',
       'tif' => 'jpg',
