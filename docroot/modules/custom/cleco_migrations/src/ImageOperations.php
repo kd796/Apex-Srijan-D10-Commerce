@@ -55,12 +55,15 @@ class ImageOperations extends FileOperations {
    *
    * @param string $asset_id
    *   The Asset ID for the image.
+   * @param string $extension
+   *   The asset extension.
    *
    * @return string
    *   The path to store/find these images locally.
    */
-  public static function buildLocalAssetImagePath(string $asset_id) {
-    return self::$localImageDirectory . $asset_id . '.jpg';
+  public static function buildLocalAssetImagePath(string $asset_id, string $extension = '') {
+    $file_extenstion = self::mapFileExtension($extension);
+    return self::$localImageDirectory . $asset_id . $file_extenstion;
   }
 
   /**
@@ -136,12 +139,15 @@ class ImageOperations extends FileOperations {
    *
    * @param string $asset_id
    *   The Asset ID for the image.
+   * @param string $extension
+   *   The asset extension.
    *
    * @return string
    *   The path to store/find these images locally.
    */
-  public static function buildLocalAssetPdfPath(string $asset_id) {
-    return self::$localPdfDirectory . $asset_id . '.pdf';
+  public static function buildLocalAssetPdfPath(string $asset_id, string $extension = '') {
+    $file_extenstion = self::mapFileExtension($extension);
+    return self::$localPdfDirectory . $asset_id . $file_extenstion;
   }
 
   /**
@@ -153,6 +159,8 @@ class ImageOperations extends FileOperations {
    *   The alt text for the image. (Optional)
    * @param string $lang_code
    *   The language code. (Optional)
+   * @param string $extension
+   *   The asset extension.
    *
    * @return false|string
    *   Returns the media ID or FALSE.
@@ -161,12 +169,12 @@ class ImageOperations extends FileOperations {
    * @throws \Drupal\cleco_migrations\ImageNotFoundOnFtpException
    * @throws \League\Flysystem\FilesystemException
    */
-  public function getAndSaveImage(string $asset_id, string $alt_text = '', $lang_code = "en"): mixed {
+  public function getAndSaveImage(string $asset_id, string $alt_text = '', string $lang_code = 'en', string $extension = ''): mixed {
     $asset_id_lang_code = $asset_id . "_" . $lang_code;
-    $file_data = $this->ftp->getImage($asset_id);
+    $file_data = $this->ftp->getImage($asset_id, $extension);
 
     if ($file_data !== FALSE) {
-      $drupal_file_path = self::buildLocalAssetImagePath($asset_id_lang_code);
+      $drupal_file_path = self::buildLocalAssetImagePath($asset_id_lang_code, $extension);
       $file = ImageOperations::fileSaveData(
         $file_data,
         $drupal_file_path,
@@ -191,6 +199,8 @@ class ImageOperations extends FileOperations {
    *   The alt text for the image. (Optional)
    * @param string $lang_code
    *   The language code. (Optional)
+   * @param string $extension
+   *   The asset extension.
    *
    * @return false|string
    *   Returns the media ID or FALSE.
@@ -199,12 +209,12 @@ class ImageOperations extends FileOperations {
    * @throws \Drupal\cleco_migrations\ImageNotFoundOnFtpException
    * @throws \League\Flysystem\FilesystemException
    */
-  public function getAndSavePdf(string $asset_id, string $alt_text = '', $lang_code = 'en'): mixed {
+  public function getAndSavePdf(string $asset_id, string $alt_text = '', string $lang_code = 'en', string $extension = ''): mixed {
     $asset_id_lang_code = $asset_id . "_" . $lang_code;
-    $file_data = $this->ftp->getPdf($asset_id);
+    $file_data = $this->ftp->getPdf($asset_id, $extension);
 
     if ($file_data !== FALSE) {
-      $drupal_file_path = self::buildLocalAssetPdfPath($asset_id_lang_code);
+      $drupal_file_path = self::buildLocalAssetPdfPath($asset_id_lang_code, $extension);
       $file = ImageOperations::fileSaveData(
         $file_data,
         $drupal_file_path,
@@ -229,6 +239,8 @@ class ImageOperations extends FileOperations {
    *   The alt text for the image. (Optional)
    * @param string $lang_code
    *   The language code. (Optional)
+   * @param string $extension
+   *   The asset extension.
    *
    * @return false|string
    *   Returns the media ID or FALSE.
@@ -237,11 +249,11 @@ class ImageOperations extends FileOperations {
    * @throws \Drupal\cleco_migrations\ImageNotFoundOnFtpException
    * @throws \League\Flysystem\FilesystemException
    */
-  public function getAndSaveDownloadsImageMedia(string $asset_id, string $alt_text = '', $lang_code = 'en'): mixed {
-    $file_data = $this->ftp->getImage($asset_id);
+  public function getAndSaveDownloadsImageMedia(string $asset_id, string $alt_text = '', string $lang_code = 'en', string $extension = ''): mixed {
+    $file_data = $this->ftp->getImage($asset_id, $extension);
     $asset_id_lang_code = $asset_id . "_" . $lang_code;
     if ($file_data !== FALSE) {
-      $drupal_file_path = self::buildLocalAssetImagePath($asset_id_lang_code);
+      $drupal_file_path = self::buildLocalAssetImagePath($asset_id_lang_code, $extension);
       $file = ImageOperations::fileSaveData(
         $file_data,
         $drupal_file_path,
@@ -325,6 +337,33 @@ class ImageOperations extends FileOperations {
     $media_id = $media->id();
 
     return $media_id;
+  }
+
+  /**
+   * Get file extension for the asset download.
+   *
+   * @param string $extension
+   *   Asset extension.
+   *
+   * @return string
+   *   Returns the constructed file extension.
+   */
+  public static function mapFileExtension($extension = '') {
+    $extension = strtolower($extension);
+    $file_extension = $extension;
+    if (empty($extension)) {
+      $file_extension = 'jpg';
+    }
+    $list = [
+      'esp' => 'jpg',
+      'png' => 'png',
+      'pdf' => 'pdf',
+    ];
+    if (isset($list[$extension])) {
+      $file_extension = $list[$extension];
+    }
+    $file_extension = "." . $file_extension;
+    return $file_extension;
   }
 
 }

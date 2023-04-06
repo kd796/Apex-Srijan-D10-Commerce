@@ -61,7 +61,7 @@ process:
   field_media_file:
     plugin: cleco_get_product_images
     get_type: fid
-    source: asset_id
+    source: asset_values
     process_pdf : 1
     langcode: de
     media_type: pdf
@@ -80,7 +80,7 @@ process:
   field_listing_image:
     plugin: cleco_get_product_images
     get_type: mid
-    source: asset_id
+    source: asset_values
     process_pdf : 1
     langcode: de
     media_type: image
@@ -99,7 +99,7 @@ process:
   field_media_image:
     plugin: cleco_get_product_images
     get_type: fid
-    source: asset_id
+    source: asset_values
     process_image : 1
     langcode: de
     media_type: image

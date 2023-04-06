@@ -16,6 +16,8 @@ class ImageFtp extends Ftp {
    *
    * @param string $asset_id
    *   The asset ID used to build the image path.
+   * @param string $extension
+   *   The asset extension.
    *
    * @return false|string
    *   Returns the image contents or FALSE.
@@ -23,8 +25,8 @@ class ImageFtp extends Ftp {
    * @throws \Drupal\cleco_migrations\ImageNotFoundOnFtpException
    * @throws \League\Flysystem\FilesystemException
    */
-  public function getImage(string $asset_id): bool|string {
-    $image_path = $this->buildImagePath($asset_id);
+  public function getImage(string $asset_id, string $extension = ''): bool|string {
+    $image_path = $this->buildImagePath($asset_id, $extension);
     if ($this->checkFileExists($image_path)) {
       return $this->filesystem->read($image_path);
     }
@@ -37,12 +39,15 @@ class ImageFtp extends Ftp {
    *
    * @param string $asset_id
    *   The asset ID used to build the image path.
+   * @param string $extension
+   *   The asset extension.
    *
    * @return string
    *   Returns the constructed image path.
    */
-  public function buildImagePath(string $asset_id): string {
-    return $this->assetDirectory . $asset_id . '.jpg';
+  public function buildImagePath(string $asset_id, string $extension = ''): string {
+    $mapped_extension = $this->mapFileExtension($extension);
+    return $this->assetDirectory . $asset_id . $mapped_extension;
   }
 
   /**
@@ -50,12 +55,15 @@ class ImageFtp extends Ftp {
    *
    * @param string $asset_id
    *   The asset ID used to build the image path.
+   * @param string $extension
+   *   The asset extension.
    *
    * @return string
    *   Returns the constructed image path.
    */
-  public function buildPdfPath(string $asset_id): string {
-    return $this->assetDirectory . $asset_id . '.pdf';
+  public function buildPdfPath(string $asset_id, string $extension = ''): string {
+    $mapped_extension = $this->mapFileExtension($extension);
+    return $this->assetDirectory . $asset_id . $mapped_extension;
   }
 
   /**
@@ -63,6 +71,8 @@ class ImageFtp extends Ftp {
    *
    * @param string $asset_id
    *   The asset ID used to build the image path.
+   * @param string $extension
+   *   The asset extension.
    *
    * @return false|string
    *   Returns the image contents or FALSE.
@@ -70,14 +80,41 @@ class ImageFtp extends Ftp {
    * @throws \Drupal\cleco_migrations\ImageNotFoundOnFtpException
    * @throws \League\Flysystem\FilesystemException
    */
-  public function getPdf(string $asset_id): bool|string {
-    $pdf_path = $this->buildPdfPath($asset_id);
+  public function getPdf(string $asset_id, string $extension = ''): bool|string {
+    $pdf_path = $this->buildPdfPath($asset_id, $extension);
 
     if ($this->checkFileExists($pdf_path)) {
       return $this->filesystem->read($pdf_path);
     }
 
-    throw new ImageNotFoundOnFtpException('pdf path: ' . $pdf_path);
+    throw new ImageNotFoundOnFtpException('Product Download File path: ' . $pdf_path);
+  }
+
+  /**
+   * Get file extension for the asset download.
+   *
+   * @param string $extension
+   *   Asset extension.
+   *
+   * @return string
+   *   Returns the constructed file extension.
+   */
+  public function mapFileExtension($extension = '') {
+    $extension = strtolower($extension);
+    $file_extension = $extension;
+    if (empty($extension)) {
+      $file_extension = 'jpg';
+    }
+    $list = [
+      'esp' => 'jpg',
+      'png' => 'png',
+      'pdf' => 'pdf',
+    ];
+    if (isset($list[$extension])) {
+      $file_extension = $list[$extension];
+    }
+    $file_extension = "." . $file_extension;
+    return $file_extension;
   }
 
 }
