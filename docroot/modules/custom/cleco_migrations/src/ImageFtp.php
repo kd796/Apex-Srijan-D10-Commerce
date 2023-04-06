@@ -107,7 +107,9 @@ class ImageFtp extends Ftp {
     }
     $list = [
       'esp' => 'jpg',
-      'png' => 'png',
+      'png' => 'jpg',
+      'gif' => 'jpg',
+      'tif' => 'jpg',
       'pdf' => 'pdf',
     ];
     if (isset($list[$extension])) {
