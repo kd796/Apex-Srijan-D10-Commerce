@@ -9,8 +9,8 @@
 
       // Set the selected year for dropdown.
       var seletedLabel = $('.selected-year-display .year-label');
-      var checkedValue = $('.brand-timeline-years.select-view .form-radios .form-radio:checked').siblings('label').text();
-      seletedLabel.text(checkedValue);
+      var checkedValueLabel = $('.brand-timeline-years.select-view .form-radios .form-radio:checked').siblings('label').text();
+      seletedLabel.text(checkedValueLabel);
 
       // Initialize the slider based on width.
       if (windowWidth < tabletBreakpoint) {
@@ -34,33 +34,6 @@
         });
       }
 
-      // add a window resize event listener to update the actions when the window size changes
-      $(window).on('resize', _.debounce(function () {
-        windowWidth = window.innerWidth;
-        if (windowWidth < tabletBreakpoint) {
-          brandTimelineSlider.slick('unslick');
-          brandTimelineSlider.not('.slick-initialized').slick({
-            infinite: false,
-            centerMode: false,
-            speed: 300,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: false
-          });
-        }
-        else {
-          brandTimelineSlider.slick('unslick');
-          brandTimelineSlider.not('.slick-initialized').slick({
-            infinite: false,
-            centerMode: false,
-            speed: 300,
-            slidesToShow: 2,
-            slidesToScroll: 2,
-            arrows: false
-          });
-        }
-      }, 250));
-
       // Custom slider arrow.
       $('.next-arrow').on('click', function () {
         brandTimelineSlider.slick('slickNext');
@@ -73,6 +46,13 @@
         var lastRadioBtnLabel = $('.form-radios .form-type-radio:last-child label');
         $(document).ajaxStart(function () {
           lastRadioBtnLabel.addClass('ajax-load-class');
+          // Slide effect on trigger.
+          if ($('.slick-track .slick-slide').first().hasClass('slick-active')) {
+            $('.slick-track').removeClass('slide').addClass('slide-prev');
+          }
+          else {
+            $('.slick-track').removeClass('slide-prev').addClass('slide');
+          }
         });
         $(document).ajaxComplete(function () {
           lastRadioBtnLabel.removeClass('ajax-load-class');
@@ -102,7 +82,49 @@
       var lastSlide = $('.slick-track .slick-slide:last-child');
       var firstRadioVal = 0;
       var lastRadioVal = $('.brand-timeline-years.tab-view .form-radios .form-type-radio').length - 1;
+      // Triggering previous and next year on single click for less slide .
+      var slideCount = $('.slick-track .slick-slide').length;
+      if (windowWidth < tabletBreakpoint) {
+        if (slideCount === 1) {
+          $('.slick-prev').addClass('prev-trigger');
+          $('.slick-next').addClass('next-trigger');
+        }
+      }
+      else {
+        if (slideCount <= 2) {
+          $('.slick-prev').addClass('prev-trigger');
+          $('.slick-next').addClass('next-trigger');
+        }
+      }
+      // Triggering previous year.
+      var PrevArrow = $('.slick-prev');
+      PrevArrow.once('triggerprev').on('click', function () {
+        if (PrevArrow.hasClass('prev-trigger')) {
+          var checkedValue = $('.form-radios .form-radio:checked').val();
+          var checkedValueF = parseInt(checkedValue) - 1; // Use parseInt to convert checkedValue to a number
+          if (!(checkedValueF < firstRadioVal)) {
+            ajaxfix();
+            $('input:radio').attr('value', checkedValueF).trigger('click');
+            afterTrigger();
+          }
+        }
+      });
+      // Triggering next year.
+      var NextArrow = $('.slick-next');
+      NextArrow.once('triggernext').on('click', function () {
+        if (NextArrow.hasClass('next-trigger')) {
+          var checkedValue = $('.form-radios input[name="field_event_date_value"]:checked').val();
+          var checkedValueF = parseInt(checkedValue) + 1; // Use parseInt to convert checkedValue to a number
+          if (!(checkedValueF > lastRadioVal)) {
+            ajaxfix();
+            $('input:radio').attr('value', checkedValueF).trigger('click');
+            afterTrigger();
+          }
+        }
+      });
+      $('.slick-prev').addClass('prev-trigger');
       $('.slick-prev, .slick-next').once('sliderChange').on('click', function () {
+        $('.slick-prev').removeClass('prev-trigger');
         // Clicked Prev button.
         if ($(this).hasClass('slick-prev')) {
           if (firstSlide.hasClass('slick-active')) {
@@ -110,17 +132,6 @@
             $('.slick-prev').addClass('prev-trigger');
             lastSlide.removeClass('next-trigger');
             $('.slick-next').removeClass('next-trigger');
-          }
-          if (firstSlide.hasClass('slick-active prev-trigger')) {
-            $('.slick-prev.prev-trigger').once('triggerprev').on('click', function () {
-              var checkedValue = $('.form-radios .form-radio:checked').val();
-              var checkedValueF = parseInt(checkedValue) - 1; // Use parseInt to convert checkedValue to a number
-              if (!(checkedValueF < firstRadioVal)) {
-                ajaxfix();
-                $('input:radio').attr('value', checkedValueF).trigger('click');
-                afterTrigger();
-              }
-            });
           }
         }
         // Clicked Next button.
@@ -131,20 +142,8 @@
             firstSlide.removeClass('prev-trigger');
             $('.slick-prev').removeClass('prev-trigger');
           }
-          if (lastSlide.hasClass('slick-active next-trigger')) {
-            $('.slick-next.next-trigger').once('triggernext').on('click', function () {
-              var checkedValue = $('.form-radios input[name="field_event_date_value"]:checked').val();
-              var checkedValueF = parseInt(checkedValue) + 1; // Use parseInt to convert checkedValue to a number
-              if (!(checkedValueF > lastRadioVal)) {
-                ajaxfix();
-                $('input:radio').attr('value', checkedValueF).trigger('click');
-                afterTrigger();
-              }
-            });
-          }
         }
       });
-
       // Responsive select view of radio button.
       function menuGroup() {
         $('body').click(function () {

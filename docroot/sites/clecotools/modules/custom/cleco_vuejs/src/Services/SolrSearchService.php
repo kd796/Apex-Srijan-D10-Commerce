@@ -540,48 +540,55 @@ class SolrSearchService
         $parse_mode = \Drupal::service('plugin.manager.search_api.parse_mode')
                       ->createInstance('direct');
         $query->setParseMode($parse_mode);
-        $query->addCondition('type', 'enhanced_product');
+        $query->addCondition('type', ['enhanced_product', 'product'], 'IN');
         $results = $query->execute();
-    
-        foreach ($results as $result11) {
-    
-            $resultItemFields = $result11->getFields();
-            $sku = $resultItemFields['field_sku']->getvalues();
-            $type1 = $resultItemFields['type']->getvalues();
-            $title1 = $resultItemFields['title']->getvalues();
-            $title = $title1[0]->getText();
-            $slug = $resultItemFields['field_slug']->getvalues();
-            $node_id = $resultItemFields['nid']->getvalues();
-            $field_360_image = $resultItemFields['field_360_image']->getvalues();
-            $field_360_image = $resultItemFields['field_feature_hotspots']->getvalues();
 
-            $output[] = [
-            "_type" => $type1,
+    foreach ($results as $result11) {
+
+        $resultItemFields = $result11->getFields();
+        $sku_group = $resultItemFields['field_sku']->getvalues();
+        $field_type = $resultItemFields['type']->getvalues();
+        $t_title = $resultItemFields['title']->getvalues();
+        $title = $t_title[0]->getText();
+        $slug = $resultItemFields['field_slug']->getvalues();
+        $node_id = $resultItemFields['nid']->getvalues();
+        $field_360_image = $resultItemFields['field_360_image']->getvalues();
+        $field_360_image = $resultItemFields['field_feature_hotspots']->getvalues();
+        $field_product_features_cp = $resultItemFields['field_product_features_cp']->getvalues();
+        $field_media = $resultItemFields['field_media']->getvalues()[0];
+        if (!empty($field_media)) {
+            $image_load = $this->entityManager->getStorage('media')->load($field_media);
+            $image_file = $this->entityManager->getStorage('file')->load($image_load->field_media_image->target_id);
+            $image_url  = $image_file->getFileUri();
+            $image_path = file_create_url($image_url);
+        }
+
+        $output[] = [
+            "_type" => $field_type,
             "_source" => [
+            "copyPoints" => $field_product_features_cp,
             "slug" => $slug,
             "name" => $title,
             "nid" => $node_id,
-            "product_image" => $field_360_image,
-            "id" => $sku,
-            "type" => "Engineering Drawings",
+            "id" => $sku_group,
+            "type" => $title,
             "product_category" => ["Specialty Tools", "Specialty Tools"],
+            "product_image" => $image_path,
             "values" => [
-              "sku_overview" => "Designed to ensure safety-critical assembly -- ".$slug[0]." -- with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
-              "body" => "Designed to ensure safety-critical assembly with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
-              "asset_filename" => "DOT_12S1207-02.dxf"
+                "sku_overview" => "Designed to ensure safety-critical assembly -- ".$slug[0]." -- with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
+                "body" => "Designed to ensure safety-critical assembly with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
+                "asset_filename" => "DOT_12S1207-02.dxf"
             ],
             "assets" => [
-              [
+                [
                 "type" => "Primary Image",
-                "id" => "CLE_CTBAW153_FRNT_MAIN"
-              ]
-            ]
+                "id" => $image_path,
+                ]
+                ]
             ]
             ];
-        
-    
-        }
 
+        }
 
         try {
 

@@ -55,12 +55,15 @@ class ImageOperations extends FileOperations {
    *
    * @param string $asset_id
    *   The Asset ID for the image.
+   * @param string $extension
+   *   The asset extension.
    *
    * @return string
    *   The path to store/find these images locally.
    */
-  public static function buildLocalAssetImagePath(string $asset_id) {
-    return self::$localImageDirectory . $asset_id . '.jpg';
+  public static function buildLocalAssetImagePath(string $asset_id, string $extension = '') {
+    $file_extenstion = self::mapFileExtension($extension);
+    return self::$localImageDirectory . $asset_id . $file_extenstion;
   }
 
   /**
@@ -113,8 +116,8 @@ class ImageOperations extends FileOperations {
       }
       else {
         $media = Media::create([
-          'bundle'           => 'image',
-          'uid'              => 1,
+          'bundle' => 'image',
+          'uid' => 1,
           'field_media_image' => [
             'target_id' => $file->id(),
             'alt' => $alt_text,
@@ -136,12 +139,15 @@ class ImageOperations extends FileOperations {
    *
    * @param string $asset_id
    *   The Asset ID for the image.
+   * @param string $extension
+   *   The asset extension.
    *
    * @return string
    *   The path to store/find these images locally.
    */
-  public static function buildLocalAssetPdfPath(string $asset_id) {
-    return self::$localPdfDirectory . $asset_id . '.pdf';
+  public static function buildLocalAssetPdfPath(string $asset_id, string $extension = '') {
+    $file_extenstion = self::mapFileExtension($extension);
+    return self::$localPdfDirectory . $asset_id . $file_extenstion;
   }
 
   /**
@@ -153,6 +159,8 @@ class ImageOperations extends FileOperations {
    *   The alt text for the image. (Optional)
    * @param string $lang_code
    *   The language code. (Optional)
+   * @param string $extension
+   *   The asset extension.
    *
    * @return false|string
    *   Returns the media ID or FALSE.
@@ -161,12 +169,12 @@ class ImageOperations extends FileOperations {
    * @throws \Drupal\cleco_migrations\ImageNotFoundOnFtpException
    * @throws \League\Flysystem\FilesystemException
    */
-  public function getAndSaveImage(string $asset_id, string $alt_text = '', $lang_code = "en"): mixed {
+  public function getAndSaveImage(string $asset_id, string $alt_text = '', string $lang_code = 'en', string $extension = ''): mixed {
     $asset_id_lang_code = $asset_id . "_" . $lang_code;
-    $file_data = $this->ftp->getImage($asset_id);
+    $file_data = $this->ftp->getImage($asset_id, $extension);
 
     if ($file_data !== FALSE) {
-      $drupal_file_path = self::buildLocalAssetImagePath($asset_id_lang_code);
+      $drupal_file_path = self::buildLocalAssetImagePath($asset_id_lang_code, $extension);
       $file = ImageOperations::fileSaveData(
         $file_data,
         $drupal_file_path,
@@ -191,6 +199,8 @@ class ImageOperations extends FileOperations {
    *   The alt text for the image. (Optional)
    * @param string $lang_code
    *   The language code. (Optional)
+   * @param string $extension
+   *   The asset extension.
    *
    * @return false|string
    *   Returns the media ID or FALSE.
@@ -199,12 +209,12 @@ class ImageOperations extends FileOperations {
    * @throws \Drupal\cleco_migrations\ImageNotFoundOnFtpException
    * @throws \League\Flysystem\FilesystemException
    */
-  public function getAndSavePdf(string $asset_id, string $alt_text = '', $lang_code = 'en'): mixed {
+  public function getAndSavePdf(string $asset_id, string $alt_text = '', string $lang_code = 'en', string $extension = ''): mixed {
     $asset_id_lang_code = $asset_id . "_" . $lang_code;
-    $file_data = $this->ftp->getPdf($asset_id);
+    $file_data = $this->ftp->getPdf($asset_id, $extension);
 
     if ($file_data !== FALSE) {
-      $drupal_file_path = self::buildLocalAssetPdfPath($asset_id_lang_code);
+      $drupal_file_path = self::buildLocalAssetPdfPath($asset_id_lang_code, $extension);
       $file = ImageOperations::fileSaveData(
         $file_data,
         $drupal_file_path,
@@ -229,6 +239,8 @@ class ImageOperations extends FileOperations {
    *   The alt text for the image. (Optional)
    * @param string $lang_code
    *   The language code. (Optional)
+   * @param string $extension
+   *   The asset extension.
    *
    * @return false|string
    *   Returns the media ID or FALSE.
@@ -237,11 +249,11 @@ class ImageOperations extends FileOperations {
    * @throws \Drupal\cleco_migrations\ImageNotFoundOnFtpException
    * @throws \League\Flysystem\FilesystemException
    */
-  public function getAndSaveDownloadsImageMedia(string $asset_id, string $alt_text = '', $lang_code = 'en'): mixed {
-    $file_data = $this->ftp->getImage($asset_id);
+  public function getAndSaveDownloadsImageMedia(string $asset_id, string $alt_text = '', string $lang_code = 'en', string $extension = ''): mixed {
+    $file_data = $this->ftp->getImage($asset_id, $extension);
     $asset_id_lang_code = $asset_id . "_" . $lang_code;
     if ($file_data !== FALSE) {
-      $drupal_file_path = self::buildLocalAssetImagePath($asset_id_lang_code);
+      $drupal_file_path = self::buildLocalAssetImagePath($asset_id_lang_code, $extension);
       $file = ImageOperations::fileSaveData(
         $file_data,
         $drupal_file_path,
@@ -254,11 +266,25 @@ class ImageOperations extends FileOperations {
 
       if (count($usage) > 0 && !empty($usage['file']['media'])) {
         $media_id = array_key_first($usage['file']['media']);
+
+        // Process for missing alt text.
+        if ($media_id) {
+          $media = Media::load($media_id);
+          $bundle_info = $media->bundle->getValue();
+          if ($bundle_info[0]['target_id'] == "image") {
+            $image_info = $media->field_media_image->getValue();
+            if (isset($image_info[0]['alt']) && empty($image_info[0]['alt'])) {
+              $image_info[0]['alt'] = $alt_text;
+              $media->field_media_image->setValue($image_info);
+              $media->save();
+            }
+          }
+        }
       }
       else {
         $media = Media::create([
-          'bundle'           => 'image',
-          'uid'              => 1,
+          'bundle' => 'image',
+          'uid' => 1,
           'field_media_image' => [
             'target_id' => $file->id(),
             'alt' => $alt_text,
@@ -273,6 +299,71 @@ class ImageOperations extends FileOperations {
     }
 
     return FALSE;
+  }
+
+  /**
+   * Create download media.
+   *
+   * @param string $fid
+   *   The File FID for the pdf.
+   * @param string $mid
+   *   The Media MID for the image.
+   * @param string $alt_text
+   *   The alt text for the image. (Optional)
+   * @param string $lang_code
+   *   The language code. (Optional)
+   *
+   * @return false|string
+   *   Returns the media ID or FALSE.
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   * @throws \Drupal\cleco_migrations\ImageNotFoundOnFtpException
+   * @throws \League\Flysystem\FilesystemException
+   */
+  public function createDownloadMedia(string $fid, string $mid, string $alt_text = '', $lang_code = 'en'): mixed {
+    $media = Media::create([
+      'bundle' => 'product_downloads',
+      'uid' => 1,
+      'field_listing_image' => [
+        'target_id' => $mid,
+        'alt' => $alt_text,
+      ],
+      'field_media_file' => [
+        'target_id' => $fid,
+      ],
+    ]);
+
+    $media->setName($asset_id)->setPublished(TRUE)->save();
+    $media_id = $media->id();
+
+    return $media_id;
+  }
+
+  /**
+   * Get file extension for the asset download.
+   *
+   * @param string $extension
+   *   Asset extension.
+   *
+   * @return string
+   *   Returns the constructed file extension.
+   */
+  public static function mapFileExtension($extension = '') {
+    $extension = strtolower($extension);
+    $file_extension = $extension;
+    if (empty($extension)) {
+      $file_extension = 'jpg';
+    }
+    $list = [
+      'esp' => 'jpg',
+      'png' => 'png',
+      'pdf' => 'pdf',
+    ];
+    if (isset($list[$extension])) {
+      $file_extension = $list[$extension];
+    }
+    $file_extension = "." . $file_extension;
+    return $file_extension;
   }
 
 }
