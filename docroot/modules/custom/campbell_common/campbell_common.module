@@ -150,3 +150,28 @@ function campbell_common_form_alter(&$form, FormStateInterface $form_state, $for
     $form['actions']['reset']['#value'] = t('Clear Form');
   }
 }
+
+/**
+ * Implements hook_form_views_exposed_form_alter().
+ */
+function campbell_common_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  if ($form_id !== 'views_exposed_form') {
+    return;
+  }
+
+  $view = $form_state->getStorage('view');
+  $view_id = $view['view']->id();
+
+  switch ($view_id) {
+    case 'campbell_news':
+      // Override any option label.
+      $form['field_date_value']['#options']['All'] = t('All');
+      break;
+
+    default:
+      // Do nothing for other views.
+      break;
+  }
+
+}
