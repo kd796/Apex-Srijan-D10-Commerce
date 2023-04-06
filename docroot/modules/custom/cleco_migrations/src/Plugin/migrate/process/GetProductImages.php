@@ -146,6 +146,12 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
         . $asset_id . '."' . $extension . '.';
         $this->logMessage($this->configuration['notification_logfile'], $message);
       }
+      catch (\Exception | FilesystemException $e) {
+        $message = '[Product Download Asset] During import of "'
+          . '" - There was a problem loading product download "'
+          . $asset_id . '."' . $extension . '.';
+        $this->logMessage($this->configuration['notification_logfile'], $message);
+      }
       if ($fid) {
         return ['target_id' => $fid];
       }
@@ -159,17 +165,16 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
         $mid = $this->imageOps->getAndSaveDownloadsImageMedia($asset_id, $alt_text, $langcode, $pdf_media_extension);
       }
       catch (ImageNotFoundOnFtpException $e) {
-        try {
-          if ($extension != "jpg") {
-            $fid = $this->imageOps->getAndSaveImage($asset_id, $alt_text, $langcode, "jpg");
-          }
-        }
-        catch (ImageNotFoundOnFtpException $e) {
-          $message = '[Product Image Asset] During import of "'
-          . '" - Unable to find the image on the FTP server for asset: "'
-          . $asset_id . '.' . $extension . '". ';
-          $this->logMessage($this->configuration['notification_logfile'], $message);
-        }
+        $message = '[Product Image Asset] During import of "'
+        . '" - Unable to find the download product image on the FTP server for asset: "'
+        . $asset_id . '.' . $pdf_media_extension . '". ';
+        $this->logMessage($this->configuration['notification_logfile'], $message);
+      }
+      catch (\Exception | FilesystemException $e) {
+        $message = '[Product Image Asset] During import of "'
+          . '" - There was a problem loading image "'
+          . $asset_id . '.jpg".';
+        $this->logMessage($this->configuration['notification_logfile'], $message);
       }
       if ($mid) {
         return ['target_id' => $mid];
@@ -184,15 +189,32 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
       catch (ImageNotFoundOnFtpException $e) {
         try {
           if ($extension != "jpg") {
+            // Log message for asset missing and try with jpg extension.
+            $message = '[Product Image Asset] During import of "'
+            . '" - Unable to find the image on the FTP server for asset: "'
+            . $asset_id . '.' . $extension . '"...but looking for alternate .jpg File';
+            $this->logMessage($this->configuration['notification_logfile'], $message);
             $fid = $this->imageOps->getAndSaveImage($asset_id, $alt_text, $langcode, "jpg");
           }
         }
         catch (ImageNotFoundOnFtpException $e) {
           $message = '[Product Image Asset] During import of "'
           . '" - Unable to find the image on the FTP server for asset: "'
-          . $asset_id . '.' . $extension . '". ';
+          . $asset_id . '.' . $extension . '"  & "' . $asset_id . '.jpg". ';
           $this->logMessage($this->configuration['notification_logfile'], $message);
         }
+        catch (\Exception | FilesystemException $e) {
+          $message = '[Product Image Asset] During import of "'
+            . '" - There was a problem loading image "'
+            . $asset_id . '.jpg".';
+          $this->logMessage($this->configuration['notification_logfile'], $message);
+        }
+      }
+      catch (\Exception | FilesystemException $e) {
+        $message = '[Product Image Asset] During import of "'
+          . '" - There was a problem loading image "'
+          . $asset_id . '.' . $extension . '".';
+        $this->logMessage($this->configuration['notification_logfile'], $message);
       }
       if ($fid) {
         return ['target_id' => $fid, 'alt' => $alt_text];
