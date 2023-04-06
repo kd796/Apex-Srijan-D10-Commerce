@@ -267,15 +267,26 @@ class ImageOperations extends FileOperations {
       if (count($usage) > 0 && !empty($usage['file']['media'])) {
         $media_id = array_key_first($usage['file']['media']);
 
-        // Process for missing alt text.
+        // Process for missing alt text and correct language.
         if ($media_id) {
           $media = Media::load($media_id);
           $bundle_info = $media->bundle->getValue();
+          $language_info = $media->langcode->getValue();
+          $save = 0;
           if ($bundle_info[0]['target_id'] == "image") {
             $image_info = $media->field_media_image->getValue();
             if (isset($image_info[0]['alt']) && empty($image_info[0]['alt'])) {
               $image_info[0]['alt'] = $alt_text;
               $media->field_media_image->setValue($image_info);
+              $save = 1;
+            }
+            // Set current language for the image media.
+            if ($language_info[0]['value'] != $lang_code) {
+              $language_info[0]['value'] = $lang_code;
+              $media->langcode->setValue($language_info);
+              $save = 1;
+            }
+            if ($save) {
               $media->save();
             }
           }
@@ -285,6 +296,7 @@ class ImageOperations extends FileOperations {
         $media = Media::create([
           'bundle' => 'image',
           'uid' => 1,
+          'langcode' => $lang_code,
           'field_media_image' => [
             'target_id' => $file->id(),
             'alt' => $alt_text,
@@ -324,6 +336,7 @@ class ImageOperations extends FileOperations {
     $media = Media::create([
       'bundle' => 'product_downloads',
       'uid' => 1,
+      'langcode' => $lang_code,
       'field_listing_image' => [
         'target_id' => $mid,
         'alt' => $alt_text,
