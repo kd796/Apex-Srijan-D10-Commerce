@@ -32,13 +32,6 @@ class RedirectURLImportForm extends FormBase {
   protected $entityTypeManager;
 
   /**
-   * The file system.
-   *
-   * @var \Drupal\Core\File\FileSystemInterface
-   */
-  protected $fileSystem;
-
-  /**
    * Constructs a RedirectURLimport object.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
@@ -48,9 +41,8 @@ class RedirectURLImportForm extends FormBase {
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, FileSystemInterface $file_system, EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(ConfigFactoryInterface $config_factory, EntityTypeManagerInterface $entity_type_manager) {
     $this->setConfigFactory($config_factory);
-    $this->fileSystem = $file_system;
     $this->entityTypeManager = $entity_type_manager;
   }
 
@@ -60,7 +52,6 @@ class RedirectURLImportForm extends FormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('config.factory'),
-      $container->get('file_system'),
       $container->get('entity_type.manager')
     );
   }
@@ -78,23 +69,23 @@ class RedirectURLImportForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form['csv'] = [
       '#type' => 'fieldset',
-      '#title' => $this->t('Import from .csv file'),
+      '#title' => $this->t('Import URLs from .csv file to add URL Redirects.'),
     ];
     $validators = [
       'file_validate_extensions' => ['csv'],
     ];
     $form['csv']['csv_file'] = [
       '#type' => 'file',
-      '#title' => $this->t('CSV File'),
+      '#title' => $this->t('Upload CSV File'),
       '#description' => [
         '#theme' => 'file_upload_help',
-        '#description' => $this->t('The CSV file must include the only source URL.'),
+        '#description' => $this->t('Only upload a CSV file, with the source urls.'),
       ],
       '#upload_validators' => $validators,
     ];
     $form['actions']['submit'] = [
       '#type' => 'submit',
-      '#value' => $this->t('Import'),
+      '#value' => $this->t('Trigger Import'),
       '#button_type' => 'primary',
     ];
 
@@ -121,7 +112,7 @@ class RedirectURLImportForm extends FormBase {
       $this->messenger()->addWarning($this->t('No valid file was found. No redirects have been imported.'));
       return;
     }
-    RedirectURLimporter::import($this->file);
+    RedirectURLimporter::triggerBatch($this->file);
 
     // Remove file from Drupal managed files & from filesystem.
     $this->entityTypeManager->getStorage('file')->delete([$this->file]);
