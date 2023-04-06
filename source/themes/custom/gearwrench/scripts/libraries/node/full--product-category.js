@@ -183,6 +183,26 @@
         // Initialize the roving tabindex.
         $widget.rovingTabindex('[role=tab]');
 
+        let isSomethingOpen = false;
+
+        // The first pass will open all accordions with selected content and
+        // will inform whether we need to open the first accordion.
+        $accordions.each(function (accordionIndex) {
+          var $accordion = $(this);
+          var $accordionContent = $accordion.children('.fieldset-wrapper');
+
+          $accordionContent.find('input').each(function () {
+            let checked = $(this).prop('checked');
+            let type = $(this).prop('type');
+
+            if (type !== 'radio' && checked) {
+              $accordion.addClass('component-accordion-item--open');
+              isSomethingOpen = true;
+              return false;
+            }
+          });
+        });
+
         // Track when tab is changed.
         $widget.on('rovingTabindexChange', '[role=tab]', function (e, data) {
           var $accordion = $(this);
