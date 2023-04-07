@@ -95,6 +95,11 @@ pipelines:
       - step:
           <<: *deploy-package
           deployment: Master
+    pre-prod-deployment:
+      - step: *build-package
+      - step:
+          <<: *deploy-package
+          deployment: Pre Prod Deployment
     stage:
       - step: *build-package
       - step:
@@ -104,7 +109,7 @@ pipelines:
       - step: *build-package
       - step:
           <<: *deploy-package
-          deployment: Staging
+          deployment: Staging SEO
     development:
       - step: *build-package
       - step:
