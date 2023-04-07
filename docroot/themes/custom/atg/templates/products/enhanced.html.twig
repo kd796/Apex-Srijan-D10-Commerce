@@ -5,8 +5,7 @@
 {% set productName   = product.values.coupon_headline is defined ? product.values.coupon_headline : product.name %}
 {% set base_url      = step_asset_base_url() %}
 {% set hero_classes  = ['hero', 'hero-enhanced', 'hero--no-animate'] %}
-{#{% set enhanced      = get_enhanced_product(product.id, product.slug) %}#}
-{% set enhanced      = get_enhanced_product('SG_711638', 'mpro400gcd-p-hybrid-primary-global-controller') %}
+{% set enhanced      = get_enhanced_product(product.id, product.slug) %}
 {% set images        = enhanced.images %}
 {% set product_image = images.product %}
 {% set loading_image = images.loading %}

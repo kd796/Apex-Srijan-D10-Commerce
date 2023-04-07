@@ -27,4 +27,11 @@ services:
     tags:
       - {name: twig.extension}
 
-  
+  cleco_vuejs.solr_search_service:
+    class: Drupal\cleco_vuejs\Services\SolrSearchApiService
+    arguments:
+      - '@plugin.manager.search_api.parse_mode'
+      - '@language_manager'
+
+  cleco_vuejs.vue_data_formatter:
+    class: Drupal\cleco_vuejs\Services\VueDataFormatter

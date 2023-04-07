@@ -1,136 +1,109 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\cleco_vuejs\Controller\ApiController.
- */
 namespace Drupal\cleco_vuejs\Controller;
 
-use Drupal;
 use Drupal\Core\Controller\ControllerBase;
+use Psr\Container\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Drupal\search_api\Entity\Index;
-use Drupal\search_api\ParseMode\ParseModePluginManager;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Url;
+use Drupal\cleco_vuejs\Services\SolrSearchApiService;
+use Drupal\cleco_vuejs\Services\VueDataFormatter;
 
-class ApiController extends ControllerBase
-{
-    /**
-     * @var mixed
-     */
-    protected $allowAnonymous = true;
+/**
+ * Controller for search_api related routes.
+ */
+class ApiController extends ControllerBase {
+  /**
+   * The solr search service.
+   *
+   * @var \Drupal\cleco_vuejs\Controller\SolrSearchApiService
+   */
+  protected SolrSearchApiService $solrSearchService;
 
-    /**
-     * @param Request $request
-     * @param Bool    $return
-     *
-     * @return JsonResponse
-     */
-    public function actionFilterProducts(Request $request, Bool $return = false)
-    {   
-        // change the index name which is 'sitewide'
-        /* $index = \Drupal\search_api\Entity\Index::load('enhance_product_index');
-        $query = $index->query();
-        $query->keys('text to search');
-        $params = $this->getParams($request);
+  /**
+   * The vuejs data formatter service.
+   *
+   * @var \Drupal\cleco_vuejs\Services\VueDataFormatter
+   */
+  protected VueDataFormatter $vueDataFormatter;
 
-        $results = $query->execute();
-        $results = $results->getResultItems();
-        $output = [];
+  /**
+   * Construct ApiController object.
+   *
+   * @param \Drupal\cleco_vuejs\Services\SolrSearchApiService $solr_search_service
+   *   The solr search service.
+   * @param \Drupal\cleco_vuejs\Services\VueDataFormatter $vue_data_formatter
+   *   The vuejs data formatter service.
+   */
+  public function __construct(SolrSearchApiService $solr_search_service, VueDataFormatter $vue_data_formatter) {
+    $this->solrSearchService = $solr_search_service;
+    $this->vueDataFormatter = $vue_data_formatter;
+  }
 
-        foreach ($results as $result) {
-        $name = $result->getField('title')->getValues();
-        $type = $result->getField('type')->getValues();
-        $body = $result->getField('body')->getValues();
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('cleco_vuejs.solr_search_service'),
+      $container->get('cleco_vuejs.vue_data_formatter')
+    );
+  }
 
-        $output[] = [
-        "_type" => $type[0]->getText(),
-        "_source" => [
-          "slug" => "celltek-cordless-electric-right-angle",
-          "name" => $name[0]->getText(),
-          "type" => "Engineering Drawings",
-          "product_category" => ["Specialty Tools", "Specialty Tools"],
-          "values" => [
-            "sku_overview" => "Designed to ensure safety-critical assembly with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
-            "body" => "Designed to ensure safety-critical assembly with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
-            "asset_filename" => "DOT_12S1207-02.dxf"
-          ],
-          "assets" => [
-            [
-              "type" => "Primary Image",
-              "id" => "CLE_CTBAW153_FRNT_MAIN"
-            ]
-          ]
-        ]
-        ];
+  /**
+   * Product catalog callback.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request object.
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   *   The result json data.
+   *
+   * @throws \Drupal\search_api\SearchApiException
+   */
+  public function actionFilterProducts(Request $request) {
+    // Search query.
+    $search_query = $request->get('q', '');
 
-        }*/
-        //$search_api_index = Index::load('acquia_search_index')->query()->execute();
-
-        $index = Index::load('acquia_search_index');
-        $query = $index->query();
-        $parse_mode = \Drupal::service('plugin.manager.search_api.parse_mode')
-                      ->createInstance('direct');
-        $query->setParseMode($parse_mode);
-        $query->addCondition('type', 'enhanced_product');
-        $results = $query->execute();
-        
-        foreach ($results as $result11) {
-            $resultItemFields = $result11->getFields();
-            $type1[] = $resultItemFields['type']->getvalues();
-            $sku = $resultItemFields['field_sku']->getvalues();
-            $type1 = $resultItemFields['type']->getvalues();
-            $title1 = $resultItemFields['title']->getvalues();
-            $title = $title1[0]->getText();
-            $slug = $resultItemFields['field_slug']->getvalues();
-            $ss_type = $resultItemFields['field_slug']->getvalues();
-
-            $output[] = [
-            "_type" => $type1,
-            "_source" => [
-            "slug" => $slug,
-            "name" => $title,
-            "type" => "Engineering Drawings",
-            "product_category" => ["Specialty Tools", "Specialty Tools"],
-            "values" => [
-            "sku_overview" => "Designed to ensure safety-critical assembly -- ".$slug[0]." -- with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
-            "body" => "Designed to ensure safety-critical assembly with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
-            "asset_filename" => "DOT_12S1207-02.dxf"
-            ],
-            "assets" => [
-            [
-            "type" => "Primary Image",
-            "id" => "CLE_CTBAW153_FRNT_MAIN"
-            ]
-            ]
-            ]
-            ];
-        }
-
-        $json['hits']['hits'] = $output;
-
-        return new JsonResponse($json, 200);
-
-        //$json = file_get_contents(__DIR__ .'/sample-search.json');
-        //return new JsonResponse(json_decode($json), 200);
-
+    // Pagination params.
+    $page = $request->get('page');
+    if (!is_numeric($page)) {
+      $page = 1;
     }
-
-    /**
-     * @param Request $request
-     * @param Bool    $return
-     * @param Array   $query
-     *
-     * @return JsonResponse
-     */
-    public function actionFilterDownloads(Request $request, Bool $return = false, Array $query = [])
-    {
-        $json = file_get_contents(__DIR__ .'/sample-search.json');
-        return new JsonResponse(json_decode($json), 200);   
+    $per_page = $request->get('perPage');
+    if (!is_numeric($per_page)) {
+      $per_page = 24;
     }
+    $offset = ($page - 1) * $per_page;
+
+    // Consider all other params apart from above as filters.
+    $filter_params = $request->query->all();
+    unset($filter_params['q']);
+    unset($filter_params['page']);
+    unset($filter_params['perPage']);
+
+    // Perform search.
+    $results = $this->solrSearchService->searchProducts($filter_params, $search_query, $per_page, $offset);
+
+    // Format results for vuejs.
+    $json = $this->vueDataFormatter->formatProductCatalog($results);
+
+    return new JsonResponse($json, 200);
+  }
+
+  /**
+   * Callback for downloads page.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request object.
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   *   The json response data.
+   */
+  public function actionFilterDownloads(Request $request) {
+    $json = file_get_contents(__DIR__ . '/sample-search.json');
+    return new JsonResponse(json_decode($json), 200);
+  }
 
   /**
    * Search download action.
@@ -146,46 +119,49 @@ class ApiController extends ControllerBase
     return new JsonResponse($json, 200);
   }
 
-    /**
-     * Drupal custom field
-     *
-     * @param Request $request
-     */
-    public function actionAutoCompleteFieldProducts(Request $request)
-    {
-      
-    }
+  /**
+   * Drupal custom field.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request object.
+   */
+  public function actionAutoCompleteFieldProducts(Request $request) {
 
-    /**
-     * @param Request $request
-     */
-    public function actionSearch(Request $request)
-    {
-        $json = file_get_contents(__DIR__ .'/sample-search.json');
-        return new JsonResponse(json_decode($json), 200);
-    }
+  }
 
-    /**
-     * GET PARAMS
-     * Return parameters included in the request.
-     * Also provides fallback for required `page` and `perPage` parameters
-     *
-     * @return array
-     */
-    protected function getParams(Request $request)
-    {
-        $params['page']     = $request->get('page') ?? 1;
-        $params['perPage']  = $request->get('perPage') ?? 24;
-        settype($params['page'], 'integer');
-        settype($params['perPage'], 'integer');
-        $params['settings'] = [
-        'from' => ($params['page'] - 1) * $params['perPage'],
-        'size' => $params['perPage']
-        ];
-        $params['queryString'] = $request->get('q') ?? null;
+  /**
+   * The search page callback.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request object.
+   */
+  public function actionSearch(Request $request) {
+    $json = file_get_contents(__DIR__ . '/sample-search.json');
+    return new JsonResponse(json_decode($json), 200);
+  }
 
-        return $params;
-    }
+  /**
+   * GET PARAMS.
+   *
+   * Return parameters included in the request.
+   * Also provides fallback for required `page` and `perPage` parameters.
+   *
+   * @return array
+   *   The parameter array.
+   */
+  protected function getParams(Request $request) {
+    $params['page']    = $request->get('page') ?? 1;
+    $params['perPage'] = $request->get('perPage') ?? 24;
+    settype($params['page'], 'integer');
+    settype($params['perPage'], 'integer');
+    $params['settings'] = [
+      'from' => ($params['page'] - 1) * $params['perPage'],
+      'size' => $params['perPage'],
+    ];
+    $params['queryString'] = $request->get('q') ?? NULL;
+
+    return $params;
+  }
 
   /**
    * GET ELASTIC SERVICE - Return a reference to ElasticSearchService.

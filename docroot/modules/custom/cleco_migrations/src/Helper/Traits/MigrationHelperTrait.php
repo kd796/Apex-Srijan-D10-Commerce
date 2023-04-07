@@ -626,10 +626,12 @@ trait MigrationHelperTrait {
    *   Name of the log file.
    * @param string $message
    *   Log message to be written.
+   * @param string $type
+   *   Type to identify log path.
    */
-  public function logMessage($logfile, $message) {
+  public function logMessage($logfile, $message, $type = '') {
     if (empty($logfile)) {
-      $logfile = $this->getDefaultLogfile();
+      $logfile = $this->getDefaultLogfile($type);
     }
     $dir = dirname($logfile);
     if (!file_exists($dir)) {
@@ -640,9 +642,21 @@ trait MigrationHelperTrait {
 
   /**
    * Write various log information in the file.
+   *
+   * @param string $type
+   *   Type to identify log path.
    */
-  public function getDefaultLogfile() {
+  public function getDefaultLogfile($type = '') {
     $default_logfile = "public://import/pim_data/logs/notification.txt";
+    switch ($type) {
+      case 'notification':
+        $default_logfile = "public://import/pim_data/logs/notification.txt";
+        break;
+
+      default:
+        $default_logfile = "public://import/pim_data/logs/notification.txt";
+        break;
+    }
     return $default_logfile;
   }
 
@@ -715,6 +729,34 @@ trait MigrationHelperTrait {
     $query->condition('t.sourceid1', $source_id1, 'IN');
     $migrated_ids = $query->execute()->fetchAllKeyed();
     return $migrated_ids;
+  }
+
+  /**
+   * Get file extension for the asset download.
+   *
+   * @param string $extension
+   *   Asset extension.
+   *
+   * @return string
+   *   Returns the constructed file extension.
+   */
+  public function getFileExtensionMapped($extension = '') {
+    $extension = strtolower($extension);
+    $file_extension = $extension;
+    if (empty($extension)) {
+      $file_extension = 'jpg';
+    }
+    $list = [
+      'eps' => 'jpg',
+      'png' => 'jpg',
+      'gif' => 'jpg',
+      'tif' => 'jpg',
+      'pdf' => 'pdf',
+    ];
+    if (isset($list[$extension])) {
+      $file_extension = $list[$extension];
+    }
+    return $file_extension;
   }
 
 }

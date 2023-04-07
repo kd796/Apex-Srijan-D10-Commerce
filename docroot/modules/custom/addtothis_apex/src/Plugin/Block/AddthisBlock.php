@@ -90,7 +90,8 @@ class AddthisBlock extends BlockBase implements ContainerFactoryPluginInterface 
     $url = Url::fromRoute('<current>', [], ['absolute' => 'true'])->toString();
 
     $request = $this->requestStack->getCurrentRequest();
-    $title = $this->titleResolver->getTitle($request, $this->routeMatch->getRouteObject());
+    $route = $this->routeMatch->getRouteObject();
+    $title = !empty($route) ? $this->titleResolver->getTitle($request, $route) : 'title';
 
     $addthis_content = "<div class='addthis-containers'><div class='addthis_toolbox addthis_default_style addthis_32x32_style' addthis:url='" . $url . "' addthis:title='" . $title . "'>
     <a class='addthis_button_facebook'></a>
