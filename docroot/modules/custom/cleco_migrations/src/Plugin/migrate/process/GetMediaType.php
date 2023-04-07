@@ -25,7 +25,8 @@ class GetMediaType extends ProcessPluginBase {
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $id = (string) $row->getSourceProperty('asset_id');
     $message = "Started for ::" . $id;
-    $this->logMessage($this->configuration['notification_logfile'], $message);
+    $logfile = $this->getDefaultLogfile('notification');
+    $this->logMessage($logfile, $message);
     return $this->geMediaType($value);
   }
 
