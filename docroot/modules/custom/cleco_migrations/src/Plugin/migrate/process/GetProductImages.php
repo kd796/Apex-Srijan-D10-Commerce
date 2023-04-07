@@ -156,7 +156,7 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
         $fid = $this->imageOps->getAndSavePdf($asset_id, $alt_text, $langcode, $extension);
       }
       catch (ImageNotFoundOnFtpException $e) {
-        $message = "Missing Product Downloads Type:: Type: $user_type_id :: Extension: $extension :: Filename: $asset_id.$extension";
+        $message = "Missing Product Downloads File:: Type: $user_type_id :: Extension: $extension :: Filename: $asset_id.$extension";
         $this->logMessage($this->configuration['notification_logfile'], $message);
       }
       catch (\Exception | FilesystemException $e) {
