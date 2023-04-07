@@ -512,7 +512,7 @@ class StepTwigExtension extends \Twig_Extension
      * @param string $slug
      * @return array
      */
-    public function getEnhancedProduct(string $sku, string $slug)
+    public function getEnhancedProduct($sku, $slug)
     {
         $curSite         = StepHelper::getCurrentSite();
         $enhancedProduct = [

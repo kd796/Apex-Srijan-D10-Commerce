@@ -7,7 +7,7 @@ use Drupal\Component\Serialization\Json;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Elasticsearch\ClientBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\cleco_vuejs\Services\StepHelper;
+use Drupal\cleco_vuejs\Utils\StepHelper;
 use Drupal\search_api\Entity\Index;
 use Drupal\search_api\ParseMode\ParseModePluginManager;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -541,54 +541,76 @@ class SolrSearchService
                       ->createInstance('direct');
         $query->setParseMode($parse_mode);
         $query->addCondition('type', ['enhanced_product', 'product'], 'IN');
+        $query->addCondition('field_slug', $matchQuery[1]);
         $results = $query->execute();
-
-    foreach ($results as $result11) {
-
-        $resultItemFields = $result11->getFields();
-        $sku_group = $resultItemFields['field_sku']->getvalues();
-        $field_type = $resultItemFields['type']->getvalues();
-        $t_title = $resultItemFields['title']->getvalues();
-        $title = $t_title[0]->getText();
-        $slug = $resultItemFields['field_slug']->getvalues();
-        $node_id = $resultItemFields['nid']->getvalues();
-        $field_360_image = $resultItemFields['field_360_image']->getvalues();
-        $field_360_image = $resultItemFields['field_feature_hotspots']->getvalues();
-        $field_product_features_cp = $resultItemFields['field_product_features_cp']->getvalues();
-        $field_media = $resultItemFields['field_media']->getvalues()[0];
-        if (!empty($field_media)) {
-            $image_load = $this->entityManager->getStorage('media')->load($field_media);
-            $image_file = $this->entityManager->getStorage('file')->load($image_load->field_media_image->target_id);
-            $image_url  = $image_file->getFileUri();
-            $image_path = file_create_url($image_url);
+        foreach ($results as $result11) {
+          $resultItemFields = $result11->getFields();
+          $sku_group = $resultItemFields['field_sku']->getvalues();
+          $field_type = $resultItemFields['type']->getvalues();
+          $t_title = $resultItemFields['title']->getvalues();
+          $title = $t_title[0]->getText();
+          $slug = $resultItemFields['field_slug']->getvalues();
+          $node_id = $resultItemFields['nid']->getvalues();
+          $field_360_image = $resultItemFields['field_360_image']->getvalues();
+          $field_360_image = $resultItemFields['field_feature_hotspots']->getvalues();
+          $field_product_features_cp = $resultItemFields['field_product_features_cp']->getvalues();
+          $field_media = $resultItemFields['field_media']->getvalues()[0];
+          $field_downloads = $resultItemFields['field_downloads']->getvalues();
+          $assets = [];
+          if (!empty($field_downloads)) {
+            foreach ($field_downloads as $productDownload) {
+              $downloads_list = $this->entityManager->getStorage('media')->load($productDownload);
+              $type = str_replace("_" , " ", $downloads_list->get('field_type')->value);
+              $type = ucwords($type);
+              if(!empty($type)){
+              $type = StepHelper::translate($type);
+              }
+              $dname = $downloads_list->get('name')->value;
+              $thumbnail_id = $this->entityManager->getStorage('file')->load($downloads_list->field_listing_image->target_id);
+              if(!empty($thumbnail_id)){
+              $thumbnail_url = $thumbnail_id->getFileUri();
+              $thumbnailImg = file_create_url($thumbnail_url);
+              }
+              $file_id = $this->entityManager->getStorage('file')->load($downloads_list->field_media_file->target_id);
+              $file_url = $file_id->getFileUri();
+              $downloadable = file_create_url($file_url);
+              $assets[] = [
+                "type" => $type,
+                "id" => $dname,
+                "original_source_file" => $downloadable,
+                "pro_tools_pdf" => $downloadable,
+                "website_docs" => $downloadable,
+                "source_to_jpg" => $thumbnailImg,
+                "pro_tools_jpg_of_pdf" => $thumbnailImg
+              ];
+            }
         }
-
+        if (!empty($field_media)) {
+          $image_load = $this->entityManager->getStorage('media')->load($field_media);
+          $image_file = $this->entityManager->getStorage('file')->load($image_load->field_media_image->target_id);
+          $image_url  = $image_file->getFileUri();
+          $image_path = file_create_url($image_url);
+        }
         $output[] = [
-            "_type" => $field_type,
-            "_source" => [
+          "_type" => $field_type,
+          "_source" => [
             "copyPoints" => $field_product_features_cp,
             "slug" => $slug,
             "name" => $title,
             "nid" => $node_id,
             "id" => $sku_group,
-            "type" => $title,
-            "product_category" => ["Specialty Tools", "Specialty Tools"],
+            "type" => $type,
+             "product_category" => ["Specialty Tools"],
             "product_image" => $image_path,
             "values" => [
-                "sku_overview" => "Designed to ensure safety-critical assembly -- ".$slug[0]." -- with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
-                "body" => "Designed to ensure safety-critical assembly with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
-                "asset_filename" => "DOT_12S1207-02.dxf"
+              "sku_overview" => "Designed to ensure safety-critical assembly -- ".$slug[0]." -- with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
+              "body" => "Designed to ensure safety-critical assembly with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
+              "asset_filename" => "DOT_12S1207-02.dxf"
             ],
-            "assets" => [
-                [
-                "type" => "Primary Image",
-                "id" => $image_path,
-                ]
-                ]
-            ]
-            ];
-
-        }
+            "assets" => $assets,
+          ]
+        ];
+    }
 
         try {
 
