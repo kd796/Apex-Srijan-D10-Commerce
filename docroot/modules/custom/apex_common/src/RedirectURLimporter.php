@@ -31,7 +31,7 @@ class RedirectURLimporter {
     }
     else {
       $batchBuilder = new BatchBuilder();
-      $batchId = 0;
+      $batchId = 1;
       foreach ($data as $key => $url) {
         $batchBuilder->addOperation('\Drupal\apex_common\RedirectURLimporter::importRedirects', [
           $url,
@@ -62,7 +62,7 @@ class RedirectURLimporter {
     if ($success) {
       // Here we could do something meaningful with the results.
       // We just display the number of nodes we processed...
-      \Drupal::messenger()->addMessage(t('@count results processed.', [
+      \Drupal::messenger()->addMessage(t('Processed @count items successfully.', [
         '@count' => count($results),
       ]));
     }
@@ -132,17 +132,15 @@ class RedirectURLimporter {
         $redirect->setStatusCode('301');
         $redirect->setLanguage('en');
         $redirect->save();
-        \Drupal::messenger()->addMessage(t("The redirect has been created:") . $url);
+        $context['results'][] = $url;
       }
       else {
-        \Drupal::messenger()->addMessage(t("Not processed (URL redirect already exist):") . $url);
+        \Drupal::messenger()->addWarning(t("URL redirect already exist for: ") . $redirectpath);
       }
     }
     catch (\Exception $e) {
       \Drupal::logger('apex_common')->error($e->getMessage());
     }
-
-    $context['results'][] = $url;
   }
 
   /**
