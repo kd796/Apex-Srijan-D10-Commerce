@@ -8,3 +8,11 @@ apex_common.product_image_download:
     parameters:
       node:
         type: entity:node
+apex_common.RedirectURLimport:
+  path: '/admin/config/development/redirect-url-import'
+  defaults:
+    _form: '\Drupal\apex_common\Form\RedirectURLImportForm'
+    _title: 'APEX Import Redirect URL'
+  requirements:
+    _permission: 'administer site configuration'
+
