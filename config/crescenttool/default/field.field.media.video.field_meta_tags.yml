@@ -1,0 +1,21 @@
+uuid: 389b8f69-bc2e-4283-91ca-b3f10d583a5c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_meta_tags
+    - media.type.video
+  module:
+    - metatag
+id: media.video.field_meta_tags
+field_name: field_meta_tags
+entity_type: media
+bundle: video
+label: 'Meta Tags'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: metatag

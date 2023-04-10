@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.media.file.field_media_file
+    - field.field.media.file.field_meta_tags
     - media.type.file
   module:
     - file
+    - metatag
 id: media.file.default
 targetEntityType: media
 bundle: file
@@ -19,6 +21,13 @@ content:
       use_description_as_link_text: true
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_meta_tags:
+    type: metatag_empty_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
     region: content
 hidden:
   created: true
