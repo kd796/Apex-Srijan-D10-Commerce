@@ -491,6 +491,7 @@ class SolrSearchService
     {
         $indices = [
             StepHelper::getEsIndexName() . '_products',
+            StepHelper::getEsIndexName() . '_models',
             StepHelper::getEsIndexName() . '_downloads'
         ];
 
@@ -558,6 +559,8 @@ class SolrSearchService
         $assets = [];
         foreach ($results as $result11) {
           $resultItemFields = $result11->getFields();
+          $models = $resultItemFields['field_product_models']->getvalues();
+          $models_details = $this->getProductModelDetails($resultItemFields['field_product_models']->getvalues());
           $field_type = $resultItemFields['type']->getvalues();
           if ($field_type[0] == 'enhanced_product') {
           $sku_group = $resultItemFields['field_sku']->getvalues();
@@ -569,6 +572,17 @@ class SolrSearchService
           $field_360_image = $resultItemFields['field_feature_hotspots']->getvalues();
           $field_product_features_cp = $resultItemFields['field_product_features_cp']->getvalues();
           // $field_media = $resultItemFields['field_media']->getvalues();
+          $product_category = $resultItemFields['field_product_classifications']->getvalues();
+            if(!empty($product_category)) {
+                $product_category = end($product_category);
+                $term = $this->entityManager->getStorage('taxonomy_term')->load($product_category);
+                if(!empty($term)){
+                    $product_category_name = $term->get('name')->value;
+                }
+            }
+            else {
+                $product_category_name = '';
+            }
           $field_downloads = $resultItemFields['field_downloads']->getvalues();
           if (!empty($field_downloads)) {
             foreach ($field_downloads as $productDownload) {
@@ -609,13 +623,14 @@ class SolrSearchService
             "nid" => $node_id,
             "id" => $sku_group[0],
             "type" => $type,
-             "product_category" => ["Specialty Tools"],
+            "product_category" => [$product_category_name],
             "values" => [
               "sku_overview" => "Designed to ensure safety-critical assembly -- ".$slug[0]." -- with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
               "body" => "Designed to ensure safety-critical assembly with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
               "asset_filename" => "DOT_12S1207-02.dxf"
             ],
             "assets" => $assets,
+            "models" => $models_details,
           ]
         ];
       }
@@ -1070,6 +1085,7 @@ class SolrSearchService
     {
         $indices = [
             $query['index'] . '_products',
+            $query['index'] . '_models',
             $query['index'] . '_downloads',
             'cleco_legacy_documents',
             $query['index'] . '_nodes'
@@ -1218,6 +1234,7 @@ class SolrSearchService
     {
         $indices = [
             StepHelper::getEsIndexName() . '_products',
+            StepHelper::getEsIndexName() . '_models',
             StepHelper::getEsIndexName() . '_downloads',
             'cleco_legacy_documents'
         ];
@@ -1461,6 +1478,42 @@ class SolrSearchService
     {
         return explode(', ', $this->settings->get('step_es_hosts'));
     }
+
+  /**
+   * Model data.
+   *
+   * @return array
+   *   returning output array
+   */
+  public function getProductModelDetails($models) {
+    if (!empty($models)) {
+      foreach ($models as $model) {
+
+        $model_details = \Drupal::entityTypeManager()
+          ->getStorage('node')->load($model);
+        $model_spec = $model_details->get('field_model_specification')
+          ->referencedEntities();
+        $values = [];
+        foreach ($model_spec as $key => $spec) {
+          $exploded_label = explode(':~:', $spec->label());
+          $lable_value = isset($exploded_label[0]) ? trim($exploded_label[0]) : '';
+          $keyvalue = preg_replace('/[^\w]+/', '_', $lable_value);
+          $keyvalue = preg_replace('/^_+|_+$/', '', $keyvalue);
+          $keyvalue = strtolower($keyvalue);
+          $valuelable = isset($exploded_label[1]) ? trim($exploded_label[1]) : '';
+          $values[$keyvalue] = $valuelable;
+        }
+        $models_data[] = [
+          "sku" => $model_details->getTitle(),
+          "name" => $model_details->getTitle(),
+          "slug" => strtolower($model_details->getTitle()),
+          "values" => $values,
+        ];
+      }
+      return $models_data;
+    }
+
+  }
 
   /**
    * Downloads data.
