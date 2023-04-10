@@ -30,7 +30,6 @@ class RouteController extends ControllerBase
     {
         $this->request = \Drupal::request();
         $this->slug    = $this->request->get('product');
-
         if ($this->slug) {
             $product = \Drupal::service('step.elastic_search_service')
                 ->getSingleProduct(['slug.raw', $this->slug]);
@@ -80,24 +79,12 @@ class RouteController extends ControllerBase
     public function productSingle()
     {
         $theme = 'products/single';
-        $sku   = $this->product['id'] ?? null;
-        if ($sku) {
-            $nodes = \Drupal::entityTypeManager()
-                ->getStorage('node')
-                ->loadByProperties(
-                    [
-                    'status'    => 1,
-                    'field_sku' => $sku
-                    ]
-                );
-
-            if ($node = reset($nodes)) {
+            if ($this->product['_type'][0] == 'enhanced_product') {
                 $theme = 'products/enhanced';
             }
-        }
         return [
             '#theme'   => $theme,
-            '#product' => $this->product
+            '#product' => $this->product['_source']
         ];
     }
 
@@ -109,7 +96,7 @@ class RouteController extends ControllerBase
      */
     public function productSingleTitle()
     {
-        // return $this->t($this->product['values']['coupon_headline'] ?? $this->product['name']);
+        return $this->t($this->product['_source']['values']['coupon_headline'] ?? $this->product['_source']['name']);
     }
 
     /**

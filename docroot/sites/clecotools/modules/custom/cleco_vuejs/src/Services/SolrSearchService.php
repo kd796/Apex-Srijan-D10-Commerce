@@ -11,6 +11,7 @@ use Drupal\cleco_vuejs\Utils\StepHelper;
 use Drupal\search_api\Entity\Index;
 use Drupal\search_api\ParseMode\ParseModePluginManager;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
 
 
 class SolrSearchService
@@ -33,16 +34,26 @@ class SolrSearchService
     protected $entityManager;
 
     /**
+     * The language manager service.
+     *
+     * @var \Drupal\Core\Language\LanguageManagerInterface
+     */
+    protected $languageManager;
+
+    /**
      * Constructs a solr search service.
      * 
      * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
      *   The entity manager.
+     * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
+     *   The language manager service.
      * 
      * @return null
      */
-    public function __construct(EntityTypeManagerInterface $entity_manager)
+    public function __construct(EntityTypeManagerInterface $entity_manager, LanguageManagerInterface $language_manager)
     {
         $this->entityManager = $entity_manager;
+        $this->languageManager = $language_manager;
         $this->settings = Drupal::config('step.settings');
 
         $hosts = $this->getElasticHosts();
@@ -534,19 +545,22 @@ class SolrSearchService
                 ]
             ]
         ];
+        $langcode = $this->languageManager->getCurrentLanguage()->getId();
         $output = [];
         $index = Index::load('acquia_search_index');
         $query = $index->query();
         $parse_mode = \Drupal::service('plugin.manager.search_api.parse_mode')
                       ->createInstance('direct');
         $query->setParseMode($parse_mode);
-        $query->addCondition('type', ['enhanced_product', 'product'], 'IN');
         $query->addCondition('field_slug', $matchQuery[1]);
+        $query->addCondition('langcode', $langcode);
         $results = $query->execute();
+        $assets = [];
         foreach ($results as $result11) {
           $resultItemFields = $result11->getFields();
-          $sku_group = $resultItemFields['field_sku']->getvalues();
           $field_type = $resultItemFields['type']->getvalues();
+          if ($field_type[0] == 'enhanced_product') {
+          $sku_group = $resultItemFields['field_sku']->getvalues();
           $t_title = $resultItemFields['title']->getvalues();
           $title = $t_title[0]->getText();
           $slug = $resultItemFields['field_slug']->getvalues();
@@ -554,9 +568,8 @@ class SolrSearchService
           $field_360_image = $resultItemFields['field_360_image']->getvalues();
           $field_360_image = $resultItemFields['field_feature_hotspots']->getvalues();
           $field_product_features_cp = $resultItemFields['field_product_features_cp']->getvalues();
-          $field_media = $resultItemFields['field_media']->getvalues()[0];
+          // $field_media = $resultItemFields['field_media']->getvalues();
           $field_downloads = $resultItemFields['field_downloads']->getvalues();
-          $assets = [];
           if (!empty($field_downloads)) {
             foreach ($field_downloads as $productDownload) {
               $downloads_list = $this->entityManager->getStorage('media')->load($productDownload);
@@ -566,11 +579,6 @@ class SolrSearchService
               $type = StepHelper::translate($type);
               }
               $dname = $downloads_list->get('name')->value;
-              $thumbnail_id = $this->entityManager->getStorage('file')->load($downloads_list->field_listing_image->target_id);
-              if(!empty($thumbnail_id)){
-              $thumbnail_url = $thumbnail_id->getFileUri();
-              $thumbnailImg = file_create_url($thumbnail_url);
-              }
               $file_id = $this->entityManager->getStorage('file')->load($downloads_list->field_media_file->target_id);
               $file_url = $file_id->getFileUri();
               $downloadable = file_create_url($file_url);
@@ -580,28 +588,28 @@ class SolrSearchService
                 "original_source_file" => $downloadable,
                 "pro_tools_pdf" => $downloadable,
                 "website_docs" => $downloadable,
-                "source_to_jpg" => $thumbnailImg,
-                "pro_tools_jpg_of_pdf" => $thumbnailImg
+                "source_to_jpg" => $downloadable,
+                "pro_tools_jpg_of_pdf" => $downloadable
               ];
             }
         }
-        if (!empty($field_media)) {
-          $image_load = $this->entityManager->getStorage('media')->load($field_media);
-          $image_file = $this->entityManager->getStorage('file')->load($image_load->field_media_image->target_id);
-          $image_url  = $image_file->getFileUri();
-          $image_path = file_create_url($image_url);
-        }
+        // @todo - normal product page
+        // if (!empty($field_media)) {
+        //   $image_load = $this->entityManager->getStorage('media')->load($field_media[0]);
+        //   $image_file = $this->entityManager->getStorage('file')->load($image_load->field_media_image->target_id);
+        //   $image_url  = $image_file->getFileUri();
+        //   $image_path = file_create_url($image_url);
+        // }
         $output[] = [
           "_type" => $field_type,
           "_source" => [
             "copyPoints" => $field_product_features_cp,
-            "slug" => $slug,
+            "slug" => $slug[0],
             "name" => $title,
             "nid" => $node_id,
-            "id" => $sku_group,
+            "id" => $sku_group[0],
             "type" => $type,
              "product_category" => ["Specialty Tools"],
-            "product_image" => $image_path,
             "values" => [
               "sku_overview" => "Designed to ensure safety-critical assembly -- ".$slug[0]." -- with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
               "body" => "Designed to ensure safety-critical assembly with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
@@ -610,6 +618,7 @@ class SolrSearchService
             "assets" => $assets,
           ]
         ];
+      }
     }
 
         try {
@@ -618,8 +627,7 @@ class SolrSearchService
             $response['hits']['hits'] = $output;
 
             if (!empty($response['hits']['hits'])) {
-                $source     = $response['hits']['hits'][0]['_source'];
-                $source_tmp = $source;
+                $source = $response['hits']['hits'][0];
 
                 /*  if ($assetsOnly) {
                     return Json::encode($source['assets']);
