@@ -763,7 +763,9 @@ trait MigrationHelperTrait {
    * Get Assets associated products classifications.
    *
    * @param int $category_id
-   *   Test to be processed.
+   *   Category tid.
+   * @param string $langcode
+   *   Language code.
    *
    * @return array
    *   Returns migrated tids.
