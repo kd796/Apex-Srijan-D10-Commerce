@@ -92,8 +92,6 @@ class RouteController extends ControllerBase {
 
       $slug = $fields['field_slug']->getValue()[0]['value'];
       $node_id = $node->id();
-      $field_360_image = $fields['field_360_image'] ? $fields['field_360_image']->getValue()[0]['value'] : '';
-      $field_360_image = $fields['field_feature_hotspots'] ? $fields['field_feature_hotspots']->getValue()[0]['value'] : '';
       $field_product_features_cp = $fields['field_product_features_cp'];
       if (!empty($field_product_features_cp)) {
         foreach ($field_product_features_cp as $productFeatures) {
@@ -135,19 +133,18 @@ class RouteController extends ControllerBase {
         }
       }
     }
-
     $output[] = [
       "_type" => $bundle,
       "_source" => [
         "copyPoints" => $features,
-        "slug" => $slug[0],
+        "slug" => $slug,
         "name" => $title,
         "nid" => $node_id,
-        "id" => $sku_group[0],
+        "id" => $sku_group,
         "product_image" => $image_path,
         "product_category" => ["Specialty Tools"],
         "values" => [
-          "sku_overview" => "Designed to ensure safety-critical assembly -- " . $slug[0] . " -- with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
+          "sku_overview" => "Designed to ensure safety-critical assembly -- " . $slug . " -- with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
           "body" => "Designed to ensure safety-critical assembly with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
           "asset_filename" => "DOT_12S1207-02.dxf",
         ],
