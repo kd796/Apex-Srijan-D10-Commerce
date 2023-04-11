@@ -41,7 +41,6 @@ step.products.product_single:
   path: /products/product-catalog/{product}
   defaults:
     _controller: '\Drupal\cleco_vuejs\Controller\RouteController::productSingle'
-    _title_callback: '\Drupal\cleco_vuejs\Controller\RouteController::productSingleTitle'
   requirements:
     _permission: 'access content'
 
