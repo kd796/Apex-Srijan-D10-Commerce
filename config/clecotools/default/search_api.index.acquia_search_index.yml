@@ -3,6 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.media.field_media_file
+    - field.storage.media.field_listing_image
+    - field.storage.media.field_product_category
     - field.storage.node.field_360_image
     - field.storage.node.field_address
     - field.storage.node.body
@@ -49,10 +52,10 @@ dependencies:
     - search_api.server.acquia_search_api_solr_server
   module:
     - search_api_solr
-    - node
     - media
-    - content_moderation
     - taxonomy
+    - node
+    - content_moderation
     - search_api
     - cleco_vuejs
 third_party_settings:
@@ -134,6 +137,14 @@ field_settings:
     label: 'Bore (mm)'
     property_path: bore_mm
     type: string
+  bundle:
+    label: 'Media type'
+    datasource_id: 'entity:media'
+    property_path: bundle
+    type: string
+    dependencies:
+      module:
+        - media
   changed:
     label: Changed
     datasource_id: 'entity:node'
@@ -164,6 +175,16 @@ field_settings:
     property_path: description
     type: text
     dependencies:
+      module:
+        - taxonomy
+  download_category_name:
+    label: 'Product Category » Taxonomy term » Name'
+    datasource_id: 'entity:media'
+    property_path: 'field_product_category:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_product_category
       module:
         - taxonomy
   drive_size:
@@ -330,6 +351,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_geographic_data
+  field_listing_image:
+    label: 'Listing Image'
+    datasource_id: 'entity:media'
+    property_path: field_listing_image
+    type: integer
+    dependencies:
+      config:
+        - field.storage.media.field_listing_image
   field_locations_content_type:
     label: 'Locations Content Type'
     datasource_id: 'entity:node'
@@ -354,6 +383,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_media
+  field_media_file:
+    label: File
+    datasource_id: 'entity:media'
+    property_path: field_media_file
+    type: integer
+    dependencies:
+      config:
+        - field.storage.media.field_media_file
   field_model_specification:
     label: 'Model Specification'
     datasource_id: 'entity:node'
@@ -370,6 +407,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_phone
+  field_product_category:
+    label: 'Product Category'
+    datasource_id: 'entity:media'
+    property_path: field_product_category
+    type: integer
+    dependencies:
+      config:
+        - field.storage.media.field_product_category
   field_product_classifications:
     label: 'Product Categories'
     datasource_id: 'entity:node'
@@ -534,6 +579,10 @@ field_settings:
     label: 'Horsepower (kwt)'
     property_path: horsepower_kwt
     type: string
+  item_type:
+    label: 'Item Type'
+    property_path: item_type
+    type: string
   jaws:
     label: Jaws
     property_path: jaws
@@ -570,6 +619,18 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_media
+      module:
+        - media
+  medialang_type:
+    label: 'Media Language Type'
+    property_path: medialang_type
+    type: string
+  mid:
+    label: ID
+    datasource_id: 'entity:media'
+    property_path: mid
+    type: integer
+    dependencies:
       module:
         - media
   moderation_state:
@@ -628,6 +689,16 @@ field_settings:
     label: 'Power Type'
     property_path: power_type
     type: string
+  product_category:
+    label: 'Product Categories » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_product_classifications:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_product_classifications
+      module:
+        - taxonomy
   product_category_name:
     label: 'Product Categories » Taxonomy term » Long Name'
     datasource_id: 'entity:node'
@@ -637,16 +708,6 @@ field_settings:
       config:
         - field.storage.node.field_product_classifications
         - field.storage.taxonomy_term.field_long_name
-      module:
-        - taxonomy
-  product_category:
-    label: 'Product Categories » Taxonomy term » Name'
-    datasource_id: 'entity:node'
-    property_path: 'field_product_classifications:entity:name'
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_product_classifications
       module:
         - taxonomy
   product_family:
@@ -665,6 +726,14 @@ field_settings:
     label: 'Shank Diameter (inh)'
     property_path: shank_diameter_inh
     type: string
+  site_langcode:
+    label: Language
+    datasource_id: 'entity:media'
+    property_path: langcode
+    type: string
+    dependencies:
+      module:
+        - media
   speed:
     label: Speed
     property_path: speed
@@ -810,6 +879,14 @@ field_settings:
     property_path: window_style
     type: string
 datasource_settings:
+  'entity:media':
+    bundles:
+      default: false
+      selected:
+        - product_downloads
+    languages:
+      default: true
+      selected: {  }
   'entity:node':
     bundles:
       default: false
@@ -857,6 +934,8 @@ processor_settings:
   add_url: {  }
   aggregated_field: {  }
   auto_aggregated_fulltext_field: {  }
+  cleco_add_item_type: {  }
+  cleco_add_medialang_type: {  }
   cleco_add_model_specification: {  }
   entity_type: {  }
   language_with_fallback: {  }
