@@ -228,9 +228,9 @@ class ImportMetaData extends FormBase {
       $title = $data['meta_title'] ? $data['meta_title'] : '';
       $desc = $data['meta_desc'] ? $data['meta_desc'] : '';
 
-      if ($path == '/media/oembed' && preg_match("/\b(&max_width|&max_height)\b/", $alias['query']))  {
-        $media_query = explode("&",$alias['query']);
-        $media_url = ltrim($media_query[0],"url=");
+      if ($path == '/media/oembed' && preg_match("/\b(&max_width|&max_height)\b/", $alias['query'])) {
+        $media_query = explode("&", $alias['query']);
+        $media_url = ltrim($media_query[0], "url=");
         $media_path = urldecode($media_url);
         $query = \Drupal::entityQuery('media')->condition('field_media_video_embed_field', $media_path);
         $result = $query->execute();
