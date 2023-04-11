@@ -8,10 +8,6 @@
 {% set video = content.field_video_embed %}
 {% set attachments = content.field_attachments %}
 {% set published_date = node.getCreatedTime|date('F j, Y') %}
- <div> {{content.field_type[0]}} </div>
- <div> {{content.field_type[0]['#plain_text']}} </div>
-<div> {{  article_type|raw }} </div>
-<div> {{ 'nitin' |t }}
 <main class="main">
   {{ title_prefix }}
   {% include '@atg/patterns/hero.html.twig' with {
