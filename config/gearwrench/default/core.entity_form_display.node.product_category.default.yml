@@ -7,11 +7,13 @@ dependencies:
     - field.field.node.product_category.field_category_facets
     - field.field.node.product_category.field_classification_id
     - field.field.node.product_category.field_media
+    - field.field.node.product_category.field_meta_tags
     - field.field.node.product_category.field_product_classifications
     - field.field.node.product_category.field_show_set_filter
     - node.type.product_category
   module:
     - media_library
+    - metatag
     - path
     - text
 id: node.product_category.default
@@ -59,6 +61,14 @@ content:
     region: content
     settings:
       media_types: {  }
+    third_party_settings: {  }
+  field_meta_tags:
+    type: metatag_firehose
+    weight: 29
+    region: content
+    settings:
+      sidebar: true
+      use_details: true
     third_party_settings: {  }
   field_product_classifications:
     type: entity_reference_autocomplete
