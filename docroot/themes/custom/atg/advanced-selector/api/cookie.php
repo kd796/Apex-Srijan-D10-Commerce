@@ -46,4 +46,3 @@ function ade_get_cookie() {
 
     return $userid;
 }
-ade_get_cookie();
