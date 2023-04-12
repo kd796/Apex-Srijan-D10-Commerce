@@ -1,0 +1,32 @@
+uuid: cd4208cd-79e8-4c33-bb55-1d07d8298b7d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.product_trade.field_meta_tags
+    - taxonomy.vocabulary.product_trade
+  module:
+    - metatag
+    - text
+id: taxonomy_term.product_trade.default
+targetEntityType: taxonomy_term
+bundle: product_trade
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_meta_tags:
+    type: metatag_empty_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true
