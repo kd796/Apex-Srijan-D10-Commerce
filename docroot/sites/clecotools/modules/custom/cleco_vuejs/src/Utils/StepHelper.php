@@ -766,6 +766,8 @@ class StepHelper
         $definition = new ComparisonTableDefinition($product, 'models');
         $definition->setColumnOffset(1);
         // $definition->addColumn('Model')->forKey('sku');
+        $definition->addColumn('S.No')
+            ->forKey('number');
         $definition->addColumn('Model')
             ->forKey('name');
         $definition->addPrimaryKey('model');

@@ -147,6 +147,18 @@ class RouteController extends ControllerBase {
             ];
           }
         }
+        $footnotes = $fields['field_footnotes']->getValue();
+        $models = $fields['field_product_models']->getValue();
+        $models_details = $this->getProductModelDetails($fields['field_product_models']->getValue());
+        $product_category_name = '';
+          $product_category = $fields['field_product_classifications']->getValue();
+          if (!empty($product_category)) {
+            $product_category = end($product_category);
+            $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($product_category['target_id']);
+            if (!empty($term)) {
+              $product_category_name = $term->get('name')->value;
+            }
+          }
         $field_downloads = $fields['field_downloads'] ?? $fields['field_downloads'] ?? '';
         if (!empty($field_downloads)) {
           foreach ($field_downloads as $productDownload) {
@@ -194,13 +206,17 @@ class RouteController extends ControllerBase {
           "nid" => $node_id,
           "id" => $sku_group,
           "product_image" => isset($image_path) ? $image_path : '',
-          "product_category" => ["Specialty Tools"],
+          "product_category" => [$product_category_name],
           "values" => [
             "sku_overview" => "Designed to ensure safety-critical assembly -- " . $slug . " -- with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
             "body" => "Designed to ensure safety-critical assembly with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
             "asset_filename" => "DOT_12S1207-02.dxf",
           ],
           "assets" => $assets,
+          "models" => $models_details,
+          "values" => [
+            "footnotes" => $footnotes[0]['value'],
+          ],
         ],
       ];
 
@@ -221,6 +237,41 @@ class RouteController extends ControllerBase {
     else {
       return new Response($this->t('No results found'), 200, array('Content-Type' => 'text/html'));
     }
+  }
+
+  /**
+   * Model Specification table data.
+   *
+   * @return array
+   *   returning output array
+   */
+  public function getProductModelDetails($models) {
+    if (!empty($models)) {
+      foreach ($models as $model) {
+        $model_details = \Drupal::entityTypeManager()
+          ->getStorage('node')->load($model['target_id']);
+        $sr_number = $model_details->get('field_sr_number')->value;
+        $model_spec = $model_details->get('field_model_specification')
+          ->referencedEntities();
+        $values = [];
+        foreach ($model_spec as $key => $spec) {
+          $exploded_label = explode(':~:', $spec->label());
+          $lable_value = $spec->field_specification_attr_key->value;
+          $valuelable = isset($exploded_label[1]) ? trim($exploded_label[1]) : '';
+          $values[$lable_value] = $valuelable;
+        }
+        $models_data[] = [
+          "sku" => $model_details->getTitle(),
+          "name" => $model_details->getTitle(),
+          "slug" => strtolower($model_details->getTitle()),
+          "number" => $sr_number,
+          "values" => $values,
+        ];
+
+      }
+      return $models_data;
+    }
+
   }
 
   /**
