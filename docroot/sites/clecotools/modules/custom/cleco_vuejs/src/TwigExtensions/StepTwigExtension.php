@@ -297,7 +297,7 @@ class StepTwigExtension extends \Twig_Extension
             $data[] = [
                 'id'    => $term->get('field_classification_id')->value,
                 'name'  => $term->get('name')->value,
-                'body'  => $term->get('field_category_description')->value,
+                'body'  => $term->get('description')->value,
                 'order' => $term->get('field_product_display_order')->value,
                 'url'   => $alias . '?product_category=' . urlencode(preg_replace('/,/', '%2C', $term->get('name')->value)),
                 'image' => !empty($media_url) ? $media_url : ''

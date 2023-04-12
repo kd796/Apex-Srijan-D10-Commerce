@@ -1,4 +1,4 @@
-uuid: ee293962-00c3-4352-89f4-45a1449478d4
+uuid: f2181d8e-d9de-4af3-a087-d53286f1792f
 langcode: en
 status: true
 dependencies: {  }
@@ -97,6 +97,11 @@ process:
     media_type: image
     level: asset
     notification_logfile: 'public://import/pim_data/logs/product_media_notification.txt'
+    process_map_media_icon: 1
+    map_media_migration_id: cleco_product_media
+    map_media_config:
+      'STP File': controller_stp_file_en
+      'IGS File': controller_igs_file_en
     process_params:
       bundle: product_downloads
       source: bundle

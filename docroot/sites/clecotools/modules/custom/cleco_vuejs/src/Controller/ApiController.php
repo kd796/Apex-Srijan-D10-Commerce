@@ -101,8 +101,33 @@ class ApiController extends ControllerBase {
    *   The json response data.
    */
   public function actionFilterDownloads(Request $request) {
-    $json = file_get_contents(__DIR__ . '/sample-search.json');
-    return new JsonResponse(json_decode($json), 200);
+    // Search query.
+    // Pagination params.
+    $page = $request->get('page');
+    if (!is_numeric($page)) {
+      $page = 1;
+    }
+
+    $per_page = $request->get('perPage');
+    if (!is_numeric($per_page)) {
+      $per_page = 24;
+    }
+    $offset = ($page - 1) * $per_page;
+
+    // Consider all other params apart from above as filters.
+    $filter_params = $request->query->all();
+
+    unset($filter_params['q']);
+    unset($filter_params['page']);
+    unset($filter_params['perPage']);
+
+    // Perform search.
+    $results = $this->solrSearchService->searchDownloads($filter_params, $search_query, $per_page, $offset);
+    // Format results for vuejs.
+    $json = $this->vueDataFormatter->formatDownloadCatalog($results);
+
+    return new JsonResponse($json, 200);
+
   }
 
   /**

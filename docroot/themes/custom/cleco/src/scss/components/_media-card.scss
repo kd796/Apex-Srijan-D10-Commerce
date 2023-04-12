@@ -42,11 +42,13 @@
 
   @include min($md) {
     flex: 0 0 50%;
+    max-width: 50%;
     padding: 24px 12px 0;
   }
 
   @include min($lg) {
     flex: 0 0 33.33%;
+    max-width: 33.33%;
   }
 
   >div {
@@ -200,6 +202,7 @@
 
 .media-card.featured {
   flex: 1 0 100%;
+  max-width: 100%;
 
   .media-card-image .button {
     top: 0;

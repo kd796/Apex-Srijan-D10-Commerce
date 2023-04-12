@@ -1,7 +1,6 @@
 <?php
 function ade_set_cookie($expire) {
     $userid = false;
-
     if (array_key_exists('UNIQUE_ID', $_SERVER) && !empty($_SERVER['UNIQUE_ID'])) : // apache
         $userid = $_SERVER['UNIQUE_ID'];
     elseif (array_key_exists('X-Request-ID', $_SERVER) && !empty($_SERVER['X-Request-ID'])) : // nginx
@@ -17,6 +16,8 @@ function ade_set_cookie($expire) {
          * }
          */
         $userid = $_SERVER['X-Request-ID'];
+    elseif (isset($_ENV['HTTP_X_REQUEST_ID']) && !empty($_ENV['HTTP_X_REQUEST_ID'])) : // Acquia
+      $userid = $_ENV['HTTP_X_REQUEST_ID'];
     endif;
 
     setcookie('unique_userid', $userid, $expire, '/', $_SERVER['SERVER_NAME']);
@@ -35,12 +36,11 @@ function ade_set_cookie($expire) {
 function ade_get_cookie() {
     $userid = false;
     $expire = time() + (60 * 60 * 6); // cookie expire time, now + 6 hours
-
     if (isset($_COOKIE['unique_userid']) && isset($_COOKIE['userid_expire'])) :
         $userid_expire = (int) $_COOKIE['userid_expire'];
-
         $userid = (time() < $userid_expire) ? $_COOKIE['unique_userid'] : ade_set_cookie($expire);
     else :
+      print
         $userid = ade_set_cookie($expire);
     endif;
 

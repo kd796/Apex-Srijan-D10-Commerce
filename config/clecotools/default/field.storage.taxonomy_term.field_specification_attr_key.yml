@@ -1,15 +1,17 @@
-uuid: 28a34dc2-c4c4-4c3d-81c9-da991630928e
+uuid: 38890f40-6a43-4045-b567-fa2e21f9630f
 langcode: en
 status: true
 dependencies:
   module:
     - taxonomy
-id: taxonomy_term.field_category_description
-field_name: field_category_description
+id: taxonomy_term.field_specification_attr_key
+field_name: field_specification_attr_key
 entity_type: taxonomy_term
-type: string_long
+type: string
 settings:
+  max_length: 255
   case_sensitive: false
+  is_ascii: false
 module: core
 locked: false
 cardinality: 1

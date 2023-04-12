@@ -3,11 +3,34 @@
 namespace Drupal\cleco_vuejs\Services;
 
 use Drupal\search_api\Query\ResultSetInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\cleco_vuejs\Utils\StepHelper;
 
 /**
  * Service to format search results as expected by vuejs.
  */
 class VueDataFormatter {
+
+
+  /**
+   * The entity manager.
+   *
+   * @var \Drupal\Core\Entity\EntityManagerInterface
+   */
+    protected $entityManager;
+
+    /**
+     * Constructs a solr search service.
+     *
+     * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
+     *   The entity manager.
+     *
+     * @return null
+     */
+    public function __construct(EntityTypeManagerInterface $entity_manager)
+    {
+        $this->entityManager = $entity_manager;
+    }
 
   /**
    * Format the search results as expected by vuejs.
@@ -73,6 +96,136 @@ class VueDataFormatter {
     return $data;
   }
 
+  public function formatDownloadCatalog(ResultSetInterface $results) {
+    $data = [];
+    if ($results->getResultCount() === 0) {
+      $data['hits']['hits'] = [];
+      $data['hits']['total'] = 0;
+      return $data;
+    }
+
+    $items = [];
+ 
+    foreach ($results as $result) {
+      $translatedCate = [];
+      $resultItemFields = $result->getFields();
+      $media_file = isset($resultItemFields['field_media_file']) ? $resultItemFields['field_media_file']->getvalues() : [];
+      $listing_image = isset($resultItemFields['field_listing_image']) ? $resultItemFields['field_listing_image']->getvalues() : [];
+
+      $catName = isset($resultItemFields['download_category_name']) ? $resultItemFields['download_category_name']->getvalues() : [];
+      foreach ($catName as $categoryName) {
+        $translatedCate[] = StepHelper::translate($categoryName);
+      }
+      $category = implode(', ', $translatedCate);
+      if (!empty($listing_image)) {
+        $image_load = $this->entityManager->getStorage('media')->load($listing_image[0]);
+        $image_file = $this->entityManager->getStorage('file')->load($image_load->field_media_image->target_id);
+        $image_url  = $image_file->getFileUri();
+        $media_url = file_create_url($image_url);
+      }
+
+      if (!empty($media_file)) {
+        $download_file = $this->entityManager->getStorage('file')->load($media_file[0]);
+        $download_file_url  = $download_file->getFileUri();
+        $download_file_name = $download_file->getFilename();
+        $download_file_path = file_create_url($download_file_url);
+      }
+
+      $listing_img_name = isset($resultItemFields['listing_img_name']) ? $resultItemFields['listing_img_name']->getvalues() : [];
+      $image_name = explode(".", $listing_img_name[0]);
+      if(!empty($download_file)){
+        $asset_size = $download_file->getSize();
+        $asset_mime_type = $download_file->getMimeType();
+      }
+
+      $items[] = [
+        "_type" => "downloads",
+        "_source" => [
+          "id" => $download_file_name,
+          "name" => $image_name[0],
+          "type" => "Engineering Drawings",
+          "product_category" => [$category],
+          "values" => [
+            "asset_extension" => 'pdf',
+            "asset_size" => $asset_size,
+            "asset_format" => "PDF (Portable Document Format application)",
+            "asset_mime_type" => $asset_mime_type,
+          ],
+          "assets" => [
+            "original_source_file" => $download_file_path,
+            "pro_tools_jpg_of_pdf" => "$media_url",
+            "pro_tools_pdf" => $download_file_path,
+          ],
+        ],
+      ];
+    }
+      $data['hits']['hits'] = $items;
+      $data['hits']['total'] = $results->getResultCount();
+
+      // Handle facets.
+      $extra_data = $results->getAllExtraData();
+      $data['aggregations'] = $this->handleDownloadFacets($extra_data);
+
+      return $data;
+  }
+
+  /**
+   * Format facet data for vuejs.
+   *
+   * @param array $extra_data
+   *   The extraData array from search_api results.
+   *
+   * @return array
+   *   The formatted facets data.
+   */
+  protected function handleDownloadFacets(array $extra_data) {
+    $data = [];
+    if (!isset($extra_data['search_api_solr_response']['facet_counts']['facet_fields'])) {
+      return $data;
+    }
+
+    $facet_fields = $extra_data['search_api_solr_response']['facet_counts']['facet_fields'];
+    foreach ($facet_fields as $facet_name => $facet_field) {
+      $buckets = [];
+      for ($i = 0; $i < count($facet_field); $i += 2) {
+        if ($facet_field[$i + 1] === 0) {
+          continue;
+        }
+
+        $buckets[] = [
+          'key' => StepHelper::translate($facet_field[$i]),
+          'doc_count' => $facet_field[$i + 1],
+        ];
+      }
+      if (empty($buckets)) {
+        continue;
+      }
+      if ($facet_name == 'sm_item_type') {
+        $data['document_type'] = [
+          "doc_count_error_upper_bound" => 0,
+          "sum_other_doc_count" => 0,
+          'buckets' => $buckets,
+        ];
+      }
+      if ($facet_name == 'sm_download_category_name') {
+        $data['product_category'] = [
+          "doc_count_error_upper_bound" => 0,
+          "sum_other_doc_count" => 0,
+          'buckets' => $buckets,
+        ];
+      }
+      if ($facet_name == 'sm_medialang_type') {
+        $data['language'] = [
+          "doc_count_error_upper_bound" => 0,
+          "sum_other_doc_count" => 0,
+          'buckets' => $buckets,
+        ];
+      }
+    }
+
+    return $data;
+  }
+
   /**
    * Format facet data for vuejs.
    *
@@ -109,7 +262,6 @@ class VueDataFormatter {
         'buckets' => $buckets,
       ];
     }
-
     return $data;
   }
 

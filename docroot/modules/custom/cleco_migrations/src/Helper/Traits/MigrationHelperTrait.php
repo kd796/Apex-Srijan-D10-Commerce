@@ -759,4 +759,39 @@ trait MigrationHelperTrait {
     return $file_extension;
   }
 
+  /**
+   * Get Assets associated products classifications.
+   *
+   * @param int $category_id
+   *   Category tid.
+   * @param string $langcode
+   *   Language code.
+   *
+   * @return array
+   *   Returns migrated tids.
+   */
+  public function getAllProductCategories(int $category_id, $langcode = '') {
+    $tids = [];
+    if (empty($category_id)) {
+      return $tids;
+    }
+    $query = $this->connection->select('node__field_downloads', 'nd');
+    $query->leftjoin('node__field_product_classifications', 'np', 'np.entity_id = nd.entity_id');
+    $query->addField('np', 'field_product_classifications_target_id');
+    $query->condition('nd.field_downloads_target_id', $category_id);
+    if (!empty($langcode)) {
+      $query->condition('nd.langcode', $langcode);
+      $query->condition('np.langcode', $langcode);
+    }
+    $query->condition('nd.bundle', 'product');
+    $query->condition('np.bundle', 'product');
+    $query->condition('nd.deleted', 0);
+    $query->condition('np.deleted', 0);
+    $tids = $query->execute()->fetchAllKeyed(0, 0);
+    if (!empty($tids)) {
+      $tids = array_keys($tids);
+    }
+    return $tids;
+  }
+
 }
