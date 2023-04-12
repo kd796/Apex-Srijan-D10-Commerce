@@ -197,26 +197,38 @@ class SolrSearchApiService {
       }
       if ($filter_name == 'product_category') {
         $filter_name = 'download_category_name';
-        foreach ($filter as $each) {
-          $this->query->addCondition($filter_name, $each, '=');
-        }
       }
-      elseif (is_array($filter)) {
-        $this->query->addCondition($filter_name, $filter, 'IN');
+
+      if (is_array($filter)) {
+        if ($site_lang != 'en') {
+          foreach ($filter as $each){
+            if ($filter_name != 'download_category_name'){
+              $each1 = StepHelper::translateEn($each, $site_lang);
+              $this->query->addCondition($filter_name, $each1, '=');
+            }
+            else {
+              $this->query->addCondition($filter_name, $each, '=');
+            }
+          }
+        }
+        else {
+          foreach ($filter as $each){
+            $this->query->addCondition($filter_name, $each, '=');
+          }
+        }
         continue;
       }
     }
 
-  $facet_filters = [];
+    $facet_filters = [];
+    $facet_filters = ['sm_medialang_type','sm_download_category_name','sm_item_type'];
 
-  $facet_filters = ['sm_medialang_type','sm_download_category_name','sm_item_type'];
+    foreach ($terms as $term) {
+      $facet_filters[] = 'sm_' . $term['key'];
+    }
 
-  foreach ($terms as $term) {
-    $facet_filters[] = 'sm_' . $term['key'];
-  }
-
-  $this->query->setOption('solr_param_facet', 'true');
-  $this->query->setOption('solr_param_facet.field', $facet_filters);
+    $this->query->setOption('solr_param_facet', 'true');
+    $this->query->setOption('solr_param_facet.field', $facet_filters);
 
   // Language.
     $language = $this->languageManager->getCurrentLanguage()->getId();
