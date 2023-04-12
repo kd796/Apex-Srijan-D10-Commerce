@@ -802,6 +802,7 @@ $databases = [];
 # @todo Acquia Configuration
 if (file_exists('/var/www/site-php')) {
   require '/var/www/site-php/apextoolgroup/clecotools-settings.inc';
+  require '/var/www/site-php/apextoolgroup/cleco_drupal_selector-settings.inc';
 }
 
 /**

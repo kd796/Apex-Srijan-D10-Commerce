@@ -9,11 +9,6 @@ Cleco.controller('completeController',
         .success(function(data, status) {
           $scope.loading = false;
           $scope.user = data.user;
-          if ($scope.user == undefined) {
-            // Define the $scope.user object if it is undefined
-            $scope.user = {};
-          }
-          $scope.user.de_contact_name =''; 
           $scope.friend.from_name = $scope.user.de_contact_name;
         })
         .error(function(data, status, headers, config) {
