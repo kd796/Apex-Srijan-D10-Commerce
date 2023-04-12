@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.taxonomy_term.product_classifications.field_category_description
     - field.field.taxonomy_term.product_classifications.field_category_image
     - field.field.taxonomy_term.product_classifications.field_classification_id
     - field.field.taxonomy_term.product_classifications.field_product_display_order
@@ -22,13 +21,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 0
-    region: content
-  field_category_description:
-    type: basic_string
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 2
     region: content
   field_category_image:
     type: dynamic_entity_reference_label
