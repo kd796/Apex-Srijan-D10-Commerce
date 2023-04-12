@@ -813,6 +813,24 @@ class StepHelper
         return $str;
     }
 
+  /**
+   * Translate hardcoded STEP data and filters.
+   *
+   * @param array $str
+   *   Adding arr parameter.
+   * @param string $site_lang_code
+   *   Adding lang parameter.
+   *
+   * @return string
+   *   Translated or original string.
+   */
+  public static function translateEn($str, $site_lang_code) {
+    $search = array_search($str, array_column(self::$translations, $site_lang_code));
+    $searchArray = array_keys(self::$translations);
+    $translatedArr = $searchArray[$search];
+    return $translatedArr;
+  }
+
     public static function getTranslations()
     {
         return self::$translations;

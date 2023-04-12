@@ -105,14 +105,18 @@ class VueDataFormatter {
     }
 
     $items = [];
+ 
     foreach ($results as $result) {
+      $translatedCate = [];
       $resultItemFields = $result->getFields();
       $media_file = isset($resultItemFields['field_media_file']) ? $resultItemFields['field_media_file']->getvalues() : [];
       $listing_image = isset($resultItemFields['field_listing_image']) ? $resultItemFields['field_listing_image']->getvalues() : [];
 
       $catName = isset($resultItemFields['download_category_name']) ? $resultItemFields['download_category_name']->getvalues() : [];
-      $catName = StepHelper::translate($catName);
-      $category = implode(', ', $catName);
+      foreach ($catName as $categoryName) {
+        $translatedCate[] = StepHelper::translate($categoryName);
+      }
+      $category = implode(', ', $translatedCate);
       if (!empty($listing_image)) {
         $image_load = $this->entityManager->getStorage('media')->load($listing_image[0]);
         $image_file = $this->entityManager->getStorage('file')->load($image_load->field_media_image->target_id);
@@ -129,6 +133,10 @@ class VueDataFormatter {
 
       $listing_img_name = isset($resultItemFields['listing_img_name']) ? $resultItemFields['listing_img_name']->getvalues() : [];
       $image_name = explode(".", $listing_img_name[0]);
+      if(!empty($download_file)){
+        $asset_size = $download_file->getSize();
+        $asset_mime_type = $download_file->getMimeType();
+      }
 
       $items[] = [
         "_type" => "downloads",
@@ -139,9 +147,9 @@ class VueDataFormatter {
           "product_category" => [$category],
           "values" => [
             "asset_extension" => 'pdf',
-            "asset_size" => $download_file->getSize(),
+            "asset_size" => $asset_size,
             "asset_format" => "PDF (Portable Document Format application)",
-            "asset_mime_type" => $download_file->getMimeType(),
+            "asset_mime_type" => $asset_mime_type,
           ],
           "assets" => [
             "original_source_file" => $download_file_path,
