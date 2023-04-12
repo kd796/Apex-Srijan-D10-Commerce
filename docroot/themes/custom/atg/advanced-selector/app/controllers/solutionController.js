@@ -10,11 +10,6 @@ Cleco.controller('solutionController',
           // console.log({ data, status });
           $scope.loading = false;
           $scope.user = data.user;
-          if (data.user == undefined) {
-            // Define the $scope.user object if it is undefined
-            data.user = {};
-          }
-          data.user.de_solution_issue_sortingLog = '';
           if (!data.user.de_solution_issue_sortingLog) {
             data.user.de_solution_issue_sortingLog = 'Hole Quality, Ergonomics, Drill Cycle Time, Overall Productivity, Error Proofing, Other';
           }
@@ -34,12 +29,7 @@ Cleco.controller('solutionController',
                 }
                 return i;
               }).join(', ');
-              $scope.user = {};
-              if ($scope.user) { // Check if $scope.user is defined and not null
-                $scope.user.de_solution_issue_sortingLog = logEntry;
-              } else {
-                console.log("");
-              }
+              $scope.user.de_solution_issue_sortingLog = logEntry;
               console.log({ logEntry });
             },
             axis: 'y'
@@ -57,13 +47,7 @@ Cleco.controller('solutionController',
     $scope.saveSolutions = function(data) {
       $scope.loading = true;
       $scope.submitted = true;
-      if (data == undefined) {
-        // Define the $scope.user object if it is undefined
-        data = {refer: {}};
-      }
-      else {
-        data.refer = 'solutions';
-      }
+      data.refer = 'solutions';
       if (data.de_solution_issue_other_value && data.de_solution_issue_sortingLog.indexOf(data.de_solution_issue_other_value) == -1) {
         data.de_solution_issue_sortingLog = data.de_solution_issue_sortingLog.replace('Other', 'Other (' + data.de_solution_issue_other_value + ')');
       }

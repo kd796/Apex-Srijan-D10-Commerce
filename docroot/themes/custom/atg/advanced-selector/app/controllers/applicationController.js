@@ -13,19 +13,9 @@ Cleco.controller('applicationController',
       $http.get('/themes/custom/atg/advanced-selector/api/read.php')
         .success(function(data, status) {
           $scope.loading = false;
-      $scope.user = data.user;
-      if ($scope.user && $scope.user.apps ) {
-        $scope.user.apps[0].show = 1;
-      }
-      if ($scope.user === undefined) {
-        // Define the $scope.user object if it is undefined
-        $scope.user = {};
-        $scope.user.apps = [];
-        $scope.user.apps[0] = {};
-        $scope.user.apps[0].show = 1;
-      }
-
-        console.log($scope.user.apps);
+          $scope.user = data.user;
+          $scope.user.apps[0].show = 1;
+          console.log($scope.user.apps);
         })
         .error(function(data, status, headers, config) {
           $scope.loading = false;
@@ -88,13 +78,7 @@ Cleco.controller('applicationController',
       $scope.submitted = true;
       $scope.loading = true;
       isOK = 1;
-      if (!user || !user.apps || !Array.isArray(user.apps)) {
-        console.error('Apps property of user object is undefined or not an array.');
-        $scope.loading = false;
-        return false;
-      }
       for (a = 0; a < user.apps.length; a++) {
-        console.log(user.apps[a]);
         success = $scope.checkAppFields(a);
         if (!success) {
           thisNum = a + 1;

@@ -14,11 +14,11 @@ $userid = ade_get_cookie();
 
 if ($userid === false) :
     header('Location: /' . DatabaseSel::translate('tools/advanced-drilling'));
-   
+
     exit;
 endif;
 
-$filePath = file_create_url('public://');
+$filePath = \Drupal::service('file_url_generator')->generateAbsoluteString('public://');
 $fileName = DatabaseSel::export_pdf($userid, $conversion_array);
 $pdfFile  = $filePath . 'advanced_selector/' . $fileName;
 

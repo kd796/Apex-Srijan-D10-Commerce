@@ -9,14 +9,7 @@ Cleco.controller('accessoriesController',
         .success(function(data, status) {
           $scope.loading = false;
           $scope.user = data.user;
-          // Initialize $scope.user with an empty object
-          $scope.user = {};
-          // Set the apps.refer property
-          $scope.user.apps = {};
           $scope.user.apps.refer = 'accessories';
-          // if ($scope.user && $scope.user.apps) {
-          //   $scope.user.apps.refer = 'accessories';
-          // }
         })
         .error(function(data, status, headers, config) {
           $scope.loading = false;
@@ -31,9 +24,6 @@ Cleco.controller('accessoriesController',
       $scope.loading = true;
       $scope.submitted = true;
 
-      // if (data && typeof data === 'object') {
-      //   data.refer = 'accessories';
-      // }
       data.refer = 'accessories';
 
       $http.post('/themes/custom/atg/advanced-selector/api/update.php', data)
