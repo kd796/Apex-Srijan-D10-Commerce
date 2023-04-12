@@ -503,7 +503,16 @@ class DatabaseSel
             define('_MPDF_TTFONTDATAPATH', $tmpDir);
         }
 
-        $mpdf = new \Mpdf\Mpdf();
+      try {
+        $mpdf = new \Mpdf\Mpdf([
+          'tempDir' => $tmpDir, // uses the current directory's parent "tmp" subfolder
+          'setAutoTopMargin' => 'stretch',
+          'setAutoBottomMargin' => 'stretch'
+        ]);
+      } catch (\Mpdf\MpdfException $e) {
+        \Drupal::logger('Advanced Drilling')->error("Creating an mPDF object failed with" . $e->getMessage());
+      }
+
         $mpdf->WriteHTML($html);
 
         $filename = implode('-', [str_replace(' ', '-', $fullname), 'advanced-drilling-inquiry', time()]) . '.pdf';
