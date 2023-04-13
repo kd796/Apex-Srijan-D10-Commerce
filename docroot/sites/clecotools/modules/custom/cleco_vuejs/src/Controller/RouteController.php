@@ -49,12 +49,15 @@ class RouteController extends ControllerBase {
   /**
    * RouteController constructor.
    */
-  public function __construct(Request $request,LanguageManagerInterface $languageManager,EntityTypeManagerInterface $entityTypeManager) {
+  public function __construct(Request $request, LanguageManagerInterface $languageManager, EntityTypeManagerInterface $entityTypeManager) {
     $this->request = $request;
     $this->languageManager = $languageManager;
     $this->entityTypeManager = $entityTypeManager;
   }
 
+  /**
+   * The container object.
+   */
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('request_stack')->getCurrentRequest(),
@@ -62,6 +65,7 @@ class RouteController extends ControllerBase {
       $container->get('entity_type.manager')
     );
   }
+
   /**
    * Cellcore.
    */
@@ -110,7 +114,7 @@ class RouteController extends ControllerBase {
       ->loadByProperties([
         'langcode'   => $langcode,
         'field_slug' => $slug,
-    ]);
+      ]);
     if (!empty($nodes)) {
       $features = [];
       $asset1 = [];
@@ -120,7 +124,13 @@ class RouteController extends ControllerBase {
         $fields = $node->getFields();
         $bundle = $node->bundle();
         $sku_group = isset($fields['field_sku_group']) ? $fields['field_sku_group']->getValue()[0]['value'] : $fields['field_sku']->getValue()[0]['value'];
-        $title = $fields['title']->getValue()[0]['value'];
+        $title = '';
+        if (!empty($fields['field_long_description']->getValue())) {
+          $title = $fields['field_long_description']->getValue()[0]['value'];
+        }
+        else {
+          $title = $fields['title']->getValue()[0]['value'];
+        }
         $slug = isset($fields['field_slug']) ? $fields['field_slug']->getValue()[0]['value'] : '';
         $node_id = $node->id();
         $field_product_features_cp = isset($fields['field_product_features_cp']) ? $fields['field_product_features_cp'] : '';
@@ -136,63 +146,59 @@ class RouteController extends ControllerBase {
             $image_load = $this->entityTypeManager->getStorage('media')->load($media->get('target_id')->getValue());
             $image_name = $image_load->get('name')->value;
             $image_file = $this->entityTypeManager->getStorage('file')->load($image_load->field_media_image->target_id);
-            $imagename_without_ext = pathinfo($image_name, PATHINFO_FILENAME);
             $image_url = $image_file->getFileUri();
             $image_path = file_create_url($image_url);
             $asset1[] = [
               "type" => "Primary Image",
-              "id" => $imagename_without_ext,
-              "original_source_file" => $imagename_without_ext . '.tif',
-              "source_to_jpg" => $imagename_without_ext,
+              "id" => $image_name,
             ];
           }
         }
         $footnotes = $fields['field_footnotes']->getValue();
         $models = $fields['field_product_models']->getValue();
-        $models_details = $this->getProductModelDetails($fields['field_product_models']->getValue());
+        $models_details = '';
+        if (!empty($models)) {
+          $models_details = $this->getProductModelDetails($fields['field_product_models']->getValue());
+        }
         $product_category_name = '';
-          $product_category = $fields['field_product_classifications']->getValue();
-          if (!empty($product_category)) {
-            $product_category = end($product_category);
-            $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($product_category['target_id']);
-            if (!empty($term)) {
-              $product_category_name = $term->get('name')->value;
-            }
+        $product_category = $fields['field_product_classifications']->getValue();
+        if (!empty($product_category)) {
+          $product_category = end($product_category);
+          $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($product_category['target_id']);
+          if (!empty($term)) {
+            $product_category_name = $term->get('name')->value;
           }
+        }
         $field_downloads = $fields['field_downloads'] ?? $fields['field_downloads'] ?? '';
         if (!empty($field_downloads)) {
           foreach ($field_downloads as $productDownload) {
             $downloads_list = $this->entityTypeManager->getStorage('media')->load($productDownload->get('target_id')->getValue());
-
             $type = str_replace("_", " ", $downloads_list->get('field_type')->value);
             $type = ucwords($type);
             if (!empty($type)) {
               $type = StepHelper::translate($type);
             }
             $dname = $downloads_list->get('name')->value;
+            $thumbnailImg = '';
             if (!empty($downloads_list->field_listing_image->getValue())) {
               $thumbnail_id = $this->entityTypeManager->getStorage('media')->load($downloads_list->field_listing_image->getValue()[0]['target_id']);
               $thumbnail_url = $thumbnail_id->field_media_image->entity->getFileUri();
               $thumbnailImg = file_create_url($thumbnail_url);
             }
             $file_id = $this->entityTypeManager->getStorage('file')->load($downloads_list->field_media_file->target_id);
-            $filename = $file_id->get('filename')->value;
-
-            $filename_without_ext = pathinfo($filename, PATHINFO_FILENAME);
 
             $file_url = $file_id->getFileUri();
             $downloadable = file_create_url($file_url);
 
             $asset2[] = [
               "type" => $type,
-              "id" => $filename_without_ext,
-              "original_source_file" => $filename,
-              "pro_tools_pdf" => $filename,
-              "source_to_jpg" => $filename_without_ext,
-              "pro_tools_jpg_of_pdf" => $filename_without_ext,
+              "id" => $dname,
+              "original_source_file" => $downloadable,
+              "pro_tools_pdf" => $downloadable,
+              "source_to_jpg" => $thumbnailImg,
+              "pro_tools_jpg_of_pdf" => $thumbnailImg,
             ];
           }
-
         }
       }
 
@@ -215,11 +221,10 @@ class RouteController extends ControllerBase {
           "assets" => $assets,
           "models" => $models_details,
           "values" => [
-            "footnotes" => $footnotes[0]['value'],
+            "footnotes" => isset($footnotes[0]) ? $footnotes[0]['value'] : '',
           ],
         ],
       ];
-
       $response['hits']['hits'] = $output;
 
       if (!empty($response['hits']['hits'])) {
@@ -235,7 +240,21 @@ class RouteController extends ControllerBase {
       }
     }
     else {
-      return new Response($this->t('No results found'), 200, array('Content-Type' => 'text/html'));
+      return new Response($this->t('No results found'), 200, ['Content-Type' => 'text/html']);
+    }
+  }
+
+  /**
+   * SINGLE PRODUCT TITLE.
+   *
+   * Title for the single product template.
+   *
+   * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+   */
+  public function productSingleTitle() {
+    if (!empty($this->productSingle()['#product']['name'])) {
+      $pname = (string) $this->productSingle()['#product']['name'];
+      return $this->t('@pname', ['@pname' => $pname]);
     }
   }
 
