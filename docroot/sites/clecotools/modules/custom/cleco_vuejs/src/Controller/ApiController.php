@@ -98,13 +98,9 @@ class ApiController extends ControllerBase {
 
     // Consider all other params apart from above as filters.
     $filter_params = $request->query->all();
+    $queryString = $filter_params['q'];
 
-    unset($filter_params['q']);
-    unset($filter_params['page']);
-    unset($filter_params['perPage']);
-
-    // Perform search.
-    $results = $this->solrSearchService->searchDownloads($filter_params, $search_query, $per_page, $offset);
+   $results = $this->solrSearchService->searchDownloads($filter_params, $queryString, $per_page, $offset);
     // Format results for vuejs.
     $json = $this->vueDataFormatter->formatDownloadCatalog($results);
 
