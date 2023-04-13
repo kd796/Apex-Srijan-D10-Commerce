@@ -2,11 +2,12 @@
 // error_reporting(E_ALL);
 // ini_set('display_errors', '1');
 // ini_set("register_globals", 0);
+use \Drupal\Core\File\FileSystemInterface;
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
 
-$dotenv = new Dotenv\Dotenv(realpath($_SERVER['DOCUMENT_ROOT'] . '/../'));
-$dotenv->load();
+//$dotenv = new Dotenv\Dotenv(realpath(__DIR__));
+//$dotenv->load();
 
 class DatabaseSel
 {
@@ -23,32 +24,34 @@ class DatabaseSel
     public function __construct()
     {
         switch ($_SERVER['SERVER_NAME']) {
-            case 'cleco-tools.local':
-            case 'de.cleco-tools.local':
-            case 'uk.cleco-tools.local':
-            case 'cleco.ddev.local':
-            case 'de.cleco.ddev.local':
-            case 'uk.cleco.ddev.local':
-                $this->db_host = 'localhost';
-                $this->db_user = 'cleco';
-                $this->db_pass = 'cleco';
-                $this->db_name = 'drupal_selector';
-                break;
-
             case 'www.clecotools.com':
             case 'www.clecotools.de':
             case 'www.clecotools.co.uk':
-            case 'staging.clecotools.com':
-                $this->db_host = getenv('AS_DB_HOST');
-                $this->db_user = getenv('AS_DB_USER');
-                $this->db_pass = getenv('AS_DB_PSWD');
-                $this->db_name = getenv('AS_DB_NAME');
+            // EN.
+            case 'dev-www.clecotools.com':
+            case 'qa-www.clecotools.com':
+            case 'stg-www.clecotools.com':
+            case 'prod-www.clecotools.com':
+            // DE.
+            case 'dev-www.clecotools.de' :
+            case 'qa-www.clecotools.de' :
+            case 'stg-www.clecotools.de' :
+            case 'prod-www.clecotools.de' :
+            // GB.
+            case 'dev-www.clecotools.co.uk' :
+            case 'qa-www.clecotools.co.uk' :
+            case 'stg-www.clecotools.co.uk' :
+            case 'prod-www.clecotools.co.uk' :
+                $this->db_host = $_ENV['AS_DB_HOST'] ?? getenv('AS_DB_HOST');
+                $this->db_user = $_ENV['AS_DB_USER'] ?? getenv('AS_DB_USER');
+                $this->db_pass = $_ENV['AS_DB_PSWD'] ?? getenv('AS_DB_PSWD');
+                $this->db_name = $_ENV['AS_DB_NAME'] ?? getenv('AS_DB_NAME');
                 break;
             case 'clecotools.ddev.site':
                 $this->db_host = 'db';
                 $this->db_user = 'db';
                 $this->db_pass = 'db';
-                $this->db_name = 'clecotools';
+                $this->db_name = 'drupal_selector';
                 break;
             default:
                 $this->db_host = '';
@@ -262,8 +265,7 @@ class DatabaseSel
     }
 
     public static function translate($string = '')
-    {   //var_dump("kuntal");
-        //die;
+    {
         $translated                = $string;
         $translations              = require(__DIR__ . '/translations.php');
         $translations_language     = $translations['language'];
@@ -491,23 +493,26 @@ class DatabaseSel
         </body>
         </html>";
 
-        $tmpDir = drupal_realpath(file_default_scheme() . '://') . '/advanced_selector/';
-        if (!file_destination($tmpDir, FILE_EXISTS_ERROR) === false) {
-            drupal_mkdir($tmpDir, 0755);
+        $file_system = \Drupal::service('file_system');
+        $tmpDir = $file_system->realpath(\Drupal::config('system.file')->get('default_scheme') . '://') . '/advanced_selector/';
+        if (!$file_system->getDestinationFilename($tmpDir, FileSystemInterface::EXISTS_ERROR) === false) {
+          $file_system->mkdir($tmpDir, 0755);
         }
 
         if (!defined('_MPDF_TTFONTDATAPATH')) {
             define('_MPDF_TTFONTDATAPATH', $tmpDir);
         }
 
-        if (file_exists(__DIR__ . '/MPDF613/mpdf.php')) {
-            include(__DIR__ . '/MPDF613/mpdf.php');
-        } else {
-            echo 'Cannot find MPDF.';
-            exit;
-        }
+      try {
+        $mpdf = new \Mpdf\Mpdf([
+          'tempDir' => $tmpDir, // uses the current directory's parent "tmp" subfolder
+          'setAutoTopMargin' => 'stretch',
+          'setAutoBottomMargin' => 'stretch'
+        ]);
+      } catch (\Mpdf\MpdfException $e) {
+        \Drupal::logger('Advanced Drilling')->error("Creating an mPDF object failed with" . $e->getMessage());
+      }
 
-        $mpdf = new mPDF();
         $mpdf->WriteHTML($html);
 
         $filename = implode('-', [str_replace(' ', '-', $fullname), 'advanced-drilling-inquiry', time()]) . '.pdf';

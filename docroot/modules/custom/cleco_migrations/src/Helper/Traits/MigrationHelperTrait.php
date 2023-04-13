@@ -626,10 +626,12 @@ trait MigrationHelperTrait {
    *   Name of the log file.
    * @param string $message
    *   Log message to be written.
+   * @param string $type
+   *   Type to identify log path.
    */
-  public function logMessage($logfile, $message) {
+  public function logMessage($logfile, $message, $type = '') {
     if (empty($logfile)) {
-      $logfile = $this->getDefaultLogfile();
+      $logfile = $this->getDefaultLogfile($type);
     }
     $dir = dirname($logfile);
     if (!file_exists($dir)) {
@@ -640,9 +642,21 @@ trait MigrationHelperTrait {
 
   /**
    * Write various log information in the file.
+   *
+   * @param string $type
+   *   Type to identify log path.
    */
-  public function getDefaultLogfile() {
+  public function getDefaultLogfile($type = '') {
     $default_logfile = "public://import/pim_data/logs/notification.txt";
+    switch ($type) {
+      case 'notification':
+        $default_logfile = "public://import/pim_data/logs/notification.txt";
+        break;
+
+      default:
+        $default_logfile = "public://import/pim_data/logs/notification.txt";
+        break;
+    }
     return $default_logfile;
   }
 
@@ -715,6 +729,69 @@ trait MigrationHelperTrait {
     $query->condition('t.sourceid1', $source_id1, 'IN');
     $migrated_ids = $query->execute()->fetchAllKeyed();
     return $migrated_ids;
+  }
+
+  /**
+   * Get file extension for the asset download.
+   *
+   * @param string $extension
+   *   Asset extension.
+   *
+   * @return string
+   *   Returns the constructed file extension.
+   */
+  public function getFileExtensionMapped($extension = '') {
+    $extension = strtolower($extension);
+    $file_extension = $extension;
+    if (empty($extension)) {
+      $file_extension = 'jpg';
+    }
+    $list = [
+      'eps' => 'jpg',
+      'png' => 'jpg',
+      'gif' => 'jpg',
+      'tif' => 'jpg',
+      'pdf' => 'pdf',
+    ];
+    if (isset($list[$extension])) {
+      $file_extension = $list[$extension];
+    }
+    return $file_extension;
+  }
+
+  /**
+   * Get Assets associated products classifications.
+   *
+   * @param int $category_id
+   *   Category tid.
+   * @param string $langcode
+   *   Language code.
+   *
+   * @return array
+   *   Returns migrated tids.
+   */
+  public function getAllProductCategories(int $category_id, $langcode = '') {
+    $tids = [];
+    if (empty($category_id)) {
+      return $tids;
+    }
+    $query = $this->connection->select('node__field_downloads', 'nd');
+    $query->leftjoin('node__field_product_classifications', 'np', 'np.entity_id = nd.entity_id');
+    $query->addField('np', 'field_product_classifications_target_id');
+    $query->condition('nd.field_downloads_target_id', $category_id);
+    if (!empty($langcode)) {
+      $query->condition('nd.langcode', $langcode);
+      $query->condition('np.langcode', $langcode);
+    }
+    $query->condition('nd.bundle', 'product');
+    $query->condition('np.bundle', 'product');
+    $query->condition('nd.deleted', 0);
+    $query->condition('np.deleted', 0);
+    $tids = $query->execute()->fetchAllKeyed(0, 0);
+    if (!empty($tids)) {
+      $tids = array_keys($tids);
+    }
+    return $tids;
   }
 
 }

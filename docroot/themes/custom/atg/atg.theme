@@ -245,7 +245,7 @@ function atg_preprocess_paragraph__form_section(&$variables)
         ];
     }
 
-    $field_ade_form = $paragraph->get('field_ade_form')->getValue();
+    $field_ade_form = $paragraph->get('field_ade_form')->getValue()[0]['value'];
     if ($field_ade_form) {
         $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
         $nids = \Drupal::entityQuery('node')->condition('type', 'advanced_selector')->condition('langcode', $langcode)->execute();

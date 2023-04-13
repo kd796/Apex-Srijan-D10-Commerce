@@ -17,6 +17,8 @@ function ade_set_cookie($expire) {
          * }
          */
         $userid = $_SERVER['X-Request-ID'];
+    elseif (isset($_ENV['HTTP_X_REQUEST_ID']) && !empty($_ENV['HTTP_X_REQUEST_ID'])) : // Acquia
+      $userid = $_ENV['HTTP_X_REQUEST_ID'];
     endif;
 
     setcookie('unique_userid', $userid, $expire, '/', $_SERVER['SERVER_NAME']);

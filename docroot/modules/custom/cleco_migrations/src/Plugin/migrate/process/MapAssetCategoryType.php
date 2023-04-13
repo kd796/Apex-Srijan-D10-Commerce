@@ -65,13 +65,7 @@ class MapAssetCategoryType extends ProcessPluginBase implements ContainerFactory
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $asset_crossreference = $value->xpath('parent::Product/AssetCrossReference');
-    $classification_reference = $value->xpath('parent::Product/ClassificationReference');
-
-    $list = $this->getClassificationList($classification_reference);
-    $migrated_classification_tid = [];
-    if (!empty($list)) {
-      $migrated_classification_tid = $this->getAllMigratedTaxonomyTid($list, $this->configuration['classification_instance']);
-    }
+    $langcode = $this->configuration['langcode'] ?? '';
 
     foreach ($asset_crossreference as $child) {
       $type = (string) $child->attributes()->Type;
@@ -86,7 +80,6 @@ class MapAssetCategoryType extends ProcessPluginBase implements ContainerFactory
         continue;
       }
 
-      $changed = 0;
       $media = $this->entityTypeManager->getStorage('media')->load($mid);
 
       // Process for Type and category for product downloads only.
@@ -95,28 +88,16 @@ class MapAssetCategoryType extends ProcessPluginBase implements ContainerFactory
         continue;
       }
 
-      if (empty($media->field_type->value)) {
-        $media->field_type->setValue($mapped_type);
-        $changed = 1;
+      // Set Type and categories.
+      $classification_tids = [];
+      if ($mid) {
+        $classification_tids = $this->getAllProductCategories($mid, $langcode);
       }
-      $category_list = $media->field_product_category->getValue();
-      $existing_category_list = $this->getCategoryTids($category_list);
-
-      foreach ($migrated_classification_tid as $curret_tid) {
-        if (!in_array($curret_tid, $existing_category_list)) {
-          $category_list[] = ['target_id' => $curret_tid];
-          $existing_category_list[] = $curret_tid;
-          $changed = 1;
-        }
-      }
-
-      // Save media for any changes required.
-      if ($changed) {
-        $media->field_product_category->setValue($category_list);
-        $media->save();
-      }
-
+      $media->field_type->setValue($mapped_type);
+      $media->field_product_category->setValue($classification_tids);
+      $media->save();
     }
+
   }
 
   /**

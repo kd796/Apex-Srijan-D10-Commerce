@@ -216,7 +216,7 @@ $feature-height-map: (
   }
 
   @media (min-width: $media-screen-medium + 1) {
-    display: flex;
+    display: flex !important; // to overwrite the style of default container
     justify-content: center;
     margin-left: -0.75em;
     margin-right: -0.75em;

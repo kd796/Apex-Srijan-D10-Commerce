@@ -111,6 +111,11 @@ class MapProductDownloads extends ProcessPluginBase implements ContainerFactoryP
       }
       $processed_list[$asset_id] = 1;
       $mid = $this->getMigratedTaxonomyTid($asset_id, $this->configuration['migration_instance']);
+      // Create product download, if configured to create on missing.
+      if (empty($mid) && $create_media) {
+        $this->createProductDownloadMedia($asset_id, $langcode);
+      }
+
       if (empty($mid)) {
         $message = "\nSyntax: time drush mim cleco_product_media  --uri=clecotools  --idlist='" . $asset_id . "'\n";
         echo $message;
@@ -158,6 +163,9 @@ class MapProductDownloads extends ProcessPluginBase implements ContainerFactoryP
       $this->logMessage($this->configuration['notification_logfile'], $message);
     }
     // Create Download media and attach fid & mid and map to migration table.
+    if ($fid or $mid) {
+      // Create product download media and return mid.
+    }
     return [];
   }
 

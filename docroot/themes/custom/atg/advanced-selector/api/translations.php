@@ -30,23 +30,29 @@ namespace ADE;
 switch ($_SERVER['SERVER_NAME']) {
     case 'www.clecotools.de':
     case 'staging.clecotools.de':
-    case 'de.cleco-tools.local':
-    case 'de.cleco.ddev.local' :
+    case 'de.clecotools.ddev.site' :
+    case 'dev-www.clecotools.de' :
+    case 'qa-www.clecotools.de' :
+    case 'stg-www.clecotools.de' :
+    case 'prod-www.clecotools.de' :
         $language = 'de';
         break;
     case 'www.clecotools.co.uk':
     case 'staging.clecotools.co.uk':
-    case 'uk.cleco-tools.local':
-    case 'uk.cleco.ddev.local' :
+    case 'uk.clecotools.ddev.site' :
+    case 'dev-www.clecotools.co.uk' :
+    case 'qa-www.clecotools.co.uk' :
+    case 'stg-www.clecotools.co.uk' :
+    case 'prod-www.clecotools.co.uk' :
         $language = 'gb';
         break;
     case 'www.clecotools.com':
     case 'staging.clecotools.com':
-    case 'cleco-tools.local':
-    case 'cleco.ddev.local' :
-        $language = 'en';
-        break;
     case 'clecotools.ddev.site' :
+    case 'dev-www.clecotools.com' :
+    case 'qa-www.clecotools.com' :
+    case 'stg-www.clecotools.com' :
+    case 'prod-www.clecotools.com' :
         $language = 'en';
         break;
 }

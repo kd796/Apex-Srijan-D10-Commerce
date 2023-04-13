@@ -10,15 +10,7 @@ Cleco.controller('generalController',
           // console.log({ data, status });
           $scope.loading = false;
           $scope.user = data.user;
-          // Add this line to check if the "apps" property exists before accessing it
-          if ($scope.user && $scope.user.apps) {
-            $scope.user.apps[0].show = 1;
-          }
-          if ($scope.user == undefined) {
-            // Define the $scope.user object if it is undefined
-            $scope.user = {};
-          }
-          $scope.user.de_inquiry_product_types = '';
+          $scope.user.apps[0].show = 1;
           if ($scope.user.de_inquiry_product_types !== undefined) {
             $scope.user.de_inquiry_product_types = $scope.user.de_inquiry_product_types.split(', ');
           }

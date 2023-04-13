@@ -1,4 +1,4 @@
-uuid: dd01c056-59cb-4dd4-9edc-32fe1b3cde35
+uuid: 8a4c3ef7-fd73-48cf-b2b9-2177b44f098d
 langcode: en
 status: true
 dependencies: {  }
@@ -74,7 +74,7 @@ process:
   field_media_file:
     plugin: cleco_get_product_images
     get_type: fid
-    source: asset_id
+    source: asset_values
     process_pdf: 1
     langcode: de
     media_type: pdf
@@ -91,12 +91,17 @@ process:
   field_listing_image:
     plugin: cleco_get_product_images
     get_type: mid
-    source: asset_id
+    source: asset_values
     process_pdf: 1
     langcode: de
     media_type: image
     level: asset
     notification_logfile: 'public://import/pim_data/logs/product_media_notification_de.txt'
+    process_map_media_icon: 1
+    map_media_migration_id: cleco_product_media_de
+    map_media_config:
+      'STP File': controller_stp_file_de
+      'IGS File': controller_igs_file_de
     process_params:
       bundle: product_downloads
       source: bundle
@@ -108,7 +113,7 @@ process:
   field_media_image:
     plugin: cleco_get_product_images
     get_type: fid
-    source: asset_id
+    source: asset_values
     process_image: 1
     langcode: de
     media_type: image

@@ -3,6 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.media.field_media_file
+    - field.storage.media.field_listing_image
+    - field.storage.media.field_product_category
     - field.storage.node.field_360_image
     - field.storage.node.field_address
     - field.storage.node.body
@@ -25,6 +28,7 @@ dependencies:
     - field.storage.node.field_model_specification
     - field.storage.node.field_phone
     - field.storage.node.field_product_classifications
+    - field.storage.taxonomy_term.field_long_name
     - field.storage.node.field_product_features
     - field.storage.node.field_product_line
     - field.storage.node.field_product_models
@@ -41,7 +45,6 @@ dependencies:
     - field.storage.taxonomy_term.field_classification_id
     - field.storage.taxonomy_term.field_es_desc
     - field.storage.taxonomy_term.field_form_intro_text
-    - field.storage.taxonomy_term.field_long_name
     - field.storage.taxonomy_term.field_es_range_max
     - field.storage.taxonomy_term.field_es_range_min
     - field.storage.taxonomy_term.field_es_id
@@ -49,10 +52,12 @@ dependencies:
     - search_api.server.acquia_search_api_solr_server
   module:
     - search_api_solr
+    - media
+    - taxonomy
     - node
     - content_moderation
-    - taxonomy
     - search_api
+    - cleco_vuejs
 third_party_settings:
   search_api_solr:
     finalize: false
@@ -100,6 +105,22 @@ name: 'Acquia Search Index'
 description: ''
 read_only: false
 field_settings:
+  abrasive_capacity:
+    label: 'Abrasive Capacity'
+    property_path: abrasive_capacity
+    type: string
+  abrasive_type:
+    label: 'Abrasive Type'
+    property_path: abrasive_type
+    type: string
+  air_inlet_size_inh:
+    label: 'Air Inlet Size (inh)'
+    property_path: air_inlet_size_inh
+    type: string
+  air_inlet_size_mmt:
+    label: 'Air Inlet Size (mmt)'
+    property_path: air_inlet_size_mmt
+    type: string
   body:
     label: Body
     datasource_id: 'entity:node'
@@ -108,6 +129,22 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.body
+  bore_in:
+    label: 'Bore (in)'
+    property_path: bore_in
+    type: string
+  bore_mm:
+    label: 'Bore (mm)'
+    property_path: bore_mm
+    type: string
+  bundle:
+    label: 'Media type'
+    datasource_id: 'entity:media'
+    property_path: bundle
+    type: string
+    dependencies:
+      module:
+        - media
   changed:
     label: Changed
     datasource_id: 'entity:node'
@@ -116,6 +153,22 @@ field_settings:
     dependencies:
       module:
         - node
+  chisel:
+    label: Chisel
+    property_path: chisel
+    type: string
+  collet_size:
+    label: 'Collet Size'
+    property_path: collet_size
+    type: string
+  control_type:
+    label: 'Control Type'
+    property_path: control_type
+    type: string
+  cutter_thread:
+    label: 'Cutter Thread'
+    property_path: cutter_thread
+    type: string
   description:
     label: Description
     datasource_id: 'entity:taxonomy_term'
@@ -124,6 +177,36 @@ field_settings:
     dependencies:
       module:
         - taxonomy
+  download_category_name:
+    label: 'Product Category » Taxonomy term » Name'
+    datasource_id: 'entity:media'
+    property_path: 'field_product_category:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_product_category
+      module:
+        - taxonomy
+  drive_size:
+    label: 'Drive Size'
+    property_path: drive_size
+    type: string
+  drive_type:
+    label: 'Drive Type'
+    property_path: drive_type
+    type: string
+  entity_type:
+    label: 'Entity type'
+    property_path: search_api_entity_type
+    type: string
+  exhaust:
+    label: Exhaust
+    property_path: exhaust
+    type: string
+  features:
+    label: Features
+    property_path: features
+    type: string
   field_360_image:
     label: '360° Product Image'
     datasource_id: 'entity:node'
@@ -268,6 +351,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_geographic_data
+  field_listing_image:
+    label: 'Listing Image'
+    datasource_id: 'entity:media'
+    property_path: field_listing_image
+    type: integer
+    dependencies:
+      config:
+        - field.storage.media.field_listing_image
   field_locations_content_type:
     label: 'Locations Content Type'
     datasource_id: 'entity:node'
@@ -284,14 +375,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_long_description
-  field_long_name:
-    label: 'Long Name'
-    datasource_id: 'entity:taxonomy_term'
-    property_path: field_long_name
-    type: text
-    dependencies:
-      config:
-        - field.storage.taxonomy_term.field_long_name
   field_media:
     label: 'Listing Image'
     datasource_id: 'entity:node'
@@ -300,6 +383,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_media
+  field_media_file:
+    label: File
+    datasource_id: 'entity:media'
+    property_path: field_media_file
+    type: integer
+    dependencies:
+      config:
+        - field.storage.media.field_media_file
   field_model_specification:
     label: 'Model Specification'
     datasource_id: 'entity:node'
@@ -316,6 +407,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_phone
+  field_product_category:
+    label: 'Product Category'
+    datasource_id: 'entity:media'
+    property_path: field_product_category
+    type: integer
+    dependencies:
+      config:
+        - field.storage.media.field_product_category
   field_product_classifications:
     label: 'Product Categories'
     datasource_id: 'entity:node'
@@ -468,6 +567,72 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_video_popup
+  horsepower_hj:
+    label: 'Horsepower (hj)'
+    property_path: horsepower_hj
+    type: string
+  horsepower_hp:
+    label: 'PS (hp)'
+    property_path: horsepower_hp
+    type: string
+  horsepower_kwt:
+    label: 'Horsepower (kwt)'
+    property_path: horsepower_kwt
+    type: string
+  item_type:
+    label: 'Item Type'
+    property_path: item_type
+    type: string
+  jaws:
+    label: Jaws
+    property_path: jaws
+    type: string
+  langcode:
+    label: Language
+    datasource_id: 'entity:node'
+    property_path: langcode
+    type: string
+    dependencies:
+      module:
+        - node
+  language_with_fallback:
+    label: 'Language (with fallback)'
+    property_path: language_with_fallback
+    type: string
+  material:
+    label: Material
+    property_path: material
+    type: string
+  maximum_depth_of_cut_in:
+    label: 'Maximum Depth of Cut (in)'
+    property_path: maximum_depth_of_cut_in
+    type: string
+  maximum_depth_of_cut_mm:
+    label: 'Maximum Depth of Cut (mm)'
+    property_path: maximum_depth_of_cut_mm
+    type: string
+  media_name:
+    label: 'Listing Image » Media » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_media:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_media
+      module:
+        - media
+  medialang_type:
+    label: 'Media Language Type'
+    property_path: medialang_type
+    type: string
+  mid:
+    label: ID
+    datasource_id: 'entity:media'
+    property_path: mid
+    type: integer
+    dependencies:
+      module:
+        - media
   moderation_state:
     label: 'Moderation state'
     datasource_id: 'entity:node'
@@ -476,6 +641,10 @@ field_settings:
     dependencies:
       module:
         - content_moderation
+  motor_configuration:
+    label: 'Motor Configuration'
+    property_path: motor_configuration
+    type: string
   name:
     label: Name
     datasource_id: 'entity:taxonomy_term'
@@ -492,6 +661,18 @@ field_settings:
     dependencies:
       module:
         - node
+  nose_insert_style:
+    label: 'Nose Insert Style'
+    property_path: nose_insert_style
+    type: string
+  orbital_pattern_size_inh:
+    label: 'Orbital Pattern Size (inh)'
+    property_path: orbital_pattern_size_inh
+    type: string
+  orbital_pattern_size_mmt:
+    label: 'Orbital Pattern Size (mmt)'
+    property_path: orbital_pattern_size_mmt
+    type: string
   parent:
     label: 'Term Parents'
     datasource_id: 'entity:taxonomy_term'
@@ -500,6 +681,75 @@ field_settings:
     dependencies:
       module:
         - taxonomy
+  power:
+    label: Power
+    property_path: power
+    type: string
+  power_type:
+    label: 'Power Type'
+    property_path: power_type
+    type: string
+  product_category:
+    label: 'Product Categories » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_product_classifications:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_product_classifications
+      module:
+        - taxonomy
+  product_category_name:
+    label: 'Product Categories » Taxonomy term » Long Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_product_classifications:entity:field_long_name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_product_classifications
+        - field.storage.taxonomy_term.field_long_name
+      module:
+        - taxonomy
+  product_family:
+    label: 'Product Family'
+    property_path: product_family
+    type: string
+  saw_blade_capacity_in:
+    label: 'Saw Blade Capacity (in)'
+    property_path: saw_blade_capacity_in
+    type: string
+  saw_blade_capacity_mm:
+    label: 'Saw Blade Capacity (mm)'
+    property_path: saw_blade_capacity_mm
+    type: string
+  shank_diameter_inh:
+    label: 'Shank Diameter (inh)'
+    property_path: shank_diameter_inh
+    type: string
+  site_langcode:
+    label: Language
+    datasource_id: 'entity:media'
+    property_path: langcode
+    type: string
+    dependencies:
+      module:
+        - media
+  speed:
+    label: Speed
+    property_path: speed
+    type: string
+  speed_rpm:
+    label: 'Speed (rpm)'
+    property_path: speed_rpm
+    type: string
+  spindle_size:
+    label: 'Spindle Size'
+    property_path: spindle_size
+    type: string
+  spindle_type:
+    label: 'Spindle Type'
+    property_path: spindle_type
+    type: string
   status:
     label: Published
     datasource_id: 'entity:taxonomy_term'
@@ -516,6 +766,26 @@ field_settings:
     dependencies:
       module:
         - node
+  stroke:
+    label: Stroke
+    property_path: stroke
+    type: string
+  target_torque_ft_lbs:
+    label: 'Target Torque (ft-lbs)'
+    property_path: target_torque_ft_lbs
+    type: string
+  target_torque_nm:
+    label: 'Target Torque (NM)'
+    property_path: target_torque_nm
+    type: string
+  termination:
+    label: Termination
+    property_path: termination
+    type: string
+  thrust_lbs:
+    label: 'Thrust (lbs)'
+    property_path: thrust_lbs
+    type: string
   tid:
     label: 'Term ID'
     datasource_id: 'entity:taxonomy_term'
@@ -532,6 +802,34 @@ field_settings:
     dependencies:
       module:
         - node
+  tool_configuration:
+    label: 'Tool Configuration'
+    property_path: tool_configuration
+    type: string
+  tool_termination:
+    label: 'Tool Termination'
+    property_path: tool_termination
+    type: string
+  tool_type:
+    label: 'Tool Type'
+    property_path: tool_type
+    type: string
+  tool_type_compatibility:
+    label: 'Tool Type Compatibility'
+    property_path: tool_type_compatibility
+    type: string
+  torque_stall_ftlbs:
+    label: 'Torque Stall (ftlbs)'
+    property_path: torque_stall_ftlbs
+    type: string
+  torque_stall_nm:
+    label: 'Torque Stall (nm)'
+    property_path: torque_stall_nm
+    type: string
+  torque_transducer:
+    label: 'Torque Transducer'
+    property_path: torque_transducer
+    type: string
   type:
     label: 'Content type'
     datasource_id: 'entity:node'
@@ -540,6 +838,10 @@ field_settings:
     dependencies:
       module:
         - node
+  type_housing:
+    label: 'Type Housing'
+    property_path: type_housing
+    type: string
   uid:
     label: 'Authored by'
     datasource_id: 'entity:node'
@@ -572,7 +874,19 @@ field_settings:
     dependencies:
       module:
         - taxonomy
+  window_style:
+    label: 'Window Style'
+    property_path: window_style
+    type: string
 datasource_settings:
+  'entity:media':
+    bundles:
+      default: false
+      selected:
+        - product_downloads
+    languages:
+      default: true
+      selected: {  }
   'entity:node':
     bundles:
       default: false
@@ -611,7 +925,6 @@ datasource_settings:
         - product_classifications
         - product_filters
         - product_lines
-        - product_specifications
         - products
         - products_offered
     languages:
@@ -621,6 +934,9 @@ processor_settings:
   add_url: {  }
   aggregated_field: {  }
   auto_aggregated_fulltext_field: {  }
+  cleco_add_item_type: {  }
+  cleco_add_medialang_type: {  }
+  cleco_add_model_specification: {  }
   entity_type: {  }
   language_with_fallback: {  }
   rendered_item: {  }
