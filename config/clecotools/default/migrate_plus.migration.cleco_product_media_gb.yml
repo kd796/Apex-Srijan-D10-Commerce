@@ -2,8 +2,6 @@ uuid: 4843cb92-9f87-415d-b0cf-f4403f4437ae
 langcode: en
 status: true
 dependencies: {  }
-_core:
-  default_config_hash: 3221XeLRfW00-Pdpc83dEasqfiJP3QPiF8DUPSdXfjc
 id: cleco_product_media_gb
 class: null
 field_plugin_method: null
@@ -104,6 +102,13 @@ process:
     map_media_config:
       'STP File': controller_stp_file_gb
       'IGS File': controller_igs_file_gb
+      'DXF File': controller_dxf_file_gb
+      ZIP: controller_zip_gb
+    map_media_extension:
+      'STP File': png
+      'IGS File': png
+      'DXF File': png
+      ZIP: png
     process_params:
       bundle: product_downloads
       source: bundle
