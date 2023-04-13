@@ -292,10 +292,6 @@ class SolrSearchApiService {
     $facet_filters = [];
     $facet_filters = ['sm_medialang_type','sm_download_category_name','sm_item_type'];
 
-    foreach ($terms as $term) {
-      $facet_filters[] = 'sm_' . $term['key'];
-    }
-
     $this->query->setOption('solr_param_facet', 'true');
     $this->query->setOption('solr_param_facet.field', $facet_filters);
 

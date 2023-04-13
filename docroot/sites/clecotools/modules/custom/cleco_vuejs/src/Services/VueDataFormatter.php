@@ -207,6 +207,7 @@ class VueDataFormatter {
     foreach ($results as $result) {
       $translatedCate = [];
       $resultItemFields = $result->getFields();
+
       $media_file = isset($resultItemFields['field_media_file']) ? $resultItemFields['field_media_file']->getvalues() : [];
       $media_url = isset($resultItemFields['media_listing_image_url']) ? $resultItemFields['media_listing_image_url']->getvalues()[0] : '';
 
@@ -223,8 +224,8 @@ class VueDataFormatter {
         $download_file_path = file_create_url($download_file_url);
       }
 
-      $listing_img_name = isset($resultItemFields['listing_img_name']) ? $resultItemFields['listing_img_name']->getvalues() : [];
-      $image_name = explode(".", $listing_img_name[0]);
+      $listing_img_name = isset($resultItemFields['media_listing_image_name']) ? $resultItemFields['media_listing_image_name']->getvalues() : [];
+      $image_name = explode(".", $listing_img_name[0] ?? '');
       if(!empty($download_file)){
         $asset_size = $download_file->getSize();
         $asset_mime_type = $download_file->getMimeType();
@@ -245,6 +246,7 @@ class VueDataFormatter {
           ],
           "assets" => [
             "original_source_file" => $download_file_path,
+            "source_to_jpg" => $download_file_path,
             "pro_tools_jpg_of_pdf" => "$media_url",
             "pro_tools_pdf" => $download_file_path,
           ],
