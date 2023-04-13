@@ -140,6 +140,7 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
               }
               continue;
             }
+            $term = NULL;
           }
           else {
             $unit_id = (string) $child->Value->attributes()->UnitID;
