@@ -86,19 +86,28 @@ class VueDataFormatter {
       if ($entity_type === 'node') {
         // Nid.
         $nid = isset($resultItemFields['nid']) ? $resultItemFields['nid']->getvalues()[0] : '';
-        // Title.
-        $title_ob = isset($resultItemFields['title']) ? $resultItemFields['title']->getvalues() : [];
-        $title = isset($title_ob[0]) ? $title_ob[0]->getText() : '';
+
+        // If 'field_long_description' is not available take from title field.
+        $coupon_heading = isset($resultItemFields['field_long_description']) ? $resultItemFields['field_long_description']->getvalues() : [];
+        $title = isset($coupon_heading[0]) ? $coupon_heading[0]->getText() : '';
+        if (!$title) {
+          $title_ob = isset($resultItemFields['title']) ? $resultItemFields['title']->getvalues() : [];
+          $title = isset($title_ob[0]) ? $title_ob[0]->getText() : '';
+        }
+
         // Image.
         $listing_image = isset($resultItemFields['listing_image_name']) ? $resultItemFields['listing_image_name']->getvalues() : [];
         $image_name = isset($listing_image[0]) ? explode('.', $listing_image[0])[0] : '';
         $image_file = isset($resultItemFields['listing_image_url']) ? $resultItemFields['listing_image_url']->getvalues() : [];
         $image_file = $image_file[0] ?? '';
+
         // Description.
         $sku_overview = isset($resultItemFields['body']) ? $resultItemFields['body']->getvalues() : [];
         $sku_overview = isset($sku_overview[0]) ? $sku_overview[0]->getText() : '';
+
         // Slug.
         $slug = isset($resultItemFields['field_slug']) ? $resultItemFields['field_slug']->getvalues() : '';
+
         // Type.
         $type = isset($resultItemFields['type']) ? $resultItemFields['type']->getvalues()[0] : '';
 
@@ -131,16 +140,19 @@ class VueDataFormatter {
         // Title.
         $title_ob = isset($resultItemFields['name']) ? $resultItemFields['name']->getvalues() : [];
         $title = isset($title_ob[0]) ? $title_ob[0]->getText() : '';
+
         // Image.
         $listing_image = isset($resultItemFields['media_listing_image_name']) ? $resultItemFields['media_listing_image_name']->getvalues() : [];
         $image_name = isset($listing_image[0]) ? explode('.', $listing_image[0])[0] : '';
         $image_file = isset($resultItemFields['media_listing_image_url']) ? $resultItemFields['media_listing_image_url']->getvalues()[0] : [];
+
         // Type.
         $type = isset($resultItemFields['bundle']) ? $resultItemFields['bundle']->getvalues()[0] : '';
+
         // Asset.
         $asset_file = isset($resultItemFields['media_filename_url']) ? $resultItemFields['media_filename_url']->getvalues()[0] : [];
 
-        // Assets.
+        // Assets array.
         $assets = [
           "type" => "Primary Image",
           "id" => $image_name,
