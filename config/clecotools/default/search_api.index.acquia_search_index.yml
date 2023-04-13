@@ -21,7 +21,6 @@ dependencies:
     - field.storage.node.field_video_popup
     - field.storage.node.field_media
     - field.storage.node.field_product_classifications
-    - field.storage.taxonomy_term.field_long_name
     - field.storage.node.field_product_features
     - field.storage.node.field_product_line
     - field.storage.node.field_product_models
@@ -263,6 +262,22 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_media
+  field_media_file:
+    label: File
+    datasource_id: 'entity:media'
+    property_path: field_media_file
+    type: integer
+    dependencies:
+      config:
+        - field.storage.media.field_media_file
+  field_product_category:
+    label: 'Product Category'
+    datasource_id: 'entity:media'
+    property_path: field_product_category
+    type: integer
+    dependencies:
+      config:
+        - field.storage.media.field_product_category
   field_product_classifications:
     label: 'Product Categories'
     datasource_id: 'entity:node'
@@ -461,6 +476,16 @@ field_settings:
         - field.storage.media.field_media_file
       module:
         - file
+  media_filename_url:
+    label: 'File » File » URI » Root-relative file URL'
+    datasource_id: 'entity:media'
+    property_path: 'field_media_file:entity:uri:url'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_file
+      module:
+        - file
   media_listing_image_name:
     label: 'Listing Image » Media » Image » File » Filename'
     datasource_id: 'entity:media'
@@ -473,18 +498,6 @@ field_settings:
       module:
         - file
         - media
-  medialang_type:
-    label: 'Media Language Type'
-    property_path: medialang_type
-    type: string
-    mid:
-      label: ID
-      datasource_id: 'entity:media'
-      property_path: mid
-      type: integer
-      dependencies:
-        module:
-          - media
   media_listing_image_url:
     label: 'Listing Image » Media » Image » File » URI » Root-relative file URL'
     datasource_id: 'entity:media'
@@ -507,6 +520,10 @@ field_settings:
         - field.storage.media.field_product_category
       module:
         - taxonomy
+  medialang_type:
+    label: 'Media Language Type'
+    property_path: medialang_type
+    type: string
   moderation_state:
     label: 'Moderation state'
     datasource_id: 'entity:node'
@@ -563,17 +580,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_product_classifications
-      module:
-        - taxonomy
-  product_category_name:
-    label: 'Product Categories » Taxonomy term » Long Name'
-    datasource_id: 'entity:node'
-    property_path: 'field_product_classifications:entity:field_long_name'
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_product_classifications
-        - field.storage.taxonomy_term.field_long_name
       module:
         - taxonomy
   product_family:

@@ -138,7 +138,7 @@ class VueDataFormatter {
         // Type.
         $type = isset($resultItemFields['bundle']) ? $resultItemFields['bundle']->getvalues()[0] : '';
         // Asset.
-        $asset_file = isset($resultItemFields['media_filename']) ? $resultItemFields['media_filename']->getvalues()[0] : [];
+        $asset_file = isset($resultItemFields['media_filename_url']) ? $resultItemFields['media_filename_url']->getvalues()[0] : [];
 
         // Assets.
         $assets = [
@@ -196,19 +196,13 @@ class VueDataFormatter {
       $translatedCate = [];
       $resultItemFields = $result->getFields();
       $media_file = isset($resultItemFields['field_media_file']) ? $resultItemFields['field_media_file']->getvalues() : [];
-      $listing_image = isset($resultItemFields['field_listing_image']) ? $resultItemFields['field_listing_image']->getvalues() : [];
+      $media_url = isset($resultItemFields['media_listing_image_url']) ? $resultItemFields['media_listing_image_url']->getvalues()[0] : '';
 
       $catName = isset($resultItemFields['download_category_name']) ? $resultItemFields['download_category_name']->getvalues() : [];
       foreach ($catName as $categoryName) {
         $translatedCate[] = StepHelper::translate($categoryName);
       }
       $category = implode(', ', $translatedCate);
-      if (!empty($listing_image)) {
-        $image_load = $this->entityManager->getStorage('media')->load($listing_image[0]);
-        $image_file = $this->entityManager->getStorage('file')->load($image_load->field_media_image->target_id);
-        $image_url  = $image_file->getFileUri();
-        $media_url = file_create_url($image_url);
-      }
 
       if (!empty($media_file)) {
         $download_file = $this->entityManager->getStorage('file')->load($media_file[0]);
