@@ -174,7 +174,7 @@
                             } else {
                                 if (key === 'top_seller' && column === 'Yes') {
                                     column = {
-                                        display: '<img src="/themes/cleco/dist/img/top-seller.png">',
+                                        display: '<img src="/themes/custom/cleco/dist/img/top-seller.png">',
                                         sort: (new NumberParser(column)).parse(),
                                     }
                                 } else {
