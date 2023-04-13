@@ -5,55 +5,39 @@ dependencies:
   config:
     - field.storage.media.field_media_file
     - field.storage.media.field_listing_image
+    - field.storage.media.field_media_image
     - field.storage.media.field_product_category
+    - field.storage.media.field_type
     - field.storage.node.field_360_image
-    - field.storage.node.field_address
+    - field.storage.paragraph.field_360_product_image
     - field.storage.node.body
-    - field.storage.node.field_category_facets
-    - field.storage.node.field_classification_id
     - field.storage.node.field_long_description
-    - field.storage.node.field_term_department
     - field.storage.node.field_downloads
-    - field.storage.node.field_email
     - field.storage.node.field_product_features_cp
-    - field.storage.node.field_featured_products
     - field.storage.node.field_feature_hotspots
     - field.storage.node.field_features_copy
     - field.storage.node.field_footnotes
-    - field.storage.node.field_geographic_data
     - field.storage.node.field_video_background
     - field.storage.node.field_video_popup
     - field.storage.node.field_media
-    - field.storage.node.field_locations_content_type
-    - field.storage.node.field_model_specification
-    - field.storage.node.field_phone
     - field.storage.node.field_product_classifications
     - field.storage.taxonomy_term.field_long_name
     - field.storage.node.field_product_features
     - field.storage.node.field_product_line
     - field.storage.node.field_product_models
-    - field.storage.node.field_products_category_section
-    - field.storage.node.field_product_search
-    - field.storage.node.field_products_offered
     - field.storage.node.field_related_products
     - field.storage.node.field_related_products_ref
     - field.storage.node.field_sku
     - field.storage.node.field_sku_group
     - field.storage.node.field_slug
-    - field.storage.node.field_subtitle
     - field.storage.node.field_upc
-    - field.storage.taxonomy_term.field_classification_id
-    - field.storage.taxonomy_term.field_es_desc
-    - field.storage.taxonomy_term.field_form_intro_text
-    - field.storage.taxonomy_term.field_es_range_max
-    - field.storage.taxonomy_term.field_es_range_min
-    - field.storage.taxonomy_term.field_es_id
-    - field.storage.taxonomy_term.field_tagline
     - search_api.server.acquia_search_api_solr_server
   module:
     - search_api_solr
+    - file
     - media
     - taxonomy
+    - paragraphs
     - node
     - content_moderation
     - search_api
@@ -169,14 +153,6 @@ field_settings:
     label: 'Cutter Thread'
     property_path: cutter_thread
     type: string
-  description:
-    label: Description
-    datasource_id: 'entity:taxonomy_term'
-    property_path: description
-    type: text
-    dependencies:
-      module:
-        - taxonomy
   download_category_name:
     label: 'Product Category » Taxonomy term » Name'
     datasource_id: 'entity:media'
@@ -195,6 +171,30 @@ field_settings:
     label: 'Drive Type'
     property_path: drive_type
     type: string
+  enhanced_product_image:
+    label: '360° Product Image » Paragraph » Product 360° Image » File » Filename'
+    datasource_id: 'entity:node'
+    property_path: 'field_360_image:entity:field_360_product_image:entity:filename'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_360_image
+        - field.storage.paragraph.field_360_product_image
+      module:
+        - file
+        - paragraphs
+  enhanced_product_image_url:
+    label: '360° Product Image » Paragraph » Product 360° Image » File » URI » Root-relative file URL'
+    datasource_id: 'entity:node'
+    property_path: 'field_360_image:entity:field_360_product_image:entity:uri:url'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_360_image
+        - field.storage.paragraph.field_360_product_image
+      module:
+        - file
+        - paragraphs
   entity_type:
     label: 'Entity type'
     property_path: search_api_entity_type
@@ -215,46 +215,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_360_image
-  field_address:
-    label: Address
-    datasource_id: 'entity:node'
-    property_path: field_address
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_address
-  field_category_facets:
-    label: 'Category Facets'
-    datasource_id: 'entity:node'
-    property_path: field_category_facets
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_category_facets
-  field_category_facets_1:
-    label: 'Category Facets'
-    datasource_id: 'entity:node'
-    property_path: field_category_facets
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_category_facets
-  field_classification_id:
-    label: 'Classification ID'
-    datasource_id: 'entity:node'
-    property_path: field_classification_id
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_classification_id
-  field_classification_id_1:
-    label: 'Classification ID'
-    datasource_id: 'entity:taxonomy_term'
-    property_path: field_classification_id
-    type: string
-    dependencies:
-      config:
-        - field.storage.taxonomy_term.field_classification_id
   field_downloads:
     label: Downloads
     datasource_id: 'entity:node'
@@ -263,46 +223,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_downloads
-  field_email:
-    label: Email
-    datasource_id: 'entity:node'
-    property_path: field_email
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_email
-  field_es_desc:
-    label: Description
-    datasource_id: 'entity:taxonomy_term'
-    property_path: field_es_desc
-    type: text
-    dependencies:
-      config:
-        - field.storage.taxonomy_term.field_es_desc
-  field_es_id:
-    label: 'STEP AttributeID'
-    datasource_id: 'entity:taxonomy_term'
-    property_path: field_es_id
-    type: string
-    dependencies:
-      config:
-        - field.storage.taxonomy_term.field_es_id
-  field_es_range_max:
-    label: 'Range Max'
-    datasource_id: 'entity:taxonomy_term'
-    property_path: field_es_range_max
-    type: string
-    dependencies:
-      config:
-        - field.storage.taxonomy_term.field_es_range_max
-  field_es_range_min:
-    label: 'Range Min'
-    datasource_id: 'entity:taxonomy_term'
-    property_path: field_es_range_min
-    type: string
-    dependencies:
-      config:
-        - field.storage.taxonomy_term.field_es_range_min
   field_feature_hotspots:
     label: 'Feature Hotspots'
     datasource_id: 'entity:node'
@@ -311,14 +231,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_feature_hotspots
-  field_featured_products:
-    label: 'Featured Products'
-    datasource_id: 'entity:node'
-    property_path: field_featured_products
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_featured_products
   field_features_copy:
     label: 'Features Copy'
     datasource_id: 'entity:node'
@@ -335,38 +247,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_footnotes
-  field_form_intro_text:
-    label: 'Form Intro Text'
-    datasource_id: 'entity:taxonomy_term'
-    property_path: field_form_intro_text
-    type: text
-    dependencies:
-      config:
-        - field.storage.taxonomy_term.field_form_intro_text
-  field_geographic_data:
-    label: 'Geographic Data'
-    datasource_id: 'entity:node'
-    property_path: field_geographic_data
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_geographic_data
-  field_listing_image:
-    label: 'Listing Image'
-    datasource_id: 'entity:media'
-    property_path: field_listing_image
-    type: integer
-    dependencies:
-      config:
-        - field.storage.media.field_listing_image
-  field_locations_content_type:
-    label: 'Locations Content Type'
-    datasource_id: 'entity:node'
-    property_path: field_locations_content_type
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_locations_content_type
   field_long_description:
     label: 'Coupon heading'
     datasource_id: 'entity:node'
@@ -383,38 +263,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_media
-  field_media_file:
-    label: File
-    datasource_id: 'entity:media'
-    property_path: field_media_file
-    type: integer
-    dependencies:
-      config:
-        - field.storage.media.field_media_file
-  field_model_specification:
-    label: 'Model Specification'
-    datasource_id: 'entity:node'
-    property_path: field_model_specification
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_model_specification
-  field_phone:
-    label: Phone
-    datasource_id: 'entity:node'
-    property_path: field_phone
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_phone
-  field_product_category:
-    label: 'Product Category'
-    datasource_id: 'entity:media'
-    property_path: field_product_category
-    type: integer
-    dependencies:
-      config:
-        - field.storage.media.field_product_category
   field_product_classifications:
     label: 'Product Categories'
     datasource_id: 'entity:node'
@@ -455,30 +303,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_product_models
-  field_product_search:
-    label: 'Product Search'
-    datasource_id: 'entity:node'
-    property_path: field_product_search
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_product_search
-  field_products_category_section:
-    label: 'Products Category Section'
-    datasource_id: 'entity:node'
-    property_path: field_products_category_section
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_products_category_section
-  field_products_offered:
-    label: 'Products Offered'
-    datasource_id: 'entity:node'
-    property_path: field_products_offered
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_products_offered
   field_related_products:
     label: 'Related Products'
     datasource_id: 'entity:node'
@@ -519,30 +343,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_slug
-  field_subtitle:
-    label: Subtitle
-    datasource_id: 'entity:node'
-    property_path: field_subtitle
+  field_type:
+    label: Type
+    datasource_id: 'entity:media'
+    property_path: field_type
     type: string
     dependencies:
       config:
-        - field.storage.node.field_subtitle
-  field_tagline:
-    label: Tagline
-    datasource_id: 'entity:taxonomy_term'
-    property_path: field_tagline
-    type: text
-    dependencies:
-      config:
-        - field.storage.taxonomy_term.field_tagline
-  field_term_department:
-    label: Department
-    datasource_id: 'entity:node'
-    property_path: field_term_department
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_term_department
+        - field.storage.media.field_type
   field_upc:
     label: UPC
     datasource_id: 'entity:node'
@@ -595,10 +403,42 @@ field_settings:
     dependencies:
       module:
         - node
+  langcode_media:
+    label: Language
+    datasource_id: 'entity:media'
+    property_path: langcode
+    type: string
+    dependencies:
+      module:
+        - media
   language_with_fallback:
     label: 'Language (with fallback)'
     property_path: language_with_fallback
     type: string
+  listing_image_name:
+    label: 'Listing Image » Media » Image » File » Filename'
+    datasource_id: 'entity:node'
+    property_path: 'field_media:entity:field_media_image:entity:filename'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_image
+        - field.storage.node.field_media
+      module:
+        - file
+        - media
+  listing_image_url:
+    label: 'Listing Image » Media » Image » File » URI » Root-relative file URL'
+    datasource_id: 'entity:node'
+    property_path: 'field_media:entity:field_media_image:entity:uri:url'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_image
+        - field.storage.node.field_media
+      module:
+        - file
+        - media
   material:
     label: Material
     property_path: material
@@ -611,28 +451,62 @@ field_settings:
     label: 'Maximum Depth of Cut (mm)'
     property_path: maximum_depth_of_cut_mm
     type: string
-  media_name:
-    label: 'Listing Image » Media » Name'
-    datasource_id: 'entity:node'
-    property_path: 'field_media:entity:name'
+  media_filename:
+    label: 'File » File » Filename'
+    datasource_id: 'entity:media'
+    property_path: 'field_media_file:entity:filename'
     type: string
     dependencies:
       config:
-        - field.storage.node.field_media
+        - field.storage.media.field_media_file
       module:
+        - file
+  media_listing_image_name:
+    label: 'Listing Image » Media » Image » File » Filename'
+    datasource_id: 'entity:media'
+    property_path: 'field_listing_image:entity:field_media_image:entity:filename'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_listing_image
+        - field.storage.media.field_media_image
+      module:
+        - file
         - media
   medialang_type:
     label: 'Media Language Type'
     property_path: medialang_type
     type: string
-  mid:
-    label: ID
+    mid:
+      label: ID
+      datasource_id: 'entity:media'
+      property_path: mid
+      type: integer
+      dependencies:
+        module:
+          - media
+  media_listing_image_url:
+    label: 'Listing Image » Media » Image » File » URI » Root-relative file URL'
     datasource_id: 'entity:media'
-    property_path: mid
-    type: integer
+    property_path: 'field_listing_image:entity:field_media_image:entity:uri:url'
+    type: string
     dependencies:
+      config:
+        - field.storage.media.field_listing_image
+        - field.storage.media.field_media_image
       module:
+        - file
         - media
+  media_product_category:
+    label: 'Product Category » Taxonomy term » Name'
+    datasource_id: 'entity:media'
+    property_path: 'field_product_category:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_product_category
+      module:
+        - taxonomy
   moderation_state:
     label: 'Moderation state'
     datasource_id: 'entity:node'
@@ -647,12 +521,12 @@ field_settings:
     type: string
   name:
     label: Name
-    datasource_id: 'entity:taxonomy_term'
+    datasource_id: 'entity:media'
     property_path: name
-    type: string
+    type: text
     dependencies:
       module:
-        - taxonomy
+        - media
   nid:
     label: ID
     datasource_id: 'entity:node'
@@ -673,14 +547,6 @@ field_settings:
     label: 'Orbital Pattern Size (mmt)'
     property_path: orbital_pattern_size_mmt
     type: string
-  parent:
-    label: 'Term Parents'
-    datasource_id: 'entity:taxonomy_term'
-    property_path: parent
-    type: integer
-    dependencies:
-      module:
-        - taxonomy
   power:
     label: Power
     property_path: power
@@ -726,14 +592,6 @@ field_settings:
     label: 'Shank Diameter (inh)'
     property_path: shank_diameter_inh
     type: string
-  site_langcode:
-    label: Language
-    datasource_id: 'entity:media'
-    property_path: langcode
-    type: string
-    dependencies:
-      module:
-        - media
   speed:
     label: Speed
     property_path: speed
@@ -750,14 +608,6 @@ field_settings:
     label: 'Spindle Type'
     property_path: spindle_type
     type: string
-  status:
-    label: Published
-    datasource_id: 'entity:taxonomy_term'
-    property_path: status
-    type: boolean
-    dependencies:
-      module:
-        - taxonomy
   status_1:
     label: Published
     datasource_id: 'entity:node'
@@ -786,14 +636,6 @@ field_settings:
     label: 'Thrust (lbs)'
     property_path: thrust_lbs
     type: string
-  tid:
-    label: 'Term ID'
-    datasource_id: 'entity:taxonomy_term'
-    property_path: tid
-    type: integer
-    dependencies:
-      module:
-        - taxonomy
   title:
     label: Title
     datasource_id: 'entity:node'
@@ -858,22 +700,6 @@ field_settings:
     dependencies:
       module:
         - node
-  vid:
-    label: Vocabulary
-    datasource_id: 'entity:taxonomy_term'
-    property_path: vid
-    type: string
-    dependencies:
-      module:
-        - taxonomy
-  weight:
-    label: Weight
-    datasource_id: 'entity:taxonomy_term'
-    property_path: weight
-    type: integer
-    dependencies:
-      module:
-        - taxonomy
   window_style:
     label: 'Window Style'
     property_path: window_style
@@ -891,42 +717,11 @@ datasource_settings:
     bundles:
       default: false
       selected:
-        - advanced_selector
-        - advanced_selector_download
-        - advanced_selector_email
         - article
-        - company_locations
-        - contact
-        - distributors
-        - downloads
         - enhanced_product
-        - form_page
-        - geo_directory
         - news_insights
-        - news_insights_landing
         - product
-        - product_category
-        - product_detail_page_callouts
-        - product_model
-        - products_landing
-        - service_support
         - solutions
-        - solutions_landing
-        - testimonials
-        - webform
-    languages:
-      default: true
-      selected: {  }
-  'entity:taxonomy_term':
-    bundles:
-      default: false
-      selected:
-        - news_insights
-        - product_classifications
-        - product_filters
-        - product_lines
-        - products
-        - products_offered
     languages:
       default: true
       selected: {  }
@@ -934,6 +729,8 @@ processor_settings:
   add_url: {  }
   aggregated_field: {  }
   auto_aggregated_fulltext_field: {  }
+  cleco_absolute_url_processor:
+    all_fields: false
   cleco_add_item_type: {  }
   cleco_add_medialang_type: {  }
   cleco_add_model_specification: {  }

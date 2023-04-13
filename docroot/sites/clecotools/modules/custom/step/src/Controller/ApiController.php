@@ -245,7 +245,7 @@ class ApiController extends ControllerBase
         ];
 
         //COMMENTED as it is requesting twice and causing count mismatch.
-        // do initial product lookup 
+        // do initial product lookup
         // $productAssets = $this->actionFilterProducts($request);
         // $productAssetsData = json_decode($productAssets->getContent(), true);
 
