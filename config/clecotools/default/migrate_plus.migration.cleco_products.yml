@@ -1,4 +1,4 @@
-uuid: 64171c17-b1ab-45c1-8e53-a46ff0f80644
+uuid: 287a3895-2a3e-423b-8255-7a3b6b47803a
 langcode: en
 status: true
 dependencies: {  }
@@ -96,7 +96,7 @@ process:
   type:
     plugin: default_value
     default_value: product
-  title: remote_sku
+  title: remote_name
   sticky: constants/bool_0
   promote: constants/bool_1
   uid: constants/uid_root
@@ -108,9 +108,7 @@ process:
     plugin: default_value
     default_value: basic_html
   field_sku: remote_sku
-  field_sku_group:
-    plugin: apex_get_id_attribute
-    source: remote_sku_group
+  field_sku_group: remote_sku
   field_long_description:
     plugin: apex_get_attribute_value
     source: remote_product_long_description
