@@ -31,9 +31,9 @@ class CreateProductSpecifications extends ProcessPluginBase {
     $parent_term_id = NULL;
 
     $product_specifications = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties([
-      'vid' => 'product_specifications'
+      'vid' => 'product_specifications',
     ]);
-    
+
     // Load units data.
     $units = $value->xpath('/*/UnitList/Unit');
     $unit_list = [];
@@ -80,13 +80,13 @@ class CreateProductSpecifications extends ProcessPluginBase {
               }
             }
             else {
-              $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $child. $unit);
+              $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $child . $unit);
             }
 
             if (is_object($term)) {
               $values_array[] = [
                 'vid' => $vid,
-                'target_id' => $term->id()
+                'target_id' => $term->id(),
               ];
             }
           }
@@ -118,7 +118,7 @@ class CreateProductSpecifications extends ProcessPluginBase {
    */
   protected function loadOrCreateChildTerm($parent_label, $parent_term_id, $item_label, $vid = 'product_specifications') {
     $term_name = $parent_label . ' : ' . (string) $item_label;
-    
+
     if ($tid = $this->getTidByName($term_name, $vid)) {
       $term = Term::load($tid);
     }
