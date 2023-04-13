@@ -98,10 +98,19 @@ class SolrSearchApiService {
     $this->query->range($offset, $per_page);
 
     // Filters.
+    $language = $this->languageManager->getCurrentLanguage()->getId();
     foreach ($filters as $filter_name => $filter) {
+      if ($filter_name == 'type') {
+        $filter_name = 'item_type';
+      }
       // We have 2 types of conditions; range and list.
       if (is_array($filter)) {
-        $this->query->addCondition($filter_name, $filter, 'IN');
+        foreach ($filter as $each) {
+          $each = urldecode($each);
+          $each = StepHelper::getOriginalTranslation($each, $language);
+          $this->query->addCondition($filter_name, $each, '=');
+        }
+
         continue;
       }
       if (!is_string($filter) || !$filter || !str_contains($filter, ',')) {
@@ -112,21 +121,21 @@ class SolrSearchApiService {
       $this->query->addCondition($filter_name, $range, 'BETWEEN');
     }
 
-    // Facets.
-    $terms = StepHelper::getProductFilters();
-    ;
-    $facet_filters = [];
-    $facet_filters[] = 'sm_product_category';
-    foreach ($terms as $term) {
-      $facet_filters[] = 'sm_' . $term['key'];
-    }
+    // Add language and entity_type for nodes and media types.
+    $lang_group = $this->query->createConditionGroup('OR');
 
-    $this->query->setOption('solr_param_facet', 'true');
-    $this->query->setOption('solr_param_facet.field', $facet_filters);
+    // Condition for node language.
+    $lang_group_nodes = $this->query->createConditionGroup('AND');
+    $lang_group_nodes->addCondition('langcode', $language);
+    $lang_group_nodes->addCondition('entity_type', 'node');
 
-    // Language.
-    $language = $this->languageManager->getCurrentLanguage()->getId();
-    $this->query->addCondition('langcode', $language);
+    // Condition for media language.
+    $lang_group_media = $this->query->createConditionGroup('AND');
+    $lang_group_media->addCondition('langcode_media', $language);
+    $lang_group_media->addCondition('entity_type', 'media');
+    $lang_group->addConditionGroup($lang_group_nodes);
+    $lang_group->addConditionGroup($lang_group_media);
+    $this->query->addConditionGroup($lang_group);
 
     return $this->query->execute();
   }
@@ -149,7 +158,67 @@ class SolrSearchApiService {
    * @throws \Drupal\search_api\SearchApiException
    */
   public function searchProducts(array $filters = [], $search_query = '', $per_page = 12, $offset = 0) {
+    // Only search products.
     $this->query->addCondition('type', ['product', 'enhanced_product'], 'IN');
+
+    // Product catalog facets.
+    $terms = StepHelper::getProductFilters();
+    $facet_filters = [];
+    $facet_filters[] = 'sm_product_category';
+    foreach ($terms as $term) {
+      $facet_filters[] = 'sm_' . $term['key'];
+    }
+
+    $this->query->setOption('solr_param_facet', 'true');
+    $this->query->setOption('solr_param_facet.field', $facet_filters);
+
+    return $this->search($filters, $search_query, $per_page, $offset);
+  }
+
+  /**
+   * Perform a search on products, downloads, nodes etc with given parameters.
+   *
+   * @param array $filters
+   *   The filters to be added to this search.
+   * @param string $search_query
+   *   The search query string.
+   * @param string $per_page
+   *   Number of items to show per page.
+   * @param string $offset
+   *   Number of items to offset.
+   *
+   * @return \Drupal\search_api\Query\ResultSetInterface
+   *   The search query results.
+   *
+   * @throws \Drupal\search_api\SearchApiException
+   */
+  public function searchAll(array $filters = [], $search_query = '', $per_page = 12, $offset = 0) {
+    // Search page facets.
+    $facet_filters = [];
+    $facet_filters[] = 'sm_product_category';
+    $facet_filters[] = 'sm_item_type';
+    $facet_filters[] = 'sm_media_product_category';
+    $this->query->setOption('solr_param_facet', 'true');
+    $this->query->setOption('solr_param_facet.field', $facet_filters);
+
+    // Filter handling for combining product_category field in nodes and media.
+    if (isset($filters['product_category'])) {
+      $categories = $filters['product_category'];
+      $category_group = $this->query->createConditionGroup('OR');
+      $category_group_inner = $this->query->createConditionGroup('AND');
+      $category_group_media_inner = $this->query->createConditionGroup('AND');
+      foreach ($categories as $category) {
+        $category = urldecode($category);
+        $category = StepHelper::getOriginalTranslation($category, $this->languageManager->getCurrentLanguage()->getId());
+        $category_group_inner->addCondition('product_category', $category, '=');
+        $category_group_media_inner->addCondition('media_product_category', $category, '=');
+      }
+      $category_group->addConditionGroup($category_group_inner);
+      $category_group->addConditionGroup($category_group_media_inner);
+      $this->query->addConditionGroup($category_group);
+      unset($filters['product_category']);
+    }
+
     return $this->search($filters, $search_query, $per_page, $offset);
   }
 
@@ -203,7 +272,7 @@ class SolrSearchApiService {
         if ($site_lang != 'en') {
           foreach ($filter as $each){
             if ($filter_name != 'download_category_name'){
-              $each1 = StepHelper::translateEn($each, $site_lang);
+              $each1 = StepHelper::getOriginalTranslation($each, $site_lang);
               $this->query->addCondition($filter_name, $each1, '=');
             }
             else {
@@ -232,7 +301,7 @@ class SolrSearchApiService {
 
   // Language.
     $language = $this->languageManager->getCurrentLanguage()->getId();
-    $this->query->addCondition('site_langcode', $language);
+    $this->query->addCondition('langcode_media', $language);
 
     return $this->query->execute();
   }

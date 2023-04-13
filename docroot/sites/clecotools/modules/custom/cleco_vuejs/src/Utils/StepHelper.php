@@ -670,7 +670,7 @@ class StepHelper
      * @return array
      */
     public static function sortAssetsForDisplay(array $assets)
-    { 
+    {
         $assetTypes = [
             'Beauty-Glamour Image',
             'Primary Image',
@@ -814,22 +814,31 @@ class StepHelper
     }
 
   /**
-   * Translate hardcoded STEP data and filters.
+   * Get original translation for given translated string.
    *
-   * @param array $str
-   *   Adding arr parameter.
-   * @param string $site_lang_code
-   *   Adding lang parameter.
+   * @param string $str
+   *   The string to be translated to original.
+   * @param string $lang
+   *   Language of the given str.
    *
    * @return string
    *   Translated or original string.
    */
-  public static function translateEn($str, $site_lang_code) {
-    $search = array_search($str, array_column(self::$translations, $site_lang_code));
-    $searchArray = array_keys(self::$translations);
-    $translatedArr = $searchArray[$search];
-    return $translatedArr;
-  }
+    public static function getOriginalTranslation($str, $lang) {
+      $lang_col = array_column(self::$translations, $lang);
+      $found = array_search($str, $lang_col);
+      if ($found === FALSE) {
+        return $str;
+      }
+      $index = 0;
+      foreach (self::$translations as $key => $val) {
+        if ($found !== $index) {
+          $index++;
+          continue;
+        }
+        return $key;
+      }
+    }
 
     public static function getTranslations()
     {
