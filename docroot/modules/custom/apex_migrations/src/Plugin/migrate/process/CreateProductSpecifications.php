@@ -33,6 +33,13 @@ class CreateProductSpecifications extends ProcessPluginBase {
     $product_specifications = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties([
       'vid' => 'product_specifications'
     ]);
+    
+    // Load units data.
+    $units = $value->xpath('/*/UnitList/Unit');
+    $unit_list = [];
+    foreach ($units as $item) {
+      $unit_list[(string) $item->attributes()->ID] = (string) $item->Name;
+    }
 
     if (!empty($value)) {
       foreach ($value->children() as $child) {
@@ -40,6 +47,15 @@ class CreateProductSpecifications extends ProcessPluginBase {
         $parent_term_id = NULL;
         $parent_id = (string) $child->attributes()->AttributeID;
         $validAttribute = $this->validateAttributeName($parent_id);
+
+        if (!$validAttribute) {
+          continue;
+        }
+
+        $unit = '';
+        if (isset($child->attributes()->UnitID) && isset($unit_list[(string) $child->attributes()->UnitID])) {
+          $unit = ' ' . $unit_list[(string) $child->attributes()->UnitID];
+        }
 
         if ($validAttribute) {
           foreach ($product_specifications as $product_specification) {
@@ -56,15 +72,15 @@ class CreateProductSpecifications extends ProcessPluginBase {
             if ($child->getName() === 'MultiValue') {
               if (count($child->children()) > 1) {
                 foreach ($child->children() as $item) {
-                  $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $item);
+                  $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $item . $unit);
                 }
               }
               else {
-                $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $child->Value);
+                $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $child->Value . $unit);
               }
             }
             else {
-              $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $child);
+              $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $child. $unit);
             }
 
             if (is_object($term)) {
@@ -102,7 +118,8 @@ class CreateProductSpecifications extends ProcessPluginBase {
    */
   protected function loadOrCreateChildTerm($parent_label, $parent_term_id, $item_label, $vid = 'product_specifications') {
     $term_name = $parent_label . ' : ' . (string) $item_label;
-
+    echo "term_name::".$term_name."\n";
+    
     if ($tid = $this->getTidByName($term_name, $vid)) {
       $term = Term::load($tid);
     }
