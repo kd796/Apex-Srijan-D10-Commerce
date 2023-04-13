@@ -152,9 +152,14 @@
 
   ul {
     margin-bottom: 0;
+    @include min(769px) {
+      display: flex;
+      flex-direction: column-reverse;
+    }
 
     @include max(769px) {
       display: flex;
+      flex-direction: row-reverse;
       justify-content: center;
       padding-top: 1em;
     }
@@ -168,12 +173,12 @@
       }
 
       +li {
-        margin-top: 0.75em;
+        margin-bottom: 0.75em;
         margin-left: 0;
 
         @include max(769px) {
             margin-top: 0;
-            margin-left: 0.75em;
+            margin-right: 0.75em;
         }
       }
     }
