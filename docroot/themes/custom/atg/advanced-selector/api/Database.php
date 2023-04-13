@@ -550,7 +550,7 @@ class DatabaseSel
         endif;
         $email         = make_safe_i($data->de_email_address);
         $fullname      = make_safe_i($data->de_contact_name);
-        $from_email    = 'atg-websiteadmin@apextoolgroup.com';
+        $from_email    = 'no-reply@apextoolgroup.com';
         $solution_html = "<tr><th class='boldtext' colspan='2'>" . self::translate('Solution Issues') . "</th></tr>";
         $html          = "
     <html>
@@ -666,24 +666,27 @@ class DatabaseSel
             </table>
         </body>
         </html>";
+      try {
+        $transport = new Swift_SmtpTransport('smtp.office365.com', 587);
+        $transport->setUsername('no-reply@apextoolgroup.com');
+        $transport->setPassword('U%v2Bu3G!s9Kp+rVJcZB');
+        $transport->setLocalDomain('127.0.0.1');
+        $transport->setEncryption('tls');
 
-        $transport = (new Swift_SmtpTransport('smtp.office365.com', 587))
-          ->setUsername('no-reply@apextoolgroup.com')
-          ->setPassword('U%v2Bu3G!s9Kp+rVJcZB')
-        ;
         $mailer = new Swift_Mailer($transport);
-        // Create the message
-        $message = (new Swift_Message())
-          // Add subject
-          ->setSubject($subject)
-          //Put the From address
-          ->setFrom([$from_email])
-          // Include several To addresses
-          ->setTo($to_email);
-        $message->setBody($html);
-        $mailer->send($message);
+        // Create a new message.
+        $message = new Swift_Message($subject, $html, 'text/html');
+        $message->setFrom([$from_email]);
+        $message->setTo($to_email);
 
-        return '|success|';
+        $mailer->send($message);
+      }
+      catch (\Exception $e) {
+        echo "Error";
+        return FALSE;
+      }
+
+      return '|success|';
     }
 
 }
