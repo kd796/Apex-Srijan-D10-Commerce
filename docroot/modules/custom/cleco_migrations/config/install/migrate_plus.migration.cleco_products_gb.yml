@@ -10,7 +10,7 @@ source:
   plugin: url
   data_fetcher_plugin: file
   data_parser_plugin: simple_xml
-  urls: 'public://import/pim_data/pim_export_with_schema_gb.xml'
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
   namespaces:
      "http://www.stibosystems.com/step"
   item_selector: //Product[@UserTypeID="SKU Group"]
@@ -89,9 +89,7 @@ process:
   
   field_sku: remote_sku
 
-  field_sku_group:
-    plugin: apex_get_id_attribute
-    source: remote_sku_group
+  field_sku_group: remote_sku
   
   field_long_description:
     plugin: apex_get_attribute_value

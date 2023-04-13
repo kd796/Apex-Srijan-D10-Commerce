@@ -158,7 +158,7 @@ mix.webpackConfig({
           {removeUselessStrokeAndFill: true},
           {removeViewBox: false},
           {collapseGroups: true},
-          {convertColors: {currentColor: true}},
+          {convertColors: {currentColor: false}},
           {cleanupIDs: {minify: false}},
         ]
       }

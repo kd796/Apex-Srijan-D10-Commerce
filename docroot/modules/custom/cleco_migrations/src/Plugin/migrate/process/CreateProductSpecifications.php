@@ -96,14 +96,15 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
         $parent_label = NULL;
         $parent_term_id = NULL;
         $parent_id = (string) $child->attributes()->AttributeID;
-        $validAttribute = $this->validateAttributeName($parent_id);
-        if (!$validAttribute) {
-          continue;
-        }
 
         // Skip if term is excluded.
         $excludedAttribute = $this->validateExcludedAttribute($parent_id);
         if ($excludedAttribute) {
+          continue;
+        }
+
+        $validAttribute = $this->validateAttributeName($parent_id);
+        if (!$validAttribute) {
           continue;
         }
 
@@ -123,18 +124,32 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
         }
 
         $term = NULL;
+        $multi_value = 0;
+        $unit_id = '';
         if ($child->getName() === 'MultiValue') {
+          $multi_value = 1;
           if (count($child->children()) > 1) {
             foreach ($child->children() as $item) {
-              $term = $this->loadOrCreateChildTerm($parent_id, $parent_label, $parent_term_id, $item, $vid, $langcode, $migration_id);
+              $unit_id = (string) $item->attributes()->UnitID;
+              $term = $this->loadOrCreateChildTerm($parent_id, $parent_label, $parent_term_id, $item, $vid, $langcode, $migration_id, $multi_value, $unit_id);
+              if (is_object($term)) {
+                $values_array[] = [
+                  'vid' => $vid,
+                  'target_id' => $term->id(),
+                ];
+              }
+              continue;
             }
+            $term = NULL;
           }
           else {
-            $term = $this->loadOrCreateChildTerm($parent_id, $parent_label, $parent_term_id, $child->Value, $vid, $langcode, $migration_id);
+            $unit_id = (string) $child->Value->attributes()->UnitID;
+            $term = $this->loadOrCreateChildTerm($parent_id, $parent_label, $parent_term_id, $child->Value, $vid, $langcode, $migration_id, $multi_value, $unit_id);
           }
         }
         else {
-          $term = $this->loadOrCreateChildTerm($parent_id, $parent_label, $parent_term_id, $child, $vid, $langcode, $migration_id);
+          $unit_id = (string) $child->attributes()->UnitID;
+          $term = $this->loadOrCreateChildTerm($parent_id, $parent_label, $parent_term_id, $child, $vid, $langcode, $migration_id, $multi_value, $unit_id);
         }
 
         if (is_object($term)) {
@@ -169,13 +184,17 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
    *   The language of the term.
    * @param string $migration_id
    *   Name of the migration ID.
+   * @param int $multi
+   *   Specifies whether it is part of multivalue or not.
+   * @param string $unit
+   *   Complete unit value.
    *
    * @return \Drupal\Core\Entity\EntityBase|\Drupal\Core\Entity\EntityInterface|\Drupal\taxonomy\Entity\Term|null
    *   The term object or NULL.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function loadOrCreateChildTerm($parent_id, $parent_label, $parent_term_id, $item_label, $vid = 'product_specifications', $langcode = 'en', $migration_id = '') {
+  protected function loadOrCreateChildTerm($parent_id, $parent_label, $parent_term_id, $item_label, $vid = 'product_specifications', $langcode = 'en', $migration_id = '', $multi = 0, $unit = '') {
     $item_label = trim($item_label, ' ');
     if (empty($item_label)) {
       return '';
@@ -186,16 +205,33 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
     $hashKey = $this->getHashKey($child_key);
 
     // Look into migration table and if found return the term.
+    $migration_source_row_status = 0;
     if (!empty($migration_id)) {
       $tid = $this->getMigratedTaxonomyTid($hashKey, $migration_id);
+      $migration_source_row_status = $this->getMigratedTaxonomyTidStatus($hashKey, $migration_id);
     }
+
+    // Get attribute key from predefined lust.
+    $attribute_key = $this->getAttributeKey($parent_id);
+    if (empty($attribute_key)) {
+      $attribute_key = $this->constructAttributeKey($parent_id, $unit);
+    }
+
     if (!empty($tid)) {
       $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($tid);
       $tid = NULL;
       if (is_object($term)) {
         $tid = $term->id();
+        // Update taxonomy if it is marked to update.
+        if ($migration_source_row_status) {
+          $term->field_specification_attribute_id->setValue($parent_id);
+          $term->field_specification_attr_key->setValue($attribute_key);
+          $term->save();
+          $this->updateMigrationRecord($hashKey, $hashKey, $tid, $migration_id, 0);
+        }
       }
     }
+
     if ($tid && is_object($term)) {
       return $term;
     }
@@ -216,6 +252,8 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
         'vid' => $vid,
         'field_long_name' => $full_name,
         'langcode' => $langcode,
+        'field_specification_attribute_id' => $parent_id,
+        'field_specification_attr_key' => $attribute_key,
       ]);
     }
 
@@ -236,7 +274,17 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
   }
 
   /**
-   * Load term by name.
+   * Load taxonomy term by name.
+   *
+   * @param string $name
+   *   Name of the taxonomy term.
+   * @param string $vocabulary
+   *   Name of the vocabulary.
+   * @param string $langcode
+   *   The language of the term.
+   *
+   * @return int
+   *   Returns taxonomy tid if present.
    */
   protected function getTidByName($name = NULL, $vocabulary = NULL, $langcode = NULL): int {
     $properties = [];
@@ -259,20 +307,48 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
   }
 
   /**
-   * Check for valid term.
+   * Check for valid attribute ID.
+   *
+   * @param string $attribute
+   *   Name of the attribute ID.
+   *
+   * @return bool
+   *   Returns TRUE if it is listed in allowed_attributes otherwise FALSE.
    */
   protected function validateAttributeName($attribute = NULL) {
     $attributes_to_include = $this->configuration['allowed_attributes'];
-
-    if (in_array($attribute, $attributes_to_include)) {
+    if (array_key_exists($attribute, $attributes_to_include) or in_array($attribute, $attributes_to_include)) {
       return TRUE;
     }
-
     return FALSE;
   }
 
   /**
-   * Check for excluded term.
+   * Get Attribute Key.
+   *
+   * @param string $attribute
+   *   Name of the attribute ID.
+   *
+   * @return string
+   *   Returns Attribute key.
+   */
+  protected function getAttributeKey($attribute = NULL) {
+    $attributes_list = $this->getAttributeKeyList();
+    $key = '';
+    if (isset($attributes_list[$attribute])) {
+      $key = $attributes_list[$attribute];
+    }
+    return $key;
+  }
+
+  /**
+   * Check for excluded attribute ID.
+   *
+   * @param string $attribute
+   *   Name of the attribute ID.
+   *
+   * @return bool
+   *   Returns TRUE if it is in exclude list otherwise FALSE.
    */
   protected function validateExcludedAttribute($attribute = NULL) {
     $attributes_to_exclude = $this->configuration['excluded_attributes'];

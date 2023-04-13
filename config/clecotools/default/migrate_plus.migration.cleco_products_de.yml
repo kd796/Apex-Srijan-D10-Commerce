@@ -1,9 +1,7 @@
-uuid: e6cf9a5d-ea2f-4465-800f-7646bc301fd2
+uuid: 69628dd2-ae9e-4fbb-b74e-a35d6e3f407b
 langcode: en
 status: true
 dependencies: {  }
-_core:
-  default_config_hash: BddF0o-TXs0bukPCT0XnEOrzitwIED8HJkBZYOMi9-k
 id: cleco_products_de
 class: null
 field_plugin_method: null
@@ -110,9 +108,7 @@ process:
     plugin: default_value
     default_value: basic_html
   field_sku: remote_sku
-  field_sku_group:
-    plugin: apex_get_id_attribute
-    source: remote_sku_group
+  field_sku_group: remote_sku
   field_long_description:
     plugin: apex_get_attribute_value
     source: remote_product_long_description

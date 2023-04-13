@@ -666,18 +666,24 @@ class DatabaseSel
             </table>
         </body>
         </html>";
-        $headers = "MIME-Version: 1.0\r\n" . "Content-type: text/html; charset=iso-8859-1\r\n";
 
+        $transport = (new Swift_SmtpTransport('smtp.office365.com', 587))
+          ->setUsername('no-reply@apextoolgroup.com')
+          ->setPassword('U%v2Bu3G!s9Kp+rVJcZB')
+        ;
+        $mailer = new Swift_Mailer($transport);
+        // Create the message
+        $message = (new Swift_Message())
+          // Add subject
+          ->setSubject($subject)
+          //Put the From address
+          ->setFrom([$from_email])
+          // Include several To addresses
+          ->setTo($to_email);
+        $message->setBody($html);
+        $mailer->send($message);
 
-
-        mail(
-            $to_email,
-            $form_title,
-            $html,
-            "From: $from_email\r\n" .
-                "Reply-To: " . $email . "\r\n" .
-                $headers . "\r\n"
-        );
         return '|success|';
     }
+
 }

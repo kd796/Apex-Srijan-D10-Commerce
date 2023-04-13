@@ -619,7 +619,7 @@ class StepTwigExtension extends \Twig_Extension
                     $icon_key = $this->createKey($icon);
                 }
 
-                $icon_path = DRUPAL_ROOT . "/themes/atg/dist/img/icons/{$icon_key}.svg";
+                $icon_path = DRUPAL_ROOT . "/themes/custom/cleco/dist/img/icons/{$icon_key}.svg";
 
                 if (file_exists($icon_path)) {
                     $icon_src = file_get_contents($icon_path);
