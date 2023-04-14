@@ -140,6 +140,7 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
     $langcode = (isset($this->configuration['langcode'])) ? $this->configuration['langcode'] : '';
     $process_map_media_icon = $this->configuration['process_map_media_icon'] ?? 0;
     $map_media_config = $this->configuration['map_media_config'] ?? [];
+    $map_media_extension = $this->configuration['map_media_extension'] ?? [];
     $map_media_migration_id = $this->configuration['map_media_migration_id'] ?? 'cleco_product_media';
 
     $source = $this->configuration['process_params']['source'];
@@ -194,6 +195,9 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
         if (isset($map_media_config[$user_type_id])) {
           $process_with_mapped_asset = 1;
           $parent_asset_id = $map_media_config[$user_type_id];
+          if (isset($map_media_extension[$user_type_id]) && !empty($map_media_extension[$user_type_id])) {
+            $pdf_media_extension = $map_media_extension[$user_type_id];
+          }
         }
       }
 
@@ -224,7 +228,7 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
       }
       catch (ImageNotFoundOnFtpException $e) {
         if ($process_with_mapped_asset) {
-          $message = "Missing Product Downloads Media Mapped :: Original ID: $parent_asset_id :: Current ID: $original_asset_id :: Type: $user_type_id";
+          $message = "Missing Product Downloads Media Mapped :: Original ID: $parent_asset_id :: Current ID: $original_asset_id :: Type: $user_type_id :: Filename: $asset_id.$pdf_media_extension";
           $this->logMessage('', $message, 'notification');
         }
         else {
