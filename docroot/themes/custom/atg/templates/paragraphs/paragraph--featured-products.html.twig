@@ -1,54 +1,51 @@
 {# @todo need figure out way to get pure values instead of all the additional keys, hence the #id conditional #}
-{% set query = [] %}
-{% set order = [] %}
-{% for product in content.field_products  %}
-     {% if product['#id'] is not null %}
-        {% set query = query|merge([['id', product['#id']]]) %}
-        {% set order = order|merge([product['#id']]) %}
+{% set featured_products = [] %}
+{% for key,product in content.field_featured_products_list  %}
+     {% if product['#options']['entity'] is defined %}
+        {% set featured_products = featured_products|merge([product['#options']['entity']]) %}
     {% endif %}
-{% endfor %} 
+{% endfor %}
 
-{% if query is not empty %}
+{% if featured_products is not empty %}
     <section class="section main">
     	<header class="section-header">
     		<h2 class="section-title">{{ content.field_title[0]['#context']['value'] | raw }}</h2>
     	</header>
         <div class="section-main">
             <ul class="listings">
-                {% set products = sort_featured_products(getProductCarousel(query) | json_decode(true), order)%}
-                {# Filter orphans / non-existent translated products #}
-                {% set contentFeaturedProducts = filter_content_featured_products(products, content.field_products) %}
-                {# Get correct alias based on selected language #}
-                {% set locale  = get_locale() %}
-                {% set alias   = alias_by_path('/products/product-catalog', locale.code) %}
-                {% set baseUrl = locale.path ~ alias ~ '/' %}
+              {% set locale  = get_locale() %}
+              {% set alias   = alias_by_path('/products/product-catalog', locale.code) %}
+              {% set baseUrl = locale.path ~ alias ~ '/' %}
 
-                {% for index, item in products %}
+              {% for index, item in featured_products %}
 
-    				{% set product = item._source %}
-    				{% set name = product.name %}
-    				{% set body = product.values.sku_overview %}
-    				{% set url  = baseUrl ~ product.slug %}
+                {% set name = item.field_long_description.value %}
+                {% if not name %}
+                  {% set name = item.title.value %}
+                {% endif %}
 
-    				{% set alt_name = contentFeaturedProducts[index]['alt_name'] %}
-    				{% if alt_name %}
-    					{% set name = alt_name %}
-    					{% set body = null %}
-    				{% endif %}
+                {% set body = item.field_features_copy.value %}
+                {% if not body %}
+                  {% set body = item.body.value %}
+                {% endif %}
+                {# Hide body for now as its not used currently #}
+                {% set body = null %}
 
-    				{% set alt_url = contentFeaturedProducts[index]['alt_url'] %}
-    				{% if alt_url %}
-    					{% set url = alt_url %}
-    				{% endif %}
+                {% set url  = baseUrl ~ item.field_slug.value %}
+
+                {% set img = item.field_360_image.0.entity.field_360_loading_image|file_url|image_style('product_thumb') %}
+                {% if not img %}
+                  {% set img = item.field_media|file_url|image_style('product_thumb') %}
+                {% endif %}
 
     				<li class="listings-item">
     					{% include '@atg/patterns/listing.html.twig' with {
     						url: locale.path ~ url,
     						title: name,
     						body: body,
-                            image: (product.assets is not empty) ? step_asset(product.assets) : ''
+                image: img,
     					} %}
-    				</li> 
+    				</li>
                 {% endfor %}
 			</ul>
         </div>

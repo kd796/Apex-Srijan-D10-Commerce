@@ -1,0 +1,31 @@
+uuid: 782ccf3d-5bb8-427b-8f8f-6e425045881f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_featured_products_list
+    - node.type.enhanced_product
+    - node.type.product
+    - paragraphs.paragraphs_type.featured_products
+id: paragraph.featured_products.field_featured_products_list
+field_name: field_featured_products_list
+entity_type: paragraph
+bundle: featured_products
+label: 'Featured Products'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      enhanced_product: enhanced_product
+      product: product
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: enhanced_product
+field_type: entity_reference
