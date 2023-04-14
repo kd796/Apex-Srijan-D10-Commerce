@@ -247,8 +247,8 @@ class VueDataFormatter {
           ],
           "assets" => [
             "original_source_file" => $download_file_path,
-            "source_to_jpg" => $download_file_path,
-            "pro_tools_jpg_of_pdf" => "$media_url",
+            "source_to_jpg" => $media_url,
+            "pro_tools_jpg_of_pdf" => $media_url,
             "pro_tools_pdf" => $download_file_path,
           ],
         ],
