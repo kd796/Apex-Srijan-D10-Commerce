@@ -187,7 +187,9 @@ process:
     source: remote_product_status
     condition:
       AttributeID: SAP_SALES_ORG_STATUS
-      ID: Z2
+      ID:
+        - Z2
+        - P4
   langcode:
     plugin: default_value
     default_value: de
