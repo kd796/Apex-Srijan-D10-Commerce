@@ -119,6 +119,7 @@ class RouteController extends ControllerBase {
       $features = [];
       $asset1 = [];
       $asset2 = [];
+      $assets = [];
       $output = [];
       foreach ($nodes as $node) {
         $fields = $node->getFields();
@@ -140,18 +141,19 @@ class RouteController extends ControllerBase {
           }
         }
         $field_media = isset($fields['field_media']) ? $fields['field_media'] : '';
-
         if (!empty($field_media)) {
           foreach ($field_media as $media) {
             $image_load = $this->entityTypeManager->getStorage('media')->load($media->get('target_id')->getValue());
             $image_name = $image_load->get('name')->value;
-            $image_file = $this->entityTypeManager->getStorage('file')->load($image_load->field_media_image->target_id);
-            $image_url = $image_file->getFileUri();
-            $image_path = file_create_url($image_url);
-            $asset1[] = [
-              "type" => "Primary Image",
-              "id" => $image_name,
-            ];
+            if (isset($image_load->field_media_image)) {
+              $image_file = $this->entityTypeManager->getStorage('file')->load($image_load->field_media_image->target_id);
+              $image_url = $image_file->getFileUri();
+              $image_path = file_create_url($image_url);
+              $asset1[] = [
+                "type" => "Primary Image",
+                "id" => $image_name,
+              ];
+            }
           }
         }
         $footnotes = $fields['field_footnotes']->getValue();
@@ -173,23 +175,33 @@ class RouteController extends ControllerBase {
         if (!empty($field_downloads)) {
           foreach ($field_downloads as $productDownload) {
             $downloads_list = $this->entityTypeManager->getStorage('media')->load($productDownload->get('target_id')->getValue());
-            $type = str_replace("_", " ", $downloads_list->get('field_type')->value);
+
+            $type_str = '';
+            if (isset($downloads_list) && $downloads_list->hasField('field_type')) {
+              $field_type = $downloads_list->get('field_type')->getValue();
+              if (!empty($field_type[0]['value'])) {
+                  $type_str = $field_type[0]['value'];
+              }
+            }
+            $type = str_replace("_", " ", $type_str);
             $type = ucwords($type);
             if (!empty($type)) {
               $type = StepHelper::translate($type);
             }
             $dname = $downloads_list->get('name')->value;
+            $downloadable = '';
             $thumbnailImg = '';
-            if (!empty($downloads_list->field_listing_image->getValue())) {
+            if (isset($downloads_list->field_listing_image) && !empty($downloads_list->field_listing_image->getValue())) {
               $thumbnail_id = $this->entityTypeManager->getStorage('media')->load($downloads_list->field_listing_image->getValue()[0]['target_id']);
-              $thumbnail_url = $thumbnail_id->field_media_image->entity->getFileUri();
+              $thumbnail_file = $this->entityTypeManager->getStorage('file')->load($thumbnail_id->field_media_image->target_id);
+              $thumbnail_url = $thumbnail_file->getFileUri();
               $thumbnailImg = file_create_url($thumbnail_url);
             }
-            $file_id = $this->entityTypeManager->getStorage('file')->load($downloads_list->field_media_file->target_id);
-
-            $file_url = $file_id->getFileUri();
-            $downloadable = file_create_url($file_url);
-
+            if (isset($downloads_list->field_media_file) && !empty($downloads_list->field_media_file->target_id)) {
+              $file_id = $this->entityTypeManager->getStorage('file')->load($downloads_list->field_media_file->target_id);
+              $file_url = $file_id->getFileUri();
+              $downloadable = file_create_url($file_url);
+            }
             $asset2[] = [
               "type" => $type,
               "id" => $dname,
@@ -201,8 +213,15 @@ class RouteController extends ControllerBase {
           }
         }
       }
-
-      $assets = array_merge($asset1, $asset2);
+      if (!empty($asset1) && !empty($asset2)) {
+        $assets = array_merge($asset1, $asset2);
+      }
+      elseif (!empty($asset1)) {
+        $assets = $asset1;
+      }
+      elseif (!empty($asset2)) {
+        $assets = $asset2;
+      }
       $output[] = [
         "_type" => $bundle,
         "_source" => [
