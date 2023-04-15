@@ -1,7 +1,9 @@
-uuid: 8a4c3ef7-fd73-48cf-b2b9-2177b44f098d
+uuid: 0a3ad2c6-8725-4395-ba90-568cbd28d307
 langcode: en
 status: true
 dependencies: {  }
+_core:
+  default_config_hash: SR7Rjve54eVTCV__9NT8BaDtq76c662UFpApcj5w0g8
 id: cleco_product_media_de
 class: null
 field_plugin_method: null
@@ -56,10 +58,14 @@ process:
     plugin: cleco_get_media_type
     source: asset_usertype_id
     notification_logfile: 'public://import/pim_data/logs/product_media_notification_de.txt'
-  name:
+  field_downloads_asset_id:
     plugin: skip_on_empty
     method: row
     source: asset_id
+  name:
+    plugin: skip_on_empty
+    method: row
+    source: asset_name
   status:
     plugin: default_value
     default_value: 1

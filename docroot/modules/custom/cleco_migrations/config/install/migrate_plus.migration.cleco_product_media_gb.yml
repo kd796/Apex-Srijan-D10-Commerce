@@ -41,10 +41,14 @@ process:
     plugin: cleco_get_media_type
     source: asset_usertype_id
     notification_logfile: public://import/pim_data/logs/product_media_notification_gb.txt
-  name:
+  field_downloads_asset_id:
     plugin: skip_on_empty
     method: row
     source: asset_id
+  name:
+    plugin: skip_on_empty
+    method: row
+    source: asset_name
   status:
     plugin: default_value
     default_value: 1
