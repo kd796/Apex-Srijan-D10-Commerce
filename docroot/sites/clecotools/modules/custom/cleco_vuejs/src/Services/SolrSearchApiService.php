@@ -176,6 +176,51 @@ class SolrSearchApiService {
   }
 
   /**
+   * Perform a search to get related products.
+   *
+   * @param array $filters
+   *   The filters to be added to this search.
+   * @param string $search_query
+   *   The search query string.
+   * @param string $per_page
+   *   Number of items to show per page.
+   * @param string $offset
+   *   Number of items to offset.
+   *
+   * @return \Drupal\search_api\Query\ResultSetInterface
+   *   The search query results.
+   *
+   * @throws \Drupal\search_api\SearchApiException
+   */
+  public function relatedProducts(array $filters = [], $search_query = '', $per_page = 12, $offset = 0) {
+    // Only search products.
+    $this->query->addCondition('type', ['product', 'enhanced_product'], 'IN');
+    
+    // Filter terms.
+    $terms = StepHelper::getProductFilters();
+    // Create a new array to store filtered results.
+    $filteredFilters = [];
+
+    foreach ($terms as $term) {
+      $termKey = $term['key']; // Get the $term['key'] value.
+      
+      // Loop through $filters array and add keys that match with $termKey to the new array.
+      foreach ($filters as $key => $value) {
+        if ($key === $termKey) {
+          $filteredFilters[$key] = $value;
+        }
+      }
+    }
+    $filteredFilters['product_category'] = $filters['product_category'];
+    foreach ($filteredFilters as $filter_name => $filter) {
+      $this->query->addCondition($filter_name, $filter, 'IN');
+    }
+    $language = $this->languageManager->getCurrentLanguage()->getId();
+    $this->query->addCondition('langcode', $language);
+    return $this->query->execute(); 
+  }
+
+  /**
    * Perform a search on products, downloads, nodes etc with given parameters.
    *
    * @param array $filters

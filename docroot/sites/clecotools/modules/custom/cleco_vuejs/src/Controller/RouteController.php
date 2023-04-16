@@ -9,6 +9,10 @@ use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Drupal\cleco_vuejs\Services\SolrSearchApiService;
+use Drupal\cleco_vuejs\Services\VueDataFormatter;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Drupal\Component\Serialization\Json;
 
 /**
  * Controller for Product pages.
@@ -47,9 +51,25 @@ class RouteController extends ControllerBase {
   protected $entityTypeManager;
 
   /**
+   * The solr search service.
+   *
+   * @var \Drupal\cleco_vuejs\Controller\SolrSearchApiService
+   */
+  protected SolrSearchApiService $solrSearchService;
+
+  /**
+   * The vuejs data formatter service.
+   *
+   * @var \Drupal\cleco_vuejs\Services\VueDataFormatter
+   */
+  protected VueDataFormatter $vueDataFormatter;
+
+  /**
    * RouteController constructor.
    */
-  public function __construct(Request $request, LanguageManagerInterface $languageManager, EntityTypeManagerInterface $entityTypeManager) {
+  public function __construct(SolrSearchApiService $solr_search_service,VueDataFormatter $vue_data_formatter, Request $request, LanguageManagerInterface $languageManager, EntityTypeManagerInterface $entityTypeManager) {
+    $this->solrSearchService = $solr_search_service;
+    $this->vueDataFormatter = $vue_data_formatter;
     $this->request = $request;
     $this->languageManager = $languageManager;
     $this->entityTypeManager = $entityTypeManager;
@@ -60,6 +80,8 @@ class RouteController extends ControllerBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
+      $container->get('cleco_vuejs.solr_search_service'),
+      $container->get('cleco_vuejs.vue_data_formatter'),
       $container->get('request_stack')->getCurrentRequest(),
       $container->get('language_manager'),
       $container->get('entity_type.manager')
@@ -119,8 +141,8 @@ class RouteController extends ControllerBase {
       $features = [];
       $asset1 = [];
       $asset2 = [];
-      $assets = [];
       $output = [];
+      $assets = [];
       foreach ($nodes as $node) {
         $fields = $node->getFields();
         $bundle = $node->bundle();
@@ -137,7 +159,9 @@ class RouteController extends ControllerBase {
         $field_product_features_cp = isset($fields['field_product_features_cp']) ? $fields['field_product_features_cp'] : '';
         if (!empty($field_product_features_cp)) {
           foreach ($field_product_features_cp as $productFeatures) {
-            $features[] = $productFeatures->value;
+            if (isset($productFeatures->value)) {
+              $features[] = $productFeatures->value;
+            }
           }
         }
         $field_media = isset($fields['field_media']) ? $fields['field_media'] : '';
@@ -159,16 +183,29 @@ class RouteController extends ControllerBase {
         $footnotes = $fields['field_footnotes']->getValue();
         $models = $fields['field_product_models']->getValue();
         $models_details = '';
+        $filters = [];
         if (!empty($models)) {
           $models_details = $this->getProductModelDetails($fields['field_product_models']->getValue());
+          foreach ($models_details as $model_detail) {
+            foreach ($model_detail['values'] as $model_key => $model_value) {
+              $filters[$model_key][] = $model_value;
+            }
+          }
         }
-        $product_category_name = '';
-        $product_category = $fields['field_product_classifications']->getValue();
-        if (!empty($product_category)) {
-          $product_category = end($product_category);
-          $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($product_category['target_id']);
-          if (!empty($term)) {
-            $product_category_name = $term->get('name')->value;
+        $product_category_name = [];
+        $product_categories = $fields['field_product_classifications']->getValue();
+        if (!empty($product_categories)) {
+          foreach ($product_categories as $product_category) {
+            $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($product_category['target_id']);
+            if (!empty($term)) {
+              $product_category_name[] = $term->get('name')->value;
+              $term_parent = $term->get('parent')->getValue()[0]['target_id'];
+              if (!$term_parent) {
+                continue;
+              }
+              $parent_term = $this->entityTypeManager->getStorage('taxonomy_term')->load($term_parent);
+              $product_category_name[] = $parent_term->get('name')->value; 
+            }
           }
         }
         $field_downloads = $fields['field_downloads'] ?? $fields['field_downloads'] ?? '';
@@ -180,7 +217,7 @@ class RouteController extends ControllerBase {
             if (isset($downloads_list) && $downloads_list->hasField('field_type')) {
               $field_type = $downloads_list->get('field_type')->getValue();
               if (!empty($field_type[0]['value'])) {
-                  $type_str = $field_type[0]['value'];
+                $type_str = $field_type[0]['value'];
               }
             }
             $type = str_replace("_", " ", $type_str);
@@ -222,6 +259,16 @@ class RouteController extends ControllerBase {
       elseif (!empty($asset2)) {
         $assets = $asset2;
       }
+      $product_category_array = [
+        "product_category" => $product_category_name,
+      ];
+      $filters = array_merge($filters, $product_category_array);
+      $related_products = [];
+      $related_products_data = $this->getRelatedProducts($filters);
+      $content = $related_products_data->getContent();
+      $data = json_decode($content, TRUE);
+      $related_products = $data['hits'];
+      $related_products = array_slice($related_products['hits'], 0, 4); // Get first 4 related products.
       $output[] = [
         "_type" => $bundle,
         "_source" => [
@@ -231,17 +278,16 @@ class RouteController extends ControllerBase {
           "nid" => $node_id,
           "id" => $sku_group,
           "product_image" => isset($image_path) ? $image_path : '',
-          "product_category" => [$product_category_name],
+          "related_products" => $related_products,
+          "product_category" => $product_category_name,
           "values" => [
             "sku_overview" => "Designed to ensure safety-critical assembly -- " . $slug . " -- with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
             "body" => "Designed to ensure safety-critical assembly with best-in-class accuracy, they are also the fastest cordless assembly tools in its class.",
             "asset_filename" => "DOT_12S1207-02.dxf",
+            "footnotes" => isset($footnotes[0]) ? $footnotes[0]['value'] : '',
           ],
           "assets" => $assets,
           "models" => $models_details,
-          "values" => [
-            "footnotes" => isset($footnotes[0]) ? $footnotes[0]['value'] : '',
-          ],
         ],
       ];
       $response['hits']['hits'] = $output;
@@ -261,6 +307,13 @@ class RouteController extends ControllerBase {
     else {
       return new Response($this->t('No results found'), 200, ['Content-Type' => 'text/html']);
     }
+  }
+
+  public function getRelatedProducts(array $filters) {
+    $searchproducts = $this->solrSearchService->relatedProducts($filters);
+    $json = $this->vueDataFormatter->formatSearchResults($searchproducts);
+
+    return new JsonResponse($json, 200);
   }
 
   /**
