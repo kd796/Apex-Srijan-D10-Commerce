@@ -1,7 +1,9 @@
-uuid: 69628dd2-ae9e-4fbb-b74e-a35d6e3f407b
+uuid: 0b487339-39a7-417a-92c1-e5f3dc2416fb
 langcode: en
 status: true
 dependencies: {  }
+_core:
+  default_config_hash: c00aaVoxaoIi05N_W7EBQq8W5xHxoLiMUN3AP-gDgMQ
 id: cleco_products_de
 class: null
 field_plugin_method: null
@@ -187,7 +189,9 @@ process:
     source: remote_product_status
     condition:
       AttributeID: SAP_SALES_ORG_STATUS
-      ID: Z2
+      ID:
+        - Z2
+        - P4
   langcode:
     plugin: default_value
     default_value: de

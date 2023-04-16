@@ -80,8 +80,14 @@ class MapProductStatus extends ProcessPluginBase implements ContainerFactoryPlug
         continue;
       }
 
+      // List of status.
+      $status_list = $status_condition['ID'];
+      if (!is_array($status_condition['ID'])) {
+        $status_list = (array) $status_condition['ID'];
+      }
+
       // Set status when criteria is not met.
-      if ($id != $status_condition['ID']) {
+      if (!in_array(strtolower($id), array_map('strtolower', $status_list))) {
         $status = 0;
         break;
       }

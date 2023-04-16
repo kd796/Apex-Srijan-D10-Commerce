@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.featured_products.field_featured_products_list
     - field.field.paragraph.featured_products.field_title
     - paragraphs.paragraphs_type.featured_products
 id: paragraph.featured_products.default
@@ -10,6 +11,16 @@ targetEntityType: paragraph
 bundle: featured_products
 mode: default
 content:
+  field_featured_products_list:
+    type: entity_reference_autocomplete
+    weight: 1
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_title:
     type: string_textfield
     weight: 0

@@ -198,6 +198,36 @@
             </section><!-- /.section--related-products -->
         {% endif %}
     {% endif %}#}
+    {% set relatedProducts = product.related_products %}
+    {% if relatedProducts is defined %}
+      {% if relatedProducts|length > 1 %}
+        <section class="section">
+          <header class="section-header">
+            <div class="section-header-content">
+              <h2 class="section-title">{{ '<em>Related</em> Products'|t }}</h2>
+            </div>
+          </header>
+          <ul class="listings">
+            {# Get correct alias based on selected language #}
+            {% set alias = alias_by_path('/products/product-catalog', locale.code) %}
+            {% for related in relatedProducts %}
+              {% if related._source.name != productName %}
+                <li class="listings-item">
+                  {% set data = related._source %}
+                  {% include '@atg/patterns/listing.html.twig' with {
+                      title: data.name,
+                      body: data.values.sku_overview,
+                      url: locale.path ~ alias ~ '/' ~ data.slug.0,
+                      size: 'large',
+                      image: (data.assets is not empty) ? step_asset(data.assets) : ''
+                  } %}
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </section>
+      {% endif %}
+    {% endif %}
 
     <section class="section section--centered section--schedule-demo" id="schedule-demo" style="background-image: url({{ theme_asset('/dist/img/enhanced-form-bg-' ~ (product_line.name|lower) ~ '.jpg') }}); ">
         <div class="contain">
