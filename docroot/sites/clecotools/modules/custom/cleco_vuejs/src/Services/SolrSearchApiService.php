@@ -217,7 +217,7 @@ class SolrSearchApiService {
     }
     $language = $this->languageManager->getCurrentLanguage()->getId();
     $this->query->addCondition('langcode', $language);
-    return $this->query->execute(); 
+    return $this->query->execute();
   }
 
   /**
