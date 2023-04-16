@@ -958,31 +958,35 @@ trait MigrationHelperTrait {
   /**
    * Get Assets associated products classifications.
    *
-   * @param int $category_id
-   *   Category tid.
+   * @param int $mid
+   *   Asset tid.
    * @param string $langcode
    *   Language code.
    *
    * @return array
-   *   Returns migrated tids.
+   *   Returns associated products classification tids.
    */
-  public function getAllProductCategories(int $category_id, $langcode = '') {
+  public function getAllProductCategories(int $mid, $langcode = '') {
     $tids = [];
-    if (empty($category_id)) {
+    if (empty($mid)) {
       return $tids;
     }
     $query = $this->connection->select('node__field_downloads', 'nd');
     $query->leftjoin('node__field_product_classifications', 'np', 'np.entity_id = nd.entity_id');
+    $query->leftjoin('node_field_data', 'n', 'n.nid = nd.entity_id');
     $query->addField('np', 'field_product_classifications_target_id');
-    $query->condition('nd.field_downloads_target_id', $category_id);
+    $query->condition('nd.field_downloads_target_id', $mid);
     if (!empty($langcode)) {
       $query->condition('nd.langcode', $langcode);
       $query->condition('np.langcode', $langcode);
     }
+    $query->condition('n.status', 1);
+    $query->condition('n.type', 'product');
     $query->condition('nd.bundle', 'product');
     $query->condition('np.bundle', 'product');
     $query->condition('nd.deleted', 0);
     $query->condition('np.deleted', 0);
+
     $tids = $query->execute()->fetchAllKeyed(0, 0);
     if (!empty($tids)) {
       $tids = array_keys($tids);
