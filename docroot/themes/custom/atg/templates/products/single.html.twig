@@ -151,7 +151,7 @@
     {% set relatedProducts = product.related_products %}
     {% if relatedProducts is defined %}
       {% if relatedProducts|length > 1 %}
-        <section class="section">
+        <section id="related-products-section" class="section">
           <header class="section-header">
             <div class="section-header-content">
               <h2 class="section-title">{{ '<em>Related</em> Products'|t }}</h2>
