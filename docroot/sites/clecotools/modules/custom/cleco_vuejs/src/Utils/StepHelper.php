@@ -331,6 +331,7 @@ class StepHelper
             'Installation Manual'      => [],
             'Instruction Manual'       => [],
             'Line Art'                 => [],
+            'Legacy'                   => [],
             'Manual'                   => [],
             'Maintenance Instruction'  => [],
             'MSDS'                     => [],
