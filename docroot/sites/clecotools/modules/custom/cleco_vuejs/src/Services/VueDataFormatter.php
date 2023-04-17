@@ -78,6 +78,7 @@ class VueDataFormatter {
       $resultItemFields = $result->getFields();
       $sku_overview = '';
       $slug = '';
+      $title = '';
       $assets = [];
       $highlight = [];
 
@@ -211,7 +212,7 @@ class VueDataFormatter {
       $media_file = isset($resultItemFields['field_media_file']) ? $resultItemFields['field_media_file']->getvalues() : [];
       $media_url = isset($resultItemFields['media_listing_image_url']) ? $resultItemFields['media_listing_image_url']->getvalues()[0] : '';
 
-      $catName = isset($resultItemFields['download_category_name']) ? $resultItemFields['download_category_name']->getvalues() : [];
+      $catName = isset($resultItemFields['media_product_category']) ? $resultItemFields['media_product_category']->getvalues() : [];
       foreach ($catName as $categoryName) {
         $translatedCate[] = StepHelper::translate($categoryName);
       }
@@ -301,7 +302,7 @@ class VueDataFormatter {
           'buckets' => $buckets,
         ];
       }
-      if ($facet_name == 'sm_download_category_name') {
+      if ($facet_name == 'sm_media_product_category') {
         $data['product_category'] = [
           "doc_count_error_upper_bound" => 0,
           "sum_other_doc_count" => 0,

@@ -433,9 +433,38 @@ function cleco_migrations_migrate_prepare_row(Row $row, MigrateSourceInterface $
  * Implements hook_entity_presave().
  */
 function cleco_migrations_entity_presave(EntityInterface $entity) {
-  if ($entity instanceof Node && $entity->bundle() == 'product') {
-    $coupon_heading = !empty($entity->get('field_long_description')->getValue()[0]) ? $entity->get('field_long_description')->getValue()[0]['value'] : '';
-    $slug = StringHelper::createSlug((string) $coupon_heading);
+  if ($entity instanceof Node && ($entity->bundle() == 'product' || $entity->bundle() == 'enhanced_product')) {
+    $calculated_slug = '';
+    if ($entity->hasField('field_long_description')) {
+      $coupon_heading = !empty($entity->get('field_long_description')->getValue()[0]) ? $entity->get('field_long_description')->getValue()[0]['value'] : '';
+      $calculated_slug = StringHelper::createSlug((string) $coupon_heading);
+    }
+    if (!$calculated_slug) {
+      $calculated_slug = !empty($entity->get('field_slug')->getValue()[0]) ? $entity->get('field_slug')->getValue()[0]['value'] : '';
+    }
+
+    if (!$calculated_slug) {
+      return;
+    }
+
+    $lang = $entity->language()->getId();
+    // Check if we have any other product with same slug.
+    $query = \Drupal::entityQuery('node')
+      ->condition('field_slug', $calculated_slug, '=')
+      ->condition('nid', $entity->id(), '!=')
+      ->condition('langcode', $lang);
+    $nids = $query->execute();
+    $count = 1;
+    $slug = $calculated_slug;
+    // Loop until we have a unique value.
+    while ($nids) {
+      $slug = $calculated_slug . '-' . $count++;
+      $query = \Drupal::entityQuery('node')
+        ->condition('field_slug', $slug, '=')
+        ->condition('nid', $entity->id(), '!=')
+        ->condition('langcode', $lang);
+      $nids = $query->execute();
+    }
     $entity->set('field_slug', $slug);
   }
 }
