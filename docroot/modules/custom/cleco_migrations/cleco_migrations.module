@@ -439,8 +439,9 @@ function cleco_migrations_entity_presave(EntityInterface $entity) {
       $coupon_heading = !empty($entity->get('field_long_description')->getValue()[0]) ? $entity->get('field_long_description')->getValue()[0]['value'] : '';
       $calculated_slug = StringHelper::createSlug((string) $coupon_heading);
     }
+    // If field_long_description is not available, use title as fallback.
     if (!$calculated_slug) {
-      $calculated_slug = !empty($entity->get('field_slug')->getValue()[0]) ? $entity->get('field_slug')->getValue()[0]['value'] : '';
+      $calculated_slug = StringHelper::createSlug($entity->getTitle());
     }
 
     if (!$calculated_slug) {
