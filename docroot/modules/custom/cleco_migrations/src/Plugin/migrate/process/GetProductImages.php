@@ -348,6 +348,11 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
       'igs file' => 'txt',
       'zip' => 'zip',
       'exe' => 'exe',
+      'xls' => 'xls',
+      'word' => 'doc',
+      'xml' => 'xml',
+      'mp4' => 'mp4',
+      'utf8' => 'utf8',
     ];
     if (isset($user_type_list[$user_type_id])) {
       $extension = $user_type_list[$user_type_id];
