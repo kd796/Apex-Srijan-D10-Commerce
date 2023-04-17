@@ -195,7 +195,7 @@ class SolrSearchApiService {
   public function relatedProducts(array $filters = [], $search_query = '', $per_page = 12, $offset = 0) {
     // Only search products.
     $this->query->addCondition('type', ['product', 'enhanced_product'], 'IN');
-    
+
     // Filter terms.
     $terms = StepHelper::getProductFilters();
     // Create a new array to store filtered results.
@@ -203,7 +203,7 @@ class SolrSearchApiService {
 
     foreach ($terms as $term) {
       $termKey = $term['key']; // Get the $term['key'] value.
-      
+
       // Loop through $filters array and add keys that match with $termKey to the new array.
       foreach ($filters as $key => $value) {
         if ($key === $termKey) {
@@ -310,13 +310,13 @@ class SolrSearchApiService {
         $filter_name = 'medialang_type';
       }
       if ($filter_name == 'product_category') {
-        $filter_name = 'download_category_name';
+        $filter_name = 'media_product_category';
       }
 
       if (is_array($filter)) {
         if ($site_lang != 'en') {
           foreach ($filter as $each){
-            if ($filter_name != 'download_category_name'){
+            if ($filter_name != 'media_product_category'){
               $each1 = StepHelper::getOriginalTranslation($each, $site_lang);
               $this->query->addCondition($filter_name, $each1, '=');
             }
@@ -335,7 +335,7 @@ class SolrSearchApiService {
     }
 
     $facet_filters = [];
-    $facet_filters = ['sm_medialang_type','sm_download_category_name','sm_item_type'];
+    $facet_filters = ['sm_medialang_type','sm_media_product_category','sm_item_type'];
 
     $this->query->setOption('solr_param_facet', 'true');
     $this->query->setOption('solr_param_facet.field', $facet_filters);

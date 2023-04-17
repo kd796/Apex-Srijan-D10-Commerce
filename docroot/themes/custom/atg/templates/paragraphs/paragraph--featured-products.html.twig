@@ -33,9 +33,9 @@
 
                 {% set url  = baseUrl ~ item.field_slug.value %}
 
-                {% set img = item.field_360_image.0.entity.field_360_loading_image|file_url|image_style('product_thumb') %}
+                {% set img = item.field_360_image.0.entity.field_360_loading_image|file_uri|image_style('product_thumb') %}
                 {% if not img %}
-                  {% set img = item.field_media|file_url|image_style('product_thumb') %}
+                  {% set img = item.field_media|file_uri|image_style('product_thumb') %}
                 {% endif %}
 
     				<li class="listings-item">
