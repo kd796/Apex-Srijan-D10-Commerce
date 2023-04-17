@@ -291,6 +291,34 @@ class StepHelper
             'gb' => 'Accessories',
             'de' => 'Zubehör',
         ],
+        'Software' => [
+            'gb' => 'Software',
+            'de' => 'Software',
+        ],
+        'Hardware Manual' => [
+            'gb' => 'Hardware Manual',
+            'de' => 'Hardware-Handbuch',
+        ],
+        'IGS File' => [
+            'gb' => 'IGS File',
+            'de' => 'IGS-Datei',
+        ],
+        'Certificates' => [
+            'gb' => 'Certificates',
+            'de' => 'Zertifikate',
+        ],
+        'Repair Manual' => [
+            'gb' => 'Repair Manual',
+            'de' => 'Reparaturanleitung',
+        ],
+        'STP File' => [
+            'gb' => 'STP File',
+            'de' => 'STP-Datei',
+        ],
+        'Warranty' => [
+            'gb' => 'Warranty',
+            'de' => 'Garantie',
+        ],
         'Explore the Features' => [
             'gb' => 'Explore the Features',
             'de' => 'Übersicht der Funktionen',
