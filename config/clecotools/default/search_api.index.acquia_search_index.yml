@@ -35,7 +35,6 @@ dependencies:
     - search_api_solr
     - file
     - media
-    - taxonomy
     - paragraphs
     - node
     - content_moderation
@@ -152,16 +151,6 @@ field_settings:
     label: 'Cutter Thread'
     property_path: cutter_thread
     type: string
-  download_category_name:
-    label: 'Product Category » Taxonomy term » Name'
-    datasource_id: 'entity:media'
-    property_path: 'field_product_category:entity:name'
-    type: string
-    dependencies:
-      config:
-        - field.storage.media.field_product_category
-      module:
-        - taxonomy
   drive_size:
     label: 'Drive Size'
     property_path: drive_size
@@ -511,15 +500,13 @@ field_settings:
         - file
         - media
   media_product_category:
-    label: 'Product Category » Taxonomy term » Name'
+    label: 'Product Category'
     datasource_id: 'entity:media'
-    property_path: 'field_product_category:entity:name'
+    property_path: field_product_category
     type: string
     dependencies:
       config:
         - field.storage.media.field_product_category
-      module:
-        - taxonomy
   medialang_type:
     label: 'Media Language Type'
     property_path: medialang_type
@@ -573,15 +560,13 @@ field_settings:
     property_path: power_type
     type: string
   product_category:
-    label: 'Product Categories » Taxonomy term » Name'
+    label: 'Product Categories'
     datasource_id: 'entity:node'
-    property_path: 'field_product_classifications:entity:name'
+    property_path: field_product_classifications
     type: string
     dependencies:
       config:
         - field.storage.node.field_product_classifications
-      module:
-        - taxonomy
   product_family:
     label: 'Product Family'
     property_path: product_family
@@ -740,6 +725,8 @@ processor_settings:
   cleco_add_item_type: {  }
   cleco_add_medialang_type: {  }
   cleco_add_model_specification: {  }
+  cleco_add_parent_category_processor:
+    all_fields: false
   entity_type: {  }
   language_with_fallback: {  }
   rendered_item: {  }

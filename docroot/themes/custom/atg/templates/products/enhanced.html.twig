@@ -201,30 +201,31 @@
     {% set relatedProducts = product.related_products %}
     {% if relatedProducts is defined %}
       {% if relatedProducts|length > 1 %}
-        <section class="section">
+        <section id="related-products-section" class="section">
           <header class="section-header">
             <div class="section-header-content">
               <h2 class="section-title">{{ '<em>Related</em> Products'|t }}</h2>
             </div>
           </header>
-          <ul class="listings">
+          <basic-cards>
             {# Get correct alias based on selected language #}
             {% set alias = alias_by_path('/products/product-catalog', locale.code) %}
             {% for related in relatedProducts %}
               {% if related._source.name != productName %}
-                <li class="listings-item">
+                <basic-card>
                   {% set data = related._source %}
                   {% include '@atg/patterns/listing.html.twig' with {
                       title: data.name,
                       body: data.values.sku_overview,
                       url: locale.path ~ alias ~ '/' ~ data.slug.0,
                       size: 'large',
-                      image: (data.assets is not empty) ? step_asset(data.assets) : ''
+                      image: (data.assets is not empty) ? step_asset(data.assets) : '',
+                      backgroundColor: '#ffffff'
                   } %}
-                </li>
+                </basic-card>
               {% endif %}
             {% endfor %}
-          </ul>
+          </basic-cards>
         </section>
       {% endif %}
     {% endif %}

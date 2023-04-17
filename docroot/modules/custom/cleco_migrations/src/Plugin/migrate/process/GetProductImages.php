@@ -98,11 +98,17 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
 
     // Get Asset Type.
     $user_type_id = '';
+    $user_type_id_source_field = $this->configuration['params']['user_type_id'] ?? 'asset_usertype_id';
     if (is_object($value)) {
       $asset_info = $value->xpath('parent::Asset');
       if (isset($asset_info[0])) {
         $user_type_id = (string) $asset_info[0]->attributes()->UserTypeID;
       }
+    }
+
+    // Get user Type ID if it is empty.
+    if (empty($user_type_id)) {
+      $user_type_id = $row->getSourceProperty($user_type_id_source_field);
     }
 
     $original_extension = $this->getAssetExtension($value);
@@ -166,6 +172,10 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
     // Process for Media product_downloads for File.
     $fid = NULL;
     if ($process_pdf && $get_type == "fid" && $media_type == "pdf") {
+      // Process for missing extension in the xml for the File download.
+      if (empty($original_extension)) {
+        $extension = $this->getExtensionFromUserTypeId($user_type_id);
+      }
       try {
         $fid = $this->imageOps->getAndSavePdf($asset_id, $alt_text, $langcode, $extension);
       }
@@ -315,6 +325,37 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
         }
         $extension = (string) $child;
       }
+    }
+    return $extension;
+  }
+
+  /**
+   * Get File downloads valid extension on missing based on UserTypeID.
+   *
+   * @param string $user_type_id
+   *   UserTypeId for the specific asset.
+   *
+   * @return string
+   *   Return extension of the asset.
+   */
+  public function getExtensionFromUserTypeId($user_type_id) {
+    $extension = '';
+    $user_type_id = strtolower($user_type_id);
+    $user_type_list = [
+      'pdf' => 'pdf',
+      'stp file' => 'ifc',
+      'dxf file' => 'dxf',
+      'igs file' => 'txt',
+      'zip' => 'zip',
+      'exe' => 'exe',
+      'xls' => 'xls',
+      'word' => 'doc',
+      'xml' => 'xml',
+      'mp4' => 'mp4',
+      'utf8' => 'utf8',
+    ];
+    if (isset($user_type_list[$user_type_id])) {
+      $extension = $user_type_list[$user_type_id];
     }
     return $extension;
   }

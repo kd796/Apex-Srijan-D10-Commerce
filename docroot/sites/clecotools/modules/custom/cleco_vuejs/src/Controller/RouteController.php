@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Drupal\cleco_vuejs\Services\SolrSearchApiService;
 use Drupal\cleco_vuejs\Services\VueDataFormatter;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Drupal\Component\Serialization\Json;
 
 /**
  * Controller for Product pages.
@@ -67,7 +66,7 @@ class RouteController extends ControllerBase {
   /**
    * RouteController constructor.
    */
-  public function __construct(SolrSearchApiService $solr_search_service,VueDataFormatter $vue_data_formatter, Request $request, LanguageManagerInterface $languageManager, EntityTypeManagerInterface $entityTypeManager) {
+  public function __construct(SolrSearchApiService $solr_search_service, VueDataFormatter $vue_data_formatter, Request $request, LanguageManagerInterface $languageManager, EntityTypeManagerInterface $entityTypeManager) {
     $this->solrSearchService = $solr_search_service;
     $this->vueDataFormatter = $vue_data_formatter;
     $this->request = $request;
@@ -204,7 +203,7 @@ class RouteController extends ControllerBase {
                 continue;
               }
               $parent_term = $this->entityTypeManager->getStorage('taxonomy_term')->load($term_parent);
-              $product_category_name[] = $parent_term->get('name')->value; 
+              $product_category_name[] = $parent_term->get('name')->value;
             }
           }
         }
@@ -268,7 +267,8 @@ class RouteController extends ControllerBase {
       $content = $related_products_data->getContent();
       $data = json_decode($content, TRUE);
       $related_products = $data['hits'];
-      $related_products = array_slice($related_products['hits'], 0, 4); // Get first 4 related products.
+      // Get first 4 related products.
+      $related_products = array_slice($related_products['hits'], 0, 4);
       $output[] = [
         "_type" => $bundle,
         "_source" => [
@@ -309,6 +309,9 @@ class RouteController extends ControllerBase {
     }
   }
 
+  /**
+   * Get Related Products for current product.
+   */
   public function getRelatedProducts(array $filters) {
     $searchproducts = $this->solrSearchService->relatedProducts($filters);
     $json = $this->vueDataFormatter->formatSearchResults($searchproducts);
