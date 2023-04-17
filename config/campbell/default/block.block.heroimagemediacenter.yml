@@ -1,0 +1,28 @@
+uuid: eca24792-d154-475d-a496-7b08cc09c11f
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.hero_image_media_center
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - campbell
+id: heroimagemediacenter
+theme: campbell
+region: pre_content
+weight: -32
+provider: null
+plugin: 'fixed_block_content:hero_image_media_center'
+settings:
+  id: 'fixed_block_content:hero_image_media_center'
+  label: 'Hero Image - Media Center'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /media-center

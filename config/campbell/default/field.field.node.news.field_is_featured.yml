@@ -1,0 +1,23 @@
+uuid: 63e3fc7e-ab70-41e1-9263-32490dbc9ff7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_is_featured
+    - node.type.news
+id: node.news.field_is_featured
+field_name: field_is_featured
+entity_type: node
+bundle: news
+label: 'Is Featured'
+description: 'It is used to filter content for Homepage view'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

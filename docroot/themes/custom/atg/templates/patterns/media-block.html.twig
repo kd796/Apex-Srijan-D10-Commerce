@@ -1,0 +1,36 @@
+{% set media = media | default(null) %}
+{% set video = video | default(null) %}
+{% set title = title | default(null) %}
+{% set body = body | default(null) %}
+{% set url = url | default(null) %}
+{% set action = action | default(null) %}
+{% set target = target | default(null) %}
+{% set alt = alt | default(false) %}
+{% set notched = notched | default(false) %}
+{% set bordered = bordered | default(false) %}
+
+{% set attributes = create_attribute({class: 'media-block'}).addClass(alt ? 'media-block--alt' : null).addClass(notched ? 'media-block--notched' : null).addClass(bordered ? 'media-block--bordered' : null) %}
+
+<section{{ attributes }}>
+	<div class="media-block-media">
+		{{ media }}
+	</div>
+	<div class="media-block-content">
+		<div class="section-intro">
+			{% if title %}
+				<h2 class="section-title">{{ title | raw }}</h2>
+			{% endif %}
+			{% if body %}
+				<div class="section-intro-content wysiwyg-content">
+					{{ body }}
+				</div>
+			{% endif %}
+			{% if action and url %}
+				{% set link_attributes = create_attribute({href: url, target: target, class: 'action action--primary'}) %}
+				<footer class="section-intro-actions">
+					<a{{ link_attributes }}>{{ action }}</a>
+				</footer>
+			{% endif %}
+		</div>
+	</div>
+</section>

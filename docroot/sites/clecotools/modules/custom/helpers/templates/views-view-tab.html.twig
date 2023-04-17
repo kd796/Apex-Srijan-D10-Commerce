@@ -1,0 +1,11 @@
+{% set current_url = false %}
+{% if current %}
+	{% set current_url = url('entity.taxonomy_term.canonical', {'taxonomy_term': current.tid.value}) %}
+{% endif %}
+{% set url = url('entity.taxonomy_term.canonical', {'taxonomy_term': entity.tid.value }) %}
+{% set title = entity.getName() %}
+{% set attributes = create_attribute({class: 'tab'}) %}
+{% if url == current_url %}
+	{% set attributes = attributes.addClass('tab--active') %}
+{% endif %}
+<a href="{{ url }}"{{ attributes }}>{{ title }}</a>

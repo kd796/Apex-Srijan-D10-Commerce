@@ -1,0 +1,33 @@
+uuid: abe8468d-e70f-484d-8f16-66250a974fda
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.find_a_distributor.field_body_plain
+    - field.field.paragraph.find_a_distributor.field_title
+    - paragraphs.paragraphs_type.find_a_distributor
+id: paragraph.find_a_distributor.default
+targetEntityType: paragraph
+bundle: find_a_distributor
+mode: default
+content:
+  field_body_plain:
+    type: string_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 2
+      placeholder: ''
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

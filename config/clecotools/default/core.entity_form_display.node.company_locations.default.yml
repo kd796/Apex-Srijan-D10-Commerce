@@ -1,0 +1,112 @@
+uuid: 50d0fa3c-aa1c-4560-8979-7e5710664ae6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.company_locations.feeds_item
+    - field.field.node.company_locations.field_address
+    - field.field.node.company_locations.field_geographic_data
+    - field.field.node.company_locations.field_phone
+    - field.field.node.company_locations.field_term_continent
+    - field.field.node.company_locations.field_term_department
+    - field.field.node.company_locations.field_uuid
+    - node.type.company_locations
+  module:
+    - address
+    - content_moderation
+    - geofield
+    - path
+id: node.company_locations.default
+targetEntityType: node
+bundle: company_locations
+mode: default
+content:
+  field_address:
+    type: address_default
+    weight: 2
+    region: content
+    settings:
+      default_country: null
+    third_party_settings: {  }
+  field_geographic_data:
+    type: geofield_latlon
+    weight: 8
+    region: content
+    settings:
+      html5_geolocation: false
+    third_party_settings: {  }
+  field_phone:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_term_continent:
+    type: entity_reference_autocomplete
+    weight: 7
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_term_department:
+    type: entity_reference_autocomplete
+    weight: 4
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 0
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  moderation_state:
+    type: moderation_state_default
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 6
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 50
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  feeds_item: true
+  field_uuid: true
+  promote: true
+  sticky: true
+  translation: true
+  uid: true

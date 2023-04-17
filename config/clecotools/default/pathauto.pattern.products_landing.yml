@@ -1,0 +1,22 @@
+uuid: 65009b8f-c1a5-48e3-b610-eb337e444af0
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: products_landing
+label: 'Products Landing'
+type: 'canonical_entities:node'
+pattern: '[node:title]'
+selection_criteria:
+  8c10db6c-4bc6-4eac-925a-c2a2e563dd5b:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 8c10db6c-4bc6-4eac-925a-c2a2e563dd5b
+    context_mapping:
+      node: node
+    bundles:
+      products_landing: products_landing
+selection_logic: and
+weight: 3
+relationships: {  }

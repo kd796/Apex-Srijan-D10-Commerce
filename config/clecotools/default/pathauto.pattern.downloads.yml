@@ -1,0 +1,22 @@
+uuid: 92572c0d-11cf-4323-9e0d-3ab985358580
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: downloads
+label: Downloads
+type: 'canonical_entities:node'
+pattern: '[node:title]'
+selection_criteria:
+  3e3d46a7-1925-4a7a-9f3b-835180f0d0ce:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 3e3d46a7-1925-4a7a-9f3b-835180f0d0ce
+    context_mapping:
+      node: node
+    bundles:
+      downloads: downloads
+selection_logic: and
+weight: -4
+relationships: {  }

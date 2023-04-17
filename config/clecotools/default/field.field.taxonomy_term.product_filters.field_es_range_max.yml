@@ -1,0 +1,19 @@
+uuid: 92936e30-5571-403a-af82-3b5038cfeb9d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_es_range_max
+    - taxonomy.vocabulary.product_filters
+id: taxonomy_term.product_filters.field_es_range_max
+field_name: field_es_range_max
+entity_type: taxonomy_term
+bundle: product_filters
+label: 'Range Max'
+description: 'Sets default value to the highest value in the index.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

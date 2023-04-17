@@ -64,6 +64,7 @@ switch ($site_environment) {
   case 'remote_stage':
   case 'stage':
   case 'test':
+  case 'qa':
     $config['config_split.config_split.remote_stage']['status'] = TRUE;
     $config['environment_indicator.indicator']['bg_color'] = '#008040';
     $config['environment_indicator.indicator']['fg_color'] = '#e6e6e6';

@@ -1,0 +1,22 @@
+uuid: bce25286-cd64-4579-8efb-7a35e6f4afb9
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.advanced_selector_download
+  module:
+    - user
+id: node.advanced_selector_download.teaser
+targetEntityType: node
+bundle: advanced_selector_download
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

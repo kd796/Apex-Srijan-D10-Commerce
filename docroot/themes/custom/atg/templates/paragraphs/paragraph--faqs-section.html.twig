@@ -1,0 +1,16 @@
+{% set intro = get_paragraph(content.field_intro) %}
+{% set intro_title = intro.field_title.value %}
+{% set intro_body = intro.field_body_basic.value %}
+
+{% set has_intro = intro_title or intro_body %}
+
+{% set section_attributes = create_attribute({class:['section', 'main']}) %}
+{% if has_intro %}
+	{% set section_attributes = section_attributes.addClass('section--bordered') %}
+{% endif %}
+
+<section{{ section_attributes }}>
+	<div class="article">
+		{{ content }}
+	</div>
+</section>
