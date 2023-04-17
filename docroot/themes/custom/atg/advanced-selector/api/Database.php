@@ -361,7 +361,7 @@ class DatabaseSel
             'emmanuel.fund@apextoolgroup.com',
         ];
         $to_email      = implode(', ', $to_emails);
-        $from_email    = 'atg-websiteadmin@apextoolgroup.com';
+        $from_email    = 'no-reply@apextoolgroup.com';
         $solution_html = "<tr><th class='boldtext' colspan='2'>Solution Issues</th></tr>";
         $html          = "
     <html>
