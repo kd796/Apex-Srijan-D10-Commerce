@@ -10,8 +10,8 @@
                         {% for index, asset in product.assets | sort_assets %}
                             {% set zoomable = step_asset([asset], 'source_to_jpg', 'large') %}
                             {% set thumb = step_asset([asset], 'source_to_jpg', 'product_zoom_thumb') %}
-                            <carousel-item id="carousel-{{ index }}" thumb="{{ product.product_image }}" class="product-hero-media-item">
-                                <zoomable src="{{ product.product_image }}" full="{{ product.product_image }}" alt="Product image"></zoomable>
+                            <carousel-item id="carousel-{{ index }}" thumb="{{ asset.source_to_jpg }}" class="product-hero-media-item">
+                                <zoomable src="{{ asset.source_to_jpg }}" full="{{ asset.source_to_jpg }}" alt="Product image"></zoomable>
                             </carousel-item>
                         {% endfor %}
                     </carousel>
@@ -115,14 +115,11 @@
                     <ul class="listings">
                         {% set downloadTypes = getDownloadTypes() %}
                         {% for asset in product.assets %}
-                            {% if asset.type in downloadTypes|keys %}
+                          {% if asset.type != 'Primary Image' %}
                                 {% set hasDownloads = true %}
                                 <li class="listings-item">
-                                    {% set url = '#' %}
-                                    {% if (downloadTypes[asset.type] is defined) %}
                                         {% set url = download_link(asset, asset.type) %}
                                         {% set thumb = step_asset([asset], 'pro_tools_jpg_of_pdf') %}
-                                    {% endif %}
                                     {% include '@atg/patterns/listing.html.twig' with {
                                         url: url,
                                         title: asset.id,

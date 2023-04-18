@@ -296,7 +296,7 @@ class SolrSearchApiService {
     $curSite = StepHelper::getCurrentSite();
     $site_lang = $curSite['code'];
     if ($search_query) {
-      $this->query->keys($search_query);
+      $this->query->addCondition('name', '*' .$search_query . '*', 'LIKE');
     }
 
     // Items per page and offset used for pagination.
@@ -314,28 +314,16 @@ class SolrSearchApiService {
       }
 
       if (is_array($filter)) {
-        if ($site_lang != 'en') {
-          foreach ($filter as $each){
-            if ($filter_name != 'media_product_category'){
-              $each1 = StepHelper::getOriginalTranslation($each, $site_lang);
-              $this->query->addCondition($filter_name, $each1, '=');
-            }
-            else {
-              $this->query->addCondition($filter_name, $each, '=');
-            }
-          }
-        }
-        else {
-          foreach ($filter as $each){
-            $this->query->addCondition($filter_name, $each, '=');
-          }
+        foreach ($filter as $each) {
+          $each = urldecode($each);
+          $this->query->addCondition($filter_name, $each, '=');
         }
         continue;
       }
     }
 
     $facet_filters = [];
-    $facet_filters = ['sm_medialang_type','sm_media_product_category','sm_item_type'];
+    $facet_filters = ['sm_medialang_type','sm_product_category_name','sm_item_type'];
 
     $this->query->setOption('solr_param_facet', 'true');
     $this->query->setOption('solr_param_facet.field', $facet_filters);

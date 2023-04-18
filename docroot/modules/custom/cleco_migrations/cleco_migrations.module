@@ -427,6 +427,17 @@ function cleco_migrations_migrate_prepare_row(Row $row, MigrateSourceInterface $
     }
 
   }
+
+  // Pass ID data to the Name on missing name data.
+  if ($migration->id() === 'cleco_product_media' || $migration->id() === 'cleco_product_media_de'
+    || $migration->id() === 'cleco_product_media_gb') {
+    $name = $row->getSourceProperty('asset_name');
+    $id = $row->getSourceProperty('asset_id');
+    if (empty($name)) {
+      $row->setSourceProperty('asset_name', $id);
+    }
+  }
+
 }
 
 /**

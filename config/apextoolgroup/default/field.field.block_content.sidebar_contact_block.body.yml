@@ -1,0 +1,23 @@
+uuid: 64f4566a-b6ee-4ec7-a4d4-a7c10784b954
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.sidebar_contact_block
+    - field.storage.block_content.body
+  module:
+    - text
+id: block_content.sidebar_contact_block.body
+field_name: body
+entity_type: block_content
+bundle: sidebar_contact_block
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary
