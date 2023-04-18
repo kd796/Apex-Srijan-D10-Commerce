@@ -323,7 +323,7 @@ class SolrSearchApiService {
     }
 
     $facet_filters = [];
-    $facet_filters = ['sm_medialang_type','sm_media_product_category','sm_item_type'];
+    $facet_filters = ['sm_medialang_type','sm_product_category_name','sm_item_type'];
 
     $this->query->setOption('solr_param_facet', 'true');
     $this->query->setOption('solr_param_facet.field', $facet_filters);

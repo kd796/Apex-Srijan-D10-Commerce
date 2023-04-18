@@ -207,18 +207,19 @@ class VueDataFormatter {
 
     foreach ($results as $result) {
       $translatedCate = [];
+      $download_file_name = '';
+      $download_file_path = '';
+      $category = '';
       $resultItemFields = $result->getFields();
 
       $item_type = isset($resultItemFields['item_type']) ? $resultItemFields['item_type']->getvalues() : '';
       $item_type = $item_type ? $item_type[0] : '';
       $media_file = isset($resultItemFields['field_media_file']) ? $resultItemFields['field_media_file']->getvalues() : [];
-      $media_url = isset($resultItemFields['media_listing_image_url']) ? $resultItemFields['media_listing_image_url']->getvalues()[0] : '';
+      $media_url = isset($resultItemFields['media_listing_image_url']) ? $resultItemFields['media_listing_image_url']->getvalues() : '';
+      $media_url = $media_url ? $media_url[0] : '';
 
-      $catName = isset($resultItemFields['media_product_category']) ? $resultItemFields['media_product_category']->getvalues() : [];
-      foreach ($catName as $categoryName) {
-        $translatedCate[] = StepHelper::translate($categoryName);
-      }
-      $category = implode(', ', $translatedCate);
+      $catName = isset($resultItemFields['product_category_name']) ? $resultItemFields['product_category_name']->getvalues() : [];
+      $category = implode(', ', $catName);
 
       if (!empty($media_file)) {
         $download_file = $this->entityManager->getStorage('file')->load($media_file[0]);
@@ -230,8 +231,8 @@ class VueDataFormatter {
       $listing_img_name = isset($resultItemFields['media_listing_image_name']) ? $resultItemFields['media_listing_image_name']->getvalues() : [];
       $image_name = explode(".", $listing_img_name[0] ?? '');
       if(!empty($download_file)){
-        $asset_size = $download_file->getSize();
-        $asset_mime_type = $download_file->getMimeType();
+        $asset_size = $download_file->getSize() ? $download_file->getSize() : '';
+        $asset_mime_type = $download_file->getMimeType() ? $download_file->getMimeType() : '';
       }
       $title_ob = isset($resultItemFields['name']) ? $resultItemFields['name']->getvalues() : [];
       $title = isset($title_ob[0]) ? $title_ob[0]->getText() : '';
@@ -244,9 +245,7 @@ class VueDataFormatter {
           "type" => $item_type,
           "product_category" => [$category],
           "values" => [
-            "asset_extension" => 'pdf',
             "asset_size" => $asset_size,
-            "asset_format" => "PDF (Portable Document Format application)",
             "asset_mime_type" => $asset_mime_type,
           ],
           "assets" => [
@@ -306,7 +305,7 @@ class VueDataFormatter {
           'buckets' => $buckets,
         ];
       }
-      if ($facet_name == 'sm_media_product_category') {
+      if ($facet_name == 'sm_product_category_name') {
         $data['product_category'] = [
           "doc_count_error_upper_bound" => 0,
           "sum_other_doc_count" => 0,
