@@ -221,6 +221,9 @@ class RouteController extends ControllerBase {
             }
             $type = str_replace("_", " ", $type_str);
             $type = ucwords($type);
+            if ($type == 'Flyer Brochure') {
+              $type = 'Flyer/Brochure';
+            }
             if (!empty($type)) {
               $type = StepHelper::translate($type);
             }
