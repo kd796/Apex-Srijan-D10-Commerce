@@ -1,0 +1,22 @@
+uuid: 09b18a1f-4398-465b-875a-c98e5410a383
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.mailing_list_form.field_mailing_list_form_display
+    - paragraphs.paragraphs_type.mailing_list_form
+id: paragraph.mailing_list_form.default
+targetEntityType: paragraph
+bundle: mailing_list_form
+mode: default
+content:
+  field_mailing_list_form_display:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,93 @@
+uuid: 4e8f2b7c-d1f0-4f22-964d-966dd46ebaae
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.local_retailer.field_address
+    - field.field.node.local_retailer.field_business_hours
+    - field.field.node.local_retailer.field_county
+    - field.field.node.local_retailer.field_email
+    - field.field.node.local_retailer.field_fax
+    - field.field.node.local_retailer.field_location
+    - field.field.node.local_retailer.field_phone_number
+    - field.field.node.local_retailer.field_sub_heading
+    - node.type.local_retailer
+  module:
+    - address
+    - geolocation
+    - user
+id: node.local_retailer.default
+targetEntityType: node
+bundle: local_retailer
+mode: default
+content:
+  field_address:
+    type: address_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_business_hours:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 109
+    region: content
+  field_county:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_email:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_fax:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_location:
+    type: geolocation_latlng
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_phone_number:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_sub_heading:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

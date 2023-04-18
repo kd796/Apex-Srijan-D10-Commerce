@@ -1,0 +1,29 @@
+{% if callout.enabled %}
+    <div class="{{ callout.classes }}" id="{{ callout.id }}">
+      <div class="atg_callout_wrap">
+	  {% if callout.languagecode == 'de' %}
+        <a href="{{ callout.path_de }}"{{ callout.target }}>
+          <img src="{{ callout.cta }}" alt="{{ callout.cta_alt|e('html_attr')|t }}">
+          <div class="atg_callout_content">
+            <div class="atg_callout_content_wrap">
+              <h3>{{ callout.title|t }}</h3>
+              <img src="{{ callout.image_de }}" alt="{{ callout.title|e('html_attr')|t }}">
+              <p>{{ callout.copy|t }}</p>
+            </div><!-- /.atg_callout_content_wrap -->
+          </div><!-- /.atg_callout_content -->
+        </a>
+		{% else %}
+		<a href="{{ callout.path }}"{{ callout.target }}>
+          <img src="{{ callout.cta }}" alt="{{ callout.cta_alt|e('html_attr')|t }}">
+          <div class="atg_callout_content">
+            <div class="atg_callout_content_wrap">
+              <h3>{{ callout.title|t }}</h3>
+              <img src="{{ callout.image }}" alt="{{ callout.title|e('html_attr')|t }}">
+              <p>{{ callout.copy|t }}</p>
+            </div><!-- /.atg_callout_content_wrap -->
+          </div><!-- /.atg_callout_content -->
+        </a>
+		{% endif %}
+      </div><!-- /.atg_callout_wrap -->
+    </div><!-- /.atg_callout -->
+{% endif %}

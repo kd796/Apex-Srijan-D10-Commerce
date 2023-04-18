@@ -1,0 +1,34 @@
+{% set passed_attributes = get_passed_attributes({
+	notched: false,
+	bordered: false,
+}) %}
+{% set media = elements.field_media %}
+{% set title_prefix = elements.field_title_prefix %}
+{% set title = elements.field_title[0]['#context']['value'] %}
+{% set body = elements.field_body_basic %}
+{% set cta = get_paragraph(elements.field_cta) %}
+{% set url = cta.field_cta_url[0].url | string %}
+{% set action = cta.field_cta_url[0].title %}
+{% set target = cta.field_cta_target.value is same as('1') ? '_blank' : '_top' %}
+{% set alt = passed_attributes.index % 2 == 0 %}
+{% set notched = passed_attributes.notched %}
+{% set bordered = passed_attributes.bordered %}
+{% if is_front_page %}
+	{% set alt = false %}
+	{% set notched = false %}
+	{% set bordered = true %}
+{% endif %}
+<div class="main">
+	{% include '@atg/patterns/media-block.html.twig' with {
+		media: media,
+		title_prefix: title_prefix,
+		title: title,
+		body: body,
+		url: url,
+		action: action,
+		target: target,
+		alt: alt,
+		notched: notched,
+		bordered: bordered,
+	} %}
+</div>

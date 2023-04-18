@@ -1,0 +1,38 @@
+/**
+ * Select Dropdowns
+ */
+select {
+  padding-right: 2rem;
+  background: #fff url(svg-background($svg-chevron-down, $color-gray-light)) no-repeat;
+  background-position: $select-caret-position; // Keep background-position separate so calc() for X positioning works in IE11
+  background-size: 12px 7px;
+  cursor: pointer;
+  text-overflow: ellipsis;
+
+  @-moz-document url-prefix() {
+    text-indent: -2px;
+  }
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  option {
+    background: transparent;
+  }
+
+  &:disabled,
+  &[readonly] {
+    background-color: $color-gray-light;
+    cursor: not-allowed;
+  }
+
+  &:focus {
+    background-image: url(svg-background($svg-chevron-down, $color-orange));
+
+    &:-moz-focusring {
+      color: transparent;
+      text-shadow: 0 0 0 $color-off-black;
+    }
+  }
+}

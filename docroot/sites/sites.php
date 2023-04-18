@@ -161,6 +161,39 @@ $sites['prod-www.satatools.us'] = 'sata_us';
 $sites['stg-www.satatools.us'] = 'sata_us';
 $sites['dev-www.satatools.us'] = 'sata_us';
 
+// New Sites for CLECOTOOLS
+$sites['dev-www.clecotools.com'] = 'clecotools';
+$sites['dev-www.clecotools.de'] = 'clecotools';
+$sites['dev-www.clecotools.co.uk'] = 'clecotools';
+$sites['qa-www.clecotools.com'] = 'clecotools';
+$sites['qa-www.clecotools.de'] = 'clecotools';
+$sites['qa-www.clecotools.co.uk'] = 'clecotools';
+$sites['stg-www.clecotools.com'] = 'clecotools';
+$sites['stg-www.clecotools.de'] = 'clecotools';
+$sites['stg-www.clecotools.co.uk'] = 'clecotools';
+$sites['prod-www.clecotools.com'] = 'clecotools';
+$sites['www.clecotools.com'] = 'clecotools';
+$sites['clecotools.com'] = 'clecotools';
+
+// New Sites for CAMPBELL
+$sites['dev-www.campbellchainandfittings.com'] = 'campbell';
+$sites['qa-www.campbellchainandfittings.com'] = 'campbell';
+$sites['stg-www.campbellchainandfittings.com'] = 'campbell';
+$sites['prod-www.campbellchainandfittings.com'] = 'campbell';
+$sites['www.campbellchainandfittings.com'] = 'campbell';
+$sites['campbellchainandfittings.com'] = 'campbell';
+
+// New Sites for APEXTOOLGROUP
+$sites['dev-www.apextoolgroup.com'] = 'apextoolgroup';
+$sites['qa-www.apextoolgroup.com'] = 'apextoolgroup';
+$sites['stg-www.apextoolgroup.com'] = 'apextoolgroup';
+$sites['prod-www.apextoolgroup.com'] = 'apextoolgroup';
+
+// CLECOTOOLS
+$sites['clecotools.ddev.site'] = 'clecotools';
+
+// CAMPBELL
+$sites['campbell.ddev.site'] = 'campbell';
 
 // Local config with DDEV for all local sites
 $sites['apex-tools-local.ddev.site'] = 'apex-tools';

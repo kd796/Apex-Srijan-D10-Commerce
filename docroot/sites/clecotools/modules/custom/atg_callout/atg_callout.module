@@ -1,0 +1,114 @@
+<?php
+/**
+ * @file
+ * Contains atg_callout.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Component\Utility\Random;
+use Drupal\media\Entity\Media;
+use Drupal\file\Entity\File;
+use Drupal\Core\Language\LanguageInterface;
+
+/**
+ * Implements hook_help().
+ */
+function atg_callout_help($route_name, RouteMatchInterface $route_match)
+{
+  switch ($route_name) {
+      // Main module help for the atg_callout module.
+    case 'help.page.atg_callout':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Places an actionable callout on the edge of the site.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function atg_callout_theme()
+{
+  return [
+    'atg_callout' => [
+      'render element' => 'children',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_page_attachments().
+ * Attach CSS + JS
+ */
+function atg_callout_page_attachments(array &$page)
+{
+  if (\Drupal::service('router.admin_context')->isAdminRoute()) return;
+
+  $settings           = \Drupal::config('atg_callout.settings');
+  $atg_callout_enable = $settings->get('atg_callout_enable');
+  if ($atg_callout_enable !== 1) return;
+
+  $page['#attached']['library'][] = 'atg_callout/assets';
+}
+
+/**
+ * Implements hook_page_bottom().
+ * Add callout to bottom of page
+ */
+function atg_callout_page_bottom(array &$page_bottom)
+{
+  if (\Drupal::service('router.admin_context')->isAdminRoute()) return;
+
+  $settings = \Drupal::config('atg_callout.settings');
+  $random   = new Random();
+  $string   = $random->word(8);
+  $langCode = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId() ?? 'en';
+
+  $atg_callout_enable       = $settings->get('atg_callout_enable');
+  if ($atg_callout_enable !== 1) return;
+
+  $atg_callout_position     = $settings->get('atg_callout_position');
+  $atg_callout_target       = $settings->get('atg_callout_target') !== 1 ? '' : ' target="_blank"';
+  $atg_callout_image_path   = $settings->get('atg_callout_image_path');
+  $atg_callout_image_path_de= $settings->get('atg_callout_image_path');
+  $atg_callout_image_upload = $settings->get('atg_callout_image_upload');
+  $atg_callout_image_upload_de = $settings->get('atg_callout_image_upload_de');
+  $atg_callout_image        = !empty($atg_callout_image_path)
+                              ? $atg_callout_image_path
+                              : File::load($atg_callout_image_upload[0])->createFileUrl();
+  $atg_callout_image_de     = !empty($atg_callout_image_path_de)
+                              ? $atg_callout_image_path_de
+                              : File::load($atg_callout_image_upload_de[0])->createFileUrl();
+
+  $classes = [
+    'atg_callout',
+  ];
+
+  $classes[] = "atg_callout_$atg_callout_position";
+
+  $page_bottom['atg_callout'] = [
+    '#markup' => twig_render_template(drupal_get_path('module', 'atg_callout') . '/templates/atg-callout.html.twig', [
+      'callout' => [
+        'enabled'  => boolval($settings->get('atg_callout_enable')),
+        'id'       => "atg_callout_$string",
+        'position' => $atg_callout_position,
+        'cta'      => '/' . drupal_get_path('module', 'atg_callout') . '/resources/img/download-catalog-' . $langCode . '.png',
+        'cta_alt'  => 'Download Our Catalog',
+        'title'    => $settings->get('atg_callout_title'),
+        'copy'     => $settings->get('atg_callout_copy'),
+        'path'     => $settings->get('atg_callout_path'),
+		'path_de'  => $settings->get('atg_callout_path_de'),
+        'image'    => $atg_callout_image,
+		'image_de' => $atg_callout_image_de,
+        'target'   => $atg_callout_target,
+        'classes'  => implode(' ', $classes),
+        'languagecode' => $langCode,
+      ],
+      // Needed to prevent notices when Twig debugging is enabled.
+      'theme_hook_original' => 'not-applicable',
+    ]),
+  ];
+}

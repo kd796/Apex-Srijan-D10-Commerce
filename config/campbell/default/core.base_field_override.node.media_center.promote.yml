@@ -1,0 +1,22 @@
+uuid: 144b5e0e-b08e-48df-8eae-d5292b2b8a16
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.media_center
+id: node.media_center.promote
+field_name: promote
+entity_type: node
+bundle: media_center
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

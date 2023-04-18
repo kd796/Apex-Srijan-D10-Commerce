@@ -1,0 +1,29 @@
+uuid: 1d24b219-ba65-4310-8472-1c91fcbd04b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.find_a_distributor.field_body_plain
+    - field.field.paragraph.find_a_distributor.field_title
+    - paragraphs.paragraphs_type.find_a_distributor
+id: paragraph.find_a_distributor.default
+targetEntityType: paragraph
+bundle: find_a_distributor
+mode: default
+content:
+  field_body_plain:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

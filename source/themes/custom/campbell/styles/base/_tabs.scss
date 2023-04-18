@@ -1,0 +1,73 @@
+.tabs-nav {
+  position: relative;
+  width: 100%;
+  background: url('#{$image-base-path}/tab_border.png') left bottom repeat-x;
+  min-height: 32px;
+
+  ul {
+    display: flex;
+    position: absolute;
+    top: -4px;
+    margin-bottom: 0;
+    @media only screen and (max-width: $tablet)  {
+      flex-direction: column;
+      width: 100%;
+      position: unset;
+      border-bottom: solid 1px $gray;
+    }
+  }
+
+  li {
+    a span {
+      display: inline-block;
+      padding: 5px 25px;
+      font-size: 15.3px;
+      text-decoration: none;
+      font-weight: bold;
+      color: $lighter-gray;
+      letter-spacing: 0.5px;
+      min-height: 30px;
+      margin: 0;
+      background: linear-gradient(to top, $white 0%, $honeydew 100%);
+      border-radius: 10px 10px 0 0;
+      border: solid 1.3px $aero-blue;
+      border-bottom-color: transparent;
+      @media only screen and (max-width: $tablet)  {
+        width: 100%;
+        background: $white;
+        border: 0;
+        border-radius: 0;
+        font-size: 12px;
+        min-height: unset;
+        padding: 5px 10px;
+      }
+    }
+
+    &.active {
+      a span {
+        background: $white;
+        min-height: calc(30px + 6px);
+        @media only screen and (max-width: $tablet)  {
+          width: 100%;
+          background: $pantone;
+          color: $white;
+          min-height: unset;
+        }
+      }
+    }
+  }
+}
+
+.tabs-content {
+  &__inner {
+    padding: 20px 0;
+    display: none;
+    @media only screen and (max-width: $tablet)  {
+      padding: 0;
+    }
+
+    &.active {
+      display: block;
+    }
+  }
+}

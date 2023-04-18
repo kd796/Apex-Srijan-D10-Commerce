@@ -1,0 +1,43 @@
+uuid: 3fd10ab3-3f4a-4907-95f1-0b638a4934c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.form_page.field_form
+    - field.field.node.form_page.field_hero
+    - node.type.form_page
+  module:
+    - entity_reference_revisions
+    - user
+id: node.form_page.default
+targetEntityType: node
+bundle: form_page
+mode: default
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  field_form:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_hero:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  links: true
+  search_api_excerpt: true

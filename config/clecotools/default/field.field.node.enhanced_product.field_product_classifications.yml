@@ -1,0 +1,29 @@
+uuid: 9fc7e537-a79c-4e21-a71f-4364d00f3cbe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_product_classifications
+    - node.type.enhanced_product
+    - taxonomy.vocabulary.product_classifications
+id: node.enhanced_product.field_product_classifications
+field_name: field_product_classifications
+entity_type: node
+bundle: enhanced_product
+label: 'Product Categories'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      product_classifications: product_classifications
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

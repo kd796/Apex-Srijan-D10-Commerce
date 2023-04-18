@@ -65,7 +65,7 @@ definitions:
 
           # Run pre-deploy script, then remove files unwanted for deploy.
           - .docksal/commands/pre-deploy ci
-          - rm -rf .docksal .git .gitignore bitbucket-pipelines.yml
+          - rm -rf .docksal .git .gitignore bitbucket-pipelines.yml .ddev
 
           # Pull destination repository and branch (creating branch if it doesn't exist; allows for "feature" branches).
           - mkdir ~/deploy && cd ~/deploy

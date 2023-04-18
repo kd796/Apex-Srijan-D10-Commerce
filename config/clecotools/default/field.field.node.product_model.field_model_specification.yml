@@ -1,0 +1,29 @@
+uuid: 3cbaa299-5482-42a9-90c6-cbdbf5294016
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_model_specification
+    - node.type.product_model
+    - taxonomy.vocabulary.product_specifications
+id: node.product_model.field_model_specification
+field_name: field_model_specification
+entity_type: node
+bundle: product_model
+label: 'Model Specification'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      product_specifications: product_specifications
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,30 @@
+<main class="main">
+  <section class="section">
+    <h1>Default</h1>
+
+    {% include '@atg/patterns/card.html.twig' with {
+      title: 'General Industry',
+      body: 'Nulla porttitor accumsan tincidunt curabitur aliquet quam id dui posuere blandit.',
+      url: '#',
+      image: 'https://placem.at/things?w=500&h=400',
+    } %}
+  </section>
+
+  <section class="section">
+    <h1>Grid</h1>
+    <div class="card-grid">
+      {% for i in 1..2 %}
+        <div class="card-grid-column">
+          {% for i in 1..2 %}
+            {% include '@atg/patterns/card.html.twig' with {
+              title: 'General Industry',
+              body: 'Nulla porttitor accumsan tincidunt curabitur aliquet quam id dui posuere blandit.',
+              url: '#',
+              image: 'https://placem.at/things?w=500&h=400',
+            } %}
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+</main>

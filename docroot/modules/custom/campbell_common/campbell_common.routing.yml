@@ -1,0 +1,19 @@
+campbell_common.example:
+  path: '/productlanding'
+  defaults:
+    _title: 'Products'
+    _controller: '\Drupal\campbell_common\Controller\CampbellCommonController::products'
+  requirements:
+    _permission: 'access content'
+
+campbell_common.product_image_download:
+  path: '/campbell-product-image-download/{node}'
+  defaults:
+    _controller: '\Drupal\campbell_common\Controller\ProductImageController::downloadImages'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      node:
+        type: entity:node
+

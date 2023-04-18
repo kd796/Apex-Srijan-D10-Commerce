@@ -1,0 +1,11 @@
+<section class="section main">
+	<header class="section-header">
+		<div class="section-header-content">
+			<h2 class="section-title">{{ content.field_title[0]['#context']['value'] | raw }}</h2>
+			{% if content.field_body_plain %}
+				<div class="section-subtitle">{{ content.field_body_plain }}</div>
+			{% endif %}
+		</div>
+	</header>
+	{{ content.field_featured_products }}
+</section>

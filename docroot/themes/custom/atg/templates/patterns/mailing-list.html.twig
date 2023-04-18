@@ -1,0 +1,18 @@
+{% set title = title | default(null) %}
+{% set form = form | default(null) %}
+{% set display = display | default(false) %}
+
+{% if display %}
+{% if (title and form) %}
+<div class="main mailing-list">
+    <section class="section">
+        <div class="mailing-list-wrap">
+            <h2 class="mailing-list-title">{{ svg('dist/img/icons/envelope.svg') }} {{ title | t }}</h2>
+            <div class="mailing-list-form">
+                {{ { '#type': 'webform', '#webform': form } }}
+            </div>
+        </div>
+    </section>
+</div>
+{% endif %}
+{% endif %}

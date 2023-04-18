@@ -1,0 +1,61 @@
+<main class="main">
+	<section class="section">
+		<h1>Buttons</h1>
+
+		{% for slug,background in {'primary': null, 'secondary': null, 'inverse': '#000'} %}
+			<h2>{{ slug|capitalize }}</h2>
+			<div style="{{ background ? 'background: ' ~ background ~ '; background-size: cover; color: #fff; padding: 1em;' }}">
+				<h3>Default Style</h3>
+				<p>
+					<a href="#" class="button button--{{ slug }}">Let Us Help You</a>
+				</p>
+				<p>
+					<input type="button" class="button button--{{ slug }}" value="Input">
+				</p>
+				<p>
+					<button type="button" class="button button--{{ slug }}">Button</button>
+				</p>
+				<p>
+					<a href="#" class="button button--{{ slug }}">Longer Text Hyperlink</a>
+				</p>
+				<p>
+					<input type="button" class="button button--{{ slug }}" value="Longer Text Input">
+				</p>
+				<p>
+					<button type="button" class="button button--{{ slug }}">Longer Text Button</button>
+				</p>
+
+				<h4>Outline Style</h4>
+				<p>
+					<a href="#" class="button button--{{ slug }} button--outline">Let Us Help You</a>
+				</p>
+				<p>
+					<input type="button" class="button button--{{ slug }} button--outline" value="Input">
+				</p>
+				<p>
+					<button type="button" class="button button--{{ slug }} button--outline">Button</button>
+				</p>
+				<p>
+					<a href="#" class="button button--{{ slug }} button--outline">Longer Text Hyperlink</a>
+				</p>
+				<p>
+					<input type="button" class="button button--{{ slug }} button--outline" value="Longer Text Input">
+				</p>
+				<p>
+					<button type="button" class="button button--{{ slug }} button--outline">Longer Text Button</button>
+				</p>
+
+				<h4>Small Size</h4>
+				<p>
+					<a href="#" class="button button--{{ slug }} button--small">Let Us Help You</a>
+				</p>
+				<p>
+					<input type="button" class="button button--{{ slug }} button--small" value="Input">
+				</p>
+				<p>
+					<button type="button" class="button button--{{ slug }} button--small">Button</button>
+				</p>
+			</div>
+		{% endfor %}
+	</section>
+</main>

@@ -1,0 +1,23 @@
+uuid: 36af8c79-e922-4207-b1b0-82fe26a0b9f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_featured_product
+    - node.type.product
+id: node.product.field_featured_product
+field_name: field_featured_product
+entity_type: node
+bundle: product
+label: 'Featured Product'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

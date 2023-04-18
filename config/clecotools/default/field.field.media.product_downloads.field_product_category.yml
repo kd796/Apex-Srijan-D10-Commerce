@@ -1,0 +1,29 @@
+uuid: e5c27434-fcf1-4571-bd1b-dd00e1a28a45
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_product_category
+    - media.type.product_downloads
+    - taxonomy.vocabulary.product_classifications
+id: media.product_downloads.field_product_category
+field_name: field_product_category
+entity_type: media
+bundle: product_downloads
+label: 'Product Category'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      product_classifications: product_classifications
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

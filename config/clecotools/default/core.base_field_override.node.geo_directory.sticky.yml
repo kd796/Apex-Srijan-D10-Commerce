@@ -1,0 +1,22 @@
+uuid: a572308f-01bc-4c35-a808-289620f9b1ba
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.geo_directory
+id: node.geo_directory.sticky
+field_name: sticky
+entity_type: node
+bundle: geo_directory
+label: 'Sticky at top of lists'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,22 @@
+uuid: 58029137-95cc-4633-b223-64c2da2f8996
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.products_landing
+id: node.products_landing.status
+field_name: status
+entity_type: node
+bundle: products_landing
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
