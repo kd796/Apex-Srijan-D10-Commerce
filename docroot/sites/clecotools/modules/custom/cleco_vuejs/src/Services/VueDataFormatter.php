@@ -209,6 +209,8 @@ class VueDataFormatter {
       $translatedCate = [];
       $resultItemFields = $result->getFields();
 
+      $item_type = isset($resultItemFields['item_type']) ? $resultItemFields['item_type']->getvalues() : '';
+      $item_type = $item_type ? $item_type[0] : '';
       $media_file = isset($resultItemFields['field_media_file']) ? $resultItemFields['field_media_file']->getvalues() : [];
       $media_url = isset($resultItemFields['media_listing_image_url']) ? $resultItemFields['media_listing_image_url']->getvalues()[0] : '';
 
@@ -231,13 +233,15 @@ class VueDataFormatter {
         $asset_size = $download_file->getSize();
         $asset_mime_type = $download_file->getMimeType();
       }
+      $title_ob = isset($resultItemFields['name']) ? $resultItemFields['name']->getvalues() : [];
+      $title = isset($title_ob[0]) ? $title_ob[0]->getText() : '';
 
       $items[] = [
         "_type" => "downloads",
         "_source" => [
-          "id" => $download_file_name,
-          "name" => $image_name[0],
-          "type" => "Engineering Drawings",
+          "id" => $download_file_name ? $download_file_name : '',
+          "name" => $title,
+          "type" => $item_type,
           "product_category" => [$category],
           "values" => [
             "asset_extension" => 'pdf',
@@ -246,10 +250,10 @@ class VueDataFormatter {
             "asset_mime_type" => $asset_mime_type,
           ],
           "assets" => [
-            "original_source_file" => $download_file_path,
-            "source_to_jpg" => $download_file_path,
-            "pro_tools_jpg_of_pdf" => "$media_url",
-            "pro_tools_pdf" => $download_file_path,
+            "original_source_file" => $download_file_path ? $download_file_path : '',
+            "source_to_jpg" => $media_url ? $media_url : '',
+            "pro_tools_jpg_of_pdf" => $media_url ? $media_url : '',
+            "pro_tools_pdf" => $download_file_path ? $download_file_path : '',
           ],
         ],
       ];
@@ -288,7 +292,7 @@ class VueDataFormatter {
         }
 
         $buckets[] = [
-          'key' => StepHelper::translate($facet_field[$i]),
+          'key' => $facet_field[$i],
           'doc_count' => $facet_field[$i + 1],
         ];
       }
@@ -350,7 +354,7 @@ class VueDataFormatter {
           continue;
         }
         $buckets[] = [
-          'key' => StepHelper::translate($facet_field[$i]),
+          'key' => $facet_field[$i],
           'doc_count' => $facet_field[$i + 1],
         ];
       }
