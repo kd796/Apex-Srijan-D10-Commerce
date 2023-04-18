@@ -164,9 +164,11 @@ class RouteController extends ControllerBase {
           }
         }
         $field_media = isset($fields['field_media']) ? $fields['field_media'] : '';
-        if (!empty($field_media)) {
-          foreach ($field_media as $media) {
-            $image_load = $this->entityTypeManager->getStorage('media')->load($media->get('target_id')->getValue());
+        $field_product_images = isset($fields['field_product_images']) ? $fields['field_product_images'] : '';
+        $listing_images = array_merge($field_product_images->getValue(), $field_media->getValue());
+        if (!empty($listing_images)) {
+          foreach ($listing_images as $media) {
+            $image_load = $this->entityTypeManager->getStorage('media')->load($media['target_id']);
             $image_name = $image_load->get('name')->value;
             if (isset($image_load->field_media_image)) {
               $image_file = $this->entityTypeManager->getStorage('file')->load($image_load->field_media_image->target_id);
@@ -175,6 +177,7 @@ class RouteController extends ControllerBase {
               $asset1[] = [
                 "type" => "Primary Image",
                 "id" => $image_name,
+                "source_to_jpg" => $image_path,
               ];
             }
           }
@@ -280,7 +283,6 @@ class RouteController extends ControllerBase {
           "name" => $title,
           "nid" => $node_id,
           "id" => $sku_group,
-          "product_image" => isset($image_path) ? $image_path : '',
           "related_products" => $related_products,
           "product_category" => $product_category_name,
           "values" => [
