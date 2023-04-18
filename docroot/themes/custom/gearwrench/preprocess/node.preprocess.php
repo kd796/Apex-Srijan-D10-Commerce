@@ -24,15 +24,9 @@
  */
 
 use Drupal\Core\Cache\Cache;
-use Drupal\Core\Render\Element;
-use Drupal\Core\Render\Markup;
 use Drupal\media\Entity\Media;
-use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\file\Entity\File;
 use Drupal\Component\Utility\Html;
-use Drupal\taxonomy\Entity\Term;
-use Drupal\taxonomy\TermStorage;
-use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 
 /**
@@ -47,17 +41,6 @@ function gearwrench_preprocess_node(array &$variables) {
   if (array_key_exists('field_components', $variables['content'])) {
     unset($variables['content']['field_components']['#theme']);
   }
-  // kint($variables);
-  //identify the template
-  // $template_name = $variables['theme_hook_original'];
-  // kint($template_name);
-  // $terms = $variables['node']->field_product_specifications->referencedEntities();
-  // $specifications = [];
-  // foreach ($terms as $value) {
-  //   $term_exploded = explode(":", $value->name->value);
-  //   $specifications[$term_exploded[0]][] = $term_exploded[1];
-  // }
-  // $variables['field_product_specifications'] = $specifications;
 }
 
 /**
@@ -402,14 +385,15 @@ function gearwrench_preprocess_node__product__full(array &$variables) {
 
     $variables['related_items'] = $main_view->buildRenderable($view_display, $main_view->args);
   }
-   //will work for the node--product--full.html.twig template
-   $terms = $variables['node']->field_product_specifications->referencedEntities();
-   $specifications = [];
-   foreach ($terms as $value) {
-     $term_exploded = explode(":", $value->name->value, 2);
-     $specifications[$term_exploded[0]][] = $term_exploded[1];
-   }
-   $variables['field_product_specifications'] = $specifications;
+  // Preprocess the product specifications to display the Multivalued
+  // attribute line by line.
+  $terms = $variables['node']->field_product_specifications->referencedEntities();
+  $specifications = [];
+  foreach ($terms as $value) {
+    $term_exploded = explode(":", $value->name->value, 2);
+    $specifications[$term_exploded[0]][] = $term_exploded[1];
+  }
+  $variables['field_product_specifications'] = $specifications;
 }
 
 /**
