@@ -1,0 +1,29 @@
+uuid: 5870ea56-f075-48f3-83c0-c5e7e171855f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_listing_image
+    - media.type.image
+    - media.type.product_downloads
+id: media.product_downloads.field_listing_image
+field_name: field_listing_image
+entity_type: media
+bundle: product_downloads
+label: 'Listing Image'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

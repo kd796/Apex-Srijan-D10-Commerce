@@ -1,0 +1,22 @@
+uuid: fd8ac7c8-22c8-4e8e-bf3b-65bb9bd30e82
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.downloads
+id: node.downloads.promote
+field_name: promote
+entity_type: node
+bundle: downloads
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

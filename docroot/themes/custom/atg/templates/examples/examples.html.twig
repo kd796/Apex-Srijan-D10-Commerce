@@ -1,0 +1,40 @@
+{% set components = [
+	'typography',
+	'links',
+	'buttons',
+	'actions',
+	'forms',
+	'badges',
+	'tags',
+	'tables',
+	'breadcrumbs',
+	'pagination',
+	'hero',
+	'straps',
+	'callouts',
+	'features',
+	'listings',
+	'sections',
+	'tabs',
+	'accordions',
+	'notices',
+	'testimonials',
+	'cards',
+	'articles',
+	'numbered',
+	'mega-table',
+	'media-block',
+] %}
+{% if example %}
+	{% include 'examples--' ~ example ~ '.html.twig' %}
+{% else %}
+	<main class="main">
+		<section class="section wysiwyg-content">
+			<ul>
+				{% for section in components %}
+					<li><h2><a href="/examples/{{ section }}">{{ section | replace({'-': ' '}) | title }}</a></h2></li>
+				{% endfor %}
+			</ul>
+		</section>
+	</main>
+{% endif %}

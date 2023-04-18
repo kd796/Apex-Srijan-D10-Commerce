@@ -1,0 +1,28 @@
+uuid: c4184857-3c46-435c-a32d-7323cb037323
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_floating_image
+    - media.type.image
+    - paragraphs.paragraphs_type.featured_block
+id: paragraph.featured_block.field_floating_image
+field_name: field_floating_image
+entity_type: paragraph
+bundle: featured_block
+label: 'Floating Image'
+description: 'Images should be transparent, and tall portrait orientation for best results. When feature content is conducive, image will extend beyond the bounds of the feature box vertically.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

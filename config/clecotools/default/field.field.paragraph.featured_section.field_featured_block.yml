@@ -1,0 +1,49 @@
+uuid: ae44fa02-932c-4362-811e-37d791750a6a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_featured_block
+    - paragraphs.paragraphs_type.featured_block
+    - paragraphs.paragraphs_type.featured_section
+  module:
+    - entity_reference_revisions
+id: paragraph.featured_section.field_featured_block
+field_name: field_featured_block
+entity_type: paragraph
+bundle: featured_section
+label: 'Featured Block'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      featured_block: featured_block
+    negate: 0
+    target_bundles_drag_drop:
+      callout_options:
+        weight: 6
+        enabled: false
+      content_bundle:
+        weight: 9
+        enabled: false
+      cta:
+        weight: 7
+        enabled: false
+      featured_block:
+        weight: 8
+        enabled: true
+      featured_section:
+        weight: 9
+        enabled: false
+      from_library:
+        weight: 10
+        enabled: false
+      tile_block:
+        weight: 14
+        enabled: false
+field_type: entity_reference_revisions

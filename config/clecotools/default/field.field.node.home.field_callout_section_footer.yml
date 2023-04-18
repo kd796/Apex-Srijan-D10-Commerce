@@ -1,0 +1,55 @@
+uuid: 1b7ea8fd-763b-40fe-9255-c4c137e3fc39
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_callout_section_footer
+    - node.type.home
+    - paragraphs.paragraphs_type.callout_section_footer
+  module:
+    - entity_reference_revisions
+id: node.home.field_callout_section_footer
+field_name: field_callout_section_footer
+entity_type: node
+bundle: home
+label: 'Callout Section Footer'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      callout_section_footer: callout_section_footer
+    negate: 0
+    target_bundles_drag_drop:
+      callout_options:
+        weight: 11
+        enabled: false
+      callout_section_footer:
+        weight: 10
+        enabled: true
+      content_bundle:
+        weight: 12
+        enabled: false
+      cta:
+        weight: 13
+        enabled: false
+      featured_block:
+        weight: 14
+        enabled: false
+      featured_section:
+        weight: 15
+        enabled: false
+      from_library:
+        weight: 16
+        enabled: false
+      testimonials_section:
+        weight: 17
+        enabled: false
+      tile_block:
+        weight: 18
+        enabled: false
+field_type: entity_reference_revisions

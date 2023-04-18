@@ -1,0 +1,23 @@
+{% set passed_attributes = get_passed_attributes({
+	show_title: false,
+	centered: null,
+	inverse: null,
+	bordered: false,
+	size: null,
+}) %}
+{% set cta = get_paragraph(node.field_cta.value) %}
+{% set target = cta.field_cta_target.value is same as('1') ? '_blank' : '_top' %}
+{% include '@atg/patterns/callout.html.twig' with {
+	title: passed_attributes.show_title ? node.title.value : null,
+	body: passed_attributes.show_title ? node.field_textarea.value : null,
+	subtitle: passed_attributes.show_title ? null : node.field_textarea.value,
+	url: cta.field_cta_url[0].url | string,
+	url_de: cta.field_cta_url_de[0].url | string,
+	action: cta.field_cta_url[0].title,
+	image: cta.field_cta_image[0] ? cta.field_cta_image : null,
+	image_de: cta.field_cta_image_de[0] ? cta.field_cta_image_de : null,
+	centered: passed_attributes.centered,
+	inverse: passed_attributes.inverse,
+	bordered: passed_attributes.bordered,
+	size: passed_attributes.size,
+} %}

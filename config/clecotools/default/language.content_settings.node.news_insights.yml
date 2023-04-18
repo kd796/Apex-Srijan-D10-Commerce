@@ -1,0 +1,18 @@
+uuid: c5a57171-6181-43e9-9b9c-244e3aa2de1a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.news_insights
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: node.news_insights
+target_entity_type_id: node
+target_bundle: news_insights
+default_langcode: site_default
+language_alterable: true

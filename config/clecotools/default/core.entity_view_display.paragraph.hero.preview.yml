@@ -1,0 +1,63 @@
+uuid: c275a961-a75c-4d62-bcec-1b87ec0000ac
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.hero.field_animation
+    - field.field.paragraph.hero.field_cta
+    - field.field.paragraph.hero.field_form
+    - field.field.paragraph.hero.field_media_src
+    - field.field.paragraph.hero.field_size
+    - field.field.paragraph.hero.field_subtitle
+    - field.field.paragraph.hero.field_title
+    - field.field.paragraph.hero.field_title_prefix
+    - field.field.paragraph.hero.field_title_suffix
+    - paragraphs.paragraphs_type.hero
+  module:
+    - entity_reference_revisions
+    - options
+id: paragraph.hero.preview
+targetEntityType: paragraph
+bundle: hero
+mode: preview
+content:
+  field_cta:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_size:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_title_prefix:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_animation: true
+  field_form: true
+  field_media_src: true
+  field_subtitle: true
+  field_title_suffix: true
+  search_api_excerpt: true

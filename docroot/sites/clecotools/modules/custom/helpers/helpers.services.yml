@@ -1,0 +1,5 @@
+services:
+  helpers.twig_extension:
+    class: Drupal\helpers\TwigExtension\HelpersExtension
+    tags:
+      - { name: twig.extension }

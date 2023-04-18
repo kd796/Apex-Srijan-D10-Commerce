@@ -1,0 +1,20 @@
+uuid: 7df7aa2f-35d8-4d2c-8098-36a4cedb6d85
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.geo_directory
+id: node.geo_directory.menu_link
+field_name: menu_link
+entity_type: node
+bundle: geo_directory
+label: 'Menu link'
+description: 'Computed menu link for the node (only available during node saving).'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

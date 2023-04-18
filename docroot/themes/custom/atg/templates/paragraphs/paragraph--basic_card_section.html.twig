@@ -1,0 +1,16 @@
+<section class="section section--cards main">
+    <header class="section-header">
+        <div class="section-header-content">
+            <h2 class="section-title">{{ content.field_title[0]['#context']['value'] | raw }}</h2>
+            {% if content.field_body_basic[0]['#text'] %}
+                <div class="section-subtitle">
+                    {{ content.field_body_basic }}
+                </div>
+            {% endif %}
+        </div>
+    </header>
+
+    {{ content.field_message_block }}
+    {{ content.field_basic_cards }}
+    {{ content.field_cta }}
+</section>

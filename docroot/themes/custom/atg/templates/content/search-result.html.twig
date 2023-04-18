@@ -1,0 +1,20 @@
+<div class="result">
+	<a href="#" class="result-image">
+		<img src="https://placem.at/things?w=105&h=125">
+	</a>
+	<div class="result-content">
+		<header class="result-header">
+			<p class="result-subtitle">{{ result.type }}</p>
+			{{ title_prefix }}
+			<h3{{ title_attributes.addClass("result-title") }}>
+				<a href="{{ url }}" class="result-link">{{ title }}</a>
+			</h3>
+			{{ title_suffix }}
+		</header>
+		{% if snippet %}
+			<div class="result-body">
+				<p{{ content_attributes }}>{{ snippet }}</p>
+			</div>
+		{% endif %}
+	</div>
+</div>

@@ -1,0 +1,31 @@
+uuid: f7362b31-138e-45f4-bbc4-784fde243e3f
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.form_page.field_form
+    - field.field.node.form_page.field_hero
+    - node.type.form_page
+  module:
+    - user
+id: node.form_page.teaser
+targetEntityType: node
+bundle: form_page
+mode: teaser
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_form: true
+  field_hero: true
+  langcode: true
+  search_api_excerpt: true

@@ -1,0 +1,22 @@
+uuid: 6d7bee9c-4c68-4d95-a90c-d81be7aefe34
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.mailing_list_form
+id: paragraph.mailing_list_form.status
+field_name: status
+entity_type: paragraph
+bundle: mailing_list_form
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
