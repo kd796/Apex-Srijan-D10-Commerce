@@ -188,9 +188,14 @@ $sites['dev-www.apextoolgroup.com'] = 'apextoolgroup';
 $sites['qa-www.apextoolgroup.com'] = 'apextoolgroup';
 $sites['stg-www.apextoolgroup.com'] = 'apextoolgroup';
 $sites['prod-www.apextoolgroup.com'] = 'apextoolgroup';
+$sites['www.apextoolgroup.com'] = 'apextoolgroup';
+$sites['apextoolgroup.com'] = 'apextoolgroup';
 
 // CLECOTOOLS
 $sites['clecotools.ddev.site'] = 'clecotools';
 
 // CAMPBELL
 $sites['campbell.ddev.site'] = 'campbell';
+
+// apextoolgroup
+$sites['apextoolgroup.ddev.site'] = 'apextoolgroup';

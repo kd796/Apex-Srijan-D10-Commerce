@@ -361,7 +361,7 @@ class DatabaseSel
             'emmanuel.fund@apextoolgroup.com',
         ];
         $to_email      = implode(', ', $to_emails);
-        $from_email    = 'atg-websiteadmin@apextoolgroup.com';
+        $from_email    = 'no-reply@apextoolgroup.com';
         $solution_html = "<tr><th class='boldtext' colspan='2'>Solution Issues</th></tr>";
         $html          = "
     <html>
@@ -667,9 +667,12 @@ class DatabaseSel
         </body>
         </html>";
       try {
+        $smtp_username = $_ENV['SMTP_USERNAME'] ?? getenv('SMTP_USERNAME');
+        $smtp_password = $_ENV['SMTP_PASSWORD'] ?? getenv('SMTP_PASSWORD');
+
         $transport = new Swift_SmtpTransport('smtp.office365.com', 587);
-        $transport->setUsername('no-reply@apextoolgroup.com');
-        $transport->setPassword('U%v2Bu3G!s9Kp+rVJcZB');
+        $transport->setUsername($smtp_username);
+        $transport->setPassword($smtp_password);
         $transport->setLocalDomain('127.0.0.1');
         $transport->setEncryption('tls');
 
