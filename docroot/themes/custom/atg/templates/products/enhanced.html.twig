@@ -129,11 +129,8 @@
                             {% if asset.type != 'Primary Image' %}
                                 {% set hasDownloads = true %}
                                 <li class="listings-item">
-                                    {% set url = '#' %}
-                                    {% if (downloadTypes[asset.type] is defined) %}
                                         {% set url = download_link(asset, asset.type) %}
                                         {% set thumb = step_asset([asset], 'pro_tools_jpg_of_pdf') %}
-                                    {% endif %}
                                     {% include '@atg/patterns/listing.html.twig' with {
                                         url: url,
                                         title: asset.id,
