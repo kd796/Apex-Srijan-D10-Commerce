@@ -31,7 +31,7 @@ class CreateProductSpecifications extends ProcessPluginBase {
     $parent_term_id = NULL;
 
     $product_specifications = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties([
-      'vid' => 'product_specifications'
+      'vid' => 'product_specifications',
     ]);
 
     if (!empty($value)) {
@@ -161,7 +161,7 @@ class CreateProductSpecifications extends ProcessPluginBase {
     if (is_object($term)) {
       $values_array = [
         'vid' => $vid,
-        'target_id' => $term->id()
+        'target_id' => $term->id(),
       ];
     }
     return $values_array;
