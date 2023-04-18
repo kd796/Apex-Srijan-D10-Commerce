@@ -8,10 +8,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\Response;
 use Drupal\cleco_vuejs\Services\SolrSearchApiService;
 use Drupal\cleco_vuejs\Services\VueDataFormatter;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Controller for Product pages.
@@ -305,7 +305,7 @@ class RouteController extends ControllerBase {
       }
     }
     else {
-      return new Response($this->t('No results found'), 200, ['Content-Type' => 'text/html']);
+      throw new NotFoundHttpException();
     }
   }
 
