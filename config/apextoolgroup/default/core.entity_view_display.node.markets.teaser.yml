@@ -1,0 +1,44 @@
+uuid: b1bf19ed-6540-4370-bff1-9d1dac8466b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.markets.body
+    - field.field.node.markets.field_banner_image
+    - field.field.node.markets.field_listing_image
+    - field.field.node.markets.field_market_logo
+    - field.field.node.markets.field_related_products
+    - field.field.node.markets.field_short_description
+    - field.field.node.markets.field_weight
+    - node.type.markets
+  module:
+    - text
+    - user
+id: node.markets.teaser
+targetEntityType: node
+bundle: markets
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_banner_image: true
+  field_listing_image: true
+  field_market_logo: true
+  field_related_products: true
+  field_short_description: true
+  field_weight: true
+  langcode: true
+  search_api_excerpt: true
