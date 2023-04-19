@@ -1,0 +1,616 @@
+<div class="sel-cat">
+  <div class="sel-hd sel-complete">
+    <a href="#/business" ng-click="loadData()">
+      <span class="sel-count">1.</span>
+      {{ t('Business Information') }}
+    </a>
+  </div>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd sel-complete">
+    <a href="#/general" ng-click="loadData()">
+      <span class="sel-count">2.</span>
+      {{ t('General Information') }}
+    </a>
+  </div>
+</div>
+<div class="sel-cat clearfix">
+  <div class="sel-hd sel-on">
+    <span class="sel-count">3.</span>
+    {{ t('Application Information') }}
+  </div>
+  <div class="sel-errors">{{ errors }}</div>
+  <form name="applicationform" method="post">
+    <section ng-repeat="app in user.apps" class="sel-form clearfix">
+      <ng-form id="applicationform{{$index}}" name="applicationform{{$index}}">
+        <input type="hidden" ng-model="app.dea_cookie">
+
+        <div class="sel-app-hd clearfix" ng-hide="app.show">
+          <div class="grid-6">
+            <h2><a href="" onclick="return false;" ng-click="toggleTabs($index)">{{ t('Application #') }}{{ $index + 1 }}</a></h2>
+          </div>
+          <div class="sel-sm-btn grid-6">
+            <a href="" onclick="return false;" class="button button--primary button--simple button--small button--outline" ng-click="toggleTabs($index, active_app)">{{ t('Edit') }}</a>
+            <a href="" onclick="return false;" class="button button--secondary button--simple button--small button--outline" ng-click="deleteApp($index)">{{ t('Delete') }}</a>
+          </div>
+        </div>
+        <section ng-show="app.show">
+          <div class="sel-app-hd grid-12">
+            <h2>{{ t('Application #') }}{{ $index + 1 }}</h2>
+          </div>
+          <div class="clearfix"></div>
+
+          <div class="grid-6">
+            <label>{{ t('Operation') }} <span class="orange">*</span></label>
+            <select name="industry" ng-model="app.dea_operation" ng-change="clearChildren('dea_operation_other', $index)" ng-class="{ 'error': submitted && !app.dea_operation }" required>
+              <option value="" disabled>{{ t('- Select -') }}</option>
+              <option value="Drill">{{ t('Drill') }}</option>
+              <option value="Drill with Prehole">{{ t('Drill with Prehole') }}</option>
+              <option value="Drill & Ream">{{ t('Drill & Ream') }}</option>
+              <option value="Ream Only">{{ t('Ream Only') }}</option>
+              <option value="Drill & Countersink">{{ t('Drill & Countersink') }}</option>
+              <option value="Countersink Only">{{ t('Countersink Only') }}</option>
+              <option value="Other - Please Specify">{{ t('Other - Please Specify') }}</option>
+            </select>
+          </div>
+          <div class="grid-6" ng-show="app.dea_operation === 'Other - Please Specify'">
+            <label>{{ t('Other - Please Specify') }}: <span class="orange">*</span></label>
+            <input type="text" name="operation" ng-model="app.dea_operation_other" placeholder="" ng-required="app.dea_operation === 'Other - Please Specify'" ng-class="{ 'error': submitted && !app.dea_operation_other }" />
+          </div>
+          <div class="clearfix"></div>
+
+          <div class="sel-uom grid-4" ng-show="app.dea_operation === 'Ream Only' || app.dea_operation === 'Drill with Prehole'">
+            <label>{{ t('Predrilled Hole Size') }}</label>
+            <input type="text" value="" name="" ng-model="app.dea_predrilled_hole_size" placeholder=""
+              ng-required="app.dea_operation === 'Ream Only' || app.dea_operation === 'Drill with Prehole'" class="grid-6"
+              ng-class="{ 'error': submitted &&
+              app.dea_predrilled_hole_size == '' }" />
+            <select ng-model="app.dea_predrilled_hole_size_units" ng-required="app.dea_operation === 'Ream Only' || app.dea_operation === 'Drill with Prehole'" name="predrilled_hole_size_units" ng-class="{ 'error': submitted && !app.dea_predrilled_hole_size_units }">
+              <option value="" disabled>{{ t('- Select -') }}</option>
+              <option value="inches">{{ t('inches') }}</option>
+              <option value="millimeters">{{ t('millimeters') }}</option>
+            </select>
+          </div>
+
+          <div class="default" ng-class="{ 'grid-6': app.dea_operation === 'Drill' || app.dea_operation === 'Drill & Ream', 'grid-3': app.dea_operation === 'Drill & Countersink' || app.dea_operation === 'Countersink Only', 'grid-4': app.dea_operation === 'Ream Only' || app.dea_operation === 'Drill with Prehole' }" ng-show="app.dea_operation === 'Drill' || app.dea_operation === 'Drill & Ream' || app.dea_operation === 'Drill & Countersink' || app.dea_operation === 'Countersink Only' || app.dea_operation === 'Ream Only' || app.dea_operation === 'Drill with Prehole'">
+            <label>{{ t('Final Hole Size') }}</label>
+            <div class="grid-6">
+              <input type="text" value="" name="final_hole_size" ng-model="app.dea_final_hole_size" placeholder="" ng-required="app.dea_operation === 'Drill' || app.dea_operation === 'Drill & Ream' || app.dea_operation === 'Drill & Countersink' || app.dea_operation === 'Countersink Only' || app.dea_operation === 'Ream Only' || app.dea_operation === 'Drill with Prehole'" ng-class="{ 'error': submitted && !app.dea_final_hole_size }" />
+            </div>
+            <div class="grid-6">
+              <select ng-model="app.dea_final_hole_size_units" ng-required="app.dea_operation === 'Drill' || app.dea_operation === 'Drill & Ream' || app.dea_operation === 'Drill & Countersink' || app.dea_operation === 'Countersink Only' || app.dea_operation === 'Ream Only' || app.dea_operation === 'Drill with Prehole'" name="final_hole_size_units" ng-class="{ 'error': submitted && !app.dea_final_hole_size_units }">
+                <option value="" disabled>{{ t('- Select -') }}</option>
+                <option value="inches">{{ t('inches') }}</option>
+                <option value="millimeters">{{ t('millimeters') }}</option>
+              </select>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="sel-tolerance" ng-class="{ 'grid-6': app.dea_operation === 'Drill' || app.dea_operation === 'Drill & Ream', 'grid-4': app.dea_operation === 'Ream Only' || app.dea_operation === 'Drill with Prehole', 'grid-3': app.dea_operation === 'Drill & Countersink' || app.dea_operation === 'Countersink Only' }" ng-show="app.dea_operation === 'Drill' || app.dea_operation === 'Drill & Ream' || app.dea_operation === 'Drill & Countersink' || app.dea_operation === 'Countersink Only' || app.dea_operation === 'Ream Only' || app.dea_operation === 'Drill with Prehole'">
+            <label>{{ t('Final Hole Tolerance') }}</label>
+            <div class="sel-down-only"></div>
+            <input type="text" value="" name="final_hole_tolerance_1" ng-model="app.dea_final_hole_tolerance_1" placeholder="" ng-required="app.dea_operation === 'Drill' || app.dea_operation === 'Drill & Ream' || app.dea_operation === 'Drill & Countersink' || app.dea_operation === 'Countersink Only' || app.dea_operation === 'Ream Only' || app.dea_operation === 'Drill with Prehole'" ng-class="{ 'error': submitted && !app.dea_final_hole_tolerance_1 }" />
+            <div class="sel-up-only"></div>
+            <input type="text" value="" name="final_hole_tolerance_2" ng-model="app.dea_final_hole_tolerance_2" placeholder="" ng-required="app.dea_operation === 'Drill' || app.dea_operation === 'Drill & Ream' || app.dea_operation === 'Drill & Countersink' || app.dea_operation === 'Countersink Only' || app.dea_operation === 'Ream Only' || app.dea_operation === 'Drill with Prehole'" ng-class="{ 'error': submitted && !app.dea_final_hole_tolerance_2 }" />
+          </div>
+
+          <div class="grid-3" ng-show="app.dea_operation === 'Drill & Countersink' || app.dea_operation === 'Countersink Only'">
+            <label>{{ t('Countersink Diameter') }} <span class="orange">*</span></label>
+            <input type="text" value="" name="countersink_diameter" ng-model="app.dea_countersink_diameter" placeholder="" ng-required="app.dea_operation === 'Drill & Countersink' || app.dea_operation === 'Countersink Only'" ng-class="{ 'error': submitted && !app.dea_countersink_diameter }" />
+          </div>
+
+          <div class="grid-3" ng-show="app.dea_operation === 'Drill & Countersink' || app.dea_operation === 'Countersink Only'">
+            <label>{{ t('Countersink Angle') }} <span class="orange">*</span></label>
+            <input type="text" value="" name="countersink_angle" ng-model="app.dea_countersink_angle" placeholder="" ng-required="app.dea_operation === 'Drill & Countersink' || app.dea_operation === 'Countersink Only'" ng-class="{ 'error': submitted && !app.dea_countersink_angle }" />
+          </div>
+          <div class="clearfix"></div>
+
+          <div class="grid-6">
+            <label>{{ t('Fixture Being Used') }} <span class="orange">*</span></label>
+            <select name="fixture_being_used" ng-model="app.dea_fixture_being_used" ng-change="clearChildren('dea_fixture_being_used_other', $index)" required ng-class="{ 'error': submitted && !app.dea_fixture_being_used }">
+              <option value="" disabled>{{ t('- Select -') }}</option>
+              <option value="Twistlock">{{ t('Twistlock') }}</option>
+              <option value="Concentric Collet">{{ t('Concentric Collet') }}</option>
+              <option value="Template Foot">{{ t('Template Foot') }}</option>
+              <option value="C Clamp">{{ t('C Clamp') }}</option>
+              <option value="Other - Please Specify">{{ t('Other - Please Specify') }}</option>
+              <option value="Not Yet Specified">{{ t('Not Yet Specified') }}</option>
+            </select>
+          </div>
+          <div class="grid-6" ng-show="app.dea_fixture_being_used === 'Other - Please Specify'">
+            <label>{{ t('Other - Please Specify') }}: <span class="orange">*</span></label>
+              <input type="text" value="" name="fixture_being_used_other" ng-model="app.dea_fixture_being_used_other" placeholder="" ng-required="app.dea_fixture_being_used == 'Other - Please Specify'" ng-class="{ 'error': submitted && !app.dea_fixture_being_used_other }" />
+          </div>
+          <div class="clearfix"></div>
+
+          <div class="sel-ade-table clearfix">
+            <div class="sel-ade-hd clearfix">
+              <div class="grid-4">
+                {{ t('Number of Material Layers') }} <span class="orange">*</span>
+              </div>
+              <div class="grid-8">
+                <select ng-model="app.dea_number_of_material_layers" ng-change="setLayers(app.dea_number_of_material_layers, $index)" ng-init="setLayers(app.dea_number_of_material_layers, $index)" required>
+                  <option value="" disabled>{{ t('- Select -') }}</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
+            <div class="sel-ade-light grid-12" ng-repeat="i in displaylist[$index]">
+              <div class="sel-ade-layer grid-2">
+                <a href="" class="sel-remove" ng-click="deleteLayer($parent.$index, i)"></a>
+                {{ t('Layer') }} {{ i }}
+              </div>
+              <div class="grid-5">
+                <label>{{ t('Layer Material') }} <span class="orange">*</span></label>
+                <select name="industry" ng-model="app['dea_layer_'+i+'_material']" required ng-class="{ 'error': submitted && !app['dea_layer_'+i+'_material'] }">
+                  <option value="">{{ t('- Select -') }}</option>
+                  <option value="Aluminum">{{ t('Aluminum') }}</option>
+                  <option value="Titanium">{{ t('Titanium') }}</option>
+                  <option value="Stainless Steel">{{ t('Stainless Steel') }}</option>
+                  <option value="CFRP/Carbon Fiber">{{ t('CFRP/Carbon Fiber') }}</option>
+                  <option value="Other - Please Specify">{{ t('Other - Please Specify') }}</option>
+                </select>
+                <div class="offset" ng-show="app['dea_layer_'+i+'_material'] === 'Other - Please Specify'">
+                  <label>{{ t('Other - Please Specify') }}:</label>
+                  <input type="text" value="" name="" ng-model="app['dea_layer_'+i+'_material_other']" placeholder="" ng-required="app['dea_layer_'+i+'_material'] === 'Other - Please Specify'" ng-class="{ 'error': app['dea_layer_'+i+'_material'] === 'Other - Please Specify' && submitted && !app['dea_layer_'+i+'_material_other'] }" />
+                </div>
+              </div>
+              <div class="sel-uom grid-5">
+                <label>{{ t('Layer Thickness') }} <span class="orange">*</span></label>
+                <input type="text" value="" name="" ng-model="app['dea_layer_'+i+'_thickness']" placeholder="" required ng-class="{ 'error': submitted && !app['dea_layer_'+i+'_thickness'] }" />
+                <select ng-model="app['dea_layer_'+i+'_units']" required ng-class="{ 'error': submitted && !app['dea_layer_'+i+'_units'] }">
+                  <option value="" disabled>{{ t('- Select -') }}</option>
+                  <option value="inches">{{ t('inches') }}</option>
+                  <option value="millimeters">{{ t('millimeters') }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="error-message" ng-show="submitted && displaylist[0].length === 0">
+              {{ t('Please add at least one (1) material layer.') }}
+            </div>
+          </div>
+          <div class="clearfix"></div>
+
+          <div class="grid-6">
+            <label>{{ t('Application Orientation') }} <span class="orange">*</span></label>
+            <select name="application_orientation" ng-model="app.dea_application_orientation" ng-change="clearChildren('dea_application_orientation_other', $index)" required ng-class="{ 'error': submitted && !app.dea_application_orientation }">
+              <option value="" disabled>{{ t('- Select -') }}</option>
+              <option value="Horizontal">{{ t('Horizontal') }}</option>
+              <option value="Vertical Up">{{ t('Vertical Up') }}</option>
+              <option value="Vertical Down">{{ t('Vertical Down') }}</option>
+              <option value="Unknown">{{ t('Unknown') }}</option>
+              <option value="Other - Please Specify">{{ t('Other - Please Specify') }}</option>
+            </select>
+          </div>
+          <div class="grid-6" ng-show="app.dea_application_orientation === 'Other - Please Specify'">
+            <label>{{ t('Other - Please Specify') }}: <span class="orange">*</span></label>
+            <input type="text" name="application_orientation" ng-model="app.dea_application_orientation_other"
+              placeholder="" ng-required="app.dea_application_orientation === 'Other - Please Specify'" ng-class="{ 'error': submitted && !app.dea_application_orientation_other }" />
+          </div>
+          <div class="clearfix"></div>
+
+          <div class="grid-6">
+            <label>{{ t('Access to Application') }} <span class="orange">*</span></label>
+            <small>{{ t('Is there restricted access for the application?') }}</small>
+            <select name="application_access" ng-model="app.dea_application_access" required ng-class="{ 'error': submitted && !app.dea_application_access }" ng-change="clearChildren('dea_application_access_cad_data', $index)">
+              <option value="" disabled>{{ t('- Select -') }}</option>
+              <option value="Yes">{{ t('Yes') }}</option>
+              <option value="No">{{ t('No') }}</option>
+              <option value="Don't know">{{ t("Don't know") }}</option>
+            </select>
+          </div>
+          <div class="grid-6" ng-show="app.dea_application_access === 'Yes'">
+            <label>&nbsp;</label>
+            <small>Can you supply 3D CAD data to check access? <span class="orange">*</span></small>
+            <select name="application_access_cad_data" ng-model="app.dea_application_access_cad_data" ng-required="app.dea_application_access === 'Yes'" ng-class="{ 'error': submitted && !app.dea_application_access_cad_data }">
+              <option value="" disabled>{{ t('- Select -') }}</option>
+              <option value="Yes">{{ t('Yes') }}</option>
+              <option value="No">{{ t('No') }}</option>
+              <option value="Don't know">{{ t("Don't know") }}</option>
+            </select>
+          </div>
+          <div class="clearfix"></div>
+
+          <div class="grid-6">
+            <label>{{ t('Cutter Information') }} <span class="orange">*</span></label>
+            <small>{{ t('Do you have a cutter you are using or plan to use?') }}</small>
+            <select name="cutter_information" ng-model="app.dea_cutter_information" required ng-class="{ 'error': submitted && !app.dea_cutter_information }" ng-change="clearChildren('dea_cutter_information_dimensions|dea_cutter_material', $index)">
+              <option value="" disabled>{{ t('- Select -') }}</option>
+              <option value="Yes">{{ t('Yes') }}</option>
+              <option value="No">{{ t('No') }}</option>
+              <option value="Don't know">{{ t("Don't know") }}</option>
+            </select>
+          </div>
+          <div class="grid-6" ng-show="app.dea_cutter_information === 'Yes'">
+            <label>&nbsp;</label>
+            <small>{{ t('Can you supply a drawing of the cutter for the tool layout?') }} <span class="orange">*</span></small>
+            <select name="cutter_information" ng-model="app.dea_cutter_information_dimensions" ng-required="app.dea_cutter_information === 'Yes'" ng-class="{ 'error': submitted && !app.dea_cutter_information_dimensions }">
+              <option value="" disabled>{{ t('- Select -') }}</option>
+              <option value="Yes">{{ t('Yes') }}</option>
+              <option value="No">{{ t('No') }}</option>
+              <option value="Don't know">{{ t("Don't know") }}</option>
+            </select>
+            <label class="note" ng-show="app.dea_cutter_information_dimensions === 'No'">{{ t('Please populate Cutter Information Sheet below with Cutter Details') }}</label>
+          </div>
+          <div class="clearfix"></div>
+
+          <div class="grid-6" ng-show="app.dea_cutter_information === 'Yes'">
+            <label>{{ t('Cutter Material') }} <span class="orange">*</span></label>
+            <select name="cutter_material" ng-model="app.dea_cutter_material"
+              ng-change="clearChildren('dea_cutter_material_other', $index)" ng-required="app.dea_cutter_information_dimensions === 'No'" ng-class="{ 'error': submitted && !app.dea_cutter_material }">
+              <option value="" disabled>{{ t('- Select -') }}</option>
+              <option value="HSS">{{ t('HSS') }}</option>
+              <option value="HSCo">{{ t('HSCo') }}</option>
+              <option value="Carbide">{{ t('Carbide') }}</option>
+              <option value="PCD">{{ t('PCD') }}</option>
+              <option value="Other - Please Specify">{{ t('Other - Please Specify') }}</option>
+            </select>
+            <div class="offset" ng-show="app.dea_cutter_material === 'Other - Please Specify'">
+              <label>{{ t('Other - Please Specify') }}: <span class="orange">*</span></label>
+              <input type="text" value="" ng-model="app.dea_cutter_material_other" placeholder="" ng-required="app.dea_cutter_material === 'Other - Please Specify'" ng-class="{ 'error': submitted && app.dea_cutter_material === 'Other - Please Specify' && !app.dea_cutter_material_other }" />
+            </div>
+          </div>
+          <div class="clearfix"></div>
+
+          <section ng-show="app.dea_cutter_information_dimensions === 'No'">
+
+            <div class="grid-12">
+              <label>{{ t('Cutter Mounting Type') }} <span class="orange">*</span></label>
+              <div class="checkable-cards">
+                <label class="checkable-cards-item">
+                  <input type="radio" id="cutter_mounting_type_A" class="checkable-card-input" value="Straight Shank (A)" name="mounting_type" ng-model="app.dea_cutter_mounting_type" ng-required="app.dea_cutter_information_dimensions === 'No'">
+                  <span class="checkable-card">
+                    <span class="checkable-card-label">
+                      <img src="/themes/custom/atg/advanced-selector/pics/TypeA.jpg"/>
+                      {{ t('Straight Shank') }}
+                      <labe>(A)</labe>
+                    </span>
+                  </span>
+                </label>
+
+                <label class="checkable-cards-item">
+                  <input type="radio" id="cutter_mounting_type_B" class="checkable-card-input" value="External Thread with Seat Angle (B)" name="mounting_type" ng-model="app.dea_cutter_mounting_type" ng-required="app.dea_cutter_information_dimensions === 'No'">
+                  <span class="checkable-card">
+                    <span class="checkable-card-label">
+                      <img src="/themes/custom/atg/advanced-selector/pics/TypeB.jpg" />
+                      {{ t('External Thread with Seat Angle') }}
+                      <label>(B)</label>
+                    </span>
+                  </span>
+                </label>
+
+                <label class="checkable-cards-item">
+                  <input type="radio" id="cutter_mounting_type_C" class="checkable-card-input" value="External Thread with Pilot Diameter and Square Face (C)" name="mounting_type" ng-model="app.dea_cutter_mounting_type" ng-required="app.dea_cutter_information_dimensions === 'No'">
+                  <span class="checkable-card">
+                    <span class="checkable-card-label">
+                      <img src="/themes/custom/atg/advanced-selector/pics/TypeC.jpg" />
+                      {{ t('External Thread with Pilot Diameter and Square Face') }}
+                      <label>(C)</label>
+                    </span>
+                  </span>
+                </label>
+
+                <label class="checkable-cards-item">
+                  <input type="radio" id="cutter_mounting_type_D" class="checkable-card-input" value="External Thread with Pilot Diameter and Seat Angle (D)" name="mounting_type" ng-model="app.dea_cutter_mounting_type" ng-required="app.dea_cutter_information_dimensions === 'No'">
+                  <span class="checkable-card">
+                    <span class="checkable-card-label">
+                      <img src="/themes/custom/atg/advanced-selector/pics/TypeD.jpg" />
+                      {{ t('External Thread with Pilot Diameter and Seat Angle') }}
+                      <label>(D)</label>
+                    </span>
+                  </span>
+                </label>
+
+                <label class="checkable-cards-item">
+                  <input type="radio" id="cutter_mounting_type_E" class="checkable-card-input" value="Internal Thread Optional Counterbore Larger Body Diameter (E)" name="mounting_type" ng-model="app.dea_cutter_mounting_type" ng-required="app.dea_cutter_information_dimensions === 'No'">
+                  <span class="checkable-card">
+                    <span class="checkable-card-label">
+                      <img src="/themes/custom/atg/advanced-selector/pics/TypeE.jpg" />
+                      {{ t('Internal Thread Optional Counterbore Larger Body Diameter') }}
+                      <label>(E)</label>
+                    </span>
+                  </span>
+                </label>
+
+                <label class="checkable-cards-item">
+                  <input type="radio" id="cutter_mounting_type_O" class="checkable-card-input" value="Other (O)" name="mounting_type" ng-model="app.dea_cutter_mounting_type" ng-required="app.dea_cutter_information_dimensions === 'No'">
+                  <span class="checkable-card">
+                    <span class="checkable-card-label">
+                      {{ t('Other ') }}
+                      <label>(O)</label>
+                      <div class="note" ng-show="app.dea_cutter_mounting_type === 'Other (O)'">
+                        {{ t('Please provide fully dimensioned drawing.') }}
+                      </div>
+                    </span>
+                  </span>
+                </label>
+              </div><!--.checkable-cards-->
+
+            </div><!--.grid-12-->
+            <div class="clearfix"></div>
+
+            <section ng-show="app.dea_cutter_mounting_type && app.dea_cutter_mounting_type !== 'Other (O)'">
+              <table class="sel-ade-access">
+                <thead>
+                  <tr>
+                    <th>{{ t('Cutter Information Sheet') }}</th>
+                  </tr>
+                  <tr>
+                    <th ng-show="app.dea_cutter_mounting_type === 'Straight Shank (A)'">
+                      <p><em>Code: A</em></p>
+                      {{ t('Straight Shank') }}
+                    </th>
+                    <th ng-show="app.dea_cutter_mounting_type === 'External Thread with Seat Angle (B)'">
+                      <p><em>Code: B</em></p>
+                      {{ t('External Thread with Seat Angle') }}
+                    </th>
+                    <th
+                      ng-show="app.dea_cutter_mounting_type === 'External Thread with Pilot Diameter and Square Face (C)'">
+                      <p><em>Code: C</em></p>
+                      {{ t('External Thread with Pilot Diameter and Square Face') }}
+                    </th>
+                    <th ng-show="app.dea_cutter_mounting_type === 'External Thread with Pilot Diameter and Seat Angle (D)'">
+                      <p><em>Code: D</em></p>
+                      {{ t('External Thread with Pilot Diameter and Seat Angle') }}
+                    </th>
+                    <th
+                      ng-show="app.dea_cutter_mounting_type === 'Internal Thread Optional Counterbore Larger Body Diameter (E)'">
+                      <p><em>Code: E</em></p>
+                      {{ t('Internal Thread Optional Counterbore Larger Body Diameter') }}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-show="app.dea_cutter_mounting_type === 'Straight Shank (A)'">
+                    <td class="tb-full tb-image"><img src="/themes/custom/atg/advanced-selector/pics/TypeA.jpg" /></td>
+                  </tr>
+                  <tr ng-show="app.dea_cutter_mounting_type === 'External Thread with Seat Angle (B)'">
+                    <td class="tb-full tb-image"><img src="/themes/custom/atg/advanced-selector/pics/TypeB.jpg" /></td>
+                  </tr>
+                  <tr ng-show="app.dea_cutter_mounting_type === 'External Thread with Pilot Diameter and Square Face (C)'">
+                    <td class="tb-full tb-image"><img src="/themes/custom/atg/advanced-selector/pics/TypeC.jpg" /></td>
+                  </tr>
+                  <tr ng-show="app.dea_cutter_mounting_type === 'External Thread with Pilot Diameter and Seat Angle (D)'">
+                    <td class="tb-full tb-image"><img src="/themes/custom/atg/advanced-selector/pics/TypeD.jpg" /></td>
+                  </tr>
+                  <tr ng-show="app.dea_cutter_mounting_type === 'Internal Thread Optional Counterbore Larger Body Diameter (E)'">
+                    <td class="tb-full tb-image"><img src="/themes/custom/atg/advanced-selector/pics/TypeE.jpg" /></td>
+                  </tr>
+                  <tr ng-show="app.dea_cutter_mounting_type === 'Straight Shank (A)'">
+                    <td class="tb-offset">{{ t('Shank Diameter (D1)') }}
+                      <div class="sel-right clearfix">
+                        <div class="sel-right-fields">
+                          <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_cutter_shank_diameter_value" maxlength="100" />
+                          <select ng-model="app.dea_cutter_shank_diameter_units">
+                            <option value="">{{ t('- Select -') }}</option>
+                            <option value="inches">{{ t('inches') }}</option>
+                            <option value="millimeters">{{ t('millimeters') }}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr ng-show="app.dea_cutter_mounting_type === 'External Thread with Seat Angle (B)' || app.dea_cutter_mounting_type === 'External Thread with Pilot Diameter and Square Face (C)' || app.dea_cutter_mounting_type === 'External Thread with Pilot Diameter and Seat Angle (D)'">
+                    <td class="tb-offset">{{ t('Thread (T)') }}
+                      <div class="sel-right clearfix">
+                        <div class="sel-right-fields">
+                          <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_cutter_thread_value" maxlength="100" />
+                          <select ng-model="app.dea_cutter_thread_units">
+                            <option value="">{{ t('- Select -') }}</option>
+                            <option value="inches">{{ t('inches') }}</option>
+                            <option value="millimeters">{{ t('millimeters') }}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr ng-show="app.dea_cutter_mounting_type === 'Internal Thread Optional Counterbore Larger Body Diameter (E)'">
+                    <td class="tb-offset">{{ t('Internal Thread (T)') }}
+                      <div class="sel-right clearfix">
+                        <div class="sel-right-fields">
+                          <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_cutter_internal_thread_value" maxlength="100" />
+                          <select ng-model="app.dea_cutter_internal_thread_units">
+                            <option value="">{{ t('- Select -') }}</option>
+                            <option value="inches">{{ t('inches') }}</option>
+                            <option value="millimeters">{{ t('millimeters') }}</option>
+                          </select>
+                        </div>
+                    </div>
+                    </td>
+                  </tr>
+                  <tr
+                    ng-show="app.dea_cutter_mounting_type === 'External Thread with Seat Angle (B)' || app.dea_cutter_mounting_type === 'External Thread with Pilot Diameter and Square Face (C)' || app.dea_cutter_mounting_type === 'External Thread with Pilot Diameter and Seat Angle (D)' || app.dea_cutter_mounting_type === 'Internal Thread Optional Counterbore Larger Body Diameter (E)'">
+                    <td class="tb-offset">{{ t('Thread Length (C)') }}
+                      <div class="sel-right clearfix">
+                        <div class="sel-right-fields">
+                          <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_cutter_thread_length_value" maxlength="100" />
+                          <select ng-model="app.dea_cutter_thread_length_units">
+                            <option value="">{{ t('- Select -') }}</option>
+                            <option value="inches">{{ t('inches') }}</option>
+                            <option value="millimeters">{{ t('millimeters') }}</option>
+                          </select>
+                        </div>
+                    </div>
+                    </td>
+                  </tr>
+                  <tr ng-show="app.dea_cutter_mounting_type === 'External Thread with Pilot Diameter and Square Face (C)' || app.dea_cutter_mounting_type === 'External Thread with Pilot Diameter and Seat Angle (D)'">
+                    <td class="tb-offset">{{ t('Pilot Diameter (D3)') }}
+                      <div class="sel-right clearfix">
+                        <div class="sel-right-fields">
+                          <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_cutter_pilot_diameter_value" maxlength="100" />
+                          <select ng-model="app.dea_cutter_pilot_diameter_units">
+                            <option value="">{{ t('- Select -') }}</option>
+                            <option value="inches">{{ t('inches') }}</option>
+                            <option value="millimeters">{{ t('millimeters') }}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr ng-show="app.dea_cutter_mounting_type === 'External Thread with Pilot Diameter and Square Face (C)' || app.dea_cutter_mounting_type === 'External Thread with Pilot Diameter and Seat Angle (D)' || app.dea_cutter_mounting_type === 'Internal Thread Optional Counterbore Larger Body Diameter (E)'">
+                    <td class="tb-offset">{{ t('Pilot Length (L2)') }}
+                      <div class="sel-right clearfix">
+                        <div class="sel-right-fields">
+                          <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_cutter_pilot_length_value" maxlength="100" />
+                          <select ng-model="app.dea_cutter_pilot_length_units">
+                            <option value="">{{ t('- Select -') }}</option>
+                            <option value="inches">{{ t('inches') }}</option>
+                            <option value="millimeters">{{ t('millimeters') }}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr ng-show="app.dea_cutter_mounting_type === 'Internal Thread Optional Counterbore Larger Body Diameter (E)'">
+                    <td class="tb-offset">{{ t('Counterbore Diameter (CB)') }}
+                      <div class="sel-right clearfix">
+                        <div class="sel-right-fields">
+                          <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_cutter_counterbore_diameter_value" maxlength="100" />
+                          <select ng-model="app.dea_cutter_counterbore_diameter_units">
+                            <option value="">{{ t('- Select -') }}</option>
+                            <option value="inches">{{ t('inches') }}</option>
+                            <option value="millimeters">{{ t('millimeters') }}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr ng-show="app.dea_cutter_mounting_type === 'Internal Thread Optional Counterbore Larger Body Diameter (E)'">
+                    <td class="tb-offset">{{ t('Counterbore Depth (C1)') }}
+                      <div class="sel-right clearfix">
+                        <div class="sel-right-fields">
+                          <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_cutter_counterbore_depth_value" maxlength="100" />
+                          <select ng-model="app.dea_cutter_counterbore_depth_units">
+                            <option value="">{{ t('- Select -') }}</option>
+                            <option value="inches">{{ t('inches') }}</option>
+                            <option value="millimeters">{{ t('millimeters') }}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr ng-show="app.dea_cutter_mounting_type === 'Internal Thread Optional Counterbore Larger Body Diameter (E)'">
+                    <td class="tb-offset">{{ t('Length (L3)') }}
+                      <div class="sel-right clearfix">
+                        <div class="sel-right-fields">
+                          <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_cutter_length_3_value" maxlength="100" />
+                          <select class="sel-short" ng-model="app.dea_cutter_length_3_units">
+                            <option value="">{{ t('- Select -') }}</option>
+                            <option value="inches">{{ t('inches') }}</option>
+                            <option value="millimeters">{{ t('millimeters') }}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr ng-show="app.dea_cutter_mounting_type === 'External Thread with Seat Angle (B)' || app.dea_cutter_mounting_type === 'External Thread with Pilot Diameter and Seat Angle (D)' || app.dea_cutter_mounting_type === 'Internal Thread Optional Counterbore Larger Body Diameter (E)'">
+                    <td class="tb-offset">{{ t('Seat Angle (A)') }}
+                      <input placeholder="{{ t('Please specify degrees...') }}" class="ex-medium" ng-model="app.dea_cutter_seat_angle_value" maxlength="100" /></td>
+                  </tr>
+                  <tr ng-show="app.dea_cutter_mounting_type === 'External Thread with Seat Angle (B)' || app.dea_cutter_mounting_type === 'External Thread with Pilot Diameter and Square Face (C)' || app.dea_cutter_mounting_type === 'External Thread with Pilot Diameter and Seat Angle (D)' || app.dea_cutter_mounting_type === 'Internal Thread Optional Counterbore Larger Body Diameter (E)'">
+                    <td class="tb-offset">{{ t('Body Diameter (D1)') }}
+                      <div class="sel-right clearfix">
+                        <div class="sel-right-fields">
+                          <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_cutter_body_diameter_value" maxlength="100" />
+                          <select ng-model="app.dea_cutter_body_diameter_units">
+                            <option value="">{{ t('- Select -') }}</option>
+                            <option value="inches">{{ t('inches') }}</option>
+                            <option value="millimeters">{{ t('millimeters') }}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr ng-show="app.dea_cutter_mounting_type === 'External Thread with Seat Angle (B)' || app.dea_cutter_mounting_type === 'External Thread with Pilot Diameter and Square Face (C)' || app.dea_cutter_mounting_type === 'External Thread with Pilot Diameter and Seat Angle (D)' || app.dea_cutter_mounting_type === 'Internal Thread Optional Counterbore Larger Body Diameter (E)'">
+                    <td class="tb-offset">{{ t('Body Length (L1)') }}
+                      <div class="sel-right clearfix">
+                        <div class="sel-right-fields">
+                          <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_cutter_body_length_value" maxlength="100" />
+                          <select ng-model="app.dea_cutter_body_length_units">
+                            <option value="">{{ t('- Select -') }}</option>
+                            <option value="inches">{{ t('inches') }}</option>
+                            <option value="millimeters">{{ t('millimeters') }}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tb-offset">{{ t('Cutter Diameter (D2)') }}
+                      <div class="sel-right clearfix">
+                        <div class="sel-right-fields">
+                          <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_cutter_cutter_diameter_value" maxlength="100" />
+                          <select ng-model="app.dea_cutter_cutter_diameter_units">
+                            <option value="">{{ t('- Select -') }}</option>
+                            <option value="inches">{{ t('inches') }}</option>
+                            <option value="millimeters">{{ t('millimeters') }}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tb-offset">{{ t('Overall Length (L)') }}
+                      <div class="sel-right clearfix">
+                        <div class="sel-right-fields">
+                          <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_cutter_overall_length_value" maxlength="100" />
+                          <select ng-model="app.dea_cutter_overall_length_units">
+                            <option value="">{{ t('- Select -') }}</option>
+                            <option value="inches">{{ t('inches') }}</option>
+                            <option value="millimeters">{{ t('millimeters') }}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+          </section>
+
+          <div class="grid-12">
+            <hr />
+            <div class="sel-btn">
+              <button type="button" class="button button--secondary button--simple button--small button--outline" ng-click="addApplication($index)" ng-disabled="!applicationform.$valid || loading">{{ t('Add another application') }}</button>
+            </div>
+          </div>
+        </section>
+      </ng-form>
+    </section>
+  </form>
+
+  <div class="grid-12">
+    <div class="sel-btn">
+      <button type="button" ng-disabled="!applicationform.$valid || loading" ng-click="saveApplications(user)" onclick="return false;" class="button button--primary js-form-submit form-submit" ng-class="{ 'loading': loading }">{{ t('Next Step') }}</button>
+    </div>
+    <br /><br />
+  </div>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd">
+    <span class="sel-count">4.</span>
+    {{ t('Accessories') }}
+  </div>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd">
+    <span class="sel-count">5.</span>
+    {{ t('Solution Issues') }}
+  </div>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd">
+    <span class="sel-count">6.</span>
+    {{ t('Complete Request') }}
+  </div>
+</div>

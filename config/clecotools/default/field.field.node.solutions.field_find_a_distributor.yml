@@ -1,0 +1,88 @@
+uuid: 5e3ea37c-8e9c-49c1-b6ca-dd1af66bf2c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_find_a_distributor
+    - node.type.solutions
+    - paragraphs.paragraphs_type.find_a_distributor
+  module:
+    - entity_reference_revisions
+id: node.solutions.field_find_a_distributor
+field_name: field_find_a_distributor
+entity_type: node
+bundle: solutions
+label: 'Find a Distributor'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      find_a_distributor: find_a_distributor
+    negate: 0
+    target_bundles_drag_drop:
+      callout_section_footer:
+        weight: 21
+        enabled: false
+      callout_section_page_end:
+        weight: 22
+        enabled: false
+      card:
+        weight: 23
+        enabled: false
+      content_bundle:
+        weight: 24
+        enabled: false
+      content_section:
+        weight: 25
+        enabled: false
+      content_section_simple:
+        weight: 26
+        enabled: false
+      cta:
+        weight: 27
+        enabled: false
+      excerpt:
+        weight: 28
+        enabled: false
+      featured_block:
+        weight: 29
+        enabled: false
+      featured_products:
+        weight: 30
+        enabled: false
+      featured_section:
+        weight: 31
+        enabled: false
+      find_a_distributor:
+        weight: 32
+        enabled: true
+      form_section:
+        weight: 33
+        enabled: false
+      from_library:
+        weight: 34
+        enabled: false
+      hero:
+        weight: 35
+        enabled: false
+      media_block:
+        weight: 36
+        enabled: false
+      media_image:
+        weight: 37
+        enabled: false
+      testimonials_block:
+        weight: 38
+        enabled: false
+      testimonials_section:
+        weight: 39
+        enabled: false
+      video_bundle:
+        weight: 40
+        enabled: false
+field_type: entity_reference_revisions

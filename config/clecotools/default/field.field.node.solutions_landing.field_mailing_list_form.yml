@@ -1,0 +1,136 @@
+uuid: edd99cea-b968-4234-97b7-b129445ec6ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_mailing_list_form
+    - node.type.solutions_landing
+    - paragraphs.paragraphs_type.mailing_list_form
+  module:
+    - entity_reference_revisions
+id: node.solutions_landing.field_mailing_list_form
+field_name: field_mailing_list_form
+entity_type: node
+bundle: solutions_landing
+label: 'Mailing List Form'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      mailing_list_form: mailing_list_form
+    negate: 0
+    target_bundles_drag_drop:
+      basic_card:
+        weight: 37
+        enabled: false
+      basic_card_section:
+        weight: 38
+        enabled: false
+      callout_section_footer:
+        weight: 39
+        enabled: false
+      callout_section_page_end:
+        weight: 40
+        enabled: false
+      card:
+        weight: 41
+        enabled: false
+      content_bundle:
+        weight: 42
+        enabled: false
+      content_section:
+        weight: 43
+        enabled: false
+      content_section_simple:
+        weight: 44
+        enabled: false
+      cta:
+        weight: 45
+        enabled: false
+      excerpt:
+        weight: 46
+        enabled: false
+      faq:
+        weight: 47
+        enabled: false
+      faqs_group:
+        weight: 48
+        enabled: false
+      faqs_section:
+        weight: 49
+        enabled: false
+      featured_block:
+        weight: 50
+        enabled: false
+      featured_products:
+        weight: 51
+        enabled: false
+      featured_section:
+        weight: 52
+        enabled: false
+      find_a_distributor:
+        weight: 53
+        enabled: false
+      form_section:
+        weight: 54
+        enabled: false
+      from_library:
+        weight: 55
+        enabled: false
+      grid_item:
+        weight: 56
+        enabled: false
+      grid_section:
+        weight: 57
+        enabled: false
+      hero:
+        weight: 58
+        enabled: false
+      iframe:
+        weight: 59
+        enabled: false
+      intro:
+        weight: 60
+        enabled: false
+      mailing_list_form:
+        weight: 61
+        enabled: true
+      media_block:
+        weight: 62
+        enabled: false
+      media_image:
+        weight: 63
+        enabled: false
+      media_kit:
+        weight: 64
+        enabled: false
+      message_block:
+        weight: 65
+        enabled: false
+      product_categories:
+        weight: 68
+        enabled: false
+      product_search:
+        weight: 69
+        enabled: false
+      products_category_section:
+        weight: 66
+        enabled: false
+      products_section:
+        weight: 67
+        enabled: false
+      testimonials_block:
+        weight: 70
+        enabled: false
+      testimonials_section:
+        weight: 71
+        enabled: false
+      video_bundle:
+        weight: 72
+        enabled: false
+field_type: entity_reference_revisions

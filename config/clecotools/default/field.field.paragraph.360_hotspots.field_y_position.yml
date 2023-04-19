@@ -1,0 +1,25 @@
+uuid: fbe65a77-d7cb-4803-b389-ad61600808a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_y_position
+    - paragraphs.paragraphs_type.360_hotspots
+id: paragraph.360_hotspots.field_y_position
+field_name: field_y_position
+entity_type: paragraph
+bundle: 360_hotspots
+label: 'Y Position'
+description: Percentage
+required: false
+translatable: false
+default_value:
+  -
+    value: !!float 50
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: !!float 100
+  prefix: ''
+  suffix: '%'
+field_type: float

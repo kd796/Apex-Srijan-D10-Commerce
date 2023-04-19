@@ -1,0 +1,22 @@
+uuid: ab2eaf03-695b-4a3e-9816-c3d250181699
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.find_a_distributor
+id: paragraph.find_a_distributor.status
+field_name: status
+entity_type: paragraph
+bundle: find_a_distributor
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

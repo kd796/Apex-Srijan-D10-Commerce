@@ -1,0 +1,238 @@
+{% include '@atg/patterns/hero.html.twig' with {
+  title: node.title.value
+} %}
+{% set locale = get_locale() %}
+
+{% if current_site_code == 'en' %}
+<geoui api="/api/search/distributors_index?include=field_term_distributor_level,field_products_offered"
+     :filters="{q: null, radius: {{ default_radius }}, 'filter[field_term_distributor_level]': null, 'filter[field_products_offered]': null}"
+     :required-filters="['q', 'radius']">
+  <template slot="interstitial" slot-scope="scope">
+    <header class="geoui-interstitial-header">
+      <h2 class="geoui-interstitial-title">{{ node.title.value }}</h2>
+      <p>{{ 'Enter your ZIP code below to find a Cleco distributor near you' | t }}</p>
+    </header>
+
+    <scoped-form class="form-bar form-bar--centered form-bar--wrap" :filters="scope.filters" :value="scope.state" @input="scope.setState">
+      <template slot-scope="bar">
+        <div class="form-bar-item">
+          <input type="search" v-model="bar.state.q" size="10" placeholder="{{ 'ZIP Code' | t }}">
+        </div>
+        <div class="form-bar-item">
+          <select v-model="bar.state.radius">
+            {% for option in radius_options %}
+              <option value="{{ option.value }}">{{ option.label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-bar-item">
+          <button type="submit" class="button button--primary button--simple">{{ 'Find Distributors' | t }}</button>
+        </div>
+      </template>
+    </scoped-form>
+  </template>
+  <template slot="filters" slot-scope="scope">
+    <scoped-form class="filter-bar" :value="scope.state" @input="scope.setState" :filters="scope.filters">
+      <template slot-scope="bar">
+        <filter-bar-item v-model="bar.state.q" label="ZIP Code" :attributes="{size: 8, maxlength: 5, placeholder: 'Enter ZIP'}"></filter-bar-item>
+        <filter-bar-item v-model="bar.state.radius" element="select" label="Distance" :options="{{ radius_options | json_encode }}"></filter-bar-item>
+        <filter-bar-item v-model="bar.state['filter[field_term_distributor_level]']" element="select" label="Distributor Level" :options="{{ distributor_levels | json_encode }}"></filter-bar-item>
+        <filter-bar-item v-model="bar.state['filter[field_products_offered]']" element="select" label="Products Offered" :options="{{ products_offered | json_encode }}"></filter-bar-item>
+        <filter-bar-item element="action" class="filter-bar-item--push">
+          <button type="submit" class="button button--primary button--simple">{{ 'Find Distributors'|t }}</button>
+        </filter-bar-item>
+      </template>
+    </scoped-form>
+  </template>
+  <template slot="infowindow" slot-scope="scope" v-if="scope.selected">
+    {% filter raw %}
+      <h3>{{ scope.selected.attributes.title }}</h3>
+      <p>
+        <span v-html="$options.filters.formatAddress(scope.selected.attributes.field_address)"></span>
+        <template v-for="phone in scope.selected.attributes.field_phone">
+          <br><a :href="'tel:' + phone">{{ phone }}</a>
+        </template>
+   	<br>
+	<a v-bind:href="scope.selected.attributes.field_website" target="_blank"><span v-html="scope.selected.attributes.field_website"></span></a>
+      </p>
+    {% endfilter %}
+    <div class="infowindow-actions">
+      <a :href="'{{ locale.path }}/request-a-quote?distributor_id=' + scope.selected.attributes.nid" class="infowindow-action">
+        {{ svg('dist/img/icons/nut.svg') }} {{ 'Request Quote'|t }}
+      </a>
+      <button type="button" class="infowindow-action" v-scroll-to="'#distributor-' + scope.selected.id">
+        {{ svg('dist/img/icons/grid.svg') }} {{ 'View on Grid'|t }}
+      </button>
+    </div>
+  </template>
+  <template slot="list" slot-scope="scope">
+
+    <table-component :data="scope.data" :show-filter="false" :show-caption="false" :cache-lifetime="0" sort-by="relationships.field_term_distributor_level.data.attributes.weight" sort-order="asc" class="mega-table-component" table-class="mega-table" :filter-no-results="'{{ 'No distributors found within ' | t }}' + scope.state.radius + '{{ ' miles of ' | t }}' + scope.state.q">
+      <table-column label="Distributor" show="attributes.title">
+        <template slot-scope="row">
+          {% filter raw  %}
+            <h3 :id="'distributor-' + row.id">{{ row.attributes.title }}</h3>
+            <p>
+              <span v-html="$options.filters.formatAddress(row.attributes.field_address)"></span>
+              <template v-for="phone in row.attributes.field_phone">
+                <br><a :href="'tel:' + phone">{{ phone }}</a>
+              </template>
+	     <br>
+	     <a v-bind:href="row.attributes.field_website" target="_blank"><span v-html="row.attributes.field_website"></span></a>
+            </p>
+          {% endfilter %}
+        </template>
+      </table-column>
+      <table-column label="Distance" show="attributes.distance.distance" data-type="numeric">
+        <template slot-scope="row">
+          <p>
+            {{ '{{ row.attributes.distance ? row.attributes.distance.formatted : "" }}' }}<br>
+            <button type="button" @click="scope.select(row)" v-scroll-to="'.geoui-map'" class="a a--subtle">{{ svg('dist/img/icons/pin.svg') }} {{ 'View on Map'|t }}</button>
+          </p>
+        </template>
+      </table-column>
+      <table-column label="Distributor Level" show="relationships.field_term_distributor_level.data.attributes.weight">
+        <template slot-scope="row">
+          <span class="sticker">
+            <span class="sticker-icon">
+              <img src="{{ theme_asset('/dist/img/badge-platinum.svg') }}" alt="Platinum badge" v-if="row.relationships.field_term_distributor_level.data.attributes.name.toLowerCase() == 'platinum'">
+              <img src="{{ theme_asset('/dist/img/badge-gold.svg') }}" alt="Gold badge" v-if="row.relationships.field_term_distributor_level.data.attributes.name.toLowerCase() == 'gold'">
+              <img src="{{ theme_asset('/dist/img/badge-silver.svg') }}" alt="Silver badge" v-if="row.relationships.field_term_distributor_level.data.attributes.name.toLowerCase() == 'silver'">
+              <img src="{{ theme_asset('/dist/img/badge-bronze.svg') }}" alt="Bronze badge" v-if="row.relationships.field_term_distributor_level.data.attributes.name.toLowerCase() == 'bronze'">
+            </span>
+            <span class="sticker-label">{{ '{{ row.relationships.field_term_distributor_level.data.attributes.name}}' }}</span>
+          </span>
+        </template>
+      </table-column>
+      <table-column label="Available Tools" :sortable="false">
+        <template slot-scope="row">
+          <ul v-if="row.relationships.field_products_offered.data.length > 0">
+            <li v-for="product in row.relationships.field_products_offered.data">{{ '{{ product.attributes.name }}' }}</li>
+          </ul>
+        </template>
+      </table-column>
+      <table-column label="" :sortable="false">
+        <template slot-scope="row">
+          <a :href="'{{ locale.path }}/request-a-quote?distributor_id=' + row.attributes.nid" class="button button--small button--simple button--secondary button--outline">{{ 'Request Quote'|t }}</a>
+        </template>
+      </table-column>
+    </table-component>
+  </template>
+</geoui>
+{% else %}
+  <geoui api="/api/searchcountrydata/distributors_index?include=field_term_distributor_level,field_products_offered"
+     :filters="{country: null, 'filter[field_term_distributor_level]': null, 'filter[field_products_offered]': null}"
+     :required-filters="['country']">
+  <template slot="interstitial" slot-scope="scope">
+    <header class="geoui-interstitial-header">
+      <h2 class="geoui-interstitial-title">{{ node.title.value }}</h2>
+      <p>{{ 'Select Country below to find a Cleco distributor near you' | t }}</p>
+    </header>
+
+    <scoped-form class="form-bar form-bar--centered form-bar--wrap" :filters="scope.filters" :value="scope.state" @input="scope.setState">
+      <template slot-scope="bar">
+        <div class="form-bar-item">
+          <select v-model="bar.state.country">
+            <option value=null disabled selected>{{ 'Select Country'|t }}</option>
+            {% for option in countries_options %}
+              <option value="{{ option.value }}">{{ option.label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-bar-item">
+          <button type="submit" class="button button--primary button--simple">{{ 'Find Distributors' | t }}</button>
+        </div>
+      </template>
+    </scoped-form>
+  </template>
+  <template slot="filters" slot-scope="scope">
+    <scoped-form class="filter-bar" :value="scope.state" @input="scope.setState" :filters="scope.filters">
+      <template slot-scope="bar">
+        <filter-bar-item v-model="bar.state.country" element="select" label="Country" :options="{{ countries_options | json_encode }}"></filter-bar-item>
+        {# <filter-bar-item v-model="bar.state['filter[field_term_distributor_level]']" element="select" label="Distributor Level" :options="{{ distributor_levels | json_encode }}"></filter-bar-item> #}
+        <filter-bar-item v-model="bar.state['filter[field_products_offered]']" element="select" label="Products Offered" :options="{{ products_offered | json_encode }}"></filter-bar-item>
+        <filter-bar-item element="action" class="filter-bar-item--push">
+          <button type="submit" class="button button--primary button--simple">{{ 'Find Distributors'|t }}</button>
+        </filter-bar-item>
+      </template>
+    </scoped-form>
+  </template>
+  <template slot="infowindow" slot-scope="scope" v-if="scope.selected">
+    {% filter raw %}
+      <h3>{{ scope.selected.attributes.title }}</h3>
+      <p>
+        <span v-html="$options.filters.formatAddress(scope.selected.attributes.field_address)"></span>
+        <template v-for="phone in scope.selected.attributes.field_phone">
+          <br><a :href="'tel:' + phone">{{ phone }}</a>
+        </template>
+	<br>
+	<a v-bind:href="scope.selected.attributes.field_website" target="_blank"><span v-html="scope.selected.attributes.field_website"></span></a>
+      </p>
+    {% endfilter %}
+    <div class="infowindow-actions">
+      <a :href="'{{ locale.path }}/request-a-quote?distributor_id=' + scope.selected.attributes.nid" class="infowindow-action">
+        {{ svg('dist/img/icons/nut.svg') }} {{ 'Request Quote'|t }}
+      </a>
+      <button type="button" class="infowindow-action" v-scroll-to="'#distributor-' + scope.selected.id">
+        {{ svg('dist/img/icons/grid.svg') }} {{ 'View on Grid'|t }}
+      </button>
+    </div>
+  </template>
+  <template slot="list" slot-scope="scope">
+
+    <table-component :data="scope.data" :show-filter="false" :show-caption="false" :cache-lifetime="0" class="mega-table-component" table-class="mega-table" :filter-no-results="'{{ 'No distributors found' | t }}'">
+      <table-column label="Distributor" show="attributes.title">
+        <template slot-scope="row">
+          {% filter raw  %}
+            <h3 :id="'distributor-' + row.id">{{ row.attributes.title }}</h3>
+            <p>
+              <span v-html="$options.filters.formatAddress(row.attributes.field_address)"></span>
+              <template v-for="phone in row.attributes.field_phone">
+                <br><a :href="'tel:' + phone">{{ phone }}</a>
+              </template>
+	      <br>
+	      <a v-bind:href="row.attributes.field_website" target="_blank"><span v-html="row.attributes.field_website"></span></a>
+            </p>
+          {% endfilter %}
+        </template>
+      </table-column>
+      <table-column label="Distance" show="attributes.distance.distance" data-type="numeric" :sortable="false">
+        <template slot-scope="row">
+          <p>
+            {{ '{{ row.attributes.distance ? row.attributes.distance.formatted : "" }}' }}<br>
+            <button type="button" @click="scope.select(row)" v-scroll-to="'.geoui-map'" class="a a--subtle">{{ svg('dist/img/icons/pin.svg') }} {{ 'View on Map'|t }}</button>
+          </p>
+        </template>
+      </table-column>
+      {# <table-column label="Distributor Level" show="relationships.field_term_distributor_level.data.attributes.weight">
+        <template slot-scope="row">
+          <span class="sticker">
+            <span class="sticker-icon">
+              <img src="{{ theme_asset('/dist/img/badge-platinum.svg') }}" alt="Platinum badge" v-if="row.relationships.field_term_distributor_level.data.attributes.name.toLowerCase() == 'platinum'">
+              <img src="{{ theme_asset('/dist/img/badge-gold.svg') }}" alt="Gold badge" v-if="row.relationships.field_term_distributor_level.data.attributes.name.toLowerCase() == 'gold'">
+              <img src="{{ theme_asset('/dist/img/badge-silver.svg') }}" alt="Silver badge" v-if="row.relationships.field_term_distributor_level.data.attributes.name.toLowerCase() == 'silver'">
+              <img src="{{ theme_asset('/dist/img/badge-bronze.svg') }}" alt="Bronze badge" v-if="row.relationships.field_term_distributor_level.data.attributes.name.toLowerCase() == 'bronze'">
+            </span>
+            <span class="sticker-label">{{ '{{ row.relationships.field_term_distributor_level.data.attributes.name}}' }}</span>
+          </span>
+        </template>
+      </table-column> #}
+      <table-column label="Available Tools" :sortable="false">
+        <template slot-scope="row">
+          <ul v-if="row.relationships.field_products_offered.data.length > 0">
+            <li v-for="product in row.relationships.field_products_offered.data">{{ '{{ product.attributes.name }}' }}</li>
+          </ul>
+        </template>
+      </table-column>
+      <table-column label="" :sortable="false">
+        <template slot-scope="row">
+          <a :href="'{{ locale.path }}/request-a-quote?distributor_id=' + row.attributes.nid" class="button button--small button--simple button--secondary button--outline">{{ 'Request Quote'|t }}</a>
+        </template>
+      </table-column>
+    </table-component>
+  </template>
+</geoui>
+{% endif %}
+
+
+{{ content }}

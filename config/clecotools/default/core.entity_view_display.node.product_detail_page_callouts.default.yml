@@ -1,0 +1,36 @@
+uuid: 9ef314ed-b097-42d6-8a6c-52f6cd7b58e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.product_detail_page_callouts.field_card
+    - node.type.product_detail_page_callouts
+  module:
+    - user
+id: node.product_detail_page_callouts.default
+targetEntityType: node
+bundle: product_detail_page_callouts
+mode: default
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  field_card:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

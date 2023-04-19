@@ -1,0 +1,25 @@
+{% set read_more_url = fields.field_read_more.content|render|trim|striptags %}
+
+{% if is_external_url(read_more_url) %}
+ <a href="{{ read_more_url }}" target="_blank" class="feature-list">
+  <div class="image">
+	{{ fields.field_listing_page_image.content }}
+  </div>
+  <div class="overlay">&nbsp;</div>
+  <div class="overlay-text">
+    <h3>{{ fields.title.content }}</h3>
+    <div class="bottom-text">{{ fields.field_footer_note.content }}</div>
+  </div>
+  </a>
+{% else %}
+ <a href="{{ read_more_url }}" class="feature-list">
+	<div class="image">
+	{{ fields.field_listing_page_image.content }}
+  </div>
+  <div class="overlay">&nbsp;</div>
+  <div class="overlay-text">
+    <h3>{{ fields.title.content }}</h3>
+    <div class="bottom-text">{{ fields.field_footer_note.content }}</div>
+  </div>
+  </a>
+{% endif %}

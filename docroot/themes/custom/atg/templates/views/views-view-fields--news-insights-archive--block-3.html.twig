@@ -1,0 +1,36 @@
+{% set article_img = fields.field_image.content %}
+{% set card_class = "media-card" %}
+{% set featured = false %}
+{% if row.index == 0 %}
+  {% set card_class = "media-card featured" %}
+  {% set featured = true %}
+{% endif %}
+
+<div class="{{ card_class }}">
+    <a href="{{ fields.view_node.content }}" class="media-card-image">
+        <span class="button button--primary button--simple button--small">{{ fields.field_type.content }}</span>
+        {% if article_img %}
+        {{ fields.field_image.content }}
+        {% else %}
+        <div class="placeholder"></div>
+        {% endif %}
+    </a>
+    <div>
+        <div class="media-card-body">
+            {% if featured %}
+            <p class="featured-tag">{{ 'Featured Insight' | t}}</p>
+            {% endif %}
+            <h3>{{ fields.title.content }}</h3>
+            <p>{{ fields.body.content }} <a href="{{ fields.view_node.content }}">{{ 'Read More'|t }}</a></p>
+        </div>
+        <footer>
+            <span class="date"><strong>{{ 'Released'|t }}</strong>{{ fields.created.content }}</span>
+            <share-dropdown script="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53c03c197ed98539">
+              <span class="share-toggle">
+                <span class="share-toggle-icon">{{ svg('dist/img/icons/share.svg') }}</span>
+                <span class="share-toggle-label">{{ 'Share'|t }}</span>
+              </span>
+            </share-dropdown>
+        </footer>
+    </div>
+</div>

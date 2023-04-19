@@ -1,0 +1,8 @@
+<?php
+
+    function atg_ckeditor_editor_js_settings_alter(array &$settings) {
+        foreach ($settings['editor']['formats'] as &$ckeditor) {
+           $ckeditor['editorSettings']['forcePasteAsPlainText'] = true;
+           //$ckeditor['editorSettings']['height'] = '700px';
+        }
+    }

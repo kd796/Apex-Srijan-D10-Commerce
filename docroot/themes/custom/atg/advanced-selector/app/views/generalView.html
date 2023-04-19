@@ -1,0 +1,58 @@
+<div class="sel-cat">
+  <div class="sel-hd sel-complete">
+    <a href="#/business" ng-click="loadData()">
+      <span class="sel-count">1.</span>
+      {{ t('Business Information') }}
+    </a>
+  </div>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd sel-on">
+    <span class="sel-count">2.</span>
+    {{ t('General Information') }}
+  </div>
+  <div class="sel-errors">{{ errors }}</div>
+  <form name="generalform" id="generalform" class="sel-form clearfix" ng-submit="updateGeneral(user)" method="post">
+    <div class="grid-6">
+      <label>{{ t('Product Type') }} <small>{{ t('More than one selection allowed') }}</small></label>
+      <label ng-repeat="product_type in product_types">
+        <input type="checkbox" name="inquiry_product_type[]" ng-checked="selected_product_types.indexOf(product_type) !== -1" ng-click="toggleProductType(product_type)" value="{{ product_type }}"> {{ t(product_type) }}
+      </label>
+      <div class="offset" ng-show="selected_product_types.indexOf('Other - Please Specify') !== -1">
+        <label class="small">{{ t('Other - Please Specify') }}: <span class="orange">*</span></label>
+        <input type="text" value="" ng-model="user.de_inquiry_product_types_other" placeholder="" ng-required="selected_product_types.indexOf('Other Please Specify') !== -1" />
+      </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="grid-12">
+      <div class="sel-btn">
+        <button type="submit" ng-disabled="!generalform.$valid || loading" class="button button--primary js-form-submit form-submit" ng-class="{ 'loading': loading }">{{ t('Next Step') }}</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd">
+    <span class="sel-count">3.</span>
+    {{ t('Application Information') }}
+  </div>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd">
+    <span class="sel-count">4.</span>
+    {{ t('Accessories') }}
+  </div>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd">
+    <span class="sel-count">5.</span>
+    {{ t('Solution Issues') }}
+  </div>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd">
+    <span class="sel-count">6.</span>
+    {{ t('Complete Request') }}
+  </div>
+</div>

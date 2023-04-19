@@ -1,0 +1,23 @@
+uuid: d094e8e5-52fd-4f1e-ae43-0afe494dbee0
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: d__7lDFIA_k4JXAVmqfhm5NKJdkXloI7bh1jFHRc9W4
+id: remote_prod
+label: 'Remote - Prod'
+description: ''
+weight: 0
+folder: ../config/campbell/remote_prod
+module:
+  acquia_connector: 0
+  captcha: 0
+  recaptcha: 0
+  syslog: 0
+theme: {  }
+blacklist:
+  - purge.logger_channels
+graylist:
+  - system.performance
+graylist_dependents: true
+graylist_skip_equal: true

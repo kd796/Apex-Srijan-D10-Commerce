@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.media_page.field_link
     - field.field.node.media_page.field_media
     - field.field.node.media_page.field_media_type
+    - field.field.node.media_page.field_meta_tags
     - field.field.node.media_page.field_preferred_listing_image
     - field.field.node.media_page.field_published_date
     - field.field.node.media_page.field_tags
@@ -19,6 +20,7 @@ dependencies:
     - field_group
     - limited_field_widgets
     - media_library
+    - metatag
     - paragraphs
     - path
     - text
@@ -140,6 +142,14 @@ content:
     weight: 2
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_meta_tags:
+    type: metatag_firehose
+    weight: 26
+    region: content
+    settings:
+      sidebar: true
+      use_details: true
     third_party_settings: {  }
   field_preferred_listing_image:
     type: media_library_widget

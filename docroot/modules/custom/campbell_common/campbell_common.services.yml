@@ -1,0 +1,5 @@
+services:
+  custom_twig_extension:
+    class: Drupal\campbell_common\CampbellUtilityTwigExtension
+    tags:
+      - { name: twig.extension }

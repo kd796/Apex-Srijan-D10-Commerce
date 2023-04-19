@@ -1,0 +1,21 @@
+uuid: 1550e818-13ca-4aa5-9911-71bbad46f69e
+langcode: en
+status: true
+dependencies: {  }
+id: remote_dev
+label: 'Remote - Dev'
+description: ''
+weight: 0
+folder: ../config/clecotools/remote_dev
+module:
+  acquia_connector: 0
+  dblog: 0
+  shield: 0
+  stage_file_proxy: 0
+theme: {  }
+blacklist:
+  - purge.logger_channels
+  - system.logging
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true

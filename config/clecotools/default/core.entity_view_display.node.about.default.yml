@@ -1,0 +1,88 @@
+uuid: 6e08c706-c05e-494f-a444-ad2e07af0e2a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.about.field_forms
+    - field.field.node.about.field_hero
+    - field.field.node.about.field_mailing_list_form
+    - field.field.node.about.field_page_content
+    - field.field.node.about.field_page_intro
+    - field.field.node.about.field_seo
+    - field.field.node.about.field_video
+    - node.type.about
+  module:
+    - entity_reference_revisions
+    - metatag
+    - user
+id: node.about.default
+targetEntityType: node
+bundle: about
+mode: default
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_forms:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_hero:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_page_content:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_page_intro:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_seo:
+    type: metatag_empty_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_video:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_mailing_list_form: true
+  langcode: true
+  search_api_excerpt: true

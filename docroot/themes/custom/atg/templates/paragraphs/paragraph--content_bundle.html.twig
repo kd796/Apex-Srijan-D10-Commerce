@@ -1,0 +1,23 @@
+{% set title = elements.field_title[0]['#context']['value'] %}
+{% set body = elements.field_body_basic_ %}
+{% set cta = get_paragraph(elements.field_cta) %}
+{% set url = cta.field_cta_url[0].url | string %}
+{% set action = cta.field_cta_url[0].title %}
+<div class="section-intro-block">
+	<div class="section-intro">
+		{% if title %}
+			<h2 class="section-title">{{ title | raw }}</h2>
+		{% endif %}
+		{% if body %}
+			<div class="section-intro-content">
+				{{ body }}
+			</div>
+		{% endif %}
+		{% if action and url %}
+			{% set link_attributes = create_attribute({href: url, target: target, class: 'action action--primary'}) %}
+			<footer class="section-intro-actions">
+				<a{{ link_attributes }}>{{ action }}</a>
+			</footer>
+		{% endif %}
+	</div>
+</div>

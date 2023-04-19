@@ -1,0 +1,159 @@
+<?php
+
+use Drupal\Core\Url;
+use Drupal\Core\Language\LanguageInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\cleco_vuejs\Utils\StepHelper;
+
+/**
+ * Overwrites quick_node_clone module's form class
+ * We'll be implementing additional logic for languagge switcher and hfreflang tags
+ * See AtgCloneNodeForm::save()
+ */
+function atg_clone_entity_type_alter(array &$entity_types)
+{
+    if (isset($entity_types['node'])) {
+        $entity_types['node']->setFormClass('quick_node_clone', 'Drupal\atg_clone\Form\AtgCloneNodeForm');
+    }
+}
+
+/**
+ * Deletes atg_clone row if nid matches
+ */
+function atg_clone_node_delete(EntityInterface $entity)
+{
+    \Drupal::database()->delete('atg_clone')
+                       ->condition('nid', $entity->id())
+                       ->execute();
+}
+
+/**
+ * Adds Custom Validation
+ * Prevents duplicates from being added to atg_clone table
+ */
+function atg_clone_form_alter(array &$form, FormStateInterface &$form_state, $form_id)
+{
+    if (strpos($form_id, 'quick_node_clone_form') !== false) {
+        $form['#validate'][] = '::validateLanguage';
+    }
+}
+
+/**
+ * Language Switcher
+ * Hides untranslated languages
+ */
+function atg_clone_language_switch_links_alter(array &$links, $type, $path)
+{
+    // TEMPORARY FIX FOR LANUGAGE SWITCHER TO REDIREC TO LEGACY SITES
+    // ========================================================================
+    // $legacy = [
+    //     'de' => 'http://www.clecotools.de/',
+    //     'gb' => 'http://www.clecotools.co.uk/'
+    // ];
+
+    // foreach ($links as $key => $link) {
+    //     if ($key !== 'en') {
+    //         $links[$key]['url']   = Url::fromUri($legacy[$key]);
+    //         $links[$key]['query'] = [];
+    //     }
+    // }
+
+    // ENABLE FOR TRUE LANGUAGE SWITCHER
+    // ========================================================================
+    // Force core Language configuration names for titles
+    foreach ($links as $languageCode => &$link) {
+        $language = Drupal::languageManager()->getLanguage($languageCode);
+        $link['title'] = $language->getName();
+    }
+    unset($link);
+
+    // Get translated entity path
+    if ($entity = atg_clone_get_page_entity()) {
+        $langcodes = [];
+        $id        = $entity->id();
+        $db        = \Drupal::database();
+        // Fetch the cloned node in our module's table, from the current node Id
+        $cid = $db->query("SELECT cid FROM atg_clone WHERE nid='$id'")->fetchField();
+
+        if (!empty($cid)) {
+            // Find all the related nodes via the cid
+            $nodes = $db->query("SELECT * FROM atg_clone WHERE cid='$cid'")->fetchAll();
+
+            foreach ($nodes as $clonedNode) {
+                $langcodes[]                         = $clonedNode->langcode;
+                if (Drupal::service('path.matcher')->isFrontPage()) {
+                    $links[$clonedNode->langcode]['url'] = Url::fromRoute('<front>');
+                } else {
+                    $links[$clonedNode->langcode]['url'] = Url::fromRoute('entity.node.canonical', ['node' => $clonedNode->nid]);
+                }
+            }
+        } else {
+            // When there's no other translations...
+            // Option 1: Build dropdown for current/only option available
+            $curLangCode                = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
+            $langcodes[]                = $curLangCode;
+            $links[$curLangCode]['url'] = Url::fromRoute('entity.node.canonical', ['node' => $id]);
+            // Option 2: Hide language selector completely
+            // $links = [];
+        }
+
+        // Filter out the nodes that are not cloned, aka translated via our custom module
+        $links = atg_clone_filter_translations($links, $langcodes);
+    } else if (atg_clone_get_product()) {
+        // Get translated product detail path
+        $request      = \Drupal::request();
+        $slug         = $request->get('product');
+        $languages    = \Drupal::languageManager()->getLanguages();
+        $translations = \Drupal::service('step.elastic_search_service')->getTranslatedRoutes($slug, $languages);
+
+        foreach ($translations as $options) {
+            $langCode                = StepHelper::getCurrentSite()['code'];
+            $langcodes[]             = $langCode;
+            $slug                    = $options['slug'];
+            $alias                   = \Drupal::service('path_alias.manager')->getAliasByPath('/products/product-catalog', $langCode);
+            $links[$langCode]['url'] = Url::fromUri("internal:/$langCode$alias/$slug");
+        }
+
+        // Filter out the nodes that are not cloned, aka translated via our custom module
+        $links = atg_clone_filter_translations($links, $langcodes);
+    }
+}
+
+function atg_clone_filter_translations(array $links, array $langcodes)
+{
+    // Filter out the nodes that are not cloned, aka translated via our custom module
+    $links = array_filter(
+        $links,
+        function ($key) use ($langcodes) {
+            return in_array($key, $langcodes);
+        },
+        ARRAY_FILTER_USE_KEY
+    );
+
+    return $links;
+}
+
+/**
+ * Retrieves the current page entity.
+ *
+ * @return Drupal\Core\Entity\ContentEntityInterface
+ *   The retrieved entity, or FALSE if none found.
+ */
+function atg_clone_get_page_entity()
+{
+    $params = \Drupal::routeMatch()->getParameters()->all();
+    $entity = reset($params);
+    if ($entity instanceof ContentEntityInterface) {
+        return $entity;
+    }
+    return false;
+}
+
+function atg_clone_get_product()
+{
+    $params  = \Drupal::routeMatch()->getParameters()->all();
+    $product = reset($params);
+    return isset($params['product']);
+}

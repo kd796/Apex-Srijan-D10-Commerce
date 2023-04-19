@@ -1,0 +1,50 @@
+uuid: e3b24749-8703-435f-ad66-3deec327b546
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.product_specifications.field_long_name
+    - field.field.taxonomy_term.product_specifications.field_specification_attr_key
+    - field.field.taxonomy_term.product_specifications.field_specification_attribute_id
+    - taxonomy.vocabulary.product_specifications
+  module:
+    - text
+id: taxonomy_term.product_specifications.default
+targetEntityType: taxonomy_term
+bundle: product_specifications
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_long_name:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_specification_attr_key:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_specification_attribute_id:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true
+  uuid: true

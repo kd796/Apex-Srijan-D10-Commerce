@@ -1,0 +1,27 @@
+uuid: 9db5ee3f-5dbb-4e27-9875-3bc5669a4302
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_attachments
+    - node.type.news_insights
+  module:
+    - file
+id: node.news_insights.field_attachments
+field_name: field_attachments
+entity_type: node
+bundle: news_insights
+label: Attachment(s)
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'pdf jpg png doc docx txt rtf'
+  max_filesize: ''
+  description_field: false
+field_type: file
