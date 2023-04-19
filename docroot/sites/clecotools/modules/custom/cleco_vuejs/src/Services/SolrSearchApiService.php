@@ -107,7 +107,6 @@ class SolrSearchApiService {
       if (is_array($filter)) {
         foreach ($filter as $each) {
           $each = urldecode($each);
-          $each = StepHelper::getOriginalTranslation($each, $language);
           $this->query->addCondition($filter_name, $each, '=');
         }
 
@@ -254,7 +253,6 @@ class SolrSearchApiService {
       $category_group_media_inner = $this->query->createConditionGroup('AND');
       foreach ($categories as $category) {
         $category = urldecode($category);
-        $category = StepHelper::getOriginalTranslation($category, $this->languageManager->getCurrentLanguage()->getId());
         $category_group_inner->addCondition('product_category', $category, '=');
         $category_group_media_inner->addCondition('media_product_category', $category, '=');
       }
