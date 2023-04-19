@@ -26,7 +26,6 @@ dependencies:
     - node.type.enhanced_product
   module:
     - content_moderation
-    - inline_entity_form
     - media_library
     - paragraphs
     - path
@@ -55,17 +54,14 @@ content:
       default_paragraph_type: 360_product_image
     third_party_settings: {  }
   field_downloads:
-    type: inline_entity_form_simple
+    type: entity_reference_autocomplete
     weight: 21
     region: content
     settings:
-      form_mode: default
-      override_labels: false
-      label_singular: ''
-      label_plural: ''
-      collapsible: false
-      collapsed: false
-      revision: false
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_feature_hotspots:
     type: entity_reference_paragraphs
