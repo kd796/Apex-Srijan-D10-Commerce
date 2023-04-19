@@ -143,9 +143,10 @@ process:
       - W2_803965
       - W2_803966
       - W2_824330
+      - W2_873488
   parent:
     -
-      plugin: get_classification_parent_term
+      plugin: apex_get_classification_parent_term
       source: remote_parent_name
     -
       plugin: default_value
