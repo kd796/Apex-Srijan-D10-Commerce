@@ -1,0 +1,29 @@
+uuid: a8f4d749-3161-465b-8fba-4f913d14f8de
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_section_name
+    - node.type.ethics_section
+    - taxonomy.vocabulary.ethics
+id: node.ethics_section.field_section_name
+field_name: field_section_name
+entity_type: node
+bundle: ethics_section
+label: 'Section Name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      ethics: ethics
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

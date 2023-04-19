@@ -1,40 +1,39 @@
-uuid: c2ef124b-62b4-4b2c-9b23-048f573e6b13
+uuid: 80d477b3-33ba-4bae-83e5-89c412a7eef1
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.slider.body
-    - field.field.node.slider.field_banner_image
-    - field.field.node.slider.field_slider_link
-    - node.type.slider
+    - field.field.node.homepage_products.body
+    - field.field.node.homepage_products.field_media
+    - field.field.node.homepage_products.field_read_more
+    - node.type.homepage_products
   module:
     - link
     - text
     - user
-id: node.slider.default
+id: node.homepage_products.default
 targetEntityType: node
-bundle: slider
+bundle: homepage_products
 mode: default
 content:
   body:
     type: text_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 3
+    weight: 101
     region: content
-  field_banner_image:
-    type: entity_reference_entity_view
-    label: hidden
+  field_media:
+    type: entity_reference_label
+    label: above
     settings:
-      view_mode: default
       link: true
     third_party_settings: {  }
-    weight: 1
+    weight: 102
     region: content
-  field_slider_link:
+  field_read_more:
     type: link
-    label: hidden
+    label: above
     settings:
       trim_length: 80
       url_only: false
@@ -42,12 +41,12 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 2
+    weight: 103
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 0
+    weight: 100
     region: content
 hidden:
   langcode: true
