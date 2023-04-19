@@ -69,24 +69,49 @@ class MapProductImages extends ProcessPluginBase implements ContainerFactoryPlug
       $this->configuration['notification_logfile'] = $this->getDefaultLogfile();
     }
 
-    $asset_crossreference = $value->xpath('parent::Product/AssetCrossReference');
     $list = [];
-    $asset_list = $this->getImageList($asset_crossreference);
+    $processed_list = [];
     $migrated_ids = [];
-    $list = [];
+
+    // Process Media at Product SKU GROUP level.
+    $asset_crossreference = $value->xpath('parent::Product/AssetCrossReference');
+    $asset_list = $this->getImageList($asset_crossreference);
     if (!empty($asset_list)) {
       $migrated_ids = $this->getAllMigratedMapId($asset_list, $this->configuration['migration_instance']);
     }
     foreach ($asset_list as $id) {
+      if (isset($processed_list[$id])) {
+        continue;
+      }
+      $processed_list[$id] = 1;
       if (!isset($migrated_ids[$id])) {
-        $message = "\nSyntax: time drush mim cleco_product_media  --uri=clecotools  --idlist='" . $id . "'\n";
-        $message .= "Missing mapping for Product Image $id";
+        $message = "Missing Product Image:: Asset ID: $id";
         $this->logMessage($this->configuration['notification_logfile'], $message);
         continue;
       }
-
       $list[] = ['target_id' => $migrated_ids[$id]];
     }
+
+    // Process media at SKU level.
+    $sku_asset_crossreference = $value->xpath('parent::Product/Product/AssetCrossReference');
+    $asset_list = $this->getImageList($sku_asset_crossreference);
+
+    if (!empty($asset_list)) {
+      $migrated_ids = $this->getAllMigratedMapId($asset_list, $this->configuration['migration_instance']);
+    }
+    foreach ($asset_list as $id) {
+      if (isset($processed_list[$id])) {
+        continue;
+      }
+      $processed_list[$id] = 1;
+      if (!isset($migrated_ids[$id])) {
+        $message = "Missing Product Image:: Asset ID: $id";
+        $this->logMessage($this->configuration['notification_logfile'], $message);
+        continue;
+      }
+      $list[] = ['target_id' => $migrated_ids[$id]];
+    }
+
     return $list;
   }
 
