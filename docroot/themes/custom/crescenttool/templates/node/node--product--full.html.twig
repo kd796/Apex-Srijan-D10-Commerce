@@ -208,7 +208,17 @@
               <div class="node--type-product__accordion-content-header">
                 {{ 'Specifications'|t }}
               </div>
-              {{ content.field_product_specifications }}
+              {% autoescape false %}
+                {% if field_product_specifications | length > 0 %}
+                  {% for key,specification in field_product_specifications %}
+                    <div class="field__item">{{key}} :
+                      {% for items in specification %}
+                        <span>{{ (':' in items) ? '<br/>' ~ items ~ ''  : '' ~ items ~ '<br/>' }}</span>
+                      {% endfor %}
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              {% endautoescape  %}
             </div>
           </section>
 
