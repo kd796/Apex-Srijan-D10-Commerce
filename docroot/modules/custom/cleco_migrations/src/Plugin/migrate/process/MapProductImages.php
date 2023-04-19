@@ -85,8 +85,7 @@ class MapProductImages extends ProcessPluginBase implements ContainerFactoryPlug
       }
       $processed_list[$id] = 1;
       if (!isset($migrated_ids[$id])) {
-        $message = "\nSyntax: time drush mim cleco_product_media  --uri=clecotools  --idlist='" . $id . "'\n";
-        $message .= "Missing mapping for Product Image $id";
+        $message = "Missing Product Image:: Asset ID: $id";
         $this->logMessage($this->configuration['notification_logfile'], $message);
         continue;
       }
@@ -106,8 +105,7 @@ class MapProductImages extends ProcessPluginBase implements ContainerFactoryPlug
       }
       $processed_list[$id] = 1;
       if (!isset($migrated_ids[$id])) {
-        $message = "\nSyntax: time drush mim cleco_product_media  --uri=clecotools  --idlist='" . $id . "'\n";
-        $message .= "Missing mapping for Product Image $id";
+        $message = "Missing Product Image:: Asset ID: $id";
         $this->logMessage($this->configuration['notification_logfile'], $message);
         continue;
       }
