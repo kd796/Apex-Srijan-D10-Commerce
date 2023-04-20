@@ -1,0 +1,20 @@
+uuid: 39edaa1d-b53f-47f9-a39c-8508dc254622
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_employee_type
+field_name: field_employee_type
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

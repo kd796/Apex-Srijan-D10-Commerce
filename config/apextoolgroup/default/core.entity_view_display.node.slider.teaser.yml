@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.slider.body
     - field.field.node.slider.field_banner_image
     - field.field.node.slider.field_slider_link
     - node.type.slider
@@ -20,6 +21,7 @@ content:
     weight: 100
     region: content
 hidden:
+  body: true
   field_banner_image: true
   field_slider_link: true
   langcode: true

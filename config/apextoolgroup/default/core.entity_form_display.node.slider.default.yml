@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.slider.body
     - field.field.node.slider.field_banner_image
     - field.field.node.slider.field_slider_link
     - node.type.slider
@@ -10,11 +11,22 @@ dependencies:
     - link
     - media_library
     - path
+    - text
 id: node.slider.default
 targetEntityType: node
 bundle: slider
 mode: default
 content:
+  body:
+    type: text_textarea_with_summary
+    weight: 27
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
   created:
     type: datetime_timestamp
     weight: 3
