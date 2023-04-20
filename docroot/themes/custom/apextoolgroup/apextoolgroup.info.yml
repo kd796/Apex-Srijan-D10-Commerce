@@ -1,0 +1,32 @@
+name: Apex Tool Group
+type: theme
+base theme: classy
+description: A D9 theme for Apex Tool Group Site.
+package: ATG
+#core: 8.x
+core_version_requirement: ^8 || ^9
+logo: images/logo.png
+screenshot: apextoolgroup.png
+
+libraries:
+  - apextoolgroup/global
+
+libraries-override:
+  # Replace an asset with another.
+  we_megamenu/form.we-mega-menu-frontend:
+    js:
+     assets/js/we_mobile_menu.js: js/megamenu.js
+
+regions:
+  logo: 'Site Logo'
+  header: 'Header'
+  search: 'Search'
+  pre_content: 'Pre-content'
+  content: Content
+  post_content: 'Post-content'
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  footer_first: 'Footer: First'
+  footer_second: 'Footer: Second'
+  footer_third: 'Footer: Third'
+  disabled: 'Disabled'
