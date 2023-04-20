@@ -7,14 +7,50 @@
   display: none;
 }
 
+#sortable li {
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 1.5;
+}
+
+#sortable li section {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#sortable div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+#sortable input {
+  width: calc(100% - 200px);
+}
+
+table.sel-ade-access th {
+  text-align: left;
+}
+
+table.sel-ade-access p {
+  text-align: right;
+  width: calc(100% - 200px);
+}
+
 @media only screen and (max-width: 1024px) {
   .contain {
     width: 100% !important;
     min-width: 100% !important;
   }
+
   .sel-hd {
     padding: 1em;
   }
+
   .sel-form {
     padding: 1em;
   }
@@ -34,15 +70,58 @@
   .grid-6 {
     margin-bottom: 1em;
   }
+
   .sel-ade .grid-12 .sel-btn {
     padding-left: 1em;
     padding-right: 1em;
   }
+
   .button:not(.button--simple):not(.button--small) {
     display: flex;
     min-width: 100%;
     align-items: center;
     justify-content: center;
     margin: auto;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  #sortable li {
+    font-size: 13px;
+  }
+
+  #sortable input {
+    width: calc(100% - 14px);
+  }
+
+  table.sel-ade-access th {
+    text-align: left;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  table.sel-ade-access p {
+    width: 100%;
+    text-align: left;
+    position: static;
+    margin: 16px 0 0;
+  }
+
+  div.sel-right {
+    width: 100%;
+    margin: 16px 0 0;
+  }
+
+  .sel-right .sel-right-fields {
+    flex-wrap: wrap;
+  }
+
+  .sel-right .sel-right-fields>input {
+    margin-bottom: 16px;
+  }
+
+  .sel-right .sel-right-fields>input,
+  .sel-right .sel-right-fields>select {
+    flex-basis: 100%;
   }
 }
