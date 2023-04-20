@@ -7,6 +7,8 @@ dependencies:
     - field.field.node.employee_profile.field_employee_designation
     - field.field.node.employee_profile.field_employee_photo
     - field.field.node.employee_profile.field_employee_type
+    - field.field.node.employee_profile.field_mail_address
+    - field.field.node.employee_profile.field_phone
     - field.field.node.employee_profile.field_short_description
     - node.type.employee_profile
   module:
@@ -48,6 +50,20 @@ content:
       link: true
     third_party_settings: {  }
     weight: 105
+    region: content
+  field_mail_address:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_phone:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 107
     region: content
   field_short_description:
     type: text_default
