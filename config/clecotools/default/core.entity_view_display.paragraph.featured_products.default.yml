@@ -3,19 +3,22 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.featured_products.field_featured_products_list
+    - field.field.paragraph.featured_products.field_featured_product
     - field.field.paragraph.featured_products.field_title
     - paragraphs.paragraphs_type.featured_products
+  module:
+    - entity_reference_revisions
 id: paragraph.featured_products.default
 targetEntityType: paragraph
 bundle: featured_products
 mode: default
 content:
-  field_featured_products_list:
-    type: entity_reference_label
+  field_featured_product:
+    type: entity_reference_revisions_entity_view
     label: above
     settings:
-      link: true
+      view_mode: default
+      link: ''
     third_party_settings: {  }
     weight: 1
     region: content

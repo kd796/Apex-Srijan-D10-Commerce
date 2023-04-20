@@ -25,7 +25,7 @@ class HandDrillingCountersinkingAndSpotfacingConfiguration implements Comparison
       ->forKey('values.input_style');
     $definition->addNumericColumn('Shank')
       ->forImperialKey('values.shank_in', 'in')
-      ->forMetricKey('values.shank_mm', 'mm');
+      ->forMetricKey('values.shank_mm_mmt', 'mm');
     $definition->addColumn('Cutter Thread')
       ->forKey('values.cutter_thread');
     $definition->addNumericColumn('Stroke')
