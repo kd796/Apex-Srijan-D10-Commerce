@@ -1,7 +1,5 @@
 <?php
-// error_reporting(E_ALL);
-// ini_set('display_errors', '1');
-// ini_set("register_globals", 0);
+
 use \Drupal\Core\File\FileSystemInterface;
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
