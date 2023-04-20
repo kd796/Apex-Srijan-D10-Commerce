@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "251bb54e465a6bc97d22a10e806255c6",
+    "content-hash": "d39df68197737589136770f5179b6887",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -8092,6 +8092,67 @@
             }
         },
         {
+            "name": "drupal/imperva_cache_purger",
+            "version": "1.0.0-alpha1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/imperva_cache_purger.git",
+                "reference": "1.0.0-alpha1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/imperva_cache_purger-1.0.0-alpha1.zip",
+                "reference": "1.0.0-alpha1",
+                "shasum": "c55bfbf376659733b43f322072d6b7b66db678e4"
+            },
+            "require": {
+                "drupal/core": "^9",
+                "drupal/purge": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.0-alpha1",
+                    "datestamp": "1664458404",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "alexanderdross",
+                    "homepage": "https://www.drupal.org/user/3575214"
+                },
+                {
+                    "name": "D34dMan",
+                    "homepage": "https://www.drupal.org/user/751698"
+                },
+                {
+                    "name": "mlnmln",
+                    "homepage": "https://www.drupal.org/user/3372590"
+                },
+                {
+                    "name": "muschpusch",
+                    "homepage": "https://www.drupal.org/user/257634"
+                },
+                {
+                    "name": "stmh",
+                    "homepage": "https://www.drupal.org/user/35538"
+                }
+            ],
+            "description": "Integration IMPERVA cache with module purge.",
+            "homepage": "https://www.drupal.org/project/imperva_cache_purger",
+            "support": {
+                "source": "https://git.drupalcode.org/project/imperva_cache_purger"
+            }
+        },
+        {
             "name": "drupal/inline_entity_form",
             "version": "1.0.0-rc14",
             "source": {
@@ -10011,6 +10072,71 @@
             "homepage": "https://www.drupal.org/project/paragraphs_features",
             "support": {
                 "source": "https://git.drupalcode.org/project/paragraphs_features"
+            }
+        },
+        {
+            "name": "drupal/password_policy",
+            "version": "4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/password_policy.git",
+                "reference": "4.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/password_policy-4.0.0.zip",
+                "reference": "4.0.0",
+                "shasum": "ed55a1441bc7fad0dcb0aea7d2bfecc88a156c83"
+            },
+            "require": {
+                "drupal/core": "^9.1 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "4.0.0",
+                    "datestamp": "1668191689",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "AohRveTPV",
+                    "homepage": "https://www.drupal.org/user/2760115"
+                },
+                {
+                    "name": "deekayen",
+                    "homepage": "https://www.drupal.org/user/972"
+                },
+                {
+                    "name": "miglius",
+                    "homepage": "https://www.drupal.org/user/18741"
+                },
+                {
+                    "name": "nerdstein",
+                    "homepage": "https://www.drupal.org/user/1557710"
+                },
+                {
+                    "name": "paulocs",
+                    "homepage": "https://www.drupal.org/user/3640109"
+                },
+                {
+                    "name": "shrop",
+                    "homepage": "https://www.drupal.org/user/14767"
+                }
+            ],
+            "description": "Sets up constraints and expiration of passwords.",
+            "homepage": "https://www.drupal.org/project/password_policy",
+            "support": {
+                "source": "https://git.drupalcode.org/project/password_policy",
+                "issues": "https://www.drupal.org/project/issues/password_policy"
             }
         },
         {
@@ -24355,6 +24481,7 @@
         "drupal/imageapi_optimize": 10,
         "drupal/imageapi_optimize_resmushit": 10,
         "drupal/imageapi_optimize_webp": 10,
+        "drupal/imperva_cache_purger": 15,
         "drupal/inline_entity_form": 5,
         "drupal/layout_paragraphs": 10,
         "drupal/linkit": 10,
