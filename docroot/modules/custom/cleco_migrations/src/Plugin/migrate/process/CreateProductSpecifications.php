@@ -211,10 +211,16 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
       $migration_source_row_status = $this->getMigratedTaxonomyTidStatus($hashKey, $migration_id);
     }
 
-    // Get attribute key from predefined lust.
+    // Get attribute key from predefined list.
     $attribute_key = $this->getAttributeKey($parent_id);
+
     if (empty($attribute_key)) {
       $attribute_key = $this->constructAttributeKey($parent_id, $unit);
+    }
+
+    // Exceptional case for ATT662382 and unit l/s.
+    if ($parent_id == 'ATT662382' && $unit == "l/s") {
+      $attribute_key = "air_consumption_at_free_speed_scfm__s";
     }
 
     if (!empty($tid)) {
