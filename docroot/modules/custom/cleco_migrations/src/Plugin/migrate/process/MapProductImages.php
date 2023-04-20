@@ -69,12 +69,17 @@ class MapProductImages extends ProcessPluginBase implements ContainerFactoryPlug
       $this->configuration['notification_logfile'] = $this->getDefaultLogfile();
     }
 
+    $skip_primary_list = $this->configuration['skip_primary_list'] ?? 0;
+
     $list = [];
     $processed_list = [];
     $migrated_ids = [];
 
     // Process Media at Product SKU GROUP level.
     $asset_crossreference = $value->xpath('parent::Product/AssetCrossReference');
+    if ($skip_primary_list) {
+      $this->processSkipList($processed_list, $asset_crossreference);
+    }
     $asset_list = $this->getImageList($asset_crossreference);
     if (!empty($asset_list)) {
       $migrated_ids = $this->getAllMigratedMapId($asset_list, $this->configuration['migration_instance']);
@@ -94,6 +99,9 @@ class MapProductImages extends ProcessPluginBase implements ContainerFactoryPlug
 
     // Process media at SKU level.
     $sku_asset_crossreference = $value->xpath('parent::Product/Product/AssetCrossReference');
+    if ($skip_primary_list) {
+      $this->processSkipList($processed_list, $sku_asset_crossreference);
+    }
     $asset_list = $this->getImageList($sku_asset_crossreference);
 
     if (!empty($asset_list)) {
@@ -111,8 +119,26 @@ class MapProductImages extends ProcessPluginBase implements ContainerFactoryPlug
       }
       $list[] = ['target_id' => $migrated_ids[$id]];
     }
-
     return $list;
+  }
+
+  /**
+   * Add skip asset type in the list.
+   *
+   * @param array $processed_list
+   *   Skip item list.
+   * @param mixed $asset_crossreference
+   *   Asset data.
+   */
+  public function processSkipList(array &$processed_list, $asset_crossreference) {
+    $skip_list = ['Primary Image'];
+    foreach ($asset_crossreference as $child) {
+      $id = (string) $child->attributes()->AssetID;
+      $type = (string) $child->attributes()->Type;
+      if (in_array($type, $skip_list)) {
+        $processed_list[$id] = 1;
+      }
+    }
   }
 
 }

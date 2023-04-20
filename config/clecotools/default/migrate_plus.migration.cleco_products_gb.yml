@@ -1,9 +1,7 @@
-uuid: 9dfa5513-a4d5-4429-9045-b86fdfaa2157
+uuid: 58cb6186-a961-43fd-b759-95515798b5bf
 langcode: en
 status: true
 dependencies: {  }
-_core:
-  default_config_hash: BBdoCcZcTlSOHrf-3jkMfBKjFmqnQ7lQpYD8PAEekIM
 id: cleco_products_gb
 class: null
 field_plugin_method: null
@@ -167,6 +165,7 @@ process:
     plugin: cleco_map_product_images
     source: remote_product_primary_image
     migration_instance: cleco_product_media_gb
+    skip_primary_list: 1
     asset_type:
       - 'Beauty-Glamour Image'
       - 'Cutaway Image'
