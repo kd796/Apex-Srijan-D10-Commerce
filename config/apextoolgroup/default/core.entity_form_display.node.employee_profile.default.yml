@@ -1,25 +1,26 @@
-uuid: 0bd525f0-15e3-4f05-a94d-475648516c9f
+uuid: 5b0c469d-2524-4bf4-bbd6-3eb3b0ceb456
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.slider.body
-    - field.field.node.slider.field_banner_image
-    - field.field.node.slider.field_slider_link
-    - node.type.slider
+    - field.field.node.employee_profile.body
+    - field.field.node.employee_profile.field_employee_designation
+    - field.field.node.employee_profile.field_employee_photo
+    - field.field.node.employee_profile.field_employee_type
+    - field.field.node.employee_profile.field_short_description
+    - node.type.employee_profile
   module:
-    - link
     - media_library
     - path
     - text
-id: node.slider.default
+id: node.employee_profile.default
 targetEntityType: node
-bundle: slider
+bundle: employee_profile
 mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 27
+    weight: 121
     region: content
     settings:
       rows: 9
@@ -29,62 +30,82 @@ content:
     third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 3
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_banner_image:
+  field_employee_designation:
+    type: entity_reference_autocomplete
+    weight: 124
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_employee_photo:
     type: media_library_widget
-    weight: 9
+    weight: 122
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
-  field_slider_link:
-    type: link_default
-    weight: 26
+  field_employee_type:
+    type: entity_reference_autocomplete
+    weight: 125
     region: content
     settings:
-      placeholder_url: ''
-      placeholder_title: ''
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_short_description:
+    type: text_textarea
+    weight: 123
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 1
+    weight: 2
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   path:
     type: path
-    weight: 6
+    weight: 30
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 4
+    weight: 15
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 8
+    weight: 120
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 5
+    weight: 16
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 0
+    weight: -5
     region: content
     settings:
       size: 60
@@ -92,7 +113,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 2
+    weight: 5
     region: content
     settings:
       match_operator: CONTAINS
@@ -101,7 +122,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 7
+    weight: 50
     region: content
     settings: {  }
     third_party_settings: {  }

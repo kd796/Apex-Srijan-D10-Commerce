@@ -1,0 +1,29 @@
+uuid: 5a55ff0e-b61a-4f20-a8c3-a09ab4b24752
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_business_unit
+    - node.type.brands
+    - taxonomy.vocabulary.business_unit
+id: node.brands.field_business_unit
+field_name: field_business_unit
+entity_type: node
+bundle: brands
+label: 'Business Unit'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      business_unit: business_unit
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

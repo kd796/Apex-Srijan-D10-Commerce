@@ -1,28 +1,32 @@
-uuid: d4a892d2-6657-490f-8aa0-6a6da496d6ef
+uuid: 32c89030-de39-4212-b5da-e09dbbb9229b
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.slider.body
-    - field.field.node.slider.field_banner_image
-    - field.field.node.slider.field_slider_link
-    - node.type.slider
+    - field.field.node.faq.body
+    - node.type.faq
   module:
+    - text
     - user
-id: node.slider.teaser
+id: node.faq.teaser
 targetEntityType: node
-bundle: slider
+bundle: faq
 mode: teaser
 content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
   links:
     settings: {  }
     third_party_settings: {  }
     weight: 100
     region: content
 hidden:
-  body: true
-  field_banner_image: true
-  field_slider_link: true
   langcode: true
   search_api_excerpt: true
