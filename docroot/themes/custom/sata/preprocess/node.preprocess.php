@@ -103,11 +103,10 @@ function sata_preprocess_node__media_page__full(&$variables) {
   $variables['categories'] = $variables['content']['field_category'];
   $variables['tags'] = $variables['content']['field_tags'];
   $variables['mediaType'] = $node->get('field_media_type')->getValue()[0]['value'];
-
-  $variables['brazilmediaType'] = $node->field_media_type->getSetting('allowed_values')[$node->field_media_type->value]; 
-  $current_path = \Drupal::service('path.current')->getPath();
-  $variables['result'] = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
-
+  
+  //$variables['brazilmediaType'] = $node->field_media_type->getSetting('allowed_values')[$node->field_media_type->value]; 
+  $variables['host'] = \Drupal::request()->getSchemeAndHttpHost();
+  
   unset($variables['content']['field_category']);
   unset($variables['content']['field_link']);
   unset($variables['content']['field_tags']);
