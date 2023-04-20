@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.media.image.field_media_image
+    - field.field.media.image.field_meta_tags
     - media.type.image
   module:
     - blazy
+    - metatag
 _core:
   default_config_hash: PaZ7IN5ey3rp2fwE9LXGfW9Piq7oX4piH08FhUTI4lQ
 id: media.image.default
@@ -21,13 +23,10 @@ content:
       caption:
         title: '0'
         alt: '0'
-      icon: ''
       layout: ''
       view_mode: ''
       cache: 0
-      current_view_mode: default
       skin: ''
-      fx: ''
       style: ''
       background: false
       box_caption: ''
@@ -39,15 +38,25 @@ content:
       media_switch: ''
       ratio: ''
       thumbnail_style: ''
-      _uri: ''
-      breakpoints: {  }
-      sizes: ''
-      grid_header: ''
       grid: '0'
       grid_medium: '0'
       grid_small: '0'
+      breakpoints: {  }
+      current_view_mode: default
+      fx: ''
+      icon: ''
+      sizes: ''
+      grid_header: ''
+      _uri: ''
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_meta_tags:
+    type: metatag_empty_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
     region: content
 hidden:
   created: true

@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.media.search_teaser
     - field.field.media.video.field_media_video_file
+    - field.field.media.video.field_meta_tags
     - media.type.video
   module:
     - blazy
@@ -34,6 +35,7 @@ content:
     region: content
 hidden:
   created: true
+  field_meta_tags: true
   langcode: true
   name: true
   search_api_excerpt: true
