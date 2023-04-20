@@ -225,35 +225,59 @@ class ImportMetaData extends FormBase {
       $params = [];
       $url = Url::fromUri("internal:" . $path);
       $routed = $url->isRouted();
-      if ($routed) {
-        $params = $url->getRouteParameters();
-      }
-      if (!empty($params)) {
-        $entity_type = key($params);
-        $title = $data['meta_title'] ? $data['meta_title'] : '';
-        $desc = $data['meta_desc'] ? $data['meta_desc'] : '';
-        $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->load($params[$entity_type]);
+      $title = $data['meta_title'] ? $data['meta_title'] : '';
+      $desc = $data['meta_desc'] ? $data['meta_desc'] : '';
+
+      if ($path == '/media/oembed' && preg_match("/\b(&max_width|&max_height)\b/", $alias['query'])) {
+        $media_query = explode("&", $alias['query']);
+        $media_url = ltrim($media_query[0], "url=");
+        $media_path = urldecode($media_url);
+        $query = \Drupal::entityQuery('media')->condition('field_media_video_embed_field', $media_path);
+        $result = $query->execute();
+        $media = array_shift($result);
+        $media_entity = \Drupal::entityTypeManager()->getStorage('media')->load($media);
         $metatag_manager = \Drupal::service('metatag.manager');
-        $existing_md = $metatag_manager->tagsFromEntity($entity);
-        $default_md = $metatag_manager->tagsFromEntityWithDefaults($entity);
+        $existing_md = $metatag_manager->tagsFromEntity($media_entity);
+        $default_md = $metatag_manager->tagsFromEntityWithDefaults($media_entity);
         $_title = !empty($title) ? $title : ($existing_md['title'] ?? $default_md['title']);
         $_desc = !empty($desc) ? $desc : ($existing_md['description'] ?? $default_md['description']);
-        $entity->set('field_meta_tags', serialize([
+        $media_entity->set('field_meta_tags', serialize([
           'title' => $_title,
           'description' => $_desc,
         ]));
-        $entity->save();
-        $context['results'][] = $path;
+        $media_entity->save();
       }
       else {
-        $redirects = \Drupal::entityTypeManager()
-          ->getStorage('redirect')
-          ->loadByProperties(['redirect_source__path' => self::stripLeadingSlash($path)]);
-        if ($redirects) {
-          \Drupal::messenger()->addWarning("Not Processed (Has a Redirect): " . $path);
+        if ($routed) {
+          $params = $url->getRouteParameters();
+        }
+        if (!empty($params)) {
+          $entity_type = key($params);
+          $title = $data['meta_title'] ? $data['meta_title'] : '';
+          $desc = $data['meta_desc'] ? $data['meta_desc'] : '';
+          $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->load($params[$entity_type]);
+          $metatag_manager = \Drupal::service('metatag.manager');
+          $existing_md = $metatag_manager->tagsFromEntity($entity);
+          $default_md = $metatag_manager->tagsFromEntityWithDefaults($entity);
+          $_title = !empty($title) ? $title : ($existing_md['title'] ?? $default_md['title']);
+          $_desc = !empty($desc) ? $desc : ($existing_md['description'] ?? $default_md['description']);
+          $entity->set('field_meta_tags', serialize([
+            'title' => $_title,
+            'description' => $_desc,
+          ]));
+          $entity->save();
+          $context['results'][] = $path;
         }
         else {
-          \Drupal::messenger()->addWarning("Not Processed (Page not found): " . $path);
+          $redirects = \Drupal::entityTypeManager()
+            ->getStorage('redirect')
+            ->loadByProperties(['redirect_source__path' => self::stripLeadingSlash($path)]);
+          if ($redirects) {
+            \Drupal::messenger()->addWarning("Not Processed (Has a Redirect): " . $path);
+          }
+          else {
+            \Drupal::messenger()->addWarning("Not Processed (Page not found): " . $path);
+          }
         }
       }
     }
