@@ -73,13 +73,74 @@
     transition: height 0.25s ease-out;
 
     .dropdown {
+      & > ul.dropdown-menu {
+        position: unset;
+        display: none;
+      }
+
       &.active {
         & > ul.dropdown-menu {
-          position: unset;
+          display: block;
+        }
+
+        &::after {
+          transform: rotate(180deg);
         }
       }
     }
 
+    .dropdown-menu {
+      border-bottom: 0;
+
+      & > li {
+        margin: 0 20px;
+        padding: 10px 0;
+
+        & > ul.dropdown-menu {
+          position: unset;
+          display: none;
+        }
+
+        &.active {
+          & > ul {
+            display: block;
+          }
+        }
+      }
+
+      .dropdown-second {
+        &::after {
+          right: 0;
+          transform: unset;
+        }
+
+        &.active {
+          &::after {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      a {
+        &::before {
+          display: none;
+        }
+      }
+    }
+
+    a {
+      width: fit-content;
+    }
+
+    .nav-item {
+      margin: 0 20px;
+      padding: 15px 0;
+      border-bottom: solid 1px $neon-silver;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
   }
 
   &.show-menu {
@@ -88,9 +149,10 @@
     }
 
     .navbar-nav {
-      height: 300px;
+      height: 100vh;
       transition: height 0.25s ease-in;
       overflow: scroll;
+      border-bottom: solid 8px $celtic-blue;
     }
   }
 
@@ -142,7 +204,9 @@
         top: 0;
         height: 100%;
         @media only screen and (max-width: $tablet-max)  {
-          right: -25px;
+          right: 0;
+          height: 10px;
+          top: 20px;
         }
       }
     }
@@ -208,6 +272,9 @@
       &:hover {
         color: $celtic-blue;
       }
+      @media only screen and (max-width: $tablet-max) { 
+        padding: 0;
+      }
     }
 
     li {
@@ -221,30 +288,28 @@
     }
   }
 
-  .dropdown-item {
-    &.angle-right {
-      &::after {
-        content: '';
-        width: 10px;
-        height: 10px;
-        background: url('#{$icon-base-path}/arrow-down.svg') right bottom no-repeat;
-        transform: rotate(-90deg);
-        position: absolute;
-        right: 15px;
-        top: 14px;
-        display: block;
-      }
+  .dropdown-second {
+    &::after {
+      content: '';
+      width: 10px;
+      height: 10px;
+      background: url('#{$icon-base-path}/arrow-down.svg') right bottom no-repeat;
+      transform: rotate(-90deg);
+      position: absolute;
+      right: 15px;
+      top: 14px;
+      display: block;
     }
   }
 
-  @media only screen and (max-width: $tablet-max)  { 
+  @media only screen and (max-width: $tablet-max)  {
     flex-direction: column;
     position: absolute;
     width: 100%;
     left: 0;
     top: 68px;
     background-color: $white;
-    z-index: 2;
+    z-index: 8;
   }
 }
 
@@ -267,6 +332,10 @@
     height: 40px;
     background-size: contain;
     margin: 8px;
+    @media only screen and (max-width: $tablet)  {
+      width: 25px;
+      height: 25px;
+    }
   }
 }
 
@@ -284,10 +353,17 @@
   z-index: 2;
   overflow: hidden;
   transition: height 0.25s ease-out;
+  @media only screen and (max-width: $tablet-max)  {
+    top: 68px;
+  }
 
   &.show-search {
     height: 250px;
     transition: height 0.25s ease-in;
+
+    @media only screen and (max-width: $tablet)  {
+      height: 100px;
+    }
   }
 
   .close {
@@ -297,6 +373,10 @@
     height: 32px;
     background-size: contain;
     margin: 8px;
+    @media only screen and (max-width: $tablet)  {
+      width: 25px;
+      height: 25px;
+    }
   }
 
   .container {
@@ -312,6 +392,9 @@
     align-items: center;
     justify-content: center;
     border-bottom: solid 1px $black;
+    @media only screen and (max-width: $tablet)  {
+      height: 50px;
+    }
   }
 }
 
@@ -335,6 +418,9 @@
 
     &::placeholder {
       color: $aluminium-dark;
+    }
+    @media only screen and (max-width: $tablet)  {
+      font-size: 24px;
     }
   }
 

@@ -45,7 +45,7 @@
       {% if items %}
           {% for item in items %}
             {% if item.below %}
-              <li>
+              <li class="dropdown-second">
               <a class="dropdown-item angle-right drop-toggle" href="{{ item.url }}">{{ item.title }}</a>
                     <ul class="dropdown-menu">
                       {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
@@ -60,7 +60,7 @@
         {% if items %}
           {% for item in items %}
             {% if item.below %}
-              <li>
+              <li class="dropdown-third">
               <a class="dropdown-item angle-right drop-toggle" href="{{ item.url }}">{{ item.title }}</a>
                     <ul class="dropdown-menu">
                       {{ menus.menu_links(item.below, attributes, menu_level + 1) }}

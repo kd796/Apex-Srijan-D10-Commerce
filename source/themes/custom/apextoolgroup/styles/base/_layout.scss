@@ -26,19 +26,25 @@ body.user-logged-in {
   }
 }
 
+*, 
+::after,
+::before {
+  box-sizing: border-box;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
-  // margin-right: -15px;
-  // margin-left: -15px;
+  margin-right: -15px;
+  margin-left: -15px;
 
   & > [class^=col-],
   & > .col {
     position: relative;
     width: 100%;
     min-height: 1px;
-    // padding-right: 15px;
-    // padding-left: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
   }
 }
 
