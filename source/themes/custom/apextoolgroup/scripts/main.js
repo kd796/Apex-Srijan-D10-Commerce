@@ -31,10 +31,25 @@
       // Responsive menu.
       $(function () {
         // first level menu collapse.
-        const firstLevel_li = $('.navbar-nav > li.dropdown');
+        const firstLevel_li = $('.region-header .navbar-nav > li.dropdown');
         firstLevel_li.once('first-dropdown')
           .on('click', function (e) {
+            firstLevel_li.not(this).removeClass('active');
             $(this).toggleClass('active');
+            e.stopPropagation();
+          });
+        // second level menu collapse.
+        const secondLevel_li = $('.region-header .navbar-nav > li.dropdown > ul > li');
+        secondLevel_li.once('second-dropdown')
+          .on('click', function (e) {
+            secondLevel_li.not(this).removeClass('active');
+            $(this).toggleClass('active');
+            e.stopPropagation();
+          });
+        // print dropdown on anchor click.
+        const menu_a = $('.region-header .navbar-nav a');
+        menu_a.once('menu-link')
+          .on('click', function (e) {
             e.stopPropagation();
           });
       });
