@@ -69,6 +69,11 @@ class MapProductStatus extends ProcessPluginBase implements ContainerFactoryPlug
       $this->configuration['notification_logfile'] = $this->getDefaultLogfile();
     }
     $status = 1;
+    if (empty($value) or !is_object($value)) {
+      $status = 1;
+      return $status;
+    }
+
     $status_condition = $this->getActiveStatusCondition();
     foreach ($value->children() as $child) {
       $attribute_id = (string) $child->attributes()->AttributeID;

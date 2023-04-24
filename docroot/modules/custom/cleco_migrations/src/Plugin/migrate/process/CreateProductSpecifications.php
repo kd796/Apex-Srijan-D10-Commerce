@@ -92,9 +92,17 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
     $parent_id = NULL;
     $parent_term_id = NULL;
 
-    $parent_specification_value = $value->xpath("../../Values");
-    $process_data[0] = $value;
-    $process_data[1] = $parent_specification_value[0];
+    $parent_specification_value = [];
+    if (!empty($value) && is_object($value)) {
+      $parent_specification_value = $value->xpath("../../Values");
+    }
+
+    $process_data = [];
+    if (!empty($value) && is_object($value)) {
+      $process_data[0] = $value;
+    }
+
+    $process_data[1] = $parent_specification_value[0] ?? [];
     foreach ($process_data as $data_value) {
       if (!empty($data_value)) {
         foreach ($data_value->children() as $child) {
