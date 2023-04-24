@@ -34,7 +34,7 @@ class RemoveNonSpecifiedProducts {
       $nids = \Drupal::entityQuery('node')->condition('type', 'product')->execute();
 
       foreach ($nids as $key => $nid) {
-        $batchBuilder->addOperation('\Drupal\apex_common\RemoveNonSpecifiedProducts::DeleteObsoleteProducts', [
+        $batchBuilder->addOperation('\Drupal\apex_common\RemoveNonSpecifiedProducts::unpublishNonSpecfiedProducts', [
           $nid, $csv_data,
         ]);
         $batchId++;
@@ -107,8 +107,10 @@ class RemoveNonSpecifiedProducts {
    *   A node id.
    * @param array $csv_data
    *   An array containing the SKU's from csv file.
+   * @param array $context
+   *   Context data while batch is processing.
    */
-  public static function DeleteObsoleteProducts($nid, $csv_data, &$context) {
+  public static function unpublishNonSpecfiedProducts($nid, array $csv_data, array &$context) {
     // Crosscheck with the csv file,
     // if present do nothing
     // else un-publish the product.
