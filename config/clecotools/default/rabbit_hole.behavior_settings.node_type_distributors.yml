@@ -1,0 +1,14 @@
+uuid: f397a8ac-c837-430d-8291-698cb6a58509
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.distributors
+id: node_type_distributors
+entity_type_id: node_type
+entity_id: distributors
+action: page_redirect
+allow_override: 1
+redirect: '[site:url]'
+redirect_code: 301
+redirect_fallback_action: access_denied

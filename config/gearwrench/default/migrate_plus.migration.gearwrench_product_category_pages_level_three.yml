@@ -30,6 +30,10 @@ source:
       name: remote_name
       label: 'Classification Name'
       selector: Name
+    -
+      name: remote_meta_category
+      label: 'Product Categorys'
+      selector: MetaData
   ids:
     remote_id:
       type: string
@@ -88,6 +92,12 @@ process:
     process:
       vocabulary_id: vid
       target_id: target_id
+  field_meta_tags:
+    plugin: get_category_meta_value
+    source: remote_meta_category
+    allowed_attributes:
+      - ATT880759
+      - ATT880758
   category_facets_array:
     plugin: get_all_level_3_category_facets
     source: remote_id

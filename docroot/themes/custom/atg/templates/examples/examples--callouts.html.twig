@@ -1,0 +1,59 @@
+</section>
+</main>
+<div class="main">
+	{% include '@atg/patterns/callout.html.twig' with {
+		title: 'Cleco is a global leader in manufacturing and delivering world-class assembly solutions for over 120 years.',
+		action: 'Learn More About Cleco',
+		url: '#'
+	} %}
+
+	{% include '@atg/patterns/callout.html.twig' with {
+		subtitle: 'Let us show you how we can help you find production solutions.',
+		action: 'View Our Solutions',
+		url: '#',
+		centered: true,
+	} %}
+
+	<div class="callout callout--centered callout--bordered callout--icon">
+		<div class="callout-content">
+			<div class="callout-block callout-block--title">
+				<div class="callout-icon">
+					{{ svg('dist/img/icons/globe.svg') }}
+				</div>
+				<h3 class="callout-title">Join Our Email List</h3>
+			</div>
+			<div class="callout-block callout-block--body">
+				<form class="form-bar">
+					<div class="form-bar-item">
+						<label for="email" class="visually-hidden">Email</label>
+						<input type="email" name="email" id="email" size="30" placeholder="Enter your email">
+					</div>
+					<div class="form-bar-item">
+						<button type="submit" class="button button--primary button--simple">Subscribe</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% include '@atg/patterns/callout.html.twig' with {
+	title: 'Cleco is a global leader in manufacturing and delivering world-class assembly solutions for over 120 years.',
+	action: 'Learn More About Cleco',
+	url: '#',
+	inverse: true,
+	size: 'large',
+} %}
+
+{% include '@atg/patterns/callout.html.twig' with {
+	title: 'We’re here to help.',
+	body: 'Intelligently designed, easy to use and globally supported, our focus is anticipating and exceeding your needs.',
+	action: 'View Our Solutions',
+	url: '#',
+	inverse: true,
+	centered: true,
+	size: 'large',
+} %}
+
+<main class="main">
+	<section class="section">

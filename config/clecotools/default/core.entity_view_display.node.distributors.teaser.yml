@@ -1,0 +1,47 @@
+uuid: 78a3a735-c0d2-4539-ab1d-af2d04a4f726
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.distributors.feeds_item
+    - field.field.node.distributors.field_address
+    - field.field.node.distributors.field_email
+    - field.field.node.distributors.field_geographic_data
+    - field.field.node.distributors.field_logo
+    - field.field.node.distributors.field_phone
+    - field.field.node.distributors.field_products_offered
+    - field.field.node.distributors.field_term_distributor_level
+    - field.field.node.distributors.field_uuid
+    - field.field.node.distributors.field_website
+    - node.type.distributors
+  module:
+    - user
+id: node.distributors.teaser
+targetEntityType: node
+bundle: distributors
+mode: teaser
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  feeds_item: true
+  field_address: true
+  field_email: true
+  field_geographic_data: true
+  field_logo: true
+  field_phone: true
+  field_products_offered: true
+  field_term_distributor_level: true
+  field_uuid: true
+  field_website: true
+  langcode: true
+  search_api_excerpt: true

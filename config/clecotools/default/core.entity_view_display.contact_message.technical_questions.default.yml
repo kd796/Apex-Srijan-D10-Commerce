@@ -1,0 +1,102 @@
+uuid: 05f1fee9-6ab4-44a2-9973-d4c32e12f231
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.technical_questions
+    - field.field.contact_message.technical_questions.field_cleverreach_active_sites
+    - field.field.contact_message.technical_questions.field_cleverreach_recipient_list
+    - field.field.contact_message.technical_questions.field_form_company
+    - field.field.contact_message.technical_questions.field_form_email
+    - field.field.contact_message.technical_questions.field_form_first_name
+    - field.field.contact_message.technical_questions.field_form_last_name
+    - field.field.contact_message.technical_questions.field_form_message
+    - field.field.contact_message.technical_questions.field_form_phone
+    - field.field.contact_message.technical_questions.field_form_title
+    - field.field.contact_message.technical_questions.field_form_zip_code
+id: contact_message.technical_questions.default
+targetEntityType: contact_message
+bundle: technical_questions
+mode: default
+content:
+  field_cleverreach_active_sites:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_cleverreach_recipient_list:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_form_company:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_form_email:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_form_first_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_form_last_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_form_message:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_form_phone:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_form_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_form_zip_code:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden:
+  langcode: true
+  message: true

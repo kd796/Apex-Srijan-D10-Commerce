@@ -1,0 +1,127 @@
+uuid: 3374d471-c880-4562-a8ff-214bb5bf6a34
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_faqs
+    - paragraphs.paragraphs_type.faq
+    - paragraphs.paragraphs_type.faqs_group
+  module:
+    - entity_reference_revisions
+id: paragraph.faqs_group.field_faqs
+field_name: field_faqs
+entity_type: paragraph
+bundle: faqs_group
+label: FAQs
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      faq: faq
+    negate: 0
+    target_bundles_drag_drop:
+      basic_card:
+        weight: 34
+        enabled: false
+      basic_card_section:
+        weight: 35
+        enabled: false
+      callout_section_footer:
+        weight: 36
+        enabled: false
+      callout_section_page_end:
+        weight: 37
+        enabled: false
+      card:
+        weight: 38
+        enabled: false
+      content_bundle:
+        weight: 39
+        enabled: false
+      content_section:
+        weight: 40
+        enabled: false
+      content_section_simple:
+        weight: 41
+        enabled: false
+      cta:
+        weight: 42
+        enabled: false
+      excerpt:
+        weight: 43
+        enabled: false
+      faq:
+        weight: 44
+        enabled: true
+      faqs_group:
+        weight: 45
+        enabled: false
+      faqs_section:
+        weight: 46
+        enabled: false
+      featured_block:
+        weight: 47
+        enabled: false
+      featured_products:
+        weight: 48
+        enabled: false
+      featured_section:
+        weight: 49
+        enabled: false
+      find_a_distributor:
+        weight: 50
+        enabled: false
+      form_section:
+        weight: 51
+        enabled: false
+      from_library:
+        weight: 52
+        enabled: false
+      grid_item:
+        weight: 53
+        enabled: false
+      grid_section:
+        weight: 54
+        enabled: false
+      hero:
+        weight: 55
+        enabled: false
+      intro:
+        weight: 56
+        enabled: false
+      media_block:
+        weight: 57
+        enabled: false
+      media_image:
+        weight: 58
+        enabled: false
+      message_block:
+        weight: 59
+        enabled: false
+      product_categories:
+        weight: 62
+        enabled: false
+      product_search:
+        weight: 63
+        enabled: false
+      products_category_section:
+        weight: 60
+        enabled: false
+      products_section:
+        weight: 61
+        enabled: false
+      testimonials_block:
+        weight: 64
+        enabled: false
+      testimonials_section:
+        weight: 65
+        enabled: false
+      video_bundle:
+        weight: 66
+        enabled: false
+field_type: entity_reference_revisions

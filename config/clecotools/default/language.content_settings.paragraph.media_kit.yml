@@ -1,0 +1,18 @@
+uuid: 5114b79c-37c7-48c2-838c-306d4fbf1602
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.media_kit
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: paragraph.media_kit
+target_entity_type_id: paragraph
+target_bundle: media_kit
+default_langcode: site_default
+language_alterable: false

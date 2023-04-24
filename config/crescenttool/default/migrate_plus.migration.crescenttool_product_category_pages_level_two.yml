@@ -34,6 +34,10 @@ source:
       name: remote_classification
       label: Classification
       selector: ../Classification
+    -
+      name: remote_meta_category
+      label: 'Product Categorys'
+      selector: MetaData
   ids:
     remote_id:
       type: string
@@ -119,6 +123,7 @@ process:
       - W2_22491
       - W2_837717
       - W2_837718
+      - W2_880029
   type:
     plugin: default_value
     default_value: product_category
@@ -140,6 +145,12 @@ process:
     process:
       vocabulary_id: vid
       target_id: target_id
+  field_meta_tags:
+    plugin: get_category_meta_value
+    source: remote_meta_category
+    allowed_attributes:
+      - ATT880759
+      - ATT880758
   category_facets_array:
     plugin: get_all_level_2_category_facets
     source: remote_id
@@ -204,6 +215,7 @@ process:
       - W2_22491
       - W2_837717
       - W2_837718
+      - W2_880029
 destination:
   plugin: 'entity:node'
 migration_dependencies: {  }

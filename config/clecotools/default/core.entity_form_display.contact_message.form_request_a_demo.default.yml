@@ -1,0 +1,111 @@
+uuid: 5981a80f-143a-471f-8ac3-db1a1030f228
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.form_request_a_demo
+    - field.field.contact_message.form_request_a_demo.field_cleverreach_active_sites
+    - field.field.contact_message.form_request_a_demo.field_cleverreach_recipient_list
+    - field.field.contact_message.form_request_a_demo.field_form_company
+    - field.field.contact_message.form_request_a_demo.field_form_email
+    - field.field.contact_message.form_request_a_demo.field_form_first_name
+    - field.field.contact_message.form_request_a_demo.field_form_last_name
+    - field.field.contact_message.form_request_a_demo.field_form_message
+    - field.field.contact_message.form_request_a_demo.field_form_phone
+    - field.field.contact_message.form_request_a_demo.field_form_title
+    - field.field.contact_message.form_request_a_demo.field_form_zip_code
+  module:
+    - helpers
+id: contact_message.form_request_a_demo.default
+targetEntityType: contact_message
+bundle: form_request_a_demo
+mode: default
+content:
+  field_cleverreach_active_sites:
+    type: string_textfield
+    weight: 9
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_cleverreach_recipient_list:
+    type: string_textfield
+    weight: 8
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_form_company:
+    type: float_label_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_form_email:
+    type: float_label_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_form_first_name:
+    type: float_label_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_form_last_name:
+    type: float_label_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_form_message:
+    type: float_label_textarea
+    weight: 7
+    region: content
+    settings:
+      rows: '5'
+      placeholder: 'Tell us about the product or products you would like to see a demonstration of.'
+    third_party_settings: {  }
+  field_form_phone:
+    type: float_label_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_form_title:
+    type: float_label_textfield
+    weight: 6
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_form_zip_code:
+    type: float_label_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  copy: true
+  langcode: true
+  mail: true
+  message: true
+  name: true
+  preview: true
+  subject: true

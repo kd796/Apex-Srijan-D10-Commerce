@@ -1,0 +1,36 @@
+{# Old Code which shows dropdown of language selector to switch between different domain sites #}
+{# {% if content['#links']|length > 1 %}
+    <dropdown>
+    	<template slot="toggle">
+    		<span class="dropdown-toggle-icon">{{ svg('dist/img/icons/globe.svg') }}</span>
+    		<span class="dropdown-toggle-label">{{ current_language.name }}</span>
+    	</template>
+    	<template slot="menu">
+    		{{ title_prefix }}
+    		{% if label %}
+    			<h2{{ title_attributes.addClass('dropdown-menu-title') }}>{{ label }}</h2>
+    		{% endif %}
+    		{{ title_suffix }}
+
+    		{{ content }}
+    	</template>
+    </dropdown> 
+{% endif %} #}
+
+{# Updated code to show the list of all available domains instead of dropdown #}
+{% if content['#links']|length > 1 %}
+    <dropdown>
+        <template slot="toggle">
+            {{ content }}
+        </template>
+        {# <template slot="menu">
+            {{ title_prefix }}
+            {% if label %}
+                <h2{{ title_attributes.addClass('dropdown-menu-title') }}>{{ label }}</h2>
+            {% endif %}
+            {{ title_suffix }}
+
+            {{ content }}
+        </template> #}
+    </dropdown> 
+{% endif %}

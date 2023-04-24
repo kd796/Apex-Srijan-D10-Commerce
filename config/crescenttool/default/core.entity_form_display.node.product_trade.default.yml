@@ -5,10 +5,12 @@ dependencies:
   config:
     - field.field.node.product_trade.body
     - field.field.node.product_trade.field_media
+    - field.field.node.product_trade.field_meta_tags
     - field.field.node.product_trade.field_trade
     - node.type.product_trade
   module:
     - media_library
+    - metatag
     - path
     - text
 id: node.product_trade.default
@@ -38,6 +40,14 @@ content:
     region: content
     settings:
       media_types: {  }
+    third_party_settings: {  }
+  field_meta_tags:
+    type: metatag_firehose
+    weight: 26
+    region: content
+    settings:
+      sidebar: true
+      use_details: true
     third_party_settings: {  }
   field_trade:
     type: entity_reference_autocomplete

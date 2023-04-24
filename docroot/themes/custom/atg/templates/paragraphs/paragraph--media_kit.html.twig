@@ -1,0 +1,7 @@
+{% if content.field_media_kit_enable %}
+    {% set fileUrl = file_url(content.field_media_kit_asset[0]['#media'].field_media_file.entity.url.value) %}
+
+    {% if fileUrl %}
+        <a href="{{ fileUrl }}" class="button button--secondary button--outline button--small button--simple" target="_blank">Download Press Kit</a>
+    {% endif %}
+{% endif %}

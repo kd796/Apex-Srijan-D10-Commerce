@@ -1,0 +1,23 @@
+uuid: 88a3d874-be60-47ef-8702-c4f8dee68715
+langcode: en
+status: true
+dependencies: {  }
+id: remote_prod
+label: 'Remote - Prod'
+description: ''
+weight: 0
+folder: ../config/clecotools/remote_prod
+module:
+  acquia_connector: 0
+  captcha: 0
+  recaptcha: 0
+theme: {  }
+blacklist:
+  - purge.logger_channels
+graylist:
+  - purge.logger_channels
+  - system.performance
+  - purge.plugins
+  - purge_queuer_coretags.settings
+graylist_dependents: true
+graylist_skip_equal: true

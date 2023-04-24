@@ -1,0 +1,43 @@
+uuid: cdbf6860-0e93-4bea-aa52-8b24bab67597
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.service_support.field_alternating_media_blocks
+    - field.field.node.service_support.field_basic_card_section
+    - field.field.node.service_support.field_card
+    - field.field.node.service_support.field_faqs_section
+    - field.field.node.service_support.field_forms
+    - field.field.node.service_support.field_hero
+    - field.field.node.service_support.field_mailing_list_form
+    - field.field.node.service_support.field_seo
+    - node.type.service_support
+  module:
+    - user
+id: node.service_support.teaser
+targetEntityType: node
+bundle: service_support
+mode: teaser
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_alternating_media_blocks: true
+  field_basic_card_section: true
+  field_card: true
+  field_faqs_section: true
+  field_forms: true
+  field_hero: true
+  field_mailing_list_form: true
+  field_seo: true
+  langcode: true
+  search_api_excerpt: true

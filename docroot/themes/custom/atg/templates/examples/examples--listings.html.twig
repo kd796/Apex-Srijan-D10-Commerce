@@ -1,0 +1,74 @@
+<main class="main">
+  <section class="section">
+    <h1>Listings</h1>
+
+    <h2>Default</h2>
+
+    <ul class="listings">
+      {% for i in 1..16 %}
+        <li class="listings-item">
+          {% include '@atg/patterns/listing.html.twig' with {
+            url: '#',
+            title: 'Product #' ~ i,
+            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            image: 'https://placem.at/things?w=300&h=400&txt=&random=' ~ i,
+            flag: 'New'
+          } %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    <h2>Downloads Variation</h2>
+    <ul class="listings">
+      {% for i in 1..2 %}
+        <li class="listings-item">
+          {% include '@atg/patterns/listing.html.twig' with {
+            url: '#',
+            title: 'Product #' ~ i,
+            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            meta: 'Listing meta',
+            image: 'https://placem.at/things?w=300&h=400&txt=&random=' ~ i,
+            flag: 'New',
+            action: 'Download PDF',
+          } %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    <br>
+    <h2>Large</h2>
+
+    <ul class="listings">
+      {% for i in 1..4 %}
+        <li class="listings-item listings-item--large">
+          {% include '@atg/patterns/listing.html.twig' with {
+            url: '#',
+            size: 'large',
+            title: 'Large Product #' ~ i,
+            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            image: 'https://placem.at/things?w=300&h=400&txt=&random=' ~ i,
+            flag: 'New'
+          } %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    <h2>Peek Interaction</h2>
+
+    <ul class="listings">
+      {% for i in 1..4 %}
+        <li class="listings-item listings-item--large">
+          {% include '@atg/patterns/listing.html.twig' with {
+            url: '#',
+            size: 'large',
+            title: 'Peek #' ~ i,
+            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            image: 'https://placem.at/things?w=300&h=400&txt=&random=' ~ i,
+            flag: 'New',
+            peek: true,
+          } %}
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+</main>

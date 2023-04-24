@@ -1,0 +1,22 @@
+uuid: 29f170b8-f3ac-47a7-8408-e5cccf46e943
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.form_section
+id: paragraph.form_section.status
+field_name: status
+entity_type: paragraph
+bundle: form_section
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

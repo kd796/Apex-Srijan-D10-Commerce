@@ -1,0 +1,10 @@
+{% set title = content.field_title[0]['#context']['value'] %}
+{% set body = content.field_body_plain[0]['#context']['value'] %}
+{% set url = content.field_link[0]['#context']['value'] %}
+{% set image = content.field_media_src %}
+{% include '@atg/patterns/card.html.twig' with {
+	title: title,
+	body: body,
+	url: url,
+	image: image,
+} %}

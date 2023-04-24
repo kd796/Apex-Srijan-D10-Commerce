@@ -1,0 +1,33 @@
+uuid: b026f6e3-b46d-4103-a58d-b9a09f98c953
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main--de
+  module:
+    - language
+    - system
+  theme:
+    - cleco
+id: mainnavigationeuropede_2
+theme: cleco
+region: main_nav
+weight: -8
+provider: null
+plugin: 'system_menu_block:main--de'
+settings:
+  id: 'system_menu_block:main--de'
+  label: 'Main navigation (Europe / DE)'
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      de: de

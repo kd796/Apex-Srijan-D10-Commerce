@@ -1,0 +1,9 @@
+<div class="card-grid">
+	{% for column in items | batch(2) %}
+		<div class="card-grid-column">
+			{% for item in column %}
+				{{ item.content }}
+			{% endfor %}
+		</div>
+	{% endfor %}
+</div>

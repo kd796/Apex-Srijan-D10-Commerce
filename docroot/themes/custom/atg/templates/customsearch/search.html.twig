@@ -1,0 +1,36 @@
+<div class="strap strap--centered">
+	<div class="strap-content">
+		<div class="strap-block">
+			<header class="strap-header">
+				<h2 class="strap-title">{{ 'Search' | t }}</h2>
+			</header>
+
+			{{ search.search_form }}
+		</div>
+	</div>
+</div>
+<main class="main">
+	<div class="catalog">
+		<div class="catalog-sidebar">
+			<div class="catalog-filters"></div>
+		</div>
+		<div class="catalog-main">
+			<header class="catalog-header">
+				<div class="catalog-header-primary">
+					<h2 class="catalog-title">{{ total_results }} results for “{{ search_query }}”</h2>
+					<div class="catalog-sort">
+						<div class="form-bar">
+							<div class="form-bar-item">
+								<button type="button" class="catalog-filters-toggle button button--secondary button--outline button--simple">Filter</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+
+			{{ search.search_results }}
+
+			{{ search.pager }}
+		</div>
+	</div>
+</main>
