@@ -10,7 +10,7 @@ use Drupal\apex_common\RemoveNonSpecifiedProducts;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 /**
- * Class RedirectImportForm handles the form.
+ * Class RemoveNonSpecifiedProductsForm handles the form.
  *
  * @package Drupal\apex_common\Form
  */
@@ -66,7 +66,7 @@ class RemoveNonSpecifiedProductsForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form['csv'] = [
       '#type' => 'fieldset',
-      '#title' => $this->t('Import .csv file to import active products.'),
+      '#title' => $this->t('Remove Non-Specified Products.'),
     ];
     $validators = [
       'file_validate_extensions' => ['csv'],

@@ -5,7 +5,7 @@ namespace Drupal\apex_common;
 use Drupal\Core\Batch\BatchBuilder;
 
 /**
- * Class RedirectURLimporter handles the import of URL.
+ * Class RemoveNonSpecifiedProducts handles the import of URL.
  */
 class RemoveNonSpecifiedProducts {
 
@@ -41,7 +41,7 @@ class RemoveNonSpecifiedProducts {
       }
 
       $batchBuilder
-        ->setTitle('Importing active products...')
+        ->setTitle('Removing Non-Specified Products...')
         ->setFinishCallback([
           RemoveNonSpecifiedProducts::class, 'importFinished',
         ])
@@ -120,7 +120,7 @@ class RemoveNonSpecifiedProducts {
         if (!in_array($sku, $csv_data)) {
           $node->setUnpublished();
           $node->save();
-          // \Drupal::messenger()->addMessage(t('Unpublished @sku successfully.', ['@sku' => $sku]));
+          \Drupal::messenger()->addMessage(t('Unpublished @sku successfully.', ['@sku' => $sku]));
         }
         else {
           // DO nothing. Found in the active list.

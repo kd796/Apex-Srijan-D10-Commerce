@@ -16,10 +16,10 @@ apex_common.RedirectURLimport:
   requirements:
     _permission: 'administer site configuration'
 
-apex_common.ActiveProductsImport:
-  path: '/admin/config/development/active-products-import'
+apex_common.RemoveNonSpecifiedProductsForm:
+  path: '/admin/config/development/remove-non-specified-products'
   defaults:
     _form: '\Drupal\apex_common\Form\RemoveNonSpecifiedProductsForm'
-    _title: 'APEX Import Active Products'
+    _title: 'APEX Remove Non-Specified Products'
   requirements:
     _permission: 'administer site configuration'
