@@ -1,0 +1,22 @@
+uuid: 0ae7e766-b441-4e61-8604-4f126a1fe4ed
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - apextoolgroup
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: apextoolgroup_messages
+theme: apextoolgroup
+region: pre_content
+weight: -4
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }
