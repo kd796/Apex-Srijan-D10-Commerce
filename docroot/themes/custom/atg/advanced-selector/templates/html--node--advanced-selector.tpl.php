@@ -44,8 +44,6 @@
  */
 
 
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1');
     if (!isset($_COOKIE['userid'])) :
         setcookie('userid', $_SERVER['UNIQUE_ID'], time() + (60 * 60 * 6), '/', $_SERVER['SERVER_NAME']);
         header('Location: /tools/advanced-drilling/');

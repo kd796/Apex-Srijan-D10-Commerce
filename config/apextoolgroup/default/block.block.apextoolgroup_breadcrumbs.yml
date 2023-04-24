@@ -1,0 +1,22 @@
+uuid: 2aa69ce2-b944-4315-98a6-0a2d4a1798da
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - apextoolgroup
+_core:
+  default_config_hash: oXUb3JZR2WW5VOdw4HrhRicCsq51mCgLfRyvheG68ck
+id: apextoolgroup_breadcrumbs
+theme: apextoolgroup
+region: pre_content
+weight: -3
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }
