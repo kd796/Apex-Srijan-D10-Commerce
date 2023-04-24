@@ -239,7 +239,6 @@ trait MigrationHelperTrait {
       "ATT28174" => "min_center_tocenter_mm_mmt",
       "ATT664089" => "head_height_in",
       "ATT664082" => "head_height_mm",
-      "ATT662381" => "air_consumption_at_free_speed_scfm__s",
       "ATT726474" => "vibration_m_s",
       "ATT726475" => "vibration_k",
       "ATT665420" => "stroke_in",

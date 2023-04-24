@@ -87,83 +87,104 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
 
     $parent_migration_id = $this->configuration['parent_migration_id'] ?? '';
     $migration_id = $this->configuration['migration_id'] ?? '';
+    $processed_list = [];
 
     $parent_id = NULL;
     $parent_term_id = NULL;
 
-    if (!empty($value)) {
-      foreach ($value->children() as $child) {
-        $parent_label = NULL;
-        $parent_term_id = NULL;
-        $parent_id = (string) $child->attributes()->AttributeID;
-
-        // Skip if term is excluded.
-        $excludedAttribute = $this->validateExcludedAttribute($parent_id);
-        if ($excludedAttribute) {
-          continue;
-        }
-
-        $validAttribute = $this->validateAttributeName($parent_id);
-        if (!$validAttribute) {
-          continue;
-        }
-
-        if (!empty($parent_migration_id)) {
-          $parent_term_id = $this->getMigratedTaxonomyTid($parent_id, $parent_migration_id);
-        }
-
-        // If parent term is not present, skip the record.
-        if (empty($parent_term_id)) {
-          continue;
-        }
-        $parent_term = $this->entityTypeManager->getStorage('taxonomy_term')->load($parent_term_id);
-        $parent_name = $parent_term->label();
-        $parent_label = str_replace($parent_id . ' |~| ', '', $parent_name);
-        if (empty($parent_label)) {
-          continue;
-        }
-
-        $term = NULL;
-        $multi_value = 0;
-        $unit_id = '';
-        if ($child->getName() === 'MultiValue') {
-          $multi_value = 1;
-          if (count($child->children()) > 1) {
-            foreach ($child->children() as $item) {
-              $unit_id = (string) $item->attributes()->UnitID;
-              $term = $this->loadOrCreateChildTerm($parent_id, $parent_label, $parent_term_id, $item, $vid, $langcode, $migration_id, $multi_value, $unit_id);
-              if (is_object($term)) {
-                $values_array[] = [
-                  'vid' => $vid,
-                  'target_id' => $term->id(),
-                ];
-              }
-              continue;
-            }
-            $term = NULL;
-          }
-          else {
-            $unit_id = (string) $child->Value->attributes()->UnitID;
-            $term = $this->loadOrCreateChildTerm($parent_id, $parent_label, $parent_term_id, $child->Value, $vid, $langcode, $migration_id, $multi_value, $unit_id);
-          }
-        }
-        else {
-          $unit_id = (string) $child->attributes()->UnitID;
-          $term = $this->loadOrCreateChildTerm($parent_id, $parent_label, $parent_term_id, $child, $vid, $langcode, $migration_id, $multi_value, $unit_id);
-        }
-
-        if (is_object($term)) {
-          $values_array[] = [
-            'vid' => $vid,
-            'target_id' => $term->id(),
-          ];
-        }
-
-      }
-
-      $values_array = json_encode($values_array);
+    $parent_specification_value = [];
+    if (!empty($value) && is_object($value)) {
+      $parent_specification_value = $value->xpath("../../Values");
     }
 
+    $process_data = [];
+    if (!empty($value) && is_object($value)) {
+      $process_data[0] = $value;
+    }
+
+    $process_data[1] = $parent_specification_value[0] ?? [];
+    foreach ($process_data as $data_value) {
+      if (!empty($data_value)) {
+        foreach ($data_value->children() as $child) {
+          $parent_label = NULL;
+          $parent_term_id = NULL;
+          $parent_id = (string) $child->attributes()->AttributeID;
+
+          // Skip if term is excluded.
+          $excludedAttribute = $this->validateExcludedAttribute($parent_id);
+          if ($excludedAttribute) {
+            continue;
+          }
+
+          $validAttribute = $this->validateAttributeName($parent_id);
+          if (!$validAttribute) {
+            continue;
+          }
+
+          if (!empty($parent_migration_id)) {
+            $parent_term_id = $this->getMigratedTaxonomyTid($parent_id, $parent_migration_id);
+          }
+
+          // If parent term is not present, skip the record.
+          if (empty($parent_term_id)) {
+            continue;
+          }
+          $parent_term = $this->entityTypeManager->getStorage('taxonomy_term')->load($parent_term_id);
+          $parent_name = $parent_term->label();
+          $parent_label = str_replace($parent_id . ' |~| ', '', $parent_name);
+          if (empty($parent_label)) {
+            continue;
+          }
+
+          $term = NULL;
+          $multi_value = 0;
+          $unit_id = '';
+          if ($child->getName() === 'MultiValue') {
+            $multi_value = 1;
+            if (count($child->children()) > 1) {
+              foreach ($child->children() as $item) {
+                $unit_id = (string) $item->attributes()->UnitID;
+                $term = $this->loadOrCreateChildTerm($parent_id, $parent_label, $parent_term_id, $item, $vid, $langcode, $migration_id, $multi_value, $unit_id);
+                if (is_object($term)) {
+                  $term_id = $term->id();
+                  if (isset($processed_list[$term_id])) {
+                    continue;
+                  }
+                  $values_array[] = [
+                    'vid' => $vid,
+                    'target_id' => $term_id,
+                  ];
+                }
+                $processed_list[$term_id] = 1;
+                continue;
+              }
+              $term = NULL;
+            }
+            else {
+              $unit_id = (string) $child->Value->attributes()->UnitID;
+              $term = $this->loadOrCreateChildTerm($parent_id, $parent_label, $parent_term_id, $child->Value, $vid, $langcode, $migration_id, $multi_value, $unit_id);
+            }
+          }
+          else {
+            $unit_id = (string) $child->attributes()->UnitID;
+            $term = $this->loadOrCreateChildTerm($parent_id, $parent_label, $parent_term_id, $child, $vid, $langcode, $migration_id, $multi_value, $unit_id);
+          }
+          if (is_object($term)) {
+            $term_id = $term->id();
+            if (isset($processed_list[$term_id])) {
+              continue;
+            }
+            $values_array[] = [
+              'vid' => $vid,
+              'target_id' => $term_id,
+            ];
+            $processed_list[$term_id] = 1;
+          }
+
+        }
+      }
+    }
+    $values_array = json_encode($values_array);
     return json_decode($values_array, TRUE);
   }
 
