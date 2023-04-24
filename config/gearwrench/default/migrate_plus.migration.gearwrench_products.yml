@@ -114,6 +114,12 @@ source:
     remote_sku:
       type: string
 process:
+  status:
+    plugin: apex_determine_published_status
+    source: status
+    value:
+      - Z3
+      - Z4
   sales_org_status:
     plugin: skip_on_value
     not_equals: true
