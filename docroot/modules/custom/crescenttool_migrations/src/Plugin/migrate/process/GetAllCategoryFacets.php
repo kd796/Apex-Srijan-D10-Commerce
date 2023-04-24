@@ -81,7 +81,8 @@ class GetAllCategoryFacets extends ProcessPluginBase {
       'ATT496',
       'ATT804086',
       'ATT755881',
-      'ATT592'
+      'ATT592',
+      'ATT278'
     ],
     // Ratchets and Drive Tools - W1_22482.
     'W1_22482' => [
