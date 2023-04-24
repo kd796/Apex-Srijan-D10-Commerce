@@ -35,8 +35,6 @@
                 {% if not body %}
                   {% set body = item.body.value %}
                 {% endif %}
-                {# Hide body for now as its not used currently #}
-                {% set body = null %}
 
                 {% set url  = baseUrl ~ item.field_slug.value %}
                 {% if product_url_overrides[index] %}
