@@ -1,0 +1,79 @@
+{% set url = url | default(null) %}
+{% set target = target | default('_top') %}
+{% set title = title | default(null) %}
+{% set body = body | default(null) %}
+{% set meta = meta | default(null) %}
+{% set action = action | default(null) %}
+{% set flag = flag | default(null) %}
+{% set image = image | default(null) %}
+{% set size = size | default(null) %}
+{% set peek = peek | default(false) %}
+{% set transparent = transparent | default(true) %}
+{% set backgroundColor = backgroundColor | default('#f7f7f7') %}
+
+{% set hasAction = (action and url) %}
+{% set hasBody = (body or meta or hasAction) %}
+{% set tag = hasAction ? 'div' : 'a' %}
+
+{% set attributes = create_attribute({href: url, target: target, class: 'listing'}) %}
+{% if size %}
+  {% set attributes = attributes.addClass('listing--' ~ size) %}
+{% endif %}
+{% if peek %}
+  {% set attributes = attributes.addClass('listing--peek') %}
+{% endif %}
+
+<{{ tag }}{{ attributes }}>
+{% if flag %}
+  <span class="listing-flag">{{ flag }}</span>
+{% endif %}
+<div class="listing-image">
+  {% if image %}
+      {% if transparent %}
+         <transparent-image :background-color='"{{ backgroundColor }}"' width="300" height="400" src="{{ image }}" class="listing-image-img"></transparent-image>
+      {% else %}
+        <img src="{{ image }}" class="listing-image-img">
+      {% endif %}
+  {% else %}
+      <svg width="300" height="400" class="listing-image-img"></svg>
+  {% endif %}
+</div>
+<div class="listing-content">
+  {% if title %}
+    <h3 class="listing-title" {{ peek ? 'aria-hidden="true" role="presentation"' : '' }}>{{ title|raw }}</h3>
+  {% endif %}
+  {% if hasBody and peek is same as(false) %}
+    <div class="listing-body">
+      {% if body %}
+        <p>{{ body | raw | t }}</p>
+      {% endif %}
+      {% if meta %}
+        <p class="listing-meta">{{ meta }}</p>
+      {% endif %}
+      {% if hasAction %}
+        <a href="{{ url }}" class="listing-action">{{ action }}</a>
+      {% endif %}
+    </div>
+  {% endif %}
+  {% if peek is defined and peek is same as(true) %}
+    <div class="listing-overlay">
+      {% if title is defined %}
+        <h3 class="listing-title">{{ title }}</h3>
+      {% endif %}
+      {% if hasBody %}
+        <div class="listing-body">
+          {% if body %}
+            <p>{{ body | raw | t }}</p>
+          {% endif %}
+          {% if meta %}
+            <p class="listing-meta">{{ meta }}</p>
+          {% endif %}
+          {% if hasAction %}
+            <a href="{{ url }}" class="listing-action">{{ action }}</a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+</{{ tag }}>

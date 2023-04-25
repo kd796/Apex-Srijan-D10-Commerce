@@ -1,0 +1,12 @@
+<div class="section-header">
+	<div class="section-header-content">
+		{% if content.field_title %}
+			<h2 class="section-title">{{ content.field_title[0]['#context']['value'] | raw }}</h2>
+		{% endif %}
+		{% if content.field_body_basic %}
+			<div class="wysiwyg-content">
+				{{ content.field_body_basic | raw }}
+			</div>
+		{% endif %}
+	</div>
+</div>

@@ -1,0 +1,232 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Campbell Migrations module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+use Drupal\migrate\MigrateSkipRowException;
+use Drupal\migrate\Plugin\MigrateSourceInterface;
+use Drupal\migrate\Plugin\MigrationInterface;
+use Drupal\migrate\Row;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+
+/**
+ * Implements hook_migrate_prepare_row().
+ */
+function campbell_migrations_migrate_prepare_row(Row $row, MigrateSourceInterface $source, MigrationInterface $migration) {
+
+  if ($migration->id() === 'campbell_product_specifications') {
+    $attributes_to_include = [
+      'ATT159',
+      'ATT539',
+      'ForeignTradeCode',
+      'Set',
+      'ATT923',
+      'TradeSizeFractional',
+      'ATT326',
+      'ATT205',
+      'ATT200',
+      'ATT440',
+      'ATT146',
+      'ATT147',
+      'ATT439',
+      'ATT187',
+      'ATT457',
+      'ATT249',
+      'ATT250',
+      'ATT443',
+      'ATT748',
+      'ATT749',
+      'ATT750',
+      'ATT746',
+      'ATT751',
+      'ATT781',
+      'ATT780',
+      'ATT688',
+      'ATT774',
+      'ATT424',
+      'ATT379',
+      'ATT770',
+      'ATT345',
+      'ATT788',
+      'ATT182',
+      'ATT908',
+      'ATT364',
+      'ATT376',
+      'ATT447',
+      'ATT335',
+      'ATT454',
+      'ATT245',
+      'ATT753',
+      'ATT336',
+      'ATT752',
+      'ATT745',
+      'ATT400',
+      'ATT797',
+      'ATT786',
+      'ATT787',
+      'ATT783',
+      'ATT784',
+      'ATT782',
+      'MUSAICON',
+      'ATT247',
+      'ATT785',
+      'ATT140',
+      'ATT139',
+      'ATT214',
+      'ATT198',
+      'ATT168',
+      'ATT546',
+      'ATT743',
+      'ATT425',
+      'ATT362',
+      'ATT325',
+      'ATT219',
+      'ATT773',
+      'ATT288',
+      'ATT143',
+      'ATT772',
+      'ATT453',
+      'ATT764',
+      'ATT460',
+      'ATT137',
+      'ATT767',
+      'ATT766',
+      'ATT763',
+      'ATT315',
+      'ATT363',
+      'ATT138',
+      'ATT800',
+      'ATT799',
+      'ATT794',
+      'ATT792',
+      'ATT793',
+      'ATT274',
+      'ATT883',
+      'ATT775',
+      'ATT791',
+      'ATT856',
+      'ATT877',
+      'ATT878',
+      'ATT806',
+      'ATT801',
+      'ATT876',
+      'ATT758',
+      'ATT807',
+      'ATT808',
+      'ATT809',
+      'ATT811',
+      'ATT810',
+      'ATT805',
+      'ATT795',
+      'ATT802',
+      'ATT803',
+      'ATT804',
+      'ATT861',
+      'ATT217',
+      'ATT790',
+      'ATT859',
+      'ATT858',
+      'Quik-AlloySlingHooks',
+      'Quik-AlloySlingHookwithLatch',
+      'ATT874',
+      'ATT875',
+      'ATT863',
+      'ATT870',
+      'ATT871',
+      'ATT872',
+      'ATT873',
+      'ATT865',
+      'ATT916',
+      'ATT917',
+      'ATT867',
+      'ATT868',
+      'ATT869',
+      'ATT864',
+      'ATT862',
+      'ATT857',
+      'ATT855',
+      'ATT854',
+      'ATT853',
+      'ATT860',
+      'ATT817',
+      'ATT458',
+      'ATT459',
+      'ATT757',
+      'ATT789',
+      'ATT778',
+      'ATT777',
+      'ATT291',
+      'ATT776',
+      'ATT154',
+      'ATT155',
+      'ATT113',
+      'ATT222',
+      'ATT621',
+      'ATT756',
+      'ATT225',
+      'ATT754',
+      'ATT937',
+      'ATT442',
+      'ATT545',
+      'ATT515',
+      'ATT405',
+      'ATT734',
+      'ATT744',
+      'ATT212',
+      'ATT378',
+      'ATT395',
+      'ATT145',
+    ];
+
+    if (!in_array($row->getSource()['remote_term_id'], $attributes_to_include)) {
+      throw new MigrateSkipRowException('', TRUE);
+    }
+  }
+}
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function campbell_migrations_views_query_alter($view, QueryPluginBase $query) {
+  if ($view->id() !== 'taxonomy_menu') {
+    return;
+  }
+
+  $tableQueue = $query->getTableQueue();
+  if (isset($tableQueue['node__field_product_classifications'])) {
+    // Only select the first term reference from product_category content.
+    $join = &$tableQueue['node__field_product_classifications']['join'];
+    $join->extra[] = [
+      'field' => 'delta',
+      'value' => 0,
+      'numeric' => TRUE,
+    ];
+  }
+}
+
+/**
+ * Implements hook_views_pre_view().
+ */
+function campbell_migrations_views_pre_view($view, $display_id, &$args) {
+  if ($view->id() !== 'taxonomy_menu' || isset($args[0])) {
+    return;
+  }
+
+  // If no args set and term name is given as default, convert to tid.
+  $default = $view->display_handler->display['display_options']['arguments']['term_node_tid_depth']['default_argument_options']['argument'];
+  if (!$default || is_numeric($default)) {
+    return;
+  }
+
+  $term_query = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->getQuery();
+  $term = $term_query->condition('name', $default)->execute();
+  if (count($term)) {
+    $args = [reset($term)];
+  }
+}

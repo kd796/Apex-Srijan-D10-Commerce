@@ -1,0 +1,23 @@
+uuid: 18b95e85-8de2-4031-a038-140a8be6527c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_showed_on_listing_page
+    - node.type.multisite_featured
+id: node.multisite_featured.field_showed_on_listing_page
+field_name: field_showed_on_listing_page
+entity_type: node
+bundle: multisite_featured
+label: 'Showed on listing page?'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,14 @@
+uuid: 513ebabb-ae44-4062-861a-1fcdafa31432
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.card
+id: node_type_card
+entity_type_id: node_type
+entity_id: card
+action: page_redirect
+allow_override: 1
+redirect: '[site:url]'
+redirect_code: 301
+redirect_fallback_action: access_denied

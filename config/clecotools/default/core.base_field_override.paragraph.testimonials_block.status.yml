@@ -1,0 +1,22 @@
+uuid: 0a62c685-fa9c-48d7-9a28-b13472a3faa8
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.testimonials_block
+id: paragraph.testimonials_block.status
+field_name: status
+entity_type: paragraph
+bundle: testimonials_block
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

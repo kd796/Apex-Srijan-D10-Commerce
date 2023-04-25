@@ -1,0 +1,8 @@
+{% set url = fields.field_link.content|render|trim|striptags %}
+{% set icon_type = fields.field_icon_type.content|render|trim|striptags %}
+<div class="">
+	<a href="{{ url }}">
+		<span class="media-grid__icon {{ icon_type }}">&nbsp;</span>
+		{{ fields.field_display_name.content }}
+	</a>
+</div>

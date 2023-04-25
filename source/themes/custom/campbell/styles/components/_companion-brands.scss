@@ -1,0 +1,153 @@
+.companion-brands {
+  #wrapper {
+    .block-addtothis-apex-custom,
+    .block-page-title-block,
+    .node__content {
+      margin: 0 auto;
+      max-width: 1000px;
+      word-wrap: break-word;
+
+      @media only screen and (max-width: $tablet-max) {
+        padding: 0 20px;
+      }
+
+      .page-title {
+        margin: 15px 0 0;
+      }
+
+      .field--name-body {
+        margin: 18px 0 0;
+
+        p {
+          margin: 0 0 15px;
+        }
+
+        .left {
+          float: left;
+          width: 150px;
+          height: 63px;
+          display: flex;
+          margin: 25px 0;
+          align-items: center;
+
+          @media only screen and(max-width: $tablet) {
+            margin: 20px auto 0;
+            width: 100%;
+          }
+
+          img {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: auto;
+            display: block;
+
+            @media only screen and(max-width: $tablet) {
+              width: 150px;
+              margin: 0 auto;
+            }
+          }
+        }
+
+        .right {
+          margin: 0;
+          float: right;
+          color: $spanish-gray;
+          width: calc(100% - 170px);
+
+          @media only screen and(max-width: $tablet) {
+            width: 100%;
+          }
+
+          strong {
+            color: $light-black;
+          }
+        }
+      }
+    }
+  }
+
+  &__wrap {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 0 20px;
+    padding: 18px 0 0;
+  }
+
+  &__card {
+    padding: 0;
+    width: 305px;
+    height: 260px;
+    margin: 0 0 20px;
+    overflow: hidden;
+    position: relative;
+    background-position: 100%;
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-image: url('#{$image-base-path}/Crescent-rolloverNEW-4.3.19.png');
+
+    &:after {
+      top: 0;
+      left: 0;
+      right: 0;
+      content: '';
+      opacity: 0.5;
+      height: 100%;
+      display: block;
+      position: absolute;
+      background-image: linear-gradient(to top, #33CC66 0%, #33CC66 100%);
+    }
+
+    .link {
+      top: 0;
+      left: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: absolute;
+    }
+
+    &:hover {
+      &:after {
+        background-image: none;
+      }
+
+      .companion-brands__logo {
+        background-image: url('#{$image-base-path}/CrescentNEWOrange.png');
+      }
+    }
+  }
+
+  &__logo {
+    z-index: 1;
+    left: 24px;
+    width: 169px;
+    height: 34px;
+    bottom: 125px;
+    position: absolute;
+    text-align: center;
+    transition: all 0.5s ease;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-image: url('#{$image-base-path}/Crescent-New-WHITE.png');
+  }
+
+  &__caption {
+    bottom: 0;
+    z-index: 50;
+    width: 100%;
+    padding: 10px;
+    position: absolute;
+
+    .description,
+    .title {
+      color: $white;
+      font-size: 13px;
+      line-height: 1.5;
+      font-weight: 700;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+uuid: 46388cdc-2b18-4803-9559-9dbbdbec6e16
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: solutions_landing
+label: 'Solutions Landing'
+type: 'canonical_entities:node'
+pattern: '[node:title]'
+selection_criteria:
+  f869adfe-e14c-4eec-995c-78eb7625afbd:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: f869adfe-e14c-4eec-995c-78eb7625afbd
+    context_mapping:
+      node: node
+    bundles:
+      solutions_landing: solutions_landing
+selection_logic: and
+weight: 6
+relationships: {  }

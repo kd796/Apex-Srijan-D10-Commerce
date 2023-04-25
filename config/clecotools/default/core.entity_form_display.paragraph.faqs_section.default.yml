@@ -1,0 +1,43 @@
+uuid: 6e8bb77e-00f2-4b3b-8728-874e18baabad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.faqs_section.field_faqs_group
+    - field.field.paragraph.faqs_section.field_intro
+    - paragraphs.paragraphs_type.faqs_section
+  module:
+    - paragraphs
+id: paragraph.faqs_section.default
+targetEntityType: paragraph
+bundle: faqs_section
+mode: default
+content:
+  field_faqs_group:
+    type: entity_reference_paragraphs
+    weight: 1
+    region: content
+    settings:
+      title: 'FAQs Group'
+      title_plural: 'FAQs Group'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: faqs_group
+    third_party_settings: {  }
+  field_intro:
+    type: entity_reference_paragraphs
+    weight: 0
+    region: content
+    settings:
+      title: 'FAQs Section Intro'
+      title_plural: 'FAQs Section Intro'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: intro
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

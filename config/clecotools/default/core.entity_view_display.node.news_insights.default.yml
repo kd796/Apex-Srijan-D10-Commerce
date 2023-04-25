@@ -1,0 +1,88 @@
+uuid: f07b80d3-c2e3-4858-9caa-d98fdff845ad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.news_insights.body
+    - field.field.node.news_insights.field_attachments
+    - field.field.node.news_insights.field_image
+    - field.field.node.news_insights.field_mailing_list_form
+    - field.field.node.news_insights.field_subtitle
+    - field.field.node.news_insights.field_type
+    - field.field.node.news_insights.field_video_embed
+    - image.style.image_browser_thumbnail
+    - node.type.news_insights
+  module:
+    - pdfpreview
+    - text
+    - user
+    - video_embed_field
+id: node.news_insights.default
+targetEntityType: node
+bundle: news_insights
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_attachments:
+    type: pdfpreview
+    label: hidden
+    settings:
+      image_style: image_browser_thumbnail
+      image_link: file
+      tag: div
+      fallback_formatter: file_default
+      show_description: 0
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_subtitle:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_type:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_video_embed:
+    type: video_embed_field_video
+    label: hidden
+    settings:
+      autoplay: true
+      responsive: true
+      width: 854
+      height: 480
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_mailing_list_form: true
+  langcode: true
+  search_api_excerpt: true

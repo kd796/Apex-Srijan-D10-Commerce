@@ -1,0 +1,38 @@
+uuid: 2d1e5bb6-fcaf-4db6-8132-57dd570b9b96
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.brand_timeline.body
+    - field.field.node.brand_timeline.field_event_date
+    - field.field.node.brand_timeline.field_event_media_link
+    - field.field.node.brand_timeline.field_media
+    - node.type.brand_timeline
+  module:
+    - text
+    - user
+id: node.brand_timeline.teaser
+targetEntityType: node
+bundle: brand_timeline
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_event_date: true
+  field_event_media_link: true
+  field_media: true
+  langcode: true
+  search_api_excerpt: true

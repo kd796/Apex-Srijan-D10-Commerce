@@ -1,0 +1,24 @@
+uuid: 4cdb965c-6848-414c-97ef-cf37c22d6d7c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.product_categories.field_product_categories
+    - paragraphs.paragraphs_type.product_categories
+  module:
+    - dynamic_entity_reference
+id: paragraph.product_categories.default
+targetEntityType: paragraph
+bundle: product_categories
+mode: default
+content:
+  field_product_categories:
+    type: dynamic_entity_reference_options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true
