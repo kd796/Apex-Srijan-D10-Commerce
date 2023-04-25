@@ -1,0 +1,43 @@
+uuid: 971c6a23-770c-4485-bb32-bcc5b0c6e666
+langcode: en
+status: true
+dependencies:
+  module:
+    - image_effects
+name: simple_product
+label: 'Simple Product (500×500)'
+effects:
+  485ab095-f3fc-462a-b3d6-6d6809931af0:
+    uuid: 485ab095-f3fc-462a-b3d6-6d6809931af0
+    id: image_scale
+    weight: 1
+    data:
+      width: 500
+      height: 500
+      upscale: false
+  bf4bec57-6949-443c-b732-73413680504c:
+    uuid: bf4bec57-6949-443c-b732-73413680504c
+    id: image_effects_set_canvas
+    weight: 2
+    data:
+      canvas_size: exact
+      canvas_color: '#FFFFFFFF'
+      exact:
+        width: '500'
+        height: '500'
+        placement: center-center
+        x_offset: 0
+        y_offset: 0
+      relative:
+        left: 0
+        right: 0
+        top: 0
+        bottom: 0
+  a1acc5d7-a897-41fa-b473-2891302b0568:
+    uuid: a1acc5d7-a897-41fa-b473-2891302b0568
+    id: image_crop
+    weight: 3
+    data:
+      width: 500
+      height: 500
+      anchor: center-center
