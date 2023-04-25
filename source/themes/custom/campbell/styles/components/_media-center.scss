@@ -1,0 +1,58 @@
+/****** Media Center Page ******/
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  column-gap: 6px;
+  margin: 30px 0;
+  @media only screen and (min-width: $tablet) and (max-width: $tablet-max)  {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media only screen and (max-width: $tablet) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  &__item {
+    margin-bottom: 6px;
+
+    a {
+      height: 245px;
+      text-decoration: none;
+      display: block;
+      padding: 50px 15px 15px;
+      background: url('#{$image-base-path}/mediacenter_block_back.png') left top repeat-x $lighter-gray;
+      color: $white;
+      font-weight: bold;
+      font-size: 18.35px;
+      letter-spacing: -0.2px;
+      @media only screen and (max-width: $tablet) {
+        height: 280px;
+      }
+
+      &:hover {
+        background: url('#{$image-base-path}/mediacenter_block_back_hover.png') left top repeat-x $dark-spring-green;
+      }
+    }
+  }
+
+  &__icon {
+    background: url('#{$image-base-path}/mediacenter_icons.png') left -250px no-repeat;
+    width: 57px;
+    height: 36px;
+    display: block;
+    margin-bottom: 15px;
+
+    &.news-icon {
+      background: url('#{$image-base-path}/mediacenter_icons.png') left top no-repeat;
+    }
+
+    &.video-icon {
+      background: url('#{$image-base-path}/mediacenter_icons.png') left -194px no-repeat;
+    }
+
+    &.news-release-icon {
+      background: url('#{$image-base-path}/mediacenter_icons.png') left -67px no-repeat;
+    }
+  }
+}

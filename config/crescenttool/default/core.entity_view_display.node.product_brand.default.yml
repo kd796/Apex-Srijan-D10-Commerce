@@ -6,9 +6,11 @@ dependencies:
     - field.field.node.product_brand.body
     - field.field.node.product_brand.field_link
     - field.field.node.product_brand.field_media
+    - field.field.node.product_brand.field_meta_tags
     - node.type.product_brand
   module:
     - link
+    - metatag
     - user
 id: node.product_brand.default
 targetEntityType: node
@@ -26,6 +28,13 @@ content:
       target: ''
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_meta_tags:
+    type: metatag_empty_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
     region: content
 hidden:
   body: true

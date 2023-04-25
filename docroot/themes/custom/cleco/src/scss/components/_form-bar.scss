@@ -1,0 +1,56 @@
+.form-bar {
+  max-width: 100%;
+}
+
+.form-bar,
+.form-bar-item {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.form-bar--centered {
+  justify-content: center;
+}
+
+.form-bar--wrap {
+  flex-wrap: wrap;
+}
+
+.form-bar-item:not(:last-child) {
+  margin-right: -1px;
+}
+
+.form-bar-item {
+  flex: 0 1 auto;
+  max-width: 30rem;
+
+  input {
+    width: 100%;
+  }
+
+  input:focus {
+    z-index: 1;
+  }
+
+  &--grow {
+    flex: 1 1 auto;
+  }
+
+  // Drupal form markup
+  .form-item {
+    margin: 0;
+
+    label {
+      display: none;
+    }
+  }
+}
+
+.form-bar--product-search {
+  justify-content: center;
+
+  .form-bar-item:first-child {
+    width: 100%;
+    max-width: 16.6rem;
+  }
+}

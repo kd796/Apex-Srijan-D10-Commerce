@@ -1,0 +1,3 @@
+{% for index, item in items %}
+	{{ pass_attributes(item.content, { index: index, notched: index == 0 }) }}
+{% endfor %}

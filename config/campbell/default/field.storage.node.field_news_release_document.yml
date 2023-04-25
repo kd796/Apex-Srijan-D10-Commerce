@@ -1,0 +1,20 @@
+uuid: 471c52b2-f0e1-4454-842a-519e1168a25a
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+    - node
+id: node.field_news_release_document
+field_name: field_news_release_document
+entity_type: node
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

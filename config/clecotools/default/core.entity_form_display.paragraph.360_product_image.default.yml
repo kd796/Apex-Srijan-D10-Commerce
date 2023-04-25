@@ -1,0 +1,43 @@
+uuid: 14183646-a90f-4412-9ff2-cb3a7350d335
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.360_product_image.field_360_loading_image
+    - field.field.paragraph.360_product_image.field_360_product_image
+    - field.field.paragraph.360_product_image.field_360_product_image_frames
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.360_product_image
+  module:
+    - image
+id: paragraph.360_product_image.default
+targetEntityType: paragraph
+bundle: 360_product_image
+mode: default
+content:
+  field_360_loading_image:
+    type: image_image
+    weight: 0
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_360_product_image:
+    type: image_image
+    weight: 1
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_360_product_image_frames:
+    type: number
+    weight: 2
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

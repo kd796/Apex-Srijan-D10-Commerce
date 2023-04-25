@@ -1,0 +1,15 @@
+{% set testimonials = testimonials | default(null) %}
+{% if testimonials is not null %}
+  <testimonials>
+    {% for testimonial in testimonials %}
+        <div class="testimonials-item">
+            <span class="testimonial-counter">{{ '%02d' | format(loop.index) }}</span>
+            <blockquote class="testimonial-quote">
+                <p>{{ testimonial.quote }}</p>
+            </blockquote>
+            <cite class="testimonial-citation">{{ testimonial.citation | raw }}</cite>
+        </div>
+    {% endfor %}
+  </testimonials>
+
+{% endif %}

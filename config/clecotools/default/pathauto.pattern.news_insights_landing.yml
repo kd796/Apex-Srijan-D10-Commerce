@@ -1,0 +1,24 @@
+uuid: 1bc53ff5-2fbc-4b0e-8c7d-54990d678377
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: news_insights_landing
+label: 'News & Insights Landing'
+type: 'canonical_entities:node'
+pattern: '[node:title]'
+selection_criteria:
+  fdc2ea40-f84d-47d9-a691-500edb048337:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: fdc2ea40-f84d-47d9-a691-500edb048337
+    context_mapping:
+      node: node
+    bundles:
+      news_insights_landing: news_insights_landing
+selection_logic: and
+weight: 2
+relationships:
+  'node:langcode:language':
+    label: Language

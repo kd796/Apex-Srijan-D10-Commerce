@@ -1,0 +1,21 @@
+uuid: d73e5ea5-f0de-49a4-a331-da7551d783bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_meta_tags
+    - media.type.remote_video
+  module:
+    - metatag
+id: media.remote_video.field_meta_tags
+field_name: field_meta_tags
+entity_type: media
+bundle: remote_video
+label: 'Meta Tags'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: metatag

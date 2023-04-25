@@ -1,0 +1,20 @@
+uuid: 54550b26-b2f0-45b1-b789-21baee6126bb
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.advanced_selector_email
+id: node.advanced_selector_email.uid
+field_name: uid
+entity_type: node
+bundle: advanced_selector_email
+label: 'Authored by'
+description: 'The username of the content author.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

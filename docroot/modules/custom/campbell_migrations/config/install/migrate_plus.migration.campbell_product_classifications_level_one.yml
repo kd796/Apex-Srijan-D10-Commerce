@@ -1,0 +1,60 @@
+# Migration configuration for campbell_products content.
+id: campbell_product_classifications_level_one
+label: Product Classifications - Level One
+migration_group: campbell
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: "http://www.stibosystems.com/step"
+  item_selector: /STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 1"]
+  fields:
+    -
+      name: remote_term_id
+      label: ID
+      selector: '@ID'
+    -
+      name: remote_term_name
+      label: Term Name
+      selector: Name
+    -
+      name: remote_listing_image
+      label: Listing Image
+      selector: '.'
+  ids:
+    remote_term_id:
+      type: string
+process:
+  name:
+    plugin: skip_on_empty
+    method: row
+    source: remote_term_name
+  vid:
+    plugin: default_value
+    default_value: product_classifications
+  field_classification_id:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_term_id
+    method: row
+    value:
+      - W1_26966
+      - W1_26967
+      - W1_26998
+      - W1_26974
+      - W1_27002
+      - W1_27023
+      - W1_27022
+      - W1_27024
+      - W1_27043
+      - W1_27025
+      - W1_27261
+      - W1_27260
+  listing_menu_image:
+    source: remote_listing_image
+    plugin: apex_get_category_menu_image
+  'field_listing_menu_image/target_id': '@listing_menu_image'
+destination:
+  plugin: 'entity:taxonomy_term'

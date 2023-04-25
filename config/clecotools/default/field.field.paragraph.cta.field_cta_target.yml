@@ -1,0 +1,23 @@
+uuid: 9bb9a38c-58fa-4f63-bebf-ac4bd64acd8b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_cta_target
+    - paragraphs.paragraphs_type.cta
+id: paragraph.cta.field_cta_target
+field_name: field_cta_target
+entity_type: paragraph
+bundle: cta
+label: 'Open link in new window?'
+description: 'CTA Target'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

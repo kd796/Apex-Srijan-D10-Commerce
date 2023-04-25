@@ -1,0 +1,105 @@
+.signup-webform-media-center {
+  padding: 30px;
+  margin: 0 auto;
+  max-width: 1000px;
+  margin: 20px auto 25px;
+  word-wrap: break-word;
+  background: url('#{$image-base-path}/img_news_bg_tile.png') left top repeat-x $light-gray;
+  @media only screen and(max-width: $tablet-max) {
+    padding: 20px;
+    margin: 18px 0;
+  }
+
+  @media only screen and(max-width: $tablet) {
+    margin: 16px 0;
+  }
+
+  h2 {
+    display: none;
+  }
+
+  form {
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+    align-items: center;
+    @media only screen and(max-width: $tablet) {
+      margin: 0;
+      text-align: center;
+    }
+
+    > div {
+      padding: 0 15px;
+
+      @media only screen and(max-width: $tablet) {
+        padding: 0;
+      }
+    }
+
+    .form-item {
+      width: 76%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+      @media only screen and(max-width: $tablet) {
+        width: 100%;
+      }
+
+      .description {
+        width: 40%;
+        font-size: 20px;
+        font-weight: 400;
+        color: $lighter-gray;
+
+        @media only screen and(max-width: $tablet-max) {
+          width: 40%;
+        }
+        @media only screen and(max-width: $tablet) {
+          width: 100%;
+          margin: 0 0 16px;
+        }
+
+        strong {
+          font-size: 20px;
+          font-weight: 400;
+          color: $lighter-gray;
+        }
+      }
+
+      input {
+        &.form-email {
+          width: 60%;
+          padding: 5px;
+          border-top: 1px solid $gray-secondary;
+          border-left: 1px solid $gray-secondary;
+          border-right: 1px solid $silver-secondary;
+          border-bottom: 1px solid $silver-secondary;
+          background: $white url('#{$image-base-path}/search_txt_back.png') left top repeat-x;
+
+          @media only screen and(max-width: $tablet) {
+            width: 100%;
+            margin: 0 0 16px;
+        }
+        }
+      }
+    }
+
+    .form-actions {
+      margin: 0;
+      width: 24%;
+
+      @media only screen and(max-width: $tablet) {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .button {
+        border-radius: 4px;
+      }
+    }
+  }
+}

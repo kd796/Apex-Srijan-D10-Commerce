@@ -1,0 +1,27 @@
+uuid: b3cad0e7-0b1c-4989-9750-57987e6cf883
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.markets
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats: {  }
+id: node.markets.body
+field_name: body
+entity_type: node
+bundle: markets
+label: Overview
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

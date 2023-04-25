@@ -1,0 +1,154 @@
+<main class="main">
+	<section class="section">
+		<p>(Section with default section padding.)</p>
+	</section>
+	<section class="section">
+		<p>(Sibling section with divider.)</p>
+	</section>
+	<section class="section section--focus">
+		<p>(Focus section, used at the top of pages)</p>
+		<br><br><br><br><br>
+	</section>
+
+	<section class="section">
+		<h2>Section Headers</h2>
+
+		<header class="section-header">
+			<div class="section-header-content">
+				<h2 class="section-title">{{ '_Industry_ Solutions' }}</h2>
+			</div>
+		</header>
+
+		<h3>With Subtitle Content and Action</h3>
+		<header class="section-header">
+			<div class="section-header-content">
+				<h2 class="section-title">{{ '_Assembly_ Tools' }}</h2>
+				<p class="section-subtitle">
+					Cras ultricies ligula sed magna dictum porta donec sollicitudin molestie malesuada. Nulla porttitor accumsan tincidunt.
+				</p>
+			</div>
+			<div class="section-header-actions">
+				<a href="#" class="action action--primary action--small">View All</a>
+			</div>
+		</header>
+
+		<h3>With Action Only</h3>
+		<header class="section-header">
+			<div class="section-header-content">
+				<h2 class="section-title">{{ '_Industry_ Solutions' }}</h2>
+			</div>
+			<div class="section-header-actions">
+				<a href="#" class="action action--primary action--small">View All</a>
+			</div>
+		</header>
+	</section>
+
+	<section class="section">
+		<div class="section-intro">
+			<h2 class="section-title">{{ 'Section _Intro_' }}</h2>
+			<div class="section-intro-content">
+				<p>From a single tool, to an entire integrated solution, we’re here to help you build your products and your business. Our solutions are focused
+					on
+					increasing productivity while enhancing the users’ experience with simplicity of set-up, ease of use, and focus on comfort and safety.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--features">
+		<div class="section-intro">
+			<h2 class="section-title">{{ '_Features_ Section' }}</h2>
+			<div class="section-intro-content">
+				<p>From a single tool, to an entire integrated solution, we’re here to help you build your products and your business. Our solutions are focused
+					on
+					increasing productivity while enhancing the users’ experience with simplicity of set-up, ease of use, and focus on comfort and safety.</p>
+			</div>
+		</div>
+		<div class="section-main">
+			{% include '@atg/patterns/feature.html.twig' with {
+				subtitle: 'Featured Solution',
+				title: 'NeoTek™',
+				body: 'One million cycles maintenance-free. Streamline your assembly line and increase your return on investment with NeoTek™',
+				url: '#',
+				action: 'Learn More About NeoTek™',
+				size: 'large',
+			} %}
+
+			{% include '@atg/patterns/feature.html.twig' with {
+				image: 'https://placem.at/things?w=800&h=800&txt=',
+				subtitle: 'Featured Solution',
+				title: 'Motor Vehicle Industry',
+				body: 'APEX Global Power Tools has been pioneering innovations and solutions for the challenging applications and stringent requirements of the motor vehicle industry for decades.',
+				url: '#',
+				action: 'Learn More About Motor Vehicle Industry',
+				size: 'large',
+			} %}
+		</div>
+	</section>
+	<section class="section section--features">
+		<div class="section-intro">
+			<div class="section-intro-block">
+				<h2 class="section-title">{{ '_Features_ Section' }}</h2>
+				<div class="section-intro-content">
+					<p>From a single tool, to an entire integrated solution, we’re here to help you build your products and your business. Our solutions are
+						focused on
+						increasing productivity while enhancing the users’ experience with simplicity of set-up, ease of use, and focus on comfort and
+						safety.</p>
+				</div>
+				<div class="section-intro-actions">
+					<p><a href="#" class="action action--primary">Explore Our Solutions</a></p>
+				</div>
+			</div>
+			<div class="section-intro-block">
+				<h2 class="section-title">{{ '_Features_ Section' }}</h2>
+				<div class="section-intro-content">
+					<p>From a single tool, to an entire integrated solution, we’re here to help you build your products and your business. Our solutions are
+						focused on
+						increasing productivity while enhancing the users’ experience with simplicity of set-up, ease of use, and focus on comfort and
+						safety.</p>
+				</div>
+				<div class="section-intro-actions">
+					<p><a href="#" class="action action--primary">Explore Our Solutions</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="section-main">
+			{% include '@atg/patterns/feature.html.twig' with {
+				subtitle: 'Featured Solution',
+				title: 'NeoTek™',
+				body: 'One million cycles maintenance-free. Streamline your assembly line and increase your return on investment with NeoTek™',
+				url: '#',
+				action: 'Learn More About NeoTek™',
+				size: 'large',
+			} %}
+
+			{% include '@atg/patterns/feature.html.twig' with {
+				image: 'https://placem.at/things?w=800&h=800&txt=',
+				subtitle: 'Featured Solution',
+				title: 'Motor Vehicle Industry',
+				body: 'APEX Global Power Tools has been pioneering innovations and solutions for the challenging applications and stringent requirements of the motor vehicle industry for decades.',
+				url: '#',
+				action: 'Learn More About Motor Vehicle Industry',
+				size: 'large',
+			} %}
+		</div>
+	</section>
+
+	<section class="section">
+		<h2>Form</h2>
+	</section>
+	<section class="section section--form">
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+	</section>
+</main>

@@ -1,0 +1,209 @@
+<main class="main">
+	<section class="section">
+		<table class="mega-table">
+			<thead>
+			<tr>
+				<th>Distributor</th>
+				<th>Distance</th>
+				<th>Distributor Level</th>
+				<th>Available Tools</th>
+				<th><!-- Quote --></th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>
+					<h3>Tool Smith Co Inc.</h3>
+					<p>
+						1300 South 4th Avenue<br>
+						Birmingham, AL 35233-1409<br>
+						<a href="#">(205) 323-2576</a><br>
+						<a href="#">wsmith@toolsmith.ws</a>
+					</p>
+				</td>
+				<td>
+					<p>
+						0.77 Miles<br>
+						<a href="#" class="a a--subtle">{{ svg('dist/img/icons/pin.svg') }} View on Map</a>
+					</p>
+				</td>
+				<td>
+			<span class="sticker">
+				<span class="sticker-icon">{{ svg('dist/img/badge-platinum.svg') }}</span>
+				<span class="sticker-label">Platinum</span>
+			</span>
+				</td>
+				<td>
+					<p>
+						Nutrunners<br>
+						Grinders<br>
+						Sanders + Polishers<br>
+						Pulse Tools<br>
+						Air Motors
+					</p>
+				</td>
+				<td><a href="#" class="button button--small button--simple button--secondary button--outline">Request Quote</a></td>
+			</tr>
+			<tr>
+				<td>
+					<h3>Tool Smith Co Inc.</h3>
+					<p>
+						1300 South 4th Avenue<br>
+						Birmingham, AL 35233-1409<br>
+						<a href="#">(205) 323-2576</a><br>
+						<a href="#">wsmith@toolsmith.ws</a>
+					</p>
+				</td>
+				<td>
+					<p>
+						0.77 Miles<br>
+						<a href="#" class="a a--subtle">{{ svg('dist/img/icons/pin.svg') }} View on Map</a>
+					</p>
+				</td>
+				<td>
+			<span class="sticker">
+				<span class="sticker-icon">{{ svg('dist/img/badge-platinum.svg') }}</span>
+				<span class="sticker-label">Platinum</span>
+			</span>
+				</td>
+				<td>
+					<p>
+						Nutrunners<br>
+						Grinders<br>
+						Sanders + Polishers<br>
+						Pulse Tools<br>
+						Air Motors
+					</p>
+				</td>
+				<td><a href="#" class="button button--small button--simple button--secondary button--outline">Request Quote</a></td>
+			</tr>
+			<tr>
+				<td>
+					<h3>Tool Smith Co Inc.</h3>
+					<p>
+						1300 South 4th Avenue<br>
+						Birmingham, AL 35233-1409<br>
+						<a href="#">(205) 323-2576</a><br>
+						<a href="#">wsmith@toolsmith.ws</a>
+					</p>
+				</td>
+				<td>
+					<p>
+						0.77 Miles<br>
+						<a href="#" class="a a--subtle">{{ svg('dist/img/icons/pin.svg') }} View on Map</a>
+					</p>
+				</td>
+				<td>
+			<span class="sticker">
+				<span class="sticker-icon">{{ svg('dist/img/badge-platinum.svg') }}</span>
+				<span class="sticker-label">Platinum</span>
+			</span>
+				</td>
+				<td>
+					<p>
+						Nutrunners<br>
+						Grinders<br>
+						Sanders + Polishers<br>
+						Pulse Tools<br>
+						Air Motors
+					</p>
+				</td>
+				<td><a href="#" class="button button--small button--simple button--secondary button--outline">Request Quote</a></td>
+			</tr>
+			</tbody>
+		</table>
+
+
+		<h1>Vue</h1>
+
+		{% set data = [
+			{
+				id: 1,
+				name: 'Tool Smith Co Inc.',
+				address: '1300 South 4th Avenue',
+				city: 'Birmingham',
+				state: 'AL',
+				zip: '35233-1409',
+				phone: '(205) 323-2576',
+				email: 'wsmith@toolsmith.ws',
+				distance: 0.77,
+				level: 'platinum',
+				tools: [
+				'Nutrunners',
+				'Grinders',
+				'Sanders + Polishers',
+				'Pulse Tools',
+				'Air Motors',
+			],
+			},
+			{
+				id: 2,
+				name: 'Turner Supply Company',
+				address: '401 33rd Street North',
+				city: 'Birmingham',
+				state: 'AL',
+				zip: '35222',
+				phone: '(205) 323-2576',
+				email: 'wsmith@toolsmith.ws',
+				distance: 0.23,
+				level: 'gold',
+				tools: [
+				'Grinders',
+				'Sanders + Polishers',
+				'Pulse Tools',
+				'Air Motors',
+			],
+			},
+		] %}
+		<table-component :data="{{ data | json_encode }}" :show-filter="false" :show-caption="false" :cache-lifetime="0" sort-by="name"
+						 sort-order="asc" class="mega-table-component" table-class="mega-table">
+			<table-column label="Distributor" show="name">
+				<template slot-scope="row">
+					{% raw %}
+						<h3>{{ row.name }}</h3>
+						<p>
+							{{ row.address }}<br>
+							{{ row.city }}, {{ row.state }} {{ row.zip }}
+							<template v-if="row.phone">
+								<br><a :href="'tel:' + row.phone">{{ row.phone }}</a>
+							</template>
+							<template v-if="row.email">
+								<br><a :href="'mailto:' + row.email">{{ row.email }}</a>
+							</template>
+						</p>
+					{% endraw %}
+				</template>
+			</table-column>
+			<table-column label="Distance" show="distance">
+				<template slot-scope="row">
+					<p>
+						{{ '{{ row.distance }}' }} Miles<br>
+						<a href="#" class="a a--subtle">{{ svg('dist/img/icons/pin.svg') }} View on Map</a>
+					</p>
+				</template>
+			</table-column>
+			<table-column label="Distributor Level" show="level">
+				<template slot-scope="row">
+			<span class="sticker">
+				<span class="sticker-icon">
+					<img src="{{ theme_asset('/dist/img/badge-platinum.svg') }}" alt="Platinum badge">
+				</span>
+				<span class="sticker-label">{{ '{{ row.level }}' }}</span>
+			</span>
+				</template>
+			</table-column>
+			<table-column label="Available Tools" :sortable="false">
+				<template slot-scope="row">
+					<ul v-if="row.tools.length > 0">
+						<li v-for="tool in row.tools">{{ '{{ tool }}' }}</li>
+					</ul>
+				</template>
+			</table-column>
+			<table-column label="" :sortable="false">
+				<template slot-scope="row">
+					<a href="#" class="button button--small button--simple button--secondary button--outline">Request Quote</a>
+				</template>
+			</table-column>
+		</table-component>
+	</section>
+</main>

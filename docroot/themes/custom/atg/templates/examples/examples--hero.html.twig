@@ -1,0 +1,37 @@
+<div class="main">
+  <section class="section">
+    <h1>Hero</h1>
+    <h2>Minimal</h2>
+  </section>
+</div>
+
+{% include '@atg/patterns/hero.html.twig' with {
+  title: 'Find a _distributor_',
+} %}
+
+<div class="main">
+  <section class="section">
+    <h2>Medium</h2>
+  </section>
+</div>
+
+{% include '@atg/patterns/hero.html.twig' with {
+  size: 'medium',
+  subtitle: 'We’re more than just one piece',
+  title: 'We solve the _whole_ puzzle',
+  image: 'https://placem.at/places?w=1400&h=500&txt=',
+} %}
+
+<div class="main">
+  <section class="section">
+    <h2>Large</h2>
+  </section>
+</div>
+
+{% include '@atg/patterns/hero.html.twig' with {
+  size: 'large',
+  title: 'Solutions are in _our_ DNA',
+  image: 'https://placem.at/places?w=1400&h=500&txt=',
+  url: '#',
+  action: 'See Our Solutions'
+} %}
