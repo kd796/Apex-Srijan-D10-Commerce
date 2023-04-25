@@ -27,15 +27,9 @@
  */
 
 use Drupal\Core\Cache\Cache;
-use Drupal\Core\Render\Element;
-use Drupal\Core\Render\Markup;
 use Drupal\media\Entity\Media;
-use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\file\Entity\File;
 use Drupal\Component\Utility\Html;
-use Drupal\taxonomy\Entity\Term;
-use Drupal\taxonomy\TermStorage;
-use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 
 /**
@@ -103,10 +97,10 @@ function sata_preprocess_node__media_page__full(&$variables) {
   $variables['categories'] = $variables['content']['field_category'];
   $variables['tags'] = $variables['content']['field_tags'];
   $variables['mediaType'] = $node->get('field_media_type')->getValue()[0]['value'];
-  
-  //$variables['brazilmediaType'] = $node->field_media_type->getSetting('allowed_values')[$node->field_media_type->value]; 
+
+  // $variables['brazilmediaType'] = $node->field_media_type->getSetting('allowed_values')[$node->field_media_type->value];
   $variables['host'] = \Drupal::request()->getSchemeAndHttpHost();
-  
+
   unset($variables['content']['field_category']);
   unset($variables['content']['field_link']);
   unset($variables['content']['field_tags']);
