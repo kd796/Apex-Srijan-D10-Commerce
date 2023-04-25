@@ -1,7 +1,7 @@
 (function ($, Drupal) {
   'use strict';
 
-  Drupal.behaviors.campbell = {
+  Drupal.behaviors.apextoolgroup = {
     attach: function (context, settings) {
       // Toggle search for mobile.
       $(function () {
