@@ -165,19 +165,22 @@ class RouteController extends ControllerBase {
         }
         $field_media = isset($fields['field_media']) ? $fields['field_media'] : '';
         $field_product_images = isset($fields['field_product_images']) ? $fields['field_product_images'] : '';
-        $listing_images = array_merge($field_product_images->getValue(), $field_media->getValue());
+        $listing_images = array_merge($field_media->getValue(), $field_product_images->getValue());
         if (!empty($listing_images)) {
           foreach ($listing_images as $media) {
             $image_load = $this->entityTypeManager->getStorage('media')->load($media['target_id']);
+            $style_product = $this->entityTypeManager->getStorage('image_style')->load('simple_product');
             $image_name = $image_load->get('name')->value;
             if (isset($image_load->field_media_image)) {
               $image_file = $this->entityTypeManager->getStorage('file')->load($image_load->field_media_image->target_id);
               $image_url = $image_file->getFileUri();
-              $image_path = file_create_url($image_url);
+              $image_path = $style_product->buildUrl($image_url);
+              $image_asset[] =[
+                "source_to_jpg" => $image_path,
+              ];
               $asset1[] = [
                 "type" => "Primary Image",
                 "id" => $image_name,
-                "source_to_jpg" => $image_path,
               ];
             }
           }
@@ -293,6 +296,7 @@ class RouteController extends ControllerBase {
           ],
           "assets" => $assets,
           "models" => $models_details,
+          "image_asset" => $image_asset,
         ],
       ];
       $response['hits']['hits'] = $output;

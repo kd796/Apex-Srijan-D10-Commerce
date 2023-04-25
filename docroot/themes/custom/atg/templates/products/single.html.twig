@@ -5,9 +5,9 @@
         <div class="product-hero">
             <div class="product-hero-media">
                 {# Primary Image #}
-                {% if product.assets is defined %}
+                {% if product.image_asset is defined %}
                     <carousel>
-                        {% for index, asset in product.assets | sort_assets %}
+                        {% for index, asset in product.image_asset %}
                             {% set zoomable = step_asset([asset], 'source_to_jpg', 'large') %}
                             {% set thumb = step_asset([asset], 'source_to_jpg', 'product_zoom_thumb') %}
                             <carousel-item id="carousel-{{ index }}" thumb="{{ asset.source_to_jpg }}" class="product-hero-media-item">
