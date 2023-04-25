@@ -1,0 +1,25 @@
+uuid: 232c4a8d-d36c-4e1c-b79d-b4786e1c4194
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_short_description
+    - node.type.employee_profile
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats: {  }
+id: node.employee_profile.field_short_description
+field_name: field_short_description
+entity_type: node
+bundle: employee_profile
+label: Favorite
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
