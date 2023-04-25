@@ -1,0 +1,24 @@
+{% set view_node = fields.view_node.content|render|trim|striptags %}
+
+<div class="news-accordion-item">
+  <a href="#accordion-{{ fields.counter.content|render|trim|striptags }}" class="news-accordion-title">
+    <div class="content-wrap">
+      <div class="image">{{ fields.field_media.content }}</div>
+      <div class="news-title">
+        {{ fields.title.content }}
+      </div>
+    </div>
+  </a>
+  <a href="{{ view_node }}" class="read-more">{{'Read More' | t }}</a>
+  <div id="accordion-{{ fields.counter.content|render|trim|striptags }}" class="news-accordion-content">
+    <div class="content-wrap">
+      <div class="image">{{ fields.field_media.content }}</div>
+      <div class="news-title">
+        {{ fields.title.content }}
+        <div class="date">{{ fields.field_date.content }}</div>
+        {{ fields.body.content }}
+      </div>
+      <a href="#accordion-{{ fields.counter.content|render|trim|striptags }}" class="news-accordion-title close-link"></a>
+    </div>
+  </div>
+</div>

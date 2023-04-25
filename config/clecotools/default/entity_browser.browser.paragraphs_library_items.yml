@@ -1,0 +1,43 @@
+uuid: d421ea01-d09d-44f7-931a-7bdea69122eb
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.paragraphs_library_browser
+  module:
+    - views
+_core:
+  default_config_hash: hL10O_U8EaCNhab9aVtHZVC9bUAvPGeOQOVh9K1yyls
+name: paragraphs_library_items
+label: 'Paragraphs library items'
+display: modal
+display_configuration:
+  width: '80'
+  height: ''
+  link_text: 'Select reusable paragraph'
+  auto_open: false
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: single
+widget_selector_configuration: {  }
+widgets:
+  19e5e98c-307e-437a-b850-0fab163d7fec:
+    id: view
+    uuid: 19e5e98c-307e-437a-b850-0fab163d7fec
+    label: 'Available library items'
+    weight: 1
+    settings:
+      submit_text: 'Select reusable paragraph'
+      auto_select: false
+      view: paragraphs_library_browser
+      view_display: entity_browser
+  ae0f388f-d92c-4b36-9663-a68a499e7f56:
+    id: upload
+    uuid: ae0f388f-d92c-4b36-9663-a68a499e7f56
+    label: upload
+    weight: 2
+    settings:
+      submit_text: 'Select files'
+      upload_location: 'public://'
+      multiple: true
+      extensions: 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp'

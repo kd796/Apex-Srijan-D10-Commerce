@@ -1,0 +1,8 @@
+{% set title = content.field_title[0]['#context']['value'] %}
+<section class="section section--bordered main">
+	<header class="section-header">
+		<h2 class="section-title">{{ title | raw }}</h2>
+	</header>
+
+	{{ content.field_grid_item }}
+</section>

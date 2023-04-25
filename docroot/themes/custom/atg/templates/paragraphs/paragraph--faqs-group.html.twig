@@ -1,0 +1,22 @@
+{% set intro = get_paragraph(content.field_intro) %}
+{% set intro_title = intro.field_title.value %}
+{% set intro_body = intro.field_body_basic.value %}
+
+{% set has_intro = intro_title or intro_body %}
+
+{% set section_attributes = create_attribute({class:['section-intro-block']}) %}
+
+<section{{ section_attributes }}>
+	<div class="article">
+		{% if has_intro %}
+			<header>
+				<h3 class="h2">{{ intro_title | raw }}</h3>
+				<div class="wysiwyg-content">
+					{{ intro_body | raw }}
+				</div>
+			</header>
+		{% endif %}
+
+		{{ content.field_faqs }}
+	</div>
+</section>

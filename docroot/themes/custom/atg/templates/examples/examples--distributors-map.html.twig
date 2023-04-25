@@ -1,0 +1,109 @@
+{% set distanceOptions = [
+	{ value: null, label: 'Any Distance'},
+	{value: 10, label: '10 Miles'},
+	{value: 25, label: '25 Miles'},
+	{value: 50, label: '50 Miles'}
+] %}
+{% set levelOptions = [
+	{value: null, label: 'Any Level'},
+	'Platinum',
+	'Gold',
+	'Silver',
+	'Bronze',
+	'Authorized'
+] %}
+{% set toolOptions = [
+	{value: null, label: 'Any Tools'},
+	'Air Motors',
+	'Grinders',
+	'Nutrunners',
+	'Pulse Tools',
+	'Sanders + Polishers',
+] %}
+<geoui api="/distributors.json" :filters="['zip', 'distance', 'level', 'tools']">
+	<template slot="filters" slot-scope="scope">
+		<filter-bar :value="scope.state" @input="scope.setState" :filters="scope.filters">
+			<template slot-scope="bar">
+				<filter-bar-item v-model="bar.state.zip" label="ZIP Code" :attributes="{size: 8, maxlength: 5, placeholder: 'Enter ZIP'}"></filter-bar-item>
+				<filter-bar-item v-model="bar.state.distance" element="select" label="Distance" :options="{{ distanceOptions | json_encode }}"></filter-bar-item>
+				<filter-bar-item v-model="bar.state.level" element="select" label="Distributor Level"
+								 :options="{{ levelOptions | json_encode }}"></filter-bar-item>
+				<filter-bar-item v-model="bar.state.tools" element="select" label="Distributor Level"
+								 :options="{{ toolOptions | json_encode }}"></filter-bar-item>
+				<filter-bar-item element="action" class="filter-bar-item--push">
+					<button type="submit" class="button button--primary button--simple">Find Distributors</button>
+				</filter-bar-item>
+			</template>
+		</filter-bar>
+	</template>
+	<template slot="infowindow" slot-scope="scope" v-if="scope.selected">
+		{% raw %}
+			<h3>{{ scope.selected.name }}</h3>
+			<p>
+				{{ scope.selected.address }}<br>
+				{{ scope.selected.city }}, {{ scope.selected.state }} {{ scope.selected.zip }}
+				<template v-if="scope.selected.phone">
+					<br><a :href="'tel:' + scope.selected.phone">{{ scope.selected.phone }}</a>
+				</template>
+				<template v-if="scope.selected.email">
+					<br><a :href="'mailto:' + scope.selected.email">{{ scope.selected.email }}</a>
+				</template>
+			</p>
+		{% endraw %}
+		<div class="infowindow-actions">
+			<button type="button" class="infowindow-action" v-scroll-to="'#distributor-' + scope.selected.id">{{ svg('dist/img/icons/grid.svg') }} View on Grid</button>
+		</div>
+	</template>
+	<template slot="list" slot-scope="scope">
+		<table-component :data="scope.data" :show-filter="false" :show-caption="false" :cache-lifetime="0" sort-by="name" sort-order="asc"
+						 class="mega-table-component" table-class="mega-table">
+			<table-column label="Distributor" show="name">
+				<template slot-scope="row">
+					{% raw %}
+						<h3 :id="'distributor-' + row.id">{{ row.name }}</h3>
+						<p>
+							{{ row.address }}<br>
+							{{ row.city }}, {{ row.state }} {{ row.zip }}
+							<template v-if="row.phone">
+								<br><a :href="'tel:' + row.phone">{{ row.phone }}</a>
+							</template>
+							<template v-if="row.email">
+								<br><a :href="'mailto:' + row.email">{{ row.email }}</a>
+							</template>
+						</p>
+					{% endraw %}
+				</template>
+			</table-column>
+			<table-column label="Distance" show="distance">
+				<template slot-scope="row">
+					<p>
+						{{ '{{ row.distance }}' }} Miles<br>
+						<a href="#" class="a a--subtle">{{ svg('dist/img/icons/pin.svg') }} View on Map</a>
+					</p>
+				</template>
+			</table-column>
+			<table-column label="Distributor Level" show="level">
+				<template slot-scope="row">
+			<span class="sticker">
+				<span class="sticker-icon">
+					<img src="{{ theme_asset('/dist/img/badge-platinum.svg') }}" alt="Platinum badge">
+				</span>
+				<span class="sticker-label">{{ '{{ row.level }}' }}</span>
+			</span>
+				</template>
+			</table-column>
+			<table-column label="Available Tools" :sortable="false">
+				<template slot-scope="row">
+					<ul v-if="row.tools.length > 0">
+						<li v-for="tool in row.tools">{{ '{{ tool }}' }}</li>
+					</ul>
+				</template>
+			</table-column>
+			<table-column label="" :sortable="false">
+				<template slot-scope="row">
+					<a href="#" class="button button--small button--simple button--secondary button--outline">Request Quote</a>
+				</template>
+			</table-column>
+		</table-component>
+	</template>
+</geoui>

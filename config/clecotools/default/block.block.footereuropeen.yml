@@ -1,0 +1,33 @@
+uuid: d36b91cc-fc2c-4fe9-9b7e-22330b1546a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer--gb
+  module:
+    - language
+    - system
+  theme:
+    - atg
+id: footereuropeen
+theme: atg
+region: footer_nav
+weight: 0
+provider: null
+plugin: 'system_menu_block:footer--gb'
+settings:
+  id: 'system_menu_block:footer--gb'
+  label: 'Footer (Europe / EN)'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      gb: gb

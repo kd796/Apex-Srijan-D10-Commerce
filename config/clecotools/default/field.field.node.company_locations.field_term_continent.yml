@@ -1,0 +1,29 @@
+uuid: 858bd63f-d26e-4000-819c-d31ed65d90dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_term_continent
+    - node.type.company_locations
+    - taxonomy.vocabulary.continent
+id: node.company_locations.field_term_continent
+field_name: field_term_continent
+entity_type: node
+bundle: company_locations
+label: Continent
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      continent: continent
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

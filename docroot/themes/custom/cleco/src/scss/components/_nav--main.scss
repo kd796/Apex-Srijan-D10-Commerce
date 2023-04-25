@@ -1,0 +1,181 @@
+nav[class*='nav--main'] {
+  display: flex;
+
+  /**
+   * GENERAL
+   */
+  .nav-link {
+    display: inline-flex;
+    color: $color-gray;
+    hyphens: none;
+
+    &:hover {
+      color: $color-orange;
+    }
+  }
+
+  @media (max-width: 700px) {
+    font-size: 0.875em;
+  }
+
+  /**
+   * DROPDOWN LAYOUT
+   */
+  .nav-menu--depth-0 {
+    flex: 1 1 auto;
+    display: flex;
+
+    @media (min-width: $breakpoint-nav-inline) {
+      justify-content: flex-end;
+    }
+  }
+
+  .nav-menu--depth-1 {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 4vh;
+    padding-bottom: 4vh;
+    @include section-padding(horizontal);
+    border-top: 1px solid rgba($color-gray-light, 0.43);
+    overflow: hidden;
+    max-height: 9999em;
+  }
+
+  .nav-item--depth-0 {
+    &:not(.is-active) .nav-menu--depth-1 {
+      visibility: hidden;
+      max-height: 0;
+      opacity: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      transition: opacity 0.2s ease, padding-top 0.2s ease, padding-bottom 0.2s ease, visibility 0s ease 0.2s, max-height 0s ease 0.2s, overflow 0s ease 0.2s;
+    }
+    &.is-active .nav-menu--depth-1 {
+      transition: opacity 0.2s ease, padding-top 0.2s ease, padding-bottom 0.2s ease;
+    }
+
+    &.menu-item--has-children {
+      &.opened {
+        .nav-menu--depth-1 {
+          opacity: 1;
+          max-height: 9999em;
+          visibility: visible;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+
+  .nav-item--depth-1 {
+    flex-grow: 1;
+    @include property-scale((padding-left, padding-right), $container-padding-map);
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+
+    + .nav-item--depth-1 {
+      border-left: 1px solid rgba($color-gray-light, 0.43);
+    }
+  }
+
+  @media (min-width: $breakpoint-nav-inline) {
+    .nav-menu--depth-1 {
+      flex-flow: row nowrap;
+    }
+  }
+
+  /**
+   * ITEMS
+   */
+  .nav-item--depth-0,
+  .nav-link--depth-0 {
+    display: flex;
+  }
+
+  /**
+   * LINKS
+   */
+  .nav-link--depth-0,
+  .nav-link--depth-1 {
+    font-stretch: condensed;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: $color-off-black;
+
+    &:hover {
+      color: $color-off-black;
+    }
+
+    @media (min-width: $breakpoint-nav-inline) {
+      letter-spacing: 0.035625em;
+    }
+  }
+
+  .nav-menu--depth-0 {
+    @include property-scale((margin-left, margin-right), map-multiplier($nav-primary-padding-map, -1));
+  }
+
+  .nav-link--depth-0 {
+    position: relative;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: $line-height-tight;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    @include property-scale((padding-left, padding-right), $nav-primary-padding-map);
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      @include property-scale((left, right), $nav-primary-padding-map);
+      height: 0.25em;
+      background: $color-orange;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: inherit;
+    }
+  }
+
+  .nav-link--depth-0:hover,
+  .nav-link--depth-0:focus,
+  .nav-item--depth-0.is-active .nav-link--depth-0 {
+    box-shadow: none;
+
+    &::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /**
+   * SUBMENU
+   */
+  .nav-menu--depth-1 {
+    background: #fff;
+    box-shadow: 0 0.3125em 0 0 rgba(#000, 0.1);
+
+    .nav-link {
+      margin-bottom: 0.5em;
+
+      &--depth-1 {
+        margin-bottom: 1em;
+      }
+    }
+  }
+
+  .nav-link--depth-1 {
+    font-size: 0.9375em;
+  }
+}

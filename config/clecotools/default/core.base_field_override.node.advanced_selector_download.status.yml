@@ -1,0 +1,22 @@
+uuid: 56ef3869-86b1-4c80-be6d-3a87e31f0c1b
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.advanced_selector_download
+id: node.advanced_selector_download.status
+field_name: status
+entity_type: node
+bundle: advanced_selector_download
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

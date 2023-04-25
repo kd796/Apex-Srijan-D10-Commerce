@@ -1,0 +1,14 @@
+{% set cta = get_paragraph(elements.field_cta) %}
+{% set target = cta.field_cta_target.value is same as('1') ? '_blank' : '_top' %}
+{% set passed_attributes = get_passed_attributes({ size: null }) %}
+{% include '@atg/patterns/feature.html.twig' with {
+	image: elements.field_media_src[0] ? elements.field_media_src : null,
+	floating_image: elements.field_floating_image[0] ? elements.field_floating_image : null,
+	title_prefix: elements.field_title_prefix,
+	title: elements.field_title,
+	body: elements.field_body_plain,
+	url: cta.field_cta_url[0].url | string,
+	action: cta.field_cta_url[0].title,
+	target: target,
+	size: passed_attributes.size,
+} %}

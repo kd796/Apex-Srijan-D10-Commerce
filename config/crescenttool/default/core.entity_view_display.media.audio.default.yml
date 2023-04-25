@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.media.audio.field_media_audio_file
+    - field.field.media.audio.field_meta_tags
     - media.type.audio
   module:
     - file
+    - metatag
 id: media.audio.default
 targetEntityType: media
 bundle: audio
@@ -22,6 +24,13 @@ content:
       multiple_file_display_type: tags
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_meta_tags:
+    type: metatag_empty_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
     region: content
 hidden:
   created: true

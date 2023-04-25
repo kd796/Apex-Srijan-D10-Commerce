@@ -1,0 +1,21 @@
+uuid: 9504eff5-fd79-454d-8f92-1fa5167e49ec
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_forms
+    - paragraphs.paragraphs_type.form_section
+id: paragraph.form_section.field_forms
+field_name: field_forms
+entity_type: paragraph
+bundle: form_section
+label: Forms
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:contact_form'
+  handler_settings: {  }
+field_type: entity_reference

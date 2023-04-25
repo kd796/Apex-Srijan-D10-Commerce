@@ -1,0 +1,131 @@
+uuid: f98286d8-75e7-4c48-a586-4e6b24423fad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.news_insights.body
+    - field.field.node.news_insights.field_attachments
+    - field.field.node.news_insights.field_image
+    - field.field.node.news_insights.field_mailing_list_form
+    - field.field.node.news_insights.field_subtitle
+    - field.field.node.news_insights.field_type
+    - field.field.node.news_insights.field_video_embed
+    - node.type.news_insights
+  module:
+    - content_moderation
+    - file
+    - media_library
+    - paragraphs
+    - path
+    - text
+    - video_embed_field
+id: node.news_insights.default
+targetEntityType: node
+bundle: news_insights
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 12
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  created:
+    type: datetime_timestamp
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_attachments:
+    type: file_generic
+    weight: 8
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  field_image:
+    type: media_library_widget
+    weight: 9
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_mailing_list_form:
+    type: entity_reference_paragraphs
+    weight: 26
+    region: content
+    settings:
+      title: 'Mailing List Form'
+      title_plural: 'Mailing List Forms'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: mailing_list_form
+    third_party_settings: {  }
+  field_subtitle:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 120
+      placeholder: ''
+    third_party_settings: {  }
+  field_type:
+    type: options_select
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_video_embed:
+    type: video_embed_field_textfield
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 0
+    region: content
+    settings:
+      include_locked: false
+    third_party_settings: {  }
+  moderation_state:
+    type: moderation_state_default
+    weight: 13
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 6
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 120
+      placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  promote: true
+  sticky: true
+  uid: true

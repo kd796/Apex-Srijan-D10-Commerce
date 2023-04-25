@@ -1,0 +1,291 @@
+/****** Products Listing page ******/
+
+.product-category-view-section {
+  margin: 30px 0;
+}
+
+.product-listing {
+  .view-header {
+    font-size: 16px;
+    font-weight: $bold;
+    margin-bottom: 20px;
+    @media only screen and (max-width: $tablet) {
+      margin-top: 20px;
+    }
+  }
+
+  .views-row {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    font-size: 12px;
+    border-bottom: solid 1px $gray;
+    display: flex;
+    width: 100%;
+    @media only screen and (max-width: $tablet) {
+      flex-direction: column;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      flex-wrap: wrap;
+    }
+
+    .views-field {
+      @media only screen and (min-width: $tablet) {
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+    }
+  }
+
+  .views-field-field-media {
+    @media only screen and (min-width: $tablet-max) {
+      width: 20%;
+      padding-right: 10px;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 25%;
+    }
+
+    img {
+      width: 130px;
+      height: 130px;
+      object-fit: contain;
+      @media only screen and (max-width: $tablet) {
+        margin: auto;
+        display: block;
+      }
+    }
+  }
+
+  .views-field-title {
+    color: $pantone;
+    font-weight: $bold;
+    text-align: center;
+    @media only screen and (min-width: $tablet-max) {
+      width: 15%;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 25%;
+    }
+    @media only screen and (max-width: $tablet) {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .views-field-field-long-description {
+    color: $black;
+    font-weight: $bold;
+    display: block;
+    @media only screen and (min-width: $tablet-max) {
+      width: 40%;
+      padding: 0 10px;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 50%;
+    }
+    @media only screen and (max-width: $tablet) {
+      text-align: center;
+    }
+
+    a {
+      color: $black;
+      font-weight: $bold;
+      display: block;
+    }
+  }
+
+  .views-field-nothing {
+    @media only screen and (min-width: $tablet-max) {
+      width: 25%;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 100%;
+    }
+    @media only screen and (max-width: $tablet) {
+      text-align: center;
+      margin-top: 30px;
+    }
+  }
+
+  // List header.
+  .title-row {
+    display: flex;
+    width: 100%;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    border-bottom: solid 1px $gray;
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      flex-wrap: wrap;
+    }
+    @media only screen and (max-width: $tablet) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  &.no-result {
+    .title-row {
+      display: none;
+    }
+  }
+
+  .views-media {
+    @media only screen and (min-width: $tablet-max) {
+      width: 20%;
+      padding-right: 10px;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 25%;
+    }
+  }
+
+  .views-title {
+    text-align: center;
+    @media only screen and (min-width: $tablet-max) {
+      width: 15%;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 25%;
+    }
+
+    span {
+      color: $lighter-gray;
+    }
+  }
+
+  .views-description {
+    @media only screen and (min-width: $tablet-max) {
+      width: 40%;
+      padding: 0 10px;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 50%;
+    }
+
+    span {
+      color: $lighter-gray;
+    }
+  }
+
+  .views-nothing {
+    @media only screen and (min-width: $tablet-max) {
+      width: 25%;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 100%;
+    }
+  }
+
+  .btn-distributor {
+    @media only screen and (min-width: $tablet) {
+      float: right;
+    }
+
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      margin-top: 25px;
+    }
+  }
+}
+
+// Filter section.
+.col-filter {
+  width: 100%;
+  @media only screen and (min-width: $tablet-max) {
+    width: 22%;
+    margin-right: 4%;
+  }
+  @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+    width: 31%;
+    margin-right: 4%;
+  }
+}
+
+.col-list {
+  width: 100%;
+  @media only screen and (min-width: $tablet-max) {
+    width: 74%;
+  }
+  @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+    width: 65%;
+  }
+}
+
+.mobile-filter-header {
+  display: none;
+}
+
+.campbell-product-category-filters,
+.view-filters {
+  background: $filter-bg url('#{$image-base-path}/left_nav_bg.png') left top repeat-x;
+  border-radius: 10px;
+  border: 1px solid $gray;
+  padding: 5px 15px;
+
+  fieldset {
+    margin-right: 0;
+    margin-left: 0;
+    width: 100%;
+
+    .fieldset-legend {
+      display: block;
+      font-weight: $bold;
+      margin-bottom: 5px;
+    }
+
+    .fieldset-wrapper {
+      max-height: 135px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      border: 1px solid $gray;
+      padding: 10px 5px;
+      background: $filter-bg;
+
+      .option {
+        color: $lighter-gray;
+        margin-bottom: 0;
+      }
+
+      .form-type-checkbox {
+        display: flex;
+        width: 100%;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 0;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+.view-new-products {
+  margin: 30px 0;
+
+  .view-filters {
+    .fieldset-wrapper {
+      max-height: unset;
+    }
+  }
+}
+
+// Empty result.
+.view-empty {
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  border: solid 1px $mustard;
+  background-color: $ivory;
+  color: $dark-olive;
+  margin-bottom: 30px;
+}
+
+// Product category.
+
+.product-category {
+  .view-filters {
+    display: none;
+  }
+}

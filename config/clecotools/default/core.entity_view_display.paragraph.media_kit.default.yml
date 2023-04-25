@@ -1,0 +1,33 @@
+uuid: c7361143-6da2-43b4-a9c8-8a9cf49bae6e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.media_kit.field_media_kit_asset
+    - field.field.paragraph.media_kit.field_media_kit_enable
+    - paragraphs.paragraphs_type.media_kit
+id: paragraph.media_kit.default
+targetEntityType: paragraph
+bundle: media_kit
+mode: default
+content:
+  field_media_kit_asset:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_media_kit_enable:
+    type: boolean
+    label: hidden
+    settings:
+      format: boolean
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

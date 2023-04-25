@@ -1,0 +1,40 @@
+services:
+
+  step.breadcrumbs:
+    class: Drupal\cleco_vuejs\Breadcrumbs\StepProductCategoryBreadcrumbBuilder
+    tags:
+      - { name: breadcrumb_builder, priority: 2000 }
+
+  step.elastic_search_service:
+    class: Drupal\cleco_vuejs\Services\SolrSearchService
+    arguments:
+      - '@entity_type.manager'
+      - '@language_manager'
+
+  step.step_service:
+    class: Drupal\cleco_vuejs\Services\StepService
+
+  step.step_legacy_service:
+    class: Drupal\cleco_vuejs\Services\StepLegacyService
+
+  step.drupal_node_service:
+    class: Drupal\cleco_vuejs\Services\DrupalNodeService
+
+  step.image_styles_service:
+    class: Drupal\cleco_vuejs\Services\ImageStylesService
+
+  step.step_twig_extension:
+    class: Drupal\cleco_vuejs\TwigExtensions\StepTwigExtension
+    tags:
+      - {name: twig.extension}
+
+  cleco_vuejs.solr_search_service:
+    class: Drupal\cleco_vuejs\Services\SolrSearchApiService
+    arguments:
+      - '@plugin.manager.search_api.parse_mode'
+      - '@language_manager'
+
+  cleco_vuejs.vue_data_formatter:
+    class: Drupal\cleco_vuejs\Services\VueDataFormatter
+    arguments:
+      - '@entity_type.manager'

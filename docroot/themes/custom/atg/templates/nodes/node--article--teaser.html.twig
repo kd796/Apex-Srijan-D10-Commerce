@@ -1,0 +1,23 @@
+<article{{ attributes.addClass('teaser') }}>
+	<header class="teaser-header">
+		{{ title_prefix }}
+		<h2{{ title_attributes.addClass('teaser-title') }}>
+			<a href="{{ url }}" rel="bookmark">{{ label }}</a>
+		</h2>
+		<p class="teaser-subtitle">
+			{% set release_date = node.createdtime | format_date('short_date_only') %}
+			{{ 'Released on @date' | t({ '@date': release_date}) }}
+			{% if node.field_tags | length > 0 %}
+				{{ 'in' | t }}
+				{{ node.field_tags | term_list(', ') }}
+			{% endif %}
+		</p>
+
+		{{ title_suffix }}
+	</header>
+
+	<div{{ content_attributes.addClass('teaser-body') }}>
+		{{ content.body }}
+	</div>
+
+</article>

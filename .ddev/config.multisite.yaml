@@ -8,6 +8,13 @@ additional_hostnames:
   - sata-colombia-local
   - sata-emea-local
   - sata-us-local
+  - gearwrench
+  - clecotools
+  - de.clecotools
+  - uk.clecotools
+  - campbell
+  - apex-tools
+  - apextoolgroup
 hooks:
   post-start:
   - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS apextoolgroup; GRANT ALL ON apextoolgroup.* to 'db'@'%';"
@@ -27,4 +34,10 @@ hooks:
   - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS sata_emea; GRANT ALL ON sata_emea.* to 'db'@'%';"
     service: db
   - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS sata_us; GRANT ALL ON sata_us.* to 'db'@'%';"
+    service: db
+  - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS clecotools; GRANT ALL ON clecotools.* to 'db'@'%';"
+    service: db
+  - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS campbell; GRANT ALL ON campbell.* to 'db'@'%';"
+    service: db
+  - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS apex_tools; GRANT ALL ON apex_tools.* to 'db'@'%';"
     service: db

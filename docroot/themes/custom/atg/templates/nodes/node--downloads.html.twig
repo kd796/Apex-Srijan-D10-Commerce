@@ -1,0 +1,108 @@
+{% set message_block = get_paragraph(content.field_message_block) %}
+{{ content.field_hero }}
+
+<div class="strap">
+	<div class="strap-content">
+		<div class="strap-block">
+			<header class="strap-header">
+				<h2 class="strap-title">{{ 'Search Downloads' | t }}</h2>
+			</header>
+
+			<form class="form-bar">
+				<div class="form-bar-item form-bar-item--grow">
+					<input type="search" name="q" value="{{ q }}">
+				</div>
+				<div class="form-bar-item">
+					<button type="submit" class="button button--primary button--simple">{{ 'Search' | t }}</button>
+				</div>
+			</form>
+		</div>
+		<div class="strap-block strap-block--brand strap-block--notched">
+			<div class="strap-block-content">
+				<h2>{{ message_block.field_title.0.value }}</h2>
+				{{ message_block.field_body_basic.0.value | raw }}
+			</div>
+		</div>
+	</div>
+</div>
+
+{{ content.field_callout_page_end }}
+
+{% set filters = [
+	'q',
+	'document_type',
+	'language',
+	'product_category'
+] %}
+
+{% set translations = get_translations() %}
+{% set locale = get_locale() %}
+{% set alias = alias_by_path('/products/product-catalog', locale.code) %}
+
+<main class="main">
+	<downloads-catalog
+		api="{{ locale.path }}/actions/step/api/filter/downloads"
+		:filters="{{ filters | json_encode }}"
+		:per-page="24"
+		:locale="{{ locale | json_encode }}"
+		alias="{{ alias }}/"
+		:translations="{{ translations | json_encode }}"
+	>
+		<template slot="sidebar" slot-scope="catalog">
+			<div class="catalog-filters" @click.stop>
+				<catalog-filter title="{{ 'Document Type' | t }}" clear-label="{{ 'Clear' | t }}" slug="document_type" :options="catalog.facets.document_type"
+								v-model="catalog.state.document_type"></catalog-filter>
+				<catalog-filter title="{{ 'Language' | t }}" clear-label="{{ 'Clear' | t }}" slug="language" :options="catalog.facets.language" v-model="catalog.state.language"></catalog-filter>
+				<catalog-filter title="{{ 'Product Category' | t }}" clear-label="{{ 'Clear' | t }}" slug="product_category" :options="catalog.facets.product_category"
+								v-model="catalog.state.product_category"></catalog-filter>
+
+			</div>
+		</template>
+		<template slot="main" slot-scope="catalog">
+			<header class="catalog-header">
+				<div class="catalog-header-primary">
+					<h2 class="catalog-title">{{ 'Downloads' | t }}
+						<span class="hmeta" v-if="catalog.total">({{ '{{ catalog.total }}' }})</span></h2>
+					<div class="catalog-sort">
+						<div class="form-bar">
+							<div class="form-bar-item">
+								<button type="button" class="catalog-filters-toggle button button--secondary button--outline button--simple"
+										@click="catalog.toggleSidebar">{{ 'Filter' | t }}
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="catalog-header-secondary" v-if="catalog.appliedFilters.length > 0">
+					<ul class="tag-list">
+						<li class="tag-list-item" v-for="filter in catalog.appliedFilters">
+							<span class="tag"><button type="button" class="tag-button"
+													  @click="filter.remove">{{ svg('dist/img/icons/close.svg') }}</button>{{ '{{ filter.label }}' | t }}</span>
+						</li>
+					</ul>
+
+					<button type="button" class="a a--small" @click="catalog.clearFilters">{{ 'Clear All Filters' | t }}</button>
+				</div>
+			</header>
+
+			<notice type="error" v-if="catalog.error">
+				<p>{{ '{{ catalog.error.data.error }}' }}</p>
+			</notice>
+
+			<notice v-if="catalog.bootstrapped && catalog.isEmpty">
+				<p>{{ 'No results found' | t }}</p>
+			</notice>
+
+			<catalog-results :data="catalog.data" :loading="catalog.currentQuery !== null">
+				<template slot-scope="download">
+					<li class="listings-item">
+						<listing v-bind="download" action="{{ 'Download' | t }}" target="_blank"></listing>
+					</li>
+				</template>
+			</catalog-results>
+
+			<pagination v-model="catalog.state.page" :total-results="catalog.total" :per-page.sync="catalog.state.perPage" :per-page-options="[12, 24, 48, 96]"
+						@input="catalog.query"></pagination>
+		</template>
+	</downloads-catalog>
+</main>

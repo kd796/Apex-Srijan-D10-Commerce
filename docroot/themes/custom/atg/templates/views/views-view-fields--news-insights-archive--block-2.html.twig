@@ -1,0 +1,37 @@
+{% set article_type = fields.field_type.content|striptags|trim|clean_class %}
+{% set more_link = article_type == 'video' ? 'Watch Now' : 'Read More' %}
+{% set article_url = path('entity.node.canonical', { 'node': row._entity.id }) %}
+{% set article_img = fields.field_image.content %}
+
+<div class="news-insights--item news-insights--item-{{ article_type }}">
+  <div class="news-insights--item--image">
+    <a href="{{ article_url }}">
+      {% if article_img %}
+      {{ fields.field_image.content }}
+      {% else %}
+      <div class="placeholder"></div>
+      {% endif %}
+    </a>
+  </div><!-- /.news-insights--item--image -->
+  <div class="news-insights--item--content">
+    <div class="news-insights--item--meta">
+      <div class="news-insights--item--date">
+        {{ fields.created.content }}
+      </div>
+      <!-- /.news-insights--item--date -->
+      <div class="news-insights--item--type">
+        {{ fields.field_type.content }}
+      </div>
+      <!-- /.news-insights--item--type -->
+    </div><!-- /.news-insights--item--meta -->
+    <div class="news-insights--item--title">
+      <h2>
+        {{ fields.title.content }}
+      </h2>
+    </div><!-- /.news-insights--item--title -->
+    <div class="news-insights--item--body">
+      <p>{{ fields.body.content }}</p>
+      <p><a href="{{ article_url }}" class="read-more">{{ more_link|t }}</a></p>
+    </div><!-- /.news-insights--item--body -->
+  </div><!-- /.news-insights--item--content -->
+</div><!-- /.news-insights--item -->

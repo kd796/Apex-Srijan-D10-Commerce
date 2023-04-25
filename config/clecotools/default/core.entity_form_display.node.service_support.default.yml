@@ -1,0 +1,161 @@
+uuid: b182740c-5ba1-463a-8ecf-05a04369099f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.service_support.field_alternating_media_blocks
+    - field.field.node.service_support.field_basic_card_section
+    - field.field.node.service_support.field_card
+    - field.field.node.service_support.field_faqs_section
+    - field.field.node.service_support.field_forms
+    - field.field.node.service_support.field_hero
+    - field.field.node.service_support.field_mailing_list_form
+    - field.field.node.service_support.field_seo
+    - node.type.service_support
+  module:
+    - content_moderation
+    - metatag
+    - paragraphs
+    - path
+id: node.service_support.default
+targetEntityType: node
+bundle: service_support
+mode: default
+content:
+  field_alternating_media_blocks:
+    type: entity_reference_paragraphs
+    weight: 4
+    region: content
+    settings:
+      title: 'Alternating Media Blocks'
+      title_plural: 'Alternating Media Blocks'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: media_block
+    third_party_settings: {  }
+  field_basic_card_section:
+    type: entity_reference_paragraphs
+    weight: 3
+    region: content
+    settings:
+      title: 'Basic Card Section'
+      title_plural: 'Basic Card Section'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: basic_card_section
+    third_party_settings: {  }
+  field_card:
+    type: entity_reference_autocomplete
+    weight: 7
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_faqs_section:
+    type: entity_reference_paragraphs
+    weight: 6
+    region: content
+    settings:
+      title: 'FAQs Section'
+      title_plural: 'FAQs Section'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: faqs_section
+    third_party_settings: {  }
+  field_forms:
+    type: entity_reference_paragraphs
+    weight: 5
+    region: content
+    settings:
+      title: 'Form Section'
+      title_plural: 'Form Section'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: form_section
+    third_party_settings: {  }
+  field_hero:
+    type: entity_reference_paragraphs
+    weight: 2
+    region: content
+    settings:
+      title: Hero
+      title_plural: Heros
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: hero
+    third_party_settings: {  }
+  field_mailing_list_form:
+    type: entity_reference_paragraphs
+    weight: 8
+    region: content
+    settings:
+      title: 'Mailing List Form'
+      title_plural: 'Mailing List Forms'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: mailing_list_form
+    third_party_settings: {  }
+  field_seo:
+    type: metatag_firehose
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 0
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  moderation_state:
+    type: moderation_state_default
+    weight: 13
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 10
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  url_redirects:
+    weight: 12
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  promote: true
+  sticky: true
+  uid: true

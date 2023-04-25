@@ -1,0 +1,83 @@
+# Library naming structure
+#
+# library--{library-name}
+#   Use library naming structure for external libraries that will then be used as dependencies of other libraries.
+#
+# component--{component-name}
+#   Use component naming structure for reusable items that aren't necessarily entity-specific. Include these as
+#   dependencies on the entity-specific libraries.
+#
+# {entity-type}--{view-mode}
+# {entity-type}--{view-mode}--{bundle}
+#   Use entity naming structure to allow the entities to automatically attach styles when rendered.
+#
+# NOTE: Entity CSS and JS files that are included in multiple different entity-specific libraries, should probably be
+#       broken into the component structure listed above and added as a dependency on the entity-specific library.
+#
+
+# ========= Global ========= #
+
+# === Global: Base === #
+global:
+  version: VERSION
+  css:
+    theme:
+      css/main.css : {}
+      
+  js:
+    js/main.js: {}
+
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
+slider:
+  css:
+    theme:
+      //cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css: { type: external, minified: true }
+  js:
+    //cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js: { type: external, minified: true }
+    js/slider.js: {}
+
+  dependencies:
+    - core/jquery
+    - core/js-cookie
+
+node--product-category:
+  version: 1.x
+  js:
+    js/full--product-category.js: { }
+
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
+product-detail:
+  css:
+    theme:
+      //cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css: { type: external, minified: true }
+      //cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css: { type: external, minified: true }
+  js:
+    //cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js: { type: external, minified: true }
+    //cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js: { type: external, minified: true }
+    js/product-detail.js: { }
+
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
+brand-timeline:
+  css:
+    theme:
+      //cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css: { type: external, minified: true }
+  js:
+    //cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js: { type: external, minified: true }
+    js/brand-timeline.js: {}
+
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
