@@ -172,8 +172,14 @@ $sites['stg-www.clecotools.com'] = 'clecotools';
 $sites['stg-www.clecotools.de'] = 'clecotools';
 $sites['stg-www.clecotools.co.uk'] = 'clecotools';
 $sites['prod-www.clecotools.com'] = 'clecotools';
+$sites['prod-www.clecotools.co.uk'] = 'clecotools';
+$sites['prod-www.clecotools.de'] = 'clecotools';
 $sites['www.clecotools.com'] = 'clecotools';
 $sites['clecotools.com'] = 'clecotools';
+$sites['wwww.clecotools.co.uk'] = 'clecotools';
+$sites['clecotools.co.uk'] = 'clecotools';
+$sites['www.clecotools.de'] = 'clecotools';
+$sites['clecotools.de'] = 'clecotools';
 
 // New Sites for CAMPBELL
 $sites['dev-www.campbellchainandfittings.com'] = 'campbell';
