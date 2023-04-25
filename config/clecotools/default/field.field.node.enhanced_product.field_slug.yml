@@ -1,0 +1,19 @@
+uuid: a4f37931-d2f0-43f8-8763-691659df0e92
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_slug
+    - node.type.enhanced_product
+id: node.enhanced_product.field_slug
+field_name: field_slug
+entity_type: node
+bundle: enhanced_product
+label: Slug
+description: 'This is the part of the URL that has to do with the product, e.g. [site:url]products/product-catalog/{slug}'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

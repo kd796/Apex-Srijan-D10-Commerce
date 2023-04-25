@@ -1,0 +1,85 @@
+uuid: d577704d-5ae4-41bc-ab59-f4cb6b4531e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_featured_products
+    - node.type.solutions_landing
+    - paragraphs.paragraphs_type.featured_products
+  module:
+    - entity_reference_revisions
+id: node.solutions_landing.field_featured_products
+field_name: field_featured_products
+entity_type: node
+bundle: solutions_landing
+label: 'Featured Products'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      featured_products: featured_products
+    negate: 0
+    target_bundles_drag_drop:
+      callout_section_footer:
+        weight: 21
+        enabled: false
+      callout_section_page_end:
+        weight: 22
+        enabled: false
+      card:
+        weight: 23
+        enabled: false
+      content_bundle:
+        weight: 24
+        enabled: false
+      content_section:
+        weight: 25
+        enabled: false
+      content_section_simple:
+        weight: 26
+        enabled: false
+      cta:
+        weight: 27
+        enabled: false
+      excerpt:
+        weight: 28
+        enabled: false
+      featured_block:
+        weight: 29
+        enabled: false
+      featured_products:
+        weight: 20
+        enabled: true
+      featured_section:
+        weight: 30
+        enabled: false
+      form_section:
+        weight: 31
+        enabled: false
+      from_library:
+        weight: 32
+        enabled: false
+      hero:
+        weight: 33
+        enabled: false
+      media_block:
+        weight: 34
+        enabled: false
+      media_image:
+        weight: 35
+        enabled: false
+      testimonials_block:
+        weight: 36
+        enabled: false
+      testimonials_section:
+        weight: 37
+        enabled: false
+      video_bundle:
+        weight: 38
+        enabled: false
+field_type: entity_reference_revisions

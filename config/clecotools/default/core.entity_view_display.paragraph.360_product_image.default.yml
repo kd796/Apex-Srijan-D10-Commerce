@@ -1,0 +1,50 @@
+uuid: c60c4a23-33ce-4ebc-85b1-850683fc22ee
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.360_product_image.field_360_loading_image
+    - field.field.paragraph.360_product_image.field_360_product_image
+    - field.field.paragraph.360_product_image.field_360_product_image_frames
+    - paragraphs.paragraphs_type.360_product_image
+  module:
+    - image
+id: paragraph.360_product_image.default
+targetEntityType: paragraph
+bundle: 360_product_image
+mode: default
+content:
+  field_360_loading_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_360_product_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_360_product_image_frames:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  search_api_excerpt: true
+  uuid: true

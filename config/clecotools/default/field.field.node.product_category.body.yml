@@ -1,0 +1,23 @@
+uuid: cf97a677-fc84-496a-96e8-2c2e9a0e8068
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.product_category
+  module:
+    - text
+id: node.product_category.body
+field_name: body
+entity_type: node
+bundle: product_category
+label: 'Lead-in/Summary Text'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

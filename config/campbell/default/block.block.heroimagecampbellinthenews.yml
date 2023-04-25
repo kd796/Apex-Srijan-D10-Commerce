@@ -1,0 +1,28 @@
+uuid: defd39b8-0833-439c-a1de-6d72a5089c9e
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.hero_image_campbell_in_the_news
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - campbell
+id: heroimagecampbellinthenews
+theme: campbell
+region: pre_content
+weight: -21
+provider: null
+plugin: 'fixed_block_content:hero_image_campbell_in_the_news'
+settings:
+  id: 'fixed_block_content:hero_image_campbell_in_the_news'
+  label: 'Hero Image - Campbell in the news'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /media-center/campbell-in-the-news

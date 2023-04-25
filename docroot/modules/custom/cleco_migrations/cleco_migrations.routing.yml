@@ -1,0 +1,15 @@
+cleco_migrations.productlisting:
+  path: '/product-listing'
+  defaults:
+    _title: 'Products Listing'
+    _controller: '\Drupal\cleco_migrations\Controller\ClecoCommonController::productsListing'
+  requirements:
+    _permission: 'access content'
+
+cleco_migrations.productdetails:
+  path: '/product-details'
+  defaults:
+    _title: 'Products Details'
+    _controller: '\Drupal\cleco_migrations\Controller\ClecoCommonController::productsDetails'
+  requirements:
+    _permission: 'access content'

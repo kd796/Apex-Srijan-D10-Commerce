@@ -1,0 +1,24 @@
+uuid: d3f18b93-8645-47d8-8a34-fa788fc2f184
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.mailing_list_form.field_mailing_list_form_display
+    - paragraphs.paragraphs_type.mailing_list_form
+id: paragraph.mailing_list_form.default
+targetEntityType: paragraph
+bundle: mailing_list_form
+mode: default
+content:
+  field_mailing_list_form_display:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

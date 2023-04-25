@@ -1,0 +1,27 @@
+uuid: 67af8ad6-0429-4155-86d6-a11f1d2a66ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_address
+    - node.type.media_center
+  module:
+    - address
+id: node.media_center.field_address
+field_name: field_address
+entity_type: node
+bundle: media_center
+label: Address
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  available_countries:
+    CA: CA
+    US: US
+  langcode_override: ''
+  field_overrides: {  }
+  fields: {  }
+field_type: address

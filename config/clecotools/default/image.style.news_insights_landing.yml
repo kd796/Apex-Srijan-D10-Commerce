@@ -1,0 +1,19 @@
+uuid: 256bcc6c-f5fd-433d-91f0-f9cbf02da6b7
+langcode: en
+status: true
+dependencies:
+  module:
+    - image_effects
+name: news_insights_landing
+label: 'News & Insights Landing (620x350)'
+effects:
+  7d8d6251-6be9-408a-aeea-fd73d6f4b9c3:
+    uuid: 7d8d6251-6be9-408a-aeea-fd73d6f4b9c3
+    id: image_effects_scale_and_smart_crop
+    weight: 1
+    data:
+      width: '620'
+      height: '350'
+      upscale: false
+      simulate: false
+      algorithm: entropy_slice

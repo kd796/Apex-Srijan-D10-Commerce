@@ -1,0 +1,106 @@
+uuid: f5c14ac9-78cd-4eed-9321-b92eb280fd7a
+langcode: en
+status: true
+dependencies: {  }
+id: campbell_product_category_pages_level_three
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: campbell
+label: 'Campbell Product Listing Pages - Level Three'
+source:
+  constants:
+    bool_0: 0
+    bool_1: 1
+    uid_root: 1
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: 'http://www.stibosystems.com/step'
+  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 3"]'
+  fields:
+    -
+      name: remote_id
+      label: ID
+      selector: '@ID'
+    -
+      name: remote_name
+      label: 'Classification Name'
+      selector: Name
+  ids:
+    remote_id:
+      type: string
+process:
+  field_classification_id:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_id
+    method: row
+    value:
+      - W3_26984
+      - W3_26986
+      - W3_26987
+      - W3_26989
+      - W3_26990
+      - W3_27259
+      - W3_27091
+      - W3_26991
+      - W3_26992
+      - W3_27061
+      - W3_27062
+      - W3_27017
+      - W3_27018
+      - W3_27019
+      - W3_27020
+      - W3_27021
+      - W3_27048
+      - W3_27049
+      - W3_27088
+      - W3_27087
+      - W3_27089
+      - W3_27066
+      - W3_27067
+      - W3_27069
+      - W3_27070
+      - W3_27071
+      - W3_27072
+      - W3_27074
+      - W3_27075
+      - W3_27077
+      - W3_27078
+      - W3_27079
+      - W3_27080
+      - W3_27081
+  type:
+    plugin: default_value
+    default_value: product_category
+  title: remote_name
+  sticky: constants/bool_0
+  promote: constants/bool_1
+  uid: constants/uid_root
+  name:
+    plugin: skip_on_empty
+    method: row
+    source: remote_name
+  product_classifications_array:
+    plugin: apex_get_all_product_classifications
+    source: remote_name
+    depth: 2
+  field_product_classifications:
+    plugin: sub_process
+    source: '@product_classifications_array'
+    include_source: true
+    process:
+      vocabulary_id: vid
+      target_id: target_id
+destination:
+  plugin: 'entity:node'
+migration_dependencies:
+  required:
+    - campbell_product_classifications_level_three
+  optional:
+    - campbell_product_classifications_level_one
+    - campbell_product_classifications_level_two

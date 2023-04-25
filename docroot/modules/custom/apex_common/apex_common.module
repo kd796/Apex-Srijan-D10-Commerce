@@ -36,7 +36,7 @@ function apex_common_webform_options_state_province_names_alter(array &$options,
       'Prince Edward Island',
       'Quebec',
       'Saskatchewan',
-      'Yukon'
+      'Yukon',
     ];
 
     foreach ($options as $idx => $option) {
@@ -92,7 +92,7 @@ function apex_common_load_default_image(bool $product_image = FALSE): ?Media {
  */
 function apex_common_load_media_by_name(string $name): array {
   $properties = [
-    'name' => $name
+    'name' => $name,
   ];
 
   return apex_common_load_media_by_properties($properties);
@@ -183,7 +183,7 @@ function apex_common_get_featured_page(): ?array {
     [
       'promote' => '1',
       'sticky' => 1,
-      'type' => ['page', 'landing_page']
+      'type' => ['page', 'landing_page'],
     ]
   );
 
@@ -217,10 +217,11 @@ function apex_common_metatags_attachments_alter(array &$metatag_attachments): vo
 }
 
 /**
- * Implements form_views_exposed_form_alter() to reset the view id max length and clear error.
+ * Implements hook_form_views_exposed_form_alter().
  */
 function apex_common_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   $view = $form_state->getStorage('view');
+  $view_id = $view['view']->id();
   if ($form_id == 'views_exposed_form' && $view['view']->id() === 'product_category') {
     $form['field_product_specifications_target_id']['#maxlength'] = NULL;
   }

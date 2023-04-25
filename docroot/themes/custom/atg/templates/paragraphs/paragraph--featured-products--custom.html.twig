@@ -1,0 +1,48 @@
+{# @todo need figure out way to get pure values instead of all the additional keys, hence the #id conditional #}
+{% set query = [] %}
+{% set order = [] %}
+{% for product in content.field_products  %}
+     {% if product['#id'] is not null %}
+        {% set query = query|merge([['id', product['#id']]]) %}
+        {% set order = order|merge([product['#id']]) %}
+    {% endif %}
+{% endfor %} 
+
+{% if query is not empty %}
+	<ul class="listings">
+		{% set products = sort_featured_products(getProductCarousel(query) | json_decode(true), order)%}
+        {# Filter orphans / non-existent translated products #}
+        {% set contentFeaturedProducts = filter_content_featured_products(products, content.field_products) %}
+        {# Get correct alias based on selected language #}
+        {% set locale = get_locale() %}
+        {% set alias = alias_by_path('/products/product-catalog', locale.code) %}
+
+		{% for index, item in products %}
+			{% set product = item._source %}
+			{% set name = product.name %}
+			{% set body = product.values.sku_overview %}
+            {% set url  = locale.path ~ alias ~ '/' ~ product.slug %}
+
+			{% set alt_name = contentFeaturedProducts[index]['#alt_name'] %}
+			{% if alt_name %}
+				{% set name = alt_name %}
+				{% set body = null %}
+			{% endif %}
+
+			{% set alt_url = contentFeaturedProducts[index]['#alt_url'] %}
+			{% if alt_url %}
+				{% set url = alt_url %}
+			{% endif %}
+
+			<li class="listings-item">
+				{% include '@atg/patterns/listing.html.twig' with {
+					url: locale.path ~ url,
+					title: name,
+					body: body,
+					image: (product.assets is not empty) ? step_asset(product.assets) : '',
+					size: 'large',
+				} %}
+			</li>
+		{% endfor %}
+	</ul>
+{% endif %}

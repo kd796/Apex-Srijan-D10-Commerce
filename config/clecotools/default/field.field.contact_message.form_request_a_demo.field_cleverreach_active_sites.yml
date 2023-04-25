@@ -1,0 +1,21 @@
+uuid: 06c5b4e4-5bb4-4f6b-a369-d62d8e0763af
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.form_request_a_demo
+    - field.storage.contact_message.field_cleverreach_active_sites
+id: contact_message.form_request_a_demo.field_cleverreach_active_sites
+field_name: field_cleverreach_active_sites
+entity_type: contact_message
+bundle: form_request_a_demo
+label: 'CleverReach Active Sites'
+description: 'Add comma separated list of language codes to enable the submission to CleverReach'
+required: false
+translatable: true
+default_value:
+  -
+    value: de
+default_value_callback: ''
+settings: {  }
+field_type: string

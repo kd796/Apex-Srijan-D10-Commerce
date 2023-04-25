@@ -1,0 +1,25 @@
+uuid: 5d6dbb00-45c5-4ac0-8ed4-e7770e9d701b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_display_frame
+    - paragraphs.paragraphs_type.360_hotspots
+id: paragraph.360_hotspots.field_display_frame
+field_name: field_display_frame
+entity_type: paragraph
+bundle: 360_hotspots
+label: 'Display Frame'
+description: 'Set which frame of the 360° image this hotspot should show up on.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: 1
+  max: 50
+  prefix: ''
+  suffix: ''
+field_type: integer

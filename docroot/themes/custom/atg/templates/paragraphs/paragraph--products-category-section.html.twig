@@ -1,0 +1,33 @@
+<section class="section main">
+  <header class="section-header">
+    <div class="section-header-content">
+      <h2 class="section-title">{{ content.field_title[0]['#context']['value'] | raw }}</h2>
+      {% if content.field_body_plain %}
+        <div class="section-subtitle">{{ content.field_body_plain }}</div>
+      {% endif %}
+    </div>
+  </header>
+
+    {% set categories = product_categories(null, content.field_product_categories[0]["#plain_text"])|json_decode(true) %}
+    {% if categories is not empty %}
+        <ul class="listings">
+            {% for index, category in categories %}
+
+                {% set name  = category.name %}
+                {% set body  = category.body %}
+                {% set image = category.image %}
+
+                <li class="listings-item">
+                    {% include '@atg/patterns/listing.html.twig' with {
+                        url: get_locale().path ~ category.url,
+                        title: name,
+                        body: body,
+                        peek: true,
+                        size: 'large',
+                        image: (image is not empty) ? image : ''
+                    } %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</section>

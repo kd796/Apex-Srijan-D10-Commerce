@@ -1,0 +1,93 @@
+# Migration configuration for campbell_product_category_pages content.
+id: campbell_product_category_pages_level_one
+label: Campbell Product Listing Pages - Level One
+migration_group: campbell
+source:
+  constants:
+    bool_0: 0
+    bool_1: 1
+    uid_root: 1
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: "http://www.stibosystems.com/step"
+  item_selector: /STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 1"]
+  fields:
+    - name: remote_id
+      label: ID
+      selector: '@ID'
+    - name: remote_name
+      label: Classification Name
+      selector: Name
+    - name: remote_listing_image
+      label: Listing Image
+      selector: '.'
+  ids:
+    remote_id:
+      type: string
+process:
+  field_classification_id:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_id
+    method: row
+    value:
+      - W1_26966
+      - W1_26967
+      - W1_26998
+      - W1_26974
+      - W1_27002
+      - W1_27023
+      - W1_27022
+      - W1_27024
+      - W1_27043
+      - W1_27025
+      - W1_27261
+      - W1_27260
+  type:
+    plugin: default_value
+    default_value: product_category
+  title: remote_name
+  sticky: constants/bool_0
+  promote: constants/bool_1
+  uid: constants/uid_root
+  name:
+    plugin: skip_on_empty
+    method: row
+    source: remote_name
+  # Product Classifications
+  product_classifications_array:
+    plugin: apex_get_all_product_classifications
+    source: remote_name
+    depth: 2
+  field_product_classifications:
+    plugin: sub_process
+    source: '@product_classifications_array'
+    include_source: true
+    process:
+      vocabulary_id: vid
+      target_id: target_id
+  listing_menu_image:
+    source: remote_listing_image
+    plugin: apex_get_category_menu_image
+  'field_media/target_id': '@listing_menu_image'
+  category_facets_array:
+    plugin: get_all_category_facets
+    source: remote_id
+  field_category_facets:
+    plugin: sub_process
+    source: '@category_facets_array'
+    include_source: true
+    process:
+      vocabulary_id: vid
+      target_id: target_id
+destination:
+  plugin: entity:node
+migration_dependencies:
+  required:
+    - campbell_product_classifications_level_one
+  optional:
+    - campbell_product_classifications_level_two
+    - campbell_product_classifications_level_three

@@ -1,0 +1,66 @@
+uuid: 5fd53c3e-db1f-47f6-bf67-6051f77d3680
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.360_hotspots.field_display_frame
+    - field.field.paragraph.360_hotspots.field_hotspot_media
+    - field.field.paragraph.360_hotspots.field_hotspot_text
+    - field.field.paragraph.360_hotspots.field_x_position
+    - field.field.paragraph.360_hotspots.field_y_position
+    - paragraphs.paragraphs_type.360_hotspots
+id: paragraph.360_hotspots.default
+targetEntityType: paragraph
+bundle: 360_hotspots
+mode: default
+content:
+  field_display_frame:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_hotspot_media:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_hotspot_text:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_x_position:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_y_position:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden:
+  search_api_excerpt: true

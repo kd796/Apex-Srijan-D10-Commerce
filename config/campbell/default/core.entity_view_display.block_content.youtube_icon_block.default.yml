@@ -1,0 +1,31 @@
+uuid: cca9b6a1-073f-463d-983b-819bb9b29c5c
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.youtube_icon_block
+    - field.field.block_content.youtube_icon_block.body
+    - field.field.block_content.youtube_icon_block.field_link
+  module:
+    - link
+id: block_content.youtube_icon_block.default
+targetEntityType: block_content
+bundle: youtube_icon_block
+mode: default
+content:
+  field_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: _blank
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  body: true
+  langcode: true
+  search_api_excerpt: true

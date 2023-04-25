@@ -1,0 +1,33 @@
+uuid: b304f724-b645-4c02-9e6c-f1e46f15225b
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer
+  module:
+    - language
+    - system
+  theme:
+    - atg
+id: footernorthamericaen
+theme: atg
+region: footer_nav
+weight: 0
+provider: null
+plugin: 'system_menu_block:footer'
+settings:
+  id: 'system_menu_block:footer'
+  label: 'Footer (North America / EN)'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      en: en

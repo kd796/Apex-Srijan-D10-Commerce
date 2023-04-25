@@ -1,0 +1,32 @@
+uuid: 9bc95f45-c420-4a6d-b235-126c67b3b005
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.advanced_selector_email.body
+    - node.type.advanced_selector_email
+  module:
+    - text
+    - user
+id: node.advanced_selector_email.teaser
+targetEntityType: node
+bundle: advanced_selector_email
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true
