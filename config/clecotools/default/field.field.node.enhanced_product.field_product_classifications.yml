@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.node.field_product_classifications
     - node.type.enhanced_product
-    - taxonomy.vocabulary.product_classifications
 id: node.enhanced_product.field_product_classifications
 field_name: field_product_classifications
 entity_type: node
@@ -17,13 +16,10 @@ translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:taxonomy_term'
+  handler: views
   handler_settings:
-    target_bundles:
-      product_classifications: product_classifications
-    sort:
-      field: name
-      direction: asc
-    auto_create: false
-    auto_create_bundle: ''
+    view:
+      view_name: entity_reference_product_classifications
+      display_name: entity_reference_product_classifications
+      arguments: {  }
 field_type: entity_reference
