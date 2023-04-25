@@ -1,0 +1,28 @@
+uuid: 2f730135-0f73-4331-a2da-30db205fa373
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.contact_campbell
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - campbell
+id: contactcampbell
+theme: campbell
+region: sidebar_second
+weight: -24
+provider: null
+plugin: 'fixed_block_content:contact_campbell'
+settings:
+  id: 'fixed_block_content:contact_campbell'
+  label: Contact-Campbell
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/about-us/contact-us\r\n/warranty\r\n/return-policy"

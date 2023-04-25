@@ -1,0 +1,9 @@
+<main class="main">
+	<section class="section">
+		<article{{ attributes.addClass('article wysiwyg-content') }}>
+			{% for item in items %}
+				{{ item.content }}
+			{% endfor %}
+		</article>
+	</section>
+</main>

@@ -1,0 +1,41 @@
+<header class="masthead">
+  <div class="masthead-utility">
+    <nav class="masthead-language">
+      {{ page.header_language }}
+    </nav>
+
+    {{ page.header_utils_nav }}
+
+  </div>
+  <div class="masthead-primary" v-masthead-search>
+    <div class="masthead-branding">
+      <a href="{{ url('<front>') }}" class="logo x">
+        {{ svg('dist/img/atgtools-logo.svg') }}
+      </a>
+    </div>
+
+    <div class="masthead-navigation">
+      {{ page.main_nav }}
+    </div>
+
+    <div class="masthead-search">
+      <button class="dropdown-toggle masthead-search-toggle masthead-search-toggle--open">
+        <span class="dropdown-toggle-icon">{{ svg('dist/img/icons/magnifying-glass.svg') }}</span>
+        <span class="dropdown-toggle-label">Search</span>
+      </button>
+      <button class="dropdown-toggle masthead-search-toggle masthead-search-toggle--close">
+        <span class="dropdown-toggle-icon">{{ svg('dist/img/icons/close.svg') }}</span>
+        <span class="dropdown-toggle-label">Close</span>
+      </button>
+    </div>
+
+    <a href="#" class="toggle">
+      <span>Menu</span>
+    </a>
+    {# /search/node #}
+    <form method="GET" action="{{ get_locale().path }}/search/results" id="search-form" class="masthead-search-form">
+      <input type="search" name="q" class="masthead-search-form-input">
+      <button type="submit" class="masthead-search-form-submit">Search</button>
+    </form>
+  </div>
+</header>

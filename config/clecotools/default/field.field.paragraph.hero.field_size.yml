@@ -1,0 +1,23 @@
+uuid: 5216d0ac-9174-431e-ba7c-890d1ba222fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_size
+    - paragraphs.paragraphs_type.hero
+  module:
+    - options
+id: paragraph.hero.field_size
+field_name: field_size
+entity_type: paragraph
+bundle: hero
+label: Size
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: medium
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,59 @@
+{% set article_type = content.field_type[0]['#plain_text'] %}
+{% set content_attributes = content_attributes.addClass('article-body').addClass(article_type|clean_class) %}
+{% if article_type|raw == 'White Paper' %}
+{% set attributes = attributes.addClass('has-white-paper') %}
+{% endif %}
+
+{% set image = content.field_image %}
+{% set video = content.field_video_embed %}
+{% set attachments = content.field_attachments %}
+{% set published_date = node.getCreatedTime|date('F j, Y') %}
+<main class="main">
+  {{ title_prefix }}
+  {% include '@atg/patterns/hero.html.twig' with {
+    title: label,
+    subtitle: content.field_subtitle,
+    title_prefix: published_date,
+    animate: false,
+    class: 'hero--news-insights'
+  } %}
+  {{ title_suffix }}
+  <section class="section news-insights-section">
+    <article{{ attributes }}>
+
+      <div{{ content_attributes }}>
+        {% if (video) %}
+          {{ video }}
+        {% endif %}
+
+        {{ content.body }}
+      </div><!-- /.article-body -->
+
+      <footer class="article-footer">
+        {# TODO: Pull AddThis URL into a site-based config? #}
+        <share-dropdown script="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53c03c197ed98539">
+          <span class="share-toggle">
+            <span class="share-toggle-icon">{{ svg('dist/img/icons/share.svg') }}</span>
+            <span class="share-toggle-label">{{ 'Share' | t }}</span>
+          </span>
+        </share-dropdown>
+      </footer><!-- /.article-footer -->
+
+    </article>
+    <aside>
+    {% if article_type == 'White Paper' %}
+      <h3>{{ 'Access White Paper'|t }}</h3>
+      {{ { '#type': 'webform', '#webform': 'download_white_paper' } }}
+    {% else %}
+      {{ { '#type': 'webform', '#webform': 'stay_connected' } }}
+    {% endif %}
+    </aside>
+  </section>
+
+  <div class="news-insights news-insights--wrap">
+    <div class="news-insights--header">
+      <h3>{{ 'Up Next...'|t }}</h3>
+    </div>
+    {{ drupal_view('news_insights_archive', 'block_1') }}
+  </div><!-- /.news-insights--wrap -->
+</main>

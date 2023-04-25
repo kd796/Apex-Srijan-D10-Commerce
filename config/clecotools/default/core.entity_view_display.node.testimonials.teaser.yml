@@ -1,0 +1,31 @@
+uuid: 8274ea81-ce74-4213-8d11-1ec00196536e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.testimonials.field_citation
+    - field.field.node.testimonials.field_quote
+    - node.type.testimonials
+  module:
+    - user
+id: node.testimonials.teaser
+targetEntityType: node
+bundle: testimonials
+mode: teaser
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_citation: true
+  field_quote: true
+  langcode: true
+  search_api_excerpt: true

@@ -1,0 +1,532 @@
+<div class="sel-cat">
+  <div class="sel-hd sel-complete">
+    <a href="#/business" ng-click="loadData()">
+      <span class="sel-count">1.</span>
+      {{ t('Business Information') }}
+    </a>
+  </div>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd sel-complete">
+    <a href="#/general" ng-click="loadData()">
+      <span class="sel-count">2.</span>
+      {{ t('General Information') }}
+    </a>
+  </div>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd sel-complete">
+    <a href="#/application" ng-click="loadData()">
+      <span class="sel-count">3.</span>
+      {{ t('Application Information') }}
+    </a>
+  </div>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd sel-on">
+    <span class="sel-count">4.</span>
+    {{ t('Accessories') }}
+  </div>
+  <div class="sel-errors">{{ errors }}</div>
+  <form name="accessoriesform" id="accessoriesform" class="sel-form clearfix" ng-submit="saveAccessories(user)">
+    <table class="sel-ade-access" ng-repeat="app in user.apps">
+      <thead>
+        <tr>
+          <th colspan="2">
+            <p><em>{{ t('Check all accessories that apply to this application') }}</em></p>
+            {{ t('Application #') }}{{ $index + 1 }}
+          </th>
+        </tr>
+      </thead>
+
+      <tbody ng-show="app.dea_fixture_being_used === 'C Clamp'">
+        <tr>
+          <td colspan="2" class="tb-full">{{ t('C Clamp') }}</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="tb-full tb-image"><img src="/themes/custom/atg/advanced-selector/pics/CClamp.jpg" />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="tb-full">{{ t('Access Information') }}</td>
+        </tr>
+        <tr>
+          <td class="tb-offset" colspan="2">{{ t('Clearance Height H1') }}
+            <div class="sel-right clearfix">
+              <div class="sel-right-fields">
+                <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_accessories_clearance_height_h1_value" />
+                <select ng-model="app.dea_accessories_clearance_height_h1_unit">
+                  <option value="" disabled>{{ t('- Select -') }}</option>
+                  <option value="inches">{{ t('inches') }}</option>
+                  <option value="millimeters">{{ t('millimeters') }}</option>
+                </select>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="tb-offset" colspan="2">{{ t('Clearance Height H2') }}
+            <div class="sel-right clearfix">
+              <div class="sel-right-fields">
+                <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_accessories_clearance_height_h2_value" />
+                <select ng-model="app.dea_accessories_clearance_height_h2_unit">
+                  <option value="" disabled>{{ t('- Select -') }}</option>
+                  <option value="inches">{{ t('inches') }}</option>
+                  <option value="millimeters">{{ t('millimeters') }}</option>
+                </select>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="tb-offset" colspan="2">{{ t('Side to Center Dimension L1') }}
+            <div class="sel-right clearfix">
+              <div class="sel-right-fields">
+                <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_accessories_side_to_center_dimension_l1_value" maxlength="100" />
+                <select ng-model="app.dea_accessories_side_to_center_dimension_l1_unit">
+                  <option value="" disabled>{{ t('- Select -') }}</option>
+                  <option value="inches">{{ t('inches') }}</option>
+                  <option value="millimeters">{{ t('millimeters') }}</option>
+                </select>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="tb-offset" colspan="2">{{ t('Side to Center Dimension L2') }}
+            <div class="sel-right clearfix">
+              <div class="sel-right-fields">
+                <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_accessories_side_to_center_dimension_l2_value" maxlength="100" />
+                <select ng-model="app.dea_accessories_side_to_center_dimension_l2_unit">
+                  <option value="" disabled>{{ t('- Select -') }}</option>
+                  <option value="inches">{{ t('inches') }}</option>
+                  <option value="millimeters">{{ t('millimeters') }}</option>
+                </select>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="tb-full">{{ t('Location Method') }}</td>
+        </tr>
+        <tr>
+          <td colspan="2"><strong>{{ t('Prehole') }}</strong></td>
+        </tr>
+        <tr>
+          <td class="tb-offset" colspan="2">{{ t('Prehole Size') }}
+            <div class="sel-right clearfix">
+              <div class="sel-right-fields">
+                <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_accessories_prehole_size_value" maxlength="100" />
+                <select ng-model="app.dea_accessories_prehole_size_unit">
+                  <option value="" disabled>{{ t('- Select -') }}</option>
+                  <option value="inches">{{ t('inches') }}</option>
+                  <option value="millimeters">{{ t('millimeters') }}</option>
+                </select>
+                </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="tb-offset" colspan="2">{{ t('Pilot on Cutter') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_pilot_on_cutter" id="dea_accessories_pilot_on_cutter_{{$index}}" ng-true-value="'Yes'" ng-false-value="'No'" />
+                <label for="dea_accessories_pilot_on_cutter_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_pilot_on_cutter == 'Yes' }"></label>
+              </div>
+              <div class="sel-right-fields" ng-show="app.dea_accessories_pilot_on_cutter == 'Yes'">
+                <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_accessories_pilot_on_cutter_value" maxlength="100" ng-required="app.dea_accessories_pilot_on_cutter == 'Yes'" />
+                <select ng-model="app.dea_accessories_pilot_on_cutter_unit" ng-required="app.dea_accessories_pilot_on_cutter == 'Yes'">
+                  <option value="" disabled>{{ t('- Select -') }}</option>
+                  <option value="inches">{{ t('inches') }}</option>
+                  <option value="millimeters">{{ t('millimeters') }}</option>
+                </select>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="tb-offset" colspan="2">{{ t('Location Pin on Clamp') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_pin_on_clamp" id="dea_accessories_pin_on_clamp_{{$index}}" ng-true-value="'Yes'" ng-false-value="'No'" />
+                <label for="dea_accessories_pin_on_clamp_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_pin_on_clamp == 'Yes' }"></label>
+              </div>
+              <div class="sel-right-fields" ng-show="app.dea_accessories_pin_on_clamp == 'Yes'">
+                <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_accessories_pin_on_clamp_value" maxlength="100" ng-required="app.dea_accessories_pin_on_clamp == 'Yes'" />
+                <select ng-model="app.dea_accessories_pin_on_clamp_unit" ng-required="app.dea_accessories_pin_on_clamp == 'Yes'">
+                  <option value="" disabled>{{ t('- Select -') }}</option>
+                  <option value="inches">{{ t('inches') }}</option>
+                  <option value="millimeters">{{ t('millimeters') }}</option>
+                </select>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2"><strong>{{ t('Template Strip') }}</strong></td>
+        </tr>
+        <tr>
+          <td class="tb-offset" colspan="2">Location Diameter
+            <div class="sel-right clearfix">
+              <div class="sel-right-fields">
+                <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_accessories_template_strip_value" maxlength="100" />
+                <select ng-model="app.dea_accessories_template_strip_unit">
+                  <option value="" disabled>{{ t('- Select -') }}</option>
+                  <option value="inches">{{ t('inches') }}</option>
+                  <option value="millimeters">{{ t('millimeters') }}</option>
+                </select>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="tb-offset" colspan="2">{{ t('Locate on Top Clamp') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_locate_on_top_clamp" id="dea_accessories_locate_on_top_clamp_{{$index}}" ng-true-value="'Yes'" ng-false-value="'No'" />
+                <label for="dea_accessories_locate_on_top_clamp_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_locate_on_top_clamp == 'Yes' }"></label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="tb-offset">{{ t('Locate on Bottom Clamp') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_locate_on_bottom_clamp" id="dea_accessories_locate_on_bottom_clamp_{{$index}}" ng-true-value="'Yes'" ng-false-value="'No'" />
+                <label for="dea_accessories_locate_on_bottom_clamp_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_locate_on_bottom_clamp == 'Yes' }"></label>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+
+      <tbody ng-show="app.dea_fixture_being_used === 'Other' || app.dea_fixture_being_used === 'Not Yet Specified'">
+        <tr>
+          <td colspan="2" class="tb-full">{{ t('Other/Not Yet Specified') }}</td>
+        </tr>
+        <tr>
+          <td class="tb-offset">{{ t('Lubricator') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_lubricator" id="dea_accessories_lubricator_{{$index}}" ng-true-value="'Yes'" ng-false-value="'No'" />
+                <label for="dea_accessories_lubricator_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_lubricator == 'Yes' }"></label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="tb-offset">{{ t('Cycle Counter') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_cycle_counter" id="dea_accessories_cycle_counter_{{$index}}" ng-true-value="'Yes'" ng-false-value="'No'" />
+                <label for="dea_accessories_cycle_counter_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_cycle_counter == 'Yes' }"></label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="tb-offset">{{ t('Chip Fragmentation') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_chip_fragmentation" id="dea_accessories_chip_fragmentation_{{$index}}" ng-true-value="'Yes'" ng-false-value="'No'" />
+                <label for="dea_accessories_chip_fragmentation_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_chip_fragmentation == 'Yes' }"></label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="tb-offset">{{ t('Chip Vacuum') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_chip_vacuum" id="dea_accessories_chip_vacuum_{{$index}}" ng-true-value="'Yes'" ng-false-value="'No'" />
+                <label for="dea_accessories_chip_vacuum_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_chip_vacuum == 'Yes' }"></label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="tb-offset">{{ t('Other') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_other" id="dea_accessories_other_{{$index}}" ng-true-value="'Yes'" ng-false-value="'No'" />
+                <label for="dea_accessories_other_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_other == 'Yes' }"></label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr ng-show="app.dea_accessories_other == 'Yes'">
+          <td colspan="2" class="tb-offset other">
+            <input placeholder="{{ t('Please specify...') }}" class="tb-short" ng-model="app.dea_accessories_other_value" ng-required="app.dea_accessories_other == 'Yes'" ng-class="{ 'error': submitted && !app.dea_accessories_other_value && app.dea_accessories_other == 'Yes' }" />
+          </td>
+        </tr>
+      </tbody>
+
+      <tbody ng-show="app.dea_fixture_being_used !== 'C Clamp' && app.dea_fixture_being_used !== 'Other' && app.dea_fixture_being_used !== 'Not Yet Specified'">
+        <tr ng-show="app.dea_fixture_being_used === 'Template Foot'">
+          <td colspan="2" class="tb-full">{{ t('Template Foot') }}</td>
+        </tr>
+        <tr ng-show="app.dea_fixture_being_used === 'Template Foot'">
+          <td colspan="2" class="tb-full tb-image"><img src="/themes/custom/atg/advanced-selector/pics/TemplateFoot.jpg" /></td>
+        </tr>
+        <tr ng-show="app.dea_fixture_being_used === 'Twistlock'">
+          <td colspan="2" class="tb-full">{{ t('Twistlock') }}</td>
+        </tr>
+        <tr ng-show="app.dea_fixture_being_used === 'Twistlock'">
+          <td colspan="2" class="tb-full tb-image"><img src="/themes/custom/atg/advanced-selector/pics/Twistlock.jpg" /></td>
+        </tr>
+        <tr ng-show="app.dea_fixture_being_used === 'Other' || app.dea_fixture_being_used === 'Not Yet Specified'">
+          <td colspan="2" class="tb-full">{{ t('Other/Not Yet Specified') }}</td>
+        </tr>
+        <tr ng-show="app.dea_fixture_being_used === 'Concentric Collet'">
+          <td colspan="2" class="tb-full">{{ t('Concentric Collet') }}</td>
+        </tr>
+        <tr ng-show="app.dea_fixture_being_used === 'Concentric Collet'">
+          <td colspan="2" class="tb-full tb-image"><img src="/themes/custom/atg/advanced-selector/pics/ConcentricCollet.jpg" /></td>
+        </tr>
+        <tr ng-show="app.dea_fixture_being_used !== 'Concentric Collet'">
+          <td class="tb-offset">{{ t('Indexer for Attachment') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_indexer_for_attachment" id="dea_accessories_indexer_for_attachment_{{$index}}" ng-true-value="'Yes'" ng-false-value="'No'" />
+                <label for="dea_accessories_indexer_for_attachment_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_indexer_for_attachment == 'Yes' }"></label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr ng-show="app.dea_fixture_being_used === 'Concentric Collet'">
+          <td class="tb-offset">{{ t('Indexer for Concentric Collet') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_indexer_for_concentric_collet" id="dea_accessories_indexer_for_concentric_collet_{{$index}}" ng-true-value="'Yes'" ng-false-value="'No'" />
+                <label for="dea_accessories_indexer_for_concentric_collet_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_indexer_for_concentric_collet == 'Yes' }"></label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr ng-show="app.dea_fixture_being_used === 'Twistlock'">
+          <td colspan="2" class="tb-full">{{ t('Drill Bushing Series') }}</td>
+        </tr>
+        <tr ng-show="app.dea_fixture_being_used === 'Twistlock'">
+          <td class="tb-offset" colspan="2">{{ t('21000 Series') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_twistlock_21000_series" ng-true-value="'Yes'" ng-false-value="'No'" id="dea_accessories_twistlock_21000_series_{{$index}}" />
+                <label for="dea_accessories_twistlock_21000_series_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_twistlock_21000_series == 'Yes' }"></label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr ng-show="app.dea_fixture_being_used === 'Twistlock'">
+          <td class="tb-offset" colspan="2">{{ t('22000 Series') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_twistlock_22000_series" ng-true-value="'Yes'" ng-false-value="'No'" id="dea_accessories_twistlock_22000_series_{{$index}}" />
+                <label for="dea_accessories_twistlock_22000_series_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_twistlock_22000_series == 'Yes' }"></label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr ng-show="app.dea_fixture_being_used === 'Twistlock'">
+          <td class="tb-offset" colspan="2">{{ t('23000 Series') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_twistlock_23000_series" ng-true-value="'Yes'" ng-false-value="'No'" id="dea_accessories_twistlock_23000_series_{{$index}}" />
+                <label for="dea_accessories_twistlock_23000_series_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_twistlock_23000_series == 'Yes' }"></label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr ng-show="app.dea_fixture_being_used === 'Twistlock'">
+          <td class="tb-offset" colspan="2">{{ t('24000 Series') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_twistlock_24000_series" ng-true-value="'Yes'" ng-false-value="'No'" id="dea_accessories_twistlock_24000_series_{{$index}}" />
+                <label for="dea_accessories_twistlock_24000_series_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_twistlock_24000_series == 'Yes' }"></label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr ng-show="app.dea_fixture_being_used === 'Twistlock'">
+          <td class="tb-offset" colspan="2">{{ t('Other') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_twistlock_other" ng-true-value="'Yes'" ng-false-value="'No'" id="dea_accessories_twistlock_other_{{$index}}" />
+                <label for="dea_accessories_twistlock_other_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_twistlock_other == 'Yes' }"></label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr ng-show="app.dea_accessories_twistlock_other == 'Yes'">
+          <td colspan="2" class="tb-offset offset">
+            <input placeholder="{{ t('Please specify...') }}" class="tb-short" ng-model="app.dea_accessories_twistlock_other_value" ng-required="app.dea_accessories_twistlock_other == 'Yes'" ng-class="{ 'error': submitted && !app.dea_accessories_twistlock_other_value && app.dea_accessories_twistlock_other == 'Yes' }" />
+          </td>
+        </tr>
+
+        <tr ng-show="app.dea_fixture_being_used === 'Concentric Collet' || app.dea_fixture_being_used === 'Twistlock'">
+          <td class="tb-offset" colspan="2">{{ t('Jig Mounting Hole Diameter') }}
+            <div class="sel-right clearfix">
+              <div class="sel-right-fields">
+                <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_accessories_jig_mounting_hole_diameter_value" maxlength="100" />
+                <select ng-model="app.dea_accessories_jig_mounting_hole_diameter_unit">
+                  <option value="" disabled>{{ t('- Select -') }}</option>
+                  <option value="inches">{{ t('inches') }}</option>
+                  <option value="millimeters">{{ t('millimeters') }}</option>
+                </select>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr ng-show="app.dea_fixture_being_used === 'Concentric Collet' || app.dea_fixture_being_used === 'Twistlock'">
+          <td class="tb-offset" colspan="2">{{ t('Jig Thickness') }}
+            <div class="sel-right clearfix">
+              <div class="sel-right-fields">
+                <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_accessories_jig_thickness_value" maxlength="100" />
+                <select ng-model="app.dea_accessories_jig_thickness_unit">
+                  <option value="" disabled>{{ t('- Select -') }}</option>
+                  <option value="inches">{{ t('inches') }}</option>
+                  <option value="millimeters">{{ t('millimeters') }}</option>
+                </select>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr ng-show="app.dea_fixture_being_used === 'Concentric Collet' || app.dea_fixture_being_used === 'Twistlock'">
+          <td class="tb-offset" colspan="2">{{ t('Chip Clearance') }}
+            <div class="sel-right clearfix">
+              <div class="sel-right-fields">
+                <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_accessories_chip_clearance_value" maxlength="100" />
+                <select ng-model="app.dea_accessories_chip_clearance_unit">
+                  <option value="" disabled>{{ t('- Select -') }}</option>
+                  <option value="inches">{{ t('inches') }}</option>
+                  <option value="millimeters">{{ t('millimeters') }}</option>
+                </select>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr ng-show="app.dea_fixture_being_used === 'Template Foot'">
+          <td class="tb-offset" colspan="2">{{ t('Template Strip Thickness') }}
+            <div class="sel-right clearfix">
+              <div class="sel-right-fields">
+                <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_accessories_template_strip_thickness_value" />
+                <select ng-model="app.dea_accessories_template_strip_thickness_unit">
+                  <option value="" disabled>{{ t('- Select -') }}</option>
+                  <option value="inches">{{ t('inches') }}</option>
+                  <option value="millimeters">{{ t('millimeters') }}</option>
+                </select>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr ng-show="app.dea_fixture_being_used === 'Template Foot'">
+          <td class="tb-offset" colspan="2">{{ t('Template Hole Diameter') }}
+            <div class="sel-right clearfix">
+              <div class="sel-right-fields">
+                <input placeholder="{{ t('Please specify...') }}" ng-model="app.dea_accessories_template_hole_diameter_value" />
+                <select ng-model="app.dea_accessories_template_hole_diameter_unit">
+                  <option value="" disabled>{{ t('- Select -') }}</option>
+                  <option value="inches">{{ t('inches') }}</option>
+                  <option value="millimeters">{{ t('millimeters') }}</option>
+                </select>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="tb-full">{{ t('Add Ons / Accessories') }}</td>
+        </tr>
+        <tr ng-hide="true">
+          <td class="tb-offset">{{ t('Cutter') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_cutter" id="dea_accessories_cutter_{{$index}}" ng-true-value="'Yes'" ng-false-value="'No'" />
+                <label for="dea_accessories_cutter_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_cutter == 'Yes' }"></label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr ng-show="app.dea_fixture_being_used === 'Twistlock' || app.dea_fixture_being_used === 'Template Foot' || app.dea_fixture_being_used === 'Concentric Collet' || app.dea_fixture_being_used === 'Other' || app.dea_fixture_being_used === 'Not Yet Specified'">
+          <td class="tb-offset">{{ t('Lubricator') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_lubricator" id="dea_accessories_lubricator_{{$index}}" ng-true-value="'Yes'" ng-false-value="'No'" />
+                <label for="dea_accessories_lubricator_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_lubricator == 'Yes' }"></label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="tb-offset">{{ t('Cycle Counter') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_cycle_counter" id="dea_accessories_cycle_counter_{{$index}}" ng-true-value="'Yes'" ng-false-value="'No'" />
+                <label for="dea_accessories_cycle_counter_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_cycle_counter == 'Yes' }"></label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr ng-hide="true">
+          <td class="tb-offset">{{ t('Handles') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_handles" id="dea_accessories_handles_{{$index}}" ng-true-value="'Yes'" ng-false-value="'No'" />
+                <label for="dea_accessories_handles_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_handles == 'Yes' }"></label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="tb-offset">{{ t('Chip Fragmentation') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_chip_fragmentation" id="dea_accessories_chip_fragmentation_{{$index}}" ng-true-value="'Yes'" ng-false-value="'No'" />
+                <label for="dea_accessories_chip_fragmentation_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_chip_fragmentation == 'Yes' }"></label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="tb-offset">{{ t('Chip Vacuum') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_chip_vacuum" id="dea_accessories_chip_vacuum_{{$index}}" ng-true-value="'Yes'" ng-false-value="'No'" />
+                <label for="dea_accessories_chip_vacuum_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_chip_vacuum == 'Yes' }"></label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="tb-offset">{{ t('Other') }}
+            <div class="sel-right clearfix">
+              <div class="access-check">
+                <input type="checkbox" ng-model="app.dea_accessories_other" id="dea_accessories_other_{{$index}}" ng-true-value="'Yes'" ng-false-value="'No'" />
+                <label for="dea_accessories_other_{{$index}}" class="default" ng-class="{ 'orange-check': app.dea_accessories_other == 'Yes' }"></label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr ng-show="app.dea_accessories_other == 'Yes'">
+          <td colspan="2" class="tb-offset offset">
+            <input placeholder="{{ t('Please specify...') }}" class="tb-short" ng-model="app.dea_accessories_other_value" ng-required="app.dea_accessories_other == 'Yes'" ng-class="{ 'error': submitted && !app.dea_accessories_other_value && app.dea_accessories_other == 'Yes' }" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="sel-btn">
+      <button type="submit" ng-disabled="!accessoriesform.$valid || loading" class="button button--primary js-form-submit form-submit" ng-class="{ 'loading': loading }">{{ t('Next Step') }}</a>
+    </div>
+  </form>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd">
+    <span class="sel-count">5.</span>
+    {{ t('Solution Issues') }}
+  </div>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd">
+    <span class="sel-count">6.</span>
+    {{ t('Complete Request') }}
+  </div>
+</div>

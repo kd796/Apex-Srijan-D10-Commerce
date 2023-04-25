@@ -1,0 +1,18 @@
+.message-block {
+    @include section-padding(horizontal);
+    @include property-scale(padding, map-multiplier($container-padding-map, 2));
+
+    font-size: 1.125em;
+    color: #fff;
+    background: $color-orange;
+    @include watermark(#fff);
+
+    a {
+        color: inherit;
+        box-shadow: 0 1px 0 0 currentColor;
+    }
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}

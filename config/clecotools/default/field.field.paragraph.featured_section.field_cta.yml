@@ -1,0 +1,55 @@
+uuid: 0c51a467-91fe-41d6-9a4b-041abde36c89
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_cta
+    - paragraphs.paragraphs_type.cta
+    - paragraphs.paragraphs_type.featured_section
+  module:
+    - entity_reference_revisions
+id: paragraph.featured_section.field_cta
+field_name: field_cta
+entity_type: paragraph
+bundle: featured_section
+label: CTA
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      cta: cta
+    negate: 0
+    target_bundles_drag_drop:
+      callout_options:
+        weight: 11
+        enabled: false
+      callout_section_footer:
+        weight: 10
+        enabled: false
+      content_bundle:
+        weight: 12
+        enabled: false
+      cta:
+        weight: 13
+        enabled: true
+      featured_block:
+        weight: 14
+        enabled: false
+      featured_section:
+        weight: 15
+        enabled: false
+      from_library:
+        weight: 16
+        enabled: false
+      testimonials_section:
+        weight: 17
+        enabled: false
+      tile_block:
+        weight: 18
+        enabled: false
+field_type: entity_reference_revisions

@@ -1,0 +1,93 @@
+.strap {
+  background: $color-accent-bg;
+}
+
+.strap-content {
+  display: flex;
+
+  @media (max-width: $media-screen-medium) {
+    flex-wrap: wrap;
+  }
+}
+
+.strap-block {
+  @include section-padding(vertical);
+  @include property-scale((padding-left, padding-right), map-multiplier($container-padding-map, 2));
+  flex: 1 1 auto;
+
+  &:first-child {
+    @include section-padding(left);
+  }
+
+  &:last-child {
+    @include section-padding(right);
+  }
+
+  .form-bar {
+    .form-bar-item {
+      @media only screen and (max-width: $media-screen-medium ) {
+        max-width: 100%;
+      }
+    }
+  }
+
+  @media only screen and (max-width: $media-screen-large ) {
+    flex: 0 0 50%;
+  }
+
+  @media only screen and (max-width: $media-screen-medium ) {
+    flex: 0 0 100%;
+  }
+}
+
+.strap-block-content {
+  position: relative;
+}
+
+.strap-block--brand {
+  @include watermark(#fff);
+  background-color: $color-orange;
+  color: #fff;
+  max-width: 40rem;
+
+  @media only screen and (max-width: $media-screen-medium ) {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+
+  a {
+    color: inherit;
+    box-shadow: 0 1px 0 0 currentColor;
+  }
+}
+
+
+.strap-block--notched {
+  @media (min-width: $breakpoint-notches) {
+    @include property-scale(margin-top, map-multiplier($container-padding-map, -2));
+  }
+
+  @media only screen and(max-width: $media-screen-medium) {
+    margin-top: 0;
+  }
+}
+
+.strap--centered {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.strap-header {
+  margin-bottom: 2rem;
+}
+
+.strap-title {
+  @extend %h1;
+  margin-bottom: 0.5em;
+}
+
+.strap-subtitle {
+  font-size: 1.125em;
+  color: rgba($color-off-black, 0.9);
+}

@@ -1,0 +1,14 @@
+{% if breadcrumb | length > 1 %}
+  <nav class="breadcrumbs-strap" role="navigation" aria-labelledby="system-breadcrumb">
+    <h2 id="system-breadcrumb" class="visually-hidden">{{ 'Breadcrumbs' | t }}</h2>
+    <div class="breadcrumbs">
+      {% for index, item in breadcrumb %}
+          {% if item.url %}
+            <a href="{{ item.url }}" class="breadcrumb {{ index == 0 ? 'breadcrumb--home' : null }}">{{ item.text }}</a>
+          {% else %}
+            <span class="breadcrumb breadcrumb--current">{{ item.text|raw }}</span>
+          {% endif %}
+      {% endfor %}
+    </div>
+  </nav>
+{% endif %}

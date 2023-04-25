@@ -1,0 +1,28 @@
+uuid: 4f8732e1-ef00-4e82-b403-fc4159dff1d5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_media_src
+    - media.type.image
+    - paragraphs.paragraphs_type.testimonials_block
+id: paragraph.testimonials_block.field_media_src
+field_name: field_media_src
+entity_type: paragraph
+bundle: testimonials_block
+label: Image
+description: 'Image Size: 1440x450'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

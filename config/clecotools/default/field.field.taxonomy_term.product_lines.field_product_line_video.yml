@@ -1,0 +1,28 @@
+uuid: 0732c7a7-bbf5-48a9-8de9-63110ebc8a04
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_product_line_video
+    - media.type.video
+    - taxonomy.vocabulary.product_lines
+id: taxonomy_term.product_lines.field_product_line_video
+field_name: field_product_line_video
+entity_type: taxonomy_term
+bundle: product_lines
+label: 'Product Line Video'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      video: video
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

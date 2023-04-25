@@ -1,0 +1,67 @@
+uuid: bcdaeb66-a250-4faf-be4d-fc19f1ab8a24
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.product_model.body
+    - field.field.node.product_model.field_model_specification
+    - field.field.node.product_model.field_sr_number
+    - field.field.node.product_model.field_upc
+    - field.field.node.product_model.field_web_display_sort_order
+    - node.type.product_model
+  module:
+    - text
+    - user
+id: node.product_model.default
+targetEntityType: node
+bundle: product_model
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_model_specification:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_sr_number:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_upc:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_web_display_sort_order:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true
+  uuid: true

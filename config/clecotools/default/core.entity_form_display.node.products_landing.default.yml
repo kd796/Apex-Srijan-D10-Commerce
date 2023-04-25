@@ -1,0 +1,125 @@
+uuid: 08dd37dc-5570-468c-abed-0445cb85aea7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.products_landing.field_hero
+    - field.field.node.products_landing.field_mailing_list_form
+    - field.field.node.products_landing.field_product_search
+    - field.field.node.products_landing.field_products_category_section
+    - field.field.node.products_landing.field_seo
+    - node.type.products_landing
+    - workflows.workflow.editorial
+  module:
+    - content_moderation
+    - metatag
+    - paragraphs
+    - path
+id: node.products_landing.default
+targetEntityType: node
+bundle: products_landing
+mode: default
+content:
+  field_hero:
+    type: entity_reference_paragraphs
+    weight: 2
+    region: content
+    settings:
+      title: Hero
+      title_plural: Hero
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: hero
+    third_party_settings: {  }
+  field_mailing_list_form:
+    type: entity_reference_paragraphs
+    weight: 7
+    region: content
+    settings:
+      title: 'Mailing List Form'
+      title_plural: 'Mailing List Form'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: mailing_list_form
+    third_party_settings: {  }
+  field_product_search:
+    type: entity_reference_paragraphs
+    weight: 3
+    region: content
+    settings:
+      title: 'Product Search'
+      title_plural: 'Product Search'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: product_search
+    third_party_settings: {  }
+  field_products_category_section:
+    type: entity_reference_paragraphs
+    weight: 6
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+  field_seo:
+    type: metatag_firehose
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 0
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  moderation_state:
+    type: moderation_state_default
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  url_redirects:
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  promote: true
+  sticky: true
+  uid: true

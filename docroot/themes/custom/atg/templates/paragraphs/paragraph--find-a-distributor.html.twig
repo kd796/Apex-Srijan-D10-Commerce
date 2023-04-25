@@ -1,0 +1,19 @@
+<div class="section section--bordered main">
+	<div class="section-header section-header--centered">
+		<div class="section-header-content">
+			<h2 class="section-title">{{ content.field_title[0]['#context']['value'] | raw }}</h2>
+			<div class="section-subtitle is-centered">
+				{{ content.field_body_plain }}
+			</div>
+		</div>
+	</div>
+
+	<form action="/find-a-distributor" class="form-bar form-bar--centered">
+		<div class="form-bar-item">
+			<input type="search" name="q">
+		</div>
+		<div class="form-bar-item">
+			<button type="submit" class="button button--primary button--simple">{{ 'Search' | t }}</button>
+		</div>
+	</form>
+</div>

@@ -5,8 +5,10 @@ dependencies:
   config:
     - field.field.media.remote_video.field_media_oembed_video
     - field.field.media.remote_video.field_media_video_embed_field
+    - field.field.media.remote_video.field_meta_tags
     - media.type.remote_video
   module:
+    - metatag
     - video_embed_field
 id: media.remote_video.default
 targetEntityType: media
@@ -23,6 +25,13 @@ content:
       height: 480
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_meta_tags:
+    type: metatag_empty_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
     region: content
 hidden:
   created: true
