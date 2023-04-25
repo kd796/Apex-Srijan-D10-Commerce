@@ -31,9 +31,13 @@
                   {% set name = product_title_overrides[index] %}
                 {% endif %}
 
-                {% set body = item.field_features_copy.value %}
-                {% if not body %}
-                  {% set body = item.body.value %}
+                {% if product_title_overrides[index] %}
+                  {% set body = null %}
+                {% else %}
+                  {% set body = item.field_features_copy.value %}
+                  {% if not body %}
+                    {% set body = item.body.value %}
+                  {% endif %}
                 {% endif %}
 
                 {% set url  = baseUrl ~ item.field_slug.value %}
