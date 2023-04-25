@@ -1,0 +1,23 @@
+uuid: a56d8431-f72d-46fb-8fa9-7ad2877a80d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.media_center_landing_page
+    - field.storage.block_content.field_icon_type
+  module:
+    - options
+id: block_content.media_center_landing_page.field_icon_type
+field_name: field_icon_type
+entity_type: block_content
+bundle: media_center_landing_page
+label: 'Icon type'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: news-icon
+default_value_callback: ''
+settings: {  }
+field_type: list_string

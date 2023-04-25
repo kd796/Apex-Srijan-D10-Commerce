@@ -1,0 +1,49 @@
+.directory-group-title {
+    padding-bottom: 0.375em;
+    border-bottom: 2px solid rgba($color-gray-light, 0.7);
+}
+
+.directory-item-title {
+    margin-bottom: 0.25em;
+}
+
+/**
+ * COLUMNS LAYOUT
+ */
+@media (min-width: $breakpoint-layout-horizontal) {
+    .directory {
+        display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        margin-left: -1rem;
+        margin-right: -1rem;
+    }
+
+    .directory-group {
+        flex: 0 0 auto;
+        width: 33%;
+        padding: 1rem;
+    }
+
+    .directory-item:not(:last-child) {
+        margin-bottom: 2rem;
+    }
+}
+
+/**
+ * STACKED LAYOUT
+ */
+@media (max-width: $breakpoint-layout-horizontal - 1) {
+    .directory-items {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: -0.5rem;
+        margin-right: -0.5rem;
+    }
+
+    .directory-item {
+        flex-basis: 33%;
+        min-width: 14em;
+        padding: 0.5rem;
+    }
+}

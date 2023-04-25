@@ -1,0 +1,25 @@
+uuid: e18cf0c7-ef4b-4e36-bca5-ce5ec6861951
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_360_product_image_frames
+    - paragraphs.paragraphs_type.360_product_image
+id: paragraph.360_product_image.field_360_product_image_frames
+field_name: field_360_product_image_frames
+entity_type: paragraph
+bundle: 360_product_image
+label: 'Product 360° Image Frames Count'
+description: 'Enter the number of frames present in the 360° image (maximum: 50).'
+required: true
+translatable: false
+default_value:
+  -
+    value: 24
+default_value_callback: ''
+settings:
+  min: 1
+  max: 50
+  prefix: ''
+  suffix: ''
+field_type: integer

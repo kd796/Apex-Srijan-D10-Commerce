@@ -1,0 +1,240 @@
+{# Using New view on Home page #}
+
+{% set filters = [
+  'q',
+  'document_type',
+  'language',
+  'product_category'
+] %}
+
+{% set translations = get_translations() %}
+{% set locale = get_locale() %}
+{% set alias = alias_by_path('/products/product-catalog', locale.code) %}
+
+<div class="strap strap--centered">
+  <div class="strap-content">
+    <div class="strap-block">
+      <header class="strap-header">
+        <h2 class="strap-title">{{ 'Search' | t }}</h2>
+      </header>
+
+      <form action="" class="form-bar form-bar--centered">
+        <div class="form-bar-item">
+          <label for="q" class="visually-hidden">{{ 'Keywords' | t }}</label>
+          <input type="search" name="q" id="q" value="{{ q }}">
+        </div>
+        <div class="form-bar-item">
+          <button type="submit" class="button button--simple button--primary">{{ 'Search' | t }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% if q %}
+  <main class="main">
+    <downloads-catalog
+      api="{{ locale.path }}/actions/step/api/search?q={{ q }}"
+      :filters="{{ filters | json_encode }}"
+      :per-page="24"
+      :locale="{{ locale | json_encode }}"
+      alias="{{ alias }}/"
+      :translations="{{ translations | json_encode }}"
+    >
+      <template slot="sidebar" slot-scope="catalog">
+        <div class="catalog-filters" @click.stop>
+          <catalog-filter title="{{ 'Document Type' | t }}" clear-label="{{ 'Clear' | t }}" slug="document_type" :options="catalog.facets.document_type"
+                  v-model="catalog.state.document_type"></catalog-filter>
+          <catalog-filter title="{{ 'Language' | t }}" clear-label="{{ 'Clear' | t }}" slug="language" :options="catalog.facets.language" v-model="catalog.state.language"></catalog-filter>
+          <catalog-filter title="{{ 'Product Category' | t }}" clear-label="{{ 'Clear' | t }}" slug="product_category" :options="catalog.facets.product_category"
+                  v-model="catalog.state.product_category"></catalog-filter>
+
+        </div>
+      </template>
+      <template slot="main" slot-scope="catalog">
+        <header class="catalog-header">
+          <div class="catalog-header-primary">
+            <h2 class="catalog-title">{{ 'Search Results for “@query”' | t({'@query': q}) }}
+              <span class="hmeta" v-if="catalog.total">({{ '{{ catalog.total }}' }})</span></h2>
+            <div class="catalog-sort">
+              <div class="form-bar">
+                <div class="form-bar-item">
+                  <button type="button" class="catalog-filters-toggle button button--secondary button--outline button--simple"
+                      @click="catalog.toggleSidebar">{{ 'Filter' | t }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="catalog-header-secondary" v-if="catalog.appliedFilters.length > 0">
+            <ul class="tag-list">
+              <li class="tag-list-item" v-for="filter in catalog.appliedFilters">
+                <span class="tag"><button type="button" class="tag-button"
+                              @click="filter.remove">{{ svg('dist/img/icons/close.svg') }}</button>{{ '{{ filter.label }}' | t }}</span>
+              </li>
+            </ul>
+
+            <button type="button" class="a a--small" @click="catalog.clearFilters">{{ 'Clear All Filters' | t }}</button>
+          </div>
+        </header>
+
+        <notice type="error" v-if="catalog.error">
+          <p>{{ '{{ catalog.error.data.error }}' }}</p>
+        </notice>
+
+        <notice v-if="catalog.bootstrapped && catalog.isEmpty">
+          <p>{{ 'No results found' | t }}</p>
+        </notice>
+
+        <catalog-results :data="catalog.data" :loading="catalog.currentQuery !== null">
+          <template slot-scope="download">
+            <li class="listings-item">
+              <listing v-bind="download" action="{{ 'Download' | t }}" target="_blank"></listing>
+            </li>
+          </template>
+        </catalog-results>
+
+        <pagination v-model="catalog.state.page" :total-results="catalog.total" :per-page.sync="catalog.state.perPage" :per-page-options="[12, 24, 48, 96]"
+              @input="catalog.query"></pagination>
+      </template>
+    </downloads-catalog>
+  </main>
+{% endif %}
+
+
+
+
+{# Old View Commented
+{% set filters = {
+  'q': q,
+  'type': [],
+  'product_line': [],
+  'product_category': [],
+} %}
+#}
+
+{# Hardcoded STEP translations #}
+{# OLD View Commented
+{% set translations = get_translations() %}
+{% set locale = get_locale() %}
+{% set alias = alias_by_path('/products/product-catalog', locale.code) %}
+
+<div class="strap strap--centered">
+  <div class="strap-content">
+    <div class="strap-block">
+      <header class="strap-header">
+        <h2 class="strap-title">{{ 'Search' | t }}</h2>
+      </header>
+
+      <form action="" class="form-bar form-bar--centered">
+        <div class="form-bar-item">
+          <label for="q" class="visually-hidden">{{ 'Keywords' | t }}</label>
+          <input type="search" name="q" id="q" value="{{ q }}">
+        </div>
+        <div class="form-bar-item">
+          <button type="submit" class="button button--simple button--primary">{{ 'Search' | t }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% if q %}
+<main class="main">
+  <search-catalog
+        api="{{ locale.path }}/actions/step/api/search?q={{ q }}"
+        :filters="{{ filters | json_encode }}"
+        :per-page="24"
+        :locale="{{ locale | json_encode }}"
+        alias="{{ alias }}/"
+        :translations="{{ translations | json_encode }}"
+        >
+    <template slot="sidebar" slot-scope="catalog">
+      <div class="catalog-filters" @click.stop>
+        <catalog-filter
+          title="{{ 'Type' | t }}"
+          clear-label="{{ 'Clear' | t }}"
+          slug="type"
+          :options="catalog.facets.type"
+          v-model="catalog.state.type"></catalog-filter>
+        <catalog-filter
+          title="{{ 'Product Line' | t }}"
+          clear-label="{{ 'Clear' | t }}"
+          slug="product_line"
+          :options="catalog.facets.product_line"
+          v-model="catalog.state.product_line"></catalog-filter>
+        <catalog-filter
+          title="{{ 'Product Category' | t }}"
+          clear-label="{{ 'Clear' | t }}"
+          slug="product_category"
+          :options="catalog.facets.product_category"
+          v-model="catalog.state.product_category"></catalog-filter>
+      </div>
+    </template>
+
+    <template slot="main" slot-scope="catalog">
+      <header class="catalog-header">
+        <div class="catalog-header-primary">
+          <h2 class="catalog-title">
+            {{ 'Search Results for “@query”' | t({'@query': q}) }}
+            <span class="hmeta" v-if="catalog.total">({{ '{{ catalog.total }}' }})</span>
+          </h2>
+          <div class="catalog-sort">
+            <div class="form-bar">
+              <div class="form-bar-item">
+                <button type="button" class="catalog-filters-toggle button button--secondary button--outline button--simple"
+                    @click="catalog.toggleSidebar">Filter
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="catalog-header-secondary" v-if="catalog.appliedFilters.length > 0">
+          <ul class="tag-list">
+            <li class="tag-list-item" v-for="filter in catalog.appliedFilters">
+              <span class="tag"><button type="button" class="tag-button"
+                            @click="filter.remove">{{ svg('dist/img/icons/close.svg') }}</button>{{ '{{ filter.label }}' | t }}</span>
+            </li>
+          </ul>
+
+          <button type="button" class="a a--small" @click="catalog.clearFilters">{{ 'Clear All Filters' | t }}</button>
+        </div>
+      </header>
+
+      <notice type="error" v-if="catalog.error">
+        <p>{{ '{{ catalog.error}}' }}</p>
+      </notice>
+
+      <notice v-if="catalog.bootstrapped && catalog.isEmpty">
+        <p>{{ 'No results found' | t }}</p>
+      </notice>
+
+      <catalog-results class-prefix="results" :data="catalog.data" :loading="catalog.currentQuery !== null">
+        {% raw %}
+          <li class="results-item" slot-scope="result">
+            <div class="result">
+              <a :href="result.url" class="result-image" v-if="result.image">
+                <transparent-image :src="result.image" :alt="result.title" class="result-image-img"></transparent-image>
+              </a>
+              <div class="result-content">
+                <header class="result-header">
+                  <p class="result-subtitle">{{ result.type }}</p>
+                  <h3 class="result-title">
+                    <a :href="result.url" class="result-link" v-html="result.title"></a>
+                  </h3>
+                </header>
+                <div class="result-body" v-if="result.body">
+                  <p v-html="result.body"></p>
+                </div>
+              </div>
+            </div>
+          </li>
+        {% endraw %}
+      </catalog-results>
+
+      <pagination v-model="catalog.state.page" :total-results="catalog.total" :per-page.sync="catalog.state.perPage" :per-page-options="[12, 24, 48, 96]"
+            @input="catalog.query"></pagination>
+    </template>
+  </search-catalog>
+</main>
+{% endif %}
+#}

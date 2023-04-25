@@ -1,0 +1,28 @@
+uuid: 5c161604-670d-4257-8a64-3dc93271e13b
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.hero_image_new_products
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - campbell
+id: heroimagenewproducts
+theme: campbell
+region: pre_content
+weight: -30
+provider: null
+plugin: 'fixed_block_content:hero_image_new_products'
+settings:
+  id: 'fixed_block_content:hero_image_new_products'
+  label: 'Hero Image - New Products'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/new-products\r\n"

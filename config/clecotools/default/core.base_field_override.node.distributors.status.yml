@@ -1,0 +1,22 @@
+uuid: cf8aa7f3-4693-42ca-8376-6930db259340
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.distributors
+id: node.distributors.status
+field_name: status
+entity_type: node
+bundle: distributors
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Theme override to display a single Drupal page while offline.
+ *
+ * All available variables are mirrored in page.html.twig.
+ * Some may be blank but they are provided for consistency.
+ *
+ * @see template_preprocess_maintenance_page()
+ */
+#}
+<div class="takeover">
+	<div class="takeover-content">
+		<header class="takeover-header">
+			<a href="{{ get_locale().path }}" class="logo">
+				{{ svg('dist/img/clecotools-logo.svg') }}
+			</a>
+		</header>
+		<div class="takeover-body">
+			{% if title %}
+				<h2>{{ title }}</h2>
+			{% endif %}
+
+			{{ page.highlighted }}
+			{{ page.content }}
+		</div>
+	</div>
+</div>

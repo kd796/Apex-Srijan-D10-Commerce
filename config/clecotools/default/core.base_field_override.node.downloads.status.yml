@@ -1,0 +1,22 @@
+uuid: 80fd7cc7-354d-454a-8b88-6390f80063e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.downloads
+id: node.downloads.status
+field_name: status
+entity_type: node
+bundle: downloads
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

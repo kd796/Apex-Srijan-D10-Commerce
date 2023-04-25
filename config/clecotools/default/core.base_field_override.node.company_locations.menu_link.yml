@@ -1,0 +1,20 @@
+uuid: c7be4e02-7a8d-480e-bdca-50d452c290cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.company_locations
+id: node.company_locations.menu_link
+field_name: menu_link
+entity_type: node
+bundle: company_locations
+label: 'Menu link'
+description: 'Computed menu link for the node (only available during node saving).'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

@@ -1,0 +1,18 @@
+uuid: d78f472b-ff02-49ee-9519-b1ad3f716449
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.news_insights_landing
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '1'
+id: node.news_insights_landing
+target_entity_type_id: node
+target_bundle: news_insights_landing
+default_langcode: site_default
+language_alterable: true

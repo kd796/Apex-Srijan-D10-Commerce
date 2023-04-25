@@ -1,0 +1,26 @@
+
+{% if forms|length > 0 %}
+  <section class="section section--form">
+    <header class="section-header">
+      <h2 class="section-title">{{ content.field_title[0]['#context']['value'] | raw }}</h2>
+    </header>
+
+    {% set selector_heading = content.field_step_1_title[0]['#context']['value'] %}
+    {% set form_heading = content.field_step_2_title[0]['#context']['value'] %}
+    {% set form_links = [] %}
+    {% for form in forms %}
+      {% if form.link != null %}
+        {% set form_links = form_links|merge({(form.id): form.link}) %}
+      {% endif %}
+    {% endfor %}
+
+    <form-selector :forms="{{ forms | keys | json_encode }}" selector-heading="{{ selector_heading }}" form-heading="{{ form_heading }}" selected-label="{{ 'Selected' | t }}" :form-links="{{ form_links | json_encode }}">
+      {% for form in forms %}
+        {% set icon = form.icon | default('globe') %}
+        <template slot="{{ form.id }}-label">{{ form.label }}</template>
+        <template slot="{{ form.id }}-icon">{{ svg('dist/img/icons/' ~ icon ~ '.svg') }}</template>
+        <template slot="{{ form.id }}">{{ form.view }}</template>
+      {% endfor %}
+    </form-selector>
+  </section>
+{% endif %}

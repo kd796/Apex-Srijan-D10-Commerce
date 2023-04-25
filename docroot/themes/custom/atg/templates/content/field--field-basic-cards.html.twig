@@ -1,0 +1,7 @@
+<basic-cards>
+	{% for item in items %}
+		<basic-card>
+			{{ item.content | raw }}
+		</basic-card>
+	{% endfor %}
+</basic-cards>

@@ -1,0 +1,29 @@
+uuid: 8fe7a018-0d5c-4cb7-b539-5d2ce9e55fa1
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.homepage_feature_content
+  module:
+    - system
+    - views
+  theme:
+    - campbell
+id: views_block__homepage_feature_content_image_block
+theme: campbell
+region: content
+weight: -20
+provider: null
+plugin: 'views_block:homepage_feature_content-image_block'
+settings:
+  id: 'views_block:homepage_feature_content-image_block'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

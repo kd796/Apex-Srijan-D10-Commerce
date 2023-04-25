@@ -1,0 +1,54 @@
+/**
+ * IE11
+ */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .hero {
+    &--medium {
+      height: map-get($hero-height-map, medium);
+    }
+
+    &--large {
+      height: map-get($hero-height-map, medium);
+    }
+  }
+
+  .feature {
+    height: map-get($feature-height-map, default);
+
+    &--large {
+      height: map-get($feature-height-map, large);
+    }
+  }
+
+  .listing-image {
+    height: map-get($listing-image-height-map, default);
+
+    &--large {
+      height: map-get($listing-image-height-map, large);
+    }
+  }
+}
+
+/**
+ * SIEMA FLEXBOX
+ * Workaround to have equal-height cards in a Siema slider.
+ *
+ * Siema uses floats for layout. This hack overrides those floats
+ * with Flexbox to have automatic equal heights.
+ *
+ * The --init class is only added once the slider component mounts.
+ */
+.basic-cards-slider--init {
+  .basic-cards > div {
+    display: inline-flex;
+  }
+
+  .basic-cards > div > div {
+    float: none !important;
+  }
+
+  .basic-cards-item,
+  .basic-cards > div > div {
+    display: flex;
+  }
+}

@@ -1,0 +1,31 @@
+uuid: 741eed6b-ff50-429b-aab5-688b27918451
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.hero_image_featured_content
+  module:
+    - fixed_block_content
+    - node
+  theme:
+    - campbell
+id: heroimage_featured_content
+theme: campbell
+region: pre_content
+weight: -34
+provider: null
+plugin: 'fixed_block_content:hero_image_featured_content'
+settings:
+  id: 'fixed_block_content:hero_image_featured_content'
+  label: 'Hero Image - Featured content'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      multisite_featured: multisite_featured

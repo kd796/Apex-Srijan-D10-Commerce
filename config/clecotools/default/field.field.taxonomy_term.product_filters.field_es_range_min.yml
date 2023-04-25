@@ -1,0 +1,19 @@
+uuid: aba54a1f-3388-41c7-80e3-99d6e3b4e0de
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_es_range_min
+    - taxonomy.vocabulary.product_filters
+id: taxonomy_term.product_filters.field_es_range_min
+field_name: field_es_range_min
+entity_type: taxonomy_term
+bundle: product_filters
+label: 'Range Min'
+description: 'Sets default value to the lowest value in the index.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

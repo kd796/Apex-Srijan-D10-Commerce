@@ -5,8 +5,10 @@ dependencies:
   config:
     - field.field.media.remote_video.field_media_oembed_video
     - field.field.media.remote_video.field_media_video_embed_field
+    - field.field.media.remote_video.field_meta_tags
     - media.type.remote_video
   module:
+    - metatag
     - video_embed_field
 _core:
   default_config_hash: MJYW88FZlo9dYnLr0zrWDDK3iij-0GHhgOa_dXZg1zA
@@ -20,6 +22,14 @@ content:
     weight: 0
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_meta_tags:
+    type: metatag_firehose
+    weight: 26
+    region: content
+    settings:
+      sidebar: true
+      use_details: true
     third_party_settings: {  }
   langcode:
     type: language_select

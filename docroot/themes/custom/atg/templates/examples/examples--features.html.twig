@@ -1,0 +1,90 @@
+<main class="main">
+  <section class="section">
+    <h1>Default</h1>
+
+    {% include '@atg/patterns/feature.html.twig' with {
+      title: 'Read Our Story',
+      body: 'Cleco is a global leader in manufacturing and delivering world-class assembly solutions for over 120 years.',
+      url: '#',
+      action: 'Learn More About Cleco'
+    } %}
+    <br>
+
+    <h2>Inverse</h2>
+
+    {% include '@atg/patterns/feature.html.twig' with {
+      image: 'https://placem.at/things?w=800&h=800&txt=',
+      title: 'Become a Distributor',
+      body: 'Our Distributor program lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+      url: '#',
+      action: 'Become a Distributor'
+    } %}
+    <br>
+
+    <h2>Brand</h2>
+
+    {% include '@atg/patterns/feature.html.twig' with {
+      title: 'Read Our Story',
+      body: 'Cleco is a global leader in manufacturing and delivering world-class assembly solutions for over 120 years.',
+      url: '#',
+      action: 'Learn More About Cleco',
+      brand: true,
+    } %}
+    <br>
+
+    <div class="feature feature--brand">
+      <div class="feature-body">
+        <header class="feature-header">
+          <h2 class="feature-title">Find a Distributor</h2>
+        </header>
+        <div class="feature-content">
+          <p>Ready to talk shop? Enter your ZIP code to find a distributor near you.</p>
+        </div>
+        <footer class="feature-footer">
+          <form class="form-bar">
+            <div class="form-bar-item">
+              <input type="search" name="zip" class="input--inverse">
+            </div>
+            <div class="form-bar-item">
+              <button type="submit" class="button button--simple button--secondary">Search</button>
+            </div>
+          </form>
+        </footer>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <h1>Large</h1>
+
+    {% include '@atg/patterns/feature.html.twig' with {
+      subtitle: 'Featured Solution',
+      title: 'NeoTek™',
+      body: 'One million cycles maintenance-free. Streamline your assembly line and increase your return on investment with NeoTek™',
+      url: '#',
+      action: 'Learn More About NeoTek™',
+      size: 'large',
+    } %}
+    <br>
+
+    {% include '@atg/patterns/feature.html.twig' with {
+      image: 'https://placem.at/things?w=800&h=800&txt=',
+      subtitle: 'Featured Solution',
+      title: 'Motor Vehicle Industry',
+      body: 'APEX Global Power Tools has been pioneering innovations and solutions for the challenging applications and stringent requirements of the motor vehicle industry for decades.',
+      url: '#',
+      action: 'Learn More About Motor Vehicle Industry',
+      size: 'large',
+    } %}
+    <br>
+
+    {% include '@atg/patterns/feature.html.twig' with {
+      subtitle: 'Featured Solution',
+      title: 'Motor Vehicle Industry',
+      body: 'APEX Global Power Tools has been pioneering innovations and solutions for the challenging applications and stringent requirements of the motor vehicle industry for decades.',
+      url: '#',
+      action: 'Learn More About Motor Vehicle Industry',
+      size: 'large',
+      brand: true,
+    } %}
+  </section>
+</main>

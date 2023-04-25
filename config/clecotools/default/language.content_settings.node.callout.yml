@@ -1,0 +1,18 @@
+uuid: 251477ca-9224-4c07-a67f-2ccf98404508
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.callout
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '1'
+id: node.callout
+target_entity_type_id: node
+target_bundle: callout
+default_langcode: site_default
+language_alterable: true

@@ -1,0 +1,16 @@
+uuid: 6dcccf8b-cca9-464f-85b3-e8d9f93f3e1a
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.product_classifications
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: taxonomy_term.product_classifications
+target_entity_type_id: taxonomy_term
+target_bundle: product_classifications
+default_langcode: site_default
+language_alterable: false
