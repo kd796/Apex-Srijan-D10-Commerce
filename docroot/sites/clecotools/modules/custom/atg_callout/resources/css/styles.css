@@ -1,0 +1,159 @@
+.atg_callout {
+  position: fixed;
+  width: 30px;
+  height: 180px;
+  /* box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.1); */
+  z-index: 999;
+}
+
+.atg_callout.atg_callout_top {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.atg_callout.atg_callout_right {
+  bottom: 30%;
+  right: 0;
+  transform: translateY(50%);
+}
+
+.atg_callout.atg_callout_bottom {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.atg_callout.atg_callout_left {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.atg_callout .atg_callout_wrap {
+  position: relative;
+}
+
+.atg_callout .atg_callout_wrap > a {
+  display: block;
+}
+
+.atg_callout .atg_callout_wrap > a:hover {
+  box-shadow: none;
+}
+
+.atg_callout img {
+  display: block;
+}
+
+.atg_callout .atg_callout_content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 270px;
+  transition: 0.15s all ease-in-out;
+}
+
+.atg_callout.atg_callout_left .atg_callout_content {
+  left: 0;
+
+}
+.atg_callout.atg_callout_right .atg_callout_content {
+  left: 100%;
+}
+
+.atg_callout .atg_callout_content_wrap {
+  display: flex;
+  /* align-items: center; */
+  text-align: center;
+  height: 100%;
+  background-color: #E35205;
+  border-color: #E35205;
+}
+
+/* .atg_callout.atg_callout_top .atg_callout_content {
+  transform: translateY(-100%);
+}
+
+.atg_callout.atg_callout_top:hover .atg_callout_content {
+  transform: translateY(0);
+} */
+
+.atg_callout.atg_callout_right .atg_callout_content {
+  transform: translateX(100%);
+}
+
+.atg_callout.atg_callout_right:hover .atg_callout_content {
+      transform: translateX(-100%);
+}
+
+/* .atg_callout.atg_callout_bottom .atg_callout_content {
+  transform: translateY(100%);
+}
+
+.atg_callout.atg_callout_bottom:hover .atg_callout_content {
+  transform: translateY(0);
+} */
+
+.atg_callout.atg_callout_left .atg_callout_content {
+  transform: translateX(-100%);
+}
+
+.atg_callout.atg_callout_left:hover .atg_callout_content {
+  transform: translateX(0);
+}
+
+.atg_callout .atg_callout_content .atg_callout_content_copy > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.atg_callout .atg_callout_content div :last-child {
+  margin-bottom: 0;
+}
+
+.atg_callout .atg_callout_content img {
+
+}
+
+.atg_callout .atg_callout_content h3 {
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: bold;
+  font-stretch: condensed;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0 10px;
+}
+
+.atg_callout .atg_callout_content p {
+  color: #fff;
+  font-size: 0.875rem;
+  padding: 0 10px;
+}
+
+.atg_callout .atg_callout_content_wrap {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  justify-content: center;
+}
+
+.atg_callout .atg_callout_content_wrap img {
+  flex: 0 0 100%;
+}
+
+.atg_callout .atg_callout_content_wrap h3,
+.atg_callout .atg_callout_content_wrap p {
+  flex: 0 0 auto;
+  order: 1;
+  width: 50%;
+  margin-bottom: 0;
+}

@@ -110,6 +110,10 @@ source:
       name: remote_sales_org
       label: 'Sales Org'
       selector: './/*[@AttributeID=''SalesOrg'']'
+    -
+      name: remote_meta_products
+      label: 'Meta Products'
+      selector: Values
   ids:
     remote_sku:
       type: string
@@ -148,6 +152,12 @@ process:
     plugin: apex_get_attribute_value
     source: remote_product_long_description
     attribute: ATT921
+  field_meta_tags:
+    plugin: meta_get_attribute_value
+    source: remote_meta_products
+    allowed_attributes:
+      - ATT878420
+      - ATT878421
   field_upc:
     plugin: apex_get_attribute_value
     source: remote_product_upc

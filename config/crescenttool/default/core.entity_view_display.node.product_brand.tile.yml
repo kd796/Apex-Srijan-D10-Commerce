@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.product_brand.body
     - field.field.node.product_brand.field_link
     - field.field.node.product_brand.field_media
+    - field.field.node.product_brand.field_meta_tags
     - node.type.product_brand
     - responsive_image.styles.teaser
   module:
@@ -31,13 +32,10 @@ content:
       overlay: ''
       title: ''
       vanilla: false
-      icon: ''
       layout: ''
       view_mode: default
       cache: 0
-      current_view_mode: tile
       skin: ''
-      fx: ''
       style: ''
       background: false
       box_caption: ''
@@ -49,19 +47,23 @@ content:
       media_switch: ''
       ratio: ''
       thumbnail_style: ''
-      _uri: ''
-      breakpoints: {  }
-      sizes: ''
-      grid_header: ''
       grid: ''
       grid_medium: ''
       grid_small: ''
+      breakpoints: {  }
+      current_view_mode: tile
+      fx: ''
+      icon: ''
+      sizes: ''
+      grid_header: ''
+      _uri: ''
     third_party_settings: {  }
     weight: 0
     region: content
 hidden:
   body: true
   field_link: true
+  field_meta_tags: true
   langcode: true
   links: true
   products_by_brand: true

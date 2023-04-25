@@ -1,0 +1,43 @@
+uuid: 0fd93df7-f4fa-46ec-9420-9c30c1bbe89a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.solutions_landing.field_callout_page_end
+    - field.field.node.solutions_landing.field_callout_section_footer
+    - field.field.node.solutions_landing.field_featured_products
+    - field.field.node.solutions_landing.field_grid_section
+    - field.field.node.solutions_landing.field_hero
+    - field.field.node.solutions_landing.field_mailing_list_form
+    - field.field.node.solutions_landing.field_seo
+    - field.field.node.solutions_landing.field_testimonials_section
+    - node.type.solutions_landing
+  module:
+    - user
+id: node.solutions_landing.teaser
+targetEntityType: node
+bundle: solutions_landing
+mode: teaser
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_callout_page_end: true
+  field_callout_section_footer: true
+  field_featured_products: true
+  field_grid_section: true
+  field_hero: true
+  field_mailing_list_form: true
+  field_seo: true
+  field_testimonials_section: true
+  langcode: true
+  search_api_excerpt: true

@@ -5,9 +5,11 @@ dependencies:
   config:
     - field.field.node.social_post.body
     - field.field.node.social_post.field_media
+    - field.field.node.social_post.field_meta_tags
     - field.field.node.social_post.field_post_url
     - node.type.social_post
   module:
+    - metatag
     - text
     - user
 id: node.social_post.default
@@ -29,6 +31,13 @@ content:
       link: true
     third_party_settings: {  }
     weight: 102
+    region: content
+  field_meta_tags:
+    type: metatag_empty_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 104
     region: content
   field_post_url:
     type: string

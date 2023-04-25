@@ -1,0 +1,34 @@
+uuid: 7f0d2ef6-dc7c-4007-964c-c5186ca5d9d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.media_center.field_address
+    - field.field.node.media_center.field_banner_image
+    - field.field.node.media_center.field_date
+    - field.field.node.media_center.field_location
+    - field.field.node.media_center.field_media_center_type
+    - field.field.node.media_center.field_news_release_document
+    - node.type.media_center
+  module:
+    - user
+id: node.media_center.teaser
+targetEntityType: node
+bundle: media_center
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_address: true
+  field_banner_image: true
+  field_date: true
+  field_location: true
+  field_media_center_type: true
+  field_news_release_document: true
+  langcode: true
+  search_api_excerpt: true

@@ -121,6 +121,14 @@ else
   run_command kit/gulp
 fi
 
+# Generate frontend artifacts for Cleco(ATG).
+step_header "Generating frontend artifacts for Cleco(ATG)"
+if [[ "$FIN_EXISTS" = "true" ]]; then
+  fin kit/gulp-cleco
+else
+  run_command kit/gulp-cleco
+fi
+
 # ================================================ #
 # Run environment synchronization.                 #
 # ================================================ #

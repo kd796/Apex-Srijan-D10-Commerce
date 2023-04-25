@@ -4,3 +4,6 @@ services:
     class: Drupal\apex_common\Commands\ApexWarrantyExport
     tags:
       - { name: drush.command }
+  apex_common.importer:
+    class: Drupal\apex_common\RedirectURLimporter
+    arguments: []

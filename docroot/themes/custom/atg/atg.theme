@@ -1,0 +1,475 @@
+<?php
+
+use Drupal\contact\Entity\ContactForm;
+use Drupal\Core\Routing\RouteMatch;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\Core\Language\LanguageInterface;
+use Drupal\file\Entity\File;
+use Drupal\Core\Locale\CountryManager;
+
+/**
+ * TEMPLATE DEFINITIONS
+ */
+
+function atg_theme($existing, $type, $theme, $path)
+{
+    // Defines twig templates
+    return [
+        'products/catalog'  => [
+            'variables' => []
+        ],
+        'products/single'   => [
+            'variables' => [
+                'product' => null
+            ]
+        ],
+        'products/enhanced' => [
+            'variables' => [
+                'product' => null
+            ]
+        ],
+        'search/results'    => [
+            'variables' => [
+                'q'       => [],
+                'results' => []
+            ]
+        ]
+    ];
+}
+
+/**
+ * PREPROCESS
+ * Make current language available to Twig for displaying in language selector
+ * block.
+ *
+ * @param $variables
+ */
+function atg_preprocess(&$variables)
+{
+    $language      = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
+    $is_front_page = \Drupal::service('path.matcher')->isFrontPage();
+
+    $variables['current_language'] = $language;
+    $variables['is_front_page']    = $is_front_page;
+}
+
+/**
+ * PREPROCESS: LINKS - LANGUAGE BLOCK
+ * Add faux-radio attributes to language selector links
+ *
+ * @param $variables
+ */
+/*
+function atg_preprocess_links__language_block(&$variables)
+{
+    $language = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
+
+    foreach ($variables['links'] as &$link) {
+        $linkLanguage = $link['link']['#options']['language'] ?? false;
+        if ($linkLanguage) {
+            $active = $linkLanguage->getId() === $language->getId();
+
+            //$link['link']['#options']['attributes']['class'][]      = 'faux-radio';
+            $link['link']['#options']['attributes']['aria-checked'] = $active ? 'true' : 'false';
+        } else {
+            unset($link);
+        }
+    }
+}
+*/
+
+/**
+ * PREPROCESS: MENU LOCAL TASK
+ * Add "tab" classes to local task menu items.
+ *
+ * @param $variables
+ */
+function atg_preprocess_menu_local_task(&$variables)
+{
+    $variables['link']['#options']['attributes']['class'][] = 'tab';
+    if ($variables['element']['#active']) {
+        $variables['link']['#options']['attributes']['class'][] = 'tab--active';
+    }
+}
+
+/**
+ * PREPROCESS: PAGER
+ * Make pager total variable available to pager.
+ *
+ * @param $variables
+ */
+function atg_preprocess_pager(&$variables)
+{
+    global $pager_total;
+//$variables['pager_total'] = $pager_total[$variables['pager']['#element']];
+  $variables['pager_total'] = $variables['pager']['#element'];
+
+}
+
+/**
+ * PREPROCESS: NODE
+ *
+ * @param $variables
+ */
+function atg_preprocess_node(&$variables)
+{
+    // Including PDF download functionality for content type 'Advanced Selector Download'
+    if ($variables['node']->getType() == 'advanced_selector_download') {
+       // require($_SERVER['DOCUMENT_ROOT'] . '/themes/custom/atg/advanced-selector/api/download.php');
+       require($_SERVER['DOCUMENT_ROOT'] . '/themes/custom/atg/advanced-selector/api/download.php');
+    }
+
+    // Assign ng-app to <html> for Advanced Selector content type
+    if ($variables['node']->getType() == 'advanced_selector') {
+        $variables['html_attributes']['ng-app'] = 'Cleco';
+    }
+}
+
+/**
+ * PREPROCESS: NODE - GEO DIRECTORY
+ * Add filtering options to geo directory node template
+ *
+ * @param $variables
+ */
+function atg_preprocess_node__geo_directory(&$variables)
+{
+    $config    = Drupal::config('system.site');
+    $variables['current_site_code']  = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
+
+    if(!empty($variables['current_site_code']) && $variables['current_site_code'] != 'en') {
+        $countries = CountryManager::getStandardList();
+        $variables['countries_options'] = [];
+
+        $index = 0;
+        foreach ($countries as $countryCode => $country) {
+            $variables['countries_options'][$index]['value'] = $countryCode;
+            $variables['countries_options'][$index]['label'] = $country;
+            $index++;
+        }
+    } else {
+        // Distance Options
+        $radius_options              = [50, 100, 200, 500];
+        $variables['default_radius'] = 100;
+        $variables['radius_options'] = array_map(function ($distance) {
+            if ($distance === null) {
+                $label = t('Any Distance');
+            } else if ($distance === 1) {
+                $label = t('@distance Mile', ['@distance' => $distance]);
+            } else {
+                $label = t('@distance Miles', ['@distance' => $distance]);
+            }
+
+            return [
+                'value' => $distance,
+                'label' => $label
+            ];
+        }, $radius_options);
+    }
+
+    // Distributor Level
+    $distributor_level_ids = Drupal::entityQuery('taxonomy_term')
+        ->condition('vid', 'distributor_level')
+        ->sort('weight')
+        ->execute();
+    $distributor_levels        = array_values(Term::loadMultiple($distributor_level_ids));
+    $distributor_level_default = [
+        'value' => null,
+        'label' => t('Any Level')
+    ];
+    $variables['distributor_levels'] = array_merge([$distributor_level_default], array_map(function (Term $term) {
+        return [
+            'value' => $term->id(),
+            'label' => $term->getName()
+        ];
+    }, $distributor_levels));
+
+    // Available Tools
+    $products_offered_ids = Drupal::entityQuery('taxonomy_term')
+        ->condition('vid', 'products_offered')
+        ->sort('weight')
+        ->execute();
+    $products_offered         = array_values(Term::loadMultiple($products_offered_ids));
+    $products_offered_default = [
+        'value' => null,
+        'label' => t('Any Tools')
+    ];
+    $variables['products_offered'] = array_merge([$products_offered_default], array_map(function (Term $term) {
+        return [
+            'value' => $term->id(),
+            'label' => $term->getName()
+        ];
+    }, $products_offered));
+}
+
+/**
+ * PREPROCESS: PARAGRAPH - FORM SECTION
+ * Load `forms` variable with ID, label, icon, and rendered form view.
+ *
+ * @param $variables
+ *
+ * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+ * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+ */
+function atg_preprocess_paragraph__form_section(&$variables)
+{
+    /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+    $paragraph = $variables['elements']['#paragraph'];
+    /** @var \Drupal\Core\Field\EntityReferenceFieldItemList $selected_forms */
+    // $selected_forms = $paragraph->get('field_forms');
+    $selected_forms = $paragraph->get('field_webforms');
+
+    $form_names = [];
+    foreach ($selected_forms->getIterator() as $form) {
+        $form_names[] = $form->target_id;
+    }
+
+    $forms = [];
+    foreach ($form_names as $form_name) {
+        // $form    = ContactForm::load($form_name);
+        // $message = \Drupal::entityTypeManager()
+        //     ->getStorage('contact_message')
+        //     ->create([
+        //         'contact_form' => $form->id()
+        //     ]);
+        // $view = \Drupal::service('entity.form_builder')->getForm($message);
+        $form    = \Drupal::entityTypeManager()->getStorage('webform')->load($form_name);
+        $builder = \Drupal::service('entity_type.manager')->getViewBuilder('webform');
+        $view    = $builder->view($form);
+
+        $forms[$form->id()] = [
+            'id'    => $form->id(),
+            'label' => $form->label(),
+            'icon'  => atg_get_form_icon($form->id()),
+            'view'  => $view,
+            'link'  => null,
+        ];
+    }
+
+    $field_ade_form = $paragraph->get('field_ade_form')->getValue()[0]['value'];
+    if ($field_ade_form) {
+        $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
+        $nids = \Drupal::entityQuery('node')->condition('type', 'advanced_selector')->condition('langcode', $langcode)->execute();
+
+        if ($nids) {
+            foreach (\Drupal\node\Entity\Node::loadMultiple($nids) as $node) {
+                $ade_form = $node;
+            }
+            $key = 'ade_form';
+            $forms[$key] = [
+                'id'    => $key,
+                'label' => $ade_form->label(),
+                'icon'  => atg_get_form_icon($key),
+                'view'  => null,
+                'link'  => \Drupal::service('path_alias.manager')->getAliasByPath('/node/' . $ade_form->id()),
+            ];
+        }
+    }
+
+    $variables['forms'] = $forms;
+}
+
+/**
+ * PREPROCESS: NODE - DOWNLOADS
+ * Add downloads search query to variables
+ *
+ * @param $variables
+ */
+function atg_preprocess_node__downloads(&$variables)
+{
+    $variables['q'] = \Drupal::request()->get('q');
+}
+
+/**
+ * FORM ALTER
+ * Convert contact forms to use .form-grid classes
+ *
+ * @param $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ * @param $form_id
+ */
+function atg_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+    $contact_form_names = array_keys(atg_get_form_icon_map());
+
+    $contact_form_ids = array_map(function ($form_name) {
+        return sprintf('contact_message_%s_form', $form_name);
+    }, $contact_form_names);
+
+    if (in_array($form_id, $contact_form_ids)) {
+        $fields = array_filter($form, function ($key) use ($form) {
+            return isset($form[$key]['widget']);
+        }, ARRAY_FILTER_USE_KEY);
+
+        array_walk($fields, function (&$value, $key) {
+            if (isset($value['#type']) && $value['#type'] !== 'hidden') {
+                $value['#attributes']['class'][] = 'form-grid-item';
+            }
+        });
+
+        $grid = [
+            '#type'       => 'container',
+            '#attributes' => [
+                'class' => 'form-grid'
+            ]
+        ];
+        $form['grid'] = $grid + $fields;
+
+        foreach (array_keys($fields) as $key) {
+            unset($form[$key]);
+        }
+    }
+}
+
+/**
+ * GET FORM ICON
+ * Return the icon slug for a specific form machine name.
+ * Slug should match filename of an icon in src/img/icons.
+ *
+ * @param string $form_name Machine name of the form
+ * @param string|null $default Default value to use if no form icon
+ *
+ * @return mixed
+ */
+function atg_get_form_icon($form_name, $default = null)
+{
+    $currentLanguageId = \Drupal::languageManager()->getCurrentLanguage()->getId();
+    $icons = atg_get_form_icon_map();
+    $icon = null;
+
+    if (!empty($icons[$form_name])) {
+        $icon = $icons[$form_name];
+        if (is_array($icon)) {
+            $icon = $icon[$currentLanguageId] ?? $icon['en'] ?? NULL;
+        }
+    }
+
+    return $icon !== null ? $icon : $default;
+}
+
+/**
+ * GET FORM ICON MAP
+ * Return the mapping of form names to icons.
+ *
+ * @return array
+ */
+function atg_get_form_icon_map()
+{
+    return [
+        'schedule_a_demo'             => 'calendar',
+        'request_a_demo'              => 'drill',
+        'request_a_quote'             => [
+            'en' => 'document-dollar-sign',
+            'gb' => 'document-euro-sign',
+            'de' => 'document-euro-sign',
+        ],
+        'request_product_information' => 'blueprint-gear',
+        'repairs_calibration'         => 'wrench-screwdriver',
+        'spare_parts_purchase'        => 'drill',
+        'technical_questions'         => 'headset',
+        'warranty_returns'            => 'document-ribbon',
+        'ade_form'                    => 'inquiry',
+    ];
+}
+
+/**
+ * Implements hook_theme_suggestions_page_alter() to set 4xx template suggestions.
+ *
+ * @param array $suggestions
+ * @param array $variables
+ */
+function atg_theme_suggestions_page_alter(array &$suggestions, array $variables)
+{
+    // get the route
+    $route_name  = \Drupal::routeMatch()->getRouteName();
+    $route_parts = explode('.', $route_name);
+
+    // is it system.4xx ?
+    if (count($route_parts) == 2 && $route_parts[0] === 'system') {
+        $code = $route_parts[1];
+        if (is_numeric($code) && $code >= 400 and $code < 500) {
+            // suggest template page--4xx.html.twig (e.g., page--404.html.twig)
+            $suggestions[] = 'page__' . $code;
+        }
+    }
+}
+
+/**
+ * PREPROCESS: HTML
+ * Add maintenance_mode variable to help simplify maintenance page.
+ *
+ * @param array $variables
+ */
+function atg_preprocess_html(&$variables)
+{
+    $request                       = \Drupal::request();
+    $maintenance_mode              = \Drupal::service('maintenance_mode');
+    $route_match                   = RouteMatch::createFromRequest($request);
+    $variables['maintenance_mode'] = $maintenance_mode->applies($route_match);
+
+    if (array_key_exists('node_type', $variables)) {
+        // Including PDF download functionality for content type 'Advanced Selector Download'
+        if ($variables['node_type'] == 'advanced_selector_download') {
+            include($_SERVER['DOCUMENT_ROOT'] . '/themes/custom/atg/advanced-selector/api/download.php');
+        }
+
+        // Assign ng-app to <html> for Advanced Selector content type
+        if ($variables['node_type'] == 'advanced_selector') {
+            $variables['html_attributes']['ng-app'] = 'Cleco';
+        }
+    }
+
+    // translate page title in titlebar
+    if ($variables['current_language']->getId() != 'en') {
+        if ($variables['head_title']) {
+            if ($variables['head_title']['title']) {
+                if (strpos($variables['head_title']['title'], '|') != false) {
+                    $head_title = explode('|', $variables['head_title']['title']);
+                    $variables['head_title']['title'] = t(trim($head_title[0]));
+                    $variables['head_title']['name'] = trim($head_title[1]);
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Add Advanced Selector libraries for AD form pages
+ */
+function atg_page_attachments_alter(&$attachments)
+{
+    $ade = [
+      '/werkzeuge/bohren',
+      '/tools/advanced-drilling',
+    ];
+    $current_uri = \Drupal::request()->getRequestUri();
+    $library = false;
+
+    foreach ($ade as $a) {
+        if (substr($current_uri, 0, strlen($a)) == $a) {
+            $library = true;
+        }
+    }
+
+    if ($library) {
+        $attachments['#attached']['library'][] = 'atg/advanced-selector';
+    }
+}
+
+/**
+ * Implements hook_theme_suggestions_container_alter().
+ */
+function atg_theme_suggestions_container_alter(&$suggestions, array $variables)
+{
+    $element = $variables['element'];
+
+    if (isset($element['#type'])) {
+        if ($element['#type'] == 'view') {
+            $suggestions[] = 'container__' . $element['#name'];
+            $suggestions[] = 'container__' . $element['#name'] . '__' . $element['#display_id'];
+        }
+
+        if ($element['#type'] == 'container' && isset($element['children']['#type'])) {
+            $suggestions[] = 'container__' . $element['children']['#type'];
+        }
+    }
+}

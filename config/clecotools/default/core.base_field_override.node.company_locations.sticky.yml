@@ -1,0 +1,22 @@
+uuid: c57fe7c8-9089-4319-ae5c-db97e3452796
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.company_locations
+id: node.company_locations.sticky
+field_name: sticky
+entity_type: node
+bundle: company_locations
+label: 'Sticky at top of lists'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

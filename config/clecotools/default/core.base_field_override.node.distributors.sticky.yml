@@ -1,0 +1,22 @@
+uuid: 477b3b01-7673-4020-a7f1-27229acaacd6
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.distributors
+id: node.distributors.sticky
+field_name: sticky
+entity_type: node
+bundle: distributors
+label: 'Sticky at top of lists'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

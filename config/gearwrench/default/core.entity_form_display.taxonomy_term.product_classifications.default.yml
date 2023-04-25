@@ -4,8 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.product_classifications.field_classification_id
+    - field.field.taxonomy_term.product_classifications.field_meta_tags
     - taxonomy.vocabulary.product_classifications
   module:
+    - metatag
     - path
     - text
 id: taxonomy_term.product_classifications.default
@@ -28,6 +30,14 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_meta_tags:
+    type: metatag_firehose
+    weight: 5
+    region: content
+    settings:
+      sidebar: true
+      use_details: true
     third_party_settings: {  }
   langcode:
     type: language_select

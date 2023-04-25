@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.media.file.field_media_file
+    - field.field.media.file.field_meta_tags
     - media.type.file
   module:
     - file
+    - metatag
     - path
 _core:
   default_config_hash: QWC-rCaKjlHmY0AlSp1G241TOkxntHCYdAgoM4cUxEI
@@ -27,6 +29,14 @@ content:
     region: content
     settings:
       progress_indicator: throbber
+    third_party_settings: {  }
+  field_meta_tags:
+    type: metatag_firehose
+    weight: 101
+    region: content
+    settings:
+      sidebar: true
+      use_details: true
     third_party_settings: {  }
   langcode:
     type: language_select

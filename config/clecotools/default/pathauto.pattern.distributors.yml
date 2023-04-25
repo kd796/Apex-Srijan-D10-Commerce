@@ -1,0 +1,22 @@
+uuid: 9fedfc45-30bb-496d-9894-9cbdc40f2dd2
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: distributors
+label: Distributors
+type: 'canonical_entities:node'
+pattern: 'distributor/[node:title]'
+selection_criteria:
+  db21ea53-b889-4718-97d4-88ec32d1057b:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: db21ea53-b889-4718-97d4-88ec32d1057b
+    context_mapping:
+      node: node
+    bundles:
+      distributors: distributors
+selection_logic: and
+weight: -5
+relationships: {  }

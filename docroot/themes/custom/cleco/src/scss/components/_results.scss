@@ -1,0 +1,90 @@
+.results {
+    transition: 0.2s ease;
+}
+
+.results-item {
+    margin-bottom: 2em;
+}
+
+.result-image-img {
+    &,
+    svg {
+        width: 100%;
+        height: 4em;
+        vertical-align: bottom;
+
+        @media (min-width: $breakpoint-nav-inline) {
+            height: 6.25em;
+        }
+    }
+}
+
+@media (min-width: $breakpoint-nav-inline) {
+    .result {
+        display: flex;
+        align-items: flex-start;
+    }
+}
+
+.result-image {
+    @include link-reset;
+    flex: 0 0 6.25em;
+    background: $color-accent-bg;
+    margin-right: 1em;
+
+    @media (max-width: $breakpoint-nav-inline - 1) {
+        float: right;
+        margin: 0 0 1em 1em;
+        width: 4em;
+    }
+}
+
+.result-header {
+    margin-bottom: 0.75em;
+}
+
+.result-subtitle {
+    font-size: 0.75em;
+    margin: 0;
+    color: $color-gray;
+}
+
+.result-title {
+    font-size: 1.125em;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    margin: 0;
+}
+
+.result-link {
+    color: inherit;
+}
+
+.result-body {
+    font-size: 0.9375em;
+    margin-bottom: 0.75em;
+
+    p:first-child {
+        margin: 0;
+    }
+}
+
+.result-footer {
+    font-size: 0.875em;
+}
+
+.result-meta {
+    margin: 0;
+    font-style: italic;
+    color: $color-gray;
+}
+
+.result-meta-link {
+    font-style: normal;
+}
+
+.results--loading {
+    opacity: 0.5;
+    cursor: wait;
+}

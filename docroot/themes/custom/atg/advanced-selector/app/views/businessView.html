@@ -1,0 +1,418 @@
+<div class="sel-cat">
+  <div class="sel-hd sel-on">
+    <span class="sel-count">1.</span>
+    {{ t('Business Information') }}
+  </div>
+  <div class="sel-errors">{{ errors }}</div>
+  <form name="businessform" id="businessform" class="sel-form clearfix" ng-submit="updateBusiness(user)" method="post">
+    <div class="loading-form"></div>
+    <div class="grid-6">
+      <label>{{ t('Contact Name') }} <span class="orange">*</span></label>
+      <input type="text" value="" name="contact_name" ng-model="user.de_contact_name" placeholder="" required ng-class="{ 'error': submitted && !user.de_contact_name }" />
+    </div>
+    <div class="grid-6">
+      <label>{{ t('Company Name') }} </label>
+      <input type="text" value="" name="contact_company" ng-model="user.de_contact_company" placeholder="" />
+    </div>
+    <div class="grid-6">
+      <label>{{ t('Email Address') }} <span class="orange">*</span></label>
+      <input type="text" value="" name="email_address" ng-model="user.de_email_address" required ng-class="{ 'error': submitted && !user.de_email_address }" placeholder="" />
+    </div>
+    <div class="grid-6">
+      <label>{{ t('Phone') }} <span class="orange">*</span></label>
+      <input type="text" value="" name="phone" ng-model="user.de_phone" required ng-class="{ 'error': submitted && !user.de_phone }" placeholder="" />
+    </div>
+
+    <div class="grid-6">
+      <label>{{ t('State') }} <span class="orange">*</span></label>
+      <select name="state" ng-model="user.de_state" required ng-class="{ 'error': submitted && !user.de_state }">
+        <option value="" disabled>{{ t('- Select -') }}</option>
+        <option value="AL">{{ t('Alabama') }}</option>
+        <option value="AK">{{ t('Alaska') }}</option>
+        <option value="AZ">{{ t('Arizona') }}</option>
+        <option value="AR">{{ t('Arkansas') }}</option>
+        <option value="CA">{{ t('California') }}</option>
+        <option value="CO">{{ t('Colorado') }}</option>
+        <option value="CT">{{ t('Connecticut') }}</option>
+        <option value="DE">{{ t('Delaware') }}</option>
+        <option value="DC">{{ t('District Of Columbia') }}</option>
+        <option value="FL">{{ t('Florida') }}</option>
+        <option value="GA">{{ t('Georgia') }}</option>
+        <option value="HI">{{ t('Hawaii') }}</option>
+        <option value="ID">{{ t('Idaho') }}</option>
+        <option value="IL">{{ t('Illinois') }}</option>
+        <option value="IN">{{ t('Indiana') }}</option>
+        <option value="IA">{{ t('Iowa') }}</option>
+        <option value="KS">{{ t('Kansas') }}</option>
+        <option value="KY">{{ t('Kentucky') }}</option>
+        <option value="LA">{{ t('Louisiana') }}</option>
+        <option value="ME">{{ t('Maine') }}</option>
+        <option value="MD">{{ t('Maryland') }}</option>
+        <option value="MA">{{ t('Massachusetts') }}</option>
+        <option value="MI">{{ t('Michigan') }}</option>
+        <option value="MN">{{ t('Minnesota') }}</option>
+        <option value="MS">{{ t('Mississippi') }}</option>
+        <option value="MO">{{ t('Missouri') }}</option>
+        <option value="MT">{{ t('Montana') }}</option>
+        <option value="NE">{{ t('Nebraska') }}</option>
+        <option value="NV">{{ t('Nevada') }}</option>
+        <option value="NH">{{ t('New Hampshire') }}</option>
+        <option value="NJ">{{ t('New Jersey') }}</option>
+        <option value="NM">{{ t('New Mexico') }}</option>
+        <option value="NY">{{ t('New York') }}</option>
+        <option value="NC">{{ t('North Carolina') }}</option>
+        <option value="ND">{{ t('North Dakota') }}</option>
+        <option value="OH">{{ t('Ohio') }}</option>
+        <option value="OK">{{ t('Oklahoma') }}</option>
+        <option value="OR">{{ t('Oregon') }}</option>
+        <option value="PA">{{ t('Pennsylvania') }}</option>
+        <option value="RI">{{ t('Rhode Island') }}</option>
+        <option value="SC">{{ t('South Carolina') }}</option>
+        <option value="SD">{{ t('South Dakota') }}</option>
+        <option value="TN">{{ t('Tennessee') }}</option>
+        <option value="TX">{{ t('Texas') }}</option>
+        <option value="UT">{{ t('Utah') }}</option>
+        <option value="VT">{{ t('Vermont') }}</option>
+        <option value="VA">{{ t('Virginia') }}</option>
+        <option value="WA">{{ t('Washington') }}</option>
+        <option value="WV">{{ t('West Virginia') }}</option>
+        <option value="WI">{{ t('Wisconsin') }}</option>
+        <option value="WY">{{ t('Wyoming') }}</option>
+        <option value="OTHER">{{ t('Other - International') }}</option>
+      </select>
+    </div>
+
+    <div class="grid-6">
+      <label>{{ t('Country') }} <span class="orange">*</span></label>
+      <select name="country" ng-model="user.de_country" required ng-class="{ 'error': submitted && !user.de_country }">
+        <option value="" disabled>{{ t('- Select -') }}</option>
+        <option value="US">{{ t('United States') }}</option>
+        <option value="UM">{{ t('United States Minor Outlying Islands') }}</option>
+        <option value="AF">{{ t('Afghanistan') }}</option>
+        <option value="AX">{{ t('Aland Islands') }}</option>
+        <option value="AL">{{ t('Albania') }}</option>
+        <option value="DZ">{{ t('Algeria') }}</option>
+        <option value="AS">{{ t('American Samoa') }}</option>
+        <option value="AD">{{ t('Andorra') }}</option>
+        <option value="AO">{{ t('Angola') }}</option>
+        <option value="AI">{{ t('Anguilla') }}</option>
+        <option value="AQ">{{ t('Antarctica') }}</option>
+        <option value="AG">{{ t('Antigua and Barbuda') }}</option>
+        <option value="AR">{{ t('Argentina') }}</option>
+        <option value="AM">{{ t('Armenia') }}</option>
+        <option value="AW">{{ t('Aruba') }}</option>
+        <option value="AU">{{ t('Australia') }}</option>
+        <option value="AT">{{ t('Austria') }}</option>
+        <option value="AZ">{{ t('Azerbaijan') }}</option>
+        <option value="BS">{{ t('Bahamas') }}</option>
+        <option value="BH">{{ t('Bahrain') }}</option>
+        <option value="BD">{{ t('Bangladesh') }}</option>
+        <option value="BB">{{ t('Barbados') }}</option>
+        <option value="BY">{{ t('Belarus') }}</option>
+        <option value="BE">{{ t('Belgium') }}</option>
+        <option value="BZ">{{ t('Belize') }}</option>
+        <option value="BJ">{{ t('Benin') }}</option>
+        <option value="BM">{{ t('Bermuda') }}</option>
+        <option value="BT">{{ t('Bhutan') }}</option>
+        <option value="BO">{{ t('Bolivia, Plurinational State of') }}</option>
+        <option value="BQ">{{ t('Bonaire, Sint Eustatius and Saba') }}</option>
+        <option value="BA">{{ t('Bosnia and Herzegovina') }}</option>
+        <option value="BW">{{ t('Botswana') }}</option>
+        <option value="BV">{{ t('Bouvet Island') }}</option>
+        <option value="BR">{{ t('Brazil') }}</option>
+        <option value="IO">{{ t('British Indian Ocean Territory') }}</option>
+        <option value="BN">{{ t('Brunei Darussalam') }}</option>
+        <option value="BG">{{ t('Bulgaria') }}</option>
+        <option value="BF">{{ t('Burkina Faso') }}</option>
+        <option value="BI">{{ t('Burundi') }}</option>
+        <option value="KH">{{ t('Cambodia') }}</option>
+        <option value="CM">{{ t('Cameroon') }}</option>
+        <option value="CA">{{ t('Canada') }}</option>
+        <option value="CV">{{ t('Cape Verde') }}</option>
+        <option value="KY">{{ t('Cayman Islands') }}</option>
+        <option value="CF">{{ t('Central African Republic') }}</option>
+        <option value="TD">{{ t('Chad') }}</option>
+        <option value="CL">{{ t('Chile') }}</option>
+        <option value="CN">{{ t('China') }}</option>
+        <option value="CX">{{ t('Christmas Island') }}</option>
+        <option value="CC">{{ t('Cocos (Keeling) Islands') }}</option>
+        <option value="CO">{{ t('Colombia') }}</option>
+        <option value="KM">{{ t('Comoros') }}</option>
+        <option value="CG">{{ t('Congo') }}</option>
+        <option value="CD">{{ t('Congo, the Democratic Republic of the') }}</option>
+        <option value="CK">{{ t('Cook Islands') }}</option>
+        <option value="CR">{{ t('Costa Rica') }}</option>
+        <option value="CI">{{ t("Cote d'Ivoire") }}</option>
+        <option value="HR">{{ t('Croatia') }}</option>
+        <option value="CU">{{ t('Cuba') }}</option>
+        <option value="CW">{{ t('Curacao') }}</option>
+        <option value="CY">{{ t('Cyprus') }}</option>
+        <option value="CZ">{{ t('Czech Republic') }}</option>
+        <option value="DK">{{ t('Denmark') }}</option>
+        <option value="DJ">{{ t('Djibouti') }}</option>
+        <option value="DM">{{ t('Dominica') }}</option>
+        <option value="DO">{{ t('Dominican Republic') }}</option>
+        <option value="EC">{{ t('Ecuador') }}</option>
+        <option value="EG">{{ t('Egypt') }}</option>
+        <option value="SV">{{ t('El Salvador') }}</option>
+        <option value="GQ">{{ t('Equatorial Guinea') }}</option>
+        <option value="ER">{{ t('Eritrea') }}</option>
+        <option value="EE">{{ t('Estonia') }}</option>
+        <option value="ET">{{ t('Ethiopia') }}</option>
+        <option value="FK">{{ t('Falkland Islands (Malvinas)') }}</option>
+        <option value="FO">{{ t('Faroe Islands') }}</option>
+        <option value="FJ">{{ t('Fiji') }}</option>
+        <option value="FI">{{ t('Finland') }}</option>
+        <option value="FR">{{ t('France') }}</option>
+        <option value="GF">{{ t('French Guiana') }}</option>
+        <option value="PF">{{ t('French Polynesia') }}</option>
+        <option value="TF">{{ t('French Southern Territories') }}</option>
+        <option value="GA">{{ t('Gabon') }}</option>
+        <option value="GM">{{ t('Gambia') }}</option>
+        <option value="GE">{{ t('Georgia') }}</option>
+        <option value="DE">{{ t('Germany') }}</option>
+        <option value="GH">{{ t('Ghana') }}</option>
+        <option value="GI">{{ t('Gibraltar') }}</option>
+        <option value="GR">{{ t('Greece') }}</option>
+        <option value="GL">{{ t('Greenland') }}</option>
+        <option value="GD">{{ t('Grenada') }}</option>
+        <option value="GP">{{ t('Guadeloupe') }}</option>
+        <option value="GU">{{ t('Guam') }}</option>
+        <option value="GT">{{ t('Guatemala') }}</option>
+        <option value="GG">{{ t('Guernsey') }}</option>
+        <option value="GN">{{ t('Guinea') }}</option>
+        <option value="GW">{{ t('Guinea-Bissau') }}</option>
+        <option value="GY">{{ t('Guyana') }}</option>
+        <option value="HT">{{ t('Haiti') }}</option>
+        <option value="HM">{{ t('Heard Island and McDonald Islands') }}</option>
+        <option value="VA">{{ t('Holy See (Vatican City State)') }}</option>
+        <option value="HN">{{ t('Honduras') }}</option>
+        <option value="HK">{{ t('Hong Kong') }}</option>
+        <option value="HU">{{ t('Hungary') }}</option>
+        <option value="IS">{{ t('Iceland') }}</option>
+        <option value="IN">{{ t('India') }}</option>
+        <option value="ID">{{ t('Indonesia') }}</option>
+        <option value="IR">{{ t('Iran, Islamic Republic of') }}</option>
+        <option value="IQ">{{ t('Iraq') }}</option>
+        <option value="IE">{{ t('Ireland') }}</option>
+        <option value="IM">{{ t('Isle of Man') }}</option>
+        <option value="IL">{{ t('Israel') }}</option>
+        <option value="IT">{{ t('Italy') }}</option>
+        <option value="JM">{{ t('Jamaica') }}</option>
+        <option value="JP">{{ t('Japan') }}</option>
+        <option value="JE">{{ t('Jersey') }}</option>
+        <option value="JO">{{ t('Jordan') }}</option>
+        <option value="KZ">{{ t('Kazakhstan') }}</option>
+        <option value="KE">{{ t('Kenya') }}</option>
+        <option value="KI">{{ t('Kiribati') }}</option>
+        <option value="KP">{{ t("Korea, Democratic People's Republic of") }}</option>
+        <option value="KR">{{ t('Korea, Republic of') }}</option>
+        <option value="KW">{{ t('Kuwait') }}</option>
+        <option value="KG">{{ t('Kyrgyzstan') }}</option>
+        <option value="LA">{{ t("Lao People's Democratic Republic") }}</option>
+        <option value="LV">{{ t('Latvia') }}</option>
+        <option value="LB">{{ t('Lebanon') }}</option>
+        <option value="LS">{{ t('Lesotho') }}</option>
+        <option value="LR">{{ t('Liberia') }}</option>
+        <option value="LY">{{ t('Libya') }}</option>
+        <option value="LI">{{ t('Liechtenstein') }}</option>
+        <option value="LT">{{ t('Lithuania') }}</option>
+        <option value="LU">{{ t('Luxembourg') }}</option>
+        <option value="MO">{{ t('Macao') }}</option>
+        <option value="MK">{{ t('Macedonia, the former Yugoslav Republic of') }}</option>
+        <option value="MG">{{ t('Madagascar') }}</option>
+        <option value="MW">{{ t('Malawi') }}</option>
+        <option value="MY">{{ t('Malaysia') }}</option>
+        <option value="MV">{{ t('Maldives') }}</option>
+        <option value="ML">{{ t('Mali') }}</option>
+        <option value="MT">{{ t('Malta') }}</option>
+        <option value="MH">{{ t('Marshall Islands') }}</option>
+        <option value="MQ">{{ t('Martinique') }}</option>
+        <option value="MR">{{ t('Mauritania') }}</option>
+        <option value="MU">{{ t('Mauritius') }}</option>
+        <option value="YT">{{ t('Mayotte') }}</option>
+        <option value="MX">{{ t('Mexico') }}</option>
+        <option value="FM">{{ t('Micronesia, Federated States of') }}</option>
+        <option value="MD">{{ t('Moldova, Republic of') }}</option>
+        <option value="MC">{{ t('Monaco') }}</option>
+        <option value="MN">{{ t('Mongolia') }}</option>
+        <option value="ME">{{ t('Montenegro') }}</option>
+        <option value="MS">{{ t('Montserrat') }}</option>
+        <option value="MA">{{ t('Morocco') }}</option>
+        <option value="MZ">{{ t('Mozambique') }}</option>
+        <option value="MM">{{ t('Myanmar') }}</option>
+        <option value="NA">{{ t('Namibia') }}</option>
+        <option value="NR">{{ t('Nauru') }}</option>
+        <option value="NP">{{ t('Nepal') }}</option>
+        <option value="NL">{{ t('Netherlands') }}</option>
+        <option value="NC">{{ t('New Caledonia') }}</option>
+        <option value="NZ">{{ t('New Zealand') }}</option>
+        <option value="NI">{{ t('Nicaragua') }}</option>
+        <option value="NE">{{ t('Niger') }}</option>
+        <option value="NG">{{ t('Nigeria') }}</option>
+        <option value="NU">{{ t('Niue') }}</option>
+        <option value="NF">{{ t('Norfolk Island') }}</option>
+        <option value="MP">{{ t('Northern Mariana Islands') }}</option>
+        <option value="NO">{{ t('Norway') }}</option>
+        <option value="OM">{{ t('Oman') }}</option>
+        <option value="PK">{{ t('Pakistan') }}</option>
+        <option value="PW">{{ t('Palau') }}</option>
+        <option value="PS">{{ t('Palestinian Territory, Occupied') }}</option>
+        <option value="PA">{{ t('Panama') }}</option>
+        <option value="PG">{{ t('Papua New Guinea') }}</option>
+        <option value="PY">{{ t('Paraguay') }}</option>
+        <option value="PE">{{ t('Peru') }}</option>
+        <option value="PH">{{ t('Philippines') }}</option>
+        <option value="PN">{{ t('Pitcairn') }}</option>
+        <option value="PL">{{ t('Poland') }}</option>
+        <option value="PT">{{ t('Portugal') }}</option>
+        <option value="PR">{{ t('Puerto Rico') }}</option>
+        <option value="QA">{{ t('Qatar') }}</option>
+        <option value="RE">{{ t('Reunion') }}</option>
+        <option value="RO">{{ t('Romania') }}</option>
+        <option value="RU">{{ t('Russian Federation') }}</option>
+        <option value="RW">{{ t('Rwanda') }}</option>
+        <option value="BL">{{ t('Saint Barthelemy') }}</option>
+        <option value="SH">{{ t('Saint Helena, Ascension and Tristan da Cunha') }}</option>
+        <option value="KN">{{ t('Saint Kitts and Nevis') }}</option>
+        <option value="LC">{{ t('Saint Lucia') }}</option>
+        <option value="MF">{{ t('Saint Martin (French part)') }}</option>
+        <option value="PM">{{ t('Saint Pierre and Miquelon') }}</option>
+        <option value="VC">{{ t('Saint Vincent and the Grenadines') }}</option>
+        <option value="WS">{{ t('Samoa') }}</option>
+        <option value="SM">{{ t('San Marino') }}</option>
+        <option value="ST">{{ t('Sao Tome and Principe') }}</option>
+        <option value="SA">{{ t('Saudi Arabia') }}</option>
+        <option value="SN">{{ t('Senegal') }}</option>
+        <option value="RS">{{ t('Serbia') }}</option>
+        <option value="SC">{{ t('Seychelles') }}</option>
+        <option value="SL">{{ t('Sierra Leone') }}</option>
+        <option value="SG">{{ t('Singapore') }}</option>
+        <option value="SX">{{ t('Sint Maarten (Dutch part)') }}</option>
+        <option value="SK">{{ t('Slovakia') }}</option>
+        <option value="SI">{{ t('Slovenia') }}</option>
+        <option value="SB">{{ t('Solomon Islands') }}</option>
+        <option value="SO">{{ t('Somalia') }}</option>
+        <option value="ZA">{{ t('South Africa') }}</option>
+        <option value="GS">{{ t('South Georgia and the South Sandwich Islands') }}</option>
+        <option value="SS">{{ t('South Sudan') }}</option>
+        <option value="ES">{{ t('Spain') }}</option>
+        <option value="LK">{{ t('Sri Lanka') }}</option>
+        <option value="SD">{{ t('Sudan') }}</option>
+        <option value="SR">{{ t('Suriname') }}</option>
+        <option value="SJ">{{ t('Svalbard and Jan Mayen') }}</option>
+        <option value="SZ">{{ t('Swaziland') }}</option>
+        <option value="SE">{{ t('Sweden') }}</option>
+        <option value="CH">{{ t('Switzerland') }}</option>
+        <option value="SY">{{ t('Syrian Arab Republic') }}</option>
+        <option value="TW">{{ t('Taiwan, Province of China') }}</option>
+        <option value="TJ">{{ t('Tajikistan') }}</option>
+        <option value="TZ">{{ t('Tanzania, United Republic of') }}</option>
+        <option value="TH">{{ t('Thailand') }}</option>
+        <option value="TL">{{ t('Timor-Leste') }}</option>
+        <option value="TG">{{ t('Togo') }}</option>
+        <option value="TK">{{ t('Tokelau') }}</option>
+        <option value="TO">{{ t('Tonga') }}</option>
+        <option value="TT">{{ t('Trinidad and Tobago') }}</option>
+        <option value="TN">{{ t('Tunisia') }}</option>
+        <option value="TR">{{ t('Turkey') }}</option>
+        <option value="TM">{{ t('Turkmenistan') }}</option>
+        <option value="TC">{{ t('Turks and Caicos Islands') }}</option>
+        <option value="TV">{{ t('Tuvalu') }}</option>
+        <option value="UG">{{ t('Uganda') }}</option>
+        <option value="UA">{{ t('Ukraine') }}</option>
+        <option value="AE">{{ t('United Arab Emirates') }}</option>
+        <option value="GB">{{ t('United Kingdom') }}</option>
+        <option value="UY">{{ t('Uruguay') }}</option>
+        <option value="UZ">{{ t('Uzbekistan') }}</option>
+        <option value="VU">{{ t('Vanuatu') }}</option>
+        <option value="VE">{{ t('Venezuela, Bolivarian Republic of') }}</option>
+        <option value="VN">{{ t('Viet Nam') }}</option>
+        <option value="VG">{{ t('Virgin Islands, British') }}</option>
+        <option value="VI">{{ t('Virgin Islands, U.S.') }}</option>
+        <option value="WF">{{ t('Wallis and Futuna') }}</option>
+        <option value="EH">{{ t('Western Sahara') }}</option>
+        <option value="YE">{{ t('Yemen') }}</option>
+        <option value="ZM">{{ t('Zambia') }}</option>
+        <option value="ZW">{{ t('Zimbabwe') }}</option>
+      </select>
+    </div>
+
+    <div class="grid-6">
+      <label>{{ t('Industry') }}</label>
+      <select name="industry" ng-model="user.de_industry" ng-change="clearChildren('de_industry_other,de_aerospace_other')">
+        <option value="" disabled>{{ t('- Select -') }}</option>
+        <option value="Aeroplane Final Assembly">{{ t('Aeroplane Final Assembly') }}</option>
+        <option value="Aeroplane Structure">{{ t('Aeroplane Structure') }}</option>
+        <option value="Helicoptor Final Assembly">{{ t('Helicoptor Final Assembly') }}</option>
+        <option value="Other Aerospace">{{ t('Other Aerospace') }}</option>
+        <option value="Other Industry">{{ t('Other Industry') }}</option>
+      </select>
+      <div class="offset" ng-show="user.de_industry === 'Other Aerospace'">
+        <label>{{ t('Other - Please Specify') }}:</label>
+        <input type="text" value="" ng-model="user.de_aerospace_other" placeholder="" />
+      </div>
+      <div class="offset" ng-show="user.de_industry === 'Other Industry'">
+        <label>{{ t('Other - Please Specify') }}:</label>
+        <input type="text" value="" ng-model="user.de_industry_other" placeholder="" />
+      </div>
+    </div>
+    <div class="grid-6">
+      <label>{{ t('Inquiry Type') }} <span class="orange">*</span></label>
+      <select name="inquiry" ng-model="user.de_inquiry" required ng-change="clearChildren('de_inquiry_application,de_inquiry_application_info')" ng-class="{ 'error': submitted && !user.de_inquiry }">
+        <option value="" disabled>{{ t('- Select -') }}</option>
+        <option value="General Information">{{ t('General Information') }}</option>
+        <option value="Application Assistance">{{ t('Application Assistance') }}</option>
+      </select>
+      <div class="offset" ng-show="user.de_inquiry === 'Application Assistance'">
+        <select name="inquiry" ng-model="user.de_inquiry_application">
+          <option value="" disabled>{{ t('- Select -') }}</option>
+          <option value="New Application">{{ t('New Application') }}</option>
+          <option value="Existing Application">{{ t('Existing Application') }}</option>
+        </select>
+      </div>
+      <div class="offset" ng-hide="!user.de_inquiry_application">
+        <select name="inquiry" ng-model="user.de_inquiry_application_info">
+          <option value="" disabled>{{ t('- Select -') }}</option>
+          <option value="Please contact me">{{ t('Please contact me') }}</option>
+          <option value="I will provide information now">{{ t('I will provide information now') }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid-12">
+      <div class="sel-btn">
+        <button type="submit" ng-disabled="!businessform.$valid || loading" class="button button--primary js-form-submit form-submit" ng-class="{ 'loading': loading }">{{ t('Next Step') }}</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd">
+    <span class="sel-count">2.</span>
+    {{ t('General Information') }}
+  </div>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd">
+    <span class="sel-count">3.</span>
+    {{ t('Application Information') }}
+  </div>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd">
+    <span class="sel-count">4.</span>
+    {{ t('Accessories') }}
+  </div>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd">
+    <span class="sel-count">5.</span>
+    {{ t('Solution Issues') }}
+  </div>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd">
+    <span class="sel-count">6.</span>
+    {{ t('Complete Request') }}
+  </div>
+</div>

@@ -1,0 +1,71 @@
+uuid: 9bf92ece-5aa6-4aa5-a4ea-72b5d3ef9255
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.media_block.field_body_basic
+    - field.field.paragraph.media_block.field_cta
+    - field.field.paragraph.media_block.field_media
+    - field.field.paragraph.media_block.field_title
+    - field.field.paragraph.media_block.field_title_prefix
+    - paragraphs.paragraphs_type.media_block
+  module:
+    - paragraphs
+    - text
+id: paragraph.media_block.default
+targetEntityType: paragraph
+bundle: media_block
+mode: default
+content:
+  field_body_basic:
+    type: text_textarea
+    weight: 3
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_cta:
+    type: entity_reference_paragraphs
+    weight: 4
+    region: content
+    settings:
+      title: CTA
+      title_plural: CTA
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: cta
+    third_party_settings: {  }
+  field_media:
+    type: entity_reference_paragraphs
+    weight: 5
+    region: content
+    settings:
+      title: Media
+      title_plural: Media
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_title_prefix:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

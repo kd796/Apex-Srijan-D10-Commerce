@@ -1,0 +1,22 @@
+{% set title = title | default(null) %}
+{% set image = image | default(null) %}
+{% set url = url | default(null) %}
+{% set tag = url ? 'a' : 'div' %}
+
+<{{ tag }} href="{{ url }}" class="card">
+{% if image %}
+	<div class="card-image">
+		{{ image }}
+	</div>
+{% endif %}
+    {% if title %}
+		<header class="card-header">
+			<h3 class="card-title">{{ title }}</h3>
+		</header>
+	{% endif %}
+    {% if body is defined and body %}
+		<div class="card-body">
+			<p>{{ body }}</p>
+		</div>
+	{% endif %}
+</{{ tag }}>

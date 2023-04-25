@@ -1,0 +1,22 @@
+{% if attributes -%}
+<div{{ attributes }}>
+	{% endif %}
+	{% if title %}
+		<header class="section-header">
+			<h3 class="section-title">{{ title }}</h3>
+		</header>
+	{% endif %}
+
+	<{{ list.type }}{{ create_attribute(list.attributes | default([])).addClass("articles-list") }}>
+
+	{% for row in rows %}
+		<li{{ create_attribute(row.attributes | default([])).addClass("articles-list-item") }}>
+			{{- row.content -}}
+		</li>
+	{% endfor %}
+
+</{{ list.type }}>
+
+{% if attributes -%}
+	</div>
+{% endif %}

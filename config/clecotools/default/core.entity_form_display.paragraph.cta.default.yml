@@ -1,0 +1,66 @@
+uuid: 0df034f8-8c3c-4018-a4e8-1d16a01288e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.cta.field_cta_image
+    - field.field.paragraph.cta.field_cta_image_de
+    - field.field.paragraph.cta.field_cta_target
+    - field.field.paragraph.cta.field_cta_url
+    - field.field.paragraph.cta.field_cta_url_de
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.cta
+  module:
+    - image
+    - link
+id: paragraph.cta.default
+targetEntityType: paragraph
+bundle: cta
+mode: default
+content:
+  field_cta_image:
+    type: image_image
+    weight: 0
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_cta_image_de:
+    type: image_image
+    weight: 11
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_cta_target:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_cta_url:
+    type: link_default
+    weight: 1
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_cta_url_de:
+    type: link_default
+    weight: 12
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  translation:
+    weight: 10
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

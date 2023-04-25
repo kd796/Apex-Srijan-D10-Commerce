@@ -1,0 +1,14 @@
+{% set title = content.field_title[0]['#context']['value'] %}
+{% set video_url = content.field_youtube_url[0]['#context']['value'] %}
+<video-thumb url="{{ video_url }}" title="{{ title }}">
+	<template slot="image">
+		{% if content.field_media_src.0 %}
+			{{ content.field_media_src }}
+		{% else %}
+			<img src="{{ video_url | youtube_thumb }}">
+		{% endif %}
+	</template>
+	<template slot="description">
+		{{ content.field_body_plain | raw }}
+	</template>
+</video-thumb>

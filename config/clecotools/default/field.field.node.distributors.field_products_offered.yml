@@ -1,0 +1,29 @@
+uuid: d3a8817b-94f8-4221-90a6-4b698a3097b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_products_offered
+    - node.type.distributors
+    - taxonomy.vocabulary.products_offered
+id: node.distributors.field_products_offered
+field_name: field_products_offered
+entity_type: node
+bundle: distributors
+label: 'Products Offered'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      products_offered: products_offered
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
