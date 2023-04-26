@@ -221,6 +221,12 @@ class SolrSearchApiService {
     }
     $language = $this->languageManager->getCurrentLanguage()->getId();
     $this->query->addCondition('langcode', $language);
+
+    // Retrieve data from index.
+    $config = $this->query->getIndex()->getServerInstance()->getBackendConfig();
+    $config['retrieve_data'] = true;
+    $this->query->getIndex()->getServerInstance()->setBackendConfig($config);
+
     return $this->query->execute();
   }
 
