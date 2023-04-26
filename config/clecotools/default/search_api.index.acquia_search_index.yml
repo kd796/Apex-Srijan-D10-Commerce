@@ -173,6 +173,18 @@ field_settings:
       module:
         - file
         - paragraphs
+  enhanced_product_image_uri:
+    label: '360° Product Image » Paragraph » Product Loading Image » File » URI'
+    datasource_id: 'entity:node'
+    property_path: 'field_360_image:entity:field_360_loading_image:entity:uri'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_360_image
+        - field.storage.paragraph.field_360_loading_image
+      module:
+        - file
+        - paragraphs
   enhanced_product_image_url:
     label: '360° Product Image » Paragraph » Product Loading Image » File » URI » Root-relative file URL'
     datasource_id: 'entity:node'

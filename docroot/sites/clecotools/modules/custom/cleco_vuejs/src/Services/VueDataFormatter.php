@@ -125,8 +125,10 @@ class VueDataFormatter {
         // Overwrite for enhanced products.
         $enhanced_product_image = isset($resultItemFields['enhanced_product_image']) ? $resultItemFields['enhanced_product_image']->getvalues() : [];
         $image_name = isset($enhanced_product_image[0]) ? explode('.', $enhanced_product_image[0])[0] : $image_name;
-        $enhanced_image_file = isset($resultItemFields['enhanced_product_image_url']) ? $resultItemFields['enhanced_product_image_url']->getvalues() : [];
-        $image_file = $enhanced_image_file[0] ?? $image_file;
+        $enhanced_image_file = isset($resultItemFields['enhanced_product_image_uri']) ? $resultItemFields['enhanced_product_image_uri']->getvalues() : [];
+        if (isset($enhanced_image_file[0])) {
+          $image_file =  $this->fileUrlGenerator->generateAbsoluteString($enhanced_image_file[0]);
+        }
         $enhanced_description = isset($resultItemFields['field_features_copy']) ? $resultItemFields['field_features_copy']->getvalues() : [];
         $sku_overview = isset($enhanced_description[0]) ? $enhanced_description[0]->getText() : $sku_overview;
 
