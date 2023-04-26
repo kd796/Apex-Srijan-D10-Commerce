@@ -2,9 +2,9 @@
 
 namespace Drupal\cleco_vuejs\Services;
 
+use Drupal\Core\File\FileUrlGeneratorInterface;
 use Drupal\search_api\Query\ResultSetInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\cleco_vuejs\Utils\StepHelper;
 use Drupal\path_alias\AliasManagerInterface;
 
 /**
@@ -27,18 +27,27 @@ class VueDataFormatter {
   protected $pathAliasManager;
 
   /**
+   * File url generator object.
+   *
+   * @var \Drupal\Core\File\FileUrlGeneratorInterface
+   */
+  protected $fileUrlGenerator;
+
+  /**
    * Constructs a solr search service.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
    *   The entity manager.
    * @param \Drupal\path_alias\AliasManagerInterface $path_alias_manager
    *   The path alias manager.
+   * @param \Drupal\Core\File\FileUrlGeneratorInterface $file_url_generator
    *
    * @return null
    */
-  public function __construct(EntityTypeManagerInterface $entity_manager, AliasManagerInterface $path_alias_manager) {
+  public function __construct(EntityTypeManagerInterface $entity_manager, AliasManagerInterface $path_alias_manager, FileUrlGeneratorInterface $file_url_generator) {
     $this->entityManager = $entity_manager;
     $this->pathAliasManager = $path_alias_manager;
+    $this->fileUrlGenerator = $file_url_generator;
   }
 
   protected $itemTypes = [
@@ -99,8 +108,9 @@ class VueDataFormatter {
         // Image.
         $listing_image = isset($resultItemFields['listing_image_name']) ? $resultItemFields['listing_image_name']->getvalues() : [];
         $image_name = isset($listing_image[0]) ? explode('.', $listing_image[0])[0] : '';
-        $image_file = isset($resultItemFields['listing_image_url']) ? $resultItemFields['listing_image_url']->getvalues() : [];
-        $image_file = $image_file[0] ?? '';
+        $image_file_uri = isset($resultItemFields['listing_image_uri']) ? $resultItemFields['listing_image_uri']->getvalues() : [];
+        $image_file_uri = $image_file_uri[0] ?? '';
+        $image_file =  $this->fileUrlGenerator->generateAbsoluteString($image_file_uri);
 
         // Description.
         $sku_overview = isset($resultItemFields['body']) ? $resultItemFields['body']->getvalues() : [];
@@ -145,13 +155,15 @@ class VueDataFormatter {
         // Image.
         $listing_image = isset($resultItemFields['media_listing_image_name']) ? $resultItemFields['media_listing_image_name']->getvalues() : [];
         $image_name = isset($listing_image[0]) ? explode('.', $listing_image[0])[0] : '';
-        $image_file = isset($resultItemFields['media_listing_image_url']) ? $resultItemFields['media_listing_image_url']->getvalues()[0] : [];
+        $image_file_uri = isset($resultItemFields['media_listing_image_uri']) ? $resultItemFields['media_listing_image_uri']->getvalues()[0] : '';
+        $image_file =  $this->fileUrlGenerator->generateAbsoluteString($image_file_uri);
 
         // Type.
         $type = isset($resultItemFields['bundle']) ? $resultItemFields['bundle']->getvalues()[0] : '';
 
         // Asset.
-        $asset_file = isset($resultItemFields['media_filename_url']) ? $resultItemFields['media_filename_url']->getvalues()[0] : [];
+        $asset_file_uri = isset($resultItemFields['media_filename_uri']) ? $resultItemFields['media_filename_uri']->getvalues()[0] : '';
+        $asset_file =  $this->fileUrlGenerator->generateAbsoluteString($asset_file_uri);
 
         // Assets array.
         $assets = [
@@ -215,8 +227,9 @@ class VueDataFormatter {
       $item_type = isset($resultItemFields['item_type']) ? $resultItemFields['item_type']->getvalues() : '';
       $item_type = $item_type ? $item_type[0] : '';
       $media_file = isset($resultItemFields['field_media_file']) ? $resultItemFields['field_media_file']->getvalues() : [];
-      $media_url = isset($resultItemFields['media_listing_image_url']) ? $resultItemFields['media_listing_image_url']->getvalues() : '';
-      $media_url = $media_url ? $media_url[0] : '';
+      $media_uri = isset($resultItemFields['media_listing_image_uri']) ? $resultItemFields['media_listing_image_uri']->getvalues() : [];
+      $media_uri = $media_uri ? $media_uri[0] : '';
+      $media_url =  $this->fileUrlGenerator->generateAbsoluteString($media_uri);
 
       $catName = isset($resultItemFields['product_category_name']) ? $resultItemFields['product_category_name']->getvalues() : [];
       $category = implode(', ', $catName);
@@ -225,7 +238,7 @@ class VueDataFormatter {
         $download_file = $this->entityManager->getStorage('file')->load($media_file[0]);
         $download_file_url  = $download_file->getFileUri();
         $download_file_name = $download_file->getFilename();
-        $download_file_path = file_create_url($download_file_url);
+        $download_file_path = $this->fileUrlGenerator->generateAbsoluteString($download_file_url);
       }
 
       $listing_img_name = isset($resultItemFields['media_listing_image_name']) ? $resultItemFields['media_listing_image_name']->getvalues() : [];
