@@ -163,7 +163,7 @@ class VueDataFormatter {
       }
 
       $type = $this->itemTypes[$type] ?? $type;
-      $item_type = $resultItemFields['item_type']->getvalues();
+      $item_type = isset($resultItemFields['item_type']) ? $resultItemFields['item_type']->getvalues() : [];
 
       // Slug for nodes other than products.
       if ($type === 'nodes' && !$slug) {
