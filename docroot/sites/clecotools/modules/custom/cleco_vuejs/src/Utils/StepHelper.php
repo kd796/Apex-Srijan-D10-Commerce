@@ -585,16 +585,16 @@ class StepHelper
      */
     public static function getCurrentSite()
     {
-        $config    = Drupal::config('system.site');
-        $language  = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
-        $urlConfig = Drupal::config('language.negotiation')->get('url')['source']; // path_prefix vs domain
+        $config    = \Drupal::config('system.site');
+        $language  = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
+        $urlConfig = \Drupal::config('language.negotiation')->get('url')['source']; // path_prefix vs domain
 
         return [
             'name'       => $config->get('name'),
             'code'       => $language,
-            'domain'     => Drupal::request()->getHost(),
+            'domain'     => \Drupal::request()->getHost(),
             'path'       => ($urlConfig == 'path_prefix') ? '/' . $language : '',
-            'url_config' => Drupal::config('language.negotiation')->get('url')['source']
+            'url_config' => $urlConfig,
         ];
     }
 
@@ -603,18 +603,25 @@ class StepHelper
      */
     public static function getProductFilters()
     {
-        $curSite = self::getCurrentSite();
+        $language  = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
         // Get all Product Filters from the first level
         $filters              = Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('product_filters', 0, 1);
         $collectionCheckboxes = [];
         $collectionRanges     = [];
 
+        $cache = \Drupal::cache();
+        $cid_product_filter = __FUNCTION__ . '_' . $language;
+        $product_filter_data_cached = $cache->get($cid_product_filter);
+        if ($product_filter_data_cached) {
+            return $product_filter_data_cached->data;
+        }
+
         foreach ($filters as $filter) {
             $term = Drupal\taxonomy\Entity\Term::load($filter->tid);
-            if ($term->hasTranslation($curSite['code'])) {
+            if ($term->hasTranslation($language)) {
                 // Only translate name of term
                 // ElasticSearch relies on english keys
-                $locale = $term->getTranslation($curSite['code']);
+                $locale = $term->getTranslation($language);
             }
 
             if (isset($term) && isset($locale)) {
@@ -657,6 +664,10 @@ class StepHelper
         // });
 
         $collection = array_merge($collectionCheckboxes, $collectionRanges);
+
+        // Add to cache.
+        $product_filter_tags = ['config:taxonomy.vocabulary.product_filters', 'taxonomy_term_list:product_filters'];
+        $cache->set($cid_product_filter, $collection, Drupal\Core\Cache\Cache::PERMANENT, $product_filter_tags);
 
         return $collection;
     }

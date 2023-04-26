@@ -6,8 +6,6 @@ dependencies:
     - field.field.node.markets.body
     - field.field.node.markets.field_banner_image
     - field.field.node.markets.field_listing_image
-    - field.field.node.markets.field_market_logo
-    - field.field.node.markets.field_related_products
     - field.field.node.markets.field_short_description
     - field.field.node.markets.field_weight
     - node.type.markets
@@ -49,23 +47,6 @@ content:
     region: content
     settings:
       media_types: {  }
-    third_party_settings: {  }
-  field_market_logo:
-    type: media_library_widget
-    weight: 11
-    region: content
-    settings:
-      media_types: {  }
-    third_party_settings: {  }
-  field_related_products:
-    type: entity_reference_autocomplete
-    weight: 14
-    region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
     third_party_settings: {  }
   field_short_description:
     type: text_textarea
