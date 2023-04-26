@@ -432,6 +432,18 @@ field_settings:
       module:
         - file
         - media
+  listing_image_uri:
+    label: 'Listing Image » Media » Image » File » URI'
+    datasource_id: 'entity:node'
+    property_path: 'field_media:entity:field_media_image:entity:uri'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_image
+        - field.storage.node.field_media
+      module:
+        - file
+        - media
   listing_image_url:
     label: 'Listing Image » Media » Image » File » URI » Root-relative file URL'
     datasource_id: 'entity:node'
@@ -466,6 +478,16 @@ field_settings:
         - field.storage.media.field_media_file
       module:
         - file
+  media_filename_uri:
+    label: 'File » File » URI'
+    datasource_id: 'entity:media'
+    property_path: 'field_media_file:entity:uri'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_file
+      module:
+        - file
   media_filename_url:
     label: 'File » File » URI » Root-relative file URL'
     datasource_id: 'entity:media'
@@ -480,6 +502,18 @@ field_settings:
     label: 'Listing Image » Media » Image » File » Filename'
     datasource_id: 'entity:media'
     property_path: 'field_listing_image:entity:field_media_image:entity:filename'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_listing_image
+        - field.storage.media.field_media_image
+      module:
+        - file
+        - media
+  media_listing_image_uri:
+    label: 'Listing Image » Media » Image » File » URI'
+    datasource_id: 'entity:media'
+    property_path: 'field_listing_image:entity:field_media_image:entity:uri'
     type: string
     dependencies:
       config:
