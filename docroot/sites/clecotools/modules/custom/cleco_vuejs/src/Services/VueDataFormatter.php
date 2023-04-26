@@ -75,7 +75,7 @@ class VueDataFormatter {
 
     $items = [];
     foreach ($results as $result) {
-      $resultItemFields = $result->getFields();
+      $resultItemFields = $result->getFields(FALSE);
       $sku_overview = '';
       $slug = '';
       $title = '';
