@@ -36,7 +36,7 @@ content:
     region: content
   field_all_industries:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
@@ -44,7 +44,7 @@ content:
     region: content
   field_all_markets:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
@@ -52,7 +52,7 @@ content:
     region: content
   field_brand_color:
     type: color_field_formatter_text
-    label: above
+    label: hidden
     settings:
       format: hex
       opacity: true
@@ -61,7 +61,7 @@ content:
     region: content
   field_business_unit:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
@@ -69,14 +69,14 @@ content:
     region: content
   field_claim_to_fame:
     type: text_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 112
     region: content
   field_end_users:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
@@ -84,14 +84,14 @@ content:
     region: content
   field_footer_note:
     type: text_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 113
     region: content
   field_is_featured:
     type: boolean
-    label: above
+    label: hidden
     settings:
       format: default
       format_custom_false: ''
@@ -100,16 +100,17 @@ content:
     weight: 103
     region: content
   field_listing_image:
-    type: entity_reference_label
-    label: above
+    type: entity_reference_entity_view
+    label: hidden
     settings:
-      link: true
+      view_mode: embed
+      link: false
     third_party_settings: {  }
     weight: 110
     region: content
   field_read_more:
     type: link
-    label: above
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -121,14 +122,14 @@ content:
     region: content
   field_short_description:
     type: text_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 111
     region: content
   field_solution:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }

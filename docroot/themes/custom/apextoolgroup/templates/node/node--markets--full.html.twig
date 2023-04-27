@@ -77,35 +77,25 @@
 %}
 
 <div class="wrapper-content">
-  <div class="market-details">
-    <h1 class="market-details__title">
-      {{ node.label }}
-    </h1>
+  <div class="hero-banner">
+    {{ content.field_banner_image }}
 
-    <div class="market-details__image">
-      {{ content.field_banner_image }}
-    </div>
-
-    <div class="market-details__description">
-      <div class="left">
-        <h1 class="market-details__title">
-          {{ node.label  }}
+    <div class="hero-banner__caption">
+      <div class="container">
+        <h1 class="hero-banner__title">
+          {{ node.label }}
         </h1>
 
-        {{ content.field_short_description }}
-      </div>
-
-      <div class="right">
-        {{content.field_market_logo.0}}
+        <div class="hero-banner__description">
+          {{ content.field_short_description.0 }}
+        </div>
       </div>
     </div>
+  </div>
 
-    <div class="market-details__body">
+  <div class="container">
+    <div class="market-details">
       {{ content.body }}
-    </div>
-
-    <div class="related-products">
-      {{ content.field_related_products }}
     </div>
   </div>
 </div>

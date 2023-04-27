@@ -141,6 +141,9 @@ class SolrSearchApiService {
     $config['retrieve_data'] = true;
     $this->query->getIndex()->getServerInstance()->setBackendConfig($config);
 
+    // Sort by 'web display sort order' field.
+    $this->query->sort('field_web_display_sort_order', 'asc');
+
     return $this->query->execute();
   }
 

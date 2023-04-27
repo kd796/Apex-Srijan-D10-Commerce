@@ -7,7 +7,7 @@
 
 .header-wrapper {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   width: 100%;
   @media only screen and (max-width: $tablet-max)  {
     padding: 15px 0;
@@ -204,7 +204,9 @@
         top: 0;
         height: 100%;
         @media only screen and (max-width: $tablet-max)  {
+          background: url('#{$icon-base-path}/arrow-down-responsive.svg') center no-repeat;
           right: 0;
+          width: 20px;
           height: 10px;
           top: 20px;
         }
@@ -299,6 +301,11 @@
       right: 15px;
       top: 14px;
       display: block;
+      @media only screen and (max-width: $tablet-max)  {
+        background: url('#{$icon-base-path}/arrow-down-responsive.svg') center no-repeat;
+        width: 20px;
+        height: 10px;
+      }
     }
   }
 
