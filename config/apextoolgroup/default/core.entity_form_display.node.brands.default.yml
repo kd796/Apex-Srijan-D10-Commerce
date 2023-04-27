@@ -20,6 +20,7 @@ dependencies:
   module:
     - color_field
     - link
+    - media_library
     - path
     - text
 id: node.brands.default
@@ -44,24 +45,16 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_all_industries:
-    type: entity_reference_autocomplete
+    type: options_select
     weight: 128
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_all_markets:
-    type: entity_reference_autocomplete
+    type: options_select
     weight: 127
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_brand_color:
     type: color_field_widget_default
@@ -72,14 +65,10 @@ content:
       placeholder_opacity: ''
     third_party_settings: {  }
   field_business_unit:
-    type: entity_reference_autocomplete
+    type: options_select
     weight: 125
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_claim_to_fame:
     type: text_textarea
@@ -90,14 +79,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_end_users:
-    type: entity_reference_autocomplete
+    type: options_select
     weight: 129
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_footer_note:
     type: text_textarea
@@ -115,14 +100,11 @@ content:
       display_label: true
     third_party_settings: {  }
   field_listing_image:
-    type: entity_reference_autocomplete
+    type: media_library_widget
     weight: 130
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      media_types: {  }
     third_party_settings: {  }
   field_read_more:
     type: link_default
@@ -141,14 +123,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_solution:
-    type: entity_reference_autocomplete
+    type: options_select
     weight: 126
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   langcode:
     type: language_select
