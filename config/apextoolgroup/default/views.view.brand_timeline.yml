@@ -27,7 +27,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'History And Brand Timeline'
+      title: 'Brand Timeline'
       fields:
         title:
           id: title
@@ -457,7 +457,20 @@ display:
           query_tags: {  }
       relationships: {  }
       use_ajax: true
-      header: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: '<h3 class="timeline-header">Welcome to the Apex Tool Group Brand Timeline</h3><p>You''re starting at the beginning. Please use the directional arrows or your mouse to navigate through the timeline. Thanks for visiting.</p>'
+            format: basic_html
+          tokenize: false
       footer: {  }
       display_extenders: {  }
     cache_metadata:
@@ -480,7 +493,7 @@ display:
     display_options:
       display_description: ''
       display_extenders: {  }
-      path: about-us/brand-timeline
+      path: brands/brand-timeline
     cache_metadata:
       max-age: -1
       contexts:
