@@ -1,0 +1,80 @@
+.market-other {
+  margin-top: 56px;
+  margin-bottom: 56px;
+  @media only screen and(max-width: $desktop) {
+    margin-top: 45px;
+    margin-bottom: 45px;
+  }
+
+  @media only screen and(max-width: $tablet-max) {
+    margin-top: 35px;
+    margin-bottom: 35px;
+  }
+
+  @media only screen and(max-width: $tablet) {
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+
+  .view-content {
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -8px;
+    @media only screen and(max-width: $tablet) {
+      margin: 0;
+    }
+
+    .views-row {
+      width: 33.33%;
+      padding: 0 8px;
+      margin-bottom: 16px;
+      @media only screen and(max-width: $tablet-max) {
+        width: 50%;
+      }
+
+      @media only screen and(max-width: $tablet) {
+        width: 100%;
+        padding: 0;
+      }
+
+      a {
+        height: 100%;
+        display: flex;
+        font-size: $h5;
+        font-weight: 400;
+        line-height: 25px;
+        position: relative;
+        align-items: center;
+        padding: 32px 55px 32px 16px;
+        border: 1px solid $celtic-blue;
+        box-shadow: 2px 2px 11px -3px rgba($black, 0.25);
+        @media only screen and(max-width: $tablet-max) {
+          padding: 25px 51px 25px 16px;
+        }
+        @media only screen and(max-width: $tablet) {
+          font-size: $p;
+          padding: 20px 46px 20px 16px;
+        }
+
+        &::after {
+          content: '';
+          top: 50%;
+          width: 38px;
+          height: 16px;
+          display: block;
+          position: absolute;
+          left: calc(100% - 16px);
+          transform: translate(-100%, -50%);
+          background: url('#{$icon-base-path}/arrow-right.svg') right bottom no-repeat;
+          @media only screen and(max-width: $tablet-max) {
+            width: 35px;
+          }
+          @media only screen and(max-width: $tablet) {
+            width: 30px;
+          }
+        }
+      }
+    }
+  }
+}
