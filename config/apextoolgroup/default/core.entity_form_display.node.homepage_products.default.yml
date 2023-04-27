@@ -9,6 +9,7 @@ dependencies:
     - node.type.homepage_products
   module:
     - link
+    - media_library
     - path
     - text
 id: node.homepage_products.default
@@ -33,14 +34,11 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_media:
-    type: entity_reference_autocomplete
+    type: media_library_widget
     weight: 122
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      media_types: {  }
     third_party_settings: {  }
   field_read_more:
     type: link_default
