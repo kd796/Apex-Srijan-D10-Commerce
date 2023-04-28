@@ -1,0 +1,23 @@
+uuid: 75ba0bda-b190-4592-be5f-febd6cbf0dcf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_read_more
+    - node.type.inventor
+  module:
+    - link
+id: node.inventor.field_read_more
+field_name: field_read_more
+entity_type: node
+bundle: inventor
+label: 'Submit Your Idea link'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link
