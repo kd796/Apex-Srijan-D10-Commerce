@@ -1,22 +1,22 @@
-uuid: 14abef10-808c-4dad-b3ea-5abebe8fc01c
+uuid: 6e2630df-9002-450a-a55c-e1d045ad6fde
 langcode: en
-status: false
+status: true
 dependencies:
   config:
-    - views.view.brands
+    - views.view.homepage_news
   module:
     - system
     - views
   theme:
     - apextoolgroup
-id: views_block__brands_homepage_brand_block
+id: views_block__homepage_news_homepage_feature_news
 theme: apextoolgroup
 region: content
-weight: -2
+weight: -3
 provider: null
-plugin: 'views_block:brands-homepage_brand_block'
+plugin: 'views_block:homepage_news-homepage_feature_news'
 settings:
-  id: 'views_block:brands-homepage_brand_block'
+  id: 'views_block:homepage_news-homepage_feature_news'
   label: ''
   label_display: '0'
   provider: views
