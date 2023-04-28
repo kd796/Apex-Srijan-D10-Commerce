@@ -351,11 +351,12 @@ class RouteController extends ControllerBase {
   public function getProductModelDetails($models) {
     if (!empty($models)) {
       foreach ($models as $model) {
-        $model_details = \Drupal::entityTypeManager()
+        $model_details_arr = \Drupal::entityTypeManager()
           ->getStorage('node')->loadByProperties([
             'nid' => $model['target_id'],
             'status' => 1,
           ]);
+        $model_details = $model_details_arr[$model['target_id']];
         $sr_number = $model_details->get('field_sr_number')->value;
         $model_spec = $model_details->get('field_model_specification')
           ->referencedEntities();
