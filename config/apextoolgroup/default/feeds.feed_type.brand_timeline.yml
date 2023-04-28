@@ -1,0 +1,121 @@
+uuid: 99901f1e-a92d-440f-b5ca-eb2470bda410
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.brand_timeline.body
+    - field.field.node.brand_timeline.field_event_date
+    - field.field.node.brand_timeline.field_event_media_link
+    - field.field.node.brand_timeline.field_media
+    - node.type.brand_timeline
+  module:
+    - feeds_tamper
+    - node
+third_party_settings:
+  feeds_tamper:
+    tampers:
+      9543d50d-ff83-4f1c-aee9-54901f590537:
+        uuid: 9543d50d-ff83-4f1c-aee9-54901f590537
+        plugin: apex_tools_create_media
+        source: image
+        weight: 0
+        label: 'Create media entity'
+        media_type: image
+label: 'Brand Timeline'
+id: brand_timeline
+description: ''
+help: ''
+import_period: -1
+fetcher: upload
+fetcher_configuration:
+  allowed_extensions: csv
+  directory: 'private://feeds'
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  values:
+    type: brand_timeline
+  langcode: en
+  insert_new: 1
+  update_existing: 2
+  update_non_existent: _keep
+  skip_hash_check: true
+  authorize: true
+  revision: false
+  expire: -1
+  owner_feed_author: false
+  owner_id: 1
+custom_sources:
+  image:
+    value: Image
+    label: Image
+    machine_name: image
+    type: csv
+  title:
+    value: Title
+    label: Title
+    machine_name: title
+    type: csv
+  event_date:
+    value: 'Event date'
+    label: 'Event date'
+    machine_name: event_date
+    type: csv
+  body:
+    value: Body
+    label: Body
+    machine_name: body
+    type: csv
+  event_media_link:
+    value: 'Event Media Link'
+    label: 'Event Media Link'
+    machine_name: event_media_link
+    type: csv
+  event_media_link_title:
+    value: 'Event Media Link Title'
+    label: 'Event Media Link Title'
+    machine_name: event_media_link_title
+    type: csv
+mappings:
+  -
+    target: field_media
+    map:
+      target_id: image
+    settings:
+      language: ''
+      reference_by: mid
+      autocreate: '1'
+  -
+    target: title
+    map:
+      value: title
+    settings:
+      language: null
+    unique:
+      value: '1'
+  -
+    target: field_event_date
+    map:
+      value: event_date
+    settings:
+      language: null
+      timezone: UTC
+  -
+    target: body
+    map:
+      value: body
+      summary: ''
+    settings:
+      language: null
+      format: plain_text
+  -
+    target: field_event_media_link
+    map:
+      uri: event_media_link
+      title: event_media_link_title
+    settings:
+      language: null
