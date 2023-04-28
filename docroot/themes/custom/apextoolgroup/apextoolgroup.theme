@@ -39,3 +39,14 @@ function apextoolgroup_preprocess_html(&$vars) {
     $vars['attributes']['class'][] = str_replace("/", "", $internal);
   }
 }
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function apextoolgroup_preprocess_block(&$variables) {
+  // Matching id.
+  if (strpos($variables['attributes']['id'], 'block-homepagectablock') !== FALSE) {
+    $slider_view_content = views_embed_view('brands', 'homepage_brand_block');
+    $variables['brand_titles'] = $slider_view_content;
+  }
+}

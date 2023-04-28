@@ -19,7 +19,7 @@ dependencies:
     - text
     - user
 id: campbell_news
-label: 'Campbell News'
+label: 'ATG News'
 module: views
 description: ''
 tag: ''
@@ -571,10 +571,11 @@ display:
         - 'config:field.storage.node.field_media'
   campbell_in_the_news:
     id: campbell_in_the_news
-    display_title: 'Campbell in the news'
+    display_title: 'ATG in the news'
     display_plugin: page
     position: 1
     display_options:
+      title: 'ATG in the news'
       fields:
         field_media:
           id: field_media
@@ -1067,6 +1068,7 @@ display:
         groups:
           1: AND
       defaults:
+        title: false
         css_class: false
         fields: false
         filters: false
@@ -1074,22 +1076,23 @@ display:
         footer: false
       css_class: campbell-in-news-page
       display_description: ''
-      footer:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: text
-          empty: true
-          content:
-            value: '<p>All media inquiries should be directed to Bill Bliss at +1-919-387-2482 or  <a href="mailto:bill.bliss@apextoolgroup.com">bill.bliss@apextoolgroup.com</a>.</p>'
-            format: basic_html
-          tokenize: false
+      footer: {  }
       display_extenders: {  }
-      path: media-center/campbell-in-the-news
+      path: newsroom
+      menu:
+        type: 'default tab'
+        title: 'ATG in the news'
+        description: ''
+        weight: 0
+        expanded: false
+        menu_name: main
+        parent: ''
+        context: '0'
+      tab_options:
+        type: none
+        title: 'ATG in the news'
+        description: ''
+        weight: 0
     cache_metadata:
       max-age: -1
       contexts:
@@ -1688,23 +1691,19 @@ display:
         footer: false
       css_class: campbell-news-release-page
       display_description: ''
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: text
-          empty: true
-          content:
-            value: '<p>All media inquiries should be directed to Bill Bliss at +1-919-387-2482 or  <a href="mailto:bill.bliss@apextoolgroup.com">bill.bliss@apextoolgroup.com</a>.</p>'
-            format: basic_html
-          tokenize: false
+      header: {  }
       footer: {  }
       display_extenders: {  }
-      path: media-center/campbell-news-release
+      path: newsroom/atg-news-release
+      menu:
+        type: tab
+        title: 'ATG news release'
+        description: ''
+        weight: 0
+        expanded: false
+        menu_name: main
+        parent: ''
+        context: '0'
     cache_metadata:
       max-age: -1
       contexts:
