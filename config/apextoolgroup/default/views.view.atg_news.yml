@@ -18,7 +18,7 @@ dependencies:
     - smart_trim
     - text
     - user
-id: campbell_news
+id: atg_news
 label: 'ATG News'
 module: views
 description: ''
@@ -32,7 +32,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Campbell in the news'
+      title: 'ATG in the news'
       fields:
         field_media:
           id: field_media
@@ -569,8 +569,8 @@ display:
         - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_date'
         - 'config:field.storage.node.field_media'
-  campbell_in_the_news:
-    id: campbell_in_the_news
+  atg_news:
+    id: atg_news
     display_title: 'ATG in the news'
     display_plugin: page
     position: 1
@@ -1074,7 +1074,7 @@ display:
         filters: false
         filter_groups: false
         footer: false
-      css_class: campbell-in-news-page
+      css_class: atg-in-news-page
       display_description: ''
       footer: {  }
       display_extenders: {  }
@@ -1106,8 +1106,8 @@ display:
         - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_date'
         - 'config:field.storage.node.field_media'
-  campbell_news_release:
-    id: campbell_news_release
+  atg_news_release:
+    id: atg_news_release
     display_title: 'News Releases'
     display_plugin: page
     position: 2
@@ -1689,7 +1689,7 @@ display:
         filter_groups: false
         header: false
         footer: false
-      css_class: campbell-news-release-page
+      css_class: atg-news-release-page
       display_description: ''
       header: {  }
       footer: {  }
