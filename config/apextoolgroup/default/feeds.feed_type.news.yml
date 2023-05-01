@@ -1,0 +1,204 @@
+uuid: 2d1557b8-f755-4ffc-9133-d329a8ae5674
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.news.body
+    - field.field.node.news.field_banner_image
+    - field.field.node.news.field_date
+    - field.field.node.news.field_is_featured
+    - field.field.node.news.field_media
+    - field.field.node.news.field_news_release_document
+    - field.field.node.news.field_news_type
+    - field.field.node.news.field_sub_heading
+    - node.type.news
+  module:
+    - feeds_tamper
+    - node
+third_party_settings:
+  feeds_tamper:
+    tampers:
+      6fddd9ce-13b7-41c5-b36e-f2b907aa0ac0:
+        find: 'News Releases'
+        replace: newsrelease
+        case_sensitive: false
+        word_boundaries: false
+        whole: false
+        uuid: 6fddd9ce-13b7-41c5-b36e-f2b907aa0ac0
+        plugin: find_replace
+        source: news_type
+        weight: 0
+        label: 'Find replace'
+      2fd8938d-e476-4ad4-a766-ff1d7facb48a:
+        find: 'In the News'
+        replace: inthenews
+        case_sensitive: false
+        word_boundaries: false
+        whole: false
+        uuid: 2fd8938d-e476-4ad4-a766-ff1d7facb48a
+        plugin: find_replace
+        source: news_type
+        weight: 1
+        label: 'Find replace'
+      6f03930e-9523-4a87-9ef9-e176f0f583f4:
+        uuid: 6f03930e-9523-4a87-9ef9-e176f0f583f4
+        plugin: apex_tools_create_media
+        source: front_page_image
+        weight: 0
+        label: 'Create media entity'
+        media_type: image
+      89874776-7e45-4d09-846f-931dca5485c9:
+        uuid: 89874776-7e45-4d09-846f-931dca5485c9
+        plugin: apex_tools_create_media
+        source: image
+        weight: 0
+        label: 'Create media entity'
+        media_type: image
+      f1af79d3-3b80-4c73-92d0-2c3e7149a693:
+        uuid: f1af79d3-3b80-4c73-92d0-2c3e7149a693
+        plugin: apex_tools_create_media
+        source: news_release_document
+        weight: 0
+        label: 'Create media entity'
+        media_type: file
+label: News
+id: news
+description: ''
+help: ''
+import_period: -1
+fetcher: upload
+fetcher_configuration:
+  allowed_extensions: csv
+  directory: 'private://feeds'
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  values:
+    type: news
+  langcode: en
+  insert_new: 1
+  update_existing: 2
+  update_non_existent: _keep
+  skip_hash_check: true
+  authorize: true
+  revision: false
+  expire: -1
+  owner_feed_author: false
+  owner_id: 1
+custom_sources:
+  body:
+    value: Body
+    label: Body
+    machine_name: body
+    type: csv
+  date:
+    value: Date
+    label: Date
+    machine_name: date
+    type: csv
+  front_page_image:
+    value: 'Front Page Image'
+    label: 'Front Page Image'
+    machine_name: front_page_image
+    type: csv
+  image:
+    value: Image
+    label: Image
+    machine_name: image
+    type: csv
+  is_featured:
+    value: 'Is Featured'
+    label: 'Is Featured'
+    machine_name: is_featured
+    type: csv
+  news_release_document:
+    value: 'News Release Document'
+    label: 'News Release Document'
+    machine_name: news_release_document
+    type: csv
+  sub_heading:
+    value: 'Sub Heading'
+    label: 'Sub Heading'
+    machine_name: sub_heading
+    type: csv
+  news_type:
+    value: 'News Type'
+    label: 'News Type'
+    machine_name: news_type
+    type: csv
+  title:
+    value: Title
+    label: Title
+    machine_name: title
+    type: csv
+mappings:
+  -
+    target: body
+    map:
+      value: body
+      summary: ''
+    settings:
+      language: null
+      format: plain_text
+  -
+    target: field_date
+    map:
+      value: date
+    settings:
+      language: null
+      timezone: UTC
+  -
+    target: field_media
+    map:
+      target_id: front_page_image
+    settings:
+      language: ''
+      reference_by: mid
+      autocreate: 0
+  -
+    target: field_banner_image
+    map:
+      target_id: image
+    settings:
+      language: ''
+      reference_by: mid
+      autocreate: 0
+  -
+    target: field_is_featured
+    map:
+      value: is_featured
+    settings:
+      language: null
+  -
+    target: field_news_release_document
+    map:
+      target_id: news_release_document
+    settings:
+      language: ''
+      reference_by: mid
+      autocreate: 0
+  -
+    target: field_sub_heading
+    map:
+      value: sub_heading
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_news_type
+    map:
+      value: news_type
+    settings:
+      language: null
+  -
+    target: title
+    map:
+      value: title
+    settings:
+      language: null
+    unique:
+      value: '1'
