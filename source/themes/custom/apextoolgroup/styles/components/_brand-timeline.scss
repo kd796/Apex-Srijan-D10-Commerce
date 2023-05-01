@@ -1,0 +1,315 @@
+/****** Brand Timeline Page ******/
+.view-header {
+  margin-bottom: 30px;
+
+  h3 {
+    font-weight: 200;
+    font-size: $h2;
+    line-height: 33.6px;
+    color: $celtic-blue;
+    margin-bottom: 5px;
+  }
+}
+
+.brand-timeline {
+  position: relative;
+
+  .brand-timeline-years {
+    background: none;
+    border: 0;
+    padding: 0;
+
+    fieldset {
+      margin: 0 0 25px;
+
+      .fieldset-wrapper {
+        background: none;
+        border: 0;
+        padding: 0;
+        overflow: unset;
+        max-height: unset;
+
+        &::after {
+          content: '';
+          display: block;
+          width: 100%;
+          height: 1px;
+          background: $spanish-gray;
+          opacity: 0.62;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+        }
+      }
+    }
+
+    .form-radios {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .form-type-radio {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0;
+
+      .form-radio {
+        display: none;
+
+        &:checked + label {
+          display: block;
+          background: $celtic-blue;
+          color: $white;
+
+          &.ajax-load-class {
+            color: $spanish-gray;
+            background: $white;
+          }
+        }
+
+        &.active + label {
+          background: $celtic-blue;
+          color: $white;
+        }
+      }
+
+      label {
+        font-size: 20px;
+        font-weight: $semi-bold;
+        line-height: 24px;
+        color: 	$spanish-gray;
+        background: $white;
+        padding: 10px 15px;
+        cursor: pointer;
+
+        &.ajax-load-class {
+          color: $spanish-gray;
+          background: $white;
+        }
+      }
+    }
+    // Select filter for responsive.
+    @media only screen and (max-width: $tablet) {
+      left: 70% !important;
+
+      &.select-view {
+        .form-type-radio {
+          label {
+            width: 100%;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+    @media only screen and  (min-width: $tablet-max) {
+      &.select-view {
+        display: none;
+      }
+    }
+    @media only screen and (max-width: $tablet-max) {
+      display: inline-block;
+      margin-bottom: 30px;
+      position: relative;
+      top: 0;
+      left: 86%;
+
+      &.tab-view {
+        display: none;
+      }
+
+      &.select-view {
+        .form-radios {
+          flex-direction: column;
+        }
+
+        .form-type-radio {
+          label {
+            width: 100%;
+            padding: 5px 15px;
+          }
+        }
+
+        .menu-label {
+          position: absolute;
+          left: -90%;
+          top: 25%;
+          font-size: 16px;
+        }
+
+        .menu-block,
+        .menu-trigger {
+          color: $black;
+          cursor: pointer;
+          top: -30px;
+        }
+
+        .menu-block {
+          font-size: 20px;
+          font-weight: 400;
+          display: block;
+          padding: 10px 16px;
+          cursor: auto;
+          width: 100px;
+          border: solid 1px $spanish-gray;
+          box-shadow: -3px -2px 11px -3px rgba(0, 0, 0, 0.15);
+          color: $black;
+          position: relative;
+          top: 0;
+          @media only screen and (max-width: $tablet) {
+            font-size: 16px;
+          }
+        }
+
+        .menu-trigger {
+          text-decoration: none;
+          width: 30px;
+          height: 38px;
+          background: url('#{$icon-base-path}/arrow-down-responsive.svg') left center no-repeat;
+          background-size: 20px 10px;
+          position: absolute;
+          top: 0;
+          right: 0;
+          z-index: 8;
+          transition: none;
+          @media only screen and (max-width: $tablet) {
+            height: 40px;
+          }
+
+          &.active {
+            transform: rotate(180deg);
+          }
+        }
+
+        .menu-dropdown {
+          position: absolute;
+          z-index: 10;
+          top: 33px;
+          left: 0;
+          min-width: 100%;
+          width: 100%;
+          display: none;
+
+          &.open {
+            display: block;
+
+            .entypo-down-open {
+              background: url('#{$icon-base-path}/arrow-down-responsive.svg') left top no-repeat;
+            }
+          }
+          @media only screen and (max-width: $tablet) {
+            top: 38px;
+          }
+
+          fieldset {
+            width: 100%;
+            background-color: $white;
+          }
+        }
+      }
+    }
+  }
+
+  .brand-timeline-content {
+    margin: 0 auto 50px;
+    @media only screen and (max-width: $tablet-max) {
+      width: 730px;
+    }
+    @media only screen and (max-width: $tablet) {
+      width: 330px;
+    }
+
+    .b-content {
+      min-height: 500px;
+      border: 1px solid $celtic-blue;
+      margin: 0 8px;
+
+      &__image {
+        position: relative;
+        height: 210px;
+        background: $spanish-gray;
+        overflow: hidden;
+
+        .year {
+          position: absolute;
+          left: 0;
+          top: 20px;
+          background-color: $celtic-blue;
+          color: $white;
+          font-size: 20px;
+          padding: 15px 10px;
+        }
+
+        img {
+          height: 210px !important;
+          object-fit: cover;
+          width: 100%;
+          object-position: top center;
+        }
+      }
+
+      &__desc {
+        padding: 16px 10px;
+
+        h6 {
+          margin: 0 0 30px;
+          line-height: 22.4px;
+        }
+
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+// Hide ajax loader
+.ajax-progress-fullscreen {
+  display: none;
+}
+
+// Fixed responsive width issue.
+.slick-list {
+  max-width: 100vw;
+  width: 100%;
+}
+
+.slick-track {
+  @media only screen and (min-width: $tablet-max) {
+    margin-left: -8px !important;
+  }
+}
+
+// Added custom arrow.
+.slick-arrow {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50%;
+  border: solid 1px $spanish-gray;
+  position: absolute;
+  z-index: 6;
+  top: 45%;
+  @media only screen and (max-width: $tablet) {
+    top: 50%;
+  }
+
+  &.disabled {
+    display: none;
+  }
+
+  &.slick-prev {
+    background: $white url('#{$icon-base-path}/slider-arrow.svg') 7px 8px no-repeat;
+    left: -20px;
+    transform: rotate(180deg);
+    @media only screen and (max-width: $tablet-max) {
+      left: -10px;
+    }
+  }
+
+  &.slick-next {
+    background: $white url('#{$icon-base-path}/slider-arrow.svg') 7px 8px no-repeat;
+    right: -5px;
+    @media only screen and (max-width: $tablet-max) {
+      right: -5px;
+    }
+  }
+}

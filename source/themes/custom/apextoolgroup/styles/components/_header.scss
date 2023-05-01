@@ -444,6 +444,8 @@
 
 .main-contane {
   &.hide-content {
-    display: none;
+    @media only screen and (max-width: $tablet-max)  {
+      display: none;
+    }
   }
 }
