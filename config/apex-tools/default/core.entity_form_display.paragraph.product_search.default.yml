@@ -1,0 +1,33 @@
+uuid: b296cb56-11af-4209-bb66-0f19ca7d5714
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.product_search.field_body_plain
+    - field.field.paragraph.product_search.field_title
+    - paragraphs.paragraphs_type.product_search
+id: paragraph.product_search.default
+targetEntityType: paragraph
+bundle: product_search
+mode: default
+content:
+  field_body_plain:
+    type: string_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

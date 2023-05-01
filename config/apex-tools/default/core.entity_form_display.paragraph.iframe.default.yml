@@ -1,0 +1,24 @@
+uuid: c861161f-57e2-4d87-ac39-f745cde42ebc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.iframe.field_iframe_url
+    - paragraphs.paragraphs_type.iframe
+id: paragraph.iframe.default
+targetEntityType: paragraph
+bundle: iframe
+mode: default
+content:
+  field_iframe_url:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

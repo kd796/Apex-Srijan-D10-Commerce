@@ -1,0 +1,48 @@
+uuid: 1dd24a5b-f7fc-4129-8085-c9579c63b9de
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.grid_item.field_body_plain
+    - field.field.paragraph.grid_item.field_link
+    - field.field.paragraph.grid_item.field_media_src
+    - field.field.paragraph.grid_item.field_title
+    - paragraphs.paragraphs_type.grid_item
+id: paragraph.grid_item.default
+targetEntityType: paragraph
+bundle: grid_item
+mode: default
+content:
+  field_body_plain:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_link:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_media_src:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

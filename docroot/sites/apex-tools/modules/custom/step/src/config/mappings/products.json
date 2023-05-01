@@ -1,0 +1,211 @@
+{
+  "body": {
+    "settings": {
+      "number_of_shards": 2,
+      "number_of_replicas": 0,
+      "refresh_interval": "5s",
+      "mapping.total_fields.limit": 10000,
+      "analysis": {
+        "filter": {
+          "autocomplete_filter": {
+            "type": "edge_ngram",
+            "min_gram": 1,
+            "max_gram": 20
+          }
+        },
+        "analyzer": {
+          "autocomplete": {
+            "type": "custom",
+            "char_filter": [
+                        "html_strip"
+                      ],
+            "tokenizer": "standard",
+            "filter": [
+                     "lowercase",
+                     "autocomplete_filter"
+                  ]
+          }
+        }
+      }
+    },
+    "mappings": {
+      "products": {
+        "dynamic_templates": [
+          {
+            "all_fields": {
+              "match_mapping_type": "string",
+              "mapping": {
+                "type": "text",
+                "analyzer": "autocomplete",
+                "search_analyzer": "standard",
+                "index_options": "offsets",
+                "fields": {
+                  "raw": {
+                    "type": "keyword"
+                  }
+                }
+              }
+            }
+               }
+            ],
+        "properties": {
+          "product_line": {
+            "type": "text",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
+          },
+          "product_category": {
+            "type": "text",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
+          },
+          "filters.target_torque_ft_lbs": {
+            "type": "text",
+            "fields": {
+              "float": {
+                "type": "float"
+              }
+            }
+          },
+          "filters.target_torque_nm": {
+            "type": "text",
+            "fields": {
+              "float": {
+                "type": "float"
+              }
+            }
+          },
+          "filters.horsepower_hj": {
+            "type": "text",
+            "fields": {
+              "float": {
+                "type": "float"
+              }
+            }
+          },
+          "filters.horsepower_kwt": {
+            "type": "text",
+            "fields": {
+              "float": {
+                "type": "float"
+              }
+            }
+          },
+          "filters.thrust_lbs": {
+            "type": "text",
+            "fields": {
+              "float": {
+                "type": "float"
+              }
+            }
+          },
+          "filters.stroke": {
+            "type": "text",
+            "fields": {
+              "float": {
+                "type": "float"
+              }
+            }
+          },
+          "filters.shank_diameter_inh": {
+            "type": "text",
+            "fields": {
+              "float": {
+                "type": "float"
+              }
+            }
+          },
+          "filters.chisel": {
+            "type": "text",
+            "fields": {
+              "float": {
+                "type": "float"
+              }
+            }
+          },
+          "filters.bore_in": {
+            "type": "text",
+            "fields": {
+              "float": {
+                "type": "float"
+              }
+            }
+          },
+          "filters.bore_mm": {
+            "type": "text",
+            "fields": {
+              "float": {
+                "type": "float"
+              }
+            }
+          },
+          "filters.torque_stall_ftlbs": {
+            "type": "text",
+            "fields": {
+              "float": {
+                "type": "float"
+              }
+            }
+          },
+          "filters.torque_stall_nm": {
+            "type": "text",
+            "fields": {
+              "float": {
+                "type": "float"
+              }
+            }
+          },
+          "filters.speed_rpm": {
+            "type": "text",
+            "fields": {
+              "float": {
+                "type": "float"
+              }
+            }
+          },
+          "filters.maximum_depth_of_cut_in": {
+            "type": "text",
+            "fields": {
+              "float": {
+                "type": "float"
+              }
+            }
+          },
+          "filters.maximum_depth_of_cut_mm": {
+            "type": "text",
+            "fields": {
+              "float": {
+                "type": "float"
+              }
+            }
+          },
+          "filters.saw_blade_capacity_in": {
+            "type": "text",
+            "fields": {
+              "float": {
+                "type": "float"
+              }
+            }
+          },
+          "filters.saw_blade_capacity_mm": {
+            "type": "text",
+            "fields": {
+              "float": {
+                "type": "float"
+              }
+            }
+          },
+          "values.web_display_sort_order": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

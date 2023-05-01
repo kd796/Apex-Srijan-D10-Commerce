@@ -1,0 +1,63 @@
+uuid: a7e80cfd-62bb-442e-8082-479c0f85969d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.enhanced_product.body
+    - field.field.node.enhanced_product.field_360_image
+    - field.field.node.enhanced_product.field_downloads
+    - field.field.node.enhanced_product.field_feature_hotspots
+    - field.field.node.enhanced_product.field_features_copy
+    - field.field.node.enhanced_product.field_footnotes
+    - field.field.node.enhanced_product.field_long_description
+    - field.field.node.enhanced_product.field_media
+    - field.field.node.enhanced_product.field_product_classifications
+    - field.field.node.enhanced_product.field_product_features
+    - field.field.node.enhanced_product.field_product_images
+    - field.field.node.enhanced_product.field_product_line
+    - field.field.node.enhanced_product.field_product_models
+    - field.field.node.enhanced_product.field_related_products
+    - field.field.node.enhanced_product.field_sku
+    - field.field.node.enhanced_product.field_slug
+    - field.field.node.enhanced_product.field_upc
+    - field.field.node.enhanced_product.field_video_background
+    - field.field.node.enhanced_product.field_video_popup
+    - field.field.node.enhanced_product.field_web_display_sort_order
+    - node.type.enhanced_product
+  module:
+    - user
+id: node.enhanced_product.teaser
+targetEntityType: node
+bundle: enhanced_product
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  body: true
+  field_360_image: true
+  field_downloads: true
+  field_feature_hotspots: true
+  field_features_copy: true
+  field_footnotes: true
+  field_long_description: true
+  field_media: true
+  field_product_classifications: true
+  field_product_features: true
+  field_product_images: true
+  field_product_line: true
+  field_product_models: true
+  field_related_products: true
+  field_sku: true
+  field_slug: true
+  field_upc: true
+  field_video_background: true
+  field_video_popup: true
+  field_web_display_sort_order: true
+  langcode: true
+  search_api_excerpt: true
+  uuid: true

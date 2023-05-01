@@ -1,0 +1,30 @@
+<?php
+
+use Drupal\atg_api\DistanceCalculator;
+use Drupal\Core\Database\Query\SelectInterface;
+use Drupal\Core\Database\Database;
+use Drupal\search_api\Query\QueryInterface;
+
+
+function atg_api_search_api_db_query_alter(SelectInterface &$db_query, QueryInterface $query) {
+  $connection = Database::getConnection();
+  if ($query->hasTag('haversine')) {
+    $options = $query->getOption('atg_api.haversine');
+
+    if ($options['center']) {
+      $table     = sprintf('search_api_db_%s', $query->getIndex()->id());
+      $sub_query = $connection->select($table, 'haversine');
+      $sub_query->fields('haversine', ['item_id', 'lat', 'lon']);
+
+      $params = [
+        ':units_key'  => DistanceCalculator::radius($options['units']),
+        ':center_lat' => $options['center']->latitude,
+        ':center_lon' => $options['center']->longitude,
+      ];
+      $sub_query->addExpression(":units_key * ACOS(COS(RADIANS(:center_lat)) * COS(radians(lat)) * COS(radians(lon) - RADIANS(:center_lon)) + SIN(RADIANS(:center_lat)) * SIN(RADIANS(lat)))", 'distance', $params);
+
+      $db_query->join($sub_query, 'search_distance', 't.item_id = search_distance.item_id');
+      $db_query->condition('search_distance.distance', $options['radius'], '<');
+    }
+  }
+}

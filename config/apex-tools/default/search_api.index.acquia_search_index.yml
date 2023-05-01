@@ -1,0 +1,786 @@
+uuid: 7176fe69-fad1-435d-adbf-43cb76c83133
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_media_file
+    - field.storage.media.field_listing_image
+    - field.storage.media.field_media_image
+    - field.storage.media.field_product_category
+    - field.storage.media.field_type
+    - field.storage.node.field_360_image
+    - field.storage.paragraph.field_360_loading_image
+    - field.storage.node.body
+    - field.storage.node.field_long_description
+    - field.storage.node.field_downloads
+    - field.storage.node.field_product_features_cp
+    - field.storage.node.field_feature_hotspots
+    - field.storage.node.field_features_copy
+    - field.storage.node.field_footnotes
+    - field.storage.node.field_video_background
+    - field.storage.node.field_video_popup
+    - field.storage.node.field_media
+    - field.storage.node.field_product_classifications
+    - field.storage.node.field_product_features
+    - field.storage.node.field_product_line
+    - field.storage.node.field_product_models
+    - field.storage.node.field_related_products
+    - field.storage.node.field_related_products_ref
+    - field.storage.node.field_sku
+    - field.storage.node.field_sku_group
+    - field.storage.node.field_slug
+    - field.storage.node.field_upc
+    - search_api.server.acquia_search_api_solr_server
+  module:
+    - search_api_solr
+    - file
+    - media
+    - taxonomy
+    - paragraphs
+    - node
+    - content_moderation
+    - search_api
+    - cleco_vuejs
+third_party_settings:
+  search_api_solr:
+    finalize: false
+    commit_before_finalize: false
+    commit_after_finalize: false
+    debug_finalize: false
+    highlighter:
+      maxAnalyzedChars: 51200
+      fragmenter: gap
+      usePhraseHighlighter: true
+      highlightMultiTerm: true
+      preserveMulti: false
+      regex:
+        slop: 0.5
+        pattern: blank
+        maxAnalyzedChars: 10000
+      highlight:
+        mergeContiguous: false
+        requireFieldMatch: false
+        snippets: 3
+        fragsize: 0
+    mlt:
+      mintf: 1
+      mindf: 1
+      maxdf: 0
+      maxdfpct: 0
+      minwl: 0
+      maxwl: 0
+      maxqt: 100
+      maxntp: 2000
+      boost: false
+      interestingTerms: none
+    term_modifiers:
+      slop: 3
+      fuzzy: 1
+    advanced:
+      index_prefix: ''
+      collection: ''
+      timezone: ''
+    multilingual:
+      limit_to_content_language: false
+      include_language_independent: true
+id: acquia_search_index
+name: 'Acquia Search Index'
+description: ''
+read_only: false
+field_settings:
+  abrasive_capacity:
+    label: 'Abrasive Capacity'
+    property_path: abrasive_capacity
+    type: string
+  abrasive_type:
+    label: 'Abrasive Type'
+    property_path: abrasive_type
+    type: string
+  air_inlet_size_inh:
+    label: 'Air Inlet Size (inh)'
+    property_path: air_inlet_size_inh
+    type: string
+  air_inlet_size_mmt:
+    label: 'Air Inlet Size (mmt)'
+    property_path: air_inlet_size_mmt
+    type: string
+  body:
+    label: Body
+    datasource_id: 'entity:node'
+    property_path: body
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.body
+  bore_in:
+    label: 'Bore (in)'
+    property_path: bore_in
+    type: string
+  bore_mm:
+    label: 'Bore (mm)'
+    property_path: bore_mm
+    type: string
+  bundle:
+    label: 'Media type'
+    datasource_id: 'entity:media'
+    property_path: bundle
+    type: string
+    dependencies:
+      module:
+        - media
+  changed:
+    label: Changed
+    datasource_id: 'entity:node'
+    property_path: changed
+    type: date
+    dependencies:
+      module:
+        - node
+  chisel:
+    label: Chisel
+    property_path: chisel
+    type: string
+  collet_size:
+    label: 'Collet Size'
+    property_path: collet_size
+    type: string
+  control_type:
+    label: 'Control Type'
+    property_path: control_type
+    type: string
+  cutter_thread:
+    label: 'Cutter Thread'
+    property_path: cutter_thread
+    type: string
+  drive_size:
+    label: 'Drive Size'
+    property_path: drive_size
+    type: string
+  drive_type:
+    label: 'Drive Type'
+    property_path: drive_type
+    type: string
+  enhanced_product_image:
+    label: '360° Product Image » Paragraph » Product Loading Image » File » Filename'
+    datasource_id: 'entity:node'
+    property_path: 'field_360_image:entity:field_360_loading_image:entity:filename'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_360_image
+        - field.storage.paragraph.field_360_loading_image
+      module:
+        - file
+        - paragraphs
+  enhanced_product_image_url:
+    label: '360° Product Image » Paragraph » Product Loading Image » File » URI » Root-relative file URL'
+    datasource_id: 'entity:node'
+    property_path: 'field_360_image:entity:field_360_loading_image:entity:uri:url'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_360_image
+        - field.storage.paragraph.field_360_loading_image
+      module:
+        - file
+        - paragraphs
+  entity_type:
+    label: 'Entity type'
+    property_path: search_api_entity_type
+    type: string
+  exhaust:
+    label: Exhaust
+    property_path: exhaust
+    type: string
+  features:
+    label: Features
+    property_path: features
+    type: string
+  field_360_image:
+    label: '360° Product Image'
+    datasource_id: 'entity:node'
+    property_path: field_360_image
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_360_image
+  field_downloads:
+    label: Downloads
+    datasource_id: 'entity:node'
+    property_path: field_downloads
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_downloads
+  field_feature_hotspots:
+    label: 'Feature Hotspots'
+    datasource_id: 'entity:node'
+    property_path: field_feature_hotspots
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_feature_hotspots
+  field_features_copy:
+    label: 'Features Copy'
+    datasource_id: 'entity:node'
+    property_path: field_features_copy
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_features_copy
+  field_footnotes:
+    label: 'Footer Note'
+    datasource_id: 'entity:node'
+    property_path: field_footnotes
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_footnotes
+  field_long_description:
+    label: 'Coupon heading'
+    datasource_id: 'entity:node'
+    property_path: field_long_description
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_long_description
+  field_media:
+    label: 'Listing Image'
+    datasource_id: 'entity:node'
+    property_path: field_media
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_media
+  field_media_file:
+    label: File
+    datasource_id: 'entity:media'
+    property_path: field_media_file
+    type: integer
+    dependencies:
+      config:
+        - field.storage.media.field_media_file
+  field_product_category:
+    label: 'Product Category'
+    datasource_id: 'entity:media'
+    property_path: field_product_category
+    type: integer
+    dependencies:
+      config:
+        - field.storage.media.field_product_category
+  field_product_classifications:
+    label: 'Product Categories'
+    datasource_id: 'entity:node'
+    property_path: field_product_classifications
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_product_classifications
+  field_product_features:
+    label: 'Product Features'
+    datasource_id: 'entity:node'
+    property_path: field_product_features
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_product_features
+  field_product_features_cp:
+    label: Feature
+    datasource_id: 'entity:node'
+    property_path: field_product_features_cp
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_product_features_cp
+  field_product_line:
+    label: 'Product Line'
+    datasource_id: 'entity:node'
+    property_path: field_product_line
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_product_line
+  field_product_models:
+    label: 'Product Models'
+    datasource_id: 'entity:node'
+    property_path: field_product_models
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_product_models
+  field_related_products:
+    label: 'Related Products'
+    datasource_id: 'entity:node'
+    property_path: field_related_products
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_related_products
+  field_related_products_ref:
+    label: 'Related Products'
+    datasource_id: 'entity:node'
+    property_path: field_related_products_ref
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_related_products_ref
+  field_sku:
+    label: 'SKU (Group)'
+    datasource_id: 'entity:node'
+    property_path: field_sku
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_sku
+  field_sku_group:
+    label: 'SKU Group'
+    datasource_id: 'entity:node'
+    property_path: field_sku_group
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_sku_group
+  field_slug:
+    label: Slug
+    datasource_id: 'entity:node'
+    property_path: field_slug
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_slug
+  field_type:
+    label: Type
+    datasource_id: 'entity:media'
+    property_path: field_type
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_type
+  field_upc:
+    label: UPC
+    datasource_id: 'entity:node'
+    property_path: field_upc
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_upc
+  field_video_background:
+    label: 'Hero Video'
+    datasource_id: 'entity:node'
+    property_path: field_video_background
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_video_background
+  field_video_popup:
+    label: 'Hero Video Popup'
+    datasource_id: 'entity:node'
+    property_path: field_video_popup
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_video_popup
+  horsepower_hj:
+    label: 'Horsepower (hj)'
+    property_path: horsepower_hj
+    type: string
+  horsepower_hp:
+    label: 'PS (hp)'
+    property_path: horsepower_hp
+    type: string
+  horsepower_kwt:
+    label: 'Horsepower (kwt)'
+    property_path: horsepower_kwt
+    type: string
+  item_type:
+    label: 'Item Type'
+    property_path: item_type
+    type: string
+  jaws:
+    label: Jaws
+    property_path: jaws
+    type: string
+  langcode:
+    label: Language
+    datasource_id: 'entity:node'
+    property_path: langcode
+    type: string
+    dependencies:
+      module:
+        - node
+  langcode_media:
+    label: Language
+    datasource_id: 'entity:media'
+    property_path: langcode
+    type: string
+    dependencies:
+      module:
+        - media
+  language_with_fallback:
+    label: 'Language (with fallback)'
+    property_path: language_with_fallback
+    type: string
+  listing_image_name:
+    label: 'Listing Image » Media » Image » File » Filename'
+    datasource_id: 'entity:node'
+    property_path: 'field_media:entity:field_media_image:entity:filename'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_image
+        - field.storage.node.field_media
+      module:
+        - file
+        - media
+  listing_image_uri:
+    label: 'Listing Image » Media » Image » File » URI'
+    datasource_id: 'entity:node'
+    property_path: 'field_media:entity:field_media_image:entity:uri'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_image
+        - field.storage.node.field_media
+      module:
+        - file
+        - media
+  listing_image_url:
+    label: 'Listing Image » Media » Image » File » URI » Root-relative file URL'
+    datasource_id: 'entity:node'
+    property_path: 'field_media:entity:field_media_image:entity:uri:url'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_image
+        - field.storage.node.field_media
+      module:
+        - file
+        - media
+  material:
+    label: Material
+    property_path: material
+    type: string
+  maximum_depth_of_cut_in:
+    label: 'Maximum Depth of Cut (in)'
+    property_path: maximum_depth_of_cut_in
+    type: string
+  maximum_depth_of_cut_mm:
+    label: 'Maximum Depth of Cut (mm)'
+    property_path: maximum_depth_of_cut_mm
+    type: string
+  media_filename:
+    label: 'File » File » Filename'
+    datasource_id: 'entity:media'
+    property_path: 'field_media_file:entity:filename'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_file
+      module:
+        - file
+  media_filename_uri:
+    label: 'File » File » URI'
+    datasource_id: 'entity:media'
+    property_path: 'field_media_file:entity:uri'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_file
+      module:
+        - file
+  media_filename_url:
+    label: 'File » File » URI » Root-relative file URL'
+    datasource_id: 'entity:media'
+    property_path: 'field_media_file:entity:uri:url'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_media_file
+      module:
+        - file
+  media_listing_image_name:
+    label: 'Listing Image » Media » Image » File » Filename'
+    datasource_id: 'entity:media'
+    property_path: 'field_listing_image:entity:field_media_image:entity:filename'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_listing_image
+        - field.storage.media.field_media_image
+      module:
+        - file
+        - media
+  media_listing_image_uri:
+    label: 'Listing Image » Media » Image » File » URI'
+    datasource_id: 'entity:media'
+    property_path: 'field_listing_image:entity:field_media_image:entity:uri'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_listing_image
+        - field.storage.media.field_media_image
+      module:
+        - file
+        - media
+  media_listing_image_url:
+    label: 'Listing Image » Media » Image » File » URI » Root-relative file URL'
+    datasource_id: 'entity:media'
+    property_path: 'field_listing_image:entity:field_media_image:entity:uri:url'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_listing_image
+        - field.storage.media.field_media_image
+      module:
+        - file
+        - media
+  media_product_category:
+    label: 'Product Category'
+    datasource_id: 'entity:media'
+    property_path: field_product_category
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_product_category
+  medialang_type:
+    label: 'Media Language Type'
+    property_path: medialang_type
+    type: string
+  moderation_state:
+    label: 'Moderation state'
+    datasource_id: 'entity:node'
+    property_path: moderation_state
+    type: string
+    dependencies:
+      module:
+        - content_moderation
+  motor_configuration:
+    label: 'Motor Configuration'
+    property_path: motor_configuration
+    type: string
+  name:
+    label: Name
+    datasource_id: 'entity:media'
+    property_path: name
+    type: text
+    dependencies:
+      module:
+        - media
+  nid:
+    label: ID
+    datasource_id: 'entity:node'
+    property_path: nid
+    type: integer
+    dependencies:
+      module:
+        - node
+  nose_insert_style:
+    label: 'Nose Insert Style'
+    property_path: nose_insert_style
+    type: string
+  orbital_pattern_size_inh:
+    label: 'Orbital Pattern Size (inh)'
+    property_path: orbital_pattern_size_inh
+    type: string
+  orbital_pattern_size_mmt:
+    label: 'Orbital Pattern Size (mmt)'
+    property_path: orbital_pattern_size_mmt
+    type: string
+  power:
+    label: Power
+    property_path: power
+    type: string
+  power_type:
+    label: 'Power Type'
+    property_path: power_type
+    type: string
+  product_category:
+    label: 'Product Categories'
+    datasource_id: 'entity:node'
+    property_path: field_product_classifications
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_product_classifications
+  product_category_name:
+    label: 'Product Category » Taxonomy term » Name'
+    datasource_id: 'entity:media'
+    property_path: 'field_product_category:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.media.field_product_category
+      module:
+        - taxonomy
+  product_family:
+    label: 'Product Family'
+    property_path: product_family
+    type: string
+  saw_blade_capacity_in:
+    label: 'Saw Blade Capacity (in)'
+    property_path: saw_blade_capacity_in
+    type: string
+  saw_blade_capacity_mm:
+    label: 'Saw Blade Capacity (mm)'
+    property_path: saw_blade_capacity_mm
+    type: string
+  shank_diameter_inh:
+    label: 'Shank Diameter (inh)'
+    property_path: shank_diameter_inh
+    type: string
+  speed:
+    label: Speed
+    property_path: speed
+    type: string
+  speed_rpm:
+    label: 'Speed (rpm)'
+    property_path: speed_rpm
+    type: string
+  spindle_size:
+    label: 'Spindle Size'
+    property_path: spindle_size
+    type: string
+  spindle_type:
+    label: 'Spindle Type'
+    property_path: spindle_type
+    type: string
+  status_1:
+    label: Published
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    dependencies:
+      module:
+        - node
+  stroke:
+    label: Stroke
+    property_path: stroke
+    type: string
+  target_torque_ft_lbs:
+    label: 'Target Torque (ft-lbs)'
+    property_path: target_torque_ft_lbs
+    type: string
+  target_torque_nm:
+    label: 'Target Torque (NM)'
+    property_path: target_torque_nm
+    type: string
+  termination:
+    label: Termination
+    property_path: termination
+    type: string
+  thrust_lbs:
+    label: 'Thrust (lbs)'
+    property_path: thrust_lbs
+    type: string
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    dependencies:
+      module:
+        - node
+  tool_configuration:
+    label: 'Tool Configuration'
+    property_path: tool_configuration
+    type: string
+  tool_termination:
+    label: 'Tool Termination'
+    property_path: tool_termination
+    type: string
+  tool_type:
+    label: 'Tool Type'
+    property_path: tool_type
+    type: string
+  tool_type_compatibility:
+    label: 'Tool Type Compatibility'
+    property_path: tool_type_compatibility
+    type: string
+  torque_stall_ftlbs:
+    label: 'Torque Stall (ftlbs)'
+    property_path: torque_stall_ftlbs
+    type: string
+  torque_stall_nm:
+    label: 'Torque Stall (nm)'
+    property_path: torque_stall_nm
+    type: string
+  torque_transducer:
+    label: 'Torque Transducer'
+    property_path: torque_transducer
+    type: string
+  type:
+    label: 'Content type'
+    datasource_id: 'entity:node'
+    property_path: type
+    type: string
+    dependencies:
+      module:
+        - node
+  type_housing:
+    label: 'Type Housing'
+    property_path: type_housing
+    type: string
+  uid:
+    label: 'Authored by'
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    dependencies:
+      module:
+        - node
+  uuid:
+    label: UUID
+    datasource_id: 'entity:node'
+    property_path: uuid
+    type: string
+    dependencies:
+      module:
+        - node
+  window_style:
+    label: 'Window Style'
+    property_path: window_style
+    type: string
+datasource_settings:
+  'entity:media':
+    bundles:
+      default: false
+      selected:
+        - product_downloads
+    languages:
+      default: true
+      selected: {  }
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - article
+        - enhanced_product
+        - news_insights
+        - product
+        - solutions
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  auto_aggregated_fulltext_field: {  }
+  cleco_absolute_url_processor:
+    all_fields: false
+  cleco_add_item_type: {  }
+  cleco_add_medialang_type: {  }
+  cleco_add_model_specification: {  }
+  cleco_add_parent_category_processor:
+    all_fields: false
+  entity_type: {  }
+  language_with_fallback: {  }
+  rendered_item: {  }
+  solr_date_range: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  index_directly: true
+  track_changes_in_references: true
+server: acquia_search_api_solr_server

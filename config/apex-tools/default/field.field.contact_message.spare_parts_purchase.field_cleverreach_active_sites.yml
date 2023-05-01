@@ -1,0 +1,21 @@
+uuid: 853baedc-f7c4-4f7c-ab51-88d064914004
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.spare_parts_purchase
+    - field.storage.contact_message.field_cleverreach_active_sites
+id: contact_message.spare_parts_purchase.field_cleverreach_active_sites
+field_name: field_cleverreach_active_sites
+entity_type: contact_message
+bundle: spare_parts_purchase
+label: 'CleverReach Active Sites'
+description: 'Add comma separated list of language codes to enable the submission to CleverReach'
+required: false
+translatable: true
+default_value:
+  -
+    value: de
+default_value_callback: ''
+settings: {  }
+field_type: string

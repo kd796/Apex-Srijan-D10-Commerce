@@ -1,0 +1,41 @@
+uuid: 84d8853e-4d9f-414f-81be-480af3339edf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.testimonials_section.field_content_bundle
+    - field.field.paragraph.testimonials_section.field_testimonials
+    - paragraphs.paragraphs_type.testimonials_section
+  module:
+    - paragraphs
+id: paragraph.testimonials_section.default
+targetEntityType: paragraph
+bundle: testimonials_section
+mode: default
+content:
+  field_content_bundle:
+    type: entity_reference_paragraphs
+    weight: 2
+    region: content
+    settings:
+      title: 'Content Bundle'
+      title_plural: 'Content Bundle'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: content_bundle
+    third_party_settings: {  }
+  field_testimonials:
+    type: entity_reference_autocomplete
+    weight: 1
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

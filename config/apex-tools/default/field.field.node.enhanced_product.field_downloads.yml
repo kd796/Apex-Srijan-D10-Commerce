@@ -1,0 +1,25 @@
+uuid: 0d7ffac4-03b4-44fe-9176-719bbfbabbcb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_downloads
+    - node.type.enhanced_product
+id: node.enhanced_product.field_downloads
+field_name: field_downloads
+entity_type: node
+bundle: enhanced_product
+label: Downloads
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: entity_reference_product_downloads
+      display_name: entity_reference_product_downloads
+      arguments: {  }
+field_type: entity_reference

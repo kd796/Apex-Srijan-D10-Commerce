@@ -1,0 +1,120 @@
+uuid: f6c6bb77-a78f-4455-a64f-867a7e36c151
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.news_insights_landing.field_callout_page_end
+    - field.field.node.news_insights_landing.field_callout_section_footer
+    - field.field.node.news_insights_landing.field_hero
+    - field.field.node.news_insights_landing.field_mailing_list_form
+    - field.field.node.news_insights_landing.field_seo
+    - node.type.news_insights_landing
+    - workflows.workflow.editorial
+  module:
+    - content_moderation
+    - metatag
+    - paragraphs
+    - path
+id: node.news_insights_landing.default
+targetEntityType: node
+bundle: news_insights_landing
+mode: default
+content:
+  field_callout_page_end:
+    type: entity_reference_paragraphs
+    weight: 3
+    region: content
+    settings:
+      title: 'Callout Page End'
+      title_plural: 'Callout Page End'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: callout_section_page_end
+    third_party_settings: {  }
+  field_callout_section_footer:
+    type: entity_reference_paragraphs
+    weight: 4
+    region: content
+    settings:
+      title: 'Callout Section Footer'
+      title_plural: 'Callout Section Footer'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: callout_section_footer
+    third_party_settings: {  }
+  field_hero:
+    type: entity_reference_paragraphs
+    weight: 2
+    region: content
+    settings:
+      title: Hero
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: hero
+    third_party_settings: {  }
+  field_mailing_list_form:
+    type: entity_reference_paragraphs
+    weight: 101
+    region: content
+    settings:
+      title: 'Mailing List Form'
+      title_plural: 'Mailing List Forms'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: mailing_list_form
+    third_party_settings: {  }
+  field_seo:
+    type: metatag_firehose
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 1
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  moderation_state:
+    type: moderation_state_default
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 7
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  promote: true
+  sticky: true
+  uid: true

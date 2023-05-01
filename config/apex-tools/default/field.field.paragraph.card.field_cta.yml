@@ -1,0 +1,79 @@
+uuid: 20ee3a9d-06c2-42dd-8c7d-97c65c089b0e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_cta
+    - paragraphs.paragraphs_type.card
+    - paragraphs.paragraphs_type.cta
+  module:
+    - entity_reference_revisions
+id: paragraph.card.field_cta
+field_name: field_cta
+entity_type: paragraph
+bundle: card
+label: CTA
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      cta: cta
+    negate: 0
+    target_bundles_drag_drop:
+      callout_options:
+        weight: 19
+        enabled: false
+      callout_section_footer:
+        weight: 20
+        enabled: false
+      callout_section_page_end:
+        weight: 21
+        enabled: false
+      card:
+        weight: 18
+        enabled: false
+      content_bundle:
+        weight: 22
+        enabled: false
+      content_section:
+        weight: 23
+        enabled: false
+      content_section_simple:
+        weight: 24
+        enabled: false
+      cta:
+        weight: 25
+        enabled: true
+      featured_block:
+        weight: 26
+        enabled: false
+      featured_section:
+        weight: 27
+        enabled: false
+      from_library:
+        weight: 28
+        enabled: false
+      hero:
+        weight: 29
+        enabled: false
+      image:
+        weight: 30
+        enabled: false
+      media_block:
+        weight: 31
+        enabled: false
+      testimonials_block:
+        weight: 32
+        enabled: false
+      testimonials_section:
+        weight: 33
+        enabled: false
+      video_bundle:
+        weight: 34
+        enabled: false
+field_type: entity_reference_revisions

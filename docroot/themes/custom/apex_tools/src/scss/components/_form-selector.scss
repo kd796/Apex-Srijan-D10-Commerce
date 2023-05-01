@@ -1,0 +1,20 @@
+.form-selector {
+    @extend %numbered;
+    max-width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-selector-step + .form-selector-step {
+    border-top: 1px solid $color-gray-light;
+    padding-top: 2rem;
+    margin-top: 2rem;
+}
+
+.form-selector-step-title {
+    @extend %numbered-item;
+
+    &::before {
+        margin-right: 0.5em;
+    }
+}

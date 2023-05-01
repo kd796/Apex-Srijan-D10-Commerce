@@ -1,0 +1,66 @@
+# Search
+actions.step.api.filter.products:
+  path: /actions/step/api/filter/products
+  defaults:
+    _controller: '\Drupal\cleco_vuejs\Controller\ApiController::actionFilterProducts'
+  requirements:
+    _permission: 'access content'
+
+actions.step.api.filter.downloads:
+  path: /actions/step/api/filter/downloads
+  defaults:
+    _controller: '\Drupal\cleco_vuejs\Controller\ApiController::actionFilterDownloads'
+  requirements:
+    _permission: 'access content'
+
+actions.step.api.search:
+  path: /actions/step/api/search
+  defaults:
+    _controller: '\Drupal\cleco_vuejs\Controller\ApiController::actionSearch'
+  requirements:
+    _permission: 'access content'
+
+# DrupalCustom Form Field
+actions.step.api.autocomplete.field.products:
+  path: /actions/step/api/autocomplete/field/products
+  defaults:
+    _controller: '\Drupal\cleco_vuejs\Controller\ApiController::actionAutoCompleteFieldProducts'
+  requirements:
+    _permission: 'access content'
+
+# EN and GB Front-end Templates
+step.products.product_catalog:
+  path: /products/product-catalog
+  defaults:
+    _controller: '\Drupal\cleco_vuejs\Controller\RouteController::productCatalog'
+    _title_callback: '\Drupal\cleco_vuejs\Controller\RouteController::productCatalogTitle'
+  requirements:
+    _permission: 'access content'
+
+step.products.product_single:
+  path: /products/product-catalog/{product}
+  defaults:
+    _controller: '\Drupal\cleco_vuejs\Controller\RouteController::productSingle'
+    _title_callback: '\Drupal\cleco_vuejs\Controller\RouteController::productSingleTitle'
+  requirements:
+    _permission: 'access content'
+
+step.search:
+  path: /search/results
+  defaults:
+    _controller: '\Drupal\cleco_vuejs\Controller\RouteController::searchResults'
+    _title_callback: '\Drupal\cleco_vuejs\Controller\RouteController::searchResultsTitle'
+  requirements:
+    _permission: 'access content'
+
+# ---------------------------------------------------------------------------
+# Translated Routes
+# Note: Symfony 4 will support translated paths
+
+step.products.product_single_de:
+  path: /produkte/produktkatalog/{product}
+  defaults:
+    _controller: '\Drupal\cleco_vuejs\Controller\RouteController::productSingle'
+    _title_callback: '\Drupal\cleco_vuejs\Controller\RouteController::productSingleTitle'
+  requirements:
+    _permission: 'access content'

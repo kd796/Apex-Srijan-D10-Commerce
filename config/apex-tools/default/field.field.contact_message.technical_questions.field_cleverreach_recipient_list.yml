@@ -1,0 +1,21 @@
+uuid: ff5b5d24-6044-495b-858a-d25cb7f60dfe
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.technical_questions
+    - field.storage.contact_message.field_cleverreach_recipient_list
+id: contact_message.technical_questions.field_cleverreach_recipient_list
+field_name: field_cleverreach_recipient_list
+entity_type: contact_message
+bundle: technical_questions
+label: 'CleverReach Recipient List ID'
+description: 'In order to submit data to CleverReach the Recipient List ID must be inserted as the default value for the form. You can obtain this ID by from the CleverReach Recipient URL. This field will be hidden from the user.'
+required: false
+translatable: true
+default_value:
+  -
+    value: '228793'
+default_value_callback: ''
+settings: {  }
+field_type: string

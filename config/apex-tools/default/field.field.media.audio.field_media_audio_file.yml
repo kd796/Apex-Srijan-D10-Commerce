@@ -1,4 +1,4 @@
-uuid: 4a76d8e9-4b2d-4be2-bf31-e58c53c73314
+uuid: 2d11c276-1312-4d42-849d-34cf71c91610
 langcode: en
 status: true
 dependencies:
@@ -16,14 +16,14 @@ bundle: audio
 label: 'Audio file'
 description: ''
 required: true
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  file_extensions: 'mp3 wav aac'
-  file_directory: '[date:custom:Y]-[date:custom:m]'
-  max_filesize: ''
-  description_field: false
   handler: 'default:file'
   handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'mp3 wav aac'
+  max_filesize: ''
+  description_field: false
 field_type: file

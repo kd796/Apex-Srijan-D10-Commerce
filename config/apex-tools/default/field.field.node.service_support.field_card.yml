@@ -1,0 +1,25 @@
+uuid: cade8e64-0f1c-4c7c-a7e7-d9697ccb5201
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_card
+    - node.type.service_support
+id: node.service_support.field_card
+field_name: field_card
+entity_type: node
+bundle: service_support
+label: Card
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: entity_reference_cards_content
+      display_name: entity_reference_content_cards
+      arguments: {  }
+field_type: entity_reference

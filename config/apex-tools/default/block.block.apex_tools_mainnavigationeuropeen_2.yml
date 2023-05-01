@@ -1,0 +1,33 @@
+uuid: b3329c95-bf85-4d65-be69-5c091e6da2ee
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main--gb
+  module:
+    - language
+    - system
+  theme:
+    - apex_tools
+id: apex_tools_mainnavigationeuropeen_2
+theme: apex_tools
+region: main_nav
+weight: -7
+provider: null
+plugin: 'system_menu_block:main--gb'
+settings:
+  id: 'system_menu_block:main--gb'
+  label: 'Main navigation (Europe / EN)'
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      gb: gb
