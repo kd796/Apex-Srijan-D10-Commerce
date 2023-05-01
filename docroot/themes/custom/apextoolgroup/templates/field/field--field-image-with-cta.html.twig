@@ -52,10 +52,10 @@
     label_display == 'visually_hidden' ? 'visually-hidden',
   ]
 %}
-
+<div class="conatiner-fluid">
 {% if label_hidden %}
   {% if multiple %}
-    <div{{ attributes.addClass(classes, 'field__items row image-cta') }}>
+    <div{{ attributes.addClass(classes, 'field__items row m-y-0 image-cta') }}>
       {% for item in items %}
         <div{{ item.attributes.addClass('field__item col-12 col-lg-6 image-cta__item') }}>{{ item.content }}</div>
       {% endfor %}
@@ -79,3 +79,4 @@
     {% endif %}
   </div>
 {% endif %}
+</div>
