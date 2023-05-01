@@ -6,6 +6,7 @@ use Drupal\Core\Logger\LoggerChannelTrait;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
+use Drupal\node\Entity\Node;
 
 /**
  * Unpublish discontinued products.
@@ -29,14 +30,10 @@ class DetermineProductPublishStatus extends ProcessPluginBase {
     }
 
     // If $value matches any of the configured values, unpublish the node.
-    foreach ($values as $val) {
-      if ($value !== $val) {
-        continue;
-      }
+    if (in_array($value, $values)) {
       $this->getLogger('apex_migrations')->notice("Product: @product is unpublished as it is discontinued.", ['@product' => $row->getIdMap()['sourceid1']]);
       $published = FALSE;
     }
-
     return $published;
   }
 
