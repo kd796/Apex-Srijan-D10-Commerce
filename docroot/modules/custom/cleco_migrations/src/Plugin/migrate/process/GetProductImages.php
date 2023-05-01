@@ -98,11 +98,17 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
 
     // Get Asset Type.
     $user_type_id = '';
+    $user_type_id_source_field = $this->configuration['params']['user_type_id'] ?? 'asset_usertype_id';
     if (is_object($value)) {
       $asset_info = $value->xpath('parent::Asset');
       if (isset($asset_info[0])) {
         $user_type_id = (string) $asset_info[0]->attributes()->UserTypeID;
       }
+    }
+
+    // Get user Type ID if it is empty.
+    if (empty($user_type_id)) {
+      $user_type_id = $row->getSourceProperty($user_type_id_source_field);
     }
 
     $original_extension = $this->getAssetExtension($value);
@@ -140,6 +146,7 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
     $langcode = (isset($this->configuration['langcode'])) ? $this->configuration['langcode'] : '';
     $process_map_media_icon = $this->configuration['process_map_media_icon'] ?? 0;
     $map_media_config = $this->configuration['map_media_config'] ?? [];
+    $map_media_extension = $this->configuration['map_media_extension'] ?? [];
     $map_media_migration_id = $this->configuration['map_media_migration_id'] ?? 'cleco_product_media';
 
     $source = $this->configuration['process_params']['source'];
@@ -165,12 +172,18 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
     // Process for Media product_downloads for File.
     $fid = NULL;
     if ($process_pdf && $get_type == "fid" && $media_type == "pdf") {
+      // Process for missing extension in the xml for the File download.
+      if (empty($original_extension)) {
+        $extension = $this->getExtensionFromUserTypeId($user_type_id);
+      }
       try {
         $fid = $this->imageOps->getAndSavePdf($asset_id, $alt_text, $langcode, $extension);
       }
       catch (ImageNotFoundOnFtpException $e) {
         $message = "Missing Product Downloads File:: Type: $user_type_id :: Extension: $extension :: Filename: $asset_id.$extension";
         $this->logMessage($this->configuration['notification_logfile'], $message);
+        // Try once more for the configured extensions.
+        $fid = $this->getMissingAssetDownloadFile($asset_id, $alt_text, $langcode, $extension, $user_type_id);
       }
       catch (\Exception | FilesystemException $e) {
         $message = "Server Problem Product Downloads:: Type: $user_type_id :: Extension: $extension : Filename: $asset_id.$extension";
@@ -194,6 +207,9 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
         if (isset($map_media_config[$user_type_id])) {
           $process_with_mapped_asset = 1;
           $parent_asset_id = $map_media_config[$user_type_id];
+          if (isset($map_media_extension[$user_type_id]) && !empty($map_media_extension[$user_type_id])) {
+            $pdf_media_extension = $map_media_extension[$user_type_id];
+          }
         }
       }
 
@@ -224,7 +240,7 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
       }
       catch (ImageNotFoundOnFtpException $e) {
         if ($process_with_mapped_asset) {
-          $message = "Missing Product Downloads Media Mapped :: Original ID: $parent_asset_id :: Current ID: $original_asset_id :: Type: $user_type_id";
+          $message = "Missing Product Downloads Media Mapped :: Original ID: $parent_asset_id :: Current ID: $original_asset_id :: Type: $user_type_id :: Filename: $asset_id.$pdf_media_extension";
           $this->logMessage('', $message, 'notification');
         }
         else {
@@ -313,6 +329,107 @@ class GetProductImages extends ProcessPluginBase implements ContainerFactoryPlug
       }
     }
     return $extension;
+  }
+
+  /**
+   * Get File downloads valid extension on missing based on UserTypeID.
+   *
+   * @param string $user_type_id
+   *   UserTypeId for the specific asset.
+   *
+   * @return string
+   *   Return extension of the asset.
+   */
+  public function getExtensionFromUserTypeId($user_type_id) {
+    $extension = '';
+    $user_type_id = strtolower($user_type_id);
+    $user_type_list = [
+      'pdf' => 'pdf',
+      'stp file' => 'ifc',
+      'dxf file' => 'dxf',
+      'igs file' => 'txt',
+      'zip' => 'zip',
+      'exe' => 'exe',
+      'xls' => 'xls',
+      'word' => 'doc',
+      'xml' => 'xml',
+      'mp4' => 'mp4',
+      'utf8' => 'utf8',
+    ];
+    if (isset($user_type_list[$user_type_id])) {
+      $extension = $user_type_list[$user_type_id];
+    }
+    return $extension;
+  }
+
+  /**
+   * Get alternate extension on missing the Asset.
+   *
+   * @param string $extension
+   *   Asset extension.
+   * @param string $user_type_id
+   *   UserTypeId for the specific asset.
+   *
+   * @return string
+   *   Return alternate extension of the asset.
+   */
+  public function getAlternateExtension($extension = '', $user_type_id = '') {
+    $alternate_extension = '';
+    $extension = strtolower($extension);
+    $user_type_id = strtolower($user_type_id);
+    $alternate_extension_list = [
+      'txt' => 'igs',
+      'igs' => 'txt',
+      'xls' => 'xlsx',
+      'xlsx' => 'xls',
+      'doc' => 'docx',
+      'docx' => 'doc',
+    ];
+    if (isset($alternate_extension_list[$extension])) {
+      $alternate_extension = $alternate_extension_list[$extension];
+    }
+    return $alternate_extension;
+  }
+
+  /**
+   * Get missing asset download file with alternate exrension.
+   *
+   * @param string $asset_id
+   *   The Asset ID for the image.
+   * @param string $alt_text
+   *   The alt text for the image. (Optional)
+   * @param string $langcode
+   *   The language code. (Optional)
+   * @param string $extension
+   *   The asset extension.
+   * @param string $user_type_id
+   *   Asset UserTypeId.
+   *
+   * @return array
+   *   Returns media information.
+   */
+  public function getMissingAssetDownloadFile($asset_id, $alt_text, $langcode, $extension, $user_type_id) {
+    $fid = NULL;
+    $alternate_extension = $this->getAlternateExtension($extension);
+    if (empty($alternate_extension)) {
+      return $fid;
+    }
+    if ($extension == $alternate_extension) {
+      return $fid;
+    }
+    $extension = $alternate_extension;
+    try {
+      $fid = $this->imageOps->getAndSavePdf($asset_id, $alt_text, $langcode, $extension);
+    }
+    catch (ImageNotFoundOnFtpException $e) {
+      $message = "Missing Product Downloads (alternate) File:: Type: $user_type_id :: Extension: $extension :: Filename: $asset_id.$extension";
+      $this->logMessage($this->configuration['notification_logfile'], $message);
+    }
+    catch (\Exception | FilesystemException $e) {
+      $message = "Server Problem Product Downloads:: Type: $user_type_id :: Extension: $extension : Filename: $asset_id.$extension";
+      $this->logMessage($this->configuration['notification_logfile'], $message);
+    }
+    return $fid;
   }
 
 }

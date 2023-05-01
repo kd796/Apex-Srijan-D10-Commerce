@@ -1,0 +1,36 @@
+uuid: 369b0110-387d-4e6b-9063-deee5f6444fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.ethics_section.body
+    - field.field.node.ethics_section.field_media
+    - field.field.node.ethics_section.field_section_name
+    - node.type.ethics_section
+  module:
+    - text
+    - user
+id: node.ethics_section.teaser
+targetEntityType: node
+bundle: ethics_section
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_media: true
+  field_section_name: true
+  langcode: true
+  search_api_excerpt: true

@@ -1,0 +1,77 @@
+uuid: e9446f2a-89bf-4ee4-a12e-9698490a3f4f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.media_center.field_address
+    - field.field.node.media_center.field_banner_image
+    - field.field.node.media_center.field_date
+    - field.field.node.media_center.field_location
+    - field.field.node.media_center.field_media_center_type
+    - field.field.node.media_center.field_news_release_document
+    - node.type.media_center
+  module:
+    - address
+    - datetime
+    - geolocation
+    - options
+    - user
+id: node.media_center.default
+targetEntityType: node
+bundle: media_center
+mode: default
+content:
+  field_address:
+    type: address_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_banner_image:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_location:
+    type: geolocation_latlng
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_media_center_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_news_release_document:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

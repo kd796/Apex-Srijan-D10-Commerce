@@ -29,7 +29,8 @@ class StepProductCategoryBreadcrumbBuilder implements BreadcrumbBuilderInterface
 */
         $easy_breadcrumbs = \Drupal::service('easy_breadcrumb.breadcrumb')->build($route_match);
 
-        $product = $this->getProduct($route_match->getParameter('product'));
+        // Getting error on Enhanced Product.
+        // $product = $this->getProduct($route_match->getParameter('product'));
         if ($product) {
             $breadcrumbs = new Breadcrumb();
 
