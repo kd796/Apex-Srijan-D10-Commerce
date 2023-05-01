@@ -799,8 +799,10 @@ $databases = [];
 /**
  * Include server-specific configuration.
  */
+# @todo Acquia Configuration
 if (file_exists('/var/www/site-php')) {
-  require '/var/www/site-php/apextoolgroup/apextoolgroup-settings.inc';
+  require '/var/www/site-php/apextoolgroup/apex-tools-settings.inc';
+  require '/var/www/site-php/apextoolgroup/apex-tools_drupal_selector-settings.inc';
 }
 
 /**
@@ -812,3 +814,7 @@ $environments_settings = __DIR__ . '/../environments.settings.php';
 if (file_exists($environments_settings)) {
   include $environments_settings;
 }
+
+// Content Sync module configuration.
+global $content_directories;
+$content_directories['sync'] = '../config/apex-tools/content/sync';
