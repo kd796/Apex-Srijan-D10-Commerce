@@ -32,7 +32,7 @@ process:
     method: row
     source: remote_term_name
   parent:
-    plugin: apex_get_classification_parent_term
+    plugin: get_classification_parent_term
     source: remote_parent_name
   field_classification_id:
     plugin: skip_on_value
