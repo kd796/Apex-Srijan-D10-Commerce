@@ -1,23 +1,23 @@
-uuid: ce71fea6-7de1-4455-92c2-9e30476cd889
+uuid: 21c20d6a-848e-409d-937b-aef676cd5397
 langcode: en
 status: true
 dependencies:
   config:
-    - system.menu.header-utils--gb
+    - system.menu.header-utils--de
   module:
     - language
     - system
   theme:
     - apex_tools
-id: apex_tools_headerutilseuropeen_2
+id: headerutilseuropede_2
 theme: apex_tools
 region: header_utils_nav
 weight: 0
 provider: null
-plugin: 'system_menu_block:header-utils--gb'
+plugin: 'system_menu_block:header-utils--de'
 settings:
-  id: 'system_menu_block:header-utils--gb'
-  label: 'Header Utils (Europe / EN)'
+  id: 'system_menu_block:header-utils--de'
+  label: 'Header Utils (Europe / DE)'
   label_display: visible
   provider: system
   level: 1
@@ -30,4 +30,4 @@ visibility:
     context_mapping:
       language: '@language.current_language_context:language_interface'
     langcodes:
-      gb: gb
+      de: de

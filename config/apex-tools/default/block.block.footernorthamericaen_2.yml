@@ -1,23 +1,23 @@
-uuid: 2b9c8e3a-238a-4327-99b8-49b561878e0f
+uuid: bef9b030-0998-4efc-b676-33631adc3bf7
 langcode: en
 status: true
 dependencies:
   config:
-    - system.menu.footer--gb
+    - system.menu.footer
   module:
     - language
     - system
   theme:
     - apex_tools
-id: apex_tools_footereuropeen_2
+id: footernorthamericaen_2
 theme: apex_tools
 region: footer_nav
 weight: 0
 provider: null
-plugin: 'system_menu_block:footer--gb'
+plugin: 'system_menu_block:footer'
 settings:
-  id: 'system_menu_block:footer--gb'
-  label: 'Footer (Europe / EN)'
+  id: 'system_menu_block:footer'
+  label: 'Footer (North America / EN)'
   label_display: visible
   provider: system
   level: 1
@@ -30,4 +30,4 @@ visibility:
     context_mapping:
       language: '@language.current_language_context:language_interface'
     langcodes:
-      gb: gb
+      en: en

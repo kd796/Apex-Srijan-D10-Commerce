@@ -3,9 +3,10 @@ langcode: en
 status: true
 dependencies:
   module:
+    - acquia_search
     - search_api_solr
 id: acquia_search_api_solr_server
-name: 'Acquia Search API Solr server(Local)'
+name: 'Acquia Search API Solr server'
 description: ''
 backend: search_api_solr
 backend_config:
@@ -15,23 +16,13 @@ backend_config:
   server_prefix: ''
   domain: generic
   environment: default
-  connector: standard
+  connector: solr_acquia_connector
   connector_config:
-    scheme: http
-    host: solr
-    port: 8983
-    path: /
-    core: dev
-    timeout: 5
-    index_timeout: 5
-    optimize_timeout: 10
-    finalize_timeout: 30
-    solr_version: ''
-    http_method: AUTO
-    commit_within: 1000
-    jmx: false
-    jts: false
-    solr_install_dir: /opt/solr
+    identifier: AGQV-204467
+    api_key: 7a8b05544b5e601d98d16d51452d676f
+    uuid: 118e52af-17d6-4350-a54c-2a2e659b1657
+    api_host: 'https://api.sr-prod02.acquia.com'
+    skip_schema_check: true
   optimize: false
   fallback_multiple: false
   disabled_field_types: {  }
