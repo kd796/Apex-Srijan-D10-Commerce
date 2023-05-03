@@ -801,8 +801,8 @@ $databases = [];
  */
 # @todo Acquia Configuration
 if (file_exists('/var/www/site-php')) {
-  require '/var/www/site-php/apextoolgroup/apex-tools-settings.inc';
-  require '/var/www/site-php/apextoolgroup/apex-tools_drupal_selector-settings.inc';
+  require '/var/www/site-php/apextoolgroup/apex_tools-settings.inc';
+  require '/var/www/site-php/apextoolgroup/apex_tools_drupal_selector-settings.inc';
 }
 
 /**
