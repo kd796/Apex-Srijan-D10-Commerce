@@ -212,10 +212,19 @@
               {% autoescape false %}
                 {% if field_product_specifications | length > 0 %}
                   {% for key,specification in field_product_specifications %}
-                    <div class="field__item">{{key}} :
-                      {% for items in specification %}
-                        <span>{{ (':' in items) ? '<br/>' ~ items ~ ''  : '' ~ items ~ '<br/>' }}</span>
-                      {% endfor %}
+                    <div class="field__item">
+                     <table class="specification">
+                         <tr>
+                           <td> 
+                              {{key}} :
+                            </td>
+                           <td> 
+                               {% for items in specification %}
+                                <span>{{'' ~ items ~ '<br/>' }}</span>
+                                {% endfor %}         
+                            </td>
+                         </tr>
+                     </table>
                     </div>
                   {% endfor %}
                 {% endif %}
