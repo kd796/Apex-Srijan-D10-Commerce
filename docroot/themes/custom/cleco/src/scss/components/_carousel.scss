@@ -1,5 +1,6 @@
 .carousel {
   display: flex;
+  height: 100%;
 
   @media (max-width: $breakpoint-carousel-horizontal - 1) {
     flex-direction: column;
@@ -92,6 +93,8 @@
  * ITEMS
  */
 .carousel-item {
+  height: 100%;
+
   &.v-leave {
     display: none;
   }
@@ -104,5 +107,16 @@
   &.v-enter {
     opacity: 0;
     transform: scale(0.9);
+  }
+
+  .zoomable {
+    height: 100%;
+
+    .zoomable-trigger {
+      height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
   }
 }

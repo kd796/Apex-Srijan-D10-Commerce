@@ -30,7 +30,6 @@ class ImageFtp extends Ftp {
     if ($this->checkFileExists($image_path)) {
       return $this->filesystem->read($image_path);
     }
-
     throw new ImageNotFoundOnFtpException('image path: ' . $image_path);
   }
 
@@ -47,6 +46,10 @@ class ImageFtp extends Ftp {
    */
   public function buildImagePath(string $asset_id, string $extension = ''): string {
     $mapped_extension = $this->mapFileExtension($extension);
+    // Retain original image extension for mapped media.
+    if (stripos($asset_id, "controller_") !== FALSE && stripos($asset_id, "controller_") === 0) {
+      $mapped_extension = "." . $extension;
+    }
     return $this->assetDirectory . $asset_id . $mapped_extension;
   }
 

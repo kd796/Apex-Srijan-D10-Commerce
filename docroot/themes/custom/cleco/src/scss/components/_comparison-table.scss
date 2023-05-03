@@ -4,17 +4,32 @@
   }
 
   .table-component__table__body {
-    tr:hover {
-      cursor: pointer;
+    tr {
+      td {
+        padding: 0.75em !important;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     tr:hover,
     tr.is-selected {
       background: rgba($color-gray-light, 0.16);
     }
+
+    td {
+      span {
+        display: block;
+      }
+    }
   }
 
   // Shrink checkbox column
+  .table-component__th {
+    padding: 0.75em !important;
+  }
   .table-component__th[aria-disabled='true'] {
     white-space: nowrap;
     width: 1px;

@@ -126,14 +126,11 @@
                     <ul class="listings">
                         {% set downloadTypes = getDownloadTypes() %}
                         {% for asset in product.assets %}
-                            {% if asset.type in downloadTypes|keys %}
+                            {% if asset.type != 'Primary Image' %}
                                 {% set hasDownloads = true %}
                                 <li class="listings-item">
-                                    {% set url = '#' %}
-                                    {% if (downloadTypes[asset.type] is defined) %}
                                         {% set url = download_link(asset, asset.type) %}
                                         {% set thumb = step_asset([asset], 'pro_tools_jpg_of_pdf') %}
-                                    {% endif %}
                                     {% include '@atg/patterns/listing.html.twig' with {
                                         url: url,
                                         title: asset.id,
@@ -198,6 +195,37 @@
             </section><!-- /.section--related-products -->
         {% endif %}
     {% endif %}#}
+    {% set relatedProducts = product.related_products %}
+    {% if relatedProducts is defined %}
+      {% if relatedProducts|length > 1 %}
+        <section id="related-products-section" class="section">
+          <header class="section-header">
+            <div class="section-header-content">
+              <h2 class="section-title">{{ '<em>Related</em> Products'|t }}</h2>
+            </div>
+          </header>
+          <basic-cards>
+            {# Get correct alias based on selected language #}
+            {% set alias = alias_by_path('/products/product-catalog', locale.code) %}
+            {% for related in relatedProducts %}
+              {% if related._source.name != productName %}
+                <basic-card>
+                  {% set data = related._source %}
+                  {% include '@atg/patterns/listing.html.twig' with {
+                      title: data.name,
+                      body: data.values.sku_overview,
+                      url: locale.path ~ alias ~ '/' ~ data.slug.0,
+                      size: 'large',
+                      image: (data.assets is not empty) ? step_asset(data.assets) : '',
+                      backgroundColor: '#ffffff'
+                  } %}
+                </basic-card>
+              {% endif %}
+            {% endfor %}
+          </basic-cards>
+        </section>
+      {% endif %}
+    {% endif %}
 
     <section class="section section--centered section--schedule-demo" id="schedule-demo" style="background-image: url({{ theme_asset('/dist/img/enhanced-form-bg-' ~ (product_line.name|lower) ~ '.jpg') }}); ">
         <div class="contain">

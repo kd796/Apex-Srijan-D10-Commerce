@@ -1,0 +1,28 @@
+uuid: b7025a97-a955-4c08-8283-4fea254d128f
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.image_with_cta
+    - field.field.block_content.image_with_cta.body
+    - field.field.block_content.image_with_cta.field_image_with_cta
+  module:
+    - entity_reference_revisions
+id: block_content.image_with_cta.default
+targetEntityType: block_content
+bundle: image_with_cta
+mode: default
+content:
+  field_image_with_cta:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  langcode: true
+  search_api_excerpt: true

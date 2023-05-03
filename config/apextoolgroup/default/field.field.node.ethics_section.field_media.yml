@@ -1,0 +1,29 @@
+uuid: bec5c02c-a4e5-40f5-a5f7-089d33a6135a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_media
+    - media.type.video
+    - node.type.ethics_section
+id: node.ethics_section.field_media
+field_name: field_media
+entity_type: node
+bundle: ethics_section
+label: Videos
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      video: video
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

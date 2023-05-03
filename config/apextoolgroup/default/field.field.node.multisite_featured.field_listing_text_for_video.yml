@@ -1,0 +1,25 @@
+uuid: 2a1657bb-2cfd-4b03-9359-da52509ca21c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_listing_text_for_video
+    - node.type.multisite_featured
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats: {  }
+id: node.multisite_featured.field_listing_text_for_video
+field_name: field_listing_text_for_video
+entity_type: node
+bundle: multisite_featured
+label: 'Listing text for video'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

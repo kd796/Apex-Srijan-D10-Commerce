@@ -1,7 +1,4 @@
 <?php
-// error_reporting(E_ALL);
-// ini_set('display_errors', '1');
-// ini_set('register_globals', 0);
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
 
@@ -103,7 +100,7 @@ if ($userid !== false) :
               'emmanuel.fund@apextoolgroup.com',
           ];
 
-          DatabaseSel::send_drilling_email($userid, $conversion_array, implode(', ', $to_emails));
+          DatabaseSel::send_drilling_email($userid, $conversion_array, $to_emails);
           break;
 
         case 'colleague':
@@ -111,7 +108,7 @@ if ($userid !== false) :
           $custom_message = $_POST['brief_msg'];
           $from_name = $_POST['from_name'];
           $subject = $from_name . ' Sent You Their Apex Advanced Drilling Inquiry...';
-          DatabaseSel::send_drilling_email($userid, $conversion_array, $email, $custom_message, $subject);
+          DatabaseSel::send_drilling_email($userid, $conversion_array, [$email], $custom_message, $subject);
           $object = 'Email sent to colleague successfully.';
           break;
     }
