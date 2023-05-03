@@ -1,0 +1,37 @@
+uuid: 0e85337d-2d9b-43c1-b14f-ea6f97bfd06e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.news_insights_landing.field_callout_page_end
+    - field.field.node.news_insights_landing.field_callout_section_footer
+    - field.field.node.news_insights_landing.field_hero
+    - field.field.node.news_insights_landing.field_mailing_list_form
+    - field.field.node.news_insights_landing.field_seo
+    - node.type.news_insights_landing
+  module:
+    - user
+id: node.news_insights_landing.teaser
+targetEntityType: node
+bundle: news_insights_landing
+mode: teaser
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_callout_page_end: true
+  field_callout_section_footer: true
+  field_hero: true
+  field_mailing_list_form: true
+  field_seo: true
+  langcode: true
+  search_api_excerpt: true

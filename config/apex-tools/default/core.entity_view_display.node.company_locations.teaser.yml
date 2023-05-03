@@ -1,0 +1,41 @@
+uuid: 81b47f9c-3166-4373-bd4f-f17e1385f074
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.company_locations.feeds_item
+    - field.field.node.company_locations.field_address
+    - field.field.node.company_locations.field_geographic_data
+    - field.field.node.company_locations.field_phone
+    - field.field.node.company_locations.field_term_continent
+    - field.field.node.company_locations.field_term_department
+    - field.field.node.company_locations.field_uuid
+    - node.type.company_locations
+  module:
+    - user
+id: node.company_locations.teaser
+targetEntityType: node
+bundle: company_locations
+mode: teaser
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  feeds_item: true
+  field_address: true
+  field_geographic_data: true
+  field_phone: true
+  field_term_continent: true
+  field_term_department: true
+  field_uuid: true
+  langcode: true
+  search_api_excerpt: true

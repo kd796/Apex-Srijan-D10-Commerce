@@ -1,4 +1,4 @@
-uuid: 3394c5ab-309d-49de-9d4f-2d7f07e96b79
+uuid: 7d737da2-578d-4fd4-af9c-9d3509be93a9
 langcode: en
 status: true
 dependencies:
@@ -14,9 +14,13 @@ targetEntityType: media
 bundle: audio
 mode: default
 content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
   field_media_audio_file:
     type: file_audio
-    weight: 0
     label: visually_hidden
     settings:
       controls: true
@@ -24,9 +28,12 @@ content:
       loop: false
       multiple_file_display_type: tags
     third_party_settings: {  }
+    weight: 0
     region: content
 hidden:
   created: true
+  langcode: true
   name: true
+  search_api_excerpt: true
   thumbnail: true
   uid: true

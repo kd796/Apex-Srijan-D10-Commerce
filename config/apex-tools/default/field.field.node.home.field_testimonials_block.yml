@@ -1,0 +1,79 @@
+uuid: b35c0287-331f-4407-81bf-31260cf3ff34
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_testimonials_block
+    - node.type.home
+    - paragraphs.paragraphs_type.testimonials_block
+  module:
+    - entity_reference_revisions
+id: node.home.field_testimonials_block
+field_name: field_testimonials_block
+entity_type: node
+bundle: home
+label: 'Testimonials Block'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      testimonials_block: testimonials_block
+    negate: 0
+    target_bundles_drag_drop:
+      callout_section_footer:
+        weight: 18
+        enabled: false
+      callout_section_page_end:
+        weight: 19
+        enabled: false
+      card:
+        weight: 20
+        enabled: false
+      content_bundle:
+        weight: 21
+        enabled: false
+      content_section:
+        weight: 22
+        enabled: false
+      content_section_simple:
+        weight: 23
+        enabled: false
+      cta:
+        weight: 24
+        enabled: false
+      excerpt:
+        weight: 25
+        enabled: false
+      featured_block:
+        weight: 26
+        enabled: false
+      featured_section:
+        weight: 27
+        enabled: false
+      from_library:
+        weight: 28
+        enabled: false
+      hero:
+        weight: 29
+        enabled: false
+      image:
+        weight: 30
+        enabled: false
+      media_block:
+        weight: 31
+        enabled: false
+      testimonials_block:
+        weight: 32
+        enabled: true
+      testimonials_section:
+        weight: 33
+        enabled: false
+      video_bundle:
+        weight: 34
+        enabled: false
+field_type: entity_reference_revisions

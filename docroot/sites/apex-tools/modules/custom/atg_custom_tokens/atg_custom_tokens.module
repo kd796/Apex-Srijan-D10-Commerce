@@ -1,0 +1,61 @@
+<?php
+
+use Drupal\node\Entity\Node;
+use Drupal\Core\File\FileUrlGeneratorInterface;
+use Drupal\file\Entity\File;
+
+/**
+ * Implements hook_token_info().
+ */
+function atg_custom_tokens_token_info()
+{
+  $type = [
+    'name' => t('News & Insights'),
+    'description' => t('Tokens related to News & Insights content.'),
+  ];
+
+  $node['pdf-link'] = [
+        'name' => t('PDF Link'),
+        'description' => t('Public URL for attached PDF.'),
+  ];
+
+  $node['pdf-image'] = [
+    'name' => t('PDF Image URL'),
+    'description' => t('Public URL for the attached PDF cover image.'),
+  ];
+
+  return [
+    'types' => ['news_insights' => $type],
+    'tokens' => ['news_insights' => $node],
+  ];
+}
+/**
+ * Implements hook_tokens().
+ */
+function atg_custom_tokens_tokens($type, $tokens, array $data, array $options, \Drupal\Core\Render\BubbleableMetadata $bubbleable_metadata)
+{
+  $replacements = [];
+
+  if ($type == 'news_insights') {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    $entityTypeManager = \Drupal::entityTypeManager();
+    $nid = $node->id();
+    $node = $entityTypeManager->getStorage('node')->load($nid);
+    $field_attachments = $node->get('field_attachments');
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'pdf-link':
+          $replacements[$original] = \Drupal::service('file_url_generator')->generateAbsoluteString($field_attachments->entity->getFileUri());
+          break;
+        case 'pdf-image':
+          $attachment_id = $field_attachments[0]->getValue()['target_id'];
+          $attachment_file = $entityTypeManager->getStorage('file')->load($attachment_id);
+          $preview_uri = \Drupal::service('pdfpreview.generator')->getPDFPreview($attachment_file);
+          $replacements[$original] = \Drupal::service('file_url_generator')->generateAbsoluteString($preview_uri);
+          break;
+      }
+    }
+  }
+
+  return $replacements;
+}

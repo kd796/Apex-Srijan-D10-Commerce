@@ -1,0 +1,18 @@
+uuid: 710e3d20-2da4-439d-9092-d86f77e59b70
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.advanced_selector_email
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: node.advanced_selector_email
+target_entity_type_id: node
+target_bundle: advanced_selector_email
+default_langcode: site_default
+language_alterable: true

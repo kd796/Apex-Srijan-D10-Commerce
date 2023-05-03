@@ -1,0 +1,101 @@
+# Elastic Search
+actions.step.api.filter.products:
+  path: /actions/step/api/filter/products
+  defaults:
+    _controller: '\Drupal\step\Controller\ApiController::actionFilterProducts'
+  requirements:
+    _permission: 'access content'
+
+actions.step.api.filter.downloads:
+  path: /actions/step/api/filter/downloads
+  defaults:
+    # _controller: '\Drupal\step\Controller\ApiController::actionFilterDownloads'
+    _controller: '\Drupal\step\Controller\ApiController::actionSearchDownloads'
+  requirements:
+    _permission: 'access content'
+
+actions.step.api.search:
+  path: /actions/step/api/search
+  defaults:
+    _controller: '\Drupal\step\Controller\ApiController::actionSearch'
+  requirements:
+    _permission: 'access content'
+
+# DrupalCustom Form Field
+actions.step.api.autocomplete.field.products:
+  path: /actions/step/api/autocomplete/field/products
+  defaults:
+    _controller: '\Drupal\step\Controller\ApiController::actionAutoCompleteFieldProducts'
+  requirements:
+    _permission: 'access content'
+
+# STEP Setting Form Page
+step.settings.form:
+  path: '/admin/config/step/settings'
+  defaults:
+    _form: '\Drupal\step\Form\StepSettingsForm'
+    _title: 'STEP'
+  requirements:
+    _permission: 'administer'
+
+step.settings.legacy_documents.form:
+  path: '/admin/config/step/settings/legacy-documents'
+  defaults:
+    _form: '\Drupal\step\Form\StepLegacySettingsForm'
+    _title: 'STEP Legacy Documents'
+  requirements:
+    _permission: 'administer'
+
+step.settings.image_styles.form:
+  path: '/admin/config/step/settings/image-styles'
+  defaults:
+    _form: '\Drupal\step\Form\ImageStylesSettingsForm'
+    _title: 'STEP Image Styles'
+  requirements:
+    _permission: 'administer'
+
+# EN and GB Front-end Templates
+step.products.product_catalog:
+  path: /products/product-catalog
+  defaults:
+    _controller: '\Drupal\step\Controller\RouteController::productCatalog'
+    _title_callback: '\Drupal\step\Controller\RouteController::productCatalogTitle'
+  requirements:
+    _permission: 'access content'
+
+step.products.product_single:
+  path: /products/product-catalog/{product}
+  defaults:
+    _controller: '\Drupal\step\Controller\RouteController::productSingle'
+    _title_callback: '\Drupal\step\Controller\RouteController::productSingleTitle'
+  requirements:
+    _permission: 'access content'
+
+step.search:
+  path: /search/results
+  defaults:
+    _controller: '\Drupal\step\Controller\RouteController::searchResults'
+    _title_callback: '\Drupal\step\Controller\RouteController::searchResultsTitle'
+  requirements:
+    _permission: 'access content'
+
+# ---------------------------------------------------------------------------
+# Microsites
+# step.cellcore:
+#   path: /cellcore
+#   defaults:
+#     _controller: '\Drupal\step\Controller\RouteController::cellCore'
+#   requirements:
+#     _permission: 'access content'
+
+# ---------------------------------------------------------------------------
+# Translated Routes
+# Note: Symfony 4 will support translated paths
+
+step.products.product_single_de:
+  path: /produkte/produktkatalog/{product}
+  defaults:
+    _controller: '\Drupal\step\Controller\RouteController::productSingle'
+    _title_callback: '\Drupal\step\Controller\RouteController::productSingleTitle'
+  requirements:
+    _permission: 'access content'

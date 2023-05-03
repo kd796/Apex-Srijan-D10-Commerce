@@ -1,4 +1,4 @@
-uuid: 924cead8-572c-49d1-9a5e-4dacdbfd2f5a
+uuid: b60b4f90-c01d-43b2-9df1-dd87b38e6a09
 langcode: en
 status: true
 dependencies:
@@ -8,22 +8,28 @@ dependencies:
   module:
     - file
 _core:
-  default_config_hash: uSVDT-Ma6XoarvkxXqv-1rHD4cTRnJT_8NPlYsfWrws
+  default_config_hash: 9s0lWIanCnW5Xrrkmedxohs9F0yk4LO8ZcmVQ9xyuu4
 id: media.file.default
 targetEntityType: media
 bundle: file
 mode: default
 content:
-  field_media_file:
-    label: visually_hidden
-    settings:
-      use_description_as_link_text: true
+  content_moderation_control:
+    settings: {  }
     third_party_settings: {  }
+    weight: -20
+    region: content
+  field_media_file:
     type: file_default
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
     weight: 1
     region: content
 hidden:
   created: true
+  langcode: true
   name: true
+  search_api_excerpt: true
   thumbnail: true
   uid: true

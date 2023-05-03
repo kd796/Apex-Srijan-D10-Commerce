@@ -1,0 +1,33 @@
+uuid: 8d11790c-265b-4dcf-be23-82f94c4403eb
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.header-utils
+  module:
+    - language
+    - system
+  theme:
+    - apex_tools
+id: apex_tools_headerutilsnorthamericaen_2
+theme: apex_tools
+region: header_utils_nav
+weight: 0
+provider: null
+plugin: 'system_menu_block:header-utils'
+settings:
+  id: 'system_menu_block:header-utils'
+  label: 'Header Utils (North America / EN)'
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      en: en

@@ -1,0 +1,6 @@
+services:
+  atg_translation.front_page_overrider:
+    class: Drupal\atg_translation\ConfigOverrides
+    arguments: ['@config.factory']
+    tags:
+      - {name: config.factory.override, priority: 300}
