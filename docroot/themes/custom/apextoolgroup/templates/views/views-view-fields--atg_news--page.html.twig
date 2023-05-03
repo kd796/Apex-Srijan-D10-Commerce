@@ -1,0 +1,7 @@
+
+{% set view_node = fields.view_node.content|render|trim|striptags %}
+<a href="{{view_node}}">
+  <h2>{{ fields.title.content }}</h2>
+</a>
+{% if fields.field_date.content %}<div class="date">{{ fields.field_date.content }}</div>{% endif %}
+{% if fields.body.content %}{{ fields.body.content }}{% endif %}
