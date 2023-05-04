@@ -1,7 +1,5 @@
 <?php
-// error_reporting(E_ALL);
-// ini_set('display_errors', '1');
-// ini_set("register_globals", 0);
+
 use \Drupal\Core\File\FileSystemInterface;
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
@@ -361,7 +359,7 @@ class DatabaseSel
             'emmanuel.fund@apextoolgroup.com',
         ];
         $to_email      = implode(', ', $to_emails);
-        $from_email    = 'atg-websiteadmin@apextoolgroup.com';
+        $from_email    = 'no-reply@apextoolgroup.com';
         $solution_html = "<tr><th class='boldtext' colspan='2'>Solution Issues</th></tr>";
         $html          = "
     <html>
@@ -550,7 +548,7 @@ class DatabaseSel
         endif;
         $email         = make_safe_i($data->de_email_address);
         $fullname      = make_safe_i($data->de_contact_name);
-        $from_email    = 'atg-websiteadmin@apextoolgroup.com';
+        $from_email    = 'no-reply@apextoolgroup.com';
         $solution_html = "<tr><th class='boldtext' colspan='2'>" . self::translate('Solution Issues') . "</th></tr>";
         $html          = "
     <html>
@@ -666,18 +664,30 @@ class DatabaseSel
             </table>
         </body>
         </html>";
-        $headers = "MIME-Version: 1.0\r\n" . "Content-type: text/html; charset=iso-8859-1\r\n";
+      try {
+        $smtp_username = $_ENV['SMTP_USERNAME'] ?? getenv('SMTP_USERNAME');
+        $smtp_password = $_ENV['SMTP_PASSWORD'] ?? getenv('SMTP_PASSWORD');
 
+        $transport = new Swift_SmtpTransport('smtp.office365.com', 587);
+        $transport->setUsername($smtp_username);
+        $transport->setPassword($smtp_password);
+        $transport->setLocalDomain('127.0.0.1');
+        $transport->setEncryption('tls');
 
+        $mailer = new Swift_Mailer($transport);
+        // Create a new message.
+        $message = new Swift_Message($subject, $html, 'text/html');
+        $message->setFrom([$from_email]);
+        $message->setTo($to_email);
 
-        mail(
-            $to_email,
-            $form_title,
-            $html,
-            "From: $from_email\r\n" .
-                "Reply-To: " . $email . "\r\n" .
-                $headers . "\r\n"
-        );
-        return '|success|';
+        $mailer->send($message);
+      }
+      catch (\Exception $e) {
+        echo "Error";
+        return FALSE;
+      }
+
+      return '|success|';
     }
+
 }

@@ -1,0 +1,85 @@
+uuid: 758c5bdf-a304-4d24-92f2-7d61c3370541
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_learn_about_our_process_bo
+    - node.type.inventor
+    - paragraphs.paragraphs_type.inventor_image_and_text
+  module:
+    - entity_reference_revisions
+id: node.inventor.field_learn_about_our_process_bo
+field_name: field_learn_about_our_process_bo
+entity_type: node
+bundle: inventor
+label: 'Learn About Our Process content'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      inventor_image_and_text: inventor_image_and_text
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 20
+        enabled: false
+      accordion_item:
+        weight: 21
+        enabled: false
+      content:
+        weight: 22
+        enabled: false
+      embed_block:
+        weight: 23
+        enabled: false
+      embed_iframe:
+        weight: 24
+        enabled: false
+      embed_view:
+        weight: 25
+        enabled: false
+      featured_content:
+        weight: 26
+        enabled: false
+      featured_links:
+        weight: 27
+        enabled: false
+      featured_media:
+        weight: 28
+        enabled: false
+      hero:
+        weight: 29
+        enabled: false
+      hero_slide:
+        weight: 30
+        enabled: false
+      image_and_text:
+        weight: 31
+        enabled: false
+      image_with_cta:
+        weight: 32
+        enabled: false
+      inventor:
+        weight: 33
+        enabled: false
+      inventor_image_and_text:
+        weight: 38
+        enabled: true
+      pullquote:
+        weight: 34
+        enabled: false
+      section:
+        weight: 35
+        enabled: false
+      tabs:
+        weight: 36
+        enabled: false
+      tabs_tab:
+        weight: 37
+        enabled: false
+field_type: entity_reference_revisions

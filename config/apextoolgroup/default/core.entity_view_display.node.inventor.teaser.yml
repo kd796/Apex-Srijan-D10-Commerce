@@ -1,0 +1,48 @@
+uuid: 42953901-27f7-4961-a29c-36cc35e446d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.inventor.body
+    - field.field.node.inventor.field_footer_note
+    - field.field.node.inventor.field_inventor_project_content
+    - field.field.node.inventor.field_learn_about_our_process_bo
+    - field.field.node.inventor.field_learn_about_our_process_ti
+    - field.field.node.inventor.field_read_more
+    - field.field.node.inventor.field_short_description
+    - field.field.node.inventor.field_sub_heading
+    - field.field.node.inventor.field_submit_your_idea_title
+    - node.type.inventor
+  module:
+    - text
+    - user
+id: node.inventor.teaser
+targetEntityType: node
+bundle: inventor
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_footer_note: true
+  field_inventor_project_content: true
+  field_learn_about_our_process_bo: true
+  field_learn_about_our_process_ti: true
+  field_read_more: true
+  field_short_description: true
+  field_sub_heading: true
+  field_submit_your_idea_title: true
+  langcode: true
+  search_api_excerpt: true

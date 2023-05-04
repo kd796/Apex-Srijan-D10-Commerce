@@ -252,6 +252,11 @@ class ImageOperations extends FileOperations {
   public function getAndSaveDownloadsImageMedia(string $asset_id, string $alt_text = '', string $lang_code = 'en', string $extension = ''): mixed {
     $file_data = $this->ftp->getImage($asset_id, $extension);
     $asset_id_lang_code = $asset_id . "_" . $lang_code;
+    // Retain original image extension for mapped media.
+    if (stripos($asset_id, "controller_") !== FALSE && stripos($asset_id, "controller_") === 0) {
+      $asset_id_lang_code = $asset_id;
+    }
+
     if ($file_data !== FALSE) {
       $drupal_file_path = self::buildLocalAssetImagePath($asset_id_lang_code, $extension);
       $file = ImageOperations::fileSaveData(

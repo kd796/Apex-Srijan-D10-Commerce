@@ -1,0 +1,10 @@
+{% set view_node = fields.view_node.content|render|trim|striptags %}
+<a href="{{ view_node }}">
+	<div class="market-list__image">
+		{{ fields.field_listing_image.content }}
+	</div>
+	<div class="market-list__content">
+		<h6>{{ fields.title.content }}</h6>
+		{{ fields.field_short_description.content }}
+	</div>
+</a>

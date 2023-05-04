@@ -4,3 +4,6 @@ services:
     arguments:
       - '@entity_type.manager'
       - '@database'
+      - '@http_client'
+      - '@logger.factory'
+      - '@config.factory'
