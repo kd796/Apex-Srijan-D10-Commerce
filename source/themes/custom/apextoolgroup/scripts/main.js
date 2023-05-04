@@ -82,7 +82,6 @@
       $('.navbar-nav li a, .dropdown-menu li a').removeClass('active');
       $(function () {
         var current = location.pathname;
-        console.log(current);
         $('.navbar-nav li a, .dropdown-menu li a').each(function () {
           var $this = $(this);
           // if the current path is like this link, make it active
