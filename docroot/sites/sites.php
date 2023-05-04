@@ -197,6 +197,14 @@ $sites['prod-www.apextoolgroup.com'] = 'apextoolgroup';
 $sites['www.apextoolgroup.com'] = 'apextoolgroup';
 $sites['apextoolgroup.com'] = 'apextoolgroup';
 
+// New Sites for APEX-TOOLS
+$sites['dev-www.apex-tools.com'] = 'apex-tools';
+$sites['qa-www.apex-tools.com'] = 'apex-tools';
+$sites['stg-www.apex-tools.com'] = 'apex-tools';
+$sites['prod-www.apex-tools.com'] = 'apex-tools';
+$sites['www.apex-tools.com'] = 'apex-tools';
+$sites['apex-tools.com'] = 'apex-tools';
+
 // CLECOTOOLS
 $sites['clecotools.ddev.site'] = 'clecotools';
 
@@ -205,3 +213,6 @@ $sites['campbell.ddev.site'] = 'campbell';
 
 // apextoolgroup
 $sites['apextoolgroup.ddev.site'] = 'apextoolgroup';
+
+// New Sites for APEX-TOOLS
+$sites['apex-tools.ddev.site'] = 'apex-tools';

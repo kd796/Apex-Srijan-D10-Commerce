@@ -1,0 +1,67 @@
+uuid: 445b4367-7fbb-4416-a883-92c994535096
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.product_filters.field_es_filter_type
+    - field.field.taxonomy_term.product_filters.field_es_id
+    - field.field.taxonomy_term.product_filters.field_es_key
+    - field.field.taxonomy_term.product_filters.field_es_range_max
+    - field.field.taxonomy_term.product_filters.field_es_range_min
+    - taxonomy.vocabulary.product_filters
+  module:
+    - text
+id: taxonomy_term.product_filters.default
+targetEntityType: taxonomy_term
+bundle: product_filters
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_es_filter_type:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_es_id:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_es_key:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_es_range_max:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_es_range_min:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden:
+  langcode: true

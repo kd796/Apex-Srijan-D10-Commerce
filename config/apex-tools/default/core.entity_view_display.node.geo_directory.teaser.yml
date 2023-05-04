@@ -1,0 +1,29 @@
+uuid: ea215611-0a54-4217-a5cd-6ff60dddf0b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.geo_directory.field_card
+    - node.type.geo_directory
+  module:
+    - user
+id: node.geo_directory.teaser
+targetEntityType: node
+bundle: geo_directory
+mode: teaser
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_card: true
+  langcode: true
+  search_api_excerpt: true

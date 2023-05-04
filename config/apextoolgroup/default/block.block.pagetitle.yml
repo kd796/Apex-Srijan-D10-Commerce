@@ -1,0 +1,24 @@
+uuid: 0a4ca78f-cfec-4760-9cc4-50c6a7847934
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - apextoolgroup
+id: pagetitle
+theme: apextoolgroup
+region: content
+weight: -10
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /product-types

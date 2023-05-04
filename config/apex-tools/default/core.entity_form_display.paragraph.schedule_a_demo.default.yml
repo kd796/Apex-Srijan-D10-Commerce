@@ -1,0 +1,23 @@
+uuid: 33e90772-b1b1-4a48-b449-cd95d225347b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.schedule_a_demo.field_intro_text
+    - paragraphs.paragraphs_type.schedule_a_demo
+id: paragraph.schedule_a_demo.default
+targetEntityType: paragraph
+bundle: schedule_a_demo
+mode: default
+content:
+  field_intro_text:
+    type: string_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

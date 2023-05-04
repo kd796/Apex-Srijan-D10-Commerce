@@ -1,0 +1,44 @@
+uuid: fa139c22-061a-44fd-b06a-acaaacdc3eee
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.callout_section_footer.field_callout
+    - field.field.paragraph.callout_section_footer.field_center
+    - field.field.paragraph.callout_section_footer.field_show_title
+    - paragraphs.paragraphs_type.callout_section_footer
+id: paragraph.callout_section_footer.default
+targetEntityType: paragraph
+bundle: callout_section_footer
+mode: default
+content:
+  field_callout:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_center:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_show_title:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

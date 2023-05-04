@@ -1,0 +1,72 @@
+uuid: 559edaf2-c816-4ec7-b0ba-b5ebc12bdfe9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.form_section.field_ade_form
+    - field.field.paragraph.form_section.field_forms
+    - field.field.paragraph.form_section.field_step_1_title
+    - field.field.paragraph.form_section.field_step_2_title
+    - field.field.paragraph.form_section.field_title
+    - field.field.paragraph.form_section.field_webforms
+    - paragraphs.paragraphs_type.form_section
+  module:
+    - webform
+id: paragraph.form_section.default
+targetEntityType: paragraph
+bundle: form_section
+mode: default
+content:
+  field_ade_form:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_forms:
+    type: options_buttons
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_step_1_title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_step_2_title:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_webforms:
+    type: webform_entity_reference_select
+    weight: 5
+    region: content
+    settings:
+      default_data: false
+    third_party_settings: {  }
+  translation:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

@@ -76,26 +76,26 @@
   ]
 %}
 
-<div class="wrapper-content">
-  <div class="hero-banner">
-    {{ content.field_banner_image }}
+<div class="hero-banner">
+  {{ content.field_banner_image }}
 
-    <div class="hero-banner__caption">
-      <div class="container">
-        <h1 class="hero-banner__title">
-          {{ node.label }}
-        </h1>
+{% if node.label or content.field_short_description.0 %}
+  <div class="hero-banner__caption">
+    <div class="container">
+      <h1 class="hero-banner__title">
+        {{ node.label }}
+      </h1>
 
-        <div class="hero-banner__description">
-          {{ content.field_short_description.0 }}
-        </div>
+      <div class="hero-banner__description">
+        {{ content.field_short_description.0 }}
       </div>
     </div>
   </div>
+  {% endif %}
+</div>
 
-  <div class="container">
-    <div class="market-details">
-      {{ content.body }}
-    </div>
+<div class="container">
+  <div class="market-details">
+    {{ content.body }}
   </div>
 </div>

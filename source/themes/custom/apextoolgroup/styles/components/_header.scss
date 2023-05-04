@@ -1,4 +1,9 @@
 /****** Header ******/
+.toolbar-menu {
+  li {
+    font-size: unset;
+  }
+}
 
 .header {
   position: relative;
@@ -434,5 +439,13 @@
 
   .form-actions {
     display: none;
+  }
+}
+
+.main-contane {
+  &.hide-content {
+    @media only screen and (max-width: $tablet-max)  {
+      display: none;
+    }
   }
 }

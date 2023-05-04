@@ -6,6 +6,8 @@ additional_hostnames:
   - campbell
   - apex-tools
   - apextoolgroup
+  - de.apex-tools
+  - uk.apex-tools
 hooks:
   post-start:
   - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS gearwrench; GRANT ALL ON gearwrench.* to 'db'@'%';"

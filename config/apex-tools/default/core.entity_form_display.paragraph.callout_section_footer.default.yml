@@ -1,0 +1,38 @@
+uuid: d4419268-4cd5-497f-9595-2896f9de58b3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.callout_section_footer.field_callout
+    - field.field.paragraph.callout_section_footer.field_center
+    - field.field.paragraph.callout_section_footer.field_show_title
+    - paragraphs.paragraphs_type.callout_section_footer
+id: paragraph.callout_section_footer.default
+targetEntityType: paragraph
+bundle: callout_section_footer
+mode: default
+content:
+  field_callout:
+    type: options_buttons
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_center:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_show_title:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

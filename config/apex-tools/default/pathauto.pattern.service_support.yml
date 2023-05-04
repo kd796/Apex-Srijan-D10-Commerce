@@ -1,0 +1,22 @@
+uuid: c039dc51-61e4-4c58-8688-1eb83eddb9d1
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: service_support
+label: 'Service + Support'
+type: 'canonical_entities:node'
+pattern: '[node:title]'
+selection_criteria:
+  80c40402-113d-406a-8853-b5363fd2c72a:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 80c40402-113d-406a-8853-b5363fd2c72a
+    context_mapping:
+      node: node
+    bundles:
+      service_support: service_support
+selection_logic: and
+weight: 4
+relationships: {  }

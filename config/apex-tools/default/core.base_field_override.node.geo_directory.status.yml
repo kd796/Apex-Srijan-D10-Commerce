@@ -1,0 +1,22 @@
+uuid: 08977eda-01d0-45c5-a0ea-7541f3d47ca2
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.geo_directory
+id: node.geo_directory.status
+field_name: status
+entity_type: node
+bundle: geo_directory
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

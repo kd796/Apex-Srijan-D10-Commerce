@@ -1,0 +1,22 @@
+uuid: 835ddb67-ee48-44a1-921d-972c563f8040
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.advanced_selector
+id: node.advanced_selector.status
+field_name: status
+entity_type: node
+bundle: advanced_selector
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -26,6 +26,8 @@
           .on('click', function () {
             hamburgerMenu.toggleClass('show-menu');
             hamburgerMenuIcon.toggleClass('close-icon');
+            $('footer').toggleClass('hide-content');
+            $('.main-contane').toggleClass('hide-content');
           });
       });
       // Responsive menu.

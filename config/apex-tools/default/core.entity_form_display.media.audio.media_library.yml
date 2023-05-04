@@ -1,4 +1,4 @@
-uuid: b7fadcb8-ceec-4c8f-be8f-5a976793e0a3
+uuid: 5c6bd576-fb6f-4d85-8ae3-34c1440fe38b
 langcode: en
 status: true
 dependencies:
@@ -6,24 +6,33 @@ dependencies:
     - core.entity_form_mode.media.media_library
     - field.field.media.audio.field_media_audio_file
     - media.type.audio
+    - workflows.workflow.editorial
+  module:
+    - content_moderation
 _core:
-  default_config_hash: 9XTn4CqOB0W8nLo5kOOaNqJAP63e2yQEzMtKttPrlVw
+  default_config_hash: 28vwMIYtvyjPcD4RyciZXIztxtZgmuWRCNgYemr_SZE
 id: media.audio.media_library
 targetEntityType: media
 bundle: audio
 mode: media_library
 content:
-  name:
-    type: string_textfield
-    weight: 0
+  langcode:
+    type: language_select
+    weight: 2
     region: content
     settings:
-      size: 60
-      placeholder: ''
+      include_locked: true
+    third_party_settings: {  }
+  moderation_state:
+    type: moderation_state_default
+    weight: 100
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden:
   created: true
   field_media_audio_file: true
+  name: true
   path: true
   status: true
   uid: true

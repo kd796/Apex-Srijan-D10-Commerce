@@ -1,0 +1,29 @@
+uuid: d2e7df86-8760-43ab-851e-f77f878e6ec1
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.homepage_product
+  module:
+    - system
+    - views
+  theme:
+    - apextoolgroup
+id: views_block__homepage_product_homepage_product_section
+theme: apextoolgroup
+region: content
+weight: -6
+provider: null
+plugin: 'views_block:homepage_product-homepage_product_section'
+settings:
+  id: 'views_block:homepage_product-homepage_product_section'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

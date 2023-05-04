@@ -1,0 +1,29 @@
+uuid: 6e2630df-9002-450a-a55c-e1d045ad6fde
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.homepage_news
+  module:
+    - system
+    - views
+  theme:
+    - apextoolgroup
+id: views_block__homepage_news_homepage_feature_news
+theme: apextoolgroup
+region: content
+weight: -4
+provider: null
+plugin: 'views_block:homepage_news-homepage_feature_news'
+settings:
+  id: 'views_block:homepage_news-homepage_feature_news'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'
