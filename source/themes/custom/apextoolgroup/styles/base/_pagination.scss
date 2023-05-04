@@ -1,0 +1,60 @@
+.pager {
+
+  &__items {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__item {
+    padding: 0;
+    margin: 0 5px;
+    @media only screen and (max-width: $tablet) {
+      margin: 0;
+    }
+
+    a {
+      color: $black;
+      width: 32px;
+      height: 32px;
+      display: block;
+      padding: 4px;
+      border-radius: 50%;
+      font-weight: $normal;
+    }
+
+    &.is-active {
+      a {
+        color: $white;
+        background-color: $celtic-blue;
+      }
+    }
+
+    &--last,
+    &--first {
+      a {
+        width: unset;
+        height: unset;
+      }
+    }
+
+    &--ellipsis {
+      padding: 5px;
+    }
+
+    &--previous {
+      a {
+        overflow: hidden;
+        text-indent: 40px;
+        background: url('#{$icon-base-path}/arrow-left-black.svg') center no-repeat;
+      }
+    }
+
+    &--next {
+      a {
+        overflow: hidden;
+        text-indent: 40px;
+        background: url('#{$icon-base-path}/arrow-right-black.svg') center no-repeat;
+      }
+    }
+  }
+}
