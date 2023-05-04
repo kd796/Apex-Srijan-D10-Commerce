@@ -3,11 +3,9 @@
 
   Drupal.behaviors.faqAccordion = {
     attach: function (context, settings) {
-      $('.faq-question').click(function () {
-        $(this).toggleClass('active');
-        $(this).next('.faq-answer').slideToggle(300);
+      $('.faq-listing .faq-question').click(function () {
+        $(this).parents('.faq-listing .views-row').toggleClass('active').siblings('.faq-listing .views-row').removeClass('active');
       });
     }
   };
-
 })(jQuery, Drupal);

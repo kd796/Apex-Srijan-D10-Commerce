@@ -1,0 +1,22 @@
+.faq-listing {
+  .views-row {
+    .faq-accordion {
+      .faq-question {
+        padding: 16px 0;
+        cursor: pointer;
+        color: $celtic-blue;
+        border-bottom: 1px solid $aluminium-dark;
+      }
+
+      .faq-answer {
+        display: none;
+      }
+    }
+
+    &.active {
+      .faq-answer {
+        display: block;
+      }
+    }
+  }
+}
