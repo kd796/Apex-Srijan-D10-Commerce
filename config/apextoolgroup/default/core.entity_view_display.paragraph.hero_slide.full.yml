@@ -1,0 +1,49 @@
+uuid: 1ea56420-df9e-492f-bfe1-b3aacbfabc39
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.full
+    - field.field.paragraph.hero_slide.field_class_custom
+    - field.field.paragraph.hero_slide.field_content
+    - field.field.paragraph.hero_slide.field_media_background
+    - field.field.paragraph.hero_slide.field_style
+    - field.field.paragraph.hero_slide.field_title
+    - paragraphs.paragraphs_type.hero_slide
+  module:
+    - text
+_core:
+  default_config_hash: DsOopD2Ae4BtyASdTc2cM9-ovYf5OPEBxHnGhyvJqQ8
+id: paragraph.hero_slide.full
+targetEntityType: paragraph
+bundle: hero_slide
+mode: full
+content:
+  field_content:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_media_background:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: hero
+      link: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_class_custom: true
+  field_style: true
+  search_api_excerpt: true

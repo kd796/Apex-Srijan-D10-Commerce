@@ -4,6 +4,26 @@ namespace Drupal\cleco_vuejs\Utils;
 
 use function array_intersect;
 use Drupal;
+use Drupal\cleco_vuejs\Utils\Configurations\AccessoriesConfiguration;
+use Drupal\cleco_vuejs\Utils\Configurations\AdvancedDrillsConfiguration;
+use Drupal\cleco_vuejs\Utils\Configurations\AirMotorsConfiguration;
+use Drupal\cleco_vuejs\Utils\Configurations\ControllersAndSoftwareConfiguration;
+use Drupal\cleco_vuejs\Utils\Configurations\ElectricTorqueWrenchesConfiguration;
+use Drupal\cleco_vuejs\Utils\Configurations\FixturedSpindlesConfiguration;
+use Drupal\cleco_vuejs\Utils\Configurations\GrindersConfiguration;
+use Drupal\cleco_vuejs\Utils\Configurations\HandDrillingCountersinkingAndSpotfacingConfiguration;
+use Drupal\cleco_vuejs\Utils\Configurations\ImpactWrenchesConfiguration;
+use Drupal\cleco_vuejs\Utils\Configurations\LintPickerConfiguration;
+use Drupal\cleco_vuejs\Utils\Configurations\NibblersConfiguration;
+use Drupal\cleco_vuejs\Utils\Configurations\NutrunnersAndScrewdriversConfiguration;
+use Drupal\cleco_vuejs\Utils\Configurations\PercussionConfiguration;
+use Drupal\cleco_vuejs\Utils\Configurations\PulseToolsConfiguration;
+use Drupal\cleco_vuejs\Utils\Configurations\RivetingConfiguration;
+use Drupal\cleco_vuejs\Utils\Configurations\RoutersConfiguration;
+use Drupal\cleco_vuejs\Utils\Configurations\SandersAndPolishersConfiguration;
+use Drupal\cleco_vuejs\Utils\Configurations\SawsConfiguration;
+use Drupal\cleco_vuejs\Utils\Configurations\ShearsAndScissorsConfiguration;
+use Drupal\cleco_vuejs\Utils\Configurations\SpecialtyToolsConfiguration;
 use Drupal\cleco_vuejs\Utils\StringHelper;
 use Drupal\Core\Language\LanguageInterface;
 use function in_array;
@@ -271,6 +291,34 @@ class StepHelper
             'gb' => 'Accessories',
             'de' => 'Zubehör',
         ],
+        'Software' => [
+            'gb' => 'Software',
+            'de' => 'Software',
+        ],
+        'Hardware Manual' => [
+            'gb' => 'Hardware Manual',
+            'de' => 'Hardware-Handbuch',
+        ],
+        'IGS File' => [
+            'gb' => 'IGS File',
+            'de' => 'IGS-Datei',
+        ],
+        'Certificates' => [
+            'gb' => 'Certificates',
+            'de' => 'Zertifikate',
+        ],
+        'Repair Manual' => [
+            'gb' => 'Repair Manual',
+            'de' => 'Reparaturanleitung',
+        ],
+        'STP File' => [
+            'gb' => 'STP File',
+            'de' => 'STP-Datei',
+        ],
+        'Warranty' => [
+            'gb' => 'Warranty',
+            'de' => 'Garantie',
+        ],
         'Explore the Features' => [
             'gb' => 'Explore the Features',
             'de' => 'Übersicht der Funktionen',
@@ -311,6 +359,7 @@ class StepHelper
             'Installation Manual'      => [],
             'Instruction Manual'       => [],
             'Line Art'                 => [],
+            'Legacy'                   => [],
             'Manual'                   => [],
             'Maintenance Instruction'  => [],
             'MSDS'                     => [],
@@ -536,16 +585,16 @@ class StepHelper
      */
     public static function getCurrentSite()
     {
-        $config    = Drupal::config('system.site');
-        $language  = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
-        $urlConfig = Drupal::config('language.negotiation')->get('url')['source']; // path_prefix vs domain
+        $config    = \Drupal::config('system.site');
+        $language  = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
+        $urlConfig = \Drupal::config('language.negotiation')->get('url')['source']; // path_prefix vs domain
 
         return [
             'name'       => $config->get('name'),
             'code'       => $language,
-            'domain'     => Drupal::request()->getHost(),
+            'domain'     => \Drupal::request()->getHost(),
             'path'       => ($urlConfig == 'path_prefix') ? '/' . $language : '',
-            'url_config' => Drupal::config('language.negotiation')->get('url')['source']
+            'url_config' => $urlConfig,
         ];
     }
 
@@ -554,18 +603,25 @@ class StepHelper
      */
     public static function getProductFilters()
     {
-        $curSite = self::getCurrentSite();
+        $language  = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
         // Get all Product Filters from the first level
         $filters              = Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('product_filters', 0, 1);
         $collectionCheckboxes = [];
         $collectionRanges     = [];
 
+        $cache = \Drupal::cache();
+        $cid_product_filter = __FUNCTION__ . '_' . $language;
+        $product_filter_data_cached = $cache->get($cid_product_filter);
+        if ($product_filter_data_cached) {
+            return $product_filter_data_cached->data;
+        }
+
         foreach ($filters as $filter) {
             $term = Drupal\taxonomy\Entity\Term::load($filter->tid);
-            if ($term->hasTranslation($curSite['code'])) {
+            if ($term->hasTranslation($language)) {
                 // Only translate name of term
                 // ElasticSearch relies on english keys
-                $locale = $term->getTranslation($curSite['code']);
+                $locale = $term->getTranslation($language);
             }
 
             if (isset($term) && isset($locale)) {
@@ -608,6 +664,10 @@ class StepHelper
         // });
 
         $collection = array_merge($collectionCheckboxes, $collectionRanges);
+
+        // Add to cache.
+        $product_filter_tags = ['config:taxonomy.vocabulary.product_filters', 'taxonomy_term_list:product_filters'];
+        $cache->set($cid_product_filter, $collection, Drupal\Core\Cache\Cache::PERMANENT, $product_filter_tags);
 
         return $collection;
     }
@@ -670,7 +730,7 @@ class StepHelper
      * @return array
      */
     public static function sortAssetsForDisplay(array $assets)
-    { 
+    {
         $assetTypes = [
             'Beauty-Glamour Image',
             'Primary Image',
@@ -746,6 +806,8 @@ class StepHelper
         $definition = new ComparisonTableDefinition($product, 'models');
         $definition->setColumnOffset(1);
         // $definition->addColumn('Model')->forKey('sku');
+        $definition->addColumn('S.No')
+            ->forKey('number');
         $definition->addColumn('Model')
             ->forKey('name');
         $definition->addPrimaryKey('model');
@@ -814,22 +876,31 @@ class StepHelper
     }
 
   /**
-   * Translate hardcoded STEP data and filters.
+   * Get original translation for given translated string.
    *
-   * @param array $str
-   *   Adding arr parameter.
-   * @param string $site_lang_code
-   *   Adding lang parameter.
+   * @param string $str
+   *   The string to be translated to original.
+   * @param string $lang
+   *   Language of the given str.
    *
    * @return string
    *   Translated or original string.
    */
-  public static function translateEn($str, $site_lang_code) {
-    $search = array_search($str, array_column(self::$translations, $site_lang_code));
-    $searchArray = array_keys(self::$translations);
-    $translatedArr = $searchArray[$search];
-    return $translatedArr;
-  }
+    public static function getOriginalTranslation($str, $lang) {
+      $lang_col = array_column(self::$translations, $lang);
+      $found = array_search($str, $lang_col);
+      if ($found === FALSE) {
+        return $str;
+      }
+      $index = 0;
+      foreach (self::$translations as $key => $val) {
+        if ($found !== $index) {
+          $index++;
+          continue;
+        }
+        return $key;
+      }
+    }
 
     public static function getTranslations()
     {

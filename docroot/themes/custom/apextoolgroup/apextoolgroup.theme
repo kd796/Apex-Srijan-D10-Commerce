@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the campbell theme.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter() for search_form.
+ */
+function apextoolgroup_form_alter(&$form, &$form_state, &$form_id) {
+  if (in_array($form_id, ['search_block_form'])) {
+    $form['keys']['#attributes']['placeholder'] = t('Search');
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for form templates.
+ */
+function apextoolgroup_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  if (isset($variables['elements']['content']['#block_content'])) {
+    array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
+  }
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function apextoolgroup_preprocess_html(&$vars) {
+  // Get the current path.
+  $current_path = \Drupal::service('path.current')->getPath();
+  $internal = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+  $custom_class_path = [
+    '/privacy-policy',
+  ];
+  if (in_array($internal, $custom_class_path)) {
+    $vars['attributes']['class'][] = str_replace("/", "", $internal);
+  }
+}
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function apextoolgroup_preprocess_block(&$variables) {
+  // Matching id.
+  if (strpos($variables['attributes']['id'], 'block-homepagectablock') !== FALSE) {
+    $slider_view_content = views_embed_view('brands', 'homepage_brand_block');
+    $variables['brand_titles'] = $slider_view_content;
+  }
+}

@@ -1,0 +1,23 @@
+uuid: 6120cd7b-b111-4476-b51c-7f4c495d7ec4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.multisite_featured
+  module:
+    - text
+id: node.multisite_featured.body
+field_name: body
+entity_type: node
+bundle: multisite_featured
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

@@ -4,12 +4,11 @@ status: true
 dependencies:
   config:
     - core.entity_form_mode.media.media_library
+    - field.field.media.image.field_downloads_asset_id
     - field.field.media.image.field_media_image
     - image.style.thumbnail
     - media.type.image
-    - workflows.workflow.editorial
   module:
-    - content_moderation
     - image
 _core:
   default_config_hash: BMLrK4zKp8-FFnMseBdT_6h6YipUsKRfbDf_3WUB5HA
@@ -41,6 +40,7 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_downloads_asset_id: true
   name: true
   path: true
   status: true

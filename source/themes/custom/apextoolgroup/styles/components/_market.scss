@@ -1,0 +1,77 @@
+.market {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+  @media only screen and (max-width: $tablet-max) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media only screen and (max-width: $tablet) {
+    grid-template-columns: 1fr;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .market-list {
+    position: relative;
+    overflow: hidden;
+    height: 360px;
+
+    &__image {
+      position: relative;
+      height: 100%;
+
+      div,
+      .media {
+        height: 100%;
+      }
+    }
+
+    &__content {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      min-height: 70px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 16px;
+
+      p {
+        margin: 0;
+      }
+
+      h6 {
+        margin: 0;
+        line-height: 28px;
+      }
+    }
+
+    &:hover {
+      a {
+        color: $white;
+      }
+
+      .market-list__content {
+        min-height: 100%;
+        transition: min-height 0.35s ease-out;
+        background:  rgba(58, 117, 196, 0.9);
+
+        p {
+          position: absolute;
+          width: 90%;
+          bottom: 16px;
+        }
+
+        h6 {
+          font-size: $h2;
+          font-weight: $normal;
+          transition: font-size 0.35s ease-out, font-weight 0.25s ease-out;
+          position: absolute;
+          bottom: 50%;
+        }
+      }
+    }
+  }
+}

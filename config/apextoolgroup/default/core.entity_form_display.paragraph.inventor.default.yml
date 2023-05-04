@@ -1,0 +1,51 @@
+uuid: c915e4ed-f55b-4283-a9fb-2dba8a570634
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.inventor.field_attribution
+    - field.field.paragraph.inventor.field_html_anchor
+    - field.field.paragraph.inventor.field_media_item
+    - field.field.paragraph.inventor.field_title
+    - paragraphs.paragraphs_type.inventor
+  module:
+    - media_library
+id: paragraph.inventor.default
+targetEntityType: paragraph
+bundle: inventor
+mode: default
+content:
+  field_attribution:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_html_anchor:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_media_item:
+    type: media_library_widget
+    weight: 1
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

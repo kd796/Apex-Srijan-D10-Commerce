@@ -1,0 +1,76 @@
+apextoolgroup.All:
+  label: All
+  mediaQuery: 'all'
+  weight: 0
+  multipliers:
+    - 1x
+# max (29.99 x 16px == 479px)
+apextoolgroup.xsmall:
+  label: Extra Small (max)
+  mediaQuery: 'all and (max-width: 29.99rem)'
+  weight: 1
+  multipliers:
+    - 1x
+# min (30 x 16px ~= 480px)
+# max (35.49 x 16px ~= 568px)
+apextoolgroup.small_min:
+  label: Small (min)
+  mediaQuery: 'all and (min-width: 30rem)'
+  weight: 2
+  multipliers:
+    - 1x
+apextoolgroup.small:
+  label: Small
+  mediaQuery: 'all and (min-width: 30rem) and (max-width: 35.49rem)'
+  weight: 2
+  multipliers:
+    - 1x
+# min (35.50 x 16px ~= 568px)
+# max (47.99 x 16px ~= 767px)
+apextoolgroup.medium_min:
+  label: Medium (min)
+  mediaQuery: 'all and (min-width: 35.50rem)'
+  weight: 3
+  multipliers:
+    - 1x
+apextoolgroup.medium:
+  label: Medium
+  mediaQuery: 'all and (min-width: 35.50rem) and (max-width: 47.99rem)'
+  weight: 3
+  multipliers:
+    - 1x
+# min (48 x 16px ~= 768px)
+# max (61.24 x 16px ~= 979px)
+apextoolgroup.large_min:
+  label: Large
+  mediaQuery: 'all and (min-width: 48rem)'
+  weight: 4
+  multipliers:
+    - 1x
+apextoolgroup.large:
+  label: Large
+  mediaQuery: 'all and (min-width: 48rem) and (max-width: 61.24rem)'
+  weight: 4
+  multipliers:
+    - 1x
+# min (61.25 x 16px ~= 980px)
+# max (79.99 x 16px ~= 1279px)
+apextoolgroup.xlarge_min:
+  label: Extra Large (min)
+  mediaQuery: 'all and (min-width: 61.25rem)'
+  weight: 5
+  multipliers:
+    - 1x
+apextoolgroup.xlarge:
+  label: Extra Large
+  mediaQuery: 'all and (min-width: 61.25rem) and (max-width: 79.99rem)'
+  weight: 5
+  multipliers:
+    - 1x
+# min (80 x 16px ~= 1200px)
+apextoolgroup.grande:
+  label: Grande (min)
+  mediaQuery: 'all and (min-width: 80rem)'
+  weight: 6
+  multipliers:
+    - 1x
