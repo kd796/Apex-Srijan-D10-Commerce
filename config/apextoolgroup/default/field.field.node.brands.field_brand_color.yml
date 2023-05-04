@@ -1,0 +1,22 @@
+uuid: ca1f5888-fd3b-48c6-921c-4721bda23051
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_brand_color
+    - node.type.brands
+  module:
+    - color_field
+id: node.brands.field_brand_color
+field_name: field_brand_color
+entity_type: node
+bundle: brands
+label: 'Brand Color'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type

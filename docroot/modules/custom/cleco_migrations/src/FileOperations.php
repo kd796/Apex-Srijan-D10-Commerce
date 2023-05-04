@@ -246,4 +246,48 @@ class FileOperations {
     return $destination;
   }
 
+  /**
+   * Takes a source file and replaces the existing schema file in filesystem.
+   *
+   * This will allow us to update the import as needed.
+   *
+   * @param array|string $source_file
+   *   The source file to pull in.
+   * @param array|string $output_file
+   *   The output file to put in.
+   *
+   * @return null|string
+   *   The destination for the file.
+   */
+  public static function clearDestinationAndPullInNewFile(array|string $source_file, $output_file = 'pim_export_with_schema.xml'): ?string {
+    // For Apex.
+    $dest_directory = 'public://import/pim_data';
+    $destination = NULL;
+
+    \Drupal::service('file_system')->prepareDirectory(
+      $dest_directory,
+      FileSystemInterface::CREATE_DIRECTORY
+    );
+
+    if (is_object($source_file)) {
+      $source_filename = $source_file->uri;
+    }
+    else {
+      $source_filename = $source_file;
+    }
+
+    try {
+      $destination = \Drupal::service('file_system')->copy(
+        $source_filename,
+        $dest_directory . '/' . $output_file,
+        FileSystemInterface::EXISTS_REPLACE
+      );
+    }
+    catch (\Exception $e) {
+      \Drupal::messenger()->addError('Failed to copy uploaded file to the pim_data directory. Error: ' . $e->getMessage());
+    }
+
+    return $destination;
+  }
+
 }

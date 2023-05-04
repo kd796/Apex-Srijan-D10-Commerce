@@ -333,7 +333,7 @@ class StepTwigExtension extends \Twig_Extension
         if ($style == 'product_thumb') {
             array_filter($assets, function ($asset) use (&$filepath, $key) {
                 if ($asset['type'] == 'Primary Image' && isset($asset[$key])) {
-                    $filepath = $this->stepAssetBaseUrl() . 'styles/thumb/' . rawurlencode($asset[$key]);
+                    $filepath = $this->stepAssetBaseUrl()  . $asset[$key];
                 }
             });
         }
@@ -347,7 +347,7 @@ class StepTwigExtension extends \Twig_Extension
 
                 switch ($style) {
                     case 'product_thumb':
-                        $filepath = $this->stepAssetBaseUrl() . 'styles/thumb/' . $slug;
+                        $filepath = $this->stepAssetBaseUrl()  . $asset[$key];
                         break;
                     case 'product_zoom_thumb':
                         $filepath = $this->stepAssetBaseUrl() . 'styles/zoom-thumb/' . $slug;
@@ -619,7 +619,7 @@ class StepTwigExtension extends \Twig_Extension
                     $icon_key = $this->createKey($icon);
                 }
 
-                $icon_path = DRUPAL_ROOT . "/themes/atg/dist/img/icons/{$icon_key}.svg";
+                $icon_path = DRUPAL_ROOT . "/themes/custom/cleco/dist/img/icons/{$icon_key}.svg";
 
                 if (file_exists($icon_path)) {
                     $icon_src = file_get_contents($icon_path);

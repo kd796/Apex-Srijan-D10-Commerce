@@ -22,7 +22,7 @@
                         let assets = Array.isArray(product.assets) ? product.assets : Object.keys(product.assets);
                         assets.map( (asset) => {
                             if( asset.type === 'Primary Image') {
-                                thumb = process.env.MIX_STEP_DIR + 'styles/thumb/' + asset.id + '.jpg';
+                                thumb = asset.source_to_jpg;
                             }
                         });
                     }

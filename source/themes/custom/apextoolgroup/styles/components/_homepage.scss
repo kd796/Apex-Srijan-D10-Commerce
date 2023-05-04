@@ -1,0 +1,135 @@
+/****** Homepage sections ******/
+/****** Tools ******/
+.image-cta {
+  &__item {
+    &:nth-child(odd) {
+      background-color: $neon-tangerine;
+    }
+
+    &:nth-child(even) {
+      background-color: $celtic-blue;
+    }
+  }
+
+  .content-wrapper {
+    position: relative;
+
+    .text-section {
+      width: 55%;
+      padding: 60px 45px;
+      color: $white;
+      position: relative;
+      z-index: 2;
+      @media only screen and (max-width: $tablet) {
+        width: 90%;
+        padding: 30px 16px 120px;
+      }
+
+      .btn-secondary-white {
+        min-width: unset;
+        padding: 16px;
+        margin-top: 20px;
+        width: 137px;
+
+        @media only screen and (max-width: $tablet) {
+          width: 137px;
+          padding: 16px;
+          min-width: unset;
+        }
+      }
+    }
+
+    .main-image {
+      position: absolute;
+      z-index: 1;
+      bottom: 0;
+      @media only screen and (max-width: $tablet) {
+        bottom: 25px;
+      }
+
+      img {
+        @media only screen and (max-width: $tablet) {
+          width: 80%;
+        }
+      }
+    }
+
+    &.left-image {
+      .text-section {
+        margin-left: auto;
+        text-align: right;
+
+        .btn-secondary-white {
+          margin-left: auto;
+        }
+      }
+
+      .main-image {
+        left: 0;
+        @media only screen and (min-width: $tablet-max) {
+          left: 20px;
+        }
+      }
+    }
+
+    &.right-image {
+      .text-section {
+        margin-right: auto;
+        text-align: left;
+
+        .btn-secondary-white {
+          margin-right: auto;
+        }
+      }
+
+      .main-image {
+        right: 0;
+        @media only screen and (min-width: $tablet-max) {
+          right: 20px;
+        }
+
+        img {
+          @media only screen and (max-width: $tablet) {
+            margin-left: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+/****** Brands ******/
+.home-brands {
+  background-color: $white;
+}
+
+/****** New Products ******/
+.new-products {
+  background-color: $white;
+}
+
+/****** Call To Action ******/
+.cta-full {
+  background-color: $persimmon;
+  text-align: center;
+  color: $white;
+  padding: 65px 0;
+
+  p {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 40px;
+  }
+
+  .btn-secondary-white {
+    margin: auto;
+    max-width: fit-content;
+    padding: 16px 20px;
+  }
+}
+
+/****** Featured Press Releases ******/
+.featured-releases {
+  background-color: $celtic-blue;
+}
+
