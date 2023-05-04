@@ -147,6 +147,25 @@
 
         // Add static roles to elements.
         $widget.attr('role', 'tablist');
+        let isSomethingOpen = false;
+
+        // The first pass will open all accordions with selected content and
+        // will inform whether we need to open the first accordion.
+        $accordions.each(function (accordionIndex) {
+          var $accordion = $(this);
+          var $accordionContent = $accordion.children('.fieldset-wrapper');
+
+          $accordionContent.find('input').each(function () {
+            let checked = $(this).prop('checked');
+            let type = $(this).prop('type');
+
+            if (type !== 'radio' && checked) {
+              $accordion.addClass('component-accordion-item--open');
+              isSomethingOpen = true;
+              return false;
+            }
+          });
+        });
 
         // Attach each accordion item header to its content and hide content
         // that should be hidden.
@@ -159,6 +178,12 @@
           var accordionId = $accordion.attr('data-drupal-selector');
           var headerId = 'product-category-filter-item-' + accordionId + '__header';
           var panelId = 'product-category-filter-item-' + accordionId + '__panel';
+
+          // If no accordions are open, open the first accordion.
+          if (isSomethingOpen === false && accordionIndex === 0) {
+            $accordion.addClass('component-accordion-item--open');
+            $accordion.addClass('product-category-filter-item---open');
+          }
 
           // Determine whether this accordion needs to be open by default.
           var openByDefault = $accordion.hasClass('component-accordion-item--open');
@@ -182,7 +207,6 @@
 
         // Initialize the roving tabindex.
         $widget.rovingTabindex('[role=tab]');
-
         // Track when tab is changed.
         $widget.on('rovingTabindexChange', '[role=tab]', function (e, data) {
           var $accordion = $(this);
