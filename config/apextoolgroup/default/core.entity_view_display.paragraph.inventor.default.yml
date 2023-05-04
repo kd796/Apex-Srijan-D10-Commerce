@@ -1,0 +1,50 @@
+uuid: b21e68e6-9dad-49fb-93a7-948db063da57
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.inventor.field_attribution
+    - field.field.paragraph.inventor.field_html_anchor
+    - field.field.paragraph.inventor.field_media_item
+    - field.field.paragraph.inventor.field_title
+    - paragraphs.paragraphs_type.inventor
+id: paragraph.inventor.default
+targetEntityType: paragraph
+bundle: inventor
+mode: default
+content:
+  field_attribution:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_html_anchor:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_media_item:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: embed
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

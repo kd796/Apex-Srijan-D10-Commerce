@@ -1,0 +1,29 @@
+uuid: 632c7bfc-93d4-4fe7-86bb-4eeac3a07e31
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_all_markets
+    - node.type.brands
+    - taxonomy.vocabulary.markets
+id: node.brands.field_all_markets
+field_name: field_all_markets
+entity_type: node
+bundle: brands
+label: 'All Markets'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      markets: markets
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

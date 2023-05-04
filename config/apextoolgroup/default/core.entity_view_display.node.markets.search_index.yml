@@ -1,0 +1,43 @@
+uuid: 97886c52-3987-44cb-8a31-71fd74119335
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_index
+    - field.field.node.markets.body
+    - field.field.node.markets.field_banner_image
+    - field.field.node.markets.field_listing_image
+    - field.field.node.markets.field_short_description
+    - field.field.node.markets.field_weight
+    - node.type.markets
+  module:
+    - text
+    - user
+id: node.markets.search_index
+targetEntityType: node
+bundle: markets
+mode: search_index
+content:
+  field_listing_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: embed
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_short_description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  body: true
+  field_banner_image: true
+  field_weight: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

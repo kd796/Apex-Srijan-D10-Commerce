@@ -2,9 +2,13 @@
 
 namespace Drupal\campbell_where_to_buy\Services;
 
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
+use GuzzleHttp\ClientInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
+use Drupal\Component\Serialization\Json;
 
 /**
  * Provides methods to get/alter Where To Buy Map.
@@ -33,19 +37,52 @@ class WhereToBuyMapService {
   protected $connection;
 
   /**
+   * The HTTP client.
+   *
+   * @var \GuzzleHttp\Client
+   */
+  protected $httpClient;
+
+  /**
+   * The logger channel factory.
+   *
+   * @var \Drupal\Core\Logger\LoggerChannelFactoryInterface
+   */
+  protected $logger;
+
+  /**
+   * The configuration factory.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
+  protected $configFactory;
+
+  /**
    * Constructs a WhereToBuyMapService.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
    *   The entity manager.
    * @param \Drupal\Core\Database\Connection $connection
    *   The database connection.
+   * @param \GuzzleHttp\ClientInterface $http_client
+   *   The HTTP client.
+   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger
+   *   The logger channel factory.
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The config factory.
    */
   public function __construct(
     EntityTypeManagerInterface $entity_manager,
-    Connection $connection
+    Connection $connection,
+    ClientInterface $http_client,
+    LoggerChannelFactoryInterface $logger,
+    ConfigFactoryInterface $config_factory
   ) {
     $this->entityManager = $entity_manager;
     $this->connection = $connection;
+    $this->httpClient = $http_client;
+    $this->logger = $logger;
+    $this->configFactory = $config_factory;
   }
 
   /**
@@ -86,7 +123,7 @@ class WhereToBuyMapService {
    *   Latitude Longitude in array.
    */
   private function getLatitudeLongitudeFromAddress(string $city = '', string $province = '', string $country = '', int $miles = 20) {
-    $latlan = [];
+    $full_address = $latlan = [];
     $query = $this->connection->select('node_field_data', 'n')
       ->fields('n', ['nid']);
     $query->fields('nfa', [
@@ -102,21 +139,42 @@ class WhereToBuyMapService {
     $query->condition('n.type', 'local_retailer');
 
     if ($province) {
+      $province = ucwords(trim($province));
       $state_value = array_search($province, $this->stateAddress);
+
+      if (!$state_value) {
+        $province = strtoupper($province);
+        if (array_key_exists($province, $this->stateAddress)) {
+          $state_value = $province;
+        }
+      }
+      $full_address[] = $state_value;
+
       $query->condition('nfa.field_address_administrative_area', ($state_value ?? ''));
     }
     if ($city) {
-      $query->condition('nfa.field_address_locality', $city);
+      $full_address[] = $city;
+      $query->condition('nfa.field_address_locality', trim($city));
     }
     if ($country) {
+      $full_address[] = $country;
       $query->condition('nfa.field_address_country_code', $country);
     }
     $query_result = $query->execute()->fetchAll();
     $latitude = "";
     $longitude = "";
-    foreach ($query_result as $row) {
-      $latitude = $row->field_location_lat;
-      $longitude = $row->field_location_lng;
+
+    if (empty($query_result) && count($full_address)) {
+      $full_address = implode("+", $full_address);
+      $latlan_data = $this->fetchLatitudeLongitudeWithGoogleApi($full_address);
+      $latitude = $latlan_data['latitude'] ?? '';
+      $longitude = $latlan_data['longitude'] ?? '';
+    }
+    else {
+      foreach ($query_result as $row) {
+        $latitude = $row->field_location_lat;
+        $longitude = $row->field_location_lng;
+      }
     }
 
     if ($latitude && $longitude) {
@@ -192,7 +250,7 @@ class WhereToBuyMapService {
    *   Latitude Longitude in array.
    */
   private function getLatitudeLongitudeZip($zip, int $miles = 20) {
-    $latlan = [];
+    $latlan_data = $latlan = [];
 
     $query_result = $this->connection->query('SELECT n.nid, nfa.field_address_postal_code, nfl.field_location_lat, nfl.field_location_lng
                                               FROM {node_field_data} n
@@ -208,16 +266,23 @@ class WhereToBuyMapService {
                                                 ':postal_code' => $zip,
                                               ])->fetchAssoc();
 
-    if (isset($query_result['field_location_lat']) && $query_result['field_location_lat'] &&
-      isset($query_result['field_location_lng']) && $query_result['field_location_lng']) {
+    if (empty($query_result)) {
+      $latlan_data = $this->fetchLatitudeLongitudeWithGoogleApi($zip);
+    }
+    else {
+      $latlan_data['latitude'] = $query_result['field_location_lat'] ?? '';
+      $latlan_data['longitude'] = $query_result['field_location_lng'] ?? '';
+    }
+    if (isset($latlan_data['latitude']) && $latlan_data['latitude'] &&
+      isset($latlan_data['longitude']) && $latlan_data['longitude']) {
       $equator_lat_mile = 69.172;
 
-      $latlan['maxLat'] = $query_result['field_location_lat'] + $miles / $equator_lat_mile;
-      $latlan['minLat'] = $query_result['field_location_lat'] - ($latlan['maxLat'] - $query_result['field_location_lat']);
-      $latlan['maxLong'] = $query_result['field_location_lng'] + $miles / (cos($latlan['minLat'] * M_PI / 180) * $equator_lat_mile);
-      $latlan['minLong'] = $query_result['field_location_lng'] - ($latlan['maxLong'] - $query_result['field_location_lng']);
-      $latlan['orgLat'] = $query_result['field_location_lat'];
-      $latlan['orgLong'] = $query_result['field_location_lng'];
+      $latlan['maxLat'] = $latlan_data['latitude'] + $miles / $equator_lat_mile;
+      $latlan['minLat'] = $latlan_data['latitude'] - ($latlan['maxLat'] - $latlan_data['latitude']);
+      $latlan['maxLong'] = $latlan_data['longitude'] + $miles / (cos($latlan['minLat'] * M_PI / 180) * $equator_lat_mile);
+      $latlan['minLong'] = $latlan_data['longitude'] - ($latlan['maxLong'] - $latlan_data['longitude']);
+      $latlan['orgLat'] = $latlan_data['latitude'];
+      $latlan['orgLong'] = $latlan_data['longitude'];
     }
     else {
       $latlan['maxLat'] = 0;
@@ -375,6 +440,43 @@ class WhereToBuyMapService {
                                                         ':min_lan' => $latlan['minLong'],
                                                         ':max_lan' => $latlan['maxLong'],
                                                       ])->fetchAll();
+    return $query_result;
+  }
+
+  /**
+   * Get the latitude and longitude from Google API.
+   *
+   * @param string $search_string
+   *   Address ZIP OR Combination of country|state|city.
+   *
+   * @return array
+   *   API Output.
+   *
+   * @throws \GuzzleHttp\Exception\GuzzleException
+   */
+  private function fetchLatitudeLongitudeWithGoogleApi($search_string = '') {
+    $query_result = [];
+    try {
+      if ($search_string) {
+        $api_output = $this->httpClient->request('GET', "https://maps.googleapis.com/maps/api/geocode/json", [
+          'query' => [
+            'address' => $search_string,
+            'sensor' => FALSE,
+            'key' => $this->configFactory->get('geolocation_google_maps.settings')->get('google_map_api_key'),
+          ],
+        ]);
+
+        if ($api_output->getStatusCode() == 200) {
+          $json_output = Json::decode($api_output->getBody());
+          $query_result['latitude'] = $json_output['results'][0]['geometry']['location']['lat'];
+          $query_result['longitude'] = $json_output['results'][0]['geometry']['location']['lng'];
+        }
+      }
+    }
+    catch (\Exception $e) {
+      $this->logger->get('campbell_where_to_buy')->error('Google Map API is not working: ' . $e->getMessage());
+    }
+
     return $query_result;
   }
 
