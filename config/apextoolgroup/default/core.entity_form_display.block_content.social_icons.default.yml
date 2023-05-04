@@ -8,6 +8,7 @@ dependencies:
     - field.field.block_content.social_icons.field_share_icon
     - field.field.block_content.social_icons.field_share_link
     - field.field.block_content.social_icons.field_title
+    - field.field.block_content.social_icons.field_weight_to_rearrange
   module:
     - link
     - media_library
@@ -37,6 +38,13 @@ content:
     region: content
     settings:
       size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_weight_to_rearrange:
+    type: number
+    weight: 26
+    region: content
+    settings:
       placeholder: ''
     third_party_settings: {  }
   info:

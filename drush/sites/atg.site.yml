@@ -1,7 +1,6 @@
 local:
-  site-env: local
-  root: /var/www/docroot
   uri: apextoolgroup.ddev.site
+  root: '${env.cwd}/docroot'
 remote_dev:
   site-env: dev
   host: apextoolgroupdev.ssh.prod.acquia-sites.com
