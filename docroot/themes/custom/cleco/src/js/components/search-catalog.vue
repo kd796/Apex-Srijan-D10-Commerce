@@ -28,7 +28,7 @@
                             body = result.values.sku_overview || null;
                             thumb = result.assets.reduce(function (thumb, asset) {
                                 if (asset.type === 'Primary Image') {
-                                    return process.env.MIX_STEP_DIR + 'styles/thumb/' + asset.source_to_jpg;
+                                    return asset.source_to_jpg;
                                 }
 
                                 return thumb;

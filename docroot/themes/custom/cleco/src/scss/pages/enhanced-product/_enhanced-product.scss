@@ -152,9 +152,14 @@
 
   ul {
     margin-bottom: 0;
+    @include min(769px) {
+      display: flex;
+      flex-direction: column-reverse;
+    }
 
     @include max(769px) {
       display: flex;
+      flex-direction: row-reverse;
       justify-content: center;
       padding-top: 1em;
     }
@@ -168,12 +173,12 @@
       }
 
       +li {
-        margin-top: 0.75em;
+        margin-bottom: 0.75em;
         margin-left: 0;
 
         @include max(769px) {
             margin-top: 0;
-            margin-left: 0.75em;
+            margin-right: 0.75em;
         }
       }
     }
@@ -408,7 +413,7 @@
   }
 
   .contain {
-    max-width: 800px;
+    min-width: 800px;
     max-width: 50rem !important;
     top: 100px;
     opacity: 0;
@@ -706,6 +711,26 @@ html[lang="de"] {
   .atg_callout {
     &.atg_callout_right {
       bottom: 20%;
+    }
+  }
+}
+
+.enhanced-product {
+  .section--product-features {
+    .contain {
+      .product-features-copy {
+        .features-nav {
+          button {
+            svg {
+              fill: $color-blue !important;
+
+              path {
+                fill: $color-blue !important;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

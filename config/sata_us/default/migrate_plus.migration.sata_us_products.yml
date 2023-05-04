@@ -98,6 +98,10 @@ source:
       name: remote_keywords
       label: Keywords
       selector: './/*[@AttributeID=''ATT737269'']'
+    - 
+      name: status
+      label: Status
+      selector: './Values/Value[@AttributeID="SAP_SALES_ORG_STATUS"]/@ID'
     -
       name: remote_sales_org_status
       label: 'Sales Org Status'
@@ -110,12 +114,12 @@ source:
     remote_sku:
       type: string
 process:
-  sales_org_status:
-    plugin: skip_on_value
-    not_equals: true
-    source: remote_sales_org_status
-    method: row
-    value: Active
+  status:
+    plugin: apex_determine_published_status
+    source: status
+    value:
+      - Z3
+      - Z4
   sales_org:
     plugin: skip_on_value
     not_equals: true

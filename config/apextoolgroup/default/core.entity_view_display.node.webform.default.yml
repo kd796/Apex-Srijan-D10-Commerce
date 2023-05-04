@@ -1,0 +1,39 @@
+uuid: 250fc351-b505-48ce-b149-f0b2ec38b0b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.webform.field_address
+    - field.field.node.webform.field_location
+    - node.type.webform
+  module:
+    - address
+    - geolocation
+    - user
+id: node.webform.default
+targetEntityType: node
+bundle: webform
+mode: default
+content:
+  field_address:
+    type: address_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_location:
+    type: geolocation_latlng
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

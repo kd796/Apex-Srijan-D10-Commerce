@@ -1,0 +1,29 @@
+uuid: 0880be37-8efb-481e-b0a5-9e4bfcca4748
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_solution
+    - node.type.brands
+    - taxonomy.vocabulary.brand_solutions
+id: node.brands.field_solution
+field_name: field_solution
+entity_type: node
+bundle: brands
+label: Solution
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      brand_solutions: brand_solutions
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

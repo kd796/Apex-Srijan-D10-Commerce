@@ -1,7 +1,9 @@
-uuid: dd3560dc-b872-4297-a56f-79b5de62c20b
+uuid: 2a75d33e-a8d3-4a5b-8b17-f76f3cbfee1e
 langcode: en
 status: true
 dependencies: {  }
+_core:
+  default_config_hash: SwUxW7aU_Rwb9kzvNUAPcS1oUH9u6q4irlNRKa7XbtI
 id: cleco_product_media_gb
 class: null
 field_plugin_method: null
@@ -15,7 +17,7 @@ source:
   plugin: url
   data_fetcher_plugin: file
   data_parser_plugin: simple_xml
-  urls: 'public://import/pim_data/pim_export_with_schema_gb.xml'
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
   namespaces:
     stibo: 'http://www.stibosystems.com/step'
   item_selector: //Assets/Asset
@@ -56,10 +58,14 @@ process:
     plugin: cleco_get_media_type
     source: asset_usertype_id
     notification_logfile: 'public://import/pim_data/logs/product_media_notification_gb.txt'
-  name:
+  field_downloads_asset_id:
     plugin: skip_on_empty
     method: row
     source: asset_id
+  name:
+    plugin: skip_on_empty
+    method: row
+    source: asset_name
   status:
     plugin: default_value
     default_value: 1
@@ -102,6 +108,13 @@ process:
     map_media_config:
       'STP File': controller_stp_file_gb
       'IGS File': controller_igs_file_gb
+      'DXF File': controller_dxf_file_gb
+      ZIP: controller_zip_gb
+    map_media_extension:
+      'STP File': png
+      'IGS File': png
+      'DXF File': png
+      ZIP: png
     process_params:
       bundle: product_downloads
       source: bundle

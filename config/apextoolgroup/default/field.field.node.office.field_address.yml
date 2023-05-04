@@ -1,0 +1,25 @@
+uuid: 17f46f34-9162-4938-be03-5b87fc531ad3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_address
+    - node.type.office
+  module:
+    - address
+id: node.office.field_address
+field_name: field_address
+entity_type: node
+bundle: office
+label: Address
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  available_countries: {  }
+  langcode_override: ''
+  field_overrides: {  }
+  fields: {  }
+field_type: address
