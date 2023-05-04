@@ -89,9 +89,7 @@ process:
   
   field_sku: remote_sku
 
-  field_sku_group:
-    plugin: apex_get_id_attribute
-    source: remote_sku_group
+  field_sku_group: remote_sku
   
   field_long_description:
     plugin: apex_get_attribute_value
@@ -165,22 +163,10 @@ process:
     plugin: cleco_map_product_images
     source: remote_product_primary_image
     migration_instance: cleco_product_media_de
+    skip_primary_list: 1
     asset_type:
       - Beauty-Glamour Image
-      - Cutaway Image
-      - Highlight Image
-      - In Package Image
-      - In Use Image
-      - Literature
-      - Part Shot 1
-      - Part Shot 2
-      - Part Shot 3
-      - Part Shot 4
-      - Part Shot 5
-      - Product Logo
-      - Secondary Image
-      - Warning Image
-      - ICON
+      - SecondaryImage
     langcode: de
 
   status:
@@ -188,7 +174,9 @@ process:
     source: remote_product_status
     condition:
       AttributeID: SAP_SALES_ORG_STATUS
-      ID: Z2
+      ID:
+        - Z2
+        - P4
 
   langcode:
     plugin: default_value

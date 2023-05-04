@@ -51,7 +51,9 @@ function atg_custom_tokens_tokens($type, $tokens, array $data, array $options, \
           $attachment_id = $field_attachments[0]->getValue()['target_id'];
           $attachment_file = $entityTypeManager->getStorage('file')->load($attachment_id);
           $preview_uri = \Drupal::service('pdfpreview.generator')->getPDFPreview($attachment_file);
-          $replacements[$original] = \Drupal::service('file_url_generator')->generateAbsoluteString($preview_uri);
+          if(isset($preview_uri) && $preview_uri) {
+            $replacements[$original] = \Drupal::service('file_url_generator')->generateAbsoluteString($preview_uri);
+          }
           break;
       }
     }

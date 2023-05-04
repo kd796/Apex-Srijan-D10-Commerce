@@ -1,0 +1,23 @@
+uuid: 953b4dc3-d914-4150-9e2f-0b61af37be20
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_weight
+    - node.type.markets
+id: node.markets.field_weight
+field_name: field_weight
+entity_type: node
+bundle: markets
+label: Weight
+description: 'This is used for ordering of markets in listing page.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

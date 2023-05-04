@@ -1,0 +1,19 @@
+<div class="homepage-slider__item">
+  <div class="image">
+    {{ fields.field_banner_image.content }}
+    <div class="image-overlay">&nbsp;</div>
+  </div>
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-11 col-lg-7">
+          {% if fields.title.content %}<h1>{{ fields.title.content }}</h1>{% endif %}
+          {% if fields.field_footer_note.content %}<h6>{{ fields.field_footer_note.content }}</h6>{% endif %}
+          {% if fields.body.content %}{{ fields.body.content }}{% endif %}
+          {% if fields.field_slider_link_1.content %}<a href="{{ fields.field_slider_link.content|render|trim|striptags }}" class="btn-secondary-white">{{ fields.field_slider_link_1.content }}</a>{% endif %}
+        </div>
+        <div class="content-overlay">&nbsp;</div>
+      </div>
+    </div>
+  </div>
+</div>
