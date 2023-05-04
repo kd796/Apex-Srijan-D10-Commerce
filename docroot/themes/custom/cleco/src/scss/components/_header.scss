@@ -319,7 +319,7 @@
     background-color: $color-white;
     @include section-padding(horizontal);
   }
-  
+
   nav {
     height: 100%;
     @media only screen and (max-width: $media-screen-medium) {
@@ -377,9 +377,13 @@
               top: 0;
               width: 30px;
               height: 100%;
+              display: none;
               position: absolute;
               left: calc(57% - 35px);
               transform: translate(-57%, 0%);
+              @media only screen and(max-width: $media-screen-medium) {
+                display: block;
+              }
 
               &:after {
                 @media only screen and (max-width: $media-screen-medium) {

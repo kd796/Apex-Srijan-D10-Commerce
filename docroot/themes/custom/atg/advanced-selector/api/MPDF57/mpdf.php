@@ -48,7 +48,6 @@ if (!defined('_MPDF_TTFONTDATAPATH')) { define('_MPDF_TTFONTDATAPATH',_MPDF_PATH
 $errorlevel=error_reporting();
 $errorlevel=error_reporting($errorlevel & ~E_NOTICE);
 
-//error_reporting(E_ALL);
 
 if(function_exists("date_default_timezone_set")) {
 	if (ini_get("date.timezone")=="") { date_default_timezone_set("Europe/London"); }

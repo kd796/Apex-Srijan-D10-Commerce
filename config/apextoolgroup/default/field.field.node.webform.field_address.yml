@@ -1,0 +1,25 @@
+uuid: a3d550e7-aa62-4d00-b5e2-0c60e5ced2a6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_address
+    - node.type.webform
+  module:
+    - address
+id: node.webform.field_address
+field_name: field_address
+entity_type: node
+bundle: webform
+label: Address
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  available_countries: {  }
+  langcode_override: null
+  field_overrides: {  }
+  fields: {  }
+field_type: address

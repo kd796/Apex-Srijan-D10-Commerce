@@ -1,0 +1,29 @@
+uuid: e1098d0b-9745-428d-9a30-35a16ccb0b42
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_news_release_document
+    - media.type.file
+    - node.type.media_center
+id: node.media_center.field_news_release_document
+field_name: field_news_release_document
+entity_type: node
+bundle: media_center
+label: 'PDF Link'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      file: file
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

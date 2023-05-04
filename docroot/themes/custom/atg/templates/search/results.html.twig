@@ -100,7 +100,7 @@
       </notice>
 
       <catalog-results class-prefix="results" :data="catalog.data" :loading="catalog.currentQuery !== null">
-        {% raw %}
+        {% filter raw %}
           <li class="results-item" slot-scope="result">
             <div class="result">
               <a :href="result.url" class="result-image" v-if="result.image">
@@ -108,7 +108,7 @@
               </a>
               <div class="result-content">
                 <header class="result-header">
-                  <p class="result-subtitle">{{ result.type }}</p>
+                  <p class="result-subtitle">{{ '{{ result.type}}' }}</p>
                   <h3 class="result-title">
                     <a :href="result.url" class="result-link" v-html="result.title"></a>
                   </h3>
@@ -119,7 +119,7 @@
               </div>
             </div>
           </li>
-        {% endraw %}
+        {% endfilter %}
       </catalog-results>
 
       <pagination v-model="catalog.state.page" :total-results="catalog.total" :per-page.sync="catalog.state.perPage" :per-page-options="[12, 24, 48, 96]"

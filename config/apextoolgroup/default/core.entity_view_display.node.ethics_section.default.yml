@@ -1,0 +1,48 @@
+uuid: 464d5095-89b9-4eaa-b0a9-8985083836b3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.ethics_section.body
+    - field.field.node.ethics_section.field_media
+    - field.field.node.ethics_section.field_section_name
+    - node.type.ethics_section
+  module:
+    - text
+    - user
+id: node.ethics_section.default
+targetEntityType: node
+bundle: ethics_section
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_media:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_section_name:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

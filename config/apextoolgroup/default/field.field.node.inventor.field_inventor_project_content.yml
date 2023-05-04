@@ -1,0 +1,82 @@
+uuid: 04803e1d-6606-4483-87f9-b4db0b59defd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_inventor_project_content
+    - node.type.inventor
+    - paragraphs.paragraphs_type.inventor
+  module:
+    - entity_reference_revisions
+id: node.inventor.field_inventor_project_content
+field_name: field_inventor_project_content
+entity_type: node
+bundle: inventor
+label: 'Inventor Project Content'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      inventor: inventor
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 19
+        enabled: false
+      accordion_item:
+        weight: 20
+        enabled: false
+      content:
+        weight: 21
+        enabled: false
+      embed_block:
+        weight: 22
+        enabled: false
+      embed_iframe:
+        weight: 23
+        enabled: false
+      embed_view:
+        weight: 24
+        enabled: false
+      featured_content:
+        weight: 25
+        enabled: false
+      featured_links:
+        weight: 26
+        enabled: false
+      featured_media:
+        weight: 27
+        enabled: false
+      hero:
+        weight: 28
+        enabled: false
+      hero_slide:
+        weight: 29
+        enabled: false
+      image_and_text:
+        weight: 30
+        enabled: false
+      image_with_cta:
+        weight: 31
+        enabled: false
+      inventor:
+        weight: 32
+        enabled: true
+      pullquote:
+        weight: 33
+        enabled: false
+      section:
+        weight: 34
+        enabled: false
+      tabs:
+        weight: 35
+        enabled: false
+      tabs_tab:
+        weight: 36
+        enabled: false
+field_type: entity_reference_revisions

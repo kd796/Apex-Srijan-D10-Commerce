@@ -1,0 +1,108 @@
+uuid: 363c79eb-07fb-4392-9161-5e1d5ed8fb8f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.inventor.body
+    - field.field.node.inventor.field_footer_note
+    - field.field.node.inventor.field_inventor_project_content
+    - field.field.node.inventor.field_learn_about_our_process_bo
+    - field.field.node.inventor.field_learn_about_our_process_ti
+    - field.field.node.inventor.field_read_more
+    - field.field.node.inventor.field_short_description
+    - field.field.node.inventor.field_sub_heading
+    - field.field.node.inventor.field_submit_your_idea_title
+    - node.type.inventor
+  module:
+    - entity_reference_revisions
+    - link
+    - text
+    - user
+id: node.inventor.default
+targetEntityType: node
+bundle: inventor
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_footer_note:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_inventor_project_content:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_learn_about_our_process_bo:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_learn_about_our_process_ti:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_read_more:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 109
+    region: content
+  field_short_description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_sub_heading:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_submit_your_idea_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

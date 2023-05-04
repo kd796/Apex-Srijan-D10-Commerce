@@ -1,0 +1,57 @@
+uuid: 6fea32bb-2ecc-4935-8b8d-a41ccc797693
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_index
+    - field.field.node.news.body
+    - field.field.node.news.field_banner_image
+    - field.field.node.news.field_date
+    - field.field.node.news.field_is_featured
+    - field.field.node.news.field_media
+    - field.field.node.news.field_news_release_document
+    - field.field.node.news.field_news_type
+    - field.field.node.news.field_read_more
+    - field.field.node.news.field_sub_heading
+    - node.type.news
+  module:
+    - smart_trim
+    - user
+id: node.news.search_index
+targetEntityType: node
+bundle: news
+mode: search_index
+content:
+  body:
+    type: smart_trim
+    label: hidden
+    settings:
+      trim_length: 350
+      trim_type: chars
+      trim_suffix: ...
+      wrap_output: false
+      wrap_class: trimmed
+      more_link: false
+      more_class: more-link
+      more_text: More
+      more_aria_label: 'Read more about [node:title]'
+      summary_handler: full
+      trim_options:
+        text: false
+        trim_zero: false
+        replace_tokens: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_banner_image: true
+  field_date: true
+  field_is_featured: true
+  field_media: true
+  field_news_release_document: true
+  field_news_type: true
+  field_read_more: true
+  field_sub_heading: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

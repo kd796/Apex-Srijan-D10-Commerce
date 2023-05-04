@@ -41,14 +41,6 @@
                     </div>
                 </div>
                 <catalog-filter
-                    key="product_line"
-                    title="{{ 'Product Line' | t }}"
-                    slug="product_line"
-                    :options="catalog.facets.product_line"
-                    clear-label="{{ 'Clear' | t }}"
-                    v-model="catalog.state.product_line">
-                </catalog-filter>
-                <catalog-filter
                     key="product_category"
                     title="{{ 'Product Category' | t }}"
                     slug="product_category"

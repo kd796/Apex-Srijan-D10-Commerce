@@ -1,0 +1,26 @@
+uuid: 6679db22-e20c-402f-a87f-a92d9472ddf5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_footer_note
+    - node.type.slider
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats:
+      - plain_text
+id: node.slider.field_footer_note
+field_name: field_footer_note
+entity_type: node
+bundle: slider
+label: 'Sub Heading'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,37 @@
+uuid: 8e1b2e22-4a50-4c87-a715-8e2ec28fdc99
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_index
+    - field.field.node.media_center.field_address
+    - field.field.node.media_center.field_banner_image
+    - field.field.node.media_center.field_date
+    - field.field.node.media_center.field_location
+    - field.field.node.media_center.field_media_center_type
+    - field.field.node.media_center.field_news_release_document
+    - node.type.media_center
+  module:
+    - user
+id: node.media_center.search_index
+targetEntityType: node
+bundle: media_center
+mode: search_index
+content:
+  field_banner_image:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_address: true
+  field_date: true
+  field_location: true
+  field_media_center_type: true
+  field_news_release_document: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

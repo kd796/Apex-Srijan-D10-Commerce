@@ -126,6 +126,34 @@ class MapProductDownloads extends ProcessPluginBase implements ContainerFactoryP
       $list[] = ['target_id' => $mid];
     }
 
+    // Process for SKU Level Download Assets.
+    $sku_asset_crossreference = $value->xpath('parent::Product/Product/AssetCrossReference');
+    foreach ($sku_asset_crossreference as $child) {
+      $type = (string) $child->attributes()->Type;
+      $asset_id = (string) $child->attributes()->AssetID;
+      $mapped_type = $this->allowedDownloadTypes($type);
+      if (isset($processed_list[$asset_id])) {
+        continue;
+      }
+      if (empty($mapped_type)) {
+        continue;
+      }
+      $processed_list[$asset_id] = 1;
+      $mid = $this->getMigratedTaxonomyTid($asset_id, $this->configuration['migration_instance']);
+      // Create product download, if configured to create on missing.
+      if (empty($mid) && $create_media) {
+        $this->createProductDownloadMedia($asset_id, $langcode);
+      }
+
+      if (empty($mid)) {
+        $message = "\nSyntax: time drush mim cleco_product_media  --uri=clecotools  --idlist='" . $asset_id . "'\n";
+        echo $message;
+        $message .= "Missing mapping for Product Download $asset_id";
+        $this->logMessage($this->configuration['notification_logfile'], $message);
+        continue;
+      }
+      $list[] = ['target_id' => $mid];
+    }
     return $list;
   }
 
