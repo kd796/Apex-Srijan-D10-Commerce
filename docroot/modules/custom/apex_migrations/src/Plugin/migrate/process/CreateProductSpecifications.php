@@ -31,7 +31,7 @@ class CreateProductSpecifications extends ProcessPluginBase {
     $parent_term_id = NULL;
 
     $product_specifications = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties([
-      'vid' => 'product_specifications'
+      'vid' => 'product_specifications',
     ]);
 
     if (!empty($value)) {
@@ -57,21 +57,19 @@ class CreateProductSpecifications extends ProcessPluginBase {
               if (count($child->children()) > 1) {
                 foreach ($child->children() as $item) {
                   $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $item);
+                  if (is_object($term)) {
+                    $values_array[] = $this->addToValues($vid, $term);
+                  }
                 }
               }
               else {
                 $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $child->Value);
+                $values_array[] = $this->addToValues($vid, $term);
               }
             }
             else {
               $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $child);
-            }
-
-            if (is_object($term)) {
-              $values_array[] = [
-                'vid' => $vid,
-                'target_id' => $term->id()
-              ];
+              $values_array[] = $this->addToValues($vid, $term);
             }
           }
         }
@@ -154,6 +152,19 @@ class CreateProductSpecifications extends ProcessPluginBase {
     }
 
     return FALSE;
+  }
+
+  /**
+   * Common function to add values to array.
+   */
+  protected function addToValues($vid, $term) {
+    if (is_object($term)) {
+      $values_array = [
+        'vid' => $vid,
+        'target_id' => $term->id(),
+      ];
+    }
+    return $values_array;
   }
 
 }
