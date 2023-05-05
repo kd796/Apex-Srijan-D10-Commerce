@@ -5,13 +5,13 @@
         <div class="product-hero">
             <div class="product-hero-media">
                 {# Primary Image #}
-                {% if product.assets is defined %}
+                {% if product.image_asset is defined %}
                     <carousel>
-                        {% for index, asset in product.assets | sort_assets %}
+                        {% for index, asset in product.image_asset %}
                             {% set zoomable = step_asset([asset], 'source_to_jpg', 'large') %}
                             {% set thumb = step_asset([asset], 'source_to_jpg', 'product_zoom_thumb') %}
-                            <carousel-item id="carousel-{{ index }}" thumb="{{ product.product_image }}" class="product-hero-media-item">
-                                <zoomable src="{{ product.product_image }}" full="{{ product.product_image }}" alt="Product image"></zoomable>
+                            <carousel-item id="carousel-{{ index }}" thumb="{{ asset.source_to_jpg }}" class="product-hero-media-item">
+                                <zoomable src="{{ asset.source_to_jpg }}" full="{{ asset.source_to_jpg }}" alt="Product image"></zoomable>
                             </carousel-item>
                         {% endfor %}
                     </carousel>
@@ -115,14 +115,11 @@
                     <ul class="listings">
                         {% set downloadTypes = getDownloadTypes() %}
                         {% for asset in product.assets %}
-                            {% if asset.type in downloadTypes|keys %}
+                          {% if asset.type != 'Primary Image' %}
                                 {% set hasDownloads = true %}
                                 <li class="listings-item">
-                                    {% set url = '#' %}
-                                    {% if (downloadTypes[asset.type] is defined) %}
                                         {% set url = download_link(asset, asset.type) %}
                                         {% set thumb = step_asset([asset], 'pro_tools_jpg_of_pdf') %}
-                                    {% endif %}
                                     {% include '@atg/patterns/listing.html.twig' with {
                                         url: url,
                                         title: asset.id,
@@ -147,42 +144,37 @@
         'product_category': product.product_category,
         'product_line': product.product_line,
         'product_line_ids': product.product_line_ids
-    }) %}
-    {% set relatedProducts = getRelatedProducts(criteria, productName)|json_decode(true) %}
-
-    {% if relatedProducts.hits is defined %}
-        {% if relatedProducts.hits|length > 1 %}
-            <section class="section">
-                <header class="section-header">
-                    <div class="section-header-content">
-                        <h2 class="section-title">{{ '<em>Related</em> Products' | t }}</h2>
-                    </div>
-                </header>
-
-                <ul class="listings">
-
-                    {# Get correct alias based on selected language #}
-                   {#} {% set alias = alias_by_path('/products/product-catalog', locale.code) %}
-
-                    {% for related in relatedProducts.hits %}
-                        {% if related._source.name != productName %}
-                            <li class="listings-item">
-                                {% set data = related._source %}
-                                {% include '@atg/patterns/listing.html.twig' with {
-                                    title: data.name,
-                                    body: data.values.sku_overview,
-                                    url: locale.path ~ alias ~ '/' ~ data.slug,
-                                    size: 'large',
-                                    image: (data.assets is not empty) ? step_asset(data.assets) : ''
-                                } %}
-                            </li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-            </section>
-        {% endif %}
-    {% endif %}#}
-
+    }) %}#}
+    {% set relatedProducts = product.related_products %}
+    {% if relatedProducts is defined %}
+      {% if relatedProducts|length > 1 %}
+        <section id="related-products-section" class="section">
+          <header class="section-header">
+            <div class="section-header-content">
+              <h2 class="section-title">{{ '<em>Related</em> Products'|t }}</h2>
+            </div>
+          </header>
+          <ul class="listings">
+            {# Get correct alias based on selected language #}
+            {% set alias = alias_by_path('/products/product-catalog', locale.code) %}
+            {% for related in relatedProducts %}
+              {% if related._source.name != productName %}
+                <li class="listings-item">
+                  {% set data = related._source %}
+                  {% include '@atg/patterns/listing.html.twig' with {
+                      title: data.name,
+                      body: data.values.sku_overview,
+                      url: locale.path ~ alias ~ '/' ~ data.slug.0,
+                      size: 'large',
+                      image: (data.assets is not empty) ? step_asset(data.assets) : ''
+                  } %}
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </section>
+      {% endif %}
+    {% endif %}
     <section class="section">
          {{ drupal_region('product_detail_page_callouts') }}
     </section>

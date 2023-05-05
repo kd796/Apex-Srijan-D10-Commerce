@@ -1,0 +1,33 @@
+uuid: 4d498c73-23a4-4d06-abae-56baedb38d43
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.market_other_blocks
+  module:
+    - node
+    - views
+  theme:
+    - apextoolgroup
+id: views_block__market_other_blocks_other_market_blocks
+theme: apextoolgroup
+region: post_content
+weight: 0
+provider: null
+plugin: 'views_block:market_other_blocks-other_market_blocks'
+settings:
+  id: 'views_block:market_other_blocks-other_market_blocks'
+  label: ''
+  label_display: '0'
+  provider: views
+  context_mapping: {  }
+  views_label: ''
+  items_per_page: none
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      markets: markets

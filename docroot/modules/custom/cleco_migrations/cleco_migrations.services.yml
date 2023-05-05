@@ -1,0 +1,6 @@
+services:
+  # Drush commands
+  cleco_common.product_download_service:
+    class: Drupal\cleco_migrations\Commands\ProductDownloadService
+    tags:
+      - { name: drush.command }

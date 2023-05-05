@@ -88,7 +88,6 @@ if (!defined('_MPDF_TTFONTDATAPATH')) {
 $errorlevel = error_reporting();
 $errorlevel = error_reporting($errorlevel & ~E_NOTICE);
 
-//error_reporting(E_ALL);
 
 if (function_exists("date_default_timezone_set")) {
 	if (ini_get("date.timezone") == "") {
