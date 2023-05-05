@@ -67,14 +67,59 @@ class MapAssetCategoryType extends ProcessPluginBase implements ContainerFactory
     $asset_crossreference = $value->xpath('parent::Product/AssetCrossReference');
     $langcode = $this->configuration['langcode'] ?? '';
 
+    $processed_list = [];
+    // Process at SKU Gorup.
     foreach ($asset_crossreference as $child) {
       $type = (string) $child->attributes()->Type;
       $asset_id = (string) $child->attributes()->AssetID;
       $mapped_type = $this->allowedDownloadTypes($type);
 
+      if (isset($processed_list[$asset_id])) {
+        continue;
+      }
+
       if (empty($mapped_type)) {
         continue;
       }
+      $processed_list[$asset_id] = 1;
+      $mid = $this->getMigratedTaxonomyTid($asset_id, $this->configuration['product_download_instance']);
+      if (empty($mid)) {
+        continue;
+      }
+
+      $media = $this->entityTypeManager->getStorage('media')->load($mid);
+
+      // Process for Type and category for product downloads only.
+      $bundle_info = $media->bundle->getValue();
+      if ($bundle_info[0]['target_id'] != "product_downloads") {
+        continue;
+      }
+
+      // Set Type and categories.
+      $classification_tids = [];
+      if ($mid) {
+        $classification_tids = $this->getAllProductCategories($mid, $langcode);
+      }
+      $media->field_type->setValue($mapped_type);
+      $media->field_product_category->setValue($classification_tids);
+      $media->save();
+    }
+
+    // Process at SKU Level download assets.
+    $sku_asset_crossreference = $value->xpath('parent::Product/Product/AssetCrossReference');
+    foreach ($sku_asset_crossreference as $child) {
+      $type = (string) $child->attributes()->Type;
+      $asset_id = (string) $child->attributes()->AssetID;
+      $mapped_type = $this->allowedDownloadTypes($type);
+
+      if (isset($processed_list[$asset_id])) {
+        continue;
+      }
+
+      if (empty($mapped_type)) {
+        continue;
+      }
+      $processed_list[$asset_id] = 1;
       $mid = $this->getMigratedTaxonomyTid($asset_id, $this->configuration['product_download_instance']);
       if (empty($mid)) {
         continue;

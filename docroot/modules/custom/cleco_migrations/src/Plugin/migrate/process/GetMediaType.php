@@ -46,7 +46,7 @@ class GetMediaType extends ProcessPluginBase {
       'igs file' => 'product_downloads',
       'exe' => 'product_downloads',
       'utf8' => 'product_downloads',
-      'mp4' => 'video',
+      'mp4' => 'product_downloads',
     ];
     if (array_key_exists(strtolower($user_type_id), $user_type_list)) {
       $type = $user_type_list[strtolower($user_type_id)];

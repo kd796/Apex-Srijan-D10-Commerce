@@ -41,10 +41,14 @@ process:
     plugin: cleco_get_media_type
     source: asset_usertype_id
     notification_logfile: public://import/pim_data/logs/product_media_notification_de.txt
-  name:
+  field_downloads_asset_id:
     plugin: skip_on_empty
     method: row
     source: asset_id
+  name:
+    plugin: skip_on_empty
+    method: row
+    source: asset_name
   status:
     plugin: default_value
     default_value: 1
@@ -92,6 +96,14 @@ process:
     map_media_config:
       STP File: controller_stp_file_de
       IGS File: controller_igs_file_de
+      DXF File: controller_dxf_file_de
+      ZIP: controller_zip_de
+    map_media_extension:
+      STP File: png
+      IGS File: png
+      DXF File: png
+      ZIP: png
+
     process_params:
       bundle: product_downloads
       source: bundle

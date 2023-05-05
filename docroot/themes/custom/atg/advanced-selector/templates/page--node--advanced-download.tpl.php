@@ -1,9 +1,7 @@
 <?php
 
-	error_reporting(E_ALL);
-    ini_set('display_errors', '1');
-    require_once($_SERVER['DOCUMENT_ROOT']."/themes/atg/advanced-selector/api/convert_variables.php");
-    require_once($_SERVER['DOCUMENT_ROOT']."/themes/atg/advanced-selector/api/Database.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/themes/custom/atg/advanced-selector/api/convert_variables.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/themes/custom/atg/advanced-selector/api/Database.php");
 	if (!isset($_COOKIE["userid"])):
         header("location: /tools/advanced-drilling");
     endif;

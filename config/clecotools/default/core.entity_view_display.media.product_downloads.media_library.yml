@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.media.media_library
+    - field.field.media.product_downloads.field_downloads_asset_id
     - field.field.media.product_downloads.field_language
     - field.field.media.product_downloads.field_listing_image
     - field.field.media.product_downloads.field_media_file
@@ -31,6 +32,7 @@ content:
     region: content
 hidden:
   created: true
+  field_downloads_asset_id: true
   field_language: true
   field_listing_image: true
   field_media_file: true

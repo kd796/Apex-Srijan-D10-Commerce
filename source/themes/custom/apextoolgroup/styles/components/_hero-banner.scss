@@ -1,0 +1,74 @@
+.hero-banner {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  position: relative;
+
+  .media--image {
+    width: 100%;
+
+    img {
+      width: 100%;
+      min-height: 445px;
+      @media only screen and (max-width: $desktop) {
+        min-height: 400px;
+      }
+
+      @media only screen and (max-width: $tablet-max) {
+        min-height: 364px;
+      }
+
+      @media only screen and (max-width: $tablet) {
+        min-height: 314px;
+      }
+
+      @media only screen and (max-width: $mobile) {
+        min-width: auto;
+      }
+    }
+  }
+
+  &__caption {
+    left: 0;
+    width: 100%;
+    padding: 24px 0;
+    position: absolute;
+    top: calc(100% - 32px);
+    transform: translateY(-100%);
+    background: rgba($celtic-blue, 0.95);
+
+    @media only screen and (max-width: $desktop) {
+      top: calc(100% - 24px);
+      padding: 20px 0;
+    }
+
+    @media only screen and (max-width: $tablet-max) {
+      top: calc(100% - 20px);
+      padding: 18px 0;
+    }
+
+    @media only screen and (max-width: $tablet) {
+      top: calc(100% - 16px);
+      padding: 16px 0;
+    }
+  }
+
+  &__title {
+    padding: 0;
+    color: $white;
+    margin: 0 0 16px;
+    text-transform: none;
+    @media only screen and (max-width: $desktop) {
+      margin: 0 0 12px;
+    }
+  }
+
+  &__description {
+    p {
+      margin: 0;
+      padding: 0;
+      color: $white;
+      font-weight: 400;
+    }
+  }
+}

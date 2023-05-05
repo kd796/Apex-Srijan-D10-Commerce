@@ -1,0 +1,39 @@
+uuid: b4e99a3d-ce8f-479e-a3c7-605535e841d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.hero_image
+    - field.field.block_content.hero_image.body
+    - field.field.block_content.hero_image.field_image
+  module:
+    - media_library
+id: block_content.hero_image.default
+targetEntityType: block_content
+bundle: hero_image
+mode: default
+content:
+  field_image:
+    type: media_library_widget
+    weight: 2
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 1
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+hidden:
+  body: true

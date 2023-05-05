@@ -1,0 +1,76 @@
+uuid: 0d9c37d8-2682-4b5e-b997-63e2eeaff26f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_image_and_text_component
+    - node.type.multisite_featured
+    - paragraphs.paragraphs_type.image_and_text
+  module:
+    - entity_reference_revisions
+id: node.multisite_featured.field_image_and_text_component
+field_name: field_image_and_text_component
+entity_type: node
+bundle: multisite_featured
+label: 'Image and Text Component'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      image_and_text: image_and_text
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 17
+        enabled: false
+      accordion_item:
+        weight: 18
+        enabled: false
+      content:
+        weight: 19
+        enabled: false
+      embed_block:
+        weight: 20
+        enabled: false
+      embed_iframe:
+        weight: 21
+        enabled: false
+      embed_view:
+        weight: 22
+        enabled: false
+      featured_content:
+        weight: 23
+        enabled: false
+      featured_links:
+        weight: 24
+        enabled: false
+      featured_media:
+        weight: 25
+        enabled: false
+      hero:
+        weight: 26
+        enabled: false
+      hero_slide:
+        weight: 27
+        enabled: false
+      image_and_text:
+        weight: 28
+        enabled: true
+      pullquote:
+        weight: 29
+        enabled: false
+      section:
+        weight: 30
+        enabled: false
+      tabs:
+        weight: 31
+        enabled: false
+      tabs_tab:
+        weight: 32
+        enabled: false
+field_type: entity_reference_revisions
