@@ -1,0 +1,28 @@
+uuid: d2e33ed5-43a5-437b-8b0d-d9881606f890
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.brand_listing_banner
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - apextoolgroup
+id: brandlistingbanner
+theme: apextoolgroup
+region: pre_content
+weight: -11
+provider: null
+plugin: 'fixed_block_content:brand_listing_banner'
+settings:
+  id: 'fixed_block_content:brand_listing_banner'
+  label: 'Brand Listing Banner'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /brands-faceting

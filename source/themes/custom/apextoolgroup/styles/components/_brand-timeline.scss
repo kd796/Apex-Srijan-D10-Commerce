@@ -21,14 +21,8 @@
 
     fieldset {
       margin: 0 0 25px;
-
-      .fieldset-wrapper {
-        background: none;
-        border: 0;
-        padding: 0;
-        overflow: unset;
-        max-height: unset;
-
+      position: relative;
+      @media only screen and (min-width: $tablet-max) {
         &::after {
           content: '';
           display: block;
@@ -37,20 +31,50 @@
           background: $spanish-gray;
           opacity: 0.62;
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+          position: absolute;
+          bottom: 15px;
+        }
+      }
+
+      .fieldset-wrapper {
+        background: none;
+        border: 0;
+        padding: 0;
+        max-height: unset;
+        overflow: hidden;
+
+        &::-webkit-scrollbar {
+          width: 2px;
+        }
+        @media only screen and (min-width: $tablet) and (max-width: $tablet-max)  {
+          overflow: scroll;
+          max-width: 740px;
+        }
+        @media only screen and (min-width: $tablet-max) {
+          overflow: scroll;
+          max-width: 1100px;
         }
       }
     }
 
     .form-radios {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      justify-content: flex-start;
     }
 
     .form-type-radio {
       display: flex;
       flex-wrap: wrap;
       margin: 0;
+      @media only screen and (max-width: $tablet-max) {
+        border-bottom: solid 1px $silver;
+      }
+
+      &:last-child {
+        @media only screen and (max-width: $tablet-max) {
+          border-bottom: solid 3px $celtic-blue;
+        }
+      }
 
       .form-radio {
         display: none;
@@ -74,9 +98,9 @@
 
       label {
         font-size: 20px;
-        font-weight: $semi-bold;
+        font-weight: $normal;
         line-height: 24px;
-        color: 	$spanish-gray;
+        color: 	$black;
         background: $white;
         padding: 10px 15px;
         cursor: pointer;
@@ -119,6 +143,9 @@
       &.select-view {
         .form-radios {
           flex-direction: column;
+          justify-content: flex-start;
+          max-height: 300px;
+          overflow: scroll;
         }
 
         .form-type-radio {
@@ -176,13 +203,14 @@
 
           &.active {
             transform: rotate(180deg);
+            background-position: right;
           }
         }
 
         .menu-dropdown {
           position: absolute;
           z-index: 10;
-          top: 33px;
+          top: 39px;
           left: 0;
           min-width: 100%;
           width: 100%;

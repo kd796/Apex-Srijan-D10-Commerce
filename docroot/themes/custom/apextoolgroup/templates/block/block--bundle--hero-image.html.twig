@@ -36,20 +36,14 @@
 
 <div {{attributes.addClass(classes)}}>
   {% block content %}
-    {{ content }}
+    {{ content|without('field_title', 'body') }}
   {% endblock %}
 
-  {% if label or content.body.0 %}
+  {% if content.field_title.0 or content.body.0 %}
   <div class="hero-banner__caption">
     <div class="container">
       <h1 class="hero-banner__title">
-        {{ title_prefix }}
-        {% if label %}
-          <h2{{title_attributes}}>
-            {{ label }}
-          </h2>
-        {% endif %}
-        {{ title_suffix }}
+        {{ content.field_title.0 }}
       </h1>
 
       <div class="hero-banner__description">

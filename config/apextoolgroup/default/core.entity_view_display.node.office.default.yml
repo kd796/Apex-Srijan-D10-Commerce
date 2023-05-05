@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.office.field_address
     - field.field.node.office.field_category
     - field.field.node.office.field_learn_about_our_process_ti
+    - field.field.node.office.field_listing_image
     - field.field.node.office.field_location
     - field.field.node.office.field_phone
     - field.field.node.office.field_read_more
@@ -53,6 +54,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 108
+    region: content
+  field_listing_image:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 109
     region: content
   field_location:
     type: geolocation_latlng

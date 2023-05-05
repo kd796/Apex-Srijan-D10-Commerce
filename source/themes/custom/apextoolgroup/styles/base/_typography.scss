@@ -148,3 +148,30 @@ ul {
     line-height: 25.2px;
   }
 }
+
+summary {
+  padding: 0;
+  color: $black;
+  font-size: $h5;
+  font-weight: 400;
+  line-break: 25.2px;
+  font-family: $nacelle;
+  @media only screen and(max-width: $desktop) {
+    font-size: $p;
+  }
+}
+
+input[type='checkbox'] {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 0;
+}
+
+label {
+  font-size: $p;
+  color: $black;
+  font-weight: 400;
+  line-height: 22.4px;
+  font-family: $nacelle;
+}
