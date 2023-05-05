@@ -62,31 +62,13 @@ class ApiController extends ControllerBase {
    * @throws \Drupal\search_api\SearchApiException
    */
   public function actionFilterProducts(Request $request) {
-    // Search query.
-    $search_query = $request->get('q', '');
-
-    // Pagination params.
-    $page = $request->get('page');
-    if (!is_numeric($page)) {
-      $page = 1;
-    }
-    $per_page = $request->get('perPage');
-    if (!is_numeric($per_page)) {
-      $per_page = 24;
-    }
-    $offset = ($page - 1) * $per_page;
-
-    // Consider all other params apart from above as filters.
-    $filter_params = $request->query->all();
-    unset($filter_params['q']);
-    unset($filter_params['page']);
-    unset($filter_params['perPage']);
+    $params = $this->getParams($request);
 
     // Perform search.
-    $results = $this->solrSearchService->searchProducts($filter_params, $search_query, $per_page, $offset);
+    $results = $this->solrSearchService->searchProducts($params['filters'], $params['queryString'], $params['perPage'], $params['settings']['from']);
 
     // Format results for vuejs.
-    $json = $this->vueDataFormatter->formatProductCatalog($results);
+    $json = $this->vueDataFormatter->formatSearchResults($results);
 
     return new JsonResponse($json, 200);
   }
@@ -116,13 +98,9 @@ class ApiController extends ControllerBase {
 
     // Consider all other params apart from above as filters.
     $filter_params = $request->query->all();
+    $queryString = $filter_params['q'];
 
-    unset($filter_params['q']);
-    unset($filter_params['page']);
-    unset($filter_params['perPage']);
-
-    // Perform search.
-    $results = $this->solrSearchService->searchDownloads($filter_params, $search_query, $per_page, $offset);
+   $results = $this->solrSearchService->searchDownloads($filter_params, $queryString, $per_page, $offset);
     // Format results for vuejs.
     $json = $this->vueDataFormatter->formatDownloadCatalog($results);
 
@@ -161,8 +139,15 @@ class ApiController extends ControllerBase {
    *   The request object.
    */
   public function actionSearch(Request $request) {
-    $json = file_get_contents(__DIR__ . '/sample-search.json');
-    return new JsonResponse(json_decode($json), 200);
+    $params = $this->getParams($request);
+
+    // Perform search.
+    $results = $this->solrSearchService->searchAll($params['filters'], $params['queryString'], $params['perPage'], $params['settings']['from']);
+
+    // Format results for vuejs.
+    $json = $this->vueDataFormatter->formatSearchResults($results);
+
+    return new JsonResponse($json, 200);
   }
 
   /**
@@ -175,15 +160,26 @@ class ApiController extends ControllerBase {
    *   The parameter array.
    */
   protected function getParams(Request $request) {
+    // Pagination params.
     $params['page']    = $request->get('page') ?? 1;
     $params['perPage'] = $request->get('perPage') ?? 24;
     settype($params['page'], 'integer');
     settype($params['perPage'], 'integer');
+
     $params['settings'] = [
       'from' => ($params['page'] - 1) * $params['perPage'],
       'size' => $params['perPage'],
     ];
+
+    // Search query.
     $params['queryString'] = $request->get('q') ?? NULL;
+
+    // Consider all other params apart from above as filters.
+    $filter_params = $request->query->all();
+    unset($filter_params['q']);
+    unset($filter_params['page']);
+    unset($filter_params['perPage']);
+    $params['filters'] = $filter_params;
 
     return $params;
   }

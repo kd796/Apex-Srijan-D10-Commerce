@@ -1,0 +1,21 @@
+uuid: fe14edd1-791a-4ba0-9460-40c5a427d82c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_location
+    - node.type.media_center
+  module:
+    - geolocation
+id: node.media_center.field_location
+field_name: field_location
+entity_type: node
+bundle: media_center
+label: Location
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: geolocation

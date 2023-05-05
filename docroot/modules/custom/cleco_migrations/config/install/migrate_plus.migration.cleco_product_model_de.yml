@@ -50,7 +50,9 @@ process:
     source: remote_product_status
     condition:
       AttributeID: SAP_SALES_ORG_STATUS
-      ID: Z2
+      ID:
+        - Z2
+        - P4
   uid: constants/uid_root
   # Product Specifications
   product_specifications_array:

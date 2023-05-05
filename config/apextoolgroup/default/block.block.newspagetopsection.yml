@@ -1,0 +1,28 @@
+uuid: da4771ae-2207-4edb-8cb0-e274ddfc861b
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.news_page_top_section
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - apextoolgroup
+id: newspagetopsection
+theme: apextoolgroup
+region: pre_content
+weight: 0
+provider: null
+plugin: 'fixed_block_content:news_page_top_section'
+settings:
+  id: 'fixed_block_content:news_page_top_section'
+  label: 'News page top section'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/newsroom/*'

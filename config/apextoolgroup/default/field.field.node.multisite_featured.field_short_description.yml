@@ -1,0 +1,25 @@
+uuid: f35d5896-f76f-4195-8a1e-d6115b98f1a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_short_description
+    - node.type.multisite_featured
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats: {  }
+id: node.multisite_featured.field_short_description
+field_name: field_short_description
+entity_type: node
+bundle: multisite_featured
+label: 'Listing text for Image'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

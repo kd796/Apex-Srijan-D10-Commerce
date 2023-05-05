@@ -1,0 +1,56 @@
+uuid: 1dda71f8-03e4-4530-90bc-57e408ababd6
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.brands.body
+    - field.field.node.brands.field_all_industries
+    - field.field.node.brands.field_all_markets
+    - field.field.node.brands.field_brand_color
+    - field.field.node.brands.field_business_unit
+    - field.field.node.brands.field_claim_to_fame
+    - field.field.node.brands.field_end_users
+    - field.field.node.brands.field_footer_note
+    - field.field.node.brands.field_is_featured
+    - field.field.node.brands.field_listing_image
+    - field.field.node.brands.field_read_more
+    - field.field.node.brands.field_short_description
+    - field.field.node.brands.field_solution
+    - node.type.brands
+  module:
+    - text
+    - user
+id: node.brands.teaser
+targetEntityType: node
+bundle: brands
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_all_industries: true
+  field_all_markets: true
+  field_brand_color: true
+  field_business_unit: true
+  field_claim_to_fame: true
+  field_end_users: true
+  field_footer_note: true
+  field_is_featured: true
+  field_listing_image: true
+  field_read_more: true
+  field_short_description: true
+  field_solution: true
+  langcode: true
+  search_api_excerpt: true

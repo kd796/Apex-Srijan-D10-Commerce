@@ -1,9 +1,7 @@
-uuid: e77cf9b7-d943-4464-8978-884a96eb511c
+uuid: 58cb6186-a961-43fd-b759-95515798b5bf
 langcode: en
 status: true
 dependencies: {  }
-_core:
-  default_config_hash: 0bhjh_Zn_jVp4zXhR7dVgAHaxr-R4__YrX1TXfDbU2U
 id: cleco_products_gb
 class: null
 field_plugin_method: null
@@ -19,7 +17,7 @@ source:
   plugin: url
   data_fetcher_plugin: file
   data_parser_plugin: simple_xml
-  urls: 'public://import/pim_data/pim_export_with_schema_gb.xml'
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
   namespaces: 'http://www.stibosystems.com/step'
   item_selector: '//Product[@UserTypeID="SKU Group"]'
   fields:
@@ -110,9 +108,7 @@ process:
     plugin: default_value
     default_value: basic_html
   field_sku: remote_sku
-  field_sku_group:
-    plugin: apex_get_id_attribute
-    source: remote_sku_group
+  field_sku_group: remote_sku
   field_long_description:
     plugin: apex_get_attribute_value
     source: remote_product_long_description
@@ -169,29 +165,19 @@ process:
     plugin: cleco_map_product_images
     source: remote_product_primary_image
     migration_instance: cleco_product_media_gb
+    skip_primary_list: 1
     asset_type:
       - 'Beauty-Glamour Image'
-      - 'Cutaway Image'
-      - 'Highlight Image'
-      - 'In Package Image'
-      - 'In Use Image'
-      - Literature
-      - 'Part Shot 1'
-      - 'Part Shot 2'
-      - 'Part Shot 3'
-      - 'Part Shot 4'
-      - 'Part Shot 5'
-      - 'Product Logo'
-      - 'Secondary Image'
-      - 'Warning Image'
-      - ICON
+      - SecondaryImage
     langcode: gb
   status:
     plugin: cleco_map_product_status
     source: remote_product_status
     condition:
       AttributeID: SAP_SALES_ORG_STATUS
-      ID: Z2
+      ID:
+        - Z2
+        - P4
   langcode:
     plugin: default_value
     default_value: gb
