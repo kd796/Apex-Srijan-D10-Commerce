@@ -6,11 +6,21 @@ dependencies:
     - block_content.type.hero_image
     - field.field.block_content.hero_image.body
     - field.field.block_content.hero_image.field_image
+    - field.field.block_content.hero_image.field_title
+  module:
+    - text
 id: block_content.hero_image.default
 targetEntityType: block_content
 bundle: hero_image
 mode: default
 content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
   field_image:
     type: entity_reference_entity_view
     label: hidden
@@ -18,9 +28,16 @@ content:
       view_mode: embed
       link: false
     third_party_settings: {  }
+    weight: 2
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 0
     region: content
 hidden:
-  body: true
   langcode: true
   search_api_excerpt: true

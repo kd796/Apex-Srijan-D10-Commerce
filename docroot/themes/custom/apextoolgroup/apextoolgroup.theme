@@ -5,6 +5,9 @@
  * Functions to support theming in the campbell theme.
  */
 
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\block\Entity\Block;
+
 /**
  * Implements hook_form_FORM_ID_alter() for search_form.
  */
@@ -58,5 +61,11 @@ function apextoolgroup_preprocess_views_view(&$vars) {
   if ($view->storage->id() === 'office' && $view->current_display === 'offices') {
     // Add needed javascript.
     $vars['#attached']['library'][] = 'apextoolgroup/offices-map';
+    if ($vars['id'] === 'brands_catalog') {
+      $entity = \Drupal::entityTypeManager();
+      $block = $entity->getStorage('block')->load('apextoolgroup_local_tasks');
+      $render = $entity->getViewBuilder('block')->view($block);
+      $vars['localtasktabs'] = $render;
+    }
   }
 }
