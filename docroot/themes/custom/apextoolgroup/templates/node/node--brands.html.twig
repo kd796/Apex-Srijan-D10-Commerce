@@ -1,0 +1,67 @@
+{{ attach_library('apextoolgroup/brand-detail') }}
+{% if content.field_banner_image or node.label %}
+<div class="hero-banner">
+  {{ content.field_banner_image }}
+  {% if node.label %}
+    <div class="hero-banner__caption">
+      <div class="container">
+        {% if node.label %}
+        <h1 class="hero-banner__title">
+          {{ node.label }}
+        </h1>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+</div>
+{% endif %}
+
+<div class="brand-detail">
+  <div class="container">
+    <div class="brand-detail__tabs">
+      <ul class="tabs tabs--atg primary">
+        <li class="is-active">
+          <a href="#overview">
+            {{content.body['#title']}}
+          </a>
+        </li>
+
+        <li>
+          <a href="#claim-to-fame">
+            {{content.field_claim_to_fame['#title']}}
+          </a>
+        </li>
+
+        <li>
+          <a href="#game-changers">
+            {{content.field_footer_note['#title']}}
+          </a>
+        </li>
+
+        <li>
+          <a href="#back-story">
+            {{content.field_short_description['#title']}}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="brand-detail__content">
+      <div id="overview" class="tab-pane is-active">
+        {{content.body}}
+      </div>
+
+      <div id="claim-to-fame" class="tab-pane">
+        {{content.field_claim_to_fame}}
+      </div>
+
+      <div id="game-changers" class="tab-pane">
+        {{content.field_footer_note}}
+      </div>
+
+      <div id="back-story" class="tab-pane">
+        {{content.field_short_description}}
+      </div>
+    </div>
+  </div>
+</div>
