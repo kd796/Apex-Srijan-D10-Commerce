@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * @file
+ * Provides primary Drupal hook implementations for sata emea site.
+ */
+
+/**
+ * Implements hook_page_attachments_alter.
+ */
+function sata_emea_migrations_page_attachments_alter(array &$attachments) {
+  foreach ($attachments['#attached']['html_head'] as $key => $value) {
+    if (isset($value[1]) && $value[1] == "google_tag_script_tag__primary") {
+      unset($attachments['#attached']['html_head'][$key]);
+    }
+  }
+}
+
+/**
+ * Implements hook_page_attachments_alter.
+ *
+ * Add the custom google tag script which works with Cookiebot (for only Sata EU site)
+ */
+function sata_emea_migrations_page_attachments(&$attachments) {
+  $weight = 9;
+  $types = apex_common_helper_get_google_tag_get_types();
+  foreach ($types as $type) {
+    $gtm_script = apex_common_helper_get_google_tag_inline_script($type, "container_id", $weight++);
+    if (!empty($gtm_script)) {
+      $attachments['#attached']['html_head'][] = $gtm_script;
+    }
+  }
+}

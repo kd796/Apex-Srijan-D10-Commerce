@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.search_index
     - field.field.node.social_post.body
     - field.field.node.social_post.field_media
+    - field.field.node.social_post.field_meta_tags
     - field.field.node.social_post.field_post_url
     - image.style.search_teaser_261x256
     - node.type.social_post
@@ -51,13 +52,10 @@ content:
       overlay: ''
       title: ''
       vanilla: false
-      icon: ''
       layout: ''
       view_mode: default
       cache: 0
-      current_view_mode: search_index
       skin: ''
-      fx: ''
       style: ''
       background: false
       box_caption: ''
@@ -69,17 +67,21 @@ content:
       media_switch: ''
       ratio: ''
       thumbnail_style: ''
-      _uri: ''
-      breakpoints: {  }
-      sizes: ''
-      grid_header: ''
       grid: ''
       grid_medium: ''
       grid_small: ''
+      breakpoints: {  }
+      current_view_mode: search_index
+      fx: ''
+      icon: ''
+      sizes: ''
+      grid_header: ''
+      _uri: ''
     third_party_settings: {  }
     weight: 0
     region: content
 hidden:
+  field_meta_tags: true
   field_post_url: true
   langcode: true
   links: true

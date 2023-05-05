@@ -1,0 +1,37 @@
+diff --git a/src/Entity/Container.php b/src/Entity/Container.php
+index 02b9a2e..810c32b 100644
+--- a/src/Entity/Container.php
++++ b/src/Entity/Container.php
+@@ -262,17 +262,21 @@ class Container extends ConfigEntityBase implements ConfigEntityInterface, Entit
+ 
+     // Build script snippet.
+     $script = <<<EOS
+-(function(w,d,s,l,i){
+-  w[l]=w[l]||[];
+-  w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+-  var f=d.getElementsByTagName(s)[0];
+-  var j=d.createElement(s);
+-  var dl=l!='dataLayer'?'&l='+l:'';
+-  j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+'$query';
+-  j.async=true;
+-  f.parentNode.insertBefore(j,f);
+-})(window,document,'script','$data_layer','$container_id');
+-EOS;
++    if (Cookiebot.consent.statistics) {
++  (function(w,d,s,l,i){
++    w[l]=w[l]||[];
++    w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
++    var f=d.getElementsByTagName(s)[0];
++    var j=d.createElement(s);
++    var dl=l!='dataLayer'?'&l='+l:'';
++    j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+'$query';
++    j.async=true;
++    f.parentNode.insertBefore(j,f);
++  })(window,document,'script','$data_layer','$container_id')
++  }else {
++    console.log("no cookiebot consent given")
++  };
++  EOS;
+     return $this->compactSnippet($script);
+   }
+ 

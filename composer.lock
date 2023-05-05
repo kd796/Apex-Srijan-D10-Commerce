@@ -2944,17 +2944,17 @@
         },
         {
             "name": "drupal/acquia_connector",
-            "version": "3.0.6",
+            "version": "4.0.3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/acquia_connector.git",
-                "reference": "3.0.6"
+                "reference": "4.0.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/acquia_connector-3.0.6.zip",
-                "reference": "3.0.6",
-                "shasum": "8c37604b7bcc7c43e12ef9c2f1d1d65af3a75c4b"
+                "url": "https://ftp.drupal.org/files/projects/acquia_connector-4.0.3.zip",
+                "reference": "4.0.3",
+                "shasum": "c4e186b65b508ce251ee01eb482af0808dfb99cc"
             },
             "require": {
                 "drupal/core": ">=8.9 <11.0.0-stable",
@@ -2963,19 +2963,19 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "3.0.6",
-                    "datestamp": "1665784287",
+                    "version": "4.0.3",
+                    "datestamp": "1676495534",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
                 },
                 "branch-alias": {
-                    "dev-3.x": "3.x-dev"
+                    "dev-4.x": "4.x-dev"
                 },
                 "drush": {
                     "services": {
-                        "drush.services.yml": "^9 || ^10"
+                        "drush.services.yml": ">=9"
                     }
                 }
             },
@@ -2999,6 +2999,10 @@
                 {
                     "name": "japerry",
                     "homepage": "https://www.drupal.org/user/45640"
+                },
+                {
+                    "name": "kaynen",
+                    "homepage": "https://www.drupal.org/user/733308"
                 },
                 {
                     "name": "kolafson",
@@ -3450,30 +3454,30 @@
         },
         {
             "name": "drupal/better_exposed_filters",
-            "version": "5.2.0",
+            "version": "6.0.2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/better_exposed_filters.git",
-                "reference": "8.x-5.2"
+                "reference": "6.0.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/better_exposed_filters-8.x-5.2.zip",
-                "reference": "8.x-5.2",
-                "shasum": "43f0d013d78ab72c29d797ac5fe9be682ffbfb85"
+                "url": "https://ftp.drupal.org/files/projects/better_exposed_filters-6.0.2.zip",
+                "reference": "6.0.2",
+                "shasum": "e06e8f88fab14942e4d3f71faaa64a30f136792c"
             },
             "require": {
-                "drupal/core": "^8.8 || ^9",
+                "drupal/core": "^9 || ^10",
                 "drupal/jquery_ui": "^1.4",
-                "drupal/jquery_ui_datepicker": "^1.0",
+                "drupal/jquery_ui_datepicker": "^1.2",
                 "drupal/jquery_ui_slider": "^1.1",
                 "drupal/jquery_ui_touch_punch": "^1.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-5.2",
-                    "datestamp": "1657172286",
+                    "version": "6.0.2",
+                    "datestamp": "1666017720",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -11068,27 +11072,27 @@
         },
         {
             "name": "drupal/selective_better_exposed_filters",
-            "version": "2.0.0-beta6",
+            "version": "3.0.0-beta1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/selective_better_exposed_filters.git",
-                "reference": "8.x-2.0-beta6"
+                "reference": "3.0.0-beta1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/selective_better_exposed_filters-8.x-2.0-beta6.zip",
-                "reference": "8.x-2.0-beta6",
-                "shasum": "66e5606a40a88d57fa017e786a74de6fed190989"
+                "url": "https://ftp.drupal.org/files/projects/selective_better_exposed_filters-3.0.0-beta1.zip",
+                "reference": "3.0.0-beta1",
+                "shasum": "8aa0be38f499a9b2e55aec7aacba9a7e92199ecf"
             },
             "require": {
-                "drupal/better_exposed_filters": "^4.0 || ^5.0",
-                "drupal/core": "^8 || ^9"
+                "drupal/better_exposed_filters": "^4.0 || ^5.0 || ^6.0",
+                "drupal/core": "^8 || ^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.0-beta6",
-                    "datestamp": "1595929214",
+                    "version": "3.0.0-beta1",
+                    "datestamp": "1671917757",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
@@ -11312,6 +11316,72 @@
             "support": {
                 "source": "https://cgit.drupalcode.org/simple_sitemap",
                 "issues": "https://drupal.org/project/issues/simple_sitemap",
+                "irc": "irc://irc.freenode.org/drupal-contribute"
+            }
+        },
+        {
+            "name": "drupal/sitemap",
+            "version": "2.0.0-beta4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/sitemap.git",
+                "reference": "8.x-2.0-beta4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/sitemap-8.x-2.0-beta4.zip",
+                "reference": "8.x-2.0-beta4",
+                "shasum": "f4fc2b05689a217855ed416c4961db8cf96a9e3d"
+            },
+            "require": {
+                "drupal/core": "^9.1 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-2.0-beta4",
+                    "datestamp": "1672799632",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Nik Alexandrov",
+                    "homepage": "https://www.drupal.org/u/nafes",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Anna Kalata",
+                    "homepage": "https://www.drupal.org/u/akalata",
+                    "role": "Co-maintainer"
+                },
+                {
+                    "name": "killes@www.drop.org",
+                    "homepage": "https://www.drupal.org/u/killeswww.drop.org",
+                    "role": "Co-maintainer"
+                },
+                {
+                    "name": "See other contributors",
+                    "homepage": "https://www.drupal.org/node/3295/committers",
+                    "role": "contributor"
+                },
+                {
+                    "name": "Nafes",
+                    "homepage": "https://www.drupal.org/user/2489926"
+                }
+            ],
+            "description": "Display a sitemap.",
+            "homepage": "http://drupal.org/project/sitemap",
+            "support": {
+                "source": "http://cgit.drupalcode.org/sitemap",
+                "issues": "http://drupal.org/project/issues/sitemap",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
             }
         },
@@ -24404,7 +24474,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/better_exposed_filters": 10,
         "drupal/block_field": 15,
         "drupal/content_sync": 10,
         "drupal/cookiebot": 15,
@@ -24432,6 +24501,7 @@
         "drupal/path_redirect_import": 20,
         "drupal/rabbit_hole": 10,
         "drupal/selective_better_exposed_filters": 10,
+        "drupal/sitemap": 10,
         "drupal/swiftmailer": 20,
         "drupal/tamper": 15,
         "drupal/taxonomy_access_fix": 10,

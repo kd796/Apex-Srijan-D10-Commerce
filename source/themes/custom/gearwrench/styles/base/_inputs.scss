@@ -392,3 +392,97 @@ $active-gap: 8px; // the math likes px values
   }
 }
 
+//input checbox for hubspot form
+.hbspt-form {
+  .hs-i_ve_read_and_accept_the_privacy_policy{
+    .hs-form-booleancheckbox {
+      .hs-form-booleancheckbox-display {
+  
+        input[type='checkbox'] {
+          background: #EB8900;
+          border: 1px solid #272525;
+          content: '';
+          height: 1.125rem;
+          left: 0;
+          position: absolute;
+          top: 0;
+          width: 1.125rem;
+          border-radius: 1px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+  
+          &::after {
+            @include icon-styles;
+            color: $black;
+            content: icon-char(checkmark);
+            font-size: rem(10px);
+            height: $active-width;
+            width: $active-width;
+            position: absolute;
+            top: 3px;
+            left: 0.1rem;
+            display: none;
+          }
+          &:checked {
+            background-color:  #EB8900;
+  
+            &::after {
+              background-color:  #EB8900;;
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+  .form-columns-2 {
+    .hs-firstname, .hs-lastname{
+      .input{
+        margin-right: unset;
+      }
+    }
+    .hs-firstname{
+      padding-right: 6px;
+    }
+    .hs-lastname{
+      padding-left: 6px;
+    }
+  }
+  .form-columns-1{
+    .hs-email {
+      margin-top: 6px;
+      .input {
+        margin-right: unset;
+        .hs-input {
+          width: 100%;
+        }
+      }
+    }
+  }
+  
+  .hs_submit {
+    .actions {
+      .hs-button {
+        background: unset !important;
+        background-color: black !important;
+      }
+    }
+  }
+}
+
+label.hs-form-booleancheckbox-display {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  line-height: 1;
+  padding-left: 1.625rem;
+}
+
+.hs_i_ve_read_and_accept_the_privacy_policy {
+  .inputs-list {
+    list-style: none;
+    padding-left: 0;
+  }
+}

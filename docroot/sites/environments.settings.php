@@ -80,6 +80,7 @@ switch ($site_environment) {
     break;
 
   case 'local':
+  case 'ddev':
     $config['config_split.config_split.local']['status'] = TRUE;
 
     // Solr
@@ -116,4 +117,9 @@ if (file_exists($app_root . '/' . $site_path . '/settings.docksal.php')) {
 // Enable local settings overrides.
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
+}
+
+// Enable ddev settings overrides.
+if (file_exists($app_root . '/' . $site_path . '/settings.ddev.php') && getenv('IS_DDEV_PROJECT') == 'true') {
+  include $app_root . '/' . $site_path . '/settings.ddev.php';
 }

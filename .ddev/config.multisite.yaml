@@ -1,4 +1,13 @@
 additional_hostnames:
+  - apex-tools-local
+  - crescenttool-local
+  - crescenttool-au-local
+  - gearwrench-local
+  - gearwrench-au-local
+  - sata-brazil-local
+  - sata-colombia-local
+  - sata-emea-local
+  - sata-us-local
   - gearwrench
   - clecotools
   - de.clecotools
@@ -10,13 +19,27 @@ additional_hostnames:
   - uk.apex-tools
 hooks:
   post-start:
+  - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS apextoolgroup; GRANT ALL ON apextoolgroup.* to 'db'@'%';"
+    service: db
+  - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS crescenttool; GRANT ALL ON crescenttool.* to 'db'@'%';"
+    service: db
+  - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS crescenttool_au; GRANT ALL ON crescenttool_au.* to 'db'@'%';"
+    service: db
   - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS gearwrench; GRANT ALL ON gearwrench.* to 'db'@'%';"
+    service: db
+  - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS gearwrench_au; GRANT ALL ON gearwrench_au.* to 'db'@'%';"
+    service: db
+  - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS sata_brazil; GRANT ALL ON sata_brazil.* to 'db'@'%';"
+    service: db
+  - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS sata_colombia; GRANT ALL ON sata_colombia.* to 'db'@'%';"
+    service: db
+  - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS sata_emea; GRANT ALL ON sata_emea.* to 'db'@'%';"
+    service: db
+  - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS sata_us; GRANT ALL ON sata_us.* to 'db'@'%';"
     service: db
   - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS clecotools; GRANT ALL ON clecotools.* to 'db'@'%';"
     service: db
   - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS campbell; GRANT ALL ON campbell.* to 'db'@'%';"
     service: db
   - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS apex_tools; GRANT ALL ON apex_tools.* to 'db'@'%';"
-    service: db
-  - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS apextoolgroup; GRANT ALL ON apextoolgroup.* to 'db'@'%';"
     service: db
