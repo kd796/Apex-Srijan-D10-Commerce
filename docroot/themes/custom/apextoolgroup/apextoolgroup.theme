@@ -45,10 +45,26 @@ function apextoolgroup_preprocess_html(&$vars) {
  * Implements hook_preprocess_block().
  */
 function apextoolgroup_preprocess_block(&$variables) {
-  // Matching id.
-  if (strpos($variables['attributes']['id'], 'block-homepagectablock') !== FALSE) {
-    $slider_view_content = views_embed_view('brands', 'homepage_brand_block');
-    $variables['brand_titles'] = $slider_view_content;
+
+  $block_plugin_id = $variables['derivative_plugin_id'];
+  $content = $variables['elements']['content'];
+
+  switch ($block_plugin_id) {
+    case 'homepage_cta_block':
+      $variables['brand_titles'] = views_embed_view('brands', 'homepage_brand_block');
+      break;
+
+    case 'news_page_top_section':
+      // Extracting image path for theming.
+      $entity = \Drupal::entityTypeManager();
+      if (!empty($content['#block_content']->field_image->getValue())) {
+        $hero_image_id = $content['#block_content']->field_image->getValue()[0]['target_id'];
+        $media_entity = $entity->getStorage('media')->load($hero_image_id);
+        $file_entity = $entity->getStorage('file')->load($media_entity->field_media_image->target_id);
+        $file_path = $file_entity->createFileUrl();
+        $variables['hero_image_path'] = $file_path;
+      }
+      break;
   }
 }
 
