@@ -1,0 +1,28 @@
+uuid: a1ba89ba-a296-4cd8-ad51-952e2aa2d52f
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.ethics_banner
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - apextoolgroup
+id: ethicsbanner
+theme: apextoolgroup
+region: pre_content
+weight: -11
+provider: null
+plugin: 'fixed_block_content:ethics_banner'
+settings:
+  id: 'fixed_block_content:ethics_banner'
+  label: 'Ethics Banner'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/ethics\r\n/ethics/sustainability\r\n/ethics/compliance\r\n/ethics/safety"

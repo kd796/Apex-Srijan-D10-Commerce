@@ -1,0 +1,32 @@
+uuid: e945344c-0425-47e3-9212-a699083c4c42
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.product_industry.field_meta_tags
+    - taxonomy.vocabulary.product_industry
+  module:
+    - metatag
+    - text
+id: taxonomy_term.product_industry.default
+targetEntityType: taxonomy_term
+bundle: product_industry
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_meta_tags:
+    type: metatag_empty_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

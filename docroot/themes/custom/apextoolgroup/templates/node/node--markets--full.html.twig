@@ -73,6 +73,7 @@
     not node.isPublished() ? 'is-unpublished',
     view_mode ? view_mode|clean_class,
     'clearfix',
+    'container',
   ]
 %}
 
@@ -94,7 +95,7 @@
   {% endif %}
 </div>
 
-<div class="container">
+<div {{attributes.addClass(classes)}}>
   <div class="market-details">
     {{ content.body }}
   </div>
