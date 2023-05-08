@@ -1,6 +1,5 @@
-<div class="homepage-slider__item">
+<div class="homepage-slider__item" style="background-image: url('{{ fields.field_media_image.content|render|trim|striptags|replace({'\n': '', '\r': '', '\t': ''}) }}');">
   <div class="image">
-    {{ fields.field_banner_image.content }}
     <div class="image-overlay">&nbsp;</div>
   </div>
   <div class="content">

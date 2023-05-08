@@ -77,10 +77,8 @@
   ]
 %}
 
-<div class="hero-banner">
-  {{ content.field_banner_image }}
-
-{% if node.label or content.field_short_description.0 %}
+<div class="hero-banner" style="background-image: url('{{ image_path }}');">
+  {% if node.label or content.field_short_description.0 %}
   <div class="hero-banner__caption">
     <div class="container">
       <h1 class="hero-banner__title">

@@ -3,52 +3,39 @@
   padding: 0;
   width: 100%;
   position: relative;
+  height: 100%;
+  padding-top: 270px;
+  padding-bottom: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  @media only screen and (max-width: $tablet-max) {
+    padding-top: 200px;
+    padding-bottom: 24px;
+  }
+  @media only screen and (max-width: $tablet) {
+    padding-top: 150px;
+  }
 
-  .media--image {
+  img {
     width: 100%;
-
-    img {
-      width: 100%;
-      min-height: 445px;
-      @media only screen and (max-width: $desktop) {
-        min-height: 400px;
-      }
-
-      @media only screen and (max-width: $tablet-max) {
-        min-height: 364px;
-      }
-
-      @media only screen and (max-width: $tablet) {
-        min-height: 314px;
-      }
-
-      @media only screen and (max-width: $mobile) {
-        min-width: auto;
-      }
-    }
   }
 
   &__caption {
     left: 0;
     width: 100%;
     padding: 24px 0;
-    position: absolute;
-    top: calc(100% - 32px);
-    transform: translateY(-100%);
     background: rgba($celtic-blue, 0.95);
 
     @media only screen and (max-width: $desktop) {
-      top: calc(100% - 24px);
       padding: 20px 0;
     }
 
     @media only screen and (max-width: $tablet-max) {
-      top: calc(100% - 20px);
       padding: 18px 0;
     }
 
     @media only screen and (max-width: $tablet) {
-      top: calc(100% - 16px);
       padding: 16px 0;
     }
   }

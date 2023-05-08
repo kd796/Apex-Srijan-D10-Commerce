@@ -34,10 +34,7 @@
   ]
 %}
 
-<div {{attributes.addClass(classes)}}>
-  {% block content %}
-    {{ content|without('field_title', 'body') }}
-  {% endblock %}
+<div {{attributes.addClass(classes)}} style="background-image: url('{{ hero_image_path }}');">
 
   {% if content.field_title.0 or content.body.0 %}
   <div class="hero-banner__caption">
