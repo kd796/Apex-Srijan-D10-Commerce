@@ -31,7 +31,7 @@ class DetermineProductPublishStatus extends ProcessPluginBase {
 
     // If $value matches any of the configured values, unpublish the node.
     if (in_array($value, $values)) {
-      $this->getLogger('apex_migrations')->notice("Product: @product is unpublished as it is discontinued.", ['@product' => $row->getIdMap()['sourceid1']]);
+      // $this->getLogger('apex_migrations')->notice("Product: @product is unpublished as it is discontinued.", ['@product' => $row->getIdMap()['sourceid1']]);
       $published = FALSE;
     }
     return $published;
