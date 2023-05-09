@@ -100,10 +100,14 @@
         font-size: 20px;
         font-weight: $normal;
         line-height: 24px;
-        color: 	$black;
+        color: $spanish-gray;
         background: $white;
         padding: 10px 15px;
         cursor: pointer;
+        @media only screen and (min-width: $tablet-max) {
+          font-size: 24px;
+          padding: 10px 14px;
+        }
 
         &.ajax-load-class {
           color: $spanish-gray;
