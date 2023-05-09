@@ -45,7 +45,6 @@ function apextoolgroup_preprocess_html(&$vars) {
  * Implements hook_preprocess_block().
  */
 function apextoolgroup_preprocess_block(&$variables) {
-
   $block_plugin_id = $variables['derivative_plugin_id'];
   $content = $variables['elements']['content'];
 
@@ -90,6 +89,7 @@ function apextoolgroup_preprocess_views_view(&$vars) {
  * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for news, full.
  */
 function apextoolgroup_preprocess_node__news__full(array &$variables) {
+
   $node = $variables['elements']['#node'];
   $file_path = '';
 
@@ -102,4 +102,48 @@ function apextoolgroup_preprocess_node__news__full(array &$variables) {
   }
 
   $variables['news_release_document_path'] = $file_path;
+}
+
+/**
+ * Implements hook_preprocess_node.
+ */
+function apextoolgroup_preprocess_node(array &$variables) {
+
+  $node = $variables['elements']['#node'];
+  $type = $node->getType();
+  $file_path = '';
+
+  switch ($type) {
+    case 'news':
+      if (!empty($node->field_news_release_document->getValue())) {
+        $variables['news_release_document_path'] = _get_absolute_string('field_news_release_document', $node, 'field_media_file');
+      }
+
+      if (!empty($node->field_banner_image->getValue())) {
+        $variables['image_path'] = _get_absolute_string('field_banner_image', $node, 'field_media_image');
+      }
+      break;
+
+    case 'markets':
+      if (!empty($node->field_banner_image->getValue())) {
+        $variables['image_path'] = _get_absolute_string('field_banner_image', $node, 'field_media_image');
+      }
+      break;
+
+    case 'brands':
+      if (!empty($node->field_banner_image->getValue())) {
+        $variables['image_path'] = _get_absolute_string('field_banner_image', $node, 'field_media_image');
+      }
+      break;
+  }
+
+}
+
+/**
+ * Get image uri.
+ */
+function _get_absolute_string($field_name, $node, $media_field) {
+  $image_uri = $node->$field_name->entity->$media_field->entity->getFileUri();
+  $url = !empty($image_uri) ? \Drupal::service('file_url_generator')->generateAbsoluteString($image_uri) : NULL;
+  return $url;
 }
