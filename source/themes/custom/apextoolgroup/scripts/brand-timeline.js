@@ -204,6 +204,21 @@
       brandTimelineSlider.on('afterChange', function (event, slick, currentSlide, nextSlide) {
         disableArrow();
       });
+      // Show active brand year on screen.
+      var container = $('.brand-timeline-years  .fieldset-wrapper');
+      $('.view-filters .form-radios .form-radio:checked').parent('.form-type-radio').addClass('active');
+      const activeDiv = $('.brand-timeline-years  .form-type-radio.active');
+      const containerWidth = container.width();
+      const containerScrollLeft = container.scrollLeft();
+      const activeDivLeft = activeDiv.position().left;
+      const activeDivWidth = activeDiv.outerWidth(true);
+      const activeDivRight = activeDivLeft + activeDivWidth;
+      if (activeDivLeft < 0) {
+        container.scrollLeft(containerScrollLeft + activeDivLeft);
+      }
+      else if (activeDivRight > containerWidth) {
+        container.scrollLeft(containerScrollLeft + activeDivRight - containerWidth);
+      }
     }
   };
 })(jQuery);
