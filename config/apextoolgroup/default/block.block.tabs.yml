@@ -1,0 +1,26 @@
+uuid: 524d7f3c-184d-496b-aaf6-559b3ac27803
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - apextoolgroup
+id: tabs
+theme: apextoolgroup
+region: content
+weight: -12
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Tabs for brands filter'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/brands-faceting\r\n/brands-faceting/hand-tool\r\n/brands-faceting/power-tool"

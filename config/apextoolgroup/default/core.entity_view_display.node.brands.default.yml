@@ -16,7 +16,9 @@ dependencies:
     - field.field.node.brands.field_listing_image
     - field.field.node.brands.field_read_more
     - field.field.node.brands.field_short_description
+    - field.field.node.brands.field_showed_on_listing_page
     - field.field.node.brands.field_solution
+    - field.field.node.brands.field_weight
     - node.type.brands
   module:
     - color_field
@@ -137,6 +139,16 @@ content:
     third_party_settings: {  }
     weight: 12
     region: content
+  field_showed_on_listing_page:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 15
+    region: content
   field_solution:
     type: entity_reference_label
     label: hidden
@@ -144,6 +156,15 @@ content:
       link: true
     third_party_settings: {  }
     weight: 7
+    region: content
+  field_weight:
+    type: number_integer
+    label: hidden
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 16
     region: content
   links:
     settings: {  }

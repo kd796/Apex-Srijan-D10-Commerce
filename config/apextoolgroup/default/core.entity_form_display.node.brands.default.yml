@@ -16,7 +16,9 @@ dependencies:
     - field.field.node.brands.field_listing_image
     - field.field.node.brands.field_read_more
     - field.field.node.brands.field_short_description
+    - field.field.node.brands.field_showed_on_listing_page
     - field.field.node.brands.field_solution
+    - field.field.node.brands.field_weight
     - node.type.brands
   module:
     - color_field
@@ -47,13 +49,13 @@ content:
     third_party_settings: {  }
   field_all_industries:
     type: options_select
-    weight: 17
+    weight: 16
     region: content
     settings: {  }
     third_party_settings: {  }
   field_all_markets:
     type: options_select
-    weight: 16
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -74,55 +76,11 @@ content:
     third_party_settings: {  }
   field_business_unit:
     type: options_select
-    weight: 14
+    weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }
   field_claim_to_fame:
-    type: text_textarea
-    weight: 21
-    region: content
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-  field_end_users:
-    type: options_select
-    weight: 18
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_footer_note:
-    type: text_textarea
-    weight: 22
-    region: content
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-  field_is_featured:
-    type: boolean_checkbox
-    weight: 12
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  field_listing_image:
-    type: media_library_widget
-    weight: 19
-    region: content
-    settings:
-      media_types: {  }
-    third_party_settings: {  }
-  field_read_more:
-    type: link_default
-    weight: 13
-    region: content
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-  field_short_description:
     type: text_textarea
     weight: 20
     region: content
@@ -130,11 +88,69 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-  field_solution:
+  field_end_users:
     type: options_select
-    weight: 15
+    weight: 17
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_footer_note:
+    type: text_textarea
+    weight: 21
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_is_featured:
+    type: boolean_checkbox
+    weight: 22
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_listing_image:
+    type: media_library_widget
+    weight: 18
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_read_more:
+    type: link_default
+    weight: 12
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_short_description:
+    type: text_textarea
+    weight: 19
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_showed_on_listing_page:
+    type: boolean_checkbox
+    weight: 24
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_solution:
+    type: options_select
+    weight: 14
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_weight:
+    type: number
+    weight: 23
+    region: content
+    settings:
+      placeholder: ''
     third_party_settings: {  }
   langcode:
     type: language_select
