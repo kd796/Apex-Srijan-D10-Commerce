@@ -77,24 +77,8 @@
   ]
 %}
 
-<div class="hero-banner" style="background-image: url('{{ image_path }}');">
-{% if node.label or content.field_sub_heading.0 %}
-  <div class="hero-banner__caption">
-    <div class="container">
-      <h1 class="hero-banner__title">
-        {{ node.label }}
-      </h1>
-
-      <div class="hero-banner__description">
-        {{ content.field_sub_heading.0 }}
-      </div>
-    </div>
-  </div>
-  {% endif %}
-</div>
-
-
 <article{{ attributes.addClass(classes) }}>
+  <h2>{{ node.label }}</h2>
   <div class="news-detail__top">
     <div class="left-block">
       <div class="date-formate">

@@ -7,6 +7,7 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\block\Entity\Block;
+use Drupal\block_content\BlockContentInterface;
 
 /**
  * Implements hook_form_FORM_ID_alter() for search_form.
@@ -53,17 +54,15 @@ function apextoolgroup_preprocess_block(&$variables) {
       $variables['brand_titles'] = views_embed_view('brands', 'homepage_brand_block');
       break;
 
-    case 'news_page_top_section':
-      // Extracting image path for theming.
-      $entity = \Drupal::entityTypeManager();
-      if (!empty($content['#block_content']->field_image->getValue())) {
-        $hero_image_id = $content['#block_content']->field_image->getValue()[0]['target_id'];
-        $media_entity = $entity->getStorage('media')->load($hero_image_id);
-        $file_entity = $entity->getStorage('file')->load($media_entity->field_media_image->target_id);
-        $file_path = $file_entity->createFileUrl();
-        $variables['hero_image_path'] = $file_path;
+    default:
+      if (isset($content['#block_content']) && $content['#block_content'] instanceof BlockContentInterface) {
+        $type = $content['#block_content']->bundle();
+        if ($type == 'hero_image') {
+          if (!empty($content['#block_content']->field_image->getValue())) {
+            $variables['hero_image_path'] = _get_absolute_string('field_image', $content['#block_content'], 'field_media_image');
+          }
+        }
       }
-      break;
   }
 }
 
@@ -117,8 +116,8 @@ function apextoolgroup_preprocess_node(array &$variables) {
 /**
  * Get image uri.
  */
-function _get_absolute_string($field_name, $node, $media_field) {
-  $image_uri = $node->$field_name->entity->$media_field->entity->getFileUri();
+function _get_absolute_string($field_name, $entity, $media_field) {
+  $image_uri = $entity->$field_name->entity->$media_field->entity->getFileUri();
   $url = !empty($image_uri) ? \Drupal::service('file_url_generator')->generateAbsoluteString($image_uri) : NULL;
   return $url;
 }
