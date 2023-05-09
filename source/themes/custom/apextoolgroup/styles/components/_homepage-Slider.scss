@@ -6,23 +6,15 @@
 
   &__item {
     position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
 
     h1 {
       text-transform: uppercase;
       font-weight: $semi-bold;
-    }
-
-    .image {
-      width: 100%;
-      height: 480px;
-      overflow: hidden;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-      }
     }
 
     .media {
@@ -44,13 +36,15 @@
     }
 
     .content {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 4;
       width: 100%;
       height: 100%;
       color: $white;
+      padding: 150px 0 80px;
+      position: relative;
+      z-index: 3;
+      @media only screen and (max-width: $tablet-max) {
+        padding: 0;
+      }
 
       .container,
       .row {
@@ -59,14 +53,17 @@
         [class^=col-] {
           margin-top: auto;
           margin-bottom: auto;
-          @media only screen and (max-width: $tablet) {
-            margin-top: 30px;
-            margin-bottom: 100px;
+          min-height: 250px;
+          @media only screen and (max-width: $tablet-max) {
+            padding-top: 80px;
+            padding-bottom: 80px;
+            min-height: 440px;
           }
         }
       }
 
       .btn-secondary-white {
+        display: block;
         width: 154px;
         min-width: unset;
         padding: 16px;

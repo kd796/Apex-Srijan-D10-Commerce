@@ -102,7 +102,7 @@
         }
       }
       else if (windowWidth > mobileBreakpoint && windowWidth < tabletBreakpoint) {
-        if (slideCount === 3) {
+        if (slideCount <= 3) {
           $('.slick-prev').addClass('prev-trigger');
           $('.slick-next').addClass('next-trigger');
         }

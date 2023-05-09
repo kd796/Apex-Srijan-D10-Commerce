@@ -1,7 +1,6 @@
 {{ attach_library('apextoolgroup/brand-detail') }}
 {% if content.field_banner_image or node.label %}
-<div class="hero-banner">
-  {{ content.field_banner_image }}
+<div class="hero-banner" style="background-image: url('{{ image_path }}');">
   {% if node.label %}
     <div class="hero-banner__caption">
       <div class="container">
