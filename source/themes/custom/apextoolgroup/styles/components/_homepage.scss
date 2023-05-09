@@ -126,8 +126,9 @@
   margin: 50px 0;
 
   h1 {
-    margin-top: 0;
-    @media only screen and (min-width: $tablet) {
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    @media only screen and (min-width: $tablet-max) {
       width: 75%;
     }
   }
@@ -173,6 +174,10 @@
   background-color: $white;
   margin-top: 50px;
   margin-bottom: 50px;
+
+  h1 {
+    text-transform: uppercase;
+  }
 
   .card {
     border: solid 1px $celtic-blue;
@@ -249,6 +254,7 @@
 
   h1 {
     margin-top: 0;
+    text-transform: uppercase;
   }
 
   a {
