@@ -1,0 +1,31 @@
+uuid: 8a574621-9d5a-4f81-9347-56b9e50666ac
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.banner_news_detail
+  module:
+    - fixed_block_content
+    - node
+  theme:
+    - apextoolgroup
+id: bannernewsdetailpage
+theme: apextoolgroup
+region: pre_content
+weight: -6
+provider: null
+plugin: 'fixed_block_content:banner_news_detail'
+settings:
+  id: 'fixed_block_content:banner_news_detail'
+  label: 'Banner - News Detail Page '
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      news: news
