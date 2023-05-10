@@ -180,7 +180,7 @@ class GetProductImages extends ProcessPluginBase {
       // If we have no assets to download, no videos to process,
       // and media IDs available then return.
       if (empty($final_asset_list) && !empty($this->mediaIds) && empty($this->videos)) {
-        if (!empty($this->primaryImageMediaId)) {
+        if (!empty($this->primaryImageMediaId) || !empty($this->mainProductImageId)) {
           // Combines the media ID of the primary image with the rest of
           // the media IDs while placing at the beginning of the array.
           if (!empty($this->mainProductImageId)) {
@@ -188,17 +188,18 @@ class GetProductImages extends ProcessPluginBase {
             // Group iteration.
             $mainProductImageId = $this->mainProductImageId;
             $this->mainProductImageId = NULL;
-            return [
+            //recursively prune empty values from array
+            return array_filter(array_map('array_filter', [
               ['media_id' => $mainProductImageId],
               ['media_id' => $this->primaryImageMediaId],
               ...$this->mediaIds,
-            ];
+            ]));
           }
           else {
-            return [
+            return array_filter(array_map('array_filter', [
               ['media_id' => $this->primaryImageMediaId],
               ...$this->mediaIds,
-            ];
+            ]));
           }
         }
 
@@ -287,7 +288,13 @@ class GetProductImages extends ProcessPluginBase {
     if (!empty($this->primaryImageMediaId)) {
       // Combines the media ID of the primary image with the rest
       // of the media IDs while placing at the beginning of the array.
-      return array_merge([0 => ['media_id' => $this->primaryImageMediaId]], $this->mediaIds);
+      $mainProductImageId = $this->mainProductImageId;
+      $this->mainProductImageId = NULL;
+      return [
+        ['media_id' => $mainProductImageId],
+        ['media_id' => $this->primaryImageMediaId],
+        ...$this->mediaIds
+      ];
     }
 
     if (!empty($this->mediaIds)) {
