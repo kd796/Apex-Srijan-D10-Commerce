@@ -54,6 +54,13 @@ function apextoolgroup_preprocess_block(&$variables) {
       $variables['brand_titles'] = views_embed_view('brands', 'homepage_brand_block');
       break;
 
+    case 'product_webform_top_section':
+      $current_time = \Drupal::time()->getCurrentTime();
+      $date_output = date('F j, Y | G:i', $current_time);
+      $variables['form_date'] = $date_output;
+      $variables['#cache']['max-age'] = 0;
+      break;
+
     default:
       if (isset($content['#block_content']) && $content['#block_content'] instanceof BlockContentInterface) {
         $type = $content['#block_content']->bundle();

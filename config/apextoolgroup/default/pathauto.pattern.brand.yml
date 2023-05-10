@@ -1,0 +1,22 @@
+uuid: 2a138b1a-b67d-4d49-95f7-15374bd13030
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: brand
+label: Brands
+type: 'canonical_entities:node'
+pattern: 'brands/[node:title]'
+selection_criteria:
+  1ed95377-3e0a-41fb-bedb-969ffc7b72bd:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 1ed95377-3e0a-41fb-bedb-969ffc7b72bd
+    context_mapping:
+      node: node
+    bundles:
+      brands: brands
+selection_logic: and
+weight: -5
+relationships: {  }
