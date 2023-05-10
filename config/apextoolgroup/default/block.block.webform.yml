@@ -1,0 +1,30 @@
+uuid: 5a8d789b-aa4f-4dbb-803a-d8f2c0e59141
+langcode: en
+status: true
+dependencies:
+  config:
+    - webform.webform.product_suggestion_agreement
+  module:
+    - system
+    - webform
+  theme:
+    - apextoolgroup
+id: webform
+theme: apextoolgroup
+region: content
+weight: 0
+provider: null
+plugin: webform_block
+settings:
+  id: webform_block
+  label: Webform
+  label_display: '0'
+  provider: webform
+  webform_id: product_suggestion_agreement
+  default_data: ''
+  redirect: false
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /inventor-connect/submit-your-idea

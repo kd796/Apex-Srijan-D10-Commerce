@@ -1,0 +1,28 @@
+uuid: e8dfb568-e6bd-4fb4-9265-efadecf76119
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.product_webform_top_section
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - apextoolgroup
+id: productwebformtopsection
+theme: apextoolgroup
+region: content
+weight: 0
+provider: null
+plugin: 'fixed_block_content:product_webform_top_section'
+settings:
+  id: 'fixed_block_content:product_webform_top_section'
+  label: 'Product Webform Top Section'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /inventor-connect/submit-your-idea
