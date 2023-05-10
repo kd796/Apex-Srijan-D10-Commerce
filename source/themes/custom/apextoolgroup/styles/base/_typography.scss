@@ -90,6 +90,11 @@ p {
   margin-bottom: 16px;
 }
 
+table {
+  font-size: $p;
+  line-height: 25.2px;
+}
+
 a {
   text-decoration: none;
   color: $celtic-blue;
@@ -132,6 +137,42 @@ a {
           padding: 0;
           margin: 0 0 10px;
           list-style: circle;
+        }
+      }
+    }
+  }
+
+  table {
+    display: block;
+    width: 100%;
+    max-width: fit-content;
+    @media only screen and (max-width: $tablet-max) {
+      width: 730px;
+    }
+    @media only screen and (max-width: $tablet) {
+      width: 330px;
+    }
+
+    tbody {
+      display: block;
+      overflow-x: auto;
+      min-width: 100%;
+
+      tr {
+        min-width: 100%;
+        display: inline-block;
+      }
+
+      td {
+        min-width: 350px;
+        padding-right: 20px;
+        word-break: break-word;
+        vertical-align: baseline;
+        @media only screen and (max-width: $tablet-max) {
+          min-width: 330px;
+        }
+        @media only screen and (max-width: $tablet) {
+          min-width: 280px;
         }
       }
     }
