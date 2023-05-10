@@ -1,0 +1,74 @@
+uuid: 1e1f3605-8c98-457a-ab34-1e90b088a96c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.info_section.field_attribution
+    - field.field.paragraph.info_section.field_class_custom
+    - field.field.paragraph.info_section.field_image_background
+    - field.field.paragraph.info_section.field_link
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.info_section
+  module:
+    - field_group
+    - image
+    - link
+third_party_settings:
+  field_group:
+    group_info:
+      children:
+        - field_title
+        - field_image_background
+        - field_attribution
+        - field_class_custom
+      label: Info
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: true
+        id: ''
+        description: ''
+        required_fields: true
+id: paragraph.info_section.default
+targetEntityType: paragraph
+bundle: info_section
+mode: default
+content:
+  field_attribution:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_class_custom:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_image_background:
+    type: image_image
+    weight: 2
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_link:
+    type: link_default
+    weight: 5
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
