@@ -48,20 +48,27 @@
   ]
 %}
 {% block paragraph %}
-  <div{{ attributes.addClass(classes) }}>
-    {% block content %}
-    <div{{ attributes.addClass(classes) }}>
-      <h1>{{ content.field_title }}</h1>
-        <div class='main-image'>
-          {{ content.field_media_item }}
-        </div>
-        <div class='text-section'>
-          <span>{{"Innovation:"}}</span> {{ content.field_attribution }}
-        </div>
-        <div class='text-section'>
-          <span>{{"Partner:"}}</span> {{ content.field_html_anchor }}
-        </div>
-    </div>
-    {% endblock %}
+<div{{ attributes.addClass(classes) }}>
+  {% block content %}
+  <h5>
+    <strong>
+      {{ content.field_title.0 }}
+    </strong>
+  </h5>
+
+  <div class='main-image'>
+    {{ content.field_media_item.0 }}
   </div>
+
+  <div class='text-section'>
+    <span>{{"Innovation:"}}</span>
+    {{ content.field_attribution.0 }}
+  </div>
+
+  <div class='text-section'>
+    <span>{{"Partner:"}}</span>
+    {{ content.field_html_anchor.0 }}
+  </div>
+  {% endblock %}
+</div>
 {% endblock paragraph %}
