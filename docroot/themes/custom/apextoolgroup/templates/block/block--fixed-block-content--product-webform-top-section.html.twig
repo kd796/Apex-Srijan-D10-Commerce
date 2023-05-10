@@ -30,16 +30,30 @@
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
+    'atg-product-webform container',
   ]
 %}
 <div{{ attributes.addClass(classes) }}>
-  {{ title_prefix }}
-  {% if label %}
-    <h2{{ title_attributes }}>{{ label }}</h2>
+{{ title_prefix }}
+{% if content['#block_content'].info.value  %}
+  <h1 class="title">
+    {{ content['#block_content'].info.value }}
+  </h1>
+{% endif %}
+{{ title_suffix }}
+
+
+
+  {% if content.field_title.0 %}
+    <h2 class="sub-title">
+      {{content.field_title.0}}
+    </h2>
   {% endif %}
-  {{ title_suffix }}
-  {% block content %}
-    {{ content }}
+  <div class="form-date">
     {{ form_date }}
+  </div>
+
+  {% block content %}
+  {{ content|without('field_title') }}
   {% endblock %}
 </div>
