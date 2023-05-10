@@ -8,6 +8,7 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\block\Entity\Block;
 use Drupal\block_content\BlockContentInterface;
+use Drupal\Core\Datetime\DrupalDateTime;
 
 /**
  * Implements hook_form_FORM_ID_alter() for search_form.
@@ -55,8 +56,9 @@ function apextoolgroup_preprocess_block(&$variables) {
       break;
 
     case 'product_webform_top_section':
-      $current_time = \Drupal::time()->getCurrentTime();
-      $date_output = date('F j, Y | G:i', $current_time);
+      $timezone = new \DateTimezone('America/Chicago');
+      $datetime = new DrupalDateTime('now', $timezone);
+      $date_output = $datetime->format('F j, Y | G:i');
       $variables['form_date'] = $date_output;
       $variables['#cache']['max-age'] = 0;
       break;
