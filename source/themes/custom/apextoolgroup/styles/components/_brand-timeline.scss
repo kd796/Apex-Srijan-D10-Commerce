@@ -32,7 +32,7 @@
           opacity: 0.62;
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
           position: absolute;
-          bottom: 15px;
+          bottom: 0;
         }
       }
 
@@ -42,10 +42,6 @@
         padding: 0;
         max-height: unset;
         overflow: hidden;
-
-        &::-webkit-scrollbar {
-          width: 2px;
-        }
         @media only screen and (min-width: $tablet) and (max-width: $tablet-max)  {
           overflow: scroll;
           max-width: 740px;
@@ -250,14 +246,14 @@
     }
 
     .b-content {
-      min-height: 500px;
+      height: 550px;
       border: 1px solid $celtic-blue;
       margin: 0 8px;
 
       &__image {
         position: relative;
         height: 210px;
-        background: $spanish-gray;
+        background: $gainsboro;
         overflow: hidden;
 
         .year {
@@ -280,6 +276,8 @@
 
       &__desc {
         padding: 16px 10px;
+        height: calc(100% - 210px);
+        overflow: scroll;
 
         h6 {
           margin: 0 0 30px;
@@ -319,9 +317,9 @@
   border: solid 1px $spanish-gray;
   position: absolute;
   z-index: 6;
-  top: 45%;
+  top: 43%;
   @media only screen and (max-width: $tablet) {
-    top: 50%;
+    top: 48%;
   }
 
   &.disabled {
