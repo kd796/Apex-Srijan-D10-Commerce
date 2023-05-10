@@ -78,12 +78,10 @@
 %}
 
 <article{{ attributes.addClass(classes) }}>
-  <h2>{{ node.label }}</h2>
   <div class="news-detail__top">
     <div class="left-block">
       <div class="date-formate">
-        <span class="date">{{ content.field_date['#items'].value | date('F j') }}</span>
-        <span class="year">{{ content.field_date['#items'].value | date('Y') }}</span>
+        <span class="date">{{ content.field_date['#items'].value | date('F j, Y') }}</span>
       </div>
       {% if content.field_news_release_document.0 is not empty %}
         <div class="download-pdf"><a href={{ news_release_document_path }} download>{{ 'Download Document' | t}}</a></div>
@@ -93,6 +91,7 @@
       <div class="logo-image">{{ content.field_media }}</div>
     {% endif %}
   </div>
+  <h2>{{ node.label }}</h2>
   {% if content.body is not empty %}
     {{ content.body.0 }}
   {% endif %}
