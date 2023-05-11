@@ -45,7 +45,7 @@ class GetProductImages extends ProcessPluginBase {
     'Beauty-Glamour Image', 'Cutaway Image', 'Highlight Image',
     'In Package Image', 'In Use Image', 'Literature', 'Part Shot 1',
     'Part Shot 2', 'Part Shot 3', 'Part Shot 4', 'Part Shot 5',
-    'Product Logo', 'Secondary Image', 'Warning Image', 'ICON', 'eGraphics',
+    'Product Logo', 'Secondary Image', 'Warning Image', 'ICON', 'eGraphics'
   ];
 
   /**
@@ -61,13 +61,6 @@ class GetProductImages extends ProcessPluginBase {
    * @var null|int|string
    */
   protected $primaryImageMediaId;
-
-  /**
-   * The primary image media ID for the main product.
-   *
-   * @var null|int|string
-   */
-  protected $mainProductImageId;
 
   /**
    * The primary image asset to download.
@@ -140,8 +133,7 @@ class GetProductImages extends ProcessPluginBase {
         $parentProductAssets = $product->xpath('parent::Product/AssetCrossReference');
 
         if (!empty($parentProductAssets)) {
-          // If we didn't find anything at the product
-          // level then we scan at the parent level.
+          // If we didn't find anything at the product level then we scan at the parent level.
           if (empty($this->imageAssets) && empty($this->mediaIds)) {
             $this->scanElementForImages($parentProductAssets, 'SKU Group Level');
           }
@@ -177,30 +169,11 @@ class GetProductImages extends ProcessPluginBase {
         $final_asset_list[] = $asset;
       }
 
-      // If we have no assets to download, no videos to process,
-      // and media IDs available then return.
+      // If we have no assets to download, no videos to process, and media IDs available then return.
       if (empty($final_asset_list) && !empty($this->mediaIds) && empty($this->videos)) {
-        if (!empty($this->primaryImageMediaId) || !empty($this->mainProductImageId)) {
-          // Combines the media ID of the primary image with the rest of
-          // the media IDs while placing at the beginning of the array.
-          if (!empty($this->mainProductImageId)) {
-            // Reseting the mainProductImageId after one
-            // Group iteration.
-            $mainProductImageId = $this->mainProductImageId;
-            $this->mainProductImageId = NULL;
-            // Recursively prune empty values from array.
-            return array_filter(array_map('array_filter', [
-              ['media_id' => $mainProductImageId],
-              ['media_id' => $this->primaryImageMediaId],
-              ...$this->mediaIds,
-            ]));
-          }
-          else {
-            return array_filter(array_map('array_filter', [
-              ['media_id' => $this->primaryImageMediaId],
-              ...$this->mediaIds,
-            ]));
-          }
+        if (!empty($this->primaryImageMediaId)) {
+          // Combines the media ID of the primary image with the rest of the media IDs while placing at the beginning of the array.
+          return array_merge([0 => ['media_id' => $this->primaryImageMediaId]], $this->mediaIds);
         }
 
         return $this->mediaIds;
@@ -222,7 +195,7 @@ class GetProductImages extends ProcessPluginBase {
             }
             else {
               $this->mediaIds[] = [
-                'media_id' => $media_id,
+                'media_id' => $media_id
               ];
             }
           }
@@ -264,7 +237,7 @@ class GetProductImages extends ProcessPluginBase {
 
               $media->setName($video_json->title)->setPublished(TRUE)->save();
               $this->mediaIds[] = [
-                'media_id' => $media->id(),
+                'media_id' => $media->id()
               ];
             }
             else {
@@ -286,15 +259,8 @@ class GetProductImages extends ProcessPluginBase {
     }
 
     if (!empty($this->primaryImageMediaId)) {
-      // Combines the media ID of the primary image with the rest
-      // of the media IDs while placing at the beginning of the array.
-      $mainProductImageId = $this->mainProductImageId;
-      $this->mainProductImageId = NULL;
-      return [
-        ['media_id' => $mainProductImageId],
-        ['media_id' => $this->primaryImageMediaId],
-        ...$this->mediaIds,
-      ];
+      // Combines the media ID of the primary image with the rest of the media IDs while placing at the beginning of the array.
+      return array_merge([0 => ['media_id' => $this->primaryImageMediaId]], $this->mediaIds);
     }
 
     if (!empty($this->mediaIds)) {
@@ -327,7 +293,7 @@ class GetProductImages extends ProcessPluginBase {
           }
           else {
             $this->mediaIds[] = [
-              'media_id' => $media_id,
+              'media_id' => $media_id
             ];
           }
         }
@@ -366,8 +332,7 @@ class GetProductImages extends ProcessPluginBase {
             $this->videos[] = $single_value_child;
           }
 
-          // We only visited the "Values" attribute group so
-          // that we could get the video. So leave. NOW!
+          // We only visited the "Values" attribute group so that we could get the video. So leave. NOW!
           break;
         }
       }
@@ -389,8 +354,7 @@ class GetProductImages extends ProcessPluginBase {
         if ($attributeType === 'Primary Image') {
           $media_id = ImageOperations::getImageMediaId($assetId);
 
-          // If we find the file then we need to reference it
-          // in the return array.
+          // If we find the file then we need to reference it in the return array.
           if (!empty($media_id)) {
             $this->primaryImageMediaId = $media_id;
           }
