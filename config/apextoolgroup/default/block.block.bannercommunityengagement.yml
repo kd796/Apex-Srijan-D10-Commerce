@@ -1,0 +1,28 @@
+uuid: ce24e095-a235-49b6-9a84-574de1dc343e
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.banner_community_engagement
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - apextoolgroup
+id: bannercommunityengagement
+theme: apextoolgroup
+region: pre_content
+weight: -6
+provider: null
+plugin: 'fixed_block_content:banner_community_engagement'
+settings:
+  id: 'fixed_block_content:banner_community_engagement'
+  label: 'Banner - Community Engagement'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /community-engagement
