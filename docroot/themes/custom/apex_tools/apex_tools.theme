@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the campbell theme.
+ */
+
+use Drupal\Core\Template\Attribute;
+
+/**
+ * Implements hook_preprocess_breadcrumb() for access denied page.
+ */
+function apex_tools_preprocess_breadcrumb(&$variables) {
+  if ($variables['breadcrumb']) {
+    $route_match = \Drupal::routeMatch();
+    $node_id = isset($route_match->getParameter('node')->get('nid')->getValue()[0]['value']) ? $route_match->getParameter('node')->get('nid')->getValue()[0]['value'] : '';
+    if ($node_id == '2016') {
+      $current_path = \Drupal::service('path.current')->getPath();
+      $request = \Drupal::request();
+      $page_title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+      if (!empty($page_title) && $current_path != '/node/2016') {
+        $variables['breadcrumb'][] = [
+          'text' => $page_title,
+        ];
+      }
+    }
+  }
+}
