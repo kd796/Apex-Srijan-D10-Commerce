@@ -1,4 +1,4 @@
 {% set view_node = fields.field_share_link.content|render|trim|striptags %}
-<a href="{{view_node}}" target="_blank">
+<a href="{{view_node}}" target="_blank" rel="noopener">
   {{ fields.field_share_icon.content }}
 </a>
