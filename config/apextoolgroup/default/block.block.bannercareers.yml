@@ -1,0 +1,30 @@
+uuid: 7a171c67-4e07-47d7-8111-6fde1ff4fe6d
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:hero_image:c79a4648-3690-4892-86d3-56aae811acb8'
+  module:
+    - block_content
+    - system
+  theme:
+    - apextoolgroup
+id: bannercareers
+theme: apextoolgroup
+region: pre_content
+weight: -6
+provider: null
+plugin: 'block_content:c79a4648-3690-4892-86d3-56aae811acb8'
+settings:
+  id: 'block_content:c79a4648-3690-4892-86d3-56aae811acb8'
+  label: 'Banner - Careers'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /careers

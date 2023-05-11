@@ -1,23 +1,23 @@
-uuid: 43a299e9-d3d8-427b-bea5-b54d38df1bb0
+uuid: 6cdec38d-5713-4c38-8835-c8a39d912dc8
 langcode: en
 status: true
 dependencies:
   config:
-    - fixed_block_content.fixed_block_content.hero_image_for_careers
+    - fixed_block_content.fixed_block_content.careers_cta
   module:
     - fixed_block_content
     - system
   theme:
     - apextoolgroup
-id: heroimageforcareers
+id: careerscta
 theme: apextoolgroup
-region: pre_content
-weight: -10
+region: post_content
+weight: 0
 provider: null
-plugin: 'fixed_block_content:hero_image_for_careers'
+plugin: 'fixed_block_content:careers_cta'
 settings:
-  id: 'fixed_block_content:hero_image_for_careers'
-  label: 'Hero Image for careers'
+  id: 'fixed_block_content:careers_cta'
+  label: 'Careers CTA'
   label_display: '0'
   provider: fixed_block_content
   view_mode: ''
