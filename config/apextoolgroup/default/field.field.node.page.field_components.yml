@@ -8,6 +8,7 @@ dependencies:
     - paragraphs.paragraphs_type.accordion
     - paragraphs.paragraphs_type.accordion_item
     - paragraphs.paragraphs_type.atg_glance
+    - paragraphs.paragraphs_type.careers_cta
     - paragraphs.paragraphs_type.content
     - paragraphs.paragraphs_type.embed_block
     - paragraphs.paragraphs_type.embed_iframe
@@ -21,6 +22,7 @@ dependencies:
     - paragraphs.paragraphs_type.image_with_cta
     - paragraphs.paragraphs_type.inventor
     - paragraphs.paragraphs_type.inventor_image_and_text
+    - paragraphs.paragraphs_type.product_types_info
     - paragraphs.paragraphs_type.pullquote
     - paragraphs.paragraphs_type.section
     - paragraphs.paragraphs_type.tabs
@@ -59,10 +61,12 @@ settings:
       tabs: tabs
       tabs_tab: tabs_tab
       atg_glance: atg_glance
+      careers_cta: careers_cta
       image_and_text: image_and_text
       image_with_cta: image_with_cta
       inventor: inventor
       inventor_image_and_text: inventor_image_and_text
+      product_types_info: product_types_info
     negate: 0
     target_bundles_drag_drop:
       accordion:
@@ -73,6 +77,9 @@ settings:
         enabled: true
       atg_glance:
         weight: 24
+        enabled: true
+      careers_cta:
+        weight: 27
         enabled: true
       content:
         weight: -41
@@ -115,6 +122,9 @@ settings:
         enabled: true
       inventor_image_and_text:
         weight: 34
+        enabled: true
+      product_types_info:
+        weight: 42
         enabled: true
       pullquote:
         weight: -28
