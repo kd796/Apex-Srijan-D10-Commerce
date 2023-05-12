@@ -1,0 +1,23 @@
+uuid: e2cdef81-d256-4144-9cf8-1deeb5541a0f
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.manufacturing_facilities
+    - field.storage.block_content.body
+  module:
+    - text
+id: block_content.manufacturing_facilities.body
+field_name: body
+entity_type: block_content
+bundle: manufacturing_facilities
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary

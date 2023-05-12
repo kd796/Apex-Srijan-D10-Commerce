@@ -1,18 +1,18 @@
-uuid: efcc1ce6-4f70-4dfe-9856-3e0632671c92
+uuid: f4ead353-a39a-4a7a-8c1b-60fd552fd836
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_components
-    - paragraphs.paragraphs_type.atg_glance
-    - paragraphs.paragraphs_type.info_section
+    - block_content.type.product_types
+    - field.storage.block_content.field_quick_links
+    - paragraphs.paragraphs_type.product_types_info
   module:
     - entity_reference_revisions
-id: paragraph.atg_glance.field_components
-field_name: field_components
-entity_type: paragraph
-bundle: atg_glance
-label: 'Info Component'
+id: block_content.product_types.field_quick_links
+field_name: field_quick_links
+entity_type: block_content
+bundle: product_types
+label: 'Product Info'
 description: ''
 required: false
 translatable: true
@@ -22,70 +22,73 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      info_section: info_section
+      product_types_info: product_types_info
     negate: 0
     target_bundles_drag_drop:
       accordion:
-        weight: 22
-        enabled: false
-      accordion_item:
         weight: 23
         enabled: false
-      atg_glance:
+      accordion_item:
         weight: 24
         enabled: false
-      content:
+      careers_cta:
         weight: 25
         enabled: false
-      embed_block:
+      content:
         weight: 26
         enabled: false
-      embed_iframe:
+      embed_block:
         weight: 27
         enabled: false
-      embed_view:
+      embed_iframe:
         weight: 28
         enabled: false
-      featured_content:
+      embed_view:
         weight: 29
         enabled: false
-      featured_links:
+      featured_content:
         weight: 30
         enabled: false
-      featured_media:
+      featured_links:
         weight: 31
         enabled: false
-      hero:
+      featured_media:
         weight: 32
         enabled: false
-      hero_slide:
+      hero:
         weight: 33
         enabled: false
-      image_and_text:
+      hero_slide:
         weight: 34
         enabled: false
-      image_with_cta:
+      image_and_text:
         weight: 35
         enabled: false
-      info_section:
+      image_with_cta:
         weight: 36
-        enabled: true
-      inventor:
+        enabled: false
+      info_section:
         weight: 37
         enabled: false
-      inventor_image_and_text:
+      inventor:
         weight: 38
         enabled: false
-      pullquote:
+      inventor_image_and_text:
         weight: 39
         enabled: false
-      section:
+      product_types_info:
         weight: 40
-        enabled: false
-      tabs:
+        enabled: true
+      pullquote:
         weight: 41
         enabled: false
-      tabs_tab:
+      section:
         weight: 42
+        enabled: false
+      tabs:
+        weight: 43
+        enabled: false
+      tabs_tab:
+        weight: 44
         enabled: false
 field_type: entity_reference_revisions

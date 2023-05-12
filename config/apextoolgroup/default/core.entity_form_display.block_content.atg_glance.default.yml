@@ -1,21 +1,22 @@
-uuid: c0196e9d-9772-48cf-9967-ce64aff147d6
+uuid: acbb0eaa-6e47-4fb4-9038-2b8793bae2db
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.atg_glance.field_components
-    - field.field.paragraph.atg_glance.field_title
-    - paragraphs.paragraphs_type.atg_glance
+    - block_content.type.atg_glance
+    - field.field.block_content.atg_glance.body
+    - field.field.block_content.atg_glance.field_info_block
+    - field.field.block_content.atg_glance.field_title
   module:
     - paragraphs
-id: paragraph.atg_glance.default
-targetEntityType: paragraph
+id: block_content.atg_glance.default
+targetEntityType: block_content
 bundle: atg_glance
 mode: default
 content:
-  field_components:
+  field_info_block:
     type: paragraphs
-    weight: 1
+    weight: 26
     region: content
     settings:
       title: Paragraph
@@ -33,12 +34,26 @@ content:
     third_party_settings: {  }
   field_title:
     type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  info:
+    type: string_textfield
     weight: 0
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 1
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
 hidden:
-  created: true
-  status: true
+  body: true
