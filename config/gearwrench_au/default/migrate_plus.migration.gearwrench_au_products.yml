@@ -114,14 +114,22 @@ source:
       name: remote_sales_org
       label: 'Sales Org'
       selector: './/*[@AttributeID=''SalesOrg'']'
-    -
-      name: remote_meta_products
-      label: 'Meta Products'
-      selector: Values
   ids:
     remote_sku:
       type: string
 process:
+  status:
+    plugin: apex_determine_published_status
+    source: status
+    value:
+      - Z3
+      - Z4
+  sales_org:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_sales_org
+    method: row
+    value: 6201
   type:
     plugin: default_value
     default_value: product

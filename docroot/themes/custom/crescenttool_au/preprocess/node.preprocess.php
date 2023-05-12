@@ -156,14 +156,8 @@ function crescenttool_au_preprocess_node__product__full(array &$variables) {
   $variables['sku'] = $sku;
   //Show the RRP to the users accessing from AU only
   $headers_list  = headers_list();
-  if(!empty($headers_list)){
-    foreach($headers_list as $key => $value){
-      if(str_contains($value, 'X-Geo-Country')){
-        if(trim(explode(":", $value)[1]) == 'AU'){
-          $variables['rrp'] = round((float)$node->field_rrp->value, 2);
-        }
-      }
-    }
+  if(!empty($headers_list) && in_array('X-Geo-Country: AU', $headers_list)){
+    $variables['rrp'] = round((float)$node->field_rrp->value, 2);
   }
   // Product Features.
   $page_top_products_features = $variables['content']['field_product_features'];
