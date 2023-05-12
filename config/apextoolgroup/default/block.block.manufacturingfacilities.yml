@@ -1,0 +1,28 @@
+uuid: 55899993-0e35-4365-9cc1-ef202a3edf90
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.manufacturing_facilities
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - apextoolgroup
+id: manufacturingfacilities
+theme: apextoolgroup
+region: content
+weight: -7
+provider: null
+plugin: 'fixed_block_content:manufacturing_facilities'
+settings:
+  id: 'fixed_block_content:manufacturing_facilities'
+  label: 'Manufacturing Facilities'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /about-us

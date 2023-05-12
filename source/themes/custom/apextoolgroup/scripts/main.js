@@ -90,6 +90,9 @@
           }
         });
       });
+      // Set window width.
+      var windowWidth = $(window).width();
+      $('.market-type  .market-container').css({width: windowWidth + 'px'});
 
       /* end */
     }

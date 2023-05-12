@@ -1,0 +1,23 @@
+uuid: 917e4425-a316-464f-910b-0a0e6127f63c
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.atg_glance
+    - field.storage.block_content.body
+  module:
+    - text
+id: block_content.atg_glance.body
+field_name: body
+entity_type: block_content
+bundle: atg_glance
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary
