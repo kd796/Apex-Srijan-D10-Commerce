@@ -5,10 +5,14 @@ dependencies:
   config:
     - webform.webform.product_suggestion_agreement
   module:
+    - block_class
     - system
     - webform
   theme:
     - apextoolgroup
+third_party_settings:
+  block_class:
+    classes: 'container application-form'
 id: webform
 theme: apextoolgroup
 region: content

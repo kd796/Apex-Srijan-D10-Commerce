@@ -1,0 +1,118 @@
+.application-form {
+  margin-top: 16px;
+  margin-bottom: 20px;
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .form-item {
+      padding: 0;
+      width: 100%;
+      margin: 0 0 24px;
+      position: relative;
+
+      @media only screen and(min-width: $tablet) {
+        width: calc(50% - 24px);
+      }
+
+      @media only screen and(min-width: $desktop) {
+        width: calc(33.33% - 24px);
+      }
+
+      select {
+        height: 67px;
+        appearance: none;
+      }
+
+      textarea {
+        resize: none;
+        max-height: 67px;
+      }
+
+      label {
+        top: 50%;
+        left: 16px;
+        z-index: 1;
+        position: absolute;
+        transform: translateY(-50%);
+        transition: transform all 0.3s ease;
+      }
+
+      input,
+      select,
+      textarea {
+        z-index: 2;
+        position: relative;
+        background-color: transparent;
+
+        &:active,
+        &:target,
+        &:focus-within,
+        &:focus-visible,
+        &:visited,
+        &:focus {
+          & + label {
+            top: -12px;
+            z-index: 3;
+            padding: 0 4px;
+            background-color: $white;
+            transform: translateY(0%);
+          }
+        }
+      }
+    }
+
+    .form-actions {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+
+      .button {
+        width: 100%;
+        height: 60px;
+        line-height: 1;
+        min-width: 100%;
+        margin-bottom: 16px;
+        transition: all 0.3s ease;
+
+        @media only screen and(min-width: $tablet) {
+          width: auto;
+          margin-bottom: 0;
+          min-width: 150px;
+        }
+
+        &[value='Submit'] {
+          order: 2;
+          color: $white;
+          border-color: transparent;
+          background-color: $celtic-blue;
+
+          &:hover {
+            color: $black;
+            border-color: $black;
+            background-color: transparent;
+          }
+        }
+
+        &[value='Reset'] {
+          order: 1;
+          margin-left: 0;
+          margin-right: 0;
+          @media only screen and(min-width: $tablet) {
+            margin-left: 16px;
+            margin-right: 16px;
+          }
+
+          &:hover {
+            color: $white;
+            border-color: transparent;
+            background-color: $celtic-blue;
+          }
+        }
+      }
+    }
+  }
+}

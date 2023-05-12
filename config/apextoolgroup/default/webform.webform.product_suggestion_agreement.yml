@@ -27,6 +27,7 @@ elements: |-
     '#type': select
     '#title': 'Country or Region'
     '#options': country_names
+    '#empty_option': ' '
     '#required': true
     '#required_error': 'Country field is required.'
   address_actual:
@@ -46,6 +47,7 @@ elements: |-
     '#type': select
     '#title': State/Province/Region
     '#options': state_province_names
+    '#empty_option': ' '
     '#required': true
     '#required_error': 'State/Province field is required.'
     '#states':
