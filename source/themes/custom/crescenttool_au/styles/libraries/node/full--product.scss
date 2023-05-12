@@ -182,6 +182,9 @@ $tabs-border-width-active: rem(5px);
 
       .product-detail-content-container__rating-container {
         margin: rem(26px) 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
 
         .node__buy-now-button {
           @include btn(primary);
@@ -190,6 +193,9 @@ $tabs-border-width-active: rem(5px);
           float: none;
           font-size: 1rem;
         }
+      }
+      .rrp{
+        padding: 0px 20px;
       }
     }
 
