@@ -199,11 +199,23 @@ $sites['apextoolgroup.com'] = 'apextoolgroup';
 
 // New Sites for APEX-TOOLS
 $sites['dev-www.apex-tools.com'] = 'apex-tools';
+$sites['dev-www.apex-tools.de'] = 'apex-tools';
+$sites['dev-www.apex-tools.co.uk'] = 'apex-tools';
 $sites['qa-www.apex-tools.com'] = 'apex-tools';
+$sites['qa-www.apex-tools.de'] = 'apex-tools';
+$sites['qa-www.apex-tools.co.uk'] = 'apex-tools';
 $sites['stg-www.apex-tools.com'] = 'apex-tools';
+$sites['stg-www.apex-tools.de'] = 'apex-tools';
+$sites['stg-www.apex-tools.co.uk'] = 'apex-tools';
 $sites['prod-www.apex-tools.com'] = 'apex-tools';
+$sites['prod-www.apex-tools.de'] = 'apex-tools';
+$sites['prod-www.apex-tools.co.uk'] = 'apex-tools';
 $sites['www.apex-tools.com'] = 'apex-tools';
 $sites['apex-tools.com'] = 'apex-tools';
+$sites['www.apex-tools.de'] = 'apex-tools';
+$sites['apex-tools.de'] = 'apex-tools';
+$sites['www.apex-tools.co.uk'] = 'apex-tools';
+$sites['apex-tools.co.uk'] = 'apex-tools';
 
 // CLECOTOOLS
 $sites['clecotools.ddev.site'] = 'clecotools';
