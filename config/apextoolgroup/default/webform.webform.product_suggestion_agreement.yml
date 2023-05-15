@@ -16,16 +16,19 @@ elements: |-
   name:
     '#type': textfield
     '#title': 'First Name'
+    '#title_display': after
     '#required': true
     '#required_error': 'Name field is required.'
   business_name:
     '#type': textfield
     '#title': 'Last Name'
+    '#title_display': after
     '#required': true
     '#required_error': 'Last Name field is required.'
   country:
     '#type': select
     '#title': 'Country or Region'
+    '#title_display': after
     '#options': country_names
     '#empty_option': ' '
     '#required': true
@@ -33,19 +36,23 @@ elements: |-
   address_actual:
     '#type': textfield
     '#title': 'Address 1'
+    '#title_display': after
     '#required': true
     '#required_error': 'Address field is required.'
   address_2:
     '#type': textfield
     '#title': 'Address 2'
+    '#title_display': after
   city:
     '#type': textfield
     '#title': City
+    '#title_display': after
     '#required': true
     '#required_error': 'City field is required.'
   state_province:
     '#type': select
     '#title': State/Province/Region
+    '#title_display': after
     '#options': state_province_names
     '#empty_option': ' '
     '#required': true
@@ -57,6 +64,7 @@ elements: |-
   state_province_text:
     '#type': textfield
     '#title': State/Province/Region
+    '#title_display': after
     '#required': true
     '#required_error': 'State/Province/Region field is required.'
     '#states':
@@ -66,26 +74,31 @@ elements: |-
   postal_code:
     '#type': textfield
     '#title': 'Zip/Postal Code'
+    '#title_display': after
     '#required': true
     '#required_error': 'Zip/Postal Code field is required'
   email_address:
     '#type': email
     '#title': 'Email Address'
+    '#title_display': after
     '#required': true
     '#required_error': 'Email Address field is required.'
   idea_name:
     '#type': textfield
     '#title': 'Idea Name'
+    '#title_display': after
     '#required': true
     '#required_error': 'Idea Name field is required'
   product_model_number:
     '#type': textfield
     '#title': 'Patent or application number'
+    '#title_display': after
     '#required': true
     '#required_error': 'Product Model Number field is required'
   request_comments:
     '#type': textarea
     '#title': 'Country Of Patent or Application'
+    '#title_display': after
     '#required': true
     '#required_error': 'Request/Comments field is required.'
   actions:
