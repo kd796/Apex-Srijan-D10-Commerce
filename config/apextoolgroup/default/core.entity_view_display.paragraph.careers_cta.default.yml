@@ -1,0 +1,28 @@
+uuid: c506ee0a-b635-461e-8fa8-acad9eab58ea
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.careers_cta.field_link
+    - paragraphs.paragraphs_type.careers_cta
+  module:
+    - link
+id: paragraph.careers_cta.default
+targetEntityType: paragraph
+bundle: careers_cta
+mode: default
+content:
+  field_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

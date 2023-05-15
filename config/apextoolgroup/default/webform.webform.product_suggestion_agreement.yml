@@ -1,0 +1,353 @@
+uuid: 63a2cab8-15b6-4654-a615-bb618a16964d
+langcode: en
+status: open
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 1
+template: false
+archive: false
+id: product_suggestion_agreement
+title: 'Product Suggestion Agreement'
+description: 'Used in contact us page'
+category: ''
+elements: |-
+  name:
+    '#type': textfield
+    '#title': 'First Name'
+    '#required': true
+    '#required_error': 'Name field is required.'
+  business_name:
+    '#type': textfield
+    '#title': 'Last Name'
+    '#required': true
+    '#required_error': 'Last Name field is required.'
+  country:
+    '#type': select
+    '#title': 'Country or Region'
+    '#options': country_names
+    '#empty_option': ' '
+    '#required': true
+    '#required_error': 'Country field is required.'
+  address_actual:
+    '#type': textfield
+    '#title': 'Address 1'
+    '#required': true
+    '#required_error': 'Address field is required.'
+  address_2:
+    '#type': textfield
+    '#title': 'Address 2'
+  city:
+    '#type': textfield
+    '#title': City
+    '#required': true
+    '#required_error': 'City field is required.'
+  state_province:
+    '#type': select
+    '#title': State/Province/Region
+    '#options': state_province_names
+    '#empty_option': ' '
+    '#required': true
+    '#required_error': 'State/Province field is required.'
+    '#states':
+      visible:
+        ':input[name="country"]':
+          value: 'United States'
+  state_province_text:
+    '#type': textfield
+    '#title': State/Province/Region
+    '#required': true
+    '#required_error': 'State/Province/Region field is required.'
+    '#states':
+      visible:
+        ':input[name="country"]':
+          '!value': 'United States'
+  postal_code:
+    '#type': textfield
+    '#title': 'Zip/Postal Code'
+    '#required': true
+    '#required_error': 'Zip/Postal Code field is required'
+  email_address:
+    '#type': email
+    '#title': 'Email Address'
+    '#required': true
+    '#required_error': 'Email Address field is required.'
+  idea_name:
+    '#type': textfield
+    '#title': 'Idea Name'
+    '#required': true
+    '#required_error': 'Idea Name field is required'
+  product_model_number:
+    '#type': textfield
+    '#title': 'Patent or application number'
+    '#required': true
+    '#required_error': 'Product Model Number field is required'
+  request_comments:
+    '#type': textarea
+    '#title': 'Country Of Patent or Application'
+    '#required': true
+    '#required_error': 'Request/Comments field is required.'
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#delete__label': 'Clear Form'
+css: wrapper-content
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: true
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: true
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: true
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: true
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: inline
+  confirmation_url: /about/contact-us/submission
+  confirmation_title: 'Contact Us'
+  confirmation_message: "<h2>Product Suggestion Agreement</h2>\r\nThank you for your submission!<br />\r\n<br />\r\nWe have received your Inventor Connect application form and it will be reviewed by our product development team. If there is any interest in proceeding, we will contact you using the information you provided in your application.<br />\r\n<br />\r\nNote: Please do not attempt to submit marketing, sales, or other materials related to your submission or other ideas. We only accept idea submissions via the Inventor Connect portal and only review the criteria requested, i.e. published patent applications or granted patents.<br />\r\n<br />\r\nApex Tool Group, LLC All Rights Reserved"
+  confirmation_attributes:
+    class:
+      - wrapper-content
+  confirmation_back: false
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: true
+  confirmation_exclude_token: true
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers:
+  email:
+    id: email
+    handler_id: email
+    label: 'Contact Us Email'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: patent.submissions@apextoolgroup.com
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: 'Product Idea Kit Inquiry'
+      body: "<p>Submitted on [webform_submission:created]</p>\r\n\r\n<p>Submitted by: [webform_submission:user]</p>\r\n\r\n<p>Submitted values are:</p>\r\n\r\n<p>First Name: [webform_submission:values:name]</p>\r\n\r\n<p>Last Name: [webform_submission:values:business_name]<br />\r\n<br />\r\nAddress 1:[webform_submission:values:address_actual]<br />\r\n<br />\r\nAddress 2:[webform_submission:values:address_2]<br />\r\n<br />\r\nCity:[webform_submission:values:city]<br />\r\n<br />\r\nState/Province/Region: [webform_submission:values:state_province][webform_submission:values:state_province_text]<br />\r\n<br />\r\nPostal Code: [webform_submission:values:postal_code]<br />\r\n<br />\r\nCountry: [webform_submission:values:country]</p>\r\n\r\n<p>Email Address: [webform_submission:values:email_address]</p>\r\n\r\n<p>Idea Name: [webform_submission:values:idea_name]</p>\r\n\r\n<p>My submission solves the following problem:<br />\r\n<br />\r\nPatent or application number: [webform_submission:values:product_model_number]</p>\r\n\r\n<p>The results of this submission may be viewed at:[webform_submission:url]</p>"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      theme_name: ''
+      parameters: {  }
+      debug: false
+  email_1:
+    id: email
+    handler_id: email_1
+    label: Email
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:email_address:raw]'
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: 'Product Suggestion Agreement'
+      body: "<center>\t<table width=\"50%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" bgcolor=\"#ffffff\";>\r\n\t\t<tr>\r\n\t            <td align=\"center\">\r\n\t              <img src=\"themes/custom/apextoolgroup/images/logo.png\" alt=\"Apex Tool Group\" /> \r\n\t              <p style=\"background-color: #000000; height: 10px; margin: 12px 0 20px 0 !important;\"></p>               \r\n\t            </td>\r\n\t        </tr>\r\n\t\t<tr><td style=\"font-style: italic; font-size:16px; font-weight: bold; padding: 0% 5%;\">Thank you for submitting your idea to Apex Tool Group’s Inventor Connect program!</td></tr>\r\n\t\t<tr><td style=\"font-style: italic; font-size:16px; font-weight: bold; padding: 0% 5%; color:#000000;\">We have received your submission successfully and if we are interested in proceeding with development of your idea with our products, we will contact you. Otherwise, thank you for your interest in Apex Tool Group.</td></tr>\r\n\t</table>\r\n</center>"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: true
+      theme_name: ''
+      parameters: {  }
+      debug: false
+variants: {  }

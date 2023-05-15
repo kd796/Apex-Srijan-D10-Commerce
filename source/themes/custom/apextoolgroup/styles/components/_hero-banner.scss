@@ -9,12 +9,15 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: 445px;
   @media only screen and (max-width: $tablet-max) {
     padding-top: 200px;
     padding-bottom: 24px;
+    min-height: 350px;
   }
   @media only screen and (max-width: $tablet) {
     padding-top: 150px;
+    min-height: 250px;
   }
 
   img {
@@ -56,6 +59,11 @@
       padding: 0;
       color: $white;
       font-weight: 400;
+    }
+
+    a {
+      color: $white;
+      text-decoration: underline;
     }
   }
 }

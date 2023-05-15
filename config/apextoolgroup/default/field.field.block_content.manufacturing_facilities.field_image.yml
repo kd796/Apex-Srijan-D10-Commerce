@@ -1,0 +1,29 @@
+uuid: 899fe596-6394-44c1-87a8-94005428d339
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.manufacturing_facilities
+    - field.storage.block_content.field_image
+    - media.type.image
+id: block_content.manufacturing_facilities.field_image
+field_name: field_image
+entity_type: block_content
+bundle: manufacturing_facilities
+label: Image
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

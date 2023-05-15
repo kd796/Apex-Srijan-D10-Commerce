@@ -1,0 +1,49 @@
+uuid: 26263c03-1962-45c3-87f3-3d9cbad57133
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.manufacturing_facilities
+    - field.field.block_content.manufacturing_facilities.body
+    - field.field.block_content.manufacturing_facilities.field_image
+  module:
+    - media_library
+    - text
+id: block_content.manufacturing_facilities.default
+targetEntityType: block_content
+bundle: manufacturing_facilities
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 26
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  field_image:
+    type: media_library_widget
+    weight: 27
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+hidden: {  }

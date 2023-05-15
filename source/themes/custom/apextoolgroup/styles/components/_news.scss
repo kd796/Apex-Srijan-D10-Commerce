@@ -165,19 +165,10 @@
   .date-formate {
     .date {
       display: block;
-      font-size: 30px;
+      font-size: 20px;
       line-height: 40px;
       font-weight: $light;
-      color: $celtic-blue;
-    }
-
-    .year {
-      display: block;
       color: $aluminium;
-      font-size: 18px;
-      font-weight: $normal;
-      line-height: 1;
-      margin-bottom: 10px;
     }
   }
 
@@ -187,6 +178,35 @@
       line-height: 20px;
       color: $celtic-blue;
       text-decoration: underline;
+    }
+  }
+
+  ul {
+    padding: 0;
+    margin: 0 0 18px 15px;
+
+    @media only screen and(max-width: $tablet) {
+      margin: 0 0 16px 15px;
+    }
+
+    li {
+      padding: 0;
+      margin: 0 0 10px;
+      list-style: disc;
+
+      ul {
+        margin: 18px 0 18px 25px;
+
+        @media only screen and(max-width: $tablet) {
+          margin: 16px 0 16px 20px;
+        }
+
+        li {
+          padding: 0;
+          margin: 0 0 10px;
+          list-style: circle;
+        }
+      }
     }
   }
 }

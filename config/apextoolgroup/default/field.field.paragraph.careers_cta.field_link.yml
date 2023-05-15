@@ -1,0 +1,23 @@
+uuid: e6b59de9-4955-42de-be79-363c8549bc3c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_link
+    - paragraphs.paragraphs_type.careers_cta
+  module:
+    - link
+id: paragraph.careers_cta.field_link
+field_name: field_link
+entity_type: paragraph
+bundle: careers_cta
+label: CTA
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

@@ -7,6 +7,8 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\block\Entity\Block;
+use Drupal\block_content\BlockContentInterface;
+use Drupal\Core\Datetime\DrupalDateTime;
 
 /**
  * Implements hook_form_FORM_ID_alter() for search_form.
@@ -53,17 +55,23 @@ function apextoolgroup_preprocess_block(&$variables) {
       $variables['brand_titles'] = views_embed_view('brands', 'homepage_brand_block');
       break;
 
-    case 'news_page_top_section':
-      // Extracting image path for theming.
-      $entity = \Drupal::entityTypeManager();
-      if (!empty($content['#block_content']->field_image->getValue())) {
-        $hero_image_id = $content['#block_content']->field_image->getValue()[0]['target_id'];
-        $media_entity = $entity->getStorage('media')->load($hero_image_id);
-        $file_entity = $entity->getStorage('file')->load($media_entity->field_media_image->target_id);
-        $file_path = $file_entity->createFileUrl();
-        $variables['hero_image_path'] = $file_path;
-      }
+    case 'product_webform_top_section':
+      $timezone = new \DateTimezone('America/Chicago');
+      $datetime = new DrupalDateTime('now', $timezone);
+      $date_output = $datetime->format('F j, Y | G:i');
+      $variables['form_date'] = $date_output;
+      $variables['#cache']['max-age'] = 0;
       break;
+
+    default:
+      if (isset($content['#block_content']) && $content['#block_content'] instanceof BlockContentInterface) {
+        $type = $content['#block_content']->bundle();
+        if ($type == 'hero_image') {
+          if (!empty($content['#block_content']->field_image->getValue())) {
+            $variables['hero_image_path'] = _get_absolute_string('field_image', $content['#block_content'], 'field_media_image');
+          }
+        }
+      }
   }
 }
 
@@ -76,32 +84,7 @@ function apextoolgroup_preprocess_views_view(&$vars) {
   if ($view->storage->id() === 'office' && $view->current_display === 'offices') {
     // Add needed javascript.
     $vars['#attached']['library'][] = 'apextoolgroup/offices-map';
-    if ($vars['id'] === 'brands_catalog') {
-      $entity = \Drupal::entityTypeManager();
-      $block = $entity->getStorage('block')->load('apextoolgroup_local_tasks');
-      $render = $entity->getViewBuilder('block')->view($block);
-      $vars['localtasktabs'] = $render;
-    }
   }
-}
-
-/**
- * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for news, full.
- */
-function apextoolgroup_preprocess_node__news__full(array &$variables) {
-
-  $node = $variables['elements']['#node'];
-  $file_path = '';
-
-  if (!empty($node->field_news_release_document->getValue())) {
-    $entity_type_manager = \Drupal::entityTypeManager();
-    $document_id = $node->field_news_release_document->getValue()[0]['target_id'];
-    $media_entity = $entity_type_manager->getStorage('media')->load($document_id);
-    $file_entity = $entity_type_manager->getStorage('file')->load($media_entity->field_media_file->target_id);
-    $file_path = $file_entity->createFileUrl();
-  }
-
-  $variables['news_release_document_path'] = $file_path;
 }
 
 /**
@@ -142,8 +125,8 @@ function apextoolgroup_preprocess_node(array &$variables) {
 /**
  * Get image uri.
  */
-function _get_absolute_string($field_name, $node, $media_field) {
-  $image_uri = $node->$field_name->entity->$media_field->entity->getFileUri();
+function _get_absolute_string($field_name, $entity, $media_field) {
+  $image_uri = $entity->$field_name->entity->$media_field->entity->getFileUri();
   $url = !empty($image_uri) ? \Drupal::service('file_url_generator')->generateAbsoluteString($image_uri) : NULL;
   return $url;
 }

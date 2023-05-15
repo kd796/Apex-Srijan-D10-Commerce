@@ -49,9 +49,6 @@
 
       img {
         @media only screen and (min-width: $tablet) {
-          width: 80%;
-        }
-        @media only screen and (min-width: $tablet-max) {
           width: 100%;
         }
       }
@@ -109,10 +106,10 @@
 
         img {
           @media only screen and (max-width: $tablet) {
-            width: 80%;
+            width: 76%;
             height: 60%;
             margin-right: 0;
-            margin-left: 70px;
+            margin-left: 80px;
           }
         }
       }
@@ -198,6 +195,9 @@
     width: 100%;
     min-height: 243px;
     margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .view-wrapper {

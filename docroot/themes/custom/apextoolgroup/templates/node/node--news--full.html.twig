@@ -77,29 +77,11 @@
   ]
 %}
 
-<div class="hero-banner" style="background-image: url('{{ image_path }}');">
-{% if node.label or content.field_sub_heading.0 %}
-  <div class="hero-banner__caption">
-    <div class="container">
-      <h1 class="hero-banner__title">
-        {{ node.label }}
-      </h1>
-
-      <div class="hero-banner__description">
-        {{ content.field_sub_heading.0 }}
-      </div>
-    </div>
-  </div>
-  {% endif %}
-</div>
-
-
 <article{{ attributes.addClass(classes) }}>
   <div class="news-detail__top">
     <div class="left-block">
       <div class="date-formate">
-        <span class="date">{{ content.field_date['#items'].value | date('F j') }}</span>
-        <span class="year">{{ content.field_date['#items'].value | date('Y') }}</span>
+        <span class="date">{{ content.field_date['#items'].value | date('F j, Y') }}</span>
       </div>
       {% if content.field_news_release_document.0 is not empty %}
         <div class="download-pdf"><a href={{ news_release_document_path }} download>{{ 'Download Document' | t}}</a></div>
@@ -109,6 +91,7 @@
       <div class="logo-image">{{ content.field_media }}</div>
     {% endif %}
   </div>
+  <h2>{{ node.label }}</h2>
   {% if content.body is not empty %}
     {{ content.body.0 }}
   {% endif %}
