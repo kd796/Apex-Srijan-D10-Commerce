@@ -9,16 +9,12 @@
 
     .form-item {
       padding: 0;
-      width: 100%;
+      width: calc(33.33% - 24px);
       margin: 0 0 24px;
       position: relative;
 
-      @media only screen and(min-width: $tablet) {
-        width: calc(50% - 24px);
-      }
-
-      @media only screen and(min-width: $desktop) {
-        width: calc(33.33% - 24px);
+      @media only screen and(max-width: $desktop) {
+        width: 100%;
       }
 
       select {
