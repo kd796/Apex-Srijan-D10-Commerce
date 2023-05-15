@@ -4,20 +4,20 @@
   display: flex;
   width: 100%;
   padding-bottom: 55px;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
   font-size: 16px;
 
-  @media only screen and (max-width: $tablet) {
+  @media only screen and (max-width: $tablet-max) {
     flex-direction: column;
   }
 
   &.left-image {
-    @media only screen and (min-width: $tablet) {
+    @media only screen and (min-width: $tablet-max) {
       flex-direction: row-reverse;
     }
 
     .main-image {
-      @media only screen and (min-width: $tablet) {
+      @media only screen and (min-width: $tablet-max) {
         margin-right: 20px;
       }
     }
@@ -25,7 +25,7 @@
 
   &.right-image {
     .main-image {
-      @media only screen and (min-width: $tablet) {
+      @media only screen and (min-width: $tablet-max) {
         margin-left: 20px;
       }
     }
@@ -33,18 +33,19 @@
 
   .main-image {
     width: 40%;
-    @media only screen and (max-width: $tablet) {
+    @media only screen and (max-width: $tablet-max) {
       width: 100%;
 
       img {
         width: 100%;
+        height: auto;
       }
     }
   }
 
   .text-section {
     width: 60%;
-    @media only screen and (max-width: $tablet) {
+    @media only screen and (max-width: $tablet-max) {
       width: 100%;
       margin-bottom: 15px;
     }
