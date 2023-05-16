@@ -1,22 +1,18 @@
-uuid: 5a8d789b-aa4f-4dbb-803a-d8f2c0e59141
+uuid: c584ca61-3347-4911-9945-8041698d6042
 langcode: en
 status: true
 dependencies:
   config:
-    - webform.webform.product_suggestion_agreement
+    - webform.webform.contact_us
   module:
-    - block_class
     - system
     - webform
   theme:
     - apextoolgroup
-third_party_settings:
-  block_class:
-    classes: 'container application-form'
-id: webform
+id: webform_2
 theme: apextoolgroup
 region: content
-weight: -11
+weight: 0
 provider: null
 plugin: webform_block
 settings:
@@ -24,11 +20,11 @@ settings:
   label: Webform
   label_display: '0'
   provider: webform
-  webform_id: product_suggestion_agreement
+  webform_id: contact_us
   default_data: ''
   redirect: false
 visibility:
   request_path:
     id: request_path
     negate: false
-    pages: /inventor-connect/submit-your-idea
+    pages: /contact-us/email-us

@@ -82,4 +82,10 @@ function atg_common_form_alter(&$form, FormStateInterface $form_state, $form_id)
     $form['actions']['save']['#prefix'] = '<div class="required-fields-contact"><span class="color-red">*</span>Required field.</div>';
     $form['actions']['reset']['#value'] = t('Clear Form');
   }
+
+  if (strpos($form_id, 'webform_submission_contact_us_') === 0) {
+    $form['#suffix'] = '<div class="required-fields-contact"><span class="color-red">*</span>Required field.</div>';
+    $form['actions']['reset']['#value'] = t('Clear Form');
+  }
+
 }
