@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\at_o_migrations;
+namespace Drupal\at_migrations;
 
 use Drupal\Core\Config\Config;
 use League\Flysystem\Filesystem;
