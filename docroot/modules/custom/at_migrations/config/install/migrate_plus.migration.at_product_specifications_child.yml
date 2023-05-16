@@ -1,0 +1,66 @@
+id: at_product_specifications_child
+label: Product Specifications Child level 
+migration_group: at
+source:
+  constants:
+    DESCRIPTION_PREFIX: 'PIM Attribute ID'
+    TEXT: ' | '
+    WEIGHT: 0
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: simple_xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: "http://www.stibosystems.com/step"
+  item_selector: //Product[@UserTypeID="SKU Group"]|//Product[@UserTypeID="SKU"]
+  fields:
+    - name: remote_sku
+      label: SKU
+      selector: '@ID'
+    - name: remote_name
+      label: SKU Group
+      selector: Name
+    - name: remote_sku_group
+      label: SKU Group
+      selector: Values
+    - name: remote_product_specifications
+      label: Product Specifications
+      selector: Values
+    - name: skip_record
+      label: Skip Record
+      selector: skip_record
+  ids:
+    remote_sku:
+      type: string
+process:
+  type:
+    plugin: default_value
+    default_value: product
+  # Product Specifications
+  product_specifications_array:
+    plugin: at_create_product_specifications
+    source: remote_product_specifications
+    langcode: en
+    parent_migration_id: at_product_specifications
+    migration_id: at_product_specifications_list
+    # allowed_attributes is populated/fetched from get_predefined_attributelist
+    get_predefined_attributelist: 1
+    get_excluded_attributelist: 1
+  field_product_specifications:
+    plugin: sub_process
+    source: '@product_specifications_array'
+    include_source: true
+    process:
+      vocabulary_id: vid
+      target_id: target_id
+
+  skip:
+    plugin: skip_on_empty
+    method: row
+    source: skip_record
+destination:
+  plugin: 'entity:node'
+  bundle: article
+migration_dependencies:
+  required:
+    - at_product_specifications
