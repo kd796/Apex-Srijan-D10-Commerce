@@ -79,7 +79,7 @@ function atg_common_form_views_exposed_form_alter(&$form, FormStateInterface $fo
  */
 function atg_common_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   if (strpos($form_id, 'webform_submission_product_suggestion_agreement') === 0) {
-    $form['#suffix'] = '<div class="required-fields-contact"><span class="color-red">*</span>Required field.</div>';
+    $form['actions']['save']['#prefix'] = '<div class="required-fields-contact"><span class="color-red">*</span>Required field.</div>';
     $form['actions']['reset']['#value'] = t('Clear Form');
   }
 }

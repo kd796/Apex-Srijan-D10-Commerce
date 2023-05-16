@@ -9,6 +9,16 @@
           {{ node.label }}
         </h1>
         {% endif %}
+        {% if node.field_read_more.0.url %}
+        <div class="hero-banner__description">
+          <p>
+            {{'Production Tools'|t}}
+            <a href="{{node.field_read_more.0.url}}" target="_blank">
+              {{'Visit The Site'|t}}
+            </a>
+          </p>
+        </div>
+        {% endif %}
       </div>
     </div>
   {% endif %}

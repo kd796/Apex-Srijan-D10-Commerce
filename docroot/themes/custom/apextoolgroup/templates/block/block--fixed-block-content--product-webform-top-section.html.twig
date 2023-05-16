@@ -33,6 +33,8 @@
     'atg-product-webform container',
   ]
 %}
+{{ attach_library('apextoolgroup/application-form') }}
+
 <div{{ attributes.addClass(classes) }}>
 {{ title_prefix }}
 {% if content['#block_content'].info.value  %}
