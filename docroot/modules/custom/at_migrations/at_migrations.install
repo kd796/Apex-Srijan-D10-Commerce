@@ -1,0 +1,73 @@
+<?php
+
+/**
+ * @file
+ * Handle install / uninstall events for the module.
+ */
+
+use Drupal\Core\File\FileSystemInterface;
+
+/**
+ * Implements hook_install().
+ *
+ * Copies migration source files to the public:// directory.
+ */
+function at_migrations_install() {
+
+  // Prepare destination directory.
+  $dest_directory = 'public://import/pim_data';
+  \Drupal::service('file_system')->prepareDirectory($dest_directory, FileSystemInterface::CREATE_DIRECTORY);
+}
+
+/**
+ * Implements hook_uninstall().
+ *
+ * Deletes migration source files created during installation.
+ */
+function at_migrations_uninstall() {
+  \Drupal::configFactory()->getEditable('migrate_plus.migration_group.at')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_products')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_products_de')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_products_gb')->delete();
+
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_product_specifications_list')->delete();
+
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_product_classifications_level_one')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_product_classifications_level_two')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_product_classifications_level_one_de')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_product_classifications_level_two_de')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_product_classifications_level_one_gb')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_product_classifications_level_two_gb')->delete();
+
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_product_specifications')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_product_specifications_de')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_product_specifications_gb')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_product_specifications_child')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_product_specifications_child_de')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_product_specifications_child_gb')->delete();
+
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_product_model')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_product_model_de')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_product_model_gb')->delete();
+
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_product_media')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_products_asset_category')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_product_media_de')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_products_asset_category_de')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_product_media_gb')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.at_products_asset_category_gb')->delete();
+}
+
+/**
+ * Get a list of import source files.
+ *
+ * @return array
+ *   Import source files.
+ */
+function _at_migrations_source_files() {
+  $dirname = drupal_get_path('module', 'at_migrations') . '/import/pim_data';
+  return \Drupal::service('file_system')->scanDirectory($dirname, '/.*/', [
+    'recurse' => FALSE,
+    'key' => 'filename',
+  ]);
+}
