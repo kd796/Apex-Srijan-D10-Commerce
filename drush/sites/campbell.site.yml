@@ -1,17 +1,13 @@
-local:
-  site-env: local
-  root: /var/www/docroot
-  uri: clecotools
 local_ddev:
   site-env: ddev
-  root: /var/www/html/web/sites/clecotools
-  uri: https://clecotools.ddev.site
+  root: /var/www/html/web/sites/campbell
+  uri: https://campbell.ddev.site
 remote_dev:
   site-env: dev
   host: apextoolgroupdev.ssh.prod.acquia-sites.com
   user: apextoolgroup.dev
   root: /var/www/html/apextoolgroup.dev/docroot
-  uri: http://dev-www.clecotools.com
+  uri: http://dev-www.campbellchainandfittings.com
   ac-site: apextoolgroup
   ac-env: dev
   ac-realm: prod
@@ -20,7 +16,7 @@ remote_stage:
   host: apextoolgroupstg.ssh.prod.acquia-sites.com
   user: apextoolgroup.test
   root: /var/www/html/apextoolgroup.test/docroot
-  uri: http://stg-www.clecotools.com
+  uri: http://stg-www.campbellchainandfittings.com
   ac-site: apextoolgroup
   ac-env: test
   ac-realm: prod
@@ -29,16 +25,8 @@ remote_prod:
   host: apextoolgroup.ssh.prod.acquia-sites.com
   user: apextoolgroup.prod
   root: /var/www/html/apextoolgroup.prod/docroot
-  uri: http://prod-www.clecotools.com
+  uri: http://prod-www.campbellchainandfittings.com
   ac-site: apextoolgroup
   ac-env: prod
   ac-realm: prod
-remote_qa:
-  site-env: qa
-  host: apextoolgroupqa.ssh.prod.acquia-sites.com
-  user: apextoolgroup.qa
-  root: /var/www/html/apextoolgroup.qa/docroot
-  uri: http://qa-www.clecotools.com
-  ac-site: apextoolgroup
-  ac-env: qa
-  ac-realm: prod
+
