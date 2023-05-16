@@ -30,7 +30,7 @@
       label {
         top: 50%;
         left: 16px;
-        z-index: 1;
+        z-index: 2;
         position: absolute;
         transform: translateY(-50%);
         transition: transform all 0.3s ease;
@@ -40,8 +40,10 @@
       select,
       textarea {
         z-index: 2;
+        font-size: $p;
         position: relative;
-        background-color: transparent;
+        font-weight: $normal;
+        background-color: $white;
 
         &:active,
         &:target,
