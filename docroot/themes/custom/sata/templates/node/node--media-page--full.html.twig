@@ -69,7 +69,6 @@
  */
 #}
 {% set classes = [] %}
-{% set sata_brazil_host = ['https://sata-brazil-local.ddev.site/', 'https://stg-www.sataferramentas.com.br/'] %}
 
 <article{{ attributes.addClass(classes) }}>
   <div class="node__top-content">
@@ -89,7 +88,7 @@
       <div class="node__summary">
         {{ summary }}
       </div>
-      {% if (host in ["https://sata-brazil-local.ddev.site", "https://sataferramentas.com.br", "https://stg-www.sataferramentas.com.br"]) and (mediaType == 'Catalog') %}
+      {% if is_sata_br_domain and mediaType == 'Catalog' %}
         {% if file is not null %}
         <div class="node__cta">
           <a href="{{ file }}" target="_blank">{{ 'BAIXAR'|t }}</a>
