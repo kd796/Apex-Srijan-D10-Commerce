@@ -5,6 +5,7 @@ dependencies:
   config:
     - block_content.type.featured_links
     - field.field.block_content.featured_links.body
+    - field.field.block_content.featured_links.field_is_it_for_warranty_page
     - field.field.block_content.featured_links.field_quick_links
   module:
     - entity_reference_revisions
@@ -31,5 +32,6 @@ content:
     weight: 1
     region: content
 hidden:
+  field_is_it_for_warranty_page: true
   langcode: true
   search_api_excerpt: true

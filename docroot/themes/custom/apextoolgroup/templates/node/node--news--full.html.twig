@@ -87,8 +87,8 @@
         <div class="download-pdf"><a href={{ news_release_document_path }} download>{{ 'Download Document' | t}}</a></div>
       {% endif %}
     </div>
-    {% if content.field_media is not empty %}
-      <div class="logo-image">{{ content.field_media }}</div>
+    {% if content.field_banner_image is not empty %}
+      <div class="logo-image">{{ content.field_banner_image }}</div>
     {% endif %}
   </div>
   <h2>{{ node.label }}</h2>

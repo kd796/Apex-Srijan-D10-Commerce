@@ -1,21 +1,20 @@
-uuid: 122dfe72-287f-49ec-9df3-2ca35f20a9c0
+uuid: 3a65c211-84e8-4907-809a-e8fbcbfc3b22
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.body
-    - node.type.faq
+    - block_content.type.contact_us_top_section
+    - field.storage.block_content.body
   module:
-    - node
+    - block_content
     - text
-    - user
-id: faq
-label: FAQ
+id: email_us
+label: 'Email us'
 module: views
 description: ''
 tag: ''
-base_table: node_field_data
-base_field: nid
+base_table: block_content_field_data
+base_field: id
 display:
   default:
     id: default
@@ -23,17 +22,17 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: FAQs
+      title: 'Email us'
       fields:
-        title:
-          id: title
-          table: node_field_data
-          field: title
+        info:
+          id: info
+          table: block_content_field_data
+          field: info
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: node
-          entity_field: title
+          entity_type: null
+          entity_field: info
           plugin_id: field
           label: ''
           exclude: false
@@ -55,8 +54,8 @@ display:
             target: ''
             nl2br: false
             max_length: 0
-            word_boundary: false
-            ellipsis: false
+            word_boundary: true
+            ellipsis: true
             more_link: false
             more_link_text: ''
             more_link_path: ''
@@ -68,7 +67,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -78,8 +77,7 @@ display:
           hide_alter_empty: true
           click_sort_column: value
           type: string
-          settings:
-            link_to_entity: false
+          settings: {  }
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -92,7 +90,7 @@ display:
           field_api_classes: false
         body:
           id: body
-          table: node__body
+          table: block_content__body
           field: body
           relationship: none
           group_type: group
@@ -153,7 +151,7 @@ display:
           separator: ', '
           field_api_classes: false
       pager:
-        type: full
+        type: mini
         options:
           offset: 0
           items_per_page: 10
@@ -162,8 +160,6 @@ display:
           tags:
             next: ››
             previous: ‹‹
-            first: First
-            last: Last
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -172,7 +168,6 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          quantity: 9
       exposed_form:
         type: basic
         options:
@@ -184,34 +179,20 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: perm
-        options:
-          perm: 'access content'
+        type: none
+        options: {  }
       cache:
         type: tag
         options: {  }
       empty: {  }
-      sorts:
-        field_weight_value:
-          id: field_weight_value
-          table: node__field_weight
-          field: field_weight_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: standard
-          order: ASC
-          expose:
-            label: ''
-            field_identifier: ''
-          exposed: false
+      sorts: {  }
       arguments: {  }
       filters:
         status:
           id: status
-          table: node_field_data
+          table: block_content_field_data
           field: status
-          entity_type: node
+          entity_type: block_content
           entity_field: status
           plugin_id: boolean
           value: '1'
@@ -222,22 +203,18 @@ display:
             operator_list: {  }
         type:
           id: type
-          table: node_field_data
+          table: block_content_field_data
           field: type
-          entity_type: node
+          entity_type: block_content
           entity_field: type
           plugin_id: bundle
           value:
-            faq: faq
+            contact_us_top_section: contact_us_top_section
           expose:
             operator_limit_selection: false
             operator_list: {  }
       style:
         type: default
-        options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: true
       row:
         type: fields
         options:
@@ -254,7 +231,6 @@ display:
           replica: false
           query_tags: {  }
       relationships: {  }
-      css_class: faq-listing
       header: {  }
       footer: {  }
       display_extenders: {  }
@@ -264,25 +240,22 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
-        - 'user.node_grants:view'
-        - user.permissions
       tags:
-        - 'config:field.storage.node.body'
-  faq_listing:
-    id: faq_listing
-    display_title: Page
+        - 'config:field.storage.block_content.body'
+  email_us:
+    id: email_us
+    display_title: 'Email us'
     display_plugin: page
     position: 1
     display_options:
+      display_description: ''
       display_extenders: {  }
-      path: faq
+      path: contact-us/email-us
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
-        - 'user.node_grants:view'
-        - user.permissions
       tags:
-        - 'config:field.storage.node.body'
+        - 'config:field.storage.block_content.body'

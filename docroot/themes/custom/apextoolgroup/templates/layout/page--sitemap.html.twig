@@ -42,7 +42,8 @@
  * @see html.html.twig
  */
 #}
-<div id="wrapper"  {{ attributes }}>
+<div
+  id="wrapper" {{ attributes }}>
   {# Header #}
   {% include '@apextoolgroup/includes/header.html.twig' %}
   {# content #}
@@ -69,7 +70,7 @@
       {{ page.triptych_last }}
     {% endif %}
     {% if page.bottom_page %}
-    {{ page.bottom_page }}
+      {{ page.bottom_page }}
     {% endif %}
     {% if page.help %}
       {{ page.help }}
@@ -97,32 +98,37 @@
       {{ page.triptych_last }}
     {% endif %}
     {% if page.bottom_page %}
-    {{ page.bottom_page }}
+      {{ page.bottom_page }}
     {% endif %}
     {% if page.help %}
       {{ page.help }}
     {% endif %}
   {% else %}
-    <div class="main-contane">
-      {{ page.pre_content }}
-    {{ page.content }}
-    {{ page.post_content }}
-    {% if page.triptych_first %}
-      {{ page.triptych_first }}
-    {% endif %}
-    {% if page.triptych_middle %}
-      {{ page.triptych_middle }}
-    {% endif %}
-    {% if page.triptych_last %}
-      {{ page.triptych_last }}
-    {% endif %}
-    {% if page.bottom_page %}
-    {{ page.bottom_page }}
-    {% endif %}
-    {% if page.help %}
-      {{ page.help }}
-    {% endif %}
+    <div class="main-contane sitemap">
+      <div class="container">
+        <div class="text-formatted mt-50 mb-50">
+          {{ page.pre_content }}
+          {{ page.content }}
+          {{ page.post_content }}
+          {% if page.triptych_first %}
+            {{ page.triptych_first }}
+          {% endif %}
+          {% if page.triptych_middle %}
+            {{ page.triptych_middle }}
+          {% endif %}
+          {% if page.triptych_last %}
+            {{ page.triptych_last }}
+          {% endif %}
+          {% if page.bottom_page %}
+            {{ page.bottom_page }}
+          {% endif %}
+          {% if page.help %}
+            {{ page.help }}
+          {% endif %}
+        </div>
+      </div>
     </div>
+
   {% endif %}
   {# Footer #}
   {% include '@apextoolgroup/includes/footer.html.twig' %}
