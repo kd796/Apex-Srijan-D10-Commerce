@@ -77,6 +77,10 @@ source:
       label: 'Product Long Description'
       selector: Values
     -
+      name: remote_product_rrp
+      label: 'Product RRP value'
+      selector: Values
+    -
       name: remote_sku_overview
       label: 'SKU Overview'
       selector: Values
@@ -154,6 +158,10 @@ process:
     plugin: apex_get_attribute_value
     source: remote_product_long_description
     attribute: ATT921
+  field_rrp:
+    plugin: apex_get_attribute_value
+    source: remote_product_rrp
+    attribute: ATT772767
   field_upc:
     plugin: apex_get_attribute_value
     source: remote_product_upc
@@ -407,6 +415,7 @@ process:
       - ATT744972
       - ATT739684
       - ATT739685
+      - ATT772767
   field_product_specifications:
     plugin: sub_process
     source: '@product_specifications_array'

@@ -26,15 +26,10 @@
  */
 
 use Drupal\Core\Cache\Cache;
-use Drupal\Core\Render\Element;
-use Drupal\Core\Render\Markup;
 use Drupal\media\Entity\Media;
-use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\file\Entity\File;
 use Drupal\Component\Utility\Html;
-use Drupal\taxonomy\Entity\Term;
-use Drupal\taxonomy\TermStorage;
-use Drupal\Core\Url;
+use Drupal\node\NodeInterface;
 
 /**
  * Implements hook_preprocess_node().
@@ -154,7 +149,11 @@ function crescenttool_au_preprocess_node__product__full(array &$variables) {
 
   $sku = $node->title->value;
   $variables['sku'] = $sku;
-
+  // Show the RRP to the users accessing from AU only.
+  $headers_list = headers_list();
+  if (!empty($headers_list) && in_array('X-Geo-Country: AU', $headers_list)) {
+    $variables['rrp'] = round((float) $node->field_rrp->value, 2);
+  }
   // Product Features.
   $page_top_products_features = $variables['content']['field_product_features'];
 
@@ -378,7 +377,7 @@ function crescenttool_au_preprocess_node__media_page__resource(&$variables) {
 }
 
 /**
- * Implements hook_preprocess for media page teaser view.
+ * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for media page teaser view.
  */
 function crescenttool_au_preprocess_node__media_page__teaser(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */

@@ -1,9 +1,7 @@
-uuid: 6bfca975-5d06-4ff0-8593-5e42401a014f
+uuid: 9a703170-9409-4baf-9b24-d042c0978cfe
 langcode: en
 status: true
 dependencies: {  }
-_core:
-  default_config_hash: Q_894-9npgn9ZVsN2HsGj0S-tqCEQ0dJCqJ1Zq1ulDE
 id: gearwrench_au_products
 class: null
 field_plugin_method: null
@@ -75,6 +73,10 @@ source:
     -
       name: remote_product_long_description
       label: 'Product Long Description'
+      selector: Values
+    -
+      name: remote_product_rrp
+      label: 'Product RRP value'
       selector: Values
     -
       name: remote_sku_overview
@@ -150,6 +152,10 @@ process:
     plugin: apex_get_attribute_value
     source: remote_product_long_description
     attribute: ATT921
+  field_rrp:
+    plugin: apex_get_attribute_value
+    source: remote_product_rrp
+    attribute: ATT772767
   field_upc:
     plugin: apex_get_attribute_value
     source: remote_product_upc
@@ -397,6 +403,7 @@ process:
       - ATT753947
       - ATT739684
       - ATT739685
+      - ATT772767
   field_product_specifications:
     plugin: sub_process
     source: '@product_specifications_array'
