@@ -1,0 +1,28 @@
+uuid: 339929f6-b693-4d68-859f-bc978d43d857
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.women_in_tools_banner
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - apextoolgroup
+id: womenintoolsbanner
+theme: apextoolgroup
+region: pre_content
+weight: -10
+provider: null
+plugin: 'fixed_block_content:women_in_tools_banner'
+settings:
+  id: 'fixed_block_content:women_in_tools_banner'
+  label: 'Women in Tools Banner'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /womenintools

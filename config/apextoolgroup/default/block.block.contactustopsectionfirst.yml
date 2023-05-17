@@ -1,0 +1,28 @@
+uuid: 93b2d9f5-241b-4fd4-bc82-792f53d8465d
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.contact_us_top_section_first
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - apextoolgroup
+id: contactustopsectionfirst
+theme: apextoolgroup
+region: content
+weight: -5
+provider: null
+plugin: 'fixed_block_content:contact_us_top_section_first'
+settings:
+  id: 'fixed_block_content:contact_us_top_section_first'
+  label: 'Contact us top section-First'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /contact-us/email-us

@@ -1,0 +1,52 @@
+id: at_product_specifications_gb
+label: Product Specifications for Language GB
+migration_group: at
+source:
+  constants:
+    DESCRIPTION_PREFIX: 'PIM Attribute ID'
+    TEXT: ' |~| '
+    WEIGHT: 0
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: "http://www.stibosystems.com/step"
+  item_selector: /STEP-ProductInformation/AttributeList/Attribute
+  fields:
+    -
+      name: remote_term_id
+      label: ID
+      selector: '@ID'
+    -
+      name: remote_term_name
+      label: Term Name
+      selector: Name
+  ids:
+    remote_term_id:
+      type: string
+process:
+  name:
+    -
+      plugin: skip_on_empty
+      method: row
+      source: remote_term_name
+    -
+      plugin: concat
+      source:
+        - remote_term_id
+        - constants/TEXT
+        - remote_term_name
+  field_long_name:
+    - plugin: concat
+      source:
+        - remote_term_id
+        - constants/TEXT
+        - remote_term_name
+  langcode:
+    plugin: default_value
+    default_value: gb
+destination:
+  plugin: 'entity:taxonomy_term'
+  default_bundle: product_specifications
+migration_dependencies: {}
