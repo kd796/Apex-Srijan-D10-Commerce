@@ -389,7 +389,7 @@ handlers:
     settings:
       states:
         - completed
-      to_mail: ATG-WebsiteAdmin@ApexToolGroup.com
+      to_mail: '[webform_submission:values:email_address:raw]'
       to_options: {  }
       bcc_mail: ''
       bcc_options: {  }
@@ -402,8 +402,8 @@ handlers:
       return_path: ''
       sender_mail: ''
       sender_name: ''
-      subject: 'For Campbell : Form submission Contact Us'
-      body: "<p>Submitted on [webform_submission:created]</p>\r\n\r\n<p>Submitted by: [webform_submission:user] [webform_submission:ip-address]</p>\r\n\r\n<p>Submitted values are:</p>\r\n\r\n<p>Business Name:[webform_submission:values:business_name]</p>\r\n\r\n<p>Name: [webform_submission:values:name]</p>\r\n\r\n<p>Email Address: [webform_submission:values:email_address]</p>\r\n\r\n<p>Phone Number: [webform_submission:values:phone_number]</p>\r\n\r\n<p>Postal Code: [webform_submission:values:postal_code]</p>\r\n\r\n<p>Country: [webform_submission:values:country]</p>\r\n\r\n<p>Address:[webform_submission:values:address_actual]</p>\r\n\r\n<p>City:[webform_submission:values:city]</p>\r\n\r\n<p>State/Province: [webform_submission:values:state_province][webform_submission:values:state_province_text]</p>\r\n\r\n<p>Request/Comments: [webform_submission:values:request_comments]</p>\r\n\r\n<p>The results of this submission may be viewed at:[webform_submission:url]</p>"
+      subject: 'For Apextoolgroup : Form submission Contact Us'
+      body: "<p>Submitted on [webform_submission:created]</p>\r\n\r\n<p>Submitted by user: [webform_submission:user] [webform_submission:ip-address]</p>\r\n\r\n<p>Submitted values are:</p>\r\n\r\n<p>Type: [webform_submission:values:select_type]<br />\r\n<br />\r\nBusiness Name:[webform_submission:values:business_name]</p>\r\n\r\n<p>Name: [webform_submission:values:name]</p>\r\n\r\n<p>Email Address: [webform_submission:values:email_address]</p>\r\n\r\n<p>Phone Number: [webform_submission:values:phone_number]</p>\r\n\r\n<p>Postal Code: [webform_submission:values:postal_code]</p>\r\n\r\n<p>Country: [webform_submission:values:country]</p>\r\n\r\n<p>Address:[webform_submission:values:address_actual]</p>\r\n\r\n<p>City:[webform_submission:values:city]</p>\r\n\r\n<p>State/Province: [webform_submission:values:state_province][webform_submission:values:state_province_text]</p>\r\n\r\n<p>Request/Comments: [webform_submission:values:request_comments]</p>\r\n\r\n<p>The results of this submission may be viewed at:[webform_submission:url]</p>"
       excluded_elements: {  }
       ignore_access: false
       exclude_empty: true
