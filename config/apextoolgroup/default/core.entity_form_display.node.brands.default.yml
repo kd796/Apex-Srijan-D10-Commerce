@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.brands.field_all_markets
     - field.field.node.brands.field_banner_image
     - field.field.node.brands.field_brand_color
+    - field.field.node.brands.field_brand_order_for_brand_list
     - field.field.node.brands.field_business_unit
     - field.field.node.brands.field_claim_to_fame
     - field.field.node.brands.field_end_users
@@ -73,6 +74,13 @@ content:
     settings:
       placeholder_color: ''
       placeholder_opacity: ''
+    third_party_settings: {  }
+  field_brand_order_for_brand_list:
+    type: number
+    weight: 26
+    region: content
+    settings:
+      placeholder: ''
     third_party_settings: {  }
   field_business_unit:
     type: options_select
