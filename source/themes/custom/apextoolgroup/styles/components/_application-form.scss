@@ -30,7 +30,7 @@
       label {
         top: 50%;
         left: 16px;
-        z-index: 2;
+        z-index: 1;
         position: absolute;
         transform: translateY(-50%);
         transition: transform all 0.3s ease;
@@ -43,7 +43,7 @@
         font-size: $p;
         position: relative;
         font-weight: $normal;
-        background-color: $white;
+        background-color: transparent;
 
         &:active,
         &:target,
@@ -145,6 +145,12 @@
           }
         }
       }
+    }
+
+    .webform-confirmation__message {
+      font-size: $p;
+      line-height: 25.2px;
+      font-weight: $normal;
     }
   }
 }
