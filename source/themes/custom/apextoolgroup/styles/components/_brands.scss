@@ -189,6 +189,8 @@
       margin: 24px 0 0;
 
       .item-list {
+        width: 100%;
+
         ul {
           padding: 0;
           width: auto;
@@ -200,7 +202,7 @@
             width: 33.33%;
             padding: 0 6px;
             margin: 0 0 12px;
-            @media only screen and(max-width: $tablet) {
+            @media only screen and(max-width: $desktop) {
               width: 50%;
             }
           }
@@ -243,6 +245,16 @@
 
       .tabs--atg {
         margin: 0;
+
+        li {
+          a {
+            min-width: 100%;
+            @media only screen and(min-width: $tablet) {
+              min-width: 156px;
+              text-align: center;
+            }
+          }
+        }
       }
     }
   }
