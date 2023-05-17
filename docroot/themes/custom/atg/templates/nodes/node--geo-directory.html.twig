@@ -45,11 +45,11 @@
   </template>
   <template slot="infowindow" slot-scope="scope" v-if="scope.selected">
     {% filter raw %}
-      <h3>{{ scope.selected.attributes.title }}</h3>
+      <h3>{{ '{{ scope.selected.attributes.title }}' }}</h3>
       <p>
         <span v-html="$options.filters.formatAddress(scope.selected.attributes.field_address)"></span>
         <template v-for="phone in scope.selected.attributes.field_phone">
-          <br><a :href="'tel:' + phone">{{ phone }}</a>
+          <br><a :href="'tel:' + phone">{{ '{{ phone }}' }}</a>
         </template>
       </p>
     {% endfilter %}
@@ -68,12 +68,14 @@
       <table-column label="Distributor" show="attributes.title">
         <template slot-scope="row">
           {% filter raw %}
-            <h3 :id="'distributor-' + row.id">{{ row.attributes.title }}</h3>
+            <h3 :id="'distributor-' + row.id">{{ '{{ row.attributes.title }}' }}</h3>
             <p>
               <span v-html="$options.filters.formatAddress(row.attributes.field_address)"></span>
               <template v-for="phone in row.attributes.field_phone">
-                <br><a :href="'tel:' + phone">{{ phone }}</a>
+                <br><a :href="'tel:' + phone" >{{ '{{ phone }}' }}</a>
               </template>
+              <br>
+              <a v-bind:href="row.attributes.field_website" target="_blank"><span v-html="row.attributes.field_website"></span></a>
             </p>
           {% endfilter %}
         </template>
