@@ -1,0 +1,29 @@
+uuid: 98320ef8-c63f-4eab-9fb4-98d215d723a1
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.leadership_block_basic
+  module:
+    - system
+    - views
+  theme:
+    - apextoolgroup
+id: views_block__leadership_block_basic_leadership
+theme: apextoolgroup
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:leadership_block_basic-leadership'
+settings:
+  id: 'views_block:leadership_block_basic-leadership'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /leadership
