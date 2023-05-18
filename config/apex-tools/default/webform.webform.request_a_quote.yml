@@ -74,7 +74,7 @@ elements: |-
     '#type': checkbox
     '#title': Opt-In
     '#title_display': invisible
-    '#field_suffix': 'I agree that Cleco Tools can send me automatic newsletters via e-mail. Users may unsubscribe at any time.'
+    '#field_suffix': 'I agree that APEX Tools can send me automatic newsletters via e-mail. Users may unsubscribe at any time.'
     '#states':
       visible:
         ':input[name="language"]':
@@ -98,7 +98,7 @@ elements: |-
   lead_source:
     '#type': hidden
     '#title': 'Lead Source'
-    '#default_value': 'Cleco Website Contact Form'
+    '#default_value': 'Apex Tools Website Contact Form'
   from_website:
     '#type': hidden
     '#title': 'From Website'
@@ -384,7 +384,7 @@ handlers:
       bcc_options: {  }
       from_mail: _default
       from_options: {  }
-      from_name: 'Cleco Production Tools'
+      from_name: 'APEX Production Tools'
       subject: 'Webform submission from: [webform_submission:webform:title] [webform_submission:values:language:raw]'
       body: _default
       excluded_elements:
