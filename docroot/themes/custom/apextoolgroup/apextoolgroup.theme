@@ -41,28 +41,13 @@ function apextoolgroup_preprocess_html(&$vars) {
   $custom_class_path = [
     '/privacy-policy',
   ];
+  $status = \Drupal::requestStack()->getCurrentRequest()->attributes->get('exception');
+  if (isset($status) && (($status->getStatusCode() == 404) || ($status->getStatusCode() == 403))) {
+    $vars['attributes']['class'][] = 'eroor-' . $status->getStatusCode();
+  }
 
-  switch ($route_name) {
-    case 'system.403':
-      $vars['attributes']['class'][] = "custom-access-denied";
-      break;
-
-    case 'system.404':
-      $vars['attributes']['class'][] = "custom-page-not-found";
-      break;
-
-    case 'user.login':
-      $vars['attributes']['class'][] = "custom-user-login";
-      break;
-
-    case 'user.pass':
-      $vars['attributes']['class'][] = "custom-user-pass";
-      break;
-
-    default:
-      if (in_array($internal, $custom_class_path)) {
-        $vars['attributes']['class'][] = str_replace("/", "", $internal);
-      }
+  if (in_array($internal, $custom_class_path)) {
+    $vars['attributes']['class'][] = str_replace("/", "", $internal);
   }
 }
 
