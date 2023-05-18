@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.slider.field_banner_image
     - field.field.node.slider.field_footer_note
     - field.field.node.slider.field_slider_link
+    - field.field.node.slider.field_weight
     - node.type.slider
   module:
     - link
@@ -51,6 +52,15 @@ content:
       target: ''
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_weight:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 5
     region: content
   links:
     settings: {  }

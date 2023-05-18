@@ -1,13 +1,19 @@
-<div class="brands__image">
-  {{ fields.field_listing_image.content }}
-</div>
+{% set content_link = fields.view_node.content|render|striptags|spaceless %}
+{% if fields.field_showed_on_listing_page.content|render|striptags|spaceless == 1 %}
+  {% set content_link = fields.field_read_more.content|render|striptags|spaceless %}
+  {% set target = '_blank' %}
+{% endif %}
 
-<div class="brands__title">
-  {{ fields.title.content }}
-</div>
+<a href="{{ content_link }}" target="{{target}}">
+  <div class="brands__image">
+    {{ fields.field_listing_image.content }}
+  </div>
 
-<div class="brands__location">
-  {{ fields.field_all_markets.content }}
-</div>
+  <div class="brands__title">
+    {{ fields.title.content }}
+  </div>
 
-
+  <div class="brands__location">
+    {{ fields.field_all_markets.content }}
+  </div>
+</a>
