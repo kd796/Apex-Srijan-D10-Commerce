@@ -8,11 +8,22 @@ dependencies:
     - field.field.block_content.image_block.field_image
   module:
     - media_library
+    - text
 id: block_content.image_block.default
 targetEntityType: block_content
 bundle: image_block
 mode: default
 content:
+  body:
+    type: text_textarea_with_summary
+    weight: 3
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
   field_image:
     type: media_library_widget
     weight: 2
@@ -35,5 +46,4 @@ content:
     settings:
       include_locked: true
     third_party_settings: {  }
-hidden:
-  body: true
+hidden: {  }
