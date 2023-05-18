@@ -1,0 +1,23 @@
+uuid: 77b256e5-6a9b-4475-91ef-d2d7e78db5e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.featured_links
+    - field.storage.block_content.field_is_it_for_leadership_page
+id: block_content.featured_links.field_is_it_for_leadership_page
+field_name: field_is_it_for_leadership_page
+entity_type: block_content
+bundle: featured_links
+label: 'Is it for leadership page?'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
