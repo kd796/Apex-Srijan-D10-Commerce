@@ -72,3 +72,36 @@
     color: $celtic-blue;
   }
 }
+
+// Womwn in tools.
+.image-grid {
+  @media only screen and (min-width: $tablet-max) {
+    padding: 0;
+    margin-bottom: 32px;
+  }
+  @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+    margin-bottom: 16px;
+  }
+
+  .field__items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    column-gap: 13px;
+    @media only screen and (max-width: $tablet-max) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media only screen and (max-width: $tablet) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  .field__item {
+    img {
+      @media only screen and (max-width: $tablet-max) {
+        width: 100%;
+        margin-bottom: 16px;
+      }
+    }
+  }
+}
