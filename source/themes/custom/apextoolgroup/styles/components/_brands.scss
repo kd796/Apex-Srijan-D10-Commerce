@@ -221,6 +221,7 @@
 
           a {
             display: flex;
+            flex-wrap: wrap;
             line-height: 16.8px;
             font-size: $font-size-12;
           }
@@ -283,15 +284,14 @@
   &__image {
     width: 100%;
     height: auto;
+    display: flex;
+    flex-wrap: wrap;
     margin: 0 0 16px;
-
-    a {
-      min-height: 80px;
-      align-items: center;
-      justify-content: center;
-      @media only screen and(max-width: $tablet) {
-        min-height: 100%;
-      }
+    min-height: 80px;
+    align-items: center;
+    justify-content: center;
+    @media only screen and(max-width: $tablet) {
+      min-height: auto;
     }
 
     img {
