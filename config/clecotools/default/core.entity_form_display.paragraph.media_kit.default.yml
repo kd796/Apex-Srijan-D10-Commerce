@@ -1,0 +1,33 @@
+uuid: bc075cee-faf8-41aa-b3b1-a9841e5f4546
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.media_kit.field_media_kit_asset
+    - field.field.paragraph.media_kit.field_media_kit_enable
+    - paragraphs.paragraphs_type.media_kit
+  module:
+    - media_library
+id: paragraph.media_kit.default
+targetEntityType: paragraph
+bundle: media_kit
+mode: default
+content:
+  field_media_kit_asset:
+    type: media_library_widget
+    weight: 1
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_media_kit_enable:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

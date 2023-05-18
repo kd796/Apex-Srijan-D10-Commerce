@@ -1,0 +1,31 @@
+uuid: 829f095e-2a97-4445-8841-a50014059821
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.basic_card.field_body_basic
+    - field.field.paragraph.basic_card.field_title
+    - paragraphs.paragraphs_type.basic_card
+  module:
+    - text
+id: paragraph.basic_card.default
+targetEntityType: paragraph
+bundle: basic_card
+mode: default
+content:
+  field_body_basic:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

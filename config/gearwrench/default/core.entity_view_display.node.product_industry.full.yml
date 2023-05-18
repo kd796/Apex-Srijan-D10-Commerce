@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.product_industry.body
     - field.field.node.product_industry.field_industry
     - field.field.node.product_industry.field_media
+    - field.field.node.product_industry.field_meta_tags
     - node.type.product_industry
     - responsive_image.styles.short_hero
   module:
@@ -39,13 +40,10 @@ content:
       overlay: ''
       title: ''
       vanilla: false
-      icon: ''
       layout: ''
       view_mode: default
       cache: 0
-      current_view_mode: full
       skin: ''
-      fx: ''
       style: ''
       background: false
       box_caption: ''
@@ -57,18 +55,22 @@ content:
       media_switch: ''
       ratio: ''
       thumbnail_style: ''
-      _uri: ''
-      breakpoints: {  }
-      sizes: ''
-      grid_header: ''
       grid: '0'
       grid_medium: '0'
       grid_small: '0'
+      breakpoints: {  }
+      current_view_mode: full
+      fx: ''
+      icon: ''
+      sizes: ''
+      grid_header: ''
+      _uri: ''
     third_party_settings: {  }
     weight: 1
     region: content
 hidden:
   field_industry: true
+  field_meta_tags: true
   langcode: true
   links: true
   search_api_excerpt: true

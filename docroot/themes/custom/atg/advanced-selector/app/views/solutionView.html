@@ -1,0 +1,69 @@
+<div class="sel-cat">
+  <div class="sel-hd sel-complete">
+    <a href="#/business" ng-click="loadData()">
+      <span class="sel-count">1.</span>
+      {{ t('Business Information') }}
+    </a>
+  </div>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd sel-complete">
+    <a href="#/general" ng-click="loadData()">
+      <span class="sel-count">2.</span>
+      {{ t('General Information') }}
+    </a>
+  </div>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd sel-complete">
+    <a href="#/application" ng-click="loadData()">
+      <span class="sel-count">3.</span>
+      {{ t('Application Information') }}
+    </a>
+  </div>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd sel-complete">
+    <a href="#/accessories" ng-click="loadData()">
+      <span class="sel-count">4.</span>
+      {{ t('Accessories') }}
+    </a>
+  </div>
+</div>
+<div class="sel-cat  sel-on">
+  <div class="sel-hd">
+    <span class="sel-count">5.</span>
+    {{ t('Solution Issues') }}
+  </div>
+  <div class="sel-errors">{{ errors }}</div>
+  <form class="sel-form clearfix" name="solutionsform" id="solutionsform">
+    <p class="sel-sort-desc">{{ t('Please drag to sort solution issues below to rank in order of importance:') }}</p>
+    <ul ui-sortable="sortableOptions" ng-model="items" class="sortlist" id="sortable">
+      <li ng-repeat="item in items" class="sortitem">
+        <section ng-hide="item === 'Other'">
+          <span></span>
+          <div>{{ $index + 1 }}</div>
+          {{ t(item) }}
+        </section>
+        <section ng-show="item === 'Other'">
+          <span></span>
+          <div>{{ $index + 1 }}</div>
+          {{ t('Other') }} <input type="text" placeholder="{{ t('Please specify...') }}" class="small" ng-model="user.de_solution_issue_other_value" />
+        </section>
+      </li>
+    </ul>
+    <br clear="all" />
+    <p class="sel-sort-desc">{{ t('Please describe your current process and provide any additional information on your needs.') }}</p>
+    <textarea ng-model="user.de_solution_details" class="placeholder" style="margin: 0 auto;"></textarea>
+    <div class="sel-btn">
+      <a href="" ng-disabled="!solutionsform.$valid || loading" ng-click="saveSolutions(user)" onclick="return false;"
+        class="button button--primary js-form-submit form-submit" ng-class="{ 'loading': loading }">{{ t('Submit') }}</a>
+    </div>
+  </form>
+</div>
+<div class="sel-cat">
+  <div class="sel-hd">
+    <span class="sel-count">6.</span>
+    {{ t('Complete Request') }}
+  </div>
+</div>

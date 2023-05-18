@@ -1,0 +1,37 @@
+uuid: d7e0dfc1-8b8d-4ff2-b385-f906418265ec
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.contact.field_forms
+    - field.field.node.contact.field_hero
+    - field.field.node.contact.field_locations_content_type
+    - field.field.node.contact.field_mailing_list_form
+    - field.field.node.contact.field_seo
+    - node.type.contact
+  module:
+    - user
+id: node.contact.teaser
+targetEntityType: node
+bundle: contact
+mode: teaser
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_forms: true
+  field_hero: true
+  field_locations_content_type: true
+  field_mailing_list_form: true
+  field_seo: true
+  langcode: true
+  search_api_excerpt: true

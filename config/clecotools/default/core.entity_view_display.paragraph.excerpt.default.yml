@@ -1,0 +1,29 @@
+uuid: 0b1af7be-9495-48f4-8c1a-8cb18fb1ad2b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.excerpt.field_body_plain
+    - field.field.paragraph.excerpt.field_title
+    - paragraphs.paragraphs_type.excerpt
+id: paragraph.excerpt.default
+targetEntityType: paragraph
+bundle: excerpt
+mode: default
+content:
+  field_body_plain:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

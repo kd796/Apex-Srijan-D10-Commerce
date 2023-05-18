@@ -1,0 +1,85 @@
+{% set image = image | default(null) %}
+{% set floating_image = floating_image | default(null) %}
+{% set title = title | default(null) %}
+{% set title_prefix = title_prefix | default(null) %}
+{% set body = body | default(null) %}
+{% set action = action | default(null) %}
+{% set url = url | default(null) %}
+{% set target = target | default(null) %}
+{% set size = size | default(null) %}
+{% set inverse = image ? true : false %}
+{% set brand = brand | default(false) %}
+
+{% set attributes = create_attribute({class: 'feature'}) %}
+{% if floating_image %}
+  {% set attributes = attributes.addClass('feature--floating-image') %}
+{% endif %}
+{% if size %}
+  {% set attributes = attributes.addClass('feature--' ~ size) %}
+{% endif %}
+{% if inverse %}
+  {% set attributes = attributes.addClass('feature--inverse') %}
+{% endif %}
+{% if brand %}
+  {% set attributes = attributes.addClass('feature--brand') %}
+{% endif %}
+
+<div{{ attributes }}>
+  {% if image %}
+    <div class="feature-image">
+      {{ image }}
+    </div>
+  {% endif %}
+  <div class="feature-body">
+    {% if floating_image %}
+      <div class="feature-floating-image">
+          {{ floating_image }}
+      </div>
+    {% endif %}
+    <header class="feature-header">
+      {% if title_prefix %}
+        <div class="feature-title-prefix">{{ title_prefix }}</div>
+      {% endif %}
+      {% if title %}
+        <h2 class="feature-title">{{ title }}</h2>
+      {% endif %}
+    </header>
+    {% if body %}
+      <div class="feature-content">
+        {{ body }}
+      </div>
+    {% endif %}
+
+    <footer class="feature-footer">
+      {% if url and action %}
+        {% set link_attributes = create_attribute({ href: url, target: target, class: 'action' }) %}
+        {% if inverse %}
+          {% set link_attributes = link_attributes.addClass('action--inverse') %}
+        {% elseif brand %}
+          {% set link_attributes = link_attributes.addClass('action--knockout') %}
+        {% else %}
+          {% set link_attributes = link_attributes.addClass('action--primary') %}
+        {% endif %}
+
+        <a{{ link_attributes }}>{{ action }}</a>
+      {% else %}
+        {% set button_attributes = create_attribute({ class: 'button button--simple'}) %}
+        {% set input_attributes = create_attribute({ class: 'button button--simple'}) %}
+        {% if brand or inverse %}
+          {% set button_attributes = button_attributes.addClass('button--secondary') %}
+          {% set input_attributes = input_attributes.addClass('input--inverse') %}
+        {% else %}
+          {% set button_attributes = button_attributes.addClass('button--primary') %}
+        {% endif %}
+        <form action="/find-a-distributor" class="form-bar">
+          <div class="form-bar-item">
+            <input type="search" name="q"{{ input_attributes }}>
+          </div>
+          <div class="form-bar-item">
+            <button type="submit"{{ button_attributes }}>{{ 'Search' | t }}</button>
+          </div>
+        </form>
+      {% endif %}
+    </footer>
+  </div>
+</div>

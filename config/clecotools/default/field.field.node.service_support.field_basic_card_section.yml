@@ -1,0 +1,106 @@
+uuid: a5e761ca-e04b-4a1b-ac4d-66e11310a240
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_basic_card_section
+    - node.type.service_support
+    - paragraphs.paragraphs_type.basic_card_section
+  module:
+    - entity_reference_revisions
+id: node.service_support.field_basic_card_section
+field_name: field_basic_card_section
+entity_type: node
+bundle: service_support
+label: 'Basic Card Section'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      basic_card_section: basic_card_section
+    negate: 0
+    target_bundles_drag_drop:
+      basic_card:
+        weight: 28
+        enabled: false
+      basic_card_section:
+        weight: 27
+        enabled: true
+      callout_section_footer:
+        weight: 29
+        enabled: false
+      callout_section_page_end:
+        weight: 30
+        enabled: false
+      card:
+        weight: 31
+        enabled: false
+      content_bundle:
+        weight: 32
+        enabled: false
+      content_section:
+        weight: 33
+        enabled: false
+      content_section_simple:
+        weight: 34
+        enabled: false
+      cta:
+        weight: 35
+        enabled: false
+      excerpt:
+        weight: 36
+        enabled: false
+      featured_block:
+        weight: 37
+        enabled: false
+      featured_products:
+        weight: 38
+        enabled: false
+      featured_section:
+        weight: 39
+        enabled: false
+      find_a_distributor:
+        weight: 40
+        enabled: false
+      form_section:
+        weight: 41
+        enabled: false
+      from_library:
+        weight: 42
+        enabled: false
+      grid_item:
+        weight: 43
+        enabled: false
+      grid_section:
+        weight: 44
+        enabled: false
+      hero:
+        weight: 45
+        enabled: false
+      media_block:
+        weight: 46
+        enabled: false
+      media_image:
+        weight: 47
+        enabled: false
+      product_search:
+        weight: 48
+        enabled: false
+      products_section:
+        weight: 49
+        enabled: false
+      testimonials_block:
+        weight: 50
+        enabled: false
+      testimonials_section:
+        weight: 51
+        enabled: false
+      video_bundle:
+        weight: 52
+        enabled: false
+field_type: entity_reference_revisions

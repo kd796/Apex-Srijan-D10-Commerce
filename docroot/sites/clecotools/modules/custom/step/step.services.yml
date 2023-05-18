@@ -1,0 +1,28 @@
+services:
+
+  step.breadcrumbs:
+    class: Drupal\step\Breadcrumbs\StepProductCategoryBreadcrumbBuilder
+    tags:
+      - { name: breadcrumb_builder, priority: 2000 }
+
+  step.elastic_search_service:
+    class: Drupal\step\Services\ElasticSearchService
+
+  step.step_service:
+    class: Drupal\step\Services\StepService
+
+  step.step_legacy_service:
+    class: Drupal\step\Services\StepLegacyService
+
+  step.drupal_node_service:
+    class: Drupal\step\Services\DrupalNodeService
+
+  step.image_styles_service:
+    class: Drupal\step\Services\ImageStylesService
+
+  step.step_twig_extension:
+    class: Drupal\step\TwigExtensions\StepTwigExtension
+    tags:
+          - {name: twig.extension}
+
+  

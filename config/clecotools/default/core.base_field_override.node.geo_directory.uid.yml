@@ -1,0 +1,20 @@
+uuid: 0e94b1cc-2d81-488b-ba41-72ef5178a989
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.geo_directory
+id: node.geo_directory.uid
+field_name: uid
+entity_type: node
+bundle: geo_directory
+label: 'Authored by'
+description: 'The username of the content author.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

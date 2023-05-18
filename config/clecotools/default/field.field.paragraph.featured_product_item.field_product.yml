@@ -1,0 +1,31 @@
+uuid: 3e627eaa-32d3-4264-acdb-da27ade06a44
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_product
+    - node.type.enhanced_product
+    - node.type.product
+    - paragraphs.paragraphs_type.featured_product_item
+id: paragraph.featured_product_item.field_product
+field_name: field_product
+entity_type: paragraph
+bundle: featured_product_item
+label: Product
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      enhanced_product: enhanced_product
+      product: product
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: enhanced_product
+field_type: entity_reference

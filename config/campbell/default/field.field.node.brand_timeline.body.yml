@@ -1,0 +1,23 @@
+uuid: d052400a-adb9-47dc-856e-5684448bdade
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.brand_timeline
+  module:
+    - text
+id: node.brand_timeline.body
+field_name: body
+entity_type: node
+bundle: brand_timeline
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

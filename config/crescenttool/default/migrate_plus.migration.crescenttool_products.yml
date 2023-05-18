@@ -102,6 +102,10 @@ source:
       name: remote_brand
       label: Brand
       selector: './/*[@AttributeID=''Brand'']'
+    - 
+      name: status
+      label: Status
+      selector: './Values/Value[@AttributeID="SAP_SALES_ORG_STATUS"]/@ID'
     -
       name: remote_sales_org_status
       label: 'Sales Org Status'
@@ -110,16 +114,20 @@ source:
       name: remote_sales_org
       label: 'Sales Org'
       selector: './/*[@AttributeID=''SalesOrg'']'
+    -
+      name: remote_meta_products
+      label: 'Meta Products'
+      selector: Values
   ids:
     remote_sku:
       type: string
 process:
-  sales_org_status:
-    plugin: skip_on_value
-    not_equals: true
-    source: remote_sales_org_status
-    method: row
-    value: Active
+  status:
+    plugin: apex_determine_published_status
+    source: status
+    value:
+      - Z3
+      - Z4
   sales_org:
     plugin: skip_on_value
     not_equals: true
@@ -148,6 +156,12 @@ process:
     plugin: apex_get_attribute_value
     source: remote_product_long_description
     attribute: ATT921
+  field_meta_tags:
+    plugin: meta_get_attribute_value
+    source: remote_meta_products
+    allowed_attributes:
+      - ATT878420
+      - ATT878421
   field_upc:
     plugin: apex_get_attribute_value
     source: remote_product_upc

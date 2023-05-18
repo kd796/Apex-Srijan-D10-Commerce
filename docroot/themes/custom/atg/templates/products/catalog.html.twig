@@ -1,0 +1,111 @@
+{% set filters = [
+    'q',
+    'product_line',
+    'product_category'
+] %}
+
+{# Hardcoded STEP translations #}
+{% set translations = get_translations() %}
+{# Filters from ES #}
+{% set productFilters = get_product_filters() %}
+{# Merge static/website and dynamic ES filters #}
+{% for p in productFilters %}
+   {% set filters = filters|merge([p.key]) %}
+{% endfor %}
+{# CMS filter order for each Product Category #}
+{% set sortOrder = order_filters() %}
+{# Localization Paths #}
+{% set locale = get_locale() %}
+{% set alias  = alias_by_path('/products/product-catalog', locale.code) %}
+
+<main class="main">
+    <product-catalog
+        api="{{ locale.path }}/actions/step/api/filter/products"
+        :filters="{{ filters | json_encode }}"
+        :per-page="24"
+        :locale="{{ locale | json_encode }}"
+        :aggs="{{ productFilters | json_encode }}"
+        :cms-term-filter-order="{{ sortOrder | json_encode }}"
+        alias="{{ alias }}/"
+        :translations="{{ translations | json_encode }}"
+        >
+        <template slot="sidebar" slot-scope="catalog">
+
+            <div class="catalog-filters" @click.stop>
+                <div class="accordion accordion--active has-no-ui">
+                    <header class="accordion-header">
+                        <h4 class="accordion-title">{{ 'Product Search' | t }}</h4>
+                    </header>
+                    <div class="accordion-body">
+                        <throttled-input type="search" v-model="catalog.state.q"></throttled-input>
+                    </div>
+                </div>
+                <catalog-filter
+                    key="product_category"
+                    title="{{ 'Product Category' | t }}"
+                    slug="product_category"
+                    :options="catalog.facets.product_category"
+                    clear-label="{{ 'Clear' | t }}"
+                    v-model="catalog.state.product_category">
+                </catalog-filter>
+                {# Dynamic sort order #}
+                <catalog-filter v-for="(p, index) in catalog.filtersOrder"
+                    :key="p.key"
+                    :title="p.name"
+                    :slug="p.key"
+                    :type="p.type"
+                    :range="[p.min, p.max]"
+                    :options="catalog.facets[p.key]"
+                    clear-label="{{ 'Clear' | t }}"
+                    v-model="catalog.state[p.key]">
+                </catalog-filter>
+                {# {% for p in productFilters %}
+                  <catalog-filter
+                      title="{{ p.name }}"
+                      slug="{{ p.key }}"
+                      type="{{ p.type }}"
+                      :range="[{{ p.min }}, {{ p.max }}]"
+                      :options="catalog.facets.{{ p.key }}"
+                      v-model="catalog.state.{{ p.key }}">
+                  </catalog-filter>
+                {% endfor %}  #}
+            </div>
+        </template>
+        <template slot="main" slot-scope="catalog">
+            <header class="catalog-header">
+                <div class="catalog-header-primary">
+                    <h2 class="catalog-title">{{ 'Product Catalog' | t }}
+                        <span class="hmeta" v-if="catalog.total">({{ '{{ catalog.total }}' }})</span></h2>
+                    <div class="catalog-sort">
+                        <div class="form-bar">
+                            <div class="form-bar-item">
+                                <button type="button" class="catalog-filters-toggle button button--secondary button--outline button--simple" @click="catalog.toggleSidebar">Filter</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="catalog-header-secondary" v-if="catalog.appliedFilters.length > 0">
+                    <ul class="tag-list">
+                        <li class="tag-list-item" v-for="filter in catalog.appliedFilters">
+                            <span class="tag"><button type="button" class="tag-button" @click="filter.remove">{{ svg('dist/img/icons/close.svg') }}</button>{{ '{{ filter.label.replace(/%2C/g, ",") }}' }}</span>
+                        </li>
+                    </ul>
+
+                    <button type="button" class="a a--small" @click="catalog.clearFilters">{{ 'Clear All Filters' | t }}</button>
+                </div>
+            </header>
+
+            <notice type="error" v-if="catalog.error">
+                <p>{{ '{{ catalog.error}}' }}</p>
+            </notice>
+
+            <notice v-if="catalog.bootstrapped && catalog.isEmpty">
+                <p>{{ 'No results found' | t }}</p>
+            </notice>
+
+            <listings :items="catalog.data" :loading="catalog.currentQuery !== null"></listings>
+
+            <pagination v-model="catalog.state.page" :total-results="catalog.total" :per-page.sync="catalog.state.perPage" :per-page-options="[12, 24, 48, 96]" @input="catalog.query"></pagination>
+        </template>
+    </product-catalog>
+</main>

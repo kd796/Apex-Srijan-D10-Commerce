@@ -1,0 +1,9 @@
+services:
+  campbell_where_to_buy.where_to_buy_map:
+    class: Drupal\campbell_where_to_buy\Services\WhereToBuyMapService
+    arguments:
+      - '@entity_type.manager'
+      - '@database'
+      - '@http_client'
+      - '@logger.factory'
+      - '@config.factory'

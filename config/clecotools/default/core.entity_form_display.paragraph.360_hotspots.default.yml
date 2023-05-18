@@ -1,0 +1,57 @@
+uuid: 1297da84-dc2e-47f3-a5eb-1fe3706c078e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.360_hotspots.field_display_frame
+    - field.field.paragraph.360_hotspots.field_hotspot_media
+    - field.field.paragraph.360_hotspots.field_hotspot_text
+    - field.field.paragraph.360_hotspots.field_x_position
+    - field.field.paragraph.360_hotspots.field_y_position
+    - paragraphs.paragraphs_type.360_hotspots
+  module:
+    - media_library
+id: paragraph.360_hotspots.default
+targetEntityType: paragraph
+bundle: 360_hotspots
+mode: default
+content:
+  field_display_frame:
+    type: number
+    weight: 4
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_hotspot_media:
+    type: media_library_widget
+    weight: 0
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_hotspot_text:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_x_position:
+    type: number
+    weight: 2
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_y_position:
+    type: number
+    weight: 3
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

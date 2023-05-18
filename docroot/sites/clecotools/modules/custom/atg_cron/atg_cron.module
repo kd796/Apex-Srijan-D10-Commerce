@@ -1,0 +1,62 @@
+<?php
+
+function atg_cron_cron()
+{
+    $language = Drupal::languageManager()->getCurrentLanguage(Drupal\Core\Language\LanguageInterface::TYPE_CONTENT)->getId();
+
+    if ($language == 'en') {
+        /**
+         * Delete Temporary Files
+         * Drupal is supposed to do this, but it's not working
+         * Important to delete old Delta Feeds to free up space
+         */
+        /*
+         * file_directory_temp()
+         * @deprecated in drupal:8.8.0 and is removed from drupal:9.0.0.
+         *   \Drupal\Core\File\FileSystemInterface::getTempDirectory() instead.
+         */
+        // $tmp = file_directory_temp();
+        $tmp = \Drupal::service('file_system')->getTempDirectory();
+        if (file_exists($tmp)) {
+            /*
+             * file_unmanaged_delete_recursive()
+             * @deprecated in drupal:8.7.0 and is removed from drupal:9.0.0.
+             *   Use \Drupal\Core\File\FileSystemInterface::deleteRecursive().
+             */
+            // file_unmanaged_delete_recursive($tmp);
+            \Drupal::service('file_system')->deleteRecursive($tmp);
+        }
+
+        /**
+         * Check for new images in mount
+         */
+        $ssh = new \phpseclib\Net\SSH2(getenv('SSH_IP'));
+        $ssh->login(getenv('SSH_USER'), getenv('SSH_PASWD'));
+        $ssh->exec('/usr/bin/rsync -arvh --update --progress /var/www/clecotools.com/web/step-mount/ /var/www/clecotools.com/web/assets/products/cleco/');
+        $ssh->disconnect();
+
+        // shell_exec('rsync -arvh --update --progress /var/www/clecotools.com/web/step-mount/ /var/www/clecotools.com/web/assets/products/cleco/ 2>&1');
+        // shell_exec('rsync -arvh --update --progress /Applications/MAMP/htdocs/atg.test/web/sync-1/ /Applications/MAMP/htdocs/atg.test/web/sync-2');
+
+        /**
+         * Check for STEP XML updates
+         */
+        if (\Drupal::hasService('step.step_service')) {
+            // Index delta feeds
+            \Drupal::service('step.step_service')->indexDelta();
+        } else {
+            \Drupal::logger('atg_cron')->error('Drupal Service step.step_service not present');
+        }
+    } else {
+        \Drupal::logger('atg_cron')->notice('Attempted to run cron for language ' . $language);
+    }
+
+    /**
+     * Indexes most recent "yesterdays" nodes in the index
+     */
+    if (\Drupal::hasService('step.drupal_node_service')) {
+        \Drupal::service('step.drupal_node_service')->indexDocuments();
+    } else {
+        \Drupal::logger('atg_cron')->error('Drupal Service step.drupal_node_service not present');
+    }
+}

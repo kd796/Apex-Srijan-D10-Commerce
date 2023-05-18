@@ -18,3 +18,7 @@ services:
     arguments: ['@config.factory', '@router.admin_context', '@current_route_match', '@current_user']
     tags:
       - { name: theme_negotiator, priority: 10 }
+
+  apex_common.importer:
+    class: Drupal\apex_common\RedirectURLimporter
+    arguments: []

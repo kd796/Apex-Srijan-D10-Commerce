@@ -182,6 +182,9 @@ $tabs-border-width-active: rem(5px);
 
       .product-detail-content-container__rating-container {
         margin: rem(26px) 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
 
         .node__buy-now-button {
           @include btn(primary);
@@ -190,6 +193,9 @@ $tabs-border-width-active: rem(5px);
           float: none;
           font-size: 1rem;
         }
+      }
+      .rrp{
+        padding: 0px 20px;
       }
     }
 
@@ -472,20 +478,25 @@ $tabs-border-width-active: rem(5px);
                 border: 0;
                 float: none;
 
-                .ps-review-details {
-                  background: none;
+                .ps-review {
+                  display: unset;
+                  float: left;
 
-                  @include media('<sm') {
-                    margin-left: 0;
+                  .ps-review-details {
+                    background: none;
+  
+                    @include media('<sm') {
+                      margin-left: 0;
+                    }
                   }
-                }
-
-                .ps-review-count,
-                .ps-review-average {
-                  @include type-header(h5);
-                  color: $black;
-                  font-family: $font-brand;
-                  font-weight: $fw-bold;
+  
+                  .ps-review-count,
+                  .ps-review-average {
+                    @include type-header(h5);
+                    color: $black;
+                    font-family: $font-brand;
+                    font-weight: $fw-bold;
+                  }
                 }
               }
             }

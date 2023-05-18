@@ -1,0 +1,22 @@
+uuid: 68737ac5-3574-4ebf-ab4f-f27002ef4e3b
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.schedule_a_demo
+id: paragraph.schedule_a_demo.status
+field_name: status
+entity_type: paragraph
+bundle: schedule_a_demo
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

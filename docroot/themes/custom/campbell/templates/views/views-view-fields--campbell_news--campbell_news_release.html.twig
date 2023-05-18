@@ -1,0 +1,12 @@
+{% set view_node = fields.view_node.content|render|trim|striptags %}
+<div class="news-list">
+  <div class="date">
+    <span class="month">{{ fields.field_date.content }}</span>
+    <span class="year">{{ fields.field_date_1.content }}</span>
+  </div>
+  <div class="image">{{ fields.field_media.content }}</div>
+  <div class="txt-block">
+    <a href="{{ view_node }}">{{ fields.title.content }}</a>
+    {{ fields.body.content }}
+  </div>
+</div>

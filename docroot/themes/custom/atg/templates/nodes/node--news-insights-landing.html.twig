@@ -1,0 +1,21 @@
+<div class="hero--align-left">
+  {{ content.field_hero }}
+</div>
+
+<main class="main">
+  <section class="section">
+    {% if content.body %}
+    <div{{ content_attributes }}>
+      {{ content.body }}
+    </div>
+    {% endif %}
+
+    <div class="news-insights">
+      {{ drupal_view('news_insights_archive', 'block_2') }}
+    </div>
+  </section>
+
+  {{ content.field_callout_page_end }}
+</main>
+
+{{ content.field_callout_section_footer }}

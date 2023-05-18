@@ -1,0 +1,63 @@
+# Migration configuration for cleco_product_classifications content.
+id: cleco_product_classifications_level_one_gb
+label: Product Classifications - Level One (Language GB) 
+migration_group: cleco
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: "http://www.stibosystems.com/step"
+  item_selector: /STEP-ProductInformation/Classifications/Classification/Classification/Classification[@UserTypeID="Website"]
+  fields:
+    -
+      name: remote_term_id
+      label: ID
+      selector: '@ID'
+    -
+      name: remote_term_name
+      label: Term Name
+      selector: Name
+    -
+      name: term_description
+      label: Parent Term Name
+      selector: 'MetaData/Value[@AttributeID="Pro Landing Body"]'
+    -
+      name: term_position
+      label: Term Position
+      selector: 'MetaData/Value[@AttributeID="ATT15738"]'
+  ids:
+    remote_term_id:
+      type: string
+process:
+  name:
+    plugin: skip_on_empty
+    method: row
+    source: remote_term_name
+  vid:
+    plugin: default_value
+    default_value: product_classifications
+  field_classification_id:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_term_id
+    method: row
+    value:
+      - Website_718104
+      - Website_718081
+      - Website_718028
+  'description/value': term_description
+  'description/format':
+    plugin: default_value
+    default_value: full_html
+  weight:
+    plugin: cleco_get_default_value
+    source: term_position
+    set_default_value: 1
+    default_value: 0
+  langcode:
+    plugin: default_value
+    default_value: gb
+destination:
+  plugin: 'entity:taxonomy_term'

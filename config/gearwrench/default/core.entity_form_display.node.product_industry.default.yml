@@ -6,9 +6,11 @@ dependencies:
     - field.field.node.product_industry.body
     - field.field.node.product_industry.field_industry
     - field.field.node.product_industry.field_media
+    - field.field.node.product_industry.field_meta_tags
     - node.type.product_industry
   module:
     - media_library
+    - metatag
     - path
     - text
 id: node.product_industry.default
@@ -44,6 +46,14 @@ content:
     region: content
     settings:
       media_types: {  }
+    third_party_settings: {  }
+  field_meta_tags:
+    type: metatag_firehose
+    weight: 26
+    region: content
+    settings:
+      sidebar: true
+      use_details: true
     third_party_settings: {  }
   langcode:
     type: language_select

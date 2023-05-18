@@ -1,0 +1,22 @@
+uuid: cbe1b166-39dc-45fc-8c69-d7ea8b94c126
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.local_retailer
+id: node.local_retailer.promote
+field_name: promote
+entity_type: node
+bundle: local_retailer
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

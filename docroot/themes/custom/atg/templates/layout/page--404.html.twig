@@ -1,0 +1,10 @@
+{{ page.header }}
+{% include '@atg/patterns/hero.html.twig' with {
+	title: 'Page not found' | t
+} %}
+<main class="section main">
+	<div class="article">
+		{{ page.content }}
+	</div>
+</main>
+{{ page.form }}
