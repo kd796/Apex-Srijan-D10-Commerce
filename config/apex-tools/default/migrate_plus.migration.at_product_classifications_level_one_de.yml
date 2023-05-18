@@ -1,9 +1,9 @@
-uuid: b05dcc9a-4aa4-44a0-9abc-41e92171fcad
+uuid: 37247352-a4cb-4f4c-89e8-44c8a59cd289
 langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: Ju90d2eYNWz7-qtNRv0LCZ2GDtlly3wC3BpzBQvga0E
+  default_config_hash: HW6hfWNEhghcevQ1PhPzoN-hIVuyFuyBDbhubuwv5vs
 id: at_product_classifications_level_one_de
 class: null
 field_plugin_method: null
@@ -18,7 +18,7 @@ source:
   urls: 'public://import/pim_data/pim_export_with_schema_de.xml'
   namespaces:
     stibo: 'http://www.stibosystems.com/step'
-  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification[@UserTypeID="Website"]'
+  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 1"]'
   fields:
     -
       name: remote_term_id
@@ -36,6 +36,10 @@ source:
       name: term_position
       label: 'Term Position'
       selector: 'MetaData/Value[@AttributeID="ATT15738"]'
+    -
+      name: remote_classification_image
+      label: 'Classification Image'
+      selector: AssetCrossReference
   ids:
     remote_term_id:
       type: string
@@ -49,13 +53,12 @@ process:
     default_value: product_classifications
   field_classification_id:
     plugin: skip_on_value
-    not_equals: true
+    equals: true
     source: remote_term_id
     method: row
     value:
-      - Website_718104
-      - Website_718081
-      - Website_718028
+      - W1_673527
+      - W1_674423
   description/value: term_description
   description/format:
     plugin: default_value
@@ -68,6 +71,14 @@ process:
   langcode:
     plugin: default_value
     default_value: de
+  field_category_image:
+    plugin: at_map_classification_image
+    source: remote_classification_image
+    migration_instance: at_product_media_de
+    xpath: 'parent::Classification/AssetCrossReference'
+    asset_type:
+      - WebCategoryImage
+    langcode: de
 destination:
   plugin: 'entity:taxonomy_term'
 migration_dependencies: null

@@ -1,9 +1,9 @@
-uuid: ef1e2742-4d08-4abf-bff0-e10bcb241657
+uuid: 76186a97-6fd1-41ee-aff6-be8691d76777
 langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: l8INCdrdGvvhoQTyaZ3znvTVL-a9ro4iG3PH-p9hUJA
+  default_config_hash: ZbIPXfIo0CwkcQsVfxIWtpbEzzcUrILN6jKNxU_K-6A
 id: at_product_classifications_level_two_gb
 class: null
 field_plugin_method: null
@@ -18,7 +18,7 @@ source:
   urls: 'public://import/pim_data/pim_export_with_schema.xml'
   namespaces:
     stibo: 'http://www.stibosystems.com/step'
-  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 1"]'
+  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 2"]'
   fields:
     -
       name: remote_term_id
@@ -40,6 +40,10 @@ source:
       name: term_position
       label: 'Term Position'
       selector: 'MetaData/Value[@AttributeID="ATT15738"]'
+    -
+      name: remote_classification_image
+      label: 'Classification Image'
+      selector: AssetCrossReference
   ids:
     remote_term_id:
       type: string
@@ -50,26 +54,12 @@ process:
     source: remote_term_name
   field_classification_id:
     plugin: skip_on_value
-    not_equals: true
+    equals: true
     source: remote_term_id
     method: row
     value:
-      - W1_718105
-      - W1_718108
-      - W1_718116
-      - W1_728278
-      - W1_718082
-      - W1_718083
-      - W1_718084
-      - W1_728279
-      - W1_727155
-      - W1_718040
-      - W1_718038
-      - W1_727160
-      - W1_727161
-      - W1_718080
-      - W1_718581
-      - W1_728276
+      - W1_673527
+      - W1_674423
   description/value: term_description
   description/format:
     plugin: default_value
@@ -90,6 +80,14 @@ process:
   langcode:
     plugin: default_value
     default_value: gb
+  field_category_image:
+    plugin: at_map_classification_image
+    source: remote_classification_image
+    migration_instance: at_product_media_gb
+    xpath: 'parent::Classification/AssetCrossReference'
+    asset_type:
+      - WebCategoryImage
+    langcode: gb
 destination:
   plugin: 'entity:taxonomy_term'
   default_bundle: product_classifications

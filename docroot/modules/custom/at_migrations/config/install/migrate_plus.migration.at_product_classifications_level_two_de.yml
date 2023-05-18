@@ -9,7 +9,7 @@ source:
   urls: 'public://import/pim_data/pim_export_with_schema_de.xml'
   namespaces:
     stibo: "http://www.stibosystems.com/step"
-  item_selector: /STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 1"]
+  item_selector: /STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 2"]
   fields:
     -
      name: remote_term_id
@@ -31,6 +31,9 @@ source:
       name: term_position
       label: Term Position
       selector: 'MetaData/Value[@AttributeID="ATT15738"]'
+    - name: remote_classification_image
+      label: Classification Image
+      selector: AssetCrossReference
   ids:
     remote_term_id:
       type: string
@@ -42,31 +45,13 @@ process:
 
   field_classification_id:
     plugin: skip_on_value
-    not_equals: true
+    equals: true
     source: remote_term_id
     method: row
     value:
-      # Parent: Website_718104 Name: Drilling & Riveting
-      - W1_718105
-      - W1_718108
-      - W1_718116
-      - W1_728278
-
-      # Parent: Website_718081 Name: Material Removal
-      - W1_718082
-      - W1_718083
-      - W1_718084
-      - W1_728279
-
-      # Parent: Website_718028 Name: Assembly Tools
-      - W1_727155
-      - W1_718040
-      - W1_718038
-      - W1_727160
-      - W1_727161
-      - W1_718080
-      - W1_718581
-      - W1_728276
+      # First level ID.
+      - W1_673527
+      - W1_674423
   'description/value': term_description
   'description/format':
     plugin: default_value
@@ -87,6 +72,15 @@ process:
   langcode:
     plugin: default_value
     default_value: de
+  #Process for image.
+  field_category_image:
+    plugin: at_map_classification_image
+    source: remote_classification_image
+    migration_instance: at_product_media_de
+    xpath: parent::Classification/AssetCrossReference
+    asset_type:
+      - WebCategoryImage
+    langcode: de
 destination:
   plugin: entity:taxonomy_term
   default_bundle: product_classifications
