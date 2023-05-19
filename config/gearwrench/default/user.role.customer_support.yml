@@ -4,14 +4,13 @@ status: true
 dependencies:
   module:
     - admin_toolbar_search
+    - gearwrench_migrations
     - toolbar
-    - webform
 id: customer_support
 label: 'Customer Support'
 weight: 5
 is_admin: null
 permissions:
   - 'access toolbar'
-  - 'access webform help'
-  - 'administer webform submission'
+  - 'administer webform customer support'
   - 'use admin toolbar search'
