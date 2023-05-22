@@ -1,9 +1,9 @@
-uuid: 63d3142b-5de1-4f87-b331-6dc2cf7bfcf6
+uuid: ac194a13-f3c3-4602-86f9-7689790cef7c
 langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: 3MjX4X-wYFmtNwN5d0eWlhOO4tbpaK4k6Z-UvRnRs3U
+  default_config_hash: 1-TJdoiGXsR5zNtwhyzOcGt7XTrg6mQ39zjA6HdIsIs
 id: at_product_classifications_level_three_de
 class: null
 field_plugin_method: null
@@ -69,6 +69,11 @@ process:
     source: term_position
     set_default_value: 1
     default_value: 0
+  field_product_display_order:
+    plugin: at_get_default_value
+    source: term_position
+    set_default_value: 1
+    default_value: 0
   parent:
     -
       plugin: at_get_classification_parent_term
@@ -80,7 +85,7 @@ process:
   langcode:
     plugin: default_value
     default_value: de
-  field_category_image:
+  field_classification_image:
     plugin: at_map_classification_image
     source: remote_classification_image
     migration_instance: at_product_media_de
