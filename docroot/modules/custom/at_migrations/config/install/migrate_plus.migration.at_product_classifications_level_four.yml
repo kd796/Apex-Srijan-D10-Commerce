@@ -61,6 +61,11 @@ process:
     source: term_position
     set_default_value: 1
     default_value: 0
+  field_product_display_order:
+    plugin: at_get_default_value
+    source: term_position
+    set_default_value: 1
+    default_value: 0
   parent:
     -
       plugin: at_get_classification_parent_term
@@ -73,7 +78,7 @@ process:
     plugin: default_value
     default_value: en
   #Process for image.
-  field_category_image:
+  field_classification_image:
     plugin: at_map_classification_image
     source: remote_classification_image
     migration_instance: at_product_media
