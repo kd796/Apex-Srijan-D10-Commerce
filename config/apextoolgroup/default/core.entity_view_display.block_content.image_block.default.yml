@@ -6,9 +6,9 @@ dependencies:
     - block_content.type.image_block
     - field.field.block_content.image_block.body
     - field.field.block_content.image_block.field_image
-    - image.style.about_footer
+    - responsive_image.styles.women_in_tool
   module:
-    - media
+    - media_responsive_thumbnail
     - text
 id: block_content.image_block.default
 targetEntityType: block_content
@@ -23,13 +23,11 @@ content:
     weight: 1
     region: content
   field_image:
-    type: media_thumbnail
+    type: media_responsive_thumbnail
     label: hidden
     settings:
+      responsive_image_style: women_in_tool
       image_link: ''
-      image_style: about_footer
-      image_loading:
-        attribute: lazy
     third_party_settings: {  }
     weight: 0
     region: content

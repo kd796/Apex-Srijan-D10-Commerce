@@ -1,0 +1,25 @@
+uuid: 9509109a-0159-4321-8034-da46b4111bcc
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.brands_timeline
+    - image.style.brands_timeline_mobile
+    - image.style.brands_timeline_tablet
+  theme:
+    - apextoolgroup
+id: brands_timeline
+label: 'Brands Timeline'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: brands_timeline_tablet
+    breakpoint_id: apextoolgroup.tablet
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: brands_timeline_mobile
+    breakpoint_id: apextoolgroup.mobile
+    multiplier: 1x
+breakpoint_group: apextoolgroup
+fallback_image_style: brands_timeline

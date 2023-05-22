@@ -195,21 +195,43 @@
   }
 
   .nav-item {
-    margin: auto 30px auto 0;
+    margin: auto 25px auto 0;
     padding: 30px 0;
     @media only screen and (max-width: $tablet-max)  {
       margin: auto 40px auto 0;
       padding: 15px;
     }
 
+    &.active {
+      &>a {
+        color: $celtic-blue;
+
+        @media only screen and (min-width: $tablet-max)  {
+          position: relative;
+
+          &::after {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: -5px;
+            height: 4px;
+            width: 110%;
+            background-color: $celtic-blue;
+          }
+        }
+      }
+    }
+
     &.dropdown {
+      margin: auto 45px auto 0;
+
       &::after {
         content: '';
         width: 10px;
         height: 10px;
         background: url('#{$icon-base-path}/arrow-down.svg') center no-repeat;
         position: absolute;
-        right: -5px;
+        right: -20px;
         top: 0;
         height: 100%;
         @media only screen and (max-width: $tablet-max)  {
@@ -221,10 +243,22 @@
           padding: 20px;
         }
       }
-    }
 
-    .angle-down {
-      padding-right: 10px;
+      &.active {
+        &::after {
+          background: url('#{$icon-base-path}/arrow-down-blue.svg') center no-repeat;
+          @media only screen and (max-width: $tablet-max)  {
+            background: url('#{$icon-base-path}/arrow-down-responsive-blue.svg') center no-repeat;
+          }
+        }
+        @media only screen and (min-width: $tablet-max)  {
+          a {
+            &::after {
+              width: calc(100% + 30px);
+            }
+          }
+        }
+      }
     }
   }
 
@@ -281,7 +315,8 @@
         background: $black;
       }
 
-      &:hover {
+      &:hover,
+      &.active {
         color: $celtic-blue;
       }
       @media only screen and (max-width: $tablet-max) { 
@@ -315,6 +350,36 @@
         background: url('#{$icon-base-path}/arrow-down-responsive.svg') center no-repeat;
         width: 20px;
         height: 10px;
+      }
+    }
+
+    &.active {
+      &>a {
+        color: $celtic-blue;
+      }
+
+      &::after {
+        background: url('#{$icon-base-path}/arrow-down-blue.svg') right bottom no-repeat;
+        @media only screen and (max-width: $tablet-max)  {
+          background: url('#{$icon-base-path}/arrow-down-responsive.svg') center no-repeat;
+        }
+      }
+    }
+
+    .dropdown-menu {
+      .dropdown-item {
+        &.active {
+          &>a {
+            color: $celtic-blue;
+          }
+
+          &::after {
+            background: url('#{$icon-base-path}/arrow-down-blue.svg') right bottom no-repeat;
+            @media only screen and (max-width: $tablet-max)  {
+              background: url('#{$icon-base-path}/arrow-down-responsive-blue.svg') center no-repeat;
+            }
+          }
+        }
       }
     }
   }

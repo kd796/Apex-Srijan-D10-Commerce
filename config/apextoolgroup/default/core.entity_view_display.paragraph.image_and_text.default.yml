@@ -8,10 +8,10 @@ dependencies:
     - field.field.paragraph.image_and_text.field_featured_image
     - field.field.paragraph.image_and_text.field_headline
     - field.field.paragraph.image_and_text.field_small_featured_image
-    - image.style.image_436x272
     - paragraphs.paragraphs_type.image_and_text
+    - responsive_image.styles.image_and_text
   module:
-    - media
+    - media_responsive_thumbnail
     - options
     - text
 id: paragraph.image_and_text.default
@@ -34,13 +34,11 @@ content:
     weight: 4
     region: content
   field_featured_image:
-    type: media_thumbnail
+    type: media_responsive_thumbnail
     label: hidden
     settings:
+      responsive_image_style: image_and_text
       image_link: ''
-      image_style: image_436x272
-      image_loading:
-        attribute: lazy
     third_party_settings: {  }
     weight: 0
     region: content

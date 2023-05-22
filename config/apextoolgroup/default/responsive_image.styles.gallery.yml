@@ -1,0 +1,25 @@
+uuid: e293b183-908c-4da8-8112-bd4c52331911
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.gallery
+    - image.style.gallery_mobile
+    - image.style.gallery_tablet
+  theme:
+    - apextoolgroup
+id: gallery
+label: gallery
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: gallery_tablet
+    breakpoint_id: apextoolgroup.tablet
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: gallery_mobile
+    breakpoint_id: apextoolgroup.mobile
+    multiplier: 1x
+breakpoint_group: apextoolgroup
+fallback_image_style: gallery
