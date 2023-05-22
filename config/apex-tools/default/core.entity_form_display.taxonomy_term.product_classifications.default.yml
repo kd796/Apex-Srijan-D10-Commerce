@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.taxonomy_term.product_classifications.field_category_image
     - field.field.taxonomy_term.product_classifications.field_classification_id
+    - field.field.taxonomy_term.product_classifications.field_classification_image
     - field.field.taxonomy_term.product_classifications.field_product_display_order
     - taxonomy.vocabulary.product_classifications
   module:
@@ -38,6 +39,13 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_classification_image:
+    type: media_library_widget
+    weight: 105
+    region: content
+    settings:
+      media_types: {  }
     third_party_settings: {  }
   field_product_display_order:
     type: string_textfield

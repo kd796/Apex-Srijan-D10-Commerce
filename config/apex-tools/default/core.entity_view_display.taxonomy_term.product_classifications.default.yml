@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.taxonomy_term.product_classifications.field_category_image
     - field.field.taxonomy_term.product_classifications.field_classification_id
+    - field.field.taxonomy_term.product_classifications.field_classification_image
     - field.field.taxonomy_term.product_classifications.field_product_display_order
     - taxonomy.vocabulary.product_classifications
   module:
@@ -29,6 +30,15 @@ content:
       link: false
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_classification_image:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 4
     region: content
   field_product_display_order:
     type: string
