@@ -213,9 +213,9 @@
             content: '';
             position: absolute;
             top: 25px;
-            left: -5px;
+            left: 0;
             height: 4px;
-            width: 110%;
+            width: 100%;
             background-color: $celtic-blue;
           }
         }
@@ -223,7 +223,9 @@
     }
 
     &.dropdown {
-      margin: auto 45px auto 0;
+      @media only screen and (min-width: $tablet-max)  {
+        margin: auto 45px auto 0;
+      }
 
       &::after {
         content: '';
@@ -254,7 +256,7 @@
         @media only screen and (min-width: $tablet-max)  {
           a {
             &::after {
-              width: calc(100% + 30px);
+              width: calc(100% + 20px);
             }
           }
         }
@@ -502,6 +504,9 @@
     &::placeholder {
       color: $aluminium-dark;
       font-size: 36px;
+      @media only screen and (max-width: $tablet)  {
+        font-size: 24px;
+      }
     }
     @media only screen and (max-width: $tablet)  {
       font-size: 24px;
