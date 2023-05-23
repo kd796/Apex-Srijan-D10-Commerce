@@ -28,7 +28,7 @@
       }
 
       label {
-        top: 50%;
+        top: 32px;
         left: 16px;
         z-index: 1;
         position: absolute;
@@ -151,6 +151,64 @@
       font-size: $p;
       line-height: 25.2px;
       font-weight: $normal;
+    }
+
+    &.atg-contact-us {
+      .form-composite {
+        width: 100%;
+
+        legend {
+          margin-bottom: 32px;
+        }
+
+        .fieldset-wrapper {
+          .form-radios {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+
+            .form-type-radio {
+              width: 25%;
+              display: flex;
+              flex-wrap: wrap;
+              align-items: center;
+              justify-content: space-between;
+              @media only screen and(max-width: $desktop) {
+                width: 33.33%;
+              }
+
+              @media only screen and(max-width: $tablet-max) {
+                width: 50%;
+              }
+
+              @media only screen and(max-width: $tablet) {
+                width: 100%;
+              }
+
+              label {
+                padding: 0;
+                position: static;
+                width: calc(100% - 28px);
+                transform: translateY(0);
+              }
+            }
+          }
+
+          .description {
+            font-size: $h5;
+            line-height: 25.2px;
+            font-weight: $normal;
+          }
+        }
+      }
+
+      .form-type-textarea {
+        width: 100%;
+
+        textarea {
+          min-height: 124px;
+        }
+      }
     }
   }
 }

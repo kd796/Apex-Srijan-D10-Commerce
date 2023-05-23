@@ -5,14 +5,18 @@ dependencies:
   config:
     - webform.webform.contact_us
   module:
+    - block_class
     - system
     - webform
   theme:
     - apextoolgroup
+third_party_settings:
+  block_class:
+    classes: 'container application-form'
 id: webform_2
 theme: apextoolgroup
 region: content
-weight: 0
+weight: -5
 provider: null
 plugin: webform_block
 settings:

@@ -814,7 +814,20 @@ display:
           replica: false
           query_tags: {  }
       relationships: {  }
-      header: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: 'Commercial Offices for Apex Tool Group and Affiliated Entities'
+            format: full_html
+          tokenize: false
       footer: {  }
       display_extenders: {  }
     cache_metadata:
@@ -1790,6 +1803,7 @@ display:
         relationships: false
         fields: false
         sorts: false
+        header: false
       relationships:
         term_node_tid:
           id: term_node_tid
@@ -1804,6 +1818,7 @@ display:
           vids:
             - office_category
       display_description: ''
+      header: {  }
       display_extenders: {  }
       path: contact-us
       menu:
@@ -2342,7 +2357,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 6
+            - 33
           group: 1
           exposed: false
           expose:
@@ -2399,7 +2414,22 @@ display:
         sorts: false
         filters: false
         filter_groups: false
+        header: false
       display_description: ''
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: 'Commercial Offices for Apex Tool Group and Affiliated Entities'
+            format: full_html
+          tokenize: false
       display_extenders: {  }
       displays:
         default: default
@@ -2568,7 +2598,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "{{ field_address__given_name }} {{ field_address__additional_name }} {{ field_address__family_name }}<br>\r\n{% if field_address__address_line1 %}\r\n  {{ field_address__address_line1 }}<br>\r\n{% endif %}\r\n{% if field_address__address_line2 %}\r\n{{ field_address__address_line2 }}<br>\r\n{% endif %}\r\n{% if field_address__dependent_locality %}\r\n{{ field_address__dependent_locality }}<br>\r\n{% endif %}\r\n{% if field_address__locality %}\r\n{{ field_address__locality }},{{ field_address__administrative_area }}<br>\r\n{% endif %}\r\n{% if field_address__postal_code %}\r\nPostal Code:{{ field_address__postal_code }}\r\n{% endif %}"
+            text: "<strong>{{ field_address__given_name }} {{ field_address__additional_name }} {{ field_address__family_name }}</strong><br>\r\n{% if field_address__address_line1 %}\r\n  {{ field_address__address_line1 }}<br>\r\n{% endif %}\r\n{% if field_address__address_line2 %}\r\n{{ field_address__address_line2 }}<br>\r\n{% endif %}\r\n{% if field_address__dependent_locality %}\r\n{{ field_address__dependent_locality }}<br>\r\n{% endif %}\r\n{% if field_address__locality %}\r\n{{ field_address__locality }},{{ field_address__administrative_area }}<br>\r\n{% endif %}\r\n{% if field_address__postal_code %}\r\nPostal Code:{{ field_address__postal_code }}\r\n{% endif %}"
             make_link: false
             path: ''
             absolute: false
@@ -2874,6 +2904,11 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        nothing:
+          id: nothing
+          table: views
+          field: nothing
+          plugin_id: custom
       pager:
         type: none
         options:
@@ -2930,7 +2965,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 1
+            - 34
           group: 1
           exposed: false
           expose:
@@ -2987,7 +3022,9 @@ display:
         sorts: false
         filters: false
         filter_groups: false
+        header: false
       display_description: ''
+      header: {  }
       display_extenders: {  }
       displays:
         default: default
