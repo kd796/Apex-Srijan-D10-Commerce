@@ -138,3 +138,13 @@ function _get_absolute_string($field_name, $entity, $media_field) {
   $url = !empty($image_uri) ? \Drupal::service('file_url_generator')->generateAbsoluteString($image_uri) : NULL;
   return $url;
 }
+
+/**
+ * Implements HOOK_preprocess_image.
+ *
+ * $variables.
+ */
+function apextoolgroup_preprocess_image(&$variables) {
+  // Add lazy loading attribute to all images.
+  $variables['attributes']['loading'] = 'lazy';
+}

@@ -1,0 +1,25 @@
+uuid: b3a8f179-f064-48d7-8606-cedd8e77b092
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.homepage_new_product
+    - image.style.homepage_new_product_mobile
+    - image.style.homepage_new_product_tablet
+  theme:
+    - apextoolgroup
+id: homepage_new_product
+label: 'Homepage New Product'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: homepage_new_product_tablet
+    breakpoint_id: apextoolgroup.tablet
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: homepage_new_product_mobile
+    breakpoint_id: apextoolgroup.mobile
+    multiplier: 1x
+breakpoint_group: apextoolgroup
+fallback_image_style: homepage_new_product

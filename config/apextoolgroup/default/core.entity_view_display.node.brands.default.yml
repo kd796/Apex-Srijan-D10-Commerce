@@ -21,9 +21,11 @@ dependencies:
     - field.field.node.brands.field_solution
     - field.field.node.brands.field_weight
     - node.type.brands
+    - responsive_image.styles.homepage_slider_and_page_banner
   module:
     - color_field
     - link
+    - media_responsive_thumbnail
     - text
     - user
 id: node.brands.default
@@ -55,11 +57,11 @@ content:
     weight: 8
     region: content
   field_banner_image:
-    type: entity_reference_entity_view
+    type: media_responsive_thumbnail
     label: hidden
     settings:
-      view_mode: embed
-      link: false
+      responsive_image_style: homepage_slider_and_page_banner
+      image_link: ''
     third_party_settings: {  }
     weight: 0
     region: content
