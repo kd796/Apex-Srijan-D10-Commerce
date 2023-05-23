@@ -137,7 +137,7 @@ trait MigrationHelperTrait {
       "ATT22562" => "drill_size",
       "ATT666315" => "male_thread",
       "ATT728154" => "description_0",
-      "ATT666986" => "drive_size",
+      "ATT666986" => "drive_size_0",
       "ATT666325" => "type_of_lock",
       "ATT666969" => "metal_part_number",
       "ATT499" => "drive_type",
@@ -197,7 +197,7 @@ trait MigrationHelperTrait {
   }
 
   /**
-   * List of valid atrribite ID.
+   * List of valid atrribite ID. Will be used for dynamic key generation.
    *
    * @return mixed
    *   Returns attribute ids.
