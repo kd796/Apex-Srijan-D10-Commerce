@@ -88,9 +88,6 @@
           if ($this.attr('href').indexOf(current) !== -1) {
             $this.addClass('active');
           }
-          else if ($this.attr('href') === '/') {
-            $('.navbar-nav li:first-child').addClass('active');
-          }
         });
       }
       $navLinks.removeClass('active');

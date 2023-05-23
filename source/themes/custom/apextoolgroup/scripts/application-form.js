@@ -1,7 +1,7 @@
 (function ($, Drupal) {
   'use strict';
 
-  Drupal.behaviors.apextoolgroup = {
+  Drupal.behaviors.applicationForm = {
     attach: function (context, settings) {
       function inputValidation(ele) {
         var text_val = $(ele).val();
