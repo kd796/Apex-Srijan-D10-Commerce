@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.employee_profile.field_short_description
     - node.type.employee_profile
   module:
+    - telephone
     - text
     - user
 id: node.employee_profile.default
@@ -28,7 +29,7 @@ content:
     region: content
   field_employee_designation:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
@@ -36,7 +37,7 @@ content:
     region: content
   field_employee_photo:
     type: entity_reference_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: false
@@ -45,7 +46,7 @@ content:
     region: content
   field_employee_type:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
@@ -53,21 +54,22 @@ content:
     region: content
   field_mail_address:
     type: basic_string
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 106
     region: content
   field_phone:
-    type: basic_string
-    label: above
-    settings: {  }
+    type: telephone_link
+    label: hidden
+    settings:
+      title: ''
     third_party_settings: {  }
     weight: 107
     region: content
   field_short_description:
     type: text_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 103

@@ -1,0 +1,353 @@
+uuid: 8820e348-b2a9-4962-b43c-8b2ac602e5c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_address
+    - field.storage.node.body
+    - field.storage.node.field_learn_about_our_process_bo
+    - field.storage.node.field_sub_heading
+    - field.storage.node.field_employee_designation
+    - search_api.server.acquia_search_server
+    - core.entity_view_mode.node.full
+  module:
+    - search_api_solr
+    - taxonomy
+    - node
+    - search_api
+third_party_settings:
+  search_api_solr:
+    finalize: false
+    commit_before_finalize: false
+    commit_after_finalize: false
+    debug_finalize: false
+    highlighter:
+      maxAnalyzedChars: 51200
+      fragmenter: gap
+      usePhraseHighlighter: true
+      highlightMultiTerm: true
+      preserveMulti: false
+      regex:
+        slop: 0.5
+        pattern: blank
+        maxAnalyzedChars: 10000
+      highlight:
+        mergeContiguous: false
+        requireFieldMatch: false
+        snippets: 3
+        fragsize: 0
+    mlt:
+      mintf: 1
+      mindf: 1
+      maxdf: 0
+      maxdfpct: 0
+      minwl: 0
+      maxwl: 0
+      maxqt: 100
+      maxntp: 2000
+      boost: false
+      interestingTerms: none
+    term_modifiers:
+      slop: 3
+      fuzzy: 1
+    advanced:
+      index_prefix: ''
+      collection: ''
+      timezone: ''
+    multilingual:
+      limit_to_content_language: false
+      include_language_independent: true
+id: acquia_search_index_content
+name: 'Acquia search index-Content'
+description: ''
+read_only: false
+field_settings:
+  additional_name:
+    label: 'Address » The additional name'
+    datasource_id: 'entity:node'
+    property_path: 'field_address:additional_name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_address
+  address_line1:
+    label: 'Address » The first line of the address block'
+    datasource_id: 'entity:node'
+    property_path: 'field_address:address_line1'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_address
+  address_line2:
+    label: 'Address » The second line of the address block'
+    datasource_id: 'entity:node'
+    property_path: 'field_address:address_line2'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_address
+  administrative_area:
+    label: 'Address » The top-level administrative subdivision of the country'
+    datasource_id: 'entity:node'
+    property_path: 'field_address:administrative_area'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_address
+  body:
+    label: Overview
+    datasource_id: 'entity:node'
+    property_path: body
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.body
+  dependent_locality:
+    label: 'Address » The dependent locality (i.e. neighbourhood)'
+    datasource_id: 'entity:node'
+    property_path: 'field_address:dependent_locality'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_address
+  family_name:
+    label: 'Address » The family name'
+    datasource_id: 'entity:node'
+    property_path: 'field_address:family_name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_address
+  field_address:
+    label: Address
+    datasource_id: 'entity:node'
+    property_path: field_address
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_address
+  field_learn_about_our_process_bo:
+    label: 'Learn About Our Process content'
+    datasource_id: 'entity:node'
+    property_path: field_learn_about_our_process_bo
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_learn_about_our_process_bo
+  field_sub_heading:
+    label: 'Inventor Project Title'
+    datasource_id: 'entity:node'
+    property_path: field_sub_heading
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_sub_heading
+  given_name:
+    label: 'Address » The given name'
+    datasource_id: 'entity:node'
+    property_path: 'field_address:given_name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_address
+  langcode:
+    label: 'Address » The language code'
+    datasource_id: 'entity:node'
+    property_path: 'field_address:langcode'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_address
+  locality:
+    label: 'Address » The locality (i.e. city)'
+    datasource_id: 'entity:node'
+    property_path: 'field_address:locality'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_address
+  name:
+    label: 'Employee Designation » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_employee_designation:entity:name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_employee_designation
+      module:
+        - taxonomy
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
+  organization:
+    label: 'Address » The organization'
+    datasource_id: 'entity:node'
+    property_path: 'field_address:organization'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_address
+  postal_code:
+    label: 'Address » The postal code'
+    datasource_id: 'entity:node'
+    property_path: 'field_address:postal_code'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_address
+  rendered_item:
+    label: 'Rendered HTML output'
+    property_path: rendered_item
+    type: text
+    configuration:
+      roles:
+        - anonymous
+      view_mode:
+        'entity:node':
+          brand_timeline: ''
+          brands: full
+          employee_profile: full
+          ethics_section: full
+          faq: ''
+          homepage_products: ''
+          inventor: full
+          landing_page: ''
+          markets: full
+          media_center: ''
+          multisite_featured: ''
+          news: full
+          office: ''
+          page: full
+  sorting_code:
+    label: 'Address » The sorting code'
+    datasource_id: 'entity:node'
+    property_path: 'field_address:sorting_code'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_address
+  status:
+    label: status
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+  status_1:
+    label: Published
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    dependencies:
+      module:
+        - node
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    dependencies:
+      module:
+        - node
+  type:
+    label: 'Content type'
+    datasource_id: 'entity:node'
+    property_path: type
+    type: string
+    dependencies:
+      module:
+        - node
+  uid:
+    label: uid
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: true
+      selected:
+        - brand_timeline
+        - slider
+        - webform
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  auto_aggregated_fulltext_field: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
+  entity_status: {  }
+  entity_type: {  }
+  highlight:
+    weights:
+      postprocess_query: 0
+    prefix: '<strong>'
+    suffix: '</strong>'
+    excerpt: true
+    excerpt_always: false
+    excerpt_length: 256
+    exclude_fields: {  }
+    highlight: always
+    highlight_partial: false
+  html_filter:
+    weights:
+      preprocess_index: -15
+      preprocess_query: -15
+    all_fields: false
+    fields:
+      - rendered_item
+      - title
+    title: true
+    alt: true
+    tags:
+      b: 2
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+  ignore_character:
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+    all_fields: false
+    fields:
+      - rendered_item
+      - title
+    ignorable: '[''¿¡!?,.:;]'
+    ignorable_classes:
+      - Pc
+      - Pd
+      - Pe
+      - Pf
+      - Pi
+      - Po
+      - Ps
+  language_with_fallback: {  }
+  rendered_item: {  }
+  solr_date_range:
+    weights:
+      preprocess_index: 0
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  index_directly: true
+  track_changes_in_references: true
+server: acquia_search_server
