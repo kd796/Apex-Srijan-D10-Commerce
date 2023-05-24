@@ -202,7 +202,8 @@
       padding: 15px;
     }
 
-    &.active {
+    &.active,
+    &:hover {
       &>a {
         color: $celtic-blue;
 
@@ -246,7 +247,8 @@
         }
       }
 
-      &.active {
+      &.active,
+      &:hover {
         &::after {
           background: url('#{$icon-base-path}/arrow-down-blue.svg') center no-repeat;
           @media only screen and (max-width: $tablet-max)  {
@@ -382,6 +384,14 @@
             }
           }
         }
+      }
+    }
+  }
+
+  .dropdown-item {
+    &.active {
+      &>a {
+        color: $celtic-blue;
       }
     }
   }
