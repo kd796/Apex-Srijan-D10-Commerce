@@ -54,7 +54,7 @@ class GetProductIndustriesArray extends ProcessPluginBase {
     $this->industriesArray = [];
     if (!empty($value)) {
       /** @var \SimpleXMLElement $child */
-      $this->findProductIndustries($value, $migrate_executable, $row, $vid);
+      $this->findProductIndustries($value, $migrate_executable, $row, (string) $vid);
 
       if (empty($this->industriesArray)) {
         // Find the parent Product and try that one.
@@ -67,7 +67,7 @@ class GetProductIndustriesArray extends ProcessPluginBase {
           $parentProductValues = $product->xpath('parent::Product/Values');
 
           if (!empty($parentProductValues[0])) {
-            $this->findProductIndustries($parentProductValues[0], $migrate_executable, $row, $vid);
+            $this->findProductIndustries($parentProductValues[0], $migrate_executable, $row, (string) $vid);
           }
           else {
             throw new MigrateSkipProcessException();
@@ -89,7 +89,7 @@ class GetProductIndustriesArray extends ProcessPluginBase {
    *   The migration executable.
    * @param \Drupal\migrate\Row $row
    *   The current row object.
-   * @param mixed $vid
+   * @param string $vid
    *   The Vocabulary that we need to focus on.
    */
   protected function findProductIndustries(mixed $value, MigrateExecutableInterface $migrate_executable, Row $row, string $vid) {
@@ -121,10 +121,13 @@ class GetProductIndustriesArray extends ProcessPluginBase {
    *
    * @param string $vid
    *   The Vocabulary that we need to focus on.
-   * @param mixed $tid
+   * @param string $tid
    *   Taxonomy term id.
+   *
+   * @return array
+   *   An array of values.
    */
-  protected function addToValues(string $vid, mixed $tid): array {
+  protected function addToValues(string $vid, string $tid): array {
     $values_array = [
       'vid' => $vid,
       'target_id' => $tid,
