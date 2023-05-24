@@ -1,6 +1,6 @@
 {% set view_node = fields.field_read_more.content|render|trim|striptags %}
 <div class="card">
-  <a href="{{ view_node }}">
+  <a href="{{ view_node }}" target="_blank" rel="noopener">
     <div class="card__image">
       {{ fields.field_media.content }}
     </div>

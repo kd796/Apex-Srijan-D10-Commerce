@@ -30,6 +30,7 @@ elements: |-
   product_brand:
     '#type': select
     '#title': 'Product Brand'
+    '#title_display': after
     '#options':
       Airetool®: Airetool®
       Allen®: Allen®
@@ -73,6 +74,7 @@ elements: |-
   brand:
     '#type': textfield
     '#title': Brand
+    '#title_display': after
     '#required': true
     '#required_error': 'Brand field is required.'
     '#states':
@@ -82,6 +84,7 @@ elements: |-
   product_model_number:
     '#type': textfield
     '#title': 'Product Model Number'
+    '#title_display': after
     '#required': true
     '#required_error': 'Product Model Number field is required'
     '#states':
