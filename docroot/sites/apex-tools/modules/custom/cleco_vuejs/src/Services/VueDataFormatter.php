@@ -174,6 +174,7 @@ class VueDataFormatter {
         ];
       }
 
+      // ToDo, need to handle $type condition where entity_type will neither node nor media.
       $type = $this->itemTypes[$type] ?? $type;
       $item_type = isset($resultItemFields['item_type']) ? $resultItemFields['item_type']->getvalues() : [];
 

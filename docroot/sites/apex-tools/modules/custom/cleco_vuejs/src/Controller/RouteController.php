@@ -145,7 +145,8 @@ class RouteController extends ControllerBase {
       foreach ($nodes as $node) {
         $fields = $node->getFields();
         $bundle = $node->bundle();
-        $sku_group = isset($fields['field_sku_group']) ? $fields['field_sku_group']->getValue()[0]['value'] : $fields['field_sku']->getValue()[0]['value'];
+        $sku_group = (isset($fields['field_sku_group']) && !empty($fields['field_sku_group']->getValue())) ?
+          $fields['field_sku_group']->getValue()[0]['value'] : (isset($fields['field_sku']) ? $fields['field_sku']->getValue()[0]['value'] : '');
         $title = '';
         if (!empty($fields['field_long_description']->getValue())) {
           $title = $fields['field_long_description']->getValue()[0]['value'];

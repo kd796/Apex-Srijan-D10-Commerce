@@ -5,6 +5,7 @@ namespace Drupal\cleco_vuejs\Utils;
 use function array_intersect;
 use Drupal;
 use Drupal\cleco_vuejs\Utils\Configurations\AccessoriesConfiguration;
+use Drupal\cleco_vuejs\Utils\Configurations\BitHoldersConfiguration;
 use Drupal\cleco_vuejs\Utils\Configurations\AdvancedDrillsConfiguration;
 use Drupal\cleco_vuejs\Utils\Configurations\AirMotorsConfiguration;
 use Drupal\cleco_vuejs\Utils\Configurations\ControllersAndSoftwareConfiguration;
@@ -816,26 +817,7 @@ class StepHelper
 
         $definition->registerConfigurations(
             [
-            AccessoriesConfiguration::class,
-            AdvancedDrillsConfiguration::class,
-            AirMotorsConfiguration::class,
-            ControllersAndSoftwareConfiguration::class,
-            ElectricTorqueWrenchesConfiguration::class,
-            FixturedSpindlesConfiguration::class,
-            GrindersConfiguration::class,
-            HandDrillingCountersinkingAndSpotfacingConfiguration::class,
-            ImpactWrenchesConfiguration::class,
-            LintPickerConfiguration::class,
-            NibblersConfiguration::class,
-            NutrunnersAndScrewdriversConfiguration::class,
-            PercussionConfiguration::class,
-            PulseToolsConfiguration::class,
-            RivetingConfiguration::class,
-            RoutersConfiguration::class,
-            SandersAndPolishersConfiguration::class,
-            SawsConfiguration::class,
-            ShearsAndScissorsConfiguration::class,
-            SpecialtyToolsConfiguration::class
+              BitHoldersConfiguration::class,
             ]
         );
 

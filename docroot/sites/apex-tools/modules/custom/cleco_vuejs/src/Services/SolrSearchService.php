@@ -1304,11 +1304,11 @@ class SolrSearchService
             }
 
             foreach ($translations as $translation) {
-                $results = Json::decode($translation['result']);
+                $results = isset($translation['result']) ? Json::decode($translation['result']) : [];
                 // 'status' key only returned for errors or not results found
-                if (!isset($results['status'])) {
+                if ($results && !isset($results['status'])) {
                     $slugs[] = [
-                        'slug'     => Json::decode($translation['result'])['slug'],
+                        'slug'     => $results['slug'],
                         'langCode' => $translation['langCode']
                     ];
                 }

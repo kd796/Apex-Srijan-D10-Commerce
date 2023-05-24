@@ -343,7 +343,7 @@ class StepTwigExtension extends \Twig_Extension
                 // All images have the same filename,
                 // We'll use original filename the .jpg extension to get the resized images
                 //$src  = $asset['original_source_file'];
-                $slug = rawurlencode($this->findFilename($asset['id'], $style) . '.jpg');
+                $slug = isset($asset['id']) ? rawurlencode($this->findFilename($asset['id'], $style) . '.jpg') : '';
 
                 switch ($style) {
                     case 'product_thumb':
