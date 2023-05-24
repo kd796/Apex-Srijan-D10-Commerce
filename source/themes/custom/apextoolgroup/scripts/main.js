@@ -79,16 +79,20 @@
       }
       menuGroup();
       // Set active menu
-      $('.navbar-nav li a, .dropdown-menu li a').removeClass('active');
-      $(function () {
+      var $navLinks = $('.navbar-nav li a');
+      function setActive() {
         var current = location.pathname;
-        $('.navbar-nav li a, .dropdown-menu li a').each(function () {
+        $navLinks.each(function () {
           var $this = $(this);
           // if the current path is like this link, make it active
           if ($this.attr('href').indexOf(current) !== -1) {
             $this.addClass('active');
           }
         });
+      }
+      $navLinks.removeClass('active');
+      $navLinks.once('first-dropdown').on('click', function (e) {
+        setActive();
       });
       // Set window width.
       var windowWidth = $(window).width();

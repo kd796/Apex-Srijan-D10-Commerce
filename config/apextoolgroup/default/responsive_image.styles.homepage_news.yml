@@ -1,0 +1,25 @@
+uuid: 19ed48b8-4df3-4866-b3bb-cc80c9fe60e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.homepage_news
+    - image.style.homepage_news_mobile
+    - image.style.homepage_news_tablet
+  theme:
+    - apextoolgroup
+id: homepage_news
+label: 'Homepage News'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: homepage_news_tablet
+    breakpoint_id: apextoolgroup.tablet
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: homepage_news_mobile
+    breakpoint_id: apextoolgroup.mobile
+    multiplier: 1x
+breakpoint_group: apextoolgroup
+fallback_image_style: homepage_news

@@ -6,6 +6,7 @@ dependencies:
     - field.field.taxonomy_term.product_specifications.field_long_name
     - field.field.taxonomy_term.product_specifications.field_specification_attr_key
     - field.field.taxonomy_term.product_specifications.field_specification_attribute_id
+    - field.field.taxonomy_term.product_specifications.field_table_name
     - taxonomy.vocabulary.product_specifications
   module:
     - path
@@ -42,6 +43,14 @@ content:
   field_specification_attribute_id:
     type: string_textfield
     weight: 102
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_table_name:
+    type: string_textfield
+    weight: 104
     region: content
     settings:
       size: 60

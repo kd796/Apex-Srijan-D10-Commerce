@@ -22,6 +22,10 @@ source:
       name: remote_term_name
       label: Term Name
       selector: Name
+    -
+      name: source_metadata
+      label: MetaData
+      selector: MetaData/Value[@AttributeID="Table Name"]
   ids:
     remote_term_id:
       type: string
@@ -43,6 +47,7 @@ process:
         - remote_term_id
         - constants/TEXT
         - remote_term_name
+  field_table_name: source_metadata
   langcode:
     plugin: default_value
     default_value: en

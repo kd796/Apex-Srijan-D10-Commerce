@@ -350,6 +350,10 @@
             a {
               text-align: left;
               line-height: 1.5;
+              @media only screen and(max-width: $media-screen-medium) {
+                width: calc(57% - 15px);
+                justify-content: flex-start;
+              }
 
               &.nav-link--depth-0 {
                 @media only screen and (max-width: $media-screen-medium) {

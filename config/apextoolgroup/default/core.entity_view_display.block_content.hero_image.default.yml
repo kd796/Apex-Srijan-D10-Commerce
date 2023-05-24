@@ -7,7 +7,9 @@ dependencies:
     - field.field.block_content.hero_image.body
     - field.field.block_content.hero_image.field_image
     - field.field.block_content.hero_image.field_title
+    - responsive_image.styles.homepage_slider_and_page_banner
   module:
+    - media_responsive_thumbnail
     - text
 id: block_content.hero_image.default
 targetEntityType: block_content
@@ -22,11 +24,11 @@ content:
     weight: 1
     region: content
   field_image:
-    type: entity_reference_entity_view
+    type: media_responsive_thumbnail
     label: hidden
     settings:
-      view_mode: embed
-      link: false
+      responsive_image_style: homepage_slider_and_page_banner
+      image_link: ''
     third_party_settings: {  }
     weight: 2
     region: content

@@ -1,9 +1,7 @@
-uuid: 41afa2e7-b084-43ec-b7fa-2ba6f83a4954
+uuid: b6a76bb2-dcbd-40bb-aa1e-e0f9bd7e0e23
 langcode: en
 status: true
 dependencies: {  }
-_core:
-  default_config_hash: mFa-S9ZgDLaKiNyKM94ebrGmyTNS6uFowKmxzppCvj4
 id: at_product_specifications_de
 class: null
 field_plugin_method: null
@@ -32,6 +30,10 @@ source:
       name: remote_term_name
       label: 'Term Name'
       selector: Name
+    -
+      name: source_metadata
+      label: MetaData
+      selector: 'MetaData/Value[@AttributeID="Table Name"]'
   ids:
     remote_term_id:
       type: string
@@ -54,6 +56,7 @@ process:
         - remote_term_id
         - constants/TEXT
         - remote_term_name
+  field_table_name: source_metadata
   langcode:
     plugin: default_value
     default_value: de

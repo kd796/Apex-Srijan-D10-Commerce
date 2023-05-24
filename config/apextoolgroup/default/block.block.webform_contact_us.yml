@@ -1,24 +1,28 @@
-uuid: c584ca61-3347-4911-9945-8041698d6042
+uuid: 85914701-169f-45ac-8903-b13c3077014a
 langcode: en
 status: true
 dependencies:
   config:
     - webform.webform.contact_us
   module:
+    - block_class
     - system
     - webform
   theme:
     - apextoolgroup
-id: webform_2
+third_party_settings:
+  block_class:
+    classes: 'container application-form'
+id: webform_contact_us
 theme: apextoolgroup
 region: content
-weight: 0
+weight: -5
 provider: null
 plugin: webform_block
 settings:
   id: webform_block
-  label: Webform
-  label_display: '0'
+  label: 'Contact Form'
+  label_display: visible
   provider: webform
   webform_id: contact_us
   default_data: ''
