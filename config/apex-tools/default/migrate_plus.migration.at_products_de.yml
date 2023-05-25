@@ -2,8 +2,6 @@ uuid: 7eb6a0d6-2b30-4e4c-b0c9-d95fdf712e77
 langcode: en
 status: true
 dependencies: {  }
-_core:
-  default_config_hash: oJ1X2TTWHiNvG0IjeRP1w76R7dOQjZqfGsU4XkCUzU4
 id: at_products_de
 class: null
 field_plugin_method: null
@@ -153,6 +151,12 @@ process:
     plugin: at_map_product_classification
     source: remote_product_classifications
     migration_instance: at_product_classifications_level_two_de
+    migration_instance_prefix: at_product_classifications_level_
+    apply_instance_suffix: 1
+    suffix_w1: one_de
+    suffix_w2: two_de
+    suffix_w3: three_de
+    suffix_w4: four_de
     classification_type:
       - 'Web Reference'
     langcode: de
