@@ -11,7 +11,9 @@ dependencies:
     - field.field.node.employee_profile.field_phone
     - field.field.node.employee_profile.field_short_description
     - node.type.employee_profile
+    - responsive_image.styles.employee_profile
   module:
+    - media_responsive_thumbnail
     - telephone
     - text
     - user
@@ -31,16 +33,16 @@ content:
     type: entity_reference_label
     label: hidden
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 104
     region: content
   field_employee_photo:
-    type: entity_reference_entity_view
+    type: media_responsive_thumbnail
     label: hidden
     settings:
-      view_mode: default
-      link: false
+      responsive_image_style: employee_profile
+      image_link: ''
     third_party_settings: {  }
     weight: 102
     region: content

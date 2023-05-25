@@ -1,0 +1,25 @@
+uuid: b161d166-042b-464c-8d65-fe36b8e223a9
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.employee_profile_desktop
+    - image.style.employee_profile_mobile
+    - image.style.employee_profile_tablet
+  theme:
+    - apextoolgroup
+id: employee_profile
+label: 'Employee profile'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: employee_profile_tablet
+    breakpoint_id: apextoolgroup.tablet
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: employee_profile_mobile
+    breakpoint_id: apextoolgroup.mobile
+    multiplier: 1x
+breakpoint_group: apextoolgroup
+fallback_image_style: employee_profile_desktop

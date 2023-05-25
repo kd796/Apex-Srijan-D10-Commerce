@@ -98,6 +98,12 @@
       var windowWidth = $(window).width();
       $('.market-type  .market-container').css({width: windowWidth + 'px'});
 
+      // Clear search.
+      var $searchpageClose = $('.search-page-form .close');
+      $searchpageClose.once('clear-data').on('click', function (e) {
+        $('.search-page-form input').val('');
+      });
+
       /* end */
     }
   };
