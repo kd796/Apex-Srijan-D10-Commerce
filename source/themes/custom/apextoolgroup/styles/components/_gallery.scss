@@ -183,3 +183,55 @@
     }
   }
 }
+
+// Detail page.
+.employee-profile {
+  .employee-information {
+    display: flex;
+    flex-wrap: wrap;
+    @media only screen and (max-width: $tablet)  {
+      flex-direction: column;
+    }
+
+    .profile {
+      overflow: hidden;
+      flex: 0 0 30%;
+      max-width: 30%;
+      @media only screen and (max-width: $tablet)  {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+
+      img {
+        object-fit: cover;
+        @media only screen and (max-width: $tablet)  {
+          width: 100%;
+        }
+      }
+    }
+
+    .content {
+      flex: 0 0 70%;
+      max-width: 70%;
+      @media only screen and (max-width: $tablet)  {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+
+    h2 {
+      font-size: 26px;
+      margin-bottom: 5px;
+      @media only screen and (max-width: $tablet)  {
+        margin-top: 10px;
+      }
+    }
+
+    .designation {
+      font-size: $p;
+      margin-bottom: 16px;
+      color: $westchester-grey;
+      font-weight: $bold;
+    }
+  }
+}
