@@ -173,25 +173,26 @@
       .view-content {
         margin: 0;
         padding: 0;
-        column-count: 3;
-        column-gap: 10px;
-        @media only screen and(max-width: $desktop) {
-          column-count: 2;
-        }
-
-        @media only screen and(max-width: $tablet) {
-          column-count: 1;
-        }
 
         .views-row {
-          display: grid;
+          width: 33.33%;
+          display: flex;
           padding: 0 12px;
-          margin: 0 0 16px;
-          break-inside: avoid;
-          grid-template-rows: 1fr auto;
+          flex-wrap: wrap;
+          margin: 0 0 35px;
           border-left: 6px solid $celtic-blue;
 
+          @media only screen and(max-width: $desktop) {
+            width: 50%;
+            margin: 0 0 27px;
+          }
+
+          @media only screen and(max-width: $tablet) {
+            width: 100%;
+          }
+
           .title {
+            width: 100%;
             color: $black;
             font-size: $h5;
             font-weight: $normal;
@@ -212,6 +213,7 @@
             .phone,
             .read-more,
             .address {
+              width: 100%;
               font-size: 14px;
               line-height: 16.94px;
               font-weight: $normal;
@@ -224,6 +226,12 @@
           }
 
           &.is-active {
+            margin: 0 0 30px;
+
+            @media only screen and(max-width: $desktop) {
+              margin: 0 0 24px;
+            }
+
             .title {
               margin: 0 0 10px;
             }

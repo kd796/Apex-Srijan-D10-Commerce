@@ -18,11 +18,6 @@
             return false;
           });
         });
-
-        $('.offices .attachment .view-office .view-content .views-row .title .mapLocationLink').click(function (event) {
-          event.preventDefault();
-          $(this).parents('.views-row').addClass('is-active').siblings('.views-row').removeClass('is-active');
-        });
       });
     }
   };
