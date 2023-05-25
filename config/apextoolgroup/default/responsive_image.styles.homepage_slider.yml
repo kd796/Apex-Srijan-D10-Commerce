@@ -1,25 +1,25 @@
-uuid: 0ab72455-3ddd-4beb-b83f-df15eac39637
+uuid: 726dbf18-20f5-45b5-9337-da1f55ba560d
 langcode: en
 status: true
 dependencies:
   config:
-    - image.style.homepage_slider
-    - image.style.homepage_slider_mobile
-    - image.style.homepage_slider_tablet
+    - image.style.slider_desktop
+    - image.style.slider_mobile
+    - image.style.slider_tablet
   theme:
     - apextoolgroup
-id: homepage_slider_and_page_banner
-label: Banner
+id: homepage_slider
+label: 'Homepage Slider'
 image_style_mappings:
   -
     image_mapping_type: image_style
-    image_mapping: homepage_slider_tablet
+    image_mapping: slider_tablet
     breakpoint_id: apextoolgroup.tablet
     multiplier: 1x
   -
     image_mapping_type: image_style
-    image_mapping: homepage_slider_mobile
+    image_mapping: slider_mobile
     breakpoint_id: apextoolgroup.mobile
     multiplier: 1x
 breakpoint_group: apextoolgroup
-fallback_image_style: homepage_slider
+fallback_image_style: slider_desktop

@@ -25,28 +25,25 @@
  * @see template_preprocess_block()
  */
 #}
+
 {%
   set classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
-    'hero-banner',
+    'search-page-form'
   ]
 %}
 
-<div {{attributes.addClass(classes)}}>
-
-  {% if content.field_title.0 or content.body.0 %}
-  <div class="hero-banner__caption">
-    <div class="container">
-      <h1 class="hero-banner__title">
-        {{ content.field_title.0 }}
-      </h1>
-
-      <div class="hero-banner__description">
-        {{ content.body.0 }}
-      </div>
+<div{{ attributes.addClass(classes) }}>
+  <div class="container">
+    <div class="search-overlay">
+      <div class="search-icon">&nbsp;</div>
+      {% block content %}
+        {{ content }}
+      {% endblock %}
+      <div class="close">&nbsp;</div>
     </div>
   </div>
-  {% endif %}
 </div>
+

@@ -101,6 +101,9 @@ elements: |-
     '#title_display': after
     '#required': true
     '#required_error': 'Request/Comments field is required.'
+  captcha:
+    '#type': captcha
+    '#captcha_type': recaptcha/reCAPTCHA
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'
