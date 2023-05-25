@@ -1,72 +1,116 @@
 <?php
 
-namespace Drupal\step\Utils\Configurations;
+namespace Drupal\cleco_vuejs\Utils\Configurations;
 
-use Drupal\step\Utils\ComparisonTableConfiguration;
+use Drupal\cleco_vuejs\Utils\ComparisonTableConfiguration;
 use Drupal\cleco_vuejs\Utils\ComparisonTableDefinition;
+use Drupal\cleco_vuejs\Utils\ProductsParentChildMapping;
 
+/**
+ * Class for product category BitsConfiguration.
+ */
 class BitsConfiguration implements ComparisonTableConfiguration {
+  use ProductsParentChildMapping;
 
   /**
    * {@inheritdoc}
    */
   public function apply(array $data) {
-    return array_intersect($data['product_category'], ['Bits']);
+    $category = ['Bits'];
+    if (!array_intersect($data['product_category'], $category)) {
+      if (is_array($data['product_category'])) {
+        $condition_applied = FALSE;
+        foreach ($data['product_category'] as $child) {
+          if (in_array($child, $this->getChildren($category))) {
+            $condition_applied = TRUE;
+            break;
+          }
+        }
+        return $condition_applied;
+      }
+      else {
+        return array_intersect($data['product_category'], $this->getChildren($category));
+      }
+    }
+
+    return $category;
+
   }
 
   /**
    * {@inheritdoc}
    */
   public function configure(ComparisonTableDefinition $definition) {
-    $definition->addColumn('Point Size') //att339
-               ->forKey('values.point_size');
-    $definition->addColumn('Recess') //att666320
-               ->forKey('values.recess');
-	$definition->addColumn('Nominal Size') //att17319
-               ->forKey('values.nominal_size');
-	$definition->addColumn('Hex Size') // att666136
-               ->forImperialKey('values.hex_size_in', 'in')
-               ->forMetricKey('values.hex_size_mm', 'mm');
-	$definition->addColumn('Male Square Drive') // att728148
-               ->forImperialKey('values.male_square_drive_in', 'in')
-               ->forMetricKey('values.male_square_drive_mm', 'mm');
-	$definition->addColumn('Drive Size') //att835
-               ->forKey('values.drive_size');
-	$definition->addColumn('MorTorq Size') // att666310
-               ->forKey('values.mortorq_size');
-	$definition->addColumn('Screw Size') // att533
-               ->forKey('values.screw_size');
-	$definition->addColumn('Measurement Across Lobes') // att666309
-               ->forImperialKey('values.measurement_across_lobes_in', 'in')
-               ->forMetricKey('values.measurement_across_lobes_mm', 'mm');
-    $definition->addColumn('Overall Length') // att326
-               ->forImperialKey('values.overall_length_in', 'in')
-               ->forMetricKey('values.overall_length_mm', 'mm');
-	$definition->addColumn('Socket Nose Diameter') // att666293
-               ->forImperialKey('values.socket_nose_diameter_in', 'in');
-               ->forMetricKey('values.socket_nose_diameter_mm', 'mm');
-	$definition->addColumn('Blade Thickness') // att131
-               ->forImperialKey('values.blade_thickness_in', 'in');
-               ->forMetricKey('values.blade_thickness_mm', 'mm');
-	$definition->addColumn('Blade Width') // att666192
-               ->forImperialKey('values.blade_width_in', 'in')
-               ->forMetricKey('values.blade_width_mm', 'mm');
-	$definition->addColumn('Turned Length') // att666187
-               ->forImperialKey('values.turned_length_in', 'in')
-               ->forMetricKey('values.turned_length_mm', 'mm');
-	$definition->addColumn('Turned OD (B)') // att666190
-               ->forImperialKey('values.turned_od_b_in', 'in')
-               ->forMetricKey('values.turned_od_b_mm', 'mm');
-	$definition->addColumn('Sleeve Diameter') // att667125
-               ->forImperialKey('values.sleeve_diameter_in', 'in')
-               ->forMetricKey('values.sleeve_diameter_mm', 'mm');
-	$definition->addColumn('Length of Insert') // att666177
-               ->forImperialKey('values.length_of_insert_in', 'in')
-               ->forMetricKey('values.length_of_insert_mm', 'mm');
-	$definition->addColumn('Bit Length (A)') // att728147
-               ->forImperialKey('values.bit_length_a_in', 'in')
-               ->forMetricKey('values.bit_length_a_mm', 'mm');
-    $definition->addColumn('Description') // att728149
-               ->forKey('values.description');
+    // att339.
+    $definition->addColumn('Point Size')
+      ->forKey('values.point_size');
+    // att666320.
+    $definition->addColumn('Recess')
+      ->forKey('values.recess');
+    // att17319.
+    $definition->addColumn('Nominal Size')
+      ->forKey('values.nominal_size');
+    // att666136.
+    $definition->addColumn('Hex Size')
+      ->forImperialKey('values.hex_size_in', 'in')
+      ->forMetricKey('values.hex_size_mm', 'mm');
+    // att728148 // Missing from Melissa's excel.
+    $definition->addColumn('Male Square Drive')
+      ->forImperialKey('values.male_square_drive_in', 'in')
+      ->forMetricKey('values.male_square_drive_mm', 'mm');
+    // att835.
+    $definition->addColumn('Drive Size')
+      ->forKey('values.drive_size');
+    // att666310.
+    $definition->addColumn('MorTorq Size')
+      ->forKey('values.mortorq_size');
+    // att533.
+    $definition->addColumn('Screw Size')
+      ->forKey('values.screw_size');
+    // att666309.
+    $definition->addColumn('Measurement Across Lobes')
+      ->forImperialKey('values.measurement_across_lobes_in', 'in')
+      ->forMetricKey('values.measurement_across_lobes_mm', 'mm');
+    // att326.
+    $definition->addColumn('Overall Length')
+      ->forImperialKey('values.overall_length_in', 'in')
+      ->forMetricKey('values.overall_length_mm', 'mm');
+    // att666293.
+    $definition->addColumn('Socket Nose Diameter')
+      ->forImperialKey('values.socket_nose_diameter_in', 'in')
+      ->forMetricKey('values.socket_nose_diameter_mm', 'mm');
+    // att131.
+    $definition->addColumn('Blade Thickness')
+      ->forImperialKey('values.blade_thickness_in', 'in')
+      ->forMetricKey('values.blade_thickness_mm', 'mm');
+    // att133.
+    $definition->addColumn('Blade Width')
+      ->forImperialKey('values.blade_width_in', 'in')
+      ->forMetricKey('values.blade_width_mm', 'mm');
+    // att666187.
+    $definition->addColumn('Turned Length')
+      ->forImperialKey('values.turned_length_in', 'in')
+      ->forMetricKey('values.turned_length_mm', 'mm');
+    // att666190.
+    $definition->addColumn('Turned OD (B)')
+      ->forImperialKey('values.turned_od_b_in', 'in')
+      ->forMetricKey('values.turned_od_b_mm', 'mm');
+    // att667125.
+    $definition->addColumn('Sleeve Diameter')
+      ->forImperialKey('values.sleeve_diameter_in', 'in')
+      ->forMetricKey('values.sleeve_diameter_mm', 'mm');
+    // att666177.
+    $definition->addColumn('Length of Insert')
+      ->forImperialKey('values.length_of_insert_in', 'in')
+      ->forMetricKey('values.length_of_insert_mm', 'mm');
+    // att728147.
+    $definition->addColumn('Bit Length (A)')
+      ->forImperialKey('values.bit_length_a_in', 'in')
+      ->forMetricKey('values.bit_length_a_mm', 'mm');
+    // att728149.
+    $definition->addColumn('Description')
+    // Mising from Melissa's excell.
+      ->forKey('values.description');
   }
+
 }

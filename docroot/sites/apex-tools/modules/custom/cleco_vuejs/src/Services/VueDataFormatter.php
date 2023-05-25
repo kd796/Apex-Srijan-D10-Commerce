@@ -93,6 +93,12 @@ class VueDataFormatter {
 
       // Entity type.
       $entity_type = isset($resultItemFields['entity_type']) ? $resultItemFields['entity_type']->getvalues()[0] : '';
+
+      if (!in_array($entity_type, ['node', 'media']) &&
+       strpos(explode(":", $result->getId())[1], 'node') !== FALSE) {
+        // To handle $type condition where entity_type will neither node nor media.
+        $entity_type = 'node';
+      }
       if ($entity_type === 'node') {
         // Nid.
         $nid = isset($resultItemFields['nid']) ? $resultItemFields['nid']->getvalues()[0] : '';
@@ -174,7 +180,6 @@ class VueDataFormatter {
         ];
       }
 
-      // ToDo, need to handle $type condition where entity_type will neither node nor media.
       $type = $this->itemTypes[$type] ?? $type;
       $item_type = isset($resultItemFields['item_type']) ? $resultItemFields['item_type']->getvalues() : [];
 
