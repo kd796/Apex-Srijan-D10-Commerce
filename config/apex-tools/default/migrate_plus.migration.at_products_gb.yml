@@ -2,8 +2,6 @@ uuid: 651c2fc6-1273-4635-907b-234cefe52df4
 langcode: en
 status: true
 dependencies: {  }
-_core:
-  default_config_hash: _lfKBw2aUmNmueG2BOg3fICt8hZzZ-LfDCP6Xt1VeDw
 id: at_products_gb
 class: null
 field_plugin_method: null
@@ -153,6 +151,12 @@ process:
     plugin: at_map_product_classification
     source: remote_product_classifications
     migration_instance: at_product_classifications_level_two_gb
+    migration_instance_prefix: at_product_classifications_level_
+    apply_instance_suffix: 1
+    suffix_w1: one_gb
+    suffix_w2: two_gb
+    suffix_w3: three_gb
+    suffix_w4: four_gb
     classification_type:
       - 'Web Reference'
     langcode: gb
