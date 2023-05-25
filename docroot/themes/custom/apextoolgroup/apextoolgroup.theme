@@ -115,7 +115,7 @@ function apextoolgroup_preprocess_views_view_fields(&$variables) {
       if ($field->field == 'field_banner_image') {
         $variables['entity_id'] = $variables['row']->_entity->id();
         $css_selector = '.homepage-slider__item-' . $variables['entity_id'];
-        $style_tag = ResponsiveBackgroundImage::generateMediaQueries($css_selector, $variables['row']->_entity, 'field_banner_image', 'homepage_slider_and_page_banner');
+        $style_tag = ResponsiveBackgroundImage::generateMediaQueries($css_selector, $variables['row']->_entity, 'field_banner_image', 'homepage_slider');
         if ($style_tag) {
           $variables['#attached']['html_head'][] = $style_tag;
         }

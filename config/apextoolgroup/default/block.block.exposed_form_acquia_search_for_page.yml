@@ -1,10 +1,11 @@
 uuid: 53136dac-6bc0-44df-b011-d07dc3ed6a47
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - views.view.acquia_search_solr
   module:
+    - system
     - views
   theme:
     - apextoolgroup
@@ -17,7 +18,11 @@ plugin: 'views_exposed_filter_block:acquia_search_solr-acquia_solr_search'
 settings:
   id: 'views_exposed_filter_block:acquia_search_solr-acquia_solr_search'
   label: ''
-  label_display: visible
+  label_display: '0'
   provider: views
   views_label: ''
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /search
