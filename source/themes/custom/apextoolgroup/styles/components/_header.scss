@@ -162,6 +162,11 @@
       transition: height 0.25s ease-in;
       overflow: scroll;
       border-bottom: solid 8px $celtic-blue;
+
+      &::-webkit-scrollbar {
+        width: 2px;
+        height: 2px;
+      }
     }
   }
 
@@ -478,6 +483,8 @@
     height: 100%;
     display: flex;
     align-items: center;
+    padding-right: 15px;
+    padding-left: 15px;
   }
 
   .search-overlay {
@@ -486,7 +493,7 @@
     height: 100px;
     align-items: center;
     justify-content: center;
-    border-bottom: solid 1px $black;
+    border-bottom: solid 2px $black;
     @media only screen and (max-width: $tablet)  {
       height: 50px;
     }
@@ -497,9 +504,16 @@
   display: flex !important;
 }
 
-.block-search {
-  .form-search {
-    font-size: 36px;
+.block-views-exposed-filter-blockacquia-search-solr-acquia-solr-search {
+  .form-item {
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 100%;
+  }
+
+  .form-text {
+    font-size: 40px;
     height: 50px;
     width: 100%;
     border: 0;
@@ -513,7 +527,7 @@
 
     &::placeholder {
       color: $aluminium-dark;
-      font-size: 36px;
+      font-size: 40px;
       @media only screen and (max-width: $tablet)  {
         font-size: 24px;
       }

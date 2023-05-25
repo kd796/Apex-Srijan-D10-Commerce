@@ -1,7 +1,7 @@
 (function ($, Drupal) {
   'use strict';
 
-  Drupal.behaviors.apextoolgroup = {
+  Drupal.behaviors.branddetail = {
     attach: function (context, settings) {
       $('.brand-detail .brand-detail__tabs .tabs li a').click(function (event) {
         event.preventDefault();

@@ -1,7 +1,7 @@
 (function ($, Drupal) {
   'use strict';
 
-  Drupal.behaviors.apextoolgroup = {
+  Drupal.behaviors.brandlisting = {
     attach: function (context, settings) {
       localTaskTabs();
       sidebarSliding();
