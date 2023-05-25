@@ -217,10 +217,9 @@ class CreateProductSpecifications extends ProcessPluginBase implements Container
    */
   protected function loadOrCreateChildTerm($parent_id, $parent_label, $parent_term_id, $item_label, $vid = 'product_specifications', $langcode = 'en', $migration_id = '', $multi = 0, $unit = '') {
     $item_label = trim($item_label, ' ');
-    if (empty($item_label)) {
+    if (empty($item_label) && $item_label !== "0") {
       return '';
     }
-
     // Prepare hashkey for term search in the migration.
     $child_key = strtolower($parent_id . $langcode . $item_label);
     $hashKey = $this->getHashKey($child_key);
