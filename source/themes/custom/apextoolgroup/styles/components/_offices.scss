@@ -72,7 +72,7 @@
 
           .location {
             font-size: $p;
-            display: none;
+            display: block;
             color: $black;
             margin: 0 0 20px;
             line-height: 22.4px;
@@ -107,14 +107,13 @@
           }
 
           &:first-child {
-            .location,
             .offices__corporate-office-title {
               display: block;
             }
           }
 
           &:nth-child(2) {
-            padding-top: 95px;
+            padding-top: 50px;
 
             @media only screen and(max-width: $tablet) {
               padding-top: 0;
