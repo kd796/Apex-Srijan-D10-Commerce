@@ -105,6 +105,12 @@
 
   .market-list {
     position: relative;
+    @media only screen and(max-width: $tablet-max) {
+      min-width: 250px;
+    }
+    @media only screen and(max-width: $tablet) {
+      min-width: 270px;
+    }
 
     &__image {
       position: relative;
