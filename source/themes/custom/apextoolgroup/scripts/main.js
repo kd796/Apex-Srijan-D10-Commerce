@@ -80,20 +80,16 @@
       menuGroup();
       // Set active menu
       var $navLinks = $('.navbar-nav li a');
-      function setActive() {
-        var current = location.pathname;
-        $navLinks.each(function () {
-          var $this = $(this);
-          // if the current path is like this link, make it active
-          if ($this.attr('href').indexOf(current) !== -1) {
-            $this.addClass('active');
-          }
-        });
-      }
-      $navLinks.removeClass('active');
-      $navLinks.once('first-dropdown').on('click', function (e) {
-        setActive();
+      var current = location.pathname;
+      $navLinks.each(function () {
+        var $this = $(this);
+        // if the current path is like this link, make it active
+        if ($this.attr('href').indexOf(current) !== -1) {
+          $this.addClass('active');
+        }
       });
+      $navLinks.removeClass('active');
+
       // Set window width.
       var windowWidth = $(window).width();
       $('.market-type  .market-container').css({width: windowWidth + 'px'});
