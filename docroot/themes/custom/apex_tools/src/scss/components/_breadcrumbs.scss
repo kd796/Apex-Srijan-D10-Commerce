@@ -1,13 +1,46 @@
-.breadcrumbs-strap {
+.breadcrumb-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   background: $color-accent-bg;
+  justify-content: space-between;
+  @include section-padding(horizontal);
   border-top: 1px solid rgba($color-gray-light, 0.43);
   border-bottom: 1px solid rgba($color-gray-light, 0.43);
-  @include section-padding(horizontal);
   @include property-scale((padding-top, padding-bottom), (
     0: 0.5em,
     $breakpoint-nav-inline: 0.75em,
     800px: 0.875em,
   ));
+
+  .breadcrumbs-strap {
+    width: calc(100% - 150px);
+  }
+
+  .wrapper-content {
+    width: auto;
+
+    a {
+      display: flex;
+      font-size: 0.9em;
+      box-shadow: none;
+      border-radius: 5px;
+      align-items: center;
+      justify-content: center;
+      color: $color-off-black;
+      text-transform: uppercase;
+      padding: 0.5em 1.5em 0.5em 1em;
+      border: 2px solid $color-accent-bg;
+
+      img {
+        margin-right: 5px;
+      }
+
+      &:hover {
+        border-color: $color-off-black;
+      }
+    }
+  }
 }
 
 .breadcrumbs {

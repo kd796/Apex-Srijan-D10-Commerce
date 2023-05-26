@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Campbell Common module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function addtothis_apex_tool_theme($existing, $type, $theme, $path) {
+  return [
+    'add_to_this_content' => [
+      'variables' => [
+        'addthis_content' => [],
+      ],
+    ],
+  ];
+}
