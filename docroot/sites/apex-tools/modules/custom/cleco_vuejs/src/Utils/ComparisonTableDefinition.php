@@ -3,11 +3,14 @@
 namespace Drupal\cleco_vuejs\Utils;
 
 use function is_array;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  *
  */
 class ComparisonTableDefinition {
+
+  use StringTranslationTrait;
 
   /**
    * The object.
@@ -98,7 +101,7 @@ class ComparisonTableDefinition {
    * @return \Drupal\step\Utils\ComparisonTableColumn
    */
   public function addColumn(string $label, $type = NULL) {
-    $label           = t($label);
+    $label           = $this->t($label);
     $column          = new ComparisonTableColumn($label, $type);
     $this->columns[] = $column;
 
@@ -161,7 +164,7 @@ class ComparisonTableDefinition {
    */
   protected function getItemData(array $item) {
     $row = [];
-    foreach ($this->getColumnDefinitions() as $i => $column) {
+    foreach ($this->getColumnDefinitions() as $column) {
       $key = $column->getKey();
       if (is_array($key)) {
         $value = [];
@@ -220,7 +223,7 @@ class ComparisonTableDefinition {
 
     $columns = $this->getColumnDefinitions();
     $columns = array_values(array_filter($columns, function ($column) {
-        return $this->columnHasData($column);
+      return $this->columnHasData($column);
     }));
 
     foreach ($columns as $i => $column) {

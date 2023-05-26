@@ -2,6 +2,9 @@
 
 namespace Drupal\step\Utils;
 
+/**
+ * Interface ComparisonTableConfiguration
+ */
 interface ComparisonTableConfiguration {
 
     /**
