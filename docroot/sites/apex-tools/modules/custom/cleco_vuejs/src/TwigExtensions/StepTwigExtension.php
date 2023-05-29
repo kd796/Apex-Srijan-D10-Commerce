@@ -188,8 +188,11 @@ class StepTwigExtension extends \Twig_Extension
     public function downloadLink($asset, $type)
     {   //custom-kuntal
         $origSrcFile = $asset['original_source_file'];
-        $ext = pathinfo($origSrcFile)['extension'];
         $src = '';
+        if (empty($origSrcFile)) {
+          return $src;
+        }
+        $ext = pathinfo($origSrcFile)['extension'];
 
         switch(strtolower($type)) {
             case '3d model':
