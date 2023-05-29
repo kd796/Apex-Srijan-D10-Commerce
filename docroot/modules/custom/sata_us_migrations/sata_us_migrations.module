@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Sata US Migrations module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+use Drupal\webform\Entity\Webform;
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function sata_us_migrations_menu_local_tasks_alter(&$local_tasks, $route_name) {
+  $webform = \Drupal::routeMatch()->getParameter('webform');
+  if ($webform instanceof Webform) {
+    $webform_id = $webform->id();
+    if ($webform_id === 'warranty_abusers') {
+      // Change the tab names for the specific webform.
+      $local_tasks['tabs'][0]['entity.webform.canonical']['#link']['title'] = 'Add Abusers';
+      $local_tasks['tabs'][0]['entity.webform.results']['#link']['title'] = 'List of Warranty Abusers';
+    }
+  }
+}
