@@ -13,7 +13,11 @@
 						{{ node.field_tags | term_list(', ') }}
 					{% endif %}
 				</p>
-
+				{% if document_path %}
+					<div class="press-release">
+  					<a href="{{ document_path }}" target="blank">{{ 'Download Press Release'|t }}</a>
+					</div>
+  				{% endif %}
 				{{ title_suffix }}
 			</header>
 			<div{{ content_attributes.addClass('article-body') }}>
