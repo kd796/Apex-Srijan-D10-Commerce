@@ -284,7 +284,7 @@ function gearwrench_au_preprocess_node__product__full(array &$variables) {
   // Show the RRP to the users accessing from AU only.
   $geo = (array_key_exists('HTTP_X_GEO_COUNTRY', $_SERVER)) ? $_SERVER['HTTP_X_GEO_COUNTRY'] : "";
   if (!empty($geo) && $geo == "AU" && !empty($node->field_rrp->value)) {
-    $variables['rrp'] = number_format((float) $node->field_rrp->value, 2);;
+    $variables['rrp'] = number_format((float) $node->field_rrp->value, 2);
   }
   // Product Features.
   $page_top_products_features = $variables['content']['field_product_features'];
