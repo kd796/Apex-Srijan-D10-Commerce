@@ -159,9 +159,13 @@ class ProductDownloadService extends ProductServices {
    */
   public function getMigrationList($suffix = '') {
     $migrations = [
+      'at_product_media' => 1,
+      'at_product_classifications_level_one' => 1,
+      'at_product_classifications_level_two' => 1,
+      'at_product_classifications_level_three' => 1,
+      'at_product_classifications_level_four' => 1,
       'at_product_specifications' => 1,
       'at_product_model' => 1,
-      'at_product_media' => 1,
       'at_products' => 1,
       'at_products_asset_category' => 1,
     ];
