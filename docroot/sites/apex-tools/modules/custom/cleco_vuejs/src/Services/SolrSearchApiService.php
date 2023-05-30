@@ -217,7 +217,9 @@ class SolrSearchApiService {
     }
     $filteredFilters['product_category'] = $filters['product_category'];
     foreach ($filteredFilters as $filter_name => $filter) {
-      $this->query->addCondition($filter_name, $filter, 'IN');
+      if (!empty($filter)) {
+        $this->query->addCondition($filter_name, $filter, 'IN');
+      }
     }
     $language = $this->languageManager->getCurrentLanguage()->getId();
     $this->query->addCondition('langcode', $language);

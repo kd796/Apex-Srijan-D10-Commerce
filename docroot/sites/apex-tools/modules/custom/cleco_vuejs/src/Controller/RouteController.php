@@ -145,7 +145,8 @@ class RouteController extends ControllerBase {
       foreach ($nodes as $node) {
         $fields = $node->getFields();
         $bundle = $node->bundle();
-        $sku_group = isset($fields['field_sku_group']) ? $fields['field_sku_group']->getValue()[0]['value'] : $fields['field_sku']->getValue()[0]['value'];
+        $sku_group = (isset($fields['field_sku_group']) && !empty($fields['field_sku_group']->getValue())) ?
+          $fields['field_sku_group']->getValue()[0]['value'] : (isset($fields['field_sku']) ? $fields['field_sku']->getValue()[0]['value'] : '');
         $title = '';
         if (!empty($fields['field_long_description']->getValue())) {
           $title = $fields['field_long_description']->getValue()[0]['value'];
@@ -202,6 +203,9 @@ class RouteController extends ControllerBase {
         if (!empty($product_categories)) {
           foreach ($product_categories as $product_category) {
             $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($product_category['target_id']);
+            if (empty($term) || $term->status->value != 1) {
+              continue;
+            }
             if (!empty($term)) {
               $product_category_name[] = $term->get('name')->value;
               $term_parent = $term->get('parent')->getValue()[0]['target_id'];
@@ -353,11 +357,17 @@ class RouteController extends ControllerBase {
       foreach ($models as $model) {
         $model_details = \Drupal::entityTypeManager()
           ->getStorage('node')->load($model['target_id']);
+        if (!$model_details || !$model_details->isPublished()) {
+          continue;
+        }
         $sr_number = $model_details->get('field_sr_number')->value;
         $model_spec = $model_details->get('field_model_specification')
           ->referencedEntities();
         $values = [];
         foreach ($model_spec as $key => $spec) {
+          if ($spec->status->value != 1) {
+            continue;
+          }
           $exploded_label = explode(':~:', $spec->label());
           $lable_value = $spec->field_specification_attr_key->value;
           $valuelable = isset($exploded_label[1]) ? trim($exploded_label[1]) : '';

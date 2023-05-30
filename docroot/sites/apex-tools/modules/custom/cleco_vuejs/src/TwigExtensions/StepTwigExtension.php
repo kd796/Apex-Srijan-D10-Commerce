@@ -188,8 +188,11 @@ class StepTwigExtension extends \Twig_Extension
     public function downloadLink($asset, $type)
     {   //custom-kuntal
         $origSrcFile = $asset['original_source_file'];
-        $ext = pathinfo($origSrcFile)['extension'];
         $src = '';
+        if (empty($origSrcFile)) {
+          return $src;
+        }
+        $ext = pathinfo($origSrcFile)['extension'];
 
         switch(strtolower($type)) {
             case '3d model':
@@ -343,7 +346,7 @@ class StepTwigExtension extends \Twig_Extension
                 // All images have the same filename,
                 // We'll use original filename the .jpg extension to get the resized images
                 //$src  = $asset['original_source_file'];
-                $slug = rawurlencode($this->findFilename($asset['id'], $style) . '.jpg');
+                $slug = isset($asset['id']) ? rawurlencode($this->findFilename($asset['id'], $style) . '.jpg') : '';
 
                 switch ($style) {
                     case 'product_thumb':

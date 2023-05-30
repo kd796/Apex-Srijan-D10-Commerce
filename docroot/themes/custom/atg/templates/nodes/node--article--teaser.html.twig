@@ -17,7 +17,10 @@
 	</header>
 
 	<div{{ content_attributes.addClass('teaser-body') }}>
-		{{ content.body }}
+	  <div>
+	    {{ content.body }}
+	    <a href="{{ path('entity.node.canonical', {'node': node.id}) }}">{{ 'Read More'|t }}</a>
+	  </div>
 	</div>
 
 </article>
