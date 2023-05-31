@@ -2,7 +2,9 @@
 
 namespace Drupal\addtothis_apex_tool\Plugin\Block;
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
@@ -30,6 +32,13 @@ class AddthisBlock extends BlockBase {
       '#theme' => 'add_to_this_content',
       '#addthis_content' => $addthis_content,
     ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function blockAccess(AccountInterface $account) {
+    return AccessResult::allowedIfHasPermission($account, 'access content');
   }
 
 }
