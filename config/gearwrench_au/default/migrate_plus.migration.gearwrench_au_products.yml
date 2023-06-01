@@ -102,6 +102,10 @@ source:
       name: remote_keywords
       label: Keywords
       selector: './/*[@AttributeID=''ATT737269'']'
+    -
+      name: remote_show_discontinued_products
+      label: 'Show Discontinued Products'
+      selector: Values
     - 
       name: status
       label: Status
@@ -119,17 +123,12 @@ source:
       type: string
 process:
   status:
-    plugin: apex_determine_published_status
-    source: status
-    value:
+    plugin: apex_show_discontinued_products
+    source: remote_show_discontinued_products
+    allowed_values:
+      - Z2
       - Z3
-      - Z4
-  sales_org:
-    plugin: skip_on_value
-    not_equals: true
-    source: remote_sales_org
-    method: row
-    value: 6201
+      - Z5
   type:
     plugin: default_value
     default_value: product
