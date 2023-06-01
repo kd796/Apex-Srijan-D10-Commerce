@@ -1,0 +1,43 @@
+uuid: 5e1bf0b4-a040-455a-836e-e38709b65811
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cta
+    - node.type.callout
+    - paragraphs.paragraphs_type.cta
+  module:
+    - entity_reference_revisions
+id: node.callout.field_cta
+field_name: field_cta
+entity_type: node
+bundle: callout
+label: CTA
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      cta: cta
+    negate: 0
+    target_bundles_drag_drop:
+      callout_display_options:
+        weight: 6
+        enabled: false
+      callout_display_title:
+        weight: 7
+        enabled: false
+      callout_options:
+        weight: 8
+        enabled: false
+      cta:
+        weight: 9
+        enabled: true
+      from_library:
+        weight: 10
+        enabled: false
+field_type: entity_reference_revisions

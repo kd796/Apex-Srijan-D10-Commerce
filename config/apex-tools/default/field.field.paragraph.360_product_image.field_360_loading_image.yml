@@ -1,0 +1,38 @@
+uuid: 94ed0be5-d223-4558-bbf0-105c506ae714
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_360_loading_image
+    - paragraphs.paragraphs_type.360_product_image
+  module:
+    - image
+id: paragraph.360_product_image.field_360_loading_image
+field_name: field_360_loading_image
+entity_type: paragraph
+bundle: 360_product_image
+label: 'Product Loading Image'
+description: 'Image should measure 500px wide by 500px tall (500×500).'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: ''
+  max_resolution: 500x500
+  min_resolution: 500x500
+  alt_field: false
+  alt_field_required: false
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

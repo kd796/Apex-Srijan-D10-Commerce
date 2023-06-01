@@ -1,0 +1,22 @@
+uuid: af454475-5318-41b4-a6e3-acbb4c2eebe2
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.downloads
+id: node.downloads.sticky
+field_name: sticky
+entity_type: node
+bundle: downloads
+label: 'Sticky at top of lists'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

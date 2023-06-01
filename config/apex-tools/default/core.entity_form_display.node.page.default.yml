@@ -1,65 +1,22 @@
-uuid: eac10379-a242-4ce1-8545-de5c318c1e10
+uuid: b4f4aab5-24d4-4f2f-a504-76a1fbb36e7f
 langcode: en
 status: true
 dependencies:
   config:
     - field.field.node.page.body
-    - field.field.node.page.field_components
-    - field.field.node.page.field_media
-    - field.field.node.page.field_meta_tags
+    - field.field.node.page.field_faqs_section
+    - field.field.node.page.field_hero
+    - field.field.node.page.field_mailing_list_form
+    - field.field.node.page.field_seo
     - node.type.page
   module:
-    - field_group
-    - limited_field_widgets
-    - media_library
+    - content_moderation
     - metatag
     - paragraphs
     - path
     - text
-third_party_settings:
-  field_group:
-    group_tabs:
-      children:
-        - group_main
-        - group_content
-      parent_name: ''
-      weight: 0
-      format_type: tabs
-      format_settings:
-        id: ''
-        classes: ''
-        direction: horizontal
-      label: Tabs
-    group_main:
-      children:
-        - title
-        - field_media
-        - body
-      parent_name: group_tabs
-      weight: 20
-      format_type: tab
-      format_settings:
-        id: ''
-        classes: ''
-        formatter: closed
-        description: ''
-        required_fields: true
-      label: Main
-    group_content:
-      children:
-        - field_components
-      parent_name: group_tabs
-      weight: 21
-      format_type: tab
-      format_settings:
-        id: ''
-        classes: ''
-        formatter: closed
-        description: ''
-        required_fields: true
-      label: Content
 _core:
-  default_config_hash: Cg41QYig_eWxjXL_p9VpxDrN4Wk_XDovgZ_1xiz-NNI
+  default_config_hash: sb0qCkzU_8mNq29NehYAU8jCBXWPLeX0UN8sYFVGVcw
 id: node.page.default
 targetEntityType: node
 bundle: page
@@ -67,79 +24,81 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 3
+    weight: 4
     region: content
     settings:
       rows: 9
       summary_rows: 3
       placeholder: ''
+      show_summary: false
     third_party_settings: {  }
-  created:
-    type: datetime_timestamp
-    weight: 4
+  field_faqs_section:
+    type: entity_reference_paragraphs
+    weight: 5
     region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_components:
-    type: paragraphs
-    weight: 2
     settings:
-      title: Component
-      title_plural: Components
-      edit_mode: closed
-      closed_mode: preview
-      autocollapse: all
-      closed_mode_threshold: 0
+      title: 'FAQs Section'
+      title_plural: 'FAQs Section'
+      edit_mode: open
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: _none
-      features:
-        duplicate: duplicate
-        collapse_edit_all: collapse_edit_all
-        add_above: '0'
-    third_party_settings:
-      limited_field_widgets:
-        limit_values: '0'
+      default_paragraph_type: faqs_section
+    third_party_settings: {  }
+  field_hero:
+    type: entity_reference_paragraphs
+    weight: 3
     region: content
-  field_media:
-    weight: 2
     settings:
-      media_types: {  }
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
     third_party_settings: {  }
-    type: media_library_widget
+  field_mailing_list_form:
+    type: entity_reference_paragraphs
+    weight: 101
     region: content
-  field_meta_tags:
-    weight: 26
-    settings: {  }
+    settings:
+      title: 'Mailing List Form'
+      title_plural: 'Mailing List Forms'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: mailing_list_form
     third_party_settings: {  }
+  field_seo:
     type: metatag_firehose
-    region: content
-  path:
-    type: path
     weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
-  promote:
-    type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 5
+  langcode:
+    type: language_select
+    weight: 0
     region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  moderation_state:
+    type: moderation_state_default
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 2
+    region: content
+    settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    settings:
-      display_label: true
-    weight: 9
-    region: content
-    third_party_settings: {  }
-  sticky:
-    type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 6
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -149,18 +108,18 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  uid:
-    type: entity_reference_autocomplete
-    weight: 3
-    region: content
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  url_redirects:
-    weight: 8
+  translation:
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+  url_redirects:
+    weight: 50
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  promote: true
+  sticky: true
+  uid: true

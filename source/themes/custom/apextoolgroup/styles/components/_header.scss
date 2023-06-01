@@ -1,4 +1,13 @@
 /****** Header ******/
+.toolbar-menu {
+  li {
+    font-size: unset;
+  }
+
+  a {
+    transition: none;
+  }
+}
 
 .header {
   position: relative;
@@ -153,6 +162,11 @@
       transition: height 0.25s ease-in;
       overflow: scroll;
       border-bottom: solid 8px $celtic-blue;
+
+      &::-webkit-scrollbar {
+        width: 2px;
+        height: 2px;
+      }
     }
   }
 
@@ -186,21 +200,46 @@
   }
 
   .nav-item {
-    margin: auto 30px auto 0;
+    margin: auto 25px auto 0;
     padding: 30px 0;
     @media only screen and (max-width: $tablet-max)  {
       margin: auto 40px auto 0;
       padding: 15px;
     }
 
+    &.active,
+    &:hover {
+      &>a {
+        color: $celtic-blue;
+
+        @media only screen and (min-width: $tablet-max)  {
+          position: relative;
+
+          &::after {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 0;
+            height: 4px;
+            width: 100%;
+            background-color: $celtic-blue;
+          }
+        }
+      }
+    }
+
     &.dropdown {
+      @media only screen and (min-width: $tablet-max)  {
+        margin: auto 45px auto 0;
+      }
+
       &::after {
         content: '';
         width: 10px;
         height: 10px;
         background: url('#{$icon-base-path}/arrow-down.svg') center no-repeat;
         position: absolute;
-        right: -5px;
+        right: -20px;
         top: 0;
         height: 100%;
         @media only screen and (max-width: $tablet-max)  {
@@ -208,13 +247,27 @@
           right: 0;
           width: 20px;
           height: 10px;
-          top: 20px;
+          top: 7px;
+          padding: 20px;
         }
       }
-    }
 
-    .angle-down {
-      padding-right: 10px;
+      &.active,
+      &:hover {
+        &::after {
+          background: url('#{$icon-base-path}/arrow-down-blue.svg') center no-repeat;
+          @media only screen and (max-width: $tablet-max)  {
+            background: url('#{$icon-base-path}/arrow-down-responsive-blue.svg') center no-repeat;
+          }
+        }
+        @media only screen and (min-width: $tablet-max)  {
+          a {
+            &::after {
+              width: calc(100% + 20px);
+            }
+          }
+        }
+      }
     }
   }
 
@@ -271,7 +324,8 @@
         background: $black;
       }
 
-      &:hover {
+      &:hover,
+      &.active {
         color: $celtic-blue;
       }
       @media only screen and (max-width: $tablet-max) { 
@@ -305,6 +359,44 @@
         background: url('#{$icon-base-path}/arrow-down-responsive.svg') center no-repeat;
         width: 20px;
         height: 10px;
+      }
+    }
+
+    &.active {
+      &>a {
+        color: $celtic-blue;
+      }
+
+      &::after {
+        background: url('#{$icon-base-path}/arrow-down-blue.svg') right bottom no-repeat;
+        @media only screen and (max-width: $tablet-max)  {
+          background: url('#{$icon-base-path}/arrow-down-responsive.svg') center no-repeat;
+        }
+      }
+    }
+
+    .dropdown-menu {
+      .dropdown-item {
+        &.active {
+          &>a {
+            color: $celtic-blue;
+          }
+
+          &::after {
+            background: url('#{$icon-base-path}/arrow-down-blue.svg') right bottom no-repeat;
+            @media only screen and (max-width: $tablet-max)  {
+              background: url('#{$icon-base-path}/arrow-down-responsive-blue.svg') center no-repeat;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .dropdown-item {
+    &.active {
+      &>a {
+        color: $celtic-blue;
       }
     }
   }
@@ -391,6 +483,8 @@
     height: 100%;
     display: flex;
     align-items: center;
+    padding-right: 15px;
+    padding-left: 15px;
   }
 
   .search-overlay {
@@ -399,7 +493,7 @@
     height: 100px;
     align-items: center;
     justify-content: center;
-    border-bottom: solid 1px $black;
+    border-bottom: solid 2px $black;
     @media only screen and (max-width: $tablet)  {
       height: 50px;
     }
@@ -410,9 +504,16 @@
   display: flex !important;
 }
 
-.block-search {
-  .form-search {
-    font-size: 36px;
+.block-views-exposed-filter-blockacquia-search-solr-acquia-solr-search {
+  .form-item {
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 100%;
+  }
+
+  .form-text {
+    font-size: 40px;
     height: 50px;
     width: 100%;
     border: 0;
@@ -426,6 +527,10 @@
 
     &::placeholder {
       color: $aluminium-dark;
+      font-size: 40px;
+      @media only screen and (max-width: $tablet)  {
+        font-size: 24px;
+      }
     }
     @media only screen and (max-width: $tablet)  {
       font-size: 24px;
@@ -434,5 +539,13 @@
 
   .form-actions {
     display: none;
+  }
+}
+
+.main-contane {
+  &.hide-content {
+    @media only screen and (max-width: $tablet-max)  {
+      display: none;
+    }
   }
 }

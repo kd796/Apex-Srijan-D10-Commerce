@@ -1,4 +1,6 @@
-<a href="{{fields.view_node.content}}">
+
+{% set view_node = fields.view_node.content|render|trim|striptags %}
+<a href="{{view_node}}">
   {{ fields.title.content }}
 </a>
 

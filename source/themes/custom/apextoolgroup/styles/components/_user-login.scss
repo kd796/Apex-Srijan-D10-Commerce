@@ -1,0 +1,48 @@
+.atg-user-login {
+  margin: 0 0 30px;
+
+  form {
+    .form-item {
+      margin: 0 0 16px;
+
+      label {
+        display: block;
+        margin: 0 0 12px;
+      }
+
+      .description {
+        font-size: $p;
+        margin: 5px 0 0;
+        line-height: 25.2px;
+        font-weight: $normal;
+      }
+    }
+
+    .form-actions {
+      margin: 0;
+
+      input[type='submit'] {
+        width: auto;
+        display: flex;
+        color: $white;
+        min-width: 182px;
+        line-height: 20px;
+        padding: 16px 24px;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+        background-color: $celtic-blue;
+
+        &:hover,
+        &:focus,
+        &:focus-visible {
+          color: $celtic-blue;
+          border-color: $celtic-blue;
+          background-color: transparent;
+
+        }
+      }
+    }
+  }
+}

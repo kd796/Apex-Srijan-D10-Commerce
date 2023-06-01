@@ -1,0 +1,38 @@
+uuid: 068e6e3a-bad1-4c5a-9a71-89379f296de7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_geographic_data
+    - node.type.distributors
+  module:
+    - geocoder_field
+    - geofield
+third_party_settings:
+  geocoder_field:
+    method: source
+    weight: 0
+    disabled: false
+    hidden: false
+    providers:
+      - googlemaps
+    dumper: wkt
+    delta_handling: default
+    failure:
+      handling: preserve
+      status_message: true
+      log: true
+    geocode_field: field_address
+    reverse_geocode_field: ''
+id: node.distributors.field_geographic_data
+field_name: field_geographic_data
+entity_type: node
+bundle: distributors
+label: 'Geographic Data'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: geofield

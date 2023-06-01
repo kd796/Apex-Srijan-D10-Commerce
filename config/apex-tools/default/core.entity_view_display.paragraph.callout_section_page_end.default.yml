@@ -1,0 +1,44 @@
+uuid: a667ea45-d0cb-4c32-985d-f891b3df1b97
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.callout_section_page_end.field_callout
+    - field.field.paragraph.callout_section_page_end.field_center
+    - field.field.paragraph.callout_section_page_end.field_show_title
+    - paragraphs.paragraphs_type.callout_section_page_end
+id: paragraph.callout_section_page_end.default
+targetEntityType: paragraph
+bundle: callout_section_page_end
+mode: default
+content:
+  field_callout:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_center:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_show_title:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

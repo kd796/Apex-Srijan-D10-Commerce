@@ -1,0 +1,28 @@
+uuid: 76e89188-2683-4712-b7be-86ea15b01a4d
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.atg_at_a_glance
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - apextoolgroup
+id: atgataglance
+theme: apextoolgroup
+region: content
+weight: -11
+provider: null
+plugin: 'fixed_block_content:atg_at_a_glance'
+settings:
+  id: 'fixed_block_content:atg_at_a_glance'
+  label: 'ATG AT-A-Glance'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /about-us

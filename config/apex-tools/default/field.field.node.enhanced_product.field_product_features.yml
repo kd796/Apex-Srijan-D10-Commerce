@@ -1,0 +1,148 @@
+uuid: f6076e76-924f-4726-9e5c-a06c06eb769b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_product_features
+    - node.type.enhanced_product
+    - paragraphs.paragraphs_type.enhanced_product_features
+  module:
+    - entity_reference_revisions
+id: node.enhanced_product.field_product_features
+field_name: field_product_features
+entity_type: node
+bundle: enhanced_product
+label: 'Product Features'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      enhanced_product_features: enhanced_product_features
+    negate: 0
+    target_bundles_drag_drop:
+      360_hotspots:
+        weight: 41
+        enabled: false
+      360_product_image:
+        weight: 42
+        enabled: false
+      basic_card:
+        weight: 43
+        enabled: false
+      basic_card_section:
+        weight: 44
+        enabled: false
+      callout_section_footer:
+        weight: 45
+        enabled: false
+      callout_section_page_end:
+        weight: 46
+        enabled: false
+      card:
+        weight: 47
+        enabled: false
+      content_bundle:
+        weight: 48
+        enabled: false
+      content_section:
+        weight: 49
+        enabled: false
+      content_section_simple:
+        weight: 50
+        enabled: false
+      cta:
+        weight: 51
+        enabled: false
+      enhanced_product_features:
+        weight: 52
+        enabled: true
+      excerpt:
+        weight: 53
+        enabled: false
+      faq:
+        weight: 54
+        enabled: false
+      faqs_group:
+        weight: 55
+        enabled: false
+      faqs_section:
+        weight: 56
+        enabled: false
+      featured_block:
+        weight: 57
+        enabled: false
+      featured_products:
+        weight: 58
+        enabled: false
+      featured_section:
+        weight: 59
+        enabled: false
+      find_a_distributor:
+        weight: 60
+        enabled: false
+      form_section:
+        weight: 61
+        enabled: false
+      from_library:
+        weight: 62
+        enabled: false
+      grid_item:
+        weight: 63
+        enabled: false
+      grid_section:
+        weight: 64
+        enabled: false
+      hero:
+        weight: 65
+        enabled: false
+      iframe:
+        weight: 66
+        enabled: false
+      intro:
+        weight: 67
+        enabled: false
+      mailing_list_form:
+        weight: 68
+        enabled: false
+      media_block:
+        weight: 69
+        enabled: false
+      media_image:
+        weight: 70
+        enabled: false
+      media_kit:
+        weight: 71
+        enabled: false
+      message_block:
+        weight: 72
+        enabled: false
+      product_categories:
+        weight: 75
+        enabled: false
+      product_search:
+        weight: 76
+        enabled: false
+      products_category_section:
+        weight: 73
+        enabled: false
+      products_section:
+        weight: 74
+        enabled: false
+      schedule_a_demo:
+        weight: 77
+        enabled: false
+      testimonials_block:
+        weight: 78
+        enabled: false
+      testimonials_section:
+        weight: 79
+        enabled: false
+      video_bundle:
+        weight: 80
+        enabled: false
+field_type: entity_reference_revisions

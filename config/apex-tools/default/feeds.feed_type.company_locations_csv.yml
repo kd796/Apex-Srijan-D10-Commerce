@@ -1,0 +1,164 @@
+uuid: 0616269f-acff-4718-8bf0-e065ac4d5e41
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.base_field_override.node.company_locations.title
+    - field.field.node.company_locations.field_address
+    - field.field.node.company_locations.field_phone
+    - field.field.node.company_locations.field_term_continent
+    - field.field.node.company_locations.field_term_department
+    - field.field.node.company_locations.field_uuid
+    - node.type.company_locations
+  module:
+    - address
+    - feeds_tamper
+    - node
+third_party_settings:
+  feeds_tamper:
+    tampers:
+      3685e938-20a2-4a73-ac6f-e1ece77400e8:
+        separator: '|'
+        limit: null
+        uuid: 3685e938-20a2-4a73-ac6f-e1ece77400e8
+        plugin: explode
+        source: feed_phone
+        weight: 0
+      49404aa8-372a-4f5a-9126-81f80442eb83:
+        separator: '|'
+        limit: null
+        uuid: 49404aa8-372a-4f5a-9126-81f80442eb83
+        plugin: explode
+        source: feed_department
+        weight: 0
+label: 'Company Locations CSV'
+id: company_locations_csv
+description: ''
+help: ''
+import_period: -1
+fetcher: upload
+fetcher_configuration:
+  allowed_extensions: csv
+  directory: 'private://feeds'
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  values:
+    type: company_locations
+  langcode: en
+  insert_new: 1
+  update_existing: 2
+  update_non_existent: _keep
+  skip_hash_check: false
+  authorize: true
+  revision: false
+  expire: -1
+  owner_feed_author: false
+  owner_id: 0
+custom_sources:
+  feed_uuid:
+    value: UUID
+    label: UUID
+    machine_name: feed_uuid
+    type: csv
+  feed_name:
+    value: Name
+    label: Name
+    machine_name: feed_name
+    type: csv
+  feed_country_code:
+    value: 'Country Code'
+    label: 'Country Code'
+    machine_name: feed_country_code
+    type: csv
+  feed_state:
+    value: State
+    label: State
+    machine_name: feed_state
+    type: csv
+  feed_city:
+    value: City
+    label: City
+    machine_name: feed_city
+    type: csv
+  feed_postal:
+    value: Postal
+    label: Postal
+    machine_name: feed_postal
+    type: csv
+  feed_street_address:
+    value: 'Street Address'
+    label: 'Street Address'
+    machine_name: feed_street_address
+    type: csv
+  feed_department:
+    value: Department(s)
+    label: Department(s)
+    machine_name: feed_department
+    type: csv
+  feed_phone:
+    value: Phone(s)
+    label: Phone(s)
+    machine_name: feed_phone
+    type: csv
+  feed_continent:
+    value: Continent
+    label: Continent
+    machine_name: feed_continent
+    type: csv
+  feed_street_address_2:
+    value: 'Street Address 2'
+    label: 'Street Address 2'
+    machine_name: feed_street_address_2
+    type: csv
+mappings:
+  -
+    target: field_uuid
+    map:
+      value: feed_uuid
+    unique:
+      value: '1'
+  -
+    target: title
+    map:
+      value: feed_name
+    unique: {  }
+  -
+    target: field_address
+    map:
+      langcode: ''
+      country_code: feed_country_code
+      administrative_area: feed_state
+      locality: feed_city
+      dependent_locality: ''
+      postal_code: feed_postal
+      sorting_code: ''
+      address_line1: feed_street_address
+      address_line2: feed_street_address_2
+      organization: ''
+      given_name: ''
+      additional_name: ''
+      family_name: ''
+  -
+    target: field_term_department
+    map:
+      target_id: feed_department
+    settings:
+      reference_by: name
+      autocreate: '1'
+  -
+    target: field_phone
+    map:
+      value: feed_phone
+    unique: {  }
+  -
+    target: field_term_continent
+    map:
+      target_id: feed_continent
+    settings:
+      reference_by: name
+      autocreate: '1'

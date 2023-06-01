@@ -1,0 +1,22 @@
+uuid: 0410d225-d492-45cf-83cb-3b7498364452
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: geo_directory
+label: 'Geo Directory'
+type: 'canonical_entities:node'
+pattern: '[node:title]'
+selection_criteria:
+  3e9ad649-2133-4009-95ae-40a7ea92858b:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 3e9ad649-2133-4009-95ae-40a7ea92858b
+    context_mapping:
+      node: node
+    bundles:
+      geo_directory: geo_directory
+selection_logic: and
+weight: -1
+relationships: {  }

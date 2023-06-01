@@ -1,0 +1,18 @@
+uuid: 43d890a0-587e-4a5c-95cb-be3ea97e17df
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.advanced_selector_download
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: node.advanced_selector_download
+target_entity_type_id: node
+target_bundle: advanced_selector_download
+default_langcode: site_default
+language_alterable: true

@@ -1,0 +1,136 @@
+id: at_product_media_gb
+label: Product Media asset migration for language GB
+migration_group: at
+source:
+  constants:
+    uid_root: 1
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: simple_xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: "http://www.stibosystems.com/step"
+  item_selector: //Assets/Asset
+  fields:
+    - name: asset_id
+      label: Asset ID
+      selector: '@ID'
+    - name: asset_usertype_id
+      label: Asset UserTypeID
+      selector: '@UserTypeID'
+    - name: asset_name
+      label: Asset Name
+      selector: Name
+    - name: remote_product_specifications
+      label: Product Specifications
+      selector: Values
+    - name: remote_product_upc
+      label: Product UPC
+      selector: Values
+    - name: remote_product_languages
+      label: Product Download languages
+      selector: Values
+    - name: asset_values
+      label: Asset_values
+      selector: Values
+  ids:
+    asset_id:
+      type: string
+process:
+  bundle:
+    plugin: at_get_media_type
+    source: asset_usertype_id
+    notification_logfile: public://import/pim_data/logs/product_media_notification_gb.txt
+  field_downloads_asset_id:
+    plugin: skip_on_empty
+    method: row
+    source: asset_id
+  name:
+    plugin: skip_on_empty
+    method: row
+    source: asset_name
+  status:
+    plugin: default_value
+    default_value: 1
+  uid: constants/uid_root
+  langcode:
+    plugin: default_value
+    default_value: gb
+  field_language:
+    plugin: at_set_downloads_languages
+    source: remote_product_languages
+    attribute: ATT664878
+
+  # Process for PDF only.
+  field_media_file:
+    plugin: at_get_product_images
+    get_type: fid
+    source: asset_values
+    process_pdf : 1
+    langcode: gb
+    media_type: pdf
+    level: asset
+    notification_logfile: public://import/pim_data/logs/product_media_notification_gb.txt
+    process_params:
+      bundle: product_downloads
+      source: bundle
+      from: destination
+    params:
+      asset_id: asset_id
+      asset_name: asset_name
+      user_type_id: asset_usertype_id
+
+  # Process for image media for pdf only.
+  field_listing_image:
+    plugin: at_get_product_images
+    get_type: mid
+    source: asset_values
+    process_pdf : 1
+    langcode: gb
+    media_type: image
+    level: asset
+    notification_logfile: public://import/pim_data/logs/product_media_notification_gb.txt
+    # Asset Media icon mapping.
+    process_map_media_icon: 1
+    map_media_migration_id: at_product_media_gb
+    map_media_config:
+      STP File: controller_stp_file_gb
+      IGS File: controller_igs_file_gb
+      DXF File: controller_dxf_file_gb
+      ZIP: controller_zip_gb
+    map_media_extension:
+      STP File: png
+      IGS File: png
+      DXF File: png
+      ZIP: png
+    process_params:
+      bundle: product_downloads
+      source: bundle
+      from: destination
+    params:
+      asset_id: asset_id
+      asset_name: asset_name
+      user_type_id: asset_usertype_id
+  
+  # Process file for Image Media only.
+  field_media_image:
+    plugin: at_get_product_images
+    get_type: fid
+    source: asset_values
+    process_image : 1
+    langcode: gb
+    media_type: image
+    level: asset
+    notification_logfile: public://import/pim_data/logs/product_media_notification_gb.txt
+    process_params:
+      bundle: image
+      source: bundle
+      from: destination
+    params:
+      asset_id: asset_id
+      asset_name: asset_name
+      user_type_id: asset_usertype_id
+destination:
+  plugin: 'entity:media'
+  default_bundle: 'media'
+

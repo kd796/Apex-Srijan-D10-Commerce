@@ -1,0 +1,25 @@
+uuid: d9eed9c3-7bb1-4e9f-97aa-f68db5becad2
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.women_in_tool_footer_mobile
+    - image.style.women_in_tool_footer_tablet
+    - image.style.womenintool
+  theme:
+    - apextoolgroup
+id: women_in_tool
+label: 'Women in tool'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: women_in_tool_footer_tablet
+    breakpoint_id: apextoolgroup.tablet
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: women_in_tool_footer_mobile
+    breakpoint_id: apextoolgroup.mobile
+    multiplier: 1x
+breakpoint_group: apextoolgroup
+fallback_image_style: womenintool

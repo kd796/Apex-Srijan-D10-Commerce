@@ -1,0 +1,183 @@
+uuid: b831478a-6551-4751-bb57-f3e61a7c6907
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.solutions.field_alternating_media_blocks
+    - field.field.node.solutions.field_callout_section_footer
+    - field.field.node.solutions.field_card
+    - field.field.node.solutions.field_featured_products
+    - field.field.node.solutions.field_find_a_distributor
+    - field.field.node.solutions.field_forms
+    - field.field.node.solutions.field_hero
+    - field.field.node.solutions.field_mailing_list_form
+    - field.field.node.solutions.field_seo
+    - field.field.node.solutions.field_webform
+    - node.type.solutions
+  module:
+    - content_moderation
+    - metatag
+    - paragraphs
+    - path
+    - webform
+id: node.solutions.default
+targetEntityType: node
+bundle: solutions
+mode: default
+content:
+  field_alternating_media_blocks:
+    type: entity_reference_paragraphs
+    weight: 3
+    region: content
+    settings:
+      title: 'Media Block'
+      title_plural: 'Media Block'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: media_block
+    third_party_settings: {  }
+  field_callout_section_footer:
+    type: entity_reference_paragraphs
+    weight: 8
+    region: content
+    settings:
+      title: 'Callout Section Footer'
+      title_plural: 'Callout Section Footer'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: callout_section_footer
+    third_party_settings: {  }
+  field_card:
+    type: entity_reference_autocomplete
+    weight: 7
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_featured_products:
+    type: entity_reference_paragraphs
+    weight: 4
+    region: content
+    settings:
+      title: 'Featured Products'
+      title_plural: 'Featured Products'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: featured_products
+    third_party_settings: {  }
+  field_find_a_distributor:
+    type: entity_reference_paragraphs
+    weight: 9
+    region: content
+    settings:
+      title: 'Find a Distributor'
+      title_plural: 'Find a Distributor'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: find_a_distributor
+    third_party_settings: {  }
+  field_forms:
+    type: entity_reference_paragraphs
+    weight: 5
+    region: content
+    settings:
+      title: Forms
+      title_plural: Forms
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: form_section
+    third_party_settings: {  }
+  field_hero:
+    type: entity_reference_paragraphs
+    weight: 2
+    region: content
+    settings:
+      title: Hero
+      title_plural: Hero
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: hero
+    third_party_settings: {  }
+  field_mailing_list_form:
+    type: entity_reference_paragraphs
+    weight: 10
+    region: content
+    settings:
+      title: 'Mailing List Form'
+      title_plural: 'Mailing List Forms'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: mailing_list_form
+    third_party_settings: {  }
+  field_seo:
+    type: metatag_firehose
+    weight: 14
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_webform:
+    type: webform_entity_reference_select
+    weight: 6
+    region: content
+    settings:
+      default_data: true
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 0
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  moderation_state:
+    type: moderation_state_default
+    weight: 15
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 12
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  url_redirects:
+    weight: 13
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  promote: true
+  sticky: true
+  uid: true

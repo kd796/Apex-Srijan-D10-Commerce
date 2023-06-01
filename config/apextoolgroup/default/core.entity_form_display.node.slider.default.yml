@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.slider.field_banner_image
     - field.field.node.slider.field_footer_note
     - field.field.node.slider.field_slider_link
+    - field.field.node.slider.field_weight
     - node.type.slider
   module:
     - link
@@ -56,6 +57,13 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+    third_party_settings: {  }
+  field_weight:
+    type: number
+    weight: 26
+    region: content
+    settings:
+      placeholder: ''
     third_party_settings: {  }
   langcode:
     type: language_select

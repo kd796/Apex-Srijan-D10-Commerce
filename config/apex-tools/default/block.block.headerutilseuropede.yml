@@ -1,0 +1,33 @@
+uuid: 130fe9bf-bc1c-4f9f-b0a7-af11d02ea5d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.header-utils--de
+  module:
+    - language
+    - system
+  theme:
+    - atg
+id: headerutilseuropede
+theme: atg
+region: header_utils_nav
+weight: 0
+provider: null
+plugin: 'system_menu_block:header-utils--de'
+settings:
+  id: 'system_menu_block:header-utils--de'
+  label: 'Header Utils (Europe / DE)'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      de: de

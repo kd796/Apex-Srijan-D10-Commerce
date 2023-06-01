@@ -1,0 +1,9 @@
+<div class="market-other container">
+  <div class="view-content">
+    {% for item in paragraph.field_links %}
+      <div class="views-row">
+        <a href="{{ item.url }}">{{ item.title }}</a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
