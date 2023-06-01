@@ -129,6 +129,12 @@ process:
       - Z2
       - Z3
       - Z5
+  sales_org:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_sales_org
+    method: row
+    value: 6201
   type:
     plugin: default_value
     default_value: product
