@@ -18,6 +18,7 @@ dependencies:
     - field.field.node.product.field_product_images
     - field.field.node.product.field_product_specifications
     - field.field.node.product.field_related_products
+    - field.field.node.product.field_rrp
     - field.field.node.product.field_set
     - field.field.node.product.field_set_components
     - field.field.node.product.field_sku_group
@@ -85,6 +86,7 @@ third_party_settings:
         - field_upc
         - field_sku_group
         - field_long_description
+        - field_rrp
         - field_product_features
         - field_product_specifications
         - field_product_classifications
@@ -191,14 +193,14 @@ content:
     third_party_settings: {  }
   field_pdfs:
     type: media_library_widget
-    weight: 21
+    weight: 22
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_product_classifications:
     type: entity_reference_autocomplete
-    weight: 19
+    weight: 20
     region: content
     settings:
       match_operator: CONTAINS
@@ -208,7 +210,7 @@ content:
     third_party_settings: {  }
   field_product_features:
     type: string_textfield
-    weight: 17
+    weight: 18
     region: content
     settings:
       size: 60
@@ -216,14 +218,14 @@ content:
     third_party_settings: {  }
   field_product_images:
     type: media_library_widget
-    weight: 20
+    weight: 21
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_product_specifications:
     type: entity_reference_autocomplete
-    weight: 18
+    weight: 19
     region: content
     settings:
       match_operator: CONTAINS
@@ -233,7 +235,7 @@ content:
     third_party_settings: {  }
   field_related_products:
     type: entity_reference_autocomplete
-    weight: 24
+    weight: 25
     region: content
     settings:
       match_operator: CONTAINS
@@ -241,16 +243,23 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_rrp:
+    type: number
+    weight: 17
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
   field_set:
     type: boolean_checkbox
-    weight: 22
+    weight: 23
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_set_components:
     type: entity_reference_autocomplete
-    weight: 23
+    weight: 24
     region: content
     settings:
       match_operator: CONTAINS

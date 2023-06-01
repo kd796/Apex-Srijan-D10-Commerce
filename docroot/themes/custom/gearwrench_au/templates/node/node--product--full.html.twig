@@ -148,9 +148,12 @@
 
           <div class="product-detail-content-container__rating-container">
             <!--Price Spider Rating widget goes here-->
-            <div class="node__buy-now-button ps-widget" ps-sku="{{ sku }}"></div>
+            <div class="node__buy-now-button ps-widget" ps-sku="{{ sku }}"></div>         
+            {% if rrp is not null %}
+              <div class="rrp">RRP ${{ rrp }}</div>
+            {% endif%}   
           </div>
-
+         
           <div class="product-detail-content-container__social">
             <div class="product-detail-content-container__print">
               <span onclick="window.print()">{% include directory ~ '/icons/printer.svg' %}</span>

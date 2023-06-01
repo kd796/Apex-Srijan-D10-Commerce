@@ -9,19 +9,11 @@
  * @see https://www.drupal.org/node/2217931
  */
 
-use Drupal\taxonomy\Entity\Vocabulary;
-use Drupal\Component\Utility\UrlHelper;
-use Drupal\Core\File\FileSystemInterface;
-use Drupal\Core\Language\LanguageInterface;
-use Drupal\file\Entity\File;
-use Drupal\media\Entity\Media;
+use Drupal\webform\Entity\Webform;
 use Drupal\migrate\MigrateSkipRowException;
 use Drupal\migrate\Plugin\MigrateSourceInterface;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\Row;
-use Drupal\node\NodeInterface;
-use GuzzleHttp\Exception\RequestException;
-use Drupal\file\FileInterface;
 
 /**
  * Implements hook_migrate_prepare_row().
@@ -252,6 +244,21 @@ function gearwrench_migrations_node_predelete($entity) {
     }
     else {
       apex_common_helper_add_url_redirects($entity, 'internal:/home');
+    }
+  }
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function gearwrench_migrations_menu_local_tasks_alter(&$local_tasks, $route_name) {
+  $webform = \Drupal::routeMatch()->getParameter('webform');
+  if ($webform instanceof Webform) {
+    $webform_id = $webform->id();
+    if ($webform_id === 'warranty_abusers') {
+      // Change the tab names for the specific webform.
+      $local_tasks['tabs'][0]['entity.webform.canonical']['#link']['title'] = 'Add Abusers';
+      $local_tasks['tabs'][0]['entity.webform.results']['#link']['title'] = 'List of Warranty Abusers';
     }
   }
 }

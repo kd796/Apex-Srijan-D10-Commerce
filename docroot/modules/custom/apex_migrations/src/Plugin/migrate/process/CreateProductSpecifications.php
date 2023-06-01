@@ -31,8 +31,15 @@ class CreateProductSpecifications extends ProcessPluginBase {
     $parent_term_id = NULL;
 
     $product_specifications = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties([
-      'vid' => 'product_specifications'
+      'vid' => 'product_specifications',
     ]);
+
+    // Load units data.
+    $units = $value->xpath('/*/UnitList/Unit');
+    $unit_list = [];
+    foreach ($units as $item) {
+      $unit_list[(string) $item->attributes()->ID] = (string) $item->Name;
+    }
 
     if (!empty($value)) {
       foreach ($value->children() as $child) {
@@ -40,6 +47,15 @@ class CreateProductSpecifications extends ProcessPluginBase {
         $parent_term_id = NULL;
         $parent_id = (string) $child->attributes()->AttributeID;
         $validAttribute = $this->validateAttributeName($parent_id);
+
+        if (!$validAttribute) {
+          continue;
+        }
+
+        $unit = '';
+        if (isset($child->attributes()->UnitID) && isset($unit_list[(string) $child->attributes()->UnitID])) {
+          $unit = ' ' . $unit_list[(string) $child->attributes()->UnitID];
+        }
 
         if ($validAttribute) {
           foreach ($product_specifications as $product_specification) {
@@ -56,22 +72,20 @@ class CreateProductSpecifications extends ProcessPluginBase {
             if ($child->getName() === 'MultiValue') {
               if (count($child->children()) > 1) {
                 foreach ($child->children() as $item) {
-                  $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $item);
+                  $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $item . $unit);
+                  if (is_object($term)) {
+                    $values_array[] = $this->addToValues($vid, $term);
+                  }
                 }
               }
               else {
-                $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $child->Value);
+                $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $child->Value . $unit);
+                $values_array[] = $this->addToValues($vid, $term);
               }
             }
             else {
-              $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $child);
-            }
-
-            if (is_object($term)) {
-              $values_array[] = [
-                'vid' => $vid,
-                'target_id' => $term->id()
-              ];
+              $term = $this->loadOrCreateChildTerm($parent_label, $parent_term_id, $child . $unit);
+              $values_array[] = $this->addToValues($vid, $term);
             }
           }
         }
@@ -154,6 +168,19 @@ class CreateProductSpecifications extends ProcessPluginBase {
     }
 
     return FALSE;
+  }
+
+  /**
+   * Common function to add values to array.
+   */
+  protected function addToValues($vid, $term) {
+    if (is_object($term)) {
+      $values_array = [
+        'vid' => $vid,
+        'target_id' => $term->id(),
+      ];
+    }
+    return $values_array;
   }
 
 }

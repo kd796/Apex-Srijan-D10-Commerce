@@ -105,6 +105,11 @@ pipelines:
       - step:
           <<: *deploy-package
           deployment: Staging
+    stage-support:
+      - step: *build-package
+      - step:
+          <<: *deploy-package
+          deployment: Staging Support
     stage-seo:
       - step: *build-package
       - step:

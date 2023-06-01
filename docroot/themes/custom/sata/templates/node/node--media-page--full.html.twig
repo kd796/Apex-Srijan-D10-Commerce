@@ -88,10 +88,18 @@
       <div class="node__summary">
         {{ summary }}
       </div>
-      {% if file is not null %}
+      {% if is_sata_br_domain and mediaType == 'Catalog' %}
+        {% if file is not null %}
         <div class="node__cta">
-          <a href="{{ file }}" target="_blank">{{ 'Download'|t }} {{ mediaType }}</a>
+          <a href="{{ file }}" target="_blank">{{ 'BAIXAR'|t }}</a>
         </div>
+      {% endif %}
+      {% else %}
+         {% if file is not null %}
+          <div class="node__cta">
+            <a href="{{ file }}" target="_blank">{{ 'Download'|t }} {{ mediaType }}</a>
+          </div>
+        {% endif %}
       {% endif %}
       <div class="node__categories">
         {{ categories }}
