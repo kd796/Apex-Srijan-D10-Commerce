@@ -93,7 +93,7 @@ mix
 
 mix.version()
 mix.version([
-  config.publicPath + "/img/favicon.png"
+  config.publicPath + "/img/favicon.ico"
 ])
 
 
