@@ -55,6 +55,10 @@ source:
       label: 'Product Classifications'
       selector: Values
     -
+      name: remote_product_industries
+      label: 'Product Industries'
+      selector: Values
+    -
       name: remote_launch_date
       label: 'Launch Date'
       selector: Values
@@ -427,6 +431,16 @@ process:
   field_product_classifications:
     plugin: sub_process
     source: '@product_classifications_array'
+    include_source: true
+    process:
+      vocabulary_id: vid
+      target_id: target_id
+  product_industries_array:
+    plugin: apex_get_product_industries
+    source: remote_product_industries
+  field_industry:
+    plugin: sub_process
+    source: '@product_industries_array'
     include_source: true
     process:
       vocabulary_id: vid
