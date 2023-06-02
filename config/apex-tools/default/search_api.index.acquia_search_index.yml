@@ -525,6 +525,16 @@ field_settings:
         - field.storage.media.field_product_category
       module:
         - taxonomy
+  product_model_title:
+    label: 'Product Models » Content » Title'
+    datasource_id: 'entity:node'
+    property_path: 'field_product_models:entity:title'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_product_models
+      module:
+        - node
   status_1:
     label: Published
     datasource_id: 'entity:node'
@@ -539,16 +549,6 @@ field_settings:
     property_path: title
     type: text
     dependencies:
-      module:
-        - node
-  title_1:
-    label: 'Product Models » Content » Title'
-    datasource_id: 'entity:node'
-    property_path: 'field_product_models:entity:title'
-    type: text
-    dependencies:
-      config:
-        - field.storage.node.field_product_models
       module:
         - node
   type:
