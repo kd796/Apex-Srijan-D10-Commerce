@@ -1,0 +1,32 @@
+uuid: 4c4b3b93-6e7e-41aa-9d87-4d8d90a9bd76
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.email_us.feeds_item
+    - field.field.node.email_us.field_atg_email
+    - field.field.node.email_us.field_country_code
+    - field.field.node.email_us.field_form_type
+    - field.field.node.email_us.field_state_code
+    - node.type.email_us
+  module:
+    - user
+id: node.email_us.teaser
+targetEntityType: node
+bundle: email_us
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  feeds_item: true
+  field_atg_email: true
+  field_country_code: true
+  field_form_type: true
+  field_state_code: true
+  langcode: true
+  search_api_excerpt: true
