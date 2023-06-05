@@ -22,22 +22,19 @@ class CustomSolutionsAndSpecialtyToolsConfiguration implements ComparisonTableCo
     ];
     if (!array_intersect($data['product_category'], $category)) {
       if (is_array($data['product_category'])) {
-        $condition_applied = FALSE;
-        foreach ($data['product_category'] as $child) {
-          if (in_array($child, $this->getChildren($category))) {
-            $condition_applied = TRUE;
-            break;
-          }
+        $conditionApplied = FALSE;
+        if (in_array($data['product_category'][0],
+          $this->getChildren($category, $data['product_category']))) {
+          $conditionApplied = TRUE;
         }
-        return $condition_applied;
+        return $conditionApplied;
       }
       else {
-        return array_intersect($data['product_category'], $this->getChildren($category));
+        return array_intersect($data['product_category'], $this->getChildren($category, $data['product_category']));
       }
     }
 
     return $category;
-
   }
 
   /**
