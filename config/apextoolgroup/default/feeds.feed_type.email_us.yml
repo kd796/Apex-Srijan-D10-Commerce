@@ -1,0 +1,100 @@
+uuid: 83e4a789-69e5-40b3-8a48-be574540d521
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.email_us.field_atg_email
+    - field.field.node.email_us.field_country_code
+    - field.field.node.email_us.field_form_type
+    - field.field.node.email_us.field_state_code
+    - node.type.email_us
+  module:
+    - node
+label: 'Email Us'
+id: email_us
+description: 'Feed importer for email us content type.'
+help: ''
+import_period: -1
+fetcher: upload
+fetcher_configuration:
+  allowed_extensions: csv
+  directory: 'private://feeds'
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  values:
+    type: email_us
+  langcode: en
+  insert_new: 1
+  update_existing: 2
+  update_non_existent: _keep
+  skip_hash_check: false
+  authorize: true
+  revision: true
+  expire: -1
+  owner_feed_author: false
+  owner_id: 1
+custom_sources:
+  country:
+    value: Country
+    label: Country
+    machine_name: country
+    type: csv
+  state:
+    value: State
+    label: State
+    machine_name: state
+    type: csv
+  atg_email:
+    value: 'ATG Email'
+    label: 'ATG Email'
+    machine_name: atg_email
+    type: csv
+  form_type:
+    value: 'Form Type'
+    label: 'Form Type'
+    machine_name: form_type
+    type: csv
+  country_number:
+    value: 'Country Number'
+    label: 'Country Number'
+    machine_name: country_number
+    type: csv
+mappings:
+  -
+    target: title
+    map:
+      value: country_number
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_state_code
+    map:
+      value: state
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_atg_email
+    map:
+      value: atg_email
+    settings:
+      language: null
+  -
+    target: field_form_type
+    map:
+      value: form_type
+    settings:
+      language: null
+  -
+    target: field_country_code
+    map:
+      value: country
+    settings:
+      language: null
+    unique: {  }

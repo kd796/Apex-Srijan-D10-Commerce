@@ -1,0 +1,42 @@
+uuid: 364b369b-0721-4c73-8e79-b22e5b9ac8f1
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_form_type
+field_name: field_form_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: distributor
+      label: 'Become a Distributor'
+    -
+      value: supplier
+      label: 'Become a Supplier'
+    -
+      value: product_feedback
+      label: 'Product Feedback'
+    -
+      value: technical_question
+      label: 'Product Technical Question'
+    -
+      value: warranty_repair
+      label: 'Warranty/Replacement Parts/Repair'
+    -
+      value: sales_quote
+      label: 'Sales Quote'
+    -
+      value: website_feedback
+      label: 'Website Feedback'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
