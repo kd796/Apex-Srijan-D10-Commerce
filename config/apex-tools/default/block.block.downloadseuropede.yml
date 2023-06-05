@@ -1,0 +1,36 @@
+uuid: 6c85fcd0-f23d-4453-964b-f2bf25637ad9
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.downloads_europe_de
+  module:
+    - fixed_block_content
+    - language
+    - system
+  theme:
+    - apex_tools
+id: downloadseuropede
+theme: apex_tools
+region: content
+weight: -9
+provider: null
+plugin: 'fixed_block_content:downloads_europe_de'
+settings:
+  id: 'fixed_block_content:downloads_europe_de'
+  label: 'Downloads(Europe / DE)'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      de: de
+  request_path:
+    id: request_path
+    negate: false
+    pages: /downloads
