@@ -47,7 +47,7 @@ trait HasGeographyParams {
    * @return float|int
    */
   protected function getRadius() {
-    return floatval($this->request->query->get('radius')) ?? 50;
+    return 100;
   }
 
   /**

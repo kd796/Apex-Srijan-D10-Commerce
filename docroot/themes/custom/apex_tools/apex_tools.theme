@@ -6,6 +6,24 @@
  */
 
 /**
+ * Implements hook_preprocess_node__BUNDLE() for geo directory.
+ */
+function apex_tools_preprocess_node__geo_directory(&$variables) {
+  $subdivisions = \Drupal::service('address.subdivision_repository')->getList(['US']);
+  // Pass the options to the template.
+  $default_state_option = [
+    'value' => NULL,
+    'label' => t('Select State'),
+  ];
+  $variables['state_options'] = array_merge([$default_state_option], array_map(function ($stateCode, $stateName) {
+      return [
+        'value' => $stateName,
+        'label' => $stateName,
+      ];
+  }, array_keys($subdivisions), $subdivisions));
+}
+
+/**
  * Implements hook_preprocess_node__BUNDLE__VIEW_MODE() for article, full.
  */
 function apex_tools_preprocess_node__article__full(array &$variables) {

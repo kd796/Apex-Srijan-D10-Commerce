@@ -10,8 +10,10 @@ dependencies:
     - geofield
 third_party_settings:
   geocoder_field:
-    method: source
+    method: geocode
     weight: 0
+    field: field_address
+    skip_not_empty_value: false
     disabled: false
     hidden: false
     providers:
@@ -22,8 +24,6 @@ third_party_settings:
       handling: preserve
       status_message: true
       log: true
-    geocode_field: field_address
-    reverse_geocode_field: ''
 id: node.distributors.field_geographic_data
 field_name: field_geographic_data
 entity_type: node
