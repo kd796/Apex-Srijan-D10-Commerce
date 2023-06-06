@@ -90,8 +90,7 @@ class SolrSearchApiService {
    */
   public function search(array $filters = [], $search_query = '', $per_page = 12, $offset = 0) {
     if ($search_query) {
-      // Search query.
-      $this->query->keys($search_query);
+      $this->query->addCondition('title', '*' .$search_query . '*', 'LIKE');
     }
 
     // Items per page and offset used for pagination.
@@ -100,9 +99,6 @@ class SolrSearchApiService {
     // Filters.
     $language = $this->languageManager->getCurrentLanguage()->getId();
     foreach ($filters as $filter_name => $filter) {
-      if ($filter_name == 'type') {
-        $filter_name = 'item_type';
-      }
       // We have 2 types of conditions; range and list.
       if (is_array($filter)) {
         foreach ($filter as $each) {
@@ -170,9 +166,13 @@ class SolrSearchApiService {
     $facet_filters = [];
     $facet_filters[] = 'sm_product_category';
     foreach ($terms as $term) {
+      if($term['key'] == 'type'){
+        $facet_filters[] = 'sm_' . $term['key'] . '_1';
+      }
+      else{
       $facet_filters[] = 'sm_' . $term['key'];
+      }
     }
-
     $this->query->setOption('solr_param_facet', 'true');
     $this->query->setOption('solr_param_facet.field', $facet_filters);
 
