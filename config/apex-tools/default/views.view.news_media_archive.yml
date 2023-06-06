@@ -354,7 +354,7 @@ display:
         options:
           query_comment: ''
           disable_sql_rewrite: false
-          distinct: false
+          distinct: true
           replica: false
           query_tags: {  }
       relationships:
@@ -395,6 +395,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:atg_translation.settings'
         - 'config:field.storage.node.field_tags'
   page_1:
     id: page_1
@@ -414,4 +415,5 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:atg_translation.settings'
         - 'config:field.storage.node.field_tags'

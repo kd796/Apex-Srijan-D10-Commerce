@@ -3,7 +3,8 @@
 	{% set current_url = url('entity.taxonomy_term.canonical', {'taxonomy_term': current.tid.value}) %}
 {% endif %}
 {% set url = url('entity.taxonomy_term.canonical', {'taxonomy_term': entity.tid.value }) %}
-{% set title = entity.getName() %}
+{% set translatedEntity = entity|translation %}
+{% set title = translatedEntity.getName() %}
 {% set attributes = create_attribute({class: 'tab'}) %}
 {% if url == current_url %}
 	{% set attributes = attributes.addClass('tab--active') %}
