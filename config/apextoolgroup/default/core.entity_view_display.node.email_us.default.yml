@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.email_us.field_country_code
     - field.field.node.email_us.field_form_type
     - field.field.node.email_us.field_state_code
+    - field.field.node.email_us.field_unique_feed_id
     - node.type.email_us
   module:
     - options
@@ -22,7 +23,7 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 103
+    weight: 1
     region: content
   field_country_code:
     type: string
@@ -30,14 +31,14 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 108
+    weight: 4
     region: content
   field_form_type:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 107
+    weight: 3
     region: content
   field_state_code:
     type: string
@@ -45,14 +46,15 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 105
+    weight: 2
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 0
     region: content
 hidden:
   feeds_item: true
+  field_unique_feed_id: true
   langcode: true
   search_api_excerpt: true
