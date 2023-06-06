@@ -83,20 +83,27 @@ trait ProductsParentChildMapping {
   /**
    * List of children based on parent.
    */
-  public function getChildren($parent) {
+  public function getChildren(array $parent, $currentTerms = []) {
     $children = [];
     if (is_null($this->listProductHierarchy)) {
       $this->initialize();
     }
     // In case we have multiple parents.
-    if (is_array($parent)) {
-      foreach ($parent as $pname) {
-        // Load term name and id by name.
-        $parent_term = $this->loadTermByName($pname);
-        if ($parent_term &&
-          isset($this->listProductHierarchy[$parent_term['id']])) {
-          return array_column($this->listProductHierarchy[$parent_term['id']], "name");
-        }
+    foreach ($parent as $pname) {
+      // Load term name and id by name.
+      $parent_term = $this->loadTermByName($pname);
+      if ($parent_term &&
+        isset($this->listProductHierarchy[$parent_term['id']])) {
+          if ($currentTerms && count($currentTerms) > 1) {
+            foreach ($this->listProductHierarchy[$parent_term['id']] as $childTerm) {
+              if ($childTerm['name'] == $currentTerms[key($currentTerms)]) {
+                return array_column($this->listProductHierarchy[$parent_term['id']], "name");
+              }
+            }
+            return [];
+          }
+
+        return array_column($this->listProductHierarchy[$parent_term['id']], "name");
       }
     }
 
@@ -106,14 +113,16 @@ trait ProductsParentChildMapping {
   /**
    * Load term by name.
    */
-  protected function loadTermByName($term_name) {
+  protected function loadTermByName($term_name, $parent_term = '') {
     $data = [];
     $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
     // Create an entity query to find the term.
     $query = $term_storage->getQuery()
       ->condition('name', $term_name)
       ->condition('vid', $this->vocabularyMachineName);
-
+    if ($parent_term) {
+      $query->condition('parent', $parent_term);
+    }
     $tids = $query->execute();
     if ($tids) {
       // Retrieve the first matching term ID.
