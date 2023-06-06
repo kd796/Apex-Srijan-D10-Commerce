@@ -7,12 +7,17 @@ dependencies:
     - field.field.node.email_us.field_country_code
     - field.field.node.email_us.field_form_type
     - field.field.node.email_us.field_state_code
+    - field.field.node.email_us.field_unique_feed_id
     - node.type.email_us
   module:
+    - feeds_tamper
     - node
+third_party_settings:
+  feeds_tamper:
+    tampers: {  }
 label: 'Email Us'
 id: email_us
-description: 'Feed importer for email us content type.'
+description: 'Content import into email_us content type.'
 help: ''
 import_period: -1
 fetcher: upload
@@ -33,7 +38,7 @@ processor_configuration:
   update_existing: 2
   update_non_existent: _keep
   skip_hash_check: false
-  authorize: true
+  authorize: false
   revision: true
   expire: -1
   owner_feed_author: false
@@ -54,15 +59,20 @@ custom_sources:
     label: 'ATG Email'
     machine_name: atg_email
     type: csv
-  form_type:
-    value: 'Form Type'
-    label: 'Form Type'
-    machine_name: form_type
-    type: csv
   country_number:
     value: 'Country Number'
     label: 'Country Number'
     machine_name: country_number
+    type: csv
+  unique_id:
+    value: 'Unique ID'
+    label: 'Unique ID'
+    machine_name: unique_id
+    type: csv
+  form_types:
+    value: 'Form Types'
+    label: 'Form Types'
+    machine_name: form_types
     type: csv
 mappings:
   -
@@ -86,15 +96,23 @@ mappings:
     settings:
       language: null
   -
-    target: field_form_type
-    map:
-      value: form_type
-    settings:
-      language: null
-  -
     target: field_country_code
     map:
       value: country
     settings:
       language: null
     unique: {  }
+  -
+    target: field_unique_feed_id
+    map:
+      value: unique_id
+    settings:
+      language: null
+    unique:
+      value: '1'
+  -
+    target: field_form_type
+    map:
+      value: form_types
+    settings:
+      language: null

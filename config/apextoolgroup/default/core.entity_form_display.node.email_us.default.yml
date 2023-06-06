@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.email_us.field_country_code
     - field.field.node.email_us.field_form_type
     - field.field.node.email_us.field_state_code
+    - field.field.node.email_us.field_unique_feed_id
     - node.type.email_us
   module:
     - path
@@ -47,6 +48,14 @@ content:
   field_state_code:
     type: string_textfield
     weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_unique_feed_id:
+    type: string_textfield
+    weight: 26
     region: content
     settings:
       size: 60
