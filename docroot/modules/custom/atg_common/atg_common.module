@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\atg_common\Plugin\WebformHandler\EmailUsWebformHandler;
 
 /**
  * Implements hook_views_pre_view().
@@ -95,5 +96,5 @@ function atg_common_form_alter(&$form, FormStateInterface $form_state, $form_id)
  */
 function atg_common_webform_handler_info_alter(array &$handlers) {
   // Use custom handler for Email Us mail.
-  $handlers['email']['class'] = Drupal\atg_common\Plugin\WebformHandler\EmailUsWebformHandler::class;
+  $handlers['email']['class'] = EmailUsWebformHandler::class;
 }
