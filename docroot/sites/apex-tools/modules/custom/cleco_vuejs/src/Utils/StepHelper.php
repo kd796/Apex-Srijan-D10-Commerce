@@ -323,6 +323,50 @@ class StepHelper {
       'gb' => 'I-Wrench - Rubber Protection - WIFI Module - Auto Head Recognition',
       'de' => 'I-Wrench - Gummischutz - WLan-Modul - Automatische Kopferkennung',
     ],
+    'Drive Size' => [
+      'gb' => 'Drive Size',
+      'de' => 'Laufwerksgröße',
+    ],
+    'Magnetism' => [
+      'gb' => 'Magnetism',
+      'de' => 'Magnetismus',
+    ],
+    'Opening Modifier' => [
+      'gb' => 'Opening Modifier',
+      'de' => 'Öffnungsmodifikator',
+    ],
+    'Socket Type Length' => [
+      'gb' => 'Socket Type Length',
+      'de' => 'Länge des Sockeltyps',
+    ],
+    'Drive' => [
+      'gb' => 'Drive',
+      'de' => 'Antrieb',
+    ],
+    'Type' => [
+      'gb' => 'Type',
+      'de' => 'Typ',
+    ],
+    'Point Size' => [
+      'gb' => 'Point Size',
+      'de' => 'Punktgröße',
+    ],
+    'Hex Size' => [
+      'gb' => 'Hex Size',
+      'de' => 'Hex-Größe',
+    ],
+    'Shank Length' => [
+      'gb' => 'Shank Length',
+      'de' => 'Schaftlänge',
+    ],
+    'Male Square Drive (in)' => [
+      'gb' => 'Male Square Drive (in)',
+      'de' => 'Außenvierkantantrieb (in)',
+    ],
+    'Size' => [
+      'gb' => 'Size',
+      'de' => 'Größe',
+    ],
   ];
 
   /**
@@ -374,167 +418,38 @@ class StepHelper {
    */
   public static function productFilters() {
     return [
-          // Checkboxes UI.
-      'ATT728132' => [
-        'type' => 'checkboxes',
+      'ATT835' => [ // Drive Size
+        'type' => 'checkboxes'
       ],
-      'ATT665405' => [
-        'type' => 'checkboxes',
+      'ATT669761' => [ // Magnetism
+        'type' => 'checkboxes'
       ],
-      'ATT663751' => [
-        'type' => 'checkboxes',
+      'ATT669756' => [ // Opening Modifier
+        'type' => 'checkboxes'
       ],
-      'ATT16694'  => [
-        'type' => 'checkboxes',
+      'ATT669755' => [ // Socket Type Length
+        'type' => 'checkboxes'
       ],
-      'ATT727466' => [
-        'type' => 'checkboxes',
+      'ATT425' => [ // Type
+        'type' => 'checkboxes'
       ],
-      'ATT668491' => [
-        'type' => 'checkboxes',
+      'ATT339' => [ // Point Size
+        'type' => 'checkboxes'
       ],
-      'ATT727184' => [
-        'type' => 'checkboxes',
+      'ATT666136' => [ // Hex Size
+        'type' => 'checkboxes'
       ],
-      'ATT420'    => [
-        'type' => 'checkboxes',
+      'ATT666181' => [ // Shank Length
+        'type' => 'checkboxes'
       ],
-      'ATT664420' => [
-        'type' => 'checkboxes',
+      'ATT26835' => [ // Drive
+        'type' => 'checkboxes'
       ],
-      'ATT665609' => [
-        'type' => 'checkboxes',
+      'ATT728148'=> [ // Male Square Drive (in)
+        'type' => 'checkboxes'
       ],
-      'ATT16692'  => [
-        'type' => 'checkboxes',
-      ],
-      'ATT16691'  => [
-        'type' => 'checkboxes',
-      ],
-      'ATT26930'  => [
-        'type'   => 'checkboxes',
-        'bucket' => 'Abrasive Capacity',
-      ],
-      'ATT26811'  => [
-        'type'   => 'checkboxes',
-        'bucket' => 'Abrasive Capacity',
-      ],
-      'ATT16674'  => [
-        'type'   => 'checkboxes',
-        'bucket' => 'Abrasive Capacity',
-      ],
-      'ATT663752' => [
-        'type' => 'checkboxes',
-      ],
-      'ATT16696'  => [
-        'type' => 'checkboxes',
-      ],
-      'ATT345'    => [
-        'type' => 'checkboxes',
-      ],
-      'ATT17322'  => [
-        'type' => 'checkboxes',
-      ],
-      'ATT16689'  => [
-        'type' => 'checkboxes',
-      ],
-      'ATT26820'  => [
-        'type' => 'checkboxes',
-      ],
-      'ATT727185' => [
-        'type' => 'checkboxes',
-      ],
-      'ATT727183' => [
-        'type' => 'checkboxes',
-      ],
-      'ATT675745' => [
-        'type' => 'checkboxes',
-      ],
-      'ATT727457' => [
-        'type' => 'checkboxes',
-      ],
-      'ATT835'    => [
-        'type' => 'checkboxes',
-      ],
-      'ATT499'    => [
-        'type' => 'checkboxes',
-      ],
-      'ATT670145' => [
-        'type' => 'checkboxes',
-      ],
-      'ATT434'    => [
-        'type'   => 'checkboxes',
-        'bucket' => 'Features',
-      ],
-      'ATT727414' => [
-        'type'   => 'checkboxes',
-        'bucket' => 'Features',
-      ],
-      'ATT727431' => [
-        'type'   => 'checkboxes',
-        'bucket' => 'Features',
-      ],
-      'ATT583306' => [
-        'type'   => 'checkboxes',
-        'bucket' => 'Features',
-      ],
-      'ATT584487' => [
-        'type'   => 'range',
-        'bucket' => 'Target Torque (NM)',
-      ],
-      'ATT584486' => [
-        'type'   => 'range',
-        'bucket' => 'Target Torque (NM)',
-      ],
-      'ATT659132' => [
-        'type'   => 'range',
-        'bucket' => 'Target Torque (ft-lbs)',
-      ],
-      'ATT659133' => [
-        'type'   => 'range',
-        'bucket' => 'Target Torque (ft-lbs)',
-      ],
-      'ATT802'    => [
-        'type' => 'range',
-      ],
-      'ATT384'    => [
-        'type' => 'range',
-      ],
-      'ATT242'    => [
-        'type' => 'range',
-      ],
-      'ATT583314' => [
-        'type' => 'range',
-      ],
-      'ATT698650' => [
-        'type' => 'checkboxes',
-      ],
-      'ATT670154' => [
-        'type' => 'range',
-      ],
-      'ATT16699'  => [
-        'type' => 'range',
-      ],
-      'ATT22563'  => [
-        'type' => 'range',
-      ],
-      'ATT585085' => [
-        'type' => 'range',
-      ],
-      'ATT16698'  => [
-        'type' => 'range',
-      ],
-      'ATT584578' => [
-        'type' => 'range',
-      ],
-      'ATT16688'  => [
-        'type' => 'range',
-      ],
-      'ATT664087' => [
-        'type' => 'range',
-      ],
-      'ATT664086' => [
-        'type' => 'range',
+      'ATT948' => [ // Size
+        'type' => 'checkboxes'
       ],
     ];
   }

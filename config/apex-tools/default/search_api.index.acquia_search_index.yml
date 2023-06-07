@@ -113,6 +113,14 @@ field_settings:
     dependencies:
       module:
         - node
+  drive:
+    label: Drive
+    property_path: drive
+    type: string
+  drive_size:
+    label: 'Drive Size'
+    property_path: drive_size
+    type: string
   enhanced_product_image:
     label: '360° Product Image » Paragraph » Product Loading Image » File » Filename'
     datasource_id: 'entity:node'
@@ -345,6 +353,10 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_web_display_sort_order
+  hex_size:
+    label: 'Hex Size'
+    property_path: hex_size
+    type: string
   item_type:
     label: 'Item Type'
     property_path: item_type
@@ -405,6 +417,14 @@ field_settings:
       module:
         - file
         - media
+  magnetism:
+    label: Magnetism
+    property_path: magnetism
+    type: string
+  male_square_drive_in:
+    label: 'Male Square Drive (in)'
+    property_path: male_square_drive_in
+    type: string
   media_filename:
     label: 'File » File » Filename'
     datasource_id: 'entity:media'
@@ -507,6 +527,14 @@ field_settings:
     dependencies:
       module:
         - node
+  opening_modifier:
+    label: 'Opening Modifier'
+    property_path: opening_modifier
+    type: string
+  point_size:
+    label: 'Point Size'
+    property_path: point_size
+    type: string
   product_category:
     label: 'Product Categories'
     datasource_id: 'entity:node'
@@ -535,6 +563,18 @@ field_settings:
         - field.storage.node.field_product_models
       module:
         - node
+  shank_length:
+    label: 'Shank Length'
+    property_path: shank_length
+    type: string
+  size:
+    label: Size
+    property_path: size
+    type: string
+  socket_type_length:
+    label: 'Socket Type Length'
+    property_path: socket_type_length
+    type: string
   status_1:
     label: Published
     datasource_id: 'entity:node'
@@ -559,6 +599,10 @@ field_settings:
     dependencies:
       module:
         - node
+  type_1:
+    label: Type
+    property_path: type_1
+    type: string
   uid:
     label: 'Authored by'
     datasource_id: 'entity:node'
