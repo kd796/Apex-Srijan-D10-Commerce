@@ -153,7 +153,7 @@ elements: |-
     '#type': select
     '#title': Country
     '#title_display': after
-    '#options': country_names
+    '#options': country_codes
     '#empty_option': ' '
     '#required': true
     '#required_error': 'Country field is required.'
@@ -173,14 +173,14 @@ elements: |-
     '#type': select
     '#title': State/Province
     '#title_display': after
-    '#options': state_province_names
+    '#options': state_province_codes
     '#empty_option': ' '
     '#required': true
     '#required_error': 'State/Province field is required.'
     '#states':
       visible:
         ':input[name="country"]':
-          value: 'United States'
+          value: US
   state_province_text:
     '#type': textfield
     '#title': State/Province
@@ -190,7 +190,7 @@ elements: |-
     '#states':
       visible:
         ':input[name="country"]':
-          '!value': 'United States'
+          '!value': US
   request_comments:
     '#type': textarea
     '#title': Request/Comments
