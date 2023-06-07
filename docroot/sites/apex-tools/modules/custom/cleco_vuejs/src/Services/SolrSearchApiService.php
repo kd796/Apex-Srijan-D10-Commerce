@@ -90,7 +90,7 @@ class SolrSearchApiService {
    */
   public function search(array $filters = [], $search_query = '', $per_page = 12, $offset = 0) {
     if ($search_query) {
-      $this->query->addCondition('title', '*' .$search_query . '*', 'LIKE');
+      $this->query->keys($search_query);
     }
 
     // Items per page and offset used for pagination.
