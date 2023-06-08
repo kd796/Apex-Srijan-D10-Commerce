@@ -2,34 +2,45 @@
 
 namespace Drupal\atg_api\Traits;
 
+use Drupal\search_api\Query\Query;
 use Drupal\atg_api\Coordinates;
 use Drupal\atg_api\DistanceCalculator;
-use Drupal\Core\Entity\Entity;
 
+/**
+ * Get map parameters.
+ */
 trait HasGeographyParams {
 
+  /**
+   * The Drupal request object.
+   *
+   * @var \Symfony\Component\HttpFoundation\Request
+   * The request object representing the current HTTP request or null.
+   */
   protected $request;
 
-  public function __construct()
-  {
+  /**
+   * Constructor for the request object.
+   */
+  public function __construct() {
     $this->request = \Drupal::request();
   }
 
   /**
-   * GET REQUEST
    * Return the current request.
    *
    * @return \Symfony\Component\HttpFoundation\Request
+   *   Return Drupal request.
    */
   protected function getRequest() {
     return \Drupal::request();
   }
 
   /**
-   * GET CENTER
    * Return the coordinates to use for the origin of the geographic search.
    *
    * @return bool|\Drupal\atg_api\Coordinates
+   *   Return Coordinates.
    */
   protected function getCenter() {
     $center = $this->parseCenter();
@@ -41,20 +52,21 @@ trait HasGeographyParams {
   }
 
   /**
-   * GET RADIUS
    * Return the radius to use for the request.
    *
    * @return float|int
+   *   Return Radius value.
    */
   protected function getRadius() {
-    return 100;
+    // @todo change value after ZIPCODE is updated.
+    return 10;
   }
 
   /**
-   * GET UNITS
    * Return the units to use for the request.
    *
    * @return bool|mixed
+   *   Return units.
    */
   protected function getUnits() {
     $units = $this->request->query->get('units');
@@ -67,20 +79,20 @@ trait HasGeographyParams {
   }
 
   /**
-   * PARSE CENTER
    * Attempt to parse coordinates out of the request's `center` parameter.
    *
    * @return bool|\Drupal\atg_api\Coordinates
+   *   Return Coordinates.
    */
   protected function parseCenter() {
     return Coordinates::parse($this->request->query->get('center'));
   }
 
   /**
-   * QUERY CENTER
    * Attempt to Geocode the value of the request's `q` paremeter.
    *
    * @return bool|\Drupal\atg_api\Coordinates
+   *   Return Coordinates.
    */
   protected function queryCenter() {
     $plugins = ['googlemaps'];
@@ -99,21 +111,20 @@ trait HasGeographyParams {
   }
 
   /**
-   * GET ENTITY DISTANCE
    * Return a DistanceCalculator for the passed entity.
    *
    * @param \Drupal\Core\Entity\Entity $entity
    *
    * @return \Drupal\atg_api\DistanceCalculator
+   * Returns distance.
    */
 
-
-   /*
-   IMPORTANT: this is returning a type of Entity/Node, NOT just Entity
+  /**
+   * IMPORTANT: this is returning a type of Entity/Node, NOT just Entity.
    */
   protected function getEntityDistance($entity) {
     $coordinates = $this->getEntityCoordinates($entity);
-    $center   = $this->getCenter();
+    $center      = $this->getCenter();
 
     if ($center && $coordinates) {
       $distance = new DistanceCalculator($coordinates);
@@ -126,17 +137,17 @@ trait HasGeographyParams {
   }
 
   /**
-   * GET ENTITY COORDINATES
    * Return the coordinates of the entity using the passed field name.
    *
    * @param \Drupal\Core\Entity\Entity $entity
    * @param string $field_name
    *
    * @return bool|\Drupal\atg_api\Coordinates
+   * Return Coordinates.
    */
 
-   /*
-   IMPORTANT: this is returning a type of Entity/Node, NOT just Entity
+  /**
+   * IMPORTANT: this is returning a type of Entity/Node, NOT just Entity.
    */
   protected function getEntityCoordinates($entity, $field_name = 'field_geographic_data') {
     $field = $entity->{$field_name};
@@ -148,13 +159,14 @@ trait HasGeographyParams {
   }
 
   /**
-   * APPLY GEO PARAMETERS
    * Modify the passed query to tag it for Haversine modification.
    *
-   * @see \atg_api_search_api_db_query_alter()
    * @param \Drupal\search_api\Query\Query $query
+   *   The query object to be modified.
+   *
+   * @see \atg_api_search_api_db_query_alter()
    */
-  protected function applyGeoParameters(\Drupal\search_api\Query\Query &$query) {
+  protected function applyGeoParameters(Query &$query) {
     $center = $this->getCenter();
     $radius = $this->getRadius();
     $units  = $this->getUnits() ?: 'mi';
@@ -168,4 +180,5 @@ trait HasGeographyParams {
       ]);
     }
   }
+
 }
