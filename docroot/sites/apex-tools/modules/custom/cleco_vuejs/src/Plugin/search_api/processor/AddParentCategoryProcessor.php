@@ -49,7 +49,9 @@ class AddParentCategoryProcessor extends FieldsProcessorPluginBase {
       }
       $term = $terms[$value];
       $value = $term->getName();
+
       $parent = $term->get('parent')->getValue()[0]['target_id'];
+      while($parent != 0){
       if (!$parent) {
         continue;
       }
@@ -60,8 +62,9 @@ class AddParentCategoryProcessor extends FieldsProcessorPluginBase {
       }
 
       $values[] = $parent->getName();
+      $parent = $parent->get('parent')->getValue()[0]['target_id'];
     }
-
+  }
     $field->setValues(array_unique($values));
   }
 

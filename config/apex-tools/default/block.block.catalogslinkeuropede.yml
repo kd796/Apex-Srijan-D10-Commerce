@@ -1,0 +1,36 @@
+uuid: 48e2d3c7-503e-44b0-bb7b-a20e6b404e68
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.catalogs_link_europe_de
+  module:
+    - fixed_block_content
+    - language
+    - system
+  theme:
+    - apex_tools
+id: catalogslinkeuropede
+theme: apex_tools
+region: content
+weight: 0
+provider: null
+plugin: 'fixed_block_content:catalogs_link_europe_de'
+settings:
+  id: 'fixed_block_content:catalogs_link_europe_de'
+  label: 'CATALOGS Link(Europe / DE)'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      de: de
+  request_path:
+    id: request_path
+    negate: false
+    pages: /downloads

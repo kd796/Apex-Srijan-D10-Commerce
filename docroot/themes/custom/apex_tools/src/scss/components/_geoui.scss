@@ -4,6 +4,23 @@
     .mega-table {
         margin-bottom: 0;
     }
+
+    .geoui-interstitial {
+        .geoui-interstitial-content {
+            .form-bar--wrap {
+                .filter-bar-item {
+                    .filter {
+                        height: 100%;
+
+                        .filter-input {
+                            padding-top: 0;
+                            height: 3.125rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 .geoui-map {
@@ -81,6 +98,10 @@
     justify-content: center;
     background: rgba($color-off-black, 0.75);
     color: #fff;
+
+    @media only screen and(max-width: $media-screen-tablet) {
+        padding: 0 15px;
+    }
 }
 
 .geoui-interstitial-header {

@@ -181,7 +181,6 @@ class VueDataFormatter {
       }
 
       $type = $this->itemTypes[$type] ?? $type;
-      $item_type = isset($resultItemFields['item_type']) ? $resultItemFields['item_type']->getvalues() : [];
 
       // Slug for nodes other than products.
       if ($type === 'nodes' && !$slug) {
@@ -193,7 +192,7 @@ class VueDataFormatter {
         "_source" => [
           "slug" => $slug,
           "name" => $title,
-          "type" => reset($item_type),
+          "type" => $type,
           "values" => [
             "sku_overview" => ($type === 'nodes') ? $title : $sku_overview,
           ],
@@ -361,11 +360,8 @@ class VueDataFormatter {
     $facet_fields = $extra_data['search_api_solr_response']['facet_counts']['facet_fields'];
     foreach ($facet_fields as $facet_name => $facet_field) {
       $buckets = [];
-
       // We expect the facet name to be same as field name without prefix.
-      $facet_name = trim($facet_name, 'sm_');
-      $facet_name = trim($facet_name, 'ss_');
-      $facet_name = $this->facetReplacements[$facet_name] ?? $facet_name;
+      $facet_name = substr($facet_name, 3);
 
       for ($i = 0; $i < count($facet_field); $i += 2) {
         if ($facet_field[$i + 1] === 0) {

@@ -130,12 +130,7 @@ class SearchController extends ControllerBase
     foreach ($results->getIterator() as $id => $item) {
       /** @var \Drupal\Core\Entity\Entity $entity */
       $entity = $item->getOriginalObject($id)->getValue();
-
       $processed_entity = $this->serializeEntity($entity);
-      $this->injectEntityIncludes($processed_entity);
-
-      $distance                               = $this->getEntityDistance($entity);
-      $processed_entity->attributes->distance = $distance ? $distance->toArray() : null;
 
       $this->data[] = $processed_entity;
     }
@@ -172,7 +167,6 @@ class SearchController extends ControllerBase
   protected function applyFilters(Query &$query)
   {
     $filters = $this->request->query->get('filter');
-
     if ($filters) {
       foreach ($filters as $key => $value) {
         if ($value) {
