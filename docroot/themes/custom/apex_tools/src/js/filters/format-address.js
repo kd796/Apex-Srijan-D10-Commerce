@@ -11,11 +11,6 @@ export const formatAddress = (fields) => {
     let zip = fields.postal_code;
     address += [cityState, zip].filter(item => item).join(" ");
   }
-
-  if (fields.country_code) {
-    address += "<br>" + fields.country_code;
-  }
-
   return address;
 };
 
