@@ -6,11 +6,7 @@ dependencies:
     - core.base_field_override.node.distributors.title
     - field.field.node.distributors.field_address
     - field.field.node.distributors.field_email
-    - field.field.node.distributors.field_logo
     - field.field.node.distributors.field_phone
-    - field.field.node.distributors.field_products_offered
-    - field.field.node.distributors.field_term_distributor_level
-    - field.field.node.distributors.field_uuid
     - field.field.node.distributors.field_website
     - node.type.distributors
   module:
@@ -19,28 +15,7 @@ dependencies:
     - node
 third_party_settings:
   feeds_tamper:
-    tampers:
-      2522d383-a9be-4d9b-8cc6-1a6fd7b37893:
-        separator: '|'
-        limit: null
-        uuid: 2522d383-a9be-4d9b-8cc6-1a6fd7b37893
-        plugin: explode
-        source: feed_phone
-        weight: 0
-      709e3e12-9757-48a8-ad24-a43de0ed879d:
-        separator: '|'
-        limit: null
-        uuid: 709e3e12-9757-48a8-ad24-a43de0ed879d
-        plugin: explode
-        source: feed_email
-        weight: 0
-      8221a413-56be-4a59-aa22-b31067a1e782:
-        separator: '|'
-        limit: null
-        uuid: 8221a413-56be-4a59-aa22-b31067a1e782
-        plugin: explode
-        source: feed_products_offered
-        weight: 0
+    tampers: {  }
 label: 'Distributors CSV'
 id: distributors_csv
 description: ''
@@ -140,17 +115,18 @@ custom_sources:
     label: Email(s)
     machine_name: feed_email
     type: csv
+  feed_region:
+    value: feed_region
+    label: feed_region
+    machine_name: feed_region
+    type: csv
 mappings:
-  -
-    target: field_uuid
-    map:
-      value: feed_uuid
-    unique:
-      value: '1'
   -
     target: title
     map:
       value: feed_name
+    settings:
+      language: null
     unique: {  }
   -
     target: field_address
@@ -168,39 +144,26 @@ mappings:
       given_name: ''
       additional_name: ''
       family_name: ''
-  -
-    target: field_term_distributor_level
-    map:
-      target_id: feed_distributor_level
     settings:
-      reference_by: name
-      autocreate: '1'
+      language: null
   -
     target: field_website
     map:
-      value: feed_website
+      value: feed_region
+    settings:
+      language: null
     unique: {  }
   -
     target: field_phone
     map:
       value: feed_phone
-    unique: {  }
-  -
-    target: field_logo
-    map:
-      target_id: feed_logo
     settings:
-      reference_by: name
-      autocreate: false
+      language: null
+    unique: {  }
   -
     target: field_email
     map:
       value: feed_email
-    unique: {  }
-  -
-    target: field_products_offered
-    map:
-      target_id: feed_products_offered
     settings:
-      reference_by: name
-      autocreate: '1'
+      language: null
+    unique: {  }

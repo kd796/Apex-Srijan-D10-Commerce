@@ -10,19 +10,19 @@
         <div class="geoui-filters" v-if="hasRequiredFilters">
             <slot name="filters" v-bind="scope"></slot>
         </div>
-        // <div id="map" class="geoui-map">
-        //     <google-map :zoom="zoom" :center="center" :options="mapOptions" ref="map">
-        //         <slot name="markers" v-bind="scope">
-        //             <google-marker v-for="item in data" v-if="getItemPosition(item)" :position="getItemPosition(item)" :icon="markerIcon" :clickable="true" :key="item.id" @click="openInfowindow(item)"></google-marker>
-        //         </slot>
+        <!-- <div id="map" class="geoui-map">
+            <google-map :zoom="zoom" :center="center" :options="mapOptions" ref="map">
+                <slot name="markers" v-bind="scope">
+                    <google-marker v-for="item in data" v-if="getItemPosition(item)" :position="getItemPosition(item)" :icon="markerIcon" :clickable="true" :key="item.id" @click="openInfowindow(item)"></google-marker>
+                </slot>
 
-        //         <google-infowindow :options="infowindowOptions" :position="infowindowPosition" :opened="infowindowOpen" @closeclick="closeInfowindow">
-        //             <div class="infowindow">
-        //                 <slot name="infowindow" v-bind="scope"></slot>
-        //             </div>
-        //         </google-infowindow>
-        //     </google-map>
-        // </div>
+                <google-infowindow :options="infowindowOptions" :position="infowindowPosition" :opened="infowindowOpen" @closeclick="closeInfowindow">
+                    <div class="infowindow">
+                        <slot name="infowindow" v-bind="scope"></slot>
+                    </div>
+                </google-infowindow>
+            </google-map>
+        </div> -->
         <div id="list" class="geoui-list" v-if="hasRequiredFilters">
             <slot name="list" v-bind="scope"></slot>
         </div>
