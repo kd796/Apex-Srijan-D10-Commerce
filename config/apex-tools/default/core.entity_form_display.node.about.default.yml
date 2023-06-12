@@ -1,0 +1,151 @@
+uuid: 30d08598-3aef-4399-9507-48c39ad19b30
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.about.field_forms
+    - field.field.node.about.field_hero
+    - field.field.node.about.field_mailing_list_form
+    - field.field.node.about.field_page_content
+    - field.field.node.about.field_page_intro
+    - field.field.node.about.field_seo
+    - field.field.node.about.field_video
+    - node.type.about
+    - workflows.workflow.editorial
+  module:
+    - content_moderation
+    - metatag
+    - paragraphs
+    - path
+id: node.about.default
+targetEntityType: node
+bundle: about
+mode: default
+content:
+  field_forms:
+    type: entity_reference_paragraphs
+    weight: 8
+    region: content
+    settings:
+      title: Forms
+      title_plural: Forms
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: form_section
+    third_party_settings: {  }
+  field_hero:
+    type: entity_reference_paragraphs
+    weight: 2
+    region: content
+    settings:
+      title: Hero
+      title_plural: Hero
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: hero
+    third_party_settings: {  }
+  field_mailing_list_form:
+    type: entity_reference_paragraphs
+    weight: 9
+    region: content
+    settings:
+      title: 'Mailing List Form'
+      title_plural: 'Mailing List Forms'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: mailing_list_form
+    third_party_settings: {  }
+  field_page_content:
+    type: entity_reference_paragraphs
+    weight: 5
+    region: content
+    settings:
+      title: 'Page Content'
+      title_plural: 'Page Content'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: content_section
+    third_party_settings: {  }
+  field_page_intro:
+    type: entity_reference_paragraphs
+    weight: 3
+    region: content
+    settings:
+      title: 'Page Intro'
+      title_plural: 'Page Intro'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: content_section_simple
+    third_party_settings: {  }
+  field_seo:
+    type: metatag_firehose
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_video:
+    type: entity_reference_paragraphs
+    weight: 4
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 0
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  moderation_state:
+    type: moderation_state_default
+    weight: 12
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 7
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  url_redirects:
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  promote: true
+  sticky: true
+  uid: true

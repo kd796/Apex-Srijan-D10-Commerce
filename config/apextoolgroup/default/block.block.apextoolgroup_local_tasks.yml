@@ -2,6 +2,8 @@ uuid: 83e8b451-3202-4c6b-84bb-02d12fa6445f
 langcode: en
 status: true
 dependencies:
+  module:
+    - system
   theme:
     - apextoolgroup
 _core:
@@ -9,7 +11,7 @@ _core:
 id: apextoolgroup_local_tasks
 theme: apextoolgroup
 region: pre_content
-weight: -4
+weight: -8
 provider: null
 plugin: local_tasks_block
 settings:
@@ -19,4 +21,8 @@ settings:
   provider: core
   primary: true
   secondary: true
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: "/brands-faceting\r\n/brands-faceting/hand-tool\r\n/brands-faceting/power-tool"

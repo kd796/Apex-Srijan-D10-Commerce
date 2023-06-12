@@ -1,0 +1,25 @@
+uuid: 37b4a067-dca8-4095-99e9-8317aed1abb5
+langcode: en
+status: true
+dependencies:
+  module:
+    - addtothis_apex_tool
+    - system
+  theme:
+    - apex_tools
+id: addthisshare
+theme: apex_tools
+region: breadcrumb
+weight: -9
+provider: null
+plugin: addtothis_apex_tool_custom
+settings:
+  id: addtothis_apex_tool_custom
+  label: 'AddThis Share'
+  label_display: '0'
+  provider: addtothis_apex_tool
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: '<front>'

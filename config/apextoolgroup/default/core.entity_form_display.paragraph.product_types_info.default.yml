@@ -1,0 +1,38 @@
+uuid: 9ebdceba-adea-4765-b536-053a36c06817
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.product_types_info.field_components
+    - field.field.paragraph.product_types_info.field_title
+    - paragraphs.paragraphs_type.product_types_info
+  module:
+    - paragraphs_component_field
+id: paragraph.product_types_info.default
+targetEntityType: paragraph
+bundle: product_types_info
+mode: default
+content:
+  field_components:
+    type: paragraphs_component
+    weight: 1
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

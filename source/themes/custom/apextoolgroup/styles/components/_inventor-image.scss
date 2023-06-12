@@ -1,0 +1,63 @@
+.paragraph--type--inventor-image-and-text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  .content {
+    width: 100%;
+    margin-bottom: 16px;
+    @media only screen and(min-width: $tablet) {
+      width: 400px;
+    }
+    @media only screen and(min-width: $tablet-max) {
+      width: 500px;
+    }
+    @media only screen and(min-width: $desktop) {
+      width: 345px;
+    }
+
+    .text-formatted {
+      .field__item {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid $silver;
+
+        h5 {
+          margin: 0 0 10px;
+        }
+
+        ul {
+          margin-top: 0;
+          margin-bottom: 0;
+
+          li {
+            margin-bottom: 4px;
+          }
+        }
+      }
+    }
+  }
+
+  .image {
+    width: 100%;
+    @media only screen and(min-width: $tablet) {
+      width: calc(100% - 400px);
+    }
+    @media only screen and(min-width: $tablet-max) {
+      width: calc(100% - 500px);
+    }
+    @media only screen and(min-width: $desktop) {
+      width: calc(100% - 345px);
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: fill;
+      @media only screen and(min-width: $tablet-max) {
+        width: auto;
+        object-fit: none;
+      }
+    }
+  }
+}

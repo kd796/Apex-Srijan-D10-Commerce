@@ -1,0 +1,20 @@
+uuid: c68fbda9-f1c5-4cdd-808a-244d77c99c17
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - apex_tools
+id: breadcrumbs
+theme: apex_tools
+region: breadcrumb
+weight: -10
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: visible
+  provider: system
+visibility: {  }

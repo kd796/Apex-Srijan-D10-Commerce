@@ -1,0 +1,147 @@
+/**
+ * COLORS
+ */
+$color-orange: #e35205;
+$color-gray: #6d6e70;
+$color-gray-medium: #9d9fa1;
+$color-gray-light: #ccc;
+$color-off-black: #383739;
+$color-white: #fff;
+$color-yellow: #f8e71c;
+$color-red: #d0021b;
+$color-green: #417505;
+$color-blue: #57c0e8;
+$color-primary-blue: #0040ff;
+$color-accent-bg: mix($color-gray-light, #fff, 16%);
+$color-platinum: #E5E5E5;
+
+/**
+ * FONTS
+ */
+$font-default: brand-system-fallback, sans-serif;
+$font: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+$font-condensed: 'Helvetica Neue Condensed', Arial, Helvetica, sans-serif;
+
+/**
+ * LINE HEIGHT
+ */
+$line-height-default: 1.4;
+$line-height-tight: 1.1;
+
+/**
+ * INPUTS
+ */
+$input-padding-y: 0.625rem;
+$input-padding-x: 0.75rem;
+$input-border-radius: 1px;
+$input-border-width: 1px;
+$input-border-color: rgba($color-gray-light, 0.75);
+$input-height: 3.125rem;
+$input-height-small: 2.25rem;
+
+$checkable-input-size: 1rem;
+
+$select-caret-color: $color-gray-light;
+$select-caret-color-inverse: #fff;
+$select-caret-position: calc(100% - 0.75em) 50%;
+
+$svg-divider: '<svg width="7" height="1" viewBox="0 0 7 1" xmlns="http://www.w3.org/2000/svg"><rect fill="currentColor" x="0" y="0" width="2" height="1" rx="0.5"></rect></svg>';
+$svg-chevron-down: '<svg width="12" height="7" viewBox="0 0 12 7" xmlns="http://www.w3.org/2000/svg"><path d="M11.749 1.506l-5.1 5.243a.838.838 0 0 1-.65.25.839.839 0 0 1-.65-.25L.253 1.506a.898.898 0 0 1 0-1.247.841.841 0 0 1 1.214 0L6 4.8 10.534.259a.842.842 0 0 1 1.215 0 .9.9 0 0 1 0 1.247z" fill="currentColor" fill-rule="evenodd"/></svg>';
+$svg-chevron-right: '<svg width="8" height="13" viewBox="0 0 8 13" xmlns="http://www.w3.org/2000/svg"><path d="M2.006.751l5.243 5.1a.838.838 0 0 1 .25.65.839.839 0 0 1-.25.65l-5.243 5.097a.898.898 0 0 1-1.247 0 .841.841 0 0 1 0-1.214L5.3 6.5.759 1.966a.842.842 0 0 1 0-1.215.9.9 0 0 1 1.247 0z" fill="currentColor" fill-rule="evenodd"/></svg>';
+$svg-chevron-left: '<svg width="8" height="13" viewBox="0 0 8 13" xmlns="http://www.w3.org/2000/svg"><path d="M5.994 12.249L.75 7.149a.838.838 0 0 1-.25-.65.839.839 0 0 1 .25-.65L5.994.753a.898.898 0 0 1 1.247 0 .841.841 0 0 1 0 1.214L2.7 6.5l4.542 4.534a.842.842 0 0 1 0 1.215.9.9 0 0 1-1.247 0z" fill="currentColor" fill-rule="evenodd"/></svg>';
+$svg-arrow-right: '<svg width="22" height="10" viewBox="0 0 22 10" xmlns="http://www.w3.org/2000/svg"><path d="M.675 5.944l9.98-.004h8.03l-2.524 2.538a.66.66 0 0 0-.191.468.66.66 0 0 0 .191.467l.393.395a.65.65 0 0 0 .464.192.65.65 0 0 0 .464-.192l4.327-4.341A.653.653 0 0 0 22 5.001a.653.653 0 0 0-.191-.468L17.482.192A.65.65 0 0 0 17.018 0a.65.65 0 0 0-.464.192l-.393.394a.653.653 0 0 0 0 .922l2.553 2.552H.666A.681.681 0 0 0 0 4.736v.557c0 .363.313.651.675.651z" fill="currentColor"/></svg>';
+$svg-nut: '<svg width="21" height="18" viewBox="0 0 21 18" xmlns="http://www.w3.org/2000/svg"><path d="M10.286 13.379c-2.43 0-4.405-1.965-4.405-4.38 0-2.413 1.976-4.378 4.405-4.378 2.429 0 4.405 1.965 4.405 4.379 0 2.414-1.976 4.379-4.405 4.379zM15.812.514A1.096 1.096 0 0 0 14.916 0h-9.26c-.346 0-.723.216-.896.514L.13 8.486c-.173.298-.173.73 0 1.028l4.63 7.972c.173.298.55.514.895.514h9.26c.347 0 .724-.216.897-.514l4.63-7.972c.173-.298.173-.73 0-1.028L15.812.514z" fill="currentColor" fill-rule="evenodd"/></svg>';
+$svg-email: '<svg width="19" height="15" viewBox="0 0 19 15" xmlns="http://www.w3.org/2000/svg"><path d="M16.721 3.984L9.5 8.438 2.279 3.984a.793.793 0 0 1-.379-.675c0-.624.696-1.005 1.233-.674L9.5 6.563l6.367-3.928c.537-.33 1.233.05 1.233.674a.793.793 0 0 1-.379.675M17.1 0H1.9C.855 0 0 .844 0 1.875v11.25C0 14.156.855 15 1.9 15h15.2c1.045 0 1.9-.844 1.9-1.875V1.875C19 .844 18.145 0 17.1 0" fill="currentColor" fill-rule="evenodd"/></svg>';
+$svg-magnifying-glass: '<svg width="17" height="17" viewBox="0 0 17 17" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd"><circle cx="5.735" cy="5.735" r="5.735"/><path d="M10.147 10.147l4.18 4.18" stroke-linecap="round"/></g></svg>';
+$svg-circle: '<svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><circle fill="currentColor" cx="9" cy="9" r="9"></circle></svg>';
+$svg-grip-pattern: '<svg width="294" height="551" viewBox="0 0 294 551" xmlns="http://www.w3.org/2000/svg"><path d="M89.943 263.558l-77.26-46.135C4.796 212.713 0 204.433 0 195.523v-37.061c0-7.412 8.495-11.938 15.057-8.02l77.26 46.135c7.889 4.71 12.683 12.99 12.683 21.9v37.06c0 7.414-8.495 11.938-15.057 8.02m0-138.999l-77.26-46.135C4.796 73.713 0 65.433 0 56.523v-37.06c0-7.414 8.495-11.938 15.057-8.02l77.26 46.134c7.889 4.71 12.683 12.99 12.683 21.9v37.06c0 7.414-8.495 11.938-15.057 8.02m0 281.001l-77.26-46.135C4.796 354.713 0 346.433 0 337.521v-37.059c0-7.413 8.495-11.937 15.057-8.02l77.26 46.135c7.889 4.71 12.683 12.99 12.683 21.9v37.06c0 7.414-8.495 11.938-15.057 8.02m0 144l-77.26-46.133C4.796 498.712 0 490.432 0 481.521v-37.058c0-7.414 8.495-11.94 15.057-8.02l77.26 46.133c7.889 4.712 12.683 12.992 12.683 21.9v37.061c0 7.414-8.495 11.94-15.057 8.02m188.998-296.999l-77.26-46.135c-7.887-4.71-12.681-12.99-12.681-21.9v-37.061c0-7.412 8.495-11.938 15.057-8.02l77.26 46.135c7.889 4.71 12.683 12.99 12.683 21.9v37.06c0 7.414-8.495 11.938-15.059 8.02m0-137.999l-77.26-46.135c-7.887-4.71-12.681-12.99-12.681-21.9V9.462c0-7.414 8.495-11.938 15.057-8.02l77.26 46.134c7.889 4.71 12.683 12.99 12.683 21.9v37.06c0 7.414-8.495 11.938-15.059 8.02m0 281.002l-77.26-46.135c-7.887-4.71-12.681-12.99-12.681-21.902v-37.059c0-7.413 8.495-11.937 15.057-8.02l77.26 46.135c7.889 4.71 12.683 12.99 12.683 21.9v37.06c0 7.414-8.495 11.938-15.059 8.02m0 141l-77.26-46.133C193.794 485.712 189 477.432 189 468.521v-37.058c0-7.414 8.495-11.94 15.057-8.02l77.26 46.133c7.889 4.712 12.683 12.992 12.683 21.9v37.061c0 7.414-8.495 11.94-15.059 8.02" fill="currentColor" fill-rule="evenodd"/></svg>';
+$svg-triangle-down: '<svg width="6" height="5" viewBox="0 0 6 5" xmlns="http://www.w3.org/2000/svg"><path d="M5.97485925,0.224005435 L3.11764707,4.36696309 C3.09093213,4.40553546 3.04707393,4.42867888 3.00007279,4.42867888 C2.95307165,4.42867888 2.90921344,4.40567832 2.88249851,4.36696309 L0.0252863278,0.224005435 C0.00842877592,0.199576271 0,0.17128987 0,0.142860609 C0,0.120002911 0.00542870314,0.0972880747 0.0162861094,0.0764304258 C0.0410009948,0.0294292854 0.0897164624,0 0.142860609,0 L5.85728496,0 C5.91042911,0 5.95900172,0.0294292854 5.9837166,0.0764304258 C6.00814577,0.123145845 6.00500283,0.180147228 5.97485925,0.224005435 Z" fill="currentColor"></path></svg>';
+$svg-play: '<svg width="10" height="12" viewBox="0 0 10 12" xmlns="http://www.w3.org/2000/svg"><path d="M9.227 6.874L.743 11.587A.5.5 0 0 1 0 11.15V.85A.5.5 0 0 1 .743.413l8.484 4.713a1 1 0 0 1 0 1.748z" fill="currentColor" fill-rule="evenodd"/></svg>';
+$breakpoint-unpin: 360px;
+$breakpoint-nav-inline: 560px;
+$sm: 576px;
+$breakpoint-card-grid: 800px;
+$md: 768px;
+$breakpoint-notches: 900px;
+$lg: 992px;
+$breakpoint-listing-peek: 1000px;
+$breakpoint-catalog-sidebar-visible: 1000px;
+$breakpoint-product-hero-horizontal: $breakpoint-catalog-sidebar-visible;
+$breakpoint-carousel-horizontal: 1200px;
+$breakpoint-layout-horizontal: $breakpoint-catalog-sidebar-visible;
+$breakpoint-wide: 1400px;
+
+$container-padding-map: (
+  0: 0.75rem,
+  $breakpoint-unpin: 1rem,
+  $breakpoint-nav-inline: 1.5rem,
+);
+
+$section-padding-map: (
+  horizontal: (
+    min: 1rem,
+    max: 6rem,
+    vmin: 20rem,
+    vmax: 87.5rem,
+    dimension: width,
+  ),
+  vertical: (
+    min: 2rem,
+    max: 4.5rem,
+    vmin: 30rem,
+    vmax: 60rem,
+    dimension: height,
+  )
+);
+
+$nav-primary-padding-map: (
+  0: 0.25rem,
+  $breakpoint-unpin: 0.75rem,
+  440px: 0.75rem,
+  800px: 1rem,
+);
+
+// -----------------------------------------------------------------------------
+//! Z-indexes
+// -----------------------------------------------------------------------------
+
+$z_index-level6: 120;
+$z_index-level5: 100;
+$z_index-level4: 75;
+$z_index-level3: 50;
+$z_index-level2: 25;
+$z_index-level1: 1;
+$z_index-level0: -1;
+
+// -----------------------------------------------------------------------------
+//! Breakpoints
+// -----------------------------------------------------------------------------
+
+$breakpoint-nav: 880px;
+$breakpoint-hero-fix: 1600px;
+$breakpoint-type:768px;
+$breakpoint-testimonial-stack: 580px;
+$breakpoint-form: 440px;
+$breakpoint-downloads: 668px;
+$breakpoint-gallery-large: 768px;
+$breakpoint-gallery-small: 460px;
+$breakpoint-specs-nav: 600px;
+
+$breakpoint-hero-title-lg: 1200px;
+$breakpoint-hero-title-md: 900px;
+$breakpoint-hero-title-sm: 510px;
+
+$breakpoint-product-lg: 990px;
+$breakpoint-product-tabs: 860px;
+$breakpoint-product-sm: 500px;
+
+$breakpoint-feature-stack: 768px;
+
+$breakpoint-point: 960px;
+
+$breakpoint-mobile-hotspot: 767px;
+
+$media-screen-large: 1199px;
+$media-screen-medium: 991px;
+$media-screen-tablet: 767px;
+$media-screen-mobile: 575px;

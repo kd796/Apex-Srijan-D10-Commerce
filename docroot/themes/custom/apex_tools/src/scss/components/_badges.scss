@@ -1,0 +1,49 @@
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-stretch: normal;
+  font-weight: normal;
+  font-style: normal;
+  background: $color-gray;
+  color: #fff;
+  border-radius: 1rem;
+  line-height: 1.25rem;
+  min-width: 1.75rem;
+  height: 1.25rem;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  text-align: center;
+}
+
+.badge--primary {
+  background: $color-orange;
+}
+
+.badge--inverse {
+  background: #fff;
+  color: $color-off-black;
+}
+
+/**
+ * STICKER
+ */
+.sticker {
+  display: inline-flex;
+  align-items: center;
+}
+
+.sticker-icon {
+  flex: 0 0 auto;
+  margin-right: 0.5rem;
+  width: 1.5625rem;
+  height: 1.5625rem;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.sticker-label {
+  font-size: 0.9375em;
+}

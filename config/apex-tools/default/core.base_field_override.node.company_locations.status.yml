@@ -1,0 +1,22 @@
+uuid: 0ffc4b1d-644c-4326-ac9b-b089f1129ba8
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.company_locations
+id: node.company_locations.status
+field_name: status
+entity_type: node
+bundle: company_locations
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

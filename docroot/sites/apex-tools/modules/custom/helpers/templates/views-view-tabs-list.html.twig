@@ -1,0 +1,16 @@
+<ul class="tabs" role="tablist">
+	{% for tab in tabs %}
+		{% if loop.index == 1 %}
+			{% set all_attributes = create_attribute({class: 'tab'}) %}
+			{% if current is not defined or current is null %}
+				{% set all_attributes = all_attributes.addClass('tab--active') %}
+			{% endif %}
+			<li class="tabs-item">
+				<a href="/news-media"{{ all_attributes }}>{{ 'View All' | t }}</a>
+			</li>
+		{% endif %}
+		<li role="presentation" class="tabs-item">
+			{{ tab }}
+		</li>
+	{% endfor %}
+</ul>

@@ -1,80 +1,63 @@
-uuid: e543f5b9-42c1-4408-acd8-898bd5e61ef4
+uuid: c275a961-a75c-4d62-bcec-1b87ec0000ac
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - core.entity_view_mode.paragraph.preview
-    - field.field.paragraph.hero.field_class_custom
-    - field.field.paragraph.hero.field_components
-    - field.field.paragraph.hero.field_html_anchor
-    - field.field.paragraph.hero.field_style
+    - field.field.paragraph.hero.field_animation
+    - field.field.paragraph.hero.field_cta
+    - field.field.paragraph.hero.field_form
+    - field.field.paragraph.hero.field_media_src
+    - field.field.paragraph.hero.field_size
+    - field.field.paragraph.hero.field_subtitle
+    - field.field.paragraph.hero.field_title
+    - field.field.paragraph.hero.field_title_prefix
+    - field.field.paragraph.hero.field_title_suffix
     - paragraphs.paragraphs_type.hero
   module:
-    - field_group
-    - paragraphs
-third_party_settings:
-  field_group:
-    group_component:
-      children:
-        - field_components
-      parent_name: ''
-      weight: 0
-      format_type: fieldset
-      format_settings:
-        id: ''
-        classes: ''
-        description: ''
-      label: Component
-    group_settings:
-      children:
-        - field_style
-        - field_class_custom
-        - field_html_anchor
-      parent_name: ''
-      weight: 1
-      format_type: details
-      format_settings:
-        id: ''
-        classes: ''
-        open: false
-        required_fields: false
-      label: Settings
-_core:
-  default_config_hash: tXWEcJz5JGsoVK4JIClrEgVG3utJfcfVF16hhpaY11M
+    - entity_reference_revisions
+    - options
 id: paragraph.hero.preview
 targetEntityType: paragraph
 bundle: hero
 mode: preview
 content:
-  field_class_custom:
-    weight: 4
-    label: inline
+  field_cta:
+    type: entity_reference_revisions_entity_view
+    label: above
     settings:
-      link_to_entity: false
+      view_mode: default
+      link: ''
     third_party_settings: {  }
-    type: string
+    weight: 2
     region: content
-  field_components:
-    weight: 1
+  field_size:
+    type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: paragraph_summary
+    weight: 4
     region: content
-  field_html_anchor:
+  field_title:
     type: string
-    weight: 5
-    region: content
-    label: inline
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  field_style:
-    weight: 3
-    label: inline
-    settings:
-      link: false
-    third_party_settings: {  }
-    type: entity_reference_label
+    weight: 1
     region: content
-hidden: {  }
+  field_title_prefix:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_animation: true
+  field_form: true
+  field_media_src: true
+  field_subtitle: true
+  field_title_suffix: true
+  search_api_excerpt: true

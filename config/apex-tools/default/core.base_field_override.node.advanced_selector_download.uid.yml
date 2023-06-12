@@ -1,0 +1,20 @@
+uuid: 90cf836f-2780-4b70-a12c-a5f3787a7b22
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.advanced_selector_download
+id: node.advanced_selector_download.uid
+field_name: uid
+entity_type: node
+bundle: advanced_selector_download
+label: 'Authored by'
+description: 'The username of the content author.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

@@ -1,0 +1,28 @@
+uuid: ab50c476-6cfa-4579-a836-1eee33b7f79f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_video_background
+    - media.type.video
+    - node.type.enhanced_product
+id: node.enhanced_product.field_video_background
+field_name: field_video_background
+entity_type: node
+bundle: enhanced_product
+label: 'Hero Video'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      video: video
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

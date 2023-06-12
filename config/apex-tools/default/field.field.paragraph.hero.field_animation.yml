@@ -1,0 +1,23 @@
+uuid: e7af4f48-0491-498f-b1f2-5601c96b3f84
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_animation
+    - paragraphs.paragraphs_type.hero
+id: paragraph.hero.field_animation
+field_name: field_animation
+entity_type: paragraph
+bundle: hero
+label: 'Disable Animation'
+description: 'Check this box to disable the hero animation on scroll.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: '1'
+  off_label: '0'
+field_type: boolean

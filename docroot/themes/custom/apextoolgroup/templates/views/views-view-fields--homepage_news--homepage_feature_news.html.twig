@@ -1,0 +1,13 @@
+{% set view_node = fields.view_node.content|render|trim|striptags %}
+<div class="card">
+  <a href="{{ view_node }}">
+    <div class="card__image">
+      {{ fields.field_media.content }}
+    </div>
+    <div class="card__content">
+      <h2>{{ fields.title.content }}</h2>
+      <p>{{ fields.body.content }}</p>
+      <div class="date">{{ fields.field_date.content }}</div>
+    </div>
+  </a>
+</div>

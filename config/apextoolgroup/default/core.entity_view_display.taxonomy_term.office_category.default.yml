@@ -1,0 +1,36 @@
+uuid: 91cedc0f-2f18-48c3-b19a-d8610ef183aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.office_category.field_marker_image
+    - taxonomy.vocabulary.office_category
+  module:
+    - image
+    - text
+id: taxonomy_term.office_category.default
+targetEntityType: taxonomy_term
+bundle: office_category
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_marker_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

@@ -1,0 +1,22 @@
+uuid: faceffb8-e8b0-438a-9200-f79957f9d26a
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: news_insights
+label: 'News & Insights'
+type: 'canonical_entities:node'
+pattern: 'news-insights/[node:created:html_month]/[node:title]'
+selection_criteria:
+  e687776a-1f3e-4f1b-9400-a7b4f18cb3af:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: e687776a-1f3e-4f1b-9400-a7b4f18cb3af
+    context_mapping:
+      node: node
+    bundles:
+      news_insights: news_insights
+selection_logic: and
+weight: 1
+relationships: {  }

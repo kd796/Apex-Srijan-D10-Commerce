@@ -1,0 +1,23 @@
+uuid: 668813d9-341a-47ce-b14e-705668afde63
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.featured_links
+    - field.storage.block_content.field_is_it_for_warranty_page
+id: block_content.featured_links.field_is_it_for_warranty_page
+field_name: field_is_it_for_warranty_page
+entity_type: block_content
+bundle: featured_links
+label: 'Is it for warranty page?'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

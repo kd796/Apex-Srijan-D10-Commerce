@@ -1,0 +1,70 @@
+uuid: 80c2c41b-5b48-453d-bfc7-22c1b822a155
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.form_section.field_ade_form
+    - field.field.paragraph.form_section.field_forms
+    - field.field.paragraph.form_section.field_step_1_title
+    - field.field.paragraph.form_section.field_step_2_title
+    - field.field.paragraph.form_section.field_title
+    - field.field.paragraph.form_section.field_webforms
+    - paragraphs.paragraphs_type.form_section
+  module:
+    - webform
+id: paragraph.form_section.default
+targetEntityType: paragraph
+bundle: form_section
+mode: default
+content:
+  field_ade_form:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_forms:
+    type: entity_reference_entity_id
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_step_1_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_step_2_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_webforms:
+    type: webform_entity_reference_entity_view
+    label: hidden
+    settings:
+      source_entity: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+hidden:
+  search_api_excerpt: true

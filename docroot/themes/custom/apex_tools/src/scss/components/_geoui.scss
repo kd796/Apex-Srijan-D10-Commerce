@@ -1,0 +1,127 @@
+.geoui {
+    position: relative;
+
+    .mega-table {
+        margin-bottom: 0;
+    }
+
+    .geoui-interstitial {
+        .geoui-interstitial-content {
+            .form-bar--wrap {
+                .filter-bar-item {
+                    .filter {
+                        height: 100%;
+
+                        .filter-input {
+                            padding-top: 0;
+                            height: 3.125rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.geoui-map {
+    position: relative;
+    left: 50%;
+    width: 100vw;
+    margin-left: -50vw;
+    background: $color-off-black;
+    min-height: 12em;
+    height: 50vh;
+
+    .vue-map-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+}
+
+.geoui-list {
+    .table-component__table__body {
+        transition: 200ms ease;
+    }
+}
+
+.geoui-filters {
+    position: relative;
+    z-index: 1;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        height: 0.375em;
+        background: $color-orange linear-gradient(-45deg, rgba(#000, 0.1) 25%, transparent 25%, transparent 50%, rgba(#000, 0.1) 50%, rgba(#000, 0.1) 75%, transparent 75%) repeat-x left center;
+        background-size: 1em 1em;
+        animation: loading-stripes 0.25s linear infinite;
+        transform-origin: top center;
+        transition: 200ms ease;
+    }
+}
+
+@keyframes loading-stripes {
+    from { background-position: 1em 0; }
+    to { background-position: 0 0; }
+}
+
+.geoui--loading {
+    .geoui-list {
+        .table-component__table__body {
+            opacity: 0.5;
+        }
+    }
+}
+
+.geoui:not(.geoui--loading) {
+    .geoui-filters::after {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+}
+
+.geoui-interstitial {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba($color-off-black, 0.75);
+    color: #fff;
+
+    @media only screen and(max-width: $media-screen-tablet) {
+        padding: 0 15px;
+    }
+}
+
+.geoui-interstitial-header {
+    margin-bottom: 2rem;
+}
+
+.geoui-interstitial-title {
+    @extend %h1;
+    margin: 0 0 0.5em;
+}
+
+.geoui-interstitial-content {
+    text-align: center;
+}
+
+.geoui-interstitial {
+    transition: 500ms ease;
+
+    &.v-enter,
+    &.v-leave-to {
+        opacity: 0;
+    }
+}

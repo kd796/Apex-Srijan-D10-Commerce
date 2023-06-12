@@ -13,4 +13,9 @@ textarea {
     color: $black;
     border-color: $celtic-blue;
   }
+
+  &:-internal-autofill-selected,
+  &::-webkit-autofill {
+    background-color: transparent !important;
+  }
 }

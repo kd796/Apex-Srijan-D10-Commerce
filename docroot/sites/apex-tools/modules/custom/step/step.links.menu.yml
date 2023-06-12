@@ -1,0 +1,24 @@
+system.steps_config_tab:
+  title: 'STEP'
+  description: 'STEP Stibo XML parsing and ElasticSearch indexing.'
+  route_name: step.settings.form
+  parent: system.admin_config_development
+
+step.settings:
+  title: 'STEP Settings'
+  description: 'STEP Stibo XML parsing and ElasticSearch indexing.'
+  route_name: step.settings.form
+  parent: system.steps_config_tab
+  weight: 1
+
+step.settings.legacy_documents:
+  title: 'STEP Legacy Documents'
+  route_name: step.settings.legacy_documents.form
+  parent: system.steps_config_tab
+  weight: 2
+
+step.settings.image_styles:
+  title: 'STEP Image Styles'
+  route_name: step.settings.image_styles.form
+  parent: system.steps_config_tab
+  weight: 3

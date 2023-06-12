@@ -1,0 +1,23 @@
+uuid: b8be6efb-f251-4d3b-9f43-fd3433f064c0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_media_kit_enable
+    - paragraphs.paragraphs_type.media_kit
+id: paragraph.media_kit.field_media_kit_enable
+field_name: field_media_kit_enable
+entity_type: paragraph
+bundle: media_kit
+label: 'Enable Media Kit'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Enable
+  off_label: Disable
+field_type: boolean

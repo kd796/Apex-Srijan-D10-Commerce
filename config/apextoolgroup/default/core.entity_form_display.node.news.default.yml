@@ -4,12 +4,14 @@ status: true
 dependencies:
   config:
     - field.field.node.news.body
+    - field.field.node.news.feeds_item
     - field.field.node.news.field_banner_image
     - field.field.node.news.field_date
     - field.field.node.news.field_is_featured
     - field.field.node.news.field_media
     - field.field.node.news.field_news_release_document
     - field.field.node.news.field_news_type
+    - field.field.node.news.field_read_more
     - field.field.node.news.field_sub_heading
     - node.type.news
   module:
@@ -143,4 +145,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  feeds_item: true
+  field_read_more: true
