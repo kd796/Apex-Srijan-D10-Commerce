@@ -1,78 +1,99 @@
-uuid: 9f9c4592-e832-4a79-a7b4-4069820a4a92
+uuid: 1bbbd880-6f22-4c5e-9eed-8665bf9746ec
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.hero.field_class_custom
-    - field.field.paragraph.hero.field_components
-    - field.field.paragraph.hero.field_html_anchor
-    - field.field.paragraph.hero.field_style
+    - field.field.paragraph.hero.field_animation
+    - field.field.paragraph.hero.field_cta
+    - field.field.paragraph.hero.field_form
+    - field.field.paragraph.hero.field_media_src
+    - field.field.paragraph.hero.field_size
+    - field.field.paragraph.hero.field_subtitle
+    - field.field.paragraph.hero.field_title
+    - field.field.paragraph.hero.field_title_prefix
+    - field.field.paragraph.hero.field_title_suffix
     - paragraphs.paragraphs_type.hero
   module:
-    - field_group
+    - media_library
     - paragraphs
-third_party_settings:
-  field_group:
-    group_settings:
-      children:
-        - field_style
-        - field_class_custom
-        - field_html_anchor
-      parent_name: ''
-      weight: 0
-      format_type: settings
-      format_settings:
-        id: ''
-        classes: ''
-      label: Settings
-_core:
-  default_config_hash: tVa0r5kJOK0Znbe0eYYKbclZpngUGztdndjUcbXJG0Y
+    - webform
 id: paragraph.hero.default
 targetEntityType: paragraph
 bundle: hero
 mode: default
 content:
-  field_class_custom:
-    weight: 4
+  field_animation:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_cta:
+    type: entity_reference_paragraphs
+    weight: 5
+    region: content
+    settings:
+      title: CTA
+      title_plural: CTA
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: cta
+    third_party_settings: {  }
+  field_form:
+    type: webform_entity_reference_select
+    weight: 8
+    region: content
+    settings:
+      default_data: true
+      webforms: {  }
+    third_party_settings: {  }
+  field_media_src:
+    type: media_library_widget
+    weight: 7
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_size:
+    type: options_select
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_subtitle:
+    type: string_textfield
+    weight: 3
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_title:
     type: string_textfield
+    weight: 2
     region: content
-  field_components:
-    weight: 1
-    settings:
-      title: Slide
-      title_plural: Slides
-      edit_mode: closed
-      closed_mode: preview
-      autocollapse: all
-      add_mode: button
-      form_display_mode: default
-      default_paragraph_type: hero_slide
-      features:
-        duplicate: duplicate
-        collapse_edit_all: collapse_edit_all
-        add_above: '0'
-      closed_mode_threshold: 0
-    third_party_settings: {  }
-    type: paragraphs
-    region: content
-  field_html_anchor:
-    weight: 5
     settings:
       size: 60
-      placeholder: 'Example: find-out-more'
+      placeholder: ''
     third_party_settings: {  }
+  field_title_prefix:
     type: string_textfield
+    weight: 1
     region: content
-  field_style:
-    weight: 3
-    settings: {  }
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_select
+  field_title_suffix:
+    type: string_textfield
+    weight: 4
     region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
 hidden:
   created: true
   status: true

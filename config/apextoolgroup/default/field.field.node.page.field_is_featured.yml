@@ -1,0 +1,23 @@
+uuid: 8fb82b9d-665e-41ef-99a6-610e6a04d9ef
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_is_featured
+    - node.type.page
+id: node.page.field_is_featured
+field_name: field_is_featured
+entity_type: node
+bundle: page
+label: 'Is About Us page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

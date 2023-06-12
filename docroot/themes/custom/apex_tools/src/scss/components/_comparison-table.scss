@@ -1,0 +1,76 @@
+.comparison-table {
+  .table-component__table {
+    width: 100%;
+  }
+
+  .table-component__table__body {
+    tr {
+      td {
+        padding: 0.75em !important;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    tr:hover,
+    tr.is-selected {
+      background: rgba($color-gray-light, 0.16);
+    }
+
+    td {
+      span {
+        display: block;
+      }
+    }
+  }
+
+  // Shrink checkbox column
+  .table-component__th {
+    padding: 0.75em !important;
+  }
+  .table-component__th[aria-disabled='true'] {
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  .checkbox {
+    justify-content: center;
+
+    .checkbox-label {
+      padding-left: $checkable-input-size;
+    }
+  }
+}
+
+.comparison-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.comparison-table-action,
+.comparison-table-units {
+  margin-bottom: 1rem;
+}
+
+.comparison-table-action {
+  margin-right: 2em;
+}
+
+.comparison-table-units {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.comparison-table-units-label {
+  font-weight: bold;
+  margin-right: 1em;
+}
+
+.comparison-table-units-input {
+  min-width: 10em;
+}

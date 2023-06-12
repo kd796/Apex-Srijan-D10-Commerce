@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * Custom Admin styles
+ */
+function atg_menu_link_field_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+    if ($form_id == 'menu_link_content_menu_link_content_form') {
+        $form['#attached']['library'][] = 'atg_menu_link_field/styles';
+    }
+}

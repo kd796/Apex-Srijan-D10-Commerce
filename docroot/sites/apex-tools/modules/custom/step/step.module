@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * Custom Admin styles
+ */
+function step_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+    $formObject = $form_state->getFormObject();
+
+    if ($form_id == 'step_settings') {
+        $form['#attached']['library'][] = 'step/styles';
+    }
+}

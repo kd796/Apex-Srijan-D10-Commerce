@@ -1,0 +1,82 @@
+uuid: b5660e87-8af0-4242-b35b-719679a19284
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_forms
+    - node.type.solutions
+    - paragraphs.paragraphs_type.form_section
+  module:
+    - entity_reference_revisions
+id: node.solutions.field_forms
+field_name: field_forms
+entity_type: node
+bundle: solutions
+label: Forms
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      form_section: form_section
+    negate: 0
+    target_bundles_drag_drop:
+      callout_section_footer:
+        weight: 20
+        enabled: false
+      callout_section_page_end:
+        weight: 21
+        enabled: false
+      card:
+        weight: 22
+        enabled: false
+      content_bundle:
+        weight: 23
+        enabled: false
+      content_section:
+        weight: 24
+        enabled: false
+      content_section_simple:
+        weight: 25
+        enabled: false
+      cta:
+        weight: 26
+        enabled: false
+      excerpt:
+        weight: 27
+        enabled: false
+      featured_block:
+        weight: 28
+        enabled: false
+      featured_section:
+        weight: 29
+        enabled: false
+      form_section:
+        weight: 19
+        enabled: true
+      from_library:
+        weight: 30
+        enabled: false
+      hero:
+        weight: 31
+        enabled: false
+      media_block:
+        weight: 32
+        enabled: false
+      media_image:
+        weight: 33
+        enabled: false
+      testimonials_block:
+        weight: 34
+        enabled: false
+      testimonials_section:
+        weight: 35
+        enabled: false
+      video_bundle:
+        weight: 36
+        enabled: false
+field_type: entity_reference_revisions

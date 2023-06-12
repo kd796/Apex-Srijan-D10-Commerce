@@ -1,0 +1,19 @@
+uuid: b375de51-7c3d-432e-82f0-ad40eba17b24
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_products
+    - node.type.enhanced_product
+id: node.enhanced_product.field_related_products
+field_name: field_related_products
+entity_type: node
+bundle: enhanced_product
+label: 'Related Products'
+description: 'List SKUs of products here, one per line.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

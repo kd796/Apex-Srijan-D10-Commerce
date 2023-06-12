@@ -1,0 +1,18 @@
+uuid: 59a663ea-a7d3-4c39-9289-b1e989273fc0
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.form_section
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: paragraph.form_section
+target_entity_type_id: paragraph
+target_bundle: form_section
+default_langcode: site_default
+language_alterable: false

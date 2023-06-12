@@ -1,0 +1,88 @@
+uuid: 159da93b-d9a3-4cb8-925d-a129051db921
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.home.field_alternating_media_blocks
+    - field.field.node.home.field_callout_section_footer
+    - field.field.node.home.field_featured
+    - field.field.node.home.field_hero
+    - field.field.node.home.field_mailing_list_form
+    - field.field.node.home.field_seo
+    - field.field.node.home.field_testimonials_block
+    - node.type.home
+  module:
+    - entity_reference_revisions
+    - metatag
+    - user
+id: node.home.default
+targetEntityType: node
+bundle: home
+mode: default
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_alternating_media_blocks:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_callout_section_footer:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_featured:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_hero:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_seo:
+    type: metatag_empty_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_testimonials_block:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_mailing_list_form: true
+  langcode: true
+  search_api_excerpt: true

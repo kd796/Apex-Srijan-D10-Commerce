@@ -1,0 +1,22 @@
+uuid: 3e49fe97-7828-4867-a71b-f6a5ae640fb6
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: solutions
+label: Solutions
+type: 'canonical_entities:node'
+pattern: 'industry-solutions/[node:title]'
+selection_criteria:
+  5375ed9e-abf2-467f-9da3-b40a511cb43f:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 5375ed9e-abf2-467f-9da3-b40a511cb43f
+    context_mapping:
+      node: node
+    bundles:
+      solutions: solutions
+selection_logic: and
+weight: 5
+relationships: {  }

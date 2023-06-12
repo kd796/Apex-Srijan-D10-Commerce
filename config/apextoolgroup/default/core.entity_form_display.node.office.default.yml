@@ -6,9 +6,11 @@ dependencies:
     - field.field.node.office.body
     - field.field.node.office.field_address
     - field.field.node.office.field_category
+    - field.field.node.office.field_learn_about_our_process_ti
     - field.field.node.office.field_location
     - field.field.node.office.field_phone
     - field.field.node.office.field_read_more
+    - field.field.node.office.field_sub_heading
     - node.type.office
   module:
     - address
@@ -51,6 +53,14 @@ content:
     settings:
       match_operator: CONTAINS
       match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_learn_about_our_process_ti:
+    type: string_textfield
+    weight: 128
+    region: content
+    settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
@@ -103,6 +113,14 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+    third_party_settings: {  }
+  field_sub_heading:
+    type: string_textfield
+    weight: 127
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   langcode:
     type: language_select

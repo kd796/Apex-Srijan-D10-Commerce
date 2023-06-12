@@ -1,0 +1,37 @@
+uuid: 73758bf2-8f0e-4820-9000-0aefbde6f0c5
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.downloads.field_callout_page_end
+    - field.field.node.downloads.field_hero
+    - field.field.node.downloads.field_mailing_list_form
+    - field.field.node.downloads.field_message_block
+    - field.field.node.downloads.field_seo
+    - node.type.downloads
+  module:
+    - user
+id: node.downloads.teaser
+targetEntityType: node
+bundle: downloads
+mode: teaser
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_callout_page_end: true
+  field_hero: true
+  field_mailing_list_form: true
+  field_message_block: true
+  field_seo: true
+  langcode: true
+  search_api_excerpt: true

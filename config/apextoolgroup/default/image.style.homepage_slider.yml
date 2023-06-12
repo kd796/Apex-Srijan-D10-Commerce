@@ -1,8 +1,18 @@
 uuid: e50f8609-05dc-477f-a6a3-d5fdf924575e
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - focal_point
 name: homepage_slider
-label: 'Homepage slider'
-effects: {  }
+label: 'Banner - Desktop (1440×445)'
+effects:
+  9045d1f0-dd87-44d9-9946-e9ac5f8dff23:
+    uuid: 9045d1f0-dd87-44d9-9946-e9ac5f8dff23
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 1440
+      height: 445
+      crop_type: focal_point
 pipeline: ''

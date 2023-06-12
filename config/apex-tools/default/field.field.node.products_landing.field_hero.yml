@@ -1,0 +1,94 @@
+uuid: 3a857ab2-7d67-49bc-8600-76d1417f49d0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hero
+    - node.type.products_landing
+    - paragraphs.paragraphs_type.hero
+  module:
+    - entity_reference_revisions
+id: node.products_landing.field_hero
+field_name: field_hero
+entity_type: node
+bundle: products_landing
+label: Hero
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      hero: hero
+    negate: 0
+    target_bundles_drag_drop:
+      callout_section_footer:
+        weight: 23
+        enabled: false
+      callout_section_page_end:
+        weight: 24
+        enabled: false
+      card:
+        weight: 25
+        enabled: false
+      content_bundle:
+        weight: 26
+        enabled: false
+      content_section:
+        weight: 27
+        enabled: false
+      content_section_simple:
+        weight: 28
+        enabled: false
+      cta:
+        weight: 29
+        enabled: false
+      excerpt:
+        weight: 30
+        enabled: false
+      featured_block:
+        weight: 31
+        enabled: false
+      featured_products:
+        weight: 32
+        enabled: false
+      featured_section:
+        weight: 33
+        enabled: false
+      find_a_distributor:
+        weight: 34
+        enabled: false
+      form_section:
+        weight: 35
+        enabled: false
+      from_library:
+        weight: 36
+        enabled: false
+      grid_item:
+        weight: 37
+        enabled: false
+      grid_section:
+        weight: 38
+        enabled: false
+      hero:
+        weight: 39
+        enabled: true
+      media_block:
+        weight: 40
+        enabled: false
+      media_image:
+        weight: 41
+        enabled: false
+      testimonials_block:
+        weight: 42
+        enabled: false
+      testimonials_section:
+        weight: 43
+        enabled: false
+      video_bundle:
+        weight: 44
+        enabled: false
+field_type: entity_reference_revisions

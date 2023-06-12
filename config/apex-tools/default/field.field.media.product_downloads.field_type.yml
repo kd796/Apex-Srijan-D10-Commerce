@@ -1,0 +1,21 @@
+uuid: 30e25ff5-3fe1-46da-a5a8-dabfd5c142c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_type
+    - media.type.product_downloads
+  module:
+    - options
+id: media.product_downloads.field_type
+field_name: field_type
+entity_type: media
+bundle: product_downloads
+label: Type
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -6,7 +6,9 @@ dependencies:
     - field.field.node.brands.body
     - field.field.node.brands.field_all_industries
     - field.field.node.brands.field_all_markets
+    - field.field.node.brands.field_banner_image
     - field.field.node.brands.field_brand_color
+    - field.field.node.brands.field_brand_order_for_brand_list
     - field.field.node.brands.field_business_unit
     - field.field.node.brands.field_claim_to_fame
     - field.field.node.brands.field_end_users
@@ -15,11 +17,15 @@ dependencies:
     - field.field.node.brands.field_listing_image
     - field.field.node.brands.field_read_more
     - field.field.node.brands.field_short_description
+    - field.field.node.brands.field_showed_on_listing_page
     - field.field.node.brands.field_solution
+    - field.field.node.brands.field_weight
     - node.type.brands
+    - responsive_image.styles.homepage_slider_and_page_banner
   module:
     - color_field
     - link
+    - media_responsive_thumbnail
     - text
     - user
 id: node.brands.default
@@ -32,7 +38,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 101
+    weight: 2
     region: content
   field_all_industries:
     type: entity_reference_label
@@ -40,7 +46,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 108
+    weight: 9
     region: content
   field_all_markets:
     type: entity_reference_label
@@ -48,7 +54,16 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 107
+    weight: 8
+    region: content
+  field_banner_image:
+    type: media_responsive_thumbnail
+    label: hidden
+    settings:
+      responsive_image_style: homepage_slider_and_page_banner
+      image_link: ''
+    third_party_settings: {  }
+    weight: 0
     region: content
   field_brand_color:
     type: color_field_formatter_text
@@ -57,7 +72,7 @@ content:
       format: hex
       opacity: true
     third_party_settings: {  }
-    weight: 102
+    weight: 3
     region: content
   field_business_unit:
     type: entity_reference_label
@@ -65,14 +80,14 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 105
+    weight: 6
     region: content
   field_claim_to_fame:
     type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 112
+    weight: 13
     region: content
   field_end_users:
     type: entity_reference_label
@@ -80,14 +95,14 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 109
+    weight: 10
     region: content
   field_footer_note:
     type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 113
+    weight: 14
     region: content
   field_is_featured:
     type: boolean
@@ -97,7 +112,7 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 103
+    weight: 4
     region: content
   field_listing_image:
     type: entity_reference_entity_view
@@ -106,7 +121,7 @@ content:
       view_mode: embed
       link: false
     third_party_settings: {  }
-    weight: 110
+    weight: 11
     region: content
   field_read_more:
     type: link
@@ -118,14 +133,24 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 104
+    weight: 5
     region: content
   field_short_description:
     type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 111
+    weight: 12
+    region: content
+  field_showed_on_listing_page:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 15
     region: content
   field_solution:
     type: entity_reference_label
@@ -133,13 +158,23 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 106
+    weight: 7
+    region: content
+  field_weight:
+    type: number_integer
+    label: hidden
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 16
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 1
     region: content
 hidden:
+  field_brand_order_for_brand_list: true
   langcode: true
   search_api_excerpt: true

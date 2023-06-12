@@ -1,0 +1,88 @@
+uuid: f2812f68-119b-4c42-b8e5-fc2874c2bf9e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_card_type
+    - node.type.card
+    - paragraphs.paragraphs_type.card
+  module:
+    - entity_reference_revisions
+id: node.card.field_card_type
+field_name: field_card_type
+entity_type: node
+bundle: card
+label: Card
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      card: card
+    negate: 0
+    target_bundles_drag_drop:
+      callout_section_footer:
+        weight: 21
+        enabled: false
+      callout_section_page_end:
+        weight: 22
+        enabled: false
+      card:
+        weight: 23
+        enabled: true
+      content_bundle:
+        weight: 24
+        enabled: false
+      content_section:
+        weight: 25
+        enabled: false
+      content_section_simple:
+        weight: 26
+        enabled: false
+      cta:
+        weight: 27
+        enabled: false
+      excerpt:
+        weight: 28
+        enabled: false
+      featured_block:
+        weight: 29
+        enabled: false
+      featured_products:
+        weight: 30
+        enabled: false
+      featured_section:
+        weight: 31
+        enabled: false
+      find_a_distributor:
+        weight: 32
+        enabled: false
+      form_section:
+        weight: 33
+        enabled: false
+      from_library:
+        weight: 34
+        enabled: false
+      hero:
+        weight: 35
+        enabled: false
+      media_block:
+        weight: 36
+        enabled: false
+      media_image:
+        weight: 37
+        enabled: false
+      testimonials_block:
+        weight: 38
+        enabled: false
+      testimonials_section:
+        weight: 39
+        enabled: false
+      video_bundle:
+        weight: 40
+        enabled: false
+field_type: entity_reference_revisions

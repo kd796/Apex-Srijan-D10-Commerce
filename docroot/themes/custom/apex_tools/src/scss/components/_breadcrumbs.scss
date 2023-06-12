@@ -1,0 +1,100 @@
+.breadcrumb-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background: $color-accent-bg;
+  justify-content: space-between;
+  @include section-padding(horizontal);
+  border-top: 1px solid rgba($color-gray-light, 0.43);
+  border-bottom: 1px solid rgba($color-gray-light, 0.43);
+  @include property-scale((padding-top, padding-bottom), (
+    0: 0.5em,
+    $breakpoint-nav-inline: 0.75em,
+    800px: 0.875em,
+  ));
+
+  .breadcrumbs-strap {
+    width: calc(100% - 150px);
+  }
+
+  .wrapper-content {
+    width: auto;
+
+    a {
+      display: flex;
+      font-size: 0.9em;
+      box-shadow: none;
+      border-radius: 5px;
+      align-items: center;
+      justify-content: center;
+      color: $color-off-black;
+      text-transform: uppercase;
+      padding: 0.5em 1.5em 0.5em 1em;
+      border: 2px solid $color-accent-bg;
+
+      img {
+        margin-right: 5px;
+      }
+
+      &:hover {
+        border-color: $color-off-black;
+      }
+    }
+  }
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: baseline;
+  flex-flow: row wrap;
+  padding-left: 2.3125em;
+
+  @media (max-width: $breakpoint-nav-inline - 1) {
+    font-size: 0.875em;
+  }
+}
+
+.breadcrumb {
+  display: inline-block;
+  color: $color-off-black;
+  font-size: 0.9375em;
+  font-weight: bold;
+  padding-top: 0.125em;
+  padding-bottom: 0.125em;
+}
+
+a.breadcrumb {
+  &:hover {
+    color: $color-orange;
+    box-shadow: none;
+  }
+}
+
+.breadcrumb--home {
+  @include imgtxt;
+  background: url(svg-background($svg-nut, $color-orange)) no-repeat center center;
+  background-size: contain;
+  width: 1.3125em;
+  height: 1.125em;
+  align-self: center;
+  margin-right: 1em;
+  margin-left: -2.3125em;
+
+  &:hover {
+    transform: rotate(60deg);
+  }
+}
+
+.breadcrumb:not(:first-child):not(:last-child) {
+  &::after {
+    content: "\00a0";
+    background: url(svg-background($svg-chevron-right, $color-orange)) no-repeat center 60%;
+    background-size: auto 0.5em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+  }
+}
+
+.breadcrumb--current {
+  font-weight: normal;
+}

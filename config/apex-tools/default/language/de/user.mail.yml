@@ -1,0 +1,95 @@
+cancel_confirm:
+  subject: 'Antrag auf Löschung von Benutzerkonto [user:name] auf [site:name]'
+password_reset:
+  subject: 'Neue Login-Daten für Benutzerkonto [user:name] auf [site:name]'
+  body: |-
+    [user:display-name],
+
+    eine Anfrage zum Zurücksetzen des Passworts für Ihr Benutzerkonto auf [site:name] wurde gestellt.
+
+    Sie können sich jetzt mit einem Klick auf folgenden Link anmelden oder diesen alternativ in Ihren Browser kopieren:
+
+    [user:one-time-login-url]
+
+    Dieser Link kann nur einmal verwendet werden und leitet Sie zu einer Seite, auf der Sie ein neues Passwort festlegen können. Er ist einen Tag lang gültig und läuft automatisch aus, falls Sie ihn nicht verwenden.
+
+    Viele Grüße
+    Das Team von [site:name]
+register_admin_created:
+  subject: 'Ein Administrator hat für Sie auf [site:name] ein Benutzerkonto angelegt'
+  body: |-
+    [user:display-name],
+
+    Ein Administrator der Website [site:name] hat für Sie ein Benutzerkonto angelegt. Sie können sich jetzt mit einem Klick auf den folgenden Link anmelden oder diesen alternativ in Ihren Browser kopieren:
+
+    [user:one-time-login-url]
+
+    Dieser Link kann nur einmal verwendet werden und leitet Sie zu einer Seite, auf der Sie ein neues Passwort vergeben können.
+
+    Nachdem Sie Ihr Passwort festgelegt haben, können Sie sich zukünftig auf [site:login-url] mit den folgenden Zugangsdaten anmelden:
+
+    Benutzername: [user:name]
+    Passwort: Ihr Passwort
+
+    Viele Grüße
+    Das Team von [site:name]
+register_no_approval_required:
+  subject: 'Kontodetails für [user:display-name] auf [site:name]'
+  body: |-
+    [user:display-name],
+
+    vielen Dank für die Registrierung auf [site:name]. Sie können sich jetzt mit einem Klick auf den folgenden Link anmelden oder diesen alternativ in Ihren Browser kopieren:
+
+    [user:one-time-login-url]
+
+    Dieser Link kann nur einmal verwendet werden und leitet Sie auf eine Seite, auf der Sie Ihr Passwort festlegen können.
+
+    Nachdem Sie Ihr Passwort festgelegt haben, können Sie sich zukünftig mit folgenden Zugangsdaten bei [site:login-url] anmelden:
+
+    Benutzername: [user:name]
+    Passwort: Ihr Passwort
+
+    Viele Grüße
+    Das Team von [site:name]
+register_pending_approval:
+  subject: 'Kontendetails für [user:display-name] auf [site:name] (Genehmigung ausstehend)'
+register_pending_approval_admin:
+  subject: 'Kontendetails für [user:display-name] auf [site:name] (Genehmigung ausstehend)'
+  body: "[user:display-name] hat einen Antrag auf ein Benutzerkonto gestellt.\r\n\r\n[user:edit-url]"
+status_activated:
+  subject: 'Kontodetails für [user:display-name] auf [site:name] (freigegeben)'
+  body: |-
+    [user:display-name],
+
+    Ihr Benutzerkonto auf der Website [site:name] wurde aktiviert. 
+
+    Sie können sich jetzt mit einem Klick auf den folgenden Link anmelden oder diesen alternativ in Ihren Browser kopieren:
+
+    [user:one-time-login-url]
+
+    Dieser Link kann nur einmal verwendet werden und leitet Sie zu einer Seite, auf der Sie ein neues Passwort vergeben können.
+
+    Nachdem Sie Ihr Passwort festgelegt haben, können Sie sich zukünftig auf [site:login-url] mit den folgenden Zugangsdaten anmelden:
+
+    Benutzername: [user:name]
+    Passwort: Ihr Passwort
+
+    Viele Grüße
+    Das Team von [site:name]
+status_blocked:
+  subject: 'Details für Benutzerkonto [user:name] auf [site:name] (gesperrt)'
+  body: |-
+    [user:display-name],
+
+    Ihr Benutzerkonto auf [site:name] wurde gesperrt.
+
+    --  [site:name]-Team
+status_canceled:
+  subject: 'Details für Benutzerkonto [user:display-name] auf [site:name] (abgebrochen)'
+  body: |-
+    [user:display-name],
+
+    Ihr Benutzerkonto auf [site:name] wurde gelöscht.
+
+    Viele Grüße
+    Das Team von [site:name]

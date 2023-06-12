@@ -1,0 +1,24 @@
+uuid: 0a4ca78f-cfec-4760-9cc4-50c6a7847934
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - apextoolgroup
+id: pagetitle
+theme: apextoolgroup
+region: content
+weight: -20
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/product-types\r\n/about-us/community-engagement\r\n/leadership\r\n/about-us/leadership/core-values\r\n/about-us\r\n/sitemap\r\n/email-us/confirmation\r\n/product-suggestion-thankyou"

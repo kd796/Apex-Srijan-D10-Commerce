@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.ethics_section.body
     - field.field.node.ethics_section.field_media
+    - field.field.node.ethics_section.field_media_center_type
     - field.field.node.ethics_section.field_section_name
     - node.type.ethics_section
   module:
@@ -20,29 +21,24 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 101
+    weight: 1
     region: content
   field_media:
-    type: entity_reference_label
-    label: above
+    type: entity_reference_entity_view
+    label: hidden
     settings:
+      view_mode: default
       link: true
     third_party_settings: {  }
-    weight: 103
-    region: content
-  field_section_name:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 102
+    weight: 2
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 0
     region: content
 hidden:
+  field_media_center_type: true
+  field_section_name: true
   langcode: true
   search_api_excerpt: true
