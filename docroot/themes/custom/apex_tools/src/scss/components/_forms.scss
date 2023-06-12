@@ -1,0 +1,40 @@
+.form-item {
+    margin: 1em 0;
+}
+
+.form-text,
+.form-email,
+.form-select,
+.form-textarea {
+    width: 100%;
+}
+
+.form-required {
+    &::after {
+        content: "*";
+        color: $color-orange;
+        padding-left: 0.25em;
+    }
+}
+
+.description {
+    @extend %wysiwyg-content;
+    display: block;
+    margin-top: 0.25em;
+    font-size: 0.875rem;
+    font-style: italic;
+    color: $color-gray-medium;
+}
+
+.form-actions {
+    margin-top: 2rem;
+}
+
+.webform-element--title-inline > label {
+    display: block;
+}
+
+.webform-submission-request-a-quote-form {
+    opacity: 1 !important;
+}
+

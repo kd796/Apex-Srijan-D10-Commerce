@@ -1,0 +1,38 @@
+uuid: a77b5ecf-0587-4580-86d8-bbca6a33dad0
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_library
+    - field.field.media.product_downloads.field_downloads_asset_id
+    - field.field.media.product_downloads.field_language
+    - field.field.media.product_downloads.field_listing_image
+    - field.field.media.product_downloads.field_media_file
+    - field.field.media.product_downloads.field_product_category
+    - field.field.media.product_downloads.field_type
+    - media.type.product_downloads
+id: media.product_downloads.media_library
+targetEntityType: media
+bundle: product_downloads
+mode: media_library
+content:
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_downloads_asset_id: true
+  field_language: true
+  field_listing_image: true
+  field_media_file: true
+  field_product_category: true
+  field_type: true
+  langcode: true
+  path: true
+  status: true
+  uid: true

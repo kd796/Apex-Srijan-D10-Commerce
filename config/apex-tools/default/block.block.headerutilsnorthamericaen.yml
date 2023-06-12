@@ -1,0 +1,33 @@
+uuid: 9a84455f-840e-4be1-a18b-e383f8d109ce
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.header-utils
+  module:
+    - language
+    - system
+  theme:
+    - atg
+id: headerutilsnorthamericaen
+theme: atg
+region: header_utils_nav
+weight: 0
+provider: null
+plugin: 'system_menu_block:header-utils'
+settings:
+  id: 'system_menu_block:header-utils'
+  label: 'Header Utils (North America / EN)'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      en: en

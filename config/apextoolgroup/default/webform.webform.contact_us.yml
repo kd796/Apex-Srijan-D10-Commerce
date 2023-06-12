@@ -16,18 +16,65 @@ elements: |-
   select_type:
     '#type': radios
     '#title': 'Select Type'
+    '#description': 'PLEASE NOTE: “Website Feedback” selection DOES NOT go to Customer Service, please make another selection for questions or comments not related to the website itself.'
     '#options':
       'Become a Distributor': 'Become a Distributor'
+      'Become a Supplier': 'Become a Supplier'
       'Product Feedback': 'Product Feedback'
       'Product Technical Question': 'Product Technical Question'
       'Warranty/Replacement Parts/Repair': 'Warranty/Replacement Parts/Repair'
       'Sales Quote': 'Sales Quote'
-      'Add/Adjust Your Location Information': 'Add/Adjust Your Location Information'
+      'Website Feedback': 'Website Feedback'
     '#required': true
     '#required_error': 'Select Type field is required.'
+  product_brand:
+    '#type': select
+    '#title': 'Product Brand'
+    '#title_display': after
+    '#options':
+      Airetool®: Airetool®
+      Allen®: Allen®
+      Apex®: Apex®
+      Armstrong®: Armstrong®
+      Belzer®: Belzer®
+      Campbell®: Campbell®
+      Cleco®: Cleco®
+      Crescent®: Crescent®
+      Delta®: Delta®
+      DGD®: DGD®
+      Diamond®: Diamond®
+      Dotco®: Dotco®
+      Erem®: Erem®
+      GearWrench®: GearWrench®
+      'H.K. Porter®': 'H.K. Porter®'
+      Jacobs®: Jacobs®
+      JOBOX®: JOBOX®
+      'K&F®': 'K&F®'
+      Lufkin®: Lufkin®
+      'Master Power®': 'Master Power®'
+      MAYLE®: MAYLE®
+      Metronix®: Metronix®
+      Nicholson®: Nicholson®
+      Plumb®: Plumb®
+      Quackenbush®: Quackenbush®
+      Recoules®: Recoules®
+      SATA®: SATA®
+      Utica®: Utica®
+      Weller®: Weller®
+      Wiss®: Wiss®
+      Xcelite®: Xcelite®
+    '#empty_option': ' '
+    '#required': true
+    '#required_error': 'Product Brand field is required'
+    '#states':
+      visible:
+        ':input[name="select_type"]':
+          value:
+            pattern: '(Product Feedback|Product Technical Question|Warranty/Replacement Parts/Repair)'
   brand:
     '#type': textfield
     '#title': Brand
+    '#title_display': after
     '#required': true
     '#required_error': 'Brand field is required.'
     '#states':
@@ -37,6 +84,7 @@ elements: |-
   product_model_number:
     '#type': textfield
     '#title': 'Product Model Number'
+    '#title_display': after
     '#required': true
     '#required_error': 'Product Model Number field is required'
     '#states':
@@ -44,113 +92,116 @@ elements: |-
         ':input[name="select_type"]':
           value:
             pattern: '(Product Feedback|Product Technical Question|Warranty/Replacement Parts/Repair)'
-  business_name:
+  type_of_supplies:
     '#type': textfield
-    '#title': 'Business Name'
+    '#title': 'Type of Supplies'
+    '#title_display': after
+    '#required': true
+    '#required_error': 'Type of Supplies field is required'
     '#states':
       visible:
         ':input[name="select_type"]':
           value:
-            pattern: '(Become a Distributor|Product Feedback|Product Technical Question|Sales Quote|Warranty/Replacement Parts/Repair|Add/Adjust Your Location Information|)'
+            pattern: '(Become a Supplier)'
+  business_name:
+    '#type': textfield
+    '#title': 'Business Name'
+    '#title_display': after
+    '#states':
+      visible:
+        ':input[name="select_type"]':
+          value:
+            pattern: '(Become a Distributor|Product Feedback|Product Technical Question|Sales Quote|Warranty/Replacement Parts/Repair|Add/Adjust Your Location Information| Website Feedback|)'
   name:
     '#type': textfield
     '#title': Name
+    '#title_display': after
     '#required': true
     '#required_error': 'Name field is required.'
     '#states':
       visible:
         ':input[name="select_type"]':
           value:
-            pattern: '(Become a Distributor|Product Feedback|Product Technical Question|Sales Quote|Warranty/Replacement Parts/Repair|Add/Adjust Your Location Information|)'
+            pattern: '(Become a Distributor|Product Feedback|Product Technical Question|Sales Quote|Warranty/Replacement Parts/Repair|Add/Adjust Your Location Information| Website Feedback|)'
   email_address:
     '#type': email
     '#title': 'Email Address'
+    '#title_display': after
     '#required': true
     '#required_error': 'Email Address field is required.'
     '#states':
       visible:
         ':input[name="select_type"]':
           value:
-            pattern: '(Become a Distributor|Product Feedback|Product Technical Question|Sales Quote|Warranty/Replacement Parts/Repair|Add/Adjust Your Location Information|)'
+            pattern: '(Become a Distributor|Product Feedback|Product Technical Question|Sales Quote|Warranty/Replacement Parts/Repair|Add/Adjust Your Location Information| Website Feedback|)'
   phone_number:
     '#type': textfield
     '#title': 'Phone Number'
+    '#title_display': after
     '#pattern': '^\+(?:[0-9] ?){6,14}[0-9]$'
     '#pattern_error': 'Phone number must be in International format.'
     '#states':
       visible:
         ':input[name="select_type"]':
           value:
-            pattern: '(Become a Distributor|Product Feedback|Product Technical Question|Sales Quote|Warranty/Replacement Parts/Repair|Add/Adjust Your Location Information|)'
+            pattern: '(Become a Distributor|Product Feedback|Product Technical Question|Sales Quote|Warranty/Replacement Parts/Repair|Add/Adjust Your Location Information| Website Feedback|)'
   postal_code:
     '#type': textfield
     '#title': 'Postal Code'
+    '#title_display': after
   country:
     '#type': select
     '#title': Country
-    '#options': country_names
+    '#title_display': after
+    '#options': country_codes
+    '#empty_option': ' '
     '#required': true
     '#required_error': 'Country field is required.'
   address_actual:
     '#type': textfield
     '#title': Address
+    '#title_display': after
     '#required': true
     '#required_error': 'Address field is required.'
   city:
     '#type': textfield
     '#title': City
+    '#title_display': after
     '#required': true
     '#required_error': 'City field is required.'
   state_province:
     '#type': select
     '#title': State/Province
-    '#options': state_province_names
+    '#title_display': after
+    '#options': state_province_codes
+    '#empty_option': ' '
     '#required': true
     '#required_error': 'State/Province field is required.'
     '#states':
       visible:
         ':input[name="country"]':
-          value: 'United States'
+          value: US
   state_province_text:
     '#type': textfield
     '#title': State/Province
+    '#title_display': after
     '#required': true
     '#required_error': 'State/Province field is required.'
     '#states':
       visible:
         ':input[name="country"]':
-          '!value': 'United States'
+          '!value': US
   request_comments:
     '#type': textarea
     '#title': Request/Comments
+    '#title_display': after
     '#required': true
     '#required_error': 'Request/Comments field is required.'
     '#states':
       visible:
         ':input[name="select_type"]':
           value:
-            pattern: '(Become a Distributor|Product Feedback|Product Technical Question|Sales Quote|Warranty/Replacement Parts/Repair|Add/Adjust Your Location Information|)'
-  upload_an_excel_document:
-    '#type': managed_file
-    '#title': 'Upload an excel document'
-    '#required': true
-    '#required_error': 'You have selected an option to attach the document(Add/Adjust Your Location Information) but no file is attached, Please attach '
-    '#states':
-      visible:
-        ':input[name="select_type"]':
-          value: 'Add/Adjust Your Location Information'
-    '#file_help': none
-    '#max_filesize': '100'
-    '#file_extensions': 'xls xlsx'
-  processed_text:
-    '#type': processed_text
-    '#states':
-      visible:
-        ':input[name="select_type"]':
-          value: 'Add/Adjust Your Location Information'
-    '#text': |
-      <p><a href="/sites/campbell/files/2023-03/Site-Where-To-Buy-Locations-Template.xlsx" target="_blank">Download Sample Template</a></p>
-    '#format': full_html
+            pattern: '(Become a Distributor|Product Feedback|Product Technical Question|Sales Quote|Warranty/Replacement Parts/Repair|Add/Adjust Your Location Information| Website Feedback|)'
   captcha:
     '#type': captcha
     '#captcha_type': recaptcha/reCAPTCHA
@@ -260,8 +311,8 @@ settings:
   draft_loaded_message: ''
   draft_pending_single_message: ''
   draft_pending_multiple_message: ''
-  confirmation_type: page
-  confirmation_url: /about/contact-us/submission
+  confirmation_type: url
+  confirmation_url: /email-us/confirmation
   confirmation_title: 'Contact Us'
   confirmation_message: 'Thank you, your submission has been received.'
   confirmation_attributes:
@@ -353,7 +404,7 @@ handlers:
     settings:
       states:
         - completed
-      to_mail: ATG-WebsiteAdmin@ApexToolGroup.com
+      to_mail: '[webform_submission:values:email_address:raw]'
       to_options: {  }
       bcc_mail: ''
       bcc_options: {  }
@@ -366,8 +417,8 @@ handlers:
       return_path: ''
       sender_mail: ''
       sender_name: ''
-      subject: 'For Campbell : Form submission Contact Us'
-      body: "<p>Submitted on [webform_submission:created]</p>\r\n\r\n<p>Submitted by: [webform_submission:user] [webform_submission:ip-address]</p>\r\n\r\n<p>Submitted values are:</p>\r\n\r\n<p>Business Name:[webform_submission:values:business_name]</p>\r\n\r\n<p>Name: [webform_submission:values:name]</p>\r\n\r\n<p>Email Address: [webform_submission:values:email_address]</p>\r\n\r\n<p>Phone Number: [webform_submission:values:phone_number]</p>\r\n\r\n<p>Postal Code: [webform_submission:values:postal_code]</p>\r\n\r\n<p>Country: [webform_submission:values:country]</p>\r\n\r\n<p>Address:[webform_submission:values:address_actual]</p>\r\n\r\n<p>City:[webform_submission:values:city]</p>\r\n\r\n<p>State/Province: [webform_submission:values:state_province][webform_submission:values:state_province_text]</p>\r\n\r\n<p>Request/Comments: [webform_submission:values:request_comments]</p>\r\n\r\n<p>The results of this submission may be viewed at:[webform_submission:url]</p>"
+      subject: 'For Apextoolgroup : Form submission Contact Us'
+      body: "<p>Submitted on [webform_submission:created]</p>\r\n\r\n<p>Submitted by user: [webform_submission:user] [webform_submission:ip-address]</p>\r\n\r\n<p>Submitted values are:</p>\r\n\r\n<p>Type: [webform_submission:values:select_type]<br />\r\n<br />\r\nBusiness Name:[webform_submission:values:business_name]</p>\r\n\r\n<p>Name: [webform_submission:values:name]</p>\r\n\r\n<p>Email Address: [webform_submission:values:email_address]</p>\r\n\r\n<p>Phone Number: [webform_submission:values:phone_number]</p>\r\n\r\n<p>Postal Code: [webform_submission:values:postal_code]</p>\r\n\r\n<p>Country: [webform_submission:values:country]</p>\r\n\r\n<p>Address:[webform_submission:values:address_actual]</p>\r\n\r\n<p>City:[webform_submission:values:city]</p>\r\n\r\n<p>State/Province: [webform_submission:values:state_province][webform_submission:values:state_province_text]</p>\r\n\r\n<p>Request/Comments: [webform_submission:values:request_comments]</p>\r\n\r\n<p>The results of this submission may be viewed at:[webform_submission:url]</p>"
       excluded_elements: {  }
       ignore_access: false
       exclude_empty: true

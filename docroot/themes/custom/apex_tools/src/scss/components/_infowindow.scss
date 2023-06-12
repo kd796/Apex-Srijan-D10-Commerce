@@ -1,0 +1,49 @@
+.infowindow {
+    font-family: $font-default;
+    line-height: $line-height-default;
+    padding: 0.5em;
+
+    p:not(:last-child) {
+        margin-bottom: 0.5em;
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.infowindow-actions {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid rgba($color-gray-light, 0.5);
+    padding-top: 0.75em;
+    margin-top: 0.5em;
+}
+
+.infowindow-action {
+    @include link-reset;
+    @include button-reset;
+    display: flex;
+    align-items: center;
+
+    svg {
+        width: 0.75rem;
+        height: 0.75rem;
+        opacity: 0.6;
+        margin-right: 0.5em;
+    }
+
+    + .infowindow-action {
+        margin-left: 1rem;
+    }
+
+    &:hover,
+    &:focus {
+        color: $color-off-black;
+        text-decoration: underline;
+
+        svg {
+            opacity: 1;
+        }
+    }
+}

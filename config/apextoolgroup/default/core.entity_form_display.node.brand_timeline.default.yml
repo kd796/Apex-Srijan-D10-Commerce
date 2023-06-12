@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.brand_timeline.body
+    - field.field.node.brand_timeline.feeds_item
     - field.field.node.brand_timeline.field_event_date
     - field.field.node.brand_timeline.field_event_media_link
     - field.field.node.brand_timeline.field_media
@@ -113,4 +114,5 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  feeds_item: true

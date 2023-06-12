@@ -1,0 +1,29 @@
+uuid: 77cc0bc3-f0e4-413d-8a10-56556231a799
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.product_detail_page_callouts.field_card
+    - node.type.product_detail_page_callouts
+  module:
+    - user
+id: node.product_detail_page_callouts.teaser
+targetEntityType: node
+bundle: product_detail_page_callouts
+mode: teaser
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_card: true
+  langcode: true
+  search_api_excerpt: true

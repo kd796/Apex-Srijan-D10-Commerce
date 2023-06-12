@@ -1,0 +1,23 @@
+uuid: 717b521d-cdf1-4838-805b-91bc8493d8f0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ade_form
+    - paragraphs.paragraphs_type.form_section
+id: paragraph.form_section.field_ade_form
+field_name: field_ade_form
+entity_type: paragraph
+bundle: form_section
+label: 'Include Advanced Drilling Application Inquiry?'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: '1'
+  off_label: '0'
+field_type: boolean

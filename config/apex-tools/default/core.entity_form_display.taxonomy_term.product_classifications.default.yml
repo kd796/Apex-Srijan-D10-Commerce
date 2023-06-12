@@ -1,0 +1,91 @@
+uuid: 56987e3e-6e37-4ccf-9c10-2f4e5e6d3b33
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.product_classifications.field_category_image
+    - field.field.taxonomy_term.product_classifications.field_classification_id
+    - field.field.taxonomy_term.product_classifications.field_classification_image
+    - field.field.taxonomy_term.product_classifications.field_product_display_order
+    - taxonomy.vocabulary.product_classifications
+  module:
+    - media_library
+    - path
+    - text
+id: taxonomy_term.product_classifications.default
+targetEntityType: taxonomy_term
+bundle: product_classifications
+mode: default
+content:
+  description:
+    type: text_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_category_image:
+    type: media_library_widget
+    weight: 104
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_classification_id:
+    type: string_textfield
+    weight: 101
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_classification_image:
+    type: media_library_widget
+    weight: 105
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_product_display_order:
+    type: string_textfield
+    weight: 102
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 100
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  translation:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

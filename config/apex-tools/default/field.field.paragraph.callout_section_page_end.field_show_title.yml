@@ -1,0 +1,23 @@
+uuid: ea066fdf-8dd4-497f-8802-3dc796463964
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_show_title
+    - paragraphs.paragraphs_type.callout_section_page_end
+id: paragraph.callout_section_page_end.field_show_title
+field_name: field_show_title
+entity_type: paragraph
+bundle: callout_section_page_end
+label: 'Show Title'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'True'
+  off_label: 'False'
+field_type: boolean

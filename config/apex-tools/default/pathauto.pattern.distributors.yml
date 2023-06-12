@@ -1,0 +1,22 @@
+uuid: 9fedfc45-30bb-496d-9894-9cbdc40f2dd2
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: distributors
+label: Distributors
+type: 'canonical_entities:node'
+pattern: 'localrep/[node:title]'
+selection_criteria:
+  16650960-62e0-46cf-9450-ef18f04a953d:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 16650960-62e0-46cf-9450-ef18f04a953d
+    context_mapping:
+      node: node
+    bundles:
+      distributors: distributors
+selection_logic: and
+weight: -5
+relationships: {  }

@@ -1,18 +1,17 @@
-uuid: a403df85-3a02-4f2d-9576-7755423c6690
+uuid: e3b21094-a3be-4fe2-a5c4-e21c9fddc925
 langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: fRVcDAi17O232-7Z97GSa3ZSo2ORbQ7NvGuNSNr-UL0
+  default_config_hash: J2n0RpFzS0-bgSyxjs6rSdgxB1rb-bTAgqywNx_964M
 name: large
-label: 'Large - scaled (1080x1080)'
+label: 'Large (770×600)'
 effects:
-  13719074-4e1f-49f6-95d6-88d1e3d1c4f0:
-    uuid: 13719074-4e1f-49f6-95d6-88d1e3d1c4f0
-    id: image_scale
+  5d184fea-a4eb-4e80-8e15-99f97d6acc16:
+    uuid: 5d184fea-a4eb-4e80-8e15-99f97d6acc16
+    id: image_scale_and_crop
     weight: 1
     data:
-      width: 1080
-      height: 1080
-      upscale: false
-pipeline: smushit
+      width: 770
+      height: 600
+      anchor: center-center

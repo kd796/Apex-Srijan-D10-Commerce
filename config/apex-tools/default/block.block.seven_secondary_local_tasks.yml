@@ -1,6 +1,6 @@
-uuid: 384d79c1-a6bf-423c-a1d9-69493c0f79a6
+uuid: 72b7b1fc-787a-4877-b2e5-325366e2953a
 langcode: en
-status: true
+status: false
 dependencies:
   theme:
     - seven
@@ -8,15 +8,15 @@ _core:
   default_config_hash: QeZBeCilQfeET3GeW6ZtJkEiwROADTZktFgKWwPieD4
 id: seven_secondary_local_tasks
 theme: seven
-region: pre_content
+region: sidebar_first
 weight: 0
 provider: null
 plugin: local_tasks_block
 settings:
   id: local_tasks_block
   label: 'Secondary tabs'
-  provider: core
   label_display: '0'
+  provider: core
   primary: false
   secondary: true
 visibility: {  }

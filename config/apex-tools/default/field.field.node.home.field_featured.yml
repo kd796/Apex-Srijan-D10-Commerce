@@ -1,0 +1,43 @@
+uuid: ff505cb7-c935-4d5c-b2b7-614e560a4d0f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_featured
+    - node.type.home
+    - paragraphs.paragraphs_type.featured_section
+  module:
+    - entity_reference_revisions
+id: node.home.field_featured
+field_name: field_featured
+entity_type: node
+bundle: home
+label: Featured
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      featured_section: featured_section
+    negate: 0
+    target_bundles_drag_drop:
+      callout_options:
+        weight: 6
+        enabled: false
+      cta:
+        weight: 7
+        enabled: false
+      featured_block:
+        weight: 8
+        enabled: false
+      featured_section:
+        weight: 9
+        enabled: true
+      from_library:
+        weight: 10
+        enabled: false
+field_type: entity_reference_revisions

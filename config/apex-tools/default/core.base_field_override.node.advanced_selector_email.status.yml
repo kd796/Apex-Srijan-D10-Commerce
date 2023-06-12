@@ -1,0 +1,22 @@
+uuid: 4984e45b-d095-46ce-a1ff-32611144c1f8
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.advanced_selector_email
+id: node.advanced_selector_email.status
+field_name: status
+entity_type: node
+bundle: advanced_selector_email
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

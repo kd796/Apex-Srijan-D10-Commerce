@@ -1,0 +1,45 @@
+<main class="main">
+	<section class="section">
+		<article{{ attributes.addClass('article article-detail') }}>
+			<header class="article-header">
+				{{ title_prefix }}
+
+				<h1{{ title_attributes.addClass('article-title') }}>{{ label }}</h1>
+				{% if document_path %}
+          <div class="title-bottom">
+            <div class="press-release">
+              <p class="article-meta">
+                {% set release_date = node.createdtime | format_date('short_date_only') %}
+                {{ 'Released on @date' | t({ '@date': release_date}) }}
+                {% if node.field_tags | length > 0 %}
+                  {{ 'in' | t }}
+                  {{ node.field_tags | term_list(', ') }}
+                {% endif %}
+              </p>
+            </div>
+            <div class="press-release-download">
+              <a href="{{ document_path }}" target="blank">{{ 'Download Press Release'|t }}</a>
+            </div>
+          </div>
+  			{% else %}
+          <p class="article-meta">
+            {% set release_date = node.createdtime | format_date('short_date_only') %}
+            {{ 'Released on @date' | t({ '@date': release_date}) }}
+            {% if node.field_tags | length > 0 %}
+              {{ 'in' | t }}
+              {{ node.field_tags | term_list(', ') }}
+            {% endif %}
+          </p>
+        {% endif %}
+				{{ title_suffix }}
+			</header>
+			<div{{ content_attributes.addClass('article-body') }}>
+				{{ node.body.value | raw }}
+			</div>
+
+			<footer class="article-footer">
+        {{ content.field_media_kit }}
+			</footer>
+		</article>
+	</section>
+</main>
