@@ -1,0 +1,24 @@
+uuid: 5c862529-c156-4387-8fbd-b0c6a127cecc
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.contact_us_top_section
+    - field.field.block_content.contact_us_top_section.body
+  module:
+    - text
+id: block_content.contact_us_top_section.default
+targetEntityType: block_content
+bundle: contact_us_top_section
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

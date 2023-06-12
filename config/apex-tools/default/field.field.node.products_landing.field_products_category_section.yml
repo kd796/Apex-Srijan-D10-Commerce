@@ -1,0 +1,115 @@
+uuid: 9a8d1c14-130a-406d-9f50-99a9c57c0322
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_products_category_section
+    - node.type.products_landing
+    - paragraphs.paragraphs_type.products_category_section
+  module:
+    - entity_reference_revisions
+id: node.products_landing.field_products_category_section
+field_name: field_products_category_section
+entity_type: node
+bundle: products_landing
+label: 'Products Category Section'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      products_category_section: products_category_section
+    negate: 0
+    target_bundles_drag_drop:
+      basic_card:
+        weight: 31
+        enabled: false
+      basic_card_section:
+        weight: 32
+        enabled: false
+      callout_section_footer:
+        weight: 33
+        enabled: false
+      callout_section_page_end:
+        weight: 34
+        enabled: false
+      card:
+        weight: 35
+        enabled: false
+      content_bundle:
+        weight: 36
+        enabled: false
+      content_section:
+        weight: 37
+        enabled: false
+      content_section_simple:
+        weight: 38
+        enabled: false
+      cta:
+        weight: 39
+        enabled: false
+      excerpt:
+        weight: 40
+        enabled: false
+      featured_block:
+        weight: 41
+        enabled: false
+      featured_products:
+        weight: 42
+        enabled: false
+      featured_section:
+        weight: 43
+        enabled: false
+      find_a_distributor:
+        weight: 44
+        enabled: false
+      form_section:
+        weight: 45
+        enabled: false
+      from_library:
+        weight: 46
+        enabled: false
+      grid_item:
+        weight: 47
+        enabled: false
+      grid_section:
+        weight: 48
+        enabled: false
+      hero:
+        weight: 49
+        enabled: false
+      media_block:
+        weight: 50
+        enabled: false
+      media_image:
+        weight: 51
+        enabled: false
+      message_block:
+        weight: 52
+        enabled: false
+      product_categories:
+        weight: 53
+        enabled: false
+      product_search:
+        weight: 54
+        enabled: false
+      products_category_section:
+        weight: 30
+        enabled: true
+      products_section:
+        weight: 55
+        enabled: false
+      testimonials_block:
+        weight: 56
+        enabled: false
+      testimonials_section:
+        weight: 57
+        enabled: false
+      video_bundle:
+        weight: 58
+        enabled: false
+field_type: entity_reference_revisions

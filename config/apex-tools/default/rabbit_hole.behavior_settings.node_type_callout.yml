@@ -1,0 +1,14 @@
+uuid: 6a777d93-863d-428c-9d06-7a12afd12729
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.callout
+id: node_type_callout
+entity_type_id: node_type
+entity_id: callout
+action: page_redirect
+allow_override: 1
+redirect: '[site:url]'
+redirect_code: 301
+redirect_fallback_action: access_denied

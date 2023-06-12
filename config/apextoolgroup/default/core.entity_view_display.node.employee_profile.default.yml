@@ -11,7 +11,10 @@ dependencies:
     - field.field.node.employee_profile.field_phone
     - field.field.node.employee_profile.field_short_description
     - node.type.employee_profile
+    - responsive_image.styles.employee_profile
   module:
+    - media_responsive_thumbnail
+    - telephone
     - text
     - user
 id: node.employee_profile.default
@@ -28,24 +31,24 @@ content:
     region: content
   field_employee_designation:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 104
     region: content
   field_employee_photo:
-    type: entity_reference_entity_view
-    label: above
+    type: media_responsive_thumbnail
+    label: hidden
     settings:
-      view_mode: default
-      link: false
+      responsive_image_style: employee_profile
+      image_link: ''
     third_party_settings: {  }
     weight: 102
     region: content
   field_employee_type:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
@@ -53,21 +56,22 @@ content:
     region: content
   field_mail_address:
     type: basic_string
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 106
     region: content
   field_phone:
-    type: basic_string
-    label: above
-    settings: {  }
+    type: telephone_link
+    label: hidden
+    settings:
+      title: ''
     third_party_settings: {  }
     weight: 107
     region: content
   field_short_description:
     type: text_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 103

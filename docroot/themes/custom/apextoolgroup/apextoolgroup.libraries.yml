@@ -23,7 +23,7 @@ global:
   css:
     theme:
       css/main.css : {}
-      
+
   js:
     js/main.js: {}
 
@@ -44,3 +44,54 @@ homepage-slider:
     - core/drupal
     - core/jquery
     - core/jquery.once
+
+brand-timeline:
+  css:
+    theme:
+      //cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css: { type: external, minified: true }
+  js:
+    //cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js: { type: external, minified: true }
+    js/brand-timeline.js: {}
+
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
+offices-map:
+  js:
+    js/offices.js: {}
+
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
+faq-listing:
+  js:
+    js/faq-listing.js: {}
+
+brand-detail:
+  js:
+    js/brand-detail.js: {}
+
+brand-listing:
+  js:
+    js/brand-listing.js: {}
+
+application-form:
+  js:
+    js/application-form.js: {}
+
+gallery:
+  js:
+    js/gallery.js: {}
+
+contatc-us:
+  js:
+    js/contact-accordion.js: {}
+
+masonry:
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js: { type: external, minified: true }
+    js/office-masonry.js: {}

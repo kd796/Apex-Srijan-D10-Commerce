@@ -1,0 +1,50 @@
+uuid: 7a3dc4d3-a4e9-41e0-9044-fc0199228e0a
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: vK9MVQ3qHyDIyVloJYybmqlyr-5gDK9NkpAuA1bBIns
+id: at_product_specifications_list
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: at
+label: 'Product Specifications second level for all languages'
+source:
+  constants:
+    DESCRIPTION_PREFIX: 'PIM Attribute ID'
+    TEXT: ' |~| '
+    WEIGHT: 0
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: 'http://www.stibosystems.com/step'
+  item_selector: /STEP-ProductInformation/AttributeList/Attribute
+  fields:
+    -
+      name: remote_term_id
+      label: ID
+      selector: '@ID'
+    -
+      name: remote_term_name
+      label: 'Term Name'
+      selector: Name
+    -
+      name: skip_record
+      label: 'Skip Record'
+      selector: skip_record
+  ids:
+    remote_term_id:
+      type: string
+process:
+  skip:
+    plugin: skip_on_empty
+    method: row
+    source: skip_record
+destination:
+  plugin: 'entity:taxonomy_term'
+  default_bundle: sample
+migration_dependencies: {  }

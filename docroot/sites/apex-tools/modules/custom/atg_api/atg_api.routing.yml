@@ -1,0 +1,12 @@
+atg_api.search.index:
+  path: '/api/search/{index}'
+  defaults:
+    _controller: '\Drupal\atg_api\Controller\SearchController::index'
+  requirements:
+    _permission: 'access content'
+atg_api.search.countrydataindex:
+  path: '/api/searchcountrydata/{index}'
+  defaults:
+    _controller: '\Drupal\atg_api\Controller\SearchController::countrydataindex'
+  requirements:
+    _permission: 'access content'

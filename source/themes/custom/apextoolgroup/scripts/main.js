@@ -26,6 +26,8 @@
           .on('click', function () {
             hamburgerMenu.toggleClass('show-menu');
             hamburgerMenuIcon.toggleClass('close-icon');
+            $('footer').toggleClass('hide-content');
+            $('.main-contane').toggleClass('hide-content');
           });
       });
       // Responsive menu.
@@ -46,12 +48,56 @@
             $(this).toggleClass('active');
             e.stopPropagation();
           });
-        // print dropdown on anchor click.
+        // prevent dropdown on anchor click.
         const menu_a = $('.region-header .navbar-nav a');
         menu_a.once('menu-link')
           .on('click', function (e) {
             e.stopPropagation();
           });
+      });
+      // Set the selected year for dropdown.
+      var seletedLabel = $('.selected-year-display .year-label');
+      var checkedValueLabel = $('.view-filters.select-view .form-radios .form-radio:checked').siblings('label').text();
+      seletedLabel.text(checkedValueLabel);
+      // Responsive select view of radio button.
+      function menuGroup() {
+        $('body').click(function () {
+          if ($('.menu-trigger').hasClass('active')) {
+            $('.menu-trigger').removeClass('active');
+          }
+          if ($('.menu-dropdown').hasClass('open')) {
+            $('.menu-dropdown').removeClass('open');
+          }
+        });
+        // Open menu
+        $('.menu-trigger').once('trigger').click(function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          $(this).toggleClass('active');
+          $(this).next('.menu-dropdown').toggleClass('open');
+        });
+      }
+      menuGroup();
+      // Set active menu
+      var $navLinks = $('.navbar-nav li a');
+      var current = location.pathname;
+      $navLinks.each(function () {
+        var $this = $(this);
+        // if the current path is like this link, make it active
+        if ($this.attr('href').indexOf(current) !== -1) {
+          $this.addClass('active');
+        }
+      });
+      $navLinks.removeClass('active');
+
+      // Set window width.
+      var windowWidth = $(window).width();
+      $('.market-type  .market-container').css({width: windowWidth + 'px'});
+
+      // Clear search.
+      var $searchpageClose = $('.search-page-form .close');
+      $searchpageClose.once('clear-data').on('click', function (e) {
+        $('.search-page-form input').val('');
       });
 
       /* end */

@@ -1,0 +1,18 @@
+uuid: dba9b146-c959-489a-a074-1c31f965d3a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.downloads
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '1'
+id: node.downloads
+target_entity_type_id: node
+target_bundle: downloads
+default_langcode: site_default
+language_alterable: true

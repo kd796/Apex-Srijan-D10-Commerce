@@ -9,7 +9,9 @@ dependencies:
     - field.field.node.markets.field_short_description
     - field.field.node.markets.field_weight
     - node.type.markets
+    - responsive_image.styles.homepage_slider_and_page_banner
   module:
+    - media_responsive_thumbnail
     - text
     - user
 id: node.markets.default
@@ -25,11 +27,11 @@ content:
     weight: 2
     region: content
   field_banner_image:
-    type: entity_reference_entity_view
+    type: media_responsive_thumbnail
     label: hidden
     settings:
-      view_mode: embed
-      link: false
+      responsive_image_style: homepage_slider_and_page_banner
+      image_link: ''
     third_party_settings: {  }
     weight: 0
     region: content

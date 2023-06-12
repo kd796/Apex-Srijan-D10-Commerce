@@ -1,0 +1,22 @@
+uuid: 7a577b24-268d-4044-a845-5aa7652a09ef
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.geo_directory
+id: node.geo_directory.promote
+field_name: promote
+entity_type: node
+bundle: geo_directory
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

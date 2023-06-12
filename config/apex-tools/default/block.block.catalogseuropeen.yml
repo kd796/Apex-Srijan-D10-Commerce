@@ -1,0 +1,36 @@
+uuid: a2adfa61-a1c0-47a3-84d5-31cb10b69e93
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.catalogs_europe_en
+  module:
+    - fixed_block_content
+    - language
+    - system
+  theme:
+    - apex_tools
+id: catalogseuropeen
+theme: apex_tools
+region: content
+weight: -6
+provider: null
+plugin: 'fixed_block_content:catalogs_europe_en'
+settings:
+  id: 'fixed_block_content:catalogs_europe_en'
+  label: CATALOGS
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      gb: gb
+  request_path:
+    id: request_path
+    negate: false
+    pages: /downloads

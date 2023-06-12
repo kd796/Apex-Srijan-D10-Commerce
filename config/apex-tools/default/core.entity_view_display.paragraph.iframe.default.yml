@@ -1,0 +1,21 @@
+uuid: 738a2589-2626-41a6-9616-20783829d568
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.iframe.field_iframe_url
+    - paragraphs.paragraphs_type.iframe
+id: paragraph.iframe.default
+targetEntityType: paragraph
+bundle: iframe
+mode: default
+content:
+  field_iframe_url:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

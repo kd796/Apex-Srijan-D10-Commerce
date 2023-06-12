@@ -1,0 +1,97 @@
+uuid: c2d2c8fc-e02a-41e8-8959-7c64f8b9e76c
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.atg_glance
+    - field.storage.block_content.field_info_block
+    - paragraphs.paragraphs_type.info_section
+  module:
+    - entity_reference_revisions
+id: block_content.atg_glance.field_info_block
+field_name: field_info_block
+entity_type: block_content
+bundle: atg_glance
+label: 'Info Block'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      info_section: info_section
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 24
+        enabled: false
+      accordion_item:
+        weight: 25
+        enabled: false
+      atg_glance:
+        weight: 26
+        enabled: false
+      careers_cta:
+        weight: 27
+        enabled: false
+      content:
+        weight: 28
+        enabled: false
+      embed_block:
+        weight: 29
+        enabled: false
+      embed_iframe:
+        weight: 30
+        enabled: false
+      embed_view:
+        weight: 31
+        enabled: false
+      featured_content:
+        weight: 32
+        enabled: false
+      featured_links:
+        weight: 33
+        enabled: false
+      featured_media:
+        weight: 34
+        enabled: false
+      hero:
+        weight: 35
+        enabled: false
+      hero_slide:
+        weight: 36
+        enabled: false
+      image_and_text:
+        weight: 37
+        enabled: false
+      image_with_cta:
+        weight: 38
+        enabled: false
+      info_section:
+        weight: 39
+        enabled: true
+      inventor:
+        weight: 40
+        enabled: false
+      inventor_image_and_text:
+        weight: 41
+        enabled: false
+      product_types_info:
+        weight: 42
+        enabled: false
+      pullquote:
+        weight: 43
+        enabled: false
+      section:
+        weight: 44
+        enabled: false
+      tabs:
+        weight: 45
+        enabled: false
+      tabs_tab:
+        weight: 46
+        enabled: false
+field_type: entity_reference_revisions

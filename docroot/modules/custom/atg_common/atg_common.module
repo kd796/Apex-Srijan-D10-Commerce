@@ -1,0 +1,100 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for ATG Common module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\atg_common\Plugin\WebformHandler\EmailUsWebformHandler;
+
+/**
+ * Implements hook_views_pre_view().
+ *
+ * Adding Year exposed filters in view.
+ */
+function atg_common_views_pre_view($view, $display_id) {
+  if ($view->id() == 'atg_news') {
+    $ops = $view->display_handler->getOption('filters');
+    $years = [];
+    $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+    // Getting nids with conditions.
+    $query = $node_storage->getQuery()
+      ->condition('type', 'news')
+      ->condition('field_date', NULL, 'IS NOT NULL')
+      ->condition('field_news_type', $display_id == 'atg_news_release' ?
+        'newsrelease' : 'inthenews', '=');
+    $nodes = $node_storage->loadMultiple($query->execute());
+    foreach ($nodes as $node) {
+      $event_date = $node->get('field_date')->getValue();
+      $date = \DateTime::createFromFormat('Y-m-d', $event_date[0]['value']);
+      $years[] = $date->format('Y');
+    }
+    // Removing duplicate values and sort them in descending order.
+    $years = array_unique($years);
+    rsort($years);
+
+    $ops['field_date_value']['group_info']['group_items'] = [];
+    foreach ($years as $year) {
+      $ops['field_date_value']['group_info']['group_items'][] = [
+        'title' => $year,
+        'operator' => 'between',
+        'value' => [
+          'min' => $year . '-01-01',
+          'max' => $year . '-12-31',
+          'type' => 'date',
+        ],
+      ];
+    }
+    $view->display_handler->overrideOption('filters', $ops);
+  }
+}
+
+/**
+ * Implements hook_form_views_exposed_form_alter().
+ */
+function atg_common_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  if ($form_id !== 'views_exposed_form') {
+    return;
+  }
+
+  $view = $form_state->getStorage('view');
+  $view_id = $view['view']->id();
+
+  switch ($view_id) {
+    case 'atg_news':
+      // Override any option label.
+      $form['field_date_value']['#options']['All'] = t('All');
+      break;
+
+    default:
+      // Do nothing for other views.
+      break;
+  }
+
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function atg_common_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (strpos($form_id, 'webform_submission_product_suggestion_agreement') === 0) {
+    $form['actions']['save']['#prefix'] = '<div class="required-fields-contact"><span class="color-red">*</span>Required field.</div>';
+    $form['actions']['reset']['#value'] = t('Clear Form');
+  }
+
+  if (strpos($form_id, 'webform_submission_contact_us_') === 0) {
+    $form['actions']['save']['#prefix'] = '<div class="required-fields-contact"><span class="color-red">*</span>Required field.</div>';
+    $form['actions']['reset']['#value'] = t('Clear Form');
+  }
+
+}
+
+/**
+ * Implements hook_webform_handler_info_alter().
+ */
+function atg_common_webform_handler_info_alter(array &$handlers) {
+  // Use custom handler for Email Us mail.
+  $handlers['email']['class'] = EmailUsWebformHandler::class;
+}

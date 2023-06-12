@@ -1,0 +1,28 @@
+uuid: 9a33a50e-270e-4e4d-a9da-cb1c6aa7f832
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.about_us_quick_links
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - apextoolgroup
+id: aboutusquicklinks
+theme: apextoolgroup
+region: content
+weight: -7
+provider: null
+plugin: 'fixed_block_content:about_us_quick_links'
+settings:
+  id: 'fixed_block_content:about_us_quick_links'
+  label: 'About Us - Quick Links'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /about-us

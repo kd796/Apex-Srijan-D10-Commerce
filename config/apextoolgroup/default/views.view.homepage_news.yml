@@ -7,8 +7,10 @@ dependencies:
     - field.storage.node.field_date
     - field.storage.node.field_media
     - node.type.news
+    - responsive_image.styles.homepage_news
   module:
     - datetime
+    - media_responsive_thumbnail
     - node
     - options
     - text
@@ -27,7 +29,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Homepage News'
+      title: 'Featured Press Releases'
       fields:
         field_media:
           id: field_media
@@ -79,9 +81,10 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
-          type: entity_reference_entity_view
+          type: media_responsive_thumbnail
           settings:
-            view_mode: embed
+            responsive_image_style: homepage_news
+            image_link: ''
           group_column: target_id
           group_columns: {  }
           group_rows: true
@@ -185,7 +188,7 @@ display:
             max_length: 80
             word_boundary: true
             ellipsis: true
-            more_link: true
+            more_link: false
             more_link_text: 'Read More'
             more_link_path: '{{ view_node }}'
             strip_tags: true
@@ -291,7 +294,7 @@ display:
           entity_type: node
           plugin_id: entity_link
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''

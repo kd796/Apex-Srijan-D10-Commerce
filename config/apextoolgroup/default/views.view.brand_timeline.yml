@@ -7,9 +7,11 @@ dependencies:
     - field.storage.node.field_event_date
     - field.storage.node.field_media
     - node.type.brand_timeline
+    - responsive_image.styles.brands_timeline
   module:
     - better_exposed_filters
     - datetime
+    - media_responsive_thumbnail
     - node
     - text
     - user
@@ -208,9 +210,8 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: text_trimmed
-          settings:
-            trim_length: 100
+          type: text_default
+          settings: {  }
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -271,9 +272,10 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
-          type: entity_reference_entity_view
+          type: media_responsive_thumbnail
           settings:
-            view_mode: embed
+            responsive_image_style: brands_timeline
+            image_link: ''
           group_column: target_id
           group_columns: {  }
           group_rows: true

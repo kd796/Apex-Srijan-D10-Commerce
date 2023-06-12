@@ -1,0 +1,28 @@
+uuid: 60a75068-ba94-4ea8-8bfc-e2efe546ce68
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.core_values
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - apextoolgroup
+id: corevalues
+theme: apextoolgroup
+region: pre_content
+weight: -7
+provider: null
+plugin: 'fixed_block_content:core_values'
+settings:
+  id: 'fixed_block_content:core_values'
+  label: 'Banner-Core Values'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /about-us/leadership/core-values
