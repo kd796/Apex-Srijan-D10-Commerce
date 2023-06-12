@@ -1,40 +1,42 @@
 <?php
 
-use Drupal\contact\Entity\ContactForm;
+/**
+ * @file
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\Entity\Node;
 use Drupal\Core\Routing\RouteMatch;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\Core\Language\LanguageInterface;
-use Drupal\file\Entity\File;
 use Drupal\Core\Locale\CountryManager;
 
 /**
- * TEMPLATE DEFINITIONS
+ * TEMPLATE DEFINITIONS.
  */
-
-function atg_theme($existing, $type, $theme, $path)
-{
-    // Defines twig templates
-    return [
-        'products/catalog'  => [
-            'variables' => []
-        ],
-        'products/single'   => [
-            'variables' => [
-                'product' => null
-            ]
-        ],
-        'products/enhanced' => [
-            'variables' => [
-                'product' => null
-            ]
-        ],
-        'search/results'    => [
-            'variables' => [
-                'q'       => [],
-                'results' => []
-            ]
-        ]
-    ];
+function atg_theme($existing, $type, $theme, $path) {
+  // Defines twig templates.
+  return [
+    'products/catalog'  => [
+      'variables' => [],
+    ],
+    'products/single'   => [
+      'variables' => [
+        'product' => NULL,
+      ],
+    ],
+    'products/enhanced' => [
+      'variables' => [
+        'product' => NULL,
+      ],
+    ],
+    'search/results'    => [
+      'variables' => [
+        'q'       => [],
+        'results' => [],
+      ],
+    ],
+  ];
 }
 
 /**
@@ -44,13 +46,12 @@ function atg_theme($existing, $type, $theme, $path)
  *
  * @param $variables
  */
-function atg_preprocess(&$variables)
-{
-    $language      = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
-    $is_front_page = \Drupal::service('path.matcher')->isFrontPage();
+function atg_preprocess(&$variables) {
+  $language      = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
+  $is_front_page = \Drupal::service('path.matcher')->isFrontPage();
 
-    $variables['current_language'] = $language;
-    $variables['is_front_page']    = $is_front_page;
+  $variables['current_language'] = $language;
+  $variables['is_front_page']    = $is_front_page;
 }
 
 /**
@@ -62,21 +63,21 @@ function atg_preprocess(&$variables)
 /*
 function atg_preprocess_links__language_block(&$variables)
 {
-    $language = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
+$language = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
 
-    foreach ($variables['links'] as &$link) {
-        $linkLanguage = $link['link']['#options']['language'] ?? false;
-        if ($linkLanguage) {
-            $active = $linkLanguage->getId() === $language->getId();
+foreach ($variables['links'] as &$link) {
+$linkLanguage = $link['link']['#options']['language'] ?? false;
+if ($linkLanguage) {
+$active = $linkLanguage->getId() === $language->getId();
 
-            //$link['link']['#options']['attributes']['class'][]      = 'faux-radio';
-            $link['link']['#options']['attributes']['aria-checked'] = $active ? 'true' : 'false';
-        } else {
-            unset($link);
-        }
-    }
+// $link['link']['#options']['attributes']['class'][]      = 'faux-radio';
+$link['link']['#options']['attributes']['aria-checked'] = $active ? 'true' : 'false';
+} else {
+unset($link);
 }
-*/
+}
+}
+ */
 
 /**
  * PREPROCESS: MENU LOCAL TASK
@@ -84,12 +85,11 @@ function atg_preprocess_links__language_block(&$variables)
  *
  * @param $variables
  */
-function atg_preprocess_menu_local_task(&$variables)
-{
-    $variables['link']['#options']['attributes']['class'][] = 'tab';
-    if ($variables['element']['#active']) {
-        $variables['link']['#options']['attributes']['class'][] = 'tab--active';
-    }
+function atg_preprocess_menu_local_task(&$variables) {
+  $variables['link']['#options']['attributes']['class'][] = 'tab';
+  if ($variables['element']['#active']) {
+    $variables['link']['#options']['attributes']['class'][] = 'tab--active';
+  }
 }
 
 /**
@@ -98,31 +98,28 @@ function atg_preprocess_menu_local_task(&$variables)
  *
  * @param $variables
  */
-function atg_preprocess_pager(&$variables)
-{
-    global $pager_total;
-//$variables['pager_total'] = $pager_total[$variables['pager']['#element']];
+function atg_preprocess_pager(&$variables) {
+  global $pager_total;
+  // $variables['pager_total'] = $pager_total[$variables['pager']['#element']];
   $variables['pager_total'] = $variables['pager']['#element'];
-
 }
 
 /**
- * PREPROCESS: NODE
+ * PREPROCESS: NODE.
  *
  * @param $variables
  */
-function atg_preprocess_node(&$variables)
-{
-    // Including PDF download functionality for content type 'Advanced Selector Download'
-    if ($variables['node']->getType() == 'advanced_selector_download') {
-       // require($_SERVER['DOCUMENT_ROOT'] . '/themes/custom/atg/advanced-selector/api/download.php');
-       require($_SERVER['DOCUMENT_ROOT'] . '/themes/custom/atg/advanced-selector/api/download.php');
-    }
+function atg_preprocess_node(&$variables) {
+  // Including PDF download functionality for content type 'Advanced Selector Download'.
+  if ($variables['node']->getType() == 'advanced_selector_download') {
+    // require($_SERVER['DOCUMENT_ROOT'] . '/themes/custom/atg/advanced-selector/api/download.php');.
+    require $_SERVER['DOCUMENT_ROOT'] . '/themes/custom/atg/advanced-selector/api/download.php';
+  }
 
-    // Assign ng-app to <html> for Advanced Selector content type
-    if ($variables['node']->getType() == 'advanced_selector') {
-        $variables['html_attributes']['ng-app'] = 'Cleco';
-    }
+  // Assign ng-app to <html> for Advanced Selector content type.
+  if ($variables['node']->getType() == 'advanced_selector') {
+    $variables['html_attributes']['ng-app'] = 'Cleco';
+  }
 }
 
 /**
@@ -131,74 +128,76 @@ function atg_preprocess_node(&$variables)
  *
  * @param $variables
  */
-function atg_preprocess_node__geo_directory(&$variables)
-{
-    $config    = Drupal::config('system.site');
-    $variables['current_site_code']  = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
+function atg_preprocess_node__geo_directory(&$variables) {
+  $config                         = Drupal::config('system.site');
+  $variables['current_site_code'] = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
 
-    if(!empty($variables['current_site_code']) && $variables['current_site_code'] != 'en') {
-        $countries = CountryManager::getStandardList();
-        $variables['countries_options'] = [];
+  if (!empty($variables['current_site_code']) && $variables['current_site_code'] != 'en') {
+    $countries = CountryManager::getStandardList();
+    $variables['countries_options'] = [];
 
-        $index = 0;
-        foreach ($countries as $countryCode => $country) {
-            $variables['countries_options'][$index]['value'] = $countryCode;
-            $variables['countries_options'][$index]['label'] = $country;
-            $index++;
-        }
-    } else {
-        // Distance Options
-        $radius_options              = [50, 100, 200, 500];
-        $variables['default_radius'] = 100;
-        $variables['radius_options'] = array_map(function ($distance) {
-            if ($distance === null) {
-                $label = t('Any Distance');
-            } else if ($distance === 1) {
-                $label = t('@distance Mile', ['@distance' => $distance]);
-            } else {
-                $label = t('@distance Miles', ['@distance' => $distance]);
-            }
-
-            return [
-                'value' => $distance,
-                'label' => $label
-            ];
-        }, $radius_options);
+    $index = 0;
+    foreach ($countries as $countryCode => $country) {
+      $variables['countries_options'][$index]['value'] = $countryCode;
+      $variables['countries_options'][$index]['label'] = $country;
+      $index++;
     }
+  }
+  else {
+    // Distance Options.
+    $radius_options              = [50, 100, 200, 500];
+    $variables['default_radius'] = 100;
+    $variables['radius_options'] = array_map(function ($distance) {
+      if ($distance === NULL) {
+            $label = t('Any Distance');
+      }
+      elseif ($distance === 1) {
+                $label = t('@distance Mile', ['@distance' => $distance]);
+      }
+      else {
+                $label = t('@distance Miles', ['@distance' => $distance]);
+      }
 
-    // Distributor Level
-    $distributor_level_ids = Drupal::entityQuery('taxonomy_term')
-        ->condition('vid', 'distributor_level')
-        ->sort('weight')
-        ->execute();
-    $distributor_levels        = array_values(Term::loadMultiple($distributor_level_ids));
-    $distributor_level_default = [
-        'value' => null,
-        'label' => t('Any Level')
-    ];
-    $variables['distributor_levels'] = array_merge([$distributor_level_default], array_map(function (Term $term) {
-        return [
-            'value' => $term->id(),
-            'label' => $term->getName()
-        ];
-    }, $distributor_levels));
+              return [
+                'value' => $distance,
+                'label' => $label,
+              ];
+    }, $radius_options);
+  }
 
-    // Available Tools
-    $products_offered_ids = Drupal::entityQuery('taxonomy_term')
-        ->condition('vid', 'products_offered')
-        ->sort('weight')
-        ->execute();
-    $products_offered         = array_values(Term::loadMultiple($products_offered_ids));
-    $products_offered_default = [
-        'value' => null,
-        'label' => t('Any Tools')
-    ];
-    $variables['products_offered'] = array_merge([$products_offered_default], array_map(function (Term $term) {
-        return [
-            'value' => $term->id(),
-            'label' => $term->getName()
-        ];
-    }, $products_offered));
+  // Distributor Level.
+  $distributor_level_ids           = Drupal::entityQuery('taxonomy_term')
+    ->condition('vid', 'distributor_level')
+    ->sort('weight')
+    ->execute();
+  $distributor_levels              = array_values(Term::loadMultiple($distributor_level_ids));
+  $distributor_level_default       = [
+    'value' => NULL,
+    'label' => t('Any Level'),
+  ];
+  $variables['distributor_levels'] = array_merge([$distributor_level_default], array_map(function (Term $term) {
+      return [
+        'value' => $term->id(),
+        'label' => $term->getName(),
+      ];
+  }, $distributor_levels));
+
+  // Available Tools.
+  $products_offered_ids          = Drupal::entityQuery('taxonomy_term')
+    ->condition('vid', 'products_offered')
+    ->sort('weight')
+    ->execute();
+  $products_offered              = array_values(Term::loadMultiple($products_offered_ids));
+  $products_offered_default      = [
+    'value' => NULL,
+    'label' => t('Any Tools'),
+  ];
+  $variables['products_offered'] = array_merge([$products_offered_default], array_map(function (Term $term) {
+      return [
+        'value' => $term->id(),
+        'label' => $term->getName(),
+      ];
+  }, $products_offered));
 }
 
 /**
@@ -210,62 +209,62 @@ function atg_preprocess_node__geo_directory(&$variables)
  * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
  * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
  */
-function atg_preprocess_paragraph__form_section(&$variables)
-{
-    /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-    $paragraph = $variables['elements']['#paragraph'];
-    /** @var \Drupal\Core\Field\EntityReferenceFieldItemList $selected_forms */
-    // $selected_forms = $paragraph->get('field_forms');
-    $selected_forms = $paragraph->get('field_webforms');
+function atg_preprocess_paragraph__form_section(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['elements']['#paragraph'];
+  /** @var \Drupal\Core\Field\EntityReferenceFieldItemList $selected_forms */
+  // $selected_forms = $paragraph->get('field_forms');
+  $selected_forms = $paragraph->get('field_webforms');
 
-    $form_names = [];
-    foreach ($selected_forms->getIterator() as $form) {
-        $form_names[] = $form->target_id;
+  $form_names = [];
+  foreach ($selected_forms->getIterator() as $form) {
+    $form_names[] = $form->target_id;
+  }
+
+  $forms = [];
+  foreach ($form_names as $form_name) {
+    // $form    = ContactForm::load($form_name);
+    // $message = \Drupal::entityTypeManager()
+    //     ->getStorage('contact_message')
+    //     ->create([
+    //         'contact_form' => $form->id()
+    //     ]);
+    // $view = \Drupal::service('entity.form_builder')->getForm($message);
+    $form    = \Drupal::entityTypeManager()->getStorage('webform')->load($form_name);
+    $builder = \Drupal::service('entity_type.manager')->getViewBuilder('webform');
+    $view    = $builder->view($form);
+
+    $forms[$form->id()] = [
+      'id'    => $form->id(),
+      'label' => $form->label(),
+      'icon'  => atg_get_form_icon($form->id()),
+      'view'  => $view,
+      'link'  => NULL,
+    ];
+  }
+
+  $field_ade_form = (NULL !== $paragraph->get('field_ade_form') && !empty($paragraph->get('field_ade_form')->getValue()))
+        ? $paragraph->get('field_ade_form')->getValue()[0]['value'] : '';
+  if ($field_ade_form) {
+    $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
+    $nids = \Drupal::entityQuery('node')->condition('type', 'advanced_selector')->condition('langcode', $langcode)->execute();
+
+    if ($nids) {
+      foreach (Node::loadMultiple($nids) as $node) {
+        $ade_form = $node;
+      }
+      $key = 'ade_form';
+      $forms[$key] = [
+        'id'    => $key,
+        'label' => $ade_form->label(),
+        'icon'  => atg_get_form_icon($key),
+        'view'  => NULL,
+        'link'  => \Drupal::service('path_alias.manager')->getAliasByPath('/node/' . $ade_form->id()),
+      ];
     }
+  }
 
-    $forms = [];
-    foreach ($form_names as $form_name) {
-        // $form    = ContactForm::load($form_name);
-        // $message = \Drupal::entityTypeManager()
-        //     ->getStorage('contact_message')
-        //     ->create([
-        //         'contact_form' => $form->id()
-        //     ]);
-        // $view = \Drupal::service('entity.form_builder')->getForm($message);
-        $form    = \Drupal::entityTypeManager()->getStorage('webform')->load($form_name);
-        $builder = \Drupal::service('entity_type.manager')->getViewBuilder('webform');
-        $view    = $builder->view($form);
-
-        $forms[$form->id()] = [
-            'id'    => $form->id(),
-            'label' => $form->label(),
-            'icon'  => atg_get_form_icon($form->id()),
-            'view'  => $view,
-            'link'  => null,
-        ];
-    }
-
-    $field_ade_form = $paragraph->get('field_ade_form')->getValue()[0]['value'];
-    if ($field_ade_form) {
-        $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
-        $nids = \Drupal::entityQuery('node')->condition('type', 'advanced_selector')->condition('langcode', $langcode)->execute();
-
-        if ($nids) {
-            foreach (\Drupal\node\Entity\Node::loadMultiple($nids) as $node) {
-                $ade_form = $node;
-            }
-            $key = 'ade_form';
-            $forms[$key] = [
-                'id'    => $key,
-                'label' => $ade_form->label(),
-                'icon'  => atg_get_form_icon($key),
-                'view'  => null,
-                'link'  => \Drupal::service('path_alias.manager')->getAliasByPath('/node/' . $ade_form->id()),
-            ];
-        }
-    }
-
-    $variables['forms'] = $forms;
+  $variables['forms'] = $forms;
 }
 
 /**
@@ -274,9 +273,8 @@ function atg_preprocess_paragraph__form_section(&$variables)
  *
  * @param $variables
  */
-function atg_preprocess_node__downloads(&$variables)
-{
-    $variables['q'] = \Drupal::request()->get('q');
+function atg_preprocess_node__downloads(&$variables) {
+  $variables['q'] = \Drupal::request()->get('q');
 }
 
 /**
@@ -287,37 +285,36 @@ function atg_preprocess_node__downloads(&$variables)
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  * @param $form_id
  */
-function atg_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
-{
-    $contact_form_names = array_keys(atg_get_form_icon_map());
+function atg_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $contact_form_names = array_keys(atg_get_form_icon_map());
 
-    $contact_form_ids = array_map(function ($form_name) {
-        return sprintf('contact_message_%s_form', $form_name);
-    }, $contact_form_names);
+  $contact_form_ids = array_map(function ($form_name) {
+      return sprintf('contact_message_%s_form', $form_name);
+  }, $contact_form_names);
 
-    if (in_array($form_id, $contact_form_ids)) {
-        $fields = array_filter($form, function ($key) use ($form) {
-            return isset($form[$key]['widget']);
-        }, ARRAY_FILTER_USE_KEY);
+  if (in_array($form_id, $contact_form_ids)) {
+    $fields = array_filter($form, function ($key) use ($form) {
+        return isset($form[$key]['widget']);
+    }, ARRAY_FILTER_USE_KEY);
 
-        array_walk($fields, function (&$value, $key) {
-            if (isset($value['#type']) && $value['#type'] !== 'hidden') {
-                $value['#attributes']['class'][] = 'form-grid-item';
-            }
-        });
+    array_walk($fields, function (&$value, $key) {
+      if (isset($value['#type']) && $value['#type'] !== 'hidden') {
+              $value['#attributes']['class'][] = 'form-grid-item';
+      }
+    });
 
-        $grid = [
-            '#type'       => 'container',
-            '#attributes' => [
-                'class' => 'form-grid'
-            ]
-        ];
-        $form['grid'] = $grid + $fields;
+    $grid = [
+      '#type'       => 'container',
+      '#attributes' => [
+        'class' => 'form-grid',
+      ],
+    ];
+    $form['grid'] = $grid + $fields;
 
-        foreach (array_keys($fields) as $key) {
-            unset($form[$key]);
-        }
+    foreach (array_keys($fields) as $key) {
+      unset($form[$key]);
     }
+  }
 }
 
 /**
@@ -325,25 +322,26 @@ function atg_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state
  * Return the icon slug for a specific form machine name.
  * Slug should match filename of an icon in src/img/icons.
  *
- * @param string $form_name Machine name of the form
- * @param string|null $default Default value to use if no form icon
+ * @param string $form_name
+ *   Machine name of the form.
+ * @param string|null $default
+ *   Default value to use if no form icon.
  *
  * @return mixed
  */
-function atg_get_form_icon($form_name, $default = null)
-{
-    $currentLanguageId = \Drupal::languageManager()->getCurrentLanguage()->getId();
-    $icons = atg_get_form_icon_map();
-    $icon = null;
+function atg_get_form_icon($form_name, $default = NULL) {
+  $currentLanguageId = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $icons = atg_get_form_icon_map();
+  $icon = NULL;
 
-    if (!empty($icons[$form_name])) {
-        $icon = $icons[$form_name];
-        if (is_array($icon)) {
-            $icon = $icon[$currentLanguageId] ?? $icon['en'] ?? NULL;
-        }
+  if (!empty($icons[$form_name])) {
+    $icon = $icons[$form_name];
+    if (is_array($icon)) {
+      $icon = $icon[$currentLanguageId] ?? $icon['en'] ?? NULL;
     }
+  }
 
-    return $icon !== null ? $icon : $default;
+  return $icon ?? $default;
 }
 
 /**
@@ -352,23 +350,22 @@ function atg_get_form_icon($form_name, $default = null)
  *
  * @return array
  */
-function atg_get_form_icon_map()
-{
-    return [
-        'schedule_a_demo'             => 'calendar',
-        'request_a_demo'              => 'drill',
-        'request_a_quote'             => [
-            'en' => 'document-dollar-sign',
-            'gb' => 'document-euro-sign',
-            'de' => 'document-euro-sign',
-        ],
-        'request_product_information' => 'blueprint-gear',
-        'repairs_calibration'         => 'wrench-screwdriver',
-        'spare_parts_purchase'        => 'drill',
-        'technical_questions'         => 'headset',
-        'warranty_returns'            => 'document-ribbon',
-        'ade_form'                    => 'inquiry',
-    ];
+function atg_get_form_icon_map() {
+  return [
+    'schedule_a_demo'             => 'calendar',
+    'request_a_demo'              => 'drill',
+    'request_a_quote'             => [
+      'en' => 'document-dollar-sign',
+      'gb' => 'document-euro-sign',
+      'de' => 'document-euro-sign',
+    ],
+    'request_product_information' => 'blueprint-gear',
+    'repairs_calibration'         => 'wrench-screwdriver',
+    'spare_parts_purchase'        => 'drill',
+    'technical_questions'         => 'headset',
+    'warranty_returns'            => 'document-ribbon',
+    'ade_form'                    => 'inquiry',
+  ];
 }
 
 /**
@@ -377,20 +374,19 @@ function atg_get_form_icon_map()
  * @param array $suggestions
  * @param array $variables
  */
-function atg_theme_suggestions_page_alter(array &$suggestions, array $variables)
-{
-    // get the route
-    $route_name  = \Drupal::routeMatch()->getRouteName();
-    $route_parts = explode('.', $route_name);
+function atg_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  // Get the route.
+  $route_name  = \Drupal::routeMatch()->getRouteName();
+  $route_parts = explode('.', $route_name);
 
-    // is it system.4xx ?
-    if (count($route_parts) == 2 && $route_parts[0] === 'system') {
-        $code = $route_parts[1];
-        if (is_numeric($code) && $code >= 400 and $code < 500) {
-            // suggest template page--4xx.html.twig (e.g., page--404.html.twig)
-            $suggestions[] = 'page__' . $code;
-        }
+  // Is it system.4xx ?
+  if (count($route_parts) == 2 && $route_parts[0] === 'system') {
+    $code = $route_parts[1];
+    if (is_numeric($code) && $code >= 400 and $code < 500) {
+      // Suggest template page--4xx.html.twig (e.g., page--404.html.twig)
+      $suggestions[] = 'page__' . $code;
     }
+  }
 }
 
 /**
@@ -399,77 +395,113 @@ function atg_theme_suggestions_page_alter(array &$suggestions, array $variables)
  *
  * @param array $variables
  */
-function atg_preprocess_html(&$variables)
-{
-    $request                       = \Drupal::request();
-    $maintenance_mode              = \Drupal::service('maintenance_mode');
-    $route_match                   = RouteMatch::createFromRequest($request);
-    $variables['maintenance_mode'] = $maintenance_mode->applies($route_match);
+function atg_preprocess_html(&$variables) {
+  $request                       = \Drupal::request();
+  $maintenance_mode              = \Drupal::service('maintenance_mode');
+  $route_match                   = RouteMatch::createFromRequest($request);
+  $variables['maintenance_mode'] = $maintenance_mode->applies($route_match);
 
-    if (array_key_exists('node_type', $variables)) {
-        // Including PDF download functionality for content type 'Advanced Selector Download'
-        if ($variables['node_type'] == 'advanced_selector_download') {
-            include($_SERVER['DOCUMENT_ROOT'] . '/themes/custom/atg/advanced-selector/api/download.php');
-        }
-
-        // Assign ng-app to <html> for Advanced Selector content type
-        if ($variables['node_type'] == 'advanced_selector') {
-            $variables['html_attributes']['ng-app'] = 'Cleco';
-        }
+  if (array_key_exists('node_type', $variables)) {
+    // Including PDF download functionality for content type 'Advanced Selector Download'.
+    if ($variables['node_type'] == 'advanced_selector_download') {
+      include $_SERVER['DOCUMENT_ROOT'] . '/themes/custom/atg/advanced-selector/api/download.php';
     }
 
-    // translate page title in titlebar
-    if ($variables['current_language']->getId() != 'en') {
-        if ($variables['head_title']) {
-            if ($variables['head_title']['title']) {
-                if (strpos($variables['head_title']['title'], '|') != false) {
-                    $head_title = explode('|', $variables['head_title']['title']);
-                    $variables['head_title']['title'] = t(trim($head_title[0]));
-                    $variables['head_title']['name'] = trim($head_title[1]);
-                }
-            }
-        }
+    // Assign ng-app to <html> for Advanced Selector content type.
+    if ($variables['node_type'] == 'advanced_selector') {
+      $variables['html_attributes']['ng-app'] = 'Cleco';
     }
+  }
+
+  // Translate page title in titlebar.
+  if ($variables['current_language']->getId() != 'en') {
+    if ($variables['head_title']) {
+      if ($variables['head_title']['title']) {
+        if (strpos($variables['head_title']['title'], '|') != FALSE) {
+          $head_title = explode('|', $variables['head_title']['title']);
+          $variables['head_title']['title'] = t(trim($head_title[0]));
+          $variables['head_title']['name'] = trim($head_title[1]);
+        }
+      }
+    }
+  }
 }
 
 /**
- * Add Advanced Selector libraries for AD form pages
+ * Add Advanced Selector libraries for AD form pages.
  */
-function atg_page_attachments_alter(&$attachments)
-{
-    $ade = [
-      '/werkzeuge/bohren',
-      '/tools/advanced-drilling',
-    ];
-    $current_uri = \Drupal::request()->getRequestUri();
-    $library = false;
+function atg_page_attachments_alter(&$attachments) {
+  $ade = [
+    '/werkzeuge/bohren',
+    '/tools/advanced-drilling',
+  ];
+  $current_uri = \Drupal::request()->getRequestUri();
+  $library = FALSE;
 
-    foreach ($ade as $a) {
-        if (substr($current_uri, 0, strlen($a)) == $a) {
-            $library = true;
-        }
+  foreach ($ade as $a) {
+    if (substr($current_uri, 0, strlen($a)) == $a) {
+      $library = TRUE;
     }
+  }
 
-    if ($library) {
-        $attachments['#attached']['library'][] = 'atg/advanced-selector';
-    }
+  if ($library) {
+    $attachments['#attached']['library'][] = 'atg/advanced-selector';
+  }
 }
 
 /**
  * Implements hook_theme_suggestions_container_alter().
  */
-function atg_theme_suggestions_container_alter(&$suggestions, array $variables)
-{
-    $element = $variables['element'];
+function atg_theme_suggestions_container_alter(&$suggestions, array $variables) {
+  $element = $variables['element'];
 
-    if (isset($element['#type'])) {
-        if ($element['#type'] == 'view') {
-            $suggestions[] = 'container__' . $element['#name'];
-            $suggestions[] = 'container__' . $element['#name'] . '__' . $element['#display_id'];
-        }
-
-        if ($element['#type'] == 'container' && isset($element['children']['#type'])) {
-            $suggestions[] = 'container__' . $element['children']['#type'];
-        }
+  if (isset($element['#type'])) {
+    if ($element['#type'] == 'view') {
+      $suggestions[] = 'container__' . $element['#name'];
+      $suggestions[] = 'container__' . $element['#name'] . '__' . $element['#display_id'];
     }
+
+    if ($element['#type'] == 'container' && isset($element['children']['#type'])) {
+      $suggestions[] = 'container__' . $element['children']['#type'];
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_node_alter().
+ *
+ * New suggestions for the home page.
+ */
+function atg_theme_suggestions_node_alter(array &$suggestions, array $variables) {
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $node = $variables['elements']['#node'];
+    // Check if it's the home page content type node.
+    if ($node->getType() === 'home' && \Drupal::service('path.matcher')->isFrontPage()) {
+      $suggestions[] = 'node__homepage';
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function atg_preprocess_field(&$variables) {
+  // Check if the field is industry solutions entity reference field.
+  if ($variables['element']['#field_name'] == 'field_industry_solutions_home') {
+    $referenced_entities = $variables['element']['#items']->referencedEntities();
+    foreach ($referenced_entities as $key => $item) {
+      $home_industry_solns = $item->field_industry_solutions->referencedEntities();
+      foreach ($home_industry_solns as $industry_soln) {
+        $image = $industry_soln->field_industry_solutions_image->entity;
+        $industry_soln_image = $image->field_media_image->entity;
+        $industry_solutions[] = [
+          'industry_type' => (string) "Industry " . $item->getType(),
+          'title' => $item->title->value,
+          'description' => $industry_soln->field_industry_solutions_desc->value,
+          'image' => isset($industry_soln_image) ? $industry_soln_image->getFileUri() : '',
+        ];
+      }
+    }
+    $variables['industry_solutions'] = $industry_solutions;
+  }
 }

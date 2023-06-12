@@ -1,9 +1,9 @@
-uuid: c16f3a22-6882-4c75-939e-e713400019a1
+uuid: ff263998-8798-4b78-b376-3215622bebe3
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.industry_solutions
     - field.field.node.solutions.field_alternating_media_blocks
     - field.field.node.solutions.field_callout_section_footer
     - field.field.node.solutions.field_card
@@ -18,22 +18,13 @@ dependencies:
     - node.type.solutions
   module:
     - user
-id: node.solutions.teaser
+id: node.solutions.industry_solutions
 targetEntityType: node
 bundle: solutions
-mode: teaser
-content:
-  content_moderation_control:
-    settings: {  }
-    third_party_settings: {  }
-    weight: -20
-    region: content
-  links:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 100
-    region: content
+mode: industry_solutions
+content: {  }
 hidden:
+  content_moderation_control: true
   field_alternating_media_blocks: true
   field_callout_section_footer: true
   field_card: true
@@ -46,5 +37,6 @@ hidden:
   field_seo: true
   field_webform: true
   langcode: true
+  links: true
   search_api_excerpt: true
   uuid: true

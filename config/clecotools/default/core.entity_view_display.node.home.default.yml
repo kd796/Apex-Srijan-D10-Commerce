@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.home.field_callout_section_footer
     - field.field.node.home.field_featured
     - field.field.node.home.field_hero
+    - field.field.node.home.field_industry_solutions_home
     - field.field.node.home.field_mailing_list_form
     - field.field.node.home.field_seo
     - field.field.node.home.field_testimonials_block
@@ -50,7 +51,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 3
+    weight: 2
     region: content
   field_hero:
     type: entity_reference_revisions_entity_view
@@ -59,7 +60,15 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 2
+    weight: 1
+    region: content
+  field_industry_solutions_home:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
     region: content
   field_seo:
     type: metatag_empty_formatter
@@ -80,9 +89,10 @@ content:
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
 hidden:
   field_mailing_list_form: true
   langcode: true
   search_api_excerpt: true
+  uuid: true
