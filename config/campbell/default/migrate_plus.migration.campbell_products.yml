@@ -94,6 +94,10 @@ source:
       label: PDFs
       selector: Values
     -
+      name: remote_show_discontinued_products
+      label: 'Show Discontinued Products'
+      selector: Values
+    -
       name: status
       label: Status
       selector: './Values/Value[@AttributeID="SAP_SALES_ORG_STATUS"]/@ID'
@@ -106,10 +110,12 @@ source:
       type: string
 process:
   status:
-    plugin: unpublish_discontinued_products
-    source: status
-    value:
-      - Z4
+    plugin: apex_show_discontinued_products
+    source: remote_show_discontinued_products
+    allowed_values:
+      - Z2
+      - Z3
+      - Z5
   type:
     plugin: default_value
     default_value: product
