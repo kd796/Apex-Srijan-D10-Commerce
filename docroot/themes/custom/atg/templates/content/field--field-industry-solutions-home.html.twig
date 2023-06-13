@@ -1,17 +1,21 @@
 <main class="main">
 	<section class="section section--features">
+		{% if industry_solutions| length >0 %}
 		<div class="industry-solutions-wrapper" style="clear:both;">
 			<h4>{{ industry_solutions[0].industry_type }}</h4>
 			{% for item in industry_solutions %}
 				{% if item.title %}
 				<div class="industry-solutions" style="float:left; display: block;">
 					<h2>{{ item.title }}</h2>
-					<img src="{{ file_url(item.image) }}" alt="Image" width="100" height="100">
-					<!-- <span>{{ item.description|striptags }}</span> -->
+					<a href="{{ item.url }}">
+						<img src="{{ file_url(item.image) }}" alt="Image" width="100" height="100">
+					</a>	
+					<span>{{ item.description|striptags }}</span>
 				</div>
 				{% endif %}
 			{% endfor %}
 		</div>
+		{% endif %}
 		
 	</section>
 </main>

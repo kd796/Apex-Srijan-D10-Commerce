@@ -2,6 +2,7 @@
 
 /**
  * @file
+ * Functions to support theming in the atg theme.
  */
 
 use Drupal\Core\Form\FormStateInterface;
@@ -40,13 +41,14 @@ function atg_theme($existing, $type, $theme, $path) {
 }
 
 /**
- * PREPROCESS
- * Make current language available to Twig for displaying in language selector
- * block.
+ * PREPROCESS.
  *
- * @param $variables
+ * Make current language available to Twig for displaying In language selectorblock.
+ *
+ * @param array $variables
+ *   The variables array (modify in place).
  */
-function atg_preprocess(&$variables) {
+function atg_preprocess(array &$variables) {
   $language      = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
   $is_front_page = \Drupal::service('path.matcher')->isFrontPage();
 
@@ -55,8 +57,9 @@ function atg_preprocess(&$variables) {
 }
 
 /**
- * PREPROCESS: LINKS - LANGUAGE BLOCK
- * Add faux-radio attributes to language selector links
+ * PREPROCESS: LINKS - LANGUAGE BLOCK.
+ *
+ * Add faux-radio attributes to language selector links.
  *
  * @param $variables
  */
@@ -80,12 +83,14 @@ unset($link);
  */
 
 /**
- * PREPROCESS: MENU LOCAL TASK
+ * PREPROCESS: MENU LOCAL TASK.
+ *
  * Add "tab" classes to local task menu items.
  *
- * @param $variables
+ * @param array $variables
+ *   The variables array (modify in place).
  */
-function atg_preprocess_menu_local_task(&$variables) {
+function atg_preprocess_menu_local_task(array &$variables) {
   $variables['link']['#options']['attributes']['class'][] = 'tab';
   if ($variables['element']['#active']) {
     $variables['link']['#options']['attributes']['class'][] = 'tab--active';
@@ -93,12 +98,14 @@ function atg_preprocess_menu_local_task(&$variables) {
 }
 
 /**
- * PREPROCESS: PAGER
+ * PREPROCESS: PAGER.
+ *
  * Make pager total variable available to pager.
  *
- * @param $variables
+ * @param array $variables
+ *   The variables array (modify in place).
  */
-function atg_preprocess_pager(&$variables) {
+function atg_preprocess_pager(array &$variables) {
   global $pager_total;
   // $variables['pager_total'] = $pager_total[$variables['pager']['#element']];
   $variables['pager_total'] = $variables['pager']['#element'];
@@ -107,9 +114,10 @@ function atg_preprocess_pager(&$variables) {
 /**
  * PREPROCESS: NODE.
  *
- * @param $variables
+ * @param array $variables
+ *   The variables array (modify in place).
  */
-function atg_preprocess_node(&$variables) {
+function atg_preprocess_node(array &$variables) {
   // Including PDF download functionality for content type 'Advanced Selector Download'.
   if ($variables['node']->getType() == 'advanced_selector_download') {
     // require($_SERVER['DOCUMENT_ROOT'] . '/themes/custom/atg/advanced-selector/api/download.php');.
@@ -123,12 +131,14 @@ function atg_preprocess_node(&$variables) {
 }
 
 /**
- * PREPROCESS: NODE - GEO DIRECTORY
- * Add filtering options to geo directory node template
+ * PREPROCESS: NODE - GEO DIRECTORY.
  *
- * @param $variables
+ * Add filtering options to geo directory node template.
+ *
+ * @param array $variables
+ *   The variables array (modify in place).
  */
-function atg_preprocess_node__geo_directory(&$variables) {
+function atg_preprocess_node__geo_directory(array &$variables) {
   $config                         = Drupal::config('system.site');
   $variables['current_site_code'] = Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
 
@@ -201,15 +211,17 @@ function atg_preprocess_node__geo_directory(&$variables) {
 }
 
 /**
- * PREPROCESS: PARAGRAPH - FORM SECTION
+ * PREPROCESS: PARAGRAPH - FORM SECTION.
+ *
  * Load `forms` variable with ID, label, icon, and rendered form view.
  *
- * @param $variables
+ * @param array $variables
+ *   The variables array.
  *
  * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
  * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
  */
-function atg_preprocess_paragraph__form_section(&$variables) {
+function atg_preprocess_paragraph__form_section(array &$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['elements']['#paragraph'];
   /** @var \Drupal\Core\Field\EntityReferenceFieldItemList $selected_forms */
@@ -223,13 +235,6 @@ function atg_preprocess_paragraph__form_section(&$variables) {
 
   $forms = [];
   foreach ($form_names as $form_name) {
-    // $form    = ContactForm::load($form_name);
-    // $message = \Drupal::entityTypeManager()
-    //     ->getStorage('contact_message')
-    //     ->create([
-    //         'contact_form' => $form->id()
-    //     ]);
-    // $view = \Drupal::service('entity.form_builder')->getForm($message);
     $form    = \Drupal::entityTypeManager()->getStorage('webform')->load($form_name);
     $builder = \Drupal::service('entity_type.manager')->getViewBuilder('webform');
     $view    = $builder->view($form);
@@ -268,24 +273,33 @@ function atg_preprocess_paragraph__form_section(&$variables) {
 }
 
 /**
- * PREPROCESS: NODE - DOWNLOADS
- * Add downloads search query to variables
+ * PREPROCESS: NODE - DOWNLOADS.
  *
- * @param $variables
+ * Add downloads search query to variables.
+ *
+ * @param array $variables
+ *   The variables array (modify in place).
  */
-function atg_preprocess_node__downloads(&$variables) {
+function atg_preprocess_node__downloads(array &$variables) {
   $variables['q'] = \Drupal::request()->get('q');
 }
 
 /**
- * FORM ALTER
- * Convert contact forms to use .form-grid classes
+ * FORM ALTER.
  *
- * @param $form
+ * Convert contact forms to use .form-grid classes.
+ *
+ * @param array $form
+ *   Nested array of form elements that comprise the form.
  * @param \Drupal\Core\Form\FormStateInterface $form_state
- * @param $form_id
+ *   The current state of the form. The arguments that
+ *   \Drupal::formBuilder()->getForm() was originally called with are available
+ *   in the array $form_state->getBuildInfo()['args'].
+ * @param string $form_id
+ *   A string that is the unique ID of the form, set by
+ *   Drupal\Core\Form\FormInterface::getFormId().
  */
-function atg_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+function atg_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
   $contact_form_names = array_keys(atg_get_form_icon_map());
 
   $contact_form_ids = array_map(function ($form_name) {
@@ -318,8 +332,10 @@ function atg_form_alter(&$form, FormStateInterface $form_state, $form_id) {
 }
 
 /**
- * GET FORM ICON
+ * GET FORM ICON.
+ *
  * Return the icon slug for a specific form machine name.
+ *
  * Slug should match filename of an icon in src/img/icons.
  *
  * @param string $form_name
@@ -328,6 +344,7 @@ function atg_form_alter(&$form, FormStateInterface $form_state, $form_id) {
  *   Default value to use if no form icon.
  *
  * @return mixed
+ *   Get icons for the contact form
  */
 function atg_get_form_icon($form_name, $default = NULL) {
   $currentLanguageId = \Drupal::languageManager()->getCurrentLanguage()->getId();
@@ -345,10 +362,12 @@ function atg_get_form_icon($form_name, $default = NULL) {
 }
 
 /**
- * GET FORM ICON MAP
+ * GET FORM ICON MAP.
+ *
  * Return the mapping of form names to icons.
  *
  * @return array
+ *   Get icons for the contact forms lookup
  */
 function atg_get_form_icon_map() {
   return [
@@ -369,10 +388,14 @@ function atg_get_form_icon_map() {
 }
 
 /**
- * Implements hook_theme_suggestions_page_alter() to set 4xx template suggestions.
+ * Implements hook_theme_suggestions_page_alter().
+ *
+ * Set 4xx template suggestions.
  *
  * @param array $suggestions
+ *   Suggestions.
  * @param array $variables
+ *   The variables array.
  */
 function atg_theme_suggestions_page_alter(array &$suggestions, array $variables) {
   // Get the route.
@@ -390,12 +413,14 @@ function atg_theme_suggestions_page_alter(array &$suggestions, array $variables)
 }
 
 /**
- * PREPROCESS: HTML
+ * PREPROCESS: HTML.
+ *
  * Add maintenance_mode variable to help simplify maintenance page.
  *
  * @param array $variables
+ *   The variables array (modify in place).
  */
-function atg_preprocess_html(&$variables) {
+function atg_preprocess_html(array &$variables) {
   $request                       = \Drupal::request();
   $maintenance_mode              = \Drupal::service('maintenance_mode');
   $route_match                   = RouteMatch::createFromRequest($request);
@@ -468,38 +493,27 @@ function atg_theme_suggestions_container_alter(&$suggestions, array $variables) 
 }
 
 /**
- * Implements hook_theme_suggestions_node_alter().
- *
- * New suggestions for the home page.
- */
-function atg_theme_suggestions_node_alter(array &$suggestions, array $variables) {
-  if ($node = \Drupal::routeMatch()->getParameter('node')) {
-    $node = $variables['elements']['#node'];
-    // Check if it's the home page content type node.
-    if ($node->getType() === 'home' && \Drupal::service('path.matcher')->isFrontPage()) {
-      $suggestions[] = 'node__homepage';
-    }
-  }
-}
-
-/**
  * Implements hook_preprocess_field().
  */
 function atg_preprocess_field(&$variables) {
   // Check if the field is industry solutions entity reference field.
   if ($variables['element']['#field_name'] == 'field_industry_solutions_home') {
     $referenced_entities = $variables['element']['#items']->referencedEntities();
+    $industry_solutions = [];
     foreach ($referenced_entities as $key => $item) {
       $home_industry_solns = $item->field_industry_solutions->referencedEntities();
-      foreach ($home_industry_solns as $industry_soln) {
-        $image = $industry_soln->field_industry_solutions_image->entity;
-        $industry_soln_image = $image->field_media_image->entity;
-        $industry_solutions[] = [
-          'industry_type' => (string) "Industry " . $item->getType(),
-          'title' => $item->title->value,
-          'description' => $industry_soln->field_industry_solutions_desc->value,
-          'image' => isset($industry_soln_image) ? $industry_soln_image->getFileUri() : '',
-        ];
+      if (!empty($home_industry_solns)) {
+        foreach ($home_industry_solns as $industry_soln) {
+          $image = $industry_soln->field_industry_solutions_image->entity;
+          $industry_soln_image = $image->field_media_image->entity;
+          $industry_solutions[] = [
+            'industry_type' => (string) "Industry " . $item->getType(),
+            'title' => $item->title->value,
+            'description' => $industry_soln->field_industry_solutions_desc->value,
+            'image' => isset($industry_soln_image) ? $industry_soln_image->getFileUri() : '',
+            'url' => $item->toUrl()->toString(),
+          ];
+        }
       }
     }
     $variables['industry_solutions'] = $industry_solutions;
