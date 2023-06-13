@@ -117,7 +117,7 @@ class RouteController extends ControllerBase {
    * @return \Drupal\Core\StringTranslation\TranslatableMarkup
    */
   public function productCatalogTitle() {
-    return $this->t('Product Catalog');
+    return $this->t('Tool Catalog');
   }
 
   /**
