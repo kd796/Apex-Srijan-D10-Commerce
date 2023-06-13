@@ -30,7 +30,7 @@ actions.step.api.autocomplete.field.products:
 
 # EN and GB Front-end Templates
 step.products.product_catalog:
-  path: /products/product-catalog
+  path: /tools/tool-catalog
   defaults:
     _controller: '\Drupal\cleco_vuejs\Controller\RouteController::productCatalog'
     _title_callback: '\Drupal\cleco_vuejs\Controller\RouteController::productCatalogTitle'
@@ -38,7 +38,7 @@ step.products.product_catalog:
     _permission: 'access content'
 
 step.products.product_single:
-  path: /products/product-catalog/{product}
+  path: /tools/tool-catalog/{product}
   defaults:
     _controller: '\Drupal\cleco_vuejs\Controller\RouteController::productSingle'
     _title_callback: '\Drupal\cleco_vuejs\Controller\RouteController::productSingleTitle'
@@ -58,7 +58,7 @@ step.search:
 # Note: Symfony 4 will support translated paths
 
 step.products.product_single_de:
-  path: /produkte/produktkatalog/{product}
+  path: /werkzeug/werkzeugkatalog/{product}
   defaults:
     _controller: '\Drupal\cleco_vuejs\Controller\RouteController::productSingle'
     _title_callback: '\Drupal\cleco_vuejs\Controller\RouteController::productSingleTitle'

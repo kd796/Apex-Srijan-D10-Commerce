@@ -16,7 +16,7 @@
 {% set sortOrder = order_filters() %}
 {# Localization Paths #}
 {% set locale = get_locale() %}
-{% set alias  = alias_by_path('/products/product-catalog', locale.code) %}
+{% set alias  = alias_by_path('/tools/tool-catalog', locale.code) %}
 
 <main class="main">
     <product-catalog
@@ -74,7 +74,7 @@
         <template slot="main" slot-scope="catalog">
             <header class="catalog-header">
                 <div class="catalog-header-primary">
-                    <h2 class="catalog-title">{{ 'Product Catalog' | t }}
+                    <h2 class="catalog-title">{{ 'Tool Catalog' | t }}
                         <span class="hmeta" v-if="catalog.total">({{ '{{ catalog.total }}' }})</span></h2>
                     <div class="catalog-sort">
                         <div class="form-bar">
