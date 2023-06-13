@@ -10,17 +10,24 @@
  */
 function apex_tools_preprocess_node__geo_directory(&$variables) {
   $subdivisions = \Drupal::service('address.subdivision_repository')->getList(['US']);
-  // Pass the options to the template.
   $default_state_option = [
     'value' => NULL,
     'label' => t('Select State'),
   ];
-  $variables['state_options'] = array_merge([$default_state_option], array_map(function ($stateCode, $stateName) {
-      return [
-        'value' => $stateName,
-        'label' => $stateName,
-      ];
-  }, array_keys($subdivisions), $subdivisions));
+
+  // Filter out unnecessary values.
+  $filteredOptions = array_filter(array_map(function ($stateCode, $stateName) {
+    return [
+      'value' => $stateName,
+      'label' => $stateName,
+    ];
+  }, array_keys($subdivisions), $subdivisions), function ($stateInfo) {
+    $stateName = $stateInfo['value'];
+    return (stripos($stateName, 'armed') === FALSE && stripos($stateName, 'district') !== 0);
+  });
+
+  $variables['state_options'] = array_merge([$default_state_option], $filteredOptions);
+
 }
 
 /**

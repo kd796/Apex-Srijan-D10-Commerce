@@ -1,6 +1,8 @@
-<div class="breadcrumb-wrap">
-	{{ page.breadcrumb }}
-</div>
+{% if page.breadcrumb %}
+  <div class="breadcrumb-wrap">
+    {{ page.breadcrumb }}
+  </div>
+{% endif %}
 {{ page.header }}
 <main class="main">
 	<section class="section">
