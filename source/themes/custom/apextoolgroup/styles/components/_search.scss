@@ -1,0 +1,83 @@
+.search-listing {
+  .search-heading {
+    font-size: $p;
+    padding-bottom: 24px;
+    border-bottom: solid 2px $black;
+  }
+
+  .views-row {
+    padding: 32px 0;
+    border-bottom: solid 2px $black;
+
+    .views-field-title {
+      font-size: $h2;
+      line-height: 27.41px;
+      margin-bottom: 18px;
+    }
+
+    .views-field-search-api-excerpt {
+      font-size: $p;
+      line-height: 22px;
+      font-weight: $light;
+    }
+  }
+
+  .pager {
+    margin-top: 50px;
+  }
+}
+
+.search-page-form {
+  .search-icon {
+    cursor: pointer;
+    background: url('#{$icon-base-path}/search.svg') right bottom no-repeat;
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    margin: 8px;
+    @media only screen and (max-width: $tablet)  {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  .close {
+    cursor: pointer;
+    background: url('#{$icon-base-path}/close-black.svg') right bottom no-repeat;
+    width: 32px;
+    height: 32px;
+    background-size: contain;
+    margin: 8px;
+    @media only screen and (max-width: $tablet)  {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  form {
+    width: 100%;
+  }
+
+  .search-overlay {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    border-bottom: solid 2px $black;
+    margin: 40px 0 72px;
+    @media only screen and (max-width: $tablet)  {
+      height: 50px;
+    }
+  }
+
+  &.block-views-exposed-filter-blockacquia-search-solr-acquia-solr-search {
+    .form-text {
+      color: $black;
+
+      &::placeholder {
+        color: $black;
+      }
+    }
+  }
+}

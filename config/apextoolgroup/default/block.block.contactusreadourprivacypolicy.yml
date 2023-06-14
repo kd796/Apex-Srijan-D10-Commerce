@@ -1,0 +1,28 @@
+uuid: cab09f7e-8249-4fa4-b325-686c9ac83aa9
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.contact_us_read_our_privacy_poli
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - apextoolgroup
+id: contactusreadourprivacypolicy
+theme: apextoolgroup
+region: content
+weight: -4
+provider: null
+plugin: 'fixed_block_content:contact_us_read_our_privacy_poli'
+settings:
+  id: 'fixed_block_content:contact_us_read_our_privacy_poli'
+  label: 'Contact US - Read Our Privacy Policy'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /contact-us/email-us

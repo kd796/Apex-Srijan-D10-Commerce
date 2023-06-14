@@ -1,0 +1,43 @@
+uuid: deb1c452-24de-466f-8e06-e4e3c8c1d182
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.testimonials.field_citation
+    - field.field.node.testimonials.field_quote
+    - node.type.testimonials
+  module:
+    - user
+id: node.testimonials.default
+targetEntityType: node
+bundle: testimonials
+mode: default
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  field_citation:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_quote:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

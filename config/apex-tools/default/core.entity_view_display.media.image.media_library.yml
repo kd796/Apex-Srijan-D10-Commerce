@@ -1,9 +1,10 @@
-uuid: 1862b5ec-2070-43de-85aa-7526850afec7
+uuid: 176cf424-7a30-415a-9497-c2a12c7e1ee7
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.media.media_library
+    - field.field.media.image.field_downloads_asset_id
     - field.field.media.image.field_media_image
     - image.style.medium
     - media.type.image
@@ -16,17 +17,28 @@ targetEntityType: media
 bundle: image
 mode: media_library
 content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
   thumbnail:
     type: image
-    weight: 0
-    region: content
     label: hidden
     settings:
-      image_style: medium
       image_link: ''
+      image_style: medium
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   created: true
+  field_downloads_asset_id: true
   field_media_image: true
+  langcode: true
   name: true
+  search_api_excerpt: true
   uid: true
+  uuid: true

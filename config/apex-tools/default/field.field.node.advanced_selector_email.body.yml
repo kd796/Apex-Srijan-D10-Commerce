@@ -1,0 +1,23 @@
+uuid: a3f70b12-5981-4365-9087-e7b80d562042
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.advanced_selector_email
+  module:
+    - text
+id: node.advanced_selector_email.body
+field_name: body
+entity_type: node
+bundle: advanced_selector_email
+label: Body
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

@@ -1,0 +1,20 @@
+uuid: b317c9fb-8d08-4417-bc2d-d9ad3238b916
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.downloads
+id: node.downloads.uid
+field_name: uid
+entity_type: node
+bundle: downloads
+label: 'Authored by'
+description: 'The username of the content author.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

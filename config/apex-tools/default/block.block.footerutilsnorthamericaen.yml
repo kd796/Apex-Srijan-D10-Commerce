@@ -1,0 +1,33 @@
+uuid: 32b4aca8-7f81-4299-819d-6e13fc1ac9e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer-utils
+  module:
+    - language
+    - system
+  theme:
+    - atg
+id: footerutilsnorthamericaen
+theme: atg
+region: footer_utils_nav
+weight: -13
+provider: null
+plugin: 'system_menu_block:footer-utils'
+settings:
+  id: 'system_menu_block:footer-utils'
+  label: 'Footer Utils (North America / EN)'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      en: en

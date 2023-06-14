@@ -1,0 +1,41 @@
+uuid: 8d50296a-4544-49e7-a699-5b9730ecd3a1
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.home.field_alternating_media_blocks
+    - field.field.node.home.field_callout_section_footer
+    - field.field.node.home.field_featured
+    - field.field.node.home.field_hero
+    - field.field.node.home.field_mailing_list_form
+    - field.field.node.home.field_seo
+    - field.field.node.home.field_testimonials_block
+    - node.type.home
+  module:
+    - user
+id: node.home.teaser
+targetEntityType: node
+bundle: home
+mode: teaser
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_alternating_media_blocks: true
+  field_callout_section_footer: true
+  field_featured: true
+  field_hero: true
+  field_mailing_list_form: true
+  field_seo: true
+  field_testimonials_block: true
+  langcode: true
+  search_api_excerpt: true

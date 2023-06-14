@@ -1,0 +1,20 @@
+uuid: dae90e51-52c6-41cb-acde-f1e18cb3889d
+langcode: en
+status: true
+dependencies:
+  module:
+    - language
+  theme:
+    - atg
+id: languageswitchercontent
+theme: atg
+region: header_language
+weight: 0
+provider: null
+plugin: 'language_block:language_content'
+settings:
+  id: 'language_block:language_content'
+  label: 'Language switcher (Content)'
+  label_display: '0'
+  provider: language
+visibility: {  }

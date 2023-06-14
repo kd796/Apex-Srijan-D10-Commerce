@@ -1,0 +1,364 @@
+<?php
+
+/**
+ * @file
+ * Contains at_migrations.module.
+ */
+
+use Drupal\migrate\MigrateSkipRowException;
+use Drupal\migrate\Plugin\MigrationInterface;
+use Drupal\migrate\Plugin\MigrateSourceInterface;
+use Drupal\migrate\Row;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\cleco_vuejs\Utils\StringHelper;
+use Drupal\node\Entity\Node;
+
+/**
+ * @file
+ * Primary module hooks for at_migrations module.
+ */
+
+/**
+ * Implements hook_migrate_prepare_row().
+ */
+function at_migrations_migrate_prepare_row(Row $row, MigrateSourceInterface $source, MigrationInterface $migration) {
+  // Atrribute ids considered for product soecification migration.
+  if ($migration->id() === 'at_product_specifications' || $migration->id() === 'at_product_specifications_de'
+    || $migration->id() === 'at_product_specifications_gb') {
+    $attributes_to_include = [
+      "att131",
+      "att781",
+      "att666982",
+      "att666981",
+      "att728095",
+      "att667216",
+      "att675276",
+      "att696024",
+      "att675249",
+      "asset.uploaded",
+      "asset.extension",
+      "asset.mime-type",
+      "asset.compression",
+      "asset.class",
+      "asset.pixel-width",
+      "asset.colorspace",
+      "asset.profile",
+      "asset.ydpi",
+      "asset.format",
+      "asset.pixel-height",
+      "asset.width",
+      "asset.height",
+      "asset.depth",
+      "asset.samples",
+      "asset.colors",
+      "asset.dsc-conformance",
+      "asset.creator",
+      "asset.filename",
+      "asset.extra-samples",
+      "asset.pages",
+      "asset.preview-format",
+      "asset.format-version",
+      "att661955",
+      "att667217",
+      "att667214",
+      "att666977",
+      "att666973",
+      "att666984",
+      "att666983",
+      "att675268",
+      "att675275",
+      "att326",
+      "att665735",
+      "att675252",
+      "att339",
+      "att667215",
+      "att672448",
+      "att26835",
+      "att675262",
+      "att675272",
+      "att728145",
+      "att678997",
+      "att675277",
+      "att678998",
+      "att675263",
+      "att675265",
+      "att728098",
+      "att728101",
+      "att675250",
+      "att666305",
+      "footnotes",
+      "att667017",
+      "att667014",
+      "att667022",
+      "att666186",
+      "att666323",
+      "att666296",
+      "att667008",
+      "att666324",
+      "att835",
+      "att533",
+      "att675356",
+      "att666309",
+      "att667223",
+      "att667221",
+      "att666136",
+      "att667222",
+      "att667000",
+      "att660052",
+      "att28147",
+      "att28148",
+      "att28581",
+      "att584487",
+      "att584486",
+      "att661950",
+      "att28572",
+      "att660051",
+      "att660049",
+      "att28567",
+      "att106",
+      "att102",
+      "att669754",
+      "weightsap",
+      "att241",
+      "att668491",
+      "att104",
+      "set",
+      "att420",
+      "att103",
+      "att728153",
+      "att101",
+      "att666187",
+      "att105",
+      "att669761",
+      "att28568",
+      "att100",
+      "att919",
+      "att669756",
+      "att669755",
+      "unitsofmeasure",
+      "distchannel",
+      "catalog number",
+      "divcode",
+      "baseunitofmeasure",
+      "downloads",
+      "spec_diagram",
+      "currencycode",
+      "salesorg",
+      "att539",
+      "brand",
+      "listprice",
+      "deliveryunit",
+      "att425",
+      "foreigntradecode",
+      "sap_description",
+      "customerprice",
+      "att676136",
+      "att107",
+      "att675376",
+      "att675267",
+      "att675361",
+      "att675266",
+      "att675375",
+      "att675264",
+      "att675357",
+      "att675251",
+      "att675362",
+      "att675366",
+      "att675358",
+      "att675359",
+      "att15738",
+      "att675369",
+      "att675368",
+      "att675367",
+      "att675365",
+      "att675364",
+      "att675374",
+      "att675247",
+      "att675363",
+      "att921",
+      "att675274",
+      "att675273",
+      "table sort order",
+      "att108",
+      "att675270",
+      "att675269",
+      "att675395",
+      "att675370",
+      "att675372",
+      "att675261",
+      "att675246",
+      "att180",
+      "att675244",
+      "att675371",
+      "att675396",
+      "att675243",
+      "att675355",
+      "att666190",
+      "att666293",
+      "att666308",
+      "att664440",
+      "att666329",
+      "att666304",
+      "att667030",
+      "att667001",
+      "att948",
+      "att662",
+      "att659133",
+      "att415",
+      "att584067",
+      "att584375",
+      "att659132",
+      "att621",
+      "att584377",
+      "att667029",
+      "att666142",
+      "att666320",
+      "att666176",
+      "att666310",
+      "att140",
+      "att28570",
+      "att666298",
+      "att666312",
+      "att666311",
+      "att666319",
+      "att667004",
+      "att667003",
+      "att667002",
+      "att667015",
+      "att667021",
+      "att667032",
+      "att667031",
+      "att666968",
+      "att666967",
+      "att344",
+      "att675544",
+      "att675545",
+      "sap material status",
+      "sap_sales_org_status",
+      "pro landing body",
+      "att666966",
+      "att666965",
+      "att667038",
+      "att109",
+      "att133",
+      "att708",
+      "att678995",
+      "att675402",
+      "att670138",
+      "att667039",
+      "att678745",
+      "att678757",
+      "att678840",
+      "att678838",
+      "att678833",
+      "att666180",
+      "att675405",
+      "att675403",
+      "att22562",
+      "att27860",
+      "att675542",
+      "att675562",
+      "att575",
+      "att675404",
+      "att666191",
+      "att667125",
+      "att17319",
+      "att139",
+      "att666289",
+      "att675543",
+      "att666137",
+      "att666300",
+      "att666322",
+      "att666316",
+      "att666328",
+      "att666292",
+      "att666303",
+      "att666302",
+      "att666291",
+      "att666294",
+      "att666138",
+      "att592",
+      "att666986",
+      "att667024",
+      "att485",
+      "att666988",
+      "att666299",
+      "att666318",
+      "att667036",
+      "att666175",
+      "att666177",
+      "att667033",
+      "att666181",
+      "att667007",
+      "att666188",
+      "att666325",
+      "att667025",
+      "att325",
+      "att669757",
+      "att666315",
+      "att666999",
+      "att728154",
+      "att728149",
+      "att728148",
+      "att728152",
+      "att728147",
+    ];
+
+    if (!in_array(strtolower($row->getSource()['remote_term_id']), array_map('strtolower', $attributes_to_include))) {
+      throw new MigrateSkipRowException('', TRUE);
+    }
+
+  }
+
+  // Pass ID data to the Name on missing name data.
+  if ($migration->id() === 'at_product_media' || $migration->id() === 'at_product_media_de'
+    || $migration->id() === 'at_product_media_gb') {
+    $name = $row->getSourceProperty('asset_name');
+    $id = $row->getSourceProperty('asset_id');
+    if (empty($name)) {
+      $row->setSourceProperty('asset_name', $id);
+    }
+  }
+
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function at_migrations_entity_presave(EntityInterface $entity) {
+  if ($entity instanceof Node && ($entity->bundle() == 'product' || $entity->bundle() == 'enhanced_product')) {
+    $calculated_slug = '';
+    if ($entity->hasField('field_long_description')) {
+      $coupon_heading = !empty($entity->get('field_long_description')->getValue()[0]) ? $entity->get('field_long_description')->getValue()[0]['value'] : '';
+      $calculated_slug = StringHelper::createSlug((string) $coupon_heading);
+    }
+    // If field_long_description is not available, use title as fallback.
+    if (!$calculated_slug) {
+      $calculated_slug = StringHelper::createSlug($entity->getTitle());
+    }
+
+    if (!$calculated_slug) {
+      return;
+    }
+
+    $lang = $entity->language()->getId();
+    // Check if we have any other product with same slug.
+    $query = \Drupal::entityQuery('node')
+      ->condition('field_slug', $calculated_slug, '=')
+      ->condition('nid', $entity->id(), '!=')
+      ->condition('langcode', $lang);
+    $nids = $query->execute();
+    $count = 1;
+    $slug = $calculated_slug;
+    // Loop until we have a unique value.
+    while ($nids) {
+      $slug = $calculated_slug . '-' . $count++;
+      $query = \Drupal::entityQuery('node')
+        ->condition('field_slug', $slug, '=')
+        ->condition('nid', $entity->id(), '!=')
+        ->condition('langcode', $lang);
+      $nids = $query->execute();
+    }
+    $entity->set('field_slug', $slug);
+  }
+}

@@ -1,0 +1,111 @@
+/****** featured Products detail page ******/
+
+.basic-image-content {
+  display: flex;
+  width: 100%;
+  padding-bottom: 55px;
+  margin-bottom: 25px;
+  font-size: 16px;
+
+  @media only screen and (max-width: $tablet-max) {
+    flex-direction: column-reverse;
+  }
+
+  &.left-image {
+    @media only screen and (min-width: $tablet-max) {
+      flex-direction: row-reverse;
+    }
+
+    .main-image {
+      @media only screen and (min-width: $tablet-max) {
+        margin-right: 20px;
+      }
+    }
+  }
+
+  &.right-image {
+    .main-image {
+      @media only screen and (min-width: $tablet-max) {
+        margin-left: 20px;
+      }
+    }
+  }
+
+  .main-image {
+    width: 40%;
+    @media only screen and (max-width: $tablet-max) {
+      width: 100%;
+      margin-bottom: 16px;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  .text-section {
+    width: 60%;
+    @media only screen and (max-width: $tablet-max) {
+      width: 100%;
+    }
+
+    p {
+      text-align: justify;
+    }
+
+    ul {
+      list-style-type: disc;
+      color: $black;
+      padding-left: 20px;
+    }
+  }
+}
+
+.headline {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $celtic-blue;
+  }
+}
+
+// Womwn in tools.
+.block-fixed-block-contentwomen-in-tools-banner {
+  margin-bottom: 50px;
+}
+
+.image-grid {
+  @media only screen and (min-width: $tablet-max) {
+    padding: 0;
+    margin-bottom: 32px;
+  }
+  @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+    margin-bottom: 16px;
+  }
+
+  .field__items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    column-gap: 13px;
+    @media only screen and (max-width: $tablet-max) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media only screen and (max-width: $tablet) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  .field__item {
+    img {
+      @media only screen and (max-width: $tablet-max) {
+        width: 100%;
+        margin-bottom: 16px;
+      }
+    }
+  }
+}

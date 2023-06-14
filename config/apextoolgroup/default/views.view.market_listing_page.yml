@@ -7,7 +7,9 @@ dependencies:
     - field.storage.node.field_short_description
     - field.storage.node.field_weight
     - node.type.markets
+    - responsive_image.styles.markets_landing
   module:
+    - media_responsive_thumbnail
     - node
     - text
     - user
@@ -77,9 +79,10 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
-          type: entity_reference_entity_view
+          type: media_responsive_thumbnail
           settings:
-            view_mode: embed
+            responsive_image_style: markets_landing
+            image_link: ''
           group_column: target_id
           group_columns: {  }
           group_rows: true

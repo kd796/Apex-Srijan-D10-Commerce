@@ -1,0 +1,37 @@
+uuid: 49c1ce51-9b6f-4078-83b6-31b6fee06362
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.card.field_card_type
+    - node.type.card
+  module:
+    - entity_reference_revisions
+    - user
+id: node.card.default
+targetEntityType: node
+bundle: card
+mode: default
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  field_card_type:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

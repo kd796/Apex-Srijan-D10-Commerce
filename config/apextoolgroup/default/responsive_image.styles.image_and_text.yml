@@ -1,0 +1,25 @@
+uuid: 475ad479-cd0f-48c9-abaf-2c698d7cc37d
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.image_436x272
+    - image.style.image_and_text_mobile
+    - image.style.image_and_text_tablet
+  theme:
+    - apextoolgroup
+id: image_and_text
+label: 'Image and text'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: image_and_text_tablet
+    breakpoint_id: apextoolgroup.tablet
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: image_and_text_mobile
+    breakpoint_id: apextoolgroup.mobile
+    multiplier: 1x
+breakpoint_group: apextoolgroup
+fallback_image_style: image_436x272

@@ -1,0 +1,118 @@
+uuid: 83e4a789-69e5-40b3-8a48-be574540d521
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.email_us.field_atg_email
+    - field.field.node.email_us.field_country_code
+    - field.field.node.email_us.field_form_type
+    - field.field.node.email_us.field_state_code
+    - field.field.node.email_us.field_unique_feed_id
+    - node.type.email_us
+  module:
+    - feeds_tamper
+    - node
+third_party_settings:
+  feeds_tamper:
+    tampers: {  }
+label: 'Email Us'
+id: email_us
+description: 'Content import into email_us content type.'
+help: ''
+import_period: -1
+fetcher: upload
+fetcher_configuration:
+  allowed_extensions: csv
+  directory: 'private://feeds'
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  values:
+    type: email_us
+  langcode: en
+  insert_new: 1
+  update_existing: 2
+  update_non_existent: _keep
+  skip_hash_check: false
+  authorize: false
+  revision: true
+  expire: -1
+  owner_feed_author: false
+  owner_id: 1
+custom_sources:
+  country:
+    value: Country
+    label: Country
+    machine_name: country
+    type: csv
+  state:
+    value: State
+    label: State
+    machine_name: state
+    type: csv
+  atg_email:
+    value: 'ATG Email'
+    label: 'ATG Email'
+    machine_name: atg_email
+    type: csv
+  country_number:
+    value: 'Country Number'
+    label: 'Country Number'
+    machine_name: country_number
+    type: csv
+  unique_id:
+    value: 'Unique ID'
+    label: 'Unique ID'
+    machine_name: unique_id
+    type: csv
+  form_types:
+    value: 'Form Types'
+    label: 'Form Types'
+    machine_name: form_types
+    type: csv
+mappings:
+  -
+    target: title
+    map:
+      value: country_number
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_state_code
+    map:
+      value: state
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_atg_email
+    map:
+      value: atg_email
+    settings:
+      language: null
+  -
+    target: field_country_code
+    map:
+      value: country
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_unique_feed_id
+    map:
+      value: unique_id
+    settings:
+      language: null
+    unique:
+      value: '1'
+  -
+    target: field_form_type
+    map:
+      value: form_types
+    settings:
+      language: null

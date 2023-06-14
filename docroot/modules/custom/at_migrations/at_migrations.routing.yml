@@ -1,0 +1,15 @@
+at_migrations.productlisting:
+  path: '/product-listing'
+  defaults:
+    _title: 'Products Listing'
+    _controller: '\Drupal\at_migrations\Controller\AtCommonController::productsListing'
+  requirements:
+    _permission: 'access content'
+
+at_migrations.productdetails:
+  path: '/product-details'
+  defaults:
+    _title: 'Products Details'
+    _controller: '\Drupal\at_migrations\Controller\AtCommonController::productsDetails'
+  requirements:
+    _permission: 'access content'

@@ -9,7 +9,9 @@ dependencies:
     - field.field.paragraph.image_and_text.field_headline
     - field.field.paragraph.image_and_text.field_small_featured_image
     - paragraphs.paragraphs_type.image_and_text
+    - responsive_image.styles.image_and_text
   module:
+    - media_responsive_thumbnail
     - options
     - text
 id: paragraph.image_and_text.default
@@ -32,11 +34,11 @@ content:
     weight: 4
     region: content
   field_featured_image:
-    type: entity_reference_entity_view
+    type: media_responsive_thumbnail
     label: hidden
     settings:
-      view_mode: embed
-      link: false
+      responsive_image_style: image_and_text
+      image_link: ''
     third_party_settings: {  }
     weight: 0
     region: content

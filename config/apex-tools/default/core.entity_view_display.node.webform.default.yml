@@ -1,0 +1,45 @@
+uuid: 3bbd4a6b-c2bf-40c4-9d89-48b92cfd70a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.webform.field_hero
+    - field.field.node.webform.webform
+    - node.type.webform
+  module:
+    - entity_reference_revisions
+    - user
+    - webform
+_core:
+  default_config_hash: 3r1i0UMUbeNHhvmiqHDYznoS4G9XR1jq6lQ49r80lDE
+id: node.webform.default
+targetEntityType: node
+bundle: webform
+mode: default
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  field_hero:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  webform:
+    type: webform_entity_reference_entity_view
+    label: hidden
+    settings:
+      source_entity: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true
+  links: true
+  search_api_excerpt: true

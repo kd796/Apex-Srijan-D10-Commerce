@@ -1,0 +1,33 @@
+uuid: 66c74ce8-4823-4b0f-8d35-db3439960811
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer-utils--de
+  module:
+    - language
+    - system
+  theme:
+    - apex_tools
+id: footerutilseuropede_2
+theme: apex_tools
+region: footer_utils_nav
+weight: 0
+provider: null
+plugin: 'system_menu_block:footer-utils--de'
+settings:
+  id: 'system_menu_block:footer-utils--de'
+  label: 'Footer Utils (Europe / DE)'
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      de: de

@@ -1,0 +1,55 @@
+.interior {
+  background: $color-white;
+  padding: 3em 0;
+  margin: -1px 0;
+
+  @media only screen and (max-width: $media-screen-tablet) {
+    padding: 1em;
+  }
+
+  h1 {
+    line-height: 1;
+    padding: 0 0 0.5em;
+    margin: 0 0 0.5em;
+    border-bottom: 3px solid #e5e5e5;
+  }
+
+  &.catalog {
+    padding-top: 0;
+
+    .litblock {
+      .file a {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.litblocks {
+  border-bottom: 2px solid #e5e5e5;
+  @media only screen and (max-width: $media-screen-tablet) {
+    border-bottom: 0;
+  }
+}
+
+.litblock {
+  display: inline-block;
+  width: 18%;
+  padding: 0 0.25em;
+  font-size: 14px !important;
+  text-align: center;
+  margin-bottom: 1rem;
+  vertical-align: top;
+
+  img {
+    border: 3px solid #e5e5e5;
+    margin-bottom: 0.5em;
+  }
+
+  .file a {
+    color: $color-orange;
+    font-size: 11px;
+    font-weight: normal;
+    margin: 0;
+  }
+}
