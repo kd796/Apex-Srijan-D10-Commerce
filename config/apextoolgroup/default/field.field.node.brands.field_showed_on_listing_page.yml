@@ -1,0 +1,23 @@
+uuid: 60459227-cf17-4f79-adf3-1468c098cfcf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_showed_on_listing_page
+    - node.type.brands
+id: node.brands.field_showed_on_listing_page
+field_name: field_showed_on_listing_page
+entity_type: node
+bundle: brands
+label: 'Skip Brand Detail'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

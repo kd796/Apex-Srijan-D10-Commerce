@@ -1,0 +1,28 @@
+uuid: 28f7b962-ad9b-4916-860f-5d5f32906b89
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.site_map_banner
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - apextoolgroup
+id: sitemapbanner
+theme: apextoolgroup
+region: pre_content
+weight: 0
+provider: null
+plugin: 'fixed_block_content:site_map_banner'
+settings:
+  id: 'fixed_block_content:site_map_banner'
+  label: 'Site Map Banner'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /sitemap

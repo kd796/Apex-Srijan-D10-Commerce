@@ -1,0 +1,28 @@
+uuid: 10cd9fc4-c374-4fc4-bd05-e5f3dd13846a
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.women_in_tools_images
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - apextoolgroup
+id: womenintoolsimages
+theme: apextoolgroup
+region: post_content
+weight: 0
+provider: null
+plugin: 'fixed_block_content:women_in_tools_images'
+settings:
+  id: 'fixed_block_content:women_in_tools_images'
+  label: 'Women in Tools Images'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /womenintools

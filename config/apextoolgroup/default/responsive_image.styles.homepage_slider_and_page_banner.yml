@@ -1,0 +1,25 @@
+uuid: 0ab72455-3ddd-4beb-b83f-df15eac39637
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.homepage_slider
+    - image.style.homepage_slider_mobile
+    - image.style.homepage_slider_tablet
+  theme:
+    - apextoolgroup
+id: homepage_slider_and_page_banner
+label: Banner
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: homepage_slider_tablet
+    breakpoint_id: apextoolgroup.tablet
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: homepage_slider_mobile
+    breakpoint_id: apextoolgroup.mobile
+    multiplier: 1x
+breakpoint_group: apextoolgroup
+fallback_image_style: homepage_slider

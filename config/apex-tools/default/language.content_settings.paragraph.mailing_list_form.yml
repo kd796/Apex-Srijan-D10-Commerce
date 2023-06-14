@@ -1,0 +1,18 @@
+uuid: 3d6b6a62-6f37-422a-8396-9be42a0368df
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.mailing_list_form
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: paragraph.mailing_list_form
+target_entity_type_id: paragraph
+target_bundle: mailing_list_form
+default_langcode: site_default
+language_alterable: false

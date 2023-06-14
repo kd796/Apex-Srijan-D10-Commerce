@@ -1,4 +1,4 @@
-uuid: 772fb389-e919-403a-a661-67303a16444a
+uuid: ac65da97-3b0a-4b1d-b9d9-9773c2c49329
 langcode: en
 status: true
 dependencies:
@@ -16,17 +16,27 @@ targetEntityType: media
 bundle: video
 mode: media_library
 content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
   thumbnail:
     type: image
-    weight: 0
-    region: content
     label: hidden
     settings:
-      image_style: thumbnail
       image_link: ''
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   created: true
   field_media_video_file: true
+  langcode: true
   name: true
+  search_api_excerpt: true
   uid: true
+  uuid: true

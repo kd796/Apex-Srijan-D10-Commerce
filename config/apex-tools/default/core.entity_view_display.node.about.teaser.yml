@@ -1,0 +1,41 @@
+uuid: 563879f9-875c-425f-a76c-2963b1822ee3
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.about.field_forms
+    - field.field.node.about.field_hero
+    - field.field.node.about.field_mailing_list_form
+    - field.field.node.about.field_page_content
+    - field.field.node.about.field_page_intro
+    - field.field.node.about.field_seo
+    - field.field.node.about.field_video
+    - node.type.about
+  module:
+    - user
+id: node.about.teaser
+targetEntityType: node
+bundle: about
+mode: teaser
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_forms: true
+  field_hero: true
+  field_mailing_list_form: true
+  field_page_content: true
+  field_page_intro: true
+  field_seo: true
+  field_video: true
+  langcode: true
+  search_api_excerpt: true

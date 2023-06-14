@@ -1,12 +1,11 @@
-uuid: f91c6b1c-a6ee-4446-9dd7-8130d5bd74b3
+uuid: 110dca77-82ea-4eb2-8712-45884595811c
 langcode: en
 status: true
 dependencies:
   module:
     - editor
-    - linkit
 _core:
-  default_config_hash: nguwrbjqwWwKKkKNEsIb9kj6w-OImLmYsGgc5yR2nV4
+  default_config_hash: hewPmBgni9jlDK_IjLxUx1HsTbinK-hdl0lOwjbteIY
 name: 'Full HTML'
 format: full_html
 weight: 1
@@ -41,13 +40,6 @@ filters:
     status: false
     weight: -10
     settings:
-      allowed_html: '<em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <s> <sup> <sub> <a href hreflang data-entity-substitution data-entity-type data-entity-uuid title> <img src alt data-entity-type data-entity-uuid data-align data-caption> <table> <caption> <tbody> <thead> <tfoot> <th> <td> <tr> <hr> <p> <h1> <pre>'
+      allowed_html: '<a href hreflang> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <s> <sup> <sub> <img src alt data-entity-type data-entity-uuid data-align data-caption> <p> <h1> <pre>'
       filter_html_help: true
       filter_html_nofollow: false
-  linkit:
-    id: linkit
-    provider: linkit
-    status: true
-    weight: 0
-    settings:
-      title: true

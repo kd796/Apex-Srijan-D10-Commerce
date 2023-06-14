@@ -1,0 +1,136 @@
+uuid: f38cdac2-2603-4460-9b1f-27cd62e4131e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.company_locations.feeds_item
+    - field.field.node.company_locations.field_address
+    - field.field.node.company_locations.field_geographic_data
+    - field.field.node.company_locations.field_phone
+    - field.field.node.company_locations.field_term_continent
+    - field.field.node.company_locations.field_term_department
+    - field.field.node.company_locations.field_uuid
+    - node.type.company_locations
+  module:
+    - geocoder_address
+    - geofield
+    - user
+id: node.company_locations.default
+targetEntityType: node
+bundle: company_locations
+mode: default
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  field_address:
+    type: geocoder_address
+    label: hidden
+    settings:
+      plugins:
+        arcgisonline:
+          weight: '0'
+          checked: 0
+        bingmaps:
+          weight: '0'
+          checked: 0
+        file:
+          weight: '0'
+          checked: 0
+        freegeoip:
+          weight: '0'
+          checked: 0
+        geoplugin:
+          weight: '0'
+          checked: 0
+        geoip:
+          weight: '0'
+          checked: 0
+        geonames:
+          weight: '0'
+          checked: 0
+        googlemaps:
+          checked: '1'
+          weight: '0'
+        googlemaps_business:
+          weight: '0'
+          checked: 0
+        hostip:
+          weight: '0'
+          checked: 0
+        ipinfodb:
+          weight: '0'
+          checked: 0
+        mapquest:
+          weight: '0'
+          checked: 0
+        maxmind:
+          weight: '0'
+          checked: 0
+        nominatim:
+          weight: '0'
+          checked: 0
+        opencage:
+          weight: '0'
+          checked: 0
+        openstreetmap:
+          weight: '0'
+          checked: 0
+        random:
+          weight: '0'
+          checked: 0
+        tomtom:
+          weight: '0'
+          checked: 0
+        yandex:
+          weight: '0'
+          checked: 0
+      dumper: geojson
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_geographic_data:
+    type: geofield_default
+    label: above
+    settings:
+      output_format: wkt
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_phone:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_term_continent:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_term_department:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  feeds_item: true
+  field_uuid: true
+  langcode: true
+  search_api_excerpt: true
+  uuid: true

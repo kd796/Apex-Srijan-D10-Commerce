@@ -27,11 +27,28 @@ body {
   }
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: $normal;
+}
+
 .h1,
 h1 {
   font-size: $h1;
-  font-weight: $normal;
   line-height: 56px;
+  margin-bottom: 30px;
   @media only screen and (max-width: $tablet) {
     font-size: 24px;
     line-height: 34px;
@@ -41,26 +58,23 @@ h1 {
 .h2,
 h2 {
   font-size: $h2;
-  font-weight: $semi-bold;
+  line-height: 29.05px;
 }
 
 .h3,
 h3 {
   font-size: $h3;
-  font-weight: $semi-bold;
 }
 
 .h4,
 h4 {
   font-size: $h4;
   line-height: 1.25;
-  font-weight: $semi-bold;
 }
 
 .h5,
 h5 {
   font-size: $h5;
-  font-weight: $semi-bold;
 }
 
 .h6,
@@ -72,12 +86,131 @@ h6 {
 p {
   font-size: $p;
   line-height: 25.2px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  word-break: break-word;
+}
+
+table {
+  font-size: $p;
+  line-height: 25.2px;
 }
 
 a {
   text-decoration: none;
   color: $celtic-blue;
   transition: .2s ease-out;
+}
+
+.text-formatted {
+  a {
+    text-decoration: underline;
+  }
+
+  strong {
+    margin: 0;
+    padding: 0;
+    color: $black;
+    font-weight: 700;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0 0 18px 15px;
+
+    @media only screen and(max-width: $tablet) {
+      margin: 0 0 16px 15px;
+    }
+
+    li {
+      padding: 0;
+      margin: 0 0 10px;
+      list-style: disc;
+
+      ul {
+        margin: 18px 0 18px 25px;
+
+        @media only screen and(max-width: $tablet) {
+          margin: 16px 0 16px 20px;
+        }
+
+        li {
+          padding: 0;
+          margin: 0 0 10px;
+          list-style: circle;
+        }
+      }
+    }
+  }
+
+  table {
+    display: block;
+    width: 100%;
+    max-width: fit-content;
+    @media only screen and (max-width: $tablet-max) {
+      width: 730px;
+    }
+    @media only screen and (max-width: $tablet) {
+      width: 330px;
+    }
+
+    tbody {
+      display: block;
+      overflow-x: auto;
+      min-width: 100%;
+
+      tr {
+        min-width: 100%;
+        display: inline-block;
+      }
+
+      td {
+        min-width: 350px;
+        padding-right: 20px;
+        word-break: break-word;
+        vertical-align: baseline;
+        @media only screen and (max-width: $tablet-max) {
+          min-width: 330px;
+        }
+        @media only screen and (max-width: $tablet) {
+          min-width: 280px;
+        }
+      }
+    }
+  }
+
+  ol {
+    list-style: decimal;
+    margin: 0 0 18px 15px;
+
+    li {
+      padding-left: 5px;
+    }
+  }
+}
+
+.sitemap {
+  .block-page-title-block {
+    padding-left: 0;
+    padding-right: 0;
+
+    .page-title {
+      margin-top: 25px;
+    }
+  }
+}
+
+.sitemap-item {
+  padding: 16px;
+  background-color: $beluga;
+
+  ul {
+    li {
+      a {
+        text-decoration: none;
+      }
+    }
+  }
 }
 
 ol,
@@ -91,4 +224,53 @@ ul {
   }
 }
 
+summary {
+  padding: 0;
+  color: $black;
+  font-size: $h5;
+  font-weight: 400;
+  line-break: 25.2px;
+  font-family: $nacelle;
+  @media only screen and(max-width: $desktop) {
+    font-size: $p;
+  }
+}
 
+input[type='checkbox'] {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 0;
+}
+
+legend,
+legend .fieldset-legend,
+label {
+  font-size: $p;
+  color: $black;
+  line-height: 22.4px;
+  font-weight: $normal;
+  font-family: $nacelle;
+}
+
+input,
+textarea {
+  &::placeholder {
+    font-size: $p;
+    color: $black;
+    line-height: 22.4px;
+    font-weight: $normal;
+    font-family: $nacelle;
+  }
+}
+
+img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+input[type='radio'] {
+  width: 20px;
+  height: 20px;
+}

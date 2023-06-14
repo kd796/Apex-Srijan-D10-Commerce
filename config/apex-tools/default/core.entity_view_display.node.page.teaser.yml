@@ -1,101 +1,47 @@
-uuid: e19f727e-0b82-4793-9806-edec8a3721db
+uuid: 8d02f2bc-655a-423e-8cd2-3c16db32c985
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.page.body
-    - field.field.node.page.field_components
-    - field.field.node.page.field_media
-    - field.field.node.page.field_meta_tags
-    - image.style.small_1x1
+    - field.field.node.page.field_faqs_section
+    - field.field.node.page.field_hero
+    - field.field.node.page.field_mailing_list_form
+    - field.field.node.page.field_seo
     - node.type.page
   module:
-    - blazy
-    - smart_trim
+    - text
     - user
 _core:
-  default_config_hash: UDLaRNf0Y6Ip7i48hyinduYv4c-goGdKzRShKxx40L4
+  default_config_hash: cSv5lDnbIgDug475Hdz3woED2XMqYv3awI-J9u1JLbY
 id: node.page.teaser
 targetEntityType: node
 bundle: page
 mode: teaser
 content:
   body:
-    label: hidden
-    type: smart_trim
-    weight: 1
-    region: content
-    settings:
-      trim_length: 200
-      trim_type: chars
-      trim_suffix: ''
-      wrap_class: trimmed
-      more_text: More
-      more_class: more-link
-      summary_handler: full
-      trim_options:
-        text: true
-        trim_zero: false
-      wrap_output: false
-      more_link: false
-    third_party_settings: {  }
-  field_media:
-    type: blazy_media
-    weight: 0
-    region: content
+    type: text_summary_or_trimmed
     label: hidden
     settings:
-      image_style: small_1x1
-      thumbnail_style: ''
-      responsive_image_style: ''
-      media_switch: ''
-      ratio: ''
-      sizes: ''
-      breakpoints:
-        xs:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-        sm:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-        md:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-        lg:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-        xl:
-          image_style: ''
-          width: ''
-          breakpoint: ''
-      current_view_mode: teaser
-      background: false
-      caption:
-        title: '0'
-        alt: '0'
-      iframe_lazy: true
-      icon: ''
-      layout: ''
-      view_mode: ''
-      cache: 0
-      optionset: default
-      skin: ''
-      style: ''
-      box_caption: ''
-      box_caption_custom: ''
-      box_style: ''
-      box_media_style: ''
-      grid: 0
-      grid_header: ''
-      grid_medium: 0
-      grid_small: 0
+      trim_length: 600
     third_party_settings: {  }
+    weight: 100
+    region: content
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
 hidden:
-  field_components: true
-  field_meta_tags: true
-  links: true
+  field_faqs_section: true
+  field_hero: true
+  field_mailing_list_form: true
+  field_seo: true
+  langcode: true
+  search_api_excerpt: true

@@ -1,0 +1,35 @@
+uuid: 16604908-72a8-4d31-bd4b-6007cda760c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.message_block.field_body_basic
+    - field.field.paragraph.message_block.field_title
+    - paragraphs.paragraphs_type.message_block
+  module:
+    - text
+id: paragraph.message_block.default
+targetEntityType: paragraph
+bundle: message_block
+mode: default
+content:
+  field_body_basic:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

@@ -1,0 +1,25 @@
+uuid: cbfe437d-1d4a-4083-80a4-174204d41fe5
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.markets_landing_desktop
+    - image.style.markets_landing_mobile
+    - image.style.markets_landing_tablet
+  theme:
+    - apextoolgroup
+id: markets_landing
+label: 'Markets Landing'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: markets_landing_tablet
+    breakpoint_id: apextoolgroup.tablet
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: markets_landing_mobile
+    breakpoint_id: apextoolgroup.mobile
+    multiplier: 1x
+breakpoint_group: apextoolgroup
+fallback_image_style: markets_landing_desktop

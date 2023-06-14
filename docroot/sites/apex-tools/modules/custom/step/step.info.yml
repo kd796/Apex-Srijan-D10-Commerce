@@ -1,0 +1,11 @@
+name: STEP
+description: STEP Stibo data indexing. This plugin parses STEP's XML file and creates ElasticSearch Indices as well as storing data in the CMS.
+package: Custom
+type: module
+version: 1.1
+#core: 8.x
+core_version_requirement: ^8 || ^9
+
+libraries:
+  - step/styles
+

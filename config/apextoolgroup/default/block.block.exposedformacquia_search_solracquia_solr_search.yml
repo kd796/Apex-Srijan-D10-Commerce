@@ -1,0 +1,23 @@
+uuid: 9e8e48fa-b479-4395-b6bf-31307df8a73b
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.acquia_search_solr
+  module:
+    - views
+  theme:
+    - apextoolgroup
+id: exposedformacquia_search_solracquia_solr_search
+theme: apextoolgroup
+region: search
+weight: 0
+provider: null
+plugin: 'views_exposed_filter_block:acquia_search_solr-acquia_solr_search'
+settings:
+  id: 'views_exposed_filter_block:acquia_search_solr-acquia_solr_search'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+visibility: {  }

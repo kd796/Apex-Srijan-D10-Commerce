@@ -4,6 +4,12 @@ footer {
   padding: 40px 0;
   box-shadow: 0 -6px 20px -10px rgba(0, 0, 0, 0.25);
 
+  &.hide-content {
+    @media only screen and (max-width: $tablet-max)  {
+      display: none;
+    }
+  }
+
   h2 {
     font-size: 14px;
     line-height: 20px;
@@ -34,11 +40,14 @@ footer {
 
   .region-footer-third {
     margin-bottom: 0;
-    @media only screen and (min-width: $tablet)  {
-      position: absolute;
-      right: 15px;
-      bottom: 0;
-      text-align: right;
+
+    #block-copyrights {
+      @media only screen and (min-width: $tablet)  {
+        position: absolute;
+        right: 15px;
+        bottom: 0;
+        text-align: right;
+      }
     }
   }
 
@@ -48,6 +57,33 @@ footer {
       font-size: 10px;
       line-height: 14px;
       margin: 0;
+    }
+  }
+
+  .view-footer-social-block {
+    @media only screen and (max-width: $tablet)  {
+      margin: 20px 0 30px;
+    }
+
+    .view-content {
+      display: flex;
+      @media only screen and (min-width: $tablet)  {
+        justify-content: flex-end;
+      }
+    }
+
+    .views-row {
+      margin-right: 16px;
+      @media only screen and (min-width: $tablet-max)  {
+        margin-left: 16px;
+        margin-right: 0;
+      }
+
+      img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+      }
     }
   }
 }
