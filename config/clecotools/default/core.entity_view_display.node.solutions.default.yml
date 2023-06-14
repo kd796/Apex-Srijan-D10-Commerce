@@ -10,11 +10,13 @@ dependencies:
     - field.field.node.solutions.field_find_a_distributor
     - field.field.node.solutions.field_forms
     - field.field.node.solutions.field_hero
+    - field.field.node.solutions.field_industry_solutions
     - field.field.node.solutions.field_mailing_list_form
     - field.field.node.solutions.field_seo
     - field.field.node.solutions.field_webform
     - node.type.solutions
   module:
+    - edit_uuid
     - entity_reference_revisions
     - metatag
     - user
@@ -27,38 +29,37 @@ content:
   content_moderation_control:
     settings: {  }
     third_party_settings: {  }
-    weight: 0
+    weight: 10
     region: content
   field_alternating_media_blocks:
     type: entity_reference_revisions_entity_view
-    label: hidden
+    label: above
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 3
+    weight: 1
     region: content
   field_callout_section_footer:
     type: entity_reference_revisions_entity_view
-    label: hidden
+    label: above
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 9
+    weight: 2
     region: content
   field_card:
-    type: entity_reference_entity_view
-    label: hidden
+    type: entity_reference_label
+    label: above
     settings:
-      view_mode: full
-      link: false
+      link: true
     third_party_settings: {  }
-    weight: 7
+    weight: 3
     region: content
   field_featured_products:
     type: entity_reference_revisions_entity_view
-    label: hidden
+    label: above
     settings:
       view_mode: default
       link: ''
@@ -67,37 +68,37 @@ content:
     region: content
   field_find_a_distributor:
     type: entity_reference_revisions_entity_view
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    weight: 8
-    region: content
-  field_forms:
-    type: entity_reference_revisions_entity_view
-    label: hidden
+    label: above
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
     weight: 5
     region: content
-  field_hero:
+  field_forms:
     type: entity_reference_revisions_entity_view
-    label: hidden
+    label: above
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 2
+    weight: 6
+    region: content
+  field_hero:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 7
     region: content
   field_seo:
     type: metatag_empty_formatter
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 10
+    weight: 8
     region: content
   field_webform:
     type: webform_entity_reference_entity_view
@@ -105,14 +106,22 @@ content:
     settings:
       source_entity: true
     third_party_settings: {  }
-    weight: 6
+    weight: 9
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 1
+    weight: 11
+    region: content
+  uuid:
+    type: edit_uuid
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
     region: content
 hidden:
+  field_industry_solutions: true
   field_mailing_list_form: true
   langcode: true
   search_api_excerpt: true
