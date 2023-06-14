@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the cleco theme.
+ */
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function atg_preprocess_field(&$variables) {
+  // Check if the field is industry solutions entity reference field.
+  if ($variables['element']['#field_name'] == 'field_industry_solutions_home') {
+    $referenced_entities = $variables['element']['#items']->referencedEntities();
+    $industry_solutions = [];
+    foreach ($referenced_entities as $key => $item) {
+      $home_industry_solns = $item->field_industry_solutions->referencedEntities();
+      if (!empty($home_industry_solns)) {
+        foreach ($home_industry_solns as $industry_soln) {
+          $image = $industry_soln->field_industry_solutions_image->entity;
+          $industry_soln_image = $image->field_media_image->entity;
+          $industry_solutions[] = [
+            'industry_type' => (string) "Industry " . $item->getType(),
+            'title' => $item->title->value,
+            'description' => $industry_soln->field_industry_solutions_desc->value,
+            'image' => isset($industry_soln_image) ? $industry_soln_image->getFileUri() : '',
+            'url' => $item->toUrl()->toString(),
+          ];
+        }
+      }
+    }
+    $variables['industry_solutions'] = $industry_solutions;
+  }
+}
