@@ -10,10 +10,12 @@ dependencies:
     - field.field.node.solutions.field_find_a_distributor
     - field.field.node.solutions.field_forms
     - field.field.node.solutions.field_hero
+    - field.field.node.solutions.field_industry_solutions
     - field.field.node.solutions.field_mailing_list_form
     - field.field.node.solutions.field_seo
     - field.field.node.solutions.field_webform
     - node.type.solutions
+    - workflows.workflow.editorial
   module:
     - content_moderation
     - metatag
@@ -107,6 +109,24 @@ content:
       form_display_mode: default
       default_paragraph_type: hero
     third_party_settings: {  }
+  field_industry_solutions:
+    type: paragraphs
+    weight: 16
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
   field_mailing_list_form:
     type: entity_reference_paragraphs
     weight: 10
@@ -123,7 +143,9 @@ content:
     type: metatag_firehose
     weight: 14
     region: content
-    settings: {  }
+    settings:
+      sidebar: true
+      use_details: true
     third_party_settings: {  }
   field_webform:
     type: webform_entity_reference_select
@@ -131,6 +153,7 @@ content:
     region: content
     settings:
       default_data: true
+      webforms: {  }
     third_party_settings: {  }
   langcode:
     type: language_select

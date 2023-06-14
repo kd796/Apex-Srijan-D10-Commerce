@@ -1,0 +1,28 @@
+uuid: 7f79587e-16ba-4d18-93c9-557b3def4647
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_trus
+    - node.type.home
+  module:
+    - block_field
+id: node.home.field_trus
+field_name: field_trus
+entity_type: node
+bundle: home
+label: 'Trusted By Biggest'
+description: 'The trusted by Biggest Carousel block'
+required: false
+translatable: false
+default_value:
+  -
+    plugin_id: 'views_block:trusted_by_biggest_carousel-block_1'
+    settings: {  }
+default_value_callback: ''
+settings:
+  selection: blocks
+  selection_settings:
+    plugin_ids:
+      'views_block:trusted_by_biggest_carousel-block_1': 'views_block:trusted_by_biggest_carousel-block_1'
+field_type: block_field

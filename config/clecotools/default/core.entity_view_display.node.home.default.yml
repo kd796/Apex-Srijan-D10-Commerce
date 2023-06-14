@@ -7,11 +7,14 @@ dependencies:
     - field.field.node.home.field_callout_section_footer
     - field.field.node.home.field_featured
     - field.field.node.home.field_hero
+    - field.field.node.home.field_industry_solutions_home
     - field.field.node.home.field_mailing_list_form
     - field.field.node.home.field_seo
     - field.field.node.home.field_testimonials_block
+    - field.field.node.home.field_trus
     - node.type.home
   module:
+    - block_field
     - entity_reference_revisions
     - metatag
     - user
@@ -41,7 +44,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 6
+    weight: 7
     region: content
   field_featured:
     type: entity_reference_revisions_entity_view
@@ -50,7 +53,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 3
+    weight: 2
     region: content
   field_hero:
     type: entity_reference_revisions_entity_view
@@ -59,14 +62,22 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 2
+    weight: 1
+    region: content
+  field_industry_solutions_home:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
     region: content
   field_seo:
     type: metatag_empty_formatter
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 7
+    weight: 8
     region: content
   field_testimonials_block:
     type: entity_reference_revisions_entity_view
@@ -77,12 +88,20 @@ content:
     third_party_settings: {  }
     weight: 5
     region: content
+  field_trus:
+    type: block_field
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
 hidden:
   field_mailing_list_form: true
   langcode: true
   search_api_excerpt: true
+  uuid: true
