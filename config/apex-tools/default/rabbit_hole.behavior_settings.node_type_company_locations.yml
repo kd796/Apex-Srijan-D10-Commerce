@@ -1,0 +1,14 @@
+uuid: fe6aa785-2008-47b8-964d-a6e31240632b
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.company_locations
+id: node_type_company_locations
+entity_type_id: node_type
+entity_id: company_locations
+action: page_redirect
+allow_override: 1
+redirect: '[site:url]'
+redirect_code: 301
+redirect_fallback_action: access_denied

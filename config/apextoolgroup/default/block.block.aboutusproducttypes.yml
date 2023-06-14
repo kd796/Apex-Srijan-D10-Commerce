@@ -1,0 +1,28 @@
+uuid: 834ff6c4-d360-44e4-ba69-50c7491fcb4d
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.product_types
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - apextoolgroup
+id: aboutusproducttypes
+theme: apextoolgroup
+region: content
+weight: -9
+provider: null
+plugin: 'fixed_block_content:product_types'
+settings:
+  id: 'fixed_block_content:product_types'
+  label: 'About us - Product Types'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /about-us

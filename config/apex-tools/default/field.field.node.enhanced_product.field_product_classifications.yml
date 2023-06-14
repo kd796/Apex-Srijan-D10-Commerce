@@ -1,0 +1,25 @@
+uuid: 9fc7e537-a79c-4e21-a71f-4364d00f3cbe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_product_classifications
+    - node.type.enhanced_product
+id: node.enhanced_product.field_product_classifications
+field_name: field_product_classifications
+entity_type: node
+bundle: enhanced_product
+label: 'Product Categories'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: entity_reference_product_classifications
+      display_name: entity_reference_product_classifications
+      arguments: {  }
+field_type: entity_reference

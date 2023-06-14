@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a block.
+ *
+ * Available variables:
+ * - addthis_content: The ID of the block implementation.
+ *
+ * @see template_preprocess_block()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{{ attach_library('addtothis_apex_tool/add-this') }}
+
+<div class ="wrapper-content">
+  {{ addthis_content|raw }}
+</div>

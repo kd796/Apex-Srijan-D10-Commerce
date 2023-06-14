@@ -1,0 +1,25 @@
+uuid: 54a5e957-83fd-4bf4-96fa-2e0fad1925f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.inventor_connect
+    - image.style.inventor_connect_mobile
+    - image.style.inventor_connect_tablet
+  theme:
+    - apextoolgroup
+id: inventor_connect
+label: 'Inventor Connect'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: inventor_connect_tablet
+    breakpoint_id: apextoolgroup.tablet
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: inventor_connect_mobile
+    breakpoint_id: apextoolgroup.mobile
+    multiplier: 1x
+breakpoint_group: apextoolgroup
+fallback_image_style: inventor_connect

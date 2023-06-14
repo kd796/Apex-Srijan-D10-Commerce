@@ -5,15 +5,15 @@
 
       var brandTimelineSlider = $('.brand-timeline-content');
       var windowWidth = window.innerWidth;
-      var tabletBreakpoint = 766.9;
+      var mobileBreakpoint = 766.9;
+      var tabletBreakpoint = 959;
 
       // Set the selected year for dropdown.
       var seletedLabel = $('.selected-year-display .year-label');
       var checkedValueLabel = $('.brand-timeline-years.select-view .form-radios .form-radio:checked').siblings('label').text();
       seletedLabel.text(checkedValueLabel);
-
       // Initialize the slider based on width.
-      if (windowWidth < tabletBreakpoint) {
+      if (windowWidth < mobileBreakpoint) {
         brandTimelineSlider.not('.slick-initialized').slick({
           infinite: false,
           centerMode: false,
@@ -23,14 +23,25 @@
           arrows: false
         });
       }
+      else if (windowWidth > mobileBreakpoint && windowWidth < tabletBreakpoint) {
+        brandTimelineSlider.not('.slick-initialized').slick({
+          infinite: false,
+          centerMode: false,
+          speed: 300,
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          arrows: false
+        });
+      }
       else {
         brandTimelineSlider.not('.slick-initialized').slick({
           infinite: false,
           centerMode: false,
           speed: 300,
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          arrows: false
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          arrows: false,
+          margin: 16
         });
       }
 
@@ -84,14 +95,20 @@
       var lastRadioVal = $('.brand-timeline-years.tab-view .form-radios .form-type-radio').length - 1;
       // Triggering previous and next year on single click for less slide .
       var slideCount = $('.slick-track .slick-slide').length;
-      if (windowWidth < tabletBreakpoint) {
-        if (slideCount === 1) {
+      if (windowWidth < mobileBreakpoint) {
+        if (slideCount <= 1) {
+          $('.slick-prev').addClass('prev-trigger');
+          $('.slick-next').addClass('next-trigger');
+        }
+      }
+      else if (windowWidth > mobileBreakpoint && windowWidth < tabletBreakpoint) {
+        if (slideCount <= 3) {
           $('.slick-prev').addClass('prev-trigger');
           $('.slick-next').addClass('next-trigger');
         }
       }
       else {
-        if (slideCount <= 2) {
+        if (slideCount <= 4) {
           $('.slick-prev').addClass('prev-trigger');
           $('.slick-next').addClass('next-trigger');
         }
@@ -166,7 +183,7 @@
       // Hide arrows when slider reaches last and first slide.
       function disableArrow() {
         if ($('.brand-timeline-years.select-view .form-radios .form-radio').first().is(':checked')) {
-          if ($('.slick-track .slick-slide').first().hasClass('slick-current')) {
+          if ($('.slick-track .slick-slide').first().hasClass('slick-active')) {
             $('.slick-prev').addClass('disabled');
           }
           else {
@@ -175,7 +192,7 @@
         }
 
         if ($('.brand-timeline-years.select-view .form-radios .form-radio').last().is(':checked')) {
-          if ($('.slick-track .slick-slide').last().hasClass('slick-current')) {
+          if ($('.slick-track .slick-slide').last().hasClass('slick-active')) {
             $('.slick-next').addClass('disabled');
           }
           else {
@@ -187,6 +204,21 @@
       brandTimelineSlider.on('afterChange', function (event, slick, currentSlide, nextSlide) {
         disableArrow();
       });
+      // Show active brand year on screen.
+      var container = $('.brand-timeline-years  .fieldset-wrapper');
+      $('.view-filters .form-radios .form-radio:checked').parent('.form-type-radio').addClass('active');
+      const activeDiv = $('.brand-timeline-years  .form-type-radio.active');
+      const containerWidth = container.width();
+      const containerScrollLeft = container.scrollLeft();
+      const activeDivLeft = activeDiv.position().left;
+      const activeDivWidth = activeDiv.outerWidth(true);
+      const activeDivRight = activeDivLeft + activeDivWidth;
+      if (activeDivLeft < 0) {
+        container.scrollLeft(containerScrollLeft + activeDivLeft);
+      }
+      else if (activeDivRight > containerWidth) {
+        container.scrollLeft(containerScrollLeft + activeDivRight - containerWidth);
+      }
     }
   };
 })(jQuery);

@@ -1,0 +1,21 @@
+uuid: 2f429669-c0a9-4452-b078-7f1ad6499abc
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.form_warranty_returns
+    - field.storage.contact_message.field_cleverreach_active_sites
+id: contact_message.form_warranty_returns.field_cleverreach_active_sites
+field_name: field_cleverreach_active_sites
+entity_type: contact_message
+bundle: form_warranty_returns
+label: 'CleverReach Active Sites'
+description: 'Add comma separated list of language codes to enable the submission to CleverReach'
+required: false
+translatable: false
+default_value:
+  -
+    value: de
+default_value_callback: ''
+settings: {  }
+field_type: string

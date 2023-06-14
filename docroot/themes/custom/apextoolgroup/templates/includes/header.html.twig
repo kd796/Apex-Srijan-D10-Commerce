@@ -1,0 +1,38 @@
+<header class="header">
+  {% if  page.header %}
+    <div class="container">
+      <div class="header-wrapper">
+        <div class="header-menu-logo">
+          <div class="hamburger">
+            &nbsp;
+          </div>
+          <div class="nav-mobile">
+            {{ page.header }}
+          </div>
+          {{ page.logo }}
+          <div class="nav-desktop">
+            {{ page.header }}
+          </div>
+        </div>
+        <div class="search">
+          <div class="icon">
+            &nbsp;
+          </div>
+          <div class="search-wrap">
+            <div class="container">
+              <div class="search-overlay">
+                <div class="search-icon">
+                  &nbsp;
+                </div>
+                {{ page.search }}
+                <div class="close">
+                  &nbsp;
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</header>

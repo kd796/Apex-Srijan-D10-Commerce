@@ -1,0 +1,28 @@
+uuid: 6cdec38d-5713-4c38-8835-c8a39d912dc8
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.careers_cta
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - apextoolgroup
+id: careerscta
+theme: apextoolgroup
+region: post_content
+weight: 0
+provider: null
+plugin: 'fixed_block_content:careers_cta'
+settings:
+  id: 'fixed_block_content:careers_cta'
+  label: 'Careers CTA'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /careers

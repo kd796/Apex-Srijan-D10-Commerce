@@ -1,0 +1,23 @@
+uuid: 33d135a9-a7a4-49f8-945d-1b09d707efd7
+langcode: en
+status: true
+dependencies:
+  module:
+    - dynamic_entity_reference
+    - media
+    - taxonomy
+id: taxonomy_term.field_classification_image
+field_name: field_classification_image
+entity_type: taxonomy_term
+type: dynamic_entity_reference
+settings:
+  exclude_entity_types: false
+  entity_type_ids:
+    media: media
+module: dynamic_entity_reference
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

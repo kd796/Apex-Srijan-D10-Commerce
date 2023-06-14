@@ -1,4 +1,4 @@
-uuid: 277bae28-b022-42e9-9338-c75837880c04
+uuid: 75329086-8b10-4f54-9299-712045c7d776
 langcode: en
 status: true
 dependencies:
@@ -16,17 +16,27 @@ targetEntityType: media
 bundle: audio
 mode: media_library
 content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
   thumbnail:
     type: image
-    weight: 0
-    region: content
     label: hidden
     settings:
-      image_style: thumbnail
       image_link: ''
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   created: true
   field_media_audio_file: true
+  langcode: true
   name: true
+  search_api_excerpt: true
   uid: true
+  uuid: true

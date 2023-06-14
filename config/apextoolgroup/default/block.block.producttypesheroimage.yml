@@ -1,0 +1,28 @@
+uuid: d5d55278-4ec8-4b2b-8e98-99990f8840bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.product_types_hero_image
+  module:
+    - fixed_block_content
+    - system
+  theme:
+    - apextoolgroup
+id: producttypesheroimage
+theme: apextoolgroup
+region: pre_content
+weight: -17
+provider: null
+plugin: 'fixed_block_content:product_types_hero_image'
+settings:
+  id: 'fixed_block_content:product_types_hero_image'
+  label: 'Product Types Hero Image'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /product-types

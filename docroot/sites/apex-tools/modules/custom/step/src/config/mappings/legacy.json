@@ -1,0 +1,83 @@
+{
+  "body": {
+    "settings": {
+      "number_of_shards": 2,
+      "number_of_replicas": 0,
+      "refresh_interval": "5s",
+      "mapping.total_fields.limit": 10000,
+      "analysis": {
+        "filter": {
+          "autocomplete_filter": {
+            "type": "edge_ngram",
+            "min_gram": 1,
+            "max_gram": 20
+          }
+        },
+        "analyzer": {
+          "autocomplete": {
+            "type": "custom",
+            "tokenizer": "standard",
+            "filter": [
+                     "lowercase",
+                     "autocomplete_filter"
+                  ]
+          }
+        }
+      }
+    },
+    "mappings": {
+      "legacy_documents": {
+        "dynamic_templates": [{
+          "all_fields": {
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "text",
+              "analyzer": "autocomplete",
+              "search_analyzer": "standard",
+              "index_options": "offsets",
+              "fields": {
+                "raw": {
+                  "type": "keyword"
+                }
+              }
+            }
+          }
+            }],
+        "properties": {
+          "product_line": {
+            "type": "text",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
+          },
+          "product_category": {
+            "type": "text",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
+          },
+          "values.language": {
+            "type": "text",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
+          },
+          "type": {
+            "type": "text",
+            "fields": {
+              "raw": {
+                "type": "keyword"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -6,6 +6,7 @@ dependencies:
     - block_content.type.cta_block
     - field.field.block_content.cta_block.body
     - field.field.block_content.cta_block.field_link
+    - field.field.block_content.cta_block.field_title
   module:
     - link
     - text
@@ -32,6 +33,14 @@ content:
       target: ''
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
     region: content
 hidden:
   langcode: true

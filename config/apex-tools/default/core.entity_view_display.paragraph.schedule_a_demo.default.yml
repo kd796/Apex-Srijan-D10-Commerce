@@ -1,0 +1,21 @@
+uuid: 26673758-7cdd-402b-8bb5-a38d6ed31bc4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.schedule_a_demo.field_intro_text
+    - paragraphs.paragraphs_type.schedule_a_demo
+id: paragraph.schedule_a_demo.default
+targetEntityType: paragraph
+bundle: schedule_a_demo
+mode: default
+content:
+  field_intro_text:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

@@ -1,53 +1,101 @@
-uuid: b7e92874-beb4-43fe-8a54-7f0076c6c40c
+uuid: 6571e1ea-12a7-4b34-9888-7dc853b63cd2
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.hero.field_class_custom
-    - field.field.paragraph.hero.field_components
-    - field.field.paragraph.hero.field_html_anchor
-    - field.field.paragraph.hero.field_style
+    - field.field.paragraph.hero.field_animation
+    - field.field.paragraph.hero.field_cta
+    - field.field.paragraph.hero.field_form
+    - field.field.paragraph.hero.field_media_src
+    - field.field.paragraph.hero.field_size
+    - field.field.paragraph.hero.field_subtitle
+    - field.field.paragraph.hero.field_title
+    - field.field.paragraph.hero.field_title_prefix
+    - field.field.paragraph.hero.field_title_suffix
     - paragraphs.paragraphs_type.hero
   module:
     - entity_reference_revisions
-_core:
-  default_config_hash: 43Uou_JupnxPbDdZf2zi6uUqeFOo6vPRn4q5NgaTSjc
+    - options
+    - webform
 id: paragraph.hero.default
 targetEntityType: paragraph
 bundle: hero
 mode: default
 content:
-  field_class_custom:
-    weight: 1
+  field_animation:
+    type: boolean
     label: above
     settings:
-      link_to_entity: false
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
     third_party_settings: {  }
-    type: string
+    weight: 9
     region: content
-  field_components:
-    weight: 0
-    label: above
+  field_cta:
+    type: entity_reference_revisions_entity_view
+    label: hidden
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    type: entity_reference_revisions_entity_view
+    weight: 2
     region: content
-  field_html_anchor:
-    weight: 3
+  field_form:
+    type: webform_entity_reference_entity_view
+    label: above
+    settings:
+      source_entity: true
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_media_src:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_size:
+    type: list_key
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_subtitle:
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 7
     region: content
-  field_style:
-    weight: 2
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_title_prefix:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_title_suffix:
+    type: string
     label: above
     settings:
-      link: true
+      link_to_entity: false
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 8
     region: content
-hidden: {  }
+hidden:
+  search_api_excerpt: true

@@ -1,0 +1,80 @@
+{% include '@atg/patterns/hero.html.twig' with {
+  title: node.title.value
+} %}
+{% set locale = get_locale() %}
+
+<geoui api="/api/search/distributors_index" :filters="{q: null}" :required-filters="['q']">
+  <template slot="interstitial" slot-scope="scope">
+    <header class="geoui-interstitial-header">
+      <h2 class="geoui-interstitial-title">{{ node.title.value }}</h2>
+      <p>{{ 'Enter your State below to find an agency near you' | t }}</p>
+    </header>
+
+    <scoped-form class="form-bar form-bar--centered form-bar--wrap" :filters="scope.filters" :value="scope.state" @input="scope.setState">
+      <template slot-scope="bar">
+        <filter-bar-item v-model="bar.state.q" element="select" :options="{{ state_options | json_encode }}"></filter-bar-item>
+        <div class="form-bar-item">
+          <button type="submit" class="button button--primary button--simple">{{ 'Find Agencies'|t }}</button>
+        </div>
+      </template>
+    </scoped-form>
+  </template>
+  <template slot="filters" slot-scope="scope">
+    <scoped-form class="filter-bar" :value="scope.state" @input="scope.setState" :filters="scope.filters">
+      <template slot-scope="bar">
+        <filter-bar-item v-model="bar.state.q" label="State" element="select" :options="{{ state_options | json_encode }}"></filter-bar-item>
+        <filter-bar-item element="action" class="filter-bar-item--push">
+          <button type="submit" class="button button--primary button--simple">{{ 'Find Agencies'|t }}</button>
+        </filter-bar-item>
+      </template>
+    </scoped-form>
+  </template>
+{#   <template slot="infowindow" slot-scope="scope" v-if="scope.selected">
+    {% filter raw %}
+      <h3 :id="'distributor-' + scope.id" v-html="scope.selected.attributes.title"></h3>
+      <p>
+        <span v-html="$options.filters.formatAddress(scope.selected.attributes.field_address)"></span>
+        <template v-for="phone in scope.selected.attributes.field_phone">
+          <br><a :href="'tel:' + phone" v-html="phone"></a>
+        </template>
+        <template v-for="email in scope.selected.attributes.field_email">
+          <br><a :href="'mailto:' + email" v-html="email"></a>
+        </template>
+      </p>
+    {% endfilter %}
+    <div class="infowindow-actions">
+      <a :href="'{{ locale.path }}/request-a-quote?distributor_id=' + scope.selected.attributes.nid" class="infowindow-action">
+        {{ svg('dist/img/icons/nut.svg') }} {{ 'Request Quote'|t }}
+      </a>
+      <button type="button" class="infowindow-action" v-scroll-to="'#distributor-' + scope.selected.id">
+        {{ svg('dist/img/icons/grid.svg') }} {{ 'View on Grid'|t }}
+      </button>
+    </div>
+  </template> #}
+  <template slot="list" slot-scope="scope">
+    <table-component :data="scope.data" :show-filter="false" :show-caption="false" :cache-lifetime="0" sort-by="attributes.title" sort-order="asc" class="mega-table-component" table-class="mega-table" :filter-no-results="'{{ 'No Agencies found within ' | t }}' + scope.state.q">
+      <table-column label="AGENCY" show="attributes.title">
+        <template slot-scope="row">
+          {% filter raw %}
+            <h3 :id="'distributor-' + row.id" v-html="row.attributes.title"></h3>
+            <p>
+              <span v-html ="row.attributes.field_website"></span>
+              <template v-for="phone in row.attributes.field_phone">
+                <br><a :href="'tel:' + phone" v-html="phone"></a>
+              </template>
+              <template v-for="email in row.attributes.field_email">
+                <br><a :href="'mailto:' + email" v-html="email"></a>
+              </template>
+            </p>
+          {% endfilter %}
+        </template>
+      </table-column>
+      <table-column label="" :sortable="false">
+        <template slot-scope="row">
+          <a :href="'{{ locale.path }}/request-a-quote?distributor_id=' + row.attributes.nid" class="button button--small button--simple button--secondary button--outline" target="_blank">{{ 'Request Quote'|t }}</a>
+        </template>
+      </table-column>
+    </table-component>
+  </template>
+</geoui>
+{{ content }}

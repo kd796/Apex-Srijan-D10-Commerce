@@ -1,0 +1,29 @@
+uuid: 4c9ee567-b4c1-4e65-80e1-20b9686f2c53
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_media_kit_asset
+    - media.type.file
+    - paragraphs.paragraphs_type.media_kit
+id: paragraph.media_kit.field_media_kit_asset
+field_name: field_media_kit_asset
+entity_type: paragraph
+bundle: media_kit
+label: 'Media Kit Asset'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      file: file
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,80 @@
+uuid: 03929f7c-6ccd-4200-b98a-23b7c4b92394
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.basic_card_section.field_basic_cards
+    - field.field.paragraph.basic_card_section.field_body_basic
+    - field.field.paragraph.basic_card_section.field_cta
+    - field.field.paragraph.basic_card_section.field_message_block
+    - field.field.paragraph.basic_card_section.field_title
+    - paragraphs.paragraphs_type.basic_card_section
+  module:
+    - paragraphs
+    - text
+id: paragraph.basic_card_section.default
+targetEntityType: paragraph
+bundle: basic_card_section
+mode: default
+content:
+  field_basic_cards:
+    type: entity_reference_paragraphs
+    weight: 3
+    region: content
+    settings:
+      title: 'Basic Cards'
+      title_plural: 'Basic Cards'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: basic_card
+    third_party_settings: {  }
+  field_body_basic:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_cta:
+    type: entity_reference_paragraphs
+    weight: 4
+    region: content
+    settings:
+      title: CTA
+      title_plural: CTA
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: cta
+    third_party_settings: {  }
+  field_message_block:
+    type: entity_reference_paragraphs
+    weight: 2
+    region: content
+    settings:
+      title: 'Message Block'
+      title_plural: 'Message Blocks'
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: message_block
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true
