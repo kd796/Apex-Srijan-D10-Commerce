@@ -1,0 +1,42 @@
+uuid: 70447cfe-cf37-46b7-872e-3114d5f5a3f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.hubspot_form.body
+    - field.field.node.hubspot_form.field_hubspot_code
+    - field.field.node.hubspot_form.field_image
+    - node.type.hubspot_form
+  module:
+    - text
+    - user
+id: node.hubspot_form.default
+targetEntityType: node
+bundle: hubspot_form
+mode: default
+content:
+  field_hubspot_code:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_image:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  langcode: true
+  search_api_excerpt: true
+  uuid: true

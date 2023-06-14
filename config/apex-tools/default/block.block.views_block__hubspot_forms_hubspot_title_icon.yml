@@ -1,0 +1,30 @@
+uuid: c6f9c1bd-98d3-468c-b02e-a8b2ce094baa
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.hubspot_forms
+  module:
+    - system
+    - views
+  theme:
+    - apex_tools
+id: views_block__hubspot_forms_hubspot_title_icon
+theme: apex_tools
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:hubspot_forms-hubspot_title_icon'
+settings:
+  id: 'views_block:hubspot_forms-hubspot_title_icon'
+  label: ''
+  label_display: '0'
+  provider: views
+  context_mapping: {  }
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /contact
