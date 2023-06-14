@@ -43,3 +43,4 @@ require("./product-viewer");
 require("./helpers/waypoint");
 require("./waypoints");
 require("./hero-video");
+require("./hubspot");
