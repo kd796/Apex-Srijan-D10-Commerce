@@ -15,7 +15,7 @@
         {% set contentFeaturedProducts = filter_content_featured_products(products, content.field_products) %}
         {# Get correct alias based on selected language #}
         {% set locale = get_locale() %}
-        {% set alias = alias_by_path('/products/product-catalog', locale.code) %}
+        {% set alias = alias_by_path('/tools/tool-catalog', locale.code) %}
 
 		{% for index, item in products %}
 			{% set product = item._source %}
