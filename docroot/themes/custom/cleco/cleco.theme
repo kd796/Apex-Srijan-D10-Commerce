@@ -32,25 +32,3 @@ function atg_preprocess_field(&$variables) {
     $variables['industry_solutions'] = $industry_solutions;
   }
 }
-
-/**
- * Implements hook_preprocess_views_view() for theming views.
- */
-
-function cleco_preprocess_views_view(&$variables) {
-  // Check if the view machine name matches the desired view.
-  if ($variables['view']->id() == 'trusted_by_biggest_carousel') {
-    // Get the current route match.
-    $route_match = \Drupal::routeMatch();
-    // Check if the current route is for a node.
-    if ($route_match instanceof \Drupal\Core\Routing\RouteMatchInterface && $route_match->getRouteName() == 'entity.node.canonical') {
-      // Get the node object from the route match.
-      $node = $route_match->getParameter('node');
-      // Check if the node object exists and is of the desired content type.
-      if ($node instanceof \Drupal\node\NodeInterface && $node->getType() == 'solutions') {
-        $variables['carousel_title'] = "Trusted By Biggest";
-      }
-    }
-  }
-
-}
