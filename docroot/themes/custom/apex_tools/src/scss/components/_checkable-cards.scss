@@ -29,6 +29,7 @@ $breakpoint-checkable-card-vertical: $breakpoint-nav-inline;
     padding: 0.625em 1.25em;
     width: 100%;
     transition: background 200ms ease, border 200ms ease, box-shadow 200ms ease;
+    color: $color-off-black;
 }
 .checkable-card-input {
     @include visually-hidden;
@@ -44,7 +45,8 @@ $breakpoint-checkable-card-vertical: $breakpoint-nav-inline;
         height: 2.5rem;
     }
 
-    svg {
+    svg,
+    img {
         width: 2.5em;
         height: 2.5em;
     }
@@ -80,11 +82,16 @@ $breakpoint-checkable-card-vertical: $breakpoint-nav-inline;
         transform: translateY(1em);
     }
 }
-.checkable-card-input:checked + .checkable-card {
+.checkable-card-input:checked + .checkable-card,
+.views-row.active-tab .checkable-card {
     background: $color-orange;
     border-color: $color-orange;
     color: #fff;
     box-shadow: 0 0.125em 1.25em rgba(#000, 0.23);
+
+    img {
+      filter: brightness(0) invert(1);
+    }
 }
 /**
  * HOVER/FOCUS STATE
@@ -143,7 +150,8 @@ $breakpoint-checkable-card-vertical: $breakpoint-nav-inline;
         flex-grow: 1;
         padding-top: 1.25em;
 
-        svg {
+        svg,
+        img {
             width: 4.6875em;
             height: 4.6875em;
         }
@@ -155,6 +163,7 @@ $breakpoint-checkable-card-vertical: $breakpoint-nav-inline;
         justify-content: center;
         flex-basis: 5em;
         font-size: 1.125em;
+        font-weight: 500;
         text-align: center;
         width: 100%;
 
@@ -169,4 +178,8 @@ $breakpoint-checkable-card-vertical: $breakpoint-nav-inline;
             transform: translateY(-0.5em);
         }
     }
+}
+
+div.notice--info {
+  display: none !important;
 }
