@@ -11,7 +11,7 @@ use Drupal\node\NodeInterface;
 /**
  * Implements hook_preprocess_field().
  */
-function atg_preprocess_field(&$variables)
+function cleco_preprocess_field(&$variables)
 {
     // Check if the field is industry solutions entity reference field.
     if ($variables['element']['#field_name'] == 'field_industry_solutions_home') {
