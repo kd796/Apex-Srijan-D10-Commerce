@@ -1,10 +1,8 @@
-<div class="checkable-cards-item">
-  <div class="checkable-card">
-    <div class="checkable-card-icon">
-      {{ fields.title.content }}
-    </div>
-    <div class="checkable-card-label">
-      {{ fields.field_image.content }}
-    </div>
+<a class="checkable-card" href="#id-{{ fields.nid.content|render|trim|striptags|replace({'\n': '', '\r': '' }) }}">
+  <div class="checkable-card-icon">
+    {{ fields.field_image.content }}
   </div>
-</div>
+  <div class="checkable-card-label">
+    {{ fields.title.content }}
+  </div>
+</a>
