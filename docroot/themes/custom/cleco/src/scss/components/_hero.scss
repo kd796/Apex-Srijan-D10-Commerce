@@ -61,6 +61,22 @@ $hero-height-map: (
   min-height: 100%;
 }
 
+/* css for hero image video */
+
+.hero-image {
+  video {
+    width: 100% !important;
+    object-fit: cover !important;
+    cursor: pointer !important;
+    @media only screen and (min-width: $breakpoint-hero-title-md) {
+     height: 100%;
+    }
+    &::-webkit-media-controls-panel {
+      display: none;
+    }
+  }
+}
+
 /**
  * HERO TEXT
  */
