@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.solutions.field_webform
     - node.type.solutions
   module:
+    - edit_uuid
     - entity_reference_revisions
     - metatag
     - user
@@ -28,7 +29,7 @@ content:
   content_moderation_control:
     settings: {  }
     third_party_settings: {  }
-    weight: 0
+    weight: 10
     region: content
   field_alternating_media_blocks:
     type: entity_reference_revisions_entity_view
@@ -37,7 +38,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 3
+    weight: 1
     region: content
   field_callout_section_footer:
     type: entity_reference_revisions_entity_view
@@ -46,7 +47,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 5
+    weight: 2
     region: content
   field_card:
     type: entity_reference_label
@@ -54,7 +55,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 8
+    weight: 3
     region: content
   field_featured_products:
     type: entity_reference_revisions_entity_view
@@ -72,7 +73,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 9
+    weight: 5
     region: content
   field_forms:
     type: entity_reference_revisions_entity_view
@@ -90,14 +91,14 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 2
+    weight: 7
     region: content
   field_seo:
     type: metatag_empty_formatter
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 10
+    weight: 8
     region: content
   field_webform:
     type: webform_entity_reference_entity_view
@@ -105,16 +106,22 @@ content:
     settings:
       source_entity: true
     third_party_settings: {  }
-    weight: 7
+    weight: 9
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 1
+    weight: 11
+    region: content
+  uuid:
+    type: edit_uuid
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
     region: content
 hidden:
   field_industry_solutions: true
   field_mailing_list_form: true
   langcode: true
   search_api_excerpt: true
-  uuid: true

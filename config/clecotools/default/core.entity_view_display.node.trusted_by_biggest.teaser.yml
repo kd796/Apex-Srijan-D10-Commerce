@@ -1,0 +1,35 @@
+uuid: b94ba78e-aa75-4c2a-bce9-0d495bb85506
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.trusted_by_biggest.body
+    - field.field.node.trusted_by_biggest.field_carousel_image
+    - node.type.trusted_by_biggest
+  module:
+    - text
+    - user
+id: node.trusted_by_biggest.teaser
+targetEntityType: node
+bundle: trusted_by_biggest
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_carousel_image: true
+  langcode: true
+  search_api_excerpt: true
+  uuid: true
