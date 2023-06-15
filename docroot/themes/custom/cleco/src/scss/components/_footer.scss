@@ -12,6 +12,34 @@
   flex-grow: 1;
   margin-bottom: 1em;
   @include property-scale(padding-right, $container-padding-map);
+
+  .logo {
+    position: relative;
+
+    &::before {
+      z-index: 0;
+      bottom: 0px;
+      top: -19px;
+      left: calc(50% - 12rem);
+      width: calc(100% + 7.5rem);
+    }
+
+    @media only screen and (max-width: $breakpoint-type) {
+      &::before {
+        width: calc(100% + 8.5rem);
+      }
+    }
+
+    @media only screen and (max-width: $media-screen-mobile) {
+      &::before {
+        top: -17px;
+      }
+    }
+
+    svg {
+      position: absolute;
+    }
+  }
 }
 
 .footer-primary {

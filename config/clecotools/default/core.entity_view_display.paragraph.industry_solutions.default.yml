@@ -1,0 +1,38 @@
+uuid: cd407122-b392-46f7-8f86-767a6cde2674
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.industry_solutions.field_industry_solutions_desc
+    - field.field.paragraph.industry_solutions.field_industry_solutions_image
+    - image.style.industry_solutions
+    - paragraphs.paragraphs_type.industry_solutions
+  module:
+    - media
+    - text
+id: paragraph.industry_solutions.default
+targetEntityType: paragraph
+bundle: industry_solutions
+mode: default
+content:
+  field_industry_solutions_desc:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_industry_solutions_image:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: industry_solutions
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true
+  uuid: true

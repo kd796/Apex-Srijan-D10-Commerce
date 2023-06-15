@@ -1,0 +1,42 @@
+uuid: ff263998-8798-4b78-b376-3215622bebe3
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.industry_solutions
+    - field.field.node.solutions.field_alternating_media_blocks
+    - field.field.node.solutions.field_callout_section_footer
+    - field.field.node.solutions.field_card
+    - field.field.node.solutions.field_featured_products
+    - field.field.node.solutions.field_find_a_distributor
+    - field.field.node.solutions.field_forms
+    - field.field.node.solutions.field_hero
+    - field.field.node.solutions.field_industry_solutions
+    - field.field.node.solutions.field_mailing_list_form
+    - field.field.node.solutions.field_seo
+    - field.field.node.solutions.field_webform
+    - node.type.solutions
+  module:
+    - user
+id: node.solutions.industry_solutions
+targetEntityType: node
+bundle: solutions
+mode: industry_solutions
+content: {  }
+hidden:
+  content_moderation_control: true
+  field_alternating_media_blocks: true
+  field_callout_section_footer: true
+  field_card: true
+  field_featured_products: true
+  field_find_a_distributor: true
+  field_forms: true
+  field_hero: true
+  field_industry_solutions: true
+  field_mailing_list_form: true
+  field_seo: true
+  field_webform: true
+  langcode: true
+  links: true
+  search_api_excerpt: true
+  uuid: true

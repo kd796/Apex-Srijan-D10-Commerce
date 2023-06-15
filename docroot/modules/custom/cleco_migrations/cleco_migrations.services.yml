@@ -4,3 +4,10 @@ services:
     class: Drupal\cleco_migrations\Commands\ProductDownloadService
     tags:
       - { name: drush.command }
+  cleco_common.product_cleanup_service:
+    class: Drupal\cleco_migrations\Commands\ProductsCleanupService
+    arguments:
+     - '@entity_type.manager' 
+     - '@logger.channel.cron'
+    tags:
+      - { name: drush.command }
