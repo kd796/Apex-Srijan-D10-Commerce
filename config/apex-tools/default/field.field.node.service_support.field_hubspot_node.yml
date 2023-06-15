@@ -1,0 +1,29 @@
+uuid: 8b8dd6be-9749-46f1-9c3e-4ddf0297d43c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hubspot_node
+    - node.type.hubspot_form
+    - node.type.service_support
+id: node.service_support.field_hubspot_node
+field_name: field_hubspot_node
+entity_type: node
+bundle: service_support
+label: 'Hubspot Node'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      hubspot_form: hubspot_form
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
