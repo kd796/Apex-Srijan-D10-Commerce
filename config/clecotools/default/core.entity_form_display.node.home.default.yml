@@ -15,7 +15,6 @@ dependencies:
     - node.type.home
     - workflows.workflow.editorial
   module:
-    - block_field
     - content_moderation
     - metatag
     - paragraphs
@@ -39,7 +38,7 @@ content:
     third_party_settings: {  }
   field_callout_section_footer:
     type: entity_reference_paragraphs
-    weight: 9
+    weight: 7
     region: content
     settings:
       title: Paragraph
@@ -85,7 +84,7 @@ content:
     third_party_settings: {  }
   field_mailing_list_form:
     type: entity_reference_paragraphs
-    weight: 15
+    weight: 13
     region: content
     settings:
       title: 'Mailing List Form'
@@ -97,7 +96,7 @@ content:
     third_party_settings: {  }
   field_seo:
     type: metatag_firehose
-    weight: 12
+    weight: 10
     region: content
     settings:
       sidebar: true
@@ -133,19 +132,19 @@ content:
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 14
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 11
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 10
+    weight: 8
     region: content
     settings:
       display_label: true
@@ -159,7 +158,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 13
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
