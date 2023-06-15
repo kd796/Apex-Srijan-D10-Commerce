@@ -60,8 +60,8 @@ class ProductsCleanupService extends ProductServices {
    *
    * Inside the product are unpublished.
    *
-   * @command cleco:products-cleanup
-   * @aliases clpc
+   * @command at:products-cleanup
+   * @aliases alpc
    *
    * @return int
    *   The Drush code for success or failure.
