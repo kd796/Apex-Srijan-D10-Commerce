@@ -55,3 +55,13 @@ function _get_absolute_string($field_name, $entity, $media_field) {
   $url = !empty($file_uri) ? \Drupal::service('file_url_generator')->generateAbsoluteString($file_uri) : NULL;
   return $url;
 }
+
+/**
+ * Implements template_preprocess_views_view_unformatted() for homepage slider.
+ */
+function apex_tools_preprocess_views_view_unformatted(&$vars) {
+  $view = $vars['view'];
+  if ($view->storage->id() === 'hubspot_forms' && $view->current_display === 'hubspot_title_icon') {
+    $vars['card'] = views_embed_view('hubspot_forms', 'hubspot_code');
+  }
+}

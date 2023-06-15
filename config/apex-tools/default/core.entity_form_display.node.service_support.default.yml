@@ -9,9 +9,11 @@ dependencies:
     - field.field.node.service_support.field_faqs_section
     - field.field.node.service_support.field_forms
     - field.field.node.service_support.field_hero
+    - field.field.node.service_support.field_hubspot_node
     - field.field.node.service_support.field_mailing_list_form
     - field.field.node.service_support.field_seo
     - node.type.service_support
+    - workflows.workflow.editorial
   module:
     - content_moderation
     - metatag
@@ -48,7 +50,7 @@ content:
     third_party_settings: {  }
   field_card:
     type: entity_reference_autocomplete
-    weight: 7
+    weight: 6
     region: content
     settings:
       match_operator: CONTAINS
@@ -58,7 +60,7 @@ content:
     third_party_settings: {  }
   field_faqs_section:
     type: entity_reference_paragraphs
-    weight: 6
+    weight: 5
     region: content
     settings:
       title: 'FAQs Section'
@@ -67,18 +69,6 @@ content:
       add_mode: dropdown
       form_display_mode: default
       default_paragraph_type: faqs_section
-    third_party_settings: {  }
-  field_forms:
-    type: entity_reference_paragraphs
-    weight: 5
-    region: content
-    settings:
-      title: 'Form Section'
-      title_plural: 'Form Section'
-      edit_mode: open
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: form_section
     third_party_settings: {  }
   field_hero:
     type: entity_reference_paragraphs
@@ -92,23 +82,23 @@ content:
       form_display_mode: default
       default_paragraph_type: hero
     third_party_settings: {  }
-  field_mailing_list_form:
-    type: entity_reference_paragraphs
-    weight: 8
+  field_hubspot_node:
+    type: entity_reference_autocomplete
+    weight: 12
     region: content
     settings:
-      title: 'Mailing List Form'
-      title_plural: 'Mailing List Forms'
-      edit_mode: open
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: mailing_list_form
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_seo:
     type: metatag_firehose
-    weight: 11
+    weight: 9
     region: content
-    settings: {  }
+    settings:
+      sidebar: true
+      use_details: true
     third_party_settings: {  }
   langcode:
     type: language_select
@@ -119,19 +109,19 @@ content:
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 13
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 9
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 10
+    weight: 8
     region: content
     settings:
       display_label: true
@@ -150,12 +140,14 @@ content:
     settings: {  }
     third_party_settings: {  }
   url_redirects:
-    weight: 12
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
   created: true
+  field_forms: true
+  field_mailing_list_form: true
   promote: true
   sticky: true
   uid: true

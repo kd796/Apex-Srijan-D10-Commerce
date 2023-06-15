@@ -10,10 +10,12 @@ dependencies:
     - field.field.node.solutions.field_find_a_distributor
     - field.field.node.solutions.field_forms
     - field.field.node.solutions.field_hero
+    - field.field.node.solutions.field_hubspot_node
     - field.field.node.solutions.field_mailing_list_form
     - field.field.node.solutions.field_seo
     - field.field.node.solutions.field_webform
     - node.type.solutions
+    - workflows.workflow.editorial
   module:
     - content_moderation
     - metatag
@@ -39,7 +41,7 @@ content:
     third_party_settings: {  }
   field_callout_section_footer:
     type: entity_reference_paragraphs
-    weight: 8
+    weight: 7
     region: content
     settings:
       title: 'Callout Section Footer'
@@ -51,7 +53,7 @@ content:
     third_party_settings: {  }
   field_card:
     type: entity_reference_autocomplete
-    weight: 7
+    weight: 6
     region: content
     settings:
       match_operator: CONTAINS
@@ -73,7 +75,7 @@ content:
     third_party_settings: {  }
   field_find_a_distributor:
     type: entity_reference_paragraphs
-    weight: 9
+    weight: 8
     region: content
     settings:
       title: 'Find a Distributor'
@@ -82,18 +84,6 @@ content:
       add_mode: dropdown
       form_display_mode: default
       default_paragraph_type: find_a_distributor
-    third_party_settings: {  }
-  field_forms:
-    type: entity_reference_paragraphs
-    weight: 5
-    region: content
-    settings:
-      title: Forms
-      title_plural: Forms
-      edit_mode: open
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: form_section
     third_party_settings: {  }
   field_hero:
     type: entity_reference_paragraphs
@@ -107,30 +97,31 @@ content:
       form_display_mode: default
       default_paragraph_type: hero
     third_party_settings: {  }
-  field_mailing_list_form:
-    type: entity_reference_paragraphs
-    weight: 10
+  field_hubspot_node:
+    type: entity_reference_autocomplete
+    weight: 14
     region: content
     settings:
-      title: 'Mailing List Form'
-      title_plural: 'Mailing List Forms'
-      edit_mode: open
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: mailing_list_form
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_seo:
     type: metatag_firehose
-    weight: 14
+    weight: 12
     region: content
-    settings: {  }
+    settings:
+      sidebar: true
+      use_details: true
     third_party_settings: {  }
   field_webform:
     type: webform_entity_reference_select
-    weight: 6
+    weight: 5
     region: content
     settings:
       default_data: true
+      webforms: {  }
     third_party_settings: {  }
   langcode:
     type: language_select
@@ -141,19 +132,19 @@ content:
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 15
+    weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 11
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 12
+    weight: 10
     region: content
     settings:
       display_label: true
@@ -172,12 +163,14 @@ content:
     settings: {  }
     third_party_settings: {  }
   url_redirects:
-    weight: 13
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
   created: true
+  field_forms: true
+  field_mailing_list_form: true
   promote: true
   sticky: true
   uid: true
