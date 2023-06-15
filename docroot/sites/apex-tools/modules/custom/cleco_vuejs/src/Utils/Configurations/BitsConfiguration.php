@@ -16,7 +16,7 @@ class BitsConfiguration implements ComparisonTableConfiguration {
    * {@inheritdoc}
    */
   public function apply(array $data) {
-    $category = ['Bits'];
+    $category = ['Bits', 'Screwdriver Bits', 'Schraubendrehereinsätze'];
     if (!array_intersect($data['product_category'], $category)) {
       if (is_array($data['product_category'])) {
         $conditionApplied = FALSE;
