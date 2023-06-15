@@ -1,21 +1,34 @@
 <main class="main">
-	<section class="section section--features">
-		{% if industry_solutions| length >0 %}
-		<div class="industry-solutions-wrapper" style="clear:both;">
-			<h4>{{ industry_solutions[0].industry_type }}</h4>
-			{% for item in industry_solutions %}
-				{% if item.title %}
-				<div class="industry-solutions" style="float:left; display: block;">
-					<h2>{{ item.title }}</h2>
-					<a href="{{ item.url }}">
-						<img src="{{ file_url(item.image) }}" alt="Image" width="100" height="100">
-					</a>	
-					<span>{{ item.description|striptags }}</span>
+  <section class="section">
+	{% if industry_solutions|length > 0 %}
+	<h2 class="section-title">{{ '<em>Industry</em> Solutions'|t }}</h2>
+	<div class="industry-solutions">
+	  {% for item in industry_solutions %}
+		<div class="industry-solution-item">
+		  <a href="{{ item.url }}">
+		    <div class="overlay-wrapper">
+			  {% if item.image %}
+			    <div class="field-image">
+				  <div class="bg-img">
+				    <img src="{{ item.image | image_style('industry_solutions') }}" alt="Image">
+				  </div>
 				</div>
+			  {% endif %}
+			  <div class="content-wrapper">
+				{% if item.title %}
+					<div class="field-title"><h2>{{ item.title }}</h2></div>
 				{% endif %}
-			{% endfor %}
+				{% if item.description %}
+					<div class="field-description">
+						<p>{{ item.description|striptags }}</p>
+					</div>
+				{% endif %}
+			  </div>
+			</div>
+		  </a>
 		</div>
-		{% endif %}
-		
-	</section>
+	  {% endfor %}
+	</div>
+	{% endif %}
+  </section>
 </main>
