@@ -1,3 +1,15 @@
+{% set conditionval = fields.field_not_a_hubspot_form.content %}
+
+{% if conditionval == '1' %}
+  <a class="checkable-card" target="_blank" rel="noopener" href="{{ fields.field_form_link.content|render|trim|striptags|replace({'\n': '', '\r': '' }) }}">
+    <div class="checkable-card-icon">
+      {{ fields.field_image.content }}
+    </div>
+    <div class="checkable-card-label">
+      {{ fields.title.content }}
+    </div>
+  </a>
+{% else %}
 <a class="checkable-card" href="#id-{{ fields.nid.content|render|trim|striptags|replace({'\n': '', '\r': '' }) }}">
   <div class="checkable-card-icon">
     {{ fields.field_image.content }}
@@ -6,3 +18,4 @@
     {{ fields.title.content }}
   </div>
 </a>
+{% endif %}
