@@ -493,6 +493,10 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+      pager:
+        type: none
+        options:
+          offset: 0
       sorts:
         created:
           id: created
@@ -511,6 +515,7 @@ display:
           exposed: false
           granularity: second
       defaults:
+        pager: false
         fields: false
         sorts: false
       display_description: ''
@@ -532,6 +537,10 @@ display:
     display_plugin: block
     position: 1
     display_options:
+      pager:
+        type: none
+        options:
+          offset: 0
       sorts:
         created:
           id: created
@@ -550,6 +559,7 @@ display:
           exposed: false
           granularity: second
       defaults:
+        pager: false
         sorts: false
       display_description: ''
       display_extenders: {  }
