@@ -1,11 +1,13 @@
-<div class="heading">
-    {% if carousel_title %}
-        <h4>{{ carousel_title }}</h4>
-    {% endif %}
-</div>
-
-<div>
+<div class="main">
+  {% if carousel_title %}
+  <section class="section trusted-by-biggest-banner-title">
+    {% set section_tite = carousel_title|split(' ', 2) %}
+    <h2 class="section-title"><em>{{ attribute(section_tite, 0) }}</em> {{ attribute(section_tite, 1) }}</h2>
+  </section>
+  {% endif %}
+  <section class="section trusted-by-biggest-banner-content">
     {% for item in items %}
-        {{ item.content }}
+      {{ item.content }}
     {% endfor %}
+  </section>
 </div>
