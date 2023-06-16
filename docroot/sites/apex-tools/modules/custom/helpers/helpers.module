@@ -64,7 +64,7 @@ function template_preprocess_views_view_tabs_list(&$variables) {
  */
 function helpers_form_alter(&$form, FormStateInterface $form_state, $form_id) {
 
-  if($form_id == 'node_hubspot_form_edit_form') {
+  if(strpos($form_id, 'node_hubspot_form') === 0) {
     $form['field_form_link']['#states'] = [
     'visible' => [
       ':input[name="field_not_a_hubspot_form[value]"]' => ['checked' => TRUE],
