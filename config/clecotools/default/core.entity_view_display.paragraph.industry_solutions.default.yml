@@ -5,8 +5,10 @@ dependencies:
   config:
     - field.field.paragraph.industry_solutions.field_industry_solutions_desc
     - field.field.paragraph.industry_solutions.field_industry_solutions_image
+    - image.style.industry_solutions
     - paragraphs.paragraphs_type.industry_solutions
   module:
+    - media
     - text
 id: paragraph.industry_solutions.default
 targetEntityType: paragraph
@@ -15,17 +17,19 @@ mode: default
 content:
   field_industry_solutions_desc:
     type: text_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 1
     region: content
   field_industry_solutions_image:
-    type: entity_reference_entity_view
-    label: above
+    type: media_thumbnail
+    label: hidden
     settings:
-      view_mode: default
-      link: false
+      image_link: ''
+      image_style: industry_solutions
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
     weight: 0
     region: content
