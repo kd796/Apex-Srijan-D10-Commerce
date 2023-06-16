@@ -1,0 +1,17 @@
+uuid: 48d672e1-26be-4a05-a117-c7fae4090f25
+langcode: en
+status: true
+dependencies:
+  module:
+    - apex_tools_custom_quotation
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: quotation.quotation
+target_entity_type_id: quotation
+target_bundle: quotation
+default_langcode: site_default
+language_alterable: true
