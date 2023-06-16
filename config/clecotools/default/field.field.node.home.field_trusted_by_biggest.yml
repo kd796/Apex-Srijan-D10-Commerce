@@ -1,24 +1,21 @@
-uuid: 7f79587e-16ba-4d18-93c9-557b3def4647
+uuid: 226556ec-3b6d-456d-8923-76cd1f16c880
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_trus
+    - field.storage.node.field_trusted_by_biggest
     - node.type.home
   module:
     - block_field
-id: node.home.field_trus
-field_name: field_trus
+id: node.home.field_trusted_by_biggest
+field_name: field_trusted_by_biggest
 entity_type: node
 bundle: home
 label: 'Trusted By Biggest'
-description: 'The trusted by Biggest Carousel block'
+description: ''
 required: false
-translatable: false
-default_value:
-  -
-    plugin_id: 'views_block:trusted_by_biggest_carousel-block_1'
-    settings: {  }
+translatable: true
+default_value: {  }
 default_value_callback: ''
 settings:
   selection: blocks
