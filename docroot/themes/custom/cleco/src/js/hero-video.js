@@ -1,19 +1,7 @@
 (function($) {
   var heroVideoContainer = $('.hero.hero-enhanced--video');
   var heroVideoElem      = $('video', heroVideoContainer);
-  var bannerVideo = $('.hero-image div video');
-  $(bannerVideo).addClass('hide-controls');
-  bannerVideo.addEventListener('loadedmetadata', () => {
-    bannerVideo.controls = false;
-    bannerVideo.classList.add('hide-controls');
-    bannerVideo.addEventListener('click', () => {
-      if (bannerVideo.paused) {
-        bannerVideo.play();
-      } else {
-        bannerVideo.pause();
-      }
-    });
-  });
+ 
   heroVideoElem.on('loadeddata', function() {
     heroVideoElem.addClass('is-ready');
   });
