@@ -72,14 +72,6 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_hubspot_node:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 7
-    region: content
   field_seo:
     type: metatag_empty_formatter
     label: above
@@ -89,6 +81,7 @@ content:
     region: content
 hidden:
   field_forms: true
+  field_hubspot_node: true
   field_mailing_list_form: true
   langcode: true
   links: true
