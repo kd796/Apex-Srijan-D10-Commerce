@@ -71,11 +71,13 @@ class ProductsCleanupService extends ProductServices {
    */
   public function cleanUpProducts(): int {
     try {
+      $cmd_status = 0;
       $nodes = $this->entityTypeManager
         ->getStorage('node')
         ->loadByProperties([
           'type'   => 'product',
           // 'nid'   => $nid,
+          'status'   => 1,
         ]);
       // Iterate the products and get the product models.
       foreach ($nodes as $node) {
@@ -87,8 +89,14 @@ class ProductsCleanupService extends ProductServices {
         $sku_group = (isset($fields['field_sku_group']) && !empty($fields['field_sku_group']->getValue())) ?
           $fields['field_sku_group']->getValue()[0]['value'] : (isset($fields['field_sku']) ? $fields['field_sku']->getValue()[0]['value'] : '');
         $all_unpublished = TRUE;
-        foreach ($models as $model) {
-          if (!empty($models)) {
+        // Default case if no product models for a product.
+        if (empty($models)) {
+          $all_unpublished = FALSE;
+        }
+        // If more than one model for a product and
+        // any of them are unpublished.
+        if (!empty($models) && count($models) > 0) {
+          foreach ($models as $model) {
             $model_details = $this->entityTypeManager
               ->getStorage('node')->load($model['target_id']);
             // Check if all the models inside the product are unpublished.
@@ -99,7 +107,6 @@ class ProductsCleanupService extends ProductServices {
         }
         if ($all_unpublished) {
           // All the models are unpublished.
-          // $node = Node::load($nid);
           $node = $this->entityTypeManager
             ->getStorage('node')
             ->load($nid);
@@ -131,16 +138,16 @@ class ProductsCleanupService extends ProductServices {
             ->info("All/ Some of the products are published under $sku_group family");
         }
         // Success.
-        $result = 0;
+        $cmd_status = 0;
       }
     }
     catch (\Exception $e) {
       // Failure.
-      $result = 1;
+      $cmd_status = 1;
       $this->logger->error('Drush command failure: ' . $e->getMessage());
       $this->output()->writeln('Drush command failure: ' . $e->getMessage());
     }
-    return $result;
+    return $cmd_status;
   }
 
 }
