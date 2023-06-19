@@ -9,10 +9,21 @@ base-js:
     dist/js/vendor.js: {}
     dist/js/scripts.js: {}
   dependencies:
+    - core/drupal
     - core/jquery
+    - core/jquery.once
 
 drupal:
   js:
     dist/js/drupal.js: {}
   dependencies:
     - core/drupal
+    - core/jquery
+    - core/jquery.once
+
+hubspot:
+  header: true
+  js:
+    //js.hsforms.net/forms/embed/v2.js: {}
+  dependencies:
+    - core/jquery
