@@ -1,0 +1,38 @@
+uuid: 8bc890ce-daa5-4ecf-ac58-f9796efffac5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.trusted_by_biggest.body
+    - field.field.node.trusted_by_biggest.field_carousel_image
+    - image.style.carousel_image
+    - node.type.trusted_by_biggest
+  module:
+    - image
+    - user
+id: node.trusted_by_biggest.default
+targetEntityType: node
+bundle: trusted_by_biggest
+mode: default
+content:
+  field_carousel_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: carousel_image
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  langcode: true
+  search_api_excerpt: true
+  uuid: true

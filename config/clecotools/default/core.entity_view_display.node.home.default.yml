@@ -11,8 +11,10 @@ dependencies:
     - field.field.node.home.field_mailing_list_form
     - field.field.node.home.field_seo
     - field.field.node.home.field_testimonials_block
+    - field.field.node.home.field_trusted_by_biggest
     - node.type.home
   module:
+    - block_field
     - entity_reference_revisions
     - metatag
     - user
@@ -42,7 +44,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 6
+    weight: 7
     region: content
   field_featured:
     type: entity_reference_revisions_entity_view
@@ -75,7 +77,7 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 7
+    weight: 8
     region: content
   field_testimonials_block:
     type: entity_reference_revisions_entity_view
@@ -85,6 +87,13 @@ content:
       link: ''
     third_party_settings: {  }
     weight: 5
+    region: content
+  field_trusted_by_biggest:
+    type: block_field
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
     region: content
   links:
     settings: {  }
