@@ -26,12 +26,12 @@ class RouteController extends ControllerBase {
   public $request;
 
   /**
-   * @var string
+   * {@inheritdoc}
    */
   public $slug;
 
   /**
-   * @var array|null
+   * {@inheritdoc}
    */
   public $product;
 
@@ -102,6 +102,7 @@ class RouteController extends ControllerBase {
    * Render array for the product catalog template.
    *
    * @return array
+   *   for theme.
    */
   public function productCatalog() {
     return [
@@ -115,6 +116,7 @@ class RouteController extends ControllerBase {
    * Title for the product catalog interface.
    *
    * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+   *   Label for catalog.
    */
   public function productCatalogTitle() {
     return $this->t('Tool Catalog');
@@ -126,6 +128,7 @@ class RouteController extends ControllerBase {
    * Render array for the single product template.
    *
    * @return array
+   *   Product fields value array.
    */
   public function productSingle() {
     $langcode = $this->languageManager->getCurrentLanguage()->getId();
@@ -135,6 +138,7 @@ class RouteController extends ControllerBase {
       ->loadByProperties([
         'langcode'   => $langcode,
         'field_slug' => $slug,
+        'status' => 1,
       ]);
     if (!empty($nodes)) {
       $features = [];
@@ -156,7 +160,7 @@ class RouteController extends ControllerBase {
         }
         $slug = isset($fields['field_slug']) ? $fields['field_slug']->getValue()[0]['value'] : '';
         $node_id = $node->id();
-        $field_product_features_cp = isset($fields['field_product_features_cp']) ? $fields['field_product_features_cp'] : '';
+        $field_product_features_cp = $fields['field_product_features_cp'] ?? '';
         if (!empty($field_product_features_cp)) {
           foreach ($field_product_features_cp as $productFeatures) {
             if (isset($productFeatures->value)) {
@@ -176,7 +180,7 @@ class RouteController extends ControllerBase {
               $image_file = $this->entityTypeManager->getStorage('file')->load($image_load->field_media_image->target_id);
               $image_url = $image_file->getFileUri();
               $image_path = $style_product->buildUrl($image_url);
-              $image_asset[] =[
+              $image_asset[] = [
                 "source_to_jpg" => $image_path,
               ];
               $asset1[] = [
@@ -338,6 +342,7 @@ class RouteController extends ControllerBase {
    * Title for the single product template.
    *
    * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+   *   Single product title.
    */
   public function productSingleTitle() {
     if (!empty($this->productSingle()['#product']['name'])) {
@@ -393,6 +398,7 @@ class RouteController extends ControllerBase {
    * Render array for the downloads template.
    *
    * @return array
+   *   Downloads theme.
    */
   public function downloads() {
     return [
@@ -406,6 +412,7 @@ class RouteController extends ControllerBase {
    * Title for the downlaods template.
    *
    * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+   *   Downloads title.
    */
   public function downloadsTitle() {
     return $this->t('Downloads');
@@ -417,6 +424,7 @@ class RouteController extends ControllerBase {
    * Render array for the search results template.
    *
    * @return array
+   *   Cahce age.
    */
   public function searchResults() {
     return [
@@ -434,6 +442,7 @@ class RouteController extends ControllerBase {
    * Title for the search results template.
    *
    * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+   *   Search result title.
    */
   public function searchResultsTitle() {
     $q = $this->request->get('q');
