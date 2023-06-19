@@ -7,7 +7,6 @@
       var $tabslist = $('.hubspot-tabs li');
 
       $('.hubspot-tabs').once('hubspot-tabs').on('click', 'li', function (e) {
-        e.preventDefault();
         var $current = $(this);
         var index = $current.index();
 
