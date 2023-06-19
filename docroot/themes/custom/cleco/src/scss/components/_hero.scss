@@ -62,18 +62,28 @@ $hero-height-map: (
 }
 
 /* css for hero image video */
-
 .hero-image {
-  video {
-    width: 100% !important;
-    object-fit: cover !important;
-    cursor: pointer !important;
-    @media only screen and (min-width: $breakpoint-hero-title-md) {
-     height: 100%;
+  &.video-section {
+    video {
+      width: 100% !important;
+      height: 100%;
+      object-fit: cover;
+    }
+    +.hero-text {
+      position: absolute;
+      left: 1%;
+      bottom: 2%;
+      .hero-title {
+        display: none;
+      }
+      .hero-action {
+        @media only screen and (max-width: $breakpoint-gallery-large) {
+          width: 70%;
+        }
+      }
     }
   }
 }
-
 /**
  * HERO TEXT
  */

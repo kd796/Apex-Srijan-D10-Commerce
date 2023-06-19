@@ -4,11 +4,6 @@
 {% set form = content.field_form %}
 {% set image_url = content.field_media_src %}
 {% set video_url = content.field_video %}
-{% if video_url|length > 2 %}
-  {% set media_url = video_url %}
-{% else %}
-  {% set media_url = image_url %}
-{% endif %}		
 {% if is_front_page %}
 	{% set size = 'large' %}
 {% endif %}
@@ -18,7 +13,9 @@
 	title: content.field_title[0]['#context']['value'],
 	subtitle: content.field_subtitle[0]['#context']['value'],
 	title_suffix: content.field_title_suffix[0]['#context']['value'],
-	image: media_url,
+	image: image_url,
+	hero_video_url: video_url,
+	media_url: file_url(elements.field_video['#items'].entity.field_media_video_file.entity.fileuri),
 	url: cta.field_cta_url[0].url | string,
 	action: cta.field_cta_url[0].title,
 	target: target,
