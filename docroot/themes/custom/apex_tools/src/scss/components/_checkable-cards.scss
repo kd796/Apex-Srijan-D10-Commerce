@@ -16,6 +16,12 @@ $breakpoint-checkable-card-vertical: $breakpoint-nav-inline;
     flex-basis: 100%;
     @include property-scale(padding, map-multiplier($checkable-card-gap-map, 0.5));
     -webkit-tap-highlight-color: transparent;
+
+    &.active-tab {
+      .selected {
+        opacity: 1;
+      }
+    }
 }
 .checkable-card {
     position: relative;
@@ -58,7 +64,6 @@ $breakpoint-checkable-card-vertical: $breakpoint-nav-inline;
     }
 
     &::before {
-        content: attr(data-selected-text);
         font-size: 0.75rem;
         font-weight: normal;
         transition: 200ms ease;
@@ -68,6 +73,19 @@ $breakpoint-checkable-card-vertical: $breakpoint-nav-inline;
             display: none;
         }
     }
+
+    .selected {
+      opacity: 0;
+      transform: translateY(1em);
+      font-size: 0.75rem;
+      font-weight: normal;
+      transition: 200ms ease;
+      color: #fff;
+
+      @media only screen and (max-width: $media-screen-tablet) {
+          display: none;
+      }
+  }
 }
 /**
  * CHECKED STATES
@@ -110,18 +128,28 @@ $breakpoint-checkable-card-vertical: $breakpoint-nav-inline;
         flex-basis: 100%;
     }
     .checkable-card-label {
-        padding-left: 1rem;
-        flex-grow: 1;
+      padding-left: 1rem;
+      flex-grow: 1;
 
-        &::before {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            text-align: center;
-            padding: 0.5em;
-            writing-mode: vertical-lr;
-        }
+      &::before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+        padding: 0.5em;
+        writing-mode: vertical-lr;
+      }
+
+      .selected {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+        padding: 0.5em;
+        writing-mode: vertical-lr;
+      }
     }
 
     .checkable-card-input:not(:checked) + .checkable-card {
@@ -158,19 +186,24 @@ $breakpoint-checkable-card-vertical: $breakpoint-nav-inline;
     }
 
     .checkable-card-label {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        flex-basis: 5em;
-        font-size: 1.125em;
-        font-weight: 500;
-        text-align: center;
-        width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-basis: 5em;
+      font-size: 1.125em;
+      font-weight: 500;
+      text-align: center;
+      width: 100%;
 
-        &::before {
-            letter-spacing: 0.015625em;
-            padding-bottom: 0.5em;
-        }
+      &::before {
+        letter-spacing: 0.015625em;
+        padding-bottom: 0.5em;
+      }
+
+      .selected {
+        letter-spacing: 0.015625em;
+        padding-bottom: 0.5em;
+      }
     }
 
     .checkable-card-input:checked + .checkable-card {
@@ -178,8 +211,4 @@ $breakpoint-checkable-card-vertical: $breakpoint-nav-inline;
             transform: translateY(-0.5em);
         }
     }
-}
-
-div.notice--info {
-  display: none !important;
 }

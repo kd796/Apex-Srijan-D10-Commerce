@@ -7,7 +7,6 @@
       var $tabslist = $('.hubspot-tabs li');
 
       $('.hubspot-tabs').once('hubspot-tabs').on('click', 'li', function (e) {
-        e.preventDefault();
         var $current = $(this);
         var index = $current.index();
 
@@ -23,13 +22,12 @@
         } else {
           $contentlist.removeClass('active');
           $contentlist.eq(index).addClass('active');
-        }
-
-        var target = $($(this).find('.checkable-card').attr('href'));
-        if (target.length) {
-          $('html, body').animate({
-            scrollTop: target.offset().top
-          }, 500);
+          var target = $($(this).find('.checkable-card').attr('href'));
+          if (target.length) {
+            $('html, body').animate({
+              scrollTop: target.offset().top
+            }, 500);
+          }
         }
         return false;
       });

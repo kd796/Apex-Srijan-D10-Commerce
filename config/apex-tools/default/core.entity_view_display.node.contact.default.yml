@@ -33,23 +33,17 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_locations_content_type:
-    type: entity_reference_entity_id
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 2
-    region: content
   field_seo:
     type: metatag_empty_formatter
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 3
+    weight: 2
     region: content
 hidden:
   field_forms: true
   field_hubspot_node: true
+  field_locations_content_type: true
   field_mailing_list_form: true
   langcode: true
   links: true

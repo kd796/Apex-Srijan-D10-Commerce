@@ -16,13 +16,22 @@
  */
 #}
 
-{% for row in rows %}
-  {%
-    set row_classes = [
-      default_row_class ? 'views-row',
-    ]
-  %}
-  
+{% for key,row in rows %}
+  {% set val = view.style_plugin.getField(key, 'field_not_a_hubspot_form') %}
+       {% if val == '1'%}
+          {%
+            set row_classes = [
+              default_row_class ? 'views-row checkable-cards-item link-field',
+            ]
+          %}
+        {% else %}
+          {%
+            set row_classes = [
+              default_row_class ? 'views-row checkable-cards-item',
+            ]
+          %}
+        {% endif %}
+
   <li{{ row.attributes.addClass(row_classes) }}>
     {{- row.content -}}
   </li>

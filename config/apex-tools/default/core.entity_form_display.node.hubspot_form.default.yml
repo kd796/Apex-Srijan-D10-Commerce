@@ -4,11 +4,15 @@ status: true
 dependencies:
   config:
     - field.field.node.hubspot_form.body
+    - field.field.node.hubspot_form.field_form_link
     - field.field.node.hubspot_form.field_hubspot_code
+    - field.field.node.hubspot_form.field_hubspot_form
     - field.field.node.hubspot_form.field_image
+    - field.field.node.hubspot_form.field_not_a_hubspot_form
     - node.type.hubspot_form
   module:
     - content_moderation
+    - link
     - media_library
     - path
     - text
@@ -23,9 +27,17 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_form_link:
+    type: link_default
+    weight: 15
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
   field_hubspot_code:
     type: text_textarea_with_summary
-    weight: 11
+    weight: 14
     region: content
     settings:
       rows: 9
@@ -33,12 +45,26 @@ content:
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
+  field_hubspot_form:
+    type: boolean_checkbox
+    weight: 13
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_image:
     type: media_library_widget
     weight: 10
     region: content
     settings:
       media_types: {  }
+    third_party_settings: {  }
+  field_not_a_hubspot_form:
+    type: boolean_checkbox
+    weight: 12
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   langcode:
     type: language_select
@@ -87,6 +113,11 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 11
+    region: content
+    settings: {  }
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
