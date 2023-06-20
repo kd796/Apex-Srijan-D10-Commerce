@@ -1,0 +1,22 @@
+uuid: 97f183d7-c464-4a65-bba3-af705e610719
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.quotation.field_country
+  module:
+    - address
+    - apex_tools_custom_quotation
+id: quotation.quotation.field_country
+field_name: field_country
+entity_type: quotation
+bundle: quotation
+label: Country
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  available_countries: {  }
+field_type: address_country
