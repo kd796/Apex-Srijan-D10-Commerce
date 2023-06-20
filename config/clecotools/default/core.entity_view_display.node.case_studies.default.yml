@@ -1,0 +1,91 @@
+uuid: a9af0d4a-0043-4d02-b792-e72bb8c340ba
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.case_studies.field_case_study_client_summary
+    - field.field.node.case_studies.field_case_study_content
+    - field.field.node.case_studies.field_case_study_summary
+    - field.field.node.case_studies.field_case_study_summary_top
+    - field.field.node.case_studies.field_image
+    - field.field.node.case_studies.field_media
+    - field.field.node.case_studies.field_read_time
+    - field.field.node.case_studies.field_type_of_case_study
+    - node.type.case_studies
+  module:
+    - text
+    - user
+id: node.case_studies.default
+targetEntityType: node
+bundle: case_studies
+mode: default
+content:
+  field_case_study_client_summary:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 111
+    region: content
+  field_case_study_content:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 110
+    region: content
+  field_case_study_summary:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 109
+    region: content
+  field_case_study_summary_top:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_image:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_media:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 112
+    region: content
+  field_read_time:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_type_of_case_study:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true
+  uuid: true
