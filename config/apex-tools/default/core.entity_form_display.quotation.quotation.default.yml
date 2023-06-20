@@ -1,0 +1,253 @@
+uuid: b67afc3e-29c8-4e70-8495-01a0efa3bf80
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.quotation.quotation.field_are_you_requesting_an_item
+    - field.field.quotation.quotation.field_country
+    - field.field.quotation.quotation.field_state
+  module:
+    - address
+    - apex_tools_custom_quotation
+    - conditional_fields
+    - field_group
+third_party_settings:
+  field_group:
+    group_business_information:
+      children:
+        - first_name
+        - last_name
+        - company_name
+        - email_address
+        - phone_number
+        - field_address
+        - field_city
+        - field_country
+        - field_state
+        - field_state_text
+        - field_zip_code
+        - field_account_number
+        - field_apex_sales_person
+      label: '<span>1. Business Information</span>'
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: form_step
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        show_step_title: true
+        step_description: ''
+        back_button_show: false
+        back_button_text: Back
+        next_button_text: 'NEXT STEP >>'
+        step_help: ''
+    group_request_for_reactivation:
+      children:
+        - field_are_you_requesting_an_item
+      label: '<span>2. Request for Reactivation or New Part</span>'
+      region: content
+      parent_name: ''
+      weight: 1
+      format_type: form_step
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        show_step_title: true
+        step_description: ''
+        back_button_show: false
+        back_button_text: Back
+        next_button_text: 'CONTINUE TO CUSTOM QUOTE REQUEST »'
+        required_fields: true
+        step_help: ''
+id: quotation.quotation.default
+targetEntityType: quotation
+bundle: quotation
+mode: default
+content:
+  company_name:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  email_address:
+    type: email_default
+    weight: 4
+    region: content
+    settings:
+      placeholder: ''
+      size: 60
+    third_party_settings: {  }
+  field_account_number:
+    type: number
+    weight: 12
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_address:
+    type: string_textfield
+    weight: 6
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_apex_sales_person:
+    type: string_textfield
+    weight: 13
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_are_you_requesting_an_item:
+    type: options_buttons
+    weight: 14
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_city:
+    type: string_textfield
+    weight: 7
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_country:
+    type: address_country_default
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_state:
+    type: options_select
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings:
+      conditional_fields:
+        267b8775-9889-465a-8750-3c39f107b982:
+          entity_type: quotation
+          bundle: quotation
+          dependee: field_country
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 2
+            value: ''
+            values: US
+            value_form:
+              -
+                value: ''
+            effect: show
+            effect_options: {  }
+            selector: ''
+        66029898-92fc-49bf-8f55-284fabe1bf21:
+          entity_type: quotation
+          bundle: quotation
+          dependee: field_country
+          settings:
+            state: required
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 2
+            value: ''
+            values: US
+            value_form:
+              -
+                value: ''
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_state_text:
+    type: string_textfield
+    weight: 10
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        27e15dc3-e2c0-4d63-8c31-5a74ce1032ec:
+          entity_type: quotation
+          bundle: quotation
+          dependee: field_country
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 5
+            value: ''
+            values: US
+            value_form:
+              -
+                value: ''
+            effect: show
+            effect_options: {  }
+            selector: ''
+        5ccb3cd0-a6d9-4f28-8c5d-a3c7148699d9:
+          entity_type: quotation
+          bundle: quotation
+          dependee: field_country
+          settings:
+            state: required
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 5
+            value: ''
+            values: US
+            value_form:
+              -
+                value: ''
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_zip_code:
+    type: string_textfield
+    weight: 11
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  first_name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  last_name:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  phone_number:
+    type: number
+    weight: 5
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  status: true
+  translation: true
+  uid: true

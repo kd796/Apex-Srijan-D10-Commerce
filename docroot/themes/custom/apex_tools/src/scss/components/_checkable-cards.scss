@@ -76,8 +76,7 @@ $breakpoint-checkable-card-vertical: $breakpoint-nav-inline;
 
     .selected {
       opacity: 0;
-      transform: translateY(1em);
-      font-size: 0.75rem;
+      font-size: 0.85rem;
       font-weight: normal;
       transition: 200ms ease;
       color: #fff;
@@ -132,16 +131,6 @@ $breakpoint-checkable-card-vertical: $breakpoint-nav-inline;
       flex-grow: 1;
 
       &::before {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        text-align: center;
-        padding: 0.5em;
-        writing-mode: vertical-lr;
-      }
-
-      .selected {
         position: absolute;
         top: 0;
         right: 0;
