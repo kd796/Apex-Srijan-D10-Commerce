@@ -1,0 +1,154 @@
+uuid: e96d6883-1846-4f9f-8ecb-af1e2512cd70
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.paragraph_embed
+    - field.storage.block_content.field_find_a_local_rep
+    - paragraphs.paragraphs_type.find_a_distributor
+  module:
+    - entity_reference_revisions
+id: block_content.paragraph_embed.field_find_a_local_rep
+field_name: field_find_a_local_rep
+entity_type: block_content
+bundle: paragraph_embed
+label: 'Find a local rep'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      find_a_distributor: find_a_distributor
+    negate: 0
+    target_bundles_drag_drop:
+      360_hotspots:
+        weight: 43
+        enabled: false
+      360_product_image:
+        weight: 44
+        enabled: false
+      basic_card:
+        weight: 45
+        enabled: false
+      basic_card_section:
+        weight: 46
+        enabled: false
+      callout_section_footer:
+        weight: 47
+        enabled: false
+      callout_section_page_end:
+        weight: 48
+        enabled: false
+      card:
+        weight: 49
+        enabled: false
+      content_bundle:
+        weight: 50
+        enabled: false
+      content_section:
+        weight: 51
+        enabled: false
+      content_section_simple:
+        weight: 52
+        enabled: false
+      cta:
+        weight: 53
+        enabled: false
+      enhanced_hero:
+        weight: 54
+        enabled: false
+      enhanced_product_features:
+        weight: 55
+        enabled: false
+      excerpt:
+        weight: 56
+        enabled: false
+      faq:
+        weight: 57
+        enabled: false
+      faqs_group:
+        weight: 58
+        enabled: false
+      faqs_section:
+        weight: 59
+        enabled: false
+      featured_block:
+        weight: 60
+        enabled: false
+      featured_product_item:
+        weight: 61
+        enabled: false
+      featured_products:
+        weight: 62
+        enabled: false
+      featured_section:
+        weight: 63
+        enabled: false
+      find_a_distributor:
+        weight: 64
+        enabled: true
+      form_section:
+        weight: 65
+        enabled: false
+      from_library:
+        weight: 66
+        enabled: false
+      grid_item:
+        weight: 67
+        enabled: false
+      grid_section:
+        weight: 68
+        enabled: false
+      hero:
+        weight: 69
+        enabled: false
+      iframe:
+        weight: 70
+        enabled: false
+      intro:
+        weight: 71
+        enabled: false
+      mailing_list_form:
+        weight: 72
+        enabled: false
+      media_block:
+        weight: 73
+        enabled: false
+      media_image:
+        weight: 74
+        enabled: false
+      media_kit:
+        weight: 75
+        enabled: false
+      message_block:
+        weight: 76
+        enabled: false
+      product_categories:
+        weight: 77
+        enabled: false
+      product_search:
+        weight: 78
+        enabled: false
+      products_category_section:
+        weight: 79
+        enabled: false
+      products_section:
+        weight: 80
+        enabled: false
+      schedule_a_demo:
+        weight: 81
+        enabled: false
+      testimonials_block:
+        weight: 82
+        enabled: false
+      testimonials_section:
+        weight: 83
+        enabled: false
+      video_bundle:
+        weight: 84
+        enabled: false
+field_type: entity_reference_revisions
