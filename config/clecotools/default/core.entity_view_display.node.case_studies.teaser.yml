@@ -1,0 +1,39 @@
+uuid: c7230a53-3efc-428e-8feb-36f6195b5011
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.case_studies.field_case_study_client_summary
+    - field.field.node.case_studies.field_case_study_content
+    - field.field.node.case_studies.field_case_study_summary
+    - field.field.node.case_studies.field_case_study_summary_top
+    - field.field.node.case_studies.field_image
+    - field.field.node.case_studies.field_media
+    - field.field.node.case_studies.field_read_time
+    - field.field.node.case_studies.field_type_of_case_study
+    - node.type.case_studies
+  module:
+    - user
+id: node.case_studies.teaser
+targetEntityType: node
+bundle: case_studies
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_case_study_client_summary: true
+  field_case_study_content: true
+  field_case_study_summary: true
+  field_case_study_summary_top: true
+  field_image: true
+  field_media: true
+  field_read_time: true
+  field_type_of_case_study: true
+  langcode: true
+  search_api_excerpt: true
+  uuid: true
