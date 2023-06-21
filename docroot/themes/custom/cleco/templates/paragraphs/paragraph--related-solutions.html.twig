@@ -10,45 +10,43 @@
 {% endfor %}
 
 {% if related_products is not empty %}
-    <section class="section main">
-    	<header class="section-header">
-        {% set section_tite = content.field_product_solutions_title[0]['#context']['value']|split(' ', 2) %}
-        <h2 class="section-title"><em style="color:#e35205">{{ attribute(section_tite, 0) }}</em> {{ attribute(section_tite, 1) }}</h2>
-    	</header>
-        <div class="section-main">
-            <ul class="listings">
-              {% set locale  = get_locale() %}
-              {% for index, item in related_products %}
+  <section class="section main">
+    {% set section_tite = content.field_product_solutions_title[0]['#context']['value']|split(' ', 2) %}
+    <h2 class="section-title"><em>{{ attribute(section_tite, 0) }}</em> {{ attribute(section_tite, 1) }}</h2>
+    <div class="section-main related-solutions">
+      <ul class="listings">
+        {% set locale  = get_locale() %}
+        {% for index, item in related_products %}
 
-                {% if product_titles[index] %}
-                  {% set name = product_titles[index] %}
-                  {% set body = null %}
-                {% endif %}
+          {% if product_titles[index] %}
+            {% set name = product_titles[index] %}
+            {% set body = null %}
+          {% endif %}
 
-                {% if item.nid.value %}
-                  {% set url  = path('entity.node.canonical', {'node': item.nid.value}) %}
-                {% else %}
-                  {% set url  = 'solutions' %}
-                {% endif %}
+          {% if item.nid.value %}
+            {% set url  = path('entity.node.canonical', {'node': item.nid.value}) %}
+          {% else %}
+            {% set url  = 'solutions' %}
+          {% endif %}
 
-                {% if product_images[index] %}
-                  {% set img = product_images[index]|file_uri|image_style('industry_solutions') %}
-                {% endif %}
+          {% if product_images[index] %}
+            {% set img = product_images[index]|file_uri|image_style('hero_thumb') %}
+          {% endif %}
 
-                {% if not img %}
-                  {% set img = item.field_media|file_uri|image_style('industry_solutions') %}
-                {% endif %}
+          {% if not img %}
+            {% set img = item.field_media|file_uri|image_style('hero_thumb') %}
+          {% endif %}
 
-    				<li class="listings-item">
-    					{% include '@atg/patterns/listing.html.twig' with {
-    						url: locale.path ~ url,
-    						title: name,
-    						body: body,
-                image: img,
-    					} %}
-    				</li>
-                {% endfor %}
-			</ul>
-        </div>
-    </section>
+          <li class="listings-item">
+            {% include '@atg/patterns/listing.html.twig' with {
+              url: url,
+              title: name,
+              body: body,
+              image: img,
+            } %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
 {% endif %}
