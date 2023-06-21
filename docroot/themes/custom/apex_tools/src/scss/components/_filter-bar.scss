@@ -4,15 +4,16 @@ $filter-bar-border-color: rgba($color-gray-light, 0.5);
     display: flex;
     overflow: hidden;
     margin: 0;
+    justify-content: center;
 
     @media (max-width: $breakpoint-layout-horizontal) {
         flex-wrap: wrap;
+        padding: 0 15px;
     }
 }
 
 .filter-bar-item {
     display: flex;
-    border-right: 1px solid $filter-bar-border-color;
 
     @media (max-width: $breakpoint-layout-horizontal - 1) {
         flex-grow: 1;
@@ -25,8 +26,6 @@ $filter-bar-border-color: rgba($color-gray-light, 0.5);
 
     @media (min-width: $breakpoint-layout-horizontal) {
         &--push {
-            margin-left: auto;
-
             &:last-child {
                 border-right-color: transparent;
             }
@@ -39,6 +38,8 @@ $filter-bar-border-color: rgba($color-gray-light, 0.5);
     height: 4.25rem;
     display: flex;
     width: 100%;
+    margin: 12px 0;
+    border: 1px solid $filter-bar-border-color;;
 }
 
 .filter-label {
@@ -78,9 +79,9 @@ select.filter-input {
 
 .filter-bar-action {
     display: flex;
-    padding: 0.75em;
+    padding: 0.75em 0.75em 0.75em 0;
 
-    @media (min-width: $breakpoint-layout-horizontal) {
+    @media only screen and(min-width: $media-screen-mobile) {
         .button {
             height: auto;
         }
