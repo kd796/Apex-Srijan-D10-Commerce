@@ -1,0 +1,25 @@
+uuid: 787ec999-e85a-4052-b654-c5f7a2689282
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_solution
+    - paragraphs.paragraphs_type.product_solutions_item
+id: paragraph.product_solutions_item.field_solution
+field_name: field_solution
+entity_type: paragraph
+bundle: product_solutions_item
+label: Solution
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: industry_solutions_er
+      display_name: entity_reference_content_solutions
+      arguments: {  }
+field_type: entity_reference
