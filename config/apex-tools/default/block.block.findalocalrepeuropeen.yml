@@ -1,25 +1,25 @@
-uuid: 6c85fcd0-f23d-4453-964b-f2bf25637ad9
+uuid: 515638f5-d7ba-4caf-a65c-a6258544249e
 langcode: en
 status: true
 dependencies:
   config:
-    - fixed_block_content.fixed_block_content.downloads_europe_de
+    - fixed_block_content.fixed_block_content.find_a_local_rep_eu_en
   module:
     - fixed_block_content
     - language
     - system
   theme:
     - apex_tools
-id: downloadseuropede
+id: findalocalrepeuropeen
 theme: apex_tools
 region: content
-weight: -12
+weight: 0
 provider: null
-plugin: 'fixed_block_content:downloads_europe_de'
+plugin: 'fixed_block_content:find_a_local_rep_eu_en'
 settings:
-  id: 'fixed_block_content:downloads_europe_de'
-  label: 'Produktunterlagen finden'
-  label_display: visible
+  id: 'fixed_block_content:find_a_local_rep_eu_en'
+  label: 'Find a local rep (Europe / EN)'
+  label_display: '0'
   provider: fixed_block_content
   view_mode: ''
 visibility:
@@ -29,8 +29,8 @@ visibility:
     context_mapping:
       language: '@language.current_language_context:language_interface'
     langcodes:
-      de: de
+      gb: gb
   request_path:
     id: request_path
     negate: false
-    pages: /downloads
+    pages: "/industry-solutions/*\r\n/tools/tool-catalog/*"
