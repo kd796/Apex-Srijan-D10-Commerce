@@ -1,5 +1,5 @@
 {% set locale = get_locale() %}
-{% set productName = product.name %} 
+{% set productName = product.name %}
 <main class="main">
     <section class="section section--focus">
         <div class="product-hero">
@@ -120,7 +120,7 @@
                                 <li class="listings-item">
                                         {% set url = download_link(asset, asset.type) %}
                                         {% set thumb = step_asset([asset], 'pro_tools_jpg_of_pdf') %}
-                                    {% include '@atg/patterns/listing.html.twig' with {
+                                    {% include '@apex_tools/patterns/listing.html.twig' with {
                                         url: url,
                                         title: asset.id,
                                         body: asset.type,
@@ -161,7 +161,7 @@
               {% if related._source.name != productName %}
                 <li class="listings-item">
                   {% set data = related._source %}
-                  {% include '@atg/patterns/listing.html.twig' with {
+                  {% include '@apex_tools/patterns/listing.html.twig' with {
                       title: data.name,
                       body: data.values.sku_overview,
                       url: locale.path ~ alias ~ '/' ~ data.slug.0,
