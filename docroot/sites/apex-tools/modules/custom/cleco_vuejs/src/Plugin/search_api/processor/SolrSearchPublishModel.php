@@ -69,10 +69,10 @@ class SolrSearchPublishModel extends ProcessorPluginBase {
   public function alterIndexedItems(array &$items) {
 
     /** @var \Drupal\search_api\Item\ItemInterface $item */
+    $node_storage = $this->entityTypeManager->getStorage('node');
     foreach ($items as $item_id => $item) {
       $object = $item->getOriginalObject()->getValue();
       $bundle = $object->bundle();
-      $node_storage = $this->entityTypeManager->getStorage('node');
       // Remove Inactive models from indexed items.
       if ($bundle == 'product' && $object->hasField('field_product_models')) {
         $models = $object->get('field_product_models')->getValue();
