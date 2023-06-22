@@ -88,14 +88,14 @@ class CalloutSettingsForm extends ConfigFormBase
       '#type'          => 'textfield',
       '#title'         => $this->t('URL'),
       '#default_value' => $config->get('atg_callout_path'),
-      '#description'   => $this->t("Can be a full URL or relative to the domain, e.g. /products/product-catalog"),
+      '#description'   => $this->t("Can be a full URL or relative to the domain, e.g. /tools/tool-catalog"),
     ];
 
     $form['content']['atg_callout_path_de'] = [
       '#type'          => 'textfield',
       '#title'         => $this->t('URL_DE'),
       '#default_value' => $config->get('atg_callout_path_de'),
-      '#description'   => $this->t("Can be a full URL or relative to the domain, e.g. /products/product-catalog"),
+      '#description'   => $this->t("Can be a full URL or relative to the domain, e.g. /tools/tool-catalog"),
     ];
 
     $form['content']['atg_callout_target'] = [

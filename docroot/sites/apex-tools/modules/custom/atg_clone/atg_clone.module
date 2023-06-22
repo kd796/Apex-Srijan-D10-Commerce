@@ -114,7 +114,7 @@ function atg_clone_language_switch_links_alter(array &$links, $type, $path)
             $langCode                = StepHelper::getCurrentSite()['code'];
             $langcodes[]             = $langCode;
             $slug                    = $options['slug'];
-            $alias                   = \Drupal::service('path_alias.manager')->getAliasByPath('/products/product-catalog', $langCode);
+            $alias                   = \Drupal::service('path_alias.manager')->getAliasByPath('/tools/tool-catalog', $langCode);
             $links[$langCode]['url'] = Url::fromUri("internal:/$langCode$alias/$slug");
         }
 
