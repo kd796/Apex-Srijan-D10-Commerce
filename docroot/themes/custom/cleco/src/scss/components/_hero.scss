@@ -68,21 +68,33 @@ $hero-height-map: (
       width: 100% !important;
       height: 100%;
       object-fit: cover;
+      &::-webkit-media-controls-timeline {
+        opacity: 0 !important;
+        display: none !important;
+      }
     }
     +.hero-text {
-      position: absolute;
-      left: 1%;
-      bottom: 2%;
-      .hero-title {
-        display: none;
-      }
-      .hero-action {
-        @media only screen and (max-width: $breakpoint-gallery-large) {
-          width: 70%;
-        }
-      }
+      display: none;
     }
   }
+}
+/* css for hero banner video text */
+.hero-video-banner-text {
+  display: none;
+  background-color: $color-orange;
+  padding: 20px;
+  color: $color-white; 
+  h2{
+   letter-spacing: 1px;
+   word-spacing: 2px;
+   margin-bottom: 0em !important;
+  }
+  br {
+    display: none;
+  }
+}
+.dispblock {
+  display: block !important;
 }
 /**
  * HERO TEXT
