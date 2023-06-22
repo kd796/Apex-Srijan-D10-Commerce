@@ -27,15 +27,9 @@
  */
 
 use Drupal\Core\Cache\Cache;
-use Drupal\Core\Render\Element;
-use Drupal\Core\Render\Markup;
 use Drupal\media\Entity\Media;
-use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\file\Entity\File;
 use Drupal\Component\Utility\Html;
-use Drupal\taxonomy\Entity\Term;
-use Drupal\taxonomy\TermStorage;
-use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 
 /**
@@ -51,7 +45,8 @@ function sata_preprocess_node(array &$variables) {
     unset($variables['content']['field_components']['#theme']);
   }
 
-  // Add the Price Spider Product and Reviews key and Generic product checkbox value.
+  // Add the Price Spider Product and Reviews key and
+  // Generic product checkbox value.
   $variables['price_spider_product_key'] = theme_get_setting('price_spider_product_key');
   $variables['price_spider_reviews_key'] = theme_get_setting('price_spider_reviews_key');
   $variables['price_spider_generic_product_button'] = theme_get_setting('price_spider_generic_product_button');
@@ -103,6 +98,17 @@ function sata_preprocess_node__media_page__full(&$variables) {
   $variables['categories'] = $variables['content']['field_category'];
   $variables['tags'] = $variables['content']['field_tags'];
   $variables['mediaType'] = $node->get('field_media_type')->getValue()[0]['value'];
+
+  $sata_br_host_names = [
+    "https://stg-www.sataferramentas.com.br",
+    "https://sataferramentas.com.br",
+    "https://www.sataferramentas.com.br",
+  ];
+
+  $host = \Drupal::request()->getSchemeAndHttpHost();
+  if (in_array($host, $sata_br_host_names)) {
+    $variables['is_sata_br_domain'] = TRUE;
+  }
 
   unset($variables['content']['field_category']);
   unset($variables['content']['field_link']);
@@ -635,7 +641,8 @@ function sata_preprocess_node__product_category__full(array &$variables) {
   }
 
   if ($enable_w1_subcategory_grid) {
-    // Only display the category grid if there are sub-categories as defined by categories on the node.
+    // Only display the category grid if there are
+    // sub-categories as defined by categories on the node.
     $node_classifications = $node->get('field_product_classifications')->getValue();
     if (count($node_classifications) == 1) {
       $terms = \Drupal::service('entity_type.manager')
@@ -821,7 +828,8 @@ function sata_preprocess_node__social_post__teaser(&$variables) {
   // Need to troubleshoot why this causes the crash when not logged in
   // Move url to drupal settings.
   // if (!empty($variables['content']['field_post_url'])) {
-  // $variables['#attached']['drupalSettings']['social_feed'][] = $variables['content']['field_post_url'];
+  // $variables['#attached']['drupalSettings']['social_feed'][] =
+  // $variables['content']['field_post_url'];
   // unset($variables['content']['field_post_url']);
   // } !
 }
