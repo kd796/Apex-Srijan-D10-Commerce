@@ -1,0 +1,23 @@
+uuid: 66b4febd-1ff2-4138-b973-0a62928171fc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rrp
+    - node.type.product
+id: node.product.field_rrp
+field_name: field_rrp
+entity_type: node
+bundle: product
+label: RRP
+description: 'The RRP (Recommended retail price) value of the product'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: float

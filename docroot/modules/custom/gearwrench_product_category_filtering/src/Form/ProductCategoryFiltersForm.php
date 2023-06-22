@@ -98,23 +98,26 @@ class ProductCategoryFiltersForm extends FormBase {
 
       $available_classifications = array_intersect($selected_child_terms, $available_classification_ids);
 
+      $category_facet_options = [];
       foreach ($available_classifications as $available_classification) {
         $available_classification_term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($available_classification);
         $category_facet_options[$available_classification_term->id()] = $available_classification_term->label();
       }
 
-      $form['category-filter'] = [
-        '#type' => 'checkboxes',
-        '#options' => $category_facet_options,
-        '#title' => $this->t('Category'),
-        '#weight' => '0',
-        '#required' => FALSE,
-        '#attributes' => [
-          'class' => [
-            'node--type-product-category__category-filter',
-          ]
-        ],
-      ];
+      if (!empty($category_facet_options)) {
+        $form['category-filter'] = [
+          '#type' => 'checkboxes',
+          '#options' => $category_facet_options,
+          '#title' => $this->t('Category'),
+          '#weight' => '0',
+          '#required' => FALSE,
+          '#attributes' => [
+            'class' => [
+              'node--type-product-category__category-filter',
+            ]
+          ],
+        ];
+      }
     }
 
     // Prep Attribute Facets.

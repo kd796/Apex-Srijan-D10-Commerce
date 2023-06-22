@@ -25,15 +25,9 @@
  */
 
 use Drupal\Core\Cache\Cache;
-use Drupal\Core\Render\Element;
-use Drupal\Core\Render\Markup;
 use Drupal\media\Entity\Media;
-use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\file\Entity\File;
 use Drupal\Component\Utility\Html;
-use Drupal\taxonomy\Entity\Term;
-use Drupal\taxonomy\TermStorage;
-use Drupal\Core\Url;
 
 /**
  * Implements hook_preprocess_node().
@@ -315,6 +309,15 @@ function crescenttool_preprocess_node__product__full(array &$variables) {
 
     $variables['related_items'] = $main_view->buildRenderable($view_display, $main_view->args);
   }
+  // Preprocess the product specifications to display the Multivalued
+  // attribute line by line.
+  $terms = $variables['node']->field_product_specifications->referencedEntities();
+  $specifications = [];
+  foreach ($terms as $value) {
+    $term_exploded = explode(":", $value->name->value, 2);
+    $specifications[$term_exploded[0]][] = $term_exploded[1];
+  }
+  $variables['field_product_specifications'] = $specifications;
 }
 
 /**
