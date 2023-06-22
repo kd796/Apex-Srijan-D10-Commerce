@@ -27,7 +27,7 @@ class AirMotorsConfiguration implements ComparisonTableConfiguration {
       ->forKey('values.rpm_at_max_hp')
       ->withUnits('1/min');
     $definition->addNumericColumn('Free Speed')
-      ->forKey('values.free_speed_rpm')
+      ->forKey('values.free_speed')
       ->withUnits('1/min');
     $definition->addNumericColumn('Torque Stall')
       ->forImperialKey('values.torque_stall_ftlbs', 'ft/lbs')

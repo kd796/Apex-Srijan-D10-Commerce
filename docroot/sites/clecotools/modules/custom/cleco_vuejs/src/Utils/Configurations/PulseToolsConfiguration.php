@@ -30,7 +30,7 @@ class PulseToolsConfiguration implements ComparisonTableConfiguration {
       ->forImperialKey('values.torque_range_max_ft_lbs', 'ft/lbs')
       ->forMetricKey('values.torque_range_max_nm', 'Nm');
     $definition->addNumericColumn('Free Speed')
-      ->forKey('values.free_speed_rpm')
+      ->forKey('values.free_speed')
       ->withUnits('1/min');
     $definition->addNumericColumn('Weight')
       ->forImperialKey('values.weight_lbs', 'lbs')
