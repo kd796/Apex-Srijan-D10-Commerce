@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.solutions.field_alternating_media_blocks
     - field.field.node.solutions.field_callout_section_footer
     - field.field.node.solutions.field_card
+    - field.field.node.solutions.field_case_study
     - field.field.node.solutions.field_featured_products
     - field.field.node.solutions.field_find_a_distributor
     - field.field.node.solutions.field_forms
@@ -56,6 +57,16 @@ content:
   field_card:
     type: entity_reference_autocomplete
     weight: 9
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_case_study:
+    type: entity_reference_autocomplete
+    weight: 26
     region: content
     settings:
       match_operator: CONTAINS
