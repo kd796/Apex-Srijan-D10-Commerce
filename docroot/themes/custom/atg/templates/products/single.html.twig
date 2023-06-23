@@ -156,7 +156,7 @@
           </header>
           <ul class="listings">
             {# Get correct alias based on selected language #}
-            {% set alias = alias_by_path('/tools/tool-catalog', locale.code) %}
+            {% set alias = alias_by_path('/products/product-catalog', locale.code) %}
             {% for related in relatedProducts %}
               {% if related._source.name != productName %}
                 <li class="listings-item">

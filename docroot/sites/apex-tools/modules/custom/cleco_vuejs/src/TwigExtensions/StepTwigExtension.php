@@ -270,7 +270,7 @@ class StepTwigExtension extends \Twig_Extension
         $data       = [];
         $properties = [];
         $curSite    = StepHelper::getCurrentSite();
-        $alias      = Drupal::service('path_alias.manager')->getAliasByPath('/tools/tool-catalog', $curSite['code']);
+        $alias      = Drupal::service('path_alias.manager')->getAliasByPath('/products/product-catalog', $curSite['code']);
 
         if (!empty($name)) {
             $term  = \Drupal::EntityTypeManager()->getStorage('taxonomy_term')->loadByProperties($properties['name']);
@@ -316,7 +316,7 @@ class StepTwigExtension extends \Twig_Extension
     public function getProductUrl(string $slug = null)
     {
         $curSite    = StepHelper::getCurrentSite();
-        $alias      = Drupal::service('path_alias.manager')->getAliasByPath('/tools/tool-catalog', $curSite['code']);
+        $alias      = Drupal::service('path_alias.manager')->getAliasByPath('/products/product-catalog', $curSite['code']);
 
         return $alias . '/' . $slug;
     }

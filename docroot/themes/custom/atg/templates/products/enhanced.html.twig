@@ -1,6 +1,6 @@
 {% set locale        = get_locale() %}
 {# Get correct alias based on selected language #}
-{% set alias         = alias_by_path('/tools/tool-catalog', locale.code) %}
+{% set alias         = alias_by_path('/products/product-catalog', locale.code) %}
 {% set translations  = get_translations() %}
 {% set productName   = product.values.coupon_headline is defined ? product.values.coupon_headline : product.name %}
 {% set base_url      = step_asset_base_url() %}
@@ -206,7 +206,7 @@
           </header>
           <basic-cards>
             {# Get correct alias based on selected language #}
-            {% set alias = alias_by_path('/tools/tool-catalog', locale.code) %}
+            {% set alias = alias_by_path('/products/product-catalog', locale.code) %}
             {% for related in relatedProducts %}
               {% if related._source.name != productName %}
                 <basic-card>

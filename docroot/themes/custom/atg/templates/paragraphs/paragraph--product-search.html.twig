@@ -7,7 +7,7 @@
 			</header>
             {# Get correct alias based on selected language #}
             {% set locale = get_locale() %}
-            {% set alias = alias_by_path('/tools/tool-catalog', locale.code) %}
+            {% set alias = alias_by_path('/products/product-catalog', locale.code) %}
 			<form class="form-bar form-bar--centered form-bar--product-search" action="{{ locale.path ~ alias }}">
 				<div class="form-bar-item">
 					<input type="search" name="q" placeholder="{{ 'Name or model number' | t }}">
