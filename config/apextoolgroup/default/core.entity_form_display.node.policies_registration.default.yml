@@ -1,0 +1,144 @@
+uuid: 7b1ab99e-64f6-46d8-89e7-70120d29e2a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.policies_registration.field_download_policy_desc
+    - field.field.node.policies_registration.field_download_policy_file_label
+    - field.field.node.policies_registration.field_download_policy_file_pdf_m
+    - field.field.node.policies_registration.field_download_policy_label
+    - field.field.node.policies_registration.field_policies_registration_webf
+    - node.type.policies_registration
+  module:
+    - field_group
+    - file
+    - path
+    - text
+    - webform
+third_party_settings:
+  field_group:
+    group_download_policy_component:
+      children:
+        - field_download_policy_label
+        - field_download_policy_desc
+        - field_download_policy_file_pdf_m
+        - field_download_policy_file_label
+      label: 'Download Policy Component'
+      region: content
+      parent_name: ''
+      weight: 9
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        description: ''
+        required_fields: true
+id: node.policies_registration.default
+targetEntityType: node
+bundle: policies_registration
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_download_policy_desc:
+    type: text_textarea
+    weight: 12
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_download_policy_file_label:
+    type: string_textfield
+    weight: 14
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_download_policy_file_pdf_m:
+    type: file_generic
+    weight: 13
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  field_download_policy_label:
+    type: string_textfield
+    weight: 11
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_policies_registration_webf:
+    type: webform_entity_reference_select
+    weight: 10
+    region: content
+    settings:
+      default_data: true
+      webforms: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 1
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 8
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 2
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

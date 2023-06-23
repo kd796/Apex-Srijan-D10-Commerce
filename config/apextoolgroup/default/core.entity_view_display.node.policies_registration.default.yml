@@ -1,0 +1,68 @@
+uuid: 6b8934ce-6f88-44b6-b702-8c38fd59bad8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.policies_registration.field_download_policy_desc
+    - field.field.node.policies_registration.field_download_policy_file_label
+    - field.field.node.policies_registration.field_download_policy_file_pdf_m
+    - field.field.node.policies_registration.field_download_policy_label
+    - field.field.node.policies_registration.field_policies_registration_webf
+    - node.type.policies_registration
+  module:
+    - file
+    - text
+    - user
+    - webform
+id: node.policies_registration.default
+targetEntityType: node
+bundle: policies_registration
+mode: default
+content:
+  field_download_policy_desc:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_download_policy_file_label:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_download_policy_file_pdf_m:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_download_policy_label:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_policies_registration_webf:
+    type: webform_entity_reference_entity_view
+    label: above
+    settings:
+      source_entity: true
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

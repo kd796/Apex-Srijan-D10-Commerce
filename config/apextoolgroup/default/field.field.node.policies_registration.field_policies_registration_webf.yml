@@ -1,0 +1,32 @@
+uuid: 8a73118e-3b68-4b1a-8b47-c5b9860c3671
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_policies_registration_webf
+    - node.type.policies_registration
+    - webform.webform.policies_registration_webform
+  module:
+    - webform
+id: node.policies_registration.field_policies_registration_webf
+field_name: field_policies_registration_webf
+entity_type: node
+bundle: policies_registration
+label: 'Policies & Registration Webform'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    target_uuid: 451a1a38-e000-4ce5-9576-06691680765d
+    default_data: ''
+    status: open
+    open: ''
+    close: ''
+default_value_callback: ''
+settings:
+  handler: 'default:webform'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: webform

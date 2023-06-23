@@ -1,0 +1,27 @@
+uuid: 2c8a20ec-4c63-49ae-a4a0-dede1719b64a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_download_policy_file_pdf_m
+    - node.type.policies_registration
+  module:
+    - file
+id: node.policies_registration.field_download_policy_file_pdf_m
+field_name: field_download_policy_file_pdf_m
+entity_type: node
+bundle: policies_registration
+label: 'Download Policy File (PDF, multiple)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: pdf
+  max_filesize: ''
+  description_field: false
+field_type: file
