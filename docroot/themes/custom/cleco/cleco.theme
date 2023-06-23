@@ -38,10 +38,8 @@ function cleco_preprocess_field(&$variables)
     $route_match = \Drupal::routeMatch();
     if ($route_match instanceof RouteMatchInterface && $route_match->getRouteName() == 'entity.node.canonical') {
       $node = $route_match->getParameter('node');
-      // Check if the node object exists and is of the desired content type.
-      if ($node instanceof NodeInterface && $node->getType() == 'solutions') {
-        $variables['carousel_title'] = 'Trusted by the biggest';
-      }
+      // Add banner title.
+      $variables['carousel_title'] = 'Trusted by the biggest';
     }
   }
 }
