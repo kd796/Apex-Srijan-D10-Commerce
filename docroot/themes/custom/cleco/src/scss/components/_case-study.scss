@@ -1,0 +1,81 @@
+.cs-title-prefix {
+  background-color: $color-off-black;
+  background-image: url('../img/CLE_Pattern-Web.jpg');
+  background-size: cover;
+  color: $color-white;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 20px calc(1rem + 5 * (100vw - 20rem) / 67.5) ;
+
+  @media only screen and (min-width: $media-screen-mobile) {
+    text-align: center;
+  }    
+}
+
+.hero {
+  &.hero--case-study {
+    align-items: flex-start;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+
+    .hero-text {
+      margin-right: 0;
+      background-color: $color-orange;
+      padding: calc(2rem + 0.5 * (100vh - 45rem) / 30) calc(1rem + 5 * (100vw - 20rem) / 67.5);
+
+      .hero-title-prefix {
+        text-transform: uppercase;
+        font-size: 18px;
+      }
+      .hero-title {
+        font-size: calc(1rem + 0.75 * (100vw - 15rem) / 67.5);
+        font-weight: 500;
+        line-height: 1.23;
+        margin-bottom: 1rem;
+
+        &::after {
+          display: none;
+        }
+      }
+
+      .hero-subtitle {
+        font-size: 18px;
+        font-weight: 100;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.cs-body-content {
+  .cs-summary {
+    color: $color-orange;
+
+    h2 {
+      font-weight: 100;
+    }
+  }
+
+  .cs-body {
+    font-size: 18px;
+
+    @media only screen and (min-width: $media-screen-mobile) {
+      column-count: 2;
+      column-gap: 30px;
+    }
+
+    @media only screen and (min-width: $media-screen-large) {
+      column-gap: 50px;
+    }
+  }
+}
+
+.cs-client-summary {
+  background: $color-off-black;
+  color: $color-white;
+  background-image: url('../img/CLE_Pattern-Web.jpg');
+  background-size: cover;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+}
