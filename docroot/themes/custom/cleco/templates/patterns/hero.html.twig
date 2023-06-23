@@ -1,5 +1,6 @@
 {% set size = size | default(null) %}
 {% set image = image | default(null) %}
+{% set hero_video_url = hero_video_url | default(null) %}
 {% set title_prefix = title_prefix | default(null) %}
 {% set title_suffix = title_suffix | default(null) %}
 {% set title = title | default(null) %}
@@ -30,9 +31,15 @@
   {% set attributes = attributes.addClass(class) %}
 {% endif %}
 <div{{ attributes }}>
-  {% if image is not null %}
+  {% if hero_video_url|length > 2 %}
+    <div class="hero-image video-section">
+      <video id="heroVideo" muted autoplay loop controls playsinline>
+        <source src="{{media_url}}" type="video/mp4">
+      </video>
+    </div>
+  {% elseif image is not null %}
     <div class="hero-image">
-        {{ image }}
+      {{ image }}
     </div>
   {% endif %}
   <div class="hero-text">
@@ -60,3 +67,8 @@
   </div>
   {% endif %}
 </div>
+ <div class="hero-video-banner-text"> 
+  {% if title is not null %}
+   <h2>{{ title | raw }}</h2>
+  {% endif %}
+ </div>

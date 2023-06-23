@@ -2,16 +2,20 @@
 {% set target = cta.field_cta_target.value is same as('1') ? '_blank' : '_top' %}
 {% set size = elements.field_size[0]['#markup'] %}
 {% set form = content.field_form %}
+{% set image_url = content.field_media_src %}
+{% set video_url = content.field_video %}
 {% if is_front_page %}
 	{% set size = 'large' %}
 {% endif %}
-
-{% include '@atg/patterns/hero.html.twig' with {
+{% set form = content.field_form %}
+{% include '@cleco/patterns/hero.html.twig' with {
 	title_prefix: content.field_title_prefix[0]['#context']['value'],
 	title: content.field_title[0]['#context']['value'],
 	subtitle: content.field_subtitle[0]['#context']['value'],
 	title_suffix: content.field_title_suffix[0]['#context']['value'],
-	image: content.field_media_src,
+	image: image_url,
+	hero_video_url: video_url,
+	media_url: file_url(elements.field_video['#items'].entity.field_media_video_file.entity.fileuri),
 	url: cta.field_cta_url[0].url | string,
 	action: cta.field_cta_url[0].title,
 	target: target,
