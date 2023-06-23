@@ -30,7 +30,7 @@ actions.step.api.autocomplete.field.products:
 
 # EN and GB Front-end Templates
 step.products.product_catalog:
-  path: /tools/tool-catalog
+  path: /products/product-catalog
   defaults:
     _controller: '\Drupal\cleco_vuejs\Controller\RouteController::productCatalog'
     _title_callback: '\Drupal\cleco_vuejs\Controller\RouteController::productCatalogTitle'
@@ -38,7 +38,7 @@ step.products.product_catalog:
     _permission: 'access content'
 
 step.products.product_single:
-  path: /tools/tool-catalog/{product}
+  path: /products/product-catalog/{product}
   defaults:
     _controller: '\Drupal\cleco_vuejs\Controller\RouteController::productSingle'
     _title_callback: '\Drupal\cleco_vuejs\Controller\RouteController::productSingleTitle'
