@@ -1,0 +1,157 @@
+uuid: 919fd46f-1c5a-4f7f-92b8-9273e2112a70
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.quotation.field_upload
+    - paragraphs.paragraphs_type.media_file
+  module:
+    - apex_tools_custom_quotation
+    - entity_reference_revisions
+id: quotation.quotation.field_upload
+field_name: field_upload
+entity_type: quotation
+bundle: quotation
+label: Upload
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      media_file: media_file
+    negate: 0
+    target_bundles_drag_drop:
+      360_hotspots:
+        weight: 45
+        enabled: false
+      360_product_image:
+        weight: 46
+        enabled: false
+      basic_card:
+        weight: 47
+        enabled: false
+      basic_card_section:
+        weight: 48
+        enabled: false
+      callout_section_footer:
+        weight: 49
+        enabled: false
+      callout_section_page_end:
+        weight: 50
+        enabled: false
+      card:
+        weight: 51
+        enabled: false
+      content_bundle:
+        weight: 52
+        enabled: false
+      content_section:
+        weight: 53
+        enabled: false
+      content_section_simple:
+        weight: 54
+        enabled: false
+      cta:
+        weight: 55
+        enabled: false
+      enhanced_hero:
+        weight: 56
+        enabled: false
+      enhanced_product_features:
+        weight: 57
+        enabled: false
+      excerpt:
+        weight: 58
+        enabled: false
+      faq:
+        weight: 59
+        enabled: false
+      faqs_group:
+        weight: 60
+        enabled: false
+      faqs_section:
+        weight: 61
+        enabled: false
+      featured_block:
+        weight: 62
+        enabled: false
+      featured_product_item:
+        weight: 63
+        enabled: false
+      featured_products:
+        weight: 64
+        enabled: false
+      featured_section:
+        weight: 65
+        enabled: false
+      find_a_distributor:
+        weight: 66
+        enabled: false
+      form_section:
+        weight: 67
+        enabled: false
+      from_library:
+        weight: 68
+        enabled: false
+      grid_item:
+        weight: 69
+        enabled: false
+      grid_section:
+        weight: 70
+        enabled: false
+      hero:
+        weight: 71
+        enabled: false
+      iframe:
+        weight: 72
+        enabled: false
+      intro:
+        weight: 73
+        enabled: false
+      mailing_list_form:
+        weight: 74
+        enabled: false
+      media_block:
+        weight: 75
+        enabled: false
+      media_file:
+        weight: 44
+        enabled: true
+      media_image:
+        weight: 76
+        enabled: false
+      media_kit:
+        weight: 77
+        enabled: false
+      message_block:
+        weight: 78
+        enabled: false
+      product_categories:
+        weight: 79
+        enabled: false
+      product_search:
+        weight: 80
+        enabled: false
+      products_category_section:
+        weight: 81
+        enabled: false
+      products_section:
+        weight: 82
+        enabled: false
+      schedule_a_demo:
+        weight: 83
+        enabled: false
+      testimonials_block:
+        weight: 84
+        enabled: false
+      testimonials_section:
+        weight: 85
+        enabled: false
+      video_bundle:
+        weight: 86
+        enabled: false
+field_type: entity_reference_revisions

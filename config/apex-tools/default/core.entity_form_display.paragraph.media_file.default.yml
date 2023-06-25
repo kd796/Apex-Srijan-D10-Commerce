@@ -1,0 +1,48 @@
+uuid: 23a3aa9a-cd43-47c9-9f1d-2ea19b448b09
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.media_file.field_upload_1
+    - field.field.paragraph.media_file.field_upload_2
+    - field.field.paragraph.media_file.field_upload_3
+    - field.field.paragraph.media_file.field_upload_4
+    - paragraphs.paragraphs_type.media_file
+  module:
+    - file
+id: paragraph.media_file.default
+targetEntityType: paragraph
+bundle: media_file
+mode: default
+content:
+  field_upload_1:
+    type: file_generic
+    weight: 1
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  field_upload_2:
+    type: file_generic
+    weight: 2
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  field_upload_3:
+    type: file_generic
+    weight: 3
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  field_upload_4:
+    type: file_generic
+    weight: 4
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
