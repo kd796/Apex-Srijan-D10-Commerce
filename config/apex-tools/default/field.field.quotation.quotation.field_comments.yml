@@ -1,21 +1,20 @@
-uuid: 9aef7cc5-40db-47bb-b6b5-a6366855a9c3
+uuid: 745f5095-ee5e-4ab9-bf26-659a467cf05c
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.quotation.field_state
+    - field.storage.quotation.field_comments
   module:
     - apex_tools_custom_quotation
-    - options
-id: quotation.quotation.field_state
-field_name: field_state
+id: quotation.quotation.field_comments
+field_name: field_comments
 entity_type: quotation
 bundle: quotation
-label: State
+label: 'Comments:'
 description: ''
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: list_string
+field_type: string_long

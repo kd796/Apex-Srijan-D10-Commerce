@@ -4,13 +4,21 @@ status: true
 dependencies:
   config:
     - field.field.quotation.quotation.field_are_you_requesting_an_item
+    - field.field.quotation.quotation.field_comments
     - field.field.quotation.quotation.field_country
+    - field.field.quotation.quotation.field_custom_drive_tool_type
+    - field.field.quotation.quotation.field_describe_changes
+    - field.field.quotation.quotation.field_enter_existing_apex_part
+    - field.field.quotation.quotation.field_if_yes_please_enter_part
+    - field.field.quotation.quotation.field_reactivation_request
     - field.field.quotation.quotation.field_state
+    - field.field.quotation.quotation.field_upload
   module:
     - address
     - apex_tools_custom_quotation
     - conditional_fields
     - field_group
+    - paragraphs
 third_party_settings:
   field_group:
     group_business_information:
@@ -46,6 +54,12 @@ third_party_settings:
     group_request_for_reactivation:
       children:
         - field_are_you_requesting_an_item
+        - field_reactivation_request
+        - field_enter_existing_apex_part
+        - field_if_yes_please_enter_part
+        - field_describe_changes
+        - field_comments
+        - field_upload
       label: '<span>2. Request for Reactivation or New Part</span>'
       region: content
       parent_name: ''
@@ -60,6 +74,25 @@ third_party_settings:
         back_button_show: false
         back_button_text: Back
         next_button_text: 'CONTINUE TO CUSTOM QUOTE REQUEST »'
+        required_fields: true
+        step_help: ''
+    group_custom_drive_tool:
+      children:
+        - field_custom_drive_tool_type
+      label: '<span>3. Custom Drive Tool</span>'
+      region: content
+      parent_name: ''
+      weight: 2
+      format_type: form_step
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        show_step_title: true
+        step_description: ''
+        back_button_show: false
+        back_button_text: Back
+        next_button_text: 'CONTINUE TO IMAGE UPLOADS »'
         required_fields: true
         step_help: ''
 id: quotation.quotation.default
@@ -120,12 +153,169 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_comments:
+    type: string_textarea
+    weight: 19
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        df5bc694-db40-43b8-a2a7-d38c62279004:
+          entity_type: quotation
+          bundle: quotation
+          dependee: field_are_you_requesting_an_item
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: OR
+            values_set: 2
+            value: ''
+            values: 'yes'
+            value_form:
+              -
+                value: null
+            effect: show
+            effect_options: {  }
+            selector: ''
+        08a3d184-413d-4351-8499-e37f63d156aa:
+          entity_type: quotation
+          bundle: quotation
+          dependee: field_reactivation_request
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: OR
+            values_set: 2
+            value: ''
+            values: 'yes'
+            value_form:
+              -
+                value: null
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_country:
     type: address_country_default
     weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_custom_drive_tool_type:
+    type: options_select
+    weight: 16
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_describe_changes:
+    type: string_textarea
+    weight: 18
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        6d5eea4d-100f-4914-bc18-cd3f8252b5c5:
+          entity_type: quotation
+          bundle: quotation
+          dependee: field_are_you_requesting_an_item
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 2
+            value: ''
+            values: 'yes'
+            value_form:
+              -
+                value: null
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_enter_existing_apex_part:
+    type: string_textfield
+    weight: 16
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        263dbdbc-8445-48c3-bc6f-704c492e6676:
+          entity_type: quotation
+          bundle: quotation
+          dependee: field_are_you_requesting_an_item
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 2
+            value: ''
+            values: 'yes'
+            value_form:
+              -
+                value: null
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_if_yes_please_enter_part:
+    type: string_textfield
+    weight: 17
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        01084ea9-eb04-4af2-b9c4-1bd37888d1dd:
+          entity_type: quotation
+          bundle: quotation
+          dependee: field_reactivation_request
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: OR
+            values_set: 2
+            value: ''
+            values: 'yes'
+            value_form:
+              -
+                value: null
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_reactivation_request:
+    type: options_buttons
+    weight: 15
+    region: content
+    settings: {  }
+    third_party_settings:
+      conditional_fields:
+        e749a0de-fb6b-4f9b-8196-33062e902ba6:
+          entity_type: quotation
+          bundle: quotation
+          dependee: field_are_you_requesting_an_item
+          settings:
+            state: '!visible'
+            reset: false
+            condition: value
+            grouping: OR
+            values_set: 3
+            value: ''
+            values: 'yes'
+            value_form:
+              -
+                value: null
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_state:
     type: options_select
     weight: 9
@@ -139,24 +329,6 @@ content:
           dependee: field_country
           settings:
             state: visible
-            reset: false
-            condition: value
-            grouping: AND
-            values_set: 2
-            value: ''
-            values: US
-            value_form:
-              -
-                value: ''
-            effect: show
-            effect_options: {  }
-            selector: ''
-        66029898-92fc-49bf-8f55-284fabe1bf21:
-          entity_type: quotation
-          bundle: quotation
-          dependee: field_country
-          settings:
-            state: required
             reset: false
             condition: value
             grouping: AND
@@ -196,21 +368,59 @@ content:
             effect: show
             effect_options: {  }
             selector: ''
-        5ccb3cd0-a6d9-4f28-8c5d-a3c7148699d9:
+  field_upload:
+    type: paragraphs
+    weight: 20
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: media_file
+      features:
+        add_above: '0'
+        collapse_edit_all: '0'
+        duplicate: '0'
+    third_party_settings:
+      conditional_fields:
+        68637ce7-bac0-4359-a139-e9f6e87ec25d:
           entity_type: quotation
           bundle: quotation
-          dependee: field_country
+          dependee: field_are_you_requesting_an_item
           settings:
-            state: required
+            state: visible
             reset: false
             condition: value
-            grouping: AND
-            values_set: 5
+            grouping: OR
+            values_set: 2
             value: ''
-            values: US
+            values: 'yes'
             value_form:
               -
-                value: ''
+                value: null
+            effect: show
+            effect_options: {  }
+            selector: ''
+        3b588ba6-6dad-47e1-b2fa-7b6a15965318:
+          entity_type: quotation
+          bundle: quotation
+          dependee: field_reactivation_request
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: OR
+            values_set: 2
+            value: ''
+            values: 'yes'
+            value_form:
+              -
+                value: null
             effect: show
             effect_options: {  }
             selector: ''

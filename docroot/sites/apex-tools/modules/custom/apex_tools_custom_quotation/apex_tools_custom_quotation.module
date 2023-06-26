@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Render\Element;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_theme().
@@ -16,6 +17,58 @@ function apex_tools_custom_quotation_theme() {
       'render element' => 'elements',
     ],
   ];
+}
+
+/**
+ * Implements hook_implements_alter().
+ */
+function apex_tools_custom_quotation_module_implements_alter(&$implementations, $hook) {
+  // Perform form_alter after simple_multistep.
+  if ($hook === 'form_alter') {
+    $group = $implementations['apex_tools_custom_quotation'];
+    unset($implementations['apex_tools_custom_quotation']);
+    $implementations['apex_tools_custom_quotation'] = $group;
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function apex_tools_custom_quotation_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id === 'quotation_add_form') {
+    $form['#validate'][] = 'apex_tools_custom_quotation_form_validate';
+    // Disable caching for anonymous users.
+    $form['#cache'] = ['max-age' => 0];
+    \Drupal::service('page_cache_kill_switch')->trigger();
+    $multiStep = $form_state->get('multistep_controller');
+    if ($multiStep->getCurrentStep() === 1) {
+      $form['actions']['submit']['#access'] = TRUE;
+      unset($form['field_are_you_requesting_an_item']['widget']['#options']['_none']);
+      unset($form['field_reactivation_request']['widget']['#options']['_none']);
+      $form['actions']['submit']['#value'] = t('SUBMIT REACTIVATION / CHANGE REQUEST »');
+      $form['actions']['submit']['#states'] = [
+        'visible' => [
+       [':input[name="field_are_you_requesting_an_item"]' => ['value' => 'yes']],
+          'or',
+      [':input[name="field_reactivation_request"]' => ['value' => 'yes']],
+        ],
+      ];
+
+      $form['actions']['next']['#states'] = [
+        'visible' => [
+          ':input[name="field_are_you_requesting_an_item"]' => ['value' => 'no'],
+          ':input[name="field_reactivation_request"]' => ['value' => 'no'],
+        ],
+      ];
+    }
+  }
+}
+
+/**
+ * Implements hook_form_validate().
+ */
+function apex_tools_custom_quotation_form_validate($form, &$form_state) {
+
 }
 
 /**
