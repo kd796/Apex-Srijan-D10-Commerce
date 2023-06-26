@@ -1,0 +1,30 @@
+uuid: ebfa1ab9-0d92-4c06-8434-b7d68e29dcac
+langcode: en
+status: true
+dependencies:
+  module:
+    - apex_tools_custom_quotation
+    - options
+id: quotation.field_custom_drive_tool_type
+field_name: field_custom_drive_tool_type
+entity_type: quotation
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: screwdriver
+      label: 'Screwdriver Bit / Bit Holder'
+    -
+      value: socket
+      label: Socket/Extension/Adapter
+    -
+      value: universal_wrench
+      label: 'Universal Wrench (Swivel)'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

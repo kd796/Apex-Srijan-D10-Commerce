@@ -200,18 +200,18 @@ class Quotation extends ContentEntityBase implements QuotationInterface {
       ])
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['phone_number'] = BaseFieldDefinition::create('integer')
+    $fields['phone_number'] = BaseFieldDefinition::create('string')
       ->setTranslatable(TRUE)
       ->setRequired(TRUE)
       ->setLabel(t('Phone Number'))
       ->setDisplayOptions('form', [
-        'type' => 'number',
+        'type' => 'string_textfield',
         'weight' => 0,
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'number_integer',
+        'type' => 'string',
         'weight' => 0,
       ])
       ->setDisplayConfigurable('view', TRUE);
@@ -265,18 +265,18 @@ class Quotation extends ContentEntityBase implements QuotationInterface {
       ])
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['field_account_number'] = BaseFieldDefinition::create('integer')
+    $fields['field_account_number'] = BaseFieldDefinition::create('string')
       ->setTranslatable(TRUE)
       ->setLabel(t('Apex Account Number'))
       ->setSetting('max_length', 255)
       ->setDisplayOptions('form', [
-        'type' => 'number',
+        'type' => 'string_textfield',
         'weight' => 0,
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'number_integer',
+        'type' => 'string',
         'weight' => 0,
       ])
       ->setDisplayConfigurable('view', TRUE);
@@ -299,6 +299,7 @@ class Quotation extends ContentEntityBase implements QuotationInterface {
 
     $fields['field_state_text'] = BaseFieldDefinition::create('string')
       ->setTranslatable(TRUE)
+      ->setRequired(TRUE)
       ->setLabel(t('State'))
       ->setSetting('max_length', 255)
       ->setDisplayOptions('form', [
