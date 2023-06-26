@@ -1,0 +1,105 @@
+.multi-steps-label {
+  display: flex;
+  flex-direction: column;
+
+  .step-label {
+    padding: 0;
+    color: $color-off-black;
+
+    span {
+      display: block;
+      padding: 0.75em 1em;
+      font-size: 1.4em;
+      color: $color-off-black;
+      text-align: center;
+      background: $color-silver;
+      border-bottom: 1px solid hsla(0,0%,80%,.43);
+    }
+
+    &.active {
+      color: $color-orange;
+      span {
+        color: $color-orange;
+      }
+    }
+
+    &:first-child span {
+      border-top: 1px solid hsla(0,0%,80%,.43);
+    }
+  }
+}
+
+.quotation-add-form {
+  input {
+    width: 100%;
+
+    &[type='checkbox'],
+    &[type='radio'] {
+      width: auto;
+      border: 0;
+      box-shadow: none;
+    }
+  }
+
+  .form-item {
+    margin: 0;
+  }
+
+  .form-actions {
+    margin: 2rem 0;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+div.notice--info {
+  display: none !important;
+}
+.multi-form {
+  .sel-form {
+    width: 100%;
+    padding: 0;
+    border: 1px solid hsla(0,0%,80%,.43);
+    display: inline-block;
+
+    label {
+      color: $color-off-black;
+    }
+  }
+}
+
+
+#edit-group-business-information,
+#edit-group-request-for-reactivation {
+  padding: 2rem;
+  &.hide {
+    display: none;
+  }
+  &.show {
+    display: block;
+  }
+}
+
+#edit-actions {
+  &.hide {
+    display: none;
+  }
+  &.show {
+    display: block;
+  }
+}
+
+.checkbox-step-two {
+  .fieldset-wrapper {
+    & > div {
+      display: flex;
+    }
+    .form-item {
+      display: flex;
+      label {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
