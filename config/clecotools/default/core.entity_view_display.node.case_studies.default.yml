@@ -3,16 +3,17 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.case_studies.field_attachments
     - field.field.node.case_studies.field_case_study_client_summary
     - field.field.node.case_studies.field_case_study_content
     - field.field.node.case_studies.field_case_study_summary
     - field.field.node.case_studies.field_case_study_summary_top
     - field.field.node.case_studies.field_image
-    - field.field.node.case_studies.field_media
     - field.field.node.case_studies.field_read_time
     - field.field.node.case_studies.field_type_of_case_study
     - node.type.case_studies
   module:
+    - file
     - text
     - user
 id: node.case_studies.default
@@ -20,6 +21,14 @@ targetEntityType: node
 bundle: case_studies
 mode: default
 content:
+  field_attachments:
+    type: file_default
+    label: hidden
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 8
+    region: content
   field_case_study_client_summary:
     type: basic_string
     label: hidden
@@ -56,14 +65,6 @@ content:
       link: true
     third_party_settings: {  }
     weight: 2
-    region: content
-  field_media:
-    type: entity_reference_label
-    label: hidden
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 8
     region: content
   field_read_time:
     type: string

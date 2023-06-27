@@ -7,14 +7,14 @@
 {% set case_study_summary_top = content.field_case_study_summary_top %}
 {% set case_study_content = content.field_case_study_content %}
 {% set case_study_client_summary = content.field_case_study_client_summary %}
-{% set case_study_doc = content.field_media %}
+{% set case_study_doc = file_url(node.field_attachments.entity.uri.value) %}
 
 <main class="main">
   <div class="cs-title-prefix">
     {{ case_study_summary_top }}
   </div>
   {{ title_prefix }}
-  {% include '@atg/patterns/hero.html.twig' with {
+  {% include '@cleco/patterns/hero.html.twig' with {
     title: title,
     subtitle: read_time,
     title_prefix: case_study_type,
@@ -22,7 +22,9 @@
     size: 'medium',
     image: image,
     wide: 'full',
-    align: 'left'
+    align: 'left',
+    file: case_study_doc,
+    file_text: 'Download PDF'|t
   } %}
   {{ title_suffix }}
   <section class="section">

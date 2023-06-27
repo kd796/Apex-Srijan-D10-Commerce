@@ -13,6 +13,8 @@
 {% set animate = animate | default(true) %}
 {% set align = align | default(null) %}
 {% set class = class | default(null) %}
+{% set file = file | default(null) %}
+{% set file_text = file_text | default(null) %}
 
 {% set attributes = create_attribute({ class: ['hero'] }) %}
 {% if size %}
@@ -50,7 +52,16 @@
       <h1 class="hero-title">{{ title | raw }}</h1>
     {% endif %}
     {% if subtitle is not null %}
-      <h2 class="hero-subtitle">{{ subtitle | raw }}</h1>
+      {% if file is not null and file_text is not null %}
+        <div class="hero-subtitle">
+          <h3 class="hero-subtitle-text">{{ subtitle | raw }}</h3>
+          <div class="hero-file" >
+            <a href="{{ file }}" download>{{ file_text }}</a>
+          </div>
+        </div>
+      {% else %}
+        <h2 class="hero-subtitle">{{ subtitle | raw }}</h2>
+      {% endif %} 
     {% endif %}
     {% if title_suffix is not null %}
       <div class="hero-title-suffix">{{ title_suffix }}</div>

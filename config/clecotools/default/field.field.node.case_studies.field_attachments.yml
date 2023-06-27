@@ -1,0 +1,27 @@
+uuid: e41f4815-81a8-4873-967c-72a048b0be09
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_attachments
+    - node.type.case_studies
+  module:
+    - file
+id: node.case_studies.field_attachments
+field_name: field_attachments
+entity_type: node
+bundle: case_studies
+label: 'Case Study PDF attachment'
+description: 'Please use only pdf extension.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: pdf
+  max_filesize: ''
+  description_field: false
+field_type: file

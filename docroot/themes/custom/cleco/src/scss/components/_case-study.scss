@@ -45,9 +45,26 @@
       }
 
       .hero-subtitle {
-        font-size: 18px;
-        font-weight: 100;
-        margin-bottom: 0;
+        display: flex;
+
+        .hero-subtitle-text {
+          font-weight: 100;
+          margin-bottom: 0;
+        }
+
+        .hero-file {
+          font-size: 18px;
+
+          &::before {
+            content: '|';
+            margin-left: 10px;
+            margin-right: 10px;
+          }
+
+          a {
+            color: $color-white;
+          }
+        }
       }
     }
   }
