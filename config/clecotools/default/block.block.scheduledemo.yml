@@ -1,0 +1,30 @@
+uuid: cc3b5966-e08a-4973-8ab1-605041cc0fbd
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:schedule_demo:2cf710d7-6379-4b18-8114-c23c7230ca01'
+  module:
+    - block_content
+    - system
+  theme:
+    - cleco
+id: scheduledemo
+theme: cleco
+region: content
+weight: 0
+provider: null
+plugin: 'block_content:2cf710d7-6379-4b18-8114-c23c7230ca01'
+settings:
+  id: 'block_content:2cf710d7-6379-4b18-8114-c23c7230ca01'
+  label: 'Schedule Demo'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/solutions/*'
