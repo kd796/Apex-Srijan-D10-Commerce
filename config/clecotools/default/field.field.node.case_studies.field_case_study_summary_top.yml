@@ -1,10 +1,12 @@
-uuid: d3015d20-471f-48d6-b677-01af692e7ab0
+uuid: 966dee56-add7-49a8-9c1e-5a90e7207f72
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_case_study_summary_top
     - node.type.case_studies
+  module:
+    - text
 id: node.case_studies.field_case_study_summary_top
 field_name: field_case_study_summary_top
 entity_type: node
@@ -16,4 +18,4 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: string_long
+field_type: text_long
