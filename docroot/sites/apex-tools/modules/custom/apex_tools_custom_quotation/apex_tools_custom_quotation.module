@@ -87,36 +87,32 @@ function apex_tools_custom_quotation_form_alter(&$form, FormStateInterface $form
       ];
     }
 
-    // Adding form element warpper for first step.
-    $form['first_name']['#prefix'] = '<div class="grid-6">';
-    $form['first_name']['#suffix'] = '</div>';
-    $form['last_name']['#prefix'] = '<div class="grid-6">';
-    $form['last_name']['#suffix'] = '</div>';
-    $form['company_name']['#prefix'] = '<div class="grid-6">';
-    $form['company_name']['#suffix'] = '</div>';
-    $form['email_address']['#prefix'] = '<div class="grid-6">';
-    $form['email_address']['#suffix'] = '</div>';
-    $form['phone_number']['#prefix'] = '<div class="grid-6">';
-    $form['phone_number']['#suffix'] = '</div>';
-    $form['field_address']['#prefix'] = '<div class="grid-6">';
-    $form['field_address']['#suffix'] = '</div>';
-    $form['field_city']['#prefix'] = '<div class="grid-6">';
-    $form['field_city']['#suffix'] = '</div>';
-    $form['field_country']['#prefix'] = '<div class="grid-6">';
-    $form['field_country']['#suffix'] = '</div>';
-    $form['field_state']['#prefix'] = '<div class="grid-6">';
-    $form['field_state']['#suffix'] = '</div>';
-    $form['field_zip_code']['#prefix'] = '<div class="grid-6">';
-    $form['field_zip_code']['#suffix'] = '</div>';
-    $form['field_account_number']['#prefix'] = '<div class="grid-6">';
-    $form['field_account_number']['#suffix'] = '</div>';
-    $form['field_apex_sales_person']['#prefix'] = '<div class="grid-6">';
-    $form['field_apex_sales_person']['#suffix'] = '</div>';
-    $form['field_state_text']['#prefix'] = '<div class="grid-6">';
-    $form['field_state_text']['#suffix'] = '</div>';
+    // Adding grid classes for the elements.
+    $elementWrapperFields = [
+      'first_name',
+      'last_name',
+      'company_name',
+      'email_address',
+      'phone_number',
+      'field_address',
+      'field_city',
+      'field_country',
+      'field_state',
+      'field_zip_code',
+      'field_account_number',
+      'field_apex_sales_person',
+      'field_state_text',
+    ];
+    foreach ($elementWrapperFields as $fieldName) {
+      $form[$fieldName]['#attributes']['class'][] = 'grid-6';
+    }
+
     // Adding form element warpper for second step.
-    $form['field_are_you_requesting_an_item']['#prefix'] = '<div class="grid-12">';
+    $form['field_are_you_requesting_an_item']['#prefix'] = '<div class="grid-12 checkbox-second-step">';
     $form['field_are_you_requesting_an_item']['#suffix'] = '</div>';
+    $form['field_reactivation_request']['#prefix'] = '<div class="grid-12 checkbox-second-step">';
+    $form['field_reactivation_request']['#suffix'] = '</div>';
+
     // Adding form element warpper for buttons.
     $form['actions']['submit']['#prefix'] = '<div class=" grid-12">';
     $form['actions']['submit']['#suffix'] = '</div>';
