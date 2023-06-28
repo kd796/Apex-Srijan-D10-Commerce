@@ -107,10 +107,21 @@ function apex_tools_custom_quotation_form_alter(&$form, FormStateInterface $form
       $form[$fieldName]['#attributes']['class'][] = 'grid-6';
     }
 
+    $elementWrapperFieldsFull = [
+      'field_enter_existing_apex_part',
+      'field_if_yes_please_enter_part',
+      'field_describe_changes',
+      'field_comments',
+      'field_upload',
+    ];
+    foreach ($elementWrapperFieldsFull as $fieldNameFull) {
+      $form[$fieldNameFull]['#attributes']['class'][] = 'grid-12';
+    }
+
     // Adding form element warpper for second step.
-    $form['field_are_you_requesting_an_item']['#prefix'] = '<div class="grid-12 checkbox-second-step">';
+    $form['field_are_you_requesting_an_item']['#prefix'] = '<div class="grid-6 checkbox-second-step">';
     $form['field_are_you_requesting_an_item']['#suffix'] = '</div>';
-    $form['field_reactivation_request']['#prefix'] = '<div class="grid-12 checkbox-second-step">';
+    $form['field_reactivation_request']['#prefix'] = '<div class="grid-6 checkbox-second-step">';
     $form['field_reactivation_request']['#suffix'] = '</div>';
 
     // Adding form element warpper for buttons.

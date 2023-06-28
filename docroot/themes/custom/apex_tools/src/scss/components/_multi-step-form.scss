@@ -39,6 +39,10 @@
       border: 0;
       box-shadow: none;
     }
+
+    &[type='file'] {
+      padding: 13px;
+    }
   }
 
   .form-item {
@@ -46,16 +50,56 @@
   }
 
   .form-actions {
-    margin: 2rem 0;
+    margin: 0;
     text-align: center;
     display: inline-block;
     width: 100%;
+
+    button {
+      margin: 2rem 0;
+    }
+  }
+
+  table {
+    width: 100%;
+  }
+
+  tbody {
+    .field-multiple-drag {
+      display: none;
+    }
+  }
+
+  thead {
+    display: none;
+  }
+
+  .draggable {
+    position: relative;
+    width: 100%;
+  }
+
+  .paragraphs-subform {
+    display: grid;
+    grid-template-columns: 49% 49%;
+    grid-column-gap: 2%;
+
+    & > div {
+      margin-bottom: 25px;
+    }
+  }
+}
+
+.js {
+  .paragraph-top {
+    display: none;
   }
 }
 
 div.notice--info {
   display: none !important;
 }
+
 .multi-form {
   .sel-form {
     width: 100%;
@@ -95,14 +139,32 @@ div.notice--info {
     & > div {
       display: flex;
     }
+
     .form-item {
       display: flex;
-      width: 120px;
+      width: auto;
+      margin-right: 65px;
+
+      input {
+        display: none;
+
+        &:checked + label {
+          background: transparent url(../img/check-on.png) left center no-repeat;
+          color: $color-orange;
+        }
+      }
 
       label {
         margin-bottom: 0;
         padding-left: 28px;
+        background: transparent url(../img/check-off.png) left center no-repeat;
+        color: $color-off-black;
+        cursor: pointer;
       }
     }
+  }
+
+  legend {
+    margin-bottom: 10px;
   }
 }
