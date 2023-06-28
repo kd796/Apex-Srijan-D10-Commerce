@@ -1,0 +1,23 @@
+uuid: 4fb02b27-9247-4005-a98d-bc96c11a3f95
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.schedule_demo
+    - field.storage.block_content.body
+  module:
+    - text
+id: block_content.schedule_demo.body
+field_name: body
+entity_type: block_content
+bundle: schedule_demo
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary
