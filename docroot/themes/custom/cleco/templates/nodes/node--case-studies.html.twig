@@ -1,0 +1,43 @@
+{% set title = node.label %}
+{% set case_study_type = content.field_type_of_case_study[0]['#title'] %}
+{% set content_attributes = content_attributes.addClass('article-body').addClass(article_type|clean_class) %}
+{% set image = content.field_image %}
+{% set read_time = content.field_read_time %}
+{% set case_study_summary = content.field_case_study_summary %}
+{% set case_study_summary_top = content.field_case_study_summary_top %}
+{% set case_study_content = content.field_case_study_content %}
+{% set case_study_client_summary = content.field_case_study_client_summary %}
+{% set case_study_doc = file_url(node.field_attachments.entity.uri.value) %}
+
+<main class="main">
+  <div class="cs-title-prefix">
+    {{ case_study_summary_top }}
+  </div>
+  {{ title_prefix }}
+  {% include '@cleco/patterns/hero.html.twig' with {
+    title: title,
+    subtitle: read_time,
+    title_prefix: case_study_type,
+    class: 'hero--case-study',
+    size: 'medium',
+    image: image,
+    wide: 'full',
+    align: 'left',
+    file: case_study_doc,
+    file_text: 'Download PDF'|t
+  } %}
+  {{ title_suffix }}
+  <section class="section">
+    <div class="cs-body-content">
+      <div class="cs-summary">
+        <h2> {{ case_study_summary }} </h2>
+      </div>
+      <div class="cs-body">
+        {{ case_study_content }}
+      </div>
+    </div>
+  </section>
+  <div class="section cs-client-summary">
+    {{ case_study_client_summary }}
+  </div>
+</main>
