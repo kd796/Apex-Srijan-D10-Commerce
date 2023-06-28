@@ -100,4 +100,45 @@
   background-size: cover;
   padding-top: 20px !important;
   padding-bottom: 20px !important;
+  font-size: 20px;
+  line-height: 31px;
+}
+
+//css for schedule demo block
+
+.schedule-demo-block {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 0px;
+  align-items: center;
+  h3 {
+    color: $color-orange;
+    text-transform: uppercase;
+    font-weight: 700;
+    width: 65%;
+    margin-bottom: 0em !important;
+    @media (max-width: $breakpoint-product-tabs) {
+      width: 100%;
+      margin-bottom: 20px !important;
+    }
+
+  }
+  a {
+   color: $color-white;
+   background-color: $color-gray;
+   padding: 5px 60px;
+   border: 2px solid $color-orange;
+   border-radius: 5px;
+   font-size: 16px;
+   font-weight: 800;
+   text-transform: uppercase;
+   &:hover {
+    box-shadow: none !important;
+    cursor: pointer;
+   }
+   @media (max-width: $media-screen-mobile) {
+    margin: 0 auto;
+  }
+  }
+
 }
