@@ -44,4 +44,3 @@ require("./helpers/waypoint");
 require("./waypoints");
 require("./hero-video");
 require("./hubspot");
-require("./multi-step-form");
