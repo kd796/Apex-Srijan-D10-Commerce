@@ -113,6 +113,7 @@ function apex_tools_custom_quotation_form_alter(&$form, FormStateInterface $form
       'field_describe_changes',
       'field_comments',
       'field_upload',
+      'field_custom_drive_tool_type',
     ];
     foreach ($elementWrapperFieldsFull as $fieldNameFull) {
       $form[$fieldNameFull]['#attributes']['class'][] = 'grid-12';

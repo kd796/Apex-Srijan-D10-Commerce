@@ -1,6 +1,12 @@
 .multi-steps-label {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: $color-silver;
+  border-bottom: 1px solid hsla(0,0%,80%,.43);
+  @media only screen and (max-width: $media-screen-tablet) {
+    flex-direction: column;
+  }
 
   .step-label {
     padding: 0;
@@ -9,11 +15,19 @@
     span {
       display: block;
       padding: 0.75em 1em;
-      font-size: 1.4em;
+      font-size: 1.1rem;
       color: $color-off-black;
       text-align: center;
-      background: $color-silver;
-      border-bottom: 1px solid hsla(0,0%,80%,.43);
+      border-right: 1px solid hsla(0,0%,80%,.43);
+      @media only screen and (max-width: $media-screen-medium) {
+        font-size: 0.64rem;
+      }
+
+      @media only screen and (max-width: $media-screen-tablet) {
+        font-size: 1.1rem;
+        border-bottom: 1px solid hsla(0,0%,80%,.43);
+      }
+      
     }
 
     &.active {
@@ -23,8 +37,11 @@
       }
     }
 
-    &:first-child span {
-      border-top: 1px solid hsla(0,0%,80%,.43);
+    &:last-child span {
+      border-right: 0;
+      @media only screen and (max-width: $media-screen-tablet) {
+        border-bottom: 0;
+      }
     }
   }
 }
@@ -54,9 +71,14 @@
     text-align: center;
     display: inline-block;
     width: 100%;
+    @media only screen and (max-width: $media-screen-tablet) {
+      padding: 0 1rem;
+    }
 
     button {
-      margin: 2rem 0;
+      margin: 2rem 0 !important;
+      white-space: normal;
+      word-wrap: break-word;
     }
   }
 
@@ -66,7 +88,7 @@
 
   tbody {
     .field-multiple-drag {
-      display: none;
+      display: none !important;
     }
   }
 
@@ -79,20 +101,87 @@
     width: 100%;
   }
 
-  .paragraphs-subform {
-    display: grid;
-    grid-template-columns: 49% 49%;
-    grid-column-gap: 2%;
+  #edit-field-upload-wrapper {
+    .paragraphs-subform {
+      display: grid;
+      grid-template-columns: 49% 49%;
+      grid-column-gap: 2%;
+      @media only screen and (max-width: $media-screen-tablet) {
+        display: flex;
+        flex-direction: column;
+      }
 
-    & > div {
-      margin-bottom: 25px;
+      & > div {
+        margin-bottom: 25px;
+
+        button {
+          margin: 1rem 0;
+          min-width: 10rem;
+        }
+      }
     }
+  }
+
+  .grid-12 {
+    @media only screen and (max-width: $media-screen-medium) {
+      width: 99% !important;
+    }
+  }
+
+  // First set of third step
+  #edit-field-quotation-screwdriver-styl-wrapper {
+    & > div {
+      & > div {
+        tbody {
+          display: grid;
+          grid-template-columns: 49% 49%;
+          grid-column-gap: 2%;
+          td {
+            border: 0;
+            display: block;
+          }
+          .paragraphs-subform {
+            // display: flex;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 30% 20% 42%;
+            grid-column-gap: 4%;
+  
+            .form-item {
+              display: flex;
+              flex-direction: column;
+            }
+
+            .js-form-type-checkbox {
+              flex-direction: row;
+            }
+  
+            label {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .tabledrag-toggle-weight-wrapper {
+    display: none;
+  }
+}
+
+.paragraphs-dropbutton-wrapper {
+  .clearfix & {
+    display: none;
   }
 }
 
 .js {
   .paragraph-top {
     display: none;
+  }
+  .js-hide {
+    display: unset;
   }
 }
 
@@ -113,10 +202,20 @@ div.notice--info {
   }
 }
 
+#edit-back-button {
+  display: none;
+}
 
 #edit-group-business-information,
-#edit-group-request-for-reactivation {
+#edit-group-request-for-reactivation,
+#edit-group-custom-drive-tool {
+  display: inline-block;
   padding: 2rem;
+  width: 100%;
+  @media only screen and (max-width: $media-screen-tablet) {
+    padding: 2rem 1rem 0;
+  }
+
   &.hide {
     display: none;
   }
@@ -166,5 +265,8 @@ div.notice--info {
 
   legend {
     margin-bottom: 10px;
+    @media only screen and (max-width: $media-screen-medium) {
+      padding: 0;
+    }
   }
 }
