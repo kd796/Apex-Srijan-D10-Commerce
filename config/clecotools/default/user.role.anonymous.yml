@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - taxonomy.vocabulary.case_study
     - taxonomy.vocabulary.continent
     - taxonomy.vocabulary.department
     - taxonomy.vocabulary.distributor_level
@@ -73,11 +74,14 @@ permissions:
   - 'view paragraph content message_block'
   - 'view paragraph content product_categories'
   - 'view paragraph content product_search'
+  - 'view paragraph content product_solutions_item'
   - 'view paragraph content products_category_section'
   - 'view paragraph content products_section'
+  - 'view paragraph content related_solutions'
   - 'view paragraph content testimonials_block'
   - 'view paragraph content testimonials_section'
   - 'view paragraph content video_bundle'
+  - 'view term names in case_study'
   - 'view term names in continent'
   - 'view term names in department'
   - 'view term names in distributor_level'

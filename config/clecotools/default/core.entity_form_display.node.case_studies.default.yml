@@ -3,17 +3,18 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.case_studies.field_attachments
     - field.field.node.case_studies.field_case_study_client_summary
     - field.field.node.case_studies.field_case_study_content
     - field.field.node.case_studies.field_case_study_summary
     - field.field.node.case_studies.field_case_study_summary_top
     - field.field.node.case_studies.field_image
-    - field.field.node.case_studies.field_media
     - field.field.node.case_studies.field_read_time
     - field.field.node.case_studies.field_type_of_case_study
     - node.type.case_studies
   module:
     - content_moderation
+    - file
     - media_library
     - path
     - text
@@ -24,13 +25,20 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 3
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_attachments:
+    type: file_generic
+    weight: 9
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
   field_case_study_client_summary:
     type: string_textarea
-    weight: 16
+    weight: 7
     region: content
     settings:
       rows: 5
@@ -38,7 +46,7 @@ content:
     third_party_settings: {  }
   field_case_study_content:
     type: text_textarea
-    weight: 15
+    weight: 6
     region: content
     settings:
       rows: 5
@@ -46,15 +54,15 @@ content:
     third_party_settings: {  }
   field_case_study_summary:
     type: string_textarea
-    weight: 14
+    weight: 5
     region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
   field_case_study_summary_top:
-    type: string_textarea
-    weight: 13
+    type: text_textarea
+    weight: 1
     region: content
     settings:
       rows: 5
@@ -62,21 +70,14 @@ content:
     third_party_settings: {  }
   field_image:
     type: media_library_widget
-    weight: 10
-    region: content
-    settings:
-      media_types: {  }
-    third_party_settings: {  }
-  field_media:
-    type: media_library_widget
-    weight: 17
+    weight: 2
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_read_time:
     type: string_textfield
-    weight: 11
+    weight: 4
     region: content
     settings:
       size: 60
@@ -84,46 +85,46 @@ content:
     third_party_settings: {  }
   field_type_of_case_study:
     type: options_select
-    weight: 12
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 1
+    weight: 10
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 8
+    weight: 17
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 6
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 4
+    weight: 13
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 9
+    weight: 18
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 5
+    weight: 14
     region: content
     settings:
       display_label: true
@@ -138,7 +139,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 2
+    weight: 11
     region: content
     settings:
       match_operator: CONTAINS
@@ -147,7 +148,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 7
+    weight: 16
     region: content
     settings: {  }
     third_party_settings: {  }
