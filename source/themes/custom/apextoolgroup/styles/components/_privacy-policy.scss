@@ -64,3 +64,112 @@
     }
   }
 }
+// code for policy registeration page 
+.page-node-type-policies-registration {
+  .node__meta {
+    display: none;
+    font-family: $nacelle;
+  }
+  .field--name-field-display-title {
+    background: rgb(205,205,205);
+    padding: 2rem 32rem;
+    color: #000000;
+    font-size: 2.2291rem;
+    line-height: 3.15rem;
+    text-align: center;
+    font-family: Arial;
+    font-weight: 700;
+  }
+  .field--name-field-downloadpolicy-component {
+    padding: 2rem 13rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    .field__item {
+      width: 46%;
+      margin: 1% 2%;
+      .paragraph--type--policies-registration {
+       background: rgb(205,205,205);
+       border: 0.1875rem solid #007DC3;
+       border-radius: 0.625rem;
+       padding:20px;
+       text-align: center;
+       .field--name-field-downloadpolicy-label {
+        .field__item {
+          width: 100%;
+          margin: 0 auto;
+          background: #007DC3 ;
+          padding: 5px;
+          color: #fff;
+          line-height: 3.625rem;
+          font-size: 2.8576rem;
+          word-wrap: break-word;
+          font-family: $nacelle;
+          border-radius: 0.625rem;
+          text-align: center;
+        }
+       }
+       .field--name-field-downloadpolicy-description {
+        .field__item {
+          width: 100%;
+          padding: 20px 10px;
+          line-height: 1.4rem;
+          font-size: 0.9907rem;
+        }
+       }
+      }
+    }
+  }
+  .field--name-field-download-policy-file-pdf{
+    .field__item {
+      width: 100%;
+      .paragraph--type--file-with-text {
+        .field__label {
+          display: none;
+        }
+      }
+    }
+  }
+}  
+.field--name-field-policies-registration-webf {
+  background: repeat top center / cover fixed;
+  background-image: url('https://v.fastcdn.co/u/7e4e9c2d/30847686-0-APEX---Mt.Everest-Ed.jpg');
+  padding: 10px 0px;
+  .webform-submission-form {
+    background-color: rgba(255,255,255 , .75);
+    width: 23%;
+    margin: 0 auto;
+    padding: 2px 5px;
+    .js-form-item{
+      margin: 0.5rem 0rem !important;
+      >label {
+        display: none;
+      }
+      select , input, textarea {
+        padding: 5px;
+        font-size: 15px;
+        &::placeholder {
+          font-size: 15px;
+        }
+      }
+    }
+    .form-actions{
+      text-align: center;
+      .webform-button--submit {
+        background: #007DC3;
+        color: #FFFFFF;
+        font-size: 0.9907rem;
+        font-family: Arial;
+        font-weight: 400;
+        height: 3.125rem;
+        width: 18.75rem;
+        border-radius: 10px;
+        &:hover{
+          background-color: darkgrey;
+        }
+      }
+    }
+  }
+}
