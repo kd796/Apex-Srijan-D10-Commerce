@@ -17,6 +17,7 @@ elements: |-
     '#type': select
     '#title': 'Do you have an ATG Account Number?'
     '#options': yes_no
+    '#empty_option': 'Do you have an ATG Account Number?'
     '#required': true
   what_type_of_atg_reseller_are_you_:
     '#type': select
@@ -26,6 +27,7 @@ elements: |-
       'Automotive Reseller': 'Automotive Reseller'
       'Hardware Reseller': 'Hardware Reseller'
       'Electronics Reseller': 'Electronics Reseller'
+    '#empty_option': 'What type of ATG reseller are you?'
     '#required': true
   business_name:
     '#type': textfield
@@ -74,6 +76,7 @@ elements: |-
     '#options':
       Indirect: Indirect
       Direct: Direct
+    '#empty_option': 'Do you purchase indirectly or directly?'
     '#required': true
     '#required_error': 'Do you purchase indirectly or directly is required'
   indirect_purchasing_where_do_you_purchase_atg_products_list_your:

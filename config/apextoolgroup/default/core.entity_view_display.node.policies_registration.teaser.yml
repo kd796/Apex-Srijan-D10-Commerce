@@ -4,10 +4,8 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.policies_registration.field_download_policy_desc
-    - field.field.node.policies_registration.field_download_policy_file_label
-    - field.field.node.policies_registration.field_download_policy_file_pdf_m
-    - field.field.node.policies_registration.field_download_policy_label
+    - field.field.node.policies_registration.field_display_title
+    - field.field.node.policies_registration.field_downloadpolicy_component
     - field.field.node.policies_registration.field_policies_registration_webf
     - node.type.policies_registration
   module:
@@ -23,10 +21,9 @@ content:
     weight: 100
     region: content
 hidden:
-  field_download_policy_desc: true
-  field_download_policy_file_label: true
-  field_download_policy_file_pdf_m: true
+  field_display_title: true
   field_download_policy_label: true
+  field_downloadpolicy_component: true
   field_policies_registration_webf: true
   langcode: true
   search_api_excerpt: true
