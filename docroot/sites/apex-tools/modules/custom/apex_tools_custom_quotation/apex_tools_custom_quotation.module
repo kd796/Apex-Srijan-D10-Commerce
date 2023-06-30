@@ -11,10 +11,11 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Implements hook_theme().
  */
-function apex_tools_custom_quotation_theme() {
+function apex_tools_custom_quotation_theme($existing, $type, $theme, $path) {
   return [
     'quotation' => [
       'render element' => 'elements',
+      'render element' => 'form',
     ],
   ];
 }
@@ -28,39 +29,6 @@ function apex_tools_custom_quotation_module_implements_alter(&$implementations, 
     $group = $implementations['apex_tools_custom_quotation'];
     unset($implementations['apex_tools_custom_quotation']);
     $implementations['apex_tools_custom_quotation'] = $group;
-  }
-}
-
-/**
- * Implements hook_form_alter().
- */
-function apex_tools_custom_quotation_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if ($form_id === 'quotation_add_form') {
-    $form['#validate'][] = 'apex_tools_custom_quotation_form_validate';
-    // Disable caching for anonymous users.
-    $form['#cache'] = ['max-age' => 0];
-    \Drupal::service('page_cache_kill_switch')->trigger();
-    $multiStep = $form_state->get('multistep_controller');
-    if ($multiStep->getCurrentStep() === 1) {
-      $form['actions']['submit']['#access'] = TRUE;
-      unset($form['field_are_you_requesting_an_item']['widget']['#options']['_none']);
-      unset($form['field_reactivation_request']['widget']['#options']['_none']);
-      $form['actions']['submit']['#value'] = t('SUBMIT REACTIVATION / CHANGE REQUEST »');
-      $form['actions']['submit']['#states'] = [
-        'visible' => [
-       [':input[name="field_are_you_requesting_an_item"]' => ['value' => 'yes']],
-          'or',
-      [':input[name="field_reactivation_request"]' => ['value' => 'yes']],
-        ],
-      ];
-
-      $form['actions']['next']['#states'] = [
-        'visible' => [
-          ':input[name="field_are_you_requesting_an_item"]' => ['value' => 'no'],
-          ':input[name="field_reactivation_request"]' => ['value' => 'no'],
-        ],
-      ];
-    }
   }
 }
 
@@ -86,4 +54,87 @@ function template_preprocess_quotation(array &$variables) {
   foreach (Element::children($variables['elements']) as $key) {
     $variables['content'][$key] = $variables['elements'][$key];
   }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function apex_tools_custom_quotation_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id === 'quotation_add_form') {
+    $form['#validate'][] = 'apex_tools_custom_quotation_form_validate';
+    // Disable caching for anonymous users.
+    $form['#cache'] = ['max-age' => 0];
+    \Drupal::service('page_cache_kill_switch')->trigger();
+    $multiStep = $form_state->get('multistep_controller');
+    if ($multiStep !== null && $multiStep->getCurrentStep() === 1) {
+      $form['actions']['submit']['#access'] = TRUE;
+      unset($form['field_are_you_requesting_an_item']['widget']['#options']['_none']);
+      unset($form['field_reactivation_request']['widget']['#options']['_none']);
+      $form['actions']['submit']['#value'] = t('SUBMIT REACTIVATION / CHANGE REQUEST »');
+      $form['actions']['submit']['#states'] = [
+        'visible' => [
+       [':input[name="field_are_you_requesting_an_item"]' => ['value' => 'yes']],
+          'or',
+      [':input[name="field_reactivation_request"]' => ['value' => 'yes']],
+        ],
+      ];
+
+      $form['actions']['next']['#states'] = [
+        'visible' => [
+          ':input[name="field_are_you_requesting_an_item"]' => ['value' => 'no'],
+          ':input[name="field_reactivation_request"]' => ['value' => 'no'],
+        ],
+      ];
+    }
+
+    // Adding grid classes for the elements.
+    $elementWrapperFields = [
+      'first_name',
+      'last_name',
+      'company_name',
+      'email_address',
+      'phone_number',
+      'field_address',
+      'field_city',
+      'field_country',
+      'field_state',
+      'field_zip_code',
+      'field_account_number',
+      'field_apex_sales_person',
+      'field_state_text',
+    ];
+    foreach ($elementWrapperFields as $fieldName) {
+      $form[$fieldName]['#attributes']['class'][] = 'grid-6';
+    }
+
+    $elementWrapperFieldsFull = [
+      'field_enter_existing_apex_part',
+      'field_if_yes_please_enter_part',
+      'field_describe_changes',
+      'field_comments',
+      'field_upload',
+      'field_custom_drive_tool_type',
+    ];
+    foreach ($elementWrapperFieldsFull as $fieldNameFull) {
+      $form[$fieldNameFull]['#attributes']['class'][] = 'grid-12';
+    }
+
+    // Adding form element warpper for second step.
+    $form['field_are_you_requesting_an_item']['#prefix'] = '<div class="grid-6 checkbox-second-step">';
+    $form['field_are_you_requesting_an_item']['#suffix'] = '</div>';
+    $form['field_reactivation_request']['#prefix'] = '<div class="grid-6 checkbox-second-step">';
+    $form['field_reactivation_request']['#suffix'] = '</div>';
+
+    // Adding form element warpper for buttons.
+    $form['actions']['submit']['#prefix'] = '<div class=" grid-12">';
+    $form['actions']['submit']['#suffix'] = '</div>';
+  }
+}
+
+function apex_tools_custom_quotation_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+  $suggestions = array();
+  if($variables['element']['#type'] == 'form' && $variables['element']['#form_id'] == 'quotation_add_form') {
+    $suggestions[] = 'form__custom_quotation';
+  }
+  return $suggestions;
 }

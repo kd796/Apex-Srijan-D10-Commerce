@@ -11,11 +11,6 @@
     <a href="{{ get_locale().path is not empty ? get_locale().path : '/' }}" class="logo">
       {{ svg('dist/img/APEX_Orange.svg') }}
     </a>
-    {% if current_language.id == 'en' %}
-        <div>
-            <a class="button button--primary button--small" href="https://www.apextoolgroupstore.com/" target="_blank">Merchandise</a>
-        </div>
-    {% endif %}
   </div>
   <div class="footer-primary">
     {{ page.footer_nav }}
