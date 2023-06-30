@@ -125,6 +125,11 @@ function apex_tools_custom_quotation_form_alter(&$form, FormStateInterface $form
     $form['field_reactivation_request']['#prefix'] = '<div class="grid-6 checkbox-second-step">';
     $form['field_reactivation_request']['#suffix'] = '</div>';
 
+    // Adding form element warpper for Third step.
+    $form['field_quotation_screwdriver_styl']['#attributes']['class'][] = 'grid-12';
+    $form['field_quotation_universal_swivel']['#attributes']['class'][] = 'grid-12';
+    $form['field_socket_extension_adapter	']['#attributes']['class'][] = 'grid-12';
+
     // Adding form element warpper for buttons.
     $form['actions']['submit']['#prefix'] = '<div class=" grid-12">';
     $form['actions']['submit']['#suffix'] = '</div>';
