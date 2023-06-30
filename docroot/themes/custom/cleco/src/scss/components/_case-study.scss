@@ -97,13 +97,23 @@
 
 .cs-client-summary {
   background: $color-off-black;
+  position: relative;
   color: $color-white;
   background-image: url('../img/CLE_Pattern-Web.jpg');
   background-size: cover;
   padding-top: 20px !important;
-  padding-bottom: 20px !important;
+  padding-bottom: 30px !important;
   font-size: 20px;
   line-height: 31px;
+  &::after {
+    position: absolute;
+    width: 100%;
+    content: '';
+    height: 30px;
+    background-color: $color-orange;
+    left: 0;
+    bottom: 0;
+  }
 }
 
 //css for schedule demo block
@@ -119,11 +129,13 @@
     font-weight: 700;
     width: 65%;
     margin-bottom: 0em !important;
-    @media (max-width: $breakpoint-product-tabs) {
+    @media (max-width: $media-screen-medium) {
       width: 100%;
       margin-bottom: 20px !important;
     }
-
+    @media (max-width: $breakpoint-form) {
+      font-size: 1rem;
+    }
   }
   a {
    color: $color-white;
@@ -138,9 +150,8 @@
     box-shadow: none !important;
     cursor: pointer;
    }
-   @media (max-width: $media-screen-mobile) {
-    margin: 0 auto;
+   @media (max-width: $breakpoint-form) {
+    padding: 5px 30px;
   }
   }
-
 }
