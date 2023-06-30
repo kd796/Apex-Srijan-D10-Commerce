@@ -1,0 +1,40 @@
+uuid: fac6955f-fb31-4de6-84f0-10abf41a5af5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.universal_wrench.field_drive_size
+    - field.field.paragraph.universal_wrench.field_iron_brandf
+    - field.field.paragraph.universal_wrench.field_test_image
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.universal_wrench
+  module:
+    - image
+id: paragraph.universal_wrench.default
+targetEntityType: paragraph
+bundle: universal_wrench
+mode: default
+content:
+  field_drive_size:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_iron_brandf:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_test_image:
+    type: image_image
+    weight: 2
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

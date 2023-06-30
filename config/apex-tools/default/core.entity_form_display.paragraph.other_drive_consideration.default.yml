@@ -1,0 +1,22 @@
+uuid: 06425274-2247-45b5-8684-6a5fd77ddda4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.other_drive_consideration.field_counter_bored
+    - paragraphs.paragraphs_type.other_drive_consideration
+id: paragraph.other_drive_consideration.default
+targetEntityType: paragraph
+bundle: other_drive_consideration
+mode: default
+content:
+  field_counter_bored:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

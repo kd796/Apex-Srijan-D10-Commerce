@@ -1,0 +1,23 @@
+uuid: 324c299f-36a1-43b1-a9fc-528a3d11a201
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hex
+    - paragraphs.paragraphs_type.hex
+id: paragraph.hex.field_hex
+field_name: field_hex
+entity_type: paragraph
+bundle: hex
+label: Hex
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

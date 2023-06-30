@@ -1,0 +1,43 @@
+uuid: 0a21335f-0229-4eb3-bddf-073e1d62d8f7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.screwdriver_bit_holder_styles.field_bit_holder_styles
+    - paragraphs.paragraphs_type.screwdriver_bit_holder_styles
+  module:
+    - default_paragraphs
+id: paragraph.screwdriver_bit_holder_styles.default
+targetEntityType: paragraph
+bundle: screwdriver_bit_holder_styles
+mode: default
+content:
+  field_bit_holder_styles:
+    type: default_paragraphs
+    weight: 0
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      closed_mode: summary
+      autocollapse: none
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_types:
+        hex_drive:
+          value: '1'
+          edit_mode: edit
+          weight: '-10'
+        bit_holder_female_square:
+          value: '1'
+          edit_mode: edit
+          weight: '-9'
+        bit_holder_male_hex_drive:
+          value: '1'
+          edit_mode: edit
+          weight: '-8'
+      edit_mode: closed
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

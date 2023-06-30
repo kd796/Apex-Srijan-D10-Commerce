@@ -1,0 +1,24 @@
+uuid: 8a337c49-fddd-450d-9686-367a8c211133
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_drive_type_other
+field_name: field_drive_type_other
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: other
+      label: Other
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

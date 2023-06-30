@@ -1,0 +1,54 @@
+uuid: 4704cd90-2ff3-47c0-af3e-3cdcb1489f67
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_tool_industry
+field_name: field_tool_industry
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: aerospace
+      label: Aerospace
+    -
+      value: appliance
+      label: Appliance
+    -
+      value: automotive
+      label: Automotive
+    -
+      value: electronics
+      label: Electronics
+    -
+      value: 'general industries'
+      label: 'General Industries'
+    -
+      value: heavy
+      label: 'Heavy Equipment/Off-Road'
+    -
+      value: oil
+      label: 'Oil & Gas'
+    -
+      value: power
+      label: Power
+    -
+      value: rail
+      label: Rail
+    -
+      value: ship
+      label: Ship
+    -
+      value: other
+      label: Other
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

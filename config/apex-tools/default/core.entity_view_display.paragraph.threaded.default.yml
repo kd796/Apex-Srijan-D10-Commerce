@@ -1,0 +1,38 @@
+uuid: eb2e8b20-1203-4505-8623-79e6d93b7d6e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.threaded.field_threaded
+    - field.field.paragraph.threaded.field_threaded_size
+    - paragraphs.paragraphs_type.threaded
+  module:
+    - options
+id: paragraph.threaded.default
+targetEntityType: paragraph
+bundle: threaded
+mode: default
+content:
+  field_threaded:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_threaded_size:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

@@ -1,0 +1,39 @@
+uuid: 281ec49b-1fca-49f5-ba03-54e19c232f34
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_magnetic_field
+field_name: field_magnetic_field
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: magnetic_bolt_clearance_mb
+      label: 'Magnetic Bolt Clearance (MB)'
+    -
+      value: magnetic_bolt_clearance_mrr
+      label: 'Magnetic Bolt Clearance (MRR)'
+    -
+      value: sidewall_magnet
+      label: 'Sidewall Magnet (SWM)'
+    -
+      value: ring_magnet
+      label: 'Ring Magnet (RM)'
+    -
+      value: fixed_magnet
+      label: 'Fixed Magnet (M)'
+    -
+      value: non_magnetic
+      label: Non-Magnetic
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

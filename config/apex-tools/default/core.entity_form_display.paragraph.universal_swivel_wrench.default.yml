@@ -1,0 +1,35 @@
+uuid: 8541a3eb-b478-44ea-8757-9ab86e1f12df
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.universal_swivel_wrench.field_dimensions
+    - paragraphs.paragraphs_type.universal_swivel_wrench
+  module:
+    - default_paragraphs
+id: paragraph.universal_swivel_wrench.default
+targetEntityType: paragraph
+bundle: universal_swivel_wrench
+mode: default
+content:
+  field_dimensions:
+    type: default_paragraphs
+    weight: 0
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      closed_mode: summary
+      autocollapse: none
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_types:
+        dimensions:
+          edit_mode: edit
+          weight: '0'
+          value: 0
+      edit_mode: closed
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

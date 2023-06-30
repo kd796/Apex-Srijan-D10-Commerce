@@ -1,0 +1,34 @@
+uuid: 2fdb8773-2ba1-4c8c-8d1f-3400c369cd05
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.shouldered.field_shouldered
+    - field.field.paragraph.shouldered.field_shouldered_
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.shouldered
+  module:
+    - image
+id: paragraph.shouldered.default
+targetEntityType: paragraph
+bundle: shouldered
+mode: default
+content:
+  field_shouldered:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_shouldered_:
+    type: image_image
+    weight: 1
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

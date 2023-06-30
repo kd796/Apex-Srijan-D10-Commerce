@@ -1,0 +1,52 @@
+uuid: 6d55fd18-bde7-4eca-934b-fe66c55475e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.quotation_order_type.field_add_spec
+    - field.field.paragraph.quotation_order_type.field_order_type
+    - field.field.paragraph.quotation_order_type.field_quantity
+    - field.field.paragraph.quotation_order_type.field_tool_industry
+    - paragraphs.paragraphs_type.quotation_order_type
+  module:
+    - options
+id: paragraph.quotation_order_type.default
+targetEntityType: paragraph
+bundle: quotation_order_type
+mode: default
+content:
+  field_add_spec:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_order_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_quantity:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_tool_industry:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

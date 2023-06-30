@@ -1,0 +1,40 @@
+uuid: a7da5d1c-d27c-4576-8914-6800e9a8f52c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bit_holder_female_square.field_bit_holder_female_sq_size
+    - field.field.paragraph.bit_holder_female_square.field_bit_holder_female_square
+    - paragraphs.paragraphs_type.bit_holder_female_square
+  module:
+    - physical
+id: paragraph.bit_holder_female_square.default
+targetEntityType: paragraph
+bundle: bit_holder_female_square
+mode: default
+content:
+  field_bit_holder_female_sq_size:
+    type: physical_measurement_default
+    weight: 1
+    region: content
+    settings:
+      default_unit: in
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_bit_holder_female_square:
+    type: options_buttons
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

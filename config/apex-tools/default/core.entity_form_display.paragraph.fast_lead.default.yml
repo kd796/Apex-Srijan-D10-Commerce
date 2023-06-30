@@ -1,0 +1,22 @@
+uuid: 36f17767-d686-48c8-8bb5-466278b98443
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.fast_lead.field_fast_lead
+    - paragraphs.paragraphs_type.fast_lead
+id: paragraph.fast_lead.default
+targetEntityType: paragraph
+bundle: fast_lead
+mode: default
+content:
+  field_fast_lead:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

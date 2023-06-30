@@ -1,0 +1,28 @@
+uuid: 47cdfae1-5588-4cbe-8e20-c922ef6799e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.socket_head.field_socket_head
+    - field.field.paragraph.socket_head.field_socket_head_point_size
+    - paragraphs.paragraphs_type.socket_head
+id: paragraph.socket_head.default
+targetEntityType: paragraph
+bundle: socket_head
+mode: default
+content:
+  field_socket_head:
+    type: options_buttons
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_socket_head_point_size:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

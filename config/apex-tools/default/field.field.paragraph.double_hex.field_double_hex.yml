@@ -1,0 +1,23 @@
+uuid: 4e4b5a45-0dee-4d53-9876-a4f917680b45
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_double_hex
+    - paragraphs.paragraphs_type.double_hex
+id: paragraph.double_hex.field_double_hex
+field_name: field_double_hex
+entity_type: paragraph
+bundle: double_hex
+label: 'Double Hex'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

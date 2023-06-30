@@ -1,0 +1,23 @@
+uuid: b5def7ea-2ccf-4c35-a359-91806eaa9cd6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_threaded
+    - paragraphs.paragraphs_type.threaded
+id: paragraph.threaded.field_threaded
+field_name: field_threaded
+entity_type: paragraph
+bundle: threaded
+label: Threaded
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Threaded
+  off_label: 'Off'
+field_type: boolean

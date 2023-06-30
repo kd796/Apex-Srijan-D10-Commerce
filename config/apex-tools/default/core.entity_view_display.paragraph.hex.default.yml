@@ -1,0 +1,28 @@
+uuid: 9ccaa8f5-459a-4c20-b70c-45f9ce052867
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hex.field_hex
+    - paragraphs.paragraphs_type.hex
+id: paragraph.hex.default
+targetEntityType: paragraph
+bundle: hex
+mode: default
+content:
+  field_hex:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

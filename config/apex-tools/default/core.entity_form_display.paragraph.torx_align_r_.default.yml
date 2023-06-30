@@ -1,0 +1,28 @@
+uuid: e9f07945-7457-47be-8cbe-d735cb3da734
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.torx_align_r_.field_torx_align_point_size
+    - field.field.paragraph.torx_align_r_.field_torx_align_r_
+    - paragraphs.paragraphs_type.torx_align_r_
+id: paragraph.torx_align_r_.default
+targetEntityType: paragraph
+bundle: torx_align_r_
+mode: default
+content:
+  field_torx_align_point_size:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_torx_align_r_:
+    type: options_buttons
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,22 @@
+uuid: d661aa21-1ae8-48fc-bcca-b526a201d079
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.surface_drive.field_surface_drive
+    - paragraphs.paragraphs_type.surface_drive
+id: paragraph.surface_drive.default
+targetEntityType: paragraph
+bundle: surface_drive
+mode: default
+content:
+  field_surface_drive:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

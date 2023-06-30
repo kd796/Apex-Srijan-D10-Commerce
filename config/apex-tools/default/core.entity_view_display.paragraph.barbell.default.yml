@@ -1,0 +1,42 @@
+uuid: dbb8e8b0-1cf0-4820-8b6b-92f7e74b953e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.barbell.field_barbell
+    - field.field.paragraph.barbell.field_barbell_icon_i
+    - paragraphs.paragraphs_type.barbell
+  module:
+    - image
+id: paragraph.barbell.default
+targetEntityType: paragraph
+bundle: barbell
+mode: default
+content:
+  field_barbell:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_barbell_icon_i:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

@@ -1,0 +1,27 @@
+uuid: 5698a84e-31dc-4191-812b-fd5e867781fb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.optional_features.field_optional_feature
+    - paragraphs.paragraphs_type.optional_features
+  module:
+    - options
+id: paragraph.optional_features.default
+targetEntityType: paragraph
+bundle: optional_features
+mode: default
+content:
+  field_optional_feature:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

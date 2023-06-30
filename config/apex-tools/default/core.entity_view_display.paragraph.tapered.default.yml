@@ -1,0 +1,42 @@
+uuid: c30e2b23-bb44-4eee-b694-25c360053f81
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.tapered.field_tapered
+    - field.field.paragraph.tapered.field_tapered_icon_image
+    - paragraphs.paragraphs_type.tapered
+  module:
+    - image
+id: paragraph.tapered.default
+targetEntityType: paragraph
+bundle: tapered
+mode: default
+content:
+  field_tapered:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_tapered_icon_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

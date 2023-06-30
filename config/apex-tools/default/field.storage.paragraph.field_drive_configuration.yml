@@ -1,0 +1,36 @@
+uuid: 874057e0-f302-453b-b4b1-ea75db2d9f68
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_drive_configuration
+field_name: field_drive_configuration
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: dIN_standard
+      label: 'DIN Standard'
+    -
+      value: no_DIN_groove
+      label: 'No DIN Groove'
+    -
+      value: cross_hole
+      label: 'Cross Hole (one wall only)'
+    -
+      value: counterbore
+      label: Counterbore
+    -
+      value: hex
+      label: Hex
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

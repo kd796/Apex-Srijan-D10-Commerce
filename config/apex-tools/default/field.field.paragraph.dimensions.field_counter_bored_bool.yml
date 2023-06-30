@@ -1,0 +1,23 @@
+uuid: 91e53836-aeb8-445c-8487-a89b70d7284e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_counter_bored_bool
+    - paragraphs.paragraphs_type.dimensions
+id: paragraph.dimensions.field_counter_bored_bool
+field_name: field_counter_bored_bool
+entity_type: paragraph
+bundle: dimensions
+label: Counter-bored
+description: '<b>N. Other drive consideration'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

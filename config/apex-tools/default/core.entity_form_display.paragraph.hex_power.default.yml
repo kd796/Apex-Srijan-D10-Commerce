@@ -1,0 +1,29 @@
+uuid: 039d0fdd-c7db-4373-a7b3-13825dc703a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hex_power.field_hex_power
+    - field.field.paragraph.hex_power.field_hex_power_size
+    - paragraphs.paragraphs_type.hex_power
+id: paragraph.hex_power.default
+targetEntityType: paragraph
+bundle: hex_power
+mode: default
+content:
+  field_hex_power:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_hex_power_size:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

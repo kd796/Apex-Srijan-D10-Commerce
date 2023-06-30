@@ -1,0 +1,142 @@
+uuid: c15abe33-0367-4c1e-bb8f-cb562dab85ea
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.other_specifications.field_cover
+    - field.field.paragraph.other_specifications.field_free_ship
+    - field.field.paragraph.other_specifications.field_limit
+    - field.field.paragraph.other_specifications.field_magnetic
+    - field.field.paragraph.other_specifications.field_press_fit
+    - field.field.paragraph.other_specifications.field_tension
+    - field.field.paragraph.other_specifications.field_welded
+    - field.field.paragraph.other_specifications.field_what_to_be_covered
+    - paragraphs.paragraphs_type.other_specifications
+  module:
+    - conditional_fields
+id: paragraph.other_specifications.default
+targetEntityType: paragraph
+bundle: other_specifications
+mode: default
+content:
+  field_cover:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_free_ship:
+    type: options_select
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings:
+      conditional_fields:
+        6b8ca33d-3427-4333-8527-33e90a29f826:
+          entity_type: paragraph
+          bundle: other_specifications
+          dependee: field_cover
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: OR
+            values_set: 2
+            value: ''
+            values: 'yes'
+            value_form: {  }
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_limit:
+    type: string_textfield
+    weight: 7
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        b32ddebd-db1d-4ef2-8c68-ea1d55acb2ff:
+          entity_type: paragraph
+          bundle: other_specifications
+          dependee: field_cover
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: OR
+            values_set: 2
+            value: ''
+            values: 'yes'
+            value_form: {  }
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_magnetic:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_press_fit:
+    type: options_select
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings:
+      conditional_fields:
+        17d39de7-21e5-4190-bfa8-fe8a9e6ee561:
+          entity_type: paragraph
+          bundle: other_specifications
+          dependee: field_cover
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: OR
+            values_set: 2
+            value: ''
+            values: 'yes'
+            value_form: {  }
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_tension:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_welded:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_what_to_be_covered:
+    type: options_buttons
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings:
+      conditional_fields:
+        0fd86d71-cfb6-4eac-936b-cf5ff2feb537:
+          entity_type: paragraph
+          bundle: other_specifications
+          dependee: field_cover
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: OR
+            values_set: 2
+            value: ''
+            values: 'yes'
+            value_form: {  }
+            effect: show
+            effect_options: {  }
+            selector: ''
+hidden:
+  created: true
+  status: true
