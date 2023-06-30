@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.policies_registration.field_display_title
     - field.field.node.policies_registration.field_downloadpolicy_component
     - field.field.node.policies_registration.field_policies_registration_webf
     - node.type.policies_registration
@@ -21,7 +20,6 @@ content:
     weight: 100
     region: content
 hidden:
-  field_display_title: true
   field_download_policy_label: true
   field_downloadpolicy_component: true
   field_policies_registration_webf: true

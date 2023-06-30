@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.policies_registration.field_display_title
     - field.field.node.policies_registration.field_downloadpolicy_component
     - field.field.node.policies_registration.field_policies_registration_webf
     - node.type.policies_registration
@@ -21,14 +20,6 @@ content:
     weight: 3
     region: content
     settings: {  }
-    third_party_settings: {  }
-  field_display_title:
-    type: string_textfield
-    weight: 9
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
     third_party_settings: {  }
   field_download_policy_label:
     type: string_textfield

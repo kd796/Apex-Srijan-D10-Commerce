@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.policies_registration.field_display_title
     - field.field.node.policies_registration.field_downloadpolicy_component
     - field.field.node.policies_registration.field_policies_registration_webf
     - node.type.policies_registration
@@ -16,14 +15,6 @@ targetEntityType: node
 bundle: policies_registration
 mode: default
 content:
-  field_display_title:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 1
-    region: content
   field_download_policy_label:
     type: string
     label: above
