@@ -1,0 +1,23 @@
+uuid: a99db256-f03a-4ae7-b661-078cbf88585b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_fast_lead
+    - paragraphs.paragraphs_type.fast_lead
+id: paragraph.fast_lead.field_fast_lead
+field_name: field_fast_lead
+entity_type: paragraph
+bundle: fast_lead
+label: 'Fast Lead'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

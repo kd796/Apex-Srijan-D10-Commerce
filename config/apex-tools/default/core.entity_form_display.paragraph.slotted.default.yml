@@ -1,0 +1,39 @@
+uuid: ef788788-5b6d-4935-9552-a432541b37bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.slotted.field_blade_thickness
+    - field.field.paragraph.slotted.field_blade_width
+    - field.field.paragraph.slotted.field_slotted
+    - paragraphs.paragraphs_type.slotted
+id: paragraph.slotted.default
+targetEntityType: paragraph
+bundle: slotted
+mode: default
+content:
+  field_blade_thickness:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_blade_width:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_slotted:
+    type: options_buttons
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

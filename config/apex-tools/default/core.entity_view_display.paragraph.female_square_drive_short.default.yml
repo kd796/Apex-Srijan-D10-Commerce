@@ -1,0 +1,46 @@
+uuid: 26a5d1cd-9449-4f57-aebf-6211815461e5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.female_square_drive_short.field_feamale_square_drive
+    - field.field.paragraph.female_square_drive_short.field_ib
+    - field.field.paragraph.female_square_drive_short.field_sd
+    - paragraphs.paragraphs_type.female_square_drive_short
+  module:
+    - options
+id: paragraph.female_square_drive_short.default
+targetEntityType: paragraph
+bundle: female_square_drive_short
+mode: default
+content:
+  field_feamale_square_drive:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_ib:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_sd:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

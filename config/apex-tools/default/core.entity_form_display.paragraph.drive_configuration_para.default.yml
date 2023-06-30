@@ -1,0 +1,49 @@
+uuid: 16f5c6f0-310f-425b-8cfc-b66cc5b065ea
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.drive_configuration_para.field_drive_configuration
+    - field.field.paragraph.drive_configuration_para.field_size_hex
+    - paragraphs.paragraphs_type.drive_configuration_para
+  module:
+    - conditional_fields
+id: paragraph.drive_configuration_para.default
+targetEntityType: paragraph
+bundle: drive_configuration_para
+mode: default
+content:
+  field_drive_configuration:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_size_hex:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        2a5115ce-75df-44d6-ba96-27fd69a6e0c5:
+          entity_type: paragraph
+          bundle: drive_configuration_para
+          dependee: field_drive_configuration
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 2
+            value: ''
+            values: hex
+            value_form: {  }
+            effect: show
+            effect_options: {  }
+            selector: ''
+hidden:
+  created: true
+  status: true

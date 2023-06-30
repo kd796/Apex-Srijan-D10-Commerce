@@ -1,0 +1,36 @@
+uuid: b98d84e5-f13a-4c76-bf14-ece86581eea6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.female_square_drive_short.field_feamale_square_drive
+    - field.field.paragraph.female_square_drive_short.field_ib
+    - field.field.paragraph.female_square_drive_short.field_sd
+    - paragraphs.paragraphs_type.female_square_drive_short
+id: paragraph.female_square_drive_short.default
+targetEntityType: paragraph
+bundle: female_square_drive_short
+mode: default
+content:
+  field_feamale_square_drive:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_ib:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_sd:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

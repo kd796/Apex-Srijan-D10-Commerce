@@ -1,0 +1,30 @@
+uuid: d1afad98-a2bc-4170-a1dc-a40c952a0b77
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.other.field_other
+    - field.field.paragraph.other.field_specify
+    - paragraphs.paragraphs_type.other
+id: paragraph.other.default
+targetEntityType: paragraph
+bundle: other
+mode: default
+content:
+  field_other:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_specify:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

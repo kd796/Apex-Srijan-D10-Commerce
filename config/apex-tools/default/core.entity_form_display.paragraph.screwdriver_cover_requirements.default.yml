@@ -1,0 +1,43 @@
+uuid: c30a6829-bdf2-4ecb-9828-77818ff3c6d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.screwdriver_cover_requirements.field_components
+    - field.field.paragraph.screwdriver_cover_requirements.field_cover_requirements
+    - paragraphs.paragraphs_type.screwdriver_cover_requirements
+  module:
+    - paragraphs
+id: paragraph.screwdriver_cover_requirements.default
+targetEntityType: paragraph
+bundle: screwdriver_cover_requirements
+mode: default
+content:
+  field_components:
+    type: paragraphs
+    weight: 1
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+  field_cover_requirements:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: false
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

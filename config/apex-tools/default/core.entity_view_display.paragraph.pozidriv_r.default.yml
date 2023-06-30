@@ -1,0 +1,35 @@
+uuid: 3006e7b7-f57c-4789-96e8-6fb3828f2041
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.pozidriv_r.field_pozidriv_point_size
+    - field.field.paragraph.pozidriv_r.field_pozidriv_r
+    - paragraphs.paragraphs_type.pozidriv_r
+  module:
+    - options
+id: paragraph.pozidriv_r.default
+targetEntityType: paragraph
+bundle: pozidriv_r
+mode: default
+content:
+  field_pozidriv_point_size:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_pozidriv_r:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

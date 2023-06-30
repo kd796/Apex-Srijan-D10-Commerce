@@ -1,0 +1,21 @@
+uuid: a437a076-0ea8-4556-a704-ed9e2308ea60
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.components_to_be_covered_.field_components_to_be_covered_
+    - paragraphs.paragraphs_type.components_to_be_covered_
+id: paragraph.components_to_be_covered_.default
+targetEntityType: paragraph
+bundle: components_to_be_covered_
+mode: default
+content:
+  field_components_to_be_covered_:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,23 @@
+uuid: 32d41194-4e42-472c-a4ee-d7cbb6e6e1c0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_nylon_requirements_yes_no_
+    - paragraphs.paragraphs_type.cover_features
+id: paragraph.cover_features.field_nylon_requirements_yes_no_
+field_name: field_nylon_requirements_yes_no_
+entity_type: paragraph
+bundle: cover_features
+label: 'Nylon requirements (Yes/No)'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

@@ -1,0 +1,30 @@
+uuid: 1f4eb54f-b21f-41a0-97c8-c6cc63cc897e
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_bit_holder_retention_metho
+field_name: field_bit_holder_retention_metho
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'O-Ring Retention'
+      label: 'O-Ring Retention'
+    -
+      value: 'Standard (Retaining Ring)'
+      label: 'Standard (Retaining Ring)'
+    -
+      value: 'Quick Release'
+      label: 'Quick Release'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

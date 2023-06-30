@@ -1,0 +1,23 @@
+uuid: 5922ddda-18e1-4b07-afa4-e0df58775839
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_cover_requirements
+    - paragraphs.paragraphs_type.screwdriver_cover_requirements
+id: paragraph.screwdriver_cover_requirements.field_cover_requirements
+field_name: field_cover_requirements
+entity_type: paragraph
+bundle: screwdriver_cover_requirements
+label: 'Cover Requirements'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

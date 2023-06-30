@@ -1,0 +1,22 @@
+uuid: 5645a40e-42c9-4ad2-ae33-11b7ec3d4f4e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hex.field_hex
+    - paragraphs.paragraphs_type.hex
+id: paragraph.hex.default
+targetEntityType: paragraph
+bundle: hex
+mode: default
+content:
+  field_hex:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

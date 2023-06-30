@@ -1,0 +1,29 @@
+uuid: 40e64c7e-bea8-4298-aca5-446dc5ae22e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.female_square.field_female_square_1
+    - field.field.paragraph.female_square.field_female_square_size
+    - paragraphs.paragraphs_type.female_square
+id: paragraph.female_square.default
+targetEntityType: paragraph
+bundle: female_square
+mode: default
+content:
+  field_female_square_1:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_female_square_size:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

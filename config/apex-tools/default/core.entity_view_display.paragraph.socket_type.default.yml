@@ -1,0 +1,49 @@
+uuid: a00e29b9-1d4f-45a2-8ff4-1350efdce107
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.socket_type.field_socket_type_allowed
+    - field.field.paragraph.socket_type.field_straight_field
+    - paragraphs.paragraphs_type.socket_type
+  module:
+    - options
+id: paragraph.socket_type.default
+targetEntityType: paragraph
+bundle: socket_type
+mode: default
+content:
+  field_nutsetter_para:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_socket_type_allowed:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_straight_para:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  field_barbell_field: true
+  field_nutsetter_field: true
+  field_straight_field: true
+  search_api_excerpt: true
+  uuid: true

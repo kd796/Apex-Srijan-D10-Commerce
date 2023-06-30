@@ -1,0 +1,67 @@
+uuid: 86fcbbc4-d64c-462f-a857-d0eb599c00c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bit_dimensions.field_a_overall_length
+    - field.field.paragraph.bit_dimensions.field_b_body_diameter
+    - field.field.paragraph.bit_dimensions.field_c_turned_length
+    - paragraphs.paragraphs_type.bit_dimensions
+  module:
+    - physical
+id: paragraph.bit_dimensions.default
+targetEntityType: paragraph
+bundle: bit_dimensions
+mode: default
+content:
+  field_a_overall_length:
+    type: physical_measurement_default
+    weight: 0
+    region: content
+    settings:
+      default_unit: in
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_b_body_diameter:
+    type: physical_measurement_default
+    weight: 1
+    region: content
+    settings:
+      default_unit: in
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_c_turned_length:
+    type: physical_measurement_default
+    weight: 2
+    region: content
+    settings:
+      default_unit: in
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

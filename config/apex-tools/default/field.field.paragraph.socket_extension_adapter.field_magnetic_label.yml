@@ -1,0 +1,298 @@
+uuid: 4bb2881d-9edf-4ba4-aacf-5e01b4ed1854
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_magnetic_label
+    - paragraphs.paragraphs_type.magnetic
+    - paragraphs.paragraphs_type.socket_extension_adapter
+  module:
+    - entity_reference_revisions
+id: paragraph.socket_extension_adapter.field_magnetic_label
+field_name: field_magnetic_label
+entity_type: paragraph
+bundle: socket_extension_adapter
+label: Magnetic
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      magnetic: magnetic
+    negate: 0
+    target_bundles_drag_drop:
+      360_hotspots:
+        weight: 92
+        enabled: false
+      360_product_image:
+        weight: 93
+        enabled: false
+      barbell:
+        weight: 94
+        enabled: false
+      basic_card:
+        weight: 95
+        enabled: false
+      basic_card_section:
+        weight: 96
+        enabled: false
+      bit_dimensions:
+        weight: 91
+        enabled: false
+      broach_opening:
+        weight: 97
+        enabled: false
+      callout_section_footer:
+        weight: 98
+        enabled: false
+      callout_section_page_end:
+        weight: 99
+        enabled: false
+      card:
+        weight: 100
+        enabled: false
+      content_bundle:
+        weight: 101
+        enabled: false
+      content_section:
+        weight: 102
+        enabled: false
+      content_section_simple:
+        weight: 103
+        enabled: false
+      cta:
+        weight: 104
+        enabled: false
+      dimensions:
+        weight: 105
+        enabled: false
+      double_hex:
+        weight: 106
+        enabled: false
+      double_square:
+        weight: 107
+        enabled: false
+      drive_type_other:
+        weight: 108
+        enabled: false
+      enhanced_hero:
+        weight: 109
+        enabled: false
+      enhanced_product_features:
+        weight: 110
+        enabled: false
+      excerpt:
+        weight: 111
+        enabled: false
+      faq:
+        weight: 112
+        enabled: false
+      faqs_group:
+        weight: 113
+        enabled: false
+      faqs_section:
+        weight: 114
+        enabled: false
+      fast_lead:
+        weight: 115
+        enabled: false
+      featured_block:
+        weight: 116
+        enabled: false
+      featured_product_item:
+        weight: 118
+        enabled: false
+      featured_products:
+        weight: 117
+        enabled: false
+      featured_section:
+        weight: 119
+        enabled: false
+      female_square:
+        weight: 120
+        enabled: false
+      female_square_drive_short:
+        weight: 121
+        enabled: false
+      female_square_drive_standard_typ:
+        weight: 122
+        enabled: false
+      find_a_distributor:
+        weight: 123
+        enabled: false
+      form_section:
+        weight: 124
+        enabled: false
+      from_library:
+        weight: 125
+        enabled: false
+      grid_item:
+        weight: 126
+        enabled: false
+      grid_section:
+        weight: 127
+        enabled: false
+      hero:
+        weight: 128
+        enabled: false
+      hex:
+        weight: 129
+        enabled: false
+      hex_insert:
+        weight: 130
+        enabled: false
+      hex_power:
+        weight: 131
+        enabled: false
+      iframe:
+        weight: 132
+        enabled: false
+      intro:
+        weight: 133
+        enabled: false
+      magnetic:
+        weight: 134
+        enabled: true
+      mailing_list_form:
+        weight: 135
+        enabled: false
+      male_hex_drive_standard_type:
+        weight: 136
+        enabled: false
+      media_block:
+        weight: 137
+        enabled: false
+      media_file:
+        weight: 138
+        enabled: false
+      media_image:
+        weight: 139
+        enabled: false
+      media_kit:
+        weight: 140
+        enabled: false
+      message_block:
+        weight: 141
+        enabled: false
+      mortorq:
+        weight: 142
+        enabled: false
+      nutsetter:
+        weight: 143
+        enabled: false
+      optional_features:
+        weight: 144
+        enabled: false
+      other:
+        weight: 145
+        enabled: false
+      other_drive_consideration:
+        weight: 146
+        enabled: false
+      other_specifications:
+        weight: 147
+        enabled: false
+      philips:
+        weight: 148
+        enabled: false
+      phillips_acr:
+        weight: 149
+        enabled: false
+      pozidriv_r:
+        weight: 150
+        enabled: false
+      product_categories:
+        weight: 153
+        enabled: false
+      product_search:
+        weight: 154
+        enabled: false
+      products_category_section:
+        weight: 151
+        enabled: false
+      products_section:
+        weight: 152
+        enabled: false
+      quotation_order_type:
+        weight: 155
+        enabled: false
+      quotation_screwdriver_drive_type:
+        weight: 156
+        enabled: false
+      quotation_screwdriver_style:
+        weight: 157
+        enabled: false
+      s:
+        weight: 158
+        enabled: false
+      schedule_a_demo:
+        weight: 159
+        enabled: false
+      shouldered:
+        weight: 160
+        enabled: false
+      slotted:
+        weight: 161
+        enabled: false
+      socket_extension_adapter:
+        weight: 162
+        enabled: false
+      socket_head:
+        weight: 163
+        enabled: false
+      socket_type:
+        weight: 164
+        enabled: false
+      square:
+        weight: 165
+        enabled: false
+      square_recess:
+        weight: 166
+        enabled: false
+      straight:
+        weight: 167
+        enabled: false
+      surface_drive:
+        weight: 168
+        enabled: false
+      tapered:
+        weight: 169
+        enabled: false
+      testimonials_block:
+        weight: 170
+        enabled: false
+      testimonials_section:
+        weight: 171
+        enabled: false
+      threaded:
+        weight: 172
+        enabled: false
+      torq_set:
+        weight: 173
+        enabled: false
+      torx_align_r_:
+        weight: 174
+        enabled: false
+      torx_plus_r:
+        weight: 175
+        enabled: false
+      torx_r:
+        weight: 176
+        enabled: false
+      triple_square:
+        weight: 177
+        enabled: false
+      universal_swivel_wrench:
+        weight: 178
+        enabled: false
+      universal_wrench:
+        weight: 179
+        enabled: false
+      video_bundle:
+        weight: 180
+        enabled: false
+field_type: entity_reference_revisions

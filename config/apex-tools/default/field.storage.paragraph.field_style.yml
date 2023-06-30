@@ -1,0 +1,36 @@
+uuid: 92913dec-c8cf-4870-aa81-d3cbb7cad8e1
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_style
+field_name: field_style
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: Straight
+      label: Straight
+    -
+      value: Shouldered
+      label: Shouldered
+    -
+      value: Tapered
+      label: Tapered
+    -
+      value: Nutsetter
+      label: Nutsetter
+    -
+      value: Barbel
+      label: Barbel
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,42 @@
+uuid: fc63f130-b737-466f-ae26-c6efcb4a78f1
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_triple_square_point_size
+field_name: field_triple_square_point_size
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 4mm
+      label: 4mm
+    -
+      value: 5mm
+      label: 5mm
+    -
+      value: 6mm
+      label: 6mm
+    -
+      value: 8mm
+      label: 8mm
+    -
+      value: 10mm
+      label: 10mm
+    -
+      value: 12mm
+      label: 12mm\
+    -
+      value: 14mm
+      label: 14mm
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

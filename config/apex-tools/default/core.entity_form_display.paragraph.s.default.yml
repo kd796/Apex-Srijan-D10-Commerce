@@ -1,0 +1,21 @@
+uuid: df0b48dd-5241-44a1-90a4-870e2d3a3a8f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.s.field_style
+    - paragraphs.paragraphs_type.s
+id: paragraph.s.default
+targetEntityType: paragraph
+bundle: s
+mode: default
+content:
+  field_style:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,23 @@
+uuid: c929f420-d5a7-4152-a5c9-c51ec1fae21a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_counter_bored
+    - paragraphs.paragraphs_type.other_drive_consideration
+id: paragraph.other_drive_consideration.field_counter_bored
+field_name: field_counter_bored
+entity_type: paragraph
+bundle: other_drive_consideration
+label: Counter-bored
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

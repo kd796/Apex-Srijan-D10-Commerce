@@ -1,0 +1,38 @@
+uuid: 1a1ef01b-ffd0-4e2c-b6d5-bd81ecd95b2b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.socket_head.field_socket_head
+    - field.field.paragraph.socket_head.field_socket_head_point_size
+    - paragraphs.paragraphs_type.socket_head
+  module:
+    - options
+id: paragraph.socket_head.default
+targetEntityType: paragraph
+bundle: socket_head
+mode: default
+content:
+  field_socket_head:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_socket_head_point_size:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

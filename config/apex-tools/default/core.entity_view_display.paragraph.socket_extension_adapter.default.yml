@@ -1,0 +1,89 @@
+uuid: bc36d1d3-8588-4c9a-9130-36c6ab10b0be
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.socket_extension_adapter.field_broach_opening
+    - field.field.paragraph.socket_extension_adapter.field_drive_configuration_label
+    - field.field.paragraph.socket_extension_adapter.field_magnetic_label
+    - field.field.paragraph.socket_extension_adapter.field_nylon_covers_features
+    - field.field.paragraph.socket_extension_adapter.field_quotation_order_type_socke
+    - field.field.paragraph.socket_extension_adapter.field_socket_dimensions_label
+    - field.field.paragraph.socket_extension_adapter.field_socket_type
+    - paragraphs.paragraphs_type.socket_extension_adapter
+  module:
+    - entity_reference_revisions
+id: paragraph.socket_extension_adapter.default
+targetEntityType: paragraph
+bundle: socket_extension_adapter
+mode: default
+content:
+  field_broach_opening:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_drive_configuration_label:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_magnetic_label:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_nylon_covers_features:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_quotation_order_type_socke:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_socket_dimensions_label:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_socket_type:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

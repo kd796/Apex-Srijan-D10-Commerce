@@ -1,0 +1,83 @@
+uuid: b1da0152-129f-4409-af3e-6c5fd2669681
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.quotation_screwdriver_style.field_screwdriver_style
+    - paragraphs.paragraphs_type.quotation_screwdriver_style
+  module:
+    - default_paragraphs
+id: paragraph.quotation_screwdriver_style.default
+targetEntityType: paragraph
+bundle: quotation_screwdriver_style
+mode: default
+content:
+  field_screwdriver_style:
+    type: default_paragraphs
+    weight: 0
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      closed_mode: summary
+      autocollapse: none
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_types:
+        mortorq:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+        other:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+        philips:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+        phillips_acr:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+        pozidriv_r:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+        slotted:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+        socket_head:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+        square_recess:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+        torq_set:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+        torx_align_r_:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+        torx_plus_r:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+        torx_r:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+        triple_square:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+      edit_mode: closed
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

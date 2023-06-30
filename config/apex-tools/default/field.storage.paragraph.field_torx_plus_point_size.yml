@@ -1,0 +1,48 @@
+uuid: 8a71bf63-04ac-418d-9f6d-5e4fd24a64b7
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_torx_plus_point_size
+field_name: field_torx_plus_point_size
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 8IP
+      label: 8IP
+    -
+      value: 9IP
+      label: 9IP
+    -
+      value: 10IP
+      label: 10IP
+    -
+      value: 15IP
+      label: 15IP
+    -
+      value: 20IP
+      label: 20IP
+    -
+      value: 25IP
+      label: 25IP
+    -
+      value: 27IP
+      label: 27IP
+    -
+      value: 30IP
+      label: 30IP
+    -
+      value: 40IP
+      label: 40IP
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

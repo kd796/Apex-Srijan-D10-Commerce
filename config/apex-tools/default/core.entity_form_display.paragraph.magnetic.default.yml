@@ -1,0 +1,21 @@
+uuid: 2497c002-0bd0-4e20-8a69-f55d4f8c477d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.magnetic.field_magnetic_field
+    - paragraphs.paragraphs_type.magnetic
+id: paragraph.magnetic.default
+targetEntityType: paragraph
+bundle: magnetic
+mode: default
+content:
+  field_magnetic_field:
+    type: options_buttons
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

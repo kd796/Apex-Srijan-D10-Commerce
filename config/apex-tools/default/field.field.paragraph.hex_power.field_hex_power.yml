@@ -1,0 +1,23 @@
+uuid: 4a50e881-c1c2-4af8-9cc5-18191311a5a9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hex_power
+    - paragraphs.paragraphs_type.hex_power
+id: paragraph.hex_power.field_hex_power
+field_name: field_hex_power
+entity_type: paragraph
+bundle: hex_power
+label: 'Hex Power'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Hex Power'
+  off_label: 'Off'
+field_type: boolean
