@@ -130,8 +130,31 @@
 
   // First set of third step
   #edit-field-quotation-screwdriver-styl-wrapper {
+    display: inline-block;
+    padding: 0 2rem 2rem;
+    width: 98%;
+
     & > div {
       & > div {
+        thead {
+          display: block;
+          background-color: transparent;
+          tr,
+          th {
+            display: block;
+            color: $color-orange;
+            padding: 1rem !important;
+            border: 0;
+
+            h4 {
+              font-size: 1rem;
+              margin-bottom: 0;
+              font-weight: 500;
+              text-transform: initial;
+            }
+          }
+        }
+
         tbody {
           display: grid;
           grid-template-columns: 49% 49%;
@@ -141,7 +164,6 @@
             display: block;
           }
           .paragraphs-subform {
-            // display: flex;
             width: 100%;
             display: grid;
             grid-template-columns: 30% 20% 42%;
@@ -152,13 +174,116 @@
               flex-direction: column;
             }
 
-            .js-form-type-checkbox {
+            .js-form-type-radio {
               flex-direction: row;
             }
   
             label {
               margin-bottom: 0;
             }
+
+            fieldset {
+              & > .fieldset-wrapper {
+                & > div {
+                  div {
+                    display: none;
+                    &:last-child {
+                      display: flex;
+                    }
+
+                    label {
+                      padding: 0 10px 0;
+                    }
+                  }
+                }
+              }
+
+              legend {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Second set of third step.
+  #edit-field-quotation-universal-swivel-wrapper {
+    display: inline-block;
+    padding: 0 2rem 2rem;
+    width: 98%;
+
+    & > div {
+      & > div {
+        thead {
+          display: block;
+          background-color: transparent;
+          tr,
+          th {
+            display: block;
+            color: $color-orange;
+            padding: 0 !important;
+            border: 0;
+
+            h4 {
+              font-size: 1.4rem;
+              margin-bottom: 0;
+              font-weight: 500;
+              text-transform: initial;
+              padding: 1rem;
+            }
+          }
+        }
+
+        tbody {
+          display: grid;
+          grid-template-columns: 49% 49%;
+          grid-column-gap: 2%;
+          td {
+            border: 0;
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  // Third set of third step.
+  #edit-field-socket-extension-adapter-wrapper {
+    display: inline-block;
+    padding: 0 2rem 2rem;
+    width: 98%;
+
+    & > div {
+      & > div {
+        thead {
+          display: block;
+          background-color: transparent;
+          tr,
+          th {
+            display: block;
+            color: $color-orange;
+            padding: 0 !important;
+            border: 0;
+
+            h4 {
+              font-size: 1.4rem;
+              margin-bottom: 0;
+              font-weight: 500;
+              text-transform: initial;
+              padding: 1rem;
+            }
+          }
+        }
+
+        tbody {
+          display: grid;
+          grid-template-columns: 49% 49%;
+          grid-column-gap: 2%;
+          td {
+            border: 0;
+            display: block;
           }
         }
       }
