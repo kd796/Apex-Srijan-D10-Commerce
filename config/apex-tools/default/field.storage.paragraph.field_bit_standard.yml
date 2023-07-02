@@ -1,0 +1,27 @@
+uuid: 4cdff663-554e-49d1-9f7c-7c8ba28f65c7
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_bit_standard
+field_name: field_bit_standard
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: with_std
+      label: 'w/std. bit'
+    -
+      value: without_std
+      label: 'w/o std. bit'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

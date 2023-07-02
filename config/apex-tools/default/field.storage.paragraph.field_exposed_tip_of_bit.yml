@@ -1,0 +1,32 @@
+uuid: 9c925f22-647f-4a3d-85b1-ff67df7e0e8f
+langcode: en
+status: true
+dependencies:
+  module:
+    - double_field
+    - paragraphs
+id: paragraph.field_exposed_tip_of_bit
+field_name: field_exposed_tip_of_bit
+entity_type: paragraph
+type: double_field
+settings:
+  storage:
+    first:
+      type: boolean
+      maxlength: 255
+      precision: 10
+      scale: 2
+      datetime_type: datetime
+    second:
+      type: string
+      maxlength: 255
+      precision: 10
+      scale: 2
+      datetime_type: datetime
+module: double_field
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

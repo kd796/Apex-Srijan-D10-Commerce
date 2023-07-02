@@ -1,0 +1,27 @@
+uuid: 680c4ca4-d3eb-424a-949e-31ba42e17dd4
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_1_part_type
+field_name: field_1_part_type
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: bit
+      label: Bit
+    -
+      value: bit_holder
+      label: 'Bit Holder'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

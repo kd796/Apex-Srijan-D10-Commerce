@@ -1,0 +1,38 @@
+uuid: b1d1325d-6a55-4594-a337-837524f36b5c
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - triples_field
+id: paragraph.field_retractable
+field_name: field_retractable
+entity_type: paragraph
+type: triples_field
+settings:
+  storage:
+    first:
+      type: boolean
+      maxlength: 255
+      precision: 10
+      scale: 2
+      datetime_type: datetime
+    second:
+      type: string
+      maxlength: 255
+      precision: 10
+      scale: 2
+      datetime_type: datetime
+    third:
+      type: string
+      maxlength: 255
+      precision: 10
+      scale: 2
+      datetime_type: datetime
+module: triples_field
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

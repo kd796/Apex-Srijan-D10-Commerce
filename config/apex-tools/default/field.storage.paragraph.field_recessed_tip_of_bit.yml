@@ -1,0 +1,32 @@
+uuid: 4a82fd95-b3bc-4d38-a024-9bf2b20e7374
+langcode: en
+status: true
+dependencies:
+  module:
+    - double_field
+    - paragraphs
+id: paragraph.field_recessed_tip_of_bit
+field_name: field_recessed_tip_of_bit
+entity_type: paragraph
+type: double_field
+settings:
+  storage:
+    first:
+      type: boolean
+      maxlength: 255
+      precision: 10
+      scale: 2
+      datetime_type: datetime
+    second:
+      type: string
+      maxlength: 255
+      precision: 10
+      scale: 2
+      datetime_type: datetime
+module: double_field
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

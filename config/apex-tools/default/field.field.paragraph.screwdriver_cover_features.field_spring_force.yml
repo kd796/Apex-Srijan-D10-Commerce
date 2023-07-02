@@ -1,0 +1,39 @@
+uuid: f919a61b-d251-4906-99f4-2922cacd16b2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_spring_force
+    - paragraphs.paragraphs_type.screwdriver_cover_features
+  module:
+    - double_field
+id: paragraph.screwdriver_cover_features.field_spring_force
+field_name: field_spring_force
+entity_type: paragraph
+bundle: screwdriver_cover_features
+label: 'Spring Force'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  first:
+    label: ''
+    list: false
+    allowed_values: {  }
+    max: null
+    min: null
+    required: false
+    on_label: 'Spring Force (comp. rest)'
+    off_label: 'Off'
+  second:
+    label: ''
+    list: false
+    allowed_values: {  }
+    max: null
+    min: null
+    required: false
+    on_label: 'On'
+    off_label: 'Off'
+field_type: double_field

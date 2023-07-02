@@ -1,0 +1,39 @@
+uuid: 37dc6a60-890b-4e3f-ae6c-8c047bf5e512
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_o_d_limitations
+    - paragraphs.paragraphs_type.screwdriver_cover_features
+  module:
+    - double_field
+id: paragraph.screwdriver_cover_features.field_o_d_limitations
+field_name: field_o_d_limitations
+entity_type: paragraph
+bundle: screwdriver_cover_features
+label: 'O.D. limitations'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  first:
+    label: ''
+    list: false
+    allowed_values: {  }
+    max: null
+    min: null
+    required: false
+    on_label: 'O.D. limitations (must specify)'
+    off_label: 'Off'
+  second:
+    label: ''
+    list: false
+    allowed_values: {  }
+    max: null
+    min: null
+    required: false
+    on_label: 'On'
+    off_label: 'Off'
+field_type: double_field

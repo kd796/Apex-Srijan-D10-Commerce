@@ -1,0 +1,23 @@
+uuid: 927d9104-1cd9-43a5-a4ce-c502133083c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_free_spinning
+    - paragraphs.paragraphs_type.screwdriver_cover_features
+id: paragraph.screwdriver_cover_features.field_free_spinning
+field_name: field_free_spinning
+entity_type: paragraph
+bundle: screwdriver_cover_features
+label: 'Free Spinning'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Free Spinning (able to spin independently of part being covered)'
+  off_label: 'Off'
+field_type: boolean

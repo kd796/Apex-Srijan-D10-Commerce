@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.paragraph.field_components
     - paragraphs.paragraphs_type.components_to_be_covered_
+    - paragraphs.paragraphs_type.screwdriver_cover_features
     - paragraphs.paragraphs_type.screwdriver_cover_requirements
   module:
     - entity_reference_revisions
@@ -22,6 +23,7 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
+      screwdriver_cover_features: screwdriver_cover_features
       components_to_be_covered_: components_to_be_covered_
     negate: 0
     target_bundles_drag_drop:
@@ -262,11 +264,14 @@ settings:
       screwdriver_bit_holder_styles:
         weight: 184
         enabled: false
+      screwdriver_cover_features:
+        weight: 106
+        enabled: true
       screwdriver_cover_requirements:
         weight: 105
         enabled: false
-      screwdriver_style:
-        weight: 185
+      screwdriver_part_type:
+        weight: 187
         enabled: false
       shouldered:
         weight: 186
