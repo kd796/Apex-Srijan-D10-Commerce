@@ -4,10 +4,15 @@
   Drupal.behaviors.multiStepForm = {
     attach: function (context, settings) {
       // Grouping the radio buttons.
-      $(window, context).once('multiStepForm').on('load', function () {
-        $('.field--name-field-screwdriver-style input[type="radio"]').attr('name', 'screwdriver-style');
-        $('.field--name-field-bit-holder-styles input[type="radio"]').attr('name', 'bit-holder-styles');
-      });
+      $('.field--name-field-screwdriver-style input[type="radio"]').attr('name', 'screwdriver-style');
+      $('.field--name-field-bit-holder-styles input[type="radio"]').attr('name', 'bit-holder-styles');
+      $('.field--name-field-drive-type input[type="radio"]').attr('name', 'bit-holder-styles');
+      $('.field--name-field-socket-type input[type="radio"]').attr('name', 'bit-holder-styles');
+      $('.field--name-field-broach-opening input[type="radio"]').attr('name', 'bit-holder-styles');
+      $('.field--name-field-magnetic-label input[type="radio"]').attr('name', 'bit-holder-styles');
+      $('.field--name-field-drive-configuration input[type="radio"]').attr('name', 'bit-holder-styles');
+      $('.field--name-field-drive-configuration-label input[type="radio"]').attr('name', 'bit-holder-styles');
+      $('.field--name-field-female-ref input[type="radio"]').attr('name', 'bit-holder-styles');
       
       // Trigger back button.
       $('.multi-steps-label').once('multi-steps-label').on('click', '.step-label', function (e) {
@@ -53,31 +58,113 @@
       }
       
       $('#edit-actions button').once('validation').click(validateForm);
-      
-      $('.field--name-field-screwdriver-style input[type="radio"]').once('removeAttribute').on('change', function () {
-        //Remove the required field.
-        $('.field--name-field-screwdriver-style input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
-        $('.field--name-field-screwdriver-style input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
-        $('.field--name-field-screwdriver-style input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', false);
-        // set Required field.
-        $(this).closest('.field--widget-options-buttons').siblings('div').find('label').addClass('form-required');
-        $(this).closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', true);
-        $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
-      });
 
-      $('.field--name-field-bit-holder-styles input[type="radio"]').once('removeAttribute').on('change', function () {
-        //Remove the required field.
-        $('.field--name-field-bit-holder-styles input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
-        $('.field--name-field-bit-holder-styles input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
-        $('.field--name-field-bit-holder-styles input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', false);
-        // set Required field.
-        $(this).closest('.field--widget-options-buttons').siblings('div').find('label').addClass('form-required');
-        $(this).closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', true);
-        $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
-      });
+      function dynamicChanges() {
+        $('.field--name-field-screwdriver-style input[type="radio"]').once('removeAttributeScrewdriver').on('change', function () {
+          //Remove the required field.
+          $('.field--name-field-screwdriver-style input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
+          $('.field--name-field-screwdriver-style input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
+          $('.field--name-field-screwdriver-style input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', false);
+          // set Required field.
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('label').addClass('form-required');
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', true);
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
+        });
+
+        $('.field--name-field-bit-holder-styles input[type="radio"]').once('removeAttributeBitHolder').on('change', function () {
+          //Remove the required field.
+          $('.field--name-field-bit-holder-styles input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
+          $('.field--name-field-bit-holder-styles input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
+          $('.field--name-field-bit-holder-styles input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', false);
+          // set Required field.
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('label').addClass('form-required');
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', true);
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
+        });
+
+        $('.field--name-field-drive-type input[type="radio"]').once('removeAttributeBitHolder').on('change', function () {
+          //Remove the required field.
+          $('.field--name-field-drive-type input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
+          $('.field--name-field-drive-type input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
+          $('.field--name-field-drive-type input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', false);
+          // set Required field.
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('label').addClass('form-required');
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', true);
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
+        });
+
+        $('.field--name-field-socket-type input[type="radio"]').once('removeAttributeBitHolder').on('change', function () {
+          //Remove the required field.
+          $('.field--name-field-socket-type input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
+          $('.field--name-field-socket-type input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
+          $('.field--name-field-socket-type input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', false);
+          // set Required field.
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('label').addClass('form-required');
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', true);
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
+        });
+
+        $('.field--name-field-broach-opening input[type="radio"]').once('removeAttributeBitHolder').on('change', function () {
+          //Remove the required field.
+          $('.field--name-field-broach-opening input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
+          $('.field--name-field-broach-opening input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
+          $('.field--name-field-broach-opening input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', false);
+          // set Required field.
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('label').addClass('form-required');
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', true);
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
+        });
+
+        $('.field--name-field-magnetic-label input[type="radio"]').once('removeAttributeBitHolder').on('change', function () {
+          //Remove the required field.
+          $('.field--name-field-magnetic-label input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
+          $('.field--name-field-magnetic-label input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
+          $('.field--name-field-magnetic-label input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', false);
+          // set Required field.
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('label').addClass('form-required');
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', true);
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
+        });
+
+        $('.field--name-field-drive-configuration input[type="radio"]').once('removeAttributeBitHolder').on('change', function () {
+          //Remove the required field.
+          $('.field--name-field-drive-configuration input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
+          $('.field--name-field-drive-configuration input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
+          $('.field--name-field-drive-configuration input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', false);
+          // set Required field.
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('label').addClass('form-required');
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', true);
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
+        });
+
+        $('.field--name-field-drive-configuration-label input[type="radio"]').once('removeAttributeBitHolder').on('change', function () {
+          //Remove the required field.
+          $('.field--name-field-drive-configuration-label input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
+          $('.field--name-field-drive-configuration-label input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
+          $('.field--name-field-drive-configuration-label input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', false);
+          // set Required field.
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('label').addClass('form-required');
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', true);
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
+        });
+
+        $('.field--name-field-female-ref input[type="radio"]').once('removeAttributeBitHolder').on('change', function () {
+          //Remove the required field.
+          $('.field--name-field-female-ref input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
+          $('.field--name-field-female-ref input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
+          $('.field--name-field-female-ref input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', false);
+          // set Required field.
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('label').addClass('form-required');
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', true);
+          $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
+        });
+      }
       
       // Rebind the click event handler to the button after dynamically adding required fields
       $('#edit-actions button').off('click').click(validateForm);
+
+      //Adding class to hide collapse option.
+      $('.paragraphs-icon-button-collapse').closest('.paragraph-top').addClass('collapse-wrapper'); 
 
       // Trigger add more paragraph
       $('#field-custom-quotation-worksheet-quotation-screwdriver-add-more').addClass('field-custom-quotation-worksheet-quotation-screwdriver-add-more');
@@ -94,15 +181,20 @@
           $('.field-custom-quotation-worksheet-universal-swivel-wrench-para-add-more').mousedown();
         }
         // show add buttons.
-        $('#edit-field-custom-quotation-worksheet-add-more').addClass('show-button');
-        //Adding class to hide collapse option.
-        $('.paragraphs-icon-button-collapse').closest('.paragraph-top').addClass('collapse-wrapper'); 
+        var paragraphButtons = $('[data-drupal-selector="edit-field-custom-quotation-worksheet-add-more]');
+        paragraphButtons.addClass('show-button');
       });
-      var selectedValuettt = $('#edit-field-custom-drive-tool-type').val();
+      var selectedValueDefault = $('#edit-field-custom-drive-tool-type').val();
+
+      dynamicChanges();
+
       $(document).ajaxComplete(function(){
-        var selectedValue;
+        $('#edit-actions button').once('validation').click(validateForm);
+        dynamicChanges();
+        $('#edit-actions button').off('click').click(validateForm);
+
         $('#edit-field-custom-drive-tool-type').once('triggerAdd').on('change', function () {
-          selectedValue = $(this).val();
+          var selectedValue = $(this).val();
           // Trigger the button based on the selected value
           if (selectedValue === 'screwdriver') {
             $('.field-custom-quotation-worksheet-quotation-screwdriver-add-more').mousedown();
@@ -112,13 +204,11 @@
             $('.field-custom-quotation-worksheet-universal-swivel-wrench-para-add-more').mousedown();
           }
         });
-        $('#edit-field-custom-drive-tool-type').val(selectedValuettt);
         // show add buttons.
-        $('#edit-field-custom-quotation-worksheet-add-more').addClass('show-button');
-        //Adding class to hide collapse option.
-        $('.paragraphs-icon-button-collapse').closest('.paragraph-top').addClass('collapse-wrapper');
+        $('[data-drupal-selector="edit-field-custom-quotation-worksheet-add-more]').addClass('show-button');
+        $('#edit-field-custom-drive-tool-type').val(selectedValueDefault);
+      
       });
-       
 
       // end
     }
