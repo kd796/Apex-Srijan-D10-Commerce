@@ -1,0 +1,25 @@
+<div class = "product_registeration_page">
+ <div class ="page-titlebar">{{node.label}}</div>
+ <div class = "product-pdf-cards-wrapper">
+  {% for item in content.field_downloadpolicy_component %} 
+    {% if item['#paragraph'] is not empty %} 
+     {% set title = item['#paragraph'].field_downloadpolicy_label.value %} 
+     {% set description = item['#paragraph'].field_downloadpolicy_description.value %}
+	 <div class = "product-wrapper-cards">
+       <div class = "product-card-heading">{{title}}</div>
+       <div class = "product-card-description">{{description|striptags}}</div>
+       <div class = "product-pdf-download">
+	     {% for items in item['#paragraph'].field_download_policy_file %}
+          {% set file_uri = file_url(items.entity.field_file.entity.field_media_file.entity.fileuri) %}
+          {% set file_label = items.entity.field_file_label.value %}
+		  <a href="{{file_uri}}" download>{{file_label}}</a>
+         {% endfor %}
+        </div>
+	  </div>	
+	{% endif %} 
+  {% endfor %}
+  </div>
+  </div>
+ </div> 
+ <div class ="product-registeration-form">{{content.field_policies_registration_webf}}</div>
+</div>
