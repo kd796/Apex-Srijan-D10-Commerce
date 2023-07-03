@@ -13,7 +13,6 @@ dependencies:
     - field.field.node.solutions.field_hero
     - field.field.node.solutions.field_industry_solutions
     - field.field.node.solutions.field_mailing_list_form
-    - field.field.node.solutions.field_related_solutions
     - field.field.node.solutions.field_seo
     - field.field.node.solutions.field_trusted_by_biggest
     - field.field.node.solutions.field_webform
@@ -151,18 +150,6 @@ content:
       add_mode: dropdown
       form_display_mode: default
       default_paragraph_type: mailing_list_form
-    third_party_settings: {  }
-  field_related_solutions:
-    type: entity_reference_paragraphs
-    weight: 6
-    region: content
-    settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: ''
     third_party_settings: {  }
   field_seo:
     type: metatag_firehose
