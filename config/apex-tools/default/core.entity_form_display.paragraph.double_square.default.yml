@@ -1,0 +1,22 @@
+uuid: dc764081-b7b5-4234-93fd-3a7416432726
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.double_square.field_double_square
+    - paragraphs.paragraphs_type.double_square
+id: paragraph.double_square.default
+targetEntityType: paragraph
+bundle: double_square
+mode: default
+content:
+  field_double_square:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,27 @@
+uuid: 4a9c9fc9-b03f-422d-a6b0-25f54d92701d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bit_holder_retention_method.field_bit_holder_retention_metho
+    - paragraphs.paragraphs_type.bit_holder_retention_method
+  module:
+    - options
+id: paragraph.bit_holder_retention_method.default
+targetEntityType: paragraph
+bundle: bit_holder_retention_method
+mode: default
+content:
+  field_bit_holder_retention_metho:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

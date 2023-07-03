@@ -1,0 +1,51 @@
+uuid: bb60cffe-c8cb-4fc6-8cee-1c62dbcb9476
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_i_torx_r_size
+field_name: field_i_torx_r_size
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: E-4
+      label: E-4
+    -
+      value: E-5
+      label: E-5
+    -
+      value: E-6
+      label: E-6
+    -
+      value: E-8
+      label: E-8
+    -
+      value: E-10
+      label: E-10
+    -
+      value: E-12
+      label: E-12
+    -
+      value: E-14
+      label: E-14
+    -
+      value: E-16
+      label: E-16
+    -
+      value: E-18
+      label: E-18
+    -
+      value: E-20
+      label: E-20
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

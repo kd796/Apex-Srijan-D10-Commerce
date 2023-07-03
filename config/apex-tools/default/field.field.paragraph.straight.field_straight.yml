@@ -1,0 +1,23 @@
+uuid: 96d0a3af-c88d-4970-8982-e0bc4421afb0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_straight
+    - paragraphs.paragraphs_type.straight
+id: paragraph.straight.field_straight
+field_name: field_straight
+entity_type: paragraph
+bundle: straight
+label: Straight
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

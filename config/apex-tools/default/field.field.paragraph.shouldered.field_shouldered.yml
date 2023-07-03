@@ -1,0 +1,23 @@
+uuid: 01d700de-e8b5-43bb-ad9f-d9d6f96c0cb6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_shouldered
+    - paragraphs.paragraphs_type.shouldered
+id: paragraph.shouldered.field_shouldered
+field_name: field_shouldered
+entity_type: paragraph
+bundle: shouldered
+label: Shouldered
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

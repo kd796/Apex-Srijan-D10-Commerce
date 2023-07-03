@@ -1,0 +1,23 @@
+uuid: fbf99eb2-02d4-4d52-a66c-ccd7b450e947
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_screw_press_fit
+    - paragraphs.paragraphs_type.screwdriver_cover_features
+id: paragraph.screwdriver_cover_features.field_screw_press_fit
+field_name: field_screw_press_fit
+entity_type: paragraph
+bundle: screwdriver_cover_features
+label: 'Press Fit'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Press fit(static)'
+  off_label: 'Off'
+field_type: boolean

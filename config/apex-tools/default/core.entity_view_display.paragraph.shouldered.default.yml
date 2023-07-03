@@ -1,0 +1,42 @@
+uuid: 0029f0f0-e774-4792-808d-ca7738a5460b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.shouldered.field_shouldered
+    - field.field.paragraph.shouldered.field_shouldered_
+    - paragraphs.paragraphs_type.shouldered
+  module:
+    - image
+id: paragraph.shouldered.default
+targetEntityType: paragraph
+bundle: shouldered
+mode: default
+content:
+  field_shouldered:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_shouldered_:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

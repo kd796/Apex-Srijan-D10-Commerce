@@ -1,0 +1,27 @@
+uuid: a2aaba2e-ab2a-496b-9a97-50882c69c2fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.s.field_style
+    - paragraphs.paragraphs_type.s
+  module:
+    - options
+id: paragraph.s.default
+targetEntityType: paragraph
+bundle: s
+mode: default
+content:
+  field_style:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

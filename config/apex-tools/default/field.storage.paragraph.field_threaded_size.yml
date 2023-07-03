@@ -1,0 +1,33 @@
+uuid: 5735bea4-2b8b-46e0-aff0-88e64a74b6de
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_threaded_size
+field_name: field_threaded_size
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 10-32
+      label: 10-32
+    -
+      value: 12-24
+      label: 12-24
+    -
+      value: 1/4-24
+      label: 1/4-24
+    -
+      value: 8-32
+      label: 8-32
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

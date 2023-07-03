@@ -1,0 +1,200 @@
+uuid: 718250b9-5499-44d7-997a-9ef521370427
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.socket_dimensions.field_a_square_drive
+    - field.field.paragraph.socket_dimensions.field_b_drive_end_diameter
+    - field.field.paragraph.socket_dimensions.field_c_overall_length
+    - field.field.paragraph.socket_dimensions.field_d_taper_or_shoulder_length
+    - field.field.paragraph.socket_dimensions.field_e_bolt_clearance_depth
+    - field.field.paragraph.socket_dimensions.field_f_broach_depth
+    - field.field.paragraph.socket_dimensions.field_g_nose_end_diameter
+    - field.field.paragraph.socket_dimensions.field_h_broach_opening
+    - field.field.paragraph.socket_dimensions.field_i_torx_r_size
+    - field.field.paragraph.socket_dimensions.field_j_mag_depth
+    - field.field.paragraph.socket_dimensions.field_k_spring_force
+    - field.field.paragraph.socket_dimensions.field_l_barbell_style_dims
+    - paragraphs.paragraphs_type.socket_dimensions
+  module:
+    - physical
+id: paragraph.socket_dimensions.default
+targetEntityType: paragraph
+bundle: socket_dimensions
+mode: default
+content:
+  field_a_square_drive:
+    type: physical_measurement_default
+    weight: 0
+    region: content
+    settings:
+      default_unit: m
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_b_drive_end_diameter:
+    type: physical_measurement_default
+    weight: 1
+    region: content
+    settings:
+      default_unit: m
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_c_overall_length:
+    type: physical_measurement_default
+    weight: 2
+    region: content
+    settings:
+      default_unit: m
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_d_taper_or_shoulder_length:
+    type: physical_measurement_default
+    weight: 3
+    region: content
+    settings:
+      default_unit: m
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_e_bolt_clearance_depth:
+    type: physical_measurement_default
+    weight: 4
+    region: content
+    settings:
+      default_unit: m
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_f_broach_depth:
+    type: physical_measurement_default
+    weight: 5
+    region: content
+    settings:
+      default_unit: m
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_g_nose_end_diameter:
+    type: physical_measurement_default
+    weight: 6
+    region: content
+    settings:
+      default_unit: m
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_h_broach_opening:
+    type: options_select
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_i_torx_r_size:
+    type: options_select
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_j_mag_depth:
+    type: physical_measurement_default
+    weight: 9
+    region: content
+    settings:
+      default_unit: m
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_k_spring_force:
+    type: physical_measurement_default
+    weight: 10
+    region: content
+    settings:
+      default_unit: m
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_l_barbell_style_dims:
+    type: physical_measurement_default
+    weight: 11
+    region: content
+    settings:
+      default_unit: m
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

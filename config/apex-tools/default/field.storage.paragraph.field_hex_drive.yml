@@ -1,0 +1,27 @@
+uuid: 28e922b0-6a63-406e-b760-7eac9a8b5ab2
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_hex_drive
+field_name: field_hex_drive
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 1/4
+      label: '1/4 in'
+    -
+      value: 7/16
+      label: '7/16 in'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

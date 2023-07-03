@@ -1,0 +1,104 @@
+uuid: 7cfb9f28-c0d0-4c3a-a1d5-dfc2ffc2c754
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.broach_opening.field_broach_opening_allowed
+    - field.field.paragraph.broach_opening.field_type_other
+    - paragraphs.paragraphs_type.broach_opening
+  module:
+    - conditional_fields
+id: paragraph.broach_opening.default
+targetEntityType: paragraph
+bundle: broach_opening
+mode: default
+content:
+  field_broach_opening_allowed:
+    type: options_buttons
+    weight: 12
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_double_hex_field:
+    type: boolean_checkbox
+    weight: 7
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_double_square_field:
+    type: boolean_checkbox
+    weight: 9
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_double_square_para:
+    type: paragraphs
+    weight: 3
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+  field_fast_lead_field:
+    type: boolean_checkbox
+    weight: 10
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_square_field:
+    type: boolean_checkbox
+    weight: 8
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_type_other:
+    type: string_textfield
+    weight: 14
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        8c102196-1176-4ecf-af80-34920fe7ff6d:
+          entity_type: paragraph
+          bundle: broach_opening
+          dependee: field_broach_opening_allowed
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 4
+            value: ''
+            values: "torx®\r\nbroach_other"
+            value_form:
+              -
+                value: null
+            effect: show
+            effect_options: {  }
+            selector: ''
+  parent_id:
+    weight: 13
+    region: content
+    settings: {  }
+    third_party_settings:
+      conditional_fields: {  }
+hidden:
+  created: true
+  field_hex_field: true
+  status: true

@@ -1,0 +1,23 @@
+uuid: 27bab6f2-4bc9-4da5-b7a7-9684663ecf90
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.socket_type.field_socket_type_allowed
+    - paragraphs.paragraphs_type.socket_type
+id: paragraph.socket_type.default
+targetEntityType: paragraph
+bundle: socket_type
+mode: default
+content:
+  field_socket_type_allowed:
+    type: options_buttons
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_nutsetter_field: true
+  field_straight_field: true
+  status: true

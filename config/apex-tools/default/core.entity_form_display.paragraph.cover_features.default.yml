@@ -1,0 +1,28 @@
+uuid: 798b5142-3026-4ab2-99cf-4e88f6ebfa60
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.cover_features.field_cover_features_radio
+    - field.field.paragraph.cover_features.field_nylon_requirements_yes_no_
+    - paragraphs.paragraphs_type.cover_features
+id: paragraph.cover_features.default
+targetEntityType: paragraph
+bundle: cover_features
+mode: default
+content:
+  field_cover_features_radio:
+    type: options_buttons
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_nylon_requirements_yes_no_:
+    type: options_buttons
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,21 @@
+uuid: 351c7b6e-edbb-4422-929f-58e8795cce14
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_order_type
+    - paragraphs.paragraphs_type.quotation_order_type
+  module:
+    - options
+id: paragraph.quotation_order_type.field_order_type
+field_name: field_order_type
+entity_type: paragraph
+bundle: quotation_order_type
+label: 'Order type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

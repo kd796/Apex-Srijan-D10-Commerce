@@ -1,0 +1,40 @@
+uuid: ea67e748-72e8-4f29-8bb8-2eeabb5ea2a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bit_holder_male_hex_drive.field_male_hex_drive
+    - field.field.paragraph.bit_holder_male_hex_drive.field_male_hex_drive_size
+    - paragraphs.paragraphs_type.bit_holder_male_hex_drive
+  module:
+    - physical
+id: paragraph.bit_holder_male_hex_drive.default
+targetEntityType: paragraph
+bundle: bit_holder_male_hex_drive
+mode: default
+content:
+  field_male_hex_drive:
+    type: options_buttons
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_male_hex_drive_size:
+    type: physical_measurement_default
+    weight: 1
+    region: content
+    settings:
+      default_unit: in
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,48 @@
+uuid: 4ed746e3-087f-48cc-8b7d-9c119a89aa1a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_embedded_magnets
+    - paragraphs.paragraphs_type.screwdriver_cover_features
+  module:
+    - double_field
+id: paragraph.screwdriver_cover_features.field_embedded_magnets
+field_name: field_embedded_magnets
+entity_type: paragraph
+bundle: screwdriver_cover_features
+label: 'Embedded magnets'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  first:
+    label: ''
+    list: false
+    allowed_values: {  }
+    max: null
+    min: null
+    required: false
+    on_label: 'Embedded magnets'
+    off_label: 'Off'
+  second:
+    label: Style
+    list: true
+    allowed_values:
+      -
+        label: multi-fixed
+        value: multifixed
+      -
+        label: ring
+        value: ring
+      -
+        label: svm
+        value: svm
+    max: null
+    min: null
+    required: false
+    on_label: 'On'
+    off_label: 'Off'
+field_type: double_field

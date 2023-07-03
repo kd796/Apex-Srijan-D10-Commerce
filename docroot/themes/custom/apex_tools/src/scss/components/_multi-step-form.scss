@@ -128,10 +128,39 @@
     }
   }
 
-  // First set of third step
-  #edit-field-quotation-screwdriver-styl-wrapper {
+  .tabledrag-toggle-weight-wrapper {
+    display: none;
+  }
+}
+
+// First set of third step
+#edit-field-quotation-screwdriver-styl-wrapper {
+  display: inline-block;
+  padding: 0 2rem 2rem;
+  width: 98%;
+
+  & > div {
     & > div {
-      & > div {
+      & > table {
+        thead {
+          display: block;
+          background-color: transparent;
+          tr,
+          th {
+            display: block;
+            color: $color-orange;
+            padding: 1rem !important;
+            border: 0;
+
+            h4 {
+              font-size: 1rem;
+              margin-bottom: 0;
+              font-weight: 500;
+              text-transform: initial;
+            }
+          }
+        }
+
         tbody {
           display: grid;
           grid-template-columns: 49% 49%;
@@ -141,32 +170,48 @@
             display: block;
           }
           .paragraphs-subform {
-            // display: flex;
             width: 100%;
             display: grid;
             grid-template-columns: 30% 20% 42%;
             grid-column-gap: 4%;
-  
+
             .form-item {
               display: flex;
               flex-direction: column;
             }
 
-            .js-form-type-checkbox {
+            .js-form-type-radio {
               flex-direction: row;
             }
-  
+
             label {
               margin-bottom: 0;
+            }
+
+            fieldset {
+              & > .fieldset-wrapper {
+                & > div {
+                  div {
+                    display: none;
+                    &:last-child {
+                      display: flex;
+                    }
+
+                    label {
+                      padding: 0 10px 0;
+                    }
+                  }
+                }
+              }
+
+              legend {
+                display: none;
+              }
             }
           }
         }
       }
     }
-  }
-
-  .tabledrag-toggle-weight-wrapper {
-    display: none;
   }
 }
 

@@ -1,0 +1,61 @@
+uuid: c66f74c4-dcfb-470f-a7ef-ec50956df836
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.drive_configuration_para.field_drive_configuration
+    - field.field.paragraph.drive_configuration_para.field_hex_gender
+    - field.field.paragraph.drive_configuration_para.field_hex_size
+    - field.field.paragraph.drive_configuration_para.field_hex_type
+    - field.field.paragraph.drive_configuration_para.field_other_type
+    - paragraphs.paragraphs_type.drive_configuration_para
+  module:
+    - options
+id: paragraph.drive_configuration_para.default
+targetEntityType: paragraph
+bundle: drive_configuration_para
+mode: default
+content:
+  field_drive_configuration:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_hex_gender:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_hex_size:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_hex_type:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_other_type:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

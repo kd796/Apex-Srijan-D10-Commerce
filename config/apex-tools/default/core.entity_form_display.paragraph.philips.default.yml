@@ -1,0 +1,28 @@
+uuid: 8bfde79c-93b5-4a56-8403-7cddf5d67e2d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.philips.field_philips
+    - field.field.paragraph.philips.field_point_size
+    - paragraphs.paragraphs_type.philips
+id: paragraph.philips.default
+targetEntityType: paragraph
+bundle: philips
+mode: default
+content:
+  field_philips:
+    type: options_buttons
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_point_size:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

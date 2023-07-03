@@ -1,0 +1,35 @@
+uuid: 355b07e1-8fe5-4ee5-82ed-32609062c057
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.screwdriver_part_type.field_1_part_type
+    - field.field.paragraph.screwdriver_part_type.field_bit_standard
+    - paragraphs.paragraphs_type.screwdriver_part_type
+  module:
+    - options
+id: paragraph.screwdriver_part_type.default
+targetEntityType: paragraph
+bundle: screwdriver_part_type
+mode: default
+content:
+  field_1_part_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_bit_standard:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

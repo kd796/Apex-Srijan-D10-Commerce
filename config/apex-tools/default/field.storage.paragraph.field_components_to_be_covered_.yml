@@ -1,0 +1,30 @@
+uuid: 9f805b6e-2c59-4dac-a398-ca73944bf71e
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_components_to_be_covered_
+field_name: field_components_to_be_covered_
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: bit
+      label: 'Bit Only'
+    -
+      value: bit_bit_holder
+      label: 'Bit and Bit Holder'
+    -
+      value: bit_holder
+      label: 'Bit Holder'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

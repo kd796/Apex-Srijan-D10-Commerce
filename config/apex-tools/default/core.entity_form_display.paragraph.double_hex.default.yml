@@ -1,0 +1,22 @@
+uuid: 2436bd98-24b7-40cc-9fda-dee6422ccd74
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.double_hex.field_double_hex
+    - paragraphs.paragraphs_type.double_hex
+id: paragraph.double_hex.default
+targetEntityType: paragraph
+bundle: double_hex
+mode: default
+content:
+  field_double_hex:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

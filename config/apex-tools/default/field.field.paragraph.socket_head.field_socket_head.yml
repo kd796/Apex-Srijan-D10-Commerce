@@ -1,0 +1,23 @@
+uuid: 314a5d00-9964-465e-8914-ff89a837f9db
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_socket_head
+    - paragraphs.paragraphs_type.socket_head
+id: paragraph.socket_head.field_socket_head
+field_name: field_socket_head
+entity_type: paragraph
+bundle: socket_head
+label: 'Socket Head'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Socket Head'
+  off_label: 'Off'
+field_type: boolean

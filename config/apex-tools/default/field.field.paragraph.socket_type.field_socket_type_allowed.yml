@@ -1,0 +1,21 @@
+uuid: f1384de2-b4e6-43ce-9567-e58b44c1f663
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_socket_type_allowed
+    - paragraphs.paragraphs_type.socket_type
+  module:
+    - options
+id: paragraph.socket_type.field_socket_type_allowed
+field_name: field_socket_type_allowed
+entity_type: paragraph
+bundle: socket_type
+label: 'Socket Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

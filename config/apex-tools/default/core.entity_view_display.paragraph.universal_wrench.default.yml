@@ -1,0 +1,65 @@
+uuid: 338f1b60-bb90-4896-b38f-7606a810c937
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.universal_wrench.field_drive_size
+    - field.field.paragraph.universal_wrench.field_iron_brandf
+    - field.field.paragraph.universal_wrench.field_test_image
+    - paragraphs.paragraphs_type.universal_wrench
+  module:
+    - field_group
+    - image
+    - options
+third_party_settings:
+  field_group:
+    group_wrench_type:
+      children:
+        - field_drive_size
+        - field_iron_brandf
+      label: 'Wrench Type'
+      parent_name: ''
+      region: content
+      weight: 0
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        description: ''
+id: paragraph.universal_wrench.default
+targetEntityType: paragraph
+bundle: universal_wrench
+mode: default
+content:
+  field_drive_size:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_iron_brandf:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_test_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

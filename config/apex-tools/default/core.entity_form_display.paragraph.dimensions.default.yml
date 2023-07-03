@@ -1,0 +1,106 @@
+uuid: c8537c39-2d0a-4898-a2ea-321969b89af6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.dimensions.field_b_socket_length
+    - field.field.paragraph.dimensions.field_c_socket_diameter
+    - field.field.paragraph.dimensions.field_counter_bored_bool
+    - field.field.paragraph.dimensions.field_depth_of_clearance
+    - field.field.paragraph.dimensions.field_l_shank_length
+    - field.field.paragraph.dimensions.field_nose_dia
+    - paragraphs.paragraphs_type.dimensions
+  module:
+    - physical
+    - select_or_other
+id: paragraph.dimensions.default
+targetEntityType: paragraph
+bundle: dimensions
+mode: default
+content:
+  field_b_socket_length:
+    type: physical_measurement_default
+    weight: 0
+    region: content
+    settings:
+      default_unit: m
+      allow_unit_change: true
+      available_units:
+        m: m
+        in: in
+        mm: '0'
+        cm: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_c_socket_diameter:
+    type: physical_measurement_default
+    weight: 1
+    region: content
+    settings:
+      default_unit: m
+      allow_unit_change: true
+      available_units:
+        m: m
+        in: in
+        mm: '0'
+        cm: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_counter_bored_bool:
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_depth_of_clearance:
+    type: physical_measurement_default
+    weight: 3
+    region: content
+    settings:
+      default_unit: m
+      allow_unit_change: true
+      available_units:
+        m: m
+        in: in
+        mm: '0'
+        cm: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_l_shank_length:
+    type: select_or_other_list
+    weight: 4
+    region: content
+    settings:
+      select_element_type: select_or_other_select
+      sort_options: ''
+      other_placeholder: ''
+      other_option: Special
+      other_field_label: Special
+      add_other_value_to_allowed_values: true
+    third_party_settings: {  }
+  field_nose_dia:
+    type: physical_measurement_default
+    weight: 2
+    region: content
+    settings:
+      default_unit: m
+      allow_unit_change: true
+      available_units:
+        m: m
+        in: in
+        mm: '0'
+        cm: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

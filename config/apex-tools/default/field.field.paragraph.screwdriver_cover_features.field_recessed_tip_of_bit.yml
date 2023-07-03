@@ -1,0 +1,39 @@
+uuid: bf7d9568-4bec-4dd8-b164-20e9b45a043a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_recessed_tip_of_bit
+    - paragraphs.paragraphs_type.screwdriver_cover_features
+  module:
+    - double_field
+id: paragraph.screwdriver_cover_features.field_recessed_tip_of_bit
+field_name: field_recessed_tip_of_bit
+entity_type: paragraph
+bundle: screwdriver_cover_features
+label: 'Recessed tip of bit'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  first:
+    label: 'Recessed Tip of Bit'
+    list: false
+    allowed_values: {  }
+    max: null
+    min: null
+    required: false
+    on_label: 'On'
+    off_label: 'Off'
+  second:
+    label: Amount
+    list: false
+    allowed_values: {  }
+    max: null
+    min: null
+    required: false
+    on_label: 'On'
+    off_label: 'Off'
+field_type: double_field

@@ -1,0 +1,28 @@
+uuid: 99fc7ab4-be7f-4a60-8ddd-78529a043ec1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.fast_lead.field_fast_lead
+    - paragraphs.paragraphs_type.fast_lead
+id: paragraph.fast_lead.default
+targetEntityType: paragraph
+bundle: fast_lead
+mode: default
+content:
+  field_fast_lead:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true
