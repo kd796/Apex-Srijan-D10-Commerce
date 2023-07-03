@@ -7,6 +7,7 @@ dependencies:
     - field.field.paragraph.nylon_covers_requirements.field_cover_features_yes_no
     - paragraphs.paragraphs_type.nylon_covers_requirements
   module:
+    - conditional_fields
     - paragraphs
 id: paragraph.nylon_covers_requirements.default
 targetEntityType: paragraph
@@ -26,17 +27,33 @@ content:
       closed_mode_threshold: 0
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: ''
+      default_paragraph_type: nylon_covers_requirements
       features:
-        collapse_edit_all: collapse_edit_all
-        duplicate: duplicate
-    third_party_settings: {  }
+        add_above: '0'
+        collapse_edit_all: '0'
+        duplicate: '0'
+    third_party_settings:
+      conditional_fields:
+        e60a6bf3-7c34-4828-9ee4-30fd2e99c6d1:
+          entity_type: paragraph
+          bundle: nylon_covers_requirements
+          dependee: field_cover_features_yes_no
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form: {  }
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_cover_features_yes_no:
-    type: boolean_checkbox
+    type: options_buttons
     weight: 0
     region: content
-    settings:
-      display_label: true
+    settings: {  }
     third_party_settings: {  }
 hidden:
   created: true
