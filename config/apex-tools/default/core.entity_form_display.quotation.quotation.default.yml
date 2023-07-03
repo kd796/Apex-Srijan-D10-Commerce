@@ -7,6 +7,7 @@ dependencies:
     - field.field.quotation.quotation.field_comments
     - field.field.quotation.quotation.field_country
     - field.field.quotation.quotation.field_custom_drive_tool_type
+    - field.field.quotation.quotation.field_custom_quotation_worksheet
     - field.field.quotation.quotation.field_describe_changes
     - field.field.quotation.quotation.field_enter_existing_apex_part
     - field.field.quotation.quotation.field_if_yes_please_enter_part
@@ -85,6 +86,7 @@ third_party_settings:
     group_custom_drive_tool:
       children:
         - field_custom_drive_tool_type
+        - field_custom_quotation_worksheet
       label: '<span>3. Custom Drive Tool</span>'
       region: content
       parent_name: ''
@@ -236,6 +238,32 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_custom_quotation_worksheet:
+    type: default_paragraphs
+    weight: 20
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      closed_mode: summary
+      autocollapse: all
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_types:
+        quotation_screwdriver:
+          value: '1'
+          edit_mode: closed
+          weight: '0'
+        socket_extension_adapter:
+          value: '1'
+          edit_mode: closed
+          weight: '0'
+        universal_swivel_wrench_para:
+          value: '1'
+          edit_mode: closed
+          weight: '0'
+      edit_mode: closed
+    third_party_settings: {  }
   field_describe_changes:
     type: string_textarea
     weight: 19
@@ -335,66 +363,6 @@ content:
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
     third_party_settings: {  }
-  field_quotation_screwdriver_styl:
-    type: default_paragraphs
-    weight: 4
-    region: content
-    settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      closed_mode: summary
-      autocollapse: none
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_types:
-        quotation_screwdriver_style:
-          value: '1'
-          edit_mode: edit
-          weight: '-10'
-        quotation_screwdriver_drive_type:
-          value: '1'
-          edit_mode: edit
-          weight: '-9'
-        bit_dimensions:
-          value: '1'
-          edit_mode: edit
-          weight: '-8'
-        bit_holder_retention_method:
-          value: '1'
-          edit_mode: edit
-          weight: '-7'
-        screwdriver_bit_holder_styles:
-          value: '1'
-          edit_mode: edit
-          weight: '-6'
-        socket_dimensions:
-          value: '1'
-          edit_mode: edit
-          weight: '-5'
-        quotation_order_type:
-          value: '1'
-          edit_mode: edit
-          weight: '-4'
-      edit_mode: closed
-    third_party_settings: {  }
-  field_quotation_universal_swivel:
-    type: default_paragraphs
-    weight: 5
-    region: content
-    settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      closed_mode: summary
-      autocollapse: none
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_types:
-        universal_swivel_wrench_para:
-          value: '1'
-          edit_mode: edit
-          weight: '0'
-      edit_mode: closed
-    third_party_settings: {  }
   field_reactivation_request:
     type: options_buttons
     weight: 15
@@ -420,24 +388,6 @@ content:
             effect: show
             effect_options: {  }
             selector: ''
-  field_socket_extension_adapter:
-    type: paragraphs
-    weight: 6
-    region: content
-    settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
-      closed_mode: summary
-      autocollapse: none
-      closed_mode_threshold: 0
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: ''
-      features:
-        collapse_edit_all: collapse_edit_all
-        duplicate: duplicate
-    third_party_settings: {  }
   field_state:
     type: options_select
     weight: 9
@@ -580,6 +530,9 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_quotation_screwdriver_styl: true
+  field_quotation_universal_swivel: true
+  field_socket_extension_adapter: true
   langcode: true
   status: true
   translation: true

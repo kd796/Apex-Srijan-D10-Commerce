@@ -1,0 +1,39 @@
+uuid: bb852896-b35c-4515-963e-2fcf43999598
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_other_considerations
+    - paragraphs.paragraphs_type.screwdriver_cover_features
+  module:
+    - double_field
+id: paragraph.screwdriver_cover_features.field_other_considerations
+field_name: field_other_considerations
+entity_type: paragraph
+bundle: screwdriver_cover_features
+label: 'Other considerations'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  first:
+    label: ''
+    list: false
+    allowed_values: {  }
+    max: null
+    min: null
+    required: false
+    on_label: 'Other requirements (must specify)'
+    off_label: 'Off'
+  second:
+    label: ''
+    list: false
+    allowed_values: {  }
+    max: null
+    min: null
+    required: false
+    on_label: 'On'
+    off_label: 'Off'
+field_type: double_field

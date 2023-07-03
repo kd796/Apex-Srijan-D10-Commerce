@@ -1,0 +1,45 @@
+uuid: fdf50790-7683-44a8-85a8-82b7546f0d52
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_material
+    - paragraphs.paragraphs_type.screwdriver_cover_features
+  module:
+    - double_field
+id: paragraph.screwdriver_cover_features.field_material
+field_name: field_material
+entity_type: paragraph
+bundle: screwdriver_cover_features
+label: Material
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  first:
+    label: ''
+    list: false
+    allowed_values: {  }
+    max: null
+    min: null
+    required: false
+    on_label: Material
+    off_label: 'Off'
+  second:
+    label: ''
+    list: true
+    allowed_values:
+      -
+        label: Steel
+        value: steel
+      -
+        label: Nylon
+        value: nylon
+    max: null
+    min: null
+    required: false
+    on_label: 'On'
+    off_label: 'Off'
+field_type: double_field
