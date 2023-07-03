@@ -5,7 +5,8 @@
     attach: function (context, settings) {
       // Grouping the radio buttons.
       $(window, context).once('multiStepForm').on('load', function () {
-        $('#edit-field-quotation-screwdriver-styl-wrapper input[type="radio"]').attr('name', 'screwdriver-style');
+        $('.field--name-field-screwdriver-style input[type="radio"]').attr('name', 'screwdriver-style');
+        $('.field--name-field-bit-holder-styles input[type="radio"]').attr('name', 'bit-holder-styles');
       });
       
       // Trigger back button.
@@ -53,11 +54,22 @@
       
       $('#edit-actions button').once('validation').click(validateForm);
       
-      $('#edit-field-quotation-screwdriver-styl-wrapper input[type="radio"]').once('removeAttribute').on('change', function () {
+      $('.field--name-field-screwdriver-style input[type="radio"]').once('removeAttribute').on('change', function () {
         //Remove the required field.
-        $('#edit-field-quotation-screwdriver-styl-wrapper input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
-        $('#edit-field-quotation-screwdriver-styl-wrapper input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
-        $('#edit-field-quotation-screwdriver-styl-wrapper input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', false);
+        $('.field--name-field-screwdriver-style input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
+        $('.field--name-field-screwdriver-style input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
+        $('.field--name-field-screwdriver-style input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', false);
+        // set Required field.
+        $(this).closest('.field--widget-options-buttons').siblings('div').find('label').addClass('form-required');
+        $(this).closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', true);
+        $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
+      });
+
+      $('.field--name-field-bit-holder-styles input[type="radio"]').once('removeAttribute').on('change', function () {
+        //Remove the required field.
+        $('.field--name-field-bit-holder-styles input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
+        $('.field--name-field-bit-holder-styles input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
+        $('.field--name-field-bit-holder-styles input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', false);
         // set Required field.
         $(this).closest('.field--widget-options-buttons').siblings('div').find('label').addClass('form-required');
         $(this).closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', true);
@@ -66,6 +78,47 @@
       
       // Rebind the click event handler to the button after dynamically adding required fields
       $('#edit-actions button').off('click').click(validateForm);
+
+      // Trigger add more paragraph
+      $('#field-custom-quotation-worksheet-quotation-screwdriver-add-more').addClass('field-custom-quotation-worksheet-quotation-screwdriver-add-more');
+      $('#field-custom-quotation-worksheet-socket-extension-adapter-add-more').addClass('field-custom-quotation-worksheet-socket-extension-adapter-add-more');
+      $('#field-custom-quotation-worksheet-universal-swivel-wrench-para-add-more').addClass('field-custom-quotation-worksheet-universal-swivel-wrench-para-add-more');
+      $('#edit-field-custom-drive-tool-type').once('triggerAdd').on('change', function () {
+        var selectedValue = $(this).val();
+        // Trigger the button based on the selected value
+        if (selectedValue === 'screwdriver') {
+          $('.field-custom-quotation-worksheet-quotation-screwdriver-add-more').mousedown();
+        } else if (selectedValue === 'socket') {
+          $('.field-custom-quotation-worksheet-socket-extension-adapter-add-more').mousedown();
+        } else if (selectedValue === 'universal_wrench') {
+          $('.field-custom-quotation-worksheet-universal-swivel-wrench-para-add-more').mousedown();
+        }
+        // show add buttons.
+        $('#edit-field-custom-quotation-worksheet-add-more').addClass('show-button');
+        //Adding class to hide collapse option.
+        $('.paragraphs-icon-button-collapse').closest('.paragraph-top').addClass('collapse-wrapper'); 
+      });
+      var selectedValuettt = $('#edit-field-custom-drive-tool-type').val();
+      $(document).ajaxComplete(function(){
+        var selectedValue;
+        $('#edit-field-custom-drive-tool-type').once('triggerAdd').on('change', function () {
+          selectedValue = $(this).val();
+          // Trigger the button based on the selected value
+          if (selectedValue === 'screwdriver') {
+            $('.field-custom-quotation-worksheet-quotation-screwdriver-add-more').mousedown();
+          } else if (selectedValue === 'socket') {
+            $('.field-custom-quotation-worksheet-socket-extension-adapter-add-more').mousedown();
+          } else if (selectedValue === 'universal_wrench') {
+            $('.field-custom-quotation-worksheet-universal-swivel-wrench-para-add-more').mousedown();
+          }
+        });
+        $('#edit-field-custom-drive-tool-type').val(selectedValuettt);
+        // show add buttons.
+        $('#edit-field-custom-quotation-worksheet-add-more').addClass('show-button');
+        //Adding class to hide collapse option.
+        $('.paragraphs-icon-button-collapse').closest('.paragraph-top').addClass('collapse-wrapper');
+      });
+       
 
       // end
     }
