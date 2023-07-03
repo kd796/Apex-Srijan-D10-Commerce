@@ -417,9 +417,77 @@
   }
 }
 
-.paragraphs-dropbutton-wrapper {
-  .clearfix & {
-    display: none;
+#edit-field-custom-quotation-worksheet-wrapper {
+  & > .paragraphs-tabs-wrapper {
+    & > .form-item {
+      & > table.field-multiple-table {
+        & > tbody {
+          & > tr {
+  
+            &:nth-child(1),
+            &:nth-child(2),
+            &:nth-child(3) {
+              display: none;
+            }
+
+            td.field-multiple-drag {
+              display: block;
+              position: relative;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    .paragraphs-tabs.tabs {
+      display: none;
+    }
+  }
+
+  .ajax-new-content {
+    opacity: 1 !important;
+  }
+}
+
+// Style for third step.
+#edit-field-custom-quotation-worksheet-add-more {
+  margin-left: .83333333333333%;
+  margin-right: .83333333333333%;
+  display: none;
+
+  &.show-button {
+    display: unset;
+  }
+}
+
+.field--type-entity-reference-revisions .clearfix {
+  display: none;
+}
+
+// Style for forth Step.
+#edit-field-image-uploads-4-0-subform {
+  display: grid;
+  grid-template-columns: 49% 49%;
+  grid-column-gap: 2%;
+  @media only screen and (max-width: $media-screen-medium) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  td {
+    border: 0;
+    padding: 2rem !important;
+    margin: 8.8888%;
+  }
+
+  tr {
+    border: 0;
+  }
+
+  button {
+    margin: 1rem 0;
+    min-width: 10rem;
   }
 }
 
@@ -429,6 +497,58 @@
   }
   .js-hide {
     display: unset;
+  }
+
+  #edit-field-custom-quotation-worksheet-wrapper {
+    & > .paragraphs-tabs-wrapper {
+      & > .form-item {
+        & > table.field-multiple-table {
+          & > tbody {
+            & > tr {
+              .paragraph-top {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+
+                &.collapse-wrapper {
+                  display: none;
+                }
+              }
+          
+              .paragraphs-dropdown {
+                width: 150px;
+                padding: 12px;
+          
+                .paragraphs-dropdown-actions {
+                  display: block;
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  height: 100%;
+                  border-radius: 0;
+                  border: 0;
+                  box-shadow: none;
+          
+                  button {
+                    height: 100%;
+                    border-radius: 0;
+                    box-shadow: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    & > div {
+      & > .form-item {
+        & > .clearfix {
+          display: unset;
+        }
+      }
+    }
   }
 }
 
