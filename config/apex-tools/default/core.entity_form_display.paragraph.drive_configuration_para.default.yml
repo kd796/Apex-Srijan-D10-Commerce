@@ -4,46 +4,41 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.drive_configuration_para.field_drive_configuration
-    - field.field.paragraph.drive_configuration_para.field_size_hex
+    - field.field.paragraph.drive_configuration_para.field_hex_gender
+    - field.field.paragraph.drive_configuration_para.field_hex_size
+    - field.field.paragraph.drive_configuration_para.field_hex_type
     - paragraphs.paragraphs_type.drive_configuration_para
-  module:
-    - conditional_fields
 id: paragraph.drive_configuration_para.default
 targetEntityType: paragraph
 bundle: drive_configuration_para
 mode: default
 content:
   field_drive_configuration:
-    type: options_select
+    type: options_buttons
     weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_size_hex:
-    type: string_textfield
+  field_hex_gender:
+    type: options_buttons
     weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_hex_size:
+    type: options_buttons
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_hex_type:
+    type: string_textfield
+    weight: 3
     region: content
     settings:
       size: 60
       placeholder: ''
-    third_party_settings:
-      conditional_fields:
-        2a5115ce-75df-44d6-ba96-27fd69a6e0c5:
-          entity_type: paragraph
-          bundle: drive_configuration_para
-          dependee: field_drive_configuration
-          settings:
-            state: visible
-            reset: false
-            condition: value
-            grouping: AND
-            values_set: 2
-            value: ''
-            values: hex
-            value_form: {  }
-            effect: show
-            effect_options: {  }
-            selector: ''
+    third_party_settings: {  }
 hidden:
   created: true
   status: true

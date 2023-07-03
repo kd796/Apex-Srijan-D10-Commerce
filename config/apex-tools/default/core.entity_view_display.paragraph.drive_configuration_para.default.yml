@@ -4,7 +4,9 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.drive_configuration_para.field_drive_configuration
-    - field.field.paragraph.drive_configuration_para.field_size_hex
+    - field.field.paragraph.drive_configuration_para.field_hex_gender
+    - field.field.paragraph.drive_configuration_para.field_hex_size
+    - field.field.paragraph.drive_configuration_para.field_hex_type
     - paragraphs.paragraphs_type.drive_configuration_para
   module:
     - options
@@ -20,13 +22,27 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  field_size_hex:
+  field_hex_gender:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_hex_size:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_hex_type:
     type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
+    weight: 3
     region: content
 hidden:
   entity_print_view_epub: true
