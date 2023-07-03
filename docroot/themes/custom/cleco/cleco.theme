@@ -40,6 +40,7 @@ function cleco_preprocess_field(&$variables)
       $node = $route_match->getParameter('node');
       // Add banner title.
       $variables['carousel_title'] = 'Trusted by the biggest';
+      $variables['node_title'] = $node->getTitle();
     }
   }
 }
