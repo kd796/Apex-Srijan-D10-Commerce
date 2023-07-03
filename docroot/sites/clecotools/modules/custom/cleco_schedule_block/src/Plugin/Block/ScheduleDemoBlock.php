@@ -49,7 +49,7 @@ class ScheduleDemoBlock extends BlockBase {
 		$form['schedule_demo_link']['url'] = [
 			'#type' => 'url',
 			'#title' => $this->t('URL'),
-			'#default_value' => !empty($this->configuration['schedule_demo_link']['url']) ? $this->configuration['schedule_demo_link']['url'] : '',
+      '#default_value' => !empty($this->configuration['schedule_demo_link']['url']) ? $node = \Drupal\node\Entity\Node::load($this->configuration['schedule_demo_link']['url']) : '',
 			'#type' => 'entity_autocomplete',
 			'#target_type' => 'node',
 		];
