@@ -39,9 +39,9 @@
   </section>
   <div class="section cs-client-summary">
     {{ case_study_client_summary }}
-    <div class="schedule-demo-block">
-      <h3>Schedule a demo with a cleco representative Today !</h3>
-      <a href="/contact" target="_blank">Schedule Demo Today</a>
-    </div>
+  </div>
+  <div class="schedule-demo-block">
+    <h3>{{ schedule_block_label }}</h3>
+    <a href={{ schedule_block_link.url }} target="_blank">{{ schedule_block_link.label }}</a>
   </div>
 </main>

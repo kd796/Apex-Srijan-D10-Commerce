@@ -40,6 +40,27 @@ function cleco_preprocess_field(&$variables)
       $node = $route_match->getParameter('node');
       // Add banner title.
       $variables['carousel_title'] = 'Trusted by the biggest';
+      $variables['node_title'] = $node->getTitle();
     }
+  }
+}
+
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function cleco_preprocess_node(&$variables) {
+  $node = $variables['elements']['#node'];
+  // Check for the case study content type.
+  if ($node->getType() == 'case_studies') {
+    // Load the schedeule demo block
+    $block = \Drupal\block\Entity\Block::load('scheduledemoblock');
+    // Set the block form values in the variable.
+    $variables['schedule_block_label'] = $block->get('settings')['schedule_demo_label'];
+    $variables['schedule_block_link']['label'] = $block->get('settings')['schedule_demo_link']['label'];
+    $node = \Drupal\node\Entity\Node::load($block->get('settings')['schedule_demo_link']['url']);
+    // Fetch the node alias.
+    $alias = \Drupal::service('path_alias.manager')->getAliasByPath('/node/'. $block->get('settings')['schedule_demo_link']['url']);
+    $variables['schedule_block_link']['url'] = $alias;
   }
 }
