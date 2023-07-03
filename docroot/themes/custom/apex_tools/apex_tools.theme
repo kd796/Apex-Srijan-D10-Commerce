@@ -24,6 +24,18 @@ function apex_tools_theme($existing, $type, $theme, $path) {
  */
 function apex_tools_preprocess_node__geo_directory(&$variables) {
   $subdivisions = \Drupal::service('address.subdivision_repository')->getList(['US']);
+  // Removed the not required state form the list.
+  $state_not_req = [
+    'American Samoa' => 'American Samoa',
+    'Guam' => 'Guam',
+    'Marshall Islands' => 'Marshall Islands',
+    'Micronesia' => 'Micronesia',
+    'Northern Mariana Islands' => 'Northern Mariana Islands',
+    'Palau' => 'Palau',
+    'Puerto Rico' => 'Puerto Rico',
+    'Virgin Islands' => 'Virgin Islands',
+  ];
+  $subdivisions = array_diff($subdivisions, $state_not_req);
   $default_state_option = [
     'value' => NULL,
     'label' => t('Select State'),
