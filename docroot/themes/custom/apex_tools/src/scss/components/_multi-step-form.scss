@@ -423,7 +423,11 @@
       & > table.field-multiple-table {
         & > tbody {
           & > tr {
-  
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: solid 1px $color-gray-medium;
+            display: grid;
+
             &:nth-child(1),
             &:nth-child(2),
             &:nth-child(3) {
@@ -454,7 +458,6 @@
 #edit-field-custom-quotation-worksheet-add-more {
   margin-left: .83333333333333%;
   margin-right: .83333333333333%;
-  display: none;
 
   &.show-button {
     display: unset;
@@ -466,6 +469,18 @@
 }
 
 // Style for forth Step.
+.field--name-field-image-uploads-4 {
+  padding: 2rem 2rem 0 !important;
+  margin: 8.8888px;
+  .clearfix {
+    display: unset;
+  }
+
+  .paragraphs-tabs {
+    display: none;
+  }
+}
+
 #edit-field-image-uploads-4-0-subform {
   display: grid;
   grid-template-columns: 49% 49%;
@@ -475,10 +490,12 @@
     flex-direction: column;
   }
 
+  & > .form-wrapper {
+    margin-bottom: 25px;
+  }
+
   td {
     border: 0;
-    padding: 2rem !important;
-    margin: 8.8888%;
   }
 
   tr {
@@ -488,6 +505,10 @@
   button {
     margin: 1rem 0;
     min-width: 10rem;
+  }
+
+  .form-item {
+    display: unset !important;
   }
 }
 
@@ -511,6 +532,10 @@
                 justify-content: space-between;
 
                 &.collapse-wrapper {
+                  display: none;
+                }
+
+                .paragraph-info {
                   display: none;
                 }
               }
