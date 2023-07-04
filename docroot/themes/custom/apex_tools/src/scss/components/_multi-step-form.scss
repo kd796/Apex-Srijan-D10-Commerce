@@ -2,6 +2,14 @@
   opacity: 1 !important;
 }
 
+.field-add-more-submit {
+  margin-bottom: 16px;
+
+  @media only screen and(max-width: $media-screen-tablet) {
+    width: 100%;
+  }
+}
+
 .multi-steps-label {
   display: flex;
   flex-wrap: wrap;
@@ -129,6 +137,13 @@
         font-weight: 400;
         font-style: normal;
         padding-left: 40px;
+        @media only screen and(max-width: $media-screen-tablet) {
+          padding-left: 30px;
+        }
+
+        @media only screen and(max-width: $media-screen-mobile) {
+          padding-left: 20px;
+        }
       }
 
       em {
@@ -170,6 +185,10 @@
           flex-wrap: wrap;
           justify-content: space-between;
 
+          @media only screen and(max-width: $media-screen-tablet) {
+            margin-top: 10px;
+          }
+
           .field--type-list-string,
           .field--type-string-long,
           .field--type-boolean,
@@ -177,28 +196,41 @@
             width: 50%;
             padding: 0 16px;
             margin-bottom: 30px;
+            @media only screen and(max-width: $media-screen-mobile) {
+              width: 100%;
+              padding: 0;
+              margin-bottom: 15px;
+            }
 
             legend {
-              display: none;
+              font-size: 16px;
+              margin-bottom: 10px;
             }
 
             .fieldset-wrapper {
               > div {
-                margin: 0;
                 padding: 0;
                 display: flex;
+                margin: 0 -16px;
                 flex-wrap: wrap;
                 align-items: center;
 
                 .form-item {
-                  display: none;
+                  padding: 0 16px;
+                  margin-bottom: 16px;
+
+                  &:first-child {
+                    display: none;
+                  }
 
                   &:last-child {
                     display: flex;
+                    flex-wrap: nowrap;
                     align-items: center;
                   }
 
                   label {
+                    font-size: 16px;
                     margin: 0 0 0 10px;
                     position: relative;
                   }
@@ -221,6 +253,15 @@
             width: 33.33%;
             padding: 0 16px;
             margin-bottom: 30px;
+            @media only screen and(max-width: $media-screen-tablet) {
+              width: 50%;
+              margin-bottom: 15px;
+            }
+
+            @media only screen and(max-width: $media-screen-mobile) {
+              width: 100%;
+              padding: 0;
+            }
 
             .form-type-physical-measurement {
               .form-item {
@@ -233,6 +274,7 @@
           .field--type-double-field {
             .form-item {
               label {
+                font-size: 16px;
                 display: none;
               }
 
@@ -242,8 +284,8 @@
                 .double-field-subfield-form-item {
                   display: flex;
                   margin: 0 0 10px;
+                  flex-wrap: nowrap;
                   align-items: center;
-                  flex-wrap: wrap;
 
                   label {
                     margin: 0;
@@ -251,7 +293,12 @@
                   }
 
                   select {
+                    font-size: 16px;
                     margin: 10px 0 0;
+                  }
+
+                  &.js-form-type-select {
+                    flex-wrap: wrap;
                   }
                 }
               }
@@ -270,14 +317,17 @@
             align-items: center;
 
             label {
+              font-size: 16px;
               margin: 0;
             }
 
             select {
+              font-size: 16px;
               margin: 10px 0 0;
             }
 
             input[type="text"] {
+              font-size: 16px;
               margin: 10px 0 0;
             }
           }
@@ -298,13 +348,13 @@
           .field--type-list-string {
             width: 33.33%;
             padding: 0 16px;
+
+            @media only screen and(max-width: $media-screen-tablet) {
+              padding: 0;
+              width: 100%;
+              margin-bottom: 15px;
+            }
           }
-        }
-      }
-
-      #field-custom-quotation-worksheet-4-item-wrapper {
-        .paragraphs-nested {
-
         }
       }
 
@@ -312,11 +362,120 @@
         .field--name-field-l-shank-length {
           .form-item {
             label {
+              font-size: 16px;
               width: 100%;
             }
 
             .form-no-label {
               width: 100%;
+            }
+          }
+        }
+      }
+
+      .paragraph-type--magnetic,
+      .paragraph-type--socket-type,
+      .paragraph-type--cover-features,
+      .paragraph-type--optional-features,
+      .paragraph-type--other-specifications,
+      .paragraph-type--drive-configuration-para,
+      .paragraph-type--broach-opening {
+
+        .paragraphs-subform {
+          width: 100%;
+
+          .field--widget-options-buttons {
+            width: 100%;
+            margin: 0 0 16px;
+            @media only screen and(max-width: $media-screen-tablet) {
+              margin: 16px 0 16px;
+            }
+            @media only screen and(max-width: $media-screen-mobile) {
+              margin-bottom: 0;
+            }
+
+            .form-wrapper {
+              width: 100%;
+
+              legend {
+                font-size: 16px;
+                display: block;
+                margin: 0 0 10px;
+              }
+
+              .fieldset-wrapper {
+                width: 100%;
+
+                > div {
+                  display: flex;
+                  margin: 0 -16px;
+                  align-items: center;
+                  @media only screen and(max-width: $media-screen-mobile) {
+                    margin: 0;
+                  }
+
+                  .form-item {
+                    width: 20%;
+                    display: flex;
+                    padding: 0 16px;
+                    margin: 0 0 16px;
+                    flex-wrap: nowrap;
+                    position: relative;
+                    align-items: center;
+
+                    @media only screen and(max-width: $media-screen-large) {
+                      width: 25%;
+                    }
+
+                    @media only screen and(max-width: $media-screen-medium) {
+                      width: 33.33%;
+                    }
+
+                    @media only screen and(max-width: $media-screen-tablet) {
+                      width: 50%;
+                      flex-wrap: wrap;
+                    }
+
+                    @media only screen and(max-width: $media-screen-mobile) {
+                      padding: 0;
+                      width: 100%;
+                      flex-wrap: nowrap;
+                    }
+
+                    &:first-child {
+                      display: none;
+                    }
+
+                    label {
+                      font-size: 16px;
+                      position: static;
+                    }
+
+                    img {
+                      top: 0;
+                      position: absolute;
+                      left: calc(100% - 16px);
+                      transform: translateX(-100%);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .paragraph-type--other-specifications {
+        .field--widget-options-buttons {
+          .form-wrapper {
+            .fieldset-wrapper {
+              .form-checkboxes {
+                .form-item {
+                  &:first-child {
+                    display: flex !important;
+                  }
+                }
+              }
             }
           }
         }
@@ -387,6 +546,7 @@
             }
 
             label {
+              font-size: 16px;
               margin-bottom: 0;
             }
 
@@ -400,6 +560,7 @@
                     }
 
                     label {
+                      font-size: 16px;
                       padding: 0 10px 0;
                     }
                   }
@@ -539,11 +700,11 @@
                   display: none;
                 }
               }
-          
+
               .paragraphs-dropdown {
                 width: 150px;
                 padding: 12px;
-          
+
                 .paragraphs-dropdown-actions {
                   display: block;
                   position: absolute;
@@ -553,7 +714,7 @@
                   border-radius: 0;
                   border: 0;
                   box-shadow: none;
-          
+
                   button {
                     height: 100%;
                     border-radius: 0;
@@ -589,6 +750,7 @@ div.notice--info {
     display: inline-block;
 
     label {
+      font-size: 16px;
       color: $color-off-black;
     }
   }
