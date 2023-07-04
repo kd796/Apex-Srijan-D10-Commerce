@@ -1,3 +1,7 @@
+.ajax-new-content {
+  opacity: 1 !important;
+}
+
 .multi-steps-label {
   display: flex;
   flex-wrap: wrap;
@@ -27,7 +31,7 @@
         font-size: 1.1rem;
         border-bottom: 1px solid hsla(0,0%,80%,.43);
       }
-      
+
     }
 
     &.active {
@@ -84,11 +88,20 @@
 
   table {
     width: 100%;
+    box-shadow: none;
+    table-layout: fixed;
   }
 
   tbody {
     .field-multiple-drag {
       display: none !important;
+    }
+
+    tr {
+      td {
+        border: 0;
+        padding: 0!important;
+      }
     }
   }
 
@@ -99,6 +112,31 @@
   .draggable {
     position: relative;
     width: 100%;
+
+    .description {
+      font-size: 16px;
+      color: $color-off-black;
+      line-height: $line-height-default;
+
+      strong {
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      ul {
+        margin: 16px 0;
+        font-size: 16px;
+        font-weight: 400;
+        font-style: normal;
+        padding-left: 40px;
+      }
+
+      em {
+        font-size: 16px;
+        font-weight: 400;
+        font-style: normal;
+      }
+    }
   }
 
   #edit-field-upload-wrapper {
@@ -117,6 +155,170 @@
         button {
           margin: 1rem 0;
           min-width: 10rem;
+        }
+      }
+    }
+  }
+
+  .field-multiple-table {
+    .draggable {
+      .form-wrapper {
+        .paragraphs-subform {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+
+          .field--type-list-string,
+          .field--type-string-long,
+          .field--type-boolean,
+          .field--type-string {
+            width: 50%;
+            padding: 0 16px;
+            margin-bottom: 30px;
+
+            legend {
+              display: none;
+            }
+
+            .fieldset-wrapper {
+              > div {
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+
+                .form-item {
+                  display: none;
+
+                  &:last-child {
+                    display: flex;
+                    align-items: center;
+                  }
+
+                  label {
+                    margin: 0 0 0 10px;
+                    position: relative;
+                  }
+                }
+              }
+            }
+
+            &.field--name-field-type- {
+              display: none;
+            }
+
+            &.field--name-field-blade-width {
+              margin-left: auto;
+            }
+          }
+
+          .field--type-physical-measurement,
+          .field--type-double-field,
+          .field--type-triples-field {
+            width: 33.33%;
+            padding: 0 16px;
+            margin-bottom: 30px;
+
+            .form-type-physical-measurement {
+              .form-item {
+                margin: 0 0 16px;
+              }
+            }
+          }
+
+          .field--type-triples-field,
+          .field--type-double-field {
+            .form-item {
+              label {
+                display: none;
+              }
+
+              .triples-field-elements,
+              .double-field-elements {
+                .triples-field-subfield-form-item,
+                .double-field-subfield-form-item {
+                  display: flex;
+                  margin: 0 0 10px;
+                  align-items: center;
+                  flex-wrap: wrap;
+
+                  label {
+                    margin: 0;
+                    display: block;
+                  }
+
+                  select {
+                    margin: 10px 0 0;
+                  }
+                }
+              }
+
+              .double-field-elements {
+                width: 100%;
+              }
+            }
+          }
+        }
+
+        .paragraphs-content {
+          .form-item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+
+            label {
+              margin: 0;
+            }
+
+            select {
+              margin: 10px 0 0;
+            }
+
+            input[type="text"] {
+              margin: 10px 0 0;
+            }
+          }
+        }
+      }
+
+      &.paragraph-type--male-hex-drive-standard-type,
+      &.paragraph-type--female-square-drive-short,
+      &.paragraph-type--female-square-drive-standard-typ {
+        .paragraphs-subform {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+
+          .field--type-boolean,
+          .field--type-list-string {
+            width: 33.33%;
+            padding: 0 16px;
+          }
+        }
+      }
+
+      #field-custom-quotation-worksheet-4-item-wrapper {
+        .paragraphs-nested {
+
+        }
+      }
+
+      &.paragraph-type--dimensions {
+        .field--name-field-l-shank-length {
+          .form-item {
+            label {
+              width: 100%;
+            }
+
+            .form-no-label {
+              width: 100%;
+            }
+          }
         }
       }
     }
@@ -215,9 +417,98 @@
   }
 }
 
-.paragraphs-dropbutton-wrapper {
-  .clearfix & {
+#edit-field-custom-quotation-worksheet-wrapper {
+  & > .paragraphs-tabs-wrapper {
+    & > .form-item {
+      & > table.field-multiple-table {
+        & > tbody {
+          & > tr {
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: solid 1px $color-gray-medium;
+            display: grid;
+
+            &:nth-child(1),
+            &:nth-child(2),
+            &:nth-child(3) {
+              display: none;
+            }
+
+            td.field-multiple-drag {
+              display: block;
+              position: relative;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    .paragraphs-tabs.tabs {
+      display: none;
+    }
+  }
+
+  .ajax-new-content {
+    opacity: 1 !important;
+  }
+}
+
+// Style for third step.
+#edit-field-custom-quotation-worksheet-add-more {
+  margin-left: .83333333333333%;
+  margin-right: .83333333333333%;
+
+  &.show-button {
+    display: unset;
+  }
+}
+
+.field--type-entity-reference-revisions .clearfix {
+  display: none;
+}
+
+// Style for forth Step.
+.field--name-field-image-uploads-4 {
+  padding: 2rem 2rem 0 !important;
+  margin: 8.8888px;
+  .clearfix {
+    display: unset;
+  }
+
+  .paragraphs-tabs {
     display: none;
+  }
+}
+
+#edit-field-image-uploads-4-0-subform {
+  display: grid;
+  grid-template-columns: 49% 49%;
+  grid-column-gap: 2%;
+  @media only screen and (max-width: $media-screen-medium) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & > .form-wrapper {
+    margin-bottom: 25px;
+  }
+
+  td {
+    border: 0;
+  }
+
+  tr {
+    border: 0;
+  }
+
+  button {
+    margin: 1rem 0;
+    min-width: 10rem;
+  }
+
+  .form-item {
+    display: unset !important;
   }
 }
 
@@ -227,6 +518,62 @@
   }
   .js-hide {
     display: unset;
+  }
+
+  #edit-field-custom-quotation-worksheet-wrapper {
+    & > .paragraphs-tabs-wrapper {
+      & > .form-item {
+        & > table.field-multiple-table {
+          & > tbody {
+            & > tr {
+              .paragraph-top {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+
+                &.collapse-wrapper {
+                  display: none;
+                }
+
+                .paragraph-info {
+                  display: none;
+                }
+              }
+          
+              .paragraphs-dropdown {
+                width: 150px;
+                padding: 12px;
+          
+                .paragraphs-dropdown-actions {
+                  display: block;
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  height: 100%;
+                  border-radius: 0;
+                  border: 0;
+                  box-shadow: none;
+          
+                  button {
+                    height: 100%;
+                    border-radius: 0;
+                    box-shadow: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    & > div {
+      & > .form-item {
+        & > .clearfix {
+          display: unset;
+        }
+      }
+    }
   }
 }
 
