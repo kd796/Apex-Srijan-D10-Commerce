@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * Implements hook_entity_presave().
+ */
+function cleco_schedule_block_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
+  switch ($entity->bundle()) {
+    case 'solutions':
+      $reference_node = $entity->get('field_case_study')->getValue();
+      // Update the nodes that referred in the solutions content.
+      foreach ($reference_node as $nid) {
+        $node = \Drupal\node\Entity\Node::load($nid['target_id']);
+        $node->field_type_of_case_study->entity = $entity;
+        $node->save();
+      }
+    break;
+  }
+}

@@ -1,29 +1,29 @@
-uuid: 294e37e7-8432-4469-ba37-c15e4b27283a
+uuid: cc3b1fed-f90b-4f6e-8bf2-2f10e107ccd6
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_type_of_case_study
     - node.type.case_studies
-    - taxonomy.vocabulary.case_study
+    - node.type.solutions
 id: node.case_studies.field_type_of_case_study
 field_name: field_type_of_case_study
 entity_type: node
 bundle: case_studies
 label: 'Type of Case Study'
 description: ''
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:taxonomy_term'
+  handler: 'default:node'
   handler_settings:
     target_bundles:
-      case_study: case_study
+      solutions: solutions
     sort:
-      field: name
-      direction: asc
+      field: _none
+      direction: ASC
     auto_create: false
-    auto_create_bundle: case_study
+    auto_create_bundle: ''
 field_type: entity_reference
