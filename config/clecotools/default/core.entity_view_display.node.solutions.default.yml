@@ -60,14 +60,6 @@ content:
     third_party_settings: {  }
     weight: 10
     region: content
-  field_case_study:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 13
-    region: content
   field_featured_products:
     type: entity_reference_revisions_entity_view
     label: hidden
@@ -132,6 +124,7 @@ content:
     weight: 1
     region: content
 hidden:
+  field_case_study: true
   field_industry_solutions: true
   field_mailing_list_form: true
   langcode: true
