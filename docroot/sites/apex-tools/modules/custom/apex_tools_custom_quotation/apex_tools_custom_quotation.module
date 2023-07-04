@@ -12,13 +12,16 @@ use Drupal\Core\Form\FormStateInterface;
  * Implements hook_theme().
  */
 function apex_tools_custom_quotation_theme($existing, $type, $theme, $path) {
-  return [
-    'quotation' => [
+  $theme = [
+     'quotation' => [
+      'path' => $path . '/templates',
+      'template'  => 'quotation',
       'render element' => 'elements',
-      'render element' => 'form',
     ],
   ];
+  return $theme;
 }
+
 
 /**
  * Implements hook_implements_alter().

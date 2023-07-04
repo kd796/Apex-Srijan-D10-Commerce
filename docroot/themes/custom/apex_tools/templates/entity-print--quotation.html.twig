@@ -1,0 +1,133 @@
+<div style="padding: 50px; color: #6d6e70;">
+  <div style="text-align: center;">
+    <p style="font-size: 14px">{{'Custom Solutions Quotation Worksheet' | t}}</p>
+  </div>
+  <div>
+    <div>
+      <div style="background-color: #E5E5E5;color: #383739;padding: 12px;font-weight: bold;text-align: center;">{{'BUSINESS INFORMATION' | t}}</div>
+      <div>
+        <ul style="padding: 0;">
+          {% if content.first_name.value %}
+            <li style="display: grid; grid-template-columns: 25% 70%; grid-column-gap: 5%;">
+              <div style="font-weight: bold;">{{ content.first_name.fielddefinition.label }}</div>
+              <div>{{ content.first_name.value }}</div>
+            </li>
+          {% endif %}
+          {% if content.last_name.value %}
+            <li style="display: grid; grid-template-columns: 25% 70%; grid-column-gap: 5%;">
+              <div style="font-weight: bold;">{{ content.last_name.fielddefinition.label }}</div>
+              <div>{{ content.last_name.value }}</div>
+            </li>
+          {% endif %}
+          {% if content.company_name.value %}
+            <li style="display: grid; grid-template-columns: 25% 70%; grid-column-gap: 5%;">
+              <div style="font-weight: bold;">{{ content.company_name.fielddefinition.label }}</div>
+              <div>{{ content.company_name.value }}</div>
+            </li>
+          {% endif %}
+          {% if content.email_address.value %}
+            <li style="display: grid; grid-template-columns: 25% 70%; grid-column-gap: 5%;">
+              <div style="font-weight: bold;">{{ content.email_address.fielddefinition.label }}</div>
+              <div>{{ content.email_address.value }}</div>
+            </li>
+          {% endif %}
+          {% if content.phone_number.value %}
+            <li style="display: grid; grid-template-columns: 25% 70%; grid-column-gap: 5%;">
+              <div style="font-weight: bold;">{{ content.phone_number.fielddefinition.label }}</div>
+              <div>{{ content.phone_number.value }}</div>
+            </li>
+          {% endif %}
+          {% if content.field_address.value %}
+            <li style="display: grid; grid-template-columns: 25% 70%; grid-column-gap: 5%;">
+              <div style="font-weight: bold;">{{ content.field_address.fielddefinition.label }}</div>
+              <div>{{ content.field_addres.value }}</div>
+            </li>
+          {% endif %}
+          {% if content.field_city.value %}
+            <li style="display: grid; grid-template-columns: 25% 70%; grid-column-gap: 5%;">
+              <div style="font-weight: bold;">{{ content.field_city.fielddefinition.label }}</div>
+              <div>{{ content.field_city.value }}</div>
+            </li>
+          {% endif %}
+          {% if content.field_country.value %}
+            <li style="display: grid; grid-template-columns: 25% 70%; grid-column-gap: 5%;">
+              <div style="font-weight: bold;">{{ content.field_country.fielddefinition.label }}</div>
+              <div>{{ content.field_country.value }}</div>
+            </li>
+          {% endif %}
+          {% if content.field_state_text.value %}
+            <li style="display: grid; grid-template-columns: 25% 70%; grid-column-gap: 5%;">
+              <div style="font-weight: bold;">{{ content.field_state_text.fielddefinition.label }}</div>
+              <div>{{ content.field_state_text.value }}</div>
+            </li>
+          {% endif %}
+          {% if content.field_state.value %}
+            <li style="display: grid; grid-template-columns: 25% 70%; grid-column-gap: 5%;">
+              <div style="font-weight: bold;">{{ content.field_state.fielddefinition.label }}</div>
+              <div>{{ content.field_state.value }}</div>
+            </li>
+          {% endif %}
+          {% if content.field_zip_code.value %}
+            <li style="display: grid; grid-template-columns: 25% 70%; grid-column-gap: 5%;">
+              <div style="font-weight: bold;">{{ content.field_zip_code.fielddefinition.label }}</div>
+              <div>{{ content.field_zip_code.value }}</div>
+            </li>
+          {% endif %}
+          {% if content.field_account_number.value %}
+            <li style="display: grid; grid-template-columns: 25% 70%; grid-column-gap: 5%;">
+              <div style="font-weight: bold;">{{ content.field_account_number.fielddefinition.label }}</div>
+              <div>{{ content.field_account_number.value }}</div>
+            </li>
+          {% endif %}
+          {% if content.field_apex_sales_person.value %}
+            <li style="display: grid; grid-template-columns: 25% 70%; grid-column-gap: 5%;">
+              <div style="font-weight: bold;">{{ content.field_apex_sales_person.fielddefinition.label }}</div>
+              <div>{{ content.field_apex_sales_person.value }}</div>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div style="background-color: #E5E5E5;color: #383739;padding: 12px;font-weight: bold;text-align: center;">REQUEST FOR REACTIVATION OR NEW PART</div>
+      <div>
+        <ul style="padding: 0;">
+          {% if content.field_are_you_requesting_an_item.value %}
+            <li style="display: grid; grid-template-columns: 25% 70%; grid-column-gap: 5%;">
+              <div style="font-weight: bold;">{{ content.field_are_you_requesting_an_item.fielddefinition.label }}</div>
+              <div>{{ content.field_are_you_requesting_an_item.value }}</div>
+            </li>
+          {% endif %}
+          {% if content.field_reactivation_request.value %}
+            <li style="display: grid; grid-template-columns: 25% 70%; grid-column-gap: 5%;">
+              <div style="font-weight: bold;">{{ content.field_reactivation_request.fielddefinition.label }}</div>
+              <div>{{ content.field_reactivation_request.value }}</div>
+            </li>
+          {% endif %}
+          {% if content.field_enter_existing_apex_part.value %}
+            <li style="display: grid; grid-template-columns: 25% 70%; grid-column-gap: 5%;">
+              <div style="font-weight: bold;">{{ content.field_enter_existing_apex_part.fielddefinition.label }}</div>
+              <div>{{ content.field_enter_existing_apex_part.value }}</div>
+            </li>
+          {% endif %}
+          {% if content.field_describe_changes.value %}
+            <li style="display: grid; grid-template-columns: 25% 70%; grid-column-gap: 5%;">
+              <div style="font-weight: bold;">{{ content.field_describe_changes.fielddefinition.label }}</div>
+              <div>{{ content.field_describe_changes.value }}</div>
+            </li>
+          {% endif %}
+          {% if content.field_comments.value %}
+            <li style="display: grid; grid-template-columns: 25% 70%; grid-column-gap: 5%;">
+              <div style="font-weight: bold;">{{ content.field_comments.fielddefinition.label }}</div>
+              <div>{{ content.field_comments.value }}</div>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer" style="text-align: center;">
+    <div class="address" style="border-top: solid 2px #E5E5E5; padding: 30px 0;"><b>{{'Apex Fastening Tools' | t}}</b></br>{{'Email: specialquote@apextoolgroup.com' | t}}</br>{{'Phone: 866.569.9449' | t}}</div>
+    <div class="copyright">{{'Copyright ©2023 Apex Tool Group, LLC. All Rights Reserved.' | t}}</div>
+  </div>
+</div>
