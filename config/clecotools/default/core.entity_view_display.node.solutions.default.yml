@@ -49,7 +49,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 7
+    weight: 8
     region: content
   field_card:
     type: entity_reference_entity_view
@@ -58,7 +58,15 @@ content:
       view_mode: default
       link: true
     third_party_settings: {  }
-    weight: 10
+    weight: 11
+    region: content
+  field_case_study:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 5
     region: content
   field_featured_products:
     type: entity_reference_revisions_entity_view
@@ -67,7 +75,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 5
+    weight: 6
     region: content
   field_find_a_distributor:
     type: entity_reference_revisions_entity_view
@@ -76,7 +84,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 11
+    weight: 12
     region: content
   field_forms:
     type: entity_reference_revisions_entity_view
@@ -85,7 +93,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 8
+    weight: 9
     region: content
   field_hero:
     type: entity_reference_revisions_entity_view
@@ -101,7 +109,7 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 12
+    weight: 13
     region: content
   field_trusted_by_biggest:
     type: block_field
@@ -116,7 +124,7 @@ content:
     settings:
       source_entity: true
     third_party_settings: {  }
-    weight: 9
+    weight: 10
     region: content
   links:
     settings: {  }
@@ -124,7 +132,6 @@ content:
     weight: 1
     region: content
 hidden:
-  field_case_study: true
   field_industry_solutions: true
   field_mailing_list_form: true
   langcode: true
