@@ -3,8 +3,9 @@
 .solution-case-study-row {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     .solution-case-study-card {
-        width: 23%;
+        width: 23% !important;
         margin: 1% 3%;
         .solution-card-image {
             padding: 5px;
@@ -35,10 +36,10 @@
             }
         }
         @media(max-width: $media-screen-medium) {
-            width: 44%;
+            width: 44% !important;
         }
         @media (max-width: $media-screen-mobile) {
-            width: 97%;
+            width: 97% !important;
             margin-bottom: 40px;
             &:last-child {
                 margin-bottom: 0px;
