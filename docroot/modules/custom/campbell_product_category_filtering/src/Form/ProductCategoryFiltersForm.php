@@ -100,6 +100,7 @@ class ProductCategoryFiltersForm extends FormBase {
 
       $product_query = $this->entityTypeManager->getStorage('node')->getQuery();
       $result = $product_query->condition('type', 'product')
+        ->accessCheck(FALSE)
         ->condition('status', 1)
         ->condition('field_product_classifications', $classifications[0])
         ->execute();
@@ -144,7 +145,7 @@ class ProductCategoryFiltersForm extends FormBase {
       $classification_query = $this->entityTypeManager->getStorage('taxonomy_term')->getQuery();
       $classification_result = $classification_query->condition('vid', 'product_classifications')
         ->condition('field_classification_id', $active_classification_id);
-      $classification_tids = $classification_result->execute();
+      $classification_tids = $classification_result->accessCheck(FALSE)->execute();
       $classification_terms = $this->entityTypeManager->getStorage('taxonomy_term')->loadMultiple($classification_tids);
 
       foreach ($classification_terms as $classification_term) {
