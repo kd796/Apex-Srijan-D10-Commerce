@@ -31,19 +31,19 @@ foreach (_gearwrench_migrations_source_files() as $filename => $file) {
  *
  * Deletes migration source files created during installation.
  */
-/*function gearwrench_migrations_uninstall() {
-$dest_directory = 'public://import/pim_data';
-\Drupal::service('file_system')->deleteRecursive($dest_directory);
-\Drupal::configFactory()->getEditable('migrate_plus.migration_group.gearwrench')->delete();
-\Drupal::configFactory()->getEditable('migrate_plus.migration.gearwrench_product_attributes')->delete();
-\Drupal::configFactory()->getEditable('migrate_plus.migration.gearwrench_product_attribute_values')->delete();
-\Drupal::configFactory()->getEditable('migrate_plus.migration.gearwrench_product_classifications_level_one')->delete();
-\Drupal::configFactory()->getEditable('migrate_plus.migration.gearwrench_product_classifications_level_two')->delete();
-\Drupal::configFactory()->getEditable('migrate_plus.migration.gearwrench_product_classifications_level_three')->delete();
-\Drupal::configFactory()->getEditable('migrate_plus.migration.gearwrench_products')->delete();
-\Drupal::configFactory()->getEditable('migrate_plus.migration.gearwrench_product_sets')->delete();
-\Drupal::configFactory()->getEditable('migrate_plus.migration.gearwrench_product_category_pages')->delete();
-}*/
+// Function gearwrench_migrations_uninstall() {
+// $dest_directory = 'public://import/pim_data';
+// \Drupal::service('file_system')->deleteRecursive($dest_directory);
+// \Drupal::configFactory()->getEditable('migrate_plus.migration_group.gearwrench')->delete();
+// \Drupal::configFactory()->getEditable('migrate_plus.migration.gearwrench_product_attributes')->delete();
+// \Drupal::configFactory()->getEditable('migrate_plus.migration.gearwrench_product_attribute_values')->delete();
+// \Drupal::configFactory()->getEditable('migrate_plus.migration.gearwrench_product_classifications_level_one')->delete();
+// \Drupal::configFactory()->getEditable('migrate_plus.migration.gearwrench_product_classifications_level_two')->delete();
+// \Drupal::configFactory()->getEditable('migrate_plus.migration.gearwrench_product_classifications_level_three')->delete();
+// \Drupal::configFactory()->getEditable('migrate_plus.migration.gearwrench_products')->delete();
+// \Drupal::configFactory()->getEditable('migrate_plus.migration.gearwrench_product_sets')->delete();
+// \Drupal::configFactory()->getEditable('migrate_plus.migration.gearwrench_product_category_pages')->delete();
+// }
 
 /**
  * Get a list of import source files.
@@ -51,32 +51,29 @@ $dest_directory = 'public://import/pim_data';
  * @return array
  *   Import source files.
  */
-/*function _gearwrench_migrations_source_files() {
-$dirname = drupal_get_path('module', 'gearwrench_migrations')
-. '/import/pim_data';
-return \Drupal::service('file_system')
-->scanDirectory($dirname, '/.*//*', [
-'recurse' => FALSE,
-'key' => 'filename',
-]);
-}*/
+// Function _gearwrench_migrations_source_files() {
+// $dirname = drupal_get_path('module', 'gearwrench_migrations')
+// . '/import/pim_data';
+// return \Drupal::service('file_system')
+// ->scanDirectory($dirname, '/.*/', [
+// 'recurse' => FALSE,
+// 'key' => 'filename',
+// ]);
+// }.
 
 /**
  * Imports the latest update from the PIM.
  */
-/*function gearwrench_migrations_update_8001(&$sandbox) {
-$dirname = drupal_get_path('module', 'gearwrench_migrations') .
-'/import/pim-dump/10-29-2021';
-
-$source_files = \Drupal::service('file_system')
-->scanDirectory($dirname, '/.*//*', [
-'recurse' => FALSE,
-'key' => 'filename',
-]);
-
-if (is_array($source_files)) {
-$source_files = $source_files[0];
-}
-
-FileOperations::clearDestinationAndPullInNew($source_files);
-}*/
+// Function gearwrench_migrations_update_8001(&$sandbox) {
+// $dirname = drupal_get_path('module', 'gearwrench_migrations') .
+// '/import/pim-dump/10-29-2021';.
+// $source_files = \Drupal::service('file_system')
+// ->scanDirectory($dirname, '/.*/', [
+// 'recurse' => FALSE,
+// 'key' => 'filename',
+// ]);
+// If (is_array($source_files)) {
+// $source_files = $source_files[0];
+// }.
+// FileOperations::clearDestinationAndPullInNew($source_files);
+// }
