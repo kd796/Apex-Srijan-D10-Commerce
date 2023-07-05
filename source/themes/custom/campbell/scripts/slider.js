@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.slider = {
@@ -36,4 +36,4 @@
       /* end */
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, 'once');

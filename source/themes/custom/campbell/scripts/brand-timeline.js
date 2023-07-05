@@ -1,4 +1,4 @@
-(function ($) {
+(function ($, Drupal, once) {
   'use strict';
   Drupal.behaviors.mySliderBehavior = {
     attach: function (context, settings) {
@@ -189,4 +189,4 @@
       });
     }
   };
-})(jQuery);
+})(jQuery, Drupal, 'once');
