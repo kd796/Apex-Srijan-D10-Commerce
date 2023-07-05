@@ -1,0 +1,29 @@
+uuid: cec931f4-8fb3-4730-aa97-776a8428d45f
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.hubspot_forms
+  module:
+    - system
+    - views
+  theme:
+    - cleco
+id: views_block__hubspot_forms_hubspot_title_icon
+theme: cleco
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:hubspot_forms-hubspot_title_icon'
+settings:
+  id: 'views_block:hubspot_forms-hubspot_title_icon'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/contact\r\n/kontakt"

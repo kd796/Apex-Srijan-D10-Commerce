@@ -1,0 +1,23 @@
+uuid: 07e8deca-a152-4136-b2f2-497f5157963b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hubspot_form
+    - node.type.hubspot_and_other_forms
+id: node.hubspot_and_other_forms.field_hubspot_form
+field_name: field_hubspot_form
+entity_type: node
+bundle: hubspot_and_other_forms
+label: 'Hubspot Form'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

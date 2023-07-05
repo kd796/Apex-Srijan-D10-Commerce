@@ -1,0 +1,79 @@
+uuid: 9ca768ac-88ac-4b89-89ae-9d2e475b1d57
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.hubspot_and_other_forms.body
+    - field.field.node.hubspot_and_other_forms.field_form_icon
+    - field.field.node.hubspot_and_other_forms.field_form_link
+    - field.field.node.hubspot_and_other_forms.field_hubspot_code
+    - field.field.node.hubspot_and_other_forms.field_hubspot_form
+    - field.field.node.hubspot_and_other_forms.field_not_a_hubspot_form
+    - node.type.hubspot_and_other_forms
+  module:
+    - link
+    - text
+    - user
+id: node.hubspot_and_other_forms.default
+targetEntityType: node
+bundle: hubspot_and_other_forms
+mode: default
+content:
+  field_form_icon:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_form_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_hubspot_code:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_hubspot_form:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_not_a_hubspot_form:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  langcode: true
+  search_api_excerpt: true
+  uuid: true
