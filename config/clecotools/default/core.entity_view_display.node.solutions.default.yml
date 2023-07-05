@@ -10,11 +10,15 @@ dependencies:
     - field.field.node.solutions.field_find_a_distributor
     - field.field.node.solutions.field_forms
     - field.field.node.solutions.field_hero
+    - field.field.node.solutions.field_hubspot_node
+    - field.field.node.solutions.field_industry_solutions
     - field.field.node.solutions.field_mailing_list_form
     - field.field.node.solutions.field_seo
+    - field.field.node.solutions.field_trusted_by_biggest
     - field.field.node.solutions.field_webform
     - node.type.solutions
   module:
+    - block_field
     - entity_reference_revisions
     - metatag
     - user
@@ -45,16 +49,16 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 9
+    weight: 6
     region: content
   field_card:
     type: entity_reference_entity_view
     label: hidden
     settings:
-      view_mode: full
-      link: false
+      view_mode: default
+      link: true
     third_party_settings: {  }
-    weight: 7
+    weight: 8
     region: content
   field_featured_products:
     type: entity_reference_revisions_entity_view
@@ -63,25 +67,16 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 4
+    weight: 5
     region: content
   field_find_a_distributor:
     type: entity_reference_revisions_entity_view
-    label: hidden
+    label: above
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 8
-    region: content
-  field_forms:
-    type: entity_reference_revisions_entity_view
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    weight: 5
+    weight: 9
     region: content
   field_hero:
     type: entity_reference_revisions_entity_view
@@ -99,13 +94,20 @@ content:
     third_party_settings: {  }
     weight: 10
     region: content
+  field_trusted_by_biggest:
+    type: block_field
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
   field_webform:
     type: webform_entity_reference_entity_view
     label: above
     settings:
       source_entity: true
     third_party_settings: {  }
-    weight: 6
+    weight: 7
     region: content
   links:
     settings: {  }
@@ -113,6 +115,10 @@ content:
     weight: 1
     region: content
 hidden:
+  field_forms: true
+  field_hubspot_node: true
+  field_industry_solutions: true
   field_mailing_list_form: true
   langcode: true
   search_api_excerpt: true
+  uuid: true
