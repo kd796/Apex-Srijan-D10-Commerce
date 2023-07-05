@@ -5,3 +5,11 @@ entity.quotation.settings:
     _title: 'Quotation'
   requirements:
     _permission: 'administer quotation'
+
+apex_tools_custom_quotation.quote_submit_page:
+  path: '/quotation-success-page'
+  defaults:
+    _controller: '\Drupal\apex_tools_custom_quotation\Controller\SubmitPageQuote::submitPageData'
+    _title: 'Quotation Submit'
+  requirements:
+    _permission: 'access content'
