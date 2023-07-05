@@ -4,10 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.quotation_order_type.field_add_spec
+    - field.field.paragraph.quotation_order_type.field_applied_or_driving_torque
     - field.field.paragraph.quotation_order_type.field_order_type
     - field.field.paragraph.quotation_order_type.field_quantity
     - field.field.paragraph.quotation_order_type.field_tool_industry
     - paragraphs.paragraphs_type.quotation_order_type
+  module:
+    - double_field
 id: paragraph.quotation_order_type.default
 targetEntityType: paragraph
 bundle: quotation_order_type
@@ -15,11 +18,34 @@ mode: default
 content:
   field_add_spec:
     type: string_textarea
-    weight: 3
+    weight: 4
     region: content
     settings:
       rows: 5
       placeholder: ''
+    third_party_settings: {  }
+  field_applied_or_driving_torque:
+    type: double_field
+    weight: 2
+    region: content
+    settings:
+      first:
+        type: textfield
+        label_display: block
+        size: 30
+        placeholder: ''
+        label: Ok
+        cols: 10
+        rows: 5
+      second:
+        type: select
+        label_display: hidden
+        size: 30
+        placeholder: ''
+        label: Ok
+        cols: 10
+        rows: 5
+      inline: false
     third_party_settings: {  }
   field_order_type:
     type: options_select
@@ -37,7 +63,7 @@ content:
     third_party_settings: {  }
   field_tool_industry:
     type: options_select
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }

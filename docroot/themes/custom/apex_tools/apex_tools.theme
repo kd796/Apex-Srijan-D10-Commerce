@@ -93,7 +93,3 @@ function apex_tools_preprocess_views_view_unformatted(&$vars) {
     $vars['card'] = views_embed_view('hubspot_forms', 'hubspot_code');
   }
 }
-
-function apex_tools_preprocess_entity_print(&$variables) {
-  $variables['content'] = $variables['content'][0][0]['#quotation'];
-}
