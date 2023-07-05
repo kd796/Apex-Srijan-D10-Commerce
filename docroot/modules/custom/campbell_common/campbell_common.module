@@ -47,6 +47,7 @@ function campbell_common_views_pre_view($view, $display_id) {
     // Getting nids with conditions.
     $query = $node_storage->getQuery()
       ->condition('type', 'news')
+      ->accessCheck(FALSE)
       ->condition('field_date', NULL, 'IS NOT NULL')
       ->condition('field_news_type', $display_id == 'campbell_news_release' ?
         'newsrelease' : 'inthenews', '=');
@@ -128,6 +129,7 @@ function campbell_common_node_presave(EntityInterface $entity) {
 
   $parent_nid = \Drupal::entityQuery('node')
     ->condition('field_classification_id', $term_classification_id)
+    ->accessCheck(FALSE)
     ->range(0, 1)
     ->execute();
   if (!$parent_nid) {

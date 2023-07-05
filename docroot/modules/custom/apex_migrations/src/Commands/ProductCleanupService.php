@@ -155,6 +155,7 @@ class ProductCleanupService extends ProductServices {
     // Title is the SKU.
     // SQL: SELECT nid FROM node_field_data WHERE type = 'product' AND title NOT IN ('sku-array').
     $products = \Drupal::entityQuery('node')
+      ->accessCheck(FALSE)
       ->condition('type', 'product')
       ->condition('title', $skus, 'NOT IN')
       ->execute();
