@@ -89,6 +89,9 @@ function apex_tools_custom_quotation_form_alter(&$form, FormStateInterface $form
         ],
       ];
     }
+    if ($multiStep !== null && $multiStep->getCurrentStep() === 2) {
+      $form['actions']['next']['#attributes']['class'][] = "step-three-submit";
+    }
 
     // Adding grid classes for the elements.
     $elementWrapperFields = [
@@ -165,3 +168,4 @@ function apex_tools_custom_quotation_mail($key, &$message, $params) {
     }
   }
 }
+
