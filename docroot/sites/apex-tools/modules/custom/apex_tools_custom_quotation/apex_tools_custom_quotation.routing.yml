@@ -13,3 +13,11 @@ apex_tools_custom_quotation.quote_submit_page:
     _title: 'Quotation Submit'
   requirements:
     _permission: 'access content'
+
+custom_quotation.csqw_admin_settings:
+  path: 'admin/config/development/csqw'
+  defaults:
+    _title: 'CSQW Settings'
+    _form: '\Drupal\apex_tools_custom_quotation\Form\CsqwSettingsForm'
+  requirements:
+    _permission: 'administer'
