@@ -15,7 +15,7 @@ class SubmitPageQuote extends ControllerBase {
   */
   public function submitPageData() {
     $query = \Drupal::request()->query->get('quotation');
-    $file_url = '/print/pdf/quotation/'.$query;
+    $file_url = '/print/view/pdf/csqw/csqw_block?view_args[]='.$query;
     $content['raw_markup'] = array (
       '#type' => 'markup',
       '#markup' =>

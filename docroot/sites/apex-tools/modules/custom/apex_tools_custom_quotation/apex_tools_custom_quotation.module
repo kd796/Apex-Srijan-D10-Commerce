@@ -163,6 +163,5 @@ function apex_tools_custom_quotation_mail($key, &$message, $params) {
     foreach ($message['body'] as $key => $body) {
       $message['body'][$key] = new FormattableMarkup($body, []);
     }
-    $message['attachments'][] = $params['attachments'];
   }
 }

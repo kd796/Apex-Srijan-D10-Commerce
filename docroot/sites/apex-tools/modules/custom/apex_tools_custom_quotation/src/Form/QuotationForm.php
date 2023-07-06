@@ -42,7 +42,7 @@ class QuotationForm extends ContentEntityForm {
     $params['headers']['MIME-Version'] = '1.0';
     $message = '<html><body>';
     $message .= '<p style="font-size:11px;">Please see attached lead information for a new Custom Solution by Apex Fastening.</p>';
-    $message .= '<a href=/print/pdf/quotation/'.$quote_id.'>Download Here!</a>';
+    $message .= '<a href=/print/view/pdf/csqw/csqw_block?view_args[]='.$quote_id.'>Download Here!</a>';
     $message .= '</body></html>';
     $params = [
       'subject' => 'A New Apex Custom Solutions Lead Enclosed.',
@@ -53,6 +53,57 @@ class QuotationForm extends ContentEntityForm {
     $send = true;
     $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
 
+    $s_request = $this->salseforceRequest($entity);
+
     $form_state->setRedirect('apex_tools_custom_quotation.quote_submit_page', ['quotation' => $quote_id]);
+  }
+
+
+  /**
+   * {@inheritdoc}
+   */
+  public function salseforceRequest($entity) {
+
+    $config = \Drupal::config('csqw_config.admin_settings');
+    $salseforce_url = $config->get('salesforce_url');
+
+    $parameters = [
+      'oid' => $config->get('salesforce_oid'),
+      'debug' => 1,
+      'debugEmail' => $config->get('salesforce_debugEmail'),
+      'first_name' => $entity->get('first_name')->getValue()[0]['value'],
+      'last_name' => $entity->get('last_name')->getValue()[0]['value'],
+      'email' => $entity->get('email_address')->getValue()[0]['value'],
+      'company' => $entity->get('company_name')->getValue()[0]['value'],
+      'city' => $entity->get('field_city')->getValue()[0]['value'],
+      'state' => $entity->get('field_state_text')->getValue()[0]['value'],
+    ];
+
+    foreach ($parameters as $key => $value) {
+      $params[] = stripslashes($key)."=".stripslashes($value);
+     }
+
+     $query_string = join("&", $params);
+
+
+  // create a new cURL resource
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, $salseforce_url);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $query_string);
+
+   //Set some settings that make it all work :)
+  curl_setopt($ch, CURLOPT_HEADER, FALSE);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, FALSE);
+  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+  //Execute SalesForce web to lead PHP cURL
+  $result = curl_exec($ch);
+
+  //close cURL connection
+  curl_close($ch);
+
+  return;
+
   }
 }
