@@ -7,17 +7,20 @@
 
 use Drupal\Core\Render\Element;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Component\Render\FormattableMarkup;
 
 /**
  * Implements hook_theme().
  */
 function apex_tools_custom_quotation_theme($existing, $type, $theme, $path) {
-  return [
-    'quotation' => [
+  $theme = [
+     'quotation' => [
+      'path' => $path . '/templates',
+      'template'  => 'quotation',
       'render element' => 'elements',
-      'render element' => 'form',
     ],
   ];
+  return $theme;
 }
 
 /**
@@ -142,4 +145,20 @@ function apex_tools_custom_quotation_theme_suggestions_form_alter(array &$sugges
     $suggestions[] = 'form__custom_quotation';
   }
   return $suggestions;
+}
+
+function apex_tools_custom_quotation_mail($key, &$message, $params) {
+  $options = array(
+    'langcode' => $message['langcode'],
+  );
+  if($key == 'cust_solution_mail') {
+    $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+    $message['from'] = \Drupal::config('system.site')->get('mail');
+    $message['subject'] = $params['subject'];
+    $message['body'][] = $params['body'];
+    foreach ($message['body'] as $key => $body) {
+      $message['body'][$key] = new FormattableMarkup($body, []);
+    }
+    $message['attachments'][] = $params['attachments'];
+  }
 }

@@ -147,6 +147,7 @@
             align-items: center;
             justify-content: center;
             .form-item {
+                min-width: 17rem;
                 label {
                     display: none;
                 }
@@ -154,6 +155,11 @@
             .form-actions {
                 margin-top: 0;
             }
+        }
+    }
+    .button:not(.button--simple) {
+        &:not(.button--small) {
+            min-width: 11rem;
         }
     }
     .no-result {
