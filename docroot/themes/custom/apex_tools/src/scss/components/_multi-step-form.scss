@@ -1184,3 +1184,57 @@ div.notice--info {
     }
   }
 }
+
+// Style for step five.
+
+.submitted-content {
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  h2 {
+    font-size: 1.6em;
+    text-align: center;
+    margin: 1em auto;
+    background: transparent url(../img/check-circle.svg) left center no-repeat;
+    background-size: 40px 40px;
+    padding-left: 55px;
+    width: fit-content;
+
+    @media only screen and (max-width: $media-screen-medium) {
+      text-align: left;
+      font-size: 1em;
+    }
+  }
+
+  p {
+    max-width: 100%;
+    a {
+      color: $color-orange;
+    }
+  }
+
+  .download {
+    text-align: center;
+
+    a{
+      font-size: 1.1em;
+      padding: 0.75em 2em;
+      margin-top: 0.75em;
+      display: inline-block;
+      color: #fff;
+      font-weight: 900;
+      text-transform: uppercase;
+      text-align: center;
+      cursor: pointer;
+      background: $color-orange url(../img/download-white.png) left center no-repeat;
+      background-size: 20px 20px;
+      background-position: 1.8rem;
+      padding-left: 4rem;
+
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
