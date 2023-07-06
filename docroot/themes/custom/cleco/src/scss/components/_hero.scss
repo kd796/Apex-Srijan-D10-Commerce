@@ -82,8 +82,10 @@ $hero-height-map: (
 .hero-video-banner-text {
   display: none;
   background-color: $color-orange;
-  padding: 20px;
-  color: $color-white; 
+  color: $color-off-black; 
+  padding: 10px 0px;
+  font-size: 2.375rem;
+  line-height: 2.576rem;
   font-family: $font;
   font-weight: 700;
   text-transform: uppercase;
@@ -91,9 +93,17 @@ $hero-height-map: (
    letter-spacing: 1px;
    word-spacing: 2px;
    margin-bottom: 0em !important;
+   &.section {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+   }
   }
   br {
     display: none;
+  }
+  @media (max-width:$breakpoint-downloads) {
+    font-size: 1.274rem;
+    line-height: 1.575rem;
   }
 }
 .dispblock {
