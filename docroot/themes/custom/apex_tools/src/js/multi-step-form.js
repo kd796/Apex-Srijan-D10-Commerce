@@ -48,15 +48,15 @@
       
         // Error handling.
         if (allFieldsFilled) {
-          $('#edit-actions button').off('click'); // Remove the previous event handler
-          $('#edit-actions button').click(); // Trigger the button click event
+          $('#edit-actions button.step-three-submit').off('click'); // Remove the previous event handler
+          $('#edit-actions button.step-three-submit').click(); // Trigger the button click event
         } else {
           var errorMessage = 'Please fill in all required fields: ' + emptyFields.join(', ');
           alert(errorMessage);
         }
       }
       
-      $('#edit-actions button').once('validation').click(validateForm);
+      $('#edit-actions button.step-three-submit').once('validation').click(validateForm);
 
       function dynamicChanges() {
         $('.field--name-field-screwdriver-style input[type="radio"]').once('removeAttributeScrewdriver').on('change', function () {
@@ -178,7 +178,7 @@
       }
       
       // Rebind the click event handler to the button after dynamically adding required fields
-      $('#edit-actions button').off('click').click(validateForm);
+      $('#edit-actions button.step-three-submit').off('click').click(validateForm);
 
       //Adding class to hide collapse option.
       $('.paragraphs-icon-button-collapse').closest('.paragraph-top').addClass('collapse-wrapper'); 
@@ -206,9 +206,9 @@
       dynamicChanges();
 
       $(document).ajaxComplete(function(){
-        $('#edit-actions button').once('validation').click(validateForm);
+        $('#edit-actions button.step-three-submit').once('validation').click(validateForm);
         dynamicChanges();
-        $('#edit-actions button').off('click').click(validateForm);
+        $('#edit-actions button.step-three-submit').off('click').click(validateForm);
 
         $('#edit-field-custom-drive-tool-type').once('triggerAdd').on('change', function () {
           var selectedValue = $(this).val();
