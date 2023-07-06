@@ -136,6 +136,10 @@ function apex_tools_custom_quotation_form_alter(&$form, FormStateInterface $form
     // Adding form element warpper for buttons.
     $form['actions']['submit']['#prefix'] = '<div class=" grid-12">';
     $form['actions']['submit']['#suffix'] = '</div>';
+
+    $form['#prefix'] = '<div class="section main multi-form">';
+    $form['#suffix'] = '</div>';
+    $form['#attributes']['class'][] = 'sel-form';
   }
 }
 
