@@ -36,7 +36,7 @@ class QuotationForm extends ContentEntityForm {
     $mailManager = \Drupal::service('plugin.manager.mail');
     $module = 'apex_tools_custom_quotation';
     $key = 'cust_solution_mail';
-    $to = 'supriya.deshpande@srijan.net';
+    $to = $entity->get('email_address')->getValue()[0]['value'];
 
     $params['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
     $params['headers']['MIME-Version'] = '1.0';
