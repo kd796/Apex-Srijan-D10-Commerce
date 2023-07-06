@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.campbell = {
@@ -129,4 +129,4 @@
       /* end */
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, 'once');

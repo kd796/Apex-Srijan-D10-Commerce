@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.productdetail = {
@@ -78,4 +78,4 @@
       // end
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, 'once');
