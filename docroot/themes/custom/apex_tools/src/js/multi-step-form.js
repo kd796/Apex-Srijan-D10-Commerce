@@ -6,13 +6,12 @@
       // Grouping the radio buttons.
       $('.field--name-field-screwdriver-style input[type="radio"]').attr('name', 'screwdriver-style');
       $('.field--name-field-bit-holder-styles input[type="radio"]').attr('name', 'bit-holder-styles');
-      $('.field--name-field-drive-type input[type="radio"]').attr('name', 'bit-holder-styles');
-      $('.field--name-field-socket-type input[type="radio"]').attr('name', 'bit-holder-styles');
-      $('.field--name-field-broach-opening input[type="radio"]').attr('name', 'bit-holder-styles');
-      $('.field--name-field-magnetic-label input[type="radio"]').attr('name', 'bit-holder-styles');
-      $('.field--name-field-drive-configuration input[type="radio"]').attr('name', 'bit-holder-styles');
-      $('.field--name-field-drive-configuration-label input[type="radio"]').attr('name', 'bit-holder-styles');
-      $('.field--name-field-female-ref input[type="radio"]').attr('name', 'bit-holder-styles');
+      $('.field--name-field-drive-type input[type="radio"]').attr('name', 'drive-type');
+      $('.field--name-field-socket-type input[type="radio"]').attr('name', 'socket-type');
+      $('.field--name-field-broach-opening input[type="radio"]').attr('name', 'broach-opening');
+      $('.field--name-field-magnetic-label input[type="radio"]').attr('name', 'magnetic-label');
+      $('.field--name-field-drive-configuration input[type="radio"]').attr('name', 'drive-configuration');
+      $('.field--name-field-female-ref input[type="radio"]').attr('name', 'female-ref');
       
       // Trigger back button.
       $('.multi-steps-label').once('multi-steps-label').on('click', '.step-label', function (e) {
@@ -24,7 +23,7 @@
       });
 
       // removing required for which are not showing.
-      $('#quotation-add-form input[required], #quotation-add-form select[required], #quotation-add-form textarea[required]').each(function() {
+      $('#edit-field-custom-quotation-worksheet-wrapper input[required], #edit-field-custom-quotation-worksheet-wrapper select[required], #edit-field-custom-quotation-worksheet-wrapper textarea[required]').each(function() {
         var field = $(this);
         if (field.is(':hidden')) {
           field.removeAttr('required');
@@ -39,7 +38,7 @@
         var allFieldsFilled = true;
         var emptyFields = [];
       
-        $('#quotation-add-form input[required], #quotation-add-form select[required], #quotation-add-form textarea[required]').each(function() {
+        $('#edit-field-custom-quotation-worksheet-wrapper input[required], #edit-field-custom-quotation-worksheet-wrapper select[required], #edit-field-custom-quotation-worksheet-wrapper textarea[required]').each(function() {
           if ($(this).val() === '' || $(this).val() === 'null' || $(this).val() === '_none') {
             allFieldsFilled = false;
             var fieldNames = $(this).closest('div').find('label').text();
@@ -137,17 +136,6 @@
           $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
         });
 
-        $('.field--name-field-drive-configuration-label input[type="radio"]').once('removeAttributeBitHolder').on('change', function () {
-          //Remove the required field.
-          $('.field--name-field-drive-configuration-label input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
-          $('.field--name-field-drive-configuration-label input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
-          $('.field--name-field-drive-configuration-label input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', false);
-          // set Required field.
-          $(this).closest('.field--widget-options-buttons').siblings('div').find('label').addClass('form-required');
-          $(this).closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', true);
-          $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
-        });
-
         $('.field--name-field-female-ref input[type="radio"]').once('removeAttributeBitHolder').on('change', function () {
           //Remove the required field.
           $('.field--name-field-female-ref input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
@@ -157,6 +145,35 @@
           $(this).closest('.field--widget-options-buttons').siblings('div').find('label').addClass('form-required');
           $(this).closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', true);
           $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
+        });
+        // hide and show fields
+        $('[data-drupal-selector$="subform-field-screwdriver-0-subform"] .field--name-field-1-part-type .fieldset-wrapper input[type="radio"]').on('change', function () {
+          $(this).closest('.field--name-field-1-part-type').siblings('div').addClass('show-option');
+          var seletedOption = $(this).val();
+          if (seletedOption === 'bit') {
+            $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-5-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').addClass('hide-options');
+            $('[data-drupal-selector$="subform-field-screwdriver-1-subform"], [data-drupal-selector$="subform-field-screwdriver-3-subform"]').removeClass('hide-options');
+          } else {
+            $('[data-drupal-selector$="subform-field-screwdriver-1-subform"], [data-drupal-selector$="subform-field-screwdriver-3-subform"]').addClass('hide-options');
+            $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-5-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').removeClass('hide-options');
+          }
+        });
+        $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-cover-requirements input[type="radio"]').on('change', function () {
+          var seletedOption = $(this).val();
+          if (seletedOption === '1') {
+            $('[data-drupal-selector$="subform-field-screwdriver-7-subform-field-components"]').removeClass('hide-options');
+          } else {
+            $('[data-drupal-selector$="subform-field-screwdriver-7-subform-field-components"]').addClass('hide-options');
+          }
+        });
+
+        $('[data-drupal-selector$="subform-field-nylon-covers-features-wrapper"] .field--widget-options-buttons input[type="radio"]').on('change', function () {
+          var seletedOption = $(this).val();
+          if (seletedOption === 'nylon_yes') {
+            $('[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-cover-features-radio-wrapper"]').removeClass('hide-options');
+          } else {
+            $('[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-cover-features-radio-wrapper"]').addClass('hide-options');
+          }
         });
       }
       
