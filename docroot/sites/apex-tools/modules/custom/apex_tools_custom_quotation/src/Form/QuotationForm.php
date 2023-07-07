@@ -64,7 +64,7 @@ class QuotationForm extends ContentEntityForm {
    */
   public function salseforceRequest($entity) {
 
-    $config = \Drupal::config('csqw_config.admin_settings');
+    $config = \Drupal::config('apex_tools_custom_quotation.csqw_settings');
     $salseforce_url = $config->get('salesforce_url');
 
     $parameters = [

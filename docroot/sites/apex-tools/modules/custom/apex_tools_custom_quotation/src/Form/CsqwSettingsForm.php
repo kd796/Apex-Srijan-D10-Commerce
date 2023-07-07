@@ -44,7 +44,7 @@ class CsqwSettingsForm extends FormBase {
    * {@inheritdoc}
    */
   protected function getConfig(string $name) {
-    $value = $this->config('csqw_config.admin_settings')->get($name);
+    $value = $this->config('apex_tools_custom_quotation.csqw_settings')->get($name);
     return $value ?? NULL;
   }
 
@@ -57,7 +57,7 @@ class CsqwSettingsForm extends FormBase {
    *   Value to be saved.
    */
   protected function setConfig(string $name, string $value) {
-    $this->configFactory->getEditable('csqw_config.admin_settings')->set($name, $value)->save();
+    $this->configFactory->getEditable('apex_tools_custom_quotation.csqw_settings')->set($name, $value)->save();
   }
 
   /**
@@ -85,7 +85,7 @@ class CsqwSettingsForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $config = $this->config('csqw_config.admin_settings');
+    $config = $this->config('apex_tools_custom_quotation.csqw_settings');
 
     $form['csqwsettings'] = [
       '#type' => 'fieldset',
