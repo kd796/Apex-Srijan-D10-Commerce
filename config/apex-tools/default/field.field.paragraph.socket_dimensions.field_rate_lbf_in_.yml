@@ -1,21 +1,19 @@
-uuid: ae9fc502-8e89-4c82-900e-7a6f08aacd36
+uuid: 4576695a-d03d-4130-a073-28304f638770
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_k_spring_force
+    - field.storage.paragraph.field_rate_lbf_in_
     - paragraphs.paragraphs_type.socket_dimensions
-  module:
-    - physical
-id: paragraph.socket_dimensions.field_k_spring_force
-field_name: field_k_spring_force
+id: paragraph.socket_dimensions.field_rate_lbf_in_
+field_name: field_rate_lbf_in_
 entity_type: paragraph
 bundle: socket_dimensions
-label: 'K. Spring Force'
+label: Rate(lbf/in)
 description: ''
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: physical_measurement
+field_type: string

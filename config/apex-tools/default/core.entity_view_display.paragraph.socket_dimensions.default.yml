@@ -9,12 +9,15 @@ dependencies:
     - field.field.paragraph.socket_dimensions.field_d_taper_or_shoulder_length
     - field.field.paragraph.socket_dimensions.field_e_bolt_clearance_depth
     - field.field.paragraph.socket_dimensions.field_f_broach_depth
+    - field.field.paragraph.socket_dimensions.field_full_compressed
     - field.field.paragraph.socket_dimensions.field_g_nose_end_diameter
     - field.field.paragraph.socket_dimensions.field_h_broach_opening
     - field.field.paragraph.socket_dimensions.field_i_torx_r_size
     - field.field.paragraph.socket_dimensions.field_j_mag_depth
-    - field.field.paragraph.socket_dimensions.field_k_spring_force
+    - field.field.paragraph.socket_dimensions.field_k_spring_force_rate_
     - field.field.paragraph.socket_dimensions.field_l_barbell_style_dims
+    - field.field.paragraph.socket_dimensions.field_rate_lbf_in_
+    - field.field.paragraph.socket_dimensions.field_rest
     - paragraphs.paragraphs_type.socket_dimensions
   module:
     - options
@@ -66,6 +69,14 @@ content:
     third_party_settings: {  }
     weight: 5
     region: content
+  field_full_compressed:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 12
+    region: content
   field_g_nose_end_diameter:
     type: physical_measurement_default
     label: above
@@ -94,8 +105,8 @@ content:
     third_party_settings: {  }
     weight: 9
     region: content
-  field_k_spring_force:
-    type: physical_measurement_default
+  field_k_spring_force_rate_:
+    type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -105,6 +116,22 @@ content:
     type: physical_measurement_default
     label: above
     settings: {  }
+    third_party_settings: {  }
+    weight: 14
+    region: content
+  field_rate_lbf_in_:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 13
+    region: content
+  field_rest:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
     weight: 11
     region: content

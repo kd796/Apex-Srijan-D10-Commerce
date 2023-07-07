@@ -1,17 +1,18 @@
-uuid: 88d2e3dd-8f19-4cd2-b42a-c57a5ed9a5e6
+uuid: cccccccc-30dd-4eab-b77f-d73e605958d2
 langcode: en
 status: true
 dependencies:
   module:
     - paragraphs
-    - physical
-id: paragraph.field_k_spring_force
-field_name: field_k_spring_force
+id: paragraph.field_full_compressed
+field_name: field_full_compressed
 entity_type: paragraph
-type: physical_measurement
+type: string
 settings:
-  measurement_type: length
-module: physical
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
 locked: false
 cardinality: 1
 translatable: true
