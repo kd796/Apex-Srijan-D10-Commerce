@@ -36,26 +36,51 @@ class QuotationForm extends ContentEntityForm {
     $mailManager = \Drupal::service('plugin.manager.mail');
     $module = 'apex_tools_custom_quotation';
     $key = 'cust_solution_mail';
-    $to = $entity->get('email_address')->getValue()[0]['value'];
 
+    // Get mail id to send the mail.
+    $config = \Drupal::config('apex_tools_custom_quotation.csqw_settings');
+    $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+    if ($language == 'en') {
+      $to = $config->get('lead_mail_us');
+    }
+    if ($language == 'uk' || $language == 'de') {
+      $to = $config->get('lead_mail_uk_de');
+    }
     $params['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
     $params['headers']['MIME-Version'] = '1.0';
-    $message = '<html><body>';
-    $message .= '<p style="font-size:11px;">Please see attached lead information for a new Custom Solution by Apex Fastening.</p>';
-    $message .= '<a href=/print/view/pdf/csqw/csqw_block?view_args[]='.$quote_id.'>Download Here!</a>';
-    $message .= '</body></html>';
+    $message = 'Please see attached lead information for a new Custom Solution by Apex Fastening.';
     $params = [
       'subject' => 'A New Apex Custom Solutions Lead Enclosed.',
       'body' => $message,
     ];
+    // Generate the PDF.
+    $print_engine = \Drupal::service('plugin.manager.entity_print.print_engine')->createSelectedInstance('pdf');
+    $print_builder = \Drupal::service('entity_print.print_builder');
+    $filename = rand() . $this->entity->label() . '.pdf';
+    $uri = $print_builder->savePrintable(
+      [$entity],
+      $print_engine,
+      'temporary',
+      $filename,
+    );
 
+    $quote_form_file = array(
+      'filepath' => $uri,
+      'filename' => $filename,
+      'filemime' => 'application/pdf'
+    );
+
+    $params['attachments'][] = $quote_form_file;
     $langcode = 'en';
     $send = true;
     $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
 
     $s_request = $this->salseforceRequest($entity);
 
-    $form_state->setRedirect('apex_tools_custom_quotation.quote_submit_page', ['quotation' => $quote_id]);
+    $form_state->setRedirect('apex_tools_custom_quotation.quote_submit_page', [
+      'quotation' => \Drupal::service('file_url_generator')->generateString($uri),
+    ]);
+
   }
 
 
