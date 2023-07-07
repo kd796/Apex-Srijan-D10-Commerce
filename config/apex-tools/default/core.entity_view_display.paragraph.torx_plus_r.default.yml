@@ -3,8 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.torx_plus_r.field_torx
     - field.field.paragraph.torx_plus_r.field_torx_plus_point_size
-    - field.field.paragraph.torx_plus_r.field_torx_plus_r
     - paragraphs.paragraphs_type.torx_plus_r
   module:
     - options
@@ -13,19 +13,22 @@ targetEntityType: paragraph
 bundle: torx_plus_r
 mode: default
 content:
+  field_torx:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
   field_torx_plus_point_size:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
     weight: 0
-    region: content
-  field_torx_plus_r:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 1
     region: content
 hidden:
   entity_print_view_epub: true

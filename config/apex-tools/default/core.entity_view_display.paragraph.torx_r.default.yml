@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.torx_r.field_torx_r
+    - field.field.paragraph.torx_r.field_torx
     - field.field.paragraph.torx_r.field_torx_r_
     - paragraphs.paragraphs_type.torx_r
   module:
@@ -13,12 +13,15 @@ targetEntityType: paragraph
 bundle: torx_r
 mode: default
 content:
-  field_torx_r:
-    type: list_default
+  field_torx:
+    type: boolean
     label: above
-    settings: {  }
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
     third_party_settings: {  }
-    weight: 1
+    weight: 2
     region: content
   field_torx_r_:
     type: list_default
