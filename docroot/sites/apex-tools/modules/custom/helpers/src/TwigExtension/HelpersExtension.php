@@ -386,7 +386,7 @@ class HelpersExtension extends \Twig_Extension
                 '#url'   => $term->toUrl(),
                 '#title' => $term->label()
             ];
-            return render($render);
+            return \Drupal::service('renderer')->render($render);
         }, (array) $value));
     }
 
