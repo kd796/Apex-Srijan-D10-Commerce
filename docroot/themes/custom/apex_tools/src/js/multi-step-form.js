@@ -8,10 +8,8 @@
       $('.field--name-field-bit-holder-styles input[type="radio"]').attr('name', 'bit-holder-styles');
       $('.field--name-field-drive-type input[type="radio"]').attr('name', 'drive-type');
       $('.field--name-field-socket-type input[type="radio"]').attr('name', 'socket-type');
-      $('.field--name-field-broach-opening input[type="radio"]').attr('name', 'broach-opening');
-      $('.field--name-field-magnetic-label input[type="radio"]').attr('name', 'magnetic-label');
-      $('.field--name-field-drive-configuration input[type="radio"]').attr('name', 'drive-configuration');
-      $('.field--name-field-female-ref input[type="radio"]').attr('name', 'female-ref');
+      var femaleMaleDriveType =  $('[data-drupal-selector$="subform-field-female-ref-wrapper"] input[type="radio"], [data-drupal-selector$="subform-field-male-hex-ref-wrapper"] input[type="radio"], [data-drupal-selector$="subform-field-female-square-ref-sh-wrapper"] input[type="radio"]');
+      femaleMaleDriveType.attr('name', 'female-male-drive-type');
       
       // Trigger back button.
       $('.multi-steps-label').once('multi-steps-label').on('click', '.step-label', function (e) {
@@ -103,44 +101,11 @@
           $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
         });
 
-        $('.field--name-field-broach-opening input[type="radio"]').once('removeAttributeBitHolder').on('change', function () {
+        femaleMaleDriveType.once('femaleMaleDriveType').on('change', function () {
           //Remove the required field.
-          $('.field--name-field-broach-opening input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
-          $('.field--name-field-broach-opening input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
-          $('.field--name-field-broach-opening input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', false);
-          // set Required field.
-          $(this).closest('.field--widget-options-buttons').siblings('div').find('label').addClass('form-required');
-          $(this).closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', true);
-          $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
-        });
-
-        $('.field--name-field-magnetic-label input[type="radio"]').once('removeAttributeBitHolder').on('change', function () {
-          //Remove the required field.
-          $('.field--name-field-magnetic-label input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
-          $('.field--name-field-magnetic-label input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
-          $('.field--name-field-magnetic-label input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', false);
-          // set Required field.
-          $(this).closest('.field--widget-options-buttons').siblings('div').find('label').addClass('form-required');
-          $(this).closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', true);
-          $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
-        });
-
-        $('.field--name-field-drive-configuration input[type="radio"]').once('removeAttributeBitHolder').on('change', function () {
-          //Remove the required field.
-          $('.field--name-field-drive-configuration input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
-          $('.field--name-field-drive-configuration input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
-          $('.field--name-field-drive-configuration input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', false);
-          // set Required field.
-          $(this).closest('.field--widget-options-buttons').siblings('div').find('label').addClass('form-required');
-          $(this).closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', true);
-          $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
-        });
-
-        $('.field--name-field-female-ref input[type="radio"]').once('removeAttributeBitHolder').on('change', function () {
-          //Remove the required field.
-          $('.field--name-field-female-ref input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
-          $('.field--name-field-female-ref input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
-          $('.field--name-field-female-ref input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', false);
+          femaleMaleDriveType.closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
+          femaleMaleDriveType.closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
+          femaleMaleDriveType.closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', false);
           // set Required field.
           $(this).closest('.field--widget-options-buttons').siblings('div').find('label').addClass('form-required');
           $(this).closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', true);
@@ -175,6 +140,30 @@
             $('[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-cover-features-radio-wrapper"]').addClass('hide-options');
           }
         });
+      }
+      
+      $('[data-drupal-selector$="subform-field-screwdriver-0-subform"] .field--name-field-1-part-type .fieldset-wrapper input[type="radio"]').closest('.field--name-field-1-part-type').siblings('div').addClass('show-option');
+      var seletedOptionScrewdriver = $('[data-drupal-selector$="subform-field-screwdriver-0-subform"] .field--name-field-1-part-type .fieldset-wrapper input[type="radio"]').val();
+      if (seletedOptionScrewdriver === 'bit') {
+        $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-5-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').addClass('hide-options');
+        $('[data-drupal-selector$="subform-field-screwdriver-1-subform"], [data-drupal-selector$="subform-field-screwdriver-3-subform"]').removeClass('hide-options');
+      } else {
+        $('[data-drupal-selector$="subform-field-screwdriver-1-subform"], [data-drupal-selector$="subform-field-screwdriver-3-subform"]').addClass('hide-options');
+        $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-5-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').removeClass('hide-options');
+      }
+
+      var seletedOptionScrewdriver7 = $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-cover-requirements input[type="radio"]').val();
+      if (seletedOptionScrewdriver7 === '1') {
+        $('[data-drupal-selector$="subform-field-screwdriver-7-subform-field-components"]').removeClass('hide-options');
+      } else {
+        $('[data-drupal-selector$="subform-field-screwdriver-7-subform-field-components"]').addClass('hide-options');
+      }
+
+      var seletedOptionNylon = $('[data-drupal-selector$="subform-field-nylon-covers-features-wrapper"] .field--widget-options-buttons input[type="radio"]').val();
+      if (seletedOptionNylon === 'nylon_yes') {
+        $('[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-cover-features-radio-wrapper"]').removeClass('hide-options');
+      } else {
+        $('[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-cover-features-radio-wrapper"]').addClass('hide-options');
       }
       
       // Rebind the click event handler to the button after dynamically adding required fields

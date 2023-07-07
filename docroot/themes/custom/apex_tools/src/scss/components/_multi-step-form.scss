@@ -170,6 +170,22 @@
         button {
           margin: 1rem 0;
           min-width: 10rem;
+          width: 10rem;
+        }
+      }
+    }
+
+    & > div {
+      & > div {
+        opacity: unset !important;
+  
+        .js-form-type-managed-file {
+          flex-direction: column;
+          align-items: baseline;
+          .form-managed-file {
+            display: flex;
+            flex-direction: column;
+          }
         }
       }
     }
@@ -666,10 +682,32 @@
   button {
     margin: 1rem 0;
     min-width: 10rem;
+    width: 10rem;
   }
 
   .form-item {
     display: unset !important;
+  }
+
+  & > div {
+    & > div {
+      opacity: unset !important;
+
+      .js-form-type-managed-file {
+        flex-direction: column;
+        align-items: baseline;
+        .form-managed-file {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}
+
+.field--type-file {
+  & > div {
+    opacity: 1 !important;
   }
 }
 
@@ -1114,6 +1152,18 @@ div.notice--info {
   }
 }
 
+[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-nylon-requirements-yes-no-wrapper"] {
+  .fieldset-wrapper {
+    & > div {
+      .form-item {
+        &:nth-child(2) {
+          width: 200px;
+        }
+      }
+    }
+  }
+}
+
 [data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-cover-features-radio-wrapper"] {
   &.hide-options {
     display: none;
@@ -1140,7 +1190,28 @@ div.notice--info {
   }
 }
 
+[data-drupal-selector$="subform-field-female-ref-wrapper"],
+[data-drupal-selector$="subform-field-male-hex-ref-wrapper"] {
+  .paragraphs-tabs-wrapper {
+    & > .form-item {
+      & > table {
+        border-bottom: 0;
+      }
+    }
+  }
+}
 
+[data-drupal-selector$="subform-field-female-ref-wrapper"],
+[data-drupal-selector$="subform-field-male-hex-ref-wrapper"],
+[data-drupal-selector$="subform-field-female-square-ref-sh-wrapper"],
+[data-drupal-selector$="subform-field-optional-features-ref-wrapper"] {
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+}
 
 [data-drupal-selector$="subform-field-dimensions-ref-wrapper"] {
   .field--widget-options-select {
@@ -1194,6 +1265,14 @@ div.notice--info {
     width: 33.33% !important;
     @media only screen and (max-width: $media-screen-medium) {
       width: 100%;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-applied-or-driving-torque-wrapper"] {
+  .form-item {
+    label {
+      display: unset !important;
     }
   }
 }
