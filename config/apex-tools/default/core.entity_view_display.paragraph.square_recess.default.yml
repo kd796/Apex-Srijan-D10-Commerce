@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.square_recess.field_recess_point_size
-    - field.field.paragraph.square_recess.field_square_recess
+    - field.field.paragraph.square_recess.field_torx
     - paragraphs.paragraphs_type.square_recess
   module:
     - options
@@ -20,12 +20,15 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_square_recess:
-    type: list_default
+  field_torx:
+    type: boolean
     label: above
-    settings: {  }
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
     third_party_settings: {  }
-    weight: 0
+    weight: 2
     region: content
 hidden:
   entity_print_view_epub: true

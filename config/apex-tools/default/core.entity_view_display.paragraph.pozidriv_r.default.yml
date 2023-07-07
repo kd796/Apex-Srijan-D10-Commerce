@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.pozidriv_r.field_pozidriv_point_size
-    - field.field.paragraph.pozidriv_r.field_pozidriv_r
+    - field.field.paragraph.pozidriv_r.field_torx
     - paragraphs.paragraphs_type.pozidriv_r
   module:
     - options
@@ -20,12 +20,15 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_pozidriv_r:
-    type: list_default
+  field_torx:
+    type: boolean
     label: above
-    settings: {  }
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
     third_party_settings: {  }
-    weight: 0
+    weight: 2
     region: content
 hidden:
   entity_print_view_epub: true
