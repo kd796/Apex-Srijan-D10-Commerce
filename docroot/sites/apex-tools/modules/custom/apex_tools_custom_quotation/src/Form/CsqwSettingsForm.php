@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 * @package Drupal\apex_tools_custom_quotation\Form
 */
 class CsqwSettingsForm extends FormBase {
-    
+
   /**
    * Constructs a PimFileUpdateForm object.
    *
@@ -39,7 +39,7 @@ class CsqwSettingsForm extends FormBase {
   public function getFormId() {
     return 'csqw_admin_settings_form';
   }
-    
+
   /**
    * {@inheritdoc}
    */
@@ -80,7 +80,7 @@ class CsqwSettingsForm extends FormBase {
 
     return $value;
   }
-  
+
   /**
    * {@inheritdoc}
    */
@@ -94,26 +94,40 @@ class CsqwSettingsForm extends FormBase {
     $form['csqwsettings']['salesforce_oid'] = [
       '#type' => 'textfield',
       '#title' => t('OID:'),
-      '#required' => TRUE,
+      '#required' => FALSE,
       '#value' => $this->getValueOrConfig('salesforce_oid', $form_state, ''),
     ];
     $form['csqwsettings']['salesforce_return_url'] = [
       '#type' => 'textfield',
       '#title' => t('Return URL:'),
-      '#required' => TRUE,
+      '#required' => FALSE,
       '#value' => $this->getValueOrConfig('salesforce_return_url', $form_state, ''),
     ];
     $form['csqwsettings']['salesforce_debugEmail'] = [
       '#type' => 'email',
       '#title' => t('Debug Email ID:'),
-      '#required' => TRUE,
+      '#required' => FALSE,
       '#value' => $this->getValueOrConfig('salesforce_debugEmail', $form_state, ''),
     ];
     $form['csqwsettings']['salesforce_url'] = [
       '#type' => 'textfield',
       '#title' => t('Salseforce URL:'),
-      '#required' => TRUE,
+      '#required' => FALSE,
       '#value' => $this->getValueOrConfig('salesforce_url', $form_state, ''),
+    ];
+
+    $form['csqwsettings']['lead_mail_us'] = [
+      '#type' => 'textfield',
+      '#title' => t('Lead mail ID (US):'),
+      '#required' => FALSE,
+      '#value' => $this->getValueOrConfig('lead_mail_us', $form_state, ''),
+    ];
+
+    $form['csqwsettings']['lead_mail_uk_de'] = [
+      '#type' => 'textfield',
+      '#title' => t('Lead mail ID (UK & DE):'),
+      '#required' => FALSE,
+      '#value' => $this->getValueOrConfig('lead_mail_uk_de', $form_state, ''),
     ];
 
     $form['actions']['#type'] = 'actions';
@@ -122,17 +136,17 @@ class CsqwSettingsForm extends FormBase {
       '#value' => $this->t('Save'),
       '#button_type' => 'primary',
     ];
-    
+
     return $form;
   }
-    
+
   /**
     * {@inheritdoc}
     */
   public function submitForm(array &$form, FormStateInterface $form_state) {
 
     $values = $form_state->getValues();
-    
+
     if (!empty($values['salesforce_oid'])) {
       $this->setConfig('salesforce_oid', $values['salesforce_oid']);
     }
@@ -145,8 +159,8 @@ class CsqwSettingsForm extends FormBase {
     if (!empty($values['salesforce_url'])) {
       $this->setConfig('salesforce_url', $values['salesforce_url']);
     }
-    
+
     \Drupal::messenger()->addStatus('Settings saved.');
   }
-    
+
 }

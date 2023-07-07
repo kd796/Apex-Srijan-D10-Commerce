@@ -14,8 +14,133 @@
  * @see template_preprocess_quotation()
  */
 #}
-<article{{ attributes }}>
-  {% if content %}
-    {{- content -}}
-  {% endif %}
-</article>
+<div style="padding: 50px; color: #6d6e70;">
+  <div style="text-align: center;">
+    <p style="font-size: 14px">{{'Custom Solutions Quotation Worksheet' | t }}</p>
+  </div>
+  <div>
+    <div>
+      <ul style="padding: 0; list-style-type: none;">
+        {% if content %}
+          {#{{- content -}}#}
+            <div style="background-color: #E5E5E5;color: #383739;padding: 12px;font-weight: bold;text-align: center; margin-bottom: 20px;">{{'BUSINESS INFORMATION' | t}}</div>
+            {% if content.first_name.0 is not empty %}
+            <li>
+              <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'First Name' }}</span>
+              <span style="font-size:16px;">{{ content.first_name.0 }}</span>
+            </li>
+            {% endif %}
+            {% if content.last_name.0 is not empty %}
+            <li>
+              <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Last Name' }}</span>
+              <span style="font-size:16px;">{{ content.last_name.0 }}</span>
+            </li>
+            {% endif %}
+            {% if content.company_name.0 is not empty %}
+            <li>
+              <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Company Name' }}</span>
+              <span style="font-size:16px;">{{ content.company_name.0 }}</span>
+            </li>
+            {% endif %}
+            {% if content.email_address.0 is not empty %}
+            <li>
+              <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Email Address' }}</span>
+              <span style="font-size:16px;">{{ content.email_address.0 }}</span>
+            </li>
+            {% endif %}
+            {% if content.phone_number.0 is not empty %}
+            <li>
+              <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Phone Number' }}</span>
+              <span style="font-size:16px;">{{ content.phone_number.0 }}</span>
+            </li>
+            {% endif %}
+            {% if content.field_address.0 is not empty %}
+            <li>
+              <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Address' }}</span>
+              <span style="font-size:16px;">{{ content.field_address.0 }}</span>
+            </li>
+            {% endif %}
+            {% if content.field_city.0 is not empty %}
+            <li>
+              <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'City' }}</span>
+              <span style="font-size:16px;">{{ content.field_city.0 }}</span>
+            </li>
+            {% endif %}
+            {% if content.field_country.0 is not empty %}
+            <li>
+              <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Country' }}</span>
+              <span style="font-size:16px;">{{ content.field_country.0 }}</span>
+            </li>
+            {% endif %}
+            {% if content.field_state.0 is not empty %}
+            <li>
+              <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'State' }}</span>
+              <span style="font-size:16px;">{{ content.field_state.0 }}</span>
+            </li>
+            {% endif %}
+            {% if content.field_zip_code.0 is not empty %}
+            <li>
+              <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Zip Code' }}</span>
+              <span style="font-size:16px;">{{ content.field_zip_code.0 }}</span>
+            </li>
+            {% endif %}
+            {% if content.field_account_number.0 is not empty %}
+            <li>
+              <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Account Number' }}</span>
+              <span style="font-size:16px;">{{ content.field_account_number.0 }}</span>
+            </li>
+            {% endif %}
+            {% if content.field_apex_sales_person.0 is not empty %}
+            <li>
+              <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Apex Sales Person' }}</span>
+              <span style="font-size:16px;">{{ content.field_apex_sales_person.0 }}</span>
+            </li>
+            {% endif %}
+            <div style="background-color: #E5E5E5;color: #383739;padding: 12px;font-weight: bold;text-align: center; margin-bottom: 20px; margin-top:20px;">{{'REQUEST FOR REACTIVATION OR NEW PART' | t}}</div>
+            {% if content.field_are_you_requesting_an_item.0 is not empty %}
+            <li>
+              <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Are you requesting an item?' }}</span>
+              <span style="font-size:16px;">{{ content.field_are_you_requesting_an_item.0 }}</span>
+            </li>
+            {% endif %}
+            {% if content.field_enter_existing_apex_part.0 is not empty %}
+            <li>
+              <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Enter existing apex part' }}</span>
+              <span style="font-size:16px;">{{ content.field_enter_existing_apex_part.0 }}</span>
+            </li>
+            {% endif %}
+            {% if content.field_comments.0 is not empty %}
+            <li>
+              <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Comments' }}</span>
+              <span style="font-size:16px;">{{ content.field_comments.0 }}</span>
+            </li>
+            {% endif %}
+            {% if content.field_upload.0 is not empty %}
+            <li>
+              <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Image upload' }}</span>
+              <span style="font-size:16px;">{{ content.field_upload.0 }}</span>
+            </li>
+            {% endif %}
+            <div style="background-color: #E5E5E5;color: #383739;padding: 12px;font-weight: bold;text-align: center; margin-bottom: 20px; margin-top:20px;">{{'CUSTOMER IMAGE UPLOADS' | t}}</div>
+            {% if content.field_image_uploads_4.0 is not empty %}
+            <li>
+              <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Image upload' }}</span>
+              <span style="font-size:16px;">{{ content.field_image_uploads_4.0 }}</span>
+            </li>
+            {% endif %}
+            {% if content.field_custom_quotation_worksheet.0 is not empty %}
+            <div style="background-color: #E5E5E5;color: #383739;padding: 12px;font-weight: bold;text-align: center; margin-bottom: 20px; margin-top:20px;">{{'CUSTOM DRIVE TOOL' | t}}</div>
+            <li>
+              <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Custom quotation worksheet' }}</span>
+              <span style="font-size:16px;">{{ content.field_custom_quotation_worksheet.0 }}</span>
+            </li>
+            {% endif %}
+        {% endif %}
+      <ul>
+    </div>
+  <div>
+  <div class="footer" style="text-align: center;">
+    <div class="address" style="border-top: solid 2px #E5E5E5; padding: 30px 0;"><b>{{'Apex Fastening Tools' | t}}</b></br>{{'Email: specialquote@apextoolgroup.com' | t}}</br>{{'Phone: 866.569.9449' | t}}</div>
+    <div class="copyright">{{'Copyright ©2023 Apex Tool Group, LLC. All Rights Reserved.' | t}}</div>
+  </div>
+</div>
