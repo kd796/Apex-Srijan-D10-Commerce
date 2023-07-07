@@ -24,7 +24,7 @@ function atg_common_views_pre_view($view, $display_id) {
       ->condition('field_date', NULL, 'IS NOT NULL')
       ->condition('field_news_type', $display_id == 'atg_news_release' ?
         'newsrelease' : 'inthenews', '=');
-    $nodes = $node_storage->loadMultiple($query->execute());
+    $nodes = $node_storage->loadMultiple($query->accessCheck(FALSE)->execute());
     foreach ($nodes as $node) {
       $event_date = $node->get('field_date')->getValue();
       $date = \DateTime::createFromFormat('Y-m-d', $event_date[0]['value']);

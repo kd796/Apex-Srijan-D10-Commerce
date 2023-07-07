@@ -31,7 +31,7 @@ class RemoveNonSpecifiedProducts {
     else {
       $batchBuilder = new BatchBuilder();
       $batchId = 1;
-      $nids = \Drupal::entityQuery('node')->condition('type', 'product')->execute();
+      $nids = \Drupal::entityQuery('node')->condition('type', 'product')->accessCheck(FALSE)->execute();
 
       foreach ($nids as $key => $nid) {
         $batchBuilder->addOperation('\Drupal\apex_common\RemoveNonSpecifiedProducts::unpublishNonSpecfiedProducts', [
