@@ -93,6 +93,11 @@ function apex_tools_custom_quotation_form_alter(&$form, FormStateInterface $form
       $form['actions']['next']['#attributes']['class'][] = "step-three-submit";
     }
 
+    if ($multiStep !== null && $multiStep->getCurrentStep() === 3) {
+      $form['actions']['submit']['#access'] = TRUE;
+      $form['actions']['submit']['#value'] = t('SUBMIT REQUEST FOR QUOTE');
+    }
+
     // Adding grid classes for the elements.
     $elementWrapperFields = [
       'first_name',
