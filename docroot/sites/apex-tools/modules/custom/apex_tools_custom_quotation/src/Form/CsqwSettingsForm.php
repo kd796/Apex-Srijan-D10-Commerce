@@ -159,6 +159,12 @@ class CsqwSettingsForm extends FormBase {
     if (!empty($values['salesforce_url'])) {
       $this->setConfig('salesforce_url', $values['salesforce_url']);
     }
+    if (!empty($values['lead_mail_us'])) {
+      $this->setConfig('lead_mail_us', $values['lead_mail_us']);
+    }
+    if (!empty($values['lead_mail_uk_de'])) {
+      $this->setConfig('lead_mail_uk_de', $values['lead_mail_uk_de']);
+    }
 
     \Drupal::messenger()->addStatus('Settings saved.');
   }

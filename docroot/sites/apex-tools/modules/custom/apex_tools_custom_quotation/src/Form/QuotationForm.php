@@ -60,7 +60,7 @@ class QuotationForm extends ContentEntityForm {
     $uri = $print_builder->savePrintable(
       [$entity],
       $print_engine,
-      'temporary',
+      'public',
       $filename,
     );
 
