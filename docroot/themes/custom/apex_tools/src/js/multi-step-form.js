@@ -8,6 +8,8 @@
       $('.field--name-field-bit-holder-styles input[type="radio"]').attr('name', 'bit-holder-styles');
       $('.field--name-field-drive-type input[type="radio"]').attr('name', 'drive-type');
       $('.field--name-field-socket-type input[type="radio"]').attr('name', 'socket-type');
+      $('.field--name-field-magnetic-field input[type="radio"]').attr('name', 'magnetic-field');
+      $('.field--name-field-broach-opening-allowed input[type="radio"]').attr('name', 'broach-opening');
       var femaleMaleDriveType =  $('[data-drupal-selector$="subform-field-female-ref-wrapper"] input[type="radio"], [data-drupal-selector$="subform-field-male-hex-ref-wrapper"] input[type="radio"], [data-drupal-selector$="subform-field-female-square-ref-sh-wrapper"] input[type="radio"]');
       femaleMaleDriveType.attr('name', 'female-male-drive-type');
       
@@ -28,6 +30,19 @@
         }
       });
 
+      //Adding required fields.
+      
+      $('.field--name-field-magnetic-field .js-form-type-radio:first-child input[type="radio"]').prop('required', true);
+      $('.field--name-field-broach-opening-allowed .js-form-type-radio:first-child input[type="radio"]').prop('required', true);
+      //Adding required fields on change.
+      $('.field--name-field-magnetic-field input[type="radio"]').on('change', function() {
+        $('.field--name-field-magnetic-field input[type="radio"]').prop('required', false);
+        $(this).prop('required', true);
+      });
+      $('.field--name-field-broach-opening-allowed input[type="radio"]').on('change', function() {
+        $('.field--name-field-broach-opening-allowed input[type="radio"]').prop('required', false);
+        $(this).prop('required', true);
+      });
       // Validating the form function.
       function validateForm() {
         event.preventDefault(); // Prevent the default button click behavior
@@ -112,15 +127,20 @@
           $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
         });
         // hide and show fields
+        // var seletedOptionScrewdriver = $('[data-drupal-selector$="subform-field-screwdriver-0-subform"] .field--name-field-1-part-type .fieldset-wrapper input[type="radio"]');
         $('[data-drupal-selector$="subform-field-screwdriver-0-subform"] .field--name-field-1-part-type .fieldset-wrapper input[type="radio"]').on('change', function () {
           $(this).closest('.field--name-field-1-part-type').siblings('div').addClass('show-option');
           var seletedOption = $(this).val();
           if (seletedOption === 'bit') {
             $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-5-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').addClass('hide-options');
             $('[data-drupal-selector$="subform-field-screwdriver-1-subform"], [data-drupal-selector$="subform-field-screwdriver-3-subform"]').removeClass('hide-options');
+            $('[data-drupal-selector$="subform-field-screwdriver-4-top"], [data-drupal-selector$="subform-field-screwdriver-5-top"], [data-drupal-selector$="subform-field-screwdriver-6-top"]').addClass('hide-options');
+            $('[data-drupal-selector$="subform-field-screwdriver-1-top"], [data-drupal-selector$="subform-field-screwdriver-3-top"]').removeClass('hide-options');
           } else {
             $('[data-drupal-selector$="subform-field-screwdriver-1-subform"], [data-drupal-selector$="subform-field-screwdriver-3-subform"]').addClass('hide-options');
             $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-5-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').removeClass('hide-options');
+            $('[data-drupal-selector$="subform-field-screwdriver-1-top"], [data-drupal-selector$="subform-field-screwdriver-3-top"]').addClass('hide-options');
+            $('[data-drupal-selector$="subform-field-screwdriver-4-top"], [data-drupal-selector$="subform-field-screwdriver-5-top"], [data-drupal-selector$="subform-field-screwdriver-6-top"]').removeClass('hide-options');
           }
         });
         $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-cover-requirements input[type="radio"]').on('change', function () {
@@ -142,14 +162,18 @@
         });
       }
       
-      $('[data-drupal-selector$="subform-field-screwdriver-0-subform"] .field--name-field-1-part-type .fieldset-wrapper input[type="radio"]').closest('.field--name-field-1-part-type').siblings('div').addClass('show-option');
+      // $('[data-drupal-selector$="subform-field-screwdriver-0-subform"] .field--name-field-1-part-type .fieldset-wrapper input[type="radio"]').closest('.field--name-field-1-part-type').siblings('div').addClass('show-option');
       var seletedOptionScrewdriver = $('[data-drupal-selector$="subform-field-screwdriver-0-subform"] .field--name-field-1-part-type .fieldset-wrapper input[type="radio"]').val();
       if (seletedOptionScrewdriver === 'bit') {
         $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-5-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').addClass('hide-options');
         $('[data-drupal-selector$="subform-field-screwdriver-1-subform"], [data-drupal-selector$="subform-field-screwdriver-3-subform"]').removeClass('hide-options');
+        $('[data-drupal-selector$="subform-field-screwdriver-4-top"], [data-drupal-selector$="subform-field-screwdriver-5-top"], [data-drupal-selector$="subform-field-screwdriver-6-top"]').addClass('hide-options');
+        $('[data-drupal-selector$="subform-field-screwdriver-1-top"], [data-drupal-selector$="subform-field-screwdriver-3-top"]').removeClass('hide-options');
       } else {
         $('[data-drupal-selector$="subform-field-screwdriver-1-subform"], [data-drupal-selector$="subform-field-screwdriver-3-subform"]').addClass('hide-options');
         $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-5-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').removeClass('hide-options');
+        $('[data-drupal-selector$="subform-field-screwdriver-1-top"], [data-drupal-selector$="subform-field-screwdriver-3-top"]').addClass('hide-options');
+        $('[data-drupal-selector$="subform-field-screwdriver-4-top"], [data-drupal-selector$="subform-field-screwdriver-5-top"], [data-drupal-selector$="subform-field-screwdriver-6-top"]').removeClass('hide-options');
       }
 
       var seletedOptionScrewdriver7 = $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-cover-requirements input[type="radio"]').val();
@@ -176,21 +200,34 @@
       $('#field-custom-quotation-worksheet-quotation-screwdriver-add-more').addClass('field-custom-quotation-worksheet-quotation-screwdriver-add-more');
       $('#field-custom-quotation-worksheet-socket-extension-adapter-add-more').addClass('field-custom-quotation-worksheet-socket-extension-adapter-add-more');
       $('#field-custom-quotation-worksheet-universal-swivel-wrench-para-add-more').addClass('field-custom-quotation-worksheet-universal-swivel-wrench-para-add-more');
-      $('#edit-field-custom-drive-tool-type').once('triggerAdd').on('change', function () {
-        var selectedValue = $(this).val();
-        // Trigger the button based on the selected value
-        if (selectedValue === 'screwdriver') {
-          $('.field-custom-quotation-worksheet-quotation-screwdriver-add-more').mousedown();
-        } else if (selectedValue === 'socket') {
-          $('.field-custom-quotation-worksheet-socket-extension-adapter-add-more').mousedown();
-        } else if (selectedValue === 'universal_wrench') {
-          $('.field-custom-quotation-worksheet-universal-swivel-wrench-para-add-more').mousedown();
-        }
-        // show add buttons.
-        var paragraphButtons = $('[data-drupal-selector="edit-field-custom-quotation-worksheet-add-more]');
-        paragraphButtons.addClass('show-button');
+
+      //Show and hide the step 3 button
+      if ($("div").hasClass("field--name-field-order-type")) {
+        $('.step-three-submit').addClass("show-button");
+      }
+
+      // paragraph icon append
+      var itemsScrewdriver = $('.field--name-field-screwdriver-style tbody tr td > div > div');
+      itemsScrewdriver.each(function(index) {
+        var item = $(this);
+        var hiddenDiv = item.find('.paragraph-top');
+        var image = hiddenDiv.find('img');
+        var targetPlace = item.closest('.paragraphs-subform').find('fieldset');
+      
+        targetPlace.addClass('target-class');
+        targetPlace.append(image.eq(index));
       });
-      var selectedValueDefault = $('#edit-field-custom-drive-tool-type').val();
+
+      var itemDriverType = $('.field--name-field-drive-type tbody tr td > div > div');
+      itemDriverType.each(function(index) {
+        var item = $(this);
+        var hiddenDiv = item.find('.paragraph-top');
+        var image = hiddenDiv.find('img');
+        var targetPlace = item.closest('.paragraphs-subform').find('fieldset');
+      
+        targetPlace.addClass('target-class');
+        targetPlace.append(image.eq(index));
+      });
 
       dynamicChanges();
 
@@ -198,22 +235,11 @@
         $('#edit-actions button.step-three-submit').once('validation').click(validateForm);
         dynamicChanges();
         $('#edit-actions button.step-three-submit').off('click').click(validateForm);
-
-        $('#edit-field-custom-drive-tool-type').once('triggerAdd').on('change', function () {
-          var selectedValue = $(this).val();
-          // Trigger the button based on the selected value
-          if (selectedValue === 'screwdriver') {
-            $('.field-custom-quotation-worksheet-quotation-screwdriver-add-more').mousedown();
-          } else if (selectedValue === 'socket') {
-            $('.field-custom-quotation-worksheet-socket-extension-adapter-add-more').mousedown();
-          } else if (selectedValue === 'universal_wrench') {
-            $('.field-custom-quotation-worksheet-universal-swivel-wrench-para-add-more').mousedown();
-          }
-        });
-        // show add buttons.
-        $('[data-drupal-selector="edit-field-custom-quotation-worksheet-add-more]').addClass('show-button');
-        $('#edit-field-custom-drive-tool-type').val(selectedValueDefault);
-      
+        //Show and hide the step 3 button
+        if ($("div").hasClass("field--name-field-order-type")) {
+          $('.step-three-submit').addClass("show-button");
+        }
+        
       });
 
       // end
