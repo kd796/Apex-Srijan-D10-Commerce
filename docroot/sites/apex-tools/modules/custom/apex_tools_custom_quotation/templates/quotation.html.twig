@@ -128,11 +128,11 @@
               <span style="font-size:16px;">{{ content.field_image_uploads_4.0 }}</span>
             </li>
             {% endif %}
-            {% if content.field_custom_quotation_worksheet.0 is not empty %}
             <div style="background-color: #E5E5E5;color: #383739;padding: 12px;font-weight: bold;text-align: center; margin-bottom: 20px; margin-top:20px;">{{'CUSTOM DRIVE TOOL' | t}}</div>
+            {% if content.field_custom_quotation_worksheet is not empty %}
             <li>
               <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Custom quotation worksheet' }}</span>
-              <span style="font-size:16px;">{{ content.field_custom_quotation_worksheet.0 }}</span>
+              <span style="font-size:16px;">{{ content.field_custom_quotation_worksheet }}</span>
             </li>
             {% endif %}
         {% endif %}
