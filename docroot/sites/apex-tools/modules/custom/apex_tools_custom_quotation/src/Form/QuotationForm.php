@@ -5,6 +5,7 @@ namespace Drupal\apex_tools_custom_quotation\Form;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Mail\MailManagerInterface;
+use Drupal\Core\Url;
 
 /**
  * Form controller for the quotation entity edit forms.
@@ -77,12 +78,18 @@ class QuotationForm extends ContentEntityForm {
 
     $s_request = $this->salseforceRequest($entity);
 
-    $form_state->setRedirect('apex_tools_custom_quotation.quote_submit_page', [
-      'quotation' => \Drupal::service('file_url_generator')->generateString($uri),
+    $file_path = \Drupal::service('file_url_generator')->generateString($uri);
+    $redirect_url = Url::fromRoute('apex_tools_custom_quotation.quote_submit_page',
+    [
+      'quotation' => $file_path,
+    ],
+    [
+      'absolute' => TRUE,
     ]);
 
-  }
+    \Drupal::service('request_stack')->getCurrentRequest()->query->set('destination', $redirect_url->toString());
 
+  }
 
   /**
    * {@inheritdoc}

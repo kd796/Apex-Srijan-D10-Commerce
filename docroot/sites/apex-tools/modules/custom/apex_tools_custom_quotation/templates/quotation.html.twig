@@ -132,7 +132,7 @@
             {% if content.field_custom_quotation_worksheet is not empty %}
             <li>
               <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Custom quotation worksheet' }}</span>
-              <span style="font-size:16px;">{{ content.field_custom_quotation_worksheet }}</span>
+              <span style="font-size:16px;">{{ content.field_custom_quotation_worksheet|render|striptags|trim|lower }}</span>
             </li>
             {% endif %}
         {% endif %}
