@@ -1206,6 +1206,20 @@ div.notice--info {
 
   .form-item img {
     top: -8px !important;
+    left: 100% !important;
+    width: 100px;
+  }
+
+  [data-drupal-selector$="subform-field-socket-type-allowed-wrapper"] {
+    fieldset {
+      .fieldset-wrapper {
+        & > div {
+          & > div {
+            margin-bottom: 60px !important;
+          }
+        }
+      }
+    }
   }
 }
 
