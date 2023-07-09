@@ -1064,6 +1064,9 @@ div.notice--info {
         & > table {
           tbody {
             display: flex;
+            @media only screen and(max-width: $media-screen-tablet) {
+              flex-direction: column;
+            }
 
             td {
               display: block;
@@ -1103,6 +1106,30 @@ div.notice--info {
         }
       }
     }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-6-top"] {
+  img {
+    width: auto !important;
+    height: auto !important;
+    margin-top: 33px;
+    float: unset;
+  }
+  [data-drupal-selector$="subform-field-screwdriver-6-top-type"] {
+    position: relative;
+    display: flex;
+
+    .paragraph-type-label {
+      position: absolute;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-h-broach-opening-wrapper"],
+[data-drupal-selector$="subform-field-i-torx-r-size-wrapper"] {
+  @media only screen and(max-width: $media-screen-tablet) {
+    width: 100% !important;
   }
 }
 
@@ -1315,6 +1342,18 @@ div.notice--info {
   padding: 0 18px;
   .paragraphs-actions {
     display: none;
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-7-subform-field-components-1-subform"] {
+  @media only screen and (max-width: $media-screen-medium) {
+    flex-direction: column;
+  }
+
+  & > div {
+    @media only screen and (max-width: $media-screen-medium) {
+      width: 100% !important;
+    }
   }
 }
 
