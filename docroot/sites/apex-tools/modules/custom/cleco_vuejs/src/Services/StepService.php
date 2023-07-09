@@ -2,6 +2,7 @@
 
 namespace Drupal\cleco_vuejs\Services;
 
+use Prewk\XmlStringStreamer\Parser\StringWalker;
 use stdClass;
 use \SimpleXMLElement;
 
@@ -466,6 +467,7 @@ class StepService
             $vid     = StringHelper::createKey($vocab);
             $results = Drupal::entityQuery('taxonomy_vocabulary')
                 ->condition('vid', $vid)
+                ->accessCheck(FALSE)
                 ->execute();
 
             // Create vocabulary if it doesn't exist
@@ -934,7 +936,7 @@ class StepService
             $this->record('Logging in to FTP server.', 'notice');
             $login      = ftp_login($conn, getenv('DELTA_USER'), getenv('DELTA_PASWD'));
             $this->record('Creating temporary directory.', 'notice');
-            $tmpDir     = file_directory_temp();
+            $tmpDir     = \Drupal::service('file_system')->getTempDirectory();
             $this->record('Directory path: ' . (string) $tmpDir, 'notice');
         } catch (\Exception $e) {
             $this->record('FTP setup failed: ' . $e->getMessage(), 'error');
@@ -1418,7 +1420,7 @@ class StepService
             // File chunkSize
             $stream = new Stream\File($url, 1024);
             // Construct the default parser
-            $parser = new Parser\StringWalker(
+            $parser = new StringWalker(
                 [
                 'captureDepth'     => 2,
                 'expectGT'         => true,

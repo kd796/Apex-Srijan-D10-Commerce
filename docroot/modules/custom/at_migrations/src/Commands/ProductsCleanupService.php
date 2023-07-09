@@ -115,11 +115,11 @@ class ProductsCleanupService extends ProductServices {
             $node->save();
             // Clear the entity cache.
             $this->entityTypeManager->getStorage('node')->resetCache([$nid]);
-            drush_log(
+            \Drupal::logger(
               "All the products under $sku_group are in unpublished state",
               LogLevel::SUCCESS
             );
-            drush_log(
+            \Drupal::logger(
               "Successfully unpublished the products under $sku_group family",
               LogLevel::SUCCESS
             );
@@ -130,7 +130,7 @@ class ProductsCleanupService extends ProductServices {
           }
         }
         else {
-          drush_log(
+          \Drupal::logger(
             "All/ Some of the products are published under $sku_group family",
             LogLevel::SUCCESS
           );

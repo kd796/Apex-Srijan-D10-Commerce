@@ -282,7 +282,7 @@ class StepTwigExtension extends \Twig_Extension
             $terms = \Drupal::EntityTypeManager()->getStorage('taxonomy_term')->loadChildren($tid);
         }
         foreach ($terms as $term) {
-            $term = \Drupal\taxonomy\Entity\Term::load($term->get('tid')->value);
+            $term = Term::load($term->get('tid')->value);
             // Translated term
             if ($term->hasTranslation($curSite['code'])) {
                 $term = $term->getTranslation($curSite['code']);
@@ -295,7 +295,7 @@ class StepTwigExtension extends \Twig_Extension
                 $image_load = Media::load($media_field[0]);
                 $image_file = File::load($image_load->field_media_image->target_id);
                 $image_url  = $image_file->getFileUri();
-                $media_url = file_create_url($image_url);
+                $media_url = \Drupal::service('file_url_generator')->generateAbsoluteString($image_url);
             }
             $data[] = [
                 'id'    => $term->get('field_classification_id')->value,
