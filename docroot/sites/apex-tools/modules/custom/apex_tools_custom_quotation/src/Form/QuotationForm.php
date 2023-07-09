@@ -73,7 +73,7 @@ class QuotationForm extends ContentEntityForm {
 
     $params['attachments'][] = $quote_form_file;
     $langcode = 'en';
-    $send = true;
+    $send = TRUE;
     $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
 
     $s_request = $this->salseforceRequest($entity);
@@ -111,31 +111,16 @@ class QuotationForm extends ContentEntityForm {
       'state' => $entity->get('field_state_text')->getValue()[0]['value'],
     ];
 
-    foreach ($parameters as $key => $value) {
-      $params[] = stripslashes($key)."=".stripslashes($value);
-     }
+    $client = \Drupal::httpClient();
+    $response = $client->request('POST', $salseforce_url, [
+      'headers' => ['Content-Type' => 'application/x-www-form-urlencoded'],
+      'form_params' => $parameters,
+      'verify' => FALSE,
+    ]);
+    $status = $response->getStatusCode();
 
-     $query_string = join("&", $params);
-
-
-  // create a new cURL resource
-  $ch = curl_init();
-  curl_setopt($ch, CURLOPT_URL, $salseforce_url);
-  curl_setopt($ch, CURLOPT_POSTFIELDS, $query_string);
-
-   //Set some settings that make it all work :)
-  curl_setopt($ch, CURLOPT_HEADER, FALSE);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, FALSE);
-  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
-  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-
-  //Execute SalesForce web to lead PHP cURL
-  $result = curl_exec($ch);
-
-  //close cURL connection
-  curl_close($ch);
-
-  return;
+    return $status;
 
   }
+
 }
