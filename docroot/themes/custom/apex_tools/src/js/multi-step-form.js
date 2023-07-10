@@ -8,8 +8,6 @@
       $('.field--name-field-bit-holder-styles input[type="radio"]').attr('name', 'bit-holder-styles');
       $('.field--name-field-drive-type input[type="radio"]').attr('name', 'drive-type');
       $('.field--name-field-socket-type input[type="radio"]').attr('name', 'socket-type');
-      $('.field--name-field-magnetic-field input[type="radio"]').attr('name', 'magnetic-field');
-      $('.field--name-field-broach-opening-allowed input[type="radio"]').attr('name', 'broach-opening');
       var femaleMaleDriveType =  $('[data-drupal-selector$="subform-field-female-ref-wrapper"] input[type="radio"], [data-drupal-selector$="subform-field-male-hex-ref-wrapper"] input[type="radio"], [data-drupal-selector$="subform-field-female-square-ref-sh-wrapper"] input[type="radio"]');
       femaleMaleDriveType.attr('name', 'female-male-drive-type');
       
@@ -30,18 +28,6 @@
         }
       });
 
-      //Adding required fields.
-      $('.field--name-field-magnetic-field .js-form-type-radio:nth-child(2) input[type="radio"]').prop('required', true);
-      $('.field--name-field-broach-opening-allowed .js-form-type-radio:nth-child(2) input[type="radio"]').prop('required', true);
-      //Adding required fields on change.
-      $('.field--name-field-magnetic-field input[type="radio"]').on('change', function() {
-        $('.field--name-field-magnetic-field input[type="radio"]').prop('required', false);
-        $(this).prop('required', true);
-      });
-      $('.field--name-field-broach-opening-allowed input[type="radio"]').on('change', function() {
-        $('.field--name-field-broach-opening-allowed input[type="radio"]').prop('required', false);
-        $(this).prop('required', true);
-      });
       // Validating the form function.
       function validateForm() {
         event.preventDefault(); // Prevent the default button click behavior
@@ -49,7 +35,7 @@
         // Check if all required fields are filled
         var allFieldsFilled = true;
         var emptyFields = [];
-      
+        
         $('#edit-field-custom-quotation-worksheet-wrapper input[required], #edit-field-custom-quotation-worksheet-wrapper select[required], #edit-field-custom-quotation-worksheet-wrapper textarea[required]').each(function() {
           if ($(this).val() === '' || $(this).val() === 'null' || $(this).val() === '_none') {
             allFieldsFilled = false;
@@ -57,7 +43,35 @@
             emptyFields.push(fieldNames);
           }
         });
-      
+        // Checking group radio button validation.
+        if ($("div").hasClass("field--name-field-broach-opening-allowed")) {
+          var noneCheckedbroach = true;
+          $('[data-drupal-selector$="subform-field-broach-opening-allowed-wrapper"] input[type="radio"]').each(function() {
+            if ($(this).is(':checked')) {
+              noneCheckedbroach = false;
+              return false; // Exit the loop if a checked radio button is found
+            }
+          });
+
+          if (noneCheckedbroach) {
+            allFieldsFilled = false;
+          }
+        }
+
+        if ($("div").hasClass("field--name-field-magnetic-field")) {
+          var noneCheckedmagnetic = true;
+          $('[data-drupal-selector$="subform-field-magnetic-field-wrapper"] input[type="radio"]').each(function() {
+            if ($(this).is(':checked')) {
+              noneCheckedmagnetic = false;
+              return false; // Exit the loop if a checked radio button is found
+            }
+          });
+  
+          if (noneCheckedmagnetic) {
+            allFieldsFilled = false;
+          }
+        }
+
         // Error handling.
         if (allFieldsFilled) {
           $('#edit-actions button.step-three-submit').off('click'); // Remove the previous event handler
@@ -125,8 +139,7 @@
           $(this).closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', true);
           $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
         });
-        // hide and show fields
-        // var seletedOptionScrewdriver = $('[data-drupal-selector$="subform-field-screwdriver-0-subform"] .field--name-field-1-part-type .fieldset-wrapper input[type="radio"]');
+        // hide and show fields.
         $('[data-drupal-selector$="subform-field-screwdriver-0-subform"] .field--name-field-1-part-type .fieldset-wrapper input[type="radio"]').on('change', function () {
           $(this).closest('.field--name-field-1-part-type').siblings('div').addClass('show-option');
           var seletedOption = $(this).val();
@@ -165,9 +178,30 @@
             $('[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-cover-features-radio-wrapper"]').addClass('hide-options');
           }
         });
+
+        // Adding required fields.
+        $('.field--name-field-magnetic-field .js-form-type-radio:nth-child(2) input[type="radio"]').prop('required', true);
+        $('.field--name-field-broach-opening-allowed .js-form-type-radio:nth-child(2) input[type="radio"]').prop('required', true);
+        // Adding required fields on change.
+        $('.field--name-field-magnetic-field input[type="radio"]').on('change', function() {
+          $('.field--name-field-magnetic-field input[type="radio"]').prop('required', false);
+          $(this).prop('required', true);
+        });
+        $('.field--name-field-broach-opening-allowed input[type="radio"]').on('change', function() {
+          $('.field--name-field-broach-opening-allowed input[type="radio"]').prop('required', false);
+          $(this).prop('required', true);
+        });
       }
+
       
-      // $('[data-drupal-selector$="subform-field-screwdriver-0-subform"] .field--name-field-1-part-type .fieldset-wrapper input[type="radio"]').closest('.field--name-field-1-part-type').siblings('div').addClass('show-option');
+      $('[data-drupal-selector$="subform-field-optional-feature-wrapper"] fieldset legend').after('<span class="clear-option">Clear Options</span>');
+      // Trigger back button.
+      $('.step-label.active').prev().addClass('prev');
+      // Clear Options.
+      $('.clear-option').once('clear-option').on('click', function (e) {
+        $('[data-drupal-selector$="subform-field-optional-feature-wrapper"] fieldset input[type="checkbox"]').prop('checked', false);
+      });
+      
       var seletedOptionScrewdriver = $('[data-drupal-selector$="subform-field-screwdriver-0-subform"] .field--name-field-1-part-type .fieldset-wrapper input[type="radio"]').val();
       if (seletedOptionScrewdriver === 'bit') {
         $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-5-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').addClass('hide-options');
@@ -240,6 +274,23 @@
         targetPlace.append(image.eq(index));
       });
 
+
+      var hiddenDivFemaleSquare = $('[data-drupal-selector$="subform-field-female-ref"] tbody tr td > div > div .paragraph-top');
+      var imageFemaleSquare = hiddenDivFemaleSquare.find('img');
+      var targetPlaceFemaleSquare = $('[data-drupal-selector$="subform-field-female-ref"] tbody tr td > div > div .paragraphs-subform').find('fieldset');
+      targetPlaceFemaleSquare.append(imageFemaleSquare);
+
+      var hiddenDivMaleHexDrive = $('[data-drupal-selector$="subform-field-male-hex-ref-wrapper"] tbody tr td > div > div .paragraph-top');
+      var imageMaleHexDrive = hiddenDivMaleHexDrive.find('img');
+      var targetPlaceMaleHexDrive = $('[data-drupal-selector$="subform-field-male-hex-ref-wrapper"] tbody tr td > div > div .paragraphs-subform').find('fieldset');
+      targetPlaceMaleHexDrive.append(imageMaleHexDrive);
+
+      var hiddenDivFemaleSquareDrive = $('[data-drupal-selector$="subform-field-female-square-ref-sh-wrapper"] tbody tr td > div > div .paragraph-top');
+      var imageFemaleSquareDrive = hiddenDivFemaleSquareDrive.find('img');
+      var targetPlaceFemaleSquareDrive = $('[data-drupal-selector$="subform-field-female-square-ref-sh-wrapper"] tbody tr td > div > div .paragraphs-subform').find('fieldset');
+      targetPlaceFemaleSquareDrive.append(imageFemaleSquareDrive);
+
+
       dynamicChanges();
 
       $(document).ajaxComplete(function(){
@@ -250,20 +301,16 @@
         if ($("div").hasClass("field--name-field-order-type")) {
           $('.step-three-submit').addClass("show-button");
         }
+        });
 
-        //Adding required fields.
-        $('.field--name-field-magnetic-field .js-form-type-radio:nth-child(2) input[type="radio"]').prop('required', true);
-        $('.field--name-field-broach-opening-allowed .js-form-type-radio:nth-child(2) input[type="radio"]').prop('required', true);
-        //Adding required fields on change.
-        $('.field--name-field-magnetic-field input[type="radio"]').on('change', function() {
-          $('.field--name-field-magnetic-field input[type="radio"]').prop('required', false);
-          $(this).prop('required', true);
+        $(window).once('onceOnLoad').on('load', function (e) {
+          $('[data-drupal-selector$="subform-field-optional-feature-wrapper"] fieldset legend').after('<span class="clear-option">Clear Options</span>');
+          // Trigger back button.
+          $('.step-label.active').prev().addClass('prev');
         });
-        $('.field--name-field-broach-opening-allowed input[type="radio"]').on('change', function() {
-          $('.field--name-field-broach-opening-allowed input[type="radio"]').prop('required', false);
-          $(this).prop('required', true);
-        });
-          
+        // Clear Options.
+        $('.clear-option').once('clear-option').on('click', function (e) {
+          $('[data-drupal-selector$="subform-field-optional-feature-wrapper"] fieldset input[type="checkbox"]').prop('checked', false);
         });
 
       // end
