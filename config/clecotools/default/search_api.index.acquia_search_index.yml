@@ -701,6 +701,16 @@ field_settings:
     dependencies:
       module:
         - node
+  title_1:
+    label: 'Product Models » Content » Title'
+    datasource_id: 'entity:node'
+    property_path: 'field_product_models:entity:title'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_product_models
+      module:
+        - node
   tool_configuration:
     label: 'Tool Configuration'
     property_path: tool_configuration
