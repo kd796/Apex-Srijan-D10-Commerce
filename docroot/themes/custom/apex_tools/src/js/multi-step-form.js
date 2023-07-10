@@ -31,9 +31,8 @@
       });
 
       //Adding required fields.
-      
-      $('.field--name-field-magnetic-field .js-form-type-radio:first-child input[type="radio"]').prop('required', true);
-      $('.field--name-field-broach-opening-allowed .js-form-type-radio:first-child input[type="radio"]').prop('required', true);
+      $('.field--name-field-magnetic-field .js-form-type-radio:nth-child(2) input[type="radio"]').prop('required', true);
+      $('.field--name-field-broach-opening-allowed .js-form-type-radio:nth-child(2) input[type="radio"]').prop('required', true);
       //Adding required fields on change.
       $('.field--name-field-magnetic-field input[type="radio"]').on('change', function() {
         $('.field--name-field-magnetic-field input[type="radio"]').prop('required', false);
@@ -251,8 +250,21 @@
         if ($("div").hasClass("field--name-field-order-type")) {
           $('.step-three-submit').addClass("show-button");
         }
-        
-      });
+
+        //Adding required fields.
+        $('.field--name-field-magnetic-field .js-form-type-radio:nth-child(2) input[type="radio"]').prop('required', true);
+        $('.field--name-field-broach-opening-allowed .js-form-type-radio:nth-child(2) input[type="radio"]').prop('required', true);
+        //Adding required fields on change.
+        $('.field--name-field-magnetic-field input[type="radio"]').on('change', function() {
+          $('.field--name-field-magnetic-field input[type="radio"]').prop('required', false);
+          $(this).prop('required', true);
+        });
+        $('.field--name-field-broach-opening-allowed input[type="radio"]').on('change', function() {
+          $('.field--name-field-broach-opening-allowed input[type="radio"]').prop('required', false);
+          $(this).prop('required', true);
+        });
+          
+        });
 
       // end
     }
