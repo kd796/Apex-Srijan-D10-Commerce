@@ -57,7 +57,7 @@ class QuotationForm extends ContentEntityForm {
     // Generate the PDF.
     $print_engine = \Drupal::service('plugin.manager.entity_print.print_engine')->createSelectedInstance('pdf');
     $print_builder = \Drupal::service('entity_print.print_builder');
-    $filename = rand() . $this->entity->label() . '.pdf';
+    $filename = 'CSQW_' . rand() . '.pdf';
     $uri = $print_builder->savePrintable(
       [$entity],
       $print_engine,
