@@ -72,7 +72,7 @@ function apex_tools_custom_quotation_form_alter(&$form, FormStateInterface $form
       $form['actions']['submit']['#access'] = TRUE;
       unset($form['field_are_you_requesting_an_item']['widget']['#options']['_none']);
       unset($form['field_reactivation_request']['widget']['#options']['_none']);
-      $form['actions']['submit']['#value'] = t('SUBMIT REACTIVATION / CHANGE REQUEST »');
+      $form['actions']['submit']['#value'] = t('SUBMIT REACTIVATION / CHANGE REQUEST');
       $form['actions']['submit']['#states'] = [
         'visible' => [
        [':input[name="field_are_you_requesting_an_item"]' => ['value' => 'yes']],
@@ -95,6 +95,9 @@ function apex_tools_custom_quotation_form_alter(&$form, FormStateInterface $form
     if ($multiStep !== null && $multiStep->getCurrentStep() === 3) {
       $form['actions']['submit']['#access'] = TRUE;
       $form['actions']['submit']['#value'] = t('SUBMIT REQUEST FOR QUOTE');
+    }
+    if ($multiStep !== null && $multiStep->getCurrentStep() === 0) {
+      unset($form['captcha']);
     }
 
     // Adding grid classes for the elements.

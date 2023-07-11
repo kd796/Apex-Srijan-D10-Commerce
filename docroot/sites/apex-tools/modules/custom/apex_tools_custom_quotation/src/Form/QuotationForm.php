@@ -72,7 +72,6 @@ class QuotationForm extends ContentEntityForm {
     );
 
     $params['attachments'][] = $quote_form_file;
-    $langcode = 'en';
     $send = TRUE;
     $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
 

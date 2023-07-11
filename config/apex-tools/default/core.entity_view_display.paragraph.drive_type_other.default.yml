@@ -3,23 +3,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.drive_type_other.field_drive_type_other
     - field.field.paragraph.drive_type_other.field_specify
+    - field.field.paragraph.drive_type_other.field_torx
     - paragraphs.paragraphs_type.drive_type_other
-  module:
-    - options
 id: paragraph.drive_type_other.default
 targetEntityType: paragraph
 bundle: drive_type_other
 mode: default
 content:
-  field_drive_type_other:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 0
-    region: content
   field_specify:
     type: string
     label: above
@@ -27,6 +18,16 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_torx:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 2
     region: content
 hidden:
   entity_print_view_epub: true

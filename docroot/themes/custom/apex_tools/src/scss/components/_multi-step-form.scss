@@ -2,6 +2,10 @@
   opacity: 1 !important;
 }
 
+.g-recaptcha {
+  padding: 0 2rem;
+}
+
 .field-add-more-submit {
   margin-bottom: 16px;
 
@@ -46,6 +50,15 @@
       color: $color-orange;
       span {
         color: $color-orange;
+      }
+    }
+
+    &.prev {
+      cursor: pointer;
+      &:hover {
+        span {
+          color: $color-orange;
+        }
       }
     }
 
@@ -902,6 +915,46 @@ div.notice--info {
   }
 }
 
+[data-drupal-selector$="subform-field-female-ref"],
+[data-drupal-selector$="subform-field-male-hex-ref-wrapper"],
+[data-drupal-selector$="subform-field-female-square-ref-sh-wrapper"] {
+  tbody tr td {
+    & > div {
+      & > div {
+        .paragraphs-subform {
+          .field--type-boolean {
+            & > fieldset {
+              display: flex;
+              flex-direction: column;
+              align-items: baseline !important;
+
+              img {
+                width: unset !important;
+                height: unset !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-optional-features-ref-0-subform"] {
+  span {
+    &.clear-option {
+      color: $color-orange;
+      display: block;
+      margin-bottom: 10px;
+      font-size: 14px;
+      cursor: pointer;
+
+      &:nth-child(2) {
+        display: none;
+      }
+    }
+  }
+}
 
 .target-class {
   img {
@@ -1137,7 +1190,8 @@ div.notice--info {
   &.hide-options {
     display: none !important;
   }
-  .field--type-list-string {
+  .field--type-list-string,
+  .paragraphs-content {
     width: 33.33% !important;
     @media only screen and(max-width: $media-screen-tablet) {
       width: 100% !important;
@@ -1196,6 +1250,32 @@ div.notice--info {
   }
 }
 
+.field--name-field-broach-opening-allowed {
+  fieldset {
+    .fieldset-wrapper {
+      .js-form-type-radio {
+        label {
+          position: relative !important;
+
+          img {
+            left: calc(100% - -30px) !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-drive-configuration-label-wrapper"] {
+  table,
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+}
+
 [data-drupal-selector$="subform-field-socket-type-wrapper"] {
   tbody,
   tr,
@@ -1206,6 +1286,20 @@ div.notice--info {
 
   .form-item img {
     top: -8px !important;
+    left: 100% !important;
+    width: 100px;
+  }
+
+  [data-drupal-selector$="subform-field-socket-type-allowed-wrapper"] {
+    fieldset {
+      .fieldset-wrapper {
+        & > div {
+          & > div {
+            margin-bottom: 60px !important;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -1225,6 +1319,21 @@ div.notice--info {
         h4 {
           font-size: 20px;
           color: $color-orange;
+        }
+      }
+    }
+
+    tbody {
+      .form-wrapper {
+        .paragraphs-subform {
+          .field--type-string,
+          .field--widget-string-textfield {
+            width: 33.33% !important;
+
+            @media only screen and (max-width: $media-screen-medium) {
+              width: 100% !important;
+            }
+          }
         }
       }
     }
@@ -1304,6 +1413,17 @@ div.notice--info {
     width: 33.33% !important;
     @media only screen and (max-width: $media-screen-medium) {
       width: 100%;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-dimensions-ref-0"] {
+  .paragraphs-subform {
+    .paragraphs-content {
+      width: 33.33% !important;
+      @media only screen and (max-width: $media-screen-medium) {
+        width: 100%;
+      }
     }
   }
 }
