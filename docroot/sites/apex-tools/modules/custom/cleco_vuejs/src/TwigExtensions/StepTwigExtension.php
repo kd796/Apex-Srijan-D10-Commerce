@@ -14,8 +14,11 @@ use Drupal\taxonomy\TermStorage;
 use Drupal\Component\Serialization\Json;
 use Drupal\cleco_vuejs\Utils\StringHelper;
 use Drupal\cleco_vuejs\Utils\StepHelper;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
+use Twig\TwigFilter;
 
-class StepTwigExtension extends \Twig_Extension
+class StepTwigExtension extends AbstractExtension
 {
 
     public function getName()
@@ -29,8 +32,8 @@ class StepTwigExtension extends \Twig_Extension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('json_decode', [$this, 'jsonDecode']),
-            new \Twig_SimpleFilter('to_str', [$this, 'toString'])
+            new TwigFilter('json_decode', [$this, 'jsonDecode']),
+            new TwigFilter('to_str', [$this, 'toString'])
         ];
     }
 
@@ -42,34 +45,34 @@ class StepTwigExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('create_key', [$this, 'createKey']),
-            new \Twig_SimpleFunction('order_filters', [$this, 'orderFilters']),
-            new \Twig_SimpleFunction('unique_downloads', [$this, 'uniqueDownloads']),
-            new \Twig_SimpleFunction('step_asset_base_url', [$this, 'stepAssetBaseUrl']),
-            new \Twig_SimpleFunction('step_asset', [$this, 'stepAsset']),
-            new \Twig_SimpleFunction('carousel_assets', [$this, 'carouselAssets']),
-            new \Twig_SimpleFunction('sort_featured_products', [$this, 'sortFeaturedProducts']),
-            new \Twig_SimpleFunction('getDownloadTypes', [$this, 'getDownloadTypes']),
-            new \Twig_SimpleFunction('getProductLines', [$this, 'getProductLines']),
-            new \Twig_SimpleFunction('get_product_filters', [$this, 'getProductFilters']),
-            new \Twig_SimpleFunction('getSegments', [$this, 'getSegments']),
-            new \Twig_SimpleFunction('getProductCarousel', [$this, 'getProductCarousel']),
-            new \Twig_SimpleFunction('getSingleProduct', [$this, 'getSingleProduct']),
-            new \Twig_SimpleFunction('getMultipleProducts', [$this, 'getMultipleProducts']),
-            new \Twig_SimpleFunction('getRelatedProducts', [$this, 'getRelatedProducts']),
-            new \Twig_SimpleFunction('get_locale', [$this, 'getLocale']),
-            new \Twig_SimpleFunction('download_link', [$this, 'downloadLink']),
-            new \Twig_SimpleFunction('product_categories', [$this, 'productCategories']),
-            new \Twig_SimpleFunction('get_product_url', [$this, 'getProductUrl']),
-            new \Twig_SimpleFunction('filter_content_featured_products', [$this, 'filterContentFeaturedProducts']),
-            new \Twig_SimpleFunction('get_translations', [$this, 'getTranslations']),
-            new \Twig_SimpleFunction('get_enhanced_product', [$this, 'getEnhancedProduct']),
-            new \Twig_SimpleFunction('get_enhanced_product_features', [$this, 'getEnhancedProductFeatures']),
-            new \Twig_SimpleFunction('get_enhanced_product_hotspots', [$this, 'getEnhancedProductHotspots']),
-            new \Twig_SimpleFunction('get_enhanced_product_360_images', [$this, 'getEnhancedProduct360Images']),
-            new \Twig_SimpleFunction('get_enhanced_product_line', [$this, 'getEnhancedProductProductLine']),
-            new \Twig_SimpleFunction('get_enhanced_other_products', [$this, 'getEnhancedOtherProducts']),
-            new \Twig_SimpleFunction('get_enhanced_related_products', [$this, 'getEnhancedRelatedProducts']),
+            new TwigFunction('create_key', [$this, 'createKey']),
+            new TwigFunction('order_filters', [$this, 'orderFilters']),
+            new TwigFunction('unique_downloads', [$this, 'uniqueDownloads']),
+            new TwigFunction('step_asset_base_url', [$this, 'stepAssetBaseUrl']),
+            new TwigFunction('step_asset', [$this, 'stepAsset']),
+            new TwigFunction('carousel_assets', [$this, 'carouselAssets']),
+            new TwigFunction('sort_featured_products', [$this, 'sortFeaturedProducts']),
+            new TwigFunction('getDownloadTypes', [$this, 'getDownloadTypes']),
+            new TwigFunction('getProductLines', [$this, 'getProductLines']),
+            new TwigFunction('get_product_filters', [$this, 'getProductFilters']),
+            new TwigFunction('getSegments', [$this, 'getSegments']),
+            new TwigFunction('getProductCarousel', [$this, 'getProductCarousel']),
+            new TwigFunction('getSingleProduct', [$this, 'getSingleProduct']),
+            new TwigFunction('getMultipleProducts', [$this, 'getMultipleProducts']),
+            new TwigFunction('getRelatedProducts', [$this, 'getRelatedProducts']),
+            new TwigFunction('get_locale', [$this, 'getLocale']),
+            new TwigFunction('download_link', [$this, 'downloadLink']),
+            new TwigFunction('product_categories', [$this, 'productCategories']),
+            new TwigFunction('get_product_url', [$this, 'getProductUrl']),
+            new TwigFunction('filter_content_featured_products', [$this, 'filterContentFeaturedProducts']),
+            new TwigFunction('get_translations', [$this, 'getTranslations']),
+            new TwigFunction('get_enhanced_product', [$this, 'getEnhancedProduct']),
+            new TwigFunction('get_enhanced_product_features', [$this, 'getEnhancedProductFeatures']),
+            new TwigFunction('get_enhanced_product_hotspots', [$this, 'getEnhancedProductHotspots']),
+            new TwigFunction('get_enhanced_product_360_images', [$this, 'getEnhancedProduct360Images']),
+            new TwigFunction('get_enhanced_product_line', [$this, 'getEnhancedProductProductLine']),
+            new TwigFunction('get_enhanced_other_products', [$this, 'getEnhancedOtherProducts']),
+            new TwigFunction('get_enhanced_related_products', [$this, 'getEnhancedRelatedProducts']),
         ];
     }
 

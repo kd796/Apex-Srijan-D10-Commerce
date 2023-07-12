@@ -76,6 +76,7 @@ class DrupalNodeService
 
         $result = $query
             ->condition($types)
+            ->accessCheck(FALSE)
             ->condition($dates)
             ->condition('status', 1)
             ->sort('created', 'ASC')

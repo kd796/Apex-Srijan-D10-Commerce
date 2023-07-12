@@ -1644,6 +1644,7 @@ class StepService
 
                 // Prevent duplicates
                 $results = Drupal::entityQuery('taxonomy_term')
+                    ->accessCheck(FALSE)
                     ->condition('field_es_id.value', $esId, '=')
                     ->execute();
 
@@ -1731,6 +1732,7 @@ class StepService
 
                 // Prevent duplicates
                 $results = Drupal::entityQuery('taxonomy_term')
+                    ->accessCheck(FALSE)
                     ->condition('field_es_key.value', $esKey, '=')
                     ->execute();
 
