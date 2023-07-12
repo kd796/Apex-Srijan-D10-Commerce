@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cddaa88c19c9de15141a20025219f752",
+    "content-hash": "7618a8b12e98f577a8cbd5f81be671e8",
     "packages": [
         {
             "name": "acquia/http-hmac-php",
@@ -4173,7 +4173,7 @@
             },
             "require": {
                 "drupal/config_split": "*",
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^8 || ^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
@@ -4530,7 +4530,7 @@
                 "shasum": "3685d705f3371fe1b64b32b05129f72746cd5cad"
             },
             "require": {
-                "drupal/core": "^8.8 || ^9"
+                "drupal/core": "^8 || ^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
@@ -5361,7 +5361,7 @@
                 "shasum": "f22cc3e90bf32d96338a14f159ead143970a8d4d"
             },
             "require": {
-                "drupal/core": "^8 || ^9",
+                "drupal/core": "^8 || ^9 || ^10",
                 "drupal/paragraphs": "*"
             },
             "type": "drupal-module",
@@ -6010,7 +6010,7 @@
                 "shasum": "2103bfb345aa366c2e1308fb3ac82464a941ea61"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^8 || ^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
@@ -8857,7 +8857,7 @@
                 "shasum": "dbb64f4e8f57b08a3e0ddd2e5cc3ba8d27d2722f"
             },
             "require": {
-                "drupal/core": "^8 || ^9",
+                "drupal/core": "^8 || ^9 || ^10",
                 "drupal/jquery_ui": "*"
             },
             "type": "drupal-module",
@@ -11779,7 +11779,7 @@
                 "shasum": "5c94f1c2cd8388f864cccdc6ad86804107a596ba"
             },
             "require": {
-                "drupal/core": "^8 || ^9",
+                "drupal/core": "^8 || ^9 || ^10",
                 "drupal/webform": "*"
             },
             "type": "drupal-module",
@@ -12728,7 +12728,7 @@
                 "shasum": "c5be2945a79e13e7cf8c4f114d0d1bb74460c32b"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^8 || ^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
@@ -13401,7 +13401,7 @@
                 "shasum": "1cb785bb741b661c133afad301630e35b2171f9b"
             },
             "require": {
-                "drupal/core": "^8 || ^9",
+                "drupal/core": "^8 || ^9 || ^10",
                 "drupal/viewsreference": "*"
             },
             "type": "drupal-module",
@@ -13447,7 +13447,7 @@
                 "shasum": "b74e32bedf549354c4aa60280e7788382ede7fb3"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^8 || ^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
@@ -16833,6 +16833,64 @@
                 "source": "https://github.com/viossat/arraytotexttable/tree/v1.0.9"
             },
             "time": "2022-08-30T15:33:10+00:00"
+        },
+        {
+            "name": "mglaman/composer-drupal-lenient",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mglaman/composer-drupal-lenient.git",
+                "reference": "9d9271499d86ceb1431de80f876800fadf10a9e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mglaman/composer-drupal-lenient/zipball/9d9271499d86ceb1431de80f876800fadf10a9e1",
+                "reference": "9d9271499d86ceb1431de80f876800fadf10a9e1",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^2.0",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "composer/composer": "^2.3",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan": "^1.6",
+                "phpstan/phpstan-phpunit": "^1.1",
+                "phpstan/phpstan-strict-rules": "^1.2",
+                "phpunit/phpunit": "^9.5",
+                "squizlabs/php_codesniffer": "^3.6"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "ComposerDrupalLenient\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "ComposerDrupalLenient\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Matt Glaman",
+                    "email": "nmd.matt@gmail.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/mglaman/composer-drupal-lenient/issues",
+                "source": "https://github.com/mglaman/composer-drupal-lenient/tree/1.0.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/mglaman",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-03-21T19:06:37+00:00"
         },
         {
             "name": "mglaman/phpstan-drupal",
