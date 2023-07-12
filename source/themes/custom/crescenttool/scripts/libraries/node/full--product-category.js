@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
   Drupal.behaviors.productCategoryFilters = {
     filtering: function ($item, $filterType) {
@@ -313,4 +313,4 @@
     }
   };
 
-})(jQuery, Drupal);
+})(jQuery, Drupal, 'once');

@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.regionHeader = {
@@ -219,4 +219,4 @@
     }
   };
 
-})(jQuery, Drupal);
+})(jQuery, Drupal, 'once');

@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.productTypeFiltersTabs = {
@@ -93,4 +93,4 @@
       });
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, 'once');
