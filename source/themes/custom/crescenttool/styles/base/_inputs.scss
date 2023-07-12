@@ -399,11 +399,11 @@ $active-gap: 8px; // the math likes px values
 }
 
 //input checbox for hubspot form
-.hbspt-form{
+.hbspt-form {
   .hs-privacy_policy {
     .hs-form-booleancheckbox {
       .hs-form-booleancheckbox-display {
-  
+
         input[type='checkbox'] {
           background: $white;
           border: 1px solid #272525;
@@ -418,7 +418,7 @@ $active-gap: 8px; // the math likes px values
           display: flex;
           align-items: center;
           justify-content: center;
-  
+
           &::after {
             @include icon-styles;
             color: $white;
@@ -431,37 +431,44 @@ $active-gap: 8px; // the math likes px values
             left: 0.1rem;
             display: none;
           }
-  
+
           &:checked {
             background-color: #F16F43;
-  
+
             &::after {
               background-color: #F16F43;
               display: block;
             }
           }
         }
-      } 
+      }
     }
   }
+
   .form-columns-2 {
-    .hs-firstname, .hs-lastname{
-      .input{
+    .hs-firstname,
+    .hs-lastname {
+      .input {
         margin-right: unset;
       }
     }
-    .hs-firstname{
+
+    .hs-firstname {
       padding-right: 6px;
     }
-    .hs-lastname{
+
+    .hs-lastname {
       padding-left: 6px;
     }
   }
-  .form-columns-1{
+
+  .form-columns-1 {
     .hs-email {
       margin-top: 6px;
+
       .input {
         margin-right: unset;
+
         .hs-input {
           width: 100%;
         }

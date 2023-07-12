@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.componentAccordion = {
@@ -81,4 +81,4 @@
     }
   };
 
-})(jQuery, Drupal);
+})(jQuery, Drupal, 'once');

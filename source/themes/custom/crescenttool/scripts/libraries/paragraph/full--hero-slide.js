@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.componentHeroSlide = {
@@ -21,4 +21,4 @@
     }
   };
 
-})(jQuery, Drupal);
+})(jQuery, Drupal, 'once');

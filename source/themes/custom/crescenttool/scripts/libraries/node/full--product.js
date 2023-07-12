@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.productDetailImageSlider = {
@@ -297,4 +297,4 @@
       });
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, 'once');
