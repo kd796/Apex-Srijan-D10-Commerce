@@ -55,18 +55,19 @@
     <table-component :data="scope.data" :show-filter="false" :show-caption="false" :cache-lifetime="0" sort-by="attributes.title" sort-order="asc" class="mega-table-component" table-class="mega-table" :filter-no-results="'{{ 'No Local Rep found within ' | t }}' + scope.state.q">
       <table-column label="Local Rep" show="attributes.title">
         <template slot-scope="row">
-          {% filter raw %}
-            <h3 :id="'distributor-' + row.id" v-html="row.attributes.title"></h3>
-            <p>
-              <span v-html ="row.attributes.field_website"></span>
-              <template v-for="phone in row.attributes.field_phone">
-                <br><a :href="'tel:' + phone" v-html="phone"></a>
-              </template>
-              <template v-for="email in row.attributes.field_email">
-                <br><a :href="'mailto:' + email" v-html="email"></a>
-              </template>
-            </p>
-          {% endfilter %}
+          {% apply spaceless %}
+              <h3 :id="'distributor-' + row.id" v-html="row.attributes.title"></h3>
+              <p>
+                <span v-html ="row.attributes.field_website"></span>
+                <template v-for="phone in row.attributes.field_phone">
+                  <br><a :href="'tel:' + phone" v-html="phone"></a>
+                </template>
+                <template v-for="email in row.attributes.field_email">
+                  <br><a :href="'mailto:' + email" v-html="email"></a>
+                </template>
+              </p>
+          {% endapply %}
+
         </template>
       </table-column>
       <table-column label="" :sortable="false">
