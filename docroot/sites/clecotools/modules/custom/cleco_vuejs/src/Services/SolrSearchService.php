@@ -2,6 +2,7 @@
 
 namespace Drupal\cleco_vuejs\Services;
 
+use Elasticsearch\Client;
 use Drupal;
 use Drupal\Component\Serialization\Json;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -96,7 +97,7 @@ class SolrSearchService
     /**
      * @return mixed
      */
-    private function getClient(): \Elasticsearch\Client
+    private function getClient(): Client
     {
         $hosts = $this->getElasticHosts();
 
@@ -157,10 +158,10 @@ class SolrSearchService
 
         try {
             $response = $this->client->indices()->delete($params);
-            drupal_set_message(t('Successfully deleted ElasticSearch Index: ' . $indexName), 'status');
+            \Drupal::messenger()->addStatus(t('Successfully deleted ElasticSearch Index: ' . $indexName));
             $this->record('Successfully deleted ElasticSearch Index: ' . $indexName, 'notice', true);
         } catch (\Exception $e) {
-            drupal_set_message(t('There was an error trying to delete the ElasticSearch Index: ' . $indexName), 'error');
+            \Drupal::messenger()->addError(t('There was an error trying to delete the ElasticSearch Index: ' . $indexName));
             $this->log(print_r(Json::decode($e->getMessage()), true), 'error');
         }
     }
@@ -581,7 +582,7 @@ class SolrSearchService
               $dname = $downloads_list->get('name')->value;
               $file_id = $this->entityManager->getStorage('file')->load($downloads_list->field_media_file->target_id);
               $file_url = $file_id->getFileUri();
-              $downloadable = file_create_url($file_url);
+              $downloadable = \Drupal::service('file_url_generator')->generateAbsoluteString($file_url);
               $assets[] = [
                 "type" => $type,
                 "id" => $dname,
@@ -1483,14 +1484,14 @@ class SolrSearchService
         $image_load = $this->entityManager->getStorage('media')->load($listing_image[0]);
         $image_file = $this->entityManager->getStorage('file')->load($image_load->field_media_image->target_id);
         $image_url  = $image_file->getFileUri();
-        $media_url = file_create_url($image_url);
+        $media_url = \Drupal::service('file_url_generator')->generateAbsoluteString($image_url);
       }
       $media_file = $resultItemFields['field_media_file']->getvalues();
       if (!empty($media_file)) {
         $download_file = $this->entityManager->getStorage('file')->load($media_file[0]);
         $download_file_url  = $download_file->getFileUri();
         $download_file_name = $download_file->getFilename();
-        $download_file_path = file_create_url($download_file_url);
+        $download_file_path = \Drupal::service('file_url_generator')->generateAbsoluteString($download_file_url);
       }
       $product_category = $resultItemFields['field_product_category']->getvalues();
       if(!empty($product_category)) {

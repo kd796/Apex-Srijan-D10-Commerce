@@ -16,8 +16,11 @@ use function is_object;
 use function is_string;
 use function preg_match;
 use const PHP_URL_HOST;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
+use Twig\TwigFilter;
 
-class HelpersExtension extends \Twig_Extension
+class HelpersExtension extends AbstractExtension
 {
 
     /**
@@ -38,43 +41,43 @@ class HelpersExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('drupal_region', [$this, 'drupalRegion']),
-            new \Twig_SimpleFunction('svg', [$this, 'svgFunction']),
-            new \Twig_SimpleFunction('mix', [$this, 'mixFunction']),
-            new \Twig_SimpleFunction('isLocal', [$this, 'isLocalFunction']),
-            new \Twig_SimpleFunction('theme_asset', [$this, 'themeAssetFunction']),
-            new \Twig_SimpleFunction('fnmatch', [$this, 'fnmatch']),
-            new \Twig_SimpleFunction('pass_attributes', [
+            new TwigFunction('drupal_region', [$this, 'drupalRegion']),
+            new TwigFunction('svg', [$this, 'svgFunction']),
+            new TwigFunction('mix', [$this, 'mixFunction']),
+            new TwigFunction('isLocal', [$this, 'isLocalFunction']),
+            new TwigFunction('theme_asset', [$this, 'themeAssetFunction']),
+            new TwigFunction('fnmatch', [$this, 'fnmatch']),
+            new TwigFunction('pass_attributes', [
                 $this,
                 'passAttributesFunction'
             ]),
-            new \Twig_SimpleFunction('get_passed_attributes', [
+            new TwigFunction('get_passed_attributes', [
                 $this,
                 'getPassedAttributesFunction'
             ], ['needs_context' => true]),
-            new \Twig_SimpleFunction('get_paragraph', [
+            new TwigFunction('get_paragraph', [
                 $this,
                 'getParagraphFunction'
             ]),
-            new \Twig_SimpleFunction('getNodeCount', [$this, 'getNodeCount']),
-            new \Twig_SimpleFunction('env', [$this, 'envFunction']),
-            new \Twig_SimpleFunction('modelTableDefinition', [$this, 'modelTableDefinitionFunction']),
-            new \Twig_SimpleFunction('alias_by_path', [$this, 'aliasByPath'])
+            new TwigFunction('getNodeCount', [$this, 'getNodeCount']),
+            new TwigFunction('env', [$this, 'envFunction']),
+            new TwigFunction('modelTableDefinition', [$this, 'modelTableDefinitionFunction']),
+            new TwigFunction('alias_by_path', [$this, 'aliasByPath'])
         ];
     }
 
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('string', [$this, 'stringFilter']),
-            new \Twig_SimpleFilter('term_list', [
+            new TwigFilter('string', [$this, 'stringFilter']),
+            new TwigFilter('term_list', [
                 $this,
                 'termListFilter'
             ], ['is_safe' => ['html']]),
-            new \Twig_SimpleFilter('youtube_thumb', [$this, 'youTubeThumbFilter']),
-            new \Twig_SimpleFilter('sort_assets', [$this, 'sortAssetsFilter']),
-            new \Twig_SimpleFilter('for_comparison_table', [$this, 'forComparisonTableFilter']),
-            new \Twig_SimpleFilter('ksort', [$this, 'ksortFilter']),
+            new TwigFilter('youtube_thumb', [$this, 'youTubeThumbFilter']),
+            new TwigFilter('sort_assets', [$this, 'sortAssetsFilter']),
+            new TwigFilter('for_comparison_table', [$this, 'forComparisonTableFilter']),
+            new TwigFilter('ksort', [$this, 'ksortFilter']),
         ];
     }
 
@@ -138,7 +141,7 @@ class HelpersExtension extends \Twig_Extension
      *
      * @param string $path Path to the SVG
      *
-     * @return null|Twig_Markup
+     * @return null|Twig\Markup
      */
     public function svgFunction($path)
     {
@@ -159,7 +162,7 @@ class HelpersExtension extends \Twig_Extension
 
             $svg = $dom->saveHTML();
 
-            return new Twig_Markup($svg, 'utf-8');
+            return new Twig\Markup($svg, 'utf-8');
         }
 
         return null;
@@ -256,7 +259,10 @@ class HelpersExtension extends \Twig_Extension
      */
     public function fnmatch(string $pattern, string $string)
     {
-        return fnmatch($pattern, $string);
+        //return fnmatch($pattern, $string);
+        $pattern = '/^' . preg_quote($pattern, '/') . '$/';
+        $pattern = str_replace('\*', '.*', $pattern);
+        return (bool) preg_match($pattern, $string);
     }
 
     /**
@@ -386,7 +392,7 @@ class HelpersExtension extends \Twig_Extension
                 '#url'   => $term->toUrl(),
                 '#title' => $term->label()
             ];
-            return render($render);
+            return \Drupal::service('renderer')->render($render);
         }, (array) $value));
     }
 
