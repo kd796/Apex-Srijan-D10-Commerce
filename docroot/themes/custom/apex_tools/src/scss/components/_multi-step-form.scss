@@ -4,6 +4,45 @@
 
 .g-recaptcha {
   padding: 0 2rem;
+
+  @media only screen and(max-width: $media-screen-tablet) {
+    padding: 0 0.75rem;
+  }
+
+  & > div {
+    width: 300px !important;
+    height: unset !important;
+  }
+
+  iframe {
+    width: 350px !important;
+    height: unset !important;
+  }
+
+  .rc-anchor {
+    &.rc-anchor-compact {
+      display: flex;
+      align-items: center;
+      width: 300px;
+      height: unset;
+      padding: 13px;
+
+      .rc-anchor-content {
+        display: flex;
+        height: unset;
+        align-items: center;
+      }
+
+      .rc-anchor-compact-footer {
+        height: unset;
+        width: unset;
+      }
+    }
+  }
+
+  .rc-anchor-normal .rc-anchor-pt {
+    right: 45px;
+  }
 }
 
 .field-add-more-submit {
@@ -819,10 +858,6 @@
       }
     }
   }
-}
-
-div.notice--info {
-  display: none !important;
 }
 
 .multi-form {
