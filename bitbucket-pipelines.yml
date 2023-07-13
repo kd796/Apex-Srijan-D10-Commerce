@@ -4,7 +4,7 @@
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
 image:
-  name: docksal/cli:php8.1-3.4
+  name: docksal/cli:php8.1-3.1
   run-as-user: 1000
 
 clone:
@@ -26,8 +26,8 @@ definitions:
           - export $(grep '^DOCROOT=' .docksal/docksal.env)
           - export DOCROOT=${DOCROOT:-docroot}
           # sudo composer self-update
-          # composer -v
-          # php -v
+          - composer -v
+          - php -v
           # Run init script in CI mode.
           - .docksal/commands/init ci
         artifacts:
