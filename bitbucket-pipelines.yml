@@ -25,7 +25,6 @@ definitions:
           - export PROJECT_ROOT="${BITBUCKET_CLONE_DIR}"
           - export $(grep '^DOCROOT=' .docksal/docksal.env)
           - export DOCROOT=${DOCROOT:-docroot}
-          - composer -v
 
           # Run init script in CI mode.
           - .docksal/commands/init ci
