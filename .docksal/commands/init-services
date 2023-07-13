@@ -32,7 +32,7 @@ sudo ln -fs "/home/docker/.nvm/versions/node/$(nvm current)/bin/npm" /usr/local/
 echo-green "NPM is available."
 
 step_header "Removing a package that is incompoatible with PHP 8.1"
-composer global remove consolidation/cgr
+#composer global remove consolidation/cgr
 
 step_header "Installing Global Codesniffer"
 composer global require drupal/coder:8.3.13
