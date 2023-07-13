@@ -18,31 +18,6 @@
     width: 350px !important;
     height: unset !important;
   }
-
-  .rc-anchor {
-    &.rc-anchor-compact {
-      display: flex;
-      align-items: center;
-      width: 300px;
-      height: unset;
-      padding: 13px;
-
-      .rc-anchor-content {
-        display: flex;
-        height: unset;
-        align-items: center;
-      }
-
-      .rc-anchor-compact-footer {
-        height: unset;
-        width: unset;
-      }
-    }
-  }
-
-  .rc-anchor-normal .rc-anchor-pt {
-    right: 45px;
-  }
 }
 
 .field-add-more-submit {
@@ -993,10 +968,11 @@
 
 .target-class {
   img {
-    width: 32px !important;
-    height: 32px !important;
+    width: 40px !important;
+    height: 40px !important;
+    object-fit: contain;
     position: relative;
-    top: -6px;
+    top: -8px;
     margin-left: 20px;
   }
 }
@@ -1042,6 +1018,27 @@
               h4 {
                 font-size: 20px;
                 color: $color-orange;
+              }
+            }
+          }
+
+          tbody {
+            tr {
+              td {
+                & > div {
+                  .paragraphs-subform {
+                    .field--widget-options-buttons {
+                      fieldset {
+                        position: relative;
+                        small {
+                          position: absolute;
+                          left: 0;
+                          top: calc(100% - 10px);
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           }
