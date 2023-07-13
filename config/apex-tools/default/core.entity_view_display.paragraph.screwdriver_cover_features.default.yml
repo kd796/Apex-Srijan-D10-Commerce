@@ -1,0 +1,304 @@
+uuid: a004a3e2-e516-46ed-98e1-77106befc258
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.screwdriver_cover_features.field_c_sink_dia_ang_ect
+    - field.field.paragraph.screwdriver_cover_features.field_embedded_magnets
+    - field.field.paragraph.screwdriver_cover_features.field_exposed_tip_of_bit
+    - field.field.paragraph.screwdriver_cover_features.field_fasterner_info
+    - field.field.paragraph.screwdriver_cover_features.field_flush_with_tip_of_bit
+    - field.field.paragraph.screwdriver_cover_features.field_free_spinning
+    - field.field.paragraph.screwdriver_cover_features.field_material
+    - field.field.paragraph.screwdriver_cover_features.field_o_d_limitations
+    - field.field.paragraph.screwdriver_cover_features.field_other_considerations
+    - field.field.paragraph.screwdriver_cover_features.field_recessed_tip_of_bit
+    - field.field.paragraph.screwdriver_cover_features.field_retractable
+    - field.field.paragraph.screwdriver_cover_features.field_screw_press_fit
+    - field.field.paragraph.screwdriver_cover_features.field_spring_force
+    - paragraphs.paragraphs_type.screwdriver_cover_features
+  module:
+    - double_field
+    - triples_field
+id: paragraph.screwdriver_cover_features.default
+targetEntityType: paragraph
+bundle: screwdriver_cover_features
+mode: default
+content:
+  field_c_sink_dia_ang_ect:
+    type: boolean
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_embedded_magnets:
+    type: double_field_unformatted_list
+    label: inline
+    settings:
+      first:
+        format_type: medium
+        link: false
+        hidden: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      second:
+        format_type: medium
+        link: false
+        hidden: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      inline: true
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_exposed_tip_of_bit:
+    type: double_field_unformatted_list
+    label: inline
+    settings:
+      first:
+        format_type: medium
+        link: false
+        hidden: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      second:
+        format_type: medium
+        link: false
+        hidden: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      inline: true
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_fasterner_info:
+    type: double_field_unformatted_list
+    label: inline
+    settings:
+      first:
+        format_type: medium
+        link: false
+        hidden: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      second:
+        format_type: medium
+        link: false
+        hidden: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      inline: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_flush_with_tip_of_bit:
+    type: boolean
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_free_spinning:
+    type: boolean
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_material:
+    type: double_field_unformatted_list
+    label: inline
+    settings:
+      first:
+        format_type: medium
+        link: false
+        hidden: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      second:
+        format_type: medium
+        link: false
+        hidden: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      inline: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_o_d_limitations:
+    type: double_field_unformatted_list
+    label: inline
+    settings:
+      first:
+        format_type: medium
+        link: false
+        hidden: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      second:
+        format_type: medium
+        link: false
+        hidden: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      inline: true
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_other_considerations:
+    type: double_field_unformatted_list
+    label: inline
+    settings:
+      first:
+        format_type: medium
+        link: false
+        hidden: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      second:
+        format_type: medium
+        link: false
+        hidden: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      inline: true
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_recessed_tip_of_bit:
+    type: double_field_unformatted_list
+    label: inline
+    settings:
+      first:
+        format_type: medium
+        link: false
+        hidden: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      second:
+        format_type: medium
+        link: false
+        hidden: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      inline: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_retractable:
+    type: triples_field_table
+    label: inline
+    settings:
+      first:
+        format_type: medium
+        link: false
+        hidden: false
+        show_label: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      second:
+        format_type: medium
+        link: false
+        hidden: false
+        show_label: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      third:
+        format_type: medium
+        link: false
+        hidden: false
+        show_label: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      number_column: false
+      number_column_label: №
+      first_column_label: ''
+      second_column_label: ''
+      third_column_label: ''
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_screw_press_fit:
+    type: boolean
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_spring_force:
+    type: double_field_unformatted_list
+    label: inline
+    settings:
+      first:
+        format_type: medium
+        link: false
+        hidden: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      second:
+        format_type: medium
+        link: false
+        hidden: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      inline: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

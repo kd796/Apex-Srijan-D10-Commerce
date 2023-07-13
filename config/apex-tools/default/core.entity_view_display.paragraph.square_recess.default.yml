@@ -1,0 +1,38 @@
+uuid: 2fa3d4a7-7b06-4aef-bec0-d72f891b7b78
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.square_recess.field_recess_point_size
+    - field.field.paragraph.square_recess.field_torx
+    - paragraphs.paragraphs_type.square_recess
+  module:
+    - options
+id: paragraph.square_recess.default
+targetEntityType: paragraph
+bundle: square_recess
+mode: default
+content:
+  field_recess_point_size:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_torx:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

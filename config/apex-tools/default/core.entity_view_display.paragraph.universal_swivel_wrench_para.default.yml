@@ -1,0 +1,99 @@
+uuid: ac697f80-d5fc-49db-9121-b062db660bee
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.universal_swivel_wrench_para.field_broach_ref
+    - field.field.paragraph.universal_swivel_wrench_para.field_dimensions_ref
+    - field.field.paragraph.universal_swivel_wrench_para.field_female_ref
+    - field.field.paragraph.universal_swivel_wrench_para.field_female_square_ref_sh
+    - field.field.paragraph.universal_swivel_wrench_para.field_male_hex_ref
+    - field.field.paragraph.universal_swivel_wrench_para.field_optional_features_ref
+    - field.field.paragraph.universal_swivel_wrench_para.field_order
+    - field.field.paragraph.universal_swivel_wrench_para.field_oth_spec_ref
+    - paragraphs.paragraphs_type.universal_swivel_wrench_para
+  module:
+    - entity_reference_revisions
+id: paragraph.universal_swivel_wrench_para.default
+targetEntityType: paragraph
+bundle: universal_swivel_wrench_para
+mode: default
+content:
+  field_broach_ref:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_dimensions_ref:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_female_ref:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_female_square_ref_sh:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_male_hex_ref:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_optional_features_ref:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_order:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_oth_spec_ref:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 6
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

@@ -1,0 +1,71 @@
+uuid: 10f07621-b0ea-4ee1-a61f-2386c81b42c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.quotation_screwdriver.field_screwdriver
+    - paragraphs.paragraphs_type.quotation_screwdriver
+  module:
+    - default_paragraphs
+id: paragraph.quotation_screwdriver.default
+targetEntityType: paragraph
+bundle: quotation_screwdriver
+mode: default
+content:
+  field_screwdriver:
+    type: default_paragraphs
+    weight: 0
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      closed_mode: summary
+      autocollapse: all
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_types:
+        screwdriver_part_type:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+        quotation_screwdriver_style:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+        quotation_screwdriver_drive_type:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+        bit_dimensions:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+        bit_holder_retention_method:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+        screwdriver_bit_holder_styles:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+        socket_dimensions:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+        screwdriver_cover_requirements:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+        screwdriver_cover_features:
+          edit_mode: edit
+          weight: '0'
+          value: 0
+        quotation_order_type:
+          value: '1'
+          edit_mode: edit
+          weight: '0'
+      edit_mode: closed
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

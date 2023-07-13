@@ -1,0 +1,35 @@
+uuid: 19691b6d-0973-4e37-9835-baf320cb39b3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.cover_features.field_cover_features_radio
+    - field.field.paragraph.cover_features.field_nylon_requirements_yes_no_
+    - paragraphs.paragraphs_type.cover_features
+  module:
+    - options
+id: paragraph.cover_features.default
+targetEntityType: paragraph
+bundle: cover_features
+mode: default
+content:
+  field_cover_features_radio:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_nylon_requirements_yes_no_:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

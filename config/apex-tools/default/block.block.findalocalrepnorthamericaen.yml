@@ -1,0 +1,36 @@
+uuid: 96c69c31-3bbb-48f6-991e-b06ceba0f264
+langcode: en
+status: true
+dependencies:
+  config:
+    - fixed_block_content.fixed_block_content.find_a_local_rep_na
+  module:
+    - fixed_block_content
+    - language
+    - system
+  theme:
+    - apex_tools
+id: findalocalrepnorthamericaen
+theme: apex_tools
+region: content
+weight: -3
+provider: null
+plugin: 'fixed_block_content:find_a_local_rep_na'
+settings:
+  id: 'fixed_block_content:find_a_local_rep_na'
+  label: 'Find a local rep(North America / EN)'
+  label_display: '0'
+  provider: fixed_block_content
+  view_mode: ''
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      en: en
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/industry-solutions/*\r\n/products/product-catalog/*"

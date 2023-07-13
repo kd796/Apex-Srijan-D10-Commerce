@@ -1,0 +1,24 @@
+uuid: 0622b2b7-d61c-404d-b9c4-a5add9c854ec
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_order_type
+field_name: field_order_type
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'Standard: Lead time: 70 days'
+      label: 'Standard: Lead time: 70 days'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

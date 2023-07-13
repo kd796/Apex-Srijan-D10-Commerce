@@ -1,0 +1,28 @@
+uuid: 81eaaab6-41af-45c9-8108-26951148b4fc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.torx_r.field_torx
+    - field.field.paragraph.torx_r.field_torx_r_
+    - paragraphs.paragraphs_type.torx_r
+id: paragraph.torx_r.default
+targetEntityType: paragraph
+bundle: torx_r
+mode: default
+content:
+  field_torx:
+    type: options_buttons
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_torx_r_:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

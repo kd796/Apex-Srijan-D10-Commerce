@@ -1,0 +1,28 @@
+uuid: 153b0218-7cdd-4e5b-9554-749224bc893f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.other_drive_consideration.field_counter_bored
+    - paragraphs.paragraphs_type.other_drive_consideration
+id: paragraph.other_drive_consideration.default
+targetEntityType: paragraph
+bundle: other_drive_consideration
+mode: default
+content:
+  field_counter_bored:
+    type: boolean
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

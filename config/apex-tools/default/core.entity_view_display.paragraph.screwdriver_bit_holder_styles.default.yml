@@ -1,0 +1,29 @@
+uuid: fcb9b134-b7ba-4e96-bbbe-e13a7cdeae41
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.screwdriver_bit_holder_styles.field_bit_holder_styles
+    - paragraphs.paragraphs_type.screwdriver_bit_holder_styles
+  module:
+    - entity_reference_revisions
+id: paragraph.screwdriver_bit_holder_styles.default
+targetEntityType: paragraph
+bundle: screwdriver_bit_holder_styles
+mode: default
+content:
+  field_bit_holder_styles:
+    type: entity_reference_revisions_entity_view
+    label: inline
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

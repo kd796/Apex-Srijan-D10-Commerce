@@ -1,0 +1,300 @@
+uuid: 679f3a7a-a1ca-4634-ab27-64b94ab7c973
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_drive_type
+    - paragraphs.paragraphs_type.drive_type_other
+    - paragraphs.paragraphs_type.female_square
+    - paragraphs.paragraphs_type.hex_insert
+    - paragraphs.paragraphs_type.hex_power
+    - paragraphs.paragraphs_type.quotation_screwdriver_drive_type
+    - paragraphs.paragraphs_type.threaded
+  module:
+    - entity_reference_revisions
+id: paragraph.quotation_screwdriver_drive_type.field_drive_type
+field_name: field_drive_type
+entity_type: paragraph
+bundle: quotation_screwdriver_drive_type
+label: 'Drive Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      drive_type_other: drive_type_other
+      female_square: female_square
+      hex_insert: hex_insert
+      hex_power: hex_power
+      threaded: threaded
+    negate: 0
+    target_bundles_drag_drop:
+      360_hotspots:
+        weight: 83
+        enabled: false
+      360_product_image:
+        weight: 84
+        enabled: false
+      barbell:
+        weight: 85
+        enabled: false
+      basic_card:
+        weight: 86
+        enabled: false
+      basic_card_section:
+        weight: 87
+        enabled: false
+      broach_opening:
+        weight: 88
+        enabled: false
+      callout_section_footer:
+        weight: 89
+        enabled: false
+      callout_section_page_end:
+        weight: 90
+        enabled: false
+      card:
+        weight: 91
+        enabled: false
+      content_bundle:
+        weight: 92
+        enabled: false
+      content_section:
+        weight: 93
+        enabled: false
+      content_section_simple:
+        weight: 94
+        enabled: false
+      cta:
+        weight: 95
+        enabled: false
+      dimensions:
+        weight: 96
+        enabled: false
+      double_hex:
+        weight: 97
+        enabled: false
+      double_square:
+        weight: 98
+        enabled: false
+      drive_type_other:
+        weight: 89
+        enabled: true
+      enhanced_hero:
+        weight: 99
+        enabled: false
+      enhanced_product_features:
+        weight: 100
+        enabled: false
+      excerpt:
+        weight: 101
+        enabled: false
+      faq:
+        weight: 102
+        enabled: false
+      faqs_group:
+        weight: 103
+        enabled: false
+      faqs_section:
+        weight: 104
+        enabled: false
+      fast_lead:
+        weight: 105
+        enabled: false
+      featured_block:
+        weight: 106
+        enabled: false
+      featured_product_item:
+        weight: 108
+        enabled: false
+      featured_products:
+        weight: 107
+        enabled: false
+      featured_section:
+        weight: 109
+        enabled: false
+      female_square:
+        weight: 117
+        enabled: true
+      female_square_drive_short:
+        weight: 118
+        enabled: false
+      female_square_drive_standard_typ:
+        weight: 110
+        enabled: false
+      find_a_distributor:
+        weight: 111
+        enabled: false
+      form_section:
+        weight: 112
+        enabled: false
+      from_library:
+        weight: 113
+        enabled: false
+      grid_item:
+        weight: 114
+        enabled: false
+      grid_section:
+        weight: 115
+        enabled: false
+      hero:
+        weight: 116
+        enabled: false
+      hex:
+        weight: 117
+        enabled: false
+      hex_insert:
+        weight: 127
+        enabled: true
+      hex_power:
+        weight: 128
+        enabled: true
+      iframe:
+        weight: 118
+        enabled: false
+      intro:
+        weight: 119
+        enabled: false
+      mailing_list_form:
+        weight: 120
+        enabled: false
+      male_hex_drive_standard_type:
+        weight: 121
+        enabled: false
+      media_block:
+        weight: 122
+        enabled: false
+      media_file:
+        weight: 123
+        enabled: false
+      media_image:
+        weight: 124
+        enabled: false
+      media_kit:
+        weight: 125
+        enabled: false
+      message_block:
+        weight: 126
+        enabled: false
+      mortorq:
+        weight: 127
+        enabled: false
+      nutsetter:
+        weight: 128
+        enabled: false
+      optional_features:
+        weight: 129
+        enabled: false
+      other:
+        weight: 130
+        enabled: false
+      other_drive_consideration:
+        weight: 131
+        enabled: false
+      other_specifications:
+        weight: 132
+        enabled: false
+      philips:
+        weight: 133
+        enabled: false
+      phillips_acr:
+        weight: 134
+        enabled: false
+      pozidriv_r:
+        weight: 135
+        enabled: false
+      product_categories:
+        weight: 138
+        enabled: false
+      product_search:
+        weight: 139
+        enabled: false
+      products_category_section:
+        weight: 136
+        enabled: false
+      products_section:
+        weight: 137
+        enabled: false
+      quotation_order_type:
+        weight: 151
+        enabled: false
+      quotation_screwdriver_drive_type:
+        weight: 82
+        enabled: false
+      quotation_screwdriver_style:
+        weight: 140
+        enabled: false
+      s:
+        weight: 141
+        enabled: false
+      schedule_a_demo:
+        weight: 142
+        enabled: false
+      shouldered:
+        weight: 143
+        enabled: false
+      slotted:
+        weight: 144
+        enabled: false
+      socket_extension_adapter:
+        weight: 145
+        enabled: false
+      socket_head:
+        weight: 146
+        enabled: false
+      socket_type:
+        weight: 147
+        enabled: false
+      square:
+        weight: 148
+        enabled: false
+      square_recess:
+        weight: 149
+        enabled: false
+      straight:
+        weight: 150
+        enabled: false
+      surface_drive:
+        weight: 151
+        enabled: false
+      tapered:
+        weight: 152
+        enabled: false
+      testimonials_block:
+        weight: 153
+        enabled: false
+      testimonials_section:
+        weight: 154
+        enabled: false
+      threaded:
+        weight: 168
+        enabled: true
+      torq_set:
+        weight: 155
+        enabled: false
+      torx_align_r_:
+        weight: 156
+        enabled: false
+      torx_plus_r:
+        weight: 157
+        enabled: false
+      torx_r:
+        weight: 158
+        enabled: false
+      triple_square:
+        weight: 159
+        enabled: false
+      universal_swivel_wrench:
+        weight: 160
+        enabled: false
+      universal_wrench:
+        weight: 161
+        enabled: false
+      video_bundle:
+        weight: 162
+        enabled: false
+field_type: entity_reference_revisions

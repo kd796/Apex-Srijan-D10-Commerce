@@ -1,0 +1,28 @@
+uuid: d7bdc692-b7c2-4693-b1e5-ca1b1e4f5f2b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.triple_square.field_triple_square
+    - field.field.paragraph.triple_square.field_triple_square_point_size
+    - paragraphs.paragraphs_type.triple_square
+id: paragraph.triple_square.default
+targetEntityType: paragraph
+bundle: triple_square
+mode: default
+content:
+  field_triple_square:
+    type: options_buttons
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_triple_square_point_size:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

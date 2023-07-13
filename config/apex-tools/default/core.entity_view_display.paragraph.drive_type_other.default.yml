@@ -1,0 +1,37 @@
+uuid: 14193ddd-53b6-464e-9a01-e2784b4898f0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.drive_type_other.field_specify
+    - field.field.paragraph.drive_type_other.field_torx
+    - paragraphs.paragraphs_type.drive_type_other
+id: paragraph.drive_type_other.default
+targetEntityType: paragraph
+bundle: drive_type_other
+mode: default
+content:
+  field_specify:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_torx:
+    type: boolean
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

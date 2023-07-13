@@ -1,0 +1,37 @@
+uuid: 24bb5d28-17f1-405f-a17d-add0138eae47
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.other.field_specify
+    - field.field.paragraph.other.field_torx
+    - paragraphs.paragraphs_type.other
+id: paragraph.other.default
+targetEntityType: paragraph
+bundle: other
+mode: default
+content:
+  field_specify:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_torx:
+    type: boolean
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

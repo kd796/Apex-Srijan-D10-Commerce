@@ -1,0 +1,27 @@
+uuid: 38d8e3ee-c8ab-483e-9810-ec411ab6abb5
+langcode: en
+status: true
+dependencies:
+  module:
+    - apex_tools_custom_quotation
+    - options
+id: quotation.field_reactivation_request
+field_name: field_reactivation_request
+entity_type: quotation
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'yes'
+      label: 'Yes'
+    -
+      value: 'no'
+      label: 'No'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

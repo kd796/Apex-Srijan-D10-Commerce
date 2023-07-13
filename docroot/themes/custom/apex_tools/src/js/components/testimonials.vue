@@ -3,7 +3,7 @@
         <siema ref="slider" :current.sync="currentSlide" :options="options" class="testimonials-list">
             <slot></slot>
         </siema>
-        <div class="testimonials-nav">
+        <div class="testimonials-nav" v-if="totalSlides > 1 " >
             <button type="button" :class="getNavClasses('prev')" :disabled="!hasPrevious" @click="$refs.slider.prev()">&lt;</button>
             <button type="button" :class="getNavClasses('next')" :disabled="!hasNext" @click="$refs.slider.next()">&gt;</button>
         </div>

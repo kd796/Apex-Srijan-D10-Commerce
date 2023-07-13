@@ -1,0 +1,57 @@
+uuid: 2aff3895-51c7-4dd3-adb7-9c96c312ac7e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_retractable
+    - paragraphs.paragraphs_type.screwdriver_cover_features
+  module:
+    - triples_field
+id: paragraph.screwdriver_cover_features.field_retractable
+field_name: field_retractable
+entity_type: paragraph
+bundle: screwdriver_cover_features
+label: Retractable
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  first:
+    label: ''
+    list: false
+    allowed_values: {  }
+    max: null
+    min: null
+    required: false
+    on_label: 'Retractable(how much?)'
+    off_label: 'Off'
+  second:
+    label: ''
+    list: false
+    allowed_values: {  }
+    max: null
+    min: null
+    required: false
+    on_label: 'On'
+    off_label: 'Off'
+  third:
+    label: Style
+    list: true
+    allowed_values:
+      -
+        label: spring
+        value: spring
+      -
+        label: thread
+        value: thread
+      -
+        label: 'free floating'
+        value: free_floating
+    max: null
+    min: null
+    required: false
+    on_label: 'On'
+    off_label: 'Off'
+field_type: triples_field

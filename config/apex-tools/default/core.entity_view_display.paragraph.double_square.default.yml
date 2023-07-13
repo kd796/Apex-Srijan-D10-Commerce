@@ -1,0 +1,28 @@
+uuid: a299658a-e9ac-4e43-95de-dcb70cece94d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.double_square.field_double_square
+    - paragraphs.paragraphs_type.double_square
+id: paragraph.double_square.default
+targetEntityType: paragraph
+bundle: double_square
+mode: default
+content:
+  field_double_square:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

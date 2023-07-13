@@ -1,0 +1,23 @@
+uuid: d8eada05-910a-4a5a-b22c-e40726efe60c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hex_insert
+    - paragraphs.paragraphs_type.hex_insert
+id: paragraph.hex_insert.field_hex_insert
+field_name: field_hex_insert
+entity_type: paragraph
+bundle: hex_insert
+label: 'Hex Insert'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Hex Insert'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,29 @@
+uuid: c0bc7885-4b4c-49d6-a2f1-c98fe54fed6e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.quotation_screwdriver.field_screwdriver
+    - paragraphs.paragraphs_type.quotation_screwdriver
+  module:
+    - entity_reference_revisions
+id: paragraph.quotation_screwdriver.default
+targetEntityType: paragraph
+bundle: quotation_screwdriver
+mode: default
+content:
+  field_screwdriver:
+    type: entity_reference_revisions_entity_view
+    label: inline
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

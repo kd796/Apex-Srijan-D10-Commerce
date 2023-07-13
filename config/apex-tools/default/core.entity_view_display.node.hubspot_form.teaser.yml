@@ -1,0 +1,43 @@
+uuid: f0949802-ce4f-46a7-95b4-768c5c3fe8b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.hubspot_form.body
+    - field.field.node.hubspot_form.field_form_link
+    - field.field.node.hubspot_form.field_hubspot_code
+    - field.field.node.hubspot_form.field_hubspot_form
+    - field.field.node.hubspot_form.field_image
+    - field.field.node.hubspot_form.field_not_a_hubspot_form
+    - node.type.hubspot_form
+  module:
+    - text
+    - user
+id: node.hubspot_form.teaser
+targetEntityType: node
+bundle: hubspot_form
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_form_link: true
+  field_hubspot_code: true
+  field_hubspot_form: true
+  field_image: true
+  field_not_a_hubspot_form: true
+  langcode: true
+  search_api_excerpt: true
+  uuid: true

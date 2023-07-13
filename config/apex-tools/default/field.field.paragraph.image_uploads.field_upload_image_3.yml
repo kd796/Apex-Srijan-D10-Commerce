@@ -1,0 +1,38 @@
+uuid: eb82de31-0dcf-48f4-b56b-f7c1db1a16b1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_upload_image_3
+    - paragraphs.paragraphs_type.image_uploads
+  module:
+    - image
+id: paragraph.image_uploads.field_upload_image_3
+field_name: field_upload_image_3
+entity_type: paragraph
+bundle: image_uploads
+label: 'Upload #3'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: false
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

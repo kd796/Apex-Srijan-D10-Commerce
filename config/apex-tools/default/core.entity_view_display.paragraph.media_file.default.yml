@@ -1,0 +1,55 @@
+uuid: 768f5820-4cce-474e-a686-0fca8fbe8cc0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.media_file.field_upload_1
+    - field.field.paragraph.media_file.field_upload_2
+    - field.field.paragraph.media_file.field_upload_3
+    - field.field.paragraph.media_file.field_upload_4
+    - paragraphs.paragraphs_type.media_file
+  module:
+    - file
+id: paragraph.media_file.default
+targetEntityType: paragraph
+bundle: media_file
+mode: default
+content:
+  field_upload_1:
+    type: file_default
+    label: inline
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_upload_2:
+    type: file_default
+    label: inline
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_upload_3:
+    type: file_default
+    label: inline
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_upload_4:
+    type: file_default
+    label: inline
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

@@ -1,0 +1,43 @@
+uuid: 9e8d9e15-de2d-4049-8b54-d7a9155577cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bit_dimensions.field_a_overall_length
+    - field.field.paragraph.bit_dimensions.field_b_body_diameter
+    - field.field.paragraph.bit_dimensions.field_c_turned_length
+    - paragraphs.paragraphs_type.bit_dimensions
+  module:
+    - physical
+id: paragraph.bit_dimensions.default
+targetEntityType: paragraph
+bundle: bit_dimensions
+mode: default
+content:
+  field_a_overall_length:
+    type: physical_measurement_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_b_body_diameter:
+    type: physical_measurement_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_c_turned_length:
+    type: physical_measurement_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

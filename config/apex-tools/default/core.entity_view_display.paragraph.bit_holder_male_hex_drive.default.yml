@@ -1,0 +1,38 @@
+uuid: f5ae449a-6aeb-49be-ab42-cdfbfbea77da
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bit_holder_male_hex_drive.field_male_hex_drive
+    - field.field.paragraph.bit_holder_male_hex_drive.field_male_hex_drive_size
+    - paragraphs.paragraphs_type.bit_holder_male_hex_drive
+  module:
+    - physical
+id: paragraph.bit_holder_male_hex_drive.default
+targetEntityType: paragraph
+bundle: bit_holder_male_hex_drive
+mode: default
+content:
+  field_male_hex_drive:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_male_hex_drive_size:
+    type: physical_measurement_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

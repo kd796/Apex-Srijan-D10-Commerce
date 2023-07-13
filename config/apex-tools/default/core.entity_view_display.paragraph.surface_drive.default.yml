@@ -1,0 +1,28 @@
+uuid: 346ad250-387b-4b11-9fd9-c415f58db1b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.surface_drive.field_surface_drive
+    - paragraphs.paragraphs_type.surface_drive
+id: paragraph.surface_drive.default
+targetEntityType: paragraph
+bundle: surface_drive
+mode: default
+content:
+  field_surface_drive:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

@@ -1,0 +1,1582 @@
+.ajax-new-content {
+  opacity: 1 !important;
+}
+
+.g-recaptcha {
+  padding: 0 2rem;
+
+  @media only screen and(max-width: $media-screen-tablet) {
+    padding: 0 0.75rem;
+  }
+
+  & > div {
+    width: 300px !important;
+    height: unset !important;
+  }
+
+  iframe {
+    width: 350px !important;
+    height: unset !important;
+  }
+}
+
+.field-add-more-submit {
+  margin-bottom: 16px;
+
+  @media only screen and(max-width: $media-screen-tablet) {
+    width: 100%;
+  }
+}
+
+.multi-steps-label {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: $color-silver;
+  border-bottom: 1px solid hsla(0,0%,80%,.43);
+  @media only screen and (max-width: $media-screen-tablet) {
+    flex-direction: column;
+  }
+
+  .step-label {
+    padding: 0;
+    color: $color-off-black;
+
+    span {
+      display: block;
+      padding: 0.75em 1em;
+      font-size: 1.1rem;
+      color: $color-off-black;
+      text-align: center;
+      border-right: 1px solid hsla(0,0%,80%,.43);
+      @media only screen and (max-width: $media-screen-medium) {
+        font-size: 0.64rem;
+      }
+
+      @media only screen and (max-width: $media-screen-tablet) {
+        font-size: 1.1rem;
+        border-bottom: 1px solid hsla(0,0%,80%,.43);
+      }
+
+    }
+
+    &.active {
+      color: $color-orange;
+      span {
+        color: $color-orange;
+      }
+    }
+
+    &.prev {
+      cursor: pointer;
+      &:hover {
+        span {
+          color: $color-orange;
+        }
+      }
+    }
+
+    &:last-child span {
+      border-right: 0;
+      @media only screen and (max-width: $media-screen-tablet) {
+        border-bottom: 0;
+      }
+    }
+  }
+}
+
+.quotation-add-form {
+  input {
+    width: 100%;
+
+    &[type='checkbox'],
+    &[type='radio'] {
+      width: auto;
+      border: 0;
+      box-shadow: none;
+    }
+
+    &[type='file'] {
+      padding: 13px;
+    }
+  }
+
+  .form-item {
+    margin: 0;
+  }
+
+  .form-actions {
+    margin: 0;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    @media only screen and (max-width: $media-screen-tablet) {
+      padding: 0 1rem;
+    }
+
+    button {
+      margin: 2rem 0 !important;
+      white-space: normal;
+      word-wrap: break-word;
+    }
+  }
+
+  table {
+    width: 100%;
+    box-shadow: none;
+    table-layout: fixed;
+  }
+
+  tbody {
+    .field-multiple-drag {
+      display: none !important;
+    }
+
+    tr {
+      td {
+        border: 0;
+        padding: 0!important;
+      }
+    }
+  }
+
+  thead {
+    display: none;
+  }
+
+  .draggable {
+    position: relative;
+    width: 100%;
+
+    .description {
+      font-size: 16px;
+      color: $color-off-black;
+      line-height: $line-height-default;
+
+      strong {
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      ul {
+        margin: 16px 0;
+        font-size: 16px;
+        font-weight: 400;
+        font-style: normal;
+        padding-left: 40px;
+        @media only screen and(max-width: $media-screen-tablet) {
+          padding-left: 30px;
+        }
+
+        @media only screen and(max-width: $media-screen-mobile) {
+          padding-left: 20px;
+        }
+      }
+
+      em {
+        font-size: 16px;
+        font-weight: 400;
+        font-style: normal;
+      }
+    }
+  }
+
+  #edit-field-upload-wrapper {
+    .paragraphs-subform {
+      display: grid;
+      grid-template-columns: 49% 49%;
+      grid-column-gap: 2%;
+      @media only screen and (max-width: $media-screen-tablet) {
+        display: flex;
+        flex-direction: column;
+      }
+
+      & > div {
+        margin-bottom: 25px;
+
+        button {
+          margin: 1rem 0;
+          min-width: 10rem;
+          width: 10rem;
+        }
+      }
+    }
+
+    & > div {
+      & > div {
+        opacity: unset !important;
+  
+        .js-form-type-managed-file {
+          flex-direction: column;
+          align-items: baseline;
+          .form-managed-file {
+            display: flex;
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
+
+  .field-multiple-table {
+    .draggable {
+      .form-wrapper {
+        .paragraphs-subform {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+
+          @media only screen and(max-width: $media-screen-tablet) {
+            margin-top: 10px;
+          }
+
+          .field--type-list-string,
+          .field--type-string-long,
+          .field--type-boolean,
+          .field--type-string {
+            width: 50%;
+            padding: 0 16px;
+            margin-bottom: 30px;
+            @media only screen and(max-width: $media-screen-mobile) {
+              width: 100%;
+              padding: 0;
+              margin-bottom: 15px;
+            }
+
+            legend {
+              font-size: 16px;
+              margin-bottom: 10px;
+            }
+
+            .fieldset-wrapper {
+              > div {
+                padding: 0;
+                display: flex;
+                margin: 0 -16px;
+                flex-wrap: wrap;
+                align-items: center;
+
+                .form-item {
+                  padding: 0 16px;
+                  margin-bottom: 16px;
+
+                  &:first-child {
+                    display: none;
+                  }
+
+                  &:last-child {
+                    display: flex;
+                    flex-wrap: nowrap;
+                    align-items: center;
+                  }
+
+                  label {
+                    font-size: 16px;
+                    margin: 0 0 0 10px;
+                    position: relative;
+                  }
+                }
+              }
+            }
+
+            &.field--name-field-type- {
+              display: none;
+            }
+
+            &.field--name-field-blade-width {
+              margin-left: auto;
+            }
+          }
+
+          .field--type-physical-measurement,
+          .field--type-double-field,
+          .field--type-triples-field {
+            width: 33.33%;
+            padding: 0 16px;
+            margin-bottom: 30px;
+            @media only screen and(max-width: $media-screen-tablet) {
+              width: 50% !important;
+              margin-bottom: 15px;
+            }
+
+            @media only screen and(max-width: $media-screen-mobile) {
+              width: 100% !important;
+              padding: 0;
+            }
+
+            .form-type-physical-measurement {
+              .form-item {
+                margin: 0 0 16px;
+              }
+            }
+          }
+
+          .field--type-triples-field,
+          .field--type-double-field {
+            .form-item {
+              label {
+                font-size: 16px;
+                display: none;
+              }
+
+              .triples-field-elements,
+              .double-field-elements {
+                .triples-field-subfield-form-item,
+                .double-field-subfield-form-item {
+                  display: flex;
+                  margin: 0 0 10px;
+                  flex-wrap: nowrap;
+                  align-items: center;
+
+                  label {
+                    margin: 0;
+                    display: block;
+                  }
+
+                  select {
+                    font-size: 16px;
+                    margin: 10px 0 0;
+                  }
+
+                  &.js-form-type-select {
+                    flex-wrap: wrap;
+                  }
+                }
+              }
+
+              .double-field-elements {
+                width: 100%;
+              }
+            }
+          }
+        }
+
+        .paragraphs-content {
+          .form-item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+
+            label {
+              font-size: 16px;
+              margin: 0;
+            }
+
+            select {
+              font-size: 16px;
+              margin: 10px 0 0;
+            }
+
+            input[type="text"] {
+              font-size: 16px;
+              margin: 10px 0 0;
+            }
+          }
+        }
+      }
+
+      &.paragraph-type--male-hex-drive-standard-type,
+      &.paragraph-type--female-square-drive-short,
+      &.paragraph-type--female-square-drive-standard-typ {
+        .paragraphs-subform {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+
+          .field--type-boolean,
+          .field--type-list-string {
+            width: 33.33%;
+            padding: 0 16px;
+
+            @media only screen and(max-width: $media-screen-tablet) {
+              padding: 0;
+              width: 100%;
+              margin-bottom: 15px;
+            }
+          }
+        }
+      }
+
+      &.paragraph-type--dimensions {
+        .field--name-field-l-shank-length {
+          .form-item {
+            label {
+              font-size: 16px;
+              width: 100%;
+            }
+
+            .form-no-label {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      .paragraph-type--magnetic,
+      .paragraph-type--socket-type,
+      .paragraph-type--cover-features,
+      .paragraph-type--optional-features,
+      .paragraph-type--other-specifications,
+      .paragraph-type--drive-configuration-para,
+      .paragraph-type--broach-opening {
+
+        .paragraphs-subform {
+          width: 100%;
+
+          .field--widget-options-buttons {
+            width: 100%;
+            margin: 0 0 16px;
+            @media only screen and(max-width: $media-screen-tablet) {
+              margin: 16px 0 16px;
+            }
+            @media only screen and(max-width: $media-screen-mobile) {
+              margin-bottom: 0;
+            }
+
+            .form-wrapper {
+              width: 100%;
+
+              legend {
+                font-size: 16px;
+                display: block;
+                margin: 0 0 10px;
+              }
+
+              .fieldset-wrapper {
+                width: 100%;
+
+                > div {
+                  display: flex;
+                  margin: 0 -16px;
+                  align-items: center;
+                  @media only screen and(max-width: $media-screen-mobile) {
+                    margin: 0;
+                  }
+
+                  .form-item {
+                    width: 20%;
+                    display: flex;
+                    padding: 0 16px;
+                    margin: 0 0 16px;
+                    flex-wrap: nowrap;
+                    position: relative;
+                    align-items: center;
+
+                    @media only screen and(max-width: $media-screen-large) {
+                      width: 25%;
+                    }
+
+                    @media only screen and(max-width: $media-screen-medium) {
+                      width: 33.33%;
+                    }
+
+                    @media only screen and(max-width: $media-screen-tablet) {
+                      width: 50%;
+                      flex-wrap: wrap;
+                    }
+
+                    @media only screen and(max-width: $media-screen-mobile) {
+                      padding: 0;
+                      width: 100%;
+                      flex-wrap: nowrap;
+                    }
+
+                    &:first-child {
+                      display: none;
+                    }
+
+                    label {
+                      font-size: 16px;
+                      position: static;
+                    }
+
+                    img {
+                      top: 0;
+                      position: absolute;
+                      left: calc(100% - 16px);
+                      transform: translateX(-100%);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .paragraph-type--other-specifications {
+        .field--widget-options-buttons {
+          .form-wrapper {
+            .fieldset-wrapper {
+              .form-checkboxes {
+                .form-item {
+                  &:first-child {
+                    display: flex !important;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .grid-12 {
+    @media only screen and (max-width: $media-screen-medium) {
+      width: 99% !important;
+    }
+  }
+
+  .tabledrag-toggle-weight-wrapper {
+    display: none;
+  }
+}
+
+// First set of third step
+#edit-field-quotation-screwdriver-styl-wrapper {
+  display: inline-block;
+  padding: 0 2rem 2rem;
+  width: 98%;
+
+  & > div {
+    & > div {
+      & > table {
+        thead {
+          display: block;
+          background-color: transparent;
+          tr,
+          th {
+            display: block;
+            color: $color-orange;
+            padding: 1rem !important;
+            border: 0;
+
+            h4 {
+              font-size: 1rem;
+              margin-bottom: 0;
+              font-weight: 500;
+              text-transform: initial;
+            }
+          }
+        }
+
+        tbody {
+          display: grid;
+          grid-template-columns: 49% 49%;
+          grid-column-gap: 2%;
+          td {
+            border: 0;
+            display: block;
+          }
+          .paragraphs-subform {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 30% 20% 42%;
+            grid-column-gap: 4%;
+
+            .form-item {
+              display: flex;
+              flex-direction: column;
+            }
+
+            .js-form-type-radio {
+              flex-direction: row;
+            }
+
+            label {
+              font-size: 16px;
+              margin-bottom: 0;
+            }
+
+            fieldset {
+              & > .fieldset-wrapper {
+                & > div {
+                  div {
+                    display: none;
+                    &:last-child {
+                      display: flex;
+                    }
+
+                    label {
+                      font-size: 16px;
+                      padding: 0 10px 0;
+                    }
+                  }
+                }
+              }
+
+              legend {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#edit-field-custom-quotation-worksheet-wrapper {
+  & > .paragraphs-tabs-wrapper {
+    & > .form-item {
+      & > table.field-multiple-table {
+        & > tbody {
+          & > tr {
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: solid 1px $color-gray-medium;
+            display: grid;
+
+            &:nth-child(1),
+            &:nth-child(2),
+            &:nth-child(3) {
+              display: none;
+            }
+
+            td.field-multiple-drag {
+              display: block;
+              position: relative;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    .paragraphs-tabs.tabs {
+      display: none;
+    }
+  }
+
+  .ajax-new-content {
+    opacity: 1 !important;
+  }
+}
+
+// Style for third step.
+#edit-field-custom-quotation-worksheet-add-more {
+  margin-left: .83333333333333%;
+  margin-right: .83333333333333%;
+
+  &.show-button {
+    display: unset;
+  }
+}
+
+.field--type-entity-reference-revisions .clearfix {
+  display: none;
+}
+
+// Style for forth Step.
+.field--name-field-image-uploads-4 {
+  padding: 2rem 2rem 0 !important;
+  margin: 8.8888px;
+  .clearfix {
+    display: unset;
+  }
+
+  .paragraphs-tabs {
+    display: none;
+  }
+}
+
+#edit-field-image-uploads-4-0-subform {
+  display: grid;
+  grid-template-columns: 49% 49%;
+  grid-column-gap: 2%;
+  @media only screen and (max-width: $media-screen-medium) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & > .form-wrapper {
+    margin-bottom: 25px;
+  }
+
+  td {
+    border: 0;
+  }
+
+  tr {
+    border: 0;
+  }
+
+  button {
+    margin: 1rem 0;
+    min-width: 10rem;
+    width: 10rem;
+  }
+
+  .form-item {
+    display: unset !important;
+  }
+
+  & > div {
+    & > div {
+      opacity: unset !important;
+
+      .js-form-type-managed-file {
+        flex-direction: column;
+        align-items: baseline;
+        .form-managed-file {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}
+
+.field--type-file {
+  & > div {
+    opacity: 1 !important;
+  }
+}
+
+.js {
+  .paragraph-top {
+    display: none;
+  }
+  .js-hide {
+    display: unset;
+  }
+
+  #edit-field-custom-quotation-worksheet-wrapper {
+    & > .paragraphs-tabs-wrapper {
+      & > .form-item {
+        & > table.field-multiple-table {
+          & > tbody {
+            & > tr {
+              .paragraph-top {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                @media only screen and (max-width: $media-screen-tablet) {
+                  flex-direction: column;
+                }
+
+                &.collapse-wrapper {
+                  display: none;
+                }
+
+                .paragraph-info {
+                  display: none;
+                }
+
+                .paragraph-type-label {
+                  @media only screen and (max-width: $media-screen-tablet) {
+                    font-size: 22px;
+                  }
+                }
+
+                .paragraph-summary {
+                  @media only screen and (max-width: $media-screen-tablet) {
+                    margin: 10px 0;
+                    font-size: 18px;
+                  }
+                }
+
+                .paragraphs-actions {
+                  button{
+                    &.form-submit {
+                      @media only screen and (max-width: $media-screen-tablet) {
+                        min-width: 150px;
+                        width: 150px;
+                        height: 60px;
+                        margin: 0;
+                      }
+                    }
+                    // &.paragraphs-dropdown-toggle{
+                    //   height: unset;
+                    // }
+                  }
+                }
+              }
+
+              .paragraphs-dropdown {
+                width: 150px;
+                padding: 12px;
+
+                .paragraphs-dropdown-actions {
+                  display: block;
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  height: 100%;
+                  border-radius: 0;
+                  border: 0;
+                  box-shadow: none;
+
+                  button {
+                    height: 100%;
+                    border-radius: 0;
+                    box-shadow: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    & > div {
+      & > .form-item {
+        & > .clearfix {
+          display: unset;
+        }
+      }
+    }
+  }
+}
+
+.multi-form {
+  .sel-form {
+    width: 100%;
+    padding: 0;
+    border: 1px solid hsla(0,0%,80%,.43);
+    display: inline-block;
+
+    label {
+      font-size: 16px;
+      color: $color-off-black;
+    }
+  }
+}
+
+#edit-back-button {
+  display: none;
+}
+
+#edit-group-business-information,
+#edit-group-request-for-reactivation,
+#edit-group-custom-drive-tool {
+  display: inline-block;
+  padding: 2rem;
+  width: 100%;
+  @media only screen and (max-width: $media-screen-tablet) {
+    padding: 2rem 1rem 0;
+  }
+
+  &.hide {
+    display: none;
+  }
+  &.show {
+    display: block;
+  }
+}
+
+#edit-actions {
+  &.hide {
+    display: none;
+  }
+  &.show {
+    display: block;
+  }
+}
+
+.checkbox-second-step {
+  .fieldset-wrapper {
+    & > div {
+      display: flex;
+    }
+
+    .form-item {
+      display: flex;
+      width: auto;
+      margin-right: 65px;
+
+      input {
+        display: none;
+
+        &:checked + label {
+          background: transparent url(../img/check-on.png) left center no-repeat;
+          color: $color-orange;
+        }
+      }
+
+      label {
+        margin-bottom: 0;
+        padding-left: 28px;
+        background: transparent url(../img/check-off.png) left center no-repeat;
+        color: $color-off-black;
+        cursor: pointer;
+      }
+    }
+  }
+
+  legend {
+    margin-bottom: 10px;
+    @media only screen and (max-width: $media-screen-medium) {
+      padding: 0;
+    }
+  }
+}
+
+.step-three-submit {
+  display: none;
+  &.show-button {
+    display: inline-flex;
+  }
+}
+
+[data-drupal-selector$="subform-field-female-ref"],
+[data-drupal-selector$="subform-field-male-hex-ref-wrapper"],
+[data-drupal-selector$="subform-field-female-square-ref-sh-wrapper"] {
+  tbody tr td {
+    & > div {
+      & > div {
+        .paragraphs-subform {
+          .field--type-boolean {
+            & > fieldset {
+              display: flex;
+              flex-direction: column;
+              align-items: baseline !important;
+
+              img {
+                width: unset !important;
+                height: unset !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-optional-features-ref-0-subform"] {
+  span {
+    &.clear-option {
+      color: $color-orange;
+      display: block;
+      margin-bottom: 10px;
+      font-size: 14px;
+      cursor: pointer;
+
+      &:nth-child(2) {
+        display: none;
+      }
+    }
+  }
+}
+
+.target-class {
+  img {
+    width: 40px !important;
+    height: 40px !important;
+    object-fit: contain;
+    position: relative;
+    top: -8px;
+    margin-left: 20px;
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-0-subform"] {
+  .field--name-field-bit-standard {
+    display: none;
+
+    &.show-option {
+      display: unset;
+    }
+  }
+}
+[data-drupal-selector$="subform-field-screwdriver-1-top"],
+[data-drupal-selector$="subform-field-screwdriver-3-top"],
+[data-drupal-selector$="subform-field-screwdriver-4-top"],
+[data-drupal-selector$="subform-field-screwdriver-5-top"],
+[data-drupal-selector$="subform-field-screwdriver-6-top"] {
+  &.hide-options {
+    display: none !important;
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-1-subform"] {
+  &.hide-options {
+    display: none !important;
+  }
+  .field--name-field-screwdriver-style {
+    .paragraphs-tabs-wrapper {
+      & > .form-item {
+        & > table {
+          border-bottom: solid 3px $color-gray-medium;
+          thead {
+            display: block;
+            width: 100%;
+            background: #fff;
+
+            tr, th {
+              display: block;
+              border-top: 0;
+              border-bottom: 0;
+
+              h4 {
+                font-size: 20px;
+                color: $color-orange;
+              }
+            }
+          }
+
+          tbody {
+            tr {
+              td {
+                & > div {
+                  .paragraphs-subform {
+                    .field--widget-options-buttons {
+                      fieldset {
+                        position: relative;
+                        small {
+                          position: absolute;
+                          left: 0;
+                          top: calc(100% - 10px);
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .field--widget-options-buttons {
+    legend {
+      display: none;
+    }
+
+    .fieldset-wrapper {
+      & > div {
+        .form-item {
+          &:nth-child(2) {
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-2-subform"] {
+  .field--name-field-drive-type {
+    .paragraphs-tabs-wrapper {
+      & > .form-item {
+        & > table {
+          thead {
+            display: block;
+            width: 100%;
+            background: #fff;
+
+            tr, th {
+              display: block;
+              border-top: 0;
+              border-bottom: 0;
+
+              h4 {
+                font-size: 20px;
+                color: $color-orange;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .field--widget-options-buttons {
+    legend {
+      display: none;
+    }
+
+    .fieldset-wrapper {
+      & > div {
+        .form-item {
+          &:nth-child(2) {
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-3-subform"] {
+  border-bottom: solid 3px $color-gray-medium;
+  &.hide-options {
+    display: none !important;
+  }
+  .field--widget-options-buttons {
+    legend {
+      display: none;
+    }
+
+    .fieldset-wrapper {
+      & > div {
+        .form-item {
+          &:nth-child(2) {
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-4-subform"] {
+  margin-top: 30px !important;
+  &.hide-options {
+    display: none !important;
+  }
+
+  .paragraphs-content {
+    width: 100% !important;
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-5-subform"] {
+  &.hide-options {
+    display: none !important;
+  }
+  .field--name-field-bit-holder-styles {
+    .paragraphs-tabs-wrapper {
+      & > .form-item {
+        & > table {
+          tbody {
+            display: flex;
+            @media only screen and(max-width: $media-screen-tablet) {
+              flex-direction: column;
+            }
+
+            td {
+              display: block;
+            }
+
+            .paragraphs-subform {
+              display: flex;
+              flex-direction: column;
+              width: 100%;
+              justify-content: flex-start;
+            }
+
+            .paragraphs-content {
+              width: 100%;
+            }
+          }
+          .paragraphs-content {
+            width: 100%!important;
+            margin-bottom: 0 !important;
+          }
+        }
+      }
+    }
+  }
+
+  .field--widget-options-buttons {
+    legend {
+      display: none;
+    }
+
+    .fieldset-wrapper {
+      & > div {
+        .form-item {
+          &:nth-child(2) {
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-6-top"] {
+  img {
+    width: auto !important;
+    height: auto !important;
+    margin-top: 33px;
+    float: unset;
+  }
+  [data-drupal-selector$="subform-field-screwdriver-6-top-type"] {
+    position: relative;
+    display: flex;
+
+    .paragraph-type-label {
+      position: absolute;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-h-broach-opening-wrapper"],
+[data-drupal-selector$="subform-field-i-torx-r-size-wrapper"] {
+  @media only screen and(max-width: $media-screen-tablet) {
+    width: 100% !important;
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-6-subform"] {
+  &.hide-options {
+    display: none !important;
+  }
+  .field--type-list-string,
+  .paragraphs-content {
+    width: 33.33% !important;
+    @media only screen and(max-width: $media-screen-tablet) {
+      width: 100% !important;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-7-subform"] {
+  border-bottom: solid 3px $color-gray-medium;
+  margin-bottom: 30px !important;
+}
+
+[data-drupal-selector$="subform-field-screwdriver-7-subform-field-components-1-subform"] {
+  .field--widget-options-buttons {
+    legend {
+      display: none;
+    }
+
+    .fieldset-wrapper {
+      & > div {
+        .form-item {
+          &:nth-child(2) {
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-4-subform-field-bit-holder-retention-metho-wrapper"]{
+  width: 100%;
+}
+
+[data-drupal-selector$="subform-field-screwdriver-7-subform-field-components"] {
+  &.hide-options {
+    display: none;
+  }
+}
+
+[data-drupal-selector$="subform-field-socket-type-wrapper"],
+[data-drupal-selector$="subform-field-broach-opening-wrapper"],
+[data-drupal-selector$="subform-field-drive-configuration-label-wrapper"],
+[data-drupal-selector$="subform-field-magnetic-label-wrapper"],
+[data-drupal-selector$="subform-field-socket-dimensions-label-wrapper"] {
+  display: block;
+  width: 100%;
+  .paragraphs-tabs-wrapper {
+    & > .form-item {
+      & > table {
+        border-bottom: solid 3px $color-gray-medium;
+        display: block;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+.field--name-field-broach-opening-allowed {
+  fieldset {
+    .fieldset-wrapper {
+      .js-form-type-radio {
+        label {
+          position: relative !important;
+
+          img {
+            left: calc(100% - -30px) !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-drive-configuration-label-wrapper"] {
+  table,
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+}
+
+[data-drupal-selector$="subform-field-socket-type-wrapper"] {
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+
+  .form-item img {
+    top: -8px !important;
+    left: 100% !important;
+    width: 100px;
+  }
+
+  [data-drupal-selector$="subform-field-socket-type-allowed-wrapper"] {
+    fieldset {
+      .fieldset-wrapper {
+        & > div {
+          & > div {
+            margin-bottom: 60px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-socket-dimensions-label-wrapper"] {
+  table {
+    border-bottom: solid 3px $color-gray-medium;
+    thead {
+      display: block;
+      width: 100%;
+      background: #fff;
+
+      tr, th {
+        display: block;
+        border-top: 0;
+        border-bottom: 0;
+
+        h4 {
+          font-size: 20px;
+          color: $color-orange;
+        }
+      }
+    }
+
+    tbody {
+      .form-wrapper {
+        .paragraphs-subform {
+          .field--type-string,
+          .field--widget-string-textfield {
+            width: 33.33% !important;
+
+            @media only screen and (max-width: $media-screen-medium) {
+              width: 100% !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .field--widget-options-select {
+    width: 33.33% !important;
+    @media only screen and (max-width: $media-screen-medium) {
+      width: 100%;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-nylon-requirements-yes-no-wrapper"] {
+  .fieldset-wrapper {
+    & > div {
+      .form-item {
+        &:nth-child(2) {
+          width: 200px;
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-cover-features-radio-wrapper"] {
+  &.hide-options {
+    display: none;
+  }
+}
+
+[data-drupal-selector$="subform-field-female-ref-wrapper"],
+[data-drupal-selector$="subform-field-male-hex-ref-wrapper"],
+[data-drupal-selector$="subform-field-female-square-ref-sh-wrapper"],
+[data-drupal-selector$="subform-field-broach-ref-wrapper"],
+[data-drupal-selector$="subform-field-dimensions-ref-wrapper"],
+[data-drupal-selector$="subform-field-optional-features-ref-wrapper"],
+[data-drupal-selector$="subform-field-nylon-covers-features-wrapper"] {
+  display: block;
+  width: 100%;
+  .paragraphs-tabs-wrapper {
+    & > .form-item {
+      & > table {
+        border-bottom: solid 3px $color-gray-medium;
+        display: block;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-female-ref-wrapper"],
+[data-drupal-selector$="subform-field-male-hex-ref-wrapper"] {
+  .paragraphs-tabs-wrapper {
+    & > .form-item {
+      & > table {
+        border-bottom: 0;
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-female-ref-wrapper"],
+[data-drupal-selector$="subform-field-male-hex-ref-wrapper"],
+[data-drupal-selector$="subform-field-female-square-ref-sh-wrapper"],
+[data-drupal-selector$="subform-field-optional-features-ref-wrapper"] {
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+}
+
+[data-drupal-selector$="subform-field-dimensions-ref-wrapper"] {
+  .field--widget-options-select {
+    width: 33.33% !important;
+    @media only screen and (max-width: $media-screen-medium) {
+      width: 100%;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-dimensions-ref-0"] {
+  .paragraphs-subform {
+    .paragraphs-content {
+      width: 33.33% !important;
+      @media only screen and (max-width: $media-screen-medium) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-female-ref-wrapper"],
+[data-drupal-selector$="subform-field-male-hex-ref-wrapper"],
+[data-drupal-selector$="subform-field-female-square-ref-sh-wrapper"] {
+  .field--widget-options-buttons {
+    .fieldset-wrapper {
+      & > div {
+        .form-item {
+          &:nth-child(2) {
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-6-top"],
+[data-drupal-selector$="subform-field-screwdriver-3-top"],
+[data-drupal-selector$="subform-field-screwdriver-5-top"],
+[data-drupal-selector$="subform-field-screwdriver-7-top"],
+[data-drupal-selector$="subform-field-screwdriver-7-subform-field-components-1-top"],
+[data-drupal-selector$="subform-field-screwdriver-7-subform-field-components-0-top"] {
+  display: block !important;
+  font-size: 20px;
+  color: $color-orange;
+  font-weight: bold;
+  font-stretch: condensed;
+  letter-spacing: 0.0625em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  margin-bottom: 1em;
+  padding: 0 18px;
+  .paragraphs-actions {
+    display: none;
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-7-subform-field-components-1-subform"] {
+  @media only screen and (max-width: $media-screen-medium) {
+    flex-direction: column;
+  }
+
+  & > div {
+    @media only screen and (max-width: $media-screen-medium) {
+      width: 100% !important;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-7-subform-field-components-1-subform"] {
+  .field--widget-options-buttons,
+  .field--widget-double-field {
+    width: 33.33% !important;
+    @media only screen and (max-width: $media-screen-medium) {
+      width: 100%;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-applied-or-driving-torque-wrapper"] {
+  .form-item {
+    label {
+      display: unset !important;
+    }
+  }
+}
+
+// Style for step five.
+
+.submitted-content {
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  h2 {
+    font-size: 1.6em;
+    text-align: center;
+    margin: 1em auto;
+    background: transparent url(../img/check-circle.svg) left center no-repeat;
+    background-size: 40px 40px;
+    padding-left: 55px;
+    width: fit-content;
+
+    @media only screen and (max-width: $media-screen-medium) {
+      text-align: left;
+      font-size: 1em;
+    }
+  }
+
+  p {
+    max-width: 100%;
+    a {
+      color: $color-orange;
+    }
+  }
+
+  .download {
+    text-align: center;
+
+    a{
+      font-size: 1.1em;
+      padding: 0.75em 2em;
+      margin-top: 0.75em;
+      display: inline-block;
+      color: #fff;
+      font-weight: 900;
+      text-transform: uppercase;
+      text-align: center;
+      cursor: pointer;
+      background: $color-orange url(../img/download-white.png) left center no-repeat;
+      background-size: 20px 20px;
+      background-position: 1.8rem;
+      padding-left: 4rem;
+
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+  }
+}

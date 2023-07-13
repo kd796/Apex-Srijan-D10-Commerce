@@ -1,0 +1,46 @@
+uuid: 9e377d8f-6bbd-4a97-93e8-ec5ec9ccc401
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.phillips_acr.field_philips_acr_point_size
+    - field.field.paragraph.phillips_acr.field_phillips_acr_r_
+    - field.field.paragraph.phillips_acr.field_type_
+    - paragraphs.paragraphs_type.phillips_acr
+  module:
+    - options
+id: paragraph.phillips_acr.default
+targetEntityType: paragraph
+bundle: phillips_acr
+mode: default
+content:
+  field_philips_acr_point_size:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_phillips_acr_r_:
+    type: boolean
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_type_:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

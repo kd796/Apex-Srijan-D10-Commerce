@@ -1,0 +1,53 @@
+uuid: 5c76069e-2e8b-44bb-af5f-afc20bca0bd8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.image_uploads.field_upload_image_1
+    - field.field.paragraph.image_uploads.field_upload_image_2
+    - field.field.paragraph.image_uploads.field_upload_image_3
+    - field.field.paragraph.image_uploads.field_upload_image_4
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.image_uploads
+  module:
+    - image
+id: paragraph.image_uploads.default
+targetEntityType: paragraph
+bundle: image_uploads
+mode: default
+content:
+  field_upload_image_1:
+    type: image_image
+    weight: 0
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_upload_image_2:
+    type: image_image
+    weight: 1
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_upload_image_3:
+    type: image_image
+    weight: 2
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_upload_image_4:
+    type: image_image
+    weight: 3
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

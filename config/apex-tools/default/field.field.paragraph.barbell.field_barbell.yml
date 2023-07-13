@@ -1,0 +1,23 @@
+uuid: 7fb8555a-b149-450c-9a8c-4122e591b334
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_barbell
+    - paragraphs.paragraphs_type.barbell
+id: paragraph.barbell.field_barbell
+field_name: field_barbell
+entity_type: paragraph
+bundle: barbell
+label: Barbell
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

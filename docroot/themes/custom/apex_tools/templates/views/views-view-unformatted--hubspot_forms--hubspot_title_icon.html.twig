@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * Theme override to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ */
+#}
+
+<section class="section section--form">
+  <header class="section-header"><h2 class="section-title">{{ 'Connect with a'|t }}<em>{{ ' Solutions Expert'|t }}</em></h2></header>
+  <div class="form-selector">
+  <ul class="hubspot-tabs form-selector-step">
+  <h2 class="form-selector-step-title">{{ 'How can we help?'|t }}</h2>
+    <div class="checkable-cards">
+      {% for row in rows %}
+        {%
+          set row_classes = [
+            default_row_class ? 'views-row checkable-cards-item',
+          ]
+        %}
+        <li{{ row.attributes.addClass(row_classes) }}>
+          {{- row.content -}}
+        </li>
+      {% endfor %}
+    </div>
+  </ul>
+  <ul class="hubspot-tabs-content form-selector-step">
+  {{ card }}
+  </ul>
+  </div>
+</section>

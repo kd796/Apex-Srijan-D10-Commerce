@@ -1,0 +1,28 @@
+uuid: c96f6e23-3207-4d6b-ad3e-b0c9a6f9f051
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hex_insert.field_hex_insert
+    - field.field.paragraph.hex_insert.field_hex_insert_size
+    - paragraphs.paragraphs_type.hex_insert
+id: paragraph.hex_insert.default
+targetEntityType: paragraph
+bundle: hex_insert
+mode: default
+content:
+  field_hex_insert:
+    type: options_buttons
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_hex_insert_size:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

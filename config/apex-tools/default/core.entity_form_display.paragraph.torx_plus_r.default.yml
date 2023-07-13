@@ -1,0 +1,28 @@
+uuid: c3aeee69-1c47-4b03-a306-ceabdef8f7e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.torx_plus_r.field_torx
+    - field.field.paragraph.torx_plus_r.field_torx_plus_point_size
+    - paragraphs.paragraphs_type.torx_plus_r
+id: paragraph.torx_plus_r.default
+targetEntityType: paragraph
+bundle: torx_plus_r
+mode: default
+content:
+  field_torx:
+    type: options_buttons
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_torx_plus_point_size:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

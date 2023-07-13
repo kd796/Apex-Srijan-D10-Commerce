@@ -1,0 +1,38 @@
+uuid: 1044e5c4-3230-4b3e-98d2-2b9148e300f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.mortorq.field_mortorq
+    - field.field.paragraph.mortorq.field_mortorq_point_size
+    - paragraphs.paragraphs_type.mortorq
+  module:
+    - options
+id: paragraph.mortorq.default
+targetEntityType: paragraph
+bundle: mortorq
+mode: default
+content:
+  field_mortorq:
+    type: boolean
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_mortorq_point_size:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

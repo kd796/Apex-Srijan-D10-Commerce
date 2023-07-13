@@ -1,0 +1,42 @@
+uuid: fae1d4ed-aeee-4a6f-9c93-e946394c2cac
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.straight.field_straight
+    - field.field.paragraph.straight.field_straight_icon_image
+    - paragraphs.paragraphs_type.straight
+  module:
+    - image
+id: paragraph.straight.default
+targetEntityType: paragraph
+bundle: straight
+mode: default
+content:
+  field_straight:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_straight_icon_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

@@ -9,6 +9,7 @@ $feature-height-map: (
   background: $color-accent-bg;
   display: flex;
   align-items: flex-end;
+  margin: 0 auto;
 
   @media (min-width: $breakpoint-layout-horizontal) {
     min-height: map-get($feature-height-map, default);
@@ -63,6 +64,14 @@ $feature-height-map: (
     .feature-content,
     .feature-footer {
       max-width: 60%;
+    }
+
+    .feature-header {
+      max-width: 100%;
+    }
+
+    .feature-content {
+      max-width: 67%;
     }
   }
 

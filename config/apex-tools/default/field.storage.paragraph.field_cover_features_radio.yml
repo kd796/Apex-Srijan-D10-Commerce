@@ -1,0 +1,48 @@
+uuid: 04419858-29fd-42a8-8b95-344fa1df3354
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_cover_features_radio
+field_name: field_cover_features_radio
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: exposed_tip_socket_hex
+      label: 'Exposed Tip of Socket Hex'
+    -
+      value: recessed_tip_socket_hex
+      label: 'Recessed Tip of Socket Hex'
+    -
+      value: recessed_drive_end
+      label: 'Recessed Drive End'
+    -
+      value: flush_tip_socket_hex
+      label: 'Flush Tip of Socket Hex'
+    -
+      value: nose_end_cover
+      label: 'Nose-end Cover (Wrapped around)'
+    -
+      value: press_fit
+      label: 'Press Fit'
+    -
+      value: free_spinning
+      label: 'Free-Spinning (Able to spin independently of part being covered)'
+    -
+      value: od_limitations
+      label: 'O.D. Limitations (must specify)'
+    -
+      value: other_considerations
+      label: 'Other Considerations (must specify)'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

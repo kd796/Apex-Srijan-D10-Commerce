@@ -1,0 +1,275 @@
+uuid: 718250b9-5499-44d7-997a-9ef521370427
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.socket_dimensions.field_a_square_drive
+    - field.field.paragraph.socket_dimensions.field_b_drive_end_diameter
+    - field.field.paragraph.socket_dimensions.field_c_overall_length
+    - field.field.paragraph.socket_dimensions.field_d_taper_or_shoulder_length
+    - field.field.paragraph.socket_dimensions.field_e_bolt_clearance_depth
+    - field.field.paragraph.socket_dimensions.field_f_broach_depth
+    - field.field.paragraph.socket_dimensions.field_full_compressed
+    - field.field.paragraph.socket_dimensions.field_g_nose_end_diameter
+    - field.field.paragraph.socket_dimensions.field_h_broach_opening
+    - field.field.paragraph.socket_dimensions.field_i_torx_r_size
+    - field.field.paragraph.socket_dimensions.field_j_mag_depth
+    - field.field.paragraph.socket_dimensions.field_k_spring_force_rate_
+    - field.field.paragraph.socket_dimensions.field_l_barbell_style_dims
+    - field.field.paragraph.socket_dimensions.field_rate_lbf_in_
+    - field.field.paragraph.socket_dimensions.field_rest
+    - paragraphs.paragraphs_type.socket_dimensions
+  module:
+    - conditional_fields
+    - physical
+id: paragraph.socket_dimensions.default
+targetEntityType: paragraph
+bundle: socket_dimensions
+mode: default
+content:
+  field_a_square_drive:
+    type: physical_measurement_default
+    weight: 0
+    region: content
+    settings:
+      default_unit: mm
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_b_drive_end_diameter:
+    type: physical_measurement_default
+    weight: 1
+    region: content
+    settings:
+      default_unit: mm
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_c_overall_length:
+    type: physical_measurement_default
+    weight: 2
+    region: content
+    settings:
+      default_unit: mm
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_d_taper_or_shoulder_length:
+    type: physical_measurement_default
+    weight: 3
+    region: content
+    settings:
+      default_unit: mm
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_e_bolt_clearance_depth:
+    type: physical_measurement_default
+    weight: 4
+    region: content
+    settings:
+      default_unit: mm
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_f_broach_depth:
+    type: physical_measurement_default
+    weight: 5
+    region: content
+    settings:
+      default_unit: mm
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_full_compressed:
+    type: string_textfield
+    weight: 12
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        e7aa3913-125a-42ac-8c47-eaab0771508d:
+          entity_type: paragraph
+          bundle: socket_dimensions
+          dependee: field_k_spring_force_rate_
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: spring_force
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_g_nose_end_diameter:
+    type: physical_measurement_default
+    weight: 6
+    region: content
+    settings:
+      default_unit: mm
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_h_broach_opening:
+    type: options_select
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_i_torx_r_size:
+    type: options_select
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_j_mag_depth:
+    type: physical_measurement_default
+    weight: 9
+    region: content
+    settings:
+      default_unit: mm
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_k_spring_force_rate_:
+    type: options_select
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_l_barbell_style_dims:
+    type: physical_measurement_default
+    weight: 14
+    region: content
+    settings:
+      default_unit: mm
+      allow_unit_change: true
+      available_units:
+        mm: mm
+        in: in
+        cm: '0'
+        m: '0'
+        km: '0'
+        ft: '0'
+        M: '0'
+    third_party_settings: {  }
+  field_rate_lbf_in_:
+    type: string_textfield
+    weight: 13
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        48f66867-842f-4baf-8c0c-6825a7ed25d2:
+          entity_type: paragraph
+          bundle: socket_dimensions
+          dependee: field_k_spring_force_rate_
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: spring_rate
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_rest:
+    type: string_textfield
+    weight: 11
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        124dcf9b-45bd-4d39-99cd-ed70f0f3e82b:
+          entity_type: paragraph
+          bundle: socket_dimensions
+          dependee: field_k_spring_force_rate_
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: spring_force
+            effect: show
+            effect_options: {  }
+            selector: ''
+hidden:
+  created: true
+  status: true

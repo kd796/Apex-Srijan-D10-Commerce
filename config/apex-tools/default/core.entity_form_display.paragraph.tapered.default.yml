@@ -1,0 +1,34 @@
+uuid: 53f65394-1f1f-4b22-9fd2-d75d47f63479
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.tapered.field_tapered
+    - field.field.paragraph.tapered.field_tapered_icon_image
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.tapered
+  module:
+    - image
+id: paragraph.tapered.default
+targetEntityType: paragraph
+bundle: tapered
+mode: default
+content:
+  field_tapered:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_tapered_icon_image:
+    type: image_image
+    weight: 1
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

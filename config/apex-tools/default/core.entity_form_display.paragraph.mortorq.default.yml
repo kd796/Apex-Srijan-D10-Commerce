@@ -1,0 +1,28 @@
+uuid: 28caa809-7dfb-425d-9a61-706df01c7539
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.mortorq.field_mortorq
+    - field.field.paragraph.mortorq.field_mortorq_point_size
+    - paragraphs.paragraphs_type.mortorq
+id: paragraph.mortorq.default
+targetEntityType: paragraph
+bundle: mortorq
+mode: default
+content:
+  field_mortorq:
+    type: options_buttons
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_mortorq_point_size:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

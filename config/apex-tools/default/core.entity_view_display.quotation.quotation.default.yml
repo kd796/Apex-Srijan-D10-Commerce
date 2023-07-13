@@ -1,0 +1,274 @@
+uuid: 3e23f381-d41e-467a-97af-18af441461b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.quotation.quotation.field_are_you_requesting_an_item
+    - field.field.quotation.quotation.field_comments
+    - field.field.quotation.quotation.field_country
+    - field.field.quotation.quotation.field_custom_quotation_worksheet
+    - field.field.quotation.quotation.field_describe_changes
+    - field.field.quotation.quotation.field_enter_existing_apex_part
+    - field.field.quotation.quotation.field_if_yes_please_enter_part
+    - field.field.quotation.quotation.field_image_uploads_4
+    - field.field.quotation.quotation.field_quotation_screwdriver_styl
+    - field.field.quotation.quotation.field_quotation_universal_swivel
+    - field.field.quotation.quotation.field_reactivation_request
+    - field.field.quotation.quotation.field_socket_extension_adapter
+    - field.field.quotation.quotation.field_state
+    - field.field.quotation.quotation.field_upload
+  module:
+    - address
+    - apex_tools_custom_quotation
+    - entity_print
+    - entity_reference_revisions
+    - geocoder_field
+    - options
+    - user
+third_party_settings:
+  entity_print:
+    pdf_label: 'Download Results'
+id: quotation.quotation.default
+targetEntityType: quotation
+bundle: quotation
+mode: default
+content:
+  company_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -5
+    region: content
+  created:
+    type: timestamp
+    label: above
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+    weight: 20
+    region: content
+  email_address:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: -5
+    region: content
+  entity_print_view_pdf:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_account_number:
+    type: geocoder_geocode_formatter
+    label: above
+    settings:
+      dumper: wkt
+      providers: {  }
+    third_party_settings: {  }
+    weight: -5
+    region: content
+  field_address:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -5
+    region: content
+  field_apex_sales_person:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -5
+    region: content
+  field_are_you_requesting_an_item:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 23
+    region: content
+  field_city:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -5
+    region: content
+  field_comments:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 31
+    region: content
+  field_country:
+    type: address_country_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 21
+    region: content
+  field_custom_quotation_worksheet:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 48
+    region: content
+  field_describe_changes:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 32
+    region: content
+  field_enter_existing_apex_part:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 26
+    region: content
+  field_if_yes_please_enter_part:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 30
+    region: content
+  field_image_uploads_4:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 47
+    region: content
+  field_quotation_screwdriver_styl:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 33
+    region: content
+  field_quotation_universal_swivel:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 43
+    region: content
+  field_reactivation_request:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 25
+    region: content
+  field_socket_extension_adapter:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 45
+    region: content
+  field_state:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 22
+    region: content
+  field_state_text:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_upload:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 29
+    region: content
+  field_zip_code:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -5
+    region: content
+  first_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -5
+    region: content
+  last_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -5
+    region: content
+  phone_number:
+    type: geocoder_geocode_formatter
+    label: above
+    settings:
+      dumper: wkt
+      providers: {  }
+    third_party_settings: {  }
+    weight: -5
+    region: content
+  status:
+    type: boolean
+    label: above
+    settings:
+      format: enabled-disabled
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  uid:
+    type: author
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 15
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_word_docx: true
+  langcode: true
+  search_api_excerpt: true
+  uuid: true

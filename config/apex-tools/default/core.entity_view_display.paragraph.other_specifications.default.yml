@@ -1,0 +1,84 @@
+uuid: fce59a18-99ff-4741-8a7f-a0549ea8d999
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.other_specifications.field_cover
+    - field.field.paragraph.other_specifications.field_free_ship
+    - field.field.paragraph.other_specifications.field_limit
+    - field.field.paragraph.other_specifications.field_magnetic
+    - field.field.paragraph.other_specifications.field_press_fit
+    - field.field.paragraph.other_specifications.field_tension
+    - field.field.paragraph.other_specifications.field_welded
+    - field.field.paragraph.other_specifications.field_what_to_be_covered
+    - paragraphs.paragraphs_type.other_specifications
+  module:
+    - options
+id: paragraph.other_specifications.default
+targetEntityType: paragraph
+bundle: other_specifications
+mode: default
+content:
+  field_cover:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_free_ship:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_limit:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_magnetic:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_press_fit:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_tension:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_welded:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_what_to_be_covered:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

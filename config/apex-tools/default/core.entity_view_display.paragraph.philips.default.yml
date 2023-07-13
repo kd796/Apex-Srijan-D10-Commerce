@@ -1,0 +1,38 @@
+uuid: 06bb09fb-1c48-472a-9a57-35a100a320ec
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.philips.field_philips
+    - field.field.paragraph.philips.field_point_size
+    - paragraphs.paragraphs_type.philips
+  module:
+    - options
+id: paragraph.philips.default
+targetEntityType: paragraph
+bundle: philips
+mode: default
+content:
+  field_philips:
+    type: boolean
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_point_size:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

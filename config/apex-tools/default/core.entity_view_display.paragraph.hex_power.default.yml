@@ -1,0 +1,38 @@
+uuid: d9341f2c-043f-4992-8b69-f8e7f8401ea9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hex_power.field_hex_power
+    - field.field.paragraph.hex_power.field_hex_power_size
+    - paragraphs.paragraphs_type.hex_power
+  module:
+    - options
+id: paragraph.hex_power.default
+targetEntityType: paragraph
+bundle: hex_power
+mode: default
+content:
+  field_hex_power:
+    type: boolean
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_hex_power_size:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

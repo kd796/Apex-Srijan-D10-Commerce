@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7fe726672bbfef20b6ecb35ee62dd96f",
+    "content-hash": "acfcae7d02afb805db1f240b073db910",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2943,6 +2943,68 @@
             "time": "2022-05-31T18:46:25+00:00"
         },
         {
+            "name": "dompdf/dompdf",
+            "version": "v2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dompdf/dompdf.git",
+                "reference": "e8d2d5e37e8b0b30f0732a011295ab80680d7e85"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/e8d2d5e37e8b0b30f0732a011295ab80680d7e85",
+                "reference": "e8d2d5e37e8b0b30f0732a011295ab80680d7e85",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-mbstring": "*",
+                "masterminds/html5": "^2.0",
+                "phenx/php-font-lib": ">=0.5.4 <1.0.0",
+                "phenx/php-svg-lib": ">=0.3.3 <1.0.0",
+                "php": "^7.1 || ^8.0"
+            },
+            "require-dev": {
+                "ext-json": "*",
+                "ext-zip": "*",
+                "mockery/mockery": "^1.3",
+                "phpunit/phpunit": "^7.5 || ^8 || ^9",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "suggest": {
+                "ext-gd": "Needed to process images",
+                "ext-gmagick": "Improves image processing performance",
+                "ext-imagick": "Improves image processing performance",
+                "ext-zlib": "Needed for pdf stream compression"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Dompdf\\": "src/"
+                },
+                "classmap": [
+                    "lib/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "The Dompdf Community",
+                    "homepage": "https://github.com/dompdf/dompdf/blob/master/AUTHORS.md"
+                }
+            ],
+            "description": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
+            "homepage": "https://github.com/dompdf/dompdf",
+            "support": {
+                "issues": "https://github.com/dompdf/dompdf/issues",
+                "source": "https://github.com/dompdf/dompdf/tree/v2.0.3"
+            },
+            "time": "2023-02-07T12:51:48+00:00"
+        },
+        {
             "name": "drupal/acquia_connector",
             "version": "4.0.3",
             "source": {
@@ -4148,6 +4210,93 @@
             }
         },
         {
+            "name": "drupal/conditional_fields",
+            "version": "4.0.0-alpha3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/conditional_fields.git",
+                "reference": "4.0.0-alpha3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/conditional_fields-4.0.0-alpha3.zip",
+                "reference": "4.0.0-alpha3",
+                "shasum": "6024d7527bc81e45832e8d1da01792268df94224"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10"
+            },
+            "require-dev": {
+                "drupal/paragraphs": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "4.0.0-alpha3",
+                    "datestamp": "1683751149",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "colan",
+                    "homepage": "https://www.drupal.org/user/58704"
+                },
+                {
+                    "name": "ergonlogic",
+                    "homepage": "https://www.drupal.org/user/368613"
+                },
+                {
+                    "name": "geek-merlin",
+                    "homepage": "https://www.drupal.org/user/229048"
+                },
+                {
+                    "name": "heddn",
+                    "homepage": "https://www.drupal.org/user/1463982"
+                },
+                {
+                    "name": "itsekhmistro",
+                    "homepage": "https://www.drupal.org/user/928152"
+                },
+                {
+                    "name": "mparker17",
+                    "homepage": "https://www.drupal.org/user/536298"
+                },
+                {
+                    "name": "OlgaRabodzei",
+                    "homepage": "https://www.drupal.org/user/3389198"
+                },
+                {
+                    "name": "peterpoe",
+                    "homepage": "https://www.drupal.org/user/55674"
+                },
+                {
+                    "name": "saurabh-2k17",
+                    "homepage": "https://www.drupal.org/user/3622252"
+                },
+                {
+                    "name": "szhu",
+                    "homepage": "https://www.drupal.org/user/3525295"
+                },
+                {
+                    "name": "thalles",
+                    "homepage": "https://www.drupal.org/user/3589086"
+                }
+            ],
+            "description": "Define dependencies between fields based on their states and values.",
+            "homepage": "https://www.drupal.org/project/conditional_fields",
+            "support": {
+                "source": "https://git.drupalcode.org/project/conditional_fields"
+            }
+        },
+        {
             "name": "drupal/config_export_ignore",
             "version": "1.1.0",
             "source": {
@@ -5336,6 +5485,59 @@
             }
         },
         {
+            "name": "drupal/default_paragraphs",
+            "version": "2.0.0-rc1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/default_paragraphs.git",
+                "reference": "2.0.0-rc1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/default_paragraphs-2.0.0-rc1.zip",
+                "reference": "2.0.0-rc1",
+                "shasum": "f22cc3e90bf32d96338a14f159ead143970a8d4d"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/paragraphs": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.0-rc1",
+                    "datestamp": "1609271959",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "nikolabintev",
+                    "homepage": "https://www.drupal.org/user/3411551"
+                },
+                {
+                    "name": "nmitev",
+                    "homepage": "https://www.drupal.org/user/3491031"
+                },
+                {
+                    "name": "robpowell",
+                    "homepage": "https://www.drupal.org/user/3417529"
+                }
+            ],
+            "description": "Provides Paragraphs widget that allows us to select multiple paragraph types as defaults.",
+            "homepage": "https://www.drupal.org/project/default_paragraphs",
+            "support": {
+                "source": "https://git.drupalcode.org/project/default_paragraphs"
+            }
+        },
+        {
             "name": "drupal/devel",
             "version": "4.2.1",
             "source": {
@@ -5599,6 +5801,56 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/diff",
                 "issues": "https://www.drupal.org/project/issues/diff"
+            }
+        },
+        {
+            "name": "drupal/double_field",
+            "version": "4.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/double_field.git",
+                "reference": "4.1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/double_field-4.1.1.zip",
+                "reference": "4.1.1",
+                "shasum": "4aeee34cbd2136af726d74e28222c2ab5e922d05"
+            },
+            "require": {
+                "drupal/core": "^8.9 || ^9 || ^10",
+                "php": ">=7.3"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "4.1.1",
+                    "datestamp": "1677408828",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Contributors",
+                    "homepage": "https://www.drupal.org/node/1162080/committers",
+                    "role": "Contributors"
+                }
+            ],
+            "description": "Provides a field type with two separate sub-fields.",
+            "homepage": "https://www.drupal.org/project/double_field",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/double_field",
+                "issues": "https://www.drupal.org/project/issues/double_field"
             }
         },
         {
@@ -6389,6 +6641,80 @@
             "homepage": "https://drupal.org/project/entity_clone",
             "support": {
                 "source": "https://git.drupalcode.org/project/entity_clone"
+            }
+        },
+        {
+            "name": "drupal/entity_print",
+            "version": "2.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/entity_print.git",
+                "reference": "8.x-2.12"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/entity_print-8.x-2.12.zip",
+                "reference": "8.x-2.12",
+                "shasum": "772b0a907beb6e5b83f12b7938ce0e4621ec3ab8"
+            },
+            "require": {
+                "dompdf/dompdf": "^2.0.0",
+                "drupal/core": "^9.4 || ^10.0"
+            },
+            "suggest": {
+                "mikehaertl/phpwkhtmltopdf": "PhpWkhtmlToPdf provides the PHP library to use Wkhtmltopdf"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-2.12",
+                    "datestamp": "1686602683",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Dougherty",
+                    "homepage": "https://www.drupal.org/u/benjy"
+                },
+                {
+                    "name": "benjy",
+                    "homepage": "https://www.drupal.org/user/1852732"
+                },
+                {
+                    "name": "larowlan",
+                    "homepage": "https://www.drupal.org/user/395439"
+                },
+                {
+                    "name": "pameeela",
+                    "homepage": "https://www.drupal.org/user/1431110"
+                },
+                {
+                    "name": "Sam152",
+                    "homepage": "https://www.drupal.org/user/1485048"
+                },
+                {
+                    "name": "VladimirAus",
+                    "homepage": "https://www.drupal.org/user/673120"
+                }
+            ],
+            "description": "PDF print solution for any Drupal entity.",
+            "homepage": "http://drupal.org/project/entity_print",
+            "keywords": [
+                "PDF",
+                "drupal",
+                "print",
+                "web"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/entity_print"
             }
         },
         {
@@ -9129,6 +9455,78 @@
             }
         },
         {
+            "name": "drupal/markup",
+            "version": "2.0.0-beta6",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/markup.git",
+                "reference": "2.0.0-beta6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/markup-2.0.0-beta6.zip",
+                "reference": "2.0.0-beta6",
+                "shasum": "8f3b8e21814ee51776e757bc4d279483ee393b66"
+            },
+            "require": {
+                "drupal/core": "^8.9 || ^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.0-beta6",
+                    "datestamp": "1675927815",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Anybody",
+                    "homepage": "https://www.drupal.org/user/291091"
+                },
+                {
+                    "name": "bcostlow",
+                    "homepage": "https://www.drupal.org/user/1340686"
+                },
+                {
+                    "name": "cYu",
+                    "homepage": "https://www.drupal.org/user/202205"
+                },
+                {
+                    "name": "Deciphered",
+                    "homepage": "https://www.drupal.org/user/103796"
+                },
+                {
+                    "name": "ebeyrent",
+                    "homepage": "https://www.drupal.org/user/23897"
+                },
+                {
+                    "name": "Grevil",
+                    "homepage": "https://www.drupal.org/user/3668491"
+                },
+                {
+                    "name": "mqanneh",
+                    "homepage": "https://www.drupal.org/user/2833163"
+                },
+                {
+                    "name": "mrfelton",
+                    "homepage": "https://www.drupal.org/user/305669"
+                }
+            ],
+            "description": "Defines a field type for markup.",
+            "homepage": "https://www.drupal.org/project/markup",
+            "support": {
+                "source": "https://git.drupalcode.org/project/markup"
+            }
+        },
+        {
             "name": "drupal/media_entity_browser",
             "version": "2.0.0-alpha3",
             "source": {
@@ -9774,6 +10172,67 @@
             }
         },
         {
+            "name": "drupal/modules_weight",
+            "version": "1.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/modules_weight.git",
+                "reference": "8.x-1.9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/modules_weight-8.x-1.9.zip",
+                "reference": "8.x-1.9",
+                "shasum": "bc718995fe16009c701b4b73ceced5264d219910"
+            },
+            "require": {
+                "drupal/core": "^8.7.7 || ^9.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.9",
+                    "datestamp": "1613514301",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Adrian Cid Almaguer (adriancid)",
+                    "homepage": "https://www.drupal.org/u/adriancid",
+                    "email": "adriancid@gmail.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Ma'moun Othman (artofeclipse)",
+                    "homepage": "https://www.drupal.org/u/artofeclipse",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "josebc",
+                    "homepage": "https://www.drupal.org/user/1376836"
+                }
+            ],
+            "description": "Allows to change the modules execution order.",
+            "homepage": "https://www.drupal.org/project/modules_weight",
+            "keywords": [
+                "Drupal",
+                "Modules",
+                "Order"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/modules_weight",
+                "issues": "https://www.drupal.org/project/issues/modules_weight"
+            }
+        },
+        {
             "name": "drupal/node_view_permissions",
             "version": "1.5.0",
             "source": {
@@ -10308,6 +10767,67 @@
             "homepage": "https://www.drupal.org/project/permissions_filter",
             "support": {
                 "source": "https://git.drupalcode.org/project/permissions_filter"
+            }
+        },
+        {
+            "name": "drupal/physical",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/physical.git",
+                "reference": "8.x-1.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/physical-8.x-1.3.zip",
+                "reference": "8.x-1.3",
+                "shasum": "b5bbb81eda82babda21b50030da4894f623a419c"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10",
+                "php": "^8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.3",
+                    "datestamp": "1680175173",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "bojanz",
+                    "homepage": "https://www.drupal.org/user/86106"
+                },
+                {
+                    "name": "Centarro",
+                    "homepage": "https://www.drupal.org/user/3661446"
+                },
+                {
+                    "name": "czigor",
+                    "homepage": "https://www.drupal.org/user/826222"
+                },
+                {
+                    "name": "jsacksick",
+                    "homepage": "https://www.drupal.org/user/972218"
+                },
+                {
+                    "name": "rszrama",
+                    "homepage": "https://www.drupal.org/user/49344"
+                }
+            ],
+            "description": "Physical supplies such fields as physical weight and dimensions.",
+            "homepage": "https://drupal.org/project/physical",
+            "support": {
+                "source": "https://git.drupalcode.org/project/physical"
             }
         },
         {
@@ -11127,6 +11647,74 @@
             }
         },
         {
+            "name": "drupal/select_or_other",
+            "version": "4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/select_or_other.git",
+                "reference": "4.1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/select_or_other-4.1.0.zip",
+                "reference": "4.1.0",
+                "shasum": "ff73f610623c16ee27ac2afdc2f18e3d3d934081"
+            },
+            "require": {
+                "drupal/core": "^8.8 || ^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "4.1.0",
+                    "datestamp": "1686871176",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "daften",
+                    "homepage": "https://www.drupal.org/user/176274"
+                },
+                {
+                    "name": "danielb",
+                    "homepage": "https://www.drupal.org/user/134005"
+                },
+                {
+                    "name": "haydeniv",
+                    "homepage": "https://www.drupal.org/user/149501"
+                },
+                {
+                    "name": "hmendes",
+                    "homepage": "https://www.drupal.org/user/3673677"
+                },
+                {
+                    "name": "legolasbo",
+                    "homepage": "https://www.drupal.org/user/2480548"
+                },
+                {
+                    "name": "qzmenko",
+                    "homepage": "https://www.drupal.org/user/3220037"
+                },
+                {
+                    "name": "vladbo",
+                    "homepage": "https://www.drupal.org/user/2696261"
+                }
+            ],
+            "description": "Provides a select box form element with additional option 'Other' to give a textfield.",
+            "homepage": "https://www.drupal.org/project/select_or_other",
+            "support": {
+                "source": "https://git.drupalcode.org/project/select_or_other"
+            }
+        },
+        {
             "name": "drupal/selective_better_exposed_filters",
             "version": "3.0.0-beta1",
             "source": {
@@ -11315,6 +11903,67 @@
             "homepage": "https://www.drupal.org/project/shield",
             "support": {
                 "source": "https://git.drupalcode.org/project/shield"
+            }
+        },
+        {
+            "name": "drupal/simple_multistep",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/simple_multistep.git",
+                "reference": "2.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/simple_multistep-2.0.0.zip",
+                "reference": "2.0.0",
+                "shasum": "9a57e6bf5e8cfe14f5399aa1b6d04c881e1e8ba2"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10",
+                "drupal/field_group": "^3.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.0",
+                    "datestamp": "1678102966",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Vitaliy Bogomazyuk (VitaliyB98)",
+                    "homepage": "https://www.drupal.org/u/vitaliyb98",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Andrei Vesterli (andrei.vesterli)",
+                    "homepage": "https://www.drupal.org/u/andreivesterli",
+                    "email": "vesterli.andrei@gmail.com",
+                    "role": "Co-maintainer"
+                },
+                {
+                    "name": "drakemazzy",
+                    "homepage": "https://www.drupal.org/user/44860"
+                },
+                {
+                    "name": "VitaliyB98",
+                    "homepage": "https://www.drupal.org/user/3514011"
+                }
+            ],
+            "description": "Converts an existing entity form into a multi-step form.",
+            "homepage": "https://drupal.org/project/simple_multistep",
+            "support": {
+                "source": "https://git.drupalcode.org/project/simple_multistep",
+                "issues": "https://drupal.org/project/issues/simple_multistep"
             }
         },
         {
@@ -12160,6 +12809,58 @@
             "homepage": "https://www.drupal.org/project/token",
             "support": {
                 "source": "https://git.drupalcode.org/project/token"
+            }
+        },
+        {
+            "name": "drupal/triples_field",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/triples_field.git",
+                "reference": "1.0.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/triples_field-1.0.5.zip",
+                "reference": "1.0.5",
+                "shasum": "fd64d5524f44b9c95c434c35f6c01049c354d81a"
+            },
+            "require": {
+                "drupal/core": "^8.9 || ^9 || ^10",
+                "php": ">=7.3"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.5",
+                    "datestamp": "1676883314",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "NGUYEN Bao",
+                    "homepage": "https://www.drupal.org/u/lazzyvn",
+                    "email": "n.bao@yahoo.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "lazzyvn",
+                    "homepage": "https://www.drupal.org/user/2896581"
+                }
+            ],
+            "description": "Provides a field type with three separate sub-fields.",
+            "homepage": "https://www.drupal.org/project/triples_field",
+            "support": {
+                "source": "https://git.drupalcode.org/project/triples_field",
+                "issues": "https://www.drupal.org/project/issues/triples_field"
             }
         },
         {
@@ -17214,6 +17915,52 @@
             "time": "2021-12-17T19:44:54+00:00"
         },
         {
+            "name": "phenx/php-svg-lib",
+            "version": "0.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dompdf/php-svg-lib.git",
+                "reference": "76876c6cf3080bcb6f249d7d59705108166a6685"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dompdf/php-svg-lib/zipball/76876c6cf3080bcb6f249d7d59705108166a6685",
+                "reference": "76876c6cf3080bcb6f249d7d59705108166a6685",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": "^7.1 || ^8.0",
+                "sabberworm/php-css-parser": "^8.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Svg\\": "src/Svg"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Ménager",
+                    "email": "fabien.menager@gmail.com"
+                }
+            ],
+            "description": "A library to read, parse and export to PDF SVG files.",
+            "homepage": "https://github.com/PhenX/php-svg-lib",
+            "support": {
+                "issues": "https://github.com/dompdf/php-svg-lib/issues",
+                "source": "https://github.com/dompdf/php-svg-lib/tree/0.5.0"
+            },
+            "time": "2022-09-06T12:16:56+00:00"
+        },
+        {
             "name": "php-http/discovery",
             "version": "1.15.2",
             "source": {
@@ -19249,6 +19996,59 @@
                 "source": "https://github.com/ruflin/Elastica/tree/7.3.0"
             },
             "time": "2022-11-30T14:21:43+00:00"
+        },
+        {
+            "name": "sabberworm/php-css-parser",
+            "version": "8.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sabberworm/PHP-CSS-Parser.git",
+                "reference": "e41d2140031d533348b2192a83f02d8dd8a71d30"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sabberworm/PHP-CSS-Parser/zipball/e41d2140031d533348b2192a83f02d8dd8a71d30",
+                "reference": "e41d2140031d533348b2192a83f02d8dd8a71d30",
+                "shasum": ""
+            },
+            "require": {
+                "ext-iconv": "*",
+                "php": ">=5.6.20"
+            },
+            "require-dev": {
+                "codacy/coverage": "^1.4",
+                "phpunit/phpunit": "^4.8.36"
+            },
+            "suggest": {
+                "ext-mbstring": "for parsing UTF-8 CSS"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sabberworm\\CSS\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Raphael Schweikert"
+                }
+            ],
+            "description": "Parser for CSS Files written in PHP",
+            "homepage": "https://www.sabberworm.com/blog/2010/6/10/php-css-parser",
+            "keywords": [
+                "css",
+                "parser",
+                "stylesheet"
+            ],
+            "support": {
+                "issues": "https://github.com/sabberworm/PHP-CSS-Parser/issues",
+                "source": "https://github.com/sabberworm/PHP-CSS-Parser/tree/8.4.0"
+            },
+            "time": "2021-12-11T13:40:54+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -24524,8 +25324,10 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/block_field": 15,
+        "drupal/conditional_fields": 15,
         "drupal/content_sync": 10,
         "drupal/cookiebot": 15,
+        "drupal/default_paragraphs": 5,
         "drupal/diff": 5,
         "drupal/dynamic_entity_reference": 15,
         "drupal/elasticsearch_connector": 15,
@@ -24541,6 +25343,7 @@
         "drupal/inline_entity_form": 5,
         "drupal/layout_paragraphs": 10,
         "drupal/linkit": 10,
+        "drupal/markup": 10,
         "drupal/media_entity_browser": 15,
         "drupal/memcache": 15,
         "drupal/metatag_async_widget": 15,

@@ -1,0 +1,30 @@
+uuid: aace4830-00cb-408a-89b9-afd657cb98f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.drive_type_other.field_specify
+    - field.field.paragraph.drive_type_other.field_torx
+    - paragraphs.paragraphs_type.drive_type_other
+id: paragraph.drive_type_other.default
+targetEntityType: paragraph
+bundle: drive_type_other
+mode: default
+content:
+  field_specify:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_torx:
+    type: options_buttons
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

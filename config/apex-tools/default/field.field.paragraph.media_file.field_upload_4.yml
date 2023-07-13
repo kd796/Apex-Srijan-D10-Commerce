@@ -1,0 +1,27 @@
+uuid: 2db65e4a-25ad-4d6b-a9de-62fd4c42dff1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_upload_4
+    - paragraphs.paragraphs_type.media_file
+  module:
+    - file
+id: paragraph.media_file.field_upload_4
+field_name: field_upload_4
+entity_type: paragraph
+bundle: media_file
+label: 'Upload #4'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt pdf doc docx xls xlsx csv ppt pptx zip jpeg png jpg'
+  max_filesize: ''
+  description_field: false
+field_type: file

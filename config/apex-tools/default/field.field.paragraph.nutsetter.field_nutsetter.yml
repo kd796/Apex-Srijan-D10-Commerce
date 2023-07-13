@@ -1,0 +1,23 @@
+uuid: 7f5eb405-3240-47b8-ab3c-930fc8915b09
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_nutsetter
+    - paragraphs.paragraphs_type.nutsetter
+id: paragraph.nutsetter.field_nutsetter
+field_name: field_nutsetter
+entity_type: paragraph
+bundle: nutsetter
+label: Nutsetter
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

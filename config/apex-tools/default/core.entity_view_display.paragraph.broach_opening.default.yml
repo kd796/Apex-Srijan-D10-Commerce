@@ -1,0 +1,77 @@
+uuid: 9546baf4-45a6-4cd9-ac8e-70f426eef192
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.broach_opening.field_broach_opening_allowed
+    - field.field.paragraph.broach_opening.field_type_other
+    - paragraphs.paragraphs_type.broach_opening
+  module:
+    - options
+id: paragraph.broach_opening.default
+targetEntityType: paragraph
+bundle: broach_opening
+mode: default
+content:
+  field_broach_opening_allowed:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_double_square_field:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_double_square_para:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_fast_lead_field:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_square_field:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_type_other:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 13
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  field_double_hex_field: true
+  field_hex_field: true
+  search_api_excerpt: true
+  uuid: true

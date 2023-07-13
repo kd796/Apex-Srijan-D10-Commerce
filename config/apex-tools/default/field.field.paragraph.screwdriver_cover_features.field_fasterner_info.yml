@@ -1,0 +1,39 @@
+uuid: 3b23e080-5f7e-41d4-abff-c798a835ce4b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_fasterner_info
+    - paragraphs.paragraphs_type.screwdriver_cover_features
+  module:
+    - double_field
+id: paragraph.screwdriver_cover_features.field_fasterner_info
+field_name: field_fasterner_info
+entity_type: paragraph
+bundle: screwdriver_cover_features
+label: 'Fasterner Info'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  first:
+    label: ''
+    list: false
+    allowed_values: {  }
+    max: null
+    min: null
+    required: false
+    on_label: 'Fastener Info'
+    off_label: 'Off'
+  second:
+    label: ''
+    list: false
+    allowed_values: {  }
+    max: null
+    min: null
+    required: false
+    on_label: 'On'
+    off_label: 'Off'
+field_type: double_field

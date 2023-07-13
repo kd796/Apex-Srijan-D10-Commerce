@@ -1,0 +1,28 @@
+uuid: 825d49bc-7cdc-4851-ba0d-bea45f3c8b01
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.threaded.field_threaded
+    - field.field.paragraph.threaded.field_threaded_size
+    - paragraphs.paragraphs_type.threaded
+id: paragraph.threaded.default
+targetEntityType: paragraph
+bundle: threaded
+mode: default
+content:
+  field_threaded:
+    type: options_buttons
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_threaded_size:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.solutions.field_find_a_distributor
     - field.field.node.solutions.field_forms
     - field.field.node.solutions.field_hero
+    - field.field.node.solutions.field_hubspot_node
     - field.field.node.solutions.field_mailing_list_form
     - field.field.node.solutions.field_seo
     - field.field.node.solutions.field_webform
@@ -45,7 +46,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 9
+    weight: 8
     region: content
   field_card:
     type: entity_reference_entity_view
@@ -54,7 +55,7 @@ content:
       view_mode: full
       link: false
     third_party_settings: {  }
-    weight: 7
+    weight: 6
     region: content
   field_featured_products:
     type: entity_reference_revisions_entity_view
@@ -72,16 +73,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 8
-    region: content
-  field_forms:
-    type: entity_reference_revisions_entity_view
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    weight: 5
+    weight: 7
     region: content
   field_hero:
     type: entity_reference_revisions_entity_view
@@ -97,7 +89,7 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 10
+    weight: 9
     region: content
   field_webform:
     type: webform_entity_reference_entity_view
@@ -105,7 +97,7 @@ content:
     settings:
       source_entity: true
     third_party_settings: {  }
-    weight: 6
+    weight: 5
     region: content
   links:
     settings: {  }
@@ -113,6 +105,9 @@ content:
     weight: 1
     region: content
 hidden:
+  field_forms: true
+  field_hubspot_node: true
   field_mailing_list_form: true
   langcode: true
   search_api_excerpt: true
+  uuid: true

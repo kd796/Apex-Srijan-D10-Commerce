@@ -1,0 +1,175 @@
+uuid: 2fcd7aeb-4f6b-4d90-a479-62401828cd94
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_dimensions
+    - paragraphs.paragraphs_type.dimensions
+    - paragraphs.paragraphs_type.universal_swivel_wrench
+  module:
+    - entity_reference_revisions
+id: paragraph.universal_swivel_wrench.field_dimensions
+field_name: field_dimensions
+entity_type: paragraph
+bundle: universal_swivel_wrench
+label: Dimensions
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      dimensions: dimensions
+    negate: 0
+    target_bundles_drag_drop:
+      360_hotspots:
+        weight: 51
+        enabled: false
+      360_product_image:
+        weight: 52
+        enabled: false
+      basic_card:
+        weight: 53
+        enabled: false
+      basic_card_section:
+        weight: 54
+        enabled: false
+      callout_section_footer:
+        weight: 55
+        enabled: false
+      callout_section_page_end:
+        weight: 56
+        enabled: false
+      card:
+        weight: 57
+        enabled: false
+      content_bundle:
+        weight: 58
+        enabled: false
+      content_section:
+        weight: 59
+        enabled: false
+      content_section_simple:
+        weight: 60
+        enabled: false
+      cta:
+        weight: 61
+        enabled: false
+      dimensions:
+        weight: 62
+        enabled: true
+      enhanced_hero:
+        weight: 63
+        enabled: false
+      enhanced_product_features:
+        weight: 64
+        enabled: false
+      excerpt:
+        weight: 65
+        enabled: false
+      faq:
+        weight: 66
+        enabled: false
+      faqs_group:
+        weight: 67
+        enabled: false
+      faqs_section:
+        weight: 68
+        enabled: false
+      featured_block:
+        weight: 69
+        enabled: false
+      featured_product_item:
+        weight: 71
+        enabled: false
+      featured_products:
+        weight: 70
+        enabled: false
+      featured_section:
+        weight: 72
+        enabled: false
+      find_a_distributor:
+        weight: 73
+        enabled: false
+      form_section:
+        weight: 74
+        enabled: false
+      from_library:
+        weight: 75
+        enabled: false
+      grid_item:
+        weight: 76
+        enabled: false
+      grid_section:
+        weight: 77
+        enabled: false
+      hero:
+        weight: 78
+        enabled: false
+      iframe:
+        weight: 79
+        enabled: false
+      intro:
+        weight: 80
+        enabled: false
+      mailing_list_form:
+        weight: 81
+        enabled: false
+      media_block:
+        weight: 82
+        enabled: false
+      media_file:
+        weight: 83
+        enabled: false
+      media_image:
+        weight: 84
+        enabled: false
+      media_kit:
+        weight: 85
+        enabled: false
+      message_block:
+        weight: 86
+        enabled: false
+      other_drive_consideration:
+        weight: 87
+        enabled: false
+      philips:
+        weight: 88
+        enabled: false
+      phillips_acr:
+        weight: 89
+        enabled: false
+      product_categories:
+        weight: 92
+        enabled: false
+      product_search:
+        weight: 93
+        enabled: false
+      products_category_section:
+        weight: 90
+        enabled: false
+      products_section:
+        weight: 91
+        enabled: false
+      schedule_a_demo:
+        weight: 94
+        enabled: false
+      testimonials_block:
+        weight: 95
+        enabled: false
+      testimonials_section:
+        weight: 96
+        enabled: false
+      universal_swivel_wrench:
+        weight: 50
+        enabled: false
+      universal_wrench:
+        weight: 97
+        enabled: false
+      video_bundle:
+        weight: 98
+        enabled: false
+field_type: entity_reference_revisions

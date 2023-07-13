@@ -1,0 +1,30 @@
+uuid: 75d8ed60-7fd8-4bb5-a03f-c428b2538924
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_what_to_be_covered
+field_name: field_what_to_be_covered
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: Socket
+      label: Socket
+    -
+      value: Shank
+      label: Shank
+    -
+      value: 'Drive Adapter'
+      label: 'Drive Adapter'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

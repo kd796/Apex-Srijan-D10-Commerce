@@ -1,0 +1,143 @@
+uuid: ef9e1ff4-c5f8-4e33-9b70-762ef4396830
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.socket_dimensions.field_a_square_drive
+    - field.field.paragraph.socket_dimensions.field_b_drive_end_diameter
+    - field.field.paragraph.socket_dimensions.field_c_overall_length
+    - field.field.paragraph.socket_dimensions.field_d_taper_or_shoulder_length
+    - field.field.paragraph.socket_dimensions.field_e_bolt_clearance_depth
+    - field.field.paragraph.socket_dimensions.field_f_broach_depth
+    - field.field.paragraph.socket_dimensions.field_full_compressed
+    - field.field.paragraph.socket_dimensions.field_g_nose_end_diameter
+    - field.field.paragraph.socket_dimensions.field_h_broach_opening
+    - field.field.paragraph.socket_dimensions.field_i_torx_r_size
+    - field.field.paragraph.socket_dimensions.field_j_mag_depth
+    - field.field.paragraph.socket_dimensions.field_k_spring_force_rate_
+    - field.field.paragraph.socket_dimensions.field_l_barbell_style_dims
+    - field.field.paragraph.socket_dimensions.field_rate_lbf_in_
+    - field.field.paragraph.socket_dimensions.field_rest
+    - paragraphs.paragraphs_type.socket_dimensions
+  module:
+    - options
+    - physical
+id: paragraph.socket_dimensions.default
+targetEntityType: paragraph
+bundle: socket_dimensions
+mode: default
+content:
+  field_a_square_drive:
+    type: physical_measurement_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_b_drive_end_diameter:
+    type: physical_measurement_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_c_overall_length:
+    type: physical_measurement_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_d_taper_or_shoulder_length:
+    type: physical_measurement_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_e_bolt_clearance_depth:
+    type: physical_measurement_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_f_broach_depth:
+    type: physical_measurement_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_full_compressed:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_g_nose_end_diameter:
+    type: physical_measurement_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_h_broach_opening:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_i_torx_r_size:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_j_mag_depth:
+    type: physical_measurement_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_k_spring_force_rate_:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_l_barbell_style_dims:
+    type: physical_measurement_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 14
+    region: content
+  field_rate_lbf_in_:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 13
+    region: content
+  field_rest:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 11
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

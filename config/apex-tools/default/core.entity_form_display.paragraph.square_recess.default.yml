@@ -1,0 +1,28 @@
+uuid: 4cdfb26f-f7cb-4047-9c58-3746a61b4879
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.square_recess.field_recess_point_size
+    - field.field.paragraph.square_recess.field_torx
+    - paragraphs.paragraphs_type.square_recess
+id: paragraph.square_recess.default
+targetEntityType: paragraph
+bundle: square_recess
+mode: default
+content:
+  field_recess_point_size:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_torx:
+    type: options_buttons
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

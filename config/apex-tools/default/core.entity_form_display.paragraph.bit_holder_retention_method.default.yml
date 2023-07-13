@@ -1,0 +1,21 @@
+uuid: e9cb5c7c-45c4-4a88-84a5-7ee1926a0038
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bit_holder_retention_method.field_bit_holder_retention_metho
+    - paragraphs.paragraphs_type.bit_holder_retention_method
+id: paragraph.bit_holder_retention_method.default
+targetEntityType: paragraph
+bundle: bit_holder_retention_method
+mode: default
+content:
+  field_bit_holder_retention_metho:
+    type: options_buttons
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

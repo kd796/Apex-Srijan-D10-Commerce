@@ -6,21 +6,56 @@
  */
 
 /**
+ * TEMPLATE DEFINITIONS.
+ */
+function apex_tools_theme($existing, $type, $theme, $path) {
+  // Defines twig templates.
+  return [
+    'products/single'   => [
+      'variables' => [
+        'product' => NULL,
+      ]
+    ],
+  ];
+}
+
+/**
  * Implements hook_preprocess_node__BUNDLE() for geo directory.
  */
 function apex_tools_preprocess_node__geo_directory(&$variables) {
+  /*
+  // NOT REQUIRED NOW AND CAN BE DELETED.
   $subdivisions = \Drupal::service('address.subdivision_repository')->getList(['US']);
-  // Pass the options to the template.
-  $default_state_option = [
-    'value' => NULL,
-    'label' => t('Select State'),
+  // Removed the not required state form the list.
+  $state_not_req = [
+  'American Samoa' => 'American Samoa',
+  'Guam' => 'Guam',
+  'Marshall Islands' => 'Marshall Islands',
+  'Micronesia' => 'Micronesia',
+  'Northern Mariana Islands' => 'Northern Mariana Islands',
+  'Palau' => 'Palau',
+  'Puerto Rico' => 'Puerto Rico',
+  'Virgin Islands' => 'Virgin Islands',
   ];
-  $variables['state_options'] = array_merge([$default_state_option], array_map(function ($stateCode, $stateName) {
-      return [
-        'value' => $stateName,
-        'label' => $stateName,
-      ];
-  }, array_keys($subdivisions), $subdivisions));
+  $subdivisions = array_diff($subdivisions, $state_not_req);
+  $default_state_option = [
+  'value' => NULL,
+  'label' => t('Select State'),
+  ];
+
+  // Filter out unnecessary values.
+  $filteredOptions = array_filter(array_map(function ($stateCode, $stateName) {
+  return [
+  'value' => $stateName,
+  'label' => $stateName,
+  ];
+  }, array_keys($subdivisions), $subdivisions), function ($stateInfo) {
+  $stateName = $stateInfo['value'];
+  return (stripos($stateName, 'armed') === FALSE && stripos($stateName, 'district') !== 0);
+  });
+
+  $variables['state_options'] = array_merge([$default_state_option], $filteredOptions);
+   */
 }
 
 /**
@@ -47,4 +82,14 @@ function _get_absolute_string($field_name, $entity, $media_field) {
   $file_uri = $entity->$field_name->entity->$media_field->entity->getFileUri();
   $url = !empty($file_uri) ? \Drupal::service('file_url_generator')->generateAbsoluteString($file_uri) : NULL;
   return $url;
+}
+
+/**
+ * Implements template_preprocess_views_view_unformatted() for homepage slider.
+ */
+function apex_tools_preprocess_views_view_unformatted(&$vars) {
+  $view = $vars['view'];
+  if ($view->storage->id() === 'hubspot_forms' && $view->current_display === 'hubspot_title_icon') {
+    $vars['card'] = views_embed_view('hubspot_forms', 'hubspot_code');
+  }
 }

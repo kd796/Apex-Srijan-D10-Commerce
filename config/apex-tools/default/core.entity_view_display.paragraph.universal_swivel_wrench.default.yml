@@ -1,0 +1,29 @@
+uuid: f6b6c246-8afa-4677-a651-d1c7baf9124e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.universal_swivel_wrench.field_dimensions
+    - paragraphs.paragraphs_type.universal_swivel_wrench
+  module:
+    - entity_reference_revisions
+id: paragraph.universal_swivel_wrench.default
+targetEntityType: paragraph
+bundle: universal_swivel_wrench
+mode: default
+content:
+  field_dimensions:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

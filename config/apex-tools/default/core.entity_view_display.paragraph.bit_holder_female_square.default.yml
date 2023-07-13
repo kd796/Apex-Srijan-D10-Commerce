@@ -1,0 +1,38 @@
+uuid: f4a37de0-135f-4e12-b720-e439228b495c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bit_holder_female_square.field_bit_holder_female_sq_size
+    - field.field.paragraph.bit_holder_female_square.field_bit_holder_female_square
+    - paragraphs.paragraphs_type.bit_holder_female_square
+  module:
+    - physical
+id: paragraph.bit_holder_female_square.default
+targetEntityType: paragraph
+bundle: bit_holder_female_square
+mode: default
+content:
+  field_bit_holder_female_sq_size:
+    type: physical_measurement_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_bit_holder_female_square:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

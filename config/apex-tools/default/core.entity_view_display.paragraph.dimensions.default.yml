@@ -1,0 +1,71 @@
+uuid: 4f27fd5c-9808-4716-8a0e-680d3f069bdb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.dimensions.field_b_socket_length
+    - field.field.paragraph.dimensions.field_c_socket_diameter
+    - field.field.paragraph.dimensions.field_counter_bored_bool
+    - field.field.paragraph.dimensions.field_depth_of_clearance
+    - field.field.paragraph.dimensions.field_l_shank_length
+    - field.field.paragraph.dimensions.field_nose_dia
+    - paragraphs.paragraphs_type.dimensions
+  module:
+    - options
+    - physical
+id: paragraph.dimensions.default
+targetEntityType: paragraph
+bundle: dimensions
+mode: default
+content:
+  field_b_socket_length:
+    type: physical_measurement_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_c_socket_diameter:
+    type: physical_measurement_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_counter_bored_bool:
+    type: boolean
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_depth_of_clearance:
+    type: physical_measurement_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_l_shank_length:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_nose_dia:
+    type: physical_measurement_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

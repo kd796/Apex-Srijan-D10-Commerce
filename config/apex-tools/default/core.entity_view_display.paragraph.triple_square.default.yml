@@ -1,0 +1,38 @@
+uuid: ece35ffd-6a22-4326-9c23-130953b8f367
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.triple_square.field_triple_square
+    - field.field.paragraph.triple_square.field_triple_square_point_size
+    - paragraphs.paragraphs_type.triple_square
+  module:
+    - options
+id: paragraph.triple_square.default
+targetEntityType: paragraph
+bundle: triple_square
+mode: default
+content:
+  field_triple_square:
+    type: boolean
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_triple_square_point_size:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

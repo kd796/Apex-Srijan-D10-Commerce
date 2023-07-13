@@ -1,0 +1,38 @@
+uuid: 770a39fa-a730-4a47-9469-663c3205c59a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.torx_align_r_.field_torx_align_point_size
+    - field.field.paragraph.torx_align_r_.field_torx_align_r_
+    - paragraphs.paragraphs_type.torx_align_r_
+  module:
+    - options
+id: paragraph.torx_align_r_.default
+targetEntityType: paragraph
+bundle: torx_align_r_
+mode: default
+content:
+  field_torx_align_point_size:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_torx_align_r_:
+    type: boolean
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

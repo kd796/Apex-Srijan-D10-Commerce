@@ -1,0 +1,113 @@
+<div style="background-color: #E5E5E5;color: #383739;padding: 12px;font-weight: bold;text-align: center; margin-bottom: 20px;">{{'BUSINESS INFORMATION' | t}}</div>
+{% if fields.first_name.content|striptags|trim is not empty %}
+<li>
+  <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'First Name' }}</span>
+  <span style="font-size:16px;">{{ fields.first_name.content }}</span>
+</li>
+{% endif %}
+{% if fields.last_name.content|striptags|trim is not empty %}
+<li>
+  <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Last Name' }}</span>
+  <span style="font-size:16px;">{{ fields.last_name.content }}</span>
+</li>
+{% endif %}
+{% if fields.company_name.content|striptags|trim is not empty %}
+<li>
+  <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Company Name' }}</span>
+  <span style="font-size:16px;">{{ fields.company_name.content }}</span>
+</li>
+{% endif %}
+{% if fields.email_address.content|striptags|trim is not empty %}
+<li>
+  <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Email Address' }}</span>
+  <span style="font-size:16px;">{{ fields.email_address.content }}</span>
+</li>
+{% endif %}
+{% if fields.phone_number.content|striptags|trim is not empty %}
+<li>
+  <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Phone Number' }}</span>
+  <span style="font-size:16px;">{{ fields.phone_number.content }}</span>
+</li>
+{% endif %}
+{% if fields.field_address.content|striptags|trim is not empty %}
+<li>
+  <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Address' }}</span>
+  <span style="font-size:16px;">{{ fields.field_address.content }}</span>
+</li>
+{% endif %}
+{% if fields.field_city.content|striptags|trim is not empty %}
+<li>
+  <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'City' }}</span>
+  <span style="font-size:16px;">{{ fields.field_city.content }}</span>
+</li>
+{% endif %}
+{% if fields.field_country.content|striptags|trim is not empty %}
+<li>
+  <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Country' }}</span>
+  <span style="font-size:16px;">{{ fields.field_country.content }}</span>
+</li>
+{% endif %}
+{% if fields.field_state.content|striptags|trim is not empty %}
+<li>
+  <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'State' }}</span>
+  <span style="font-size:16px;">{{ fields.field_state.content }}</span>
+</li>
+{% endif %}
+{% if fields.field_zip_code.content|striptags|trim is not empty %}
+<li>
+  <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Zip Code' }}</span>
+  <span style="font-size:16px;">{{ fields.field_zip_code.content }}</span>
+</li>
+{% endif %}
+{% if fields.field_account_number.content|striptags|trim is not empty %}
+<li>
+  <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Account Number' }}</span>
+  <span style="font-size:16px;">{{ fields.field_account_number.content }}</span>
+</li>
+{% endif %}
+{% if fields.field_apex_sales_person.content|striptags|trim is not empty %}
+<li>
+  <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Apex Sales Person' }}</span>
+  <span style="font-size:16px;">{{ fields.field_apex_sales_person.content }}</span>
+</li>
+{% endif %}
+<div style="background-color: #E5E5E5;color: #383739;padding: 12px;font-weight: bold;text-align: center; margin-bottom: 20px; margin-top:20px;">{{'REQUEST FOR REACTIVATION OR NEW PART' | t}}</div>
+{% if fields.field_are_you_requesting_an_item.content|striptags|trim is not empty %}
+<li>
+  <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Are you requesting an item?' }}</span>
+  <span style="font-size:16px;">{{ fields.field_are_you_requesting_an_item.content }}</span>
+</li>
+{% endif %}
+{% if fields.field_enter_existing_apex_part.content|striptags|trim is not empty %}
+<li>
+  <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Enter existing apex part' }}</span>
+  <span style="font-size:16px;">{{ fields.field_enter_existing_apex_part.content }}</span>
+</li>
+{% endif %}
+{% if fields.field_comments.content|striptags|trim is not empty %}
+<li>
+  <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Comments' }}</span>
+  <span style="font-size:16px;">{{ fields.field_comments.content }}</span>
+</li>
+{% endif %}
+{% if fields.field_upload.content|striptags|trim is not empty %}
+<li>
+  <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Image upload' }}</span>
+  <span style="font-size:16px;">{{ fields.field_upload.content }}</span>
+</li>
+{% endif %}
+<div style="background-color: #E5E5E5;color: #383739;padding: 12px;font-weight: bold;text-align: center; margin-bottom: 20px; margin-top:20px;">{{'CUSTOMER IMAGE UPLOADS' | t}}</div>
+{% if fields.field_image_uploads_4.content|striptags|trim is not empty %}
+<li>
+  <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Image upload' }}</span>
+  <span style="font-size:16px;">{{ fields.field_image_uploads_4.content }}</span>
+</li>
+{% endif %}
+<div style="background-color: #E5E5E5;color: #383739;padding: 12px;font-weight: bold;text-align: center; margin-bottom: 20px; margin-top:20px;">{{'CUSTOM DRIVE TOOL' | t}}</div>
+{% if fields.field_custom_quotation_worksheet.content|striptags|trim is not empty %}
+<li>
+  <span style="width:200px; display:inline-block; font-size:16px; font-weight:bold;">{{ 'Custom quotation worksheet' }}</span>
+  <span style="font-size:16px;">{{ fields.field_custom_quotation_worksheet.content }}</span>
+</li>
+{% endif %}
+

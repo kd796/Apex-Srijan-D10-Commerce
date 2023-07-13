@@ -1,0 +1,40 @@
+uuid: 6ae4cefd-bf29-452e-8e90-bc0f824a3147
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.screwdriver_cover_requirements.field_components
+    - field.field.paragraph.screwdriver_cover_requirements.field_cover_requirements
+    - paragraphs.paragraphs_type.screwdriver_cover_requirements
+  module:
+    - entity_reference_revisions
+id: paragraph.screwdriver_cover_requirements.default
+targetEntityType: paragraph
+bundle: screwdriver_cover_requirements
+mode: default
+content:
+  field_components:
+    type: entity_reference_revisions_entity_view
+    label: inline
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_cover_requirements:
+    type: boolean
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

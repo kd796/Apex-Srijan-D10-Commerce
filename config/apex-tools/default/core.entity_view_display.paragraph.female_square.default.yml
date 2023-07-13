@@ -1,0 +1,38 @@
+uuid: 8748bb80-6355-4e90-aa87-53c1fc0c12ac
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.female_square.field_female_square_1
+    - field.field.paragraph.female_square.field_female_square_size
+    - paragraphs.paragraphs_type.female_square
+  module:
+    - options
+id: paragraph.female_square.default
+targetEntityType: paragraph
+bundle: female_square
+mode: default
+content:
+  field_female_square_1:
+    type: boolean
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_female_square_size:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true
