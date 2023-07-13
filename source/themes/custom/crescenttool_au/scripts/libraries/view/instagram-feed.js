@@ -1,5 +1,5 @@
 
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.instagramFeed = {
@@ -63,4 +63,4 @@
     }
   };
 
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

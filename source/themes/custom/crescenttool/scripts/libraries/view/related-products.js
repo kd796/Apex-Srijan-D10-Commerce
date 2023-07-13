@@ -112,7 +112,7 @@
       $('.swiper-slide-visible').addClass('active-pointer');
     },
     attach: function (context, settings) {
-      $('.view-related-products:not(.view-related-products--js-initialized)').once('related-products-slider').each(function (index) {
+      $(once('related-products-slider', '.view-related-products:not(.view-related-products--js-initialized)', context)).each(function (index) {
         var $productSwiper;
         var $component = $(this);
         var $productSliderWrapper = $component.find('.view-related-products-slider__list-wrapper');
@@ -160,4 +160,4 @@
     }
   };
 
-})(jQuery, Drupal, 'once');
+})(jQuery, Drupal, once);

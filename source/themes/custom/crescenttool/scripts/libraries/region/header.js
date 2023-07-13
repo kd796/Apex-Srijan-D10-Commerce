@@ -52,7 +52,7 @@
       });
 
       // Open search panel.
-      $(selector_header_search_button).once('header').on({
+      $(once('header', selector_header_search_button, context)).on({
         click: function () {
           var $this = $(this);
 
@@ -65,7 +65,7 @@
       $('.block__menu').find('.country-toggle').empty();
 
       // Open country switch panel.
-      $(selector_header_country_switch_button).once('header').on({
+      $(once('header', selector_header_country_switch_button, context)).on({
         click: function () {
           var $this = $(this);
 
@@ -75,7 +75,7 @@
       });
 
       // Open mobile menu.
-      $(selector_header_menu_button).once('header').on({
+      $(once('header', selector_header_menu_button, context)).on({
         click: function () {
           var $this = $(this);
           var $menu = $this.parent().find('.menu--depth-0');
@@ -94,7 +94,7 @@
 
       // Trigger button panel to open based on hover (done here instead of css
       // :hover to reduce amount of code and make issues easier to troubleshoot.
-      $(selector_header_menu_items_with_children).once('header').on({
+      $(once('header', selector_header_menu_items_with_children, context)).on({
         click: function () {
           var $menu_item = $(this);
           var $button = $menu_item.find('.menu-item__button').first();
@@ -104,7 +104,7 @@
       });
 
       // Make view-port-related adjustments based on if header is expanded.
-      $(window).once('header').on('resize', function () {
+      $(once('header', window, context)).on('resize', function () {
         var $menu_item = $('.region-header .menu-item--depth-0.menu-item--expanded');
         behavior_object.updateHeaderPlaceholder($menu_item);
       });
@@ -219,4 +219,4 @@
     }
   };
 
-})(jQuery, Drupal, 'once');
+})(jQuery, Drupal, once);
