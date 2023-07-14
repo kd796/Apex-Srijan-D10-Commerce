@@ -143,23 +143,25 @@
         $('[data-drupal-selector$="subform-field-screwdriver-0-subform"] .field--name-field-1-part-type .fieldset-wrapper input[type="radio"]').on('change', function () {
           var seletedOption = $(this).val();
           if (seletedOption === 'bit') {
-            $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-5-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').removeClass('hide-options');
+            $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').addClass('hide-options');
             $('[data-drupal-selector$="subform-field-screwdriver-1-subform"], [data-drupal-selector$="subform-field-screwdriver-3-subform"]').removeClass('hide-options');
-            $('[data-drupal-selector$="subform-field-screwdriver-4-top"], [data-drupal-selector$="subform-field-screwdriver-5-top"], [data-drupal-selector$="subform-field-screwdriver-6-top"]').addClass('hide-options');
+            $('[data-drupal-selector$="subform-field-screwdriver-4-top"], [data-drupal-selector$="subform-field-screwdriver-6-top"]').addClass('hide-options');
             $('[data-drupal-selector$="subform-field-screwdriver-1-top"], [data-drupal-selector$="subform-field-screwdriver-3-top"]').removeClass('hide-options');
             $('[data-drupal-selector$="subform-field-a-square-drive-wrapper"] input, [data-drupal-selector$="subform-field-a-square-drive-wrapper"] select').prop('required', false);
             $('[data-drupal-selector$="subform-field-c-overall-length-wrapper"] input, [data-drupal-selector$="subform-field-c-overall-length-wrapper"] select').prop('required', false);
             $('[data-drupal-selector$="subform-field-h-broach-opening-wrapper"] select').prop('required', false);
+            $('[data-drupal-selector$="subform-field-screwdriver-5-top"], [data-drupal-selector$="subform-field-screwdriver-5-subform"]').removeClass('show-option');
             $(this).closest('.field--name-field-1-part-type').siblings('div').removeClass('show-option');
           } else {
             $(this).closest('.field--name-field-1-part-type').siblings('div').addClass('show-option');
             $('[data-drupal-selector$="subform-field-screwdriver-1-subform"], [data-drupal-selector$="subform-field-screwdriver-3-subform"]').addClass('hide-options');
-            $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-5-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').addClass('hide-options');
+            $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').removeClass('hide-options');
             $('[data-drupal-selector$="subform-field-screwdriver-1-top"], [data-drupal-selector$="subform-field-screwdriver-3-top"]').addClass('hide-options');
-            $('[data-drupal-selector$="subform-field-screwdriver-4-top"], [data-drupal-selector$="subform-field-screwdriver-5-top"], [data-drupal-selector$="subform-field-screwdriver-6-top"]').removeClass('hide-options');
+            $('[data-drupal-selector$="subform-field-screwdriver-4-top"], [data-drupal-selector$="subform-field-screwdriver-6-top"]').removeClass('hide-options');
             $('[data-drupal-selector$="subform-field-a-square-drive-wrapper"] input, [data-drupal-selector$="subform-field-a-square-drive-wrapper"] select').prop('required', true);
             $('[data-drupal-selector$="subform-field-c-overall-length-wrapper"] input, [data-drupal-selector$="subform-field-c-overall-length-wrapper"] select').prop('required', true);
             $('[data-drupal-selector$="subform-field-h-broach-opening-wrapper"] select').prop('required', true);
+            $('[data-drupal-selector$="subform-field-screwdriver-5-top"], [data-drupal-selector$="subform-field-screwdriver-5-subform"]').addClass('show-option');
           }
         });
         $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-cover-requirements input[type="radio"]').on('change', function () {
