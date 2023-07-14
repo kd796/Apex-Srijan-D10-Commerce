@@ -13,7 +13,7 @@
         behavior_object.elMove($footerHeader, $footerNavContent);
       }
 
-      $(window).once('footer').on('resize', function () {
+      $(once('footer', window, context)).on('resize', function () {
         if (behavior_object.isMobile()) {
           behavior_object.elMove($footerHeader, $footerNavContent);
         }
@@ -33,4 +33,4 @@
     }
   };
 
-})(jQuery, Drupal, 'once');
+})(jQuery, Drupal, once);

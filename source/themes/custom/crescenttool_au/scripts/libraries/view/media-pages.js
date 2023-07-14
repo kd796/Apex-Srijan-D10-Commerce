@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.componentMediaPages = {
@@ -13,7 +13,7 @@
        *
        */
 
-      $('.views-exposed-form').once('media-pages-accordion').each(function (index) {
+      $(once('media-pages-accordion', '.views-exposed-form', context)).each(function (index) {
         // Initialize variables.
         var $widget = $(this);
         var $accordions = $widget.find('fieldset');
@@ -112,7 +112,7 @@
         });
       });
 
-      $('.view-media-pages:not(.view-media-pages--js-initialized)').once('media-filter').each(function (index) {
+      $(once('media-filter', '.view-media-pages:not(.view-media-pages--js-initialized)', context)).each(function (index) {
         // Logic for mobile filtering menu.
         if (window.innerWidth < 768) {
           var $viewContainer = $('.views-element-container');
@@ -181,4 +181,4 @@
     }
   };
 
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

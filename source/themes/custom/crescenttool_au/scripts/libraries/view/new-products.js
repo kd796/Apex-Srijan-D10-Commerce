@@ -1,9 +1,9 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.componentNewProducts = {
     attach: function (context, settings) {
-      $('.view-new-products').once().each(function () {
+      $(once('', '.view-new-products', context)).each(function () {
         if (window.location.search.length > 0) {
           // Scroll down to the products when loading the category page.
           $('.view-new-products').attr('style', 'scroll-margin: 50px !important;');
@@ -11,7 +11,7 @@
         }
       });
 
-      $('.view-new-products:not(.view-new-products--js-initialized)').once('new-product-filter').each(function (index) {
+      $(once('new-product-filter', '.view-new-products:not(.view-new-products--js-initialized)', context)).each(function (index) {
         if (window.innerWidth < 768) {
           var $mobileMenuIcon = $('.filter-icon');
           var $mobileCloseIcon;
@@ -86,7 +86,7 @@
    */
   Drupal.behaviors.componentNewProductsFilterTabs = {
     attach: function (context, settings) {
-      $('.view-new-products .views-exposed-form').once().each(function (index) {
+      $(once('', '.view-new-products .views-exposed-form', context)).each(function (index) {
         // Initialize variables.
         var $widget = $(this);
         var $accordions = $widget.find('fieldset');
@@ -186,4 +186,4 @@
     }
   };
 
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);
