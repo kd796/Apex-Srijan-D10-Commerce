@@ -4,8 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.female_square_drive_standard_typ.field_female_square
-    - field.field.paragraph.female_square_drive_standard_typ.field_iron_brand
     - field.field.paragraph.female_square_drive_standard_typ.field_square_drive
+    - field.field.paragraph.female_square_drive_standard_typ.field_tension_para
     - paragraphs.paragraphs_type.female_square_drive_standard_typ
 id: paragraph.female_square_drive_standard_typ.default
 targetEntityType: paragraph
@@ -18,15 +18,15 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_iron_brand:
-    type: options_select
-    weight: 2
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_square_drive:
     type: options_select
     weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_tension_para:
+    type: options_select
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }

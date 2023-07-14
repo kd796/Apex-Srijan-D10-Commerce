@@ -4,8 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.male_hex_drive_standard_type.field_hex_drive
-    - field.field.paragraph.male_hex_drive_standard_type.field_iron_brand_uni
     - field.field.paragraph.male_hex_drive_standard_type.field_male_hex_drive_standard_ty
+    - field.field.paragraph.male_hex_drive_standard_type.field_tension_para
     - paragraphs.paragraphs_type.male_hex_drive_standard_type
 id: paragraph.male_hex_drive_standard_type.default
 targetEntityType: paragraph
@@ -18,15 +18,15 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_iron_brand_uni:
-    type: options_select
-    weight: 2
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_male_hex_drive_standard_ty:
     type: options_buttons
     weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_tension_para:
+    type: options_select
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
