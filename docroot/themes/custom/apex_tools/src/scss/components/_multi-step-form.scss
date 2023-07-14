@@ -791,9 +791,6 @@
                         margin: 0;
                       }
                     }
-                    // &.paragraphs-dropdown-toggle{
-                    //   height: unset;
-                    // }
                   }
                 }
               }
@@ -968,16 +965,30 @@
 
 .target-class {
   img {
-    width: 40px !important;
-    height: 40px !important;
-    object-fit: contain;
+    width: 58px !important;
+    height: 52px !important;
     position: relative;
     top: -8px;
     margin-left: 20px;
   }
 }
 
+.drive-target-class {
+  img {
+    width: 100px !important;
+    height: 35px !important;
+    position: relative;
+    top: -8px;
+    margin-left: 20px;
+    object-fit: contain;
+  }
+}
+
 [data-drupal-selector$="subform-field-screwdriver-0-subform"] {
+  width: 50%;
+  @media only screen and (max-width: $media-screen-medium) {
+    width: 100%;
+  }
   .field--name-field-bit-standard {
     display: none;
 
@@ -1023,10 +1034,22 @@
           }
 
           tbody {
+            display: grid;
+            grid-template-columns: 46% 46%;
+            grid-column-gap: 8%;
+            @media only screen and (max-width: $media-screen-medium) {
+              grid-template-columns: 100%;
+            }
+            @media only screen and (max-width: $media-screen-tablet) {
+              display: flex;
+              flex-direction: column;
+            }
             tr {
               td {
+                display: block;
                 & > div {
                   .paragraphs-subform {
+                    align-items: baseline;
                     .field--widget-options-buttons {
                       fieldset {
                         position: relative;
@@ -1034,6 +1057,21 @@
                           position: absolute;
                           left: 0;
                           top: calc(100% - 10px);
+                        }
+                      }
+                    }
+                    .field--widget-string-textfield,
+                    .field--widget-options-select {
+                      & > div {
+                        flex-wrap: inherit;
+                        label {
+                          min-width: 110px;
+                          padding-right: 20px;
+                          text-align: right;
+                        }
+                        input,
+                        select {
+                          margin-top: 0;
                         }
                       }
                     }
@@ -1085,6 +1123,55 @@
               }
             }
           }
+
+          tbody {
+            display: grid;
+            grid-template-columns: 46% 46%;
+            grid-column-gap: 8%;
+            @media only screen and (max-width: $media-screen-medium) {
+              grid-template-columns: 100%;
+            }
+            @media only screen and (max-width: $media-screen-tablet) {
+              display: flex;
+              flex-direction: column;
+            }
+            tr {
+              td {
+                display: block;
+                & > div {
+                  .paragraphs-subform {
+                    align-items: baseline;
+                    .field--widget-options-buttons {
+                      padding-right: 0;
+                      fieldset {
+                        position: relative;
+                        small {
+                          position: absolute;
+                          left: 0;
+                          top: calc(100% - 10px);
+                        }
+                      }
+                    }
+                    .field--widget-string-textfield,
+                    .field--widget-options-select {
+                      & > div {
+                        flex-wrap: inherit;
+                        label {
+                          min-width: 110px;
+                          padding-right: 20px;
+                          text-align: right;
+                        }
+                        select,
+                        input {
+                          margin-top: 0;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -1108,6 +1195,7 @@
 
 [data-drupal-selector$="subform-field-screwdriver-3-subform"] {
   border-bottom: solid 3px $color-gray-medium;
+  margin-bottom: 30px !important;
   &.hide-options {
     display: none !important;
   }
@@ -1494,6 +1582,14 @@
   padding: 0 18px;
   .paragraphs-actions {
     display: none;
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-7-subform-field-components-0-top"] {
+  .paragraph-type-label {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: $color-off-black;
   }
 }
 

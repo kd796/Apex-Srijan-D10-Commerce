@@ -141,19 +141,20 @@
         });
         // hide and show fields.
         $('[data-drupal-selector$="subform-field-screwdriver-0-subform"] .field--name-field-1-part-type .fieldset-wrapper input[type="radio"]').on('change', function () {
-          $(this).closest('.field--name-field-1-part-type').siblings('div').addClass('show-option');
           var seletedOption = $(this).val();
           if (seletedOption === 'bit') {
-            $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-5-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').addClass('hide-options');
+            $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-5-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').removeClass('hide-options');
             $('[data-drupal-selector$="subform-field-screwdriver-1-subform"], [data-drupal-selector$="subform-field-screwdriver-3-subform"]').removeClass('hide-options');
             $('[data-drupal-selector$="subform-field-screwdriver-4-top"], [data-drupal-selector$="subform-field-screwdriver-5-top"], [data-drupal-selector$="subform-field-screwdriver-6-top"]').addClass('hide-options');
             $('[data-drupal-selector$="subform-field-screwdriver-1-top"], [data-drupal-selector$="subform-field-screwdriver-3-top"]').removeClass('hide-options');
             $('[data-drupal-selector$="subform-field-a-square-drive-wrapper"] input, [data-drupal-selector$="subform-field-a-square-drive-wrapper"] select').prop('required', false);
             $('[data-drupal-selector$="subform-field-c-overall-length-wrapper"] input, [data-drupal-selector$="subform-field-c-overall-length-wrapper"] select').prop('required', false);
             $('[data-drupal-selector$="subform-field-h-broach-opening-wrapper"] select').prop('required', false);
+            $(this).closest('.field--name-field-1-part-type').siblings('div').removeClass('show-option');
           } else {
+            $(this).closest('.field--name-field-1-part-type').siblings('div').addClass('show-option');
             $('[data-drupal-selector$="subform-field-screwdriver-1-subform"], [data-drupal-selector$="subform-field-screwdriver-3-subform"]').addClass('hide-options');
-            $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-5-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').removeClass('hide-options');
+            $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-5-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').addClass('hide-options');
             $('[data-drupal-selector$="subform-field-screwdriver-1-top"], [data-drupal-selector$="subform-field-screwdriver-3-top"]').addClass('hide-options');
             $('[data-drupal-selector$="subform-field-screwdriver-4-top"], [data-drupal-selector$="subform-field-screwdriver-5-top"], [data-drupal-selector$="subform-field-screwdriver-6-top"]').removeClass('hide-options');
             $('[data-drupal-selector$="subform-field-a-square-drive-wrapper"] input, [data-drupal-selector$="subform-field-a-square-drive-wrapper"] select').prop('required', true);
@@ -191,6 +192,11 @@
           $('.field--name-field-broach-opening-allowed input[type="radio"]').prop('required', false);
           $(this).prop('required', true);
         });
+
+        // Clear Options.
+        $('.clear-option').on('click', function (e) {
+          $('[data-drupal-selector$="subform-field-optional-feature-wrapper"] fieldset input[type="checkbox"]').prop('checked', false);
+        });
       }
 
       
@@ -198,7 +204,7 @@
       // Trigger back button.
       $('.step-label.active').prev().addClass('prev');
       // Clear Options.
-      $('.clear-option').once('clear-option').on('click', function (e) {
+      $('.clear-option').on('click', function (e) {
         $('[data-drupal-selector$="subform-field-optional-feature-wrapper"] fieldset input[type="checkbox"]').prop('checked', false);
       });
       
@@ -211,7 +217,9 @@
         $('[data-drupal-selector$="subform-field-a-square-drive-wrapper"] input, [data-drupal-selector$="subform-field-a-square-drive-wrapper"] select').prop('required', false);
         $('[data-drupal-selector$="subform-field-c-overall-length-wrapper"] input, [data-drupal-selector$="subform-field-c-overall-length-wrapper"] select').prop('required', false);
         $('[data-drupal-selector$="subform-field-h-broach-opening-wrapper"] select').prop('required', false);
+        $(this).closest('.field--name-field-1-part-type').siblings('div').removeClass('show-option');
       } else {
+        $(this).closest('.field--name-field-1-part-type').siblings('div').addClass('show-option');
         $('[data-drupal-selector$="subform-field-screwdriver-1-subform"], [data-drupal-selector$="subform-field-screwdriver-3-subform"]').addClass('hide-options');
         $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-5-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').removeClass('hide-options');
         $('[data-drupal-selector$="subform-field-screwdriver-1-top"], [data-drupal-selector$="subform-field-screwdriver-3-top"]').addClass('hide-options');
@@ -252,26 +260,24 @@
       }
 
       // paragraph icon append
-      var itemsScrewdriver = $('.field--name-field-screwdriver-style tbody tr td > div > div');
-      itemsScrewdriver.each(function(index) {
-        var item = $(this);
-        var hiddenDiv = item.find('.paragraph-top');
+      var itemsScrewdriver = $('.field--name-field-screwdriver-style tbody tr');
+      itemsScrewdriver.each(function() {
+        var hiddenDiv = $(this).children().find('.paragraph-top');
         var image = hiddenDiv.find('img');
-        var targetPlace = item.closest('.paragraphs-subform').find('fieldset');
+        var targetPlace = $(this).children().find('.paragraphs-subform').find('fieldset');
       
         targetPlace.addClass('target-class');
-        targetPlace.append(image.eq(index));
+        targetPlace.append(image);
       });
 
-      var itemDriverType = $('.field--name-field-drive-type tbody tr td > div > div');
-      itemDriverType.each(function(index) {
-        var item = $(this);
-        var hiddenDiv = item.find('.paragraph-top');
+      var itemDriverType = $('.field--name-field-drive-type tbody tr');
+      itemDriverType.each(function() {
+        var hiddenDiv = $(this).children().find('.paragraph-top');
         var image = hiddenDiv.find('img');
-        var targetPlace = item.closest('.paragraphs-subform').find('fieldset');
+        var targetPlace = $(this).children().find('.paragraphs-subform').find('fieldset');
       
-        targetPlace.addClass('target-class');
-        targetPlace.append(image.eq(index));
+        targetPlace.addClass('drive-target-class');
+        targetPlace.append(image);
       });
 
 
@@ -308,10 +314,7 @@
           // Trigger back button.
           $('.step-label.active').prev().addClass('prev');
         });
-        // Clear Options.
-        $('.clear-option').once('clear-option').on('click', function (e) {
-          $('[data-drupal-selector$="subform-field-optional-feature-wrapper"] fieldset input[type="checkbox"]').prop('checked', false);
-        });
+        
 
       // end
     }
