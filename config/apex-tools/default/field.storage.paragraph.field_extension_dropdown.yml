@@ -1,0 +1,30 @@
+uuid: 8a2c75d6-56a9-46ef-980b-24be97cdbbf7
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_extension_dropdown
+field_name: field_extension_dropdown
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: pin_lock
+      label: 'Pin Lock'
+    -
+      value: ball_lock
+      label: 'Ball Lock'
+    -
+      value: cross_hole
+      label: 'Cross Hole'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

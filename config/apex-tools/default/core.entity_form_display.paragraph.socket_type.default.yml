@@ -3,13 +3,41 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.socket_type.field_extension_dropdown
     - field.field.paragraph.socket_type.field_socket_type_allowed
     - paragraphs.paragraphs_type.socket_type
+  module:
+    - conditional_fields
 id: paragraph.socket_type.default
 targetEntityType: paragraph
 bundle: socket_type
 mode: default
 content:
+  field_extension_dropdown:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings:
+      conditional_fields:
+        54b628ce-254b-4041-acc4-018cf620f33c:
+          entity_type: paragraph
+          bundle: socket_type
+          dependee: field_socket_type_allowed
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 2
+            value: ''
+            values: socket_extension
+            value_form:
+              -
+                value: null
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_socket_type_allowed:
     type: options_buttons
     weight: 0

@@ -4,8 +4,14 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.cover_features.field_cover_features_radio
+    - field.field.paragraph.cover_features.field_nylon_other_textbox
     - field.field.paragraph.cover_features.field_nylon_requirements_yes_no_
+    - field.field.paragraph.cover_features.field_o_d_limitations_must_speci
+    - field.field.paragraph.cover_features.field_od_textbox
+    - field.field.paragraph.cover_features.field_other_considerations_speci
     - paragraphs.paragraphs_type.cover_features
+  module:
+    - conditional_fields
 id: paragraph.cover_features.default
 targetEntityType: paragraph
 bundle: cover_features
@@ -17,11 +23,77 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_nylon_other_textbox:
+    type: string_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        131e2131-60b5-43fd-81cb-24275341a15b:
+          entity_type: paragraph
+          bundle: cover_features
+          dependee: field_other_considerations_speci
+          settings:
+            state: visible
+            reset: false
+            condition: checked
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              value: false
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_nylon_requirements_yes_no_:
     type: options_buttons
     weight: 0
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_o_d_limitations_must_speci:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_od_textbox:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        a39c320a-5a8a-40d2-a608-99913916d663:
+          entity_type: paragraph
+          bundle: cover_features
+          dependee: field_o_d_limitations_must_speci
+          settings:
+            state: visible
+            reset: false
+            condition: checked
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              value: false
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_other_considerations_speci:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
 hidden:
   created: true
