@@ -199,6 +199,8 @@
         $('.clear-option').on('click', function (e) {
           $('[data-drupal-selector$="subform-field-optional-feature-wrapper"] fieldset input[type="checkbox"]').prop('checked', false);
         });
+
+        $('[data-drupal-selector$="subform-field-female-ref-0-top"]').find('.paragraph-type-label').text('Style');
       }
 
       
