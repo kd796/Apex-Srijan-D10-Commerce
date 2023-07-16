@@ -1,17 +1,17 @@
-uuid: 423fbfcc-c708-4f8c-b2f4-a85ef9c57ee6
+uuid: ae168156-d062-4b40-b585-6443670d2654
 langcode: en
 status: true
 dependencies:
   module:
+    - entity_reference_revisions
     - paragraphs
-    - physical
-id: paragraph.field_c_socket_diameter
-field_name: field_c_socket_diameter
+id: paragraph.field_s
+field_name: field_s
 entity_type: paragraph
-type: physical_measurement
+type: entity_reference_revisions
 settings:
-  measurement_type: length
-module: physical
+  target_type: paragraph
+module: entity_reference_revisions
 locked: false
 cardinality: 1
 translatable: true

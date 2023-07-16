@@ -11,6 +11,7 @@ dependencies:
     - field.field.paragraph.universal_swivel_wrench_para.field_optional_features_ref
     - field.field.paragraph.universal_swivel_wrench_para.field_order
     - field.field.paragraph.universal_swivel_wrench_para.field_oth_spec_ref
+    - field.field.paragraph.universal_swivel_wrench_para.field_s
     - paragraphs.paragraphs_type.universal_swivel_wrench_para
   module:
     - entity_reference_revisions
@@ -90,6 +91,15 @@ content:
       link: ''
     third_party_settings: {  }
     weight: 6
+    region: content
+  field_s:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 9
     region: content
 hidden:
   entity_print_view_epub: true

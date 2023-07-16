@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.dimensions.field_b_socket_length
-    - field.field.paragraph.dimensions.field_c_socket_diameter
+    - field.field.paragraph.dimensions.field_c_socket_diameter_list
     - field.field.paragraph.dimensions.field_counter_bored_bool
     - field.field.paragraph.dimensions.field_depth_of_clearance
     - field.field.paragraph.dimensions.field_l_shank_length
@@ -34,21 +34,11 @@ content:
         ft: '0'
         M: '0'
     third_party_settings: {  }
-  field_c_socket_diameter:
-    type: physical_measurement_default
+  field_c_socket_diameter_list:
+    type: options_select
     weight: 1
     region: content
-    settings:
-      default_unit: m
-      allow_unit_change: true
-      available_units:
-        m: m
-        in: in
-        mm: '0'
-        cm: '0'
-        km: '0'
-        ft: '0'
-        M: '0'
+    settings: {  }
     third_party_settings: {  }
   field_counter_bored_bool:
     type: boolean_checkbox
