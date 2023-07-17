@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.regionUtilityArea = {
@@ -9,7 +9,7 @@
       var lastScrollTop = 0;
 
       // Open search panel.
-      $(selector_search_button).once('utilityarea').on({
+      $(once('utilityarea', selector_search_button, context)).on({
         click: function () {
           var $this = $(this);
           // Either expand or collapse the search panel.
@@ -67,4 +67,4 @@
     }
   };
 
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);
