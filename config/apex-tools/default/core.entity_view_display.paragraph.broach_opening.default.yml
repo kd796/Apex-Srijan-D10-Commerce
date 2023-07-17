@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.broach_opening.field_broach_opening_allowed
+    - field.field.paragraph.broach_opening.field_other_type
     - field.field.paragraph.broach_opening.field_type_other
     - paragraphs.paragraphs_type.broach_opening
   module:
@@ -48,6 +49,14 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     weight: 10
+    region: content
+  field_other_type:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 14
     region: content
   field_square_field:
     type: boolean
