@@ -162,7 +162,7 @@ class HelpersExtension extends AbstractExtension
 
             $svg = $dom->saveHTML();
 
-            return new Twig\Markup($svg, 'utf-8');
+            return new \Twig\Markup($svg, 'utf-8');
         }
 
         return null;
