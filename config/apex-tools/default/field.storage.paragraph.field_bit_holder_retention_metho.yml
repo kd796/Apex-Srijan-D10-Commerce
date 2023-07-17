@@ -12,6 +12,9 @@ type: list_string
 settings:
   allowed_values:
     -
+      value: retention_magnetic
+      label: Magnetic
+    -
       value: 'O-Ring Retention'
       label: 'O-Ring Retention'
     -
@@ -21,8 +24,11 @@ settings:
       value: 'Quick Release'
       label: 'Quick Release'
     -
-      value: magnetic
-      label: Magnetic
+      value: set_screw
+      label: 'Set Screw'
+    -
+      value: retention_other
+      label: Other
   allowed_values_function: ''
 module: options
 locked: false
