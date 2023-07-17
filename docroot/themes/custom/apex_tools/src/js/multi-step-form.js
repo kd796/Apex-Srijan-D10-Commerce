@@ -151,6 +151,12 @@
             $('[data-drupal-selector$="subform-field-h-broach-opening-wrapper"] select').prop('required', false);
             $('[data-drupal-selector$="subform-field-screwdriver-5-top"], [data-drupal-selector$="subform-field-screwdriver-5-subform"]').removeClass('show-option');
             $(this).closest('.field--name-field-1-part-type').siblings('div').removeClass('show-option');
+
+            $('[data-drupal-selector$="subform-field-screwdriver-6-top"] img, [data-drupal-selector$="subform-field-screwdriver-6-top"] span').removeClass('hide-option');
+            $('[data-drupal-selector$="subform-field-screwdriver-6-subform"] .field--name-field-a-square-drive').removeClass('hide-option');
+            $('[data-drupal-selector$="subform-field-screwdriver-6-subform"] .field--name-field-i-torx-r-size').removeClass('hide-option');
+            $('[data-drupal-selector$="subform-field-screwdriver-6-subform"] .field--name-field-k-spring-force-rate-').removeClass('hide-option');
+            $('[data-drupal-selector$="subform-field-screwdriver-6-subform"] .field--name-field-l-barbell-style-dims').removeClass('hide-option');
           } else {
             $(this).closest('.field--name-field-1-part-type').siblings('div').addClass('show-option');
             $('[data-drupal-selector$="subform-field-screwdriver-1-subform"], [data-drupal-selector$="subform-field-screwdriver-3-subform"]').addClass('hide-options');
@@ -161,6 +167,12 @@
             $('[data-drupal-selector$="subform-field-c-overall-length-wrapper"] input, [data-drupal-selector$="subform-field-c-overall-length-wrapper"] select').prop('required', true);
             $('[data-drupal-selector$="subform-field-h-broach-opening-wrapper"] select').prop('required', true);
             $('[data-drupal-selector$="subform-field-screwdriver-5-top"], [data-drupal-selector$="subform-field-screwdriver-5-subform"]').addClass('show-option');
+            
+            $('[data-drupal-selector$="subform-field-screwdriver-6-top"] img, [data-drupal-selector$="subform-field-screwdriver-6-top"] span').addClass('hide-option');
+            $('[data-drupal-selector$="subform-field-screwdriver-6-subform"] .field--name-field-a-square-drive').addClass('hide-option');
+            $('[data-drupal-selector$="subform-field-screwdriver-6-subform"] .field--name-field-i-torx-r-size').addClass('hide-option');
+            $('[data-drupal-selector$="subform-field-screwdriver-6-subform"] .field--name-field-k-spring-force-rate-').addClass('hide-option');
+            $('[data-drupal-selector$="subform-field-screwdriver-6-subform"] .field--name-field-l-barbell-style-dims').addClass('hide-option');
           }
         });
         $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-cover-requirements input[type="radio"]').on('change', function () {
