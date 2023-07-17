@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
   Drupal.behaviors.productCategoryFilters = {
     filtering: function ($item, $filterType) {
@@ -79,7 +79,7 @@
       let setArray = [];
       let specArray = drupalSettings.selectedAttributes.split(', ');
 
-      $('#edit-field-product-classifications-target-id option').once('setCatFilters').each(function (index) {
+      $(once('setCatFilters', '#edit-field-product-classifications-target-id option', context)).each(function (index) {
         if ($(this).is(':selected')) {
           $('#edit-category-filter-' + $(this).val()).prop('checked', true);
           catArray.push($(this).val());
@@ -87,7 +87,7 @@
         }
       });
 
-      $('#edit-field-set-value option').once('setSetFilters').each(function (index) {
+      $(once('setSetFilters', '#edit-field-set-value option', context)).each(function (index) {
         if ($(this).is(':selected')) {
           $('#edit-set-filter-' + $(this).val()).prop('checked', true);
           setArray.push($(this).val());
@@ -99,7 +99,7 @@
         $('.node--type-product-category__attribute-filter').find('input[value="' + value + '"]').prop('checked', true);
       });
 
-      $('.gearwrench-product-category-filters:not(.gearwrench-product-category-filters--js-initialized)').once('product-category-filters').each(function (index) {
+      $(once('product-category-filters', '.gearwrench-product-category-filters:not(.gearwrench-product-category-filters--js-initialized)', context)).each(function (index) {
         var $categoryFilter = $('.node--type-product-category__category-filter');
         var $attributeFilter = $('.node--type-product-category__attribute-filter');
         var $setFilter = $('.node--type-product-category__set-filter');
@@ -131,7 +131,7 @@
 
   Drupal.behaviors.productCategoryFilterTabs = {
     attach: function (context, settings) {
-      $('.gearwrench-product-category-filters').once('product-category-filter-tabs').each(function (index) {
+      $(once('product-category-filter-tabs', '.gearwrench-product-category-filters', context)).each(function (index) {
         // Scroll down to the products when setting a filter option.
         if (window.location.search.length > 0) {
           $('.product-category-view-section')[0].scrollIntoView();
@@ -254,4 +254,4 @@
     });
   }
 
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);
