@@ -7,7 +7,6 @@
       $('.field--name-field-screwdriver-style input[type="radio"]').attr('name', 'screwdriver-style');
       $('.field--name-field-bit-holder-styles input[type="radio"]').attr('name', 'bit-holder-styles');
       $('.field--name-field-drive-type input[type="radio"]').attr('name', 'drive-type');
-      $('.field--name-field-socket-type input[type="radio"]').attr('name', 'socket-type');
       var femaleMaleDriveType =  $('[data-drupal-selector$="subform-field-female-ref-wrapper"] input[type="radio"], [data-drupal-selector$="subform-field-male-hex-ref-wrapper"] input[type="radio"], [data-drupal-selector$="subform-field-female-square-ref-sh-wrapper"] input[type="radio"]');
       femaleMaleDriveType.attr('name', 'female-male-drive-type');
       
@@ -176,9 +175,9 @@
         $('[data-drupal-selector$="subform-field-nylon-covers-features-wrapper"] .field--widget-options-buttons input[type="radio"]').on('change', function () {
           var seletedOption = $(this).val();
           if (seletedOption === 'nylon_yes') {
-            $('[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-cover-features-radio-wrapper"]').removeClass('hide-options');
+            $('[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-cover-features-radio-wrapper"], .field--name-field-other-considerations-speci, .field--name-field-o-d-limitations-must-speci, .field--name-field-od-textbox, .field--name-field-nylon-other-textbox').removeClass('hide-options');
           } else {
-            $('[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-cover-features-radio-wrapper"]').addClass('hide-options');
+            $('[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-cover-features-radio-wrapper"], .field--name-field-other-considerations-speci, .field--name-field-o-d-limitations-must-speci, .field--name-field-od-textbox, .field--name-field-nylon-other-textbox').addClass('hide-options');
           }
         });
 
@@ -214,23 +213,25 @@
       
       var seletedOptionScrewdriver = $('[data-drupal-selector$="subform-field-screwdriver-0-subform"] .field--name-field-1-part-type .fieldset-wrapper input[type="radio"]').val();
       if (seletedOptionScrewdriver === 'bit') {
-        $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-5-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').addClass('hide-options');
+        $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').addClass('hide-options');
         $('[data-drupal-selector$="subform-field-screwdriver-1-subform"], [data-drupal-selector$="subform-field-screwdriver-3-subform"]').removeClass('hide-options');
-        $('[data-drupal-selector$="subform-field-screwdriver-4-top"], [data-drupal-selector$="subform-field-screwdriver-5-top"], [data-drupal-selector$="subform-field-screwdriver-6-top"]').addClass('hide-options');
+        $('[data-drupal-selector$="subform-field-screwdriver-4-top"], [data-drupal-selector$="subform-field-screwdriver-6-top"]').addClass('hide-options');
         $('[data-drupal-selector$="subform-field-screwdriver-1-top"], [data-drupal-selector$="subform-field-screwdriver-3-top"]').removeClass('hide-options');
         $('[data-drupal-selector$="subform-field-a-square-drive-wrapper"] input, [data-drupal-selector$="subform-field-a-square-drive-wrapper"] select').prop('required', false);
         $('[data-drupal-selector$="subform-field-c-overall-length-wrapper"] input, [data-drupal-selector$="subform-field-c-overall-length-wrapper"] select').prop('required', false);
         $('[data-drupal-selector$="subform-field-h-broach-opening-wrapper"] select').prop('required', false);
+        $('[data-drupal-selector$="subform-field-screwdriver-5-top"], [data-drupal-selector$="subform-field-screwdriver-5-subform"]').removeClass('show-option');
         $(this).closest('.field--name-field-1-part-type').siblings('div').removeClass('show-option');
       } else {
         $(this).closest('.field--name-field-1-part-type').siblings('div').addClass('show-option');
         $('[data-drupal-selector$="subform-field-screwdriver-1-subform"], [data-drupal-selector$="subform-field-screwdriver-3-subform"]').addClass('hide-options');
-        $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-5-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').removeClass('hide-options');
+        $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-6-subform"]').removeClass('hide-options');
         $('[data-drupal-selector$="subform-field-screwdriver-1-top"], [data-drupal-selector$="subform-field-screwdriver-3-top"]').addClass('hide-options');
-        $('[data-drupal-selector$="subform-field-screwdriver-4-top"], [data-drupal-selector$="subform-field-screwdriver-5-top"], [data-drupal-selector$="subform-field-screwdriver-6-top"]').removeClass('hide-options');
+        $('[data-drupal-selector$="subform-field-screwdriver-4-top"], [data-drupal-selector$="subform-field-screwdriver-6-top"]').removeClass('hide-options');
         $('[data-drupal-selector$="subform-field-a-square-drive-wrapper"] input, [data-drupal-selector$="subform-field-a-square-drive-wrapper"] select').prop('required', true);
         $('[data-drupal-selector$="subform-field-c-overall-length-wrapper"] input, [data-drupal-selector$="subform-field-c-overall-length-wrapper"] select').prop('required', true);
         $('[data-drupal-selector$="subform-field-h-broach-opening-wrapper"] select').prop('required', true);
+        $('[data-drupal-selector$="subform-field-screwdriver-5-top"], [data-drupal-selector$="subform-field-screwdriver-5-subform"]').addClass('show-option');
       }
 
       var seletedOptionScrewdriver7 = $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-cover-requirements input[type="radio"]').val();
@@ -242,9 +243,9 @@
 
       var seletedOptionNylon = $('[data-drupal-selector$="subform-field-nylon-covers-features-wrapper"] .field--widget-options-buttons input[type="radio"]').val();
       if (seletedOptionNylon === 'nylon_yes') {
-        $('[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-cover-features-radio-wrapper"]').removeClass('hide-options');
+        $('[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-cover-features-radio-wrapper"], .field--name-field-other-considerations-speci, .field--name-field-o-d-limitations-must-speci, .field--name-field-od-textbox, .field--name-field-nylon-other-textbox').removeClass('hide-options');
       } else {
-        $('[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-cover-features-radio-wrapper"]').addClass('hide-options');
+        $('[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-cover-features-radio-wrapper"], .field--name-field-other-considerations-speci, .field--name-field-o-d-limitations-must-speci, .field--name-field-od-textbox, .field--name-field-nylon-other-textbox').addClass('hide-options');
       }
       
       // Rebind the click event handler to the button after dynamically adding required fields
