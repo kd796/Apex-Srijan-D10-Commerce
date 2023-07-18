@@ -188,6 +188,7 @@
       display: grid;
       grid-template-columns: 49% 49%;
       grid-column-gap: 2%;
+      width: 100%;
       @media only screen and (max-width: $media-screen-tablet) {
         display: flex;
         flex-direction: column;
@@ -688,6 +689,12 @@
 
   .paragraphs-tabs {
     display: none;
+  }
+}
+
+#field-image-uploads-4-values {
+  td {
+    display: block;
   }
 }
 
@@ -1542,6 +1549,12 @@
   }
 }
 
+.field--name-field-upload {
+  td {
+    display: block;
+  }
+}
+
 .field--name-field-broach-opening-allowed {
   fieldset {
     .fieldset-wrapper {
@@ -1814,6 +1827,15 @@
     @media only screen and (max-width: $media-screen-medium) {
       right: calc(100% - 25%);
       top: 0%;
+    }
+  }
+}
+
+.field--name-field-drive-configuration-label {
+  .field--name-field-driveconf-hex,
+  .field--name-field-driveconf-other {
+    label {
+      margin: 0 0 0 10px !important;
     }
   }
 }
