@@ -13,12 +13,13 @@ dependencies:
     - field.field.paragraph.socket_dimensions.field_h_broach_opening
     - field.field.paragraph.socket_dimensions.field_i_torx_r_size
     - field.field.paragraph.socket_dimensions.field_j_mag_depth
-    - field.field.paragraph.socket_dimensions.field_k_spring_force_rate_
     - field.field.paragraph.socket_dimensions.field_l_barbell_style_dims
+    - field.field.paragraph.socket_dimensions.field_spring_force_rate
     - paragraphs.paragraphs_type.socket_dimensions
   module:
     - options
     - physical
+    - triples_field
 id: paragraph.socket_dimensions.default
 targetEntityType: paragraph
 bundle: socket_dimensions
@@ -94,19 +95,44 @@ content:
     third_party_settings: {  }
     weight: 9
     region: content
-  field_k_spring_force_rate_:
-    type: list_default
-    label: inline
-    settings: {  }
-    third_party_settings: {  }
-    weight: 10
-    region: content
   field_l_barbell_style_dims:
     type: physical_measurement_default
     label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 14
+    weight: 11
+    region: content
+  field_spring_force_rate:
+    type: triples_field_details
+    label: inline
+    settings:
+      first:
+        format_type: medium
+        link: false
+        hidden: false
+        show_label: true
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      second:
+        format_type: medium
+        link: false
+        hidden: false
+        show_label: true
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      third:
+        format_type: medium
+        link: false
+        hidden: false
+        show_label: true
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      open: true
+    third_party_settings: {  }
+    weight: 10
     region: content
 hidden:
   entity_print_view_epub: true

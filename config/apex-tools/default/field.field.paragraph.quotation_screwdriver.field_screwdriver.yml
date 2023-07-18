@@ -6,6 +6,7 @@ dependencies:
     - field.storage.paragraph.field_screwdriver
     - paragraphs.paragraphs_type.bit_dimensions
     - paragraphs.paragraphs_type.bit_holder_retention_method
+    - paragraphs.paragraphs_type.bit_holder_style
     - paragraphs.paragraphs_type.quotation_order_type
     - paragraphs.paragraphs_type.quotation_screwdriver
     - paragraphs.paragraphs_type.quotation_screwdriver_drive_type
@@ -33,6 +34,7 @@ settings:
     target_bundles:
       bit_dimensions: bit_dimensions
       bit_holder_retention_method: bit_holder_retention_method
+      bit_holder_style: bit_holder_style
       quotation_order_type: quotation_order_type
       quotation_screwdriver_drive_type: quotation_screwdriver_drive_type
       quotation_screwdriver_style: quotation_screwdriver_style
@@ -69,6 +71,9 @@ settings:
         enabled: false
       bit_holder_retention_method:
         weight: 116
+        enabled: true
+      bit_holder_style:
+        weight: 117
         enabled: true
       broach_opening:
         weight: 117
