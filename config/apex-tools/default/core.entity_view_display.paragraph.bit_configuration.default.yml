@@ -1,0 +1,36 @@
+uuid: 1f2ec612-52af-4d6e-aa83-58de1fd53001
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bit_configuration.field__bit_configuration
+    - field.field.paragraph.bit_configuration.field_title
+    - paragraphs.paragraphs_type.bit_configuration
+  module:
+    - options
+id: paragraph.bit_configuration.default
+targetEntityType: paragraph
+bundle: bit_configuration
+mode: default
+content:
+  field__bit_configuration:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_title:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true
