@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.broach_opening.field_broach_opening_allowed
+    - field.field.paragraph.broach_opening.field_choose
     - field.field.paragraph.broach_opening.field_other_type
     - field.field.paragraph.broach_opening.field_type_other
     - paragraphs.paragraphs_type.broach_opening
@@ -20,6 +21,31 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_choose:
+    type: options_select
+    weight: 16
+    region: content
+    settings: {  }
+    third_party_settings:
+      conditional_fields:
+        98ff5d5f-e42d-4c11-b990-019a82cf7c24:
+          entity_type: paragraph
+          bundle: broach_opening
+          dependee: field_broach_opening_allowed
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 2
+            value: ''
+            values: male_square
+            value_form:
+              -
+                value: null
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_double_hex_field:
     type: boolean_checkbox
     weight: 7
