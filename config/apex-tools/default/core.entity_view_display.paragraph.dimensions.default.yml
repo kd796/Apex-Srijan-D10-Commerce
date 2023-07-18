@@ -3,14 +3,16 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.dimensions.field_a_square_drive_uni
     - field.field.paragraph.dimensions.field_b_socket_length
+    - field.field.paragraph.dimensions.field_brand_model_power_tool
     - field.field.paragraph.dimensions.field_c_socket_diameter_list
-    - field.field.paragraph.dimensions.field_counter_bored_bool
     - field.field.paragraph.dimensions.field_depth_of_clearance
     - field.field.paragraph.dimensions.field_l_shank_length
     - field.field.paragraph.dimensions.field_nose_dia
     - paragraphs.paragraphs_type.dimensions
   module:
+    - double_field
     - options
     - physical
 id: paragraph.dimensions.default
@@ -18,6 +20,13 @@ targetEntityType: paragraph
 bundle: dimensions
 mode: default
 content:
+  field_a_square_drive_uni:
+    type: physical_measurement_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
   field_b_socket_length:
     type: physical_measurement_default
     label: inline
@@ -25,22 +34,36 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  field_brand_model_power_tool:
+    type: double_field_unformatted_list
+    label: inline
+    settings:
+      first:
+        format_type: medium
+        link: false
+        hidden: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      second:
+        format_type: medium
+        link: false
+        hidden: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      inline: true
+    third_party_settings: {  }
+    weight: 7
+    region: content
   field_c_socket_diameter_list:
     type: list_default
     label: inline
     settings: {  }
     third_party_settings: {  }
     weight: 1
-    region: content
-  field_counter_bored_bool:
-    type: boolean
-    label: inline
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 3
     region: content
   field_depth_of_clearance:
     type: physical_measurement_default
