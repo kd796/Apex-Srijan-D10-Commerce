@@ -1,0 +1,48 @@
+uuid: c6711147-5d67-46ba-8967-5be0c3bfe90b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_embedded_magnet
+    - paragraphs.paragraphs_type.embedded_magnet
+  module:
+    - double_field
+id: paragraph.embedded_magnet.field_embedded_magnet
+field_name: field_embedded_magnet
+entity_type: paragraph
+bundle: embedded_magnet
+label: 'Embedded magnet'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  first:
+    label: ''
+    list: false
+    allowed_values: {  }
+    max: null
+    min: null
+    required: true
+    on_label: 'On'
+    off_label: 'Off'
+  second:
+    label: ''
+    list: true
+    allowed_values:
+      -
+        label: multi-fixed
+        value: multifixed
+      -
+        label: ring
+        value: ring
+      -
+        label: 'Side wall magnet'
+        value: swm
+    max: null
+    min: null
+    required: false
+    on_label: 'On'
+    off_label: 'Off'
+field_type: double_field
