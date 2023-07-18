@@ -1,0 +1,30 @@
+uuid: 37f407e2-1bac-46f3-a076-cb9098cef339
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field__bit_configuration
+field_name: field__bit_configuration
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: recessed
+      label: Recessed
+    -
+      value: exposed
+      label: Exposed
+    -
+      value: flush
+      label: Flush
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
