@@ -1,0 +1,39 @@
+uuid: 1012b515-3d06-44fc-86a1-2d71fdd52f09
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_bit_holder_style_for_hex
+field_name: field_bit_holder_style_for_hex
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: magnetic
+      label: Magnetic
+    -
+      value: o_ring_retention
+      label: 'O-Ring Retention'
+    -
+      value: standard
+      label: 'Standard (Retaining Ring)'
+    -
+      value: quick_release
+      label: 'Quick Release'
+    -
+      value: set_screw
+      label: 'Set Screw'
+    -
+      value: other
+      label: Other
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
