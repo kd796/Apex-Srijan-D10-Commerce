@@ -138,6 +138,7 @@
       td {
         border: 0;
         padding: 0!important;
+        display: block;
       }
     }
   }
@@ -665,6 +666,27 @@
   }
 }
 
+[data-drupal-selector$="edit-field-custom-quotation-worksheet"] {
+  & > table {
+    & > tbody {
+      & > tr {
+        padding: 10px 0;
+        border-bottom: solid 1px $color-gray-medium;
+
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="edit-field-custom-quotation-worksheet-add-more"] {
+  margin-top: 20px;
+}
+
 // Style for third step.
 #edit-field-custom-quotation-worksheet-add-more {
   margin-left: .83333333333333%;
@@ -755,15 +777,55 @@
   }
 }
 
-.js {
+[data-drupal-selector$="subform-field-screwdriver"],
+.field--name-field-socket-type,
+.field--name-field-broach-opening,
+.field--name-field-drive-configuration-label,
+.field--name-field-magnetic-label,
+.field--name-field-socket-dimensions-label,
+.field--name-field-nylon-covers-features,
+.field--name-field-quotation-order-type-socke,
+[data-drupal-selector$="subform-field-male-hex-ref-0"],
+[data-drupal-selector$="subform-field-female-square-ref-sh-0"],
+[data-drupal-selector$="subform-field-broach-ref-0"],
+[data-drupal-selector$="subform-field-optional-features-ref-0"],
+[data-drupal-selector$="subform-field-order-0"] {
   .paragraph-top {
     display: none;
   }
+}
+
+.js {
   .js-hide {
     display: unset;
   }
 
   .paragraph-top {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    @media only screen and (max-width: $media-screen-tablet) {
+      flex-direction: column;
+    }
+    @media only screen and (max-width: $media-screen-medium) {
+      flex-direction: column;
+    }
+
+    &.collapse-wrapper {
+      display: none;
+    }
+
+    .paragraph-info,
+    .summary-content {
+      display: none;
+    }
+
+    .paragraph-type-label {
+      @media only screen and (max-width: $media-screen-tablet) {
+        font-size: 22px;
+      }
+    }
+
     .paragraph-summary {
       width: 400px;
       @media only screen and (max-width: $media-screen-tablet) {
@@ -774,6 +836,51 @@
       @media only screen and (max-width: $media-screen-tablet) {
         margin-top: 10px;
         margin-bottom: 10px;
+      }
+    }
+
+    .paragraphs-actions {
+      button{
+        &::before,
+        &::after {
+          display: none;
+        }
+        &.form-submit {
+          @media only screen and (max-width: $media-screen-tablet) {
+            min-width: 150px;
+            width: 150px;
+            height: 60px;
+            margin: 0;
+          }
+          @media only screen and (max-width: $media-screen-medium) {
+            min-width: 150px;
+            width: 150px;
+            height: 60px;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .paragraphs-dropdown {
+    width: 150px;
+    padding: 12px;
+
+    .paragraphs-dropdown-actions {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      border-radius: 0;
+      border: 0;
+      box-shadow: none;
+
+      button {
+        height: 100%;
+        border-radius: 0;
+        box-shadow: none;
       }
     }
   }
@@ -1469,6 +1576,7 @@
   .field--name-field-bit-holder-style-for-hex {
     width: 100% !important;
     display: none;
+    margin-bottom: 15px !important;
 
     &.show-option {
       display: block;
@@ -1532,6 +1640,20 @@
 [data-drupal-selector$="subform-field-screwdriver-9-subform"] {
   border-bottom: solid 3px $color-gray-medium;
   margin-bottom: 30px !important;
+
+  .field--name-field__bit-configuration {
+    margin-bottom: 20px !important;
+  }
+
+  .field--name-field-title {
+    label {
+      display: none !important;
+    }
+
+    input {
+      margin-top: 0 !important;
+    }
+  }
 }
 
 [data-drupal-selector$="subform-field-screwdriver-8-subform-field-components-1-subform"] {
@@ -2261,8 +2383,8 @@
 }
 
 [data-drupal-selector$="subform-field-nylon-covers-features-0-top-type"] {
-  padding: 0;
-  margin: 0;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 [data-drupal-selector$="subform-field-screwdriver-8-subform-field-components-0-top"] {
@@ -2532,6 +2654,15 @@
   display: none;
   &.show-options {
     display: block;
+  }
+}
+
+.field--name-field-other-holder-style {
+  label {
+    display: none !important;
+  }
+  input {
+    margin-top: 0 !important;
   }
 }
 
