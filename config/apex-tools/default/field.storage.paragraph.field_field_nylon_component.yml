@@ -1,0 +1,30 @@
+uuid: 0b4e5b76-55e1-44f5-9a2e-6f8b84c4bc16
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_field_nylon_component
+field_name: field_field_nylon_component
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: nylon_socket
+      label: Socket
+    -
+      value: nylon_extension
+      label: Extension
+    -
+      value: nylon_socket_extension
+      label: 'Socket and Extension'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

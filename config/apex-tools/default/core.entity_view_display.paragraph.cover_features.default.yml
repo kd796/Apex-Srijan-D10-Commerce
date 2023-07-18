@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.cover_features.field_cover_features_radio
+    - field.field.paragraph.cover_features.field_field_nylon_component
     - field.field.paragraph.cover_features.field_nylon_other_textbox
     - field.field.paragraph.cover_features.field_nylon_requirements_yes_no_
     - field.field.paragraph.cover_features.field_o_d_limitations_must_speci
@@ -22,6 +23,13 @@ content:
     label: inline
     settings: {  }
     third_party_settings: {  }
+    weight: 2
+    region: content
+  field_field_nylon_component:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
     weight: 1
     region: content
   field_nylon_other_textbox:
@@ -30,7 +38,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 5
+    weight: 6
     region: content
   field_nylon_requirements_yes_no_:
     type: list_default
@@ -47,7 +55,7 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 2
+    weight: 3
     region: content
   field_od_textbox:
     type: string
@@ -55,7 +63,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 3
+    weight: 4
     region: content
   field_other_considerations_speci:
     type: boolean
@@ -65,7 +73,7 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 4
+    weight: 5
     region: content
 hidden:
   entity_print_view_epub: true
