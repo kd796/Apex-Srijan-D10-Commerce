@@ -6,8 +6,6 @@ dependencies:
     - field.field.paragraph.bit_holder_retention_method.field_bit_holder_retention_metho
     - field.field.paragraph.bit_holder_retention_method.field_retention_other
     - paragraphs.paragraphs_type.bit_holder_retention_method
-  module:
-    - conditional_fields
 id: paragraph.bit_holder_retention_method.default
 targetEntityType: paragraph
 bundle: bit_holder_retention_method
@@ -19,33 +17,7 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_retention_other:
-    type: string_textfield
-    weight: 1
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings:
-      conditional_fields:
-        2cb30129-ac53-4d08-beee-472d170439ba:
-          entity_type: paragraph
-          bundle: bit_holder_retention_method
-          dependee: field_bit_holder_retention_metho
-          settings:
-            state: visible
-            reset: false
-            condition: value
-            grouping: AND
-            values_set: 2
-            value: ''
-            values: retention_other
-            value_form:
-              -
-                value: null
-            effect: show
-            effect_options: {  }
-            selector: ''
 hidden:
   created: true
+  field_retention_other: true
   status: true

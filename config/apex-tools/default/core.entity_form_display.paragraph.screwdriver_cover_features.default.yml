@@ -16,8 +16,10 @@ dependencies:
     - field.field.paragraph.screwdriver_cover_features.field_retractable
     - field.field.paragraph.screwdriver_cover_features.field_screw_press_fit
     - field.field.paragraph.screwdriver_cover_features.field_spring_force
+    - field.field.paragraph.screwdriver_cover_features.field_title
     - paragraphs.paragraphs_type.screwdriver_cover_features
   module:
+    - conditional_fields
     - double_field
     - triples_field
 id: paragraph.screwdriver_cover_features.default
@@ -191,7 +193,7 @@ content:
         label_display: block
         size: 30
         placeholder: ''
-        label: 'Retractable (how much?)'
+        label: 'Retractable (travel distance)'
         cols: 10
         rows: 5
       second:
@@ -241,6 +243,15 @@ content:
         rows: 5
       inline: false
     third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 8
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields: {  }
 hidden:
   created: true
   field_embedded_magnets: true
