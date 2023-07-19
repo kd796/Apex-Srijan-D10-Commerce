@@ -186,7 +186,8 @@
             $('[data-drupal-selector$="subform-field-screwdriver-6"]').addClass('show-option');
             
             $('[data-drupal-selector$="subform-field-screwdriver-7-top"] img, [data-drupal-selector$="subform-field-screwdriver-7-top"] span').addClass('hide-option');
-            $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-a-square-drive').addClass('hide-option');
+            $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-a-square-drive').addClass('hide-option test').removeAttr('required');
+            $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-a-square-drive input').removeAttr('required');
             $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-i-torx-r-size').addClass('hide-option');
             $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-k-spring-force-rate-').addClass('hide-option');
             $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-l-barbell-style-dims').addClass('hide-option');
@@ -243,7 +244,7 @@
           $('.field--name-field-other-considerations-speci input[type="checkbox"]').prop('checked', false);
         });
         $('.clear-option-cover-feature-uw').on('click', function (e) {
-          $('[data-drupal-selector$="subform-field-optional-features-ref-0-subform-field-cover-features"] fieldset input[type="checkbox"]').prop('checked', false);
+          $('[data-drupal-selector$="subform-field-optional-features-ref-0-subform-field-cover-features"] input[type="checkbox"]').prop('checked', false);
         });
         // adding title.
         $('[data-drupal-selector$="subform-field-female-ref-0-top"]').find('.paragraph-type-label').text('Style');
@@ -290,7 +291,7 @@
         $('.field--name-field-other-considerations-speci input[type="checkbox"]').prop('checked', false);
       });
       $('.clear-option-cover-feature-uw').on('click', function (e) {
-        $('[data-drupal-selector$="subform-field-optional-features-ref-0-subform-field-cover-features"] fieldset input[type="checkbox"]').prop('checked', false);
+        $('[data-drupal-selector$="subform-field-optional-features-ref-0-subform-field-cover-features"] input[type="checkbox"]').prop('checked', false);
       });
       
       var seletedOptionScrewdriver = $('[data-drupal-selector$="subform-field-screwdriver-0-subform"] .field--name-field-1-part-type .fieldset-wrapper input[type="radio"]').val();
