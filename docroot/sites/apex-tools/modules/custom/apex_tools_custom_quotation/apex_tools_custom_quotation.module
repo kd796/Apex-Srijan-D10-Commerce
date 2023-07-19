@@ -69,7 +69,6 @@ function apex_tools_custom_quotation_form_alter(&$form, FormStateInterface $form
     \Drupal::service('page_cache_kill_switch')->trigger();
     $multiStep = $form_state->get('multistep_controller');
     if ($multiStep !== null && $multiStep->getCurrentStep() === 1) {
-      unset($form['captcha']);
       $form['actions']['submit']['#access'] = TRUE;
       unset($form['field_are_you_requesting_an_item']['widget']['#options']['_none']);
       unset($form['field_reactivation_request']['widget']['#options']['_none']);
@@ -94,9 +93,12 @@ function apex_tools_custom_quotation_form_alter(&$form, FormStateInterface $form
     }
 
     if ($multiStep !== null && $multiStep->getCurrentStep() === 3) {
-      unset($form['captcha']);
       $form['actions']['submit']['#access'] = TRUE;
       $form['actions']['submit']['#value'] = t('SUBMIT REQUEST FOR QUOTE');
+    }
+
+    if ($multiStep !== null && $multiStep->getCurrentStep() === 0) {
+      unset($form['captcha']);
     }
 
     // Adding grid classes for the elements.
