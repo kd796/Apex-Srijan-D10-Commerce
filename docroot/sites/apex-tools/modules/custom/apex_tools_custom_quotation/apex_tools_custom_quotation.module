@@ -96,6 +96,7 @@ function apex_tools_custom_quotation_form_alter(&$form, FormStateInterface $form
       $form['actions']['submit']['#access'] = TRUE;
       $form['actions']['submit']['#value'] = t('SUBMIT REQUEST FOR QUOTE');
     }
+
     if ($multiStep !== null && $multiStep->getCurrentStep() === 0) {
       unset($form['captcha']);
     }

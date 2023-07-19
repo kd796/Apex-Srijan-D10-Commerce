@@ -3,16 +3,16 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.optional_features.field_optional_feature
+    - field.field.paragraph.optional_features.field_cover_features
     - paragraphs.paragraphs_type.optional_features
 id: paragraph.optional_features.default
 targetEntityType: paragraph
 bundle: optional_features
 mode: default
 content:
-  field_optional_feature:
+  field_cover_features:
     type: options_buttons
-    weight: 0
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }

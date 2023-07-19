@@ -1,0 +1,39 @@
+uuid: 3b4005b6-8020-4089-9f2e-650e391c01b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_brand_model_power_tool
+    - paragraphs.paragraphs_type.dimensions
+  module:
+    - double_field
+id: paragraph.dimensions.field_brand_model_power_tool
+field_name: field_brand_model_power_tool
+entity_type: paragraph
+bundle: dimensions
+label: 'Brand & Model Power Tool'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  first:
+    label: 'Brand & Model Power Tool'
+    list: false
+    allowed_values: {  }
+    max: null
+    min: null
+    required: true
+    on_label: 'Brand & Model Power Tool'
+    off_label: 'Off'
+  second:
+    label: ''
+    list: false
+    allowed_values: {  }
+    max: null
+    min: null
+    required: true
+    on_label: 'On'
+    off_label: 'Off'
+field_type: double_field

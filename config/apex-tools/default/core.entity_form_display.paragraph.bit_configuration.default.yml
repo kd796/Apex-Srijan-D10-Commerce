@@ -1,0 +1,51 @@
+uuid: 0abb6f50-93e2-4820-82d7-1f977bc511c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bit_configuration.field__bit_configuration
+    - field.field.paragraph.bit_configuration.field_title
+    - paragraphs.paragraphs_type.bit_configuration
+  module:
+    - conditional_fields
+id: paragraph.bit_configuration.default
+targetEntityType: paragraph
+bundle: bit_configuration
+mode: default
+content:
+  field__bit_configuration:
+    type: options_buttons
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        92b7bed6-36d6-40f9-9a1d-60f986eba92f:
+          entity_type: paragraph
+          bundle: bit_configuration
+          dependee: field__bit_configuration
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 3
+            value: ''
+            values: "recessed\r\nexposed"
+            value_form:
+              -
+                value: null
+            effect: show
+            effect_options: {  }
+            selector: ''
+hidden:
+  created: true
+  status: true

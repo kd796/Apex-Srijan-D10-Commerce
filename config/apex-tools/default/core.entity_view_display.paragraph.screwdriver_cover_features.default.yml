@@ -16,6 +16,7 @@ dependencies:
     - field.field.paragraph.screwdriver_cover_features.field_retractable
     - field.field.paragraph.screwdriver_cover_features.field_screw_press_fit
     - field.field.paragraph.screwdriver_cover_features.field_spring_force
+    - field.field.paragraph.screwdriver_cover_features.field_title
     - paragraphs.paragraphs_type.screwdriver_cover_features
   module:
     - double_field
@@ -295,6 +296,14 @@ content:
       inline: true
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_title:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 13
     region: content
 hidden:
   entity_print_view_epub: true

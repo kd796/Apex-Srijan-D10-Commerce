@@ -1,0 +1,33 @@
+uuid: 298ea321-80e1-4c55-a0b3-28480aa8443b
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_cover_features
+field_name: field_cover_features
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'Iron Band'
+      label: 'Iron Band'
+    -
+      value: 'Covered Socket'
+      label: 'Covered Socket'
+    -
+      value: 'Covered Shank'
+      label: 'Covered Shank'
+    -
+      value: 'Internal Tension'
+      label: 'Internal Tension'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

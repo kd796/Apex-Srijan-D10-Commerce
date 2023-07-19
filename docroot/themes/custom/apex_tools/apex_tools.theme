@@ -93,3 +93,15 @@ function apex_tools_preprocess_views_view_unformatted(&$vars) {
     $vars['card'] = views_embed_view('hubspot_forms', 'hubspot_code');
   }
 }
+
+/**
+ * Implements hook_preprocess_field() for Quotation.
+ */
+function apex_tools_preprocess_field(&$variables) {
+  // Current aliased path.
+  $current_uri = \Drupal::request()->getRequestUri();
+  $alias_parts = explode('/', $current_uri);
+  if (count($alias_parts) >= 3) {
+    $variables['current_path_alias'] = $alias_parts[2];
+  }
+}

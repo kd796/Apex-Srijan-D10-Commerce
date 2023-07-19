@@ -12,25 +12,33 @@ require("./vue-filters");
 require("./vue-directives");
 require("./vue-components");
 
-// Bootstrap Vue
-window.app = new Vue({
-  el: "#app",
-  mounted() {
-    EventBus.$on("captive", (isCaptive) => {
-      if (isCaptive) {
-        let isScrollable = document.body.scrollHeight > window.innerHeight;
-        if (isScrollable) {
-          document.documentElement.classList.add("is-captive--scroll");
-        }
+(function ($, Drupal) {
+  'use strict';
 
-        document.documentElement.classList.add("is-captive");
+  if($('body').hasClass('path-products')) {
+    // Bootstrap Vue
+    window.app = new Vue({
+      el: "#app",
+      mounted() {
+        EventBus.$on("captive", (isCaptive) => {
+          if (isCaptive) {
+            let isScrollable = document.body.scrollHeight > window.innerHeight;
+            if (isScrollable) {
+              document.documentElement.classList.add("is-captive--scroll");
+            }
+
+            document.documentElement.classList.add("is-captive");
+          }
+          else {
+            document.documentElement.classList.remove("is-captive", "is-captive--scroll");
+          }
+        })
       }
-      else {
-        document.documentElement.classList.remove("is-captive", "is-captive--scroll");
-      }
-    })
+    });
   }
-});
+
+})(jQuery, Drupal);
+
 
 require("./components/nav");
 require("./helpers/floating-labels");

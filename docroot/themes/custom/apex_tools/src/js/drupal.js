@@ -7,7 +7,7 @@ import Vue from "vue";
  */
 Drupal.behaviors.reVue = {
   attach(context, settings) {
-    if (context.children.length > 0 && app.$el.contains(context)) {
+    if (context.children.length > 0 && app.$el && app.$el.contains(context)) {
       let InjectedComponent = Vue.extend({
         template: context.outerHTML,
       });

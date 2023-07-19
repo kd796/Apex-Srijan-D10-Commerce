@@ -4,8 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.male_hex_drive_standard_type.field_hex_drive
-    - field.field.paragraph.male_hex_drive_standard_type.field_iron_brand_uni
     - field.field.paragraph.male_hex_drive_standard_type.field_male_hex_drive_standard_ty
+    - field.field.paragraph.male_hex_drive_standard_type.field_tension_para
     - paragraphs.paragraphs_type.male_hex_drive_standard_type
   module:
     - options
@@ -21,13 +21,6 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_iron_brand_uni:
-    type: list_default
-    label: inline
-    settings: {  }
-    third_party_settings: {  }
-    weight: 2
-    region: content
   field_male_hex_drive_standard_ty:
     type: boolean
     label: inline
@@ -37,6 +30,13 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_tension_para:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
     region: content
 hidden:
   entity_print_view_epub: true

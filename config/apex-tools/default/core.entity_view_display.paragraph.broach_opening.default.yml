@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.broach_opening.field_broach_opening_allowed
+    - field.field.paragraph.broach_opening.field_choose
+    - field.field.paragraph.broach_opening.field_other_type
     - field.field.paragraph.broach_opening.field_type_other
     - paragraphs.paragraphs_type.broach_opening
   module:
@@ -19,6 +21,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 12
+    region: content
+  field_choose:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 15
     region: content
   field_double_square_field:
     type: boolean
@@ -48,6 +57,14 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     weight: 10
+    region: content
+  field_other_type:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 14
     region: content
   field_square_field:
     type: boolean

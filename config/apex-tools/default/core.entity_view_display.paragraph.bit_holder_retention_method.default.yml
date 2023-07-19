@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.bit_holder_retention_method.field_bit_holder_retention_metho
+    - field.field.paragraph.bit_holder_retention_method.field_retention_other
     - paragraphs.paragraphs_type.bit_holder_retention_method
   module:
     - options
@@ -18,6 +19,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_retention_other:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
     region: content
 hidden:
   entity_print_view_epub: true

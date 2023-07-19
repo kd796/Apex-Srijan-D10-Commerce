@@ -1,0 +1,45 @@
+uuid: f8acd377-e66c-496a-989c-acc73432b63e
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_c_socket_diameter_list
+field_name: field_c_socket_diameter_list
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 5/8
+      label: '5/8 in'
+    -
+      value: 3/4
+      label: '3/4 in'
+    -
+      value: 7/8
+      label: '7/8 in'
+    -
+      value: 11/4
+      label: '11/4 in'
+    -
+      value: 11/2
+      label: '11/2 in'
+    -
+      value: 13/4
+      label: '13/4 in'
+    -
+      value: '2'
+      label: '2 in'
+    -
+      value: other
+      label: Other
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

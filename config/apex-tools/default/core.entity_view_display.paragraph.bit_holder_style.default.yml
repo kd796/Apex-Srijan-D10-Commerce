@@ -1,0 +1,36 @@
+uuid: 3c7f586e-a459-4967-9eda-242085e9e909
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bit_holder_style.field_bit_holder_style_for_hex
+    - field.field.paragraph.bit_holder_style.field_other_holder_style
+    - paragraphs.paragraphs_type.bit_holder_style
+  module:
+    - options
+id: paragraph.bit_holder_style.default
+targetEntityType: paragraph
+bundle: bit_holder_style
+mode: default
+content:
+  field_bit_holder_style_for_hex:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_other_holder_style:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true
