@@ -21,46 +21,39 @@
       $(function () {
         const hamburgerMenuIcon = $('.mobile-nav-icon');
         const hamburgerMenu = $('.mobile-header');
-        hamburgerMenuIcon
-          .once('hamburgerMenu')
-          .on('click', function () {
-            hamburgerMenu.toggle('d-none');
-          });
+        $(once('hamburgerMenu', hamburgerMenuIcon, context)).on('click', function () {
+          hamburgerMenu.toggle('d-none');
+        });
       });
       //  Responsive menu.
       $(function () {
         // first level menu collapse.
         const firstLevel_li = $('.navbar-we-mega-menu.navbar li.we-mega-menu-li');
         firstLevel_li.removeClass('active active-trail open');
-        firstLevel_li.once('first-dropdown')
-          .on('click', function (e) {
-            $(this).toggleClass('active active-trail open');
-            e.stopPropagation();
-          });
+        $(once('first-dropdown', firstLevel_li, context)).on('click', function (e) {
+          $(this).toggleClass('active active-trail open');
+          e.stopPropagation();
+        });
         // second level menu collapse.
         const secondLevel_li = $('.navbar-we-mega-menu.navbar ul>li>ul');
         secondLevel_li.addClass('second-ul');
         secondLevel_li.prev().addClass('second-dropdown');
-        $('.second-dropdown')
-          .once('second-dropdown')
-          .on('click', function (e) {
-            $(this).toggleClass('open');
-            $(this).next('ul').toggleClass('open-second-level');
-            e.stopPropagation();
-          });
+        $(once('second-dropdown', '.second-dropdown', context)).on('click', function (e) {
+          $(this).toggleClass('open');
+          $(this).next('ul').toggleClass('open-second-level');
+          e.stopPropagation();
+        });
         // third level menu collapse.
         const thirdLevel_li = $('.navbar-we-mega-menu.navbar ul>li>ul li>ul');
         thirdLevel_li.addClass('third-ul').removeClass('second-ul');
         thirdLevel_li.prev().addClass('third-dropdown').removeClass('second-dropdown');
-        $('.third-dropdown')
-          .once('third-dropdown')
-          .on('click', function (e) {
-            if ($(this).hasClass('third-ul')) {
-              $(this).toggleClass('open');
-            }
-            $(this).next('ul').toggleClass('open-third-level');
-            e.stopPropagation();
-          });
+        $(once('third-dropdown', '.third-dropdown', context)).on('click', function (e) {
+          if ($(this).hasClass('third-ul')) {
+            $(this).toggleClass('open');
+          }
+          $(this).next('ul').toggleClass('open-third-level');
+          e.stopPropagation();
+        });
       });
       // Adding empty view class for product listing pages.
       let view = $('.view');
@@ -87,7 +80,7 @@
       }
 
       // accordions
-      $('.accordion-title').once('accordion').on('click', function (e) {
+      $(once('accordion', '.accordion-title', context)).on('click', function (e) {
         e.preventDefault();
         if ($(this).hasClass('active')) {
           $(this).removeClass('active');
@@ -106,7 +99,7 @@
       });
 
       // News Accordions
-      $('.news-accordion-title').once('new-accordion').on('click', function (e) {
+      $(once('new-accordion', '.news-accordion-title', context)).on('click', function (e) {
         e.preventDefault();
         if ($(this).hasClass('active')) {
           $(this).removeClass('active');
@@ -129,4 +122,4 @@
       /* end */
     }
   };
-})(jQuery, Drupal, 'once');
+})(jQuery, Drupal, once);

@@ -7,7 +7,7 @@
       $(function () {
         var homeSlider = $('.slider');
         var activeLink = $('.home-text');
-        homeSlider.once('homeSlider').owlCarousel({
+        $(once('homeSlider', homeSlider, context)).owlCarousel({
           items: 1,
           loop: false,
           rewind: true,
@@ -18,7 +18,7 @@
           animateOut: 'fadeOut',
           animateIn: 'fadeIn'
         });
-        activeLink.once('activeLink').owlCarousel({
+        $(once('activeLink', activeLink, context)).owlCarousel({
           items: 1,
           loop: false,
           rewind: true,
@@ -28,7 +28,7 @@
           animateOut: 'fadeOut',
           animateIn: 'fadeIn'
         });
-        homeSlider.once('homeSliderChange').on('changed.owl.carousel', function (e) {
+        $(once('homeSliderChange', homeSlider, context)).on('changed.owl.carousel', function (e) {
           activeLink.trigger('next.owl.carousel');
         });
       });
@@ -36,4 +36,4 @@
       /* end */
     }
   };
-})(jQuery, Drupal, 'once');
+})(jQuery, Drupal, once);
