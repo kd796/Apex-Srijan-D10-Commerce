@@ -1,14 +1,14 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.brandlisting = {
     attach: function (context, settings) {
       localTaskTabs();
-      sidebarSliding();
+      sidebarSliding(context);
 
       $(document).ajaxComplete(function () {
         localTaskTabs();
-        sidebarSliding();
+        sidebarSliding(context);
       });
     }
   };
@@ -18,19 +18,15 @@
     // Brand Filter Toggle hamburger.
     const filterHamburger = $('.brands__filter-icon');
     const brandSidebar = $('.brands__sidebar');
-    filterHamburger
-      .once('filterHamburger')
-      .on('click', function () {
-        brandSidebar.addClass('is-active');
-      });
+    $(once('filterHamburger', filterHamburger)).on('click', function () {
+      brandSidebar.addClass('is-active');
+    });
 
     // Brand Filter Close Filter.
     const filterClose = $('.brands__filter-close-icon');
-    filterClose
-      .once('filterClose')
-      .on('click', function () {
-        brandSidebar.removeClass('is-active');
-      });
+    $(once('filterClose', filterClose)).on('click', function () {
+      brandSidebar.removeClass('is-active');
+    });
 
     /* end */
   }
@@ -41,4 +37,4 @@
     var localTaskTabs = $('.path-brands-faceting .region-content .block-local-tasks-block').html();
     $('.brands .brands__content .brands__tabs').append(localTaskTabs);
   }
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);
