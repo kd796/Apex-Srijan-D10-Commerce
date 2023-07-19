@@ -660,6 +660,9 @@
       display: none;
     }
   }
+  .paragraphs-content-wrapper {
+    display: none !important;
+  }
 
   .ajax-new-content {
     opacity: 1 !important;
@@ -1120,7 +1123,8 @@
 // Clear Options.
 [data-drupal-selector$="subform-field-optional-features-ref-0-subform"],
 [data-drupal-selector$="subform-field-drive-configuration-label-0-subform-field-drive-configuration"],
-[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-cover-features-radio"] {
+[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-cover-features-radio"],
+[data-drupal-selector$="subform-field-optional-features-ref-0-subform-field-cover-features"] {
   span {
     &.clear-option {
       color: $color-orange;
@@ -1246,6 +1250,7 @@
                         label {
                           min-width: 110px;
                           padding-right: 20px;
+                          text-align: right;
                           text-transform: capitalize;
                         }
                         input,
@@ -1342,6 +1347,7 @@
                         label {
                           min-width: 110px;
                           padding-right: 20px;
+                          text-align: right;
                           text-transform: capitalize;
                         }
                         select,
@@ -2513,7 +2519,9 @@
 
 [data-drupal-selector$="subform-field-screwdriver-10-subform"] {
   display: flex;
-  flex-direction: column !important;
+  @media only screen and (max-width: $media-screen-medium) {
+    flex-direction: column !important;
+  }
 
   & > div {
     @media only screen and (max-width: $media-screen-medium) {
