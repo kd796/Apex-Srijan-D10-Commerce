@@ -98,7 +98,7 @@
       }
       // Triggering previous year.
       var PrevArrow = $('.slick-prev');
-      PrevArrow.once('triggerprev').on('click', function () {
+      $(once('triggerprev', PrevArrow, context)).on('click', function () {
         if (PrevArrow.hasClass('prev-trigger')) {
           var checkedValue = $('.form-radios .form-radio:checked').val();
           var checkedValueF = parseInt(checkedValue) - 1; // Use parseInt to convert checkedValue to a number
@@ -111,7 +111,7 @@
       });
       // Triggering next year.
       var NextArrow = $('.slick-next');
-      NextArrow.once('triggernext').on('click', function () {
+      $(once('triggernext', NextArrow, context)).on('click', function () {
         if (NextArrow.hasClass('next-trigger')) {
           var checkedValue = $('.form-radios input[name="field_event_date_value"]:checked').val();
           var checkedValueF = parseInt(checkedValue) + 1; // Use parseInt to convert checkedValue to a number
@@ -123,7 +123,7 @@
         }
       });
       $('.slick-prev').addClass('prev-trigger');
-      $('.slick-prev, .slick-next').once('sliderChange').on('click', function () {
+      $(once('sliderChange', '.slick-prev, .slick-next', context)).on('click', function () {
         $('.slick-prev').removeClass('prev-trigger');
         // Clicked Prev button.
         if ($(this).hasClass('slick-prev')) {
@@ -155,7 +155,7 @@
           }
         });
         // Open menu
-        $('.menu-trigger').once('trigger').click(function (event) {
+        $(once('trigger', '.menu-trigger', context)).click(function (event) {
           event.preventDefault();
           event.stopPropagation();
           $(this).toggleClass('active');
@@ -189,4 +189,4 @@
       });
     }
   };
-})(jQuery, Drupal, 'once');
+})(jQuery, Drupal, once);
