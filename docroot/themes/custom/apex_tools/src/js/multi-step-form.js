@@ -84,6 +84,8 @@
       $('#edit-actions button.step-three-submit').once('validation').click(validateForm);
 
       function dynamicChanges() {
+        $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-a-square-drive input').prop('required', false);
+        $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-a-square-drive input').removeAttr('required');
         $('.field--name-field-screwdriver-style input[type="radio"]').once('removeAttributeScrewdriver').on('change', function () {
           //Remove the required field.
           $('.field--name-field-screwdriver-style input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
@@ -168,6 +170,8 @@
             $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-k-spring-force-rate-').removeClass('hide-option');
             $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-l-barbell-style-dims').removeClass('hide-option');
           } else {
+            $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-a-square-drive input').prop('required', false);
+            $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-a-square-drive input').removeAttr('required');
             $(this).closest('.field--name-field-1-part-type').siblings('div').addClass('show-option');
             $('[data-drupal-selector$="subform-field-screwdriver-1-subform"], [data-drupal-selector$="subform-field-screwdriver-3-subform"]').addClass('hide-options');
             $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-7-subform"]').removeClass('hide-options');
@@ -238,6 +242,9 @@
           $('.field--name-field-o-d-limitations-must-speci input[type="checkbox"]').prop('checked', false);
           $('.field--name-field-other-considerations-speci input[type="checkbox"]').prop('checked', false);
         });
+        $('.clear-option-cover-feature-uw').on('click', function (e) {
+          $('[data-drupal-selector$="subform-field-optional-features-ref-0-subform-field-cover-features"] fieldset input[type="checkbox"]').prop('checked', false);
+        });
         // adding title.
         $('[data-drupal-selector$="subform-field-female-ref-0-top"]').find('.paragraph-type-label').text('Style');
         // Show field on select change.
@@ -267,6 +274,7 @@
       $('[data-drupal-selector$="subform-field-optional-feature-wrapper"] fieldset legend').after('<span class="clear-option clear-option-feature">Clear Options</span>');
       $('.field--name-field-drive-configuration > fieldset > legend').after('<span class="clear-option clear-option-drive">Clear Options</span>');
       $('.field--name-field-cover-features-radio > fieldset > legend').after('<span class="clear-option clear-option-cover-feature">Clear Options</span>');
+      $('.field--name-field-cover-features > fieldset > legend').after('<span class="clear-option clear-option-cover-feature-uw">Clear Options</span>');
       // Clear Options.
       $('.clear-option-feature').on('click', function (e) {
         $('[data-drupal-selector$="subform-field-optional-feature-wrapper"] fieldset input[type="checkbox"]').prop('checked', false);
@@ -280,6 +288,9 @@
         $('.field--name-field-cover-features-radio fieldset input[type="checkbox"]').prop('checked', false);
         $('.field--name-field-o-d-limitations-must-speci input[type="checkbox"]').prop('checked', false);
         $('.field--name-field-other-considerations-speci input[type="checkbox"]').prop('checked', false);
+      });
+      $('.clear-option-cover-feature-uw').on('click', function (e) {
+        $('[data-drupal-selector$="subform-field-optional-features-ref-0-subform-field-cover-features"] fieldset input[type="checkbox"]').prop('checked', false);
       });
       
       var seletedOptionScrewdriver = $('[data-drupal-selector$="subform-field-screwdriver-0-subform"] .field--name-field-1-part-type .fieldset-wrapper input[type="radio"]').val();
@@ -303,6 +314,8 @@
         $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-k-spring-force-rate-').removeClass('hide-option');
         $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-l-barbell-style-dims').removeClass('hide-option');
       } else {
+        $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-a-square-drive input').prop('required', false);
+        $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-a-square-drive input').removeAttr('required');
         $(this).closest('.field--name-field-1-part-type').siblings('div').addClass('show-option');
         $('[data-drupal-selector$="subform-field-screwdriver-1-subform"], [data-drupal-selector$="subform-field-screwdriver-3-subform"]').addClass('hide-options');
         $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-7-subform"]').removeClass('hide-options');
@@ -400,6 +413,8 @@
       $(document).ajaxComplete(function(){
         $('#edit-actions button.step-three-submit').once('validation').click(validateForm);
         dynamicChanges();
+        $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-a-square-drive input').prop('required', false);
+        $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-a-square-drive input').removeAttr('required');
         $('#edit-actions button.step-three-submit').off('click').click(validateForm);
         //Show and hide the step 3 button
         if ($("div").hasClass("field--name-field-order-type")) {
