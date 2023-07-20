@@ -168,6 +168,7 @@ function atg_preprocess_node__geo_directory(&$variables)
 
     // Distributor Level
     $distributor_level_ids = Drupal::entityQuery('taxonomy_term')
+        ->accessCheck(FALSE)
         ->condition('vid', 'distributor_level')
         ->sort('weight')
         ->execute();
@@ -185,6 +186,7 @@ function atg_preprocess_node__geo_directory(&$variables)
 
     // Available Tools
     $products_offered_ids = Drupal::entityQuery('taxonomy_term')
+        ->accessCheck(FALSE)
         ->condition('vid', 'products_offered')
         ->sort('weight')
         ->execute();
