@@ -1752,6 +1752,16 @@
   }
 }
 
+[data-drupal-selector$="subform-field-broach-ref-0"] {
+  .field--name-field-other-type {
+    .js-form-type-textfield {
+      label {
+        display: none;
+      }
+    }
+  }
+}
+
 [data-drupal-selector$="subform-field-broach-opening-wrapper"] {
   .js-form-type-textfield {
     label {
@@ -2138,6 +2148,14 @@
   .js-form-type-textfield {
     label {
       display: none;
+    }
+  }
+
+  .field--name-field-hex-type {
+    .js-form-type-textfield {
+      label {
+        display: block;
+      }
     }
   }
 }
@@ -2733,4 +2751,8 @@
   input {
     margin-top: 0 !important;
   }
+}
+
+div.notice--info {
+  text-align: left !important;
 }
