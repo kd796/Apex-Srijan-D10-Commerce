@@ -151,7 +151,7 @@
 
           // On tab click initialize Swiper in tab to activate.
           if ($($component).parents('.component-tabs').length > 0) {
-            $($component).parents('.component-tabs').find('.component-tabs__nav-item').once('component-tabs__nav-item').click(function () {
+            $($component).parents('.component-tabs').find(once('component-tabs__nav-item', '.component-tabs__nav-item', context)).click(function () {
               var $navItemControls = $(this).attr('aria-controls');
               var $tabsTab = $($component).parents('.component-tabs__content').find('#' + $navItemControls);
               $productSliderWrapper = $tabsTab.find('.component-product-slider__list-wrapper');
