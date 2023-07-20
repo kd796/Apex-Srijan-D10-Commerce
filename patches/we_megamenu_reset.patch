@@ -1,0 +1,15 @@
+diff --git a/we_megamenu.module b/we_megamenu.module
+index 69cb76f..6d68712 100644
+--- a/we_megamenu.module
++++ b/we_megamenu.module
+@@ -478,7 +478,9 @@ function template_preprocess_we_megamenu_row(array &$vars) {
+         '#menu_name' => $vars['menu_name'],
+         '#trail' => $vars['trail'],
+       ];
+-      $vars['attributes']['data-custom-row'] = isset($col->col_content) && isset(reset($col->col_content)->mlid) ? 0 : 1;
++      $col_content = $col->col_content;
++      $has_mlid = is_array($col_content) && isset($col_content[0]->mlid);
++      $vars['attributes']['data-custom-row'] = $has_mlid ? 0 : 1;
+     }
+   }
+   else {
