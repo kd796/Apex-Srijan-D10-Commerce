@@ -9,7 +9,7 @@
       $('.field--name-field-drive-type input[type="radio"]').attr('name', 'drive-type');
       var femaleMaleDriveType =  $('[data-drupal-selector$="subform-field-female-ref-wrapper"] input[type="radio"], [data-drupal-selector$="subform-field-male-hex-ref-wrapper"] input[type="radio"], [data-drupal-selector$="subform-field-female-square-ref-sh-wrapper"] input[type="radio"]');
       femaleMaleDriveType.attr('name', 'female-male-drive-type');
-      
+
       // Trigger back button.
       $('.multi-steps-label').once('multi-steps-label').on('click', '.step-label', function (e) {
         var $next = $(this).closest('.step-label').next('.step-label');
@@ -30,11 +30,11 @@
       // Validating the form function.
       function validateForm() {
         event.preventDefault(); // Prevent the default button click behavior
-      
+
         // Check if all required fields are filled
         var allFieldsFilled = true;
         var emptyFields = [];
-        
+
         $('#edit-field-custom-quotation-worksheet-wrapper input[required], #edit-field-custom-quotation-worksheet-wrapper select[required], #edit-field-custom-quotation-worksheet-wrapper textarea[required]').each(function() {
           if ($(this).val() === '' || $(this).val() === 'null' || $(this).val() === '_none') {
             allFieldsFilled = false;
@@ -65,7 +65,7 @@
               return false; // Exit the loop if a checked radio button is found
             }
           });
-  
+
           if (noneCheckedmagnetic) {
             allFieldsFilled = false;
           }
@@ -80,7 +80,7 @@
           alert(errorMessage);
         }
       }
-      
+
       $('#edit-actions button.step-three-submit').once('validation').click(validateForm);
 
       function dynamicChanges() {
@@ -147,7 +147,7 @@
         // hide and show fields.
         $('.field--name-field-socket-dimensions-label .field--name-field-a-square-drive label').addClass('form-required');
         $('.field--name-field-socket-dimensions-label .field--name-field-a-square-drive input').prop('required', true);
-        
+
         $('[data-drupal-selector$="subform-field-screwdriver-0-subform"] .field--name-field-1-part-type .fieldset-wrapper input[type="radio"]').on('change', function () {
           var seletedOption = $(this).val();
           if (seletedOption === 'bit') {
@@ -184,9 +184,9 @@
             $('.field--name-field-bit-holder-style-for-hex').addClass('show-option');
             $('[data-drupal-selector$="subform-field-screwdriver-5"]').addClass('show-option');
             $('[data-drupal-selector$="subform-field-screwdriver-6"]').addClass('show-option');
-            
+
             $('[data-drupal-selector$="subform-field-screwdriver-7-top"] img, [data-drupal-selector$="subform-field-screwdriver-7-top"] span').addClass('hide-option');
-            $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-a-square-drive').addClass('hide-option test').removeAttr('required');
+            $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-a-square-drive').addClass('hide-option');
             $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-a-square-drive input').removeAttr('required');
             $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-i-torx-r-size').addClass('hide-option');
             $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-k-spring-force-rate-').addClass('hide-option');
@@ -254,7 +254,7 @@
         retractableSelect.on('change', function () {
           var valueRetractable = $(this).val();
           if (valueRetractable === 'spring') {
-            targetText.addClass('show-option');     
+            targetText.addClass('show-option');
           } else {
             targetText.removeClass('show-option');
           }
@@ -262,7 +262,7 @@
         //show on load.
         var retractableSelectOnload = $('.field--name-field-retractable select').val();
         if (retractableSelectOnload === 'spring') {
-          targetText.addClass('show-option');     
+          targetText.addClass('show-option');
         } else {
           targetText.removeClass('show-option');
         }
@@ -271,7 +271,7 @@
       // Trigger back button.
       $('.step-label.active').prev().addClass('prev');
 
-      
+
       $('[data-drupal-selector$="subform-field-optional-feature-wrapper"] fieldset legend').after('<span class="clear-option clear-option-feature">Clear Options</span>');
       $('.field--name-field-drive-configuration > fieldset > legend').after('<span class="clear-option clear-option-drive">Clear Options</span>');
       $('.field--name-field-cover-features-radio > fieldset > legend').after('<span class="clear-option clear-option-cover-feature">Clear Options</span>');
@@ -293,7 +293,7 @@
       $('.clear-option-cover-feature-uw').on('click', function (e) {
         $('[data-drupal-selector$="subform-field-optional-features-ref-0-subform-field-cover-features"] input[type="checkbox"]').prop('checked', false);
       });
-      
+
       var seletedOptionScrewdriver = $('[data-drupal-selector$="subform-field-screwdriver-0-subform"] .field--name-field-1-part-type .fieldset-wrapper input[type="radio"]').val();
       if (seletedOptionScrewdriver === 'bit') {
         $('[data-drupal-selector$="subform-field-screwdriver-4-subform"], [data-drupal-selector$="subform-field-screwdriver-7-subform"]').addClass('hide-options');
@@ -329,7 +329,7 @@
         $('.field--name-field-bit-holder-style-for-hex').addClass('show-option');
         $('[data-drupal-selector$="subform-field-screwdriver-5"]').addClass('show-option');
         $('[data-drupal-selector$="subform-field-screwdriver-6"]').addClass('show-option');
-        
+
         $('[data-drupal-selector$="subform-field-screwdriver-7-top"] img, [data-drupal-selector$="subform-field-screwdriver-7-top"] span').addClass('hide-option');
         $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-a-square-drive').addClass('hide-option');
         $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-i-torx-r-size').addClass('hide-option');
@@ -354,12 +354,12 @@
         $('[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-cover-features-radio-wrapper"], .field--name-field-other-considerations-speci, .field--name-field-o-d-limitations-must-speci, .field--name-field-od-textbox, .field--name-field-nylon-other-textbox').addClass('hide-options');
         $('.field--name-field-field-nylon-component').removeClass('show-options');
       }
-      
+
       // Rebind the click event handler to the button after dynamically adding required fields
       $('#edit-actions button.step-three-submit').off('click').click(validateForm);
 
       //Adding class to hide collapse option.
-      $('.paragraphs-icon-button-collapse').closest('.paragraph-top').addClass('collapse-wrapper'); 
+      $('.paragraphs-icon-button-collapse').closest('.paragraph-top').addClass('collapse-wrapper');
 
       // Trigger add more paragraph
       $('#field-custom-quotation-worksheet-quotation-screwdriver-add-more').addClass('field-custom-quotation-worksheet-quotation-screwdriver-add-more');
@@ -377,7 +377,7 @@
         var hiddenDiv = $(this).children().find('.paragraph-top');
         var image = hiddenDiv.find('img');
         var targetPlace = $(this).children().find('.paragraphs-subform').find('fieldset');
-      
+
         targetPlace.addClass('target-class');
         targetPlace.append(image);
       });
@@ -387,7 +387,7 @@
         var hiddenDiv = $(this).children().find('.paragraph-top');
         var image = hiddenDiv.find('img');
         var targetPlace = $(this).children().find('.paragraphs-subform').find('fieldset');
-      
+
         targetPlace.addClass('drive-target-class');
         targetPlace.append(image);
       });
@@ -428,7 +428,7 @@
           // Trigger back button.
           $('.step-label.active').prev().addClass('prev');
         });
-        
+
 
       // end
     }
