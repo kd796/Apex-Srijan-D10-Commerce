@@ -12,15 +12,15 @@ require("./vue-filters");
 require("./vue-directives");
 require("./vue-components");
 
-(function ($, Drupal) {
-  'use strict';
-
+(function( $ ){
+  
   if($('body').hasClass('path-products')) {
     // Bootstrap Vue
     window.app = new Vue({
       el: "#app",
       mounted() {
         EventBus.$on("captive", (isCaptive) => {
+
           if (isCaptive) {
             let isScrollable = document.body.scrollHeight > window.innerHeight;
             if (isScrollable) {
@@ -36,8 +36,24 @@ require("./vue-components");
       }
     });
   }
+  else if ($('div').hasClass('multi-form')) {
+    function searchToggle() {
+      $('.masthead-search-toggle').on('click', function (e) {
+        $('.masthead-primary').toggleClass('is-searching');
+      });
+    }
+    searchToggle();
+    $(document).ajaxComplete(function(){
+      searchToggle();
+    });
+  }
+  else {
+    window.app = new Vue({
+      el: "#app"
+    });
+  }
 
-})(jQuery, Drupal);
+})( jQuery );
 
 
 require("./components/nav");
