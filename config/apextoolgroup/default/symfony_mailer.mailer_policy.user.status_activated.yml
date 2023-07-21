@@ -1,0 +1,16 @@
+uuid: eab8eb7c-3787-41c2-8600-6586d58f98f6
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+_core:
+  default_config_hash: LG57ffuuPiE4cmAz-PrFy0AZwPbgzyGw2Y0OnwVrOfc
+id: user.status_activated
+configuration:
+  email_subject:
+    value: 'Account details for [user:display-name] at [site:name] (approved)'
+  email_body:
+    content:
+      value: "[user:display-name],\r\n\r\nYour account at [site:name] has been activated.\r\n\r\nYou may now log in by clicking this link or copying and pasting it into your browser:\r\n\r\n[user:one-time-login-url]\r\n\r\nThis link can only be used once to log in and will lead you to a page where you can set your password.\r\n\r\nAfter setting your password, you will be able to log in at [site:login-url] in the future using:\r\n\r\nusername: [user:account-name]\r\npassword: Your password\r\n\r\n--  [site:name] team"
+      format: plain_text
