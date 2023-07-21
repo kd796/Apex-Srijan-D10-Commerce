@@ -14,42 +14,48 @@ require("./vue-components");
 
 (function( $ ){
   
-  if($('body').hasClass('path-products')) {
+  if(!$('div').hasClass('multi-form')) {
     // Bootstrap Vue
     window.app = new Vue({
       el: "#app",
       mounted() {
-        EventBus.$on("captive", (isCaptive) => {
-
-          if (isCaptive) {
-            let isScrollable = document.body.scrollHeight > window.innerHeight;
-            if (isScrollable) {
-              document.documentElement.classList.add("is-captive--scroll");
+        this.$nextTick(() => {
+          EventBus.$on("captive", (isCaptive) => {
+            if (isCaptive) {
+              let isScrollable = document.body.scrollHeight > window.innerHeight;
+              if (isScrollable) {
+                document.documentElement.classList.add("is-captive--scroll");
+              }
+              document.documentElement.classList.add("is-captive");
             }
-
-            document.documentElement.classList.add("is-captive");
-          }
-          else {
-            document.documentElement.classList.remove("is-captive", "is-captive--scroll");
-          }
-        })
+            else {
+              document.documentElement.classList.remove("is-captive", "is-captive--scroll");
+            }
+          })
+        });
       }
     });
   }
-  else if ($('div').hasClass('multi-form')) {
+  if ($('div').hasClass('multi-form')) {
     function searchToggle() {
       $('.masthead-search-toggle').on('click', function (e) {
         $('.masthead-primary').toggleClass('is-searching');
       });
     }
+
+    function setActiveLang() {
+      $(".custom-masthead-language").on('click','li',function() {
+        // remove classname 'active' from all li who already has classname 'active'
+        $(".custom-masthead-language li.active").removeClass("is-active");
+        // adding classname 'active' to current click li.
+        $(this).addClass("is-active");
+    });
+    }
     searchToggle();
+    setActiveLang();
     $(document).ajaxComplete(function(){
       searchToggle();
-    });
-  }
-  else {
-    window.app = new Vue({
-      el: "#app"
+      setActiveLang();
     });
   }
 
