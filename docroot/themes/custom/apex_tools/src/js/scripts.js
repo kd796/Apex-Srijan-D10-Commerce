@@ -44,12 +44,18 @@ require("./vue-components");
     }
 
     function setActiveLang() {
-      $(".custom-masthead-language").on('click','li',function() {
-        // remove classname 'active' from all li who already has classname 'active'
-        $(".custom-masthead-language li.active").removeClass("is-active");
-        // adding classname 'active' to current click li.
-        $(this).addClass("is-active");
-    });
+      // Get the current domain from the page URL
+      var currentDomain = window.location.hostname;
+            
+      // Loop through each language link and compare its domain with the current domain
+      $('.language-link').each(function () {
+          var linkDomain = $(this).prop('href').split('/')[2];
+          
+          if (currentDomain === linkDomain) {
+              // Add the "active" class to the parent li element if the domain matches
+              $(this).parent('li').addClass('is-active');
+          }
+      });
     }
     searchToggle();
     setActiveLang();
