@@ -3,7 +3,15 @@
 } %}
 {% set locale = get_locale() %}
 
-<geoui api="/api/search/distributors_index" :filters="{q: null}" :required-filters="['q']">
+    <div class="find-a-local-rep-block-header">
+      <h2 class="geoui-interstitial-title">{{ node.title.value }}</h2>
+      <p>{{ 'Enter your State below to find a Local Rep near you' | t }}</p>
+    </div>
+    <div class="find-a-local-rep-block-form">
+      {{ drupal_view('distributor_local_rep', 'find_a_local_rep_block') }}
+    </div>
+
+{#<geoui api="/api/search/distributors_index" :filters="{q: null}" :required-filters="['q']">
   <template slot="interstitial" slot-scope="scope">
     <header class="geoui-interstitial-header">
       <h2 class="geoui-interstitial-title">{{ node.title.value }}</h2>
@@ -29,7 +37,7 @@
       </template>
     </scoped-form>
   </template>
-{#   <template slot="infowindow" slot-scope="scope" v-if="scope.selected">
+  <template slot="infowindow" slot-scope="scope" v-if="scope.selected">
     {% filter raw %}
       <h3 :id="'distributor-' + scope.id" v-html="scope.selected.attributes.title"></h3>
       <p>
@@ -50,7 +58,7 @@
         {{ svg('dist/img/icons/grid.svg') }} {{ 'View on Grid'|t }}
       </button>
     </div>
-  </template> #}
+  </template>
   <template slot="list" slot-scope="scope">
     <table-component :data="scope.data" :show-filter="false" :show-caption="false" :cache-lifetime="0" sort-by="attributes.title" sort-order="asc" class="mega-table-component" table-class="mega-table" :filter-no-results="'{{ 'No Local Rep found within ' | t }}' + scope.state.q">
       <table-column label="Local Rep" show="attributes.title">
@@ -77,5 +85,5 @@
       </table-column>
     </table-component>
   </template>
-</geoui>
+</geoui>#}
 {{ content }}

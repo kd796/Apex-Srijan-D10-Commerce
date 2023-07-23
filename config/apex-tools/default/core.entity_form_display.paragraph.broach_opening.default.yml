@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.broach_opening.field_broach_opening_allowed
+    - field.field.paragraph.broach_opening.field_choose
+    - field.field.paragraph.broach_opening.field_other_type
     - field.field.paragraph.broach_opening.field_type_other
     - paragraphs.paragraphs_type.broach_opening
   module:
@@ -19,6 +21,31 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_choose:
+    type: options_select
+    weight: 16
+    region: content
+    settings: {  }
+    third_party_settings:
+      conditional_fields:
+        98ff5d5f-e42d-4c11-b990-019a82cf7c24:
+          entity_type: paragraph
+          bundle: broach_opening
+          dependee: field_broach_opening_allowed
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 2
+            value: ''
+            values: male_square
+            value_form:
+              -
+                value: null
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_double_hex_field:
     type: boolean_checkbox
     weight: 7
@@ -58,6 +85,33 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
+  field_other_type:
+    type: string_textfield
+    weight: 15
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        d75f1bb8-5a92-49e8-a96e-299937dda475:
+          entity_type: paragraph
+          bundle: broach_opening
+          dependee: field_broach_opening_allowed
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 2
+            value: ''
+            values: broach_other
+            value_form:
+              -
+                value: null
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_square_field:
     type: boolean_checkbox
     weight: 8
@@ -85,7 +139,7 @@ content:
             grouping: AND
             values_set: 4
             value: ''
-            values: "torx®\r\nbroach_other"
+            values: torx®
             value_form:
               -
                 value: null

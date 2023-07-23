@@ -96,7 +96,11 @@ trait HasGeographyParams {
    */
   protected function queryCenter() {
     $plugins = ['googlemaps'];
-    $query   = $this->request->query->get('q');
+    $query = $this->request->query->get('q');
+
+    // Set country as US.
+    $country = 'US';
+    $query = $query . ', ' . $country;
 
     $addresses = \Drupal::service('geocoder')->geocode($query, $plugins);
     if ($addresses === FALSE) {

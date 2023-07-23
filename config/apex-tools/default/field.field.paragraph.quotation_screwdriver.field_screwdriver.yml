@@ -4,6 +4,10 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_screwdriver
+    - paragraphs.paragraphs_type.bit_configuration
+    - paragraphs.paragraphs_type.bit_dimensions
+    - paragraphs.paragraphs_type.bit_holder_retention_method
+    - paragraphs.paragraphs_type.bit_holder_style
     - paragraphs.paragraphs_type.quotation_order_type
     - paragraphs.paragraphs_type.quotation_screwdriver
     - paragraphs.paragraphs_type.quotation_screwdriver_drive_type
@@ -29,6 +33,10 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
+      bit_configuration: bit_configuration
+      bit_dimensions: bit_dimensions
+      bit_holder_retention_method: bit_holder_retention_method
+      bit_holder_style: bit_holder_style
       quotation_order_type: quotation_order_type
       quotation_screwdriver_drive_type: quotation_screwdriver_drive_type
       quotation_screwdriver_style: quotation_screwdriver_style
@@ -54,9 +62,12 @@ settings:
       basic_card_section:
         weight: 112
         enabled: false
+      bit_configuration:
+        weight: 109
+        enabled: true
       bit_dimensions:
         weight: 113
-        enabled: false
+        enabled: true
       bit_holder_female_square:
         weight: 114
         enabled: false
@@ -65,7 +76,10 @@ settings:
         enabled: false
       bit_holder_retention_method:
         weight: 116
-        enabled: false
+        enabled: true
+      bit_holder_style:
+        weight: 117
+        enabled: true
       broach_opening:
         weight: 117
         enabled: false
@@ -110,6 +124,9 @@ settings:
         enabled: false
       drive_type_other:
         weight: 131
+        enabled: false
+      embedded_magnet:
+        weight: 134
         enabled: false
       enhanced_hero:
         weight: 132

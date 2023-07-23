@@ -1,0 +1,51 @@
+uuid: 62409ef3-94e3-4034-8aeb-3b61b0c63f4a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bit_holder_style.field_bit_holder_style_for_hex
+    - field.field.paragraph.bit_holder_style.field_other_holder_style
+    - paragraphs.paragraphs_type.bit_holder_style
+  module:
+    - conditional_fields
+id: paragraph.bit_holder_style.default
+targetEntityType: paragraph
+bundle: bit_holder_style
+mode: default
+content:
+  field_bit_holder_style_for_hex:
+    type: options_buttons
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_other_holder_style:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        dcce4805-5383-4c39-b346-90e7007e08d7:
+          entity_type: paragraph
+          bundle: bit_holder_style
+          dependee: field_bit_holder_style_for_hex
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: other
+            effect: show
+            effect_options: {  }
+            selector: ''
+hidden:
+  created: true
+  status: true

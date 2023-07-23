@@ -8,7 +8,6 @@ dependencies:
     - field.field.paragraph.other_specifications.field_limit
     - field.field.paragraph.other_specifications.field_magnetic
     - field.field.paragraph.other_specifications.field_press_fit
-    - field.field.paragraph.other_specifications.field_tension
     - field.field.paragraph.other_specifications.field_welded
     - field.field.paragraph.other_specifications.field_what_to_be_covered
     - paragraphs.paragraphs_type.other_specifications
@@ -21,21 +20,21 @@ mode: default
 content:
   field_cover:
     type: list_default
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
     weight: 3
     region: content
   field_free_ship:
     type: list_default
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
     weight: 5
     region: content
   field_limit:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -43,35 +42,28 @@ content:
     region: content
   field_magnetic:
     type: list_default
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
     weight: 0
     region: content
   field_press_fit:
     type: list_default
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
     weight: 6
     region: content
-  field_tension:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 1
-    region: content
   field_welded:
     type: list_default
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
     weight: 2
     region: content
   field_what_to_be_covered:
     type: list_default
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
     weight: 4

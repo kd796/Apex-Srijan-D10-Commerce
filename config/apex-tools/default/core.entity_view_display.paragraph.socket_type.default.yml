@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.socket_type.field_extension_dropdown
     - field.field.paragraph.socket_type.field_socket_type_allowed
     - paragraphs.paragraphs_type.socket_type
   module:
@@ -12,9 +13,16 @@ targetEntityType: paragraph
 bundle: socket_type
 mode: default
 content:
+  field_extension_dropdown:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
   field_socket_type_allowed:
     type: list_default
-    label: hidden
+    label: inline
     settings: {  }
     third_party_settings: {  }
     weight: 0

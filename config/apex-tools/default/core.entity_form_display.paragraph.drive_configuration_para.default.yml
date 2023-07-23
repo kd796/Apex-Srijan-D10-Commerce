@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.drive_configuration_para.field_drive_configuration
+    - field.field.paragraph.drive_configuration_para.field_driveconf_hex
+    - field.field.paragraph.drive_configuration_para.field_driveconf_other
     - field.field.paragraph.drive_configuration_para.field_hex_gender
     - field.field.paragraph.drive_configuration_para.field_hex_size
     - field.field.paragraph.drive_configuration_para.field_hex_type
@@ -22,84 +24,69 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_hex_gender:
-    type: options_buttons
+  field_driveconf_hex:
+    type: boolean_checkbox
     weight: 1
     region: content
-    settings: {  }
-    third_party_settings:
-      conditional_fields:
-        f908b4ac-cd77-4502-8d86-fc3e04ca45b9:
-          entity_type: paragraph
-          bundle: drive_configuration_para
-          dependee: field_drive_configuration
-          settings:
-            state: visible
-            reset: false
-            condition: value
-            grouping: AND
-            values_set: 2
-            value: ''
-            values: hex
-            value_form:
-              -
-                value: null
-            effect: show
-            effect_options: {  }
-            selector: ''
-  field_hex_size:
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_driveconf_other:
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_hex_gender:
     type: options_buttons
     weight: 2
     region: content
     settings: {  }
     third_party_settings:
       conditional_fields:
-        5bb673f5-5465-498c-8e50-e53b1af59452:
+        2db0739a-0bc8-491d-b747-a3efd3983d76:
           entity_type: paragraph
           bundle: drive_configuration_para
-          dependee: field_drive_configuration
+          dependee: field_driveconf_hex
           settings:
             state: visible
             reset: false
-            condition: value
+            condition: checked
             grouping: AND
-            values_set: 2
+            values_set: 1
             value: ''
-            values: hex
+            values: {  }
             value_form:
-              -
-                value: null
+              value: false
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_hex_size:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings:
+      conditional_fields:
+        b13d279a-6d27-4a97-bac9-1f0a2a72866b:
+          entity_type: paragraph
+          bundle: drive_configuration_para
+          dependee: field_driveconf_hex
+          settings:
+            state: visible
+            reset: false
+            condition: checked
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              value: false
             effect: show
             effect_options: {  }
             selector: ''
   field_hex_type:
-    type: string_textfield
-    weight: 3
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings:
-      conditional_fields:
-        828eed69-7b43-42c2-966e-f1c464ea13c3:
-          entity_type: paragraph
-          bundle: drive_configuration_para
-          dependee: field_drive_configuration
-          settings:
-            state: visible
-            reset: false
-            condition: value
-            grouping: XOR
-            values_set: 2
-            value: ''
-            values: hex
-            value_form:
-              -
-                value: null
-            effect: show
-            effect_options: {  }
-            selector: ''
-  field_other_type:
     type: string_textfield
     weight: 4
     region: content
@@ -108,21 +95,46 @@ content:
       placeholder: ''
     third_party_settings:
       conditional_fields:
-        482da32e-01ec-48db-a53a-b560836447b7:
+        6d1b2f11-c81c-4747-bfab-14388278ccd7:
           entity_type: paragraph
           bundle: drive_configuration_para
-          dependee: field_drive_configuration
+          dependee: field_driveconf_hex
           settings:
             state: visible
             reset: false
-            condition: value
+            condition: checked
             grouping: AND
-            values_set: 2
+            values_set: 1
             value: ''
-            values: hex_other
+            values: {  }
             value_form:
-              -
-                value: null
+              value: false
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_other_type:
+    type: string_textfield
+    weight: 6
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        9dab6dad-de9d-4a59-bcbc-84f7c91fa263:
+          entity_type: paragraph
+          bundle: drive_configuration_para
+          dependee: field_driveconf_other
+          settings:
+            state: visible
+            reset: false
+            condition: checked
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              value: false
             effect: show
             effect_options: {  }
             selector: ''

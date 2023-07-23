@@ -13,11 +13,12 @@ dependencies:
     - field.field.paragraph.socket_dimensions.field_h_broach_opening
     - field.field.paragraph.socket_dimensions.field_i_torx_r_size
     - field.field.paragraph.socket_dimensions.field_j_mag_depth
-    - field.field.paragraph.socket_dimensions.field_k_spring_force
     - field.field.paragraph.socket_dimensions.field_l_barbell_style_dims
+    - field.field.paragraph.socket_dimensions.field_spring_force_rate
     - paragraphs.paragraphs_type.socket_dimensions
   module:
     - physical
+    - triples_field
 id: paragraph.socket_dimensions.default
 targetEntityType: paragraph
 bundle: socket_dimensions
@@ -28,7 +29,7 @@ content:
     weight: 0
     region: content
     settings:
-      default_unit: m
+      default_unit: mm
       allow_unit_change: true
       available_units:
         mm: mm
@@ -44,7 +45,7 @@ content:
     weight: 1
     region: content
     settings:
-      default_unit: m
+      default_unit: mm
       allow_unit_change: true
       available_units:
         mm: mm
@@ -60,7 +61,7 @@ content:
     weight: 2
     region: content
     settings:
-      default_unit: m
+      default_unit: mm
       allow_unit_change: true
       available_units:
         mm: mm
@@ -76,7 +77,7 @@ content:
     weight: 3
     region: content
     settings:
-      default_unit: m
+      default_unit: mm
       allow_unit_change: true
       available_units:
         mm: mm
@@ -92,7 +93,7 @@ content:
     weight: 4
     region: content
     settings:
-      default_unit: m
+      default_unit: mm
       allow_unit_change: true
       available_units:
         mm: mm
@@ -108,7 +109,7 @@ content:
     weight: 5
     region: content
     settings:
-      default_unit: m
+      default_unit: mm
       allow_unit_change: true
       available_units:
         mm: mm
@@ -124,7 +125,7 @@ content:
     weight: 6
     region: content
     settings:
-      default_unit: m
+      default_unit: mm
       allow_unit_change: true
       available_units:
         mm: mm
@@ -152,23 +153,7 @@ content:
     weight: 9
     region: content
     settings:
-      default_unit: m
-      allow_unit_change: true
-      available_units:
-        mm: mm
-        in: in
-        cm: '0'
-        m: '0'
-        km: '0'
-        ft: '0'
-        M: '0'
-    third_party_settings: {  }
-  field_k_spring_force:
-    type: physical_measurement_default
-    weight: 10
-    region: content
-    settings:
-      default_unit: m
+      default_unit: mm
       allow_unit_change: true
       available_units:
         mm: mm
@@ -184,7 +169,7 @@ content:
     weight: 11
     region: content
     settings:
-      default_unit: m
+      default_unit: mm
       allow_unit_change: true
       available_units:
         mm: mm
@@ -194,6 +179,37 @@ content:
         km: '0'
         ft: '0'
         M: '0'
+    third_party_settings: {  }
+  field_spring_force_rate:
+    type: triples_field
+    weight: 10
+    region: content
+    settings:
+      first:
+        type: textfield
+        label_display: block
+        size: 30
+        placeholder: ''
+        label: Rest
+        cols: 10
+        rows: 5
+      second:
+        type: textfield
+        label_display: block
+        size: 30
+        placeholder: ''
+        label: 'Full Compressed'
+        cols: 10
+        rows: 5
+      third:
+        type: textfield
+        label_display: block
+        size: 30
+        placeholder: ''
+        label: 'Rate (lbf/in)'
+        cols: 10
+        rows: 5
+      inline: true
     third_party_settings: {  }
 hidden:
   created: true

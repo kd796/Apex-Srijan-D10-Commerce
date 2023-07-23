@@ -1,0 +1,44 @@
+uuid: c4c731b2-c999-4bf6-92c0-3e3fa224d99b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.embedded_magnet.field_embedded_magnet
+    - paragraphs.paragraphs_type.embedded_magnet
+  module:
+    - double_field
+id: paragraph.embedded_magnet.default
+targetEntityType: paragraph
+bundle: embedded_magnet
+mode: default
+content:
+  field_embedded_magnet:
+    type: double_field_unformatted_list
+    label: inline
+    settings:
+      first:
+        format_type: medium
+        link: false
+        hidden: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      second:
+        format_type: medium
+        link: false
+        hidden: false
+        key: false
+        decimal_separator: .
+        thousand_separator: ''
+        scale: 2
+      inline: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true
+  uuid: true

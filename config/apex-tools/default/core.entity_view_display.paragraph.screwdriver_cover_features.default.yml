@@ -16,6 +16,7 @@ dependencies:
     - field.field.paragraph.screwdriver_cover_features.field_retractable
     - field.field.paragraph.screwdriver_cover_features.field_screw_press_fit
     - field.field.paragraph.screwdriver_cover_features.field_spring_force
+    - field.field.paragraph.screwdriver_cover_features.field_title
     - paragraphs.paragraphs_type.screwdriver_cover_features
   module:
     - double_field
@@ -27,7 +28,7 @@ mode: default
 content:
   field_c_sink_dia_ang_ect:
     type: boolean
-    label: above
+    label: inline
     settings:
       format: default
       format_custom_false: ''
@@ -37,7 +38,7 @@ content:
     region: content
   field_embedded_magnets:
     type: double_field_unformatted_list
-    label: above
+    label: inline
     settings:
       first:
         format_type: medium
@@ -61,7 +62,7 @@ content:
     region: content
   field_exposed_tip_of_bit:
     type: double_field_unformatted_list
-    label: above
+    label: inline
     settings:
       first:
         format_type: medium
@@ -85,7 +86,7 @@ content:
     region: content
   field_fasterner_info:
     type: double_field_unformatted_list
-    label: above
+    label: inline
     settings:
       first:
         format_type: medium
@@ -109,7 +110,7 @@ content:
     region: content
   field_flush_with_tip_of_bit:
     type: boolean
-    label: above
+    label: inline
     settings:
       format: default
       format_custom_false: ''
@@ -119,7 +120,7 @@ content:
     region: content
   field_free_spinning:
     type: boolean
-    label: above
+    label: inline
     settings:
       format: default
       format_custom_false: ''
@@ -129,7 +130,7 @@ content:
     region: content
   field_material:
     type: double_field_unformatted_list
-    label: above
+    label: inline
     settings:
       first:
         format_type: medium
@@ -153,7 +154,7 @@ content:
     region: content
   field_o_d_limitations:
     type: double_field_unformatted_list
-    label: above
+    label: inline
     settings:
       first:
         format_type: medium
@@ -177,7 +178,7 @@ content:
     region: content
   field_other_considerations:
     type: double_field_unformatted_list
-    label: above
+    label: inline
     settings:
       first:
         format_type: medium
@@ -201,7 +202,7 @@ content:
     region: content
   field_recessed_tip_of_bit:
     type: double_field_unformatted_list
-    label: above
+    label: inline
     settings:
       first:
         format_type: medium
@@ -225,7 +226,7 @@ content:
     region: content
   field_retractable:
     type: triples_field_table
-    label: above
+    label: inline
     settings:
       first:
         format_type: medium
@@ -264,7 +265,7 @@ content:
     region: content
   field_screw_press_fit:
     type: boolean
-    label: above
+    label: inline
     settings:
       format: default
       format_custom_false: ''
@@ -274,7 +275,7 @@ content:
     region: content
   field_spring_force:
     type: double_field_unformatted_list
-    label: above
+    label: inline
     settings:
       first:
         format_type: medium
@@ -295,6 +296,14 @@ content:
       inline: true
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_title:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 13
     region: content
 hidden:
   entity_print_view_epub: true

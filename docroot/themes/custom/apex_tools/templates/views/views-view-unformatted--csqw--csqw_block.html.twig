@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Theme override to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ */
+#}
+<div style="padding: 50px; color: #6d6e70;">
+  <div style="text-align: center;">
+    <p style="font-size: 14px">{{'Custom Solutions Quotation Worksheet' | t }}</p>
+  </div>
+  <div>
+    <div>
+      <ul style="padding: 0; list-style-type: none;">
+        {% for row in rows %}
+          {%
+            set row_classes = [
+              default_row_class ? 'views-row',
+            ]
+          %}
+          {{- row.content -}}
+        {% endfor %}
+      <ul>
+    </div>
+  <div>
+  <div class="footer" style="text-align: center;">
+    <div class="address" style="border-top: solid 2px #E5E5E5; padding: 30px 0;"><b>{{'Apex Fastening Tools' | t}}</b></br>{{'Email: specialquote@apextoolgroup.com' | t}}</br>{{'Phone: 866.569.9449' | t}}</div>
+    <div class="copyright">{{'Copyright ©2023 Apex Tool Group, LLC. All Rights Reserved.' | t}}</div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+uuid: 8a04b54b-1aa3-49a6-81d8-96edd50221f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_applied_or_driving_torque
+    - paragraphs.paragraphs_type.quotation_order_type
+  module:
+    - double_field
+id: paragraph.quotation_order_type.field_applied_or_driving_torque
+field_name: field_applied_or_driving_torque
+entity_type: paragraph
+bundle: quotation_order_type
+label: 'Applied or Driving Torque'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  first:
+    label: ''
+    list: false
+    allowed_values: {  }
+    max: null
+    min: null
+    required: true
+    on_label: 'On'
+    off_label: 'Off'
+  second:
+    label: ''
+    list: true
+    allowed_values:
+      -
+        label: in/lbs
+        value: in
+      -
+        label: ft/lbs
+        value: ft
+      -
+        label: Nm
+        value: nm
+    max: null
+    min: null
+    required: true
+    on_label: 'On'
+    off_label: 'Off'
+field_type: double_field

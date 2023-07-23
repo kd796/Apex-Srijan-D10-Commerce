@@ -1,3 +1,33 @@
+.ajax-new-content {
+  opacity: 1 !important;
+}
+
+.g-recaptcha {
+  padding: 0 2rem;
+
+  @media only screen and(max-width: $media-screen-tablet) {
+    padding: 0 0.75rem;
+  }
+
+  & > div {
+    width: 300px !important;
+    height: unset !important;
+  }
+
+  iframe {
+    width: 350px !important;
+    height: unset !important;
+  }
+}
+
+.field-add-more-submit {
+  margin-bottom: 16px;
+
+  @media only screen and(max-width: $media-screen-tablet) {
+    width: 100%;
+  }
+}
+
 .multi-steps-label {
   display: flex;
   flex-wrap: wrap;
@@ -27,13 +57,22 @@
         font-size: 1.1rem;
         border-bottom: 1px solid hsla(0,0%,80%,.43);
       }
-      
+
     }
 
     &.active {
       color: $color-orange;
       span {
         color: $color-orange;
+      }
+    }
+
+    &.prev {
+      cursor: pointer;
+      &:hover {
+        span {
+          color: $color-orange;
+        }
       }
     }
 
@@ -84,11 +123,23 @@
 
   table {
     width: 100%;
+    box-shadow: none;
+    table-layout: fixed;
   }
 
   tbody {
+    display: flex;
+    flex-direction: column;
     .field-multiple-drag {
       display: none !important;
+    }
+
+    tr {
+      td {
+        border: 0;
+        padding: 0!important;
+        display: block;
+      }
     }
   }
 
@@ -99,6 +150,38 @@
   .draggable {
     position: relative;
     width: 100%;
+
+    .description {
+      font-size: 16px;
+      color: $color-off-black;
+      line-height: $line-height-default;
+
+      strong {
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      ul {
+        margin: 16px 0;
+        font-size: 16px;
+        font-weight: 400;
+        font-style: normal;
+        padding-left: 40px;
+        @media only screen and(max-width: $media-screen-tablet) {
+          padding-left: 30px;
+        }
+
+        @media only screen and(max-width: $media-screen-mobile) {
+          padding-left: 20px;
+        }
+      }
+
+      em {
+        font-size: 16px;
+        font-weight: 400;
+        font-style: normal;
+      }
+    }
   }
 
   #edit-field-upload-wrapper {
@@ -106,6 +189,7 @@
       display: grid;
       grid-template-columns: 49% 49%;
       grid-column-gap: 2%;
+      width: 100%;
       @media only screen and (max-width: $media-screen-tablet) {
         display: flex;
         flex-direction: column;
@@ -117,6 +201,330 @@
         button {
           margin: 1rem 0;
           min-width: 10rem;
+          width: 10rem;
+        }
+      }
+    }
+
+    & > div {
+      & > div {
+        opacity: unset !important;
+
+        .js-form-type-managed-file {
+          flex-direction: column;
+          align-items: baseline;
+          .form-managed-file {
+            display: flex;
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
+
+  .field-multiple-table {
+    .draggable {
+      .form-wrapper {
+        .paragraphs-subform {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+
+          @media only screen and(max-width: $media-screen-tablet) {
+            margin-top: 10px;
+          }
+
+          .field--type-list-string,
+          .field--type-string-long,
+          .field--type-boolean,
+          .field--type-string {
+            width: 50%;
+            padding: 0 16px;
+            margin-bottom: 30px;
+            @media only screen and(max-width: $media-screen-mobile) {
+              width: 100%;
+              padding: 0;
+              margin-bottom: 15px;
+            }
+
+            legend {
+              font-size: 16px;
+              margin-bottom: 10px;
+            }
+
+            .fieldset-wrapper {
+              > div {
+                padding: 0;
+                display: flex;
+                margin: 0 -16px;
+                flex-wrap: wrap;
+                align-items: center;
+
+                .form-item {
+                  padding: 0 16px;
+                  margin-bottom: 16px;
+
+                  &:first-child {
+                    display: none;
+                  }
+
+                  &:last-child {
+                    display: flex;
+                    flex-wrap: nowrap;
+                    align-items: center;
+                  }
+
+                  label {
+                    font-size: 16px;
+                    margin: 0 0 0 10px;
+                    position: relative;
+                  }
+                }
+              }
+            }
+
+            &.field--name-field-type- {
+              display: none;
+            }
+
+            &.field--name-field-blade-width {
+              margin-left: auto;
+            }
+          }
+
+          .field--type-physical-measurement,
+          .field--type-double-field,
+          .field--type-triples-field {
+            width: 33.33%;
+            padding: 0 16px;
+            margin-bottom: 30px;
+            @media only screen and(max-width: $media-screen-tablet) {
+              width: 50% !important;
+              margin-bottom: 15px;
+            }
+
+            @media only screen and(max-width: $media-screen-mobile) {
+              width: 100% !important;
+              padding: 0;
+            }
+
+            .form-type-physical-measurement {
+              .form-item {
+                margin: 0 0 16px;
+              }
+            }
+          }
+
+          .field--type-triples-field,
+          .field--type-double-field {
+            .form-item {
+              label {
+                font-size: 16px;
+                display: none;
+              }
+
+              .triples-field-elements,
+              .double-field-elements {
+                .triples-field-subfield-form-item,
+                .double-field-subfield-form-item {
+                  display: flex;
+                  margin: 0 0 10px;
+                  flex-wrap: nowrap;
+                  align-items: center;
+
+                  label {
+                    margin: 0;
+                    display: block;
+                  }
+
+                  select {
+                    font-size: 16px;
+                    margin: 10px 0 0;
+                  }
+
+                  &.js-form-type-select {
+                    flex-wrap: wrap;
+                  }
+                }
+              }
+
+              .double-field-elements {
+                width: 100%;
+              }
+            }
+          }
+        }
+
+        .paragraphs-content {
+          .form-item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+
+            label {
+              font-size: 16px;
+              margin: 0;
+            }
+
+            select {
+              font-size: 16px;
+              margin: 10px 0 0;
+            }
+
+            input[type="text"] {
+              font-size: 16px;
+              margin: 10px 0 0;
+            }
+          }
+        }
+      }
+
+      &.paragraph-type--male-hex-drive-standard-type,
+      &.paragraph-type--female-square-drive-short,
+      &.paragraph-type--female-square-drive-standard-typ {
+        .paragraphs-subform {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+
+          .field--type-boolean,
+          .field--type-list-string {
+            width: 33.33%;
+            padding: 0 16px;
+
+            @media only screen and(max-width: $media-screen-tablet) {
+              padding: 0;
+              width: 100%;
+              margin-bottom: 15px;
+            }
+          }
+        }
+      }
+
+      &.paragraph-type--dimensions {
+        .field--name-field-l-shank-length {
+          .form-item {
+            label {
+              font-size: 16px;
+              width: 100%;
+            }
+
+            .form-no-label {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      .paragraph-type--magnetic,
+      .paragraph-type--socket-type,
+      .paragraph-type--cover-features,
+      .paragraph-type--optional-features,
+      .paragraph-type--other-specifications,
+      .paragraph-type--drive-configuration-para,
+      .paragraph-type--broach-opening {
+
+        .paragraphs-subform {
+          width: 100%;
+
+          .field--widget-options-buttons {
+            width: 100%;
+            margin: 0 0 16px;
+            @media only screen and(max-width: $media-screen-tablet) {
+              margin: 16px 0 16px;
+            }
+            @media only screen and(max-width: $media-screen-mobile) {
+              margin-bottom: 0;
+            }
+
+            .form-wrapper {
+              width: 100%;
+
+              legend {
+                font-size: 16px;
+                display: block;
+                margin: 0 0 10px;
+              }
+
+              .fieldset-wrapper {
+                width: 100%;
+
+                > div {
+                  display: flex;
+                  margin: 0 -16px;
+                  align-items: center;
+                  @media only screen and(max-width: $media-screen-mobile) {
+                    margin: 0;
+                  }
+
+                  .form-item {
+                    width: 20%;
+                    display: flex;
+                    padding: 0 16px;
+                    margin: 0 0 16px;
+                    flex-wrap: nowrap;
+                    position: relative;
+                    align-items: center;
+
+                    @media only screen and(max-width: $media-screen-large) {
+                      width: 25%;
+                    }
+
+                    @media only screen and(max-width: $media-screen-medium) {
+                      width: 33.33%;
+                    }
+
+                    @media only screen and(max-width: $media-screen-tablet) {
+                      width: 50%;
+                      flex-wrap: wrap;
+                    }
+
+                    @media only screen and(max-width: $media-screen-mobile) {
+                      padding: 0;
+                      width: 100%;
+                      flex-wrap: nowrap;
+                    }
+
+                    &:first-child {
+                      display: none;
+                    }
+
+                    label {
+                      font-size: 16px;
+                      position: static;
+                    }
+
+                    img {
+                      top: 0;
+                      position: absolute;
+                      left: calc(100% - 16px);
+                      transform: translateX(-100%);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .paragraph-type--other-specifications {
+        .field--widget-options-buttons {
+          .form-wrapper {
+            .fieldset-wrapper {
+              .form-checkboxes {
+                .form-item {
+                  &:first-child {
+                    display: flex !important;
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -185,6 +593,7 @@
             }
 
             label {
+              font-size: 16px;
               margin-bottom: 0;
             }
 
@@ -198,6 +607,7 @@
                     }
 
                     label {
+                      font-size: 16px;
                       padding: 0 10px 0;
                     }
                   }
@@ -215,23 +625,366 @@
   }
 }
 
-.paragraphs-dropbutton-wrapper {
-  .clearfix & {
+#edit-field-custom-quotation-worksheet-wrapper {
+  & > .paragraphs-tabs-wrapper {
+    & > .form-item {
+      & > table.field-multiple-table {
+        & > tbody {
+          & > tr {
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: solid 1px $color-gray-medium;
+            display: grid;
+            @media only screen and (max-width: $media-screen-tablet) {
+              display: contents;
+              width: 100%;
+            }
+
+            &:nth-child(1),
+            &:nth-child(2),
+            &:nth-child(3) {
+              display: none;
+            }
+
+            td.field-multiple-drag {
+              display: block;
+              position: relative;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    .paragraphs-tabs.tabs {
+      display: none;
+    }
+  }
+  .paragraphs-content-wrapper {
+    display: none !important;
+  }
+
+  .ajax-new-content {
+    opacity: 1 !important;
+  }
+}
+
+[data-drupal-selector$="edit-field-custom-quotation-worksheet"] {
+  & > table {
+    & > tbody {
+      & > tr {
+        padding: 10px 0;
+        border-bottom: solid 1px $color-gray-medium;
+
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="edit-field-custom-quotation-worksheet-add-more"] {
+  margin-top: 20px;
+}
+
+// Style for third step.
+#edit-field-custom-quotation-worksheet-add-more {
+  margin-left: .83333333333333%;
+  margin-right: .83333333333333%;
+
+  &.show-button {
+    display: unset;
+  }
+}
+
+.field--type-entity-reference-revisions .clearfix {
+  display: none;
+
+  &.show-button {
+    display: unset;
+  }
+}
+
+// Style for forth Step.
+.field--name-field-image-uploads-4 {
+  padding: 2rem 2rem 0 !important;
+  margin: 8.8888px;
+  .clearfix {
+    display: unset;
+  }
+
+  .paragraphs-tabs {
+    display: none;
+  }
+}
+
+#field-image-uploads-4-values {
+  td {
+    display: block;
+  }
+}
+
+#edit-field-image-uploads-4-0-subform {
+  display: grid;
+  grid-template-columns: 49% 49%;
+  grid-column-gap: 2%;
+  @media only screen and (max-width: $media-screen-medium) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & > .form-wrapper {
+    margin-bottom: 25px;
+  }
+
+  td {
+    border: 0;
+  }
+
+  tr {
+    border: 0;
+  }
+
+  button {
+    margin: 1rem 0;
+    min-width: 10rem;
+    width: 10rem;
+  }
+
+  .form-item {
+    display: unset !important;
+  }
+
+  & > div {
+    & > div {
+      opacity: unset !important;
+
+      .js-form-type-managed-file {
+        flex-direction: column;
+        align-items: baseline;
+        .form-managed-file {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}
+
+.field--type-file {
+  & > div {
+    opacity: 1 !important;
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver"],
+.field--name-field-socket-type,
+.field--name-field-broach-opening,
+.field--name-field-drive-configuration-label,
+.field--name-field-magnetic-label,
+.field--name-field-socket-dimensions-label,
+.field--name-field-nylon-covers-features,
+.field--name-field-quotation-order-type-socke,
+[data-drupal-selector$="subform-field-male-hex-ref-0"],
+[data-drupal-selector$="subform-field-female-square-ref-sh-0"],
+[data-drupal-selector$="subform-field-broach-ref-0"],
+[data-drupal-selector$="subform-field-optional-features-ref-0"],
+[data-drupal-selector$="subform-field-order-0"] {
+  .paragraph-top {
     display: none;
   }
 }
 
 .js {
-  .paragraph-top {
-    display: none;
-  }
   .js-hide {
     display: unset;
   }
-}
 
-div.notice--info {
-  display: none !important;
+  .paragraph-top {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    @media only screen and (max-width: $media-screen-tablet) {
+      flex-direction: column;
+    }
+    @media only screen and (max-width: $media-screen-medium) {
+      flex-direction: column;
+    }
+
+    &.collapse-wrapper {
+      display: none;
+    }
+
+    .paragraph-info,
+    .summary-content {
+      display: none;
+    }
+
+    .paragraph-type-label {
+      @media only screen and (max-width: $media-screen-tablet) {
+        font-size: 22px;
+      }
+    }
+
+    .paragraph-summary {
+      width: 400px;
+      @media only screen and (max-width: $media-screen-tablet) {
+        width: 300px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      @media only screen and (max-width: $media-screen-tablet) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+    }
+
+    .paragraphs-actions {
+      button{
+        &::before,
+        &::after {
+          display: none;
+        }
+        &.form-submit {
+          @media only screen and (max-width: $media-screen-tablet) {
+            min-width: 150px;
+            width: 150px;
+            height: 60px;
+            margin: 0;
+          }
+          @media only screen and (max-width: $media-screen-medium) {
+            min-width: 150px;
+            width: 150px;
+            height: 60px;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .paragraphs-dropdown {
+    width: 150px;
+    padding: 12px;
+
+    .paragraphs-dropdown-actions {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      border-radius: 0;
+      border: 0;
+      box-shadow: none;
+
+      button {
+        height: 100%;
+        border-radius: 0;
+        box-shadow: none;
+      }
+    }
+  }
+
+  #edit-field-custom-quotation-worksheet-wrapper {
+    & > .paragraphs-tabs-wrapper {
+      & > .form-item {
+        & > table.field-multiple-table {
+          & > tbody {
+            & > tr {
+              .paragraph-top {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                @media only screen and (max-width: $media-screen-tablet) {
+                  flex-direction: column;
+                }
+                @media only screen and (max-width: $media-screen-medium) {
+                  flex-direction: column;
+                }
+
+                &.collapse-wrapper {
+                  display: none;
+                }
+
+                .paragraph-info {
+                  display: none;
+                }
+
+                .paragraph-type-label {
+                  @media only screen and (max-width: $media-screen-tablet) {
+                    font-size: 22px;
+                  }
+                }
+
+                .paragraph-summary {
+                  @media only screen and (max-width: $media-screen-tablet) {
+                    margin: 10px 0;
+                    font-size: 18px;
+                  }
+                }
+
+                .paragraphs-actions {
+                  button{
+                    &::before,
+                    &::after {
+                      display: none;
+                    }
+                    &.form-submit {
+                      @media only screen and (max-width: $media-screen-tablet) {
+                        min-width: 150px;
+                        width: 150px;
+                        height: 60px;
+                        margin: 0;
+                      }
+                      @media only screen and (max-width: $media-screen-medium) {
+                        min-width: 150px;
+                        width: 150px;
+                        height: 60px;
+                        margin: 0;
+                      }
+                    }
+                  }
+                }
+              }
+
+              .paragraphs-dropdown {
+                width: 150px;
+                padding: 12px;
+
+                .paragraphs-dropdown-actions {
+                  display: block;
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  height: 100%;
+                  border-radius: 0;
+                  border: 0;
+                  box-shadow: none;
+
+                  button {
+                    height: 100%;
+                    border-radius: 0;
+                    box-shadow: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    & > div {
+      & > .form-item {
+        & > .clearfix {
+          display: unset;
+        }
+      }
+    }
+  }
 }
 
 .multi-form {
@@ -242,6 +995,7 @@ div.notice--info {
     display: inline-block;
 
     label {
+      font-size: 16px;
       color: $color-off-black;
     }
   }
@@ -314,4 +1068,1695 @@ div.notice--info {
       padding: 0;
     }
   }
+}
+
+.step-three-submit {
+  display: none;
+  &.show-button {
+    display: inline-flex;
+  }
+}
+
+[data-drupal-selector$="subform-field-order-0"] {
+  .paragraphs-subform {
+    @media only screen and (max-width: $media-screen-medium) {
+      flex-direction: column;
+    }
+
+    & > div {
+      @media only screen and (max-width: $media-screen-medium) {
+        width: 100% !important;
+      }
+    }
+  }
+}
+
+
+[data-drupal-selector$="subform-field-female-ref"],
+[data-drupal-selector$="subform-field-male-hex-ref-wrapper"],
+[data-drupal-selector$="subform-field-female-square-ref-sh-wrapper"] {
+  tbody tr td {
+    & > div {
+      & > div {
+        .paragraphs-subform {
+          .field--type-boolean {
+            & > fieldset {
+              display: flex;
+              flex-direction: column;
+              align-items: baseline !important;
+
+              img {
+                width: unset !important;
+                height: unset !important;
+              }
+
+              legend {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// Clear Options.
+[data-drupal-selector$="subform-field-optional-features-ref-0-subform"],
+[data-drupal-selector$="subform-field-drive-configuration-label-0-subform-field-drive-configuration"],
+[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-cover-features-radio"],
+[data-drupal-selector$="subform-field-optional-features-ref-0-subform-field-cover-features"] {
+  span {
+    &.clear-option {
+      color: $color-orange;
+      display: block;
+      margin-bottom: 10px;
+      font-size: 14px;
+      cursor: pointer;
+
+      &:nth-child(2) {
+        display: none;
+      }
+    }
+  }
+}
+
+.target-class {
+  img {
+    width: 58px !important;
+    height: 52px !important;
+    position: relative;
+    top: -8px;
+    margin-left: 20px;
+  }
+}
+
+.drive-target-class {
+  flex-direction: column;
+  align-items: flex-start !important;
+  img {
+    width: 150px!important;
+    height: 50px!important;
+    position: relative;
+    top: -8px;
+    margin-left: 20px;
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-0-subform"] {
+  width: 50%;
+  @media only screen and (max-width: $media-screen-medium) {
+    width: 100%;
+  }
+  .field--name-field-bit-standard {
+    display: none;
+
+    &.show-option {
+      display: unset;
+    }
+  }
+}
+[data-drupal-selector$="subform-field-screwdriver-1-top"],
+[data-drupal-selector$="subform-field-screwdriver-3-top"],
+[data-drupal-selector$="subform-field-screwdriver-4-top"],
+[data-drupal-selector$="subform-field-screwdriver-5-top"],
+[data-drupal-selector$="subform-field-screwdriver-7-top"] {
+  &.hide-options {
+    display: none !important;
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-1-subform"] {
+  &.hide-options {
+    display: none !important;
+  }
+  .field--name-field-screwdriver-style {
+    .paragraphs-tabs-wrapper {
+      & > .form-item {
+        & > table {
+          border-bottom: solid 3px $color-gray-medium;
+          thead {
+            display: block;
+            width: 100%;
+            background: #fff;
+
+            tr, th {
+              display: block;
+              border-top: 0;
+              border-bottom: 0;
+
+              h4 {
+                font-size: 20px;
+                color: $color-orange;
+              }
+            }
+          }
+
+          tbody {
+            display: grid;
+            grid-template-columns: 46% 46%;
+            grid-column-gap: 8%;
+            @media only screen and (max-width: $media-screen-medium) {
+              grid-template-columns: 100%;
+            }
+            @media only screen and (max-width: $media-screen-tablet) {
+              display: flex;
+              flex-direction: column;
+            }
+            tr {
+              margin-bottom: 25px;
+              td {
+                display: block;
+                & > div {
+                  .paragraphs-subform {
+                    align-items: baseline;
+                    .field--widget-options-buttons {
+                      width: 45% !important;
+                      padding-right: 0;
+                      fieldset {
+                        position: relative;
+                        small {
+                          position: absolute;
+                          left: 0;
+                          top: calc(100% - 10px);
+                        }
+                      }
+                    }
+                    .field--widget-string-textfield,
+                    .field--widget-options-select {
+                      width: 55% !important;
+                      padding-left: 0 !important;
+                      & > div {
+                        flex-wrap: inherit;
+                        label {
+                          min-width: 110px;
+                          padding-right: 20px;
+                          text-align: right;
+                          text-transform: capitalize;
+                        }
+                        input,
+                        select {
+                          margin-top: 0;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .field--widget-options-buttons {
+    legend {
+      display: none;
+    }
+
+    .fieldset-wrapper {
+      & > div {
+        .form-item {
+          &:nth-child(2) {
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-2-subform"] {
+  .field--name-field-drive-type {
+    .paragraphs-tabs-wrapper {
+      & > .form-item {
+        & > table {
+          thead {
+            display: block;
+            width: 100%;
+            background: #fff;
+
+            tr, th {
+              display: block;
+              border-top: 0;
+              border-bottom: 0;
+
+              h4 {
+                font-size: 20px;
+                color: $color-orange;
+              }
+            }
+          }
+
+          tbody {
+            display: grid;
+            grid-template-columns: 46% 46%;
+            grid-column-gap: 8%;
+            @media only screen and (max-width: $media-screen-medium) {
+              grid-template-columns: 100%;
+            }
+            @media only screen and (max-width: $media-screen-tablet) {
+              display: flex;
+              flex-direction: column;
+            }
+            tr {
+              margin-bottom: 25px;
+              td {
+                display: block;
+                & > div {
+                  .paragraphs-subform {
+                    align-items: flex-start;
+                    .field--widget-options-buttons {
+                      width: 30% !important;
+                      padding-right: 0;
+                      fieldset {
+                        position: relative;
+                        small {
+                          position: absolute;
+                          left: 0;
+                          top: calc(100% - 10px);
+                        }
+                      }
+                    }
+                    .field--widget-string-textfield,
+                    .field--widget-options-select {
+                      width: 70% !important;
+                      padding-left: 0;
+                      & > div {
+                        flex-wrap: inherit;
+                        label {
+                          min-width: 110px;
+                          padding-right: 20px;
+                          text-align: right;
+                          text-transform: capitalize;
+                        }
+                        select,
+                        input {
+                          margin-top: 0;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            .field--name-field-torx {
+              margin-top: 20px;
+            }
+
+            .field--name-field-embedded-magnet {
+              width: 100% !important;
+
+              .double-field-elements {
+                display: grid;
+                grid-template-columns: 46% 49%;
+                grid-column-gap: 5%;
+                @media only screen and (max-width: $media-screen-medium) {
+                  grid-template-columns: 100%;
+                }
+                @media only screen and (max-width: $media-screen-tablet) {
+                  display: flex;
+                  flex-direction: column;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .field--widget-options-buttons {
+    legend {
+      display: none;
+    }
+
+    .fieldset-wrapper {
+      & > div {
+        .form-item {
+          &:nth-child(2) {
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-3-subform"] {
+  border-bottom: solid 3px $color-gray-medium;
+  margin-bottom: 30px !important;
+  &.hide-options {
+    display: none !important;
+  }
+  .field--widget-options-buttons {
+    legend {
+      display: none;
+    }
+
+    .fieldset-wrapper {
+      & > div {
+        .form-item {
+          &:nth-child(2) {
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-4-subform"] {
+  margin-top: 30px !important;
+  &.hide-options {
+    display: none !important;
+  }
+
+  .paragraphs-content {
+    width: 100% !important;
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-5-subform"] {
+  &.hide-options {
+    display: none !important;
+  }
+  .field--name-field-bit-holder-styles {
+    .paragraphs-tabs-wrapper {
+      & > .form-item {
+        & > table {
+          tbody {
+            display: flex;
+            @media only screen and(max-width: $media-screen-tablet) {
+              flex-direction: column;
+            }
+
+            td {
+              display: block;
+            }
+
+            .paragraphs-subform {
+              display: flex;
+              flex-direction: column;
+              width: 100%;
+              justify-content: flex-start;
+            }
+
+            .paragraphs-content {
+              width: 100%;
+            }
+          }
+          .paragraphs-content {
+            width: 100%!important;
+            margin-bottom: 0 !important;
+          }
+        }
+      }
+    }
+  }
+
+  .field--widget-options-buttons {
+    legend {
+      display: none;
+    }
+
+    .fieldset-wrapper {
+      & > div {
+        .form-item {
+          &:nth-child(2) {
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-7-top"] {
+  img {
+    width: 210px !important;
+    height: 100px !important;
+    object-fit: cover;
+    object-position: 0% 5%;
+    margin-top: 33px;
+    float: unset;
+  }
+  [data-drupal-selector$="subform-field-screwdriver-7-top-type"] {
+    position: relative;
+    display: flex;
+
+    .paragraph-type-label {
+      position: absolute;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-3-top"] {
+  img {
+    width: 210px !important;
+    height: 100px !important;
+    object-fit: cover;
+    object-position: 0% 5%;
+    margin-top: 33px;
+    float: unset;
+  }
+  [data-drupal-selector$="subform-field-screwdriver-3-top-type"] {
+    position: relative;
+    display: flex;
+
+    .paragraph-type-label {
+      position: absolute;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-dimensions-ref-0-top"] {
+  img {
+    width: 210px !important;
+    height: 100px !important;
+    object-fit: cover;
+    object-position: 0% 5%;
+    margin-top: 33px;
+    float: unset;
+  }
+  [data-drupal-selector$="subform-field-dimensions-ref-0-top-type"] {
+    position: relative;
+    display: flex;
+
+    .paragraph-type-label {
+      position: absolute;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-socket-dimensions-label-0-top"] {
+  img {
+    width: auto !important;
+    height: auto !important;
+    margin-top: 33px;
+    float: unset;
+  }
+  [data-drupal-selector$="subform-field-socket-dimensions-label-0-top-type"] {
+    position: relative;
+    display: flex;
+
+    .paragraph-type-label {
+      position: absolute;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-7-top"] {
+  img {
+    &.hide-option {
+      display: none !important;
+    }
+  }
+
+  span {
+    &.hide-option {
+      position: unset !important;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-6-subform"] {
+  .field--name-field-bit-holder-style-for-hex {
+    width: 100% !important;
+    display: none;
+    margin-bottom: 15px !important;
+
+    &.show-option {
+      display: block;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-7-subform"] {
+  .field--name-field-a-square-drive,
+  .field--name-field-i-torx-r-size,
+  .field--name-field-k-spring-force-rate-,
+  .field--name-field-l-barbell-style-dims {
+    &.hide-option {
+      display: none !important;
+    }
+  }
+
+  .field--name-field-spring-force-rate {
+    display: none!important;
+  }
+}
+
+[data-drupal-selector$="subform-field-bit-holder-styles"] {
+  tbody {
+    flex-direction: row;
+    @media only screen and(max-width: $media-screen-tablet) {
+      flex-direction: column;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-8-top"] {
+  .paragraph-summary,
+  .paragraph-info {
+    display: none;
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-5-top"] {
+  .paragraph-info {
+    display: none;
+  }
+}
+
+[data-drupal-selector$="subform-field-h-broach-opening-wrapper"],
+[data-drupal-selector$="subform-field-i-torx-r-size-wrapper"] {
+  @media only screen and(max-width: $media-screen-tablet) {
+    width: 100% !important;
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-7-subform"] {
+  &.hide-options {
+    display: none !important;
+  }
+  .field--type-list-string,
+  .paragraphs-content {
+    width: 33.33% !important;
+    @media only screen and(max-width: $media-screen-tablet) {
+      width: 100% !important;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-6"] {
+  border-bottom: solid 3px $color-gray-medium;
+  margin-bottom: 30px !important;
+  display: none;
+
+  &.show-option {
+    display: block !important;
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-9-subform"] {
+  border-bottom: solid 3px $color-gray-medium;
+  margin-bottom: 30px !important;
+
+  .field--name-field__bit-configuration {
+    margin-bottom: 20px !important;
+  }
+
+  .field--name-field-title {
+    label {
+      display: none !important;
+    }
+
+    input {
+      margin-top: 0 !important;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-8-subform-field-components-1-subform"] {
+  .field--widget-options-buttons {
+    legend {
+      display: none;
+    }
+
+    .fieldset-wrapper {
+      & > div {
+        .form-item {
+          &:nth-child(2) {
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-magnetic-label-wrapper"] {
+  tbody, tr, td {
+    display: block;
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-4-subform-field-bit-holder-retention-metho-wrapper"]{
+  width: 100%;
+}
+
+[data-drupal-selector$="subform-field-screwdriver-8-subform-field-components"] {
+  &.hide-options {
+    display: none;
+  }
+}
+
+[data-drupal-selector$="subform-field-socket-type-wrapper"],
+[data-drupal-selector$="subform-field-broach-opening-wrapper"],
+[data-drupal-selector$="subform-field-drive-configuration-label-wrapper"],
+[data-drupal-selector$="subform-field-magnetic-label-wrapper"],
+[data-drupal-selector$="subform-field-socket-dimensions-label-wrapper"] {
+  display: block;
+  width: 100%;
+  .paragraphs-tabs-wrapper {
+    & > .form-item {
+      & > table {
+        border-bottom: solid 3px $color-gray-medium;
+        display: block;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+.field--name-field-upload {
+  td {
+    display: block;
+  }
+}
+
+.field--name-field-broach-opening-allowed {
+  fieldset {
+    .fieldset-wrapper {
+      .js-form-type-radio {
+        label {
+          position: relative !important;
+
+          img {
+            left: calc(100% - -30px) !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-broach-ref-0"] {
+  .field--name-field-other-type {
+    .js-form-type-textfield {
+      label {
+        display: none;
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-broach-opening-wrapper"] {
+  .js-form-type-textfield {
+    label {
+      display: none;
+    }
+  }
+
+  .form-item {
+    &.male-square {
+      display: none !important;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-drive-configuration-label-wrapper"] {
+  table,
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+}
+
+[data-drupal-selector$="subform-field-socket-type-wrapper"] {
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+
+  .form-item img {
+    top: -8px !important;
+    left: 100% !important;
+    width: 100px;
+  }
+
+  [data-drupal-selector$="subform-field-socket-type-allowed-wrapper"] {
+    fieldset {
+      .fieldset-wrapper {
+        & > div {
+          & > div {
+            margin-bottom: 25px!important;
+            margin-top: 60px !important;
+            position: relative!important;
+            img {
+              width: 90px;
+              height: 55px;
+              position: absolute;
+              top: -66px !important;
+              left: calc(100% - 125px) !important;
+              @media only screen and(max-width: $media-screen-medium) {
+                left: calc(100% - 45%) !important;
+              }
+              @media only screen and(max-width: $media-screen-tablet) {
+                left: calc(100% - 65%) !important;
+              }
+            }
+            @media only screen and(max-width: $media-screen-medium) {
+              width: 36% !important;
+            }
+            @media only screen and(max-width: $media-screen-tablet) {
+              width: 100% !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-quotation-order-type-socke-0-subform"] {
+  @media only screen and(max-width: $media-screen-medium) {
+    flex-direction: column;
+  }
+  & > div {
+    @media only screen and(max-width: $media-screen-medium) {
+      width: 100% !important;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-7-subform"] {
+  .paragraphs-content  {
+    width: 100% !important;
+
+    .js-form-type-textfield,
+    .js-form-type-select {
+      display: grid !important;
+      width: 100%;
+      grid-template-columns: 23% 24%;
+      grid-column-gap: 2%;
+      @media only screen and (max-width: $media-screen-medium) {
+        display: flex !important;
+      }
+    }
+    & > div {
+      display: grid !important;
+      width: 100%;
+      grid-template-columns: 49% 49%;
+      grid-column-gap: 2%;
+      @media only screen and (max-width: $media-screen-medium) {
+        grid-template-columns: 68% 30%;
+      }
+      & > div {
+        display: grid !important;
+        width: 100%;
+        grid-template-columns: 49% 49%;
+        grid-column-gap: 2%;
+        @media only screen and (max-width: $media-screen-medium) {
+          display: flex !important;
+        }
+      }
+
+      select {
+        @media only screen and (max-width: $media-screen-medium) {
+          position: relative;
+          bottom: calc(100% - 115%)
+        }
+      }
+    }
+    // spring style.
+    &.field--name-field-spring-force-rate {
+      & > div {
+        grid-template-columns: 23% 73%;
+        @media only screen and (max-width: $media-screen-medium) {
+          display: flex !important;
+        }
+        & > label {
+          display: block !important;
+        }
+
+        .triples-field-elements {
+          grid-template-columns: 30% 30% 30%;
+          grid-column-gap: 4%;
+          @media only screen and (max-width: $media-screen-medium) {
+            display: flex !important;
+          }
+          @media only screen and (max-width: $media-screen-tablet) {
+            flex-direction: column;
+          }
+
+          & > div {
+            display: flex !important;
+            flex-direction: column;
+            align-items: flex-start !important;
+            margin-top: 10px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-socket-dimensions-label-0-subform"] {
+  .paragraphs-content  {
+    width: 100% !important;
+
+    .js-form-type-textfield,
+    .js-form-type-select {
+      display: grid !important;
+      width: 100%;
+      grid-template-columns: 23% 24%;
+      grid-column-gap: 2%;
+      @media only screen and (max-width: $media-screen-medium) {
+        display: flex !important;
+      }
+    }
+    & > div {
+      display: grid !important;
+      width: 100%;
+      grid-template-columns: 49% 49%;
+      grid-column-gap: 2%;
+      @media only screen and (max-width: $media-screen-medium) {
+        grid-template-columns: 68% 30%;
+      }
+      & > div {
+        display: grid !important;
+        width: 100%;
+        grid-template-columns: 49% 49%;
+        grid-column-gap: 2%;
+        @media only screen and (max-width: $media-screen-medium) {
+          display: flex !important;
+        }
+      }
+
+      select {
+        @media only screen and (max-width: $media-screen-medium) {
+          position: relative;
+          bottom: calc(100% - 115%);
+        }
+      }
+    }
+    // spring style.
+    &.field--name-field-spring-force-rate {
+      & > div {
+        grid-template-columns: 23% 73%;
+        @media only screen and (max-width: $media-screen-medium) {
+          display: flex !important;
+        }
+        & > label {
+          display: block !important;
+        }
+
+        .triples-field-elements {
+          grid-template-columns: 30% 30% 30%;
+          grid-column-gap: 4%;
+          @media only screen and (max-width: $media-screen-medium) {
+            display: flex !important;
+          }
+          @media only screen and (max-width: $media-screen-tablet) {
+            flex-direction: column;
+          }
+
+          & > div {
+            display: flex !important;
+            flex-direction: column;
+            align-items: flex-start !important;
+            margin-top: 10px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-dimensions-ref-0-subform"] {
+  .paragraphs-content  {
+    width: 100% !important;
+
+    .js-form-type-textfield,
+    .js-form-type-select {
+      display: grid !important;
+      width: 100%;
+      grid-template-columns: 23% 24%;
+      grid-column-gap: 2%;
+      @media only screen and (max-width: $media-screen-medium) {
+        display: flex !important;
+      }
+    }
+    & > div {
+      display: grid !important;
+      width: 100%;
+      grid-template-columns: 49% 49%;
+      grid-column-gap: 2%;
+      @media only screen and (max-width: $media-screen-medium) {
+        grid-template-columns: 68% 30%;
+      }
+      & > div {
+        display: grid !important;
+        width: 100%;
+        grid-template-columns: 49% 49%;
+        grid-column-gap: 2%;
+        @media only screen and (max-width: $media-screen-medium) {
+          display: flex !important;
+        }
+      }
+
+      select {
+        @media only screen and (max-width: $media-screen-medium) {
+          position: relative;
+          bottom: calc(100% - 115%)
+        }
+      }
+    }
+    .js-form-type-select-or-other-select {
+      grid-template-columns: 23% 24% 11%;
+
+      @media only screen and (max-width: $media-screen-medium) {
+        display: flex !important;
+      }
+
+      .js-form-type-select {
+        grid-template-columns: 100%;
+      }
+
+      .js-form-type-textfield {
+        grid-template-columns: 100%;
+
+        label {
+          display: none;
+        }
+      }
+    }
+    .js-form-type-checkbox {
+      display: flex !important;
+
+      & > div {
+        display: flex !important;
+        flex-direction: column;
+      }
+    }
+
+    &.field--name-field-brand-model-power-tool {
+      .js-form-type-textfield {
+        display: unset !important;
+      }
+      .double-field-elements {
+        @media only screen and (max-width: $media-screen-tablet) {
+          flex-direction: column;
+        }
+      }
+      .js-form-type- {
+        @media only screen and (max-width: $media-screen-tablet) {
+          display: unset !important;
+        }
+      }
+    }
+
+    // spring style.
+    &.field--name-field-spring-force-rate {
+      & > div {
+        grid-template-columns: 23% 73%;
+        @media only screen and (max-width: $media-screen-medium) {
+          display: flex !important;
+        }
+        & > label {
+          display: block !important;
+        }
+
+        .triples-field-elements {
+          grid-template-columns: 30% 30% 30%;
+          grid-column-gap: 4%;
+          @media only screen and (max-width: $media-screen-medium) {
+            display: flex !important;
+          }
+          @media only screen and (max-width: $media-screen-tablet) {
+            flex-direction: column;
+          }
+
+          & > div {
+            display: flex !important;
+            flex-direction: column;
+            align-items: flex-start !important;
+            margin-top: 10px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-drive-configuration-label-0-subform"] {
+  flex-direction: column;
+
+  [data-drupal-selector$="subform-field-drive-configuration-wrapper"] {
+    margin-bottom: 0 !important;
+
+    .form-checkboxes {
+      flex-direction: column;
+      align-items: baseline !important;
+    }
+  }
+
+  .field--name-field-driveconf-hex {
+    margin-bottom: 20px !important;
+  }
+}
+
+.field--name-field-i-torx-r-size {
+  position: relative;
+
+  img {
+    position: absolute;
+    right: calc(100% - 12%);
+    top: 28%;
+
+    @media only screen and (max-width: $media-screen-medium) {
+      right: calc(100% - 25%);
+      top: 0%;
+    }
+  }
+}
+
+.field--name-field-drive-configuration-label {
+  .field--name-field-driveconf-hex,
+  .field--name-field-driveconf-other {
+    label {
+      margin: 0 0 0 10px !important;
+    }
+  }
+
+  .js-form-type-textfield {
+    label {
+      display: none;
+    }
+  }
+
+  .field--name-field-hex-type {
+    .js-form-type-textfield {
+      label {
+        display: block;
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-socket-dimensions-label-wrapper"] {
+  table {
+    border-bottom: solid 3px $color-gray-medium;
+    thead {
+      display: block;
+      width: 100%;
+      background: #fff;
+
+      tr {
+        display: block;
+        border-top: 0;
+        border-bottom: 0;
+      }
+
+      th {
+        display: none;
+      }
+    }
+
+    tbody {
+      display: block;
+      width: 100%;
+      .form-wrapper {
+        .paragraphs-subform {
+          .field--type-string,
+          .field--widget-string-textfield {
+            width: 33.33% !important;
+
+            @media only screen and (max-width: $media-screen-medium) {
+              width: 100% !important;
+            }
+          }
+        }
+      }
+
+      tr, td {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-nylon-requirements-yes-no-wrapper"] {
+  .fieldset-wrapper {
+    & > div {
+      .form-item {
+        &:nth-child(2) {
+          width: 200px;
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-nylon-requirements-yes-no-"] {
+  .fieldset-wrapper {
+    & > div {
+      & > .form-item {
+        width: 150px !important;
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-nylon-covers-features-0-subform-field-cover-features-radio-wrapper"] {
+  &.hide-options {
+    display: none;
+  }
+}
+
+[data-drupal-selector$="subform-field-cover-features-radio"] {
+  .form-checkboxes {
+    flex-direction: column;
+    align-items: baseline !important;
+
+    & > div {
+      width: 30% !important;
+      @media only screen and (max-width: $media-screen-medium) {
+        width: 60% !important;
+      }
+      @media only screen and (max-width: $media-screen-tablet) {
+        width: 100% !important;
+      }
+
+      &:last-child {
+        margin-bottom: 0 !important;
+      }
+    }
+  }
+}
+
+.paragraph-type--broach-opening {
+  td {
+    display: block;
+    width: 100%;
+  }
+}
+
+.field--name-field-extension-dropdown {
+  label {
+    display: none !important;
+  }
+  select {
+    margin-top: 0 !important;
+  }
+}
+
+.field--name-field-socket-type-allowed {
+  margin-bottom: 0 !important;
+}
+
+[data-drupal-selector$="subform-field-nylon-covers-features-0-subform"] {
+  .field--name-field-o-d-limitations-must-speci,
+  .field--name-field-other-considerations-speci {
+    width: 60% !important;
+    margin-bottom: 20px !important;
+    @media only screen and (max-width: $media-screen-medium) {
+      width: 60% !important;
+    }
+    @media only screen and (max-width: $media-screen-tablet) {
+      width: 100% !important;
+      margin-top: 20px !important;
+    }
+
+    &.hide-options {
+      display: none;
+    }
+
+    label {
+      margin-left: 10px !important;
+    }
+  }
+
+  .field--name-field-od-textbox,
+  .field--name-field-nylon-other-textbox {
+    label {
+      display: none !important;
+    }
+
+    @media only screen and (max-width: $media-screen-medium) {
+      width: 60% !important;
+    }
+    @media only screen and (max-width: $media-screen-tablet) {
+      width: 100% !important;
+    }
+
+    &.hide-options {
+      display: none;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-female-ref-wrapper"],
+[data-drupal-selector$="subform-field-male-hex-ref-wrapper"],
+[data-drupal-selector$="subform-field-female-square-ref-sh-wrapper"],
+[data-drupal-selector$="subform-field-broach-ref-wrapper"],
+[data-drupal-selector$="subform-field-dimensions-ref-wrapper"],
+[data-drupal-selector$="subform-field-optional-features-ref-wrapper"],
+[data-drupal-selector$="subform-field-nylon-covers-features-wrapper"] {
+  display: block;
+  width: 100%;
+  .paragraphs-tabs-wrapper {
+    & > .form-item {
+      & > table {
+        border-bottom: solid 3px $color-gray-medium;
+        display: block;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-female-ref-wrapper"],
+[data-drupal-selector$="subform-field-male-hex-ref-wrapper"] {
+  .paragraphs-tabs-wrapper {
+    & > .form-item {
+      & > table {
+        border-bottom: 0;
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-female-ref-wrapper"],
+[data-drupal-selector$="subform-field-male-hex-ref-wrapper"],
+[data-drupal-selector$="subform-field-female-square-ref-sh-wrapper"],
+[data-drupal-selector$="subform-field-optional-features-ref-wrapper"] {
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+}
+
+[data-drupal-selector$="subform-field-broach-ref"] {
+  td {
+    display: block;
+    width: 100%;
+  }
+}
+
+[data-drupal-selector$="subform-field-female-ref-wrapper"],
+[data-drupal-selector$="subform-field-male-hex-ref-wrapper"],
+[data-drupal-selector$="subform-field-female-square-ref-sh-wrapper"] {
+  .field--widget-options-buttons {
+    .fieldset-wrapper {
+      & > div {
+        .form-item {
+          &:nth-child(2) {
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-dimensions-ref-0-top"] {
+  .paragraph-summary {
+    display: none;
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-5-top-type"] {
+  padding: 0!important;
+  margin: 0!important;
+}
+
+[data-drupal-selector$="subform-field-screwdriver-7-top"],
+[data-drupal-selector$="subform-field-screwdriver-3-top"],
+[data-drupal-selector$="subform-field-screwdriver-5-top"],
+[data-drupal-selector$="subform-field-screwdriver-8-top"],
+[data-drupal-selector$="subform-field-screwdriver-8-subform-field-components-1-top"],
+[data-drupal-selector$="subform-field-screwdriver-8-subform-field-components-0-top"],
+[data-drupal-selector$="subform-field-oth-spec-ref-0-top"],
+[data-drupal-selector$="subform-field-socket-dimensions-label-0-top"],
+[data-drupal-selector$="subform-field-female-ref-0-top"],
+[data-drupal-selector$="subform-field-dimensions-ref-0-top"],
+[data-drupal-selector$="subform-field-s-0-top"],
+[data-drupal-selector$="subform-field-nylon-covers-features-0-top-type"],
+[data-drupal-selector$="subform-field-nylon-covers-features-0-top"],
+[data-drupal-selector$="subform-field-screwdriver-5-top-type"] {
+  display: block !important;
+  font-size: 20px;
+  color: $color-orange;
+  font-weight: bold;
+  font-stretch: condensed;
+  letter-spacing: 0.0625em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  margin-bottom: 1em;
+  padding: 0 18px;
+  .paragraphs-actions {
+    display: none;
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-8-subform-field-components-0-top"],
+[data-drupal-selector$="subform-field-screwdriver-8-subform-field-components-1-top"] {
+  .paragraph-type-label {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: $color-off-black;
+  }
+}
+
+[data-drupal-selector$="subform-field-nylon-covers-features-0-top-type"] {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+[data-drupal-selector$="subform-field-screwdriver-8-subform-field-components-0-top"] {
+  display: none !important;
+}
+
+[data-drupal-selector$="subform-field-s-0-subform"] {
+  label {
+    display: none;
+  }
+}
+
+[data-drupal-selector$="subform-field-optional-features-ref-0-subform"] {
+  .form-checkboxes {
+    .form-item {
+      &:first-child {
+        display: flex !important;
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-oth-spec-ref"] {
+  td {
+    display: block;
+    width: 100%;
+  }
+
+  .field--widget-options-select,
+  .field--widget-string-textfield {
+    width: 33.33% !important;
+    @media only screen and (max-width: $media-screen-tablet) {
+      width: 100% !important;
+    }
+  }
+}
+
+.field--name-field-components-to-be-covered- {
+  width: 100% !important;
+}
+
+[data-drupal-selector$="subform-field-screwdriver-8-subform-field-components-1-subform"] {
+  @media only screen and (max-width: $media-screen-medium) {
+    flex-direction: column;
+  }
+
+  & > div {
+    @media only screen and (max-width: $media-screen-medium) {
+      width: 100% !important;
+    }
+
+    &.field--widget-double-field {
+      @media only screen and (max-width: $media-screen-medium) {
+        width: 100% !important;
+      }
+    }
+  }
+
+  .form-item {
+    @media only screen and (max-width: $media-screen-medium) {
+      display: block!important;
+    }
+  }
+
+  .js-form-type-radio {
+    label {
+      margin-left: 10px !important;
+    }
+  }
+
+  .field--name-field-title {
+    margin: 0 !important;
+    display: none !important;
+    width: 80.5% !important;
+    @media only screen and (max-width: $media-screen-medium) {
+      width: 47% !important;
+      margin-left: auto !important;
+    }
+    @media only screen and (max-width: $media-screen-mobile) {
+      width: 100% !important;
+    }
+    &.show-option {
+      display: unset !important;
+    }
+
+    .js-form-type-textfield {
+      margin-left: 0 !important;
+      margin-bottom: 30px !important;
+      width: 31.5% !important;
+      margin-left: auto !important;
+      @media only screen and (max-width: $media-screen-medium) {
+        width: 100% !important;
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver"] {
+  tr, td {
+    display: block;
+    width: 100%;
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-10-subform"] {
+  display: flex;
+  @media only screen and (max-width: $media-screen-medium) {
+    flex-direction: column !important;
+  }
+
+  & > div {
+    @media only screen and (max-width: $media-screen-medium) {
+      width: 100% !important;
+    }
+  }
+}
+
+//Bit configuration
+.field--name-field__bit-configuration {
+  width: 100% !important;
+  display: none;
+  &.show-option {
+    display: block;
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-9-subform"] {
+  @media only screen and (max-width: $media-screen-medium) {
+   flex-direction: column;
+  }
+
+  & > div {
+    @media only screen and (max-width: $media-screen-medium) {
+      width: 100% !important;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-8-subform-field-components-1-subform"] {
+  flex-direction: column;
+  .field--widget-options-buttons,
+  .field--widget-double-field,
+  .field--type-triples-field {
+    width: 100% !important;
+    @media only screen and (max-width: $media-screen-medium) {
+      width: 100%;
+    }
+  }
+
+  .double-field-elements,
+  .triples-field-elements {
+    width: 100%;
+    display: flex;
+    @media only screen and (max-width: $media-screen-tablet) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .js-form-type-checkbox,
+  .js-form-type-radio {
+    display: flex !important;
+    min-width: 300px !important;
+    flex-direction: row !important;
+    @media only screen and (max-width: $media-screen-medium) {
+      width: 100%;
+      flex-direction: column;
+    }
+
+    label {
+      margin-left: 5px !important;
+    }
+  }
+  .js-form-type-select {
+    width: 25% !important;
+    margin-left: 20px !important;
+    @media only screen and (max-width: $media-screen-medium) {
+      width: 100% !important;
+    }
+    @media only screen and (max-width: $media-screen-tablet) {
+      margin-left: 0 !important;
+    }
+
+    label {
+      display: none !important;
+    }
+  }
+
+  .js-form-type-textfield {
+    width: 25% !important;
+    margin-left: 20px !important;
+    @media only screen and (max-width: $media-screen-medium) {
+      width: 100% !important;
+    }
+    @media only screen and (max-width: $media-screen-tablet) {
+      margin-left: 0 !important;
+    }
+  }
+
+  .field--widget-options-buttons {
+    .fieldset-wrapper {
+      .form-item {
+        &:first-child {
+          display: none !important;
+        }
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-applied-or-driving-torque-wrapper"] {
+  .form-item {
+    label {
+      display: unset !important;
+    }
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-5"] {
+  display: none;
+  &.show-option {
+    display: block !important;
+  }
+}
+
+[data-drupal-selector$="subform-field-screwdriver-5-top"],
+[data-drupal-selector$="subform-field-screwdriver-5-top"] {
+  // display: none !important;
+
+  &.show-option {
+    display: block !important;
+  }
+}
+
+// Style for step five.
+
+.submitted-content {
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  h2 {
+    font-size: 1.6em;
+    text-align: center;
+    margin: 1em auto;
+    background: transparent url(../img/check-circle.svg) left center no-repeat;
+    background-size: 40px 40px;
+    padding-left: 55px;
+    width: fit-content;
+
+    @media only screen and (max-width: $media-screen-medium) {
+      text-align: left;
+      font-size: 1em;
+    }
+  }
+
+  p {
+    max-width: 100%;
+    a {
+      color: $color-orange;
+    }
+  }
+
+  .download {
+    text-align: center;
+
+    a{
+      font-size: 1.1em;
+      padding: 0.75em 2em;
+      margin-top: 0.75em;
+      display: inline-block;
+      color: #fff;
+      font-weight: 900;
+      text-transform: uppercase;
+      text-align: center;
+      cursor: pointer;
+      background: $color-orange url(../img/download-white.png) left center no-repeat;
+      background-size: 20px 20px;
+      background-position: 1.8rem;
+      padding-left: 4rem;
+
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
+[data-drupal-selector$="screwdriver-7-subform-field-components-0-top"] {
+  display: none !important;
+}
+[data-drupal-selector$="subform-field-screwdriver-8-subform-field-components-1-subform"] {
+  .js-form-type-radio {
+    label {
+      margin-left: 12px !important;
+    }
+  }
+}
+
+.field--name-field-nylon-covers-features {
+  td {
+    display: block;
+    width: 100%;
+  }
+}
+
+.field--name-field-field-nylon-component {
+  display: none;
+  &.show-options {
+    display: block;
+  }
+}
+
+.field--name-field-other-holder-style {
+  label {
+    display: none !important;
+  }
+  input {
+    margin-top: 0 !important;
+  }
+}
+
+#edit-field-upload-0-top {
+  display: none !important;
+}
+
+div.notice--info {
+  text-align: left !important;
 }
