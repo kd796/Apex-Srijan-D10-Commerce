@@ -236,21 +236,26 @@ function atg_preprocess_paragraph__form_section(&$variables)
         // $view = \Drupal::service('entity.form_builder')->getForm($message);
         $form    = \Drupal::entityTypeManager()->getStorage('webform')->load($form_name);
         $builder = \Drupal::service('entity_type.manager')->getViewBuilder('webform');
-        $view    = $builder->view($form);
+        if(!empty($form)){
+            $view    = $builder->view($form);
 
-        $forms[$form->id()] = [
-            'id'    => $form->id(),
-            'label' => $form->label(),
-            'icon'  => atg_get_form_icon($form->id()),
-            'view'  => $view,
-            'link'  => null,
-        ];
+            $forms[$form->id()] = [
+                'id'    => $form->id(),
+                'label' => $form->label(),
+                'icon'  => atg_get_form_icon($form->id()),
+                'view'  => $view,
+                'link'  => null,
+            ];
+        }
     }
 
     $field_ade_form = $paragraph->get('field_ade_form')->getValue()[0]['value'];
     if ($field_ade_form) {
         $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
-        $nids = \Drupal::entityQuery('node')->condition('type', 'advanced_selector')->condition('langcode', $langcode)->execute();
+        $nids = \Drupal::entityQuery('node')
+        ->accessCheck(FALSE)
+        ->condition('type', 'advanced_selector')
+        ->condition('langcode', $langcode)->execute();
 
         if ($nids) {
             foreach (\Drupal\node\Entity\Node::loadMultiple($nids) as $node) {
