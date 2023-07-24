@@ -12,21 +12,6 @@ require("./vue-filters");
 require("./vue-directives");
 require("./vue-components");
 
-require("./components/nav");
-require("./helpers/floating-labels");
-require("./helpers/modals");
-require("./animations");
-
-require("./product-hotspots");
-require("./product-viewer");
-
-require("./helpers/waypoint");
-require("./waypoints");
-require("./hero-video");
-require("./hubspot");
-require("./multi-step-form");
-
-
 (function( $ ){
 
   if(!$('div').hasClass('multi-form')) {
@@ -82,3 +67,18 @@ require("./multi-step-form");
   }
 
 })(jQuery);
+
+
+require("./components/nav");
+require("./helpers/floating-labels");
+require("./helpers/modals");
+require("./animations");
+
+require("./product-hotspots");
+require("./product-viewer");
+
+require("./helpers/waypoint");
+require("./waypoints");
+require("./hero-video");
+require("./hubspot");
+require("./multi-step-form");
