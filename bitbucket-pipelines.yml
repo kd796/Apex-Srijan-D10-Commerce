@@ -120,6 +120,11 @@ pipelines:
       - step:
           <<: *deploy-package
           deployment: Development
+    development-d10-upgrade:
+      - step: *build-package
+      - step:
+          <<: *deploy-package
+          deployment: D10 Development
   custom:
     feature:
       - variables:
