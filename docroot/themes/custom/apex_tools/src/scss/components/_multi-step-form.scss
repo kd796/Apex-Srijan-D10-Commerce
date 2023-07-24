@@ -849,17 +849,15 @@
           display: none;
         }
         &.form-submit {
-          @media only screen and (max-width: $media-screen-tablet) {
-            min-width: 150px;
-            width: 150px;
-            height: 60px;
-            margin: 0;
-          }
           @media only screen and (max-width: $media-screen-medium) {
             min-width: 150px;
             width: 150px;
-            height: 60px;
+            height: 40px;
             margin: 0;
+            background-image: none;
+            text-indent: 0;
+            padding: 10px;
+            border-radius: 0;
           }
         }
       }
@@ -869,6 +867,9 @@
   .paragraphs-dropdown {
     width: 150px;
     padding: 12px;
+    @media only screen and (max-width: $media-screen-medium) {
+      height: 40px;
+    }
 
     .paragraphs-dropdown-actions {
       display: block;
@@ -933,17 +934,15 @@
                       display: none;
                     }
                     &.form-submit {
-                      @media only screen and (max-width: $media-screen-tablet) {
-                        min-width: 150px;
-                        width: 150px;
-                        height: 60px;
-                        margin: 0;
-                      }
                       @media only screen and (max-width: $media-screen-medium) {
                         min-width: 150px;
                         width: 150px;
-                        height: 60px;
+                        height: 40px;
                         margin: 0;
+                        background-image: none;
+                        text-indent: 0;
+                        padding: 10px;
+                        border-radius: 0;
                       }
                     }
                   }
@@ -953,6 +952,9 @@
               .paragraphs-dropdown {
                 width: 150px;
                 padding: 12px;
+                @media only screen and (max-width: $media-screen-medium) {
+                  height: 40px;
+                }
 
                 .paragraphs-dropdown-actions {
                   display: block;
@@ -1033,6 +1035,8 @@
 }
 
 .checkbox-second-step {
+  margin-bottom: 40px;
+
   .fieldset-wrapper {
     & > div {
       display: flex;
