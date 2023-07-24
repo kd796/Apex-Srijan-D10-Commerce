@@ -201,6 +201,7 @@
           } else {
             $('[data-drupal-selector$="subform-field-screwdriver-8-subform-field-components"]').addClass('hide-options');
             $('.field--name-field__bit-configuration').removeClass('show-option');
+            $('[data-drupal-selector$="subform-field-screwdriver-9"] .field--name-field-title').css('display','none');
           }
         });
 
@@ -242,6 +243,8 @@
           $('.field--name-field-cover-features-radio fieldset input[type="checkbox"]').prop('checked', false);
           $('.field--name-field-o-d-limitations-must-speci input[type="checkbox"]').prop('checked', false);
           $('.field--name-field-other-considerations-speci input[type="checkbox"]').prop('checked', false);
+          $('.field--name-field-od-textbox input[type="text"]').val('');
+          $('.field--name-field-nylon-other-textbox input[type="text"]').val('');
         });
         $('.clear-option-cover-feature-uw').on('click', function (e) {
           $('[data-drupal-selector$="subform-field-optional-features-ref-0-subform-field-cover-features"] input[type="checkbox"]').prop('checked', false);
@@ -289,6 +292,8 @@
         $('.field--name-field-cover-features-radio fieldset input[type="checkbox"]').prop('checked', false);
         $('.field--name-field-o-d-limitations-must-speci input[type="checkbox"]').prop('checked', false);
         $('.field--name-field-other-considerations-speci input[type="checkbox"]').prop('checked', false);
+        $('.field--name-field-od-textbox input[type="text"]').val('');
+        $('.field--name-field-nylon-other-textbox input[type="text"]').val('');
       });
       $('.clear-option-cover-feature-uw').on('click', function (e) {
         $('[data-drupal-selector$="subform-field-optional-features-ref-0-subform-field-cover-features"] input[type="checkbox"]').prop('checked', false);
@@ -344,6 +349,7 @@
       } else {
         $('[data-drupal-selector$="subform-field-screwdriver-8-subform-field-components"]').addClass('hide-options');
         $('.field--name-field__bit-configuration').removeClass('show-option');
+        $('[data-drupal-selector$="subform-field-screwdriver-9"] .field--name-field-title').css('display','none');
       }
 
       var seletedOptionNylon = $('[data-drupal-selector$="subform-field-nylon-requirements-yes-no-"] .js-form-type-radio input[type="radio"]').val();
