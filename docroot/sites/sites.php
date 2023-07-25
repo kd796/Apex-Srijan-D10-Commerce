@@ -238,3 +238,12 @@ $sites['apextoolgroup.ddev.site'] = 'apextoolgroup';
 
 // New Sites for APEX-TOOLS
 $sites['apex-tools.ddev.site'] = 'apex-tools';
+
+//Ecom
+$sites['ecom.ddev.site'] = 'ecom';
+$sites['dev-store.apextoolgroup.com'] = 'ecom';
+$sites['qa-store.apextoolgroup.com'] = 'ecom';
+$sites['stg-store.apextoolgroup.com'] = 'ecom';
+$sites['prod-store.apextoolgroup.com'] = 'ecom';
+$sites['www.store.apextoolgroup.com'] = 'ecom';
+$sites['store.apextoolgroup.com'] = 'ecom';
