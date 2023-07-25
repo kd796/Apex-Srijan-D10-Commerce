@@ -2487,17 +2487,30 @@
     }
   }
 
+  .field--name-field-retractable {
+    &.field--type-triples-field {
+      @media only screen and (min-width: 1441px) {
+        width: 1290px !important
+      }
+    }
+  }
+
   .field--name-field-title {
     margin: 0 !important;
     display: none !important;
-    width: 100% !important;
+    width: 80.5% !important;
     @media only screen and (max-width: $media-screen-medium) {
       width: 47% !important;
-      margin-right: auto !important;
+      margin-left: auto !important;
     }
     @media only screen and (max-width: $media-screen-mobile) {
       width: 100% !important;
     }
+
+    @media only screen and (min-width: 1441px) {
+      width: 1000px !important;
+    }
+
     &.show-option {
       display: unset !important;
     }
@@ -2505,7 +2518,8 @@
     .js-form-type-textfield {
       margin-left: 0 !important;
       margin-bottom: 30px !important;
-      margin-right: auto !important;
+      width: 31.5% !important;
+      margin-left: auto !important;
       @media only screen and (max-width: $media-screen-medium) {
         width: 100% !important;
       }
