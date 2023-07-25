@@ -28,10 +28,11 @@ bundle: screwdriver_cover_features
 mode: default
 content:
   field_c_sink_dia_ang_ect:
-    type: options_buttons
+    type: boolean_checkbox
     weight: 4
     region: content
-    settings: {  }
+    settings:
+      display_label: true
     third_party_settings: {  }
   field_exposed_tip_of_bit:
     type: double_field
@@ -80,16 +81,18 @@ content:
       inline: false
     third_party_settings: {  }
   field_flush_with_tip_of_bit:
-    type: options_buttons
+    type: boolean_checkbox
     weight: 5
     region: content
-    settings: {  }
+    settings:
+      display_label: true
     third_party_settings: {  }
   field_free_spinning:
-    type: options_buttons
+    type: boolean_checkbox
     weight: 10
     region: content
-    settings: {  }
+    settings:
+      display_label: true
     third_party_settings: {  }
   field_material:
     type: double_field
@@ -215,10 +218,11 @@ content:
       inline: false
     third_party_settings: {  }
   field_screw_press_fit:
-    type: options_buttons
+    type: boolean_checkbox
     weight: 9
     region: content
-    settings: {  }
+    settings:
+      display_label: true
     third_party_settings: {  }
   field_spring_force:
     type: double_field
