@@ -1159,7 +1159,7 @@
   align-items: flex-start !important;
   img {
     width: 150px!important;
-    height: 50px!important;
+    height: auto!important;
     position: relative;
     top: -8px;
     margin-left: 20px;
@@ -1570,20 +1570,6 @@
   }
 }
 
-[data-drupal-selector$="subform-field-screwdriver-7-top"] {
-  img {
-    &.hide-option {
-      display: none !important;
-    }
-  }
-
-  span {
-    &.hide-option {
-      position: unset !important;
-    }
-  }
-}
-
 [data-drupal-selector$="subform-field-screwdriver-6-subform"] {
   .field--name-field-bit-holder-style-for-hex {
     width: 100% !important;
@@ -1767,9 +1753,11 @@
 }
 
 [data-drupal-selector$="subform-field-broach-opening-wrapper"] {
-  .js-form-type-textfield {
-    label {
-      display: none;
+  .field--name-field-other-type {
+    .js-form-type-textfield {
+      label {
+        display: none;
+      }
     }
   }
 
@@ -1817,13 +1805,7 @@
               height: 55px;
               position: absolute;
               top: -66px !important;
-              left: calc(100% - 125px) !important;
-              @media only screen and(max-width: $media-screen-medium) {
-                left: calc(100% - 45%) !important;
-              }
-              @media only screen and(max-width: $media-screen-tablet) {
-                left: calc(100% - 65%) !important;
-              }
+              left: 110px !important;
             }
             @media only screen and(max-width: $media-screen-medium) {
               width: 36% !important;
@@ -2508,10 +2490,10 @@
   .field--name-field-title {
     margin: 0 !important;
     display: none !important;
-    width: 80.5% !important;
+    width: 100% !important;
     @media only screen and (max-width: $media-screen-medium) {
       width: 47% !important;
-      margin-left: auto !important;
+      margin-right: auto !important;
     }
     @media only screen and (max-width: $media-screen-mobile) {
       width: 100% !important;
@@ -2523,8 +2505,7 @@
     .js-form-type-textfield {
       margin-left: 0 !important;
       margin-bottom: 30px !important;
-      width: 31.5% !important;
-      margin-left: auto !important;
+      margin-right: auto !important;
       @media only screen and (max-width: $media-screen-medium) {
         width: 100% !important;
       }
@@ -2662,7 +2643,6 @@
 
 [data-drupal-selector$="subform-field-screwdriver-5-top"],
 [data-drupal-selector$="subform-field-screwdriver-5-top"] {
-  // display: none !important;
 
   &.show-option {
     display: block !important;
