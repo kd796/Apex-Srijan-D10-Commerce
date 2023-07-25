@@ -1,0 +1,77 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\node\NodeInterface;
+
+/**
+ * @file
+ * Functions to support theming in the cleco theme.
+ */
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function cleco_preprocess_field(&$variables)
+{
+  // Check if the field is industry solutions entity reference field.
+  if ($variables['element']['#field_name'] == 'field_industry_solutions_home') {
+    $referenced_entities = $variables['element']['#items']->referencedEntities();
+    $industry_solutions = [];
+    foreach ($referenced_entities as $key => $item) {
+      $home_industry_solns = $item->field_industry_solutions->referencedEntities();
+      if (!empty($home_industry_solns)) {
+        foreach ($home_industry_solns as $industry_soln) {
+          $image = $industry_soln->field_industry_solutions_image->entity;
+          $industry_soln_image = $image->field_media_image->entity;
+          $industry_solutions[] = [
+            'industry_type' => (string) "Industry " . $item->getType(),
+            'title' => $item->title->value,
+            'description' => $industry_soln->field_industry_solutions_desc->value,
+            'image' => isset($industry_soln_image) ? $industry_soln_image->getFileUri() : '',
+            'url' => $item->toUrl()->toString(),
+          ];
+        }
+      }
+    }
+    $variables['industry_solutions'] = $industry_solutions;
+  } else if ($variables['element']['#field_name'] == 'field_trusted_by_biggest') {
+    $route_match = \Drupal::routeMatch();
+    if ($route_match instanceof RouteMatchInterface && $route_match->getRouteName() == 'entity.node.canonical') {
+      $node = $route_match->getParameter('node');
+      // Add banner title.
+      $variables['carousel_title'] = 'Trusted by the biggest';
+      $variables['node_title'] = $node->getTitle();
+    }
+  }
+}
+
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function cleco_preprocess_node(&$variables) {
+  $node = $variables['elements']['#node'];
+  // Check for the case study content type.
+  if ($node->getType() == 'case_studies') {
+    // Load the schedeule demo block
+    $block = \Drupal\block\Entity\Block::load('scheduledemoblock');
+    // Set the block form values in the variable.
+    $variables['schedule_block_label'] = $block->get('settings')['schedule_demo_label'];
+    $variables['schedule_block_link']['label'] = $block->get('settings')['schedule_demo_link']['label'];
+    $node = \Drupal\node\Entity\Node::load($block->get('settings')['schedule_demo_link']['url']);
+    // Fetch the node alias.
+    $alias = \Drupal::service('path_alias.manager')->getAliasByPath('/node/'. $block->get('settings')['schedule_demo_link']['url']);
+    $variables['schedule_block_link']['url'] = $alias;
+  }
+}
+
+/**
+ * Implements template_preprocess_views_view_unformatted().
+ */
+function cleco_preprocess_views_view_unformatted(&$vars) {
+    $view = $vars['view'];
+    if ($view->storage->id() === 'hubspot_forms' && $view->current_display === 'hubspot_title_icon') {
+      $vars['card'] = views_embed_view('hubspot_forms', 'hubspot_code');
+    }
+  }
+  

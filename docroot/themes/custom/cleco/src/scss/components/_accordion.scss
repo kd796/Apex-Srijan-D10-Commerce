@@ -71,4 +71,15 @@
   }
 }
 
+.hubspot-tabs-content li {
+  display: none;
 
+  &.active {
+    display: block;
+    min-width: 100%;
+
+    &.link-field {
+      display: none;
+    }
+  }
+}
