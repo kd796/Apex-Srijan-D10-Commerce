@@ -1,0 +1,21 @@
+uuid: 615abed5-0230-43c1-ab6c-9130682374f4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_product_classifications
+    - node.type.product
+id: node.product.field_product_classifications
+field_name: field_product_classifications
+entity_type: node
+bundle: product
+label: 'Product Classifications'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings: {  }
+field_type: entity_reference
