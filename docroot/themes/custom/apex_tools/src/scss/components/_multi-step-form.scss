@@ -217,6 +217,10 @@
             display: flex;
             flex-direction: column;
           }
+
+          label {
+            margin-bottom: 20px;
+          }
         }
       }
     }
@@ -768,6 +772,9 @@
         .form-managed-file {
           display: flex;
           flex-direction: column;
+        }
+        label {
+          margin-bottom: 20px;
         }
       }
     }
@@ -2118,6 +2125,10 @@
 
     @media only screen and (max-width: $media-screen-medium) {
       right: calc(100% - 25%);
+      top: 0%;
+    }
+    @media only screen and (max-width: $media-screen-mobile) {
+      right: calc(100% - 42%);
       top: 0%;
     }
   }
