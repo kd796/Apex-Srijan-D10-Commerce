@@ -61,6 +61,19 @@
         "drupal/classy_paragraphs": "^1.0@dev",
         "drupal/color": "^1.0",
         "drupal/color_field": "^3.0",
+        "drupal/commerce": "^2.36",
+        "drupal/commerce_add_to_cart_link": "^2.0",
+        "drupal/commerce_authnet": "^1.8",
+        "drupal/commerce_order_label": "^1.0",
+        "drupal/commerce_order_update": "^2.0",
+        "drupal/commerce_product_limits": "^1.0",
+        "drupal/commerce_product_tax": "^1.0",
+        "drupal/commerce_quantity_increments": "^3.0",
+        "drupal/commerce_shipping": "^2.6",
+        "drupal/commerce_shipping_same_as_billing": "^1.0@alpha",
+        "drupal/commerce_stock": "^1.1",
+        "drupal/commerce_view_receipt": "^1.0",
+        "drupal/commerce_wishlist": "^3.0@beta",
         "drupal/conditional_fields": "^4.0@alpha",
         "drupal/config_export_ignore": "^1.1",
         "drupal/config_ignore": "^3.0@beta",
@@ -250,7 +263,9 @@
             "scripts/composer/ScriptHandler.php",
             "scripts/composer/KitScriptHandler.php"
         ],
-        "files": ["load.environment.php"]
+        "files": [
+            "load.environment.php"
+        ]
     },
     "scripts": {
         "drupal:scaffold-kit": "DrupalProject\\composer\\KitScriptHandler::scaffold",
@@ -311,6 +326,23 @@
             ".docksal/commands/kit": [
                 "vmlyr-drupal/kit-docksal-commands"
             ],
+            "docroot/sites/ecom/modules/contrib/{$name}": [
+                "drupal/commerce",
+                "drupal/state_machine",
+                "drupal/profile",
+                "drupal/commerce_add_to_cart_link",
+                "drupal/commerce_authnet",
+                "drupal/commerce_product_limits",
+                "drupal/commerce_product_tax",
+                "drupal/commerce_quantity_increments",
+                "drupal/commerce_shipping",
+                "drupal/commerce_shipping_same_as_billing",
+                "drupal/commerce_view_receipt",
+                "drupal/commerce_wishlist",
+                "drupal/commerce_order_label",
+                "drupal/commerce_order_update",
+                "drupal/commerce_stock"
+            ],
             "docroot/core": [
                 "type:drupal-core"
             ],
@@ -352,7 +384,7 @@
             "drupal/field_group_settings": {
                 "https://www.drupal.org/project/field_group_settings/issues/3302961": "https://www.drupal.org/files/issues/2022-08-10/3302961_1_button-fix.diff"
             },
-             "drupal/field_states_ui": {
+            "drupal/field_states_ui": {
                 "https://www.drupal.org/node/3212229": "https://www.drupal.org/files/issues/2023-07-11/3212229-05.patch"
             },
             "drupal/migrate_plus": {
@@ -382,7 +414,7 @@
                 "https://www.drupal.org/project/views_selective_filters/issues/3170132": "https://www.drupal.org/files/issues/2021-06-16/d9-compatibility-fixes-3170132-6.patch"
             },
             "vmlyr-drupal/kit-docksal-commands": {
-                "CLECO(atg) theme deployment setup" : "patches/atg-custom-theme-setup.patch"
+                "CLECO(atg) theme deployment setup": "patches/atg-custom-theme-setup.patch"
             },
             "drupal/content_sync": {
                 "https://www.drupal.org/project/content_sync/issues/3270665": "https://www.drupal.org/files/issues/2022-04-21/3270665_php8_compatibility.patch",
@@ -442,8 +474,6 @@
             "drupal/editor_file": {
                 "Support for CKeditor5": "https://git.drupalcode.org/project/editor_file/-/merge_requests/4.patch"
             }
-
-
         },
         "patchLevel": {
             "drupal/core": "-p2"
