@@ -28,7 +28,7 @@ class LintPickerConfiguration implements ComparisonTableConfiguration {
     $definition->addColumn('Horsepower Range')
       ->forKey('values.horsepower_range');
     $definition->addColumn('Free Speed')
-      ->forKey('values.free_speed_rpm')
+      ->forKey('values.free_speed')
       ->withUnits('1/min');
     $definition->addColumn('Collet Guard')
       ->forKey('values.collet_guard');

@@ -30,7 +30,7 @@ class SandersAndPolishersConfiguration implements ComparisonTableConfiguration {
     $definition->addColumn('Termination')
       ->forKey('values.termination');
     $definition->addColumn('Free Speed')
-      ->forKey('values.free_speed_rpm')
+      ->forKey('values.free_speed')
       ->withUnits('1/min');
     $definition->addColumn('RPM Range')
       ->forKey('values.rmpm_range');

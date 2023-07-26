@@ -1,0 +1,50 @@
+uuid: 6b8934ce-6f88-44b6-b702-8c38fd59bad8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.policies_registration.field_downloadpolicy_component
+    - field.field.node.policies_registration.field_policies_registration_webf
+    - node.type.policies_registration
+  module:
+    - entity_reference_revisions
+    - user
+    - webform
+id: node.policies_registration.default
+targetEntityType: node
+bundle: policies_registration
+mode: default
+content:
+  field_download_policy_label:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_downloadpolicy_component:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_policies_registration_webf:
+    type: webform_entity_reference_entity_view
+    label: hidden
+    settings:
+      source_entity: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

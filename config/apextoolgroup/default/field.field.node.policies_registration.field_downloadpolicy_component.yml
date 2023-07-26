@@ -1,0 +1,100 @@
+uuid: 5be00dc9-3401-4df7-ab45-0e7e9fe881a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_downloadpolicy_component
+    - node.type.policies_registration
+    - paragraphs.paragraphs_type.policies_registration
+  module:
+    - entity_reference_revisions
+id: node.policies_registration.field_downloadpolicy_component
+field_name: field_downloadpolicy_component
+entity_type: node
+bundle: policies_registration
+label: 'DOWNLOAD POLICY COMPONENT'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      policies_registration: policies_registration
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 25
+        enabled: false
+      accordion_item:
+        weight: 26
+        enabled: false
+      careers_cta:
+        weight: 27
+        enabled: false
+      content:
+        weight: 28
+        enabled: false
+      embed_block:
+        weight: 29
+        enabled: false
+      embed_iframe:
+        weight: 30
+        enabled: false
+      embed_view:
+        weight: 31
+        enabled: false
+      featured_content:
+        weight: 32
+        enabled: false
+      featured_links:
+        weight: 33
+        enabled: false
+      featured_media:
+        weight: 34
+        enabled: false
+      file_with_text:
+        weight: 35
+        enabled: false
+      hero:
+        weight: 36
+        enabled: false
+      hero_slide:
+        weight: 37
+        enabled: false
+      image_and_text:
+        weight: 38
+        enabled: false
+      image_with_cta:
+        weight: 39
+        enabled: false
+      info_section:
+        weight: 40
+        enabled: false
+      inventor:
+        weight: 41
+        enabled: false
+      inventor_image_and_text:
+        weight: 42
+        enabled: false
+      policies_registration:
+        weight: 43
+        enabled: true
+      product_types_info:
+        weight: 44
+        enabled: false
+      pullquote:
+        weight: 45
+        enabled: false
+      section:
+        weight: 46
+        enabled: false
+      tabs:
+        weight: 47
+        enabled: false
+      tabs_tab:
+        weight: 48
+        enabled: false
+field_type: entity_reference_revisions

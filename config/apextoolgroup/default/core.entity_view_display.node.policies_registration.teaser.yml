@@ -1,0 +1,27 @@
+uuid: ac782bca-a57c-4925-b65e-485a43b83179
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.policies_registration.field_downloadpolicy_component
+    - field.field.node.policies_registration.field_policies_registration_webf
+    - node.type.policies_registration
+  module:
+    - user
+id: node.policies_registration.teaser
+targetEntityType: node
+bundle: policies_registration
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_download_policy_label: true
+  field_downloadpolicy_component: true
+  field_policies_registration_webf: true
+  langcode: true
+  search_api_excerpt: true

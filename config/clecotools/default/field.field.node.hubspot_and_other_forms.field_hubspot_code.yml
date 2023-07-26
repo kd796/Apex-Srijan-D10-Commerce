@@ -1,0 +1,23 @@
+uuid: 3e4c6779-c227-470f-90b8-0da8e1d8aa59
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hubspot_code
+    - node.type.hubspot_and_other_forms
+  module:
+    - text
+id: node.hubspot_and_other_forms.field_hubspot_code
+field_name: field_hubspot_code
+entity_type: node
+bundle: hubspot_and_other_forms
+label: 'Hubspot Code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary
