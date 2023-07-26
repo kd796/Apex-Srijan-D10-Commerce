@@ -38,7 +38,8 @@
     </scoped-form>
   </template>
   <template slot="infowindow" slot-scope="scope" v-if="scope.selected">
-    {% filter raw %}
+    {% apply spaceless %}
+
       <h3 :id="'distributor-' + scope.id" v-html="scope.selected.attributes.title"></h3>
       <p>
         <span v-html="$options.filters.formatAddress(scope.selected.attributes.field_address)"></span>
@@ -49,7 +50,8 @@
           <br><a :href="'mailto:' + email" v-html="email"></a>
         </template>
       </p>
-    {% endfilter %}
+    {% endapply %}
+
     <div class="infowindow-actions">
       <a :href="'{{ locale.path }}/request-a-quote?distributor_id=' + scope.selected.attributes.nid" class="infowindow-action">
         {{ svg('dist/img/icons/nut.svg') }} {{ 'Request Quote'|t }}
