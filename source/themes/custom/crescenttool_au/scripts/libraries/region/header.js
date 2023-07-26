@@ -104,7 +104,7 @@
       });
 
       // Make view-port-related adjustments based on if header is expanded.
-      $(once('header', window, context)).on('resize', function () {
+      $(once('header', context === window ? 'html' : context)).on('resize', function () {
         var $menu_item = $('.region-header .menu-item--depth-0.menu-item--expanded');
         behavior_object.updateHeaderPlaceholder($menu_item);
       });

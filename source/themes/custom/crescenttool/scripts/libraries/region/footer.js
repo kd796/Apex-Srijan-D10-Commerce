@@ -13,7 +13,7 @@
         behavior_object.elMove($footerHeader, $footerNavContent);
       }
 
-      $(once('footer', window, context)).on('resize', function () {
+      $(once('footer', context === window ? 'html' : context)).on('resize', function () {
         if (behavior_object.isMobile()) {
           behavior_object.elMove($footerHeader, $footerNavContent);
         }

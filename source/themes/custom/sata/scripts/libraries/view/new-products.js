@@ -3,7 +3,7 @@
 
   Drupal.behaviors.componentNewProducts = {
     attach: function (context, settings) {
-      $(once('', '.view-new-products', context)).each(function () {
+      $(once('view-new-products', '.view-new-products', context)).each(function () {
         if (window.location.search.length > 0) {
           // Scroll down to the products when loading the category page.
           $('.view-new-products').attr('style', 'scroll-margin: 50px !important;');
@@ -86,7 +86,7 @@
    */
   Drupal.behaviors.componentNewProductsFilterTabs = {
     attach: function (context, settings) {
-      $(once('', '.view-new-products .views-exposed-form', context)).each(function (index) {
+      $(once('view-new-products', '.view-new-products .views-exposed-form', context)).each(function (index) {
         // Initialize variables.
         var $widget = $(this);
         var $accordions = $widget.find('fieldset');
