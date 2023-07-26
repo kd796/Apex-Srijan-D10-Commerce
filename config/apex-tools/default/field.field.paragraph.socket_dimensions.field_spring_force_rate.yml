@@ -1,0 +1,48 @@
+uuid: 9f622ec0-d18d-4009-80fa-679b94e01ac0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_spring_force_rate
+    - paragraphs.paragraphs_type.socket_dimensions
+  module:
+    - triples_field
+id: paragraph.socket_dimensions.field_spring_force_rate
+field_name: field_spring_force_rate
+entity_type: paragraph
+bundle: socket_dimensions
+label: 'K. Spring(Force/Rate)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  first:
+    label: Rest
+    list: false
+    allowed_values: {  }
+    max: null
+    min: null
+    required: true
+    on_label: 'On'
+    off_label: 'Off'
+  second:
+    label: 'Full Compressed'
+    list: false
+    allowed_values: {  }
+    max: null
+    min: null
+    required: true
+    on_label: 'On'
+    off_label: 'Off'
+  third:
+    label: 'Rate (lbf/in)'
+    list: false
+    allowed_values: {  }
+    max: null
+    min: null
+    required: true
+    on_label: 'On'
+    off_label: 'Off'
+field_type: triples_field

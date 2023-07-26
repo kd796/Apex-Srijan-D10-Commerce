@@ -1,0 +1,40 @@
+uuid: 3d9abf9c-6f3f-4185-bcff-8f3aa5fc6b43
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.embedded_magnet.field_embedded_magnet
+    - paragraphs.paragraphs_type.embedded_magnet
+  module:
+    - double_field
+id: paragraph.embedded_magnet.default
+targetEntityType: paragraph
+bundle: embedded_magnet
+mode: default
+content:
+  field_embedded_magnet:
+    type: double_field
+    weight: 0
+    region: content
+    settings:
+      first:
+        type: checkbox
+        label_display: block
+        size: 30
+        placeholder: ''
+        label: 'Embedded magnet'
+        cols: 10
+        rows: 5
+      second:
+        type: select
+        label_display: block
+        size: 30
+        placeholder: ''
+        label: 'Embedded magnet'
+        cols: 10
+        rows: 5
+      inline: false
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

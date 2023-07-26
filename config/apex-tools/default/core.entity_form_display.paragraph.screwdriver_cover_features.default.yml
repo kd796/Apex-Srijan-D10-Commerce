@@ -16,8 +16,10 @@ dependencies:
     - field.field.paragraph.screwdriver_cover_features.field_retractable
     - field.field.paragraph.screwdriver_cover_features.field_screw_press_fit
     - field.field.paragraph.screwdriver_cover_features.field_spring_force
+    - field.field.paragraph.screwdriver_cover_features.field_title
     - paragraphs.paragraphs_type.screwdriver_cover_features
   module:
+    - conditional_fields
     - double_field
     - triples_field
 id: paragraph.screwdriver_cover_features.default
@@ -26,33 +28,11 @@ bundle: screwdriver_cover_features
 mode: default
 content:
   field_c_sink_dia_ang_ect:
-    type: options_buttons
+    type: boolean_checkbox
     weight: 4
     region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_embedded_magnets:
-    type: double_field
-    weight: 8
-    region: content
     settings:
-      first:
-        type: checkbox
-        label_display: block
-        size: 30
-        placeholder: ''
-        label: 'Embedded magnets'
-        cols: 10
-        rows: 5
-      second:
-        type: select
-        label_display: block
-        size: 30
-        placeholder: ''
-        label: Style
-        cols: 10
-        rows: 5
-      inline: false
+      display_label: true
     third_party_settings: {  }
   field_exposed_tip_of_bit:
     type: double_field
@@ -101,16 +81,18 @@ content:
       inline: false
     third_party_settings: {  }
   field_flush_with_tip_of_bit:
-    type: options_buttons
+    type: boolean_checkbox
     weight: 5
     region: content
-    settings: {  }
+    settings:
+      display_label: true
     third_party_settings: {  }
   field_free_spinning:
-    type: options_buttons
+    type: boolean_checkbox
     weight: 10
     region: content
-    settings: {  }
+    settings:
+      display_label: true
     third_party_settings: {  }
   field_material:
     type: double_field
@@ -214,7 +196,7 @@ content:
         label_display: block
         size: 30
         placeholder: ''
-        label: 'Retractable (how much?)'
+        label: 'Retractable (travel distance)'
         cols: 10
         rows: 5
       second:
@@ -236,10 +218,11 @@ content:
       inline: false
     third_party_settings: {  }
   field_screw_press_fit:
-    type: options_buttons
+    type: boolean_checkbox
     weight: 9
     region: content
-    settings: {  }
+    settings:
+      display_label: true
     third_party_settings: {  }
   field_spring_force:
     type: double_field
@@ -264,6 +247,16 @@ content:
         rows: 5
       inline: false
     third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 8
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields: {  }
 hidden:
   created: true
+  field_embedded_magnets: true
   status: true

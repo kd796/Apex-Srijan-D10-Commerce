@@ -1,0 +1,24 @@
+uuid: 3b5ffeaf-68fb-418b-b166-8351bd2b2d52
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_tension_short
+field_name: field_tension_short
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: internal
+      label: Internal
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

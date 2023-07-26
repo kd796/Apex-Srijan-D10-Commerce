@@ -73,7 +73,7 @@ class QuotationForm extends ContentEntityForm {
 
     $params['attachments'][] = $quote_form_file;
     $send = TRUE;
-    $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+    $result = $mailManager->mail($module, $key, $to, $language, $params, NULL, $send);
 
     $s_request = $this->salseforceRequest($entity);
 

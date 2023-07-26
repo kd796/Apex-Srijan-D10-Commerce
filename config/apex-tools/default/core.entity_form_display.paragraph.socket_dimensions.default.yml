@@ -9,19 +9,16 @@ dependencies:
     - field.field.paragraph.socket_dimensions.field_d_taper_or_shoulder_length
     - field.field.paragraph.socket_dimensions.field_e_bolt_clearance_depth
     - field.field.paragraph.socket_dimensions.field_f_broach_depth
-    - field.field.paragraph.socket_dimensions.field_full_compressed
     - field.field.paragraph.socket_dimensions.field_g_nose_end_diameter
     - field.field.paragraph.socket_dimensions.field_h_broach_opening
     - field.field.paragraph.socket_dimensions.field_i_torx_r_size
     - field.field.paragraph.socket_dimensions.field_j_mag_depth
-    - field.field.paragraph.socket_dimensions.field_k_spring_force_rate_
     - field.field.paragraph.socket_dimensions.field_l_barbell_style_dims
-    - field.field.paragraph.socket_dimensions.field_rate_lbf_in_
-    - field.field.paragraph.socket_dimensions.field_rest
+    - field.field.paragraph.socket_dimensions.field_spring_force_rate
     - paragraphs.paragraphs_type.socket_dimensions
   module:
-    - conditional_fields
     - physical
+    - triples_field
 id: paragraph.socket_dimensions.default
 targetEntityType: paragraph
 bundle: socket_dimensions
@@ -123,33 +120,6 @@ content:
         ft: '0'
         M: '0'
     third_party_settings: {  }
-  field_full_compressed:
-    type: string_textfield
-    weight: 12
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings:
-      conditional_fields:
-        e7aa3913-125a-42ac-8c47-eaab0771508d:
-          entity_type: paragraph
-          bundle: socket_dimensions
-          dependee: field_k_spring_force_rate_
-          settings:
-            state: visible
-            reset: false
-            condition: value
-            grouping: AND
-            values_set: 1
-            value: ''
-            values: {  }
-            value_form:
-              -
-                value: spring_force
-            effect: show
-            effect_options: {  }
-            selector: ''
   field_g_nose_end_diameter:
     type: physical_measurement_default
     weight: 6
@@ -194,15 +164,9 @@ content:
         ft: '0'
         M: '0'
     third_party_settings: {  }
-  field_k_spring_force_rate_:
-    type: options_select
-    weight: 10
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_l_barbell_style_dims:
     type: physical_measurement_default
-    weight: 14
+    weight: 11
     region: content
     settings:
       default_unit: mm
@@ -216,60 +180,37 @@ content:
         ft: '0'
         M: '0'
     third_party_settings: {  }
-  field_rate_lbf_in_:
-    type: string_textfield
-    weight: 13
+  field_spring_force_rate:
+    type: triples_field
+    weight: 10
     region: content
     settings:
-      size: 60
-      placeholder: ''
-    third_party_settings:
-      conditional_fields:
-        48f66867-842f-4baf-8c0c-6825a7ed25d2:
-          entity_type: paragraph
-          bundle: socket_dimensions
-          dependee: field_k_spring_force_rate_
-          settings:
-            state: visible
-            reset: false
-            condition: value
-            grouping: AND
-            values_set: 1
-            value: ''
-            values: {  }
-            value_form:
-              -
-                value: spring_rate
-            effect: show
-            effect_options: {  }
-            selector: ''
-  field_rest:
-    type: string_textfield
-    weight: 11
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings:
-      conditional_fields:
-        124dcf9b-45bd-4d39-99cd-ed70f0f3e82b:
-          entity_type: paragraph
-          bundle: socket_dimensions
-          dependee: field_k_spring_force_rate_
-          settings:
-            state: visible
-            reset: false
-            condition: value
-            grouping: AND
-            values_set: 1
-            value: ''
-            values: {  }
-            value_form:
-              -
-                value: spring_force
-            effect: show
-            effect_options: {  }
-            selector: ''
+      first:
+        type: textfield
+        label_display: block
+        size: 30
+        placeholder: ''
+        label: Rest
+        cols: 10
+        rows: 5
+      second:
+        type: textfield
+        label_display: block
+        size: 30
+        placeholder: ''
+        label: 'Full Compressed'
+        cols: 10
+        rows: 5
+      third:
+        type: textfield
+        label_display: block
+        size: 30
+        placeholder: ''
+        label: 'Rate (lbf/in)'
+        cols: 10
+        rows: 5
+      inline: true
+    third_party_settings: {  }
 hidden:
   created: true
   status: true

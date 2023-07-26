@@ -1,0 +1,23 @@
+uuid: 5766627c-9988-4667-8e1c-b91c015efb21
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_o_d_limitations_must_speci
+    - paragraphs.paragraphs_type.cover_features
+id: paragraph.cover_features.field_o_d_limitations_must_speci
+field_name: field_o_d_limitations_must_speci
+entity_type: paragraph
+bundle: cover_features
+label: 'O.D. Limitations (must specify)'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

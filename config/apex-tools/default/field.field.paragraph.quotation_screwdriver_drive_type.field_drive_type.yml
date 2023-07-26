@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.paragraph.field_drive_type
     - paragraphs.paragraphs_type.drive_type_other
+    - paragraphs.paragraphs_type.embedded_magnet
     - paragraphs.paragraphs_type.female_square
     - paragraphs.paragraphs_type.hex_insert
     - paragraphs.paragraphs_type.hex_power
@@ -31,6 +32,7 @@ settings:
       hex_insert: hex_insert
       hex_power: hex_power
       threaded: threaded
+      embedded_magnet: embedded_magnet
     negate: 0
     target_bundles_drag_drop:
       360_hotspots:
@@ -48,6 +50,18 @@ settings:
       basic_card_section:
         weight: 87
         enabled: false
+      bit_dimensions:
+        weight: 113
+        enabled: false
+      bit_holder_female_square:
+        weight: 114
+        enabled: false
+      bit_holder_male_hex_drive:
+        weight: 115
+        enabled: false
+      bit_holder_retention_method:
+        weight: 116
+        enabled: false
       broach_opening:
         weight: 88
         enabled: false
@@ -60,6 +74,9 @@ settings:
       card:
         weight: 91
         enabled: false
+      components_to_be_covered_:
+        weight: 121
+        enabled: false
       content_bundle:
         weight: 92
         enabled: false
@@ -68,6 +85,9 @@ settings:
         enabled: false
       content_section_simple:
         weight: 94
+        enabled: false
+      cover_features:
+        weight: 125
         enabled: false
       cta:
         weight: 95
@@ -81,8 +101,14 @@ settings:
       double_square:
         weight: 98
         enabled: false
+      drive_configuration_para:
+        weight: 130
+        enabled: false
       drive_type_other:
         weight: 89
+        enabled: true
+      embedded_magnet:
+        weight: 214
         enabled: true
       enhanced_hero:
         weight: 99
@@ -147,6 +173,9 @@ settings:
       hex:
         weight: 117
         enabled: false
+      hex_drive:
+        weight: 153
+        enabled: false
       hex_insert:
         weight: 127
         enabled: true
@@ -156,8 +185,14 @@ settings:
       iframe:
         weight: 118
         enabled: false
+      image_uploads:
+        weight: 157
+        enabled: false
       intro:
         weight: 119
+        enabled: false
+      magnetic:
+        weight: 159
         enabled: false
       mailing_list_form:
         weight: 120
@@ -185,6 +220,9 @@ settings:
         enabled: false
       nutsetter:
         weight: 128
+        enabled: false
+      nylon_covers_requirements:
+        weight: 169
         enabled: false
       optional_features:
         weight: 129
@@ -222,6 +260,9 @@ settings:
       quotation_order_type:
         weight: 151
         enabled: false
+      quotation_screwdriver:
+        weight: 182
+        enabled: false
       quotation_screwdriver_drive_type:
         weight: 82
         enabled: false
@@ -234,11 +275,26 @@ settings:
       schedule_a_demo:
         weight: 142
         enabled: false
+      screwdriver_bit_holder_styles:
+        weight: 187
+        enabled: false
+      screwdriver_cover_features:
+        weight: 188
+        enabled: false
+      screwdriver_cover_requirements:
+        weight: 189
+        enabled: false
+      screwdriver_part_type:
+        weight: 190
+        enabled: false
       shouldered:
         weight: 143
         enabled: false
       slotted:
         weight: 144
+        enabled: false
+      socket_dimensions:
+        weight: 193
         enabled: false
       socket_extension_adapter:
         weight: 145
@@ -290,6 +346,9 @@ settings:
         enabled: false
       universal_swivel_wrench:
         weight: 160
+        enabled: false
+      universal_swivel_wrench_para:
+        weight: 211
         enabled: false
       universal_wrench:
         weight: 161
