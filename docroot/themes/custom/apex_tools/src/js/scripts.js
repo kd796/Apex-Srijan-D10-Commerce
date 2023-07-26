@@ -63,6 +63,11 @@ require("./vue-components");
     $(document).ajaxComplete(function(){
       searchToggle();
       setActiveLang();
+      if ($('div').hasClass('multi-form')) {
+        $('.masthead-search-toggle').on('click', function (e) {
+          $('.masthead-primary').toggleClass('is-searching');
+        });
+      }
     });
   }
 
