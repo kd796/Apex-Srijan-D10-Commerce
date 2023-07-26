@@ -2,6 +2,8 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\Entity\Node;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 
 /**
  * Implements hook_theme
@@ -56,4 +58,32 @@ function template_preprocess_views_view_tabs_list(&$variables) {
   template_preprocess_views_view_unformatted($variables);
 
   $variables['tabs'] = $nav;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function helpers_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if($form_id == 'node_hubspot_form_edit_form') {
+    $form['field_form_link']['#states'] = [
+    'visible' => [
+      ':input[name="field_not_a_hubspot_form[value]"]' => ['checked' => TRUE],
+      ],
+    ];
+    $form['field_hubspot_code']['#states'] = [
+    'visible' => [
+      ':input[name="field_hubspot_form[value]"]' => ['checked' => TRUE],
+      ],
+    ];
+  }
+}
+
+/**
+ * Implements hook_entity_view().
+ */
+function helpers_entity_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  $CTS = ['solutions'];
+  if (in_array($entity->bundle(),$CTS) && $view_mode == 'full') {
+    $build['#attached']['library'][] = 'cleco/hubspot';
+  }
 }

@@ -1,0 +1,23 @@
+uuid: 8d481bf7-b5d1-4b61-8fd9-53eaddc7cc20
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_not_a_hubspot_form
+    - node.type.hubspot_and_other_forms
+id: node.hubspot_and_other_forms.field_not_a_hubspot_form
+field_name: field_not_a_hubspot_form
+entity_type: node
+bundle: hubspot_and_other_forms
+label: 'Not a hubspot form'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

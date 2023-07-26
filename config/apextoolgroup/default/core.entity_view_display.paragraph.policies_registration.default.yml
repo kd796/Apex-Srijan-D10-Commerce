@@ -1,0 +1,43 @@
+uuid: d0d1a808-f8bf-41be-abf0-3620f536f6f0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.policies_registration.field_download_policy_file
+    - field.field.paragraph.policies_registration.field_downloadpolicy_description
+    - field.field.paragraph.policies_registration.field_downloadpolicy_label
+    - paragraphs.paragraphs_type.policies_registration
+  module:
+    - entity_reference_revisions
+    - text
+id: paragraph.policies_registration.default
+targetEntityType: paragraph
+bundle: policies_registration
+mode: default
+content:
+  field_download_policy_file:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_downloadpolicy_description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_downloadpolicy_label:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

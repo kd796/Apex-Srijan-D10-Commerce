@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.solutions.field_find_a_distributor
     - field.field.node.solutions.field_forms
     - field.field.node.solutions.field_hero
+    - field.field.node.solutions.field_hubspot_node
     - field.field.node.solutions.field_mailing_list_form
     - field.field.node.solutions.field_seo
     - field.field.node.solutions.field_webform
@@ -61,7 +62,7 @@ content:
     third_party_settings: {  }
   field_featured_products:
     type: entity_reference_paragraphs
-    weight: 4
+    weight: 5
     region: content
     settings:
       title: 'Featured Products'
@@ -83,18 +84,6 @@ content:
       form_display_mode: default
       default_paragraph_type: find_a_distributor
     third_party_settings: {  }
-  field_forms:
-    type: entity_reference_paragraphs
-    weight: 5
-    region: content
-    settings:
-      title: Forms
-      title_plural: Forms
-      edit_mode: open
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: form_section
-    third_party_settings: {  }
   field_hero:
     type: entity_reference_paragraphs
     weight: 2
@@ -106,6 +95,34 @@ content:
       add_mode: dropdown
       form_display_mode: default
       default_paragraph_type: hero
+    third_party_settings: {  }
+  field_hubspot_node:
+    type: entity_reference_autocomplete
+    weight: 17
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_industry_solutions:
+    type: paragraphs
+    weight: 16
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
     third_party_settings: {  }
   field_mailing_list_form:
     type: entity_reference_paragraphs
@@ -123,7 +140,18 @@ content:
     type: metatag_firehose
     weight: 14
     region: content
-    settings: {  }
+    settings:
+      sidebar: true
+      use_details: true
+    third_party_settings: {  }
+  field_trusted_by_biggest:
+    type: block_field_default
+    weight: 4
+    region: content
+    settings:
+      plugin_id: ''
+      settings: {  }
+      configuration_form: full
     third_party_settings: {  }
   field_webform:
     type: webform_entity_reference_select
@@ -131,6 +159,7 @@ content:
     region: content
     settings:
       default_data: true
+      webforms: {  }
     third_party_settings: {  }
   langcode:
     type: language_select
@@ -178,6 +207,7 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_forms: true
   promote: true
   sticky: true
   uid: true
