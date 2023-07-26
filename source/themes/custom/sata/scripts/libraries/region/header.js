@@ -76,7 +76,7 @@
         $('.block__menu').find('.country-toggle').empty();
 
         // Open country switch panel.
-        $(selector_header_country_switch_button).once('header').on({
+        $(once('header', selector_header_country_switch_button, context)).on({
           click: function () {
             var $this = $(this);
 
@@ -116,13 +116,13 @@
       });
 
       // Make view-port-related adjustments based on if header is expanded.
-      $(once('header', 'window', context)).on('resize', function () {
+      $(once('header', context === window ? 'html' : context)).on('resize', function () {
         var $menu_item = $('.region-header .menu-item--depth-0.menu-item--expanded');
         behavior_object.updateHeaderPlaceholder($menu_item);
       });
 
       // If desktop menu expanded and click outside, close
-      $(once('header', 'document', context)).on('click', function (e) {
+      $(once('header', context === document ? 'html' : context)).on('click', function (e) {
         if ($(selector_header_menu_items_with_children).hasClass('menu-item--expanded')) {
           if (!(($(e.target).closest(selector_header_menu_items_with_children).length > 0))) {
             behavior_object.toggleMenuPanel($(selector_header_menu_items_with_children).find('.menu-item__button').first());
@@ -137,7 +137,7 @@
       // On scroll down, header and expanded navigation disappears, scroll up re-appears, logo area resizes
       window.addEventListener('scroll', function () {
         var $header = $('header');
-        var scrollTopVal = window.pageYOffset || document.documentElement.scrollTop;
+        var scrollTopVal = window.scrollY || document.documentElement.scrollTop;
         var $menu_item = $('.region-header .menu-item--depth-0');
         var $button = $menu_item.find('.menu-item__button').first();
 

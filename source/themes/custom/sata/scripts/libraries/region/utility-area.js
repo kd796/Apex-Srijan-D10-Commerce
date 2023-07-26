@@ -18,7 +18,7 @@
       });
 
       // If search expanded and click outside, close.
-      $(document).once('utilityarea').on('click', function (e) {
+      $(once('utilityarea', context === document ? 'html' : context)).on('click', function (e) {
         if ($(selector_search_button).attr('aria-expanded') === 'true') {
           if (!(($(e.target).closest('.block--header-search').length > 0))) {
             behavior_object.togglePanel($(selector_search_content));
@@ -29,7 +29,7 @@
       // On scroll down, utility area disappears, scroll up re-appears
       window.addEventListener('scroll', function () {
         var $utilityArea = $('.region-utility-area');
-        var scrollTopVal = window.pageYOffset || document.documentElement.scrollTop;
+        var scrollTopVal = window.scrollY || document.documentElement.scrollTop;
 
         $utilityArea.addClass('region-utility-area--ease-in-out');
 

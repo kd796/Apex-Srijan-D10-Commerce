@@ -9,7 +9,7 @@
       var $instagramContainer = $instagramRoot.find('.view-social-feed');
       let mobile = window.matchMedia('(min-width: 0px) and (max-width: 768px)');
 
-      $(once('.block-apex-tools-instagram-feed-social-feed__content', window, context)).on('resize', function () {
+      $(once('.block-apex-tools-instagram-feed-social-feed__content', context === window ? 'html' : context)).on('resize', function () {
         if (!$instagramRoot.hasClass('instagram-init')) {
           var $instagramSwiper;
           $instagramRoot.addClass('instagram-init');
