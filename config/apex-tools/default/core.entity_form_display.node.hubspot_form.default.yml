@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.hubspot_form.field_form_link
     - field.field.node.hubspot_form.field_hubspot_code
     - field.field.node.hubspot_form.field_hubspot_form
+    - field.field.node.hubspot_form.field_hubspot_form_id
     - field.field.node.hubspot_form.field_image
     - field.field.node.hubspot_form.field_not_a_hubspot_form
     - node.type.hubspot_form
@@ -51,6 +52,14 @@ content:
     region: content
     settings:
       display_label: true
+    third_party_settings: {  }
+  field_hubspot_form_id:
+    type: string_textfield
+    weight: 26
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_image:
     type: media_library_widget

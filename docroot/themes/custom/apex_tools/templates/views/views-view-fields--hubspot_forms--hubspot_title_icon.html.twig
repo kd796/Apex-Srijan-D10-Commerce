@@ -11,7 +11,7 @@
     </div>
   </a>
 {% else %}
-<a class="checkable-card" href="#id-{{ fields.nid.content|render|trim|striptags|replace({'\n': '', '\r': '' }) }}">
+<a class="checkable-card" href="#{{ fields.field_hubspot_form_id.content|render|trim|striptags|replace({'\n': '', '\r': '' }) }}">
   <div class="checkable-card-icon">
     {{ fields.field_image.content }}
   </div>
