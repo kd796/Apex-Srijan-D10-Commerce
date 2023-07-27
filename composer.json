@@ -196,7 +196,7 @@
         "drupal/we_megamenu": "^1.13",
         "drupal/webform": "^6.2@beta",
         "drupal/webform_mailchimp": "^5.10",
-        "drush/drush": "^12.0",
+        "drush/drush": "^11.0",
         "furf/jquery-ui-touch-punch": "^1.0",
         "geocoder-php/google-maps-provider": "^4.7",
         "league/csv": "^9.0",
@@ -418,7 +418,8 @@
                 "D10 compatibility": "https://www.drupal.org/files/issues/2023-07-11/default_paragraphs.2.0.0-rc1.rector-14.patch"
             },
             "drupal/sfweb2lead_webform": {
-                "D10 compatibility": "https://www.drupal.org/files/issues/2023-07-11/sfweb2lead_webform-drupal-10-compatibility-fix-3289580-14.patch"
+                "D10 compatibility": "https://www.drupal.org/files/issues/2023-07-11/sfweb2lead_webform-drupal-10-compatibility-fix-3289580-14.patch",
+                "Event Dispatcher Issue": "patches/sf_webform_dispatch.patch"
             },
             "drupal/path_redirect_import": {
                 "MigrateTools issue": "https://www.drupal.org/files/issues/2023-07-11/3313386_11.patch"
@@ -437,6 +438,9 @@
             },
             "vmlyr-drupal/blackbird": {
                 "remove mailsystem dependency": "patches/blackbird_profile.patch"
+            },
+            "drupal/editor_file": {
+                "Support for CKeditor5": "https://git.drupalcode.org/project/editor_file/-/merge_requests/4.patch"
             }
 
 

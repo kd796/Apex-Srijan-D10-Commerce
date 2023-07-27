@@ -1,68 +1,56 @@
-uuid: 00942a08-72b5-4534-997f-dc7ca28d40af
+uuid: 2fcd2a70-581e-4769-b337-3169bc5d843a
 langcode: en
 status: true
 dependencies:
   config:
     - filter.format.full_html
   module:
-    - ckeditor
-_core:
-  default_config_hash: 967ijj7p6i7rwrYl7r08WQFeCY_c23YAh0h8u-w_CXM
+    - ckeditor5
 format: full_html
-editor: ckeditor
+editor: ckeditor5
 settings:
   toolbar:
-    rows:
-      -
-        -
-          name: Formatting
-          items:
-            - Styles
-            - Bold
-            - Italic
-            - Strike
-            - Superscript
-            - Subscript
-            - '-'
-            - RemoveFormat
-        -
-          name: Linking
-          items:
-            - DrupalLink
-            - DrupalUnlink
-        -
-          name: Lists
-          items:
-            - BulletedList
-            - NumberedList
-        -
-          name: Media
-          items:
-            - DrupalImage
-        -
-          name: 'Block Formatting'
-          items:
-            - JustifyLeft
-            - JustifyCenter
-            - JustifyBlock
-            - JustifyRight
-            - Blockquote
-            - Outdent
-            - Indent
-        -
-          name: Tools
-          items:
-            - ShowBlocks
-            - Source
-            - SpecialChar
+    items:
+      - bold
+      - italic
+      - strikethrough
+      - superscript
+      - subscript
+      - removeFormat
+      - '|'
+      - link
+      - '|'
+      - bulletedList
+      - numberedList
+      - '|'
+      - drupalInsertImage
+      - '|'
+      - alignment
+      - blockQuote
+      - outdent
+      - indent
+      - '|'
+      - sourceEditing
+      - specialCharacters
   plugins:
-    stylescombo:
-      styles: "p|Paragraph\r\nh3|Heading 3\r\nh4|Heading 4"
+    ckeditor5_alignment:
+      enabled_alignments:
+        - center
+        - justify
+        - left
+        - right
+    ckeditor5_imageResize:
+      allow_resize: true
+    ckeditor5_list:
+      reversed: true
+      startIndex: true
+    ckeditor5_sourceEditing:
+      allowed_tags: {  }
 image_upload:
   status: true
   scheme: public
   directory: inline-images
   max_size: ''
   max_dimensions:
-    width: null
-    height: null
+    width: 0
+    height: 0
