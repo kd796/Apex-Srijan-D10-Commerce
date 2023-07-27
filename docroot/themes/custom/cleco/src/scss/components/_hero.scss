@@ -79,33 +79,6 @@ $hero-height-map: (
   }
 }
 /* css for hero banner video text */
-.hero-video-banner-text {
-  display: none;
-  background-color: $color-orange;
-  color: $color-off-black; 
-  padding: 10px 0px;
-  font-size: 2.375rem;
-  line-height: 2.576rem;
-  font-family: $font;
-  font-weight: 700;
-  text-transform: uppercase;
-  h2{
-   letter-spacing: 1px;
-   word-spacing: 2px;
-   margin-bottom: 0em !important;
-   &.section {
-    padding-top: 0px !important;
-    padding-bottom: 0px !important;
-   }
-  }
-  br {
-    display: none;
-  }
-  @media (max-width:$breakpoint-downloads) {
-    font-size: 1.274rem;
-    line-height: 1.575rem;
-  }
-}
 .dispblock {
   display: block !important;
 }
@@ -144,7 +117,7 @@ $hero-height-map: (
   &::after {
     content: "\00a0";
     padding-left: 0.0625em;
-    background: url(svg-background($svg-circle, $color-orange)) no-repeat right 78%;
+    background: url(svg-background($svg-circle, #fff)) no-repeat right 78%;
     background-size: 0.25em 0.25em;
   }
 }
