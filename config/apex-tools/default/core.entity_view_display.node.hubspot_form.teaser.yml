@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.hubspot_form.field_form_link
     - field.field.node.hubspot_form.field_hubspot_code
     - field.field.node.hubspot_form.field_hubspot_form
+    - field.field.node.hubspot_form.field_hubspot_form_id
     - field.field.node.hubspot_form.field_image
     - field.field.node.hubspot_form.field_not_a_hubspot_form
     - node.type.hubspot_form
@@ -33,9 +34,13 @@ content:
     weight: 100
     region: content
 hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
   field_form_link: true
   field_hubspot_code: true
   field_hubspot_form: true
+  field_hubspot_form_id: true
   field_image: true
   field_not_a_hubspot_form: true
   langcode: true
