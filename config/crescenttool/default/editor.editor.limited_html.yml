@@ -1,37 +1,54 @@
-uuid: 0b06c54f-6422-4690-a138-aa63c09d953e
+uuid: d61739cc-69d6-4954-ace1-0f2e515835e1
 langcode: en
 status: true
 dependencies:
   config:
     - filter.format.limited_html
   module:
-    - ckeditor
-    - editor_file
-third_party_settings:
-  editor_file:
-    status: true
-    scheme: public
-    directory: inline-files
-    extensions: txt
-    max_size: ''
+    - ckeditor5
 format: limited_html
-editor: ckeditor
+editor: ckeditor5
 settings:
   toolbar:
-    rows:
-      -
-        -
-          name: Formatting
-          items:
-            - Bold
-            - Italic
-        -
-          name: Links
-          items:
-            - DrupalLink
-            - DrupalUnlink
+    items:
+      - bold
+      - italic
+      - '|'
+      - link
+      - '|'
+      - blockQuote
+      - code
+      - bulletedList
+      - numberedList
+      - heading
+      - sourceEditing
   plugins:
-    drupallink:
+    ckeditor5_heading:
+      enabled_headings:
+        - heading2
+        - heading3
+        - heading4
+        - heading5
+        - heading6
+    ckeditor5_list:
+      reversed: false
+      startIndex: true
+    ckeditor5_sourceEditing:
+      allowed_tags:
+        - '<cite>'
+        - '<dl>'
+        - '<dt>'
+        - '<dd>'
+        - '<blockquote cite>'
+        - '<ul type>'
+        - '<ol type>'
+        - '<h2 id>'
+        - '<h3 id>'
+        - '<h4 id>'
+        - '<h5 id>'
+        - '<h6 id>'
+        - '<a hreflang title>'
+    linkit_extension:
       linkit_enabled: true
       linkit_profile: default
 image_upload:

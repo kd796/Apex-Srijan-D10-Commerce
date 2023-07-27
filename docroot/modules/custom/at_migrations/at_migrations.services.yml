@@ -8,6 +8,5 @@ services:
     class: Drupal\at_migrations\Commands\ProductsCleanupService
     arguments:
       - '@entity_type.manager'
-      - '@logger.channel.cron'
     tags:
       -  { name: drush.command }
