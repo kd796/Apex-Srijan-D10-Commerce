@@ -1,3 +1,3 @@
-<div id="id-{{ fields.nid.content|render|trim|striptags|replace({'\n': '', '\r': '' }) }}">
+<div id="{{ fields.field_hubspot_form_id.content|render|trim|striptags|replace({'\n': '', '\r': '' }) }}">
   {{ fields.field_hubspot_code.content }}
 </div>
