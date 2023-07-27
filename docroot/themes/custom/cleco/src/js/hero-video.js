@@ -1,11 +1,6 @@
 (function($) {
   var heroVideoContainer = $('.hero.hero-enhanced--video');
   var heroVideoElem      = $('video', heroVideoContainer);
-  var heroBanner = $('.hero--large .hero-image');
-  var videoBannerText = $('.hero-video-banner-text');
-  if(heroBanner.hasClass('video-section')) {
-    videoBannerText.addClass('dispblock');
-  }
   heroVideoElem.on('loadeddata', function() {
     heroVideoElem.addClass('is-ready');
   });

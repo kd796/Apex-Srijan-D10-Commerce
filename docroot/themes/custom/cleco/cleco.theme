@@ -39,7 +39,7 @@ function cleco_preprocess_field(&$variables)
     if ($route_match instanceof RouteMatchInterface && $route_match->getRouteName() == 'entity.node.canonical') {
       $node = $route_match->getParameter('node');
       // Add banner title.
-      $variables['carousel_title'] = 'Trusted by the biggest';
+      $variables['carousel_title'] = 'Trusted by these leading brands';
     }
   } else if ($variables['element']['#field_name'] == 'field_case_study') {
     $route_match = \Drupal::routeMatch();
