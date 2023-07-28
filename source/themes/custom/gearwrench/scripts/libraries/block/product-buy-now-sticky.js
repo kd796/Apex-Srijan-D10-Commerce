@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.productBuyNowSticky = {
@@ -35,4 +35,4 @@
     }
   };
 
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);
