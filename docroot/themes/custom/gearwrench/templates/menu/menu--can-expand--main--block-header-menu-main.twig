@@ -110,6 +110,7 @@ We call a macro which calls itself to render the full tree.
                     </div>
                   {% endif %}
                 {% endif %}
+                {% if not break %}
                 {% if nested_item.below %}
                   <div class="secondary-menu {% if loop.first %}secondary-menu__first{% endif %}">
                     <header class="menu-item__panel-header">
@@ -125,6 +126,7 @@ We call a macro which calls itself to render the full tree.
                     {% set break = true %}
                   </div>
                 {% endif %}
+              {% endif %}
               {% endfor %}
             </div>
           {% endif %}
