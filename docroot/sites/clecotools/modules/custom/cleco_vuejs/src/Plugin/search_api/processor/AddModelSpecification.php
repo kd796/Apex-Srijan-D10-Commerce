@@ -186,7 +186,7 @@ class AddModelSpecification extends ProcessorPluginBase {
    */
   protected function searchById($key, array $arr) {
     foreach ($arr as $k => $item) {
-      if (!in_array($key, $item)) {
+      if (!in_array($key, $item ?? [])) {
         continue;
       }
       return $k;
