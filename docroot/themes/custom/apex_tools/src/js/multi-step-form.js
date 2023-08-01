@@ -429,7 +429,7 @@
         }
         });
 
-      $(once('onceOnLoad', window, context)).on('load', function (e) {
+      $(once('onceOnLoad', context === window ? 'html' : context)).on('load', function (e) {
           $('[data-drupal-selector$="subform-field-optional-feature-wrapper"] fieldset legend').after('<span class="clear-option">Clear Options</span>');
           // Trigger back button.
           $('.step-label.active').prev().addClass('prev');
