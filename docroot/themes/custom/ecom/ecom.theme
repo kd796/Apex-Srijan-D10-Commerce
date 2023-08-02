@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the ecom theme.
+ */
+
+/**
+ * Implements hook_form_FORM_ID_alter() for search_form.
+ */
+function ecom_form_alter(&$form, &$form_state, &$form_id) {
+  if (in_array($form_id, ['search_block_form'])) {
+    $form['keys']['#attributes']['placeholder'] = t('Search');
+  }
+}
