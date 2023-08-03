@@ -1,0 +1,33 @@
+# Library naming structure
+#
+# library--{library-name}
+#   Use library naming structure for external libraries that will then be used as dependencies of other libraries.
+#
+# component--{component-name}
+#   Use component naming structure for reusable items that aren't necessarily entity-specific. Include these as
+#   dependencies on the entity-specific libraries.
+#
+# {entity-type}--{view-mode}
+# {entity-type}--{view-mode}--{bundle}
+#   Use entity naming structure to allow the entities to automatically attach styles when rendered.
+#
+# NOTE: Entity CSS and JS files that are included in multiple different entity-specific libraries, should probably be
+#       broken into the component structure listed above and added as a dependency on the entity-specific library.
+#
+
+# ========= Global ========= #
+
+# === Global: Base === #
+global:
+  version: VERSION
+  css:
+    theme:
+      css/main.css : {}
+
+  js:
+    js/main.js: {}
+
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once

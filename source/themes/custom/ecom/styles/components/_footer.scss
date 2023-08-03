@@ -1,0 +1,44 @@
+.footer-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+
+  @media only screen and (max-width: $tablet) {
+    flex-direction: column;
+  }
+
+  &__item {
+    padding: 0 25px;
+    float: left;
+    width: 175px;
+    min-height: 118px;
+
+    @media only screen and (max-width: $tablet-max) {
+      background: none;
+      min-height: unset;
+      margin-bottom: 0;
+    }
+    @media only screen and (max-width: $tablet) {
+      width: 95%;
+      padding: 0;
+      margin-top: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: $white;
+      font-size: 13px;
+      font-weight: $bold;
+      display: block;
+      margin-bottom: 8px;
+
+      &:hover {
+        color: $pantone;
+      }
+
+      @media only screen and (max-width: $tablet-max) {
+        margin-bottom: 0;
+        line-height: 1.3;
+      }
+    }
+  }
+}
