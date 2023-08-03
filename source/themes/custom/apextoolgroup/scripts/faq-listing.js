@@ -1,10 +1,10 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.faqAccordion = {
     attach: function (context, settings) {
       // accordions
-      $('.faq-question').once('accordion').on('click', function (e) {
+      $(once('accordion', '.faq-question', context)).on('click', function (e) {
         e.preventDefault();
         if ($(this).hasClass('active')) {
           $(this).removeClass('active');
@@ -24,4 +24,4 @@
 
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

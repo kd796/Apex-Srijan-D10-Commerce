@@ -75,7 +75,7 @@ class ProductServices extends DrushCommands {
       $migration->setStatus(MigrationInterface::STATUS_IDLE);
 
       $this->output()->writeln('Migration failure ($migration_name) ' . $e->getMessage());
-      drush_log(
+      \Drupal::logger(
         'We will continue with the product import.',
         LogLevel::ERROR
       );
@@ -85,13 +85,13 @@ class ProductServices extends DrushCommands {
     }
 
     if ($result == MigrationInterface::RESULT_COMPLETED) {
-      drush_log("Successfully ran the product migration ($migration_name)", LogLevel::SUCCESS);
+      \Drupal::logger("Successfully ran the product migration ($migration_name)", LogLevel::SUCCESS);
 
       // Success!
       return 0;
     }
 
-    drush_log('Migration ($migration_name) failed with code: ' . $result, LogLevel::ERROR);
+    \Drupal::logger('Migration ($migration_name) failed with code: ' . $result, LogLevel::ERROR);
 
     // Failure.
     return 1;
@@ -183,7 +183,7 @@ class ProductServices extends DrushCommands {
           $configFactory = \Drupal::service('config.factory');
           $configFactory->getEditable('apex_migrations.settings')->set('last_downloaded_file_name' . $suffix, $name)->save();
           $this->output()->writeln('Created the file: ' . $destination);
-          drush_log(
+          \Drupal::logger(
             'Successfully downloaded a new file...',
             LogLevel::SUCCESS
           );
@@ -193,7 +193,7 @@ class ProductServices extends DrushCommands {
         }
       }
       else {
-        drush_log('No different file found.', LogLevel::ERROR);
+        \Drupal::logger('No different file found.', LogLevel::ERROR);
       }
     }
     catch (PreviouslyImportedException | \Exception $e) {

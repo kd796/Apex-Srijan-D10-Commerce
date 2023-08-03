@@ -91,7 +91,7 @@ function crescenttool_au_preprocess_block__page_title_block(&$variables) {
       $block_manager = \Drupal::service('plugin.manager.block');
       $plugin_block = $block_manager->createInstance('system_breadcrumb_block');
       $render = $plugin_block->build();
-      $variables['crescenttool_au_breadcrumbs'] = render($render);
+      $variables['crescenttool_au_breadcrumbs'] = \Drupal::service('renderer')->render($render);
     }
   }
 }

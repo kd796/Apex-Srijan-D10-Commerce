@@ -106,7 +106,7 @@ class AddModelSpecification extends ProcessorPluginBase {
 
     $query = $this->getTypeManager()->getStorage('taxonomy_term')->getQuery();
     $query->condition('vid', "product_filters");
-    $tids = $query->execute();
+    $tids = $query->accessCheck(FALSE)->execute();
     $terms = Term::loadMultiple($tids);
     $filters = [];
     $product_filters = StepHelper::productFilters();
@@ -186,7 +186,7 @@ class AddModelSpecification extends ProcessorPluginBase {
    */
   protected function searchById($key, array $arr) {
     foreach ($arr as $k => $item) {
-      if (!in_array($key, $item)) {
+      if (!in_array($key, $item ?? [])) {
         continue;
       }
       return $k;

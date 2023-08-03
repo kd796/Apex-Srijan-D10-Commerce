@@ -2,6 +2,8 @@
 
 namespace Drupal\cleco_vuejs\Utils;
 
+use Drupal\taxonomy\Entity\Term;
+use Drupal\Core\Cache\Cache;
 use function array_intersect;
 use Drupal;
 use Drupal\cleco_vuejs\Utils\Configurations\AccessoriesConfiguration;
@@ -617,7 +619,7 @@ class StepHelper
         }
 
         foreach ($filters as $filter) {
-            $term = Drupal\taxonomy\Entity\Term::load($filter->tid);
+            $term = Term::load($filter->tid);
             if ($term->hasTranslation($language)) {
                 // Only translate name of term
                 // ElasticSearch relies on english keys
@@ -667,7 +669,7 @@ class StepHelper
 
         // Add to cache.
         $product_filter_tags = ['config:taxonomy.vocabulary.product_filters', 'taxonomy_term_list:product_filters'];
-        $cache->set($cid_product_filter, $collection, Drupal\Core\Cache\Cache::PERMANENT, $product_filter_tags);
+        $cache->set($cid_product_filter, $collection, Cache::PERMANENT, $product_filter_tags);
 
         return $collection;
     }
@@ -914,7 +916,7 @@ class StepHelper
      * @param Drupal\taxonomy\Entity\Term $term
      * @param string                      $fieldName
      */
-    private static function getFieldValue(Drupal\taxonomy\Entity\Term $term, string $fieldName)
+    private static function getFieldValue(Term $term, string $fieldName)
     {
         $value = $term->get($fieldName)->getValue();
 

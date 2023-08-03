@@ -22,8 +22,8 @@ class QuotationForm extends ContentEntityForm {
     $link = $entity->toLink($this->t('View'))->toRenderable();
     $quote_id = $this->entity->label();
 
-    $message_arguments = ['%label' => $quote_id];
-    $logger_arguments = $message_arguments + ['link' => render($link)];
+    $message_arguments = ['%label' => $this->entity->label()];
+    $logger_arguments = $message_arguments + ['link' => \Drupal::service('renderer')->render($link)];
 
     if ($result == SAVED_NEW) {
       $this->messenger()->addStatus($this->t('New quotation %label has been created.', $message_arguments));

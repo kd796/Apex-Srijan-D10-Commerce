@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.multiStepForm = {
@@ -11,7 +11,7 @@
       femaleMaleDriveType.attr('name', 'female-male-drive-type');
 
       // Trigger back button.
-      $('.multi-steps-label').once('multi-steps-label').on('click', '.step-label', function (e) {
+      $(once('multi-steps-label', '.multi-steps-label', context)).on('click', '.step-label', function (e) {
         var $next = $(this).closest('.step-label').next('.step-label');
         if($next.hasClass('active')) {
           $('#edit-back-button').trigger('click');
@@ -81,12 +81,12 @@
         }
       }
 
-      $('#edit-actions button.step-three-submit').once('validation').click(validateForm);
+      $(once('validation', '#edit-actions button.step-three-submit', context)).click(validateForm);
 
       function dynamicChanges() {
         $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-a-square-drive input').prop('required', false);
         $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-a-square-drive input').removeAttr('required');
-        $('.field--name-field-screwdriver-style input[type="radio"]').once('removeAttributeScrewdriver').on('change', function () {
+        $(once('removeAttributeScrewdriver', '.field--name-field-screwdriver-style input[type="radio"]', context)).on('change', function () {
           //Remove the required field.
           $('.field--name-field-screwdriver-style input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
           $('.field--name-field-screwdriver-style input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
@@ -97,7 +97,7 @@
           $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
         });
 
-        $('.field--name-field-bit-holder-styles input[type="radio"]').once('removeAttributeBitHolder').on('change', function () {
+        $(once('removeAttributeBitHolder', '.field--name-field-bit-holder-styles input[type="radio"]', context)).on('change', function () {
           //Remove the required field.
           $('.field--name-field-bit-holder-styles input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
           $('.field--name-field-bit-holder-styles input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
@@ -108,7 +108,7 @@
           $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
         });
 
-        $('.field--name-field-drive-type input[type="radio"]').once('removeAttributeBitHolder').on('change', function () {
+        $(once('removeAttributeBitHolder', '.field--name-field-drive-type input[type="radio"]', context)).on('change', function () {
           //Remove the required field.
           $('.field--name-field-drive-type input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
           $('.field--name-field-drive-type input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
@@ -119,7 +119,7 @@
           $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
         });
 
-        $('.field--name-field-socket-type input[type="radio"]').once('removeAttributeBitHolder').on('change', function () {
+        $(once('removeAttributeBitHolder', '.field--name-field-socket-type input[type="radio"]', context)).on('change', function () {
           //Remove the required field.
           $('.field--name-field-socket-type input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
           $('.field--name-field-socket-type input[type="radio"]').closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
@@ -134,7 +134,7 @@
           }
         });
 
-        femaleMaleDriveType.once('femaleMaleDriveType').on('change', function () {
+        $(once('femaleMaleDriveType', femaleMaleDriveType, context )).on('change', function () {
           //Remove the required field.
           femaleMaleDriveType.closest('.field--widget-options-buttons').siblings('div').find('label').removeClass('form-required');
           femaleMaleDriveType.closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', false);
@@ -422,7 +422,7 @@
       dynamicChanges();
 
       $(document).ajaxComplete(function(){
-        $('#edit-actions button.step-three-submit').once('validation').click(validateForm);
+        $(once('validation', '#edit-actions button.step-three-submit', context)).click(validateForm);
         dynamicChanges();
         $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-a-square-drive input').prop('required', false);
         $('[data-drupal-selector$="subform-field-screwdriver-7-subform"] .field--name-field-a-square-drive input').removeAttr('required');
@@ -433,7 +433,7 @@
         }
         });
 
-        $(window).once('onceOnLoad').on('load', function (e) {
+      $(once('onceOnLoad', context === window ? 'html' : context)).on('load', function (e) {
           $('[data-drupal-selector$="subform-field-optional-feature-wrapper"] fieldset legend').after('<span class="clear-option">Clear Options</span>');
           // Trigger back button.
           $('.step-label.active').prev().addClass('prev');
@@ -443,5 +443,4 @@
       // end
     }
   };
-})(jQuery, Drupal);
-
+})(jQuery, Drupal, once);

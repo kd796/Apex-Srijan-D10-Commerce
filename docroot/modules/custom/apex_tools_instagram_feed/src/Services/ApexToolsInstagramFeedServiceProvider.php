@@ -270,7 +270,7 @@ class ApexToolsInstagramFeedServiceProvider {
     // Delete all social posts and associated media items.
     $social_query = \Drupal::entityQuery('node')
       ->condition('type', 'social_post');
-    $social_nids = $social_query->execute();
+    $social_nids = $social_query->accessCheck(FALSE)->execute();
     $posts = $node_storage->loadMultiple($social_nids);
 
     if (!empty($posts)) {
@@ -336,7 +336,7 @@ class ApexToolsInstagramFeedServiceProvider {
 
     if (strpos($headers_check, "200")) {
       $file_data = file_get_contents($post_media_url);
-      $file = file_save_data($file_data, $image_directory . $post_media_url_basename, FileSystemInterface::EXISTS_REPLACE);
+      $file = \Drupal::service('file.repository')->writeData($file_data, $image_directory . $post_media_url_basename, FileSystemInterface::EXISTS_REPLACE);
 
       // See if there's a media item we can use already.
       $usage = \Drupal::service('file.usage')->listUsage($file);

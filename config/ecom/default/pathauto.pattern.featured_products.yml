@@ -1,0 +1,22 @@
+uuid: 4c8bd865-168a-439b-ab27-466c09f7ba66
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: featured_products
+label: 'Featured Products'
+type: 'canonical_entities:node'
+pattern: 'featured-products/[node:title]'
+selection_criteria:
+  3ef6b4a3-b819-4944-bf3a-c48a56b68233:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 3ef6b4a3-b819-4944-bf3a-c48a56b68233
+    context_mapping:
+      node: node
+    bundles:
+      multisite_featured: multisite_featured
+selection_logic: and
+weight: -5
+relationships: {  }

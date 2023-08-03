@@ -80,6 +80,7 @@ class DrupalNodeService
             ->condition('status', 1)
             ->sort('created', 'ASC')
             ->condition('langcode', StepHelper::getCurrentSite()['code'])
+            ->accessCheck(FALSE)
             ->execute();
 
         $documents = [];

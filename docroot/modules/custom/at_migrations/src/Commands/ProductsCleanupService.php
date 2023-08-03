@@ -4,7 +4,7 @@ namespace Drupal\at_migrations\Commands;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Logger\LoggerChannelInterface;
+use Drush\Drush;
 use Drush\Log\LogLevel;
 
 /**
@@ -20,23 +20,14 @@ class ProductsCleanupService extends ProductServices {
   protected $entityTypeManager;
 
   /**
-   * The logger.
-   *
-   * @var \Drupal\Core\Logger\LoggerChannelInterface
-   */
-  protected $logger;
-
-  /**
    * Constructs an ExampleClass object.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
-   * @param \Drupal\Core\Logger\LoggerChannelInterface $logger
-   *   The Product cleanup logger.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, LoggerChannelInterface $logger) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager) {
     $this->entityTypeManager = $entity_type_manager;
-    $this->logger = $logger;
+    $this->logger = Drush::logger();
   }
 
   /**
@@ -51,7 +42,6 @@ class ProductsCleanupService extends ProductServices {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('entity_type.manager'),
-      $container->get('logger.channel'),
     );
   }
 
@@ -115,11 +105,11 @@ class ProductsCleanupService extends ProductServices {
             $node->save();
             // Clear the entity cache.
             $this->entityTypeManager->getStorage('node')->resetCache([$nid]);
-            drush_log(
+            \Drupal::logger(
               "All the products under $sku_group are in unpublished state",
               LogLevel::SUCCESS
             );
-            drush_log(
+            \Drupal::logger(
               "Successfully unpublished the products under $sku_group family",
               LogLevel::SUCCESS
             );
@@ -130,7 +120,7 @@ class ProductsCleanupService extends ProductServices {
           }
         }
         else {
-          drush_log(
+          \Drupal::logger(
             "All/ Some of the products are published under $sku_group family",
             LogLevel::SUCCESS
           );

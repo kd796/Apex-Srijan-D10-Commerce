@@ -1,0 +1,42 @@
+<header class="header">
+  {% if  page.top_page %}
+      <div class="top-page">
+        <div class="wrapper-content">
+        {{ page.top_page }}
+        {% if  page.search %}
+          <div class="default-search">
+          {{ page.search }}
+          </div>
+        {% endif %}
+        <div class="middle-h-right">
+          <div class="mobile-search">
+            <div class="mobile-search-icon">
+            </div>
+            <div class="mobile-search-block d-none">
+              {% if  page.search %}
+                {{ page.search }}
+              {% endif %}
+              <div class="m-s-close">Close</div>
+            </div>
+          </div>
+          <div class="mobile-nav">
+            <div class="mobile-nav-icon">
+            </div>
+            {% if  page.header %}
+              <div class="mobile-header d-none">
+              {{ page.header }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        </div>
+      </div>
+  {% endif %}
+  {% if  page.header %}
+    <div class="page-header">
+      <div class="wrapper-content">
+        {{ page.header }}
+      </div>
+    </div>
+  {% endif %}
+</header>

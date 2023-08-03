@@ -52,7 +52,7 @@ function gearwrench_migrations_uninstall() {
  *   Import source files.
  */
 function _gearwrench_migrations_source_files() {
-  $dirname = drupal_get_path('module', 'gearwrench_migrations') . '/import/pim_data';
+  $dirname = \Drupal::service('extension.list.module')->getPath('gearwrench_migrations') . '/import/pim_data';
   return \Drupal::service('file_system')->scanDirectory($dirname, '/.*/', [
     'recurse' => FALSE,
     'key' => 'filename',
@@ -63,7 +63,7 @@ function _gearwrench_migrations_source_files() {
  * Imports the latest update from the PIM.
  */
 function gearwrench_migrations_update_8001(&$sandbox) {
-  $dirname = drupal_get_path('module', 'gearwrench_migrations') . '/import/pim-dump/10-29-2021';
+  $dirname = \Drupal::service('extension.list.module')->getPath('gearwrench_migrations') . '/import/pim-dump/10-29-2021';
 
   $source_files = \Drupal::service('file_system')->scanDirectory($dirname, '/.*/', [
     'recurse' => FALSE,

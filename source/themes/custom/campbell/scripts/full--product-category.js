@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
   Drupal.behaviors.productCategoryFilters = {
     filtering: function ($item, $filterType) {
@@ -65,7 +65,7 @@
       let catArray = [];
       let specArray = drupalSettings.selectedAttributes.split(', ');
 
-      $('#edit-field-product-classifications-target-id option').once('setCatFilters').each(function (index) {
+      $(once('setCatFilters', '#edit-field-product-classifications-target-id option', context)).each(function (index) {
         if ($(this).is(':selected')) {
           $('#edit-category-filter-' + $(this).val()).prop('checked', true);
           catArray.push($(this).val());
@@ -77,7 +77,7 @@
         $('.node--type-product-category__attribute-filter').find('input[value="' + value + '"]').prop('checked', true);
       });
 
-      $('.campbell-product-category-filters:not(.campbell-product-category-filters--js-initialized)').once('product-category-filters').each(function (index) {
+      $(once('product-category-filters', '.campbell-product-category-filters:not(.campbell-product-category-filters--js-initialized)', context)).each(function (index) {
         let $categoryFilter = $('.node--type-product-category__category-filter');
         let $attributeFilter = $('.node--type-product-category__attribute-filter');
 
@@ -114,4 +114,4 @@
     });
   }
 
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

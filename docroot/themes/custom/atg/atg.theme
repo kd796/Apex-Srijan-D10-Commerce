@@ -168,6 +168,7 @@ function atg_preprocess_node__geo_directory(&$variables)
 
     // Distributor Level
     $distributor_level_ids = Drupal::entityQuery('taxonomy_term')
+        ->accessCheck(FALSE)
         ->condition('vid', 'distributor_level')
         ->sort('weight')
         ->execute();
@@ -185,6 +186,7 @@ function atg_preprocess_node__geo_directory(&$variables)
 
     // Available Tools
     $products_offered_ids = Drupal::entityQuery('taxonomy_term')
+        ->accessCheck(FALSE)
         ->condition('vid', 'products_offered')
         ->sort('weight')
         ->execute();
@@ -234,21 +236,26 @@ function atg_preprocess_paragraph__form_section(&$variables)
         // $view = \Drupal::service('entity.form_builder')->getForm($message);
         $form    = \Drupal::entityTypeManager()->getStorage('webform')->load($form_name);
         $builder = \Drupal::service('entity_type.manager')->getViewBuilder('webform');
-        $view    = $builder->view($form);
+        if(!empty($form)){
+            $view    = $builder->view($form);
 
-        $forms[$form->id()] = [
-            'id'    => $form->id(),
-            'label' => $form->label(),
-            'icon'  => atg_get_form_icon($form->id()),
-            'view'  => $view,
-            'link'  => null,
-        ];
+            $forms[$form->id()] = [
+                'id'    => $form->id(),
+                'label' => $form->label(),
+                'icon'  => atg_get_form_icon($form->id()),
+                'view'  => $view,
+                'link'  => null,
+            ];
+        }
     }
 
     $field_ade_form = $paragraph->get('field_ade_form')->getValue()[0]['value'];
     if ($field_ade_form) {
         $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
-        $nids = \Drupal::entityQuery('node')->condition('type', 'advanced_selector')->condition('langcode', $langcode)->execute();
+        $nids = \Drupal::entityQuery('node')
+        ->accessCheck(FALSE)
+        ->condition('type', 'advanced_selector')
+        ->condition('langcode', $langcode)->execute();
 
         if ($nids) {
             foreach (\Drupal\node\Entity\Node::loadMultiple($nids) as $node) {
