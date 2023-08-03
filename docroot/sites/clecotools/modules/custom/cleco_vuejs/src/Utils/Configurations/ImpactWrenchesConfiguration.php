@@ -30,7 +30,7 @@ class ImpactWrenchesConfiguration implements ComparisonTableConfiguration {
     $definition->addNumericColumn('Blows Per Minute')
       ->forKey('values.blows_per_minute');
     $definition->addNumericColumn('Free Speed')
-      ->forKey('values.free_speed_rpm')
+      ->forKey('values.free_speed')
       ->withUnits('1/min');
     $definition->addNumericColumn('Length')
       ->forImperialKey('values.length_in', 'in')

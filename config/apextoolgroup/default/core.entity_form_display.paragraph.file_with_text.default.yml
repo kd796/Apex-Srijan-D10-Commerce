@@ -1,0 +1,33 @@
+uuid: 4fab7a63-b41b-4e13-bc28-713a763049d0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.file_with_text.field_file
+    - field.field.paragraph.file_with_text.field_file_label
+    - paragraphs.paragraphs_type.file_with_text
+  module:
+    - media_library
+id: paragraph.file_with_text.default
+targetEntityType: paragraph
+bundle: file_with_text
+mode: default
+content:
+  field_file:
+    type: media_library_widget
+    weight: 1
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_file_label:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

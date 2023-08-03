@@ -26,4 +26,10 @@ jQuery(document).ready(function () {
     }
     return false;
   });
+  // Opening a form based on ID.
+  if(window.location.hash !== '') {
+    var cardID = window.location.hash;
+    jQuery('a[href*="' + cardID + '"]').parent().trigger('click');
+  }
+  
 });

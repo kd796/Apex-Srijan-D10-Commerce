@@ -128,6 +128,10 @@
           $(this).closest('.field--widget-options-buttons').siblings('div').find('label').addClass('form-required');
           $(this).closest('.field--widget-options-buttons').siblings('div').find('select').prop('required', true);
           $(this).closest('.field--widget-options-buttons').siblings('div').find('input').prop('required', true);
+          var selectedVal = $(this).val();
+          if (!(selectedVal === 'socket_extension')) {
+            $('.field--name-field-extension-dropdown').find('select').prop('required', false);
+          }
         });
 
         $(once('femaleMaleDriveType', femaleMaleDriveType, context )).on('change', function () {

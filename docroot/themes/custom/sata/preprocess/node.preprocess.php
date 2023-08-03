@@ -108,6 +108,7 @@ function sata_preprocess_node__media_page__full(&$variables) {
   $host = \Drupal::request()->getSchemeAndHttpHost();
   if (in_array($host, $sata_br_host_names)) {
     $variables['is_sata_br_domain'] = TRUE;
+    $variables['categories']['#title'] = "CATEGORIA";
   }
 
   unset($variables['content']['field_category']);

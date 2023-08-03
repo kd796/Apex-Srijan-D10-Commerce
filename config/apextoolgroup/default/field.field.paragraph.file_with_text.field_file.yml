@@ -1,0 +1,29 @@
+uuid: 88662291-953b-4d65-a4c7-a6f69725f584
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_file
+    - media.type.file
+    - paragraphs.paragraphs_type.file_with_text
+id: paragraph.file_with_text.field_file
+field_name: field_file
+entity_type: paragraph
+bundle: file_with_text
+label: File
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      file: file
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
