@@ -2,14 +2,27 @@ input,
 select,
 textarea {
   width: 100%;
-  border: 1px solid $black;
+  border-top: 1px solid $dim-gray;
+  border-right: 1px solid $gray;
+  border-bottom: 1px solid $gray;
+  border-left: 1px solid $dim-gray;
   border-radius: 5px;
   padding: 6px 5px;
-  background: $white;
-  color: $black;
+  background: linear-gradient(180deg, $gray, $white, 5%);
+  color: $dim-gray;
 
   &::placeholder {
     padding: 0 10px;
-    color: $black;
+    color: $dim-gray;
   }
+}
+
+.webform-confirmation__message,
+.webform-confirmation__back {
+  width: 100%;
+  margin: 30px 0;
+  text-align: center;
+  padding: 10px;
+  background: $filter-bg;
+  border: solid 1px $alto;
 }
