@@ -66,9 +66,9 @@ class QuotationListBuilder extends EntityListBuilder {
     $build['table'] = parent::render();
 
     $total = $this->getStorage()
-      ->accessCheck(FALSE)
       ->getQuery()
       ->count()
+      ->accessCheck(FALSE)
       ->execute();
 
     $build['summary']['#markup'] = $this->t('Total quotations: @total', ['@total' => $total]);
