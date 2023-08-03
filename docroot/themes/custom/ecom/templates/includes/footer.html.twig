@@ -1,0 +1,40 @@
+<footer{{ footer_attributes }}>
+    <div class="footer-container">
+      <div id="footer-columns" class="region-footer__inner-container footer-columns clearfix">
+        <div class="wrapper-content">
+          <div class="footer-wrapper">
+            {% if page.footer_first %}
+              <div class="footer-wrapper__item">
+                {{ page.footer_first }}
+              </div>
+            {% endif %}
+            {% if page.footer_second %}
+              <div class="footer-wrapper__item">
+                {{ page.footer_second }}
+              </div>
+            {% endif %}
+            {% if page.footer_third %}
+              <div class="footer-wrapper__item">
+                {{ page.footer_third }}
+              </div>
+            {% endif %}
+            {% if page.footer_fourth %}
+              <div class="footer-wrapper__item">
+                {{ page.footer_fourth }}
+              </div>
+            {% endif %}
+            {% if page.footer_fifth %}
+              <div class="footer-wrapper__item">
+                {{ page.footer_fifth }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% if page.footer %}
+        <div class="footer-copyrights clearfix">
+          {{ page.footer }}
+        </div>
+      {% endif %}
+    </div>
+  </footer>

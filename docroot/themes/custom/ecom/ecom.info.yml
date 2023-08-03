@@ -1,0 +1,37 @@
+name: ecom
+type: theme
+base theme: classy
+description: A D10 theme for ecom Site.
+package: ATG
+core_version_requirement: ^9 || ^10
+logo: icons/logo.png
+screenshot: ecom.png
+
+libraries:
+  - ecom/global
+
+libraries-override:
+  # Replace an asset with another.
+  we_megamenu/form.we-mega-menu-frontend:
+    js:
+     assets/js/we_mobile_menu.js: js/megamenu.js
+
+regions:
+  top_page: 'Page top'
+  search: 'Search'
+  header: 'Header'
+  highlighted: 'Highlighted'
+  pre_content: 'Pre-content'
+  content: Content
+  post_content: 'Post-content'
+  featured: 'Featured'
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  bottom_page: 'Page bottom'
+  footer_first: 'Footer: First'
+  footer_second: 'Footer: Second'
+  footer_third: 'Footer: Third'
+  footer_fourth: 'Footer: Fourth'
+  footer_fifth: 'Footer: Fifth'
+  footer: 'Footer'
+  disable: 'Disable'
