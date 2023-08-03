@@ -801,7 +801,7 @@ $databases = [];
  */
 # @todo Acquia Configuration
 if (file_exists('/var/www/site-php')) {
-  require '/var/www/site-php/apextoolgroup/campbell-settings.inc';
+  require '/var/www/site-php/apextoolgroup/ecom-settings.inc';
 }
 
 /**
