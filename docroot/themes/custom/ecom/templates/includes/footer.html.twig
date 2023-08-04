@@ -1,6 +1,13 @@
 <footer{{ footer_attributes }}>
   <div class="footer-container">
     <div id="footer-columns" class="region-footer__inner-container footer-columns clearfix">
+      {% if page.footer_top %}
+        <div class="wrapper-content">
+          <div class="footer-top">
+            {{ page.footer_top }}
+          </div>
+        </div>
+      {% endif %}
       <div class="wrapper-content">
         <div class="footer-wrapper">
           {% if page.footer_first %}
@@ -30,11 +37,13 @@
           {% endif %}
         </div>
       </div>
-    </div>
-    {% if page.footer %}
-      <div class="footer-copyrights clearfix">
-        {{ page.footer }}
+      {% if page.footer %}
+      <div class="wrapper-content">
+        <div class="footer-copyrights clearfix">
+          {{ page.footer }}
+        </div>
       </div>
-    {% endif %}
+      {% endif %}
+    </div>
   </div>
 </footer>
