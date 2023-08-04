@@ -105,19 +105,12 @@
     position: absolute;
     top: 0;
     left: -23px;
-    width: 23%;
+    width: 325px;
     height: 72px;
     margin-left: 20px;
     background-color: $color-orange;
     z-index: -1;
   }
-
-  @media only screen and (max-width: $media-screen-medium) {
-    &::before {
-      width: 27%;
-    }
-  }
-
   @media only screen and (max-width: $breakpoint-type) {
     &::before {
       height: 64px;
@@ -125,8 +118,8 @@
   }
 
   @media only screen and (max-width: $media-screen-mobile) {
-    width: 100px;
-
+    width: 125px;
+    margin-left: 2px;
     &::before {
       width: 35%;
       height: 60px;
@@ -144,7 +137,7 @@
   }
 
   @media (min-width: 800px) {
-    width: 8.8125rem;
+    width: 19.8125rem;
     height: 2rem;
   }
 }
@@ -157,11 +150,15 @@
   position: relative;
   display: flex;
   justify-content: space-between;
-  @include section-padding(horizontal);
-}
 
+}
+.masthead-primary {
+  @include section-padding(horizontal);
+  padding-left: 20px;
+}
 .masthead-utility {
   flex-wrap: wrap;
+  @include section-padding(horizontal);
 }
 
 /**
