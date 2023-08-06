@@ -5,7 +5,7 @@ dependencies:
   config:
     - field.storage.media.field_media_image
     - field.storage.node.field_case_study_summary
-    - image.style.product_thumb
+    - image.style.media_entity_browser_thumbnail
     - node.type.solutions
   module:
     - image
@@ -81,7 +81,7 @@ display:
           type: image
           settings:
             image_link: ''
-            image_style: product_thumb
+            image_style: media_entity_browser_thumbnail
             image_loading:
               attribute: lazy
           group_column: ''
@@ -148,7 +148,7 @@ display:
           click_sort_column: value
           type: string
           settings:
-            link_to_entity: true
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -186,14 +186,14 @@ display:
             suffix: ''
             target: ''
             nl2br: false
-            max_length: 0
+            max_length: 100
             word_boundary: true
             ellipsis: true
             more_link: false
             more_link_text: ''
             more_link_path: ''
             strip_tags: false
-            trim: false
+            trim: true
             preserve_tags: ''
             html: false
           element_type: ''
@@ -221,6 +221,59 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        view_node:
+          id: view_node
+          table: node
+          field: view_node
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          plugin_id: entity_link
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: case-study-links
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          text: 'VIEW MORE'
+          output_url_as_text: false
+          absolute: false
       pager:
         type: some
         options:
@@ -361,7 +414,7 @@ display:
           columns: 3
           automatic_width: false
           alignment: horizontal
-          row_class_custom: solution-case-study-row
+          row_class_custom: 'solution-case-study-row section main'
           row_class_default: true
           col_class_custom: solution-case-study-card
           col_class_default: true
@@ -394,7 +447,20 @@ display:
           admin_label: 'field_image: Media'
           plugin_id: standard
           required: false
-      header: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: ''
+            format: full_html
+          tokenize: false
       footer: {  }
       display_extenders: {  }
     cache_metadata:
