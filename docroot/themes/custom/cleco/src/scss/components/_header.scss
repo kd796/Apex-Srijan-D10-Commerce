@@ -97,8 +97,8 @@
 .logo {
   @include link-reset;
   display: inline-block;
-  width: 6.625rem;
-  height: 1.5rem;
+  width: 13rem;
+  height: 2rem;
 
   &::before {
     content: " ";
@@ -118,10 +118,10 @@
   }
 
   @media only screen and (max-width: $media-screen-mobile) {
-    width: 125px;
+    width: 175px;
     margin-left: 2px;
     &::before {
-      width: 35%;
+      width: 224px;
       height: 60px;
       top: -4px;
     }
@@ -137,7 +137,7 @@
   }
 
   @media (min-width: 800px) {
-    width: 19.8125rem;
+    width: 17em;
     height: 2rem;
   }
 }
@@ -504,5 +504,23 @@
 
   &.is-active {
     display: block;
+  }
+}
+
+// new logo responsive code
+@media (max-width:768px) {
+  .logo {
+    height: 1.5rem;
+    &::before {
+      width: 275px;
+    }
+  }
+}
+
+@media (max-width:560px) {
+  .logo {
+    &::before {
+      width: 224px!important;
+    }
   }
 }
