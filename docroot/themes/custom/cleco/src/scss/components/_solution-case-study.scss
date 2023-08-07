@@ -42,31 +42,10 @@
                 color: #fff;
                 background-color: $color-orange;
                 padding: 10px 30px;
-                position: relative;
                 display: block;
                 width: 9rem;
                 &:hover {
                     background-color: $color-off-black;
-                }
-                &::before {
-                    position: absolute;
-                    content: '';
-                    height: 2px;
-                    min-width: 0rem;
-                    width: 1rem;
-                    top: 17px;
-                    left: 6px;
-                    background-color: $color-white;
-                }
-                &::after {
-                    position: absolute;
-                    content: '';
-                    background: url(svg-background($svg-arrow-right, #fff)) no-repeat right center;
-                    min-width: 1em;
-                    width: 2em;
-                    height: 1.5em;
-                    margin-left: auto;
-                    top: 9px;
                 }
             }
         }
