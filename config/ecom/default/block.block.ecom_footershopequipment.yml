@@ -1,20 +1,25 @@
-uuid: 87046c75-cfe5-43a6-907b-979af8b8e529
+uuid: 6797e809-0538-4f7e-b5ac-f9b29d2ca9ef
 langcode: en
 status: true
 dependencies:
+  config:
+    - system.menu.footer-shop-equipment
   module:
-    - we_megamenu
+    - system
   theme:
     - ecom
 id: ecom_footershopequipment
 theme: ecom
 region: footer_third
-weight: -3
+weight: 0
 provider: null
-plugin: 'we_megamenu_block:footer-shop-equipment'
+plugin: 'system_menu_block:footer-shop-equipment'
 settings:
-  id: 'we_megamenu_block:footer-shop-equipment'
+  id: 'system_menu_block:footer-shop-equipment'
   label: 'Shop Equipment'
-  label_display: '0'
-  provider: we_megamenu
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
 visibility: {  }
