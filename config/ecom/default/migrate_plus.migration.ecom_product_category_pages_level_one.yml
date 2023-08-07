@@ -1,0 +1,162 @@
+uuid: 55f8b07d-3749-4d89-82a8-744a4c15ea69
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: b5s5Uf5PaCwweoxJ59blOPzEtsaUqUuQ9FFOKUg3iJw
+id: ecom_product_category_pages_level_one
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: ecom
+label: 'Ecom Product Listing Pages - Level One'
+source:
+  constants:
+    bool_0: 0
+    bool_1: 1
+    uid_root: 1
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: 'http://www.stibosystems.com/step'
+  item_selector: '/STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 1"]'
+  fields:
+    -
+      name: remote_id
+      label: ID
+      selector: '@ID'
+    -
+      name: remote_name
+      label: 'Classification Name'
+      selector: Name
+    -
+      name: remote_listing_image
+      label: 'Listing Image'
+      selector: .
+  ids:
+    remote_id:
+      type: string
+process:
+  field_classification_id:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_id
+    method: row
+    value:
+      - W1_15987
+      - W1_15988
+      - W1_15990
+      - W1_886552
+      - W1_22481
+      - W1_22482
+      - W1_22483
+      - W1_22484
+      - W1_22485
+      - W1_22486
+      - W1_22487
+      - W1_704473
+      - W1_706367
+      - W1_706780
+      - W1_719495
+      - W1_719524
+      - W1_719537
+      - W1_736078
+      - W1_755886
+      - W1_802905
+      - W1_27025
+      - W1_26966
+      - W1_26967
+      - W1_26974
+      - W1_26998
+      - W1_27002
+      - W1_27022
+      - W1_27023
+      - W1_27024
+      - W1_27043
+      - W1_27260
+      - W1_27261
+      - W1_15788
+      - W1_15789
+      - W1_802014
+      - W1_15792
+      - W1_15793
+      - W1_15795
+      - W1_15796
+      - W1_15797
+      - W1_15798
+      - W1_727497
+      - W1_806799
+      - W1_728251
+      - W1_16113
+      - W1_15799
+      - W1_736539
+      - W1_15794
+      - W1_781017
+      - W1_785249
+      - W1_15791
+      - W1_846444
+      - W1_846447
+      - W1_846450
+      - W1_846451
+      - W1_846452
+      - W1_846454
+      - W1_846455
+      - W1_846456
+      - W1_846457
+      - W1_846458
+      - W1_846459
+      - W1_846460
+      - W1_846461
+      - W1_846463
+      - W1_846464
+      - W1_846465
+      - W1_846466
+      - W1_846467
+  type:
+    plugin: default_value
+    default_value: product_category
+  title: remote_name
+  sticky: constants/bool_0
+  promote: constants/bool_1
+  uid: constants/uid_root
+  name:
+    plugin: skip_on_empty
+    method: row
+    source: remote_name
+  product_classifications_array:
+    plugin: apex_get_all_product_classifications
+    source: remote_name
+    depth: 2
+  field_product_classifications:
+    plugin: sub_process
+    source: '@product_classifications_array'
+    include_source: true
+    process:
+      vocabulary_id: vid
+      target_id: target_id
+  listing_menu_image:
+    source: remote_listing_image
+    plugin: apex_get_category_menu_image
+  field_media/target_id: '@listing_menu_image'
+  category_facets_array:
+    plugin: get_all_category_facets
+    source: remote_id
+  field_category_facets:
+    plugin: sub_process
+    source: '@category_facets_array'
+    include_source: true
+    process:
+      vocabulary_id: vid
+      target_id: target_id
+destination:
+  plugin: 'entity:node'
+migration_dependencies:
+  required:
+    - ecom_product_classifications_level_one
+  optional:
+    - ecom_product_classifications_level_two
+    - ecom_product_classifications_level_three
+    - ecom_product_classifications_level_four
