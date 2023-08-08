@@ -38,9 +38,11 @@ function ecom_migrations_uninstall() {
   \Drupal::configFactory()->getEditable('migrate_plus.migration.ecom_product_classifications_level_one')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.ecom_product_classifications_level_two')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.ecom_product_classifications_level_three')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.ecom_product_classifications_level_four')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.ecom_product_category_pages_level_one')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.ecom_product_category_pages_level_two')->delete();
   \Drupal::configFactory()->getEditable('migrate_plus.migration.ecom_product_category_pages_level_three')->delete();
+  \Drupal::configFactory()->getEditable('migrate_plus.migration.ecom_product_category_pages_level_four')->delete();
 }
 
 /**
