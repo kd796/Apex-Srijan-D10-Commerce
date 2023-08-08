@@ -226,6 +226,7 @@ class GetProductImages extends ApexGetProductImages implements ContainerFactoryP
               $query = $this->entityTypeManager->getStorage('media')->getQuery();
               $id = $query->condition('bundle', 'remote_video')
                 ->condition('field_media_video_embed_field.value', $clean_url)
+                ->accessCheck(FALSE)
                 ->execute();
               if (count($id)) {
                 $this->mediaIds[] = [
