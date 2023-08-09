@@ -1,0 +1,7 @@
+commerce_us_custom_tax.import_form:
+  path: '/admin/import-tax'
+  defaults:
+    _form: '\Drupal\commerce_us_custom_tax\Form\TaxImportForm'
+    _title: 'Import Tax'
+  requirements:
+    _permission: 'administer site configuration'
