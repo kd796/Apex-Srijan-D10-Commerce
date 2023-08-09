@@ -97,20 +97,47 @@
 .logo {
   @include link-reset;
   display: inline-block;
-  width: 6.625rem;
-  height: 1.5rem;
+  width: 13rem;
+  height: 2rem;
+
+  &::before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: -23px;
+    width: 325px;
+    height: 72px;
+    margin-left: 20px;
+    background-color: $color-orange;
+    z-index: -1;
+  }
+  @media only screen and (max-width: $breakpoint-type) {
+    &::before {
+      height: 64px;
+    }
+  }
 
   @media only screen and (max-width: $media-screen-mobile) {
-    width: 100px;
+    width: 175px;
+    margin-left: 2px;
+    &::before {
+      width: 224px;
+      height: 60px;
+      top: -4px;
+    }
   }
 
   svg {
     width: 100%;
     height: 100%;
+
+    g {
+      fill: $color-off-black;
+    }
   }
 
   @media (min-width: 800px) {
-    width: 8.8125rem;
+    width: 17em;
     height: 2rem;
   }
 }
@@ -123,11 +150,15 @@
   position: relative;
   display: flex;
   justify-content: space-between;
-  @include section-padding(horizontal);
-}
 
+}
+.masthead-primary {
+  @include section-padding(horizontal);
+  padding-left: 20px;
+}
 .masthead-utility {
   flex-wrap: wrap;
+  @include section-padding(horizontal);
 }
 
 /**
@@ -154,7 +185,10 @@
   align-items: center;
   justify-content: flex-end;
   @include property-scale(margin-left, map-multiplier($container-padding-map, 0.5));
-
+  padding-left: 3rem !important;
+  @media only screen and (max-width: $breakpoint-form){
+    padding-left: 1rem !important;
+  }
   @media only screen and (max-width: $media-screen-medium) {
     margin: 0 0 0 auto;
   }
@@ -252,6 +286,8 @@
  */
 .masthead-utility {
   border-bottom: 0.0625rem solid rgba($color-gray-light, 0.43);
+  background-color: $color-off-black;
+
   @media only screen and (max-width: $media-screen-mobile) {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
@@ -281,7 +317,7 @@
 /**
  * LAYOUT: STACKED
  */
-@media (max-width: $breakpoint-nav-inline - 1) {
+@media (max-width: ($breakpoint-nav-inline - 1)) {
   .masthead-primary {
     // flex-flow: row wrap;
 
@@ -468,5 +504,23 @@
 
   &.is-active {
     display: block;
+  }
+}
+
+// new logo responsive code
+@media (max-width:768px) {
+  .logo {
+    height: 1.5rem;
+    &::before {
+      width: 275px;
+    }
+  }
+}
+
+@media (max-width:560px) {
+  .logo {
+    &::before {
+      width: 224px!important;
+    }
   }
 }

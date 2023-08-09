@@ -1,0 +1,25 @@
+uuid: d51cdd38-d0a4-40ec-96dd-9b82874a863f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_industry_solutions_home
+    - node.type.home
+id: node.home.field_industry_solutions_home
+field_name: field_industry_solutions_home
+entity_type: node
+bundle: home
+label: 'Industry Solutions Home'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: industry_solutions_er
+      display_name: entity_reference_content_solutions
+      arguments: {  }
+field_type: entity_reference

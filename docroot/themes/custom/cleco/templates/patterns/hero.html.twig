@@ -1,0 +1,80 @@
+{% set size = size | default(null) %}
+{% set image = image | default(null) %}
+{% set hero_video_url = hero_video_url | default(null) %}
+{% set title_prefix = title_prefix | default(null) %}
+{% set title_suffix = title_suffix | default(null) %}
+{% set title = title | default(null) %}
+{% set subtitle = subtitle | default(null) %}
+{% set action = action | default(null) %}
+{% set url = url | default(null) %}
+{% set target = target | default(null) %}
+{% set form = form | default(null) %}
+{% set wide = title | length > 40 %}
+{% set animate = animate | default(true) %}
+{% set align = align | default(null) %}
+{% set class = class | default(null) %}
+{% set file = file | default(null) %}
+{% set file_text = file_text | default(null) %}
+
+{% set attributes = create_attribute({ class: ['hero'] }) %}
+{% if size %}
+  {% set attributes = attributes.addClass('hero--' ~ size) %}
+{% endif %}
+{% if wide %}
+  {% set attributes = attributes.addClass('hero--text-full') %}
+{% endif %}
+{% if animate != '1' %}
+  {% set attributes = attributes.addClass('hero--no-animate') %}
+{% endif %}
+{% if align %}
+  {% set attributes = attributes.addClass('hero--align-left') %}
+{% endif %}
+{% if class %}
+  {% set attributes = attributes.addClass(class) %}
+{% endif %}
+<div{{ attributes }}>
+  {% if hero_video_url|length > 2 %}
+    <div class="hero-image video-section">
+      <video id="heroVideo" muted autoplay loop controls playsinline>
+        <source src="{{media_url}}" type="video/mp4">
+      </video>
+    </div>
+  {% elseif image is not null %}
+    <div class="hero-image">
+      {{ image }}
+    </div>
+  {% endif %}
+  <div class="hero-text">
+    {% if title_prefix is not null %}
+      <div class="hero-title-prefix">{{ title_prefix }}</div>
+    {% endif %}
+    {% if title is not null %}
+      <h1 class="hero-title">{{ title | raw }}</h1>
+    {% endif %}
+    {% if subtitle is not null %}
+      {% if file is not null and file_text is not null %}
+        <div class="hero-subtitle">
+          <h3 class="hero-subtitle-text">{{ subtitle | raw }}</h3>
+          <div class="hero-file" >
+            <a href="{{ file }}" download>{{ file_text }}</a>
+          </div>
+        </div>
+      {% else %}
+        <h2 class="hero-subtitle">{{ subtitle | raw }}</h2>
+      {% endif %} 
+    {% endif %}
+    {% if title_suffix is not null %}
+      <div class="hero-title-suffix">{{ title_suffix }}</div>
+    {% endif %}
+    {% if url is not null and action is not null %}
+      <div class="hero-action">
+        <a href="{{ url }}" target="{{ target }}" class="button button--inverse">{{ action }}</a>
+      </div>
+    {% endif %}
+  </div>
+  {% if form is not null and form.0 is not null %}
+  <div class="hero-form">
+    {{ form }}
+  </div>
+  {% endif %}
+</div>

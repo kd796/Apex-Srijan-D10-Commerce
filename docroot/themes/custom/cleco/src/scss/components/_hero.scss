@@ -61,11 +61,38 @@ $hero-height-map: (
   min-height: 100%;
 }
 
+/* css for hero image video */
+.hero-image {
+  &.video-section {
+    video {
+      width: 100% !important;
+      height: 100%;
+      object-fit: cover;
+      &::-webkit-media-controls-timeline {
+        opacity: 0 !important;
+        display: none !important;
+      }
+    }
+    +.hero-text {
+      display: none;
+    }
+  }
+}
+/* css for hero banner video text */
+.dispblock {
+  display: block !important;
+}
 /**
  * HERO TEXT
  */
+ .page-node-type-case-studies {
+  .hero-text {
+    text-shadow: unset;
+  }
+ }
 .hero-text {
   position: relative;
+  text-shadow: 4px 4px 6px $color-off-black;
 }
 
 .hero-title-prefix,
@@ -96,7 +123,7 @@ $hero-height-map: (
   &::after {
     content: "\00a0";
     padding-left: 0.0625em;
-    background: url(svg-background($svg-circle, $color-orange)) no-repeat right 78%;
+    background: url(svg-background($svg-circle, #fff)) no-repeat right 78%;
     background-size: 0.25em 0.25em;
   }
 }
