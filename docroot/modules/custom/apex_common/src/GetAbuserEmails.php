@@ -32,6 +32,7 @@ class GetAbuserEmails {
   public function getAbuserEmails($web_form_id) {
     // Get Warranty Abusers Form submissions.
     $query = $this->entityTypeManager->getStorage('webform_submission')->getQuery();
+    $query->accessCheck(FALSE);
     $query->condition('webform_id', $web_form_id);
     $result = $query->execute();
 

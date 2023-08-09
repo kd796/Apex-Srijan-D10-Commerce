@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.gallery = {
@@ -6,7 +6,7 @@
       // Accordian for the gallery.
       var galleryCardImage = $('.gallery-grid__item .image');
       var closeCard = $('.gallery-grid__item .close');
-      galleryCardImage.once('accordion').on('click', function (e) {
+      $(once('accordion', galleryCardImage, context)).on('click', function (e) {
         e.preventDefault();
         var $this = $(this);
         var galleryCard = $this.parent('.gallery-grid__item');
@@ -27,11 +27,11 @@
         }
       });
       // Close the card on click of icon.
-      closeCard.once('accordion').on('click', function (e) {
+      $(once('accordion', closeCard, context)).on('click', function (e) {
         var galleryCard = $('.gallery-grid__item');
         galleryCard.removeClass('active');
         $('.bottom').removeClass('active').css('height', '');
       });
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

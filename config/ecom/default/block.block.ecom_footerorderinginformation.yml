@@ -1,0 +1,25 @@
+uuid: ac03161d-a5e6-4880-a19a-1153fbca6f14
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer-ordering-information
+  module:
+    - system
+  theme:
+    - ecom
+id: ecom_footerorderinginformation
+theme: ecom
+region: footer_fourth
+weight: 0
+provider: null
+plugin: 'system_menu_block:footer-ordering-information'
+settings:
+  id: 'system_menu_block:footer-ordering-information'
+  label: 'Ordering Information'
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

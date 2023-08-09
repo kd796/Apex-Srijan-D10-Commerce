@@ -37,6 +37,7 @@ class ProductCategoryFiltersForm extends FormBase {
       }
 
       $product_query = \Drupal::entityQuery('node')
+        ->accessCheck(FALSE)
         ->condition('type', 'product')
         ->condition('field_product_classifications', $classifications[0])
         ->execute();
@@ -81,7 +82,7 @@ class ProductCategoryFiltersForm extends FormBase {
       $classification_query = \Drupal::entityQuery('taxonomy_term')
         ->condition('vid', 'product_classifications')
         ->condition('field_classification_id', $active_classification_id);
-      $classification_tids = $classification_query->execute();
+      $classification_tids = $classification_query->accessCheck(FALSE)->execute();
       $classification_terms = Term::loadMultiple($classification_tids);
 
       foreach ($classification_terms as $classification_term) {

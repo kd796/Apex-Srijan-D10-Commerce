@@ -100,7 +100,7 @@
       </notice>
 
       <catalog-results class-prefix="results" :data="catalog.data" :loading="catalog.currentQuery !== null">
-        {% filter raw %}
+      {% apply spaceless %}
           <li class="results-item" slot-scope="result">
             <div class="result">
               <a :href="result.url" class="result-image" v-if="result.image">
@@ -119,7 +119,7 @@
               </div>
             </div>
           </li>
-        {% endfilter %}
+        {% endapply %}
       </catalog-results>
 
       <pagination v-model="catalog.state.page" :total-results="catalog.total" :per-page.sync="catalog.state.perPage" :per-page-options="[12, 24, 48, 96]"

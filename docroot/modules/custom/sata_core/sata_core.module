@@ -100,6 +100,7 @@ function sata_core_views_pre_build(ViewExecutable $view) {
         if (!empty($parent_tids)) {
           // Load all the products that have one of the provided categories.
           $product_query = \Drupal::entityQuery('node')
+            ->accessCheck(FALSE)
             ->condition('type', 'product')
             ->condition('field_product_classifications', $parent_tids, 'IN')
             ->execute();

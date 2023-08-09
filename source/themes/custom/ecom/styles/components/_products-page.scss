@@ -1,0 +1,115 @@
+/****** Products Landing page ******/
+
+.page-title {
+  font-size: 35px;
+  color: $pantone;
+  font-weight: $bold;
+  margin-bottom: 30px;
+  @media only screen and (max-width: $tablet) {
+    margin-bottom: 15px;
+    font-size: 28px;
+  }
+}
+
+.addthis-containers {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.products-menu-page {
+  margin: 30px 0 25px;
+  @media only screen and (max-width: $tablet-max) {
+    margin: 30px 0 25px;
+  }
+
+  .menu-block {
+    width: 238px;
+    float: left;
+    padding-right: 15px;
+    margin-right: 15px;
+    border-right: solid 0.5px $gray;
+
+    &:last-child {
+      border-right: 0;
+      margin-right: 0;
+      padding-right: 0;
+    }
+
+    @media only screen and (max-width: $tablet-max) {
+      width: 230px;
+
+      &:nth-child(3) {
+        border-right: 0;
+        margin-right: 0;
+        padding-right: 0;
+      }
+    }
+
+    @media only screen and (max-width: $tablet) {
+      border-right: 0;
+      padding-right: 0;
+      margin-right: 0;
+      width: 100%;
+    }
+  }
+
+  .views-field-wrap {
+    display: flex;
+    align-items: center;
+  }
+
+  ul {
+    padding-left: 35px;
+
+    &:first-child {
+      padding-left: 0;
+
+      & > li > .views-field-nothing {
+        margin-left: 5px;
+
+        .views-field-field-name a {
+          text-transform: uppercase;
+          color: $pantone;
+
+          &:hover,
+          &:focus {
+            color: $black;
+          }
+        }
+      }
+    }
+
+    .views-field-field-name {
+      padding-left: 5px;
+
+      a {
+        color: $black;
+        font-size: 12px;
+        font-weight: $bold;
+        font-family: $helvetica;
+        text-transform: inherit;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 3px;
+
+        &:hover,
+        &:focus {
+          color: $menu-hover;
+        }
+      }
+    }
+  }
+
+  .featured-menu-mobile {
+    @media only screen and (min-width: $tablet-max) {
+      display: none;
+    }
+  }
+
+  .featured-menu-desktop {
+    @media only screen and (max-width: $tablet-max) {
+      display: none;
+    }
+  }
+}

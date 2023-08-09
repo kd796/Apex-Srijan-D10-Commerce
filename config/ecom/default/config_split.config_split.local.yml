@@ -1,0 +1,28 @@
+uuid: e9909871-9f53-4789-9ddc-e75b34e3e90b
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: ERHG6Dm2d0utU86SvJYfvKU-baGHa3se-Qll8bkCJ1U
+id: local
+label: Local
+description: ''
+weight: -5
+folder: ../config/ecom/local
+module:
+  acquia_connector: 0
+  dblog: 0
+  stage_file_proxy: 0
+  acquia_purge: 0
+  devel: 0
+  views_ui: 0
+theme: {  }
+blacklist:
+  - search_api.server.ddev_local_solar_server
+graylist:
+  - advagg.settings
+  - advagg_css_minify.settings
+  - advagg_js_minify.settings
+  - system.performance
+graylist_dependents: true
+graylist_skip_equal: true

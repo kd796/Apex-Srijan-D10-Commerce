@@ -1,9 +1,9 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.productTypeFiltersTabs = {
     attach: function (context, settings) {
-      $('.views-exposed-form').once('product-category-filter-tabs').each(function (index) {
+      $(once('product-category-filter-tabs', '.views-exposed-form', context)).each(function (index) {
         // Initialize variables.
         var $widget = $(this);
         var $accordions = $widget.find('fieldset');
@@ -93,4 +93,4 @@
       });
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

@@ -1,0 +1,25 @@
+uuid: ffb58c39-9a14-43f7-b877-e3aaa87ef5bf
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer-third
+  module:
+    - system
+  theme:
+    - ecom
+id: ecom_footerthird
+theme: ecom
+region: footer_third
+weight: -4
+provider: null
+plugin: 'system_menu_block:footer-third'
+settings:
+  id: 'system_menu_block:footer-third'
+  label: Storage
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

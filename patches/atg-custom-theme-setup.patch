@@ -83,7 +83,7 @@ index 4bd7cbf..0d5d4ac 100755
    --standard=Drupal -n \
    --extensions="php,module,inc,install,test,profile,theme" \
 -  --ignore="*.pages*.inc,*.yml,.docksal,*.js,*.jpg,*.png,settings*.php,*.txt" \
-+  --ignore="*.pages*.inc,*.yml,.docksal,*.js,*.jpg,*.png,settings*.php,*.txt,*/custom/atg/*,*/custom/cleco/*" \
++  --ignore="*.pages*.inc,*.yml,.docksal,*.js,*.jpg,*.png,settings*.php,*.txt,*/custom/atg/*,*/custom/cleco/*,*/custom/swiftmailer/*" \
    "$@"
  #-------------------------- END: Execution --------------------------------
 diff --git a/phpcs b/phpcs
@@ -95,6 +95,6 @@ index 38c3847..e5b6c52 100755
    --standard=Drupal -n \
    --extensions="php,module,inc,install,test,profile,theme" \
 -  --ignore="*.pages*.inc,*.yml,.docksal,*.js,*.jpg,*.png,settings*.php,*.txt" \
-+  --ignore="*.pages*.inc,*.yml,.docksal,*.js,*.jpg,*.png,settings*.php,*.txt,*/custom/atg/*,*/custom/cleco/*" \
++  --ignore="*.pages*.inc,*.yml,.docksal,*.js,*.jpg,*.png,settings*.php,*.txt,*/custom/atg/*,*/custom/cleco/*,*/custom/swiftmailer/*" \
    "$@"
  #-------------------------- END: Execution --------------------------------

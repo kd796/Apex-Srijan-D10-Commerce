@@ -123,7 +123,7 @@ trait ProductsParentChildMapping {
     if ($parent_term) {
       $query->condition('parent', $parent_term);
     }
-    $tids = $query->execute();
+    $tids = $query->accessCheck(FALSE)->execute();
     if ($tids) {
       // Retrieve the first matching term ID.
       $tid = reset($tids);

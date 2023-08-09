@@ -17,6 +17,7 @@ additional_hostnames:
   - apextoolgroup
   - de.apex-tools
   - uk.apex-tools
+  - ecom
 hooks:
   post-start:
   - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS apextoolgroup; GRANT ALL ON apextoolgroup.* to 'db'@'%';"
@@ -42,4 +43,6 @@ hooks:
   - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS campbell; GRANT ALL ON campbell.* to 'db'@'%';"
     service: db
   - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS apex_tools; GRANT ALL ON apex_tools.* to 'db'@'%';"
+    service: db
+  - exec: mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS ecom; GRANT ALL ON ecom.* to 'db'@'%';"
     service: db

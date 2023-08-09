@@ -233,7 +233,7 @@ class ImportMetaData extends FormBase {
         $media_url = ltrim($media_query[0], "url=");
         $media_path = urldecode($media_url);
         $query = \Drupal::entityQuery('media')->condition('field_media_video_embed_field', $media_path);
-        $result = $query->execute();
+        $result = $query->accessCheck(FALSE)->execute();
         $media = array_shift($result);
         $media_entity = \Drupal::entityTypeManager()->getStorage('media')->load($media);
         $metatag_manager = \Drupal::service('metatag.manager');

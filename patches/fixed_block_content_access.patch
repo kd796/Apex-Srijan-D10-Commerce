@@ -1,0 +1,14 @@
+diff --git a/src/FixedBlockContentAccessControlHandler.php b/src/FixedBlockContentAccessControlHandler.php
+index 50ec825..dcc24f8 100644
+--- a/src/FixedBlockContentAccessControlHandler.php
++++ b/src/FixedBlockContentAccessControlHandler.php
+@@ -19,6 +19,9 @@ class FixedBlockContentAccessControlHandler extends EntityAccessControlHandler {
+    * {@inheritdoc}
+    */
+   protected function checkAccess(EntityInterface $entity, $operation, AccountInterface $account) {
++    if ('view' === $operation) {
++      return AccessResult::allowed();
++    }
+     if (Comparator::lessThan(\Drupal::VERSION, '10.1')) {
+       return AccessResult::allowedIf($account->hasPermission('administer blocks'));
+     }

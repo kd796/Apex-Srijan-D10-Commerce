@@ -1,0 +1,22 @@
+uuid: e65d3a51-e5b1-4a89-9f55-49e0da933345
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: media_center_news
+label: 'Media Center News'
+type: 'canonical_entities:node'
+pattern: 'media-center/[node:title]'
+selection_criteria:
+  433d314f-32c6-4a6d-aa5d-fb90e8534536:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 433d314f-32c6-4a6d-aa5d-fb90e8534536
+    context_mapping:
+      node: node
+    bundles:
+      news: news
+selection_logic: and
+weight: -5
+relationships: {  }

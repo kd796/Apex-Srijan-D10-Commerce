@@ -32,7 +32,7 @@ class GetClassificationsArray extends ProcessPluginBase {
     $vid = 'product_classifications';
     $query = \Drupal::entityQuery('taxonomy_term');
     $query->condition('vid', $vid);
-    $tids = $query->execute();
+    $tids = $query->accessCheck(FALSE)->execute();
     $terms = Term::loadMultiple($tids);
     $values_array = [];
 

@@ -1,0 +1,24 @@
+uuid: 58d56c47-1883-4af8-8513-513f160c8d2c
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+_core:
+  default_config_hash: 6_PE3lxRmcr3l6u87ZQj7g42tE_3X1kul08lJ8eAmxA
+id: user.register_pending_approval_admin
+configuration:
+  email_subject:
+    value: 'Account details for [user:display-name] at [site:name] (pending admin approval)'
+  email_body:
+    content:
+      value: |-
+        [user:display-name] has applied for an account.
+
+        [user:edit-url]
+      format: plain_text
+  email_to:
+    addresses:
+      -
+        value: '<site>'
+        display: ''

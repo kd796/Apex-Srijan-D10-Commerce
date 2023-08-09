@@ -20,7 +20,7 @@ class SetDefaultListingImage extends ControllerBase {
       ->condition('type', 'product', '=')
       ->notExists('field_media');
 
-    $nids = $query->execute();
+    $nids = $query->accessCheck(FALSE)->execute();
 
     $chunks = array_chunk($nids, 1);
     $batch = [
@@ -60,7 +60,7 @@ class SetDefaultListingImage extends ControllerBase {
           $query = \Drupal::entityQuery('media');
           $query->condition('bundle', 'image');
           $query->condition('name', 'Product Default Image');
-          $ids = $query->execute();
+          $ids = $query->accessCheck(FALSE)->execute();
           $media = \Drupal::entityTypeManager()->getStorage('media')->loadMultiple($ids);
 
           if (!empty($media)) {

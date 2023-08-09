@@ -52,7 +52,7 @@ function sata_us_migrations_uninstall() {
  *   Import source files.
  */
 function _sata_us_migrations_source_files() {
-  $dirname = drupal_get_path('module', 'sata_us_migrations') . '/import/pim_data';
+  $dirname = \Drupal::service('extension.list.module')->getPath('sata_us_migrations') . '/import/pim_data';
   return \Drupal::service('file_system')->scanDirectory($dirname, '/.*/', [
     'recurse' => FALSE,
     'key' => 'filename',
@@ -63,7 +63,7 @@ function _sata_us_migrations_source_files() {
  * Imports the latest update from the PIM.
  */
 function sata_us_migrations_update_8001(&$sandbox) {
-  $dirname = drupal_get_path('module', 'sata_us_migrations') . '/import/pim-dump/10-29-2021';
+  $dirname = \Drupal::service('extension.list.module')->getPath('sata_us_migrations') . '/import/pim-dump/10-29-2021';
 
   $source_files = \Drupal::service('file_system')->scanDirectory($dirname, '/.*/', [
     'recurse' => FALSE,

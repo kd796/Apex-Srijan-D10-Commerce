@@ -2,8 +2,8 @@ jQuery(document).ready(function () {
 
     var jQuerycontentlist = jQuery('.hubspot-tabs-content li');
     var jQuerytabslist = jQuery('.hubspot-tabs li');
-  
-    jQuery('.hubspot-tabs').once('hubspot-tabs').on('click', 'li', function (e) {
+
+  jQuery(once('hubspot-tabs', '.hubspot-tabs')).on('click', 'li', function (e) {
       var jQuerycurrent = jQuery(this);
       var index = jQuerycurrent.index();
       if (jQuerycurrent.hasClass('active-tab')) {
@@ -12,7 +12,7 @@ jQuery(document).ready(function () {
         jQuerytabslist.removeClass('active-tab');
         jQuerycurrent.addClass('active-tab');
       }
-  
+
       if (jQuerycontentlist.eq(index).hasClass('active')) {
         jQuerycontentlist.eq(index).removeClass('active');
       } else {
@@ -28,4 +28,3 @@ jQuery(document).ready(function () {
       return false;
     });
   });
-  

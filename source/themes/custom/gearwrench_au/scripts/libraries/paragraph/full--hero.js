@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.componentHero = {
@@ -74,4 +74,4 @@
     }
   };
 
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

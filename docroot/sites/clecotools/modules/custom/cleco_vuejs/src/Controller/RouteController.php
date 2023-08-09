@@ -240,12 +240,12 @@ class RouteController extends ControllerBase {
               $thumbnail_id = $this->entityTypeManager->getStorage('media')->load($downloads_list->field_listing_image->getValue()[0]['target_id']);
               $thumbnail_file = $this->entityTypeManager->getStorage('file')->load($thumbnail_id->field_media_image->target_id);
               $thumbnail_url = $thumbnail_file->getFileUri();
-              $thumbnailImg = file_create_url($thumbnail_url);
+              $thumbnailImg = \Drupal::service('file_url_generator')->generateAbsoluteString($thumbnail_url);
             }
             if (isset($downloads_list->field_media_file) && !empty($downloads_list->field_media_file->target_id)) {
               $file_id = $this->entityTypeManager->getStorage('file')->load($downloads_list->field_media_file->target_id);
               $file_url = $file_id->getFileUri();
-              $downloadable = file_create_url($file_url);
+              $downloadable = \Drupal::service('file_url_generator')->generateAbsoluteString($file_url);
             }
             $asset2[] = [
               "type" => $type,

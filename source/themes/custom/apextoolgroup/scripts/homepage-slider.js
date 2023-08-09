@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.homeslider = {
@@ -23,4 +23,4 @@
       /* end */
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

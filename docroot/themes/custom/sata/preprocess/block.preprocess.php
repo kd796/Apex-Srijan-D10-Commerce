@@ -93,7 +93,7 @@ function sata_preprocess_block__page_title_block(&$variables) {
       $block_manager = \Drupal::service('plugin.manager.block');
       $plugin_block = $block_manager->createInstance('system_breadcrumb_block');
       $render = $plugin_block->build();
-      $variables['sata_breadcrumbs'] = render($render);
+      $variables['sata_breadcrumbs'] = \Drupal::service('renderer')->render($render);
     }
   }
 }

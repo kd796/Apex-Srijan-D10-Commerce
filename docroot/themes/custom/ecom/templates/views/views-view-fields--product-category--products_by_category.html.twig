@@ -1,0 +1,16 @@
+{% set view_node = fields.view_node.content|render|trim|striptags %}
+
+<div class="views-field views-field-field-media">
+	<a href="{{ view_node }}">
+		{{ fields.field_media.content }}
+	</a>
+</div>
+<div class="views-field views-field-title">
+	{{ fields.title.content }}
+</div>
+<div class="views-field views-field-field-long-description">
+	{{ fields.field_long_description.content }}
+</div>
+<div class="views-field views-field-nothing">
+	<a href="{{ fields.nothing.content|render|trim|striptags }}" title="Find a Distributor" class="btn btn-primary btn-distributor">{{ fields.nothing_1.content }}</a>
+</div>

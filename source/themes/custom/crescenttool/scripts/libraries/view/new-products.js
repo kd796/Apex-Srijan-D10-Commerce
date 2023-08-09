@@ -1,15 +1,15 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.componentNewProducts = {
     attach: function (context, settings) {
-      $('.view-new-products').once().each(function () {
+      $(once('view-new-products', '.view-new-products', context)).each(function () {
         // Scroll down to the products when loading the category page.
         $('.view-new-products').attr('style', 'scroll-margin: 50px !important;');
         $('.view-new-products')[0].scrollIntoView();
       });
 
-      $('.view-new-products:not(.view-new-products--js-initialized)').once('new-product-filter').each(function (index) {
+      $(once('new-product-filter', '.view-new-products:not(.view-new-products--js-initialized)', context)).each(function (index) {
         if (window.innerWidth <= 768) {
           var $mobileMenuIcon = $('.filter-icon');
           var $mobileCloseIcon;
@@ -73,4 +73,4 @@
     }
   };
 
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

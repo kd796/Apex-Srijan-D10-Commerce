@@ -1,0 +1,237 @@
+# Migration configuration for ecom_product_classifications content.
+id: ecom_product_classifications_level_three
+label: Product Classifications - Level Three
+migration_group: ecom
+source:
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: simple_xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: "http://www.stibosystems.com/step"
+  item_selector: /STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 3"]
+  fields:
+    -
+     name: remote_term_id
+     label: ID
+     selector: '@ID'
+    -
+      name: remote_term_name
+      label: Term Name
+      selector: Name
+    -
+      name: remote_parent_name
+      label: Parent Term Name
+      selector: 'parent::Classification'
+  ids:
+    remote_term_id:
+      type: string
+process:
+  name:
+    plugin: skip_on_empty
+    method: row
+    source: remote_term_name
+  parent:
+    plugin: apex_get_classification_parent_term
+    source: remote_parent_name
+  field_classification_id:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_term_id
+    method: row
+    value:
+      - W3_26984
+      - W3_722038
+      - W3_722243
+      - W3_722246
+      - W3_722045
+      - W3_722235
+      - W3_722049
+      - W3_722238
+      - W3_886274
+      - W3_886275
+      - W3_886276
+      - W3_886376
+      - W3_886377
+      - W3_886378
+      - W3_886379
+      - W3_886380
+      - W3_886384
+      - W3_886385
+      - W3_886386
+      - W3_886387
+      - W3_886388
+      - W3_886389
+      - W3_722269
+      - W3_722276
+      - W3_722281
+      - W3_722280
+      - W3_744961
+      - W3_722283
+      - W3_777130
+      - W3_882592
+      - W3_886296
+      - W3_722469
+      - W3_722470
+      - W3_722471
+      - W3_722472
+      - W3_722473
+      - W3_722474
+      - W3_722475
+      - W3_722476
+      - W3_722478
+      - W3_809736
+      - W3_809737
+      - W3_886278
+      - W3_722585
+      - W3_882593
+      - W3_722286
+      - W3_722287
+      - W3_722288
+      - W3_722289
+      - W3_722290
+      - W3_722291
+      - W3_886486
+      - W3_886487
+      - W3_886488
+      - W3_886489
+      - W3_886490
+      - W3_886491
+      - W3_722355
+      - W3_722351
+      - W3_722353
+      - W3_722352
+      - W3_722986
+      - W3_886294
+      - W3_886390
+      - W3_886391
+      - W3_886392
+      - W3_886393
+      - W3_886394
+      - W3_886395
+      - W3_722317
+      - W3_722955
+      - W3_722318
+      - W3_783466
+      - W3_783465
+      - W3_783467
+      - W3_787050
+      - W3_722309
+      - W3_722311
+      - W3_722312
+      - W3_722310
+      - W3_722314
+      - W3_722316
+      - W3_811700
+      - W3_722346
+      - W3_722344
+      - W3_722343
+      - W3_787584
+      - W3_787585
+      - W3_722347
+      - W3_789976
+      - W3_886280
+      - W3_722456
+      - W3_722457
+      - W3_722458
+      - W3_722459
+      - W3_722460
+      - W3_722365
+      - W3_722368
+      - W3_722369
+      - W3_722367
+      - W3_722616
+      - W3_722617
+      - W3_722618
+      - W3_722619
+      - W3_722620
+      - W3_722602
+      - W3_722603
+      - W3_722604
+      - W3_722605
+      - W3_722606
+      - W3_722608
+      - W3_722609
+      - W3_722610
+      - W3_722611
+      - W3_722612
+      - W3_722613
+      - W3_886500
+      - W3_886501
+      - W3_886510
+      - W3_886511
+      - W3_886512
+      - W3_886513
+      - W3_886514
+      - W3_886515
+      - W3_886516
+      - W3_886517
+      - W3_886518
+      - W3_886519
+      - W3_886521
+      - W3_886522
+      - W3_886523
+      - W3_886525
+      - W3_886526
+      - W3_722639
+      - W3_722637
+      - W3_886551
+      - W3_886495
+      - W3_886541
+      - W3_886542
+      - W3_886559
+      - W3_886560
+      - W3_886543
+      - W3_886545
+      - W3_886546
+      - W3_886547
+      - W3_886548
+      - W3_886549
+      - W3_886550
+      - W3_886538
+      - W3_886539
+      - W3_886540
+      - W3_881897
+      - W3_881898
+      - W3_881899
+      - W3_881900
+      - W3_881901
+      - W3_881903
+      - W3_881904
+      - W3_881905
+      - W3_27088
+      - W3_27087
+      - W3_27066
+      - W3_27067
+      - W3_27069
+      - W3_27070
+      - W3_27071
+      - W3_27072
+      - W3_27074
+      - W3_27075
+      - W3_27077
+      - W3_27078
+      - W3_27079
+      - W3_27080
+      - W3_27081
+      - W3_26986
+      - W3_26987
+      - W3_26989
+      - W3_26990
+      - W3_27259
+      - W3_27091
+      - W3_26991
+      - W3_27061
+      - W3_27062
+      - W3_27017
+      - W3_27019
+      - W3_27020
+      - W3_27021
+      - W3_16128
+      - W3_16138
+      - W3_736552
+      - W3_736555
+
+destination:
+  plugin: entity:taxonomy_term
+  default_bundle: product_classifications

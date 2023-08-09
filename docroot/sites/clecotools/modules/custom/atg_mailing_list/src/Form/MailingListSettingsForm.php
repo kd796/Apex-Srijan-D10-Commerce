@@ -50,7 +50,7 @@ class MailingListSettingsForm extends ConfigFormBase
 
     $query = \Drupal::entityQuery('webform')
       ->condition('status', 'open');
-    $entity_ids = $query->execute();
+    $entity_ids = $query->accessCheck(FALSE)->execute();
 
     $webform_ids = [];
     foreach ($entity_ids as $webid) {
