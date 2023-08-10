@@ -65,10 +65,10 @@ class UtilityTax {
           'value' => $csv_row['county'],
         ],
         'field_ending_postal_code' => [
-          'value' => $end,
+          'value' => $end_postal_code,
         ],
         'field_starting_postal_code' => [
-          'value' => $start,
+          'value' => $start_postal_code,
         ],
         'field_rate' => [
           'value' => $csv_row['rate'],
