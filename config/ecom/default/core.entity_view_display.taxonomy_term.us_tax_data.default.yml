@@ -1,0 +1,77 @@
+uuid: 47ed0fba-687b-49e5-b304-5219a9d138db
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.us_tax_data.field_ending_postal_code
+    - field.field.taxonomy_term.us_tax_data.field_rate
+    - field.field.taxonomy_term.us_tax_data.field_starting_postal_code
+    - field.field.taxonomy_term.us_tax_data.field_us_city
+    - field.field.taxonomy_term.us_tax_data.field_us_county
+    - field.field.taxonomy_term.us_tax_data.field_us_state
+    - taxonomy.vocabulary.us_tax_data
+  module:
+    - text
+id: taxonomy_term.us_tax_data.default
+targetEntityType: taxonomy_term
+bundle: us_tax_data
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_ending_postal_code:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_rate:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_starting_postal_code:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_us_city:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_us_county:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_us_state:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true
