@@ -91,7 +91,7 @@ function cleco_preprocess_views_view_unformatted(&$vars) {
  * @param $variables
  */
 function cleco_preprocess(&$variables)
-{
+{   
     $language      = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
     $is_front_page = \Drupal::service('path.matcher')->isFrontPage();
     $variables['current_language'] = $language;
