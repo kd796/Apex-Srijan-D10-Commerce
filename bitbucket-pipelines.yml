@@ -120,11 +120,6 @@ pipelines:
       - step:
           <<: *deploy-package
           deployment: Development
-    release/cleco-enhancement-10Aug2023:
-      - step: *build-package
-      - step:
-          <<: *deploy-package
-          deployment: Cleco CR Enhancement         
   custom:
     feature:
       - variables:
