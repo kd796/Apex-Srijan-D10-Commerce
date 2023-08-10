@@ -39,7 +39,14 @@ function cleco_preprocess_field(&$variables)
     if ($route_match instanceof RouteMatchInterface && $route_match->getRouteName() == 'entity.node.canonical') {
       $node = $route_match->getParameter('node');
       // Add banner title.
-      $variables['carousel_title'] = 'Trusted by the biggest';
+      $variables['carousel_title'] = 'Trusted by these leading brands';
+      $variables['node_title'] = $node->getTitle();
+    }
+  } else if ($variables['element']['#field_name'] == 'field_case_study') {
+    $route_match = \Drupal::routeMatch();
+    if ($route_match instanceof RouteMatchInterface && $route_match->getRouteName() == 'entity.node.canonical') {
+      $node = $route_match->getParameter('node');
+      // Add node title.
       $variables['node_title'] = $node->getTitle();
     }
   }
@@ -73,5 +80,5 @@ function cleco_preprocess_views_view_unformatted(&$vars) {
     if ($view->storage->id() === 'hubspot_forms' && $view->current_display === 'hubspot_title_icon') {
       $vars['card'] = views_embed_view('hubspot_forms', 'hubspot_code');
     }
-  }
+}
   
