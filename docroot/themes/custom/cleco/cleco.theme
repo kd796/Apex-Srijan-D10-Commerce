@@ -2,6 +2,7 @@
 
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\node\NodeInterface;
+use Drupal\Core\Language\LanguageInterface;
 
 /**
  * @file
@@ -82,3 +83,17 @@ function cleco_preprocess_views_view_unformatted(&$vars) {
     }
 }
   
+/**
+ * PREPROCESS
+ * Make current language available to Twig for displaying in language selector
+ * block.
+ *
+ * @param $variables
+ */
+function cleco_preprocess(&$variables)
+{
+    $language      = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
+    $is_front_page = \Drupal::service('path.matcher')->isFrontPage();
+    $variables['current_language'] = $language;
+    $variables['is_front_page']    = $is_front_page;
+}

@@ -105,7 +105,7 @@ pipelines:
       - step:
           <<: *deploy-package
           deployment: Staging
-    stage-support:
+    hotfix/release-1.4-10thAug2023:
       - step: *build-package
       - step:
           <<: *deploy-package

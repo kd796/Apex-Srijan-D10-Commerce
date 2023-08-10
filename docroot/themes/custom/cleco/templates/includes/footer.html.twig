@@ -8,9 +8,24 @@
 
 <footer class="footer">
   <div class="footer-branding">
-    <a href="{{ get_locale().path is not empty ? get_locale().path : '/' }}" class="logo">
-      {{ svg('dist/img/clecotools-logo.svg') }}
-    </a>
+    {% if current_language.id == 'en' %}
+      <a href="{{ get_locale().path is not empty ? get_locale().path : '/' }}" class="logo">
+        {{ svg('dist/img/cleco-new-logo.svg') }}
+      </a>
+    {% elseif current_language.id == 'de' %}
+      <a href="{{ get_locale().path is not empty ? get_locale().path : '/' }}" class="logo">
+        {{ svg('dist/img/clecotools-logo.svg') }}
+      </a>
+    {% elseif current_language.id == 'gb' %}
+      <a href="{{ get_locale().path is not empty ? get_locale().path : '/' }}" class="logo">
+        {{ svg('dist/img/clecotools-logo.svg') }}
+      </a>  
+    {% endif %} 
+    {% if current_language.id == 'en' %}
+        <div>
+            <a class="button button--primary button--small" href="https://www.apextoolgroupstore.com/" target="_blank">Merchandise</a>
+        </div>
+    {% endif %}
   </div>
   <div class="footer-primary">
     {{ page.footer_nav }}
