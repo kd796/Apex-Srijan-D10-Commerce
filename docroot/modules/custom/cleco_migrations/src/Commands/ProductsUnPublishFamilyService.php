@@ -6,6 +6,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Logger\LoggerChannelInterface;
 use Drush\Log\LogLevel;
+use Drush\Drush;
 
 /**
  * A Drush commandfile.
@@ -20,13 +21,6 @@ class ProductsUnPublishFamilyService extends ProductServices {
   protected $entityTypeManager;
 
   /**
-   * The logger.
-   *
-   * @var \Drupal\Core\Logger\LoggerChannelInterface
-   */
-  protected $logger;
-
-  /**
    * Constructs an ExampleClass object.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
@@ -36,7 +30,7 @@ class ProductsUnPublishFamilyService extends ProductServices {
    */
   public function __construct(EntityTypeManagerInterface $entity_type_manager, LoggerChannelInterface $logger) {
     $this->entityTypeManager = $entity_type_manager;
-    $this->logger = $logger;
+    $this->logger = Drush::logger();
   }
 
   /**
@@ -108,18 +102,18 @@ class ProductsUnPublishFamilyService extends ProductServices {
               $node->save();
               // Clear the entity cache.
               $this->entityTypeManager->getStorage('node')->resetCache([$nid]);
-              drush_log(
+              \Drupal::logger(
                 "All the product models under $sku_group are in unpublished state",
                 LogLevel::SUCCESS
               );
-              drush_log(
+              \Drupal::logger(
                 "Successfully published the product $node_title \n SKU: $sku_group \n Node ID: $nid",
                 LogLevel::SUCCESS
               );
             }
           }
           else {
-            drush_log(
+            \Drupal::logger(
               "All/ Some of the product models are published under $sku_group family",
               LogLevel::SUCCESS
             );
