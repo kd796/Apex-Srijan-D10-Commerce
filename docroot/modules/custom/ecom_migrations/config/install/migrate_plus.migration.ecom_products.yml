@@ -36,6 +36,9 @@ source:
     - name: remote_brand
       label: Brand
       selector: './Values/Value[@AttributeID="Brand"]'
+    - name: remote_commerce_product
+      label: Commerce Product
+      selector: Values
     - name: remote_product_features
       label: Product Features
       selector: Values
@@ -88,6 +91,13 @@ process:
     source: status
     value:
       - Z4
+      - Z1
+      - ZA
+      - ZH
+      - ZX
+      - P4
+      - P5
+      - P6
   type:
     plugin: default_value
     default_value: product
@@ -554,6 +564,17 @@ process:
     bundle_key: vid
     bundle: brand
     value_key: name
+
+  # Commerce Product
+  product_commerce_entity:
+    plugin: ecom_create_commerce_product_entity
+    source: remote_commerce_product
+  field_commerce_product:
+    plugin: sub_process
+    source: '@product_commerce_entity'
+    include_source: true
+    process:
+      target_id: target_id
 
   # Copy Points
   product_features_array:
