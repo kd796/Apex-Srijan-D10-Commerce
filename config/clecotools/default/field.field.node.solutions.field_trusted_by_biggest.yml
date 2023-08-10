@@ -1,0 +1,25 @@
+uuid: 98951e55-4541-4408-a724-b2b35469f222
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_trusted_by_biggest
+    - node.type.solutions
+  module:
+    - block_field
+id: node.solutions.field_trusted_by_biggest
+field_name: field_trusted_by_biggest
+entity_type: node
+bundle: solutions
+label: 'Trusted By Biggest'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  selection: blocks
+  selection_settings:
+    plugin_ids:
+      'views_block:trusted_by_biggest_carousel-block_1': 'views_block:trusted_by_biggest_carousel-block_1'
+field_type: block_field

@@ -12,6 +12,7 @@ dependencies:
     - field.field.paragraph.hero.field_title
     - field.field.paragraph.hero.field_title_prefix
     - field.field.paragraph.hero.field_title_suffix
+    - field.field.paragraph.hero.field_video
     - paragraphs.paragraphs_type.hero
   module:
     - entity_reference_revisions
@@ -97,5 +98,15 @@ content:
     third_party_settings: {  }
     weight: 8
     region: content
+  field_video:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 10
+    region: content
 hidden:
   search_api_excerpt: true
+  uuid: true

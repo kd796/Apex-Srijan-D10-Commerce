@@ -1,0 +1,128 @@
+.industry-solutions {
+  display: flex;
+  flex-wrap: wrap;
+
+  .industry-solution-item {
+    width: 23%;
+    margin: 0% 1%;
+    padding-left: 2px;
+    padding-right: 2px;
+
+    @media only screen and (max-width: $media-screen-medium) {
+      width: 47%;
+      margin: 0% 1%;
+    }
+    
+    @media only screen and (max-width: $media-screen-mobile) {
+      width: 98%;
+      margin: 1%;
+    }
+    .overlay-wrapper {
+      position: relative;
+      height: 90%;
+      &::before {
+        content: "";
+        position: absolute;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.1s ease;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+      }
+
+      .field-image {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        .bg-img {
+          width: 100%;
+          height: 100%;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 3.125em;
+          height: 3.125em;
+          background: $color-orange url(svg-background($svg-arrow-right, #fff)) no-repeat center center;
+          background-size: 50% auto;
+          transition: 200ms ease;
+          z-index: 99;
+
+          @include property-scale((width, height), (
+            0: 2em,
+            800px: 3.125em,
+          ))
+        }
+      }
+
+      .content-wrapper {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        display: flex;
+        flex-direction: column;
+        color: $color-white;
+        justify-content: flex-end;
+        z-index: 99;
+        @media only screen and (max-width: $media-screen-medium) {
+          bottom: 2%;
+        }
+        .field-description {
+          display: none;
+
+          p {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 4;
+            white-space: pre-wrap;
+          }
+        }
+      }
+    }
+
+    a {
+      &:hover {
+        .overlay-wrapper {
+          &::before {
+            visibility: visible;
+            transition: 1s ease;
+            opacity: 1;
+          }
+
+          .content-wrapper {
+            justify-content: center;
+
+            .field-description {
+              display: block;
+            }
+          }
+        }
+      }
+
+      &:not(:hover) {
+        .overlay-wrapper {
+          .field-image {
+            &::after {
+              transform: translateY(100%);
+            }
+          }
+        }
+      }
+    }
+  }
+}

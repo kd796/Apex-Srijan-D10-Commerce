@@ -1,7 +1,6 @@
 (function($) {
   var heroVideoContainer = $('.hero.hero-enhanced--video');
   var heroVideoElem      = $('video', heroVideoContainer);
-
   heroVideoElem.on('loadeddata', function() {
     heroVideoElem.addClass('is-ready');
   });
