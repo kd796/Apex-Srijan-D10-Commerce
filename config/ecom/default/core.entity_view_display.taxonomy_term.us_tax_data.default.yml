@@ -3,9 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.taxonomy_term.us_tax_data.field_ending_postal_code
+    - field.field.taxonomy_term.us_tax_data.field_endi
     - field.field.taxonomy_term.us_tax_data.field_rate
-    - field.field.taxonomy_term.us_tax_data.field_starting_postal_code
+    - field.field.taxonomy_term.us_tax_data.field_starting_zip_code
     - field.field.taxonomy_term.us_tax_data.field_us_city
     - field.field.taxonomy_term.us_tax_data.field_us_county
     - field.field.taxonomy_term.us_tax_data.field_us_state
@@ -24,13 +24,14 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  field_ending_postal_code:
-    type: string
+  field_endi:
+    type: number_integer
     label: above
     settings:
-      link_to_entity: false
+      thousand_separator: ''
+      prefix_suffix: true
     third_party_settings: {  }
-    weight: 5
+    weight: 8
     region: content
   field_rate:
     type: string
@@ -40,13 +41,14 @@ content:
     third_party_settings: {  }
     weight: 6
     region: content
-  field_starting_postal_code:
-    type: string
+  field_starting_zip_code:
+    type: number_integer
     label: above
     settings:
-      link_to_entity: false
+      thousand_separator: ''
+      prefix_suffix: true
     third_party_settings: {  }
-    weight: 4
+    weight: 7
     region: content
   field_us_city:
     type: string

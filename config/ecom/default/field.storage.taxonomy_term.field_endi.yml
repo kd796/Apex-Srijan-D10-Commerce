@@ -1,17 +1,16 @@
-uuid: 7919ca37-2c3d-461c-9749-80ac465ad038
+uuid: 712fdbec-7bb5-402e-8e11-39032a1a60a6
 langcode: en
 status: true
 dependencies:
   module:
     - taxonomy
-id: taxonomy_term.field_ending_postal_code
-field_name: field_ending_postal_code
+id: taxonomy_term.field_endi
+field_name: field_endi
 entity_type: taxonomy_term
-type: string
+type: integer
 settings:
-  max_length: 255
-  case_sensitive: false
-  is_ascii: false
+  unsigned: false
+  size: normal
 module: core
 locked: false
 cardinality: 1

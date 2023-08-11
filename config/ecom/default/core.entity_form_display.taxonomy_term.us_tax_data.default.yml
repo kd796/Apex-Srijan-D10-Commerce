@@ -3,9 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.taxonomy_term.us_tax_data.field_ending_postal_code
+    - field.field.taxonomy_term.us_tax_data.field_endi
     - field.field.taxonomy_term.us_tax_data.field_rate
-    - field.field.taxonomy_term.us_tax_data.field_starting_postal_code
+    - field.field.taxonomy_term.us_tax_data.field_starting_zip_code
     - field.field.taxonomy_term.us_tax_data.field_us_city
     - field.field.taxonomy_term.us_tax_data.field_us_county
     - field.field.taxonomy_term.us_tax_data.field_us_state
@@ -17,7 +17,29 @@ targetEntityType: taxonomy_term
 bundle: us_tax_data
 mode: default
 content:
-  field_ending_postal_code:
+  field_endi:
+    type: number
+    weight: 6
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_rate:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_starting_zip_code:
+    type: number
+    weight: 5
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_us_city:
     type: string_textfield
     weight: 3
     region: content
@@ -25,33 +47,9 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_rate:
-    type: string_textfield
-    weight: 6
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_starting_postal_code:
-    type: string_textfield
-    weight: 2
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_us_city:
-    type: string_textfield
-    weight: 5
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_us_county:
     type: string_textfield
-    weight: 4
+    weight: 2
     region: content
     settings:
       size: 60
