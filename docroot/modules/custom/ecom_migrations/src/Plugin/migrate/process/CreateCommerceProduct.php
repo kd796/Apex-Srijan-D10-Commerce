@@ -18,7 +18,7 @@ use Drupal\commerce_price\Price;
  * )
  */
 class CreateCommerceProduct extends ProcessPluginBase {
-  
+
   use LoggerChannelTrait;
 
   /**
@@ -35,9 +35,9 @@ class CreateCommerceProduct extends ProcessPluginBase {
     }
 
     $commProduct = $entity_manager->getStorage('commerce_product')
-    ->loadByProperties([
-      'title' => $sku_value,
-    ]);
+      ->loadByProperties([
+        'title' => $sku_value,
+      ]);
 
     if (!empty($commProduct)) {
       $presentProduct = array_values($commProduct);
@@ -75,4 +75,5 @@ class CreateCommerceProduct extends ProcessPluginBase {
 
     return json_decode($all_terms_array, TRUE);
   }
+
 }
