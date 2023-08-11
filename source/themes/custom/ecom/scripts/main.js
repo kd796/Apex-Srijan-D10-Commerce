@@ -23,6 +23,7 @@
         const hamburgerMenu = $('.mobile-header');
         $(once('hamburgerMenu', hamburgerMenuIcon, context)).on('click', function () {
           hamburgerMenu.toggle('d-none');
+          hamburgerMenuIcon.toggleClass('close-nav');
         });
       });
       //  Responsive menu.
@@ -73,11 +74,6 @@
           return false;
         });
       });
-      // Remove empty div in where to buy page.
-      var $noMatch = $('.where-to-buy .view-empty').text().replace(/^\s+|\s+$/g, '').length;
-      if ($noMatch === 0) {
-        $('.where-to-buy .view-empty').remove();
-      }
 
       // accordions
       $(once('accordion', '.accordion-title', context)).on('click', function (e) {
