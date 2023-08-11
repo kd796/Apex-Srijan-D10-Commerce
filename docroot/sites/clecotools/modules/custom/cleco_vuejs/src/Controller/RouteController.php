@@ -26,11 +26,15 @@ class RouteController extends ControllerBase {
   public $request;
 
   /**
+   * The slug value of the product.
+   *
    * @var string
    */
   public $slug;
 
   /**
+   * The whole product data array.
+   *
    * @var array|null
    */
   public $product;
@@ -102,6 +106,7 @@ class RouteController extends ControllerBase {
    * Render array for the product catalog template.
    *
    * @return array
+   *   return the products catalog template.
    */
   public function productCatalog() {
     return [
@@ -115,6 +120,7 @@ class RouteController extends ControllerBase {
    * Title for the product catalog interface.
    *
    * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+   *   return the products catalog title.
    */
   public function productCatalogTitle() {
     return $this->t('Product Catalog');
@@ -126,6 +132,7 @@ class RouteController extends ControllerBase {
    * Render array for the single product template.
    *
    * @return array
+   *   render array of single product template and product details
    */
   public function productSingle() {
     $langcode = $this->languageManager->getCurrentLanguage()->getId();
@@ -135,6 +142,7 @@ class RouteController extends ControllerBase {
       ->loadByProperties([
         'langcode'   => $langcode,
         'field_slug' => $slug,
+        'status' => 1,
       ]);
     if (!empty($nodes)) {
       $features = [];
@@ -145,7 +153,8 @@ class RouteController extends ControllerBase {
       foreach ($nodes as $node) {
         $fields = $node->getFields();
         $bundle = $node->bundle();
-        $sku_group = isset($fields['field_sku_group']) ? $fields['field_sku_group']->getValue()[0]['value'] : $fields['field_sku']->getValue()[0]['value'];
+        $sku_group = (isset($fields['field_sku_group']) && !empty($fields['field_sku_group']->getValue())) ?
+          $fields['field_sku_group']->getValue()[0]['value'] : (isset($fields['field_sku']) ? $fields['field_sku']->getValue()[0]['value'] : '');
         $title = '';
         if (!empty($fields['field_long_description']->getValue())) {
           $title = $fields['field_long_description']->getValue()[0]['value'];
@@ -155,7 +164,7 @@ class RouteController extends ControllerBase {
         }
         $slug = isset($fields['field_slug']) ? $fields['field_slug']->getValue()[0]['value'] : '';
         $node_id = $node->id();
-        $field_product_features_cp = isset($fields['field_product_features_cp']) ? $fields['field_product_features_cp'] : '';
+        $field_product_features_cp = $fields['field_product_features_cp'] ?? '';
         if (!empty($field_product_features_cp)) {
           foreach ($field_product_features_cp as $productFeatures) {
             if (isset($productFeatures->value)) {
@@ -163,8 +172,8 @@ class RouteController extends ControllerBase {
             }
           }
         }
-        $field_media = isset($fields['field_media']) ? $fields['field_media'] : '';
-        $field_product_images = isset($fields['field_product_images']) ? $fields['field_product_images'] : '';
+        $field_media = $fields['field_media'] ?? '';
+        $field_product_images = $fields['field_product_images'] ?? '';
         $listing_images = array_merge($field_media->getValue(), $field_product_images->getValue());
         if (!empty($listing_images)) {
           foreach ($listing_images as $media) {
@@ -175,7 +184,7 @@ class RouteController extends ControllerBase {
               $image_file = $this->entityTypeManager->getStorage('file')->load($image_load->field_media_image->target_id);
               $image_url = $image_file->getFileUri();
               $image_path = $style_product->buildUrl($image_url);
-              $image_asset[] =[
+              $image_asset[] = [
                 "source_to_jpg" => $image_path,
               ];
               $asset1[] = [
@@ -202,6 +211,9 @@ class RouteController extends ControllerBase {
         if (!empty($product_categories)) {
           foreach ($product_categories as $product_category) {
             $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($product_category['target_id']);
+            if (empty($term) || $term->status->value != 1) {
+              continue;
+            }
             if (!empty($term)) {
               $product_category_name[] = $term->get('name')->value;
               $term_parent = $term->get('parent')->getValue()[0]['target_id'];
@@ -334,6 +346,7 @@ class RouteController extends ControllerBase {
    * Title for the single product template.
    *
    * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+   *   return product single page title
    */
   public function productSingleTitle() {
     if (!empty($this->productSingle()['#product']['name'])) {
@@ -353,11 +366,17 @@ class RouteController extends ControllerBase {
       foreach ($models as $model) {
         $model_details = \Drupal::entityTypeManager()
           ->getStorage('node')->load($model['target_id']);
+        if (!$model_details || !$model_details->isPublished()) {
+          continue;
+        }
         $sr_number = $model_details->get('field_sr_number')->value;
         $model_spec = $model_details->get('field_model_specification')
           ->referencedEntities();
         $values = [];
         foreach ($model_spec as $key => $spec) {
+          if ($spec->status->value != 1) {
+            continue;
+          }
           $exploded_label = explode(':~:', $spec->label());
           $lable_value = $spec->field_specification_attr_key->value;
           $valuelable = isset($exploded_label[1]) ? trim($exploded_label[1]) : '';
@@ -383,6 +402,7 @@ class RouteController extends ControllerBase {
    * Render array for the downloads template.
    *
    * @return array
+   *   returns downloads template
    */
   public function downloads() {
     return [
@@ -396,6 +416,7 @@ class RouteController extends ControllerBase {
    * Title for the downlaods template.
    *
    * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+   *   Get the downloads title
    */
   public function downloadsTitle() {
     return $this->t('Downloads');
@@ -407,6 +428,7 @@ class RouteController extends ControllerBase {
    * Render array for the search results template.
    *
    * @return array
+   *   return search results template
    */
   public function searchResults() {
     return [
@@ -424,6 +446,7 @@ class RouteController extends ControllerBase {
    * Title for the search results template.
    *
    * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+   *   return translated value
    */
   public function searchResultsTitle() {
     $q = $this->request->get('q');

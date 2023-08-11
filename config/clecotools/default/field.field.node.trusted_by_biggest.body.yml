@@ -1,0 +1,23 @@
+uuid: b18abc01-9861-42fb-b0d3-4b9dcc3bd12b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.trusted_by_biggest
+  module:
+    - text
+id: node.trusted_by_biggest.body
+field_name: body
+entity_type: node
+bundle: trusted_by_biggest
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

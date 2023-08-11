@@ -9,9 +9,36 @@
 }
 
 .footer-branding {
-  flex-grow: 1;
   margin-bottom: 1em;
   @include property-scale(padding-right, $container-padding-map);
+
+  .logo {
+    position: relative;
+    margin-left: -3px;
+    &::before {
+      z-index: 0;
+      bottom: 0px;
+      top: -19px;
+     left: -11rem;
+      width: 447px;
+    }
+
+    @media only screen and (max-width: $breakpoint-type) {
+      &::before {
+        width: calc(100% + 8.5rem);
+      }
+    }
+
+    @media only screen and (max-width: $media-screen-mobile) {
+      &::before {
+        top: -17px;
+      }
+    }
+
+    svg {
+      position: absolute;
+    }
+  }
 }
 
 .footer-primary {
@@ -39,21 +66,45 @@
     order: 1;
     margin-bottom: 1em;
   }
-
+  
   .footer-primary,
   .footer-secondary {
     order: 2;
     width: 100%;
   }
+  .footer-branding {
+    .logo {
+      &::before {
+        left: -61%;
+      }
+    }
+  }
 }
 
 @media (min-width: 800px) {
   .footer-branding {
-    flex: 0 0 25%;
+    flex: 0 0 50%;
   }
 }
 
+@media (max-width: 800px) {
+  .footer-branding {
+    flex: 0 0 60%;
+    .logo {
+      margin-left: 0px !important;
+    }
+  }
+} 
 
+@media (max-width: 560px) {
+  .footer-branding {
+    .logo {
+      &::before {
+        left: -34%;
+      }
+    }
+  }
+}
 // -----------------------------------------------------------------------------
 //! Merchandise button
 // -----------------------------------------------------------------------------
@@ -61,7 +112,7 @@
 .footer-branding .button {
     margin-top: 4rem;
     margin-bottom: 2rem;
-
+    display: none;
     &:not([disabled]):hover:not(.button--outline),
     &:not([disabled]):focus:not(.button--outline) {
         background: lighten($color-orange, 4%);

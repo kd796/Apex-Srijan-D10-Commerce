@@ -12,6 +12,7 @@ dependencies:
     - field.field.paragraph.hero.field_title
     - field.field.paragraph.hero.field_title_prefix
     - field.field.paragraph.hero.field_title_suffix
+    - field.field.paragraph.hero.field_video
     - paragraphs.paragraphs_type.hero
   module:
     - media_library
@@ -93,6 +94,13 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_video:
+    type: media_library_widget
+    weight: 9
+    region: content
+    settings:
+      media_types: {  }
     third_party_settings: {  }
 hidden:
   created: true

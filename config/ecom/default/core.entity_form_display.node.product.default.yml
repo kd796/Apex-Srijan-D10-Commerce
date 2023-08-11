@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.node.product.body
+    - field.field.node.product.field_brand
+    - field.field.node.product.field_commerce_product
     - field.field.node.product.field_featured_product
     - field.field.node.product.field_keywords
     - field.field.node.product.field_launch_date
@@ -47,59 +49,17 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_featured_product:
-    type: boolean_checkbox
-    weight: 10
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  field_keywords:
-    type: string_textarea
-    weight: 25
-    region: content
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-  field_launch_date:
-    type: datetime_default
-    weight: 11
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_long_description:
-    type: string_textfield
+  field_brand:
+    type: entity_reference_autocomplete
     weight: 12
     region: content
     settings:
+      match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_media:
-    type: media_library_widget
-    weight: 23
-    region: content
-    settings:
-      media_types: {  }
-    third_party_settings: {  }
-  field_new_product:
-    type: boolean_checkbox
-    weight: 13
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  field_pdfs:
-    type: media_library_widget
-    weight: 24
-    region: content
-    settings:
-      media_types: {  }
-    third_party_settings:
-      limited_field_widgets:
-        limit_values: '0'
-  field_product_classifications:
+  field_commerce_product:
     type: entity_reference_autocomplete
     weight: 14
     region: content
@@ -109,7 +69,28 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_product_features:
+  field_featured_product:
+    type: boolean_checkbox
+    weight: 10
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_keywords:
+    type: string_textarea
+    weight: 28
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_launch_date:
+    type: datetime_default
+    weight: 13
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_long_description:
     type: string_textfield
     weight: 15
     region: content
@@ -117,14 +98,30 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_product_images:
+  field_media:
     type: media_library_widget
-    weight: 16
+    weight: 26
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
-  field_product_specifications:
+  field_new_product:
+    type: boolean_checkbox
+    weight: 16
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_pdfs:
+    type: media_library_widget
+    weight: 27
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings:
+      limited_field_widgets:
+        limit_values: '0'
+  field_product_classifications:
     type: entity_reference_autocomplete
     weight: 17
     region: content
@@ -134,24 +131,22 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_related_products:
-    type: entity_reference_autocomplete
+  field_product_features:
+    type: string_textfield
     weight: 18
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_set:
-    type: boolean_checkbox
+  field_product_images:
+    type: media_library_widget
     weight: 19
     region: content
     settings:
-      display_label: true
+      media_types: {  }
     third_party_settings: {  }
-  field_set_components:
+  field_product_specifications:
     type: entity_reference_autocomplete
     weight: 20
     region: content
@@ -161,9 +156,36 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_related_products:
+    type: entity_reference_autocomplete
+    weight: 21
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_set:
+    type: boolean_checkbox
+    weight: 22
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_set_components:
+    type: entity_reference_autocomplete
+    weight: 23
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_sku_group:
     type: string_textfield
-    weight: 21
+    weight: 24
     region: content
     settings:
       size: 60
@@ -171,7 +193,7 @@ content:
     third_party_settings: {  }
   field_upc:
     type: string_textfield
-    weight: 22
+    weight: 25
     region: content
     settings:
       size: 60
@@ -196,6 +218,11 @@ content:
     region: content
     settings:
       display_label: true
+    third_party_settings: {  }
+  simple_sitemap:
+    weight: 11
+    region: content
+    settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox

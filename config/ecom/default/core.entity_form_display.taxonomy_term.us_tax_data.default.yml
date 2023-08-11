@@ -1,0 +1,102 @@
+uuid: a183ff4f-9683-4e87-bd8e-d98d0b9ca951
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.us_tax_data.field_ending_postal_code
+    - field.field.taxonomy_term.us_tax_data.field_rate
+    - field.field.taxonomy_term.us_tax_data.field_starting_postal_code
+    - field.field.taxonomy_term.us_tax_data.field_us_city
+    - field.field.taxonomy_term.us_tax_data.field_us_county
+    - field.field.taxonomy_term.us_tax_data.field_us_state
+    - taxonomy.vocabulary.us_tax_data
+  module:
+    - path
+id: taxonomy_term.us_tax_data.default
+targetEntityType: taxonomy_term
+bundle: us_tax_data
+mode: default
+content:
+  field_ending_postal_code:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_rate:
+    type: string_textfield
+    weight: 6
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_starting_postal_code:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_us_city:
+    type: string_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_us_county:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_us_state:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 7
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  simple_sitemap:
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 10
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  description: true
