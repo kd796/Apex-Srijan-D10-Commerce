@@ -32,7 +32,7 @@ index 83cb71a..628cd48 100644
 +  RewriteCond %{HTTP_HOST} ^([^.]+)\.([^*]+)$ [NC]
 +  RewriteCond %{HTTP_HOST} !^www\. [NC]
 +  RewriteCond %{HTTP_HOST} .[co].[uk].$ [NC]
-+  RewriteRule ^ http%{ENV:protossl}://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
++# RewriteRule ^ http%{ENV:protossl}://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 +
    # To redirect all users to access the site WITHOUT the 'www.' prefix,
    # (http://www.example.com/foo will be redirected to http://example.com/foo)
