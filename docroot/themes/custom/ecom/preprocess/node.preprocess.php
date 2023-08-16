@@ -206,6 +206,6 @@ function ecom_preprocess_node__product__full(array &$variables) {
   if ($block) {
     $variables['addtothis_block_output'] = $entity_type_manager->getViewBuilder('block')->view($block);
   }
-  $related_product_block  = views_embed_view('recently_viewed_product');
+  $related_product_block = views_embed_view('recently_viewed_product');
   $variables["related_product_block"] = \Drupal::service('renderer')->renderRoot($related_product_block);
 }
