@@ -1,0 +1,23 @@
+uuid: e4896f5c-f0d5-4e85-b0e0-edd707581a07
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_starting_zip_code
+    - taxonomy.vocabulary.us_tax_data
+id: taxonomy_term.us_tax_data.field_starting_zip_code
+field_name: field_starting_zip_code
+entity_type: taxonomy_term
+bundle: us_tax_data
+label: 'Starting zip code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

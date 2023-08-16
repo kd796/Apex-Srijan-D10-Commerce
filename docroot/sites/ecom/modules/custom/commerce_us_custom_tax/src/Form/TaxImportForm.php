@@ -108,7 +108,7 @@ class TaxImportForm extends FormBase {
     $filepath = $this->fileSystem->realpath($this->file->getFileUri());
     $tax_datas = $this->taxImportReadCsv($filepath);
     if ($tax_datas == NULL) {
-      $form_state->setErrorByName('csv_file', $this->t('Upload the file in code,country,state,city,county,rate,postalcoderange format or upload a file with unique code'));
+      $form_state->setErrorByName('csv_file', $this->t('Upload the file in code,country,state,city,county,rate,postalcoderange format and upload a file with unique code'));
     }
 
   }
@@ -210,7 +210,9 @@ class TaxImportForm extends FormBase {
    */
   public static function taxImportFinished($success, $results, $operations) {
     if ($success) {
-      \Drupal::messenger()->addMessage(t('Processed taxes successfully.'));
+      \Drupal::messenger()->addMessage(t('Processed  @count taxes successfully.',[
+        '@count' => count($results),
+      ]));
     }
     else {
       \Drupal::messenger()->addMessage(t('An error occurred during the tax  import process.'), 'error');
