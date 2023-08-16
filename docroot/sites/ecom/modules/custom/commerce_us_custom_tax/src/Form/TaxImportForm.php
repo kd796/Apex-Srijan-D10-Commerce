@@ -85,6 +85,9 @@ class TaxImportForm extends FormBase {
       '#required' => TRUE,
       '#upload_validators' => $validators,
     ];
+    $form['sample_file'] = [
+      '#markup' => '<p>' . $this->t('Download the sample tax data file:') . '<a href="/themes/custom/ecom/sample_tax_data.csv">sample_tax_data.csv</a></p>',
+    ];
 
     $form['submit'] = [
       '#type' => 'submit',
@@ -210,7 +213,7 @@ class TaxImportForm extends FormBase {
    */
   public static function taxImportFinished($success, $results, $operations) {
     if ($success) {
-      \Drupal::messenger()->addMessage(t('Processed  @count taxes successfully.',[
+      \Drupal::messenger()->addMessage(t('Processed  @count taxes successfully.', [
         '@count' => count($results),
       ]));
     }

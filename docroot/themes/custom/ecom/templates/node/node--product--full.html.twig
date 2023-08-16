@@ -86,7 +86,7 @@
             {% if content.field_brand %}
               {{ content.field_brand }}
             {% endif %}
-          
+
             {% if product_images %}
               {# image slider #}
               <div class="product-detail-slider">
@@ -185,7 +185,7 @@
         {# Specification content #}
         <div class="product-information">
           {% if content.field_product_specifications %}
-          
+
             <div class="product-information__header">
               {{ 'Product Information'|t }}
             </div>
@@ -220,9 +220,7 @@
     {% set items = [1, 2, 3, 4] %}
     <div class="recent-viewed__header"> Recently viewed Products </div>
     <div class="product-list">
-      {% for item in items %}
-        {% include "themes/custom/ecom/templates/views/view-view-recently-viewed-products.html.twig" %}
-      {% endfor %}
+     {{ related_product_block }}
     </div>
   </div>
 </article>
