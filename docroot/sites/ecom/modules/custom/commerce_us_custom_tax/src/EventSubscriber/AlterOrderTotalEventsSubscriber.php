@@ -49,7 +49,7 @@ class AlterOrderTotalEventsSubscriber implements EventSubscriberInterface {
     $order_obj = $event->getOrder();
 
     $order_total = 0;
-    if ($order_obj->getTotalPrice() != NULL) {
+    if ($order_obj->getSubtotalPrice() != NULL) {
       $order_total = $order_obj->getSubtotalPrice()->getNumber();
     }
 
