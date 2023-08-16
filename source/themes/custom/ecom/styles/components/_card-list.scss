@@ -1,0 +1,50 @@
+.card--list {
+  .card--list__wishlist {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+
+  &__image {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 14px;
+    transition: transform 0.2s;
+    font-weight: normal;
+    padding: 0 10px 10px;
+  }
+
+  &__category {
+    text-align: left;
+    font-weight: $bold;
+  }
+
+  &__link {
+    &:hover {
+      text-decoration: none;
+
+      .card--list__title {
+        font-weight: bold;
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  .cart-price__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .price {
+      font-weight: $bold;
+      color: $dark-mustard;
+      font-size: 14px;
+    }
+  }
+
+}
