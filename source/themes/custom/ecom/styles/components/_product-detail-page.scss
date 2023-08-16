@@ -96,6 +96,11 @@
     min-height: 29px;
     background-color: $pantone;
     border-radius: 8px;
+
+    &:hover {
+      border: 1px solid $pantone;
+      text-decoration: none;
+    }
   }
 
   .image__help-text {
@@ -160,15 +165,21 @@ ul.field--name-field-product-features {
 
 .swiper-container {
   position: relative;
-  width: 360px;
+  max-width: 100%;
 
   &.video-top {
+    width: 100%;
+
     @media only screen and (max-width: $tablet-max) {
       width: unset;
     }
   }
   @media only screen and (max-width: $tablet-max) {
     width: 300px;
+  }
+
+  &.gallery-top  {
+    width: 360px;
   }
 }
 
@@ -241,12 +252,12 @@ ul.field--name-field-product-features {
 
 .swiper-button-next {
   right: -5px !important;
-  background: url("#{$image-base-path}/next.png") no-repeat scroll center center !important;
+  background: url("#{$image-base-path}/next.svg") no-repeat scroll center center !important;
 }
 
 .swiper-button-prev {
   left: -5px !important;
-  background: url("#{$image-base-path}/back.png") no-repeat scroll center center !important;
+  background: url("#{$image-base-path}/prev.svg") no-repeat scroll center center !important;
 }
 
 // pop-up.
@@ -289,6 +300,7 @@ ul.field--name-field-product-features {
   .video-slider {
     &.vedio-gallery {
       display: block;
+      max-width: max-content;
 
       .video-field {
         width: 100%;
