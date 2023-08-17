@@ -103,12 +103,14 @@ function ecom_preprocess_node__product__full(array &$variables) {
   if ($node->field_commerce_product != NULL) {
     $prod_variation_obj = $node->field_commerce_product->entity->variations->entity;
     // Price.
-    $price = $prod_variation_obj->getPrice();
-    // Variance id.
-    $var_id = $prod_variation_obj->id();
-    // Passing in template.
-    $variables['variation_id'] = $var_id;
-    $variables['price'] = $price;
+    if ($prod_variation_obj != NULL) {
+      $price = $prod_variation_obj->getPrice();
+      // Variance id.
+      $var_id = $prod_variation_obj->id();
+      // Passing in template.
+      $variables['variation_id'] = $var_id;
+      $variables['price'] = $price;
+    }
   }
   // Count Product Images.
   $variables['product_images'] = NULL;
