@@ -300,7 +300,10 @@ ul.field--name-field-product-features {
   .video-slider {
     &.vedio-gallery {
       display: block;
-      max-width: max-content;
+
+      &.multiple-video {
+        max-width: max-content;
+      }
 
       .video-field {
         width: 100%;
