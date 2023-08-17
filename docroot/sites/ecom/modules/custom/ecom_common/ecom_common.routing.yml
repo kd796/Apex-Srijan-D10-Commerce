@@ -1,0 +1,11 @@
+ecom_common.product_image_download:
+  path: '/ecom-product-image-download/{node}'
+  defaults:
+    _controller: '\Drupal\ecom_common\Controller\ProductImageController::downloadImages'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      node:
+        type: entity:node
+

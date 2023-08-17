@@ -83,6 +83,10 @@
         {# Slider and links #}
         <div class="row">
           <div class="product-detail__slider">
+            {% if content.field_brand %}
+              {{ content.field_brand }}
+            {% endif %}
+
             {% if product_images %}
               {# image slider #}
               <div class="product-detail-slider">
@@ -157,7 +161,7 @@
             </div>
             <div class="product__stocks-price">
               <div class="product-price">
-                {{ '$9.08' }}
+                {{ price }}
               </div>
               <div class="product-availability">
                 {{ 'Availability:'|t }}
@@ -172,40 +176,52 @@
               {{ content.field_product_features }}
             </div>
             <div class="product__actions">
-              <div class="button--add-to-cart btn-primary">{{ 'Add to Cart'|t }}</div>
-              <div class="btn btn-primary button--wishlist">
-              {{ 'Add to Wishlist'|t }}</div>
+              <div class="button--add-to-cart btn-primary"><a href="/add-to-cart/{{ variation_id }}/{{ variation_id }}">{{ 'Add to Cart'|t }}</a></div>
+              <div class="btn btn-primary button--wishlist"><a href="/add-to-wishlist/{{ variation_id }}/{{ variation_id }}">
+              {{ 'Add to Wishlist'|t }}
+              </a></div>
             </div>
           </div>
         </div>
         {# Specification content #}
         <div class="product-information">
-          <div class="product-information__header">
-            {{ 'Product Information'|t }}
-          </div>
-          <div class="product-specifications">
+          {% if content.field_product_specifications %}
 
-            <div class="specification-header">{{ 'Specifications'|t }}</div>
+            <div class="product-information__header">
+              {{ 'Product Information'|t }}
+            </div>
+            <div class="product-specifications">
 
-            {% for specs in content.field_product_specifications %}
-              {% set specs_title =  specs['#plain_text']|split(':', 2) %}
-              <div class="field__item">
-                {% for key,specs_label in specs_title %}
-                  {% if (loop.index is odd) %}
-                    <div class='specs-key'>
-                      {{ specs_label }}
-                    </div>
-                  {% else %}
-                    <div class='specs-value'>
-                      {{ specs_label }}
-                    </div>
-                  {% endif %}
-                {% endfor %}
-              </div>
-            {% endfor %}
-          </div>
+              <div class="specification-header">{{ 'Specifications'|t }}</div>
+
+              {% for specs in content.field_product_specifications %}
+                {% set specs_title =  specs['#plain_text']|split(':', 2) %}
+                <div class="field__item">
+                  {% for key,specs_label in specs_title %}
+                    {% if (loop.index is odd) %}
+                      <div class='specs-key'>
+                        {{ specs_label }}
+                      </div>
+                    {% else %}
+                      <div class='specs-value'>
+                        {{ specs_label }}
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
         </div>
       </div>
+    </div>
+
+    {# Overwrite and replace this with View results #}
+
+    {% set items = [1, 2, 3, 4] %}
+    <div class="recent-viewed__header"> Recently viewed Products </div>
+    <div class="product-list">
+     {{ related_product_block }}
     </div>
   </div>
 </article>

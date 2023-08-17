@@ -2,3 +2,8 @@ services:
   commerce_us_custom_tax.utility:
       class: '\Drupal\commerce_us_custom_tax\UtilityTax'
       arguments: ['@entity_type.manager']
+  commerce_us_custom_tax.order_total:
+      class: '\Drupal\commerce_us_custom_tax\EventSubscriber\AlterOrderTotalEventsSubscriber'
+      arguments: ['@commerce_us_custom_tax.utility']
+      tags:
+        - { name: 'event_subscriber', priority: 300 }
