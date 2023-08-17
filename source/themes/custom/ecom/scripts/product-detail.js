@@ -76,7 +76,7 @@
       });
 
       let videoCount = $('.vedio-gallery .field--name-field-product-images').children().length;
-      if(videoCount > 1) {
+      if (videoCount > 1) {
         $('#video-popup').addClass('multiple-video');
       }
 
