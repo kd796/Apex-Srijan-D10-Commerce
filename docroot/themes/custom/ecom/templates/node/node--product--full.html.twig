@@ -161,7 +161,7 @@
             </div>
             <div class="product__stocks-price">
               <div class="product-price">
-                {{ '$9.08' }}
+                {{ price }}
               </div>
               <div class="product-availability">
                 {{ 'Availability:'|t }}
@@ -176,9 +176,10 @@
               {{ content.field_product_features }}
             </div>
             <div class="product__actions">
-              <div class="button--add-to-cart btn-primary">{{ 'Add to Cart'|t }}</div>
-              <div class="btn btn-primary button--wishlist">
-              {{ 'Add to Wishlist'|t }}</div>
+              <div class="button--add-to-cart btn-primary"><a href="/add-to-cart/{{ variation_id }}/{{ variation_id }}">{{ 'Add to Cart'|t }}</a></div>
+              <div class="btn btn-primary button--wishlist"><a href="/add-to-wishlist/{{ variation_id }}/{{ variation_id }}">
+              {{ 'Add to Wishlist'|t }}
+              </a></div>
             </div>
           </div>
         </div>
