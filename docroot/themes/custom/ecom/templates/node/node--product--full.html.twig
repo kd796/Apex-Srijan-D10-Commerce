@@ -176,8 +176,8 @@
               {{ content.field_product_features }}
             </div>
             <div class="product__actions">
-              <div class="button--add-to-cart btn-primary"><a href="/add-to-cart/{{ variation_id }}/{{ variation_id }}">{{ 'Add to Cart'|t }}</a></div>
-              <div class="btn btn-primary button--wishlist"><a href="/add-to-wishlist/{{ variation_id }}/{{ variation_id }}">
+              <div class="add-to-cart-button"><a href="/add-to-cart/{{ variation_id }}/{{ variation_id }}" class="button--add-to-cart btn-primary">{{ 'Add to Cart'|t }}</a></div>
+              <div class="wishlist-button"><a href="/add-to-wishlist/{{ variation_id }}/{{ variation_id }}" class="btn btn-primary button--wishlist">
               {{ 'Add to Wishlist'|t }}
               </a></div>
             </div>
@@ -215,13 +215,11 @@
         </div>
       </div>
     </div>
-
-    {# Overwrite and replace this with View results #}
-
-    {% set items = [1, 2, 3, 4] %}
-    <div class="recent-viewed__header"> Recently viewed Products </div>
-    <div class="product-list">
-     {{ related_product_block }}
-    </div>
+    {% if related_product_block %}
+      <div class="recent-viewed__header"> Recently viewed Products </div>
+      <div class="product-list">
+      {{ related_product_block }}
+      </div>
+    {% endif %}
   </div>
 </article>

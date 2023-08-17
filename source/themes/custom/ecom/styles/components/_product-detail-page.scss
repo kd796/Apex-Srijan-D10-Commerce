@@ -40,7 +40,11 @@
   }
 
   &__slider {
-    @media only screen and (min-width: $tablet) {
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 100%;
+    }
+
+    @media only screen and (min-width: $tablet-max) {
       width: 45%;
       margin-right: 20px;
     }
@@ -49,11 +53,12 @@
   &__links {
     position: relative;
 
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 100%;
+    }
+
     @media only screen and (min-width: $tablet-max) {
       width: calc(55% - 20px);
-    }
-    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
-      width: 55%;
     }
 
     .wrapper-content {
@@ -391,6 +396,7 @@ ul.field--name-field-product-features {
   padding-bottom: 10px;
   border-bottom: 1px solid $black;
   margin-bottom: 16px;
+  padding-top: 20px;
 }
 
 .product__stocks-price {
