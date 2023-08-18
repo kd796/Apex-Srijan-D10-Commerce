@@ -83,9 +83,13 @@
       font-size: 12px;
       color: $white;
 
-      &:hover {
+      &:hover,
+      &:focus,
+      &:focus-visible {
         color: $pantone;
         background: $white;
+        text-decoration: none;
+        border: 1px solid $pantone;
       }
     }
   }
@@ -98,7 +102,7 @@
     justify-content: center;
     float: left;
     padding: 3px 20px;
-    min-height: 29px;
+    min-height: 31px;
     background-color: $pantone;
     border-radius: 8px;
 

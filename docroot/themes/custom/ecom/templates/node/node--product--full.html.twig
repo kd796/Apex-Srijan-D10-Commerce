@@ -215,10 +215,9 @@
         </div>
       </div>
     </div>
-    {% if related_product_block %}
-      <div class="recent-viewed__header"> Recently viewed Products </div>
+    {% if related_product_block|render|trim %}
       <div class="product-list">
-      {{ related_product_block }}
+        {{ related_product_block }}
       </div>
     {% endif %}
   </div>
