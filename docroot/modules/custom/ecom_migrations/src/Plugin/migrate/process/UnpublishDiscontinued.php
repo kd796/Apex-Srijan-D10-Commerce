@@ -23,6 +23,14 @@ class UnpublishDiscontinued extends ProcessPluginBase {
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $values = $this->configuration['value'];
     $published = TRUE;
+    $sku_value = $row->getSourceProperty('remote_sku_group');
+    foreach ($sku_value as $item) {
+      $pValue_list[(string) $item->attributes()->AttributeID] = (string) $item[0];
+    }
+
+    if (empty($pValue_list['CustomerPrice']) || $pValue_list['CustomerPrice'] == '') {
+      $published = FALSE;
+    }
 
     if (empty($values) || empty($value)) {
       return $published;
