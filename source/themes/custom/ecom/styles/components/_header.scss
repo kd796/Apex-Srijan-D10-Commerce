@@ -1,11 +1,5 @@
 /****** Header ******/
 // Top Bar Style.
-.user-logged-in {
-  @media only screen and (max-width: 369px) { // To avoid admin menu breaking issue.
-    padding-top: 79px !important;
-  }
-}
-
 .top-page {
   padding: 5px 0;
 
@@ -77,9 +71,9 @@
           width: 15px;
           height: 15px;
           margin-right: 5px;
-          background: url('#{$image-base-path}/user.png') no-repeat center right;
+          background: url('#{$image-base-path}/user.png') no-repeat;
           position: relative;
-          top: 2px;
+          top: 0;
           background-size: 17px;
         }
 
@@ -111,10 +105,10 @@
         &::before {
           content: '';
           width: 15px;
-          height: 12px;
-          background: url('#{$image-base-path}/wishlist.png') no-repeat center right;
+          height: 15px;
+          background: url('#{$image-base-path}/wishlist.png') no-repeat;
           position: absolute;
-          top: 1px;
+          top: -1px;
           left: -20px;
           display: block;
           background-size: 15px;
@@ -138,10 +132,10 @@
         &::before {
           content: '';
           width: 15px;
-          height: 12px;
-          background: url('#{$image-base-path}/shopping-cart.png') no-repeat center right;
+          height: 15px;
+          background: url('#{$image-base-path}/shopping-cart.png') no-repeat;
           position: absolute;
-          top: 3px;
+          top: 0;
           display: block;
           left: -20px;
           background-size: 17px;
@@ -335,32 +329,39 @@
             border-right: 0;
           }
 
-          ul {
-            column-count: 3;
+          .block-views-blocktaxonomy-menu-hand-tools,
+          .block-views-blocktaxonomy-menu-storage,
+          .block-views-blocktaxonomy-menu-campbell,
+          .block-views-blocktaxonomy-menu-shop-equipment {
+            .view-content {
+              & > ul {
+                column-count: 3;
 
-            li {
-              padding: 0 20px;
-              margin: 0 20px;
-            }
+                li {
+                  padding: 0 20px;
+                  margin: 0 20px;
+                }
 
-            &::after {
-              content: '';
-              height: 100%;
-              width: 1px;
-              background-color: $gray-tertiary;
-              position: absolute;
-              top: 0;
-              left: 31%;
-            }
+                &::after {
+                  content: '';
+                  height: 100%;
+                  width: 1px;
+                  background-color: $gray-tertiary;
+                  position: absolute;
+                  top: 0;
+                  left: 31%;
+                }
 
-            &::before {
-              content: '';
-              height: 100%;
-              width: 1px;
-              background-color: $gray-tertiary;
-              position: absolute;
-              top: 0;
-              left: 64.5%;
+                &::before {
+                  content: '';
+                  height: 100%;
+                  width: 1px;
+                  background-color: $gray-tertiary;
+                  position: absolute;
+                  top: 0;
+                  left: 64.5%;
+                }
+              }
             }
           }
         }
