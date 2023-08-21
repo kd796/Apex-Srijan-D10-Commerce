@@ -370,3 +370,104 @@
     }
   }
 }
+
+// code for sales policy page 
+.sales-terms-conditions {
+  background: repeat top center / cover fixed;
+  background-image: url('../images/formbackground.webp');
+
+  // code for title bar 
+  .page-titlebar {
+   background: rgb(205,205,205);
+   padding: 20px;
+   color: #000000;
+   font-size: 2.2291rem;
+   line-height: 3.15rem;
+   text-align: center;
+   font-family: Arial;
+   font-weight: 700;
+   @media screen and (max-width: $tablet) {
+     font-size: 1.22rem;
+     line-height: 2.15rem;
+    }
+  }
+
+  /* code for the country-card-wrappers */
+  .product-pdf-cards-wrapper {
+    padding: 40px;
+    max-width: 1250px;
+    margin: 0 auto;
+    .page-content-title {
+      padding: 20px;
+      width: 35%;
+      margin: 0 auto;
+      background: #007DC3 ;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5px;
+      color: #fff;
+      line-height: 2.15rem;
+      font-size: 1.75rem;
+      word-wrap: break-word;
+      font-family: $nacelle;
+      border-radius: 0.625rem;
+      text-align: center;
+      margin: 0 auto;
+      @media screen and (max-width: $mobile-lanscape){
+        width: 100%;
+      }
+    }
+    .pdf-content-wrapper {
+      padding: 30px 0px;
+      display: flex;
+      flex-wrap: wrap;
+      text-align: center;
+      .pdf-card {
+        width: 44%;
+        margin: 2%;
+        .country-name {
+          color: #fff;
+          font-size: 1.75rem;
+          line-height: 2.15rem;
+        }
+        .country-flag {
+          width: 315px;
+          height: 210px;
+          margin: 0 auto;
+          img{
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .pdf-link-text {
+          text-decoration: none;
+          width: 70%;
+          margin: 20px auto ;
+          padding: 10px 30px;
+          text-align: center;
+          background: #007DC3;
+          color: #FFFFFF;
+          font-size: 1.17rem;
+          line-height: 1.9rem;
+          font-family: Arial;
+          font-weight: 400;
+          border-radius: 10px;
+          @media screen and (max-width: $tablet){
+            width: 90%;
+          }
+        }
+        .pdf-thumbnail {
+          margin-bottom: 20px;
+          img{
+            width: 134px;
+            height: 186px;
+          }
+        }
+        @media screen and (max-width: $tablet){
+          width: 100%;
+        }
+      }
+    }
+  }
+}
