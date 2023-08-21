@@ -94,7 +94,7 @@ class GetCategoryMenuImage extends ProcessPluginBase implements ContainerFactory
     $media_id = NULL;
     $this->mediaId = NULL;
     $this->assets = NULL;
-    $sku = $row->getSourceIdValues()['remote_sku'];
+    $sku = $row->getSourceIdValues()['remote_sku'] ?? '';
     $alt_text = $value->Name;
 
     $asset_cross_reference = $value->xpath('AssetCrossReference');
