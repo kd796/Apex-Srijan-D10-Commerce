@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.storage.taxonomy_term.field_listing_menu_image
-    - node.type.product_category
     - taxonomy.vocabulary.product_classifications
   module:
     - media
@@ -550,11 +549,11 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.taxonomy_term.field_listing_menu_image'
-  accessories:
-    id: accessories
-    display_title: Accessories
+  campbell:
+    id: campbell
+    display_title: Cambell
     display_plugin: block
-    position: 1
+    position: 16
     display_options:
       arguments:
         term_node_tid_depth:
@@ -575,7 +574,7 @@ display:
           title: ''
           default_argument_type: fixed
           default_argument_options:
-            argument: Accessories
+            argument: Chain
           default_argument_skip_url: false
           summary_options:
             base_path: ''
@@ -592,7 +591,7 @@ display:
             fail: 'not found'
           validate_options: {  }
           break_phrase: false
-          depth: 2
+          depth: 1
           use_taxonomy_term_path: false
       filters:
         status:
@@ -612,15 +611,29 @@ display:
           id: vid
           table: taxonomy_term_field_data
           field: vid
+          entity_type: taxonomy_term
+          entity_field: vid
+          plugin_id: bundle
+          value:
+            product_classifications: product_classifications
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+        parent_target_id:
+          id: parent_target_id
+          table: taxonomy_term__parent
+          field: parent_target_id
           relationship: none
           group_type: group
           admin_label: ''
           entity_type: taxonomy_term
-          entity_field: vid
-          plugin_id: bundle
-          operator: in
+          entity_field: parent
+          plugin_id: numeric
+          operator: '!='
           value:
-            product_classifications: product_classifications
+            min: ''
+            max: ''
+            value: ''
           group: 1
           exposed: false
           expose:
@@ -637,49 +650,9 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          relationship: reverse__node__field_product_classifications
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          operator: in
-          value:
-            product_category: product_category
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -697,10 +670,6 @@ display:
         groups:
           1: AND
       defaults:
-        style: true
-        row: true
-        relationships: true
-        fields: true
         arguments: false
         filters: false
         filter_groups: false
@@ -715,11 +684,11 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.taxonomy_term.field_listing_menu_image'
-  assemblies:
-    id: assemblies
-    display_title: Assemblies
+  hand_tools:
+    id: hand_tools
+    display_title: 'Hand Tools'
     display_plugin: block
-    position: 1
+    position: 13
     display_options:
       arguments:
         term_node_tid_depth:
@@ -740,7 +709,7 @@ display:
           title: ''
           default_argument_type: fixed
           default_argument_options:
-            argument: Assemblies
+            argument: 'Hand Tools'
           default_argument_skip_url: false
           summary_options:
             base_path: ''
@@ -757,7 +726,7 @@ display:
             fail: 'not found'
           validate_options: {  }
           break_phrase: false
-          depth: 2
+          depth: 1
           use_taxonomy_term_path: false
       filters:
         status:
@@ -777,15 +746,29 @@ display:
           id: vid
           table: taxonomy_term_field_data
           field: vid
+          entity_type: taxonomy_term
+          entity_field: vid
+          plugin_id: bundle
+          value:
+            product_classifications: product_classifications
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+        parent_target_id:
+          id: parent_target_id
+          table: taxonomy_term__parent
+          field: parent_target_id
           relationship: none
           group_type: group
           admin_label: ''
           entity_type: taxonomy_term
-          entity_field: vid
-          plugin_id: bundle
-          operator: in
+          entity_field: parent
+          plugin_id: numeric
+          operator: '!='
           value:
-            product_classifications: product_classifications
+            min: ''
+            max: ''
+            value: ''
           group: 1
           exposed: false
           expose:
@@ -802,49 +785,9 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          relationship: reverse__node__field_product_classifications
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          operator: in
-          value:
-            product_category: product_category
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -862,10 +805,6 @@ display:
         groups:
           1: AND
       defaults:
-        style: true
-        row: true
-        relationships: true
-        fields: true
         arguments: false
         filters: false
         filter_groups: false
@@ -880,11 +819,11 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.taxonomy_term.field_listing_menu_image'
-  blocks:
-    id: blocks
-    display_title: Blocks
+  shop_equipment:
+    id: shop_equipment
+    display_title: 'Shop Equipment'
     display_plugin: block
-    position: 1
+    position: 15
     display_options:
       arguments:
         term_node_tid_depth:
@@ -905,7 +844,7 @@ display:
           title: ''
           default_argument_type: fixed
           default_argument_options:
-            argument: Blocks
+            argument: 'Shop Equipment'
           default_argument_skip_url: false
           summary_options:
             base_path: ''
@@ -922,7 +861,7 @@ display:
             fail: 'not found'
           validate_options: {  }
           break_phrase: false
-          depth: 2
+          depth: 1
           use_taxonomy_term_path: false
       filters:
         status:
@@ -942,15 +881,29 @@ display:
           id: vid
           table: taxonomy_term_field_data
           field: vid
+          entity_type: taxonomy_term
+          entity_field: vid
+          plugin_id: bundle
+          value:
+            product_classifications: product_classifications
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+        parent_target_id:
+          id: parent_target_id
+          table: taxonomy_term__parent
+          field: parent_target_id
           relationship: none
           group_type: group
           admin_label: ''
           entity_type: taxonomy_term
-          entity_field: vid
-          plugin_id: bundle
-          operator: in
+          entity_field: parent
+          plugin_id: numeric
+          operator: '!='
           value:
-            product_classifications: product_classifications
+            min: ''
+            max: ''
+            value: ''
           group: 1
           exposed: false
           expose:
@@ -967,49 +920,9 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          relationship: reverse__node__field_product_classifications
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          operator: in
-          value:
-            product_category: product_category
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -1027,10 +940,6 @@ display:
         groups:
           1: AND
       defaults:
-        style: true
-        row: true
-        relationships: true
-        fields: true
         arguments: false
         filters: false
         filter_groups: false
@@ -1045,11 +954,11 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.taxonomy_term.field_listing_menu_image'
-  cable_and_wire_rope:
-    id: cable_and_wire_rope
-    display_title: 'Cable & Wire Rope'
+  storage:
+    id: storage
+    display_title: Storage
     display_plugin: block
-    position: 1
+    position: 14
     display_options:
       arguments:
         term_node_tid_depth:
@@ -1070,7 +979,7 @@ display:
           title: ''
           default_argument_type: fixed
           default_argument_options:
-            argument: 'Cable & Wire Rope'
+            argument: Storage
           default_argument_skip_url: false
           summary_options:
             base_path: ''
@@ -1087,7 +996,7 @@ display:
             fail: 'not found'
           validate_options: {  }
           break_phrase: false
-          depth: 2
+          depth: 1
           use_taxonomy_term_path: false
       filters:
         status:
@@ -1107,15 +1016,29 @@ display:
           id: vid
           table: taxonomy_term_field_data
           field: vid
+          entity_type: taxonomy_term
+          entity_field: vid
+          plugin_id: bundle
+          value:
+            product_classifications: product_classifications
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+        parent_target_id:
+          id: parent_target_id
+          table: taxonomy_term__parent
+          field: parent_target_id
           relationship: none
           group_type: group
           admin_label: ''
           entity_type: taxonomy_term
-          entity_field: vid
-          plugin_id: bundle
-          operator: in
+          entity_field: parent
+          plugin_id: numeric
+          operator: '!='
           value:
-            product_classifications: product_classifications
+            min: ''
+            max: ''
+            value: ''
           group: 1
           exposed: false
           expose:
@@ -1132,49 +1055,9 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          relationship: reverse__node__field_product_classifications
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          operator: in
-          value:
-            product_category: product_category
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -1192,1330 +1075,6 @@ display:
         groups:
           1: AND
       defaults:
-        style: true
-        row: true
-        relationships: true
-        fields: true
-        arguments: false
-        filters: false
-        filter_groups: false
-      display_description: ''
-      display_extenders: {  }
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - user.permissions
-      tags:
-        - 'config:field.storage.taxonomy_term.field_listing_menu_image'
-  chain_and_cable_cutters:
-    id: chain_and_cable_cutters
-    display_title: 'Chain & Cable Cutters'
-    display_plugin: block
-    position: 1
-    display_options:
-      arguments:
-        term_node_tid_depth:
-          id: term_node_tid_depth
-          table: node_field_data
-          field: term_node_tid_depth
-          relationship: reverse__node__field_product_classifications
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          plugin_id: taxonomy_index_tid_depth
-          default_action: default
-          exception:
-            value: all
-            title_enable: false
-            title: All
-          title_enable: false
-          title: ''
-          default_argument_type: fixed
-          default_argument_options:
-            argument: 'Chain & Cable Cutters'
-          default_argument_skip_url: false
-          summary_options:
-            base_path: ''
-            count: true
-            override: false
-            items_per_page: 25
-          summary:
-            sort_order: asc
-            number_of_records: 0
-            format: default_summary
-          specify_validation: false
-          validate:
-            type: none
-            fail: 'not found'
-          validate_options: {  }
-          break_phrase: false
-          depth: 2
-          use_taxonomy_term_path: false
-      filters:
-        status:
-          id: status
-          table: taxonomy_term_field_data
-          field: status
-          entity_type: taxonomy_term
-          entity_field: status
-          plugin_id: boolean
-          value: '1'
-          group: 1
-          expose:
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-        vid:
-          id: vid
-          table: taxonomy_term_field_data
-          field: vid
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: taxonomy_term
-          entity_field: vid
-          plugin_id: bundle
-          operator: in
-          value:
-            product_classifications: product_classifications
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          relationship: reverse__node__field_product_classifications
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          operator: in
-          value:
-            product_category: product_category
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      defaults:
-        style: true
-        row: true
-        relationships: true
-        fields: true
-        arguments: false
-        filters: false
-        filter_groups: false
-      display_description: ''
-      display_extenders: {  }
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - user.permissions
-      tags:
-        - 'config:field.storage.taxonomy_term.field_listing_menu_image'
-  forged_fittings:
-    id: forged_fittings
-    display_title: 'Forged Fittings'
-    display_plugin: block
-    position: 1
-    display_options:
-      arguments:
-        term_node_tid_depth:
-          id: term_node_tid_depth
-          table: node_field_data
-          field: term_node_tid_depth
-          relationship: reverse__node__field_product_classifications
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          plugin_id: taxonomy_index_tid_depth
-          default_action: default
-          exception:
-            value: all
-            title_enable: false
-            title: All
-          title_enable: false
-          title: ''
-          default_argument_type: fixed
-          default_argument_options:
-            argument: 'Forged Fittings'
-          default_argument_skip_url: false
-          summary_options:
-            base_path: ''
-            count: true
-            override: false
-            items_per_page: 25
-          summary:
-            sort_order: asc
-            number_of_records: 0
-            format: default_summary
-          specify_validation: false
-          validate:
-            type: none
-            fail: 'not found'
-          validate_options: {  }
-          break_phrase: false
-          depth: 2
-          use_taxonomy_term_path: false
-      filters:
-        status:
-          id: status
-          table: taxonomy_term_field_data
-          field: status
-          entity_type: taxonomy_term
-          entity_field: status
-          plugin_id: boolean
-          value: '1'
-          group: 1
-          expose:
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-        vid:
-          id: vid
-          table: taxonomy_term_field_data
-          field: vid
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: taxonomy_term
-          entity_field: vid
-          plugin_id: bundle
-          operator: in
-          value:
-            product_classifications: product_classifications
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          relationship: reverse__node__field_product_classifications
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          operator: in
-          value:
-            product_category: product_category
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      defaults:
-        style: true
-        row: true
-        relationships: true
-        fields: true
-        arguments: false
-        filters: false
-        filter_groups: false
-      display_description: ''
-      display_extenders: {  }
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - user.permissions
-      tags:
-        - 'config:field.storage.taxonomy_term.field_listing_menu_image'
-  hobby_craft_and_deco:
-    id: hobby_craft_and_deco
-    display_title: 'Hobby/Craft & Deco'
-    display_plugin: block
-    position: 1
-    display_options:
-      arguments:
-        term_node_tid_depth:
-          id: term_node_tid_depth
-          table: node_field_data
-          field: term_node_tid_depth
-          relationship: reverse__node__field_product_classifications
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          plugin_id: taxonomy_index_tid_depth
-          default_action: default
-          exception:
-            value: all
-            title_enable: false
-            title: All
-          title_enable: false
-          title: ''
-          default_argument_type: fixed
-          default_argument_options:
-            argument: 'Hobby/Craft & Deco'
-          default_argument_skip_url: false
-          summary_options:
-            base_path: ''
-            count: true
-            override: false
-            items_per_page: 25
-          summary:
-            sort_order: asc
-            number_of_records: 0
-            format: default_summary
-          specify_validation: false
-          validate:
-            type: none
-            fail: 'not found'
-          validate_options: {  }
-          break_phrase: false
-          depth: 2
-          use_taxonomy_term_path: false
-      filters:
-        status:
-          id: status
-          table: taxonomy_term_field_data
-          field: status
-          entity_type: taxonomy_term
-          entity_field: status
-          plugin_id: boolean
-          value: '1'
-          group: 1
-          expose:
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-        vid:
-          id: vid
-          table: taxonomy_term_field_data
-          field: vid
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: taxonomy_term
-          entity_field: vid
-          plugin_id: bundle
-          operator: in
-          value:
-            product_classifications: product_classifications
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          relationship: reverse__node__field_product_classifications
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          operator: in
-          value:
-            product_category: product_category
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      defaults:
-        style: true
-        row: true
-        relationships: true
-        fields: true
-        arguments: false
-        filters: false
-        filter_groups: false
-      display_description: ''
-      display_extenders: {  }
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - user.permissions
-      tags:
-        - 'config:field.storage.taxonomy_term.field_listing_menu_image'
-  lifting_clamps:
-    id: lifting_clamps
-    display_title: 'Lifting Clamps'
-    display_plugin: block
-    position: 1
-    display_options:
-      arguments:
-        term_node_tid_depth:
-          id: term_node_tid_depth
-          table: node_field_data
-          field: term_node_tid_depth
-          relationship: reverse__node__field_product_classifications
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          plugin_id: taxonomy_index_tid_depth
-          default_action: default
-          exception:
-            value: all
-            title_enable: false
-            title: All
-          title_enable: false
-          title: ''
-          default_argument_type: fixed
-          default_argument_options:
-            argument: 'Lifting Clamps'
-          default_argument_skip_url: false
-          summary_options:
-            base_path: ''
-            count: true
-            override: false
-            items_per_page: 25
-          summary:
-            sort_order: asc
-            number_of_records: 0
-            format: default_summary
-          specify_validation: false
-          validate:
-            type: none
-            fail: 'not found'
-          validate_options: {  }
-          break_phrase: false
-          depth: 2
-          use_taxonomy_term_path: false
-      filters:
-        status:
-          id: status
-          table: taxonomy_term_field_data
-          field: status
-          entity_type: taxonomy_term
-          entity_field: status
-          plugin_id: boolean
-          value: '1'
-          group: 1
-          expose:
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-        vid:
-          id: vid
-          table: taxonomy_term_field_data
-          field: vid
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: taxonomy_term
-          entity_field: vid
-          plugin_id: bundle
-          operator: in
-          value:
-            product_classifications: product_classifications
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          relationship: reverse__node__field_product_classifications
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          operator: in
-          value:
-            product_category: product_category
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      defaults:
-        style: true
-        row: true
-        relationships: true
-        fields: true
-        arguments: false
-        filters: false
-        filter_groups: false
-      display_description: ''
-      display_extenders: {  }
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - user.permissions
-      tags:
-        - 'config:field.storage.taxonomy_term.field_listing_menu_image'
-  overhead_lifting:
-    id: overhead_lifting
-    display_title: 'Overhead Lifting'
-    display_plugin: block
-    position: 1
-    display_options:
-      arguments:
-        term_node_tid_depth:
-          id: term_node_tid_depth
-          table: node_field_data
-          field: term_node_tid_depth
-          relationship: reverse__node__field_product_classifications
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          plugin_id: taxonomy_index_tid_depth
-          default_action: default
-          exception:
-            value: all
-            title_enable: false
-            title: All
-          title_enable: false
-          title: ''
-          default_argument_type: fixed
-          default_argument_options:
-            argument: 'Overhead Lifting'
-          default_argument_skip_url: false
-          summary_options:
-            base_path: ''
-            count: true
-            override: false
-            items_per_page: 25
-          summary:
-            sort_order: asc
-            number_of_records: 0
-            format: default_summary
-          specify_validation: false
-          validate:
-            type: none
-            fail: 'not found'
-          validate_options: {  }
-          break_phrase: false
-          depth: 2
-          use_taxonomy_term_path: false
-      filters:
-        status:
-          id: status
-          table: taxonomy_term_field_data
-          field: status
-          entity_type: taxonomy_term
-          entity_field: status
-          plugin_id: boolean
-          value: '1'
-          group: 1
-          expose:
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-        vid:
-          id: vid
-          table: taxonomy_term_field_data
-          field: vid
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: taxonomy_term
-          entity_field: vid
-          plugin_id: bundle
-          operator: in
-          value:
-            product_classifications: product_classifications
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          relationship: reverse__node__field_product_classifications
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          operator: in
-          value:
-            product_category: product_category
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      defaults:
-        style: true
-        row: true
-        relationships: true
-        fields: true
-        arguments: false
-        filters: false
-        filter_groups: false
-      display_description: ''
-      display_extenders: {  }
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - user.permissions
-      tags:
-        - 'config:field.storage.taxonomy_term.field_listing_menu_image'
-  pre_cut_packaged:
-    id: pre_cut_packaged
-    display_title: 'Pre-Cut Packaged Chain & Cable'
-    display_plugin: block
-    position: 1
-    display_options:
-      arguments:
-        term_node_tid_depth:
-          id: term_node_tid_depth
-          table: node_field_data
-          field: term_node_tid_depth
-          relationship: reverse__node__field_product_classifications
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          plugin_id: taxonomy_index_tid_depth
-          default_action: default
-          exception:
-            value: all
-            title_enable: false
-            title: All
-          title_enable: false
-          title: ''
-          default_argument_type: fixed
-          default_argument_options:
-            argument: 'Pre-Cut Packaged Chain & Cable'
-          default_argument_skip_url: false
-          summary_options:
-            base_path: ''
-            count: true
-            override: false
-            items_per_page: 25
-          summary:
-            sort_order: asc
-            number_of_records: 0
-            format: default_summary
-          specify_validation: false
-          validate:
-            type: none
-            fail: 'not found'
-          validate_options: {  }
-          break_phrase: false
-          depth: 2
-          use_taxonomy_term_path: false
-      filters:
-        status:
-          id: status
-          table: taxonomy_term_field_data
-          field: status
-          entity_type: taxonomy_term
-          entity_field: status
-          plugin_id: boolean
-          value: '1'
-          group: 1
-          expose:
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-        vid:
-          id: vid
-          table: taxonomy_term_field_data
-          field: vid
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: taxonomy_term
-          entity_field: vid
-          plugin_id: bundle
-          operator: in
-          value:
-            product_classifications: product_classifications
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          relationship: reverse__node__field_product_classifications
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          operator: in
-          value:
-            product_category: product_category
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      defaults:
-        style: true
-        row: true
-        relationships: true
-        fields: true
-        arguments: false
-        filters: false
-        filter_groups: false
-      display_description: ''
-      display_extenders: {  }
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - user.permissions
-      tags:
-        - 'config:field.storage.taxonomy_term.field_listing_menu_image'
-  welded_chain:
-    id: welded_chain
-    display_title: 'Welded chain'
-    display_plugin: block
-    position: 1
-    display_options:
-      arguments:
-        term_node_tid_depth:
-          id: term_node_tid_depth
-          table: node_field_data
-          field: term_node_tid_depth
-          relationship: reverse__node__field_product_classifications
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          plugin_id: taxonomy_index_tid_depth
-          default_action: default
-          exception:
-            value: all
-            title_enable: false
-            title: All
-          title_enable: false
-          title: ''
-          default_argument_type: fixed
-          default_argument_options:
-            argument: 'Welded Chain'
-          default_argument_skip_url: false
-          summary_options:
-            base_path: ''
-            count: true
-            override: false
-            items_per_page: 25
-          summary:
-            sort_order: asc
-            number_of_records: 0
-            format: default_summary
-          specify_validation: false
-          validate:
-            type: none
-            fail: 'not found'
-          validate_options: {  }
-          break_phrase: false
-          depth: 2
-          use_taxonomy_term_path: false
-      filters:
-        status:
-          id: status
-          table: taxonomy_term_field_data
-          field: status
-          entity_type: taxonomy_term
-          entity_field: status
-          plugin_id: boolean
-          value: '1'
-          group: 1
-          expose:
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-        vid:
-          id: vid
-          table: taxonomy_term_field_data
-          field: vid
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: taxonomy_term
-          entity_field: vid
-          plugin_id: bundle
-          operator: in
-          value:
-            product_classifications: product_classifications
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          relationship: reverse__node__field_product_classifications
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          operator: in
-          value:
-            product_category: product_category
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      defaults:
-        style: true
-        row: true
-        relationships: true
-        fields: true
-        arguments: false
-        filters: false
-        filter_groups: false
-      display_description: ''
-      display_extenders: {  }
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - user.permissions
-      tags:
-        - 'config:field.storage.taxonomy_term.field_listing_menu_image'
-  weldless_chain:
-    id: weldless_chain
-    display_title: 'Weldless Chain'
-    display_plugin: block
-    position: 1
-    display_options:
-      arguments:
-        term_node_tid_depth:
-          id: term_node_tid_depth
-          table: node_field_data
-          field: term_node_tid_depth
-          relationship: reverse__node__field_product_classifications
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          plugin_id: taxonomy_index_tid_depth
-          default_action: default
-          exception:
-            value: all
-            title_enable: false
-            title: All
-          title_enable: false
-          title: ''
-          default_argument_type: fixed
-          default_argument_options:
-            argument: 'Weldless Chain'
-          default_argument_skip_url: false
-          summary_options:
-            base_path: ''
-            count: true
-            override: false
-            items_per_page: 25
-          summary:
-            sort_order: asc
-            number_of_records: 0
-            format: default_summary
-          specify_validation: false
-          validate:
-            type: none
-            fail: 'not found'
-          validate_options: {  }
-          break_phrase: false
-          depth: 2
-          use_taxonomy_term_path: false
-      filters:
-        status:
-          id: status
-          table: taxonomy_term_field_data
-          field: status
-          entity_type: taxonomy_term
-          entity_field: status
-          plugin_id: boolean
-          value: '1'
-          group: 1
-          expose:
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-        vid:
-          id: vid
-          table: taxonomy_term_field_data
-          field: vid
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: taxonomy_term
-          entity_field: vid
-          plugin_id: bundle
-          operator: in
-          value:
-            product_classifications: product_classifications
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          relationship: reverse__node__field_product_classifications
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          operator: in
-          value:
-            product_category: product_category
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      defaults:
-        style: true
-        row: true
-        relationships: true
-        fields: true
         arguments: false
         filters: false
         filter_groups: false
