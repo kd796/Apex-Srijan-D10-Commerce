@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for ecom_azure_api module.
+ */
+
+use Drupal\Core\Routing\TrustedRedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Cache\Cache;
+
+/**
+ * Implements hook_form_alter().
+ */
+function ecom_azure_api_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  if ($form_id === 'user_login_form') {
+    $ecom_azure_config = \Drupal::service('config.factory')->get('ecom_azure.settings') ?: [];
+    if (in_array(\Drupal::request()->getClientIp(), $ecom_azure_config->get('ecom_address_list')) ||
+      \Drupal::service('session')->get('pre_login_success')) {
+      return FALSE;
+    }
+    else {
+      // Replace the default user login form with the custom pre-login form.
+      $form = \Drupal::formBuilder()->getForm('Drupal\ecom_azure_api\Form\PreLoginForm');
+    }
+  }
+  if ($form_id == "ecom_azure_config_form") {
+    $form['#submit'][] = 'ecom_azure_api_azure_config_form_submit';
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function ecom_azure_api_theme($existing, $type, $theme, $path) {
+  return [
+    'ecom_azure_api_prelogin_form_template' => [
+      'render element' => 'form',
+      'template' => 'azure-prelogin-form',
+    ],
+  ];
+}
+
+/**
+ * Custom submit handler to clear cache.
+ */
+function ecom_azure_api_azure_config_form_submit(array &$form, FormStateInterface $form_state) {
+  drupal_flush_all_caches();
+}
