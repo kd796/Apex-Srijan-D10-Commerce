@@ -1,0 +1,55 @@
+uuid: 5b068272-bdae-4d70-8c54-0d0096aa54bc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.sale_terms_country_details.field_country_flag
+    - field.field.paragraph.sale_terms_country_details.field_country_nam
+    - field.field.paragraph.sale_terms_country_details.field_download_pdf
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.sale_terms_country_details
+  module:
+    - image
+    - paragraphs
+id: paragraph.sale_terms_country_details.default
+targetEntityType: paragraph
+bundle: sale_terms_country_details
+mode: default
+content:
+  field_country_flag:
+    type: image_image
+    weight: 1
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_country_nam:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_download_pdf:
+    type: paragraphs
+    weight: 2
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
