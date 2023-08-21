@@ -3,8 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.field_long_description
     - field.storage.node.field_media
-    - field.storage.node.field_sku_group
     - node.type.product
   module:
     - commerce_price
@@ -324,10 +324,10 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_sku_group:
-          id: field_sku_group
-          table: node__field_sku_group
-          field: field_sku_group
+        field_long_description:
+          id: field_long_description
+          table: node__field_long_description
+          field: field_long_description
           relationship: none
           group_type: group
           admin_label: ''
@@ -653,8 +653,8 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:field.storage.node.field_long_description'
         - 'config:field.storage.node.field_media'
-        - 'config:field.storage.node.field_sku_group'
   viewed_product:
     id: viewed_product
     display_title: Block
@@ -670,5 +670,5 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:field.storage.node.field_long_description'
         - 'config:field.storage.node.field_media'
-        - 'config:field.storage.node.field_sku_group'

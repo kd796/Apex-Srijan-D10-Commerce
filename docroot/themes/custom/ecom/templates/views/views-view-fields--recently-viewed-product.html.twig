@@ -43,15 +43,15 @@
         {{ fields.field_media.content }}
       </div>
     {% endif %}
-    {% if fields.title.content %}
+    {% if fields.field_long_description.content %}
       <div class="card--list__title">
-        {{ fields.title.content }}
+        {{ fields.field_long_description.content }}
       </div>
     {% endif %}
 	</a>
-  {% if fields.field_sku_group.content %}
+  {% if fields.title.content %}
   	<div class="card--list__category">
-      {{ fields.field_sku_group.content }}
+      {{'#' | t }}{{ fields.title.content }}
     </div>
   {% endif %}
 	<div class="cart-price__wrapper">
