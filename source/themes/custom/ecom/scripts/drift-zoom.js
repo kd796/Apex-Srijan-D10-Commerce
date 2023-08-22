@@ -9,7 +9,8 @@ function driftZoom(triggerElement, paneContainer) {
   "use strict";
   triggerElement.forEach((element) => {
     let imageSrc = element.getAttribute('src');
-    element.setAttribute('data-zoom', imageSrc);
+    let originalImg = imageSrc.replace('styles/medium/public/', '');
+    element.setAttribute('data-zoom', originalImg);
     new Drift(element, {
       paneContainer: paneContainer,
       inlinePane: false
