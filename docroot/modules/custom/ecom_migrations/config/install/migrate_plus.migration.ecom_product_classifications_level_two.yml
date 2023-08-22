@@ -23,6 +23,10 @@ source:
       name: remote_parent_name
       label: Parent Term Name
       selector: 'parent::Classification'
+    -
+      name: remote_listing_image
+      label: Listing Image
+      selector: '.'
   ids:
     remote_term_id:
       type: string
@@ -84,6 +88,10 @@ process:
     -
       plugin: default_value
       default_value: 0
+  listing_menu_image:
+    source: remote_listing_image
+    plugin: ecom_get_category_menu_image
+  'field_listing_menu_image/target_id': '@listing_menu_image'
 destination:
   plugin: entity:taxonomy_term
   default_bundle: product_classifications
