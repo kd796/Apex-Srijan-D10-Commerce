@@ -40,7 +40,11 @@
   }
 
   &__slider {
-    @media only screen and (min-width: $tablet) {
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 100%;
+    }
+
+    @media only screen and (min-width: $tablet-max) {
       width: 45%;
       margin-right: 20px;
     }
@@ -49,11 +53,12 @@
   &__links {
     position: relative;
 
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 100%;
+    }
+
     @media only screen and (min-width: $tablet-max) {
       width: calc(55% - 20px);
-    }
-    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
-      width: 55%;
     }
 
     .wrapper-content {
@@ -67,46 +72,55 @@
       justify-content: flex-start;
     }
   }
+  // Scss for Downloadble Links.
+  // .links__item {
+  //   margin-bottom: 15px;
+  //   display: inline-block;
 
-  .links__item {
-    margin-bottom: 15px;
-    display: inline-block;
+  //   a {
+  //     min-width: 217px;
+  //     align-items: center;
+  //     font-size: 12px;
+  //     color: $white;
 
-    a {
-      min-width: 217px;
-      align-items: center;
-      font-size: 12px;
-      color: $white;
+  //     &:hover,
+  //     &:focus,
+  //     &:focus-visible {
+  //       color: $pantone;
+  //       background: $white;
+  //       text-decoration: none;
+  //       border: 1px solid $pantone;
+  //     }
+  //   }
+  // }
 
-      &:hover {
-        color: $pantone;
-        background: $white;
-      }
-    }
-  }
+  // .watch-video {
+  //   color: $pantone;
+  //   font-size: 16px;
+  //   font-weight: $bold;
+  //   display: inline-flex;
+  //   justify-content: center;
+  //   float: left;
+  //   padding: 3px 20px;
+  //   min-height: 31px;
+  //   background-color: $pantone;
+  //   border-radius: 8px;
 
-  .watch-video {
-    color: $pantone;
-    font-size: 16px;
-    font-weight: $bold;
-    display: inline-flex;
-    justify-content: center;
-    float: left;
-    padding: 3px 20px;
-    min-height: 29px;
-    background-color: $pantone;
-    border-radius: 8px;
-
-    &:hover {
-      border: 1px solid $pantone;
-      text-decoration: none;
-    }
-  }
+  //   &:hover {
+  //     border: 1px solid $pantone;
+  //     text-decoration: none;
+  //   }
+  // }
 
   .image__help-text {
     text-align: center;
     padding-top: 8px;
     max-width: 360px;
+    display: none;
+
+    @media screen and (min-width: $tablet-max) {
+      display: block;
+    }
   }
 }
 
@@ -363,17 +377,17 @@ ul.field--name-field-product-features {
 
 // Download and watch video alignment.
 
-.downloadable-links {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  max-width: 100%;
-  padding-top: 15px;
+// .downloadable-links {
+//   display: flex;
+//   flex-direction: row;
+//   flex-wrap: wrap;
+//   max-width: 100%;
+//   padding-top: 15px;
 
-  .links__item {
-    margin-right: 1rem;
-  }
-}
+//   .links__item {
+//     margin-right: 1rem;
+//   }
+// }
 
 .product-information,
 .recent-viewed {
@@ -391,6 +405,7 @@ ul.field--name-field-product-features {
   padding-bottom: 10px;
   border-bottom: 1px solid $black;
   margin-bottom: 16px;
+  padding-top: 20px;
 }
 
 .product__stocks-price {
@@ -415,7 +430,7 @@ ul.field--name-field-product-features {
       font-weight: $bold;
 
       &.in-stock {
-        color: $pantone;
+        color: $green;
       }
 
       &.out-of-stock {

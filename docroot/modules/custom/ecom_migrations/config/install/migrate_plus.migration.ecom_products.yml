@@ -153,12 +153,12 @@ process:
   pdf_array:
     source: remote_pdfs
     plugin: apex_get_pdfs
-    field_pdfs:
-      plugin: sub_process
-      source: '@pdf_array'
-      include_source: true
-      process:
-        target_id: media_id
+  field_pdfs:
+    plugin: sub_process
+    source: '@pdf_array'
+    include_source: true
+    process:
+      target_id: media_id
   # Product Specifications
   product_specifications_array:
     plugin: ecom_create_product_specifications

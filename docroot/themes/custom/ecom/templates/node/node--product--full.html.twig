@@ -133,8 +133,8 @@
                 </div>
               {% endif %}
             {% endif %}
-            {# Links #}
-            <div class="downloadable-links">
+            {# Commenting the code as the requirement is changed. (Downloadble Links) #}
+            {# <div class="downloadable-links">
               <div class="links__item">
                 <a href="/ecom-product-image-download/{{ node.id() }}" class="btn btn-download">{{ 'Download Images' | t }}</a>
               </div>
@@ -149,7 +149,7 @@
                   <a href="{{ file_url(node.field_pdfs.entity.field_media_file.entity.uri.value) }}" download="Brochure.pdf" title="Download Brochure" class="btn btn-primary btn-distributor">{{ 'Download Brochure' | t}}</a>
                 </div>
               {% endif %}
-            </div>
+            </div> #}
           </div>
           <div class="product-detail__links">
             {# Title #}
@@ -165,8 +165,13 @@
               </div>
               <div class="product-availability">
                 {{ 'Availability:'|t }}
-                <span class='product-stock'>
+                {% if stock_value <= 0 %}
+                <span class='product-stock out-of-stock'>
+                {{ 'Out of stock' }}</span>
+                {% else %}
+                <span class='product-stock in-stock'>
                 {{ 'In stock' }}</span>
+                {% endif %}
               </div>
             </div>
             <div class="node--type-product__accordion-content">
@@ -176,8 +181,10 @@
               {{ content.field_product_features }}
             </div>
             <div class="product__actions">
-              <div class="button--add-to-cart btn-primary"><a href="/add-to-cart/{{ variation_id }}/{{ variation_id }}">{{ 'Add to Cart'|t }}</a></div>
-              <div class="btn btn-primary button--wishlist"><a href="/add-to-wishlist/{{ variation_id }}/{{ variation_id }}">
+            {% if stock_value > 0 %}
+              <div class="add-to-cart-button"><a href="/add-to-cart/{{ variation_id }}/{{ variation_id }}" class="button--add-to-cart btn-primary">{{ 'Add to Cart'|t }}</a></div>
+             {% endif %}
+              <div class="wishlist-button"><a href="/add-to-wishlist/{{ variation_id }}/{{ variation_id }}" class="btn btn-primary button--wishlist">
               {{ 'Add to Wishlist'|t }}
               </a></div>
             </div>
@@ -215,13 +222,10 @@
         </div>
       </div>
     </div>
-
-    {# Overwrite and replace this with View results #}
-
-    {% set items = [1, 2, 3, 4] %}
-    <div class="recent-viewed__header"> Recently viewed Products </div>
-    <div class="product-list">
-     {{ related_product_block }}
-    </div>
+    {% if related_product_block|render|trim %}
+      <div class="product-list">
+        {{ related_product_block }}
+      </div>
+    {% endif %}
   </div>
 </article>

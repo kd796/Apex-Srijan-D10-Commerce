@@ -1,0 +1,26 @@
+uuid: 5f3173f8-7493-4059-aa41-0c8263bc9680
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_authnet
+id: authorize_net_accept_js_
+label: 'Authorize.net (Accept.js)'
+weight: -10
+plugin: authorizenet_acceptjs
+configuration:
+  display_label: Authorize.net
+  mode: test
+  payment_method_types:
+    - credit_card
+  collect_billing_information: true
+  api_login: 4S6c7HgP8
+  transaction_key: 526Q3f5v3HNg2bMf
+  client_key: SIMON
+  cca_status: false
+  cca_api_id: ''
+  cca_org_unit_id: ''
+  cca_api_key: ''
+  enable_credit_card_icons: true
+conditions: {  }
+conditionOperator: AND
