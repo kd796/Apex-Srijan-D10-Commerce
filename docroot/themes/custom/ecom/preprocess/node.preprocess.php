@@ -107,9 +107,12 @@ function ecom_preprocess_node__product__full(array &$variables) {
       $price = $prod_variation_obj->getPrice();
       // Variance id.
       $var_id = $prod_variation_obj->id();
+      // Stock value.
+      $stock_value = $prod_variation_obj->field_stock->value;
       // Passing in template.
       $variables['variation_id'] = $var_id;
       $variables['price'] = $price;
+      $variables['stock_value'] = $stock_value;
     }
   }
   // Count Product Images.

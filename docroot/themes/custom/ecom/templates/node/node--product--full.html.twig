@@ -165,8 +165,13 @@
               </div>
               <div class="product-availability">
                 {{ 'Availability:'|t }}
-                <span class='product-stock'>
+                {% if stock_value <= 0 %}
+                <span class='product-stock out-of-stock'>
+                {{ 'Out of stock' }}</span>
+                {% else %}
+                <span class='product-stock in-stock'>
                 {{ 'In stock' }}</span>
+                {% endif %}
               </div>
             </div>
             <div class="node--type-product__accordion-content">
@@ -176,7 +181,9 @@
               {{ content.field_product_features }}
             </div>
             <div class="product__actions">
+            {% if stock_value > 0 %}
               <div class="add-to-cart-button"><a href="/add-to-cart/{{ variation_id }}/{{ variation_id }}" class="button--add-to-cart btn-primary">{{ 'Add to Cart'|t }}</a></div>
+             {% endif %}
               <div class="wishlist-button"><a href="/add-to-wishlist/{{ variation_id }}/{{ variation_id }}" class="btn btn-primary button--wishlist">
               {{ 'Add to Wishlist'|t }}
               </a></div>
