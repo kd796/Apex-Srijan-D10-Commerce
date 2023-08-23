@@ -264,7 +264,7 @@ display:
           click_sort_column: value
           type: string
           settings:
-            link_to_entity: true
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -426,7 +426,7 @@ display:
             trim_whitespace: false
             alt: ''
             rel: ''
-            link_class: ''
+            link_class: btn-primary
             prefix: ''
             suffix: ''
             target: ''
@@ -457,7 +457,7 @@ display:
         type: full
         options:
           offset: 0
-          items_per_page: 40
+          items_per_page: 12
           total_pages: null
           id: 0
           tags:
@@ -762,16 +762,11 @@ display:
             default_group_multiple: {  }
             group_items: {  }
       style:
-        type: grid
+        type: default
         options:
           grouping: {  }
-          columns: 4
-          automatic_width: true
-          alignment: horizontal
-          row_class_custom: ''
-          row_class_default: true
-          col_class_custom: ''
-          col_class_default: true
+          row_class: ''
+          default_row_class: true
       row:
         type: fields
       query:
@@ -803,17 +798,7 @@ display:
           entity_field: variations
           plugin_id: standard
           required: false
-      header:
-        result:
-          id: result
-          table: views
-          field: result
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: result
-          empty: false
-          content: 'Showing @current_record_count of @total results'
+      header: {  }
       footer: {  }
       display_extenders: {  }
     cache_metadata:
