@@ -19,25 +19,37 @@ class CheckUserLogin implements EventSubscriberInterface {
   public function redirectAnonymous(RequestEvent $event) {
     $configFactory = \Drupal::service('config.factory');
     $ecom_azure_config = $configFactory->get('ecom_azure.settings') ?: [];
-    if (\Drupal::currentUser()->isAnonymous() && \Drupal::routeMatch()->getRouteName() != 'user.login') {
-      if (!in_array(\Drupal::request()->getClientIp(), $ecom_azure_config->get('ecom_address_list')) &&
-        \Drupal::service('session')->get('pre_login_success', FALSE) == FALSE) {
-        // Check if the pre_login_success flag is set in the session.
-        $redirect_path = '/user/login';
-        $current_path = \Drupal::service('path.current')->getPath();
-        $destination = ['query' => ['destination' => $current_path]];
-        if ($current_path !== $redirect_path) {
-          $response = new TrustedRedirectResponse(Url::fromRoute('user.login', [], $destination)
-            ->toString());
-          $event->setResponse($response);
-          $event->stopPropagation();
-          $build = [
-            '#cache' => [
-              'max-age' => 0,
-            ],
-          ];
-          $response->addCacheableDependency($build);
-        }
+    $path_alias_manager = \Drupal::service('path_alias.manager');
+    $current_path = \Drupal::service('path.current')->getPath();
+    $path_alias = $path_alias_manager->getAliasByPath($current_path);
+    $current_url = Url::fromUserInput($path_alias)->toString();
+    $route_name = \Drupal::routeMatch()->getRouteName();
+    $is_user_whitelisted = in_array(\Drupal::request()->getClientIp(), $ecom_azure_config->get('ecom_address_list'));
+    $is_user_authenticated = \Drupal::service('session')->get('pre_login_success', FALSE);
+    $bypass_user = \Drupal::currentUser()->hasPermission('administer ecom azure');
+
+    if (!$is_user_whitelisted && !$is_user_authenticated && !$bypass_user) {
+      $redirect_path = Url::fromRoute("ecom_azure_api.network_login")->toString();
+      $destination = ['query' => ['destination' => $current_url]];
+
+      if ($current_url !== $redirect_path) {
+        $response = new TrustedRedirectResponse(Url::fromRoute("ecom_azure_api.network_login", [], $destination)
+          ->toString());
+        $event->setResponse($response);
+        $event->stopPropagation();
+        $build = [
+          '#cache' => [
+            'max-age' => 0,
+          ],
+        ];
+        $response->addCacheableDependency($build);
+      }
+    }
+    elseif ($is_user_whitelisted || $is_user_authenticated || $bypass_user) {
+      if ($route_name == "ecom_azure_api.network_login") {
+        $response = new TrustedRedirectResponse(Url::fromRoute("<front>")->toString());
+        $event->setResponse($response);
+        $event->stopPropagation();
       }
     }
   }

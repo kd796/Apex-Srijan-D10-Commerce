@@ -109,6 +109,7 @@ class AzureConfigForm extends ConfigFormBase {
     $form['ecom_app_authorization']['ecom_app_token_url'] = [
       '#title' => $this->t('Token URL'),
       '#type' => 'textfield',
+      '#required' => TRUE,
       '#default_value' => $config->get('ecom_app_token_url'),
     ];
     $form['ecom_app_authorization']['ecom_app_auth_scope'] = [
@@ -126,6 +127,12 @@ class AzureConfigForm extends ConfigFormBase {
       ],
       '#default_value' => $config->get('ecom_app_auth_grant'),
     ];
+    $form['ecom_app_authorization']['ecom_app_cache_expire'] = [
+      '#title' => $this->t('Cache expiry'),
+      '#type' => 'textfield',
+      '#description' => $this->t("Drupal's Cache expiry time in milliseconds."),
+      '#default_value' => $config->get('ecom_app_cache_expire') ?: 3599,
+    ];
     $form['ecom_client_authorization'] = [
       '#type' => 'details',
       '#title' => $this->t('Client Authorization'),
@@ -135,6 +142,7 @@ class AzureConfigForm extends ConfigFormBase {
     $form['ecom_client_authorization']['ecom_client_token_url'] = [
       '#title' => $this->t('Token URL'),
       '#type' => 'textfield',
+      '#required' => TRUE,
       '#default_value' => $config->get('ecom_client_token_url'),
     ];
     $form['ecom_client_authorization']['ecom_client_auth_scope'] = [
@@ -152,6 +160,12 @@ class AzureConfigForm extends ConfigFormBase {
       ],
       '#default_value' => $config->get('ecom_client_auth_grant'),
     ];
+    $form['ecom_client_authorization']['ecom_graph_user_api'] = [
+      '#title' => $this->t('Graph API URL'),
+      '#type' => 'textfield',
+      '#required' => TRUE,
+      '#default_value' => $config->get('ecom_graph_user_api'),
+    ];
     $form['ecom_secrets'] = [
       '#type' => 'details',
       '#title' => $this->t('App secrets'),
@@ -161,17 +175,20 @@ class AzureConfigForm extends ConfigFormBase {
     $form['ecom_secrets']['ecom_tenant'] = [
       '#title' => $this->t('Tenant ID'),
       '#type' => 'textfield',
+      '#required' => TRUE,
       '#default_value' => $config->get('ecom_tenant'),
     ];
     $form['ecom_secrets']['ecom_client_id'] = [
       '#title' => $this->t('Client ID'),
       '#type' => 'textfield',
+      '#required' => TRUE,
       '#description' => $this->t("Application ID from registered application"),
       '#default_value' => $config->get('ecom_client_id'),
     ];
     $form['ecom_secrets']['ecom_client_secret'] = [
       '#title' => $this->t('Client Secret'),
       '#type' => 'textfield',
+      '#required' => TRUE,
       '#default_value' => $config->get('ecom_client_secret'),
     ];
 

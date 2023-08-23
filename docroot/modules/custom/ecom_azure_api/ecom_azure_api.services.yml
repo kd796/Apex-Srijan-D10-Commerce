@@ -1,9 +1,4 @@
 services:
-  ecom_azure_api.controller:
-    class: Drupal\ecom_azure_api\Controller\AzureAuthController
-    arguments: ['@config.factory']
-    tags:
-      - { name: 'controller.service_arguments' }
   ecom_azure_api.event_subscriber:
     class: Drupal\ecom_azure_api\EventSubscriber\CheckUserLogin
     tags:
