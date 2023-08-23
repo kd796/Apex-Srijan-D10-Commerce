@@ -25,6 +25,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
+      title: ''
       fields:
         purchased_entity:
           id: purchased_entity
@@ -36,7 +37,7 @@ display:
           entity_type: commerce_order_item
           entity_field: purchased_entity
           plugin_id: field
-          label: Item
+          label: 'Product(s) / Item(s)'
           exclude: false
           alter:
             alter_text: false

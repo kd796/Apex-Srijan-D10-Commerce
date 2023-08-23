@@ -1,0 +1,24 @@
+uuid: 06f5d157-a03f-41d0-85fe-a736d7325012
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - ecom
+id: ecom_pagetitle
+theme: ecom
+region: content
+weight: 0
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Shopping Cart'
+  label_display: '0'
+  provider: core
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /cart
