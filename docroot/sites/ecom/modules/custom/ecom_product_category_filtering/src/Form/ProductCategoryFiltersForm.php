@@ -157,7 +157,7 @@ class ProductCategoryFiltersForm extends FormBase {
         // Set up brand filter.
         foreach ($available_brand_ids as $key => $available_brand_id) {
           $available_brand_term = $this->entityTypeManager->getStorage('taxonomy_term')->load($available_brand_id);
-          $brand_facet_options[$available_brand_term->id()] = $available_brand_term->label();
+          $brand_facet_options[$available_brand_term->label()] = $available_brand_term->label();
         }
 
         $form['brand-filter'] = [
