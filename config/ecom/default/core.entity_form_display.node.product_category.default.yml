@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.product_category.field_classification_id
     - field.field.node.product_category.field_media
     - field.field.node.product_category.field_product_classifications
+    - field.field.node.product_category.field_show_set_filter
     - node.type.product_category
   module:
     - path
@@ -71,6 +72,13 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_show_set_filter:
+    type: boolean_checkbox
+    weight: 126
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   langcode:
     type: language_select
     weight: 2
@@ -90,6 +98,11 @@ content:
     region: content
     settings:
       display_label: true
+    third_party_settings: {  }
+  simple_sitemap:
+    weight: 10
+    region: content
+    settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox

@@ -63,18 +63,17 @@ process:
       target_id: target_id
   listing_menu_image:
     source: remote_listing_image
-    plugin: apex_get_category_menu_image
+    plugin: ecom_get_category_menu_image
   'field_media/target_id': '@listing_menu_image'
-  category_facets_array:
-    plugin: get_all_category_facets
+  field_show_set_filter:
+    plugin: apex_determine_set_filter_show
     source: remote_id
-  field_category_facets:
-    plugin: sub_process
-    source: '@category_facets_array'
-    include_source: true
-    process:
-      vocabulary_id: vid
-      target_id: target_id
+    allowed_categories:
+      - W1_806799
+      - W1_706367
+      - W1_846464
+      - W1_15798
+      - W1_22487
 destination:
   plugin: entity:node
 migration_dependencies:
