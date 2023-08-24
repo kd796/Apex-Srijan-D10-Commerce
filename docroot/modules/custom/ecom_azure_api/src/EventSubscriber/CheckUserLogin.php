@@ -18,13 +18,19 @@ class CheckUserLogin implements EventSubscriberInterface {
    */
   public function redirectAnonymous(RequestEvent $event) {
     $configFactory = \Drupal::service('config.factory');
-    $ecom_azure_config = $configFactory->get('ecom_azure.settings') ?: [];
+    $ecom_azure_config = $configFactory->get('ecom_azure_api.settings') ?: [];
+    if (empty($ecom_azure_config)) {
+      return;
+    }
     $path_alias_manager = \Drupal::service('path_alias.manager');
     $current_path = \Drupal::service('path.current')->getPath();
     $path_alias = $path_alias_manager->getAliasByPath($current_path);
     $current_url = Url::fromUserInput($path_alias)->toString();
     $route_name = \Drupal::routeMatch()->getRouteName();
-    $is_user_whitelisted = in_array(\Drupal::request()->getClientIp(), $ecom_azure_config->get('ecom_address_list'));
+    $is_user_whitelisted = $is_user_authenticated = $bypass_user = FALSE;
+    if ($ecom_azure_config->get('ecom_address_list')) {
+      $is_user_whitelisted = in_array(\Drupal::request()->getClientIp(), $ecom_azure_config->get('ecom_address_list'));
+    }
     $is_user_authenticated = \Drupal::service('session')->get('pre_login_success', FALSE);
     $bypass_user = \Drupal::currentUser()->hasPermission('administer ecom azure');
 
