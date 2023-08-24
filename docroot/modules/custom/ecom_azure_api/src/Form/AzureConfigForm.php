@@ -76,7 +76,7 @@ class AzureConfigForm extends ConfigFormBase {
    */
   public function getEditableConfigNames() {
     return [
-      'ecom_azure.settings',
+      'ecom_azure_api.settings',
     ];
   }
 
@@ -84,7 +84,7 @@ class AzureConfigForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $config = $this->config('ecom_azure.settings');
+    $config = $this->config('ecom_azure_api.settings');
 
     $form['ecom_app_whitelist'] = [
       '#type' => 'details',
@@ -96,9 +96,9 @@ class AzureConfigForm extends ConfigFormBase {
     $form['ecom_app_whitelist']['ecom_address_list'] = [
       '#title' => $this->t('Allowed IP address list'),
       '#type' => 'textarea',
-      '#default_value' => implode(PHP_EOL, $config->get('ecom_address_list')),
-      '#description' => $this->t('Enter the list of IP Addresses that are allowed to access the site. 
-      Enter one IP address per line, in IPv4 format.'),
+      '#default_value' => $config->get('ecom_address_list') ? implode(PHP_EOL, $config->get('ecom_address_list')) : '',
+      '#description' => $this->t('Enter the list of IP Addresses that are allowed to access the site.
+        Enter one IP address per line, in IPv4 format.'),
     ];
     $form['ecom_app_authorization'] = [
       '#type' => 'details',
@@ -275,12 +275,12 @@ class AzureConfigForm extends ConfigFormBase {
         continue;
       }
       if ($key == "ecom_address_list") {
-        $this->config('ecom_azure.settings')
+        $this->config('ecom_azure_api.settings')
           ->set($key, $this->cleanIpAddressInput($item))
           ->save();
       }
       else {
-        $this->config('ecom_azure.settings')
+        $this->config('ecom_azure_api.settings')
           ->set($key, (string) $item)
           ->save();
       }

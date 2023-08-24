@@ -89,7 +89,7 @@ class PreLoginForm extends FormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    $azure_config = $this->config('ecom_azure.settings');
+    $azure_config = $this->config('ecom_azure_api.settings');
     $access_token_cache = $this->cache->get('access_token');
 
     if (!$access_token_cache) {
