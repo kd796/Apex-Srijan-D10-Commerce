@@ -71,7 +71,7 @@ function ecom_preprocess_node__product_category__full(array &$variables) {
   $variables['view'] = $main_view->buildRenderable($view_display, $main_view->args);
   $form = \Drupal::formBuilder()->getForm('Drupal\ecom_product_category_filtering\Form\ProductCategoryFiltersForm');
   $variables['filters'] = $form;
-  $flag = (isset($form['category-filter']) || isset($form['attribute_filter'])) ? 1 : 0;
+  $flag = (isset($form['category-filter']) || isset($form['attribute_filter']) || isset($form['brand-filter']) || isset($form['set_filter'])) ? 1 : 0;
   $variables['check_filter'] = $flag;
 }
 

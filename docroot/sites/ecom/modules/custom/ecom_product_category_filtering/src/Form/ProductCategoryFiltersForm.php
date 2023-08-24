@@ -2,12 +2,12 @@
 
 namespace Drupal\ecom_product_category_filtering\Form;
 
+use Drupal\Core\Database\Connection;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Entity\EntityFieldManagerInterface;
-use Drupal\Core\Database\Connection;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -94,6 +94,7 @@ class ProductCategoryFiltersForm extends FormBase {
     // Get Product Classification ID's.
     if ($node != NULL && $node->hasField('field_product_classifications') && !empty($node->get('field_product_classifications')->getValue())) {
       $classifications = array_column($node->get('field_product_classifications')->getValue(), 'target_id');
+
       if (empty($classifications)) {
         return $form;
       }
@@ -111,8 +112,12 @@ class ProductCategoryFiltersForm extends FormBase {
       }
 
       $table_mapping = $this->entityTypeManager->getStorage('node')->getTableMapping();
+
+      // node__field_product_specifications table.
       $field_product_specifications_table = $table_mapping->getFieldTableName('field_product_specifications');
       $field_product_specifications_storage_definitions = $this->entityFieldManager->getFieldStorageDefinitions('node')['field_product_specifications'];
+
+      // Taking column field_product_specifications_target_id.
       $field_product_specifications_column = $table_mapping->getFieldColumnName($field_product_specifications_storage_definitions, 'target_id');
 
       $available_attribute_ids = $this->database->select($field_product_specifications_table, 'f')
@@ -132,9 +137,42 @@ class ProductCategoryFiltersForm extends FormBase {
         ->condition('bundle', 'product')
         ->condition('entity_id', $product_nids, 'IN')
         ->execute()->fetchCol();
+      // Creating Brand facet.
+      $field_brand_table = $table_mapping->getFieldTableName('field_brand');
+      $field_brand_storage_definitions = $this->entityFieldManager->getFieldStorageDefinitions('node')['field_brand'];
+      $field_brand_column = $table_mapping->getFieldColumnName($field_brand_storage_definitions, 'target_id');
+
+      $available_brand_ids = $this->database->select($field_brand_table, 'f')
+        ->fields('f', [$field_brand_column])
+        ->distinct(TRUE)
+        ->condition('bundle', 'product')
+        ->condition('entity_id', $product_nids, 'IN')
+        ->execute()->fetchCol();
 
       $available_attribute_ids = array_unique($available_attribute_ids);
       $available_classification_ids = array_unique($available_classification_ids);
+      $available_brand_ids = array_unique($available_brand_ids);
+
+      if ($available_brand_ids) {
+        // Set up brand filter.
+        foreach ($available_brand_ids as $key => $available_brand_id) {
+          $available_brand_term = $this->entityTypeManager->getStorage('taxonomy_term')->load($available_brand_id);
+          $brand_facet_options[$available_brand_term->id()] = $available_brand_term->label();
+        }
+
+        $form['brand-filter'] = [
+          '#type' => 'checkboxes',
+          '#options' => $brand_facet_options,
+          '#title' => $this->t('Brand'),
+          '#weight' => '0',
+          '#required' => FALSE,
+          '#attributes' => [
+            'class' => [
+              'node--type-brand__category-filter',
+            ],
+          ],
+        ];
+      }
 
       // Set up Filters
       // Classification/Category Filtering.
@@ -146,6 +184,7 @@ class ProductCategoryFiltersForm extends FormBase {
       $classification_result = $classification_query->condition('vid', 'product_classifications')
         ->condition('field_classification_id', $active_classification_id);
       $classification_tids = $classification_result->accessCheck(FALSE)->execute();
+
       $classification_terms = $this->entityTypeManager->getStorage('taxonomy_term')->loadMultiple($classification_tids);
 
       foreach ($classification_terms as $classification_term) {
@@ -242,6 +281,28 @@ class ProductCategoryFiltersForm extends FormBase {
           ];
         }
       }
+    }
+
+    if ($node->hasField('field_show_set_filter')
+        && !empty($node->get('field_show_set_filter')->getValue()[0]['value'])
+        && $node->get('field_show_set_filter')->getValue()[0]['value'] == 1) {
+      $form['set_filter'] = [
+        '#type' => 'radios',
+        '#options' => [
+          'All' => t('Any'),
+          '1' => t('Yes'),
+          '0' => t('No'),
+        ],
+        '#title' => 'Set?',
+        '#weight' => '0',
+        '#required' => FALSE,
+        '#default_value' => 'All',
+        '#attributes' => [
+          'class' => [
+            'node--type-product-category__set-filter',
+          ],
+        ],
+      ];
     }
 
     return $form;
