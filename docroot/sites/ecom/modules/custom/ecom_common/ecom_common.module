@@ -14,7 +14,7 @@ function ecom_common_node_presave(EntityInterface $entity) {
   $classification_id = $entity->get('field_classification_id')->getValue()[0]['value'];
   $classification_array = explode('_', $classification_id);
 
-  if ($classification_array[0] !== 'W2' && $classification_array[0] !== 'W3') {
+  if ($classification_array[0] !== 'W3' && $classification_array[0] !== 'W4') {
     return;
   }
 
@@ -27,8 +27,12 @@ function ecom_common_node_presave(EntityInterface $entity) {
   $first_term_id = reset($term_ids);
   $child_term_id = $first_term_id['target_id'] ?? NULL;
 
-  $child_term = end(\Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($child_term_id));
-  $term_classification_id = $child_term->get('field_classification_id')->getValue()[0]['value'];
+  $child_term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadAllParents($child_term_id);
+  $child_term = array_values($child_term);
+  $count = count($child_term);
+  $second_level_parent = $child_term[$count-2];
+
+  $term_classification_id = $second_level_parent->get('field_classification_id')->getValue()[0]['value'];
 
   $parent_nid = \Drupal::entityQuery('node')
     ->condition('field_classification_id', $term_classification_id)
