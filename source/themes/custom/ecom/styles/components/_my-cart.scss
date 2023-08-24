@@ -9,10 +9,7 @@
 
 .view-commerce-cart-form {
   .views-form {
-    padding: 50px 10px;
-    @media screen and (min-width: $tablet-max) {
-      padding: 0 0 50px;
-    }
+    padding: 0 0 50px;
   }
 
   .views-view-table {
@@ -24,9 +21,13 @@
 
     th {
       font-size: 14px;
-      padding: 5px 0;
+      padding: 5px;
+      background-color: $table-even;
       @media screen and (max-width: $tablet) {
         font-size: 12px;
+      }
+      @media screen and (min-width: $tablet-max) {
+        padding: 10px;
       }
     }
   }
@@ -40,6 +41,10 @@
       td {
         width: 20%;
         vertical-align: baseline;
+        padding: 0 5px;
+        @media screen and (min-width: $tablet-max) {
+          padding: 0 10px;
+        }
 
         &.views-field-purchased-entity {
           width: 30%;
@@ -55,13 +60,14 @@
       input {
         color: $black;
         width: 70%;
-        @media screen and (min-width: $tablet-max) {
-          width: 30%;
-        }
 
         &::-webkit-inner-spin-button,
         &::-webkit-outer-spin-button {
           opacity: 1;
+        }
+
+        @media screen and (min-width: $tablet-max) {
+          width: 30%;
         }
       }
     }
@@ -101,7 +107,10 @@
   }
 
   .order-total-line {
-    padding: 10px 0 0;
+    padding: 10px 5px 0;
+    @media screen and (min-width: $tablet-max) {
+      padding: 10px 10px 0;
+    }
   }
 
   .form-item--error-message {
@@ -111,7 +120,7 @@
 
   [data-drupal-selector$='total-summary'] {
     font-size: 14px;
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
   }
 }
 
