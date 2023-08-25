@@ -30,7 +30,7 @@
  * @see template_preprocess_views_view()
  */
 #}
-
+{% set stock = fields.field_stock.content|trim %}
 <div class="card--list">
   {% if fields.nothing.content %}
     <div class="card--list__wishlist">
@@ -61,7 +61,7 @@
       </div>
     {% endif %}
 
-    {% if fields.nothing_1.content %}
+    {% if fields.nothing_1.content and (stock > 0)%}
       <div class="add-to-cart">
         {{ fields.nothing_1.content }}
       </div>
