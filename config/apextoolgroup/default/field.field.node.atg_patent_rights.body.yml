@@ -1,0 +1,23 @@
+uuid: b5339030-6dba-4c77-97fa-57e0b95c80a6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.atg_patent_rights
+  module:
+    - text
+id: node.atg_patent_rights.body
+field_name: body
+entity_type: node
+bundle: atg_patent_rights
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary
