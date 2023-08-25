@@ -1,0 +1,30 @@
+uuid: ee46a867-f86b-4803-ad0c-3fedbc9a65ae
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.atg_patent_rights.body
+    - node.type.atg_patent_rights
+  module:
+    - text
+    - user
+id: node.atg_patent_rights.default
+targetEntityType: node
+bundle: atg_patent_rights
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true
