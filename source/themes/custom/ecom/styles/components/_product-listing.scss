@@ -2,6 +2,10 @@
 
 .product-category-view-section {
   margin: 30px 0;
+
+  .col {
+    padding: 0;
+  }
 }
 
 .product-listing {
@@ -189,24 +193,18 @@
 
 // Filter section.
 .col-filter {
-  width: 100%;
+  flex: 0 0 100%;
+
   @media only screen and (min-width: $tablet-max) {
-    width: 22%;
-    margin-right: 4%;
-  }
-  @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
-    width: 31%;
-    margin-right: 4%;
+    flex: 0 0 20%;
   }
 }
 
 .col-list {
   width: 100%;
   @media only screen and (min-width: $tablet-max) {
-    width: 74%;
-  }
-  @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
-    width: 65%;
+    flex: 0 0 80%;
+    padding-left: 20px;
   }
 }
 
@@ -214,12 +212,15 @@
   display: none;
 }
 
-.campbell-product-category-filters,
+.ecom-product-category-filters,
 .view-filters {
-  background: $filter-bg url('#{$image-base-path}/left_nav_bg.png') left top repeat-x;
-  border-radius: 10px;
-  border: 1px solid $gray;
+  background: $filter-bg;
   padding: 5px 15px;
+  margin-bottom: 20px;
+
+  @media screen and ( min-width: $tablet-max) {
+    margin-bottom: 0;
+  }
 
   fieldset {
     margin-right: 0;
@@ -230,19 +231,20 @@
       display: block;
       font-weight: $bold;
       margin-bottom: 5px;
+      color: $black;
     }
 
     .fieldset-wrapper {
       max-height: 135px;
       overflow-y: scroll;
       overflow-x: hidden;
-      border: 1px solid $gray;
+      border-radius: 5px;
       padding: 10px 5px;
-      background: $filter-bg;
+      background: $white;
 
       .option {
-        color: $lighter-gray;
-        margin-bottom: 0;
+        color: $black;
+        margin-bottom: 5px;
       }
 
       .form-type-checkbox {
@@ -280,12 +282,69 @@
   background-color: $ivory;
   color: $dark-olive;
   margin-bottom: 30px;
+  height: max-content;
 }
 
 // Product category.
 
-.product-category {
+.view-product-category {
   .view-filters {
+    padding: 0;
+    background: transparent;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.ecom-product-category-filters {
+  input[type=radio] {
+    width: auto;
+    margin-bottom: 8px;
+  }
+
+  .form-item-set-filter {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+
+    .option {
+      margin-bottom: 0;
+      display: inline-block;
+      margin-left: 7px;
+    }
+  }
+
+  .fieldset-wrapper {
+    display: none;
+  }
+
+  .filter--open .fieldset-wrapper {
+    display: block !important;
+  }
+
+  .form-wrapper legend {
+    padding-right: 20px;
+    background: url('#{$image-base-path}/plus.svg') no-repeat;
+    background-size: 14px;
+    background-position: calc(100% - 5px);
+    cursor: pointer;
+  }
+
+  .form-wrapper.filter--open legend {
+    background: url('#{$image-base-path}/minus.svg') no-repeat;
+    background-size: 14px;
+    background-position: calc(100% - 5px);
+  }
+}
+
+.view-product-category {
+  .form-item-field-product-classifications-target-id,
+  .form-item-field-product-specifications-target-id,
+  .form-item-field-set-value,
+  .form-item-field-brand-target-id,
+  .form-item-sort-order,
+  #edit-actions {
     display: none;
   }
 }
@@ -294,6 +353,7 @@
 .view-product-category .view-content {
   display: flex;
   flex-wrap: wrap;
+  position: relative;
 
   @media screen and (min-width: $tablet) {
     max-width: 100%;
@@ -310,7 +370,7 @@
 
   .views-row {
     flex: 0 0 100%;
-    margin-bottom: 24px;
+    margin-bottom: 36px;
     padding-bottom: 15px;
     border-bottom: 1px solid $silver;
 
@@ -325,7 +385,7 @@
       border-bottom: 0;
       border-right: 1px solid $silver;
 
-      &:nth-child(2n) {
+      &:nth-child(2n+1) {
         border-right: 0;
       }
     }
@@ -337,11 +397,10 @@
       border-bottom: 0;
       border-right: 1px solid $silver;
 
-      &:nth-child(2n) {
+      &:nth-child(2n+1) {
         border-right: 1px solid $silver;
       }
 
-      &:nth-child(4n),
       &:last-child {
         border-right: 0;
       }
@@ -353,29 +412,35 @@
   max-width: 100%;
 
   .views-row {
-    @media screen and (min-width: $tablet) {
-      &:nth-child(2n+2) {
-        border-right: 0;
-      }
-    }
     @media screen and (min-width: $tablet-max) {
       &:nth-child(2n+2) {
         border-right: 1px solid $silver;
       }
 
-      &:nth-child(4n+2) {
+      &:nth-child(4n+3) {
         border-right: 0;
       }
     }
   }
 }
 
-.view-product-category  {
+.product-category-view-section  {
   display: flex;
   flex-wrap: wrap;
 
   .product-listing__header {
     width: 100%;
+    font-weight: $bold;
+    color: $gray-tertiary;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+
+  .result-count {
+    font-weight: $bold;
+    padding-bottom: 8px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid $gray;
   }
 
   .result-count,
@@ -384,14 +449,32 @@
   }
 
   @media screen and (min-width: $tablet-max) {
-    .view-filters {
-      flex: 0 0 25%;
-    }
 
     .view-content {
-      flex: 0 0 75%;
+      flex: 0 0 80%;
       margin: 0;
       padding-left: 20px;
     }
+  }
+}
+
+.form-item-sort-by {
+  display: flex;
+  align-items: center;
+
+  label {
+    flex: 0 0 auto;
+    margin-top: 5px;
+    margin-right: 6px;
+
+  }
+
+  select {
+    border: 0;
+    padding: 0 20px 0 0;
+    color: $dark-blue;
+    appearance: none;
+    background: url('#{$image-base-path}/sort.svg') no-repeat right white;
+    background-size: 14px;
   }
 }
