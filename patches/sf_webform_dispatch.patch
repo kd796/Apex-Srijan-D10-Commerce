@@ -1,0 +1,102 @@
+diff --git a/modules/contrib/sfweb2lead_webform/sfweb2lead_webform.api.php b/modules/contrib/sfweb2lead_webform/sfweb2lead_webform.api.php
+deleted file mode 100644
+index 951ae57302..0000000000
+--- a/modules/contrib/sfweb2lead_webform/sfweb2lead_webform.api.php
++++ /dev/null
+@@ -1,24 +0,0 @@
+-<?php
+-
+-/**
+- * @file
+- * Hooks related to Webform module.
+- */
+-
+-/**
+- * @addtogroup hooks
+- * @{
+- */
+-
+-/**
+- * Alter the data to be posted to Salesforce.com.
+- *
+- * @param array $data
+- *   The array of data to be posted, keyed on the machine-readable element name.
+- *
+- * @deprecated hook_posted_data_alter will be removed in 8.x-5.0 stable release.
+- *   Use an event subscriber for
+- *   Drupal\sfweb2lead_webform\Sfweb2leadWebformEvent instead.
+- */
+-function hook_sfweb2lead_webform_posted_data_alter(array &$data, Drupal\webform\Entity\Webform $webform, Drupal\webform\WebformSubmissionInterface $webform_submission) {
+-}
+diff --git a/modules/contrib/sfweb2lead_webform/sfweb2lead_webform.services.yml b/modules/contrib/sfweb2lead_webform/sfweb2lead_webform.services.yml
+deleted file mode 100644
+index e66cf50ccc..0000000000
+--- a/modules/contrib/sfweb2lead_webform/sfweb2lead_webform.services.yml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-services:
+-  sfweb2lead_webform.subscriber:
+-    class: Drupal\sfweb2lead_webform\EventSubscriber\BackwardsCompatibilitySubscriber
+-    tags:
+-      - { name: 'event_subscriber' }
+diff --git a/modules/contrib/sfweb2lead_webform/src/EventSubscriber/BackwardsCompatibilitySubscriber.php b/modules/contrib/sfweb2lead_webform/src/EventSubscriber/BackwardsCompatibilitySubscriber.php
+deleted file mode 100644
+index ca17b4bac0..0000000000
+--- a/modules/contrib/sfweb2lead_webform/src/EventSubscriber/BackwardsCompatibilitySubscriber.php
++++ /dev/null
+@@ -1,42 +0,0 @@
+-<?php
+-
+-namespace Drupal\sfweb2lead_webform\EventSubscriber;
+-
+-use Drupal\sfweb2lead_webform\Event\Sfweb2leadWebformEvent;
+-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+-
+-/**
+- * Class BackwardsCompatibilitySubscriber
+- *
+- * @deprecated Backwards compatibility only. Do not use.
+- */
+-class BackwardsCompatibilitySubscriber implements EventSubscriberInterface {
+-
+-  public static function getSubscribedEvents() {
+-    $events[Sfweb2leadWebformEvent::SUBMIT][] = ['doHookAlter', 800];
+-    return $events;
+-  }
+-
+-  public function doHookAlter(Sfweb2leadWebformEvent $event) {
+-    $implements = \Drupal::moduleHandler()->getImplementations('sfweb2lead_webform_posted_data_alter');
+-
+-    if (empty($implements)) {
+-      return;
+-    }
+-
+-    $logger = \Drupal::logger('sfweb2lead_webform');
+-    $logger->warning('Use of `hook_sfweb2lead_webform_posted_data_alter` has been deprecated. Implement an event subscriber instead.');
+-
+-    $salesforce_data = $event->getData();
+-    $webform = $event->getHandler()->getWebform();
+-    $webform_submission = $event->getSubmission();
+-
+-    \Drupal::moduleHandler()->alter('sfweb2lead_webform_posted_data', $salesforce_data, $webform, $webform_submission);
+-
+-    foreach ($salesforce_data as $key => $value) {
+-      $salesforce_data[$key] = $value;
+-    }
+-    $event->setData($salesforce_data);
+-  }
+-
+-}
+diff --git a/modules/contrib/sfweb2lead_webform/src/Plugin/WebformHandler/SalesforceWebToLeadPostWebformHandler.php b/modules/contrib/sfweb2lead_webform/src/Plugin/WebformHandler/SalesforceWebToLeadPostWebformHandler.php
+index 6e877d4393..9b8d563d7a 100644
+--- a/modules/contrib/sfweb2lead_webform/src/Plugin/WebformHandler/SalesforceWebToLeadPostWebformHandler.php
++++ b/modules/contrib/sfweb2lead_webform/src/Plugin/WebformHandler/SalesforceWebToLeadPostWebformHandler.php
+@@ -189,7 +189,7 @@ protected function getRequestData($state, WebformSubmissionInterface $webform_su
+ 
+     // Allow modification of data by other modules.
+     $event = new Sfweb2leadWebformEvent($salesforce_data, $this, $webform_submission);
+-    $this->eventDispatcher()->dispatch(Sfweb2leadWebformEvent::SUBMIT, $event);
++    $this->eventDispatcher()->dispatch($event, Sfweb2leadWebformEvent::SUBMIT);
+ 
+     return $event->getData();
+   }

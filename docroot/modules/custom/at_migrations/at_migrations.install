@@ -72,7 +72,7 @@ function at_migrations_uninstall() {
  *   Import source files.
  */
 function _at_migrations_source_files() {
-  $dirname = drupal_get_path('module', 'at_migrations') . '/import/pim_data';
+  $dirname = \Drupal::service('extension.list.module')->getPath('at_migrations') . '/import/pim_data';
   return \Drupal::service('file_system')->scanDirectory($dirname, '/.*/', [
     'recurse' => FALSE,
     'key' => 'filename',

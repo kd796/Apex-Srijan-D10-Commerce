@@ -1,0 +1,231 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ *
+ * Available variables:
+ * - node: The node entity with limited access to object properties and methods.
+ *   Only method names starting with "get", "has", or "is" and a few common
+ *   methods such as "id", "label", and "bundle" are available. For example:
+ *   - node.getCreatedTime() will return the node creation timestamp.
+ *   - node.hasField('field_example') returns TRUE if the node bundle includes
+ *     field_example. (This does not indicate the presence of a value in this
+ *     field.)
+ *   - node.isPublished() will return whether the node is published or not.
+ *   Calling other methods, such as node.delete(), will result in an exception.
+ *   See \Drupal\node\Entity\Node for a full list of public properties and
+ *   methods for the node object.
+ * - label: The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - author_picture: The node author user entity, rendered using the "compact"
+ *   view mode.
+ * - metadata: Metadata for this node.
+ * - date: Themed creation date field.
+ * - author_name: Themed author name field.
+ * - url: Direct URL of the current node.
+ * - display_submitted: Whether submission information should be displayed.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - node: The current template type (also known as a "theming hook").
+ *   - node--type-[type]: The current node type. For example, if the node is an
+ *     "Article" it would result in "node--type-article". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - node--view-mode-[view_mode]: The View Mode of the node; for example, a
+ *     teaser would result in: "node--view-mode-teaser", and
+ *     full: "node--view-mode-full".
+ *   The following are controlled through the node publishing options.
+ *   - node--promoted: Appears on nodes promoted to the front page.
+ *   - node--sticky: Appears on nodes ordered above other non-sticky nodes in
+ *     teaser listings.
+ *   - node--unpublished: Appears on unpublished nodes visible only to site
+ *     admins.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main
+ *   content tag that appears in the template.
+ * - author_attributes: Same as attributes, except applied to the author of
+ *   the node tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - teaser: Flag for the teaser state. Will be true if view_mode is 'teaser'.
+ * - page: Flag for the full page state. Will be true if view_mode is 'full'.
+ * - readmore: Flag for more state. Will be true if the teaser content of the
+ *   node cannot hold the main body content.
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_node()
+ *
+ * @ingroup themeable
+ */
+#}
+{{ attach_library('ecom/product-detail') }}
+{{ attach_library('ecom/drift-zoom') }}
+
+{% set classes = [
+  'wrapper-content'
+] %}
+
+<article{{attributes.addClass(classes)}}>
+  <div class="product-detail">
+  {# Content #}
+    <div{{content_attributes}}>
+      <div class="node--type-product__page-top">
+        {# Slider and links #}
+        <div class="row">
+          <div class="product-detail__slider">
+            {% if content.field_brand %}
+              {{ content.field_brand }}
+            {% endif %}
+
+            {% if product_images %}
+              {# image slider #}
+              <div class="product-detail-slider">
+
+                <div class="swiper-container gallery-top">
+                {{ content.field_product_images }}
+                </div>
+
+                <div class="image__help-text">
+                  {{ 'Roll over image to zoom in'|t }}
+                </div>
+
+                <div class="swiper-container gallery-thumbs">
+                  <div class="swiper-wrapper">
+                  {{ thumbnails }}
+                  </div>
+                  {% if product_image_count > 1 %}
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next image-next"></div>
+                    <div class="swiper-button-prev image-prev"></div>
+                  {% endif %}
+                </div>
+              </div>
+              {# video popup and slider #}
+              {% if is_video_image %}
+                {# video pop-up #}
+                <a href="#video-popup" class="video-image-thumbnail">
+                  <div class="vedio-gallery">&nbsp;</div>
+                </a>
+                {# video pop-up end #}
+                {# video slider #}
+                <div id="video-popup" class="video-slider vedio-gallery">
+                  <div class="swiper-container video-top">
+                    {{ content.field_product_images }}
+                  </div>
+                  <div class="swiper-container video-thumbs">
+                    <div class="swiper-wrapper">
+                      {{ video_thumbnails }}
+                    </div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next video-next"></div>
+                    <div class="swiper-button-prev video-prev"></div>
+                  </div>
+                </div>
+              {% endif %}
+            {% endif %}
+            {# Commenting the code as the requirement is changed. (Downloadble Links) #}
+            {# <div class="downloadable-links">
+              <div class="links__item">
+                <a href="/ecom-product-image-download/{{ node.id() }}" class="btn btn-download">{{ 'Download Images' | t }}</a>
+              </div>
+
+              {% if is_video_image %}
+                <div class="links__item links__item--v1">
+                  <a href="#video-popup" class="watch-video open-popup-link">{{ 'Watch the Video' | t }}</a>
+                </div>
+              {% endif %}
+              {% if file_url(node.field_pdfs.entity.field_media_file.entity.uri.value) %}
+                <div class="links__item">
+                  <a href="{{ file_url(node.field_pdfs.entity.field_media_file.entity.uri.value) }}" download="Brochure.pdf" title="Download Brochure" class="btn btn-primary btn-distributor">{{ 'Download Brochure' | t}}</a>
+                </div>
+              {% endif %}
+            </div> #}
+          </div>
+          <div class="product-detail__links">
+            {# Title #}
+            <header{{title_attributes.addClass('product-detail-content-container__title')}}>
+              <h1>{{ content.field_long_description.0 }}</h1>
+            </header>
+            <div class="catalog-number">{{'#' | t }}
+              {{ label }}
+            </div>
+            <div class="product__stocks-price">
+              <div class="product-price">
+                {{ price }}
+              </div>
+              <div class="product-availability">
+                {{ 'Availability:'|t }}
+                {% if stock_value <= 0 %}
+                <span class='product-stock out-of-stock'>
+                {{ 'Out of stock' }}</span>
+                {% else %}
+                <span class='product-stock in-stock'>
+                {{ 'In stock' }}</span>
+                {% endif %}
+              </div>
+            </div>
+            <div class="node--type-product__accordion-content">
+              <div class="features-head">
+                {{ 'Features'|t }}
+              </div>
+              {{ content.field_product_features }}
+            </div>
+            <div class="product__actions">
+            {% if stock_value > 0 %}
+              <div class="add-to-cart-button"><a href="/add-to-cart/{{ variation_id }}/{{ variation_id }}" class="button--add-to-cart btn-primary">{{ 'Add to Cart'|t }}</a></div>
+             {% endif %}
+              <div class="wishlist-button"><a href="/add-to-wishlist/{{ variation_id }}/{{ variation_id }}" class="btn btn-primary button--wishlist">
+              {{ 'Add to Wishlist'|t }}
+              </a></div>
+            </div>
+          </div>
+        </div>
+        {# Specification content #}
+        <div class="product-information">
+          {% if content.field_product_specifications %}
+
+            <div class="product-information__header">
+              {{ 'Product Information'|t }}
+            </div>
+            <div class="product-specifications">
+
+              <div class="specification-header">{{ 'Specifications'|t }}</div>
+
+              {% for specs in content.field_product_specifications %}
+                {% set specs_title =  specs['#plain_text']|split(':', 2) %}
+                <div class="field__item">
+                  {% for key,specs_label in specs_title %}
+                    {% if (loop.index is odd) %}
+                      <div class='specs-key'>
+                        {{ specs_label }}
+                      </div>
+                    {% else %}
+                      <div class='specs-value'>
+                        {{ specs_label }}
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% if related_product_block|render|trim %}
+      <div class="product-list">
+        {{ related_product_block }}
+      </div>
+    {% endif %}
+  </div>
+</article>

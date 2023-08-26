@@ -1,0 +1,87 @@
+.form-submit,
+.btn,
+.btn-primary {
+  font-size: 12px;
+  min-width: 115px;
+  display: inline-block;
+  min-height: 29px;
+  padding: 6px 5px;
+  text-decoration: none;
+  font-weight: bold;
+  width: auto;
+  background: $pantone;
+  border-radius: 8px;
+  border: solid 1px $pantone;
+  color: $white;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.3s ease;
+
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    color: $black;
+    border: solid 1px $pantone;
+    background: $white;
+    text-decoration: none;
+  }
+}
+
+// Button distributor.
+.btn-distributor {
+  font-size: 12px;
+  padding: 6px 20px 6px 40px;
+  min-height: 29px;
+  display: inline-flex;
+  align-items: center;
+
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    color: $white;
+  }
+}
+
+// Button download.
+.btn-download {
+  font-size: 12px;
+  padding: 6px 20px 6px 40px;
+  min-height: 29px;
+  display: inline-flex;
+  align-items: center;
+  transition: 0.3s background ease;
+
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    color: $black;
+    background: $white;
+  }
+}
+
+// Button for featured product instapage
+.sling.hooks,
+.swivel-hoisthooks,
+.eye-hoist-hooks {
+  text-decoration: none;
+  color: $white;
+  padding: 15px;
+  border-radius: 5px;
+
+  &:hover {
+    text-decoration: none;
+    background-color: $spanish-gray;
+  }
+}
+
+.sling.hooks {
+  background-color: $pantone;
+}
+
+.swivel-hoisthooks {
+  background-color: $sinopia;
+}
+
+.eye-hoist-hooks {
+  background-color: $lapis-lazuli;
+}

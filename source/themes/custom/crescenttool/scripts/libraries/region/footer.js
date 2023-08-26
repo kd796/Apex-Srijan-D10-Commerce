@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.regionFooter = {
@@ -13,7 +13,7 @@
         behavior_object.elMove($footerHeader, $footerNavContent);
       }
 
-      $(window).once('footer').on('resize', function () {
+      $(once('footer', context === window ? 'html' : context)).on('resize', function () {
         if (behavior_object.isMobile()) {
           behavior_object.elMove($footerHeader, $footerNavContent);
         }
@@ -33,4 +33,4 @@
     }
   };
 
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

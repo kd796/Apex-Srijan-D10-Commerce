@@ -1,0 +1,600 @@
+uuid: e94e964d-d77d-49f4-8e52-5a673fa7965a
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 9C95971OzSfNGiAXtZlibr40e5aeqsNGXYDA0OXjaAI
+id: ecom_products
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: ecom
+label: Products
+source:
+  constants:
+    bool_0: 0
+    bool_1: 1
+    uid_root: 1
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: simple_xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces: 'http://www.stibosystems.com/step'
+  item_selector: /STEP-ProductInformation/Products/Product/Product
+  fields:
+    -
+      name: remote_sku
+      label: SKU
+      selector: '@ID'
+    -
+      name: remote_name
+      label: 'SKU Group'
+      selector: Name
+    -
+      name: remote_sku_group
+      label: 'SKU Group'
+      selector: Values
+    -
+      name: remote_set
+      label: 'Set?'
+      selector: '@UserTypeID'
+    -
+      name: remote_set_components
+      label: 'Set Components'
+      selector: ../Product
+    -
+      name: remote_product_specifications
+      label: 'Product Specifications'
+      selector: Values
+    -
+      name: remote_brand
+      label: Brand
+      selector: './Values/Value[@AttributeID="Brand"]'
+    -
+      name: remote_commerce_product
+      label: Commerce Product
+      selector: Values
+    -
+      name: remote_product_features
+      label: 'Product Features'
+      selector: Values
+    -
+      name: remote_product_classifications
+      label: 'Product Classifications'
+      selector: Values
+    -
+      name: remote_launch_date
+      label: 'Launch Date'
+      selector: Values
+    -
+      name: remote_product_upc
+      label: 'Product UPC'
+      selector: Values
+    -
+      name: remote_new_product
+      label: 'New Product'
+      selector: Values
+    -
+      name: remote_featured_product
+      label: 'Featured Product'
+      selector: Values
+    -
+      name: remote_product_long_description
+      label: 'Product Long Description'
+      selector: Values
+    -
+      name: remote_sku_overview
+      label: 'SKU Overview'
+      selector: Values
+    -
+      name: remote_listing_image
+      label: 'Listing Image'
+      selector: Values
+    -
+      name: remote_product_images
+      label: 'Product Images'
+      selector: Values
+    -
+      name: remote_related_products
+      label: 'Related Products'
+      selector: Values
+    -
+      name: remote_pdfs
+      label: PDFs
+      selector: Values
+    -
+      name: status
+      label: Status
+      selector: './Values/Value[@AttributeID="SAP_SALES_ORG_STATUS"]/@ID'
+    -
+      name: remote_keywords
+      label: Keywords
+      selector: ".//*[@AttributeID='ATT737269']"
+  ids:
+    remote_sku:
+      type: string
+process:
+  status:
+    plugin: unpublish_discontinued_products
+    source: status
+    value:
+      - Z4
+      - Z1
+      - ZA
+      - ZH
+      - ZX
+      - P4
+      - P5
+      - P6
+  type:
+    plugin: default_value
+    default_value: product
+  title: remote_name
+  sticky: constants/bool_0
+  promote: constants/bool_1
+  uid: constants/uid_root
+  body/value:
+    plugin: apex_get_sku_group_attribute_value
+    source: remote_sku_overview
+    attribute: ATT17711
+  body/format:
+    plugin: default_value
+    default_value: basic_html
+  field_sku: remote_sku
+  field_sku_group:
+    plugin: apex_get_id_attribute
+    source: remote_sku_group
+  field_long_description:
+    plugin: apex_get_attribute_value
+    source: remote_product_long_description
+    attribute: ATT921
+  field_upc:
+    plugin: apex_get_attribute_value
+    source: remote_product_upc
+    attribute: ATT539
+  field_new_product:
+    plugin: apex_get_attribute_value
+    source: remote_new_product
+    attribute: ATT17339
+  field_featured_product:
+    plugin: apex_get_attribute_value
+    source: remote_featured_product
+    attribute: ATT16491
+  field_launch_date:
+    plugin: apex_get_attribute_value
+    source: remote_launch_date
+    attribute: ATT583415
+  listing_image:
+    source: remote_listing_image
+    plugin: apex_get_listing_image
+  field_media/target_id: '@listing_image'
+  product_images_array:
+    source: remote_product_images
+    plugin: ecom_get_product_images
+  field_product_images:
+    plugin: sub_process
+    source: '@product_images_array'
+    include_source: true
+    process:
+      target_id: media_id
+  pdf_array:
+    source: remote_pdfs
+    plugin: apex_get_pdfs
+  field_pdfs:
+    plugin: sub_process
+    source: '@pdf_array'
+    include_source: true
+    process:
+      target_id: media_id
+  product_specifications_array:
+    plugin: ecom_create_product_specifications
+    source: remote_product_specifications
+    allowed_attributes:
+      - ATT748
+      - ATT614
+      - ATT664101
+      - ATT115
+      - ATT506
+      - ATT749
+      - ATT660
+      - ATT714714
+      - ATT714731
+      - ATT714721
+      - ATT127
+      - ATT128
+      - ATT130
+      - ATT131
+      - ATT838020
+      - ATT137
+      - ATT140
+      - ATT820
+      - ATT750
+      - ATT858
+      - ATT859
+      - ATT145
+      - ATT843
+      - ATT515
+      - ATT154
+      - ATT155
+      - ATT763883
+      - ATT929
+      - ATT776
+      - ATT159
+      - ATT168
+      - ATT936
+      - ATT584885
+      - ATT278
+      - ATT176
+      - ATT178
+      - ATT751
+      - ATT565
+      - ATT541
+      - ATT179
+      - ATT500
+      - ATT693
+      - ATT633
+      - ATT501
+      - ATT634
+      - ATT503
+      - ATT943
+      - ATT635
+      - ATT504
+      - ATT505
+      - ATT868
+      - ATT840
+      - ATT835
+      - ATT484
+      - ATT499
+      - ATT688
+      - ATT853
+      - ATT190
+      - ATT582
+      - ATT783483
+      - ATT783491
+      - ATT783498
+      - ATT466
+      - ATT468
+      - ATT478
+      - ATT477
+      - ATT476
+      - ATT783482
+      - ATT783492
+      - ATT783499
+      - ATT471
+      - ATT473
+      - ATT481
+      - ATT480
+      - ATT479
+      - ATT734
+      - ATT854
+      - ATT689
+      - ATT583
+      - ATT194
+      - ATT785
+      - ATT780
+      - ATT774
+      - ATT538
+      - ATT196
+      - ATT198
+      - ATT590
+      - ATT200
+      - ATT201
+      - ATT934
+      - ATT753950
+      - ATT205
+      - ATT753
+      - ATT212
+      - ATT714694
+      - Footnotes
+      - ATT788
+      - ATT214
+      - ATT745
+      - ATT754
+      - ATT912
+      - ATT861
+      - ForeignTradeCode
+      - ATT22507
+      - ATT775
+      - ATT219
+      - ATT222
+      - ATT791
+      - ATT807126
+      - ATT769436
+      - ATT224
+      - ATT225
+      - ATT226
+      - ATT818
+      - ATT631
+      - ATT547
+      - ATT563
+      - ATT228
+      - ATT535
+      - ATT612
+      - ATT236
+      - ATT235
+      - ATT584737
+      - ATT525
+      - ATT857
+      - ATT864
+      - ATT817
+      - ATT523
+      - ATT878
+      - ATT937
+      - ATT245
+      - ATT837657
+      - ATT496
+      - ATT584
+      - ATT728
+      - ATT247
+      - ATT249
+      - ATT917
+      - ATT787
+      - ATT908
+      - ATT250
+      - ATT916
+      - ATT786
+      - ATT755881
+      - ATT251
+      - ATT758
+      - ATT254
+      - ATT492
+      - ATT536
+      - JawThicknessLower
+      - JawThicknessUpper
+      - ATT259
+      - ATT537
+      - JawWidthLower
+      - JawWidthUpper
+      - ATT792
+      - ATT767142
+      - ATT710
+      - ATT793
+      - ATT790
+      - ATT783
+      - ATT491
+      - ATT777
+      - ATT865
+      - ATT545
+      - ATT877
+      - ATT593
+      - ATT584734
+      - MUSAICON
+      - ATT592
+      - ATT591
+      - ATT875
+      - ATT874
+      - ATT873
+      - ATT345
+      - ATT274
+      - ATT782
+      - ATT584880
+      - ATT584933
+      - ATT609
+      - ATT607
+      - ATT728214
+      - ATT867475
+      - ATT807193
+      - ATT608
+      - ATT606
+      - ATT621
+      - ATT806593
+      - ATT301
+      - ATT659
+      - ATT315
+      - ATT757
+      - ATT855
+      - ATT856
+      - ATT872
+      - ATT871
+      - ATT870
+      - ATT867476
+      - ATT784
+      - ATT729
+      - ATT584731
+      - ATT326
+      - ATT552
+      - ATT551
+      - ATT584730
+      - ATT800
+      - ATT923
+      - ATT335
+      - ATT336
+      - ATT518
+      - ATT550
+      - ATT340
+      - ATT613
+      - ATT804086
+      - ATT807194
+      - ATT807127
+      - ATT349
+      - ATT586
+      - Quik-AlloySlingHooks
+      - Quik-AlloySlingHookwithLatch
+      - ATT794
+      - ATT587
+      - ATT588
+      - ATT589
+      - ATT584868
+      - ATT351
+      - ATT714716
+      - ATT546
+      - ATT708
+      - ATT789
+      - ATT894
+      - ATT749756
+      - ATT363
+      - ATT364
+      - ATT795
+      - ATT493
+      - ATT534
+      - Set
+      - ATT884047
+      - ATT497
+      - ATT495
+      - ATT494
+      - ATT802
+      - ATT803
+      - ATT132
+      - ATT374
+      - ATT764
+      - ATT376
+      - ATT763
+      - ATT867
+      - ATT948
+      - ATT378
+      - ATT797
+      - ATT743
+      - ATT379
+      - ATT806802
+      - ATT584466
+      - ATT744972
+      - ATT860
+      - ATT387
+      - ATT549
+      - ATT405
+      - ATT753947
+      - ATT836
+      - ATT806
+      - ATT670298
+      - ATT400
+      - ATT714720
+      - ATT783458
+      - ATT564
+      - ATT907
+      - ATT410
+      - ATT414
+      - ATT415
+      - ATT833
+      - ATT585
+      - ATT421
+      - ATT610
+      - ATT678639
+      - ATT684692
+      - ATT678641
+      - ATT424
+      - ATT746
+      - TradeSizeFractional
+      - ATT869
+      - ATT425
+      - ATT876
+      - ATT714725
+      - ATT539
+      - ATT507
+      - ATT752
+      - ATT575
+      - ATT801
+      - ATT17712
+      - ATT714722
+      - ATT777456
+      - ATT439
+      - ATT922
+      - ATT440
+      - ATT442
+      - ATT443
+      - ATT447
+      - ATT867467
+      - ATT548
+      - ATT778
+      - ATT880
+      - ATT451
+      - ATT454
+      - ATT806762
+      - ATT709
+      - ATT457
+      - ATT458
+      - ATT459
+      - ATT862
+      - ATT863
+      - ATT460
+      - ATT770
+      - ATT673955
+      - ATT867472
+      - ATT789979
+      - ATT739684
+      - ATT739685
+  field_product_specifications:
+    plugin: sub_process
+    source: '@product_specifications_array'
+    include_source: true
+    process:
+      vocabulary_id: vid
+      target_id: target_id
+  field_brand:
+    plugin: entity_generate
+    source: remote_brand
+    entity_type: taxonomy_term
+    bundle_key: vid
+    bundle: brand
+    value_key: name
+
+  product_commerce_entity:
+    plugin: ecom_create_commerce_product_entity
+    source: remote_commerce_product
+    allowed_attributes:
+  field_commerce_product:
+    plugin: sub_process
+    source: '@product_commerce_entity'
+    include_source: true
+    process:
+      target_id: target_id
+
+  product_features_array:
+    plugin: ecom_get_product_features_array
+    source: remote_product_features
+  field_product_features:
+    plugin: sub_process
+    source: '@product_features_array'
+    include_source: true
+    process:
+      value: copy_point
+  product_classifications_array:
+    plugin: apex_get_classifications_array
+    source: remote_product_classifications
+  field_product_classifications:
+    plugin: sub_process
+    source: '@product_classifications_array'
+    include_source: true
+    process:
+      vocabulary_id: vid
+      target_id: target_id
+  related_products_array:
+    plugin: apex_get_related_products
+    source: remote_related_products
+  field_related_products:
+    plugin: sub_process
+    source: '@related_products_array'
+    include_source: true
+    process:
+      target_id: target_id
+  field_set:
+    plugin: apex_determine_set_status
+    source: remote_set
+  set_components_array:
+    plugin: apex_get_set_components
+    source: remote_set_components
+  field_set_components:
+    plugin: sub_process
+    source: '@set_components_array'
+    include_source: true
+    process:
+      target_id: target_id
+  field_set_content:
+    plugin: apex_get_attribute_value
+    source: remote_set_contents
+    attribute: ATT921
+  field_keywords: remote_keywords
+destination:
+  plugin: apex_product
+  bundle: product
+migration_dependencies:
+  required:
+    - ecom_product_classifications_level_one
+    - ecom_product_classifications_level_two
+    - ecom_product_classifications_level_three
+    - ecom_product_classifications_level_four
+    - ecom_product_category_pages_level_one
+    - ecom_product_category_pages_level_two
+    - ecom_product_category_pages_level_three
+    - ecom_product_category_pages_level_four
+    - ecom_product_specifications

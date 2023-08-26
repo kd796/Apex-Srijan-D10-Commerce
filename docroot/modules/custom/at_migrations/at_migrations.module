@@ -347,7 +347,7 @@ function at_migrations_entity_presave(EntityInterface $entity) {
       ->condition('field_slug', $calculated_slug, '=')
       ->condition('nid', $entity->id(), '!=')
       ->condition('langcode', $lang);
-    $nids = $query->execute();
+    $nids = $query->accessCheck(FALSE)->execute();
     $count = 1;
     $slug = $calculated_slug;
     // Loop until we have a unique value.
@@ -357,7 +357,7 @@ function at_migrations_entity_presave(EntityInterface $entity) {
         ->condition('field_slug', $slug, '=')
         ->condition('nid', $entity->id(), '!=')
         ->condition('langcode', $lang);
-      $nids = $query->execute();
+      $nids = $query->accessCheck(FALSE)->execute();
     }
     $entity->set('field_slug', $slug);
   }

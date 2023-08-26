@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.productDetailImageSlider = {
@@ -226,7 +226,7 @@
 
   Drupal.behaviors.productDetailTabs = {
     attach: function (context, settings) {
-      $('.node--type-product-tabs:not(.node--type-product-tabs--js-initialized)').once('tabbed').each(function (index) {
+      $(once('tabbed', '.node--type-product-tabs:not(.node--type-product-tabs--js-initialized)', context)).each(function (index) {
         // Initialize variables.
         var $tabsWidget = $(this);
         var $tablist = $tabsWidget.find('.node--type-product-tabs__nav-wrapper').children('.node--type-product-tabs__nav');
@@ -391,4 +391,4 @@
       });
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

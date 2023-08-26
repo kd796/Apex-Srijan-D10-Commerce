@@ -1,9 +1,9 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.componentMediaPages = {
     attach: function (context, settings) {
-      $('.view-media-pages:not(.view-media-pages--js-initialized)').once('media-filter').each(function (index) {
+      $(once('media-filter', '.view-media-pages:not(.view-media-pages--js-initialized)', context)).each(function (index) {
         if (window.innerWidth <= 768) {
           var $viewContainer = $('.views-element-container');
 
@@ -61,7 +61,7 @@
       });
 
       $(window).bind('load', function () {
-        $('.view-media-pages').once().each(function () {
+        $(once('view-media-pages', '.view-media-pages', context)).each(function () {
           // Scroll down to the products when loading the category page.
           $('.view-media-pages')[0].scrollIntoView();
         });
@@ -69,4 +69,4 @@
     }
   };
 
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

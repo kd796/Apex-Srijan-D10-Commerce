@@ -1,0 +1,13 @@
+diff --git a/src/Service/BlockClassHelperService.php b/src/Service/BlockClassHelperService.php
+index d2438d9..587bd15 100644
+--- a/src/Service/BlockClassHelperService.php
++++ b/src/Service/BlockClassHelperService.php
+@@ -945,7 +945,7 @@ class BlockClassHelperService {
+   public function validateDynamicClasses(&$form, &$form_state, $config) {
+ 
+     // Get the ThirdPartySettings.
+-    $third_party_settings = $form_state->getValue('class')['third_party_settings'];
++    $third_party_settings = $form_state->getValue('class') ? $form_state->getValue('class')['third_party_settings'] : [];
+ 
+     // Verify if there is attributes enabled.
+     if (!empty($form_state->getValue('attributes')['third_party_settings'])) {

@@ -51,7 +51,7 @@ function crescenttool_migrations_uninstall() {
  *   Import source files.
  */
 function _crescenttool_migrations_source_files() {
-  $dirname = drupal_get_path('module', 'crescenttool_migrations') . '/import/pim_data';
+  $dirname = \Drupal::service('extension.list.module')->getPath('crescenttool_migrations') . '/import/pim_data';
   return \Drupal::service('file_system')->scanDirectory($dirname, '/.*/', [
     'recurse' => FALSE,
     'key' => 'filename',

@@ -19,6 +19,7 @@ function atg_brand_timeline_views_pre_view($view, $display_id) {
     $node_storage = \Drupal::entityTypeManager()->getStorage('node');
     // Getting nids with conditions.
     $query = $node_storage->getQuery()
+      ->accessCheck(FALSE)
       ->condition('type', 'brand_timeline')
       ->condition('field_event_date', NULL, 'IS NOT NULL');
     $nodes = $node_storage->loadMultiple($query->execute());

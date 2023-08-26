@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.apextoolgroup = {
@@ -21,39 +21,34 @@
       $(function () {
         const hamburgerMenuIcon = $('.hamburger');
         const hamburgerMenu = $('.nav-mobile');
-        hamburgerMenuIcon
-          .once('hamburgerMenu')
-          .on('click', function () {
-            hamburgerMenu.toggleClass('show-menu');
-            hamburgerMenuIcon.toggleClass('close-icon');
-            $('footer').toggleClass('hide-content');
-            $('.main-contane').toggleClass('hide-content');
-          });
+        $(once('hamburgerMenu', hamburgerMenuIcon, context)).on('click', function () {
+          hamburgerMenu.toggleClass('show-menu');
+          hamburgerMenuIcon.toggleClass('close-icon');
+          $('footer').toggleClass('hide-content');
+          $('.main-contane').toggleClass('hide-content');
+        });
       });
       // Responsive menu.
       $(function () {
         // first level menu collapse.
         const firstLevel_li = $('.region-header .navbar-nav > li.dropdown');
-        firstLevel_li.once('first-dropdown')
-          .on('click', function (e) {
-            firstLevel_li.not(this).removeClass('active');
-            $(this).toggleClass('active');
-            e.stopPropagation();
-          });
+        $(once('first-dropdown', firstLevel_li, context)).on('click', function (e) {
+          firstLevel_li.not(this).removeClass('active');
+          $(this).toggleClass('active');
+          e.stopPropagation();
+        });
         // second level menu collapse.
         const secondLevel_li = $('.region-header .navbar-nav > li.dropdown > ul > li');
-        secondLevel_li.once('second-dropdown')
-          .on('click', function (e) {
-            secondLevel_li.not(this).removeClass('active');
-            $(this).toggleClass('active');
-            e.stopPropagation();
-          });
+        $(once('second-dropdown', secondLevel_li, context)).on('click', function (e) {
+          secondLevel_li.not(this).removeClass('active');
+          $(this).toggleClass('active');
+          e.stopPropagation();
+        });
         // prevent dropdown on anchor click.
         const menu_a = $('.region-header .navbar-nav a');
-        menu_a.once('menu-link')
-          .on('click', function (e) {
-            e.stopPropagation();
-          });
+        $(once('menu-link', menu_a, context)).on('click', function (e) {
+          e.stopPropagation();
+        });
       });
       // Set the selected year for dropdown.
       var seletedLabel = $('.selected-year-display .year-label');
@@ -70,7 +65,7 @@
           }
         });
         // Open menu
-        $('.menu-trigger').once('trigger').click(function (event) {
+        $(once('trigger', '.menu-trigger', context)).click(function (event) {
           event.preventDefault();
           event.stopPropagation();
           $(this).toggleClass('active');
@@ -95,12 +90,12 @@
       $('.market-type  .market-container').css({width: windowWidth + 'px'});
 
       // Clear search.
-      var $searchpageClose = $('.search-page-form .close');
-      $searchpageClose.once('clear-data').on('click', function (e) {
+      var $searchPageClose = $('.search-page-form .close');
+      $(once('clear-data', $searchPageClose, context)).on('click', function (e) {
         $('.search-page-form input').val('');
       });
 
       /* end */
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

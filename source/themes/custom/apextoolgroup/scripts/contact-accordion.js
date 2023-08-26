@@ -1,10 +1,10 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.contactAccordion = {
     attach: function (context, settings) {
       // accordions
-      $('.accordion-title').once('accordion').on('click', function (e) {
+      $(once('accordion', '.accordion-title', context)).on('click', function (e) {
         e.preventDefault();
         if ($(this).hasClass('active')) {
           $(this).removeClass('active');
@@ -24,4 +24,4 @@
 
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

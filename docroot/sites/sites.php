@@ -217,6 +217,14 @@ $sites['apex-tools.de'] = 'apex-tools';
 $sites['www.apex-tools.co.uk'] = 'apex-tools';
 $sites['apex-tools.co.uk'] = 'apex-tools';
 
+// Ecom.
+$sites['dev-store.apextoolgroup.com'] = 'ecom';
+$sites['qa-store.apextoolgroup.com'] = 'ecom';
+$sites['stg-store.apextoolgroup.com'] = 'ecom';
+$sites['prod-store.apextoolgroup.com'] = 'ecom';
+$sites['www.store.apextoolgroup.com'] = 'ecom';
+$sites['store.apextoolgroup.com'] = 'ecom';
+
 // CLECOTOOLS
 $sites['clecotools.ddev.site'] = 'clecotools';
 
@@ -238,3 +246,7 @@ $sites['apextoolgroup.ddev.site'] = 'apextoolgroup';
 
 // New Sites for APEX-TOOLS
 $sites['apex-tools.ddev.site'] = 'apex-tools';
+
+// Ecom local.
+$sites['ecom.ddev.site'] = 'ecom';
+

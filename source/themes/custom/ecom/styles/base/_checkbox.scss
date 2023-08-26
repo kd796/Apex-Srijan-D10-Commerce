@@ -1,0 +1,34 @@
+
+.form-type-checkbox {
+  .form-checkbox {
+    & + label {
+      padding-left: 20px;
+      position: relative;
+      cursor: pointer;
+
+      &::before {
+        content: '';
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        left: 0;
+        top: 2px;
+        background: transparent;
+        border: 1px solid $black;
+      }
+
+    }
+
+    &:checked {
+      & + label {
+        &::before {
+          background-image: url('#{$image-base-path}/checkbox_checked.png');
+        }
+      }
+    }
+  }
+
+  .form-checkbox {
+    display: none;
+  }
+}

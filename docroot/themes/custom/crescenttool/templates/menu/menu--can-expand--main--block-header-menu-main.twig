@@ -94,20 +94,23 @@ We call a macro which calls itself to render the full tree.
             </button>
             <div {{ panel_attributes }}>
               {% set break = false %}
-              {% for nested_item in item.below if not break %}
-                {% if nested_item.title == "Featured Tools" %}
-                  {% set panel_image_attributes = create_attribute({
-                    'class': [
-                      'menu-item__panel-image',
-                      'menu-item__panel-image--depth-' ~ menu_level
-                    ],
-                  }) %}
-                  <div{{ panel_image_attributes }}>
-                    {% if item.panel_image %}
-                      {{ item.panel_image }}
-                    {% endif %}
-                  </div>
+              {% for nested_item in item.below %}
+                {% if not break %}
+                  {% if nested_item.title == "Featured Tools" %}
+                    {% set panel_image_attributes = create_attribute({
+                      'class': [
+                        'menu-item__panel-image',
+                        'menu-item__panel-image--depth-' ~ menu_level
+                      ],
+                    }) %}
+                    <div{{ panel_image_attributes }}>
+                      {% if item.panel_image %}
+                        {{ item.panel_image }}
+                      {% endif %}
+                    </div>
+                  {% endif %}
                 {% endif %}
+                {% if not break %}
                 {% if nested_item.below %}
                   <div class="secondary-menu {% if loop.first %}secondary-menu__first{% endif %}">
                     <header class="menu-item__panel-header">
@@ -122,6 +125,7 @@ We call a macro which calls itself to render the full tree.
                     {{ menus.menu_links(item.below, attributes, menu_level + 1, menu_name, item_id) }}
                     {% set break = true %}
                   </div>
+                {% endif %}
                 {% endif %}
               {% endfor %}
             </div>

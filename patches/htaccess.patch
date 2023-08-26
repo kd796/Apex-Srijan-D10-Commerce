@@ -1,8 +1,8 @@
 diff --git a/docroot/.htaccess b/docroot/.htaccess
-index 83cb71a..628cd48 100644
+index 4031da475..5b479df9c 100644
 --- a/docroot/.htaccess
 +++ b/docroot/.htaccess
-@@ -69,6 +69,11 @@ AddEncoding gzip svgz
+@@ -60,6 +60,11 @@ AddEncoding gzip svgz
  <IfModule mod_rewrite.c>
    RewriteEngine on
 
@@ -14,7 +14,7 @@ index 83cb71a..628cd48 100644
    # Set "protossl" to "s" if we were accessed via https://.  This is used later
    # if you enable "www." stripping or enforcement, in order to ensure that
    # you don't bounce between http and https.
-@@ -105,10 +105,18 @@ AddEncoding gzip svgz
+@@ -93,10 +98,19 @@ AddEncoding gzip svgz
    # To redirect all users to access the site WITH the 'www.' prefix,
    # (http://example.com/foo will be redirected to http://www.example.com/foo)
    # uncomment the following:
@@ -32,12 +32,13 @@ index 83cb71a..628cd48 100644
 +  RewriteCond %{HTTP_HOST} ^([^.]+)\.([^*]+)$ [NC]
 +  RewriteCond %{HTTP_HOST} !^www\. [NC]
 +  RewriteCond %{HTTP_HOST} .[co].[uk].$ [NC]
++  RewriteCond %{HTTP_HOST} !-www\. [NC]
 +  RewriteRule ^ http%{ENV:protossl}://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 +
    # To redirect all users to access the site WITHOUT the 'www.' prefix,
    # (http://www.example.com/foo will be redirected to http://example.com/foo)
    # uncomment the following:
-@@ -187,3 +193,48 @@ AddEncoding gzip svgz
+@@ -184,3 +198,48 @@ AddEncoding gzip svgz
    # Disable Proxy header, since it's an attack vector.
    RequestHeader unset Proxy
  </IfModule>

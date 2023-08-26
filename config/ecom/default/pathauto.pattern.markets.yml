@@ -1,0 +1,22 @@
+uuid: fff7578e-f646-4c5b-bf25-d29a07d9fb3b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: markets
+label: Markets
+type: 'canonical_entities:node'
+pattern: 'markets/[node:title]'
+selection_criteria:
+  84507062-149c-4e2c-addc-9a40483a70a4:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 84507062-149c-4e2c-addc-9a40483a70a4
+    context_mapping:
+      node: node
+    bundles:
+      markets: markets
+selection_logic: and
+weight: -5
+relationships: {  }

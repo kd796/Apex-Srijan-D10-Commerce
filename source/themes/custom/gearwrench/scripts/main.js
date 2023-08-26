@@ -1,10 +1,10 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.gearwrench = {
     attach: function (context, settings) {
       // Form error on submit button click
-      $('.webform-submission-form').once().each(function (index) {
+      $(once('webform-submission-form', '.webform-submission-form', context)).each(function (index) {
         // Initialize variables.
         var $widget = $(this);
         var $submitButton = $($widget).find('.webform-button--submit');
@@ -60,4 +60,4 @@
       }
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

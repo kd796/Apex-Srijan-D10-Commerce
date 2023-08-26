@@ -65,7 +65,7 @@ function cleco_migrations_uninstall() {
  *   Import source files.
  */
 function _cleco_migrations_source_files() {
-  $dirname = drupal_get_path('module', 'cleco_migrations') . '/import/pim_data';
+  $dirname = \Drupal::service('extension.list.module')->getPath('cleco_migrations') . '/import/pim_data';
   return \Drupal::service('file_system')->scanDirectory($dirname, '/.*/', [
     'recurse' => FALSE,
     'key' => 'filename',

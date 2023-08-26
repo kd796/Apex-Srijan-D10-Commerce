@@ -1,0 +1,480 @@
+/****** Products Listing page ******/
+
+.product-category-view-section {
+  margin: 30px 0;
+
+  .col {
+    padding: 0;
+  }
+}
+
+.product-listing {
+  .view-header {
+    font-size: 16px;
+    font-weight: $bold;
+    margin-bottom: 20px;
+    @media only screen and (max-width: $tablet) {
+      margin-top: 20px;
+    }
+  }
+
+  .views-row {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    font-size: 12px;
+    border-bottom: solid 1px $gray;
+    display: flex;
+    width: 100%;
+    @media only screen and (max-width: $tablet) {
+      flex-direction: column;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      flex-wrap: wrap;
+    }
+
+    .views-field {
+      @media only screen and (min-width: $tablet) {
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+    }
+  }
+
+  .views-field-field-media {
+    @media only screen and (min-width: $tablet-max) {
+      width: 20%;
+      padding-right: 10px;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 25%;
+    }
+
+    img {
+      width: 130px;
+      height: 130px;
+      object-fit: contain;
+      @media only screen and (max-width: $tablet) {
+        margin: auto;
+        display: block;
+      }
+    }
+  }
+
+  .views-field-title {
+    color: $pantone;
+    font-weight: $bold;
+    text-align: center;
+    @media only screen and (min-width: $tablet-max) {
+      width: 15%;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 25%;
+    }
+    @media only screen and (max-width: $tablet) {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .views-field-field-long-description {
+    color: $black;
+    font-weight: $bold;
+    display: block;
+    @media only screen and (min-width: $tablet-max) {
+      width: 40%;
+      padding: 0 10px;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 50%;
+    }
+    @media only screen and (max-width: $tablet) {
+      text-align: center;
+    }
+
+    a {
+      color: $black;
+      font-weight: $bold;
+      display: block;
+    }
+  }
+
+  .views-field-nothing {
+    @media only screen and (min-width: $tablet-max) {
+      width: 25%;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 100%;
+    }
+    @media only screen and (max-width: $tablet) {
+      text-align: center;
+      margin-top: 30px;
+    }
+  }
+
+  // List header.
+  .title-row {
+    display: flex;
+    width: 100%;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    border-bottom: solid 1px $gray;
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      flex-wrap: wrap;
+    }
+    @media only screen and (max-width: $tablet) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  &.no-result {
+    .title-row {
+      display: none;
+    }
+  }
+
+  .views-media {
+    @media only screen and (min-width: $tablet-max) {
+      width: 20%;
+      padding-right: 10px;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 25%;
+    }
+  }
+
+  .views-title {
+    text-align: center;
+    @media only screen and (min-width: $tablet-max) {
+      width: 15%;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 25%;
+    }
+
+    span {
+      color: $lighter-gray;
+    }
+  }
+
+  .views-description {
+    @media only screen and (min-width: $tablet-max) {
+      width: 40%;
+      padding: 0 10px;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 50%;
+    }
+
+    span {
+      color: $lighter-gray;
+    }
+  }
+
+  .views-nothing {
+    @media only screen and (min-width: $tablet-max) {
+      width: 25%;
+    }
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      width: 100%;
+    }
+  }
+
+  .btn-distributor {
+    @media only screen and (min-width: $tablet) {
+      float: right;
+    }
+
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      margin-top: 25px;
+    }
+  }
+}
+
+// Filter section.
+.col-filter {
+  flex: 0 0 100%;
+
+  @media only screen and (min-width: $tablet-max) {
+    flex: 0 0 20%;
+  }
+}
+
+.col-list {
+  width: 100%;
+  @media only screen and (min-width: $tablet-max) {
+    flex: 0 0 80%;
+    padding-left: 20px;
+  }
+}
+
+.mobile-filter-header {
+  display: none;
+}
+
+.ecom-product-category-filters,
+.view-filters {
+  background: $filter-bg;
+  padding: 5px 15px;
+  margin-bottom: 20px;
+
+  @media screen and ( min-width: $tablet-max) {
+    margin-bottom: 0;
+  }
+
+  fieldset {
+    margin-right: 0;
+    margin-left: 0;
+    width: 100%;
+
+    .fieldset-legend {
+      display: block;
+      font-weight: $bold;
+      margin-bottom: 5px;
+      color: $black;
+    }
+
+    .fieldset-wrapper {
+      max-height: 135px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      border-radius: 5px;
+      padding: 10px 5px;
+      background: $white;
+
+      .option {
+        color: $black;
+        margin-bottom: 5px;
+      }
+
+      .form-type-checkbox {
+        display: flex;
+        width: 100%;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 0;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+.view-new-products {
+  margin: 30px 0;
+
+  .view-filters {
+    .fieldset-wrapper {
+      max-height: unset;
+    }
+  }
+}
+
+// Empty result.
+.view-empty {
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  border: solid 1px $mustard;
+  background-color: $ivory;
+  color: $dark-olive;
+  margin-bottom: 30px;
+  height: max-content;
+}
+
+// Product category.
+
+.view-product-category {
+  .view-filters {
+    padding: 0;
+    background: transparent;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.ecom-product-category-filters {
+  input[type=radio] {
+    width: auto;
+    margin-bottom: 8px;
+  }
+
+  .form-item-set-filter {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+
+    .option {
+      margin-bottom: 0;
+      display: inline-block;
+      margin-left: 7px;
+    }
+  }
+
+  .fieldset-wrapper {
+    display: none;
+  }
+
+  .filter--open .fieldset-wrapper {
+    display: block !important;
+  }
+
+  .form-wrapper legend {
+    padding-right: 20px;
+    background: url('#{$image-base-path}/plus.svg') no-repeat;
+    background-size: 14px;
+    background-position: calc(100% - 5px);
+    cursor: pointer;
+  }
+
+  .form-wrapper.filter--open legend {
+    background: url('#{$image-base-path}/minus.svg') no-repeat;
+    background-size: 14px;
+    background-position: calc(100% - 5px);
+  }
+}
+
+.view-product-category {
+  .form-item-field-product-classifications-target-id,
+  .form-item-field-product-specifications-target-id,
+  .form-item-field-set-value,
+  .form-item-field-brand-target-id,
+  .form-item-sort-order,
+  #edit-actions {
+    display: none;
+  }
+}
+
+.product-list .view-recently-viewed-product .view-content,
+.view-product-category .view-content {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+
+  @media screen and (min-width: $tablet) {
+    max-width: 100%;
+  }
+
+  @media screen and (min-width: $tablet-max) {
+    max-width: 100%;
+    margin: 0 -15px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    max-width: 80%;
+  }
+
+  .views-row {
+    flex: 0 0 100%;
+    margin-bottom: 36px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid $silver;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    @media screen and (min-width: $tablet) {
+      flex: 0 0 50%;
+      max-width: 50%;
+      padding: 0 15px;
+      border-bottom: 0;
+      border-right: 1px solid $silver;
+
+      &:nth-child(2n+1) {
+        border-right: 0;
+      }
+    }
+
+    @media screen and (min-width: $tablet-max) {
+      flex: 0 0 25%;
+      max-width: 25%;
+      padding: 0 20px;
+      border-bottom: 0;
+      border-right: 1px solid $silver;
+
+      &:nth-child(2n+1) {
+        border-right: 1px solid $silver;
+      }
+
+      &:last-child {
+        border-right: 0;
+      }
+    }
+  }
+}
+
+.view-product-category .view-content {
+  max-width: 100%;
+
+  .views-row {
+    @media screen and (min-width: $tablet-max) {
+      &:nth-child(2n+2) {
+        border-right: 1px solid $silver;
+      }
+
+      &:nth-child(4n+3) {
+        border-right: 0;
+      }
+    }
+  }
+}
+
+.product-category-view-section  {
+  display: flex;
+  flex-wrap: wrap;
+
+  .product-listing__header {
+    width: 100%;
+    font-weight: $bold;
+    color: $gray-tertiary;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+
+  .result-count {
+    font-weight: $bold;
+    padding-bottom: 8px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid $gray;
+  }
+
+  .result-count,
+  .view-content {
+    width: 100%;
+  }
+
+  @media screen and (min-width: $tablet-max) {
+
+    .view-content {
+      flex: 0 0 80%;
+      margin: 0;
+      padding-left: 20px;
+    }
+  }
+}
+
+.form-item-sort-by {
+  display: flex;
+  align-items: center;
+
+  label {
+    flex: 0 0 auto;
+    margin-top: 5px;
+    margin-right: 6px;
+
+  }
+
+  select {
+    border: 0;
+    padding: 0 20px 0 0;
+    color: $dark-blue;
+    appearance: none;
+    background: url('#{$image-base-path}/sort.svg') no-repeat right white;
+    background-size: 14px;
+  }
+}

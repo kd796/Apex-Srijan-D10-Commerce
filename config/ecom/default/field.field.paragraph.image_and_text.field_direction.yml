@@ -1,0 +1,23 @@
+uuid: 9fbc00fb-c93f-4677-8cd1-cc0f7e8970ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_direction
+    - paragraphs.paragraphs_type.image_and_text
+  module:
+    - options
+id: paragraph.image_and_text.field_direction
+field_name: field_direction
+entity_type: paragraph
+bundle: image_and_text
+label: Direction
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

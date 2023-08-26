@@ -1,4 +1,4 @@
-(function ($) {
+(function ($, Drupal, once) {
   'use strict';
   Drupal.behaviors.gmap = {
     attach: function (context, settings) {
@@ -21,4 +21,4 @@
       });
     }
   };
-})(jQuery);
+})(jQuery, Drupal, once);

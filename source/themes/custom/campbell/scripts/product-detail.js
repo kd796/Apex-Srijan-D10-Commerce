@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.productdetail = {
@@ -31,7 +31,7 @@
       });
       // Remove empty div for Specifications.
       var $specskey = $('.specs-key');
-      $specskey.once('specskey').each(function () {
+      $(once('specskey', $specskey, context)).each(function () {
         var $keylength = $(this).text().replace(/^\s+|\s+$/g, '').length;
         if ($keylength === 0) {
           $(this).parent('.field__item').remove();
@@ -41,7 +41,7 @@
       $('.product-detail-slider').find('.video-field').remove();
       $('.vedio-gallery').find('.image-field').remove();
       // video pop-up.
-      $('.watch-video, .video-image-thumbnail').once('video-popup').magnificPopup({
+      $(once('video-popup', '.watch-video, .video-image-thumbnail', context)).magnificPopup({
         type: 'inline',
         mainClass: 'mfp-video-gallery',
         gallery: {
@@ -78,4 +78,4 @@
       // end
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

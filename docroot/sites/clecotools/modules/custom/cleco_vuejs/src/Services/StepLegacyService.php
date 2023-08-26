@@ -2,6 +2,7 @@
 
 namespace Drupal\cleco_vuejs\Services;
 
+use Prewk\XmlStringStreamer\Parser\StringWalker;
 use stdClass;
 
 use Drupal;
@@ -66,7 +67,7 @@ class StepLegacyService
         // File chunkSize
         $stream = new Stream\File(Drupal::service('file_system')->realpath($xml), 1024);
         // Construct the default parser
-        $parser = new Parser\StringWalker(
+        $parser = new StringWalker(
             [
             'captureDepth'     => 2,
             'expectGT'         => true,

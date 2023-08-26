@@ -1,0 +1,97 @@
+# Migration configuration for ecom_product_classifications content.
+id: ecom_product_classifications_level_two
+label: Product Classifications - Level Two
+migration_group: ecom
+source:
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: simple_xml
+  urls: 'public://import/pim_data/pim_export_with_schema.xml'
+  namespaces:
+    stibo: "http://www.stibosystems.com/step"
+  item_selector: /STEP-ProductInformation/Classifications/Classification/Classification/Classification/Classification/Classification[@UserTypeID="Web Level 2"]
+  fields:
+    -
+     name: remote_term_id
+     label: ID
+     selector: '@ID'
+    -
+      name: remote_term_name
+      label: Term Name
+      selector: Name
+    -
+      name: remote_parent_name
+      label: Parent Term Name
+      selector: 'parent::Classification'
+    -
+      name: remote_listing_image
+      label: Listing Image
+      selector: '.'
+  ids:
+    remote_term_id:
+      type: string
+process:
+  name:
+    plugin: skip_on_empty
+    method: row
+    source: remote_term_name
+  field_classification_id:
+    plugin: skip_on_value
+    not_equals: true
+    source: remote_term_id
+    method: row
+    value:
+      - W2_16008
+      - W2_16003
+      - W2_785253
+      - W2_16002
+      - W2_16010
+      - W2_16007
+      - W2_755890
+      - W2_16013
+      - W2_16012
+      - W2_722357
+      - W2_16006
+      - W2_722294
+      - W2_16011
+      - W2_783464
+      - W2_16016
+      - W2_16005
+      - W2_722455
+      - W2_16004
+      - W2_886492
+      - W2_722598
+      - W2_723005
+      - W2_22452
+      - W2_22450
+      - W2_22448
+      - W2_886499
+      - W2_886504
+      - W2_886505
+      - W2_886507
+      - W2_886508
+      - W2_886509
+      - W2_722651
+      - W2_886288
+      - W2_886554
+      - W2_886555
+      - W2_886556
+      - W2_886557
+      - W2_886645
+      - W2_22459
+      - W2_22460
+
+  parent:
+    -
+      plugin: apex_get_classification_parent_term
+      source: remote_parent_name
+    -
+      plugin: default_value
+      default_value: 0
+  listing_menu_image:
+    source: remote_listing_image
+    plugin: ecom_get_category_menu_image
+  'field_listing_menu_image/target_id': '@listing_menu_image'
+destination:
+  plugin: entity:taxonomy_term
+  default_bundle: product_classifications

@@ -2,6 +2,7 @@
 
 namespace Drupal\cleco_vuejs\Services;
 
+use Drupal\taxonomy\Entity\Term;
 use stdClass;
 
 use Drupal;
@@ -17,7 +18,7 @@ class ImageStylesService
         $productCategories = Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('products');
 
         foreach ($productCategories as $category) {
-            $term = Drupal\taxonomy\Entity\Term::load($category->tid);
+            $term = Term::load($category->tid);
             $img  = $term->get('field_es_image')->value;
             if (isset($img)) {
                 $this->resizeImg($img);

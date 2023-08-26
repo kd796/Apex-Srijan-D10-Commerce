@@ -5,8 +5,9 @@
  * Primary module hooks for ATG Common module.
  */
 
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\atg_common\Plugin\WebformHandler\EmailUsWebformHandler;
+use Drupal\Core\Block\BlockPluginInterface;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_views_pre_view().
@@ -24,7 +25,7 @@ function atg_common_views_pre_view($view, $display_id) {
       ->condition('field_date', NULL, 'IS NOT NULL')
       ->condition('field_news_type', $display_id == 'atg_news_release' ?
         'newsrelease' : 'inthenews', '=');
-    $nodes = $node_storage->loadMultiple($query->execute());
+    $nodes = $node_storage->loadMultiple($query->accessCheck(FALSE)->execute());
     foreach ($nodes as $node) {
       $event_date = $node->get('field_date')->getValue();
       $date = \DateTime::createFromFormat('Y-m-d', $event_date[0]['value']);
@@ -97,4 +98,14 @@ function atg_common_form_alter(&$form, FormStateInterface $form_state, $form_id)
 function atg_common_webform_handler_info_alter(array &$handlers) {
   // Use custom handler for Email Us mail.
   $handlers['email']['class'] = EmailUsWebformHandler::class;
+}
+
+/**
+ * Implements hook_block_build_alter().
+ */
+function atg_common_block_build_alter(array &$build, BlockPluginInterface $block) {
+  // Disable placeholdering of this block.
+  if ($block->getPluginId() == "webform_block") {
+    $build['#create_placeholder'] = FALSE;
+  }
 }
