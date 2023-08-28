@@ -26,44 +26,56 @@ class CheckUserLogin implements EventSubscriberInterface {
     $current_path = \Drupal::service('path.current')->getPath();
     $path_alias = $path_alias_manager->getAliasByPath($current_path);
     $current_url = Url::fromUserInput($path_alias)->toString();
-    $route_name = \Drupal::routeMatch()->getRouteName();
-    $is_user_whitelisted = $is_user_authenticated = $bypass_user = FALSE;
-    if ($ecom_azure_config->get('ecom_address_list')) {
-      $is_user_whitelisted = in_array(\Drupal::request()->getClientIp(), $ecom_azure_config->get('ecom_address_list'));
-    }
+    $current_route = \Drupal::routeMatch()->getRouteName();
+    $target_route = Url::fromRoute("ecom_azure_api.network_login")->getRouteName();
+
+    $is_user_whitelisted = $is_user_authenticated = $bypass_user = $is_url_whitelisted = FALSE;
+
     $is_user_authenticated = \Drupal::service('session')->get('pre_login_success', FALSE);
     $bypass_user = \Drupal::currentUser()->hasPermission('administer ecom azure');
 
-    if (!$is_user_whitelisted && !$is_user_authenticated && !$bypass_user) {
-      $redirect_path = Url::fromRoute("ecom_azure_api.network_login")->toString();
+    if ($ecom_azure_config->get('ecom_address_list')) {
+      $is_user_whitelisted = $this->userIsWhitelisted($ecom_azure_config);
+    }
+    if ($ecom_azure_config->get('ecom_page_whitelist')) {
+      $is_url_whitelisted = in_array($current_url, $ecom_azure_config->get('ecom_page_whitelist'));
+    }
+    if (!$is_user_whitelisted && !$is_user_authenticated && !$bypass_user && !$is_url_whitelisted &&
+     PHP_SAPI != 'cli') {
       $destination = ['query' => ['destination' => $current_url]];
 
-      if ($current_url !== $redirect_path) {
-        $response = new TrustedRedirectResponse(Url::fromRoute("ecom_azure_api.network_login", [], $destination)
-          ->toString());
-        $event->setResponse($response);
-        $event->stopPropagation();
-        $build = [
-          '#cache' => [
-            'max-age' => 0,
-          ],
-        ];
-        $response->addCacheableDependency($build);
+      if ($current_route === $target_route) {
+        return;
       }
+
+      $response = new TrustedRedirectResponse(Url::fromRoute($target_route, [], $destination)
+        ->toString());
+      $response->send();
+
+      return;
     }
-    elseif ($is_user_whitelisted || $is_user_authenticated || $bypass_user) {
-      if ($route_name == "ecom_azure_api.network_login") {
+    elseif ($is_user_whitelisted || $is_user_authenticated || $bypass_user || $is_url_whitelisted) {
+      if ($current_route == $target_route) {
         $response = new TrustedRedirectResponse(Url::fromRoute("<front>")->toString());
-        $event->setResponse($response);
-        $event->stopPropagation();
+        $response->send();
       }
     }
+  }
+
+  /**
+   * Get if user IP is whitelisted.
+   */
+  public function userIsWhitelisted($config) {
+    // If user IP is not set in the address_list.
+    return in_array(\Drupal::request()->getClientIp(), $config->get('ecom_address_list')) ||
+     $config->get('ecom_user_ip_whitelisted');
   }
 
   /**
    * {@inheritdoc}
    */
   public static function getSubscribedEvents() {
+    $events = [];
     $events[KernelEvents::REQUEST][] = ['redirectAnonymous'];
     return $events;
   }

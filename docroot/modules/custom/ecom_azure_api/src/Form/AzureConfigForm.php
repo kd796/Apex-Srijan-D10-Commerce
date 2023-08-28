@@ -47,7 +47,8 @@ class AzureConfigForm extends ConfigFormBase {
    */
   public function __construct(AccountProxyInterface $currentUser,
     ModuleHandlerInterface $moduleHandler,
-    RequestStack $requestStack) {
+    RequestStack $requestStack
+    ) {
     $this->currentUser = $currentUser;
     $this->moduleHandler = $moduleHandler;
     $this->currentUserIp = $requestStack->getCurrentRequest()->getClientIp();
@@ -89,7 +90,11 @@ class AzureConfigForm extends ConfigFormBase {
     $form['ecom_app_whitelist'] = [
       '#type' => 'details',
       '#title' => $this->t('Allowed IP Address List'),
-      '#description' => $this->t('<strong>Your current IP address is %ip</strong>', ['%ip' => $this->currentUserIp]),
+      '#description' => $this->t('<strong>Your current IP address is %ip</strong>.
+        It is %user-check  whitelisted.', [
+          '%ip' => $this->currentUserIp,
+          '%user-check' => $config->get('ecom_user_ip_whitelisted') ? '' : 'NOT',
+        ]),
       '#open' => TRUE,
       '#collapsible' => TRUE,
     ];
@@ -99,6 +104,25 @@ class AzureConfigForm extends ConfigFormBase {
       '#default_value' => $config->get('ecom_address_list') ? implode(PHP_EOL, $config->get('ecom_address_list')) : '',
       '#description' => $this->t('Enter the list of IP Addresses that are allowed to access the site.
         Enter one IP address per line, in IPv4 format.'),
+    ];
+    $form['ecom_app_whitelist']['ecom_user_ip_whitelisted'] = [
+      '#title' => $this->t('User is in whitelisted IP range'),
+      '#type' => 'hidden',
+      '#default_value' => $config->get('ecom_user_ip_whitelisted') ?: FALSE,
+    ];
+    $form['ecom_app_allowed_urls'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Allowed URLs List'),
+      '#description' => $this->t('List of URLs that are allowed to access'),
+      '#open' => TRUE,
+      '#collapsible' => TRUE,
+    ];
+    $form['ecom_app_allowed_urls']['ecom_page_whitelist'] = [
+      '#title' => $this->t('Allowed URL list'),
+      '#type' => 'textarea',
+      '#default_value' => $config->get('ecom_page_whitelist') ?
+      implode(PHP_EOL, $config->get('ecom_page_whitelist')) : '',
+      '#description' => $this->t('Enter the list of URLs that are allowed to access the site. Enter one URL per line.'),
     ];
     $form['ecom_app_authorization'] = [
       '#type' => 'details',
@@ -180,16 +204,23 @@ class AzureConfigForm extends ConfigFormBase {
     ];
     $form['ecom_secrets']['ecom_client_id'] = [
       '#title' => $this->t('Client ID'),
-      '#type' => 'textfield',
-      '#required' => TRUE,
-      '#description' => $this->t("Application ID from registered application"),
+      '#type' => 'password',
+      '#description' => $this->t("Application ID from registered application.
+       %so", [
+         '%so' => $config->get('ecom_client_id') ?
+         'Refilling this field will override existing value.' : '',
+       ]),
       '#default_value' => $config->get('ecom_client_id'),
     ];
     $form['ecom_secrets']['ecom_client_secret'] = [
       '#title' => $this->t('Client Secret'),
-      '#type' => 'textfield',
-      '#required' => TRUE,
+      '#type' => 'password',
       '#default_value' => $config->get('ecom_client_secret'),
+      '#description' => $this->t("Application ID from registered application.
+      %r", [
+        '%r' => $config->get('ecom_client_secret') ?
+        'Refilling this field will override existing value.' : '',
+      ]),
     ];
 
     return parent::buildForm($form, $form_state);
@@ -200,6 +231,7 @@ class AzureConfigForm extends ConfigFormBase {
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
     $ip_addresses = $this->cleanIpAddressInput($form_state->getValue('ecom_address_list'));
+    $form_state->setValue('ecom_user_ip_whitelisted', FALSE);
     if (!empty($ip_addresses)) {
       foreach ($ip_addresses as $ip_address) {
         if ($ip_address != '::1') {
@@ -214,7 +246,7 @@ class AzureConfigForm extends ConfigFormBase {
             if (count($pieces) == 2) {
               $start_ip = trim($pieces[0]);
               if (!preg_match('~^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$~', $start_ip)) {
-                $form_state->setError($form['address_list'], $this->t('@ip_address is not a valid IP address.', ['@ip_address' => $start_ip]));
+                $form_state->setError($form['ecom_app_whitelist']['ecom_address_list'], $this->t('@ip_address is not a valid IP address.', ['@ip_address' => $start_ip]));
               }
               else {
                 $start_pieces = explode('.', $start_ip);
@@ -252,17 +284,46 @@ class AzureConfigForm extends ConfigFormBase {
                 }
 
                 if (!$end_valid) {
-                  $form_state->setError($form['address_list'], $this->t('@range is not a valid IP address range.', ['@range' => $ip_address]));
+                  $form_state->setError($form['ecom_app_whitelist']['ecom_address_list'], $this->t('@range is not a valid IP address range.', ['@range' => $ip_address]));
                 }
+              }
+              $clientIpValue = ip2long($this->currentUserIp);
+              $lowValue = ip2long($start_ip);
+              $highValue = ip2long($end_ip);
+              if ($clientIpValue >= $lowValue && $clientIpValue <= $highValue) {
+                $form_state->setValue('ecom_user_ip_whitelisted', TRUE);
               }
             }
             else {
-              $form_state->setError($form['address_list'], $this->t('@ip_address is not a valid IP address or range of addresses.', ['@ip_address' => $ip_address]));
+              $form_state->setError($form['ecom_app_whitelist']['ecom_address_list'], $this->t('@ip_address is not a valid IP address or range of addresses.', ['@ip_address' => $ip_address]));
             }
           }
         }
       }
     }
+
+    $page_whitelist = $form_state->getValue('ecom_page_whitelist');
+    $page_whitelist = trim($page_whitelist);
+    if (strlen($page_whitelist)) {
+      $pages = [];
+      $paths = explode(PHP_EOL, $page_whitelist);
+      foreach ($paths as $path) {
+        $path = trim($path);
+        if (strlen($path)) {
+          if (!preg_match('/^\//', $path)) {
+            $path = '/' . $path;
+          }
+
+          $pages[] = strtolower($path);
+        }
+      }
+
+      $form_state->setValue('ecom_page_whitelist', $pages);
+    }
+    else {
+      $form_state->setValue('ecom_page_whitelist', []);
+    }
+
     parent::validateForm($form, $form_state);
   }
 
@@ -274,9 +335,18 @@ class AzureConfigForm extends ConfigFormBase {
       if (substr($key, 0, 5) !== "ecom_") {
         continue;
       }
+      if (in_array($key, ['ecom_client_id', 'ecom_client_secret']) && empty($item)) {
+        $item = $this->config('ecom_azure_api.settings')->get($key);
+        $form_state->setValue($key, $item);
+      }
       if ($key == "ecom_address_list") {
         $this->config('ecom_azure_api.settings')
           ->set($key, $this->cleanIpAddressInput($item))
+          ->save();
+      }
+      elseif ($key == "ecom_page_whitelist") {
+        $this->config('ecom_azure_api.settings')
+          ->set($key, (array) $item)
           ->save();
       }
       else {
@@ -292,7 +362,7 @@ class AzureConfigForm extends ConfigFormBase {
   /**
    * Helper function to clean IP address values.
    */
-  public function cleanIpAddressInput($input) {
+  private function cleanIpAddressInput($input) {
     $ip_addresses = trim($input);
     $ip_addresses = preg_replace('/(\/\/|#).+/', '', $ip_addresses);
     $ip_addresses = preg_replace('~/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/~', '', $ip_addresses);

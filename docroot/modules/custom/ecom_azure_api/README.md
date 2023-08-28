@@ -37,6 +37,12 @@ The installation of this module is like other Drupal modules.
 ## CONFIGURATION
 
 - Set configuration at (`/admin/config/development/azure-config`)
+- Secrets are not a part of configuration export. You need to set them manually on environments.
+- Network check is skipped for below criteria:
+  - Super administrator role.
+  - Whitelisted IP (single and range).
+  - Whitelisted pages.
+  - Already authenticated user via Azure network.
 - Check user login page for ATG network login form.
 
 ## UPGRADING
