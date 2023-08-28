@@ -67,7 +67,8 @@ class SolrSearchApiService {
   protected function initSearch() {
     $index = Index::load(self::SEARCH_INDEX);
     $this->query = $index->query();
-    $parse_mode = $this->parseModeManager->createInstance('direct');
+    $parse_mode = $this->parseModeManager->createInstance('terms');
+    $parse_mode->setConjunction('OR');
     $this->query->setParseMode($parse_mode);
   }
 

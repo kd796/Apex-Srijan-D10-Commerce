@@ -83,6 +83,10 @@
         {# Slider and links #}
         <div class="row">
           <div class="product-detail__slider">
+            {% if content.field_brand %}
+              {{ content.field_brand }}
+            {% endif %}
+
             {% if product_images %}
               {# image slider #}
               <div class="product-detail-slider">
@@ -129,8 +133,8 @@
                 </div>
               {% endif %}
             {% endif %}
-            {# Links #}
-            <div class="downloadable-links">
+            {# Commenting the code as the requirement is changed. (Downloadble Links) #}
+            {# <div class="downloadable-links">
               <div class="links__item">
                 <a href="/ecom-product-image-download/{{ node.id() }}" class="btn btn-download">{{ 'Download Images' | t }}</a>
               </div>
@@ -145,7 +149,7 @@
                   <a href="{{ file_url(node.field_pdfs.entity.field_media_file.entity.uri.value) }}" download="Brochure.pdf" title="Download Brochure" class="btn btn-primary btn-distributor">{{ 'Download Brochure' | t}}</a>
                 </div>
               {% endif %}
-            </div>
+            </div> #}
           </div>
           <div class="product-detail__links">
             {# Title #}
@@ -157,12 +161,17 @@
             </div>
             <div class="product__stocks-price">
               <div class="product-price">
-                {{ '$9.08' }}
+                {{ price }}
               </div>
               <div class="product-availability">
                 {{ 'Availability:'|t }}
-                <span class='product-stock'>
+                {% if stock_value <= 0 %}
+                <span class='product-stock out-of-stock'>
+                {{ 'Out of stock' }}</span>
+                {% else %}
+                <span class='product-stock in-stock'>
                 {{ 'In stock' }}</span>
+                {% endif %}
               </div>
             </div>
             <div class="node--type-product__accordion-content">
@@ -172,40 +181,51 @@
               {{ content.field_product_features }}
             </div>
             <div class="product__actions">
-              <div class="button--add-to-cart btn-primary">{{ 'Add to Cart'|t }}</div>
-              <div class="btn btn-primary button--wishlist">
-              {{ 'Add to Wishlist'|t }}</div>
+            {% if stock_value > 0 %}
+              <div class="add-to-cart-button"><a href="/add-to-cart/{{ variation_id }}/{{ variation_id }}" class="button--add-to-cart btn-primary">{{ 'Add to Cart'|t }}</a></div>
+             {% endif %}
+              <div class="wishlist-button"><a href="/add-to-wishlist/{{ variation_id }}/{{ variation_id }}" class="btn btn-primary button--wishlist">
+              {{ 'Add to Wishlist'|t }}
+              </a></div>
             </div>
           </div>
         </div>
         {# Specification content #}
         <div class="product-information">
-          <div class="product-information__header">
-            {{ 'Product Information'|t }}
-          </div>
-          <div class="product-specifications">
+          {% if content.field_product_specifications %}
 
-            <div class="specification-header">{{ 'Specifications'|t }}</div>
+            <div class="product-information__header">
+              {{ 'Product Information'|t }}
+            </div>
+            <div class="product-specifications">
 
-            {% for specs in content.field_product_specifications %}
-              {% set specs_title =  specs['#plain_text']|split(':', 2) %}
-              <div class="field__item">
-                {% for key,specs_label in specs_title %}
-                  {% if (loop.index is odd) %}
-                    <div class='specs-key'>
-                      {{ specs_label }}
-                    </div>
-                  {% else %}
-                    <div class='specs-value'>
-                      {{ specs_label }}
-                    </div>
-                  {% endif %}
-                {% endfor %}
-              </div>
-            {% endfor %}
-          </div>
+              <div class="specification-header">{{ 'Specifications'|t }}</div>
+
+              {% for specs in content.field_product_specifications %}
+                {% set specs_title =  specs['#plain_text']|split(':', 2) %}
+                <div class="field__item">
+                  {% for key,specs_label in specs_title %}
+                    {% if (loop.index is odd) %}
+                      <div class='specs-key'>
+                        {{ specs_label }}
+                      </div>
+                    {% else %}
+                      <div class='specs-value'>
+                        {{ specs_label }}
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
         </div>
       </div>
     </div>
+    {% if related_product_block|render|trim %}
+      <div class="product-list">
+        {{ related_product_block }}
+      </div>
+    {% endif %}
   </div>
 </article>

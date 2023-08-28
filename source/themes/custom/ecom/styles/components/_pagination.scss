@@ -1,17 +1,22 @@
 /****** Pagination ******/
 
 .pager {
-  margin: 1rem 0;
+  margin: 1rem auto 0;
+  width: 100%;
 
   .pager__items {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
 
-    .pager__item {
+    .pager__item:not(.pager__item--next):not(.pager__item--previous) {
       padding: 0;
       margin: 0 0.125rem 0.3125rem;
       
+      @media screen and (min-width: $tablet-max) {
+        margin: 0 0.25rem 0;
+      }
 
       a {
         padding: 0;
@@ -48,8 +53,14 @@
 
   &__item--previous,
   &__item--next {
+    span {
+      display: none;
+    }
+
     a {
       position: relative;
+      border: 0 !important;
+      background-color: transparent !important;
 
       &:after {
         width: 0;
@@ -66,6 +77,8 @@
 
   &__item--previous {
     a {
+      margin-right: -12px;
+
       &:after {
         border-right: 0.5rem solid $nero;
         border-top: 0.25rem solid transparent;
@@ -76,6 +89,8 @@
 
   &__item--next {
     a {
+      margin-left: -12px;
+
       &:after {
         border-left: 0.5rem solid $nero;
         border-top: 0.25rem solid transparent;

@@ -1,0 +1,36 @@
+{% set stock = fields.field_stock.content|render|trim|striptags %}
+<div class="card--list">
+  <a href="{{ fields.view_node.content|render|striptags|trim }}" class="card--list__link">
+    {% if fields.field_media.content %}
+      <div class="card--list__image">
+        {{ fields.field_media.content }}
+      </div>
+    {% endif %}
+    {% if fields.field_long_description.content %}
+      <div class="card--list__title">
+        {{ fields.field_long_description.content }}
+      </div>
+    {% endif %}
+  </a>
+  {% if fields.title.content %}
+    <div class="card--list__category">
+      {{'#' | t }}{{ fields.title.content|render|striptags|trim }}
+    </div>
+  {% endif %}
+  <div class="cart-price__wrapper">
+    {% if fields.price__number.content %}
+      <div class="price">
+        {{ fields.price__number.content }}
+      </div>
+    {% endif %}
+    {% if fields.nothing.content and (stock > 0) %}
+      <div class="add-to-cart">
+        {{ fields.nothing.content }}
+      </div>
+    {% else %}
+      <div class='product-stock out-of-stock'>
+        {{ 'Out of stock' }}
+      </div>
+    {% endif %}
+  </div>
+</div>

@@ -14,19 +14,19 @@ use League\Flysystem\FilesystemException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides an apex_get_category_menu_image plugin.
+ * Provides an ecom_get_category_menu_image plugin.
  *
  * Usage:
  *
  * @code
  * process:
  *   bar:
- *     plugin: apex_get_category_menu_image
+ *     plugin: ecom_get_category_menu_image
  *     source: ecom
  * @endcode
  *
  * @MigrateProcessPlugin(
- *   id = "apex_get_category_menu_image"
+ *   id = "ecom_get_category_menu_image"
  * )
  */
 class GetCategoryMenuImage extends ProcessPluginBase implements ContainerFactoryPluginInterface {
@@ -94,23 +94,17 @@ class GetCategoryMenuImage extends ProcessPluginBase implements ContainerFactory
     $media_id = NULL;
     $this->mediaId = NULL;
     $this->assets = NULL;
-    $sku = $row->getSourceIdValues()['remote_sku'];
+    $sku = $row->getSourceIdValues()['remote_sku'] ?? '';
     $alt_text = $value->Name;
 
     $asset_cross_reference = $value->xpath('AssetCrossReference');
-    $this->scanForCategoryImage($asset_cross_reference[0], 'Product Category');
+    $this->scanForCategoryImage($asset_cross_reference, 'Product Category');
     // If a media ID was returned then use that.
     if (!empty($this->mediaId)) {
       return $this->mediaId;
     }
 
     if (empty($this->assets)) {
-      throw new MigrateSkipProcessException();
-    }
-
-    $store = $this->tempStore->get('apex_migrations');
-    // Do a preliminary check to see if the image server is reachable.
-    if ($store->get('image_server_available') !== TRUE) {
       throw new MigrateSkipProcessException();
     }
 
@@ -157,31 +151,26 @@ class GetCategoryMenuImage extends ProcessPluginBase implements ContainerFactory
    *   The image type identifier.
    */
   protected function scanForCategoryImage($asset_item, string $image_type): void {
-    if (!$asset_item) {
-      return;
-    }
 
-    $type = (string) $asset_item->attributes()->Type;
-    if ($type != 'WebMenuImageSmall') {
-      return;
+    foreach ($asset_item as $asset_item) {
+      $type = (string) $asset_item->attributes()->Type;
+      if ($type == 'WebMenuImageSmall') {
+        $assetId = (string) $asset_item->attributes()->AssetID;
+        if (empty($assetId)) {
+          return;
+        }
+        $media_id = ImageOperations::getImageMediaId($assetId);
+        // If we find the file then we need to reference it in the return array.
+        if (empty($media_id)) {
+          $this->assets[] = [
+            'imagetype' => $image_type,
+            'asset_id' => $assetId,
+          ];
+          return;
+        }
+        $this->mediaId = $media_id;
+      }
     }
-
-    $assetId = (string) $asset_item->attributes()->AssetID;
-    if (empty($assetId)) {
-      return;
-    }
-
-    $media_id = ImageOperations::getImageMediaId($assetId);
-    // If we find the file then we need to reference it in the return array.
-    if (empty($media_id)) {
-      $this->assets[] = [
-        'imagetype' => $image_type,
-        'asset_id' => $assetId,
-      ];
-      return;
-    }
-    $this->mediaId = $media_id;
-
   }
 
 }

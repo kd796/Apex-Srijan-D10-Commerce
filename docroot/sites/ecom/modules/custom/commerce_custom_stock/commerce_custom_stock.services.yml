@@ -1,0 +1,10 @@
+services:
+  commerce_custom_stock.variation_availability_checker:
+    class: Drupal\commerce_custom_stock\VariationAvailabilityChecker
+    tags:
+      - { name: commerce_order.availability_checker, priority: 100 }
+  commerce_custom_stock.event_subscriber:
+    class: Drupal\commerce_custom_stock\EventSubscriber\UpdateStockEventSubscriber
+    arguments: ['@messenger', '@commerce_cart.cart_manager']
+    tags:
+      - { name: event_subscriber }

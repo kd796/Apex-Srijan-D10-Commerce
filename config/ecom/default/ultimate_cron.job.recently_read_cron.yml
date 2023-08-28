@@ -1,0 +1,17 @@
+uuid: 71f85a9d-6842-4ddc-97b1-3509a87a6c40
+langcode: en
+status: true
+dependencies:
+  module:
+    - recently_read
+title: 'Default cron handler'
+id: recently_read_cron
+weight: 0
+module: recently_read
+callback: recently_read_cron
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database
