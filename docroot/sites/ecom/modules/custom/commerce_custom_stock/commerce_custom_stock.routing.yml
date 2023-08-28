@@ -1,0 +1,9 @@
+commerce_custom_stock.inventory_ftp_config:
+  path: '/admin/config/development/inventory-ftp-config'
+  defaults:
+    _title: 'Inventory FTP Server Settings'
+    _form: 'Drupal\commerce_custom_stock\Form\InventoryFTPForm'
+  requirements:
+    _permission: 'access content'
+  options:
+    _admin_route: 'true'
