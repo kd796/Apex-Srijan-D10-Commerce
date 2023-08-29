@@ -11,7 +11,6 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -169,7 +168,7 @@ class PreLoginForm extends FormBase {
 
       return json_decode($response->getBody(), TRUE);
     }
-    catch (ClientException $e) {
+    catch (\Exception $e) {
       return [
         'error' => 'Connecting parameters not initialized.',
       ];
@@ -187,8 +186,6 @@ class PreLoginForm extends FormBase {
       '$count' => 'true',
       '$select' => 'userPrincipalName',
     ];
-    $url = Url::fromUri($api_endpoint, ['query' => $query_params]);
-    $api_url = htmlspecialchars_decode(urldecode($url->toString()));
 
     $api_headers = [
       'Authorization' => 'Bearer ' . $access_token,
@@ -196,11 +193,13 @@ class PreLoginForm extends FormBase {
     ];
 
     try {
+      $url = Url::fromUri($api_endpoint, ['query' => $query_params]);
+      $api_url = htmlspecialchars_decode(urldecode($url->toString()));
       $response = $this->httpClient->get($api_url, ['headers' => $api_headers]);
 
       return json_decode($response->getBody(), TRUE);
     }
-    catch (ClientException $e) {
+    catch (\Exception $e) {
       return [
         'error' => 'Your credentials are not authorized to access this website.',
       ];
@@ -228,7 +227,7 @@ class PreLoginForm extends FormBase {
 
       return json_decode($response->getBody(), TRUE);
     }
-    catch (ClientException $e) {
+    catch (\Exception $e) {
       return [
         'error' => 'Your credentials are not authorized to access this website.',
       ];
