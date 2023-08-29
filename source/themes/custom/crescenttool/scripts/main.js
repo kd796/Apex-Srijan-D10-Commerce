@@ -52,4 +52,21 @@
       });
     }
   };
+  // Add this observer for Buy Now button.
+  // Buy Now button is legacy issue.
+  // TO Fix Price Spider(Buy Now not rendering).
+  const options = {
+    root: null,
+    threshold: 0.5
+  };
+  const observePSwidget = function (entries, observer) {
+    entries.forEach((entry) => {
+      window.PriceSpider.rebind();
+    });
+  };
+  const observer = new IntersectionObserver(observePSwidget, options);
+  const elementsToObserve = document.querySelectorAll('.ps-widget');
+  elementsToObserve.forEach((element) => {
+    observer.observe(element);
+  });
 })(jQuery, Drupal, once);
