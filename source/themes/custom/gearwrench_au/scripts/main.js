@@ -69,7 +69,7 @@
   };
   const observePSwidget = function (entries, observer) {
     entries.forEach((entry) => {
-      if (typeof window.PriceSpider != undefined) {
+      if (typeof window.PriceSpider !== 'undefined') {
         window.PriceSpider.rebind();
       }
     });
