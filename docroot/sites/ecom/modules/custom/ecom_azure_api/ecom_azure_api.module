@@ -56,13 +56,13 @@ function ecom_azure_api_theme_suggestions_page_alter(array &$suggestions, array 
 function ecom_azure_api_preprocess_html(&$variables) {
   $current_route = \Drupal::routeMatch()->getRouteName();
   if ($current_route == Url::fromRoute("ecom_azure_api.network_login")->getRouteName()) {
-    $xuacompatible = [
+    $base_tag = [
       '#tag' => 'base',
       '#attributes' => [
         'href' => '/',
       ],
     ];
 
-    $variables['page']['#attached']['html_head'][] = [$xuacompatible, 'x-ua-compatible'];
+    $variables['page']['#attached']['html_head'][] = [$base_tag, 'base_tag'];
   }
 }

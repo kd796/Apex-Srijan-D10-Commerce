@@ -250,21 +250,30 @@ class AzureConfigForm extends ConfigFormBase {
               }
               else {
                 $start_pieces = explode('.', $start_ip);
+                $start_pieces_originial = $start_pieces;
                 $start_final_chunk = (int) array_pop($start_pieces);
                 $end_ip = trim($pieces[1]);
                 $end_valid = TRUE;
                 if (preg_match('~^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$~', $end_ip)) {
                   $end_valid = TRUE;
                   $end_pieces = explode('.', $end_ip);
-                  for ($i = 0; $i < 3; $i++) {
-                    if ((int) $start_pieces[$i] != (int) $end_pieces[$i]) {
+                  if ((int) $start_pieces[0] > (int) $end_pieces[0]) {
+                    $end_valid = FALSE;
+                  }
+
+                  if ($end_valid && (int) $start_pieces[0] == (int) $end_pieces[0]) {
+                    if ((int) $start_pieces[1] > (int) $end_pieces[1]) {
                       $end_valid = FALSE;
                     }
-                  }
-                  if ($end_valid) {
-                    $end_final_chunk = (int) array_pop($end_pieces);
-                    if ($start_final_chunk > $end_final_chunk) {
-                      $end_valid = FALSE;
+                    elseif ($end_valid && (int) $start_pieces[1] == (int) $end_pieces[1]) {
+                      if ((int) $start_pieces[2] > (int) $end_pieces[2]) {
+                        $end_valid = FALSE;
+                      }
+                      elseif ($end_valid && (int) $start_pieces[2] == (int) $end_pieces[2]) {
+                        if ((int) $start_pieces_originial[3] > (int) $end_pieces[3]) {
+                          $end_valid = FALSE;
+                        }
+                      }
                     }
                   }
                 }
@@ -287,11 +296,13 @@ class AzureConfigForm extends ConfigFormBase {
                   $form_state->setError($form['ecom_app_whitelist']['ecom_address_list'], $this->t('@range is not a valid IP address range.', ['@range' => $ip_address]));
                 }
               }
-              $clientIpValue = ip2long($this->currentUserIp);
-              $lowValue = ip2long($start_ip);
-              $highValue = ip2long($end_ip);
-              if ($clientIpValue >= $lowValue && $clientIpValue <= $highValue) {
-                $form_state->setValue('ecom_user_ip_whitelisted', TRUE);
+              if (isset($end_ip)) {
+                $clientIpValue = ip2long($this->currentUserIp);
+                $lowValue = ip2long($start_ip);
+                $highValue = ip2long($end_ip);
+                if ($clientIpValue >= $lowValue && $clientIpValue <= $highValue) {
+                  $form_state->setValue('ecom_user_ip_whitelisted', TRUE);
+                }
               }
             }
             else {
