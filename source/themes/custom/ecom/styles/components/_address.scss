@@ -1,0 +1,167 @@
+
+.profile-customer-address-book-add-form {
+  @extend .wrapper-content;
+
+  margin-top: 40px;
+  padding-top: 40px;
+  position: relative;
+
+  .form-actions .button {
+    min-height: 23px !important;
+    min-width: 115px !important;
+  }
+
+  &::before {
+    content: 'Add New Address';
+    position: absolute;
+    top: 0;
+    font-weight: $bold;
+    left: 0;
+    font-size: 16px;
+  }
+}
+
+.address-book__container {
+  @extend .wrapper-content;
+  position: relative;
+
+  .address-book__add-link {
+    display: inline-block;
+    padding: 8px 24px;
+    background: $black;
+    color: $white;
+    font-size: 12px;
+    font-weight: $bold;
+    border-radius: 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 12px 0;
+    transition: 0.2s ease all;
+    border: 1px solid $black;
+
+    &:hover {
+      background: $white;
+      color: $black;
+      border: 1px solid $black;
+    }
+  }
+
+  .address-book__profiles {
+    padding-top: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .address-book__profile {
+      margin: 0;
+      flex: 0 0 100%;
+      border: 1px solid $black;
+      border-radius: 5px;
+      padding: 16px 12px 8px;
+      margin-bottom: 20px;
+
+      @media  screen and (min-width: $tablet-max) {
+        flex: 0 0 50%;
+        max-width: calc(50% - 30px);
+      }
+    }
+  }
+
+  .address-book__operations {
+    margin-bottom: 0;
+    a {
+      @extend .btn-primary;
+    }
+  }
+
+  .address-item {
+    display: flex;
+
+    label {
+      flex: 0 0 150px;
+    }
+  }
+}
+
+div[id^='address-0-address-ajax-wrapper'] {
+
+  margin: 0 -20px;
+
+  & > .form-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+
+    div[id^="edit-address-0-address-country-code"] {
+      flex: 0 0 100%;
+    }
+
+    .form-item input {
+      height: 36px;
+    }
+
+    select {
+      border-color: $gray;
+      height: 36px;
+    }
+
+    .form-item {
+      display: flex;
+      align-items: center;
+      flex: 0 0 100%;
+
+      @media screen and (min-width: $tablet-max) {
+        max-width: 50%;
+        padding-left: 20px;
+      }
+
+      label {
+        flex: 0 0 130px;
+        font-size: 13px;
+
+        @media screen and (min-width: $tablet-max) {
+          flex: 0 0 200px;
+          font-size: 14px;
+        }
+      }
+    }
+
+    .address-container-inline {
+      flex: 0 0 100%;
+
+      @media screen and (min-width: $tablet-max) {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .form-item-address-0-address-given-name,
+      .form-item-address-0-address-family-name {
+        max-width: 100%;
+
+        @media screen and (min-width: $tablet-max) {
+          max-width: 50%;
+        }
+      }
+
+      .form-item-address-0-address-family-name {
+        @media  screen and (min-width: $tablet-max) {
+          margin-right: 10px;
+        }
+      }
+    }
+
+    .form-item-address-0-address-address-line1,
+    .form-item-address-0-address-address-line2 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+
+    .form-item-address-0-address-address-line2 {
+      padding-left: 130px;
+
+      @media screen and (min-width: $tablet-max) {
+        padding-left: 220px;
+      }
+    }
+  }
+}
