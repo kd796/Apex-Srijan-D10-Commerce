@@ -61,7 +61,9 @@
   };
   const observePSwidget = function (entries, observer) {
     entries.forEach((entry) => {
-      window.PriceSpider.rebind();
+      if (typeof window.PriceSpider != undefined) {
+        window.PriceSpider.rebind();
+      }
     });
   };
   const observer = new IntersectionObserver(observePSwidget, options);
