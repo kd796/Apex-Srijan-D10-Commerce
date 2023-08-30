@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\Core\Entity\EntityInterface;
+use \Drupal\Core\Cache\RefinableCacheableDependencyInterface;
 /**
  * Implements hook_node_presave().
  *
@@ -47,3 +48,41 @@ function ecom_common_node_presave(EntityInterface $entity) {
   $field_category_facets_value = $parent_node->get('field_category_facets')->getValue();
   $entity->set('field_category_facets', $field_category_facets_value);
 }
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function ecom_common_menu_local_tasks_alter(&$data, $route_name, RefinableCacheableDependencyInterface &$cacheability) {
+
+  $route_array = [
+    'view.commerce_user_orders.order_page',
+    'entity.user.edit_form',
+    'commerce_order.address_book.overview',
+    'commerce_wishlist.user_page',
+    'entity.user.canonical',
+    'ecom_common.account_dashboard',
+  ];
+  if (in_array($route_name, $route_array)) {
+
+    // My Order Tab.
+    $data['tabs'][0]['views_view:view.commerce_user_orders.order_page']['#link']['title'] = 'My Order';
+    $data['tabs'][0]['views_view:view.commerce_user_orders.order_page']['#weight'] = -48;
+    // Shortcut Tab.
+    $data['tabs'][0]['shortcut.set_switch']['#access'] = FALSE;
+    // Submission Tab.
+    $data['tabs'][0]['entity.webform_submission.user']['#access'] = FALSE;
+    // Payment Method Tab.
+    $data['tabs'][0]['entity.commerce_payment_method.collection']['#access'] = FALSE;
+    // My Wishlist Tab.
+    $data['tabs'][0]['entity.commerce_wishlist.user_page']['#link']['title'] = 'My Wishlist';
+    $data['tabs'][0]['entity.commerce_wishlist.user_page']['#weight'] = -47;
+    // User Edit Tab.
+    $data['tabs'][0]['entity.user.edit_form']['#link']['title'] = 'Account Information';
+    $data['tabs'][0]['entity.user.edit_form']['#weight'] = -50;
+    // Address book Tab.
+    $data['tabs'][0]['commerce_order.address_book.overview']['#weight'] = -49;
+    // View Tab.
+    $data['tabs'][0]['entity.user.canonical']['#access'] = FALSE;
+  }
+}
+
