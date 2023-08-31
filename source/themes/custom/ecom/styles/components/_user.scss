@@ -1,5 +1,4 @@
 .path-user {
-  .block-local-tasks-block,
   .user-login-form,
   .user-pass {
     margin: 0 auto;
@@ -28,12 +27,13 @@
   }
 
   .block-local-tasks-block {
+    @extend .wrapper-content;
     display: flex;
     flex-wrap: wrap;
     padding-top: 16px;
     align-items: center;
     padding-bottom: 16px;
-    justify-content: center;
+
     @media only screen and (max-width: $tablet) {
       justify-content: flex-start;
       padding-top: 10px;
@@ -43,23 +43,8 @@
     .tabs {
       .primary {
         padding: 0;
-        margin: 0 -12px;
-      }
-
-      li {
-        margin: 0;
-        padding: 0 12px;
-        position: relative;
-
-        &:not(:first-child) {
-          &:before {
-            top: 2px;
-            left: -2px;
-            content: '|';
-            position: absolute;
-            color: $light-black;
-          }
-        }
+        display: flex;
+        flex-wrap: wrap;
       }
 
       a {
@@ -70,10 +55,26 @@
         color: $light-black;
         letter-spacing: 0.2px;
         background-color: transparent;
+        color: $pantone;
+        font-weight: $bold;
+        padding: 12px 14px;
+        position: relative;
+        background: $gray;
+        transition: 0.2s ease all;
+        font-size: 14px;
+        border: 1px solid $black;
+        border-right-width: 0.5px;
+        border-left-width: 0.5px;
 
-        &.is-active {
-          color: $pantone;
+        &.is-active,
+        &:hover {
+          color: $white;
+          background: $black;
         }
+      }
+
+      li {
+        margin: 0;
       }
     }
   }
