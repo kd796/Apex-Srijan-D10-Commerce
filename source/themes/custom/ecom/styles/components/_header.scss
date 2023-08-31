@@ -586,3 +586,100 @@
     display: none;
   }
 }
+
+// PCP Landing Page.
+.pcp-landing {
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  & > .view-content > ul {
+    &:first-child {
+      padding-left: 0;
+
+      & > li > .views-field-nothing {
+        .views-field-field-name a {
+          font-size: 19px;
+          font-weight: $bold;
+          line-height: 22px;
+          text-transform: uppercase;
+          color: $pantone;
+          margin-bottom: 20px;
+          display: block;
+          pointer-events: none;
+        }
+      }
+    }
+
+    ul {
+      column-count: 4;
+      padding-left: 40px;
+      @media only screen and (max-width: $tablet-max) {
+        column-count: 3;
+      }
+      @media only screen and (max-width: $tablet) {
+        column-count: unset;
+      }
+
+      .views-field-field-name a {
+        font-weight: $bold;
+      }
+
+      li {
+        page-break-inside: avoid;
+        break-inside: avoid-column;
+      }
+
+      .views-field-wrap {
+        display: flex;
+        margin-top: 10px;
+        position: relative;
+      }
+
+      .views-field-image {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        left: -40px;
+      }
+
+      li > ul {
+        column-count: unset;
+        padding-left: 30px;
+        margin-bottom: 10px;
+
+        .views-field-field-name a {
+          font-weight: $bold;
+          line-height: 14px;
+        }
+
+        .views-field-wrap {
+          display: unset;
+        }
+
+        .views-field-image {
+          display: none;
+        }
+
+        li > ul {
+          .views-field-field-name a {
+            font-weight: $normal;
+          }
+        }
+      }
+    }
+  }
+
+  &.view-display-id-pcp_shop_equipment > .view-content > ul {
+    ul {
+      display: grid;
+      grid-template-columns: repeat(4, 25%);
+      grid-auto-flow: row;
+      @media only screen and (max-width: $tablet-max) {
+        display: unset;
+      }
+      @media only screen and (max-width: $tablet) {
+        display: unset;
+      }
+    }
+  }
+}
