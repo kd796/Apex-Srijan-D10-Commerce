@@ -102,4 +102,12 @@
       }
     }
   }
+
+  &__empty + &__empty {
+    display: none;
+  }
+
+  &__empty {
+    @extend .view-empty;
+  }
 }
