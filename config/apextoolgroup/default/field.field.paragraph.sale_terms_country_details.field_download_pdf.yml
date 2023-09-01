@@ -1,0 +1,106 @@
+uuid: 03c93307-a59c-491b-be74-7fb9e5826b98
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_download_pdf
+    - paragraphs.paragraphs_type.sale_terms_country_details
+    - paragraphs.paragraphs_type.sales_pdf_download
+  module:
+    - entity_reference_revisions
+id: paragraph.sale_terms_country_details.field_download_pdf
+field_name: field_download_pdf
+entity_type: paragraph
+bundle: sale_terms_country_details
+label: 'Download PDF'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      sales_pdf_download: sales_pdf_download
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 27
+        enabled: false
+      accordion_item:
+        weight: 28
+        enabled: false
+      careers_cta:
+        weight: 29
+        enabled: false
+      content:
+        weight: 30
+        enabled: false
+      embed_block:
+        weight: 31
+        enabled: false
+      embed_iframe:
+        weight: 32
+        enabled: false
+      embed_view:
+        weight: 33
+        enabled: false
+      featured_content:
+        weight: 34
+        enabled: false
+      featured_links:
+        weight: 35
+        enabled: false
+      featured_media:
+        weight: 36
+        enabled: false
+      file_with_text:
+        weight: 37
+        enabled: false
+      hero:
+        weight: 38
+        enabled: false
+      hero_slide:
+        weight: 39
+        enabled: false
+      image_and_text:
+        weight: 40
+        enabled: false
+      image_with_cta:
+        weight: 41
+        enabled: false
+      info_section:
+        weight: 42
+        enabled: false
+      inventor:
+        weight: 43
+        enabled: false
+      inventor_image_and_text:
+        weight: 44
+        enabled: false
+      policies_registration:
+        weight: 45
+        enabled: false
+      product_types_info:
+        weight: 46
+        enabled: false
+      pullquote:
+        weight: 47
+        enabled: false
+      sale_terms_country_details:
+        weight: 49
+        enabled: false
+      sales_pdf_download:
+        weight: 48
+        enabled: true
+      section:
+        weight: 50
+        enabled: false
+      tabs:
+        weight: 51
+        enabled: false
+      tabs_tab:
+        weight: 52
+        enabled: false
+field_type: entity_reference_revisions
