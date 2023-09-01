@@ -10,7 +10,6 @@ use Drupal\taxonomy\Entity\Term;
  */
 class UtilityTax {
 
-
   /**
    * Drupal\Core\Entity\EntityTypeManagerInterface definition.
    *
@@ -31,9 +30,11 @@ class UtilityTax {
   public function importTax($csv_row) {
 
     $postal_range_array = explode('-', $csv_row['postalcoderange']);
+    // Need to seperate ex 90000-90002.
     $start_postal_code = $postal_range_array[0];
+    $start_postal_code = (int) $start_postal_code;
     $end_postal_code = $postal_range_array[1] ?? $postal_range_array[0];
-
+    $end_postal_code = (int) $end_postal_code;
     $existing_term = $this->entityTypeManager->getStorage('taxonomy_term')
       ->loadByProperties([
         'name' => $csv_row['code'],
@@ -45,8 +46,8 @@ class UtilityTax {
       $term[0]->field_us_city = $csv_row['city'];
       $term[0]->field_us_state = $csv_row['state'];
       $term[0]->field_us_county = $csv_row['county'];
-      $term[0]->field_ending_postal_code = $end_postal_code;
-      $term[0]->field_starting_postal_code = $start_postal_code;
+      $term[0]->field_ending_zip_code = $end_postal_code;
+      $term[0]->field_starting_zip_code = $start_postal_code;
       $term[0]->field_rate = $csv_row['rate'];
       $term[0]->save();
 
@@ -64,10 +65,10 @@ class UtilityTax {
         'field_us_county' => [
           'value' => $csv_row['county'],
         ],
-        'field_ending_postal_code' => [
+        'field_ending_zip_code' => [
           'value' => $end_postal_code,
         ],
-        'field_starting_postal_code' => [
+        'field_starting_zip_code' => [
           'value' => $start_postal_code,
         ],
         'field_rate' => [
@@ -75,7 +76,48 @@ class UtilityTax {
         ],
       ])->save();
     }
+  }
 
+  /**
+   * Getting term name based on tid.
+   */
+  public function getTermName($tid) {
+    $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($tid);
+    $term_name = $term->get('name')->value;
+    return $term_name;
+  }
+
+  /**
+   * Getting matched tax rate.
+   */
+  public function getMatching($state, $postal_code, $city,) {
+    $query = $this->entityTypeManager->getStorage('taxonomy_term')->getQuery();
+    $term_ids = $query->condition('vid', 'us_tax_data')
+      ->accessCheck(FALSE)
+      ->condition('field_us_state', $state)
+      ->condition('field_us_city', $city)
+      ->condition('field_starting_zip_code', $postal_code, '<=')
+      ->condition('field_ending_zip_code', $postal_code, '>=')
+      ->execute();
+
+    // Changing index of array to start from 0.
+    $term_ids = array_values($term_ids);
+
+    if (empty($term_ids)) {
+      return 0;
+    }
+    else {
+      return($this->getRate($term_ids[0]));
+    }
+  }
+
+  /**
+   * Returning tax rate.
+   */
+  public function getRate($tid) {
+
+    $rate = $this->entityTypeManager->getStorage('taxonomy_term')->load($tid)->get('field_rate')->value;
+    return $rate;
   }
 
 }

@@ -1,0 +1,27 @@
+diff --git a/modules/contrib/we_megamenu/assets/js/we_megamenu.js b/modules/contrib/we_megamenu/assets/js/we_megamenu.js
+index bf2a94706a..435f5d433e 100644
+--- a/modules/contrib/we_megamenu/assets/js/we_megamenu.js
++++ b/modules/contrib/we_megamenu/assets/js/we_megamenu.js
+@@ -1124,4 +1124,4 @@ Drupal.WeMegaMenu = Drupal.WeMegaMenu || {};
+     });
+   };
+ 
+-})(jQuery, Drupal, drupalSettings);
++})(jQuery, Drupal, drupalSettings, once);
+diff --git a/modules/contrib/we_megamenu/src/WeMegaMenuBuilder.php b/modules/contrib/we_megamenu/src/WeMegaMenuBuilder.php
+index 63a6eb361d..aecee6a0f4 100644
+--- a/modules/contrib/we_megamenu/src/WeMegaMenuBuilder.php
++++ b/modules/contrib/we_megamenu/src/WeMegaMenuBuilder.php
+@@ -299,10 +299,11 @@ public static function renderWeMegaMenuBlock($menu_name, $theme) {
+    *   Public static function loadConfig string.
+    */
+   public static function loadConfig($menu_name = '', $theme = '') {
+-    if (!empty($menu_name)) {
++    if (!empty($menu_name) && !empty($theme)) {
+       $query = Drupal::database()->select('we_megamenu', 'km');
+       $query->addField('km', 'data_config');
+       $query->condition('km.menu_name', $menu_name);
++      $query->condition('km.theme', $theme);
+       $query->range(0, 1);
+       $result = $query->execute()->fetchField();
+       return json_decode($result);

@@ -1,0 +1,146 @@
+/****** My Cart ******/
+.path-cart {
+  .messages {
+    .messages--error {
+      display: none;
+    }
+  }
+}
+
+.view-commerce-cart-form {
+  .views-form {
+    padding: 0 0 50px;
+  }
+
+  .views-view-table {
+    width: 100%;
+  }
+
+  thead {
+    border-bottom: solid 1px $platinum;
+
+    th {
+      font-size: 14px;
+      padding: 5px;
+      background-color: $table-even;
+      @media screen and (max-width: $tablet) {
+        font-size: 12px;
+      }
+      @media screen and (min-width: $tablet-max) {
+        padding: 10px;
+      }
+    }
+  }
+
+  tbody {
+    font-size: 14px;
+
+    tr {
+      width: 100%;
+
+      td {
+        width: 16.66%;
+        vertical-align: baseline;
+        padding: 0;
+        @media screen and (min-width: $tablet-max) {
+          padding: 0 10px;
+        }
+
+        &.views-field-field-media {
+          img {
+            padding: 10px;
+            border: solid 1px $para;
+            margin: 10px 0;
+            width: 80%;
+          }
+        }
+
+        &.views-field-purchased-entity {
+          width: 30%;
+        }
+
+        &.views-field-total-price__number {
+          width: 10%;
+        }
+      }
+    }
+
+    .views-field-field-long-description {
+      a {
+        margin: 0 5px 0 0;
+        display: block;
+      }
+    }
+
+    .views-field-edit-quantity {
+      input {
+        color: $black;
+        width: 70%;
+
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+          opacity: 1;
+        }
+
+        @media screen and (min-width: $tablet-max) {
+          width: 30%;
+        }
+      }
+    }
+
+    .delete-order-item {
+      @media screen and (max-width: $tablet) {
+        min-width: unset;
+        max-width: 30px !important;
+        height: 30px;
+        text-indent: 400px;
+        background: $white url('#{$image-base-path}/delete_black.png') no-repeat center;
+        background-size: 25px;
+        border: 0;
+      }
+
+      &:hover,
+      &:focus,
+      &:focus-visible {
+        @media screen and (max-width: $tablet) {
+          background: $white url('#{$image-base-path}/delete_black.png') no-repeat center;
+          background-size: 25px;
+        }
+      }
+    }
+  }
+
+  .views-field-total-price__number {
+    text-align: right;
+  }
+
+  .order-total-line {
+    padding: 10px 5px 0;
+    @media screen and (min-width: $tablet-max) {
+      padding: 10px 10px 0;
+    }
+  }
+
+  .form-item--error-message {
+    font-size: 12px;
+    padding-right: 10px;
+  }
+
+  [data-drupal-selector$='total-summary'] {
+    font-size: 14px;
+    margin-bottom: 2rem;
+  }
+}
+
+.cart-empty-page {
+  margin: 0 auto;
+  word-wrap: break-word;
+  padding: 20px 15px 50px;
+  width: 100%;
+  font-size: 13px;
+
+  @media only screen and (min-width: $tablet-max) {
+    padding: 0 0 50px;
+    width: 86%;
+  }
+}

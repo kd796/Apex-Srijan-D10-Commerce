@@ -4,8 +4,6 @@ status: true
 dependencies:
   module:
     - contact
-_core:
-  default_config_hash: 1TIKtMkjY26cVN1RPOzGE60sVx3nFvKHw-LR3I-STNw
 id: contact_form.mail
 configuration:
   email_body:
@@ -15,3 +13,8 @@ configuration:
         <hr>
         {{ body }}
       format: email_html
+  email_to:
+    addresses:
+      -
+        value: '<site>'
+        display: ''

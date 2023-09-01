@@ -71,7 +71,7 @@ function ecom_preprocess_node__product_category__full(array &$variables) {
   $variables['view'] = $main_view->buildRenderable($view_display, $main_view->args);
   $form = \Drupal::formBuilder()->getForm('Drupal\ecom_product_category_filtering\Form\ProductCategoryFiltersForm');
   $variables['filters'] = $form;
-  $flag = (isset($form['category-filter']) || isset($form['attribute_filter'])) ? 1 : 0;
+  $flag = (isset($form['category-filter']) || isset($form['attribute_filter']) || isset($form['brand-filter']) || isset($form['set_filter'])) ? 1 : 0;
   $variables['check_filter'] = $flag;
 }
 
@@ -100,7 +100,21 @@ function ecom_preprocess_node__product__full(array &$variables) {
   /** @var Drupal\node\NodeInterface $node */
   $node = $variables['elements']['#node'];
   $entity_type_manager = \Drupal::entityTypeManager();
-
+  if ($node->field_commerce_product != NULL) {
+    $prod_variation_obj = $node->field_commerce_product->entity->variations->entity;
+    // Price.
+    if ($prod_variation_obj != NULL) {
+      $price = $prod_variation_obj->getPrice();
+      // Variance id.
+      $var_id = $prod_variation_obj->id();
+      // Stock value.
+      $stock_value = $prod_variation_obj->field_stock->value;
+      // Passing in template.
+      $variables['variation_id'] = $var_id;
+      $variables['price'] = $price;
+      $variables['stock_value'] = $stock_value;
+    }
+  }
   // Count Product Images.
   $variables['product_images'] = NULL;
 
@@ -206,4 +220,6 @@ function ecom_preprocess_node__product__full(array &$variables) {
   if ($block) {
     $variables['addtothis_block_output'] = $entity_type_manager->getViewBuilder('block')->view($block);
   }
+  $related_product_block = views_embed_view('recently_viewed_product');
+  $variables["related_product_block"] = \Drupal::service('renderer')->renderRoot($related_product_block);
 }

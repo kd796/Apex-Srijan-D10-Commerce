@@ -1,0 +1,22 @@
+.path-ad-network-login {
+  @extend .path-user;
+  .main-content {
+    @extend .main-contane;
+    max-width: 100%;
+    &.center-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      .ecom-pre-login-form {
+        @extend .user-login-form;
+        .form-item {
+          input {
+            margin-top: 0.5rem;
+            box-sizing: border-box;
+          }
+        }
+      }
+    }
+  }
+}
