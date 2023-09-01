@@ -1,0 +1,207 @@
+.commerce-checkout-flow {
+  @extend .wrapper-content;
+
+  .checkout-pane-payment-information {
+    border: 0;
+    padding: 0 25px 0 0;
+    margin: 0 0 12px;
+    @media only screen and (max-width: $tablet-max) {
+      padding: 0 25px 0 0;
+    }
+
+    @media only screen and (max-width: $tablet) {
+      padding: 0 20px 0 0;
+    }
+
+    @media only screen and (max-width: $mobile-sm) {
+      padding: 0;
+    }
+
+    legend {
+      color: $black;
+      font-size: 16px;
+      margin: 0 0 16px;
+      padding: 0 0 16px;
+      font-weight: $normal;
+      line-height: 19.36px;
+      border-bottom: 1px solid rgba($light-black, 0.2);
+    }
+
+    label {
+      color: $black;
+      font-size: 16px;
+      font-weight: $normal;
+      line-height: 19.36px;
+    }
+
+    .form-item {
+      margin: 0 0 25px;
+      @media only screen and (max-width: $tablet) {
+        margin: 0 0 20px;
+      }
+
+      @media only screen and (max-width: $mobile-sm) {
+        margin: 0 0 16px;
+      }
+    }
+
+    .fieldset-wrapper {
+      .authorize-net-accept-js-form {
+
+        #payment-errors {
+          margin: 0 0 16px 8px;
+        }
+
+        .form-item {
+          width: 50%;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+
+          @media only screen and (max-width: $desktop) {
+            width: 70%;
+          }
+
+          @media only screen and (max-width: $mobile-sm) {
+            width: 100%;
+          }
+
+          label {
+            margin: 0;
+            width: 150px;
+            @media only screen and (max-width: $tablet) {
+              width: 100px;
+            }
+
+            @media only screen and (max-width: $mobile-sm) {
+              width: 50%;
+            }
+
+            @media only screen and (max-width: $mobile) {
+              width: 100%;
+              margin: 0 0 5px;
+            }
+          }
+
+          input {
+            width: calc(100% - 150px);
+            @media only screen and (max-width: $tablet) {
+              width: calc(100% - 100px);
+            }
+
+            @media only screen and (max-width: $mobile-sm) {
+              width: 50%;
+            }
+
+            @media only screen and (max-width: $mobile) {
+              width: 100%;
+            }
+          }
+        }
+
+        .credit-card-form__expiration {
+          width: 50%;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          @media only screen and (max-width: $desktop) {
+            width: 70%;
+          }
+
+          @media only screen and (max-width: $mobile-sm) {
+            width: 100%;
+          }
+
+          .form-item {
+            width: calc(50% - 20px);
+
+            label {
+              width: 100%;
+              margin: 0 0 5px;
+            }
+
+            input {
+              width: 100%;
+            }
+
+            &.form-type-item {
+              width: 20px;
+            }
+          }
+        }
+      }
+
+      .field--type-address {
+        .address-container-inline {
+          display: flex;
+          flex-wrap: wrap;
+          margin: 0 -16px;
+          justify-content: space-between;
+
+          .form-item {
+            width: 50%;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0 16px;
+            align-items: center;
+            @media only screen and (max-width: $mobile-sm) {
+              width: 100%;
+            }
+
+            label {
+              width: 150px;
+              @media only screen and (max-width: $tablet) {
+                width: 100px;
+              }
+
+              @media only screen and (max-width: $mobile-sm) {
+                width: 50%;
+              }
+
+              @media only screen and (max-width: $mobile) {
+                width: 100%;
+              }
+            }
+
+            select,
+            textarea,
+            input {
+              width: calc(100% - 150px);
+              @media only screen and (max-width: $tablet) {
+                width: calc(100% - 100px);
+              }
+
+              @media only screen and (max-width: $mobile-sm) {
+                width: 50%;
+              }
+
+              @media only screen and (max-width: $mobile) {
+                width: 100%;
+              }
+            }
+          }
+
+          &#edit-payment-information-add-payment-method-billing-information-address-0-address-container0 {
+            width: 50%;
+            margin: 0;
+            @media only screen and (max-width: $desktop) {
+              width: 70%;
+            }
+
+            @media only screen and (max-width: $mobile-sm) {
+              width: 100%;
+            }
+
+            .form-item {
+              padding: 0;
+              width: 100%;
+              display: flex;
+              flex-wrap: wrap;
+              align-items: center;
+            }
+          }
+        }
+      }
+    }
+  }
+}
