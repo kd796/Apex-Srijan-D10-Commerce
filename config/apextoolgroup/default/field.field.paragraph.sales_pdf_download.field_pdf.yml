@@ -1,0 +1,29 @@
+uuid: ee0414b8-c1a1-4d03-bbaf-c7d5c64a9dbb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_pdf
+    - media.type.file
+    - paragraphs.paragraphs_type.sales_pdf_download
+id: paragraph.sales_pdf_download.field_pdf
+field_name: field_pdf
+entity_type: paragraph
+bundle: sales_pdf_download
+label: PDF
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      file: file
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
