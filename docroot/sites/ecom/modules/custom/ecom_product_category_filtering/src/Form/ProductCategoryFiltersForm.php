@@ -9,6 +9,7 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\File\FileUrlGeneratorInterface;
 
 /**
  * Provides a ecom Product Category Filtering form.
@@ -44,6 +45,13 @@ class ProductCategoryFiltersForm extends FormBase {
   protected $entityFieldManager;
 
   /**
+   * The file URL generator.
+   *
+   * @var \Drupal\Core\File\FileUrlGeneratorInterface
+   */
+  protected $fileUrlGenerator;
+
+  /**
    * Constructs a ContentEntityStorageBase object.
    *
    * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
@@ -58,11 +66,12 @@ class ProductCategoryFiltersForm extends FormBase {
   public function __construct(RouteMatchInterface $route_match,
   EntityTypeManagerInterface $entity_type_manager,
   Connection $database,
-  EntityFieldManagerInterface $entity_field_manager) {
+  EntityFieldManagerInterface $entity_field_manager,FileUrlGeneratorInterface $file_url_generator) {
     $this->routeMatch = $route_match;
     $this->entityTypeManager = $entity_type_manager;
     $this->database = $database;
     $this->entityFieldManager = $entity_field_manager;
+    $this->fileUrlGenerator = $file_url_generator;
   }
 
   /**
@@ -73,7 +82,8 @@ class ProductCategoryFiltersForm extends FormBase {
       $container->get('current_route_match'),
       $container->get('entity_type.manager'),
       $container->get('database'),
-      $container->get('entity_field.manager')
+      $container->get('entity_field.manager'),
+      $container->get('file_url_generator')
     );
   }
 
@@ -157,8 +167,27 @@ class ProductCategoryFiltersForm extends FormBase {
         // Set up brand filter.
         foreach ($available_brand_ids as $key => $available_brand_id) {
           $available_brand_term = $this->entityTypeManager->getStorage('taxonomy_term')->load($available_brand_id);
-          $brand_facet_options[$available_brand_term->label()] = $available_brand_term->label();
+          if ($available_brand_term) {
+            $brand_logo_field = $available_brand_term->get('field_brand_logo')->entity;
+            if ($brand_logo_field && $brand_logo_field->hasField('field_media_image')) {
+              $brand_image_url = $this->fileUrlGenerator->generateAbsoluteString($brand_logo_field->field_media_image->entity->getFileUri());
+              $brand_logo_options[$available_brand_term->label()] = '<img src="' . $brand_image_url . '" alt="' . $available_brand_term->label() . '" />';
+            }
+            $brand_facet_options[$available_brand_term->label()] = $available_brand_term->label();
+          }
         }
+        $form['brand-filter-image'] = [
+          '#type' => 'checkboxes',
+          '#options' => $brand_logo_options,
+          '#title' => $this->t('Brands'),
+          '#weight' => '0',
+          '#required' => FALSE,
+          '#attributes' => [
+            'class' => [
+              'node--type-brand__category-filter',
+            ],
+          ],
+        ];
 
         $form['brand-filter'] = [
           '#type' => 'checkboxes',
