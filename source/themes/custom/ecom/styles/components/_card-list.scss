@@ -56,6 +56,12 @@
     justify-content: space-between;
     align-items: center;
 
+    @media screen and (min-width: $tablet) {
+      position: absolute;
+      bottom: 0;
+      width: calc(100% - 40px);
+    }
+
     .price {
       font-weight: $bold;
       color: $dark-mustard;
