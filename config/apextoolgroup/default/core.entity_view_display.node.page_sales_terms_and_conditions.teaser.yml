@@ -1,0 +1,26 @@
+uuid: 968dc049-a6ac-4a61-8a75-f6c7a9b3b30a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.page_sales_terms_and_conditions.field_main_title
+    - field.field.node.page_sales_terms_and_conditions.field_pdf_section_file
+    - node.type.page_sales_terms_and_conditions
+  module:
+    - user
+id: node.page_sales_terms_and_conditions.teaser
+targetEntityType: node
+bundle: page_sales_terms_and_conditions
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_main_title: true
+  field_pdf_section_file: true
+  langcode: true
+  search_api_excerpt: true

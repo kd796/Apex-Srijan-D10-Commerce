@@ -1,0 +1,33 @@
+
+<div class = "sales-terms-conditions">
+<div class ="page-titlebar">{{node.label}}</div>
+<div class = "product-pdf-cards-wrapper">
+  <div class="page-content-title">{{node.field_main_title.value}}</div>
+  <div class = "pdf-content-wrapper">
+    {% for item in content.field_pdf_section_file %}
+      {% if item['#paragraph'] is not empty %}
+        <div class = "pdf-card">
+          <div class = "country-name">{{item['#paragraph'].field_country_nam.value}}</div>
+          <div class = "country-flag">
+            {% set image_url = file_url(item['#paragraph'].field_country_flag.entity.uri.value)%}
+            <img src = {{image_url}}>
+          </div>
+          {% set pdf_download = item['#paragraph'].field_download_pdf %}
+          {% for item in pdf_download %}
+            {% if item.entity.field_pdf.value is not empty %}
+             {% set pdf_url = file_url(item.entity.field_pdf.entity.field_media_file.entity.fileuri) %}
+            {% endif %}
+            {% if item.entity.field_link_text.value is not empty %}
+               <a href = {{pdf_url}} target="_blank" download>
+                <div class="pdf-link-text">{{ item.entity.field_link_text.value|striptags|raw }}</div>
+              </a>  
+            {% endif %}
+            {% set pdf_thumbnail_url = file_url(item.entity.field_pdf_thumbnail.entity.uri.value) %} 
+             <a href = {{pdf_url}} target="_blank" class="pdf-thumbnail" download><img src= {{pdf_thumbnail_url}}></a>
+          {% endfor %}
+        </div>
+      {% endif %}   
+  {% endfor %}
+  </div>
+</div>
+</div>
