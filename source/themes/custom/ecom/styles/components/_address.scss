@@ -23,6 +23,22 @@
       left: 0;
     }
   }
+
+  .button {
+    min-height: 23px !important;
+    min-width: 115px !important;
+  }
+}
+
+.user-form:not(.user-register-form) {
+  .description {
+    flex: 0 0 100%;
+    padding-left: 150px;
+
+    @media screen and (min-width: $tablet-max) {
+      padding-left: 220px;
+    }
+  }
 }
 
 .profile-confirm-form {
