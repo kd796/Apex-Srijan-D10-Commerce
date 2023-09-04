@@ -1,17 +1,20 @@
 .path-user {
   .user-login-form,
-  .user-pass {
-    margin: 0 auto;
-    max-width: 1000px;
+  .user-pass,
+  .user-register-form {
+    @extend .wrapper-content;
     word-wrap: break-word;
+    
 
-    @media only screen and (max-width: $tablet-max) {
-      padding: 0 20px;
+    @media only screen and (min-width: $tablet-max) {
+      width: 50%;
+      margin-left: 7%;
     }
   }
 
   .user-login-form,
-  .user-pass {
+  .user-pass,
+  .user-register-form {
     padding-top: 50px;
     padding-bottom: 50px;
 
@@ -45,6 +48,7 @@
         padding: 0;
         display: flex;
         flex-wrap: wrap;
+        border: 1px solid $black;
       }
 
       a {
@@ -62,9 +66,7 @@
         background: $gray;
         transition: 0.2s ease all;
         font-size: 14px;
-        border: 1px solid $black;
-        border-right-width: 0.5px;
-        border-left-width: 0.5px;
+        border-right: 1px solid $black;
 
         &.is-active,
         &:hover {
@@ -78,6 +80,12 @@
 
         @media screen and (min-width: $tablet-max) {
           margin: 0;
+        }
+
+        &:last-child {
+          a {
+            border-right: 0;
+          }
         }
       }
     }
