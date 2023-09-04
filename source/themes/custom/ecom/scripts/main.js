@@ -120,12 +120,6 @@
         $('.address-book__container .address-book__add-link').css('position', 'unset');
       }
 
-      // Add empty message for wishlist if it's empty.
-      if (!($('.wishlist-items .wishlist-item').length > 0)) {
-        $('.wishlist-header').css('display', 'none');
-        $('.wishlist-items', context).append(`<div class="wishlist__empty"> There are no wishlist items. </div>`);
-      }
-
       /* end */
     }
   };

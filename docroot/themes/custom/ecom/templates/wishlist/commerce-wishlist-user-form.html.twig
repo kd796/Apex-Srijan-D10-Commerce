@@ -18,6 +18,7 @@
     <div class="item-quantity"> {{ 'Quantity'|t }} </div>
     {{ form.header }}
   </div>
+  {# {{ vardumper(form.items) }} #}
   <div class="wishlist-items">
     {% for key, item in form.items %}
       {% if key|first != '#' %}
