@@ -1,14 +1,14 @@
 
-.profile-customer-address-book-add-form {
+.profile-form,
+.profile-confirm-form {
   @extend .wrapper-content;
 
   margin-top: 40px;
   padding-top: 40px;
   position: relative;
 
-  .form-actions .button {
-    min-height: 23px !important;
-    min-width: 115px !important;
+  .button--danger {
+    @extend .btn-primary;
   }
 
   &::before {
@@ -16,8 +16,24 @@
     position: absolute;
     top: 0;
     font-weight: $bold;
-    left: 0;
+    left: 15px;
     font-size: 16px;
+
+    @media screen and (min-width: $tablet-max) {
+      left: 0;
+    }
+  }
+}
+
+.profile-confirm-form {
+  font-size: 14px;
+
+  .form-actions {
+    margin-top: 24px !important;
+  }
+
+  .dialog-cancel {
+    @extend .btn-primary;
   }
 }
 
@@ -34,11 +50,15 @@
     font-weight: $bold;
     border-radius: 5px;
     position: absolute;
-    right: 0;
+    right: 20px;
     top: 0;
     margin: 12px 0;
     transition: 0.2s ease all;
     border: 1px solid $black;
+
+    @media screen and (min-width: $tablet-max) {
+      right: 0;
+    }
 
     &:hover {
       background: $white;
@@ -84,9 +104,17 @@
   }
 }
 
+.address-book__empty-text {
+  @extend .view-empty;
+  margin-left: 0;
+  margin-right: 0;
+}
+
 div[id^='address-0-address-ajax-wrapper'] {
 
-  margin: 0 -20px;
+  @media screen and (min-width: $tablet-max) {
+    margin: 0 -20px;
+  }
 
   & > .form-wrapper {
     display: flex;
@@ -109,6 +137,7 @@ div[id^='address-0-address-ajax-wrapper'] {
       display: flex;
       align-items: center;
       flex: 0 0 100%;
+      position: relative;
 
       @media screen and (min-width: $tablet-max) {
         max-width: 50%;
@@ -123,6 +152,16 @@ div[id^='address-0-address-ajax-wrapper'] {
           flex: 0 0 200px;
           font-size: 14px;
         }
+      }
+    }
+
+    .form-item--error-message {
+      position: absolute;
+      bottom: -20px;
+      left: 130px;
+
+      @media screen and (min-width: $tablet-max) {
+        left: 220px;
       }
     }
 

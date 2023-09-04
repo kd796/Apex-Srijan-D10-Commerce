@@ -74,7 +74,11 @@
       }
 
       li {
-        margin: 0;
+        margin: 0 0 5px;
+
+        @media screen and (min-width: $tablet-max) {
+          margin: 0;
+        }
       }
     }
   }
@@ -116,6 +120,12 @@
           margin: 5px 0 0;
           color: $light-black;
           letter-spacing: 0.1px;
+          flex: 0 0 100%;
+          padding-left: 150px;
+
+          @media screen and (min-width: $tablet-max) {
+            padding-left: 220px;
+          }
         }
       }
 
@@ -127,13 +137,9 @@
         }
 
         .button {
-          min-height: 53px;
-          min-width: 200px;
+          min-height: 23px;
+          min-width: 115px;
           border-radius: 4px;
-          @media only screen and (max-width: $tablet) {
-            min-height: 43px;
-            min-width: 150px;
-          }
         }
       }
 

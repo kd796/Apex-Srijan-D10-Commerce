@@ -1,0 +1,70 @@
+.path-user .user-form {
+  @extend .wrapper-content;
+
+  .form-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0 0 24px !important;
+
+    label {
+      flex: 0 0 150px;
+      font-size: 12px;
+      font-weight: $bold;
+
+      @media screen and (min-width: $tablet-max) {
+        flex: 0 0 220px;
+      }
+    }
+
+    input:not(.form-file):not(.form-submit) {
+      flex: 0 0 calc(100% - 150px);
+      height: 36px !important;
+
+      @media screen and (min-width: $tablet-max) {
+        flex: 0 0 calc(100% - 220px);
+        max-width: 40%;
+      }
+    }
+
+    .form-file {
+      padding: 7px 15px;
+      height: auto;
+    }
+
+    .form-submit {
+      height: 23px;
+      padding: 0;
+    }
+  }
+
+  .form-item.form-type-managed-file .description {
+    padding-left: 0;
+
+    @media screen and (min-width: $tablet-max) {
+      padding-left: 220px;
+    }
+  }
+
+  .form-type-password-confirm {
+    display: block;
+  }
+
+  .password-parent,
+  .confirm-parent {
+    max-width: 100%;
+  }
+
+  .password-strength__meter {
+    max-width: 150px;
+
+    @media screen and(min-width: $tablet-max) {
+      max-width: 200px;
+    }
+  }
+
+  #edit-pass--description {
+    padding-left: 0;
+  }
+
+}

@@ -115,6 +115,11 @@
         }
       });
 
+      // To align the Add address field if the address is empty.
+      if ($('.address-book__container .address-book__empty-text').length > 0) {
+        $('.address-book__container .address-book__add-link').css('position', 'unset');
+      }
+
       /* end */
     }
   };
