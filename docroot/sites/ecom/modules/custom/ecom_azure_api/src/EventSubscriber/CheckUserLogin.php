@@ -32,12 +32,8 @@ class CheckUserLogin implements EventSubscriberInterface {
 
     // Check if the URL is an asset URL based on file extension.
     $isAssetUrl = preg_match('/\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|eot|ttf)$/', strtok($current_url, '?'));
-    // // Check if the URL is a public file URL.
-    $isPublicFileUrl = strpos($current_url, '/sites/ecom/files/css') !== FALSE;
-    $is_admin_uli = strpos($current_url, '/user/reset/1') !== FALSE;
-    // Though, the same logic can be achieved from the configuration as well.
-    // But cannot be catch, if not configured.
-    if ($isAssetUrl || $isPublicFileUrl || $is_admin_uli) {
+
+    if ($isAssetUrl) {
       return;
     }
 
