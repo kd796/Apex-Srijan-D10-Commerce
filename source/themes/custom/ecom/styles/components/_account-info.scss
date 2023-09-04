@@ -1,4 +1,4 @@
-.path-user .user-form {
+.path-user .user-form:not(.user-register-form) {
   @extend .wrapper-content;
 
   .form-item {
@@ -65,6 +65,11 @@
 
   #edit-pass--description {
     padding-left: 0;
+  }
+
+  .button {
+    min-height: 23px !important;
+    min-width: 115px !important;
   }
 
 }
