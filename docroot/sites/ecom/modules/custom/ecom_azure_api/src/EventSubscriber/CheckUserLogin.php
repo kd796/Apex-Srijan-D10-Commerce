@@ -22,6 +22,7 @@ class CheckUserLogin implements EventSubscriberInterface {
     if (empty($ecom_azure_config)) {
       return;
     }
+
     $path_alias_manager = \Drupal::service('path_alias.manager');
     $current_path = \Drupal::service('path.current')->getPath();
     $path_alias = $path_alias_manager->getAliasByPath($current_path);
@@ -29,17 +30,33 @@ class CheckUserLogin implements EventSubscriberInterface {
     $current_route = \Drupal::routeMatch()->getRouteName();
     $target_route = Url::fromRoute("ecom_azure_api.network_login")->getRouteName();
 
+    // Check if the URL is an asset URL based on file extension.
+    $isAssetUrl = preg_match('/\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|eot|ttf)$/', strtok($current_url, '?'));
+
+    if ($isAssetUrl) {
+      return;
+    }
+
     $is_user_whitelisted = $is_user_authenticated = $bypass_user = $is_url_whitelisted = FALSE;
 
     $is_user_authenticated = \Drupal::service('session')->get('pre_login_success', FALSE);
     $bypass_user = \Drupal::currentUser()->hasPermission('administer ecom azure');
 
+    // Check if IP is whitelisted.
     if ($ecom_azure_config->get('ecom_address_list')) {
       $is_user_whitelisted = $this->userIsWhitelisted($ecom_azure_config);
     }
-    if ($ecom_azure_config->get('ecom_page_whitelist')) {
-      $is_url_whitelisted = in_array($current_url, $ecom_azure_config->get('ecom_page_whitelist'));
+    // Check if page is whitelisted.
+    $whitelisted_pages = $ecom_azure_config->get('ecom_page_whitelist');
+    if ($whitelisted_pages) {
+      foreach ($whitelisted_pages as $p_url) {
+        $is_url_whitelisted = strpos($current_url, $p_url) !== FALSE;
+        if ($is_url_whitelisted) {
+          break;
+        }
+      }
     }
+
     if (!$is_user_whitelisted && !$is_user_authenticated && !$bypass_user && !$is_url_whitelisted &&
      PHP_SAPI != 'cli') {
       $destination = ['query' => ['destination' => $current_url]];
