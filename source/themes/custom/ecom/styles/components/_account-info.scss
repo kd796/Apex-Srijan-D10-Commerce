@@ -73,3 +73,62 @@
   }
 
 }
+
+.featured-account-dashboard {
+  margin-bottom: 24px;
+
+  .user-details {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    margin-bottom: 15px;
+
+    img {
+      flex: 0 0 140px;
+      max-width: 140px;
+      margin-right: 15px;
+      padding: 10px;
+      border: 1px solid $black;
+    }
+
+    .user-information {
+      flex: 0 0 100%;
+      margin-top: 12px;
+
+      @media screen and (min-width: $tablet-max) {
+        flex: 0 0 auto;
+        margin-top: 0;
+      }
+    }
+  }
+
+  .account-guide {
+    margin-top: 10px;
+  }
+
+  .address-item span {
+    flex: 0 0 auto;
+  }
+
+  .edit-profile a {
+    @extend .btn-primary;
+  }
+
+  .active {
+    color: $green;
+  }
+
+  .in-active {
+    color: $sinopia;
+  }
+}
+
+#password-policy-status {
+  margin-bottom: 20px;
+  max-width: calc(40% + 220px);
+
+  td,th {
+    padding: 5px;
+    border: 1px solid $gray;
+  }
+}

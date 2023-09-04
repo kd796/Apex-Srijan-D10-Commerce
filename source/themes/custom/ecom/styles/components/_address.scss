@@ -110,13 +110,13 @@
       @extend .btn-primary;
     }
   }
+}
 
-  .address-item {
-    display: flex;
+.address-item {
+  display: flex;
 
-    label {
-      flex: 0 0 150px;
-    }
+  label {
+    flex: 0 0 150px;
   }
 }
 
@@ -217,6 +217,41 @@ div[id^='address-0-address-ajax-wrapper'] {
       @media screen and (min-width: $tablet-max) {
         padding-left: 220px;
       }
+    }
+  }
+}
+
+.account-dashboard__address-list .account-dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .address-book__heading {
+    flex: 0 0 100%;
+    position: relative;
+    font-weight: $bold;
+    padding-bottom: 15px;
+    border-bottom: 1px solid $black;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+
+  .views-row {
+    flex: 0 0 100%;
+    margin-bottom: 24px;
+
+    @media screen and (min-width: $tablet-max) {
+      flex: 0 0 50%;
+      max-width: calc(50% - 30px);
+    }
+
+    .edit-profile a {
+      @extend .btn-primary;
+    }
+
+    .default-address {
+      font-weight: $bold;
+      padding-bottom: 15px;
     }
   }
 }
