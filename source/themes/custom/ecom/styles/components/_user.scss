@@ -1,7 +1,8 @@
 .path-user {
   .user-login-form,
   .user-pass,
-  .user-register-form {
+  .user-register-form,
+  .user-pass-reset {
     @extend .wrapper-content;
     word-wrap: break-word;
     
@@ -184,6 +185,21 @@
           }
         }
       }
+    }
+  }
+
+  .user-pass-reset {
+    text-align: center;
+    width: 100%;
+    margin: auto;
+    padding: 50px 0;
+
+    p {
+      font-size: 14px;
+    }
+
+    .form-submit {
+      margin-top: 20px;
     }
   }
 }

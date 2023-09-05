@@ -612,7 +612,6 @@
 
     ul {
       column-count: 4;
-      padding-left: 40px;
       padding-left: 15px;
       @media only screen and (max-width: $tablet-max) {
         column-count: 3;
@@ -651,7 +650,7 @@
 
       li > ul {
         column-count: unset;
-        padding-left: 30px;
+        padding-left: 60px;
         margin-bottom: 10px;
 
         .views-field-field-name a {
@@ -668,6 +667,8 @@
         }
 
         li > ul {
+          padding-left: 30px;
+
           .views-field-field-name a {
             font-weight: $normal;
           }
