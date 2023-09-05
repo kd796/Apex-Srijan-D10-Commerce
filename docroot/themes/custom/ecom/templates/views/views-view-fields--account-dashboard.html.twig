@@ -1,0 +1,63 @@
+
+<div class="dash__address-list">
+  <div class="address-item">
+    {% if fields.address_given_name.content|render|striptags|trim or fields.address_family_name.content|render|striptags|trim %}
+      <label>
+        {{ 'Name:'|t }}
+      </label>
+      <div class="address-value">
+        {{ fields.address_given_name.content }}
+        {{ ' ' }}
+        {{ fields.address_family_name.content }}
+      </div>
+    {% endif %}
+	</div>
+  {% if fields.address_address_line1.content|render|striptags|trim or fields.address_address_line2.content|render|striptags|trim %}
+    <div class="address-item">
+      <label>
+        {{ 'Street Address :'|t }}
+      </label>
+      <div class="address-value">
+        {{ fields.address_address_line1.content }}
+        {% if fields.address_address_line2.content|render|striptags|trim %}  {{ ', ' }} {% endif %}
+        {{ fields.address_address_line2.content }}
+      </div>
+    </div>
+  {% endif %}
+  {% if fields.address_locality.content|render|striptags|trim  or fields.address_postal_code.content|render|striptags|trim %}
+    <div class="address-item">
+      <label>
+        {{ 'City - Zip Code:'|t }}
+      </label>
+      <div class="address-value">
+        {{ fields.address_locality.content }}
+        {% if fields.address_postal_code.content|render|striptags|trim %} {{ ' - ' }} {% endif %}
+        {{ fields.address_postal_code.content }}
+      </div>
+    </div>
+  {% endif %}
+  {% if fields.address_administrative_area.content|render|striptags|trim %}
+    <div class="address-item">
+      <label>
+        {{ 'State:'|t }}
+      </label>
+      <div class="address-value">
+        {{ fields.address_administrative_area.content }}
+      </div>
+    </div>
+  {% endif %}
+  {% if fields.address_country_code.content|render|striptags|trim %}
+    <div class="address-item">
+      <label>
+        {{ 'Country:'|t }}
+      </label>
+      <div class="address-value">
+        {{ fields.address_country_code.content }}
+      </div>
+    </div>
+  {% endif %}
+  <div class="edit-profile">
+    {{ fields.edit_profile.content }}
+  </div>
+
+</div>

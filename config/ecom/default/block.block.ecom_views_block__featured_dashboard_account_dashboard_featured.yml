@@ -1,0 +1,30 @@
+uuid: 9b599b6d-aa06-42ac-82be-015caca2d288
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.featured_account_dashboard
+  module:
+    - system
+    - views
+  theme:
+    - ecom
+id: ecom_views_block__featured_dashboard_account_dashboard_featured
+theme: ecom
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:featured_account_dashboard-account_dashboard_featured'
+settings:
+  id: 'views_block:featured_account_dashboard-account_dashboard_featured'
+  label: ''
+  label_display: '0'
+  provider: views
+  context_mapping: {  }
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/user/*/account-dashboard'
