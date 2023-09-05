@@ -67,6 +67,14 @@ class InventoryFTPForm extends ConfigFormBase {
       '#default_value' => $config->get('stftp_port'),
     ];
 
+    $form['stftp_root'] = [
+      '#title' => $this->t('SFTP Root Folder'),
+      '#type' => 'textfield',
+      '#description' =>
+      $this->t("Server Root Folder"),
+      '#default_value' => $config->get('stftp_root'),
+    ];
+
     return parent::buildForm($form, $form_state);
 
   }
@@ -90,6 +98,9 @@ class InventoryFTPForm extends ConfigFormBase {
     if (empty($form_state->getValue('stftp_port'))) {
       $form_state->setErrorByName('stftp_port', $this->t('FTP Port field is required.'));
     }
+    if (empty($form_state->getValue('stftp_root'))) {
+      $form_state->setErrorByName('stftp_root', $this->t('Root folder field is required.'));
+    }
   }
 
   /**
@@ -102,6 +113,7 @@ class InventoryFTPForm extends ConfigFormBase {
       ->set('stftp_user', $form_state->getValue('stftp_user'))
       ->set('stftp_password', $form_state->getValue('stftp_password'))
       ->set('stftp_port', $form_state->getValue('stftp_port'))
+      ->set('stftp_root', $form_state->getValue('stftp_root'))
       ->save();
 
     parent::submitForm($form, $form_state);

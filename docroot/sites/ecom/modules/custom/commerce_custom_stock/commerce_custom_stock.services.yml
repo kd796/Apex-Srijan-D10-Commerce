@@ -8,3 +8,8 @@ services:
     arguments: ['@messenger', '@commerce_cart.cart_manager']
     tags:
       - { name: event_subscriber }
+  commerce_custom_stock.inventory_update:
+    class: Drupal\commerce_custom_stock\Commands\StockUpdateService
+    arguments: ['@entity_type.manager','@config.factory','@file_system','@logger.factory']
+    tags:
+      - { name: drush.command }
