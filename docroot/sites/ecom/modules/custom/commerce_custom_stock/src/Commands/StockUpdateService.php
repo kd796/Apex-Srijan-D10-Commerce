@@ -131,6 +131,8 @@ class StockUpdateService extends DrushCommands {
   public function inventoryManagement() {
 
     $counter = 0;
+    // If 1 update is successful else failure.
+    $product_update_status = 0;
     $public_folder_path = 'public://import/inventory_xml_files/';
     $folder_path = $this->drupalFileSystem->realpath($public_folder_path);
     $remoteFiles = $this->filesystem->listContents($this->root);
@@ -139,18 +141,24 @@ class StockUpdateService extends DrushCommands {
       $this->downloadAndStoreFile($remoteFile['path'], $public_folder_path);
       $counter++;
     }
-    $this->output()->writeln('Download and stored phase from FTP Completed');
-    $this->output()->writeln("Total number of files processed are: '{$counter}'");
+    $this->logger()->notice('Download and stored phase from FTP Completed');
+    $this->logger()->notice("Total number of files processed are: '{$counter}'");
     // Getting data after processing the xml files.
     $data = $this->customXmlReader($public_folder_path);
     // Updating the stock field in product variation.
     if (!empty($data)) {
-      $this->updatestock($data);
+      $product_update_status = $this->updatestock($data);
     }
     // Deleting all the files from public folder.
     $this->deleteLocalFiles($folder_path);
-    // Deleting all the files from FTP folder.
-    $this->deleteFtpFiles();
+    if ($product_update_status) {
+      // Deleting all the files from FTP folder.
+      $this->deleteFtpFiles();
+      $this->logger()->success('Stock updated');
+    }
+    else {
+      $this->logger()->error('Please check logs for more details');
+    }
   }
 
   /**
@@ -192,7 +200,7 @@ class StockUpdateService extends DrushCommands {
           $data[$sku] = $qty;
         }
       }
-      $this->output()->writeln("Reading phase completed.");
+      $this->logger()->notice("Reading phase completed.");
     }
     return $data;
   }
@@ -217,7 +225,7 @@ class StockUpdateService extends DrushCommands {
           if (file_exists($file_path)) {
             // Delete the file.
             unlink($file_path);
-            $this->output()->writeln("File '{$file_path}' deleted from local folder.");
+            $this->logger()->notice("File '{$file_path}' deleted from local folder.");
           }
         }
       }
@@ -231,32 +239,37 @@ class StockUpdateService extends DrushCommands {
    *   Array contains sku and quantity pair.
    */
   public function updatestock($products) {
-
-    foreach ($products as $sku => $qty) {
-      $product_node_arr = $this->entityTypeManager->getStorage('node')
-        ->loadByProperties([
-          'type' => 'product',
-          'title' => $sku,
-          'status' => '1',
-        ]);
-      if (!empty($product_node_arr)) {
-        $product_node_arr = array_values($product_node_arr);
-        $node = $product_node_arr[0];
-        if ($node->field_commerce_product != NULL) {
-          $prod_variation_obj = $node->field_commerce_product->entity->variations->entity;
-        }
-        if ($prod_variation_obj) {
-          $prod_variation_obj->field_stock->value = $qty;
-          $prod_variation_obj->save();
-        }
+    $flag = 0;
+    try {
+      $this->loggerFactory->get('inventory_batch')->info('Product Inventory update starts');
+      // Set up the batch process.
+      $batch = [
+        'title' => t('Updating stock field'),
+        'operations' => [],
+        'finished' => '\Drupal\commerce_custom_stock\BatchService::updateFinished',
+      ];
+      // Chunk the products into smaller batches to process.
+      $product_chunks = array_chunk($products, 20, TRUE);
+      $this->logger()->notice("Batch operations start.");
+      foreach ($product_chunks as $product_chunk) {
+        $batch['operations'][] = [
+          '\Drupal\commerce_custom_stock\BatchService::updateProduct',
+        [$product_chunk],
+        ];
       }
-      else {
-        $this->output()->writeln("Product '$sku' is unpublished or not present");
-        $this->loggerFactory->get('commerce_custom_stock')->notice("Product '$sku' is unpublished or not present");
-      }
-
+      // Start the batch process.
+      batch_set($batch);
+      drush_backend_batch_process();
+      $this->logger()->notice("Batch operations end.");
+      $this->loggerFactory->get('inventory_batch')->info('Product Inventory update ends');
+      $flag = 1;
     }
-    $this->output()->writeln("Product update phase completed");
+    catch (Exception $e) {
+      $this->output()->writeln($e->getMessage());
+      $this->loggerFactory->get('inventory_batch')->error($e->getMessage());
+      return $flag;
+    }
+    return $flag;
   }
 
   /**
@@ -276,7 +289,7 @@ class StockUpdateService extends DrushCommands {
       }
     }
     catch (Exception $e) {
-      $this->output()->writeln($e->getMessage());
+      $this->loggerFactory->get('inventory_batch')->info($e->getMessage());
     }
   }
 
