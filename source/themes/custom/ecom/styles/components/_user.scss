@@ -10,6 +10,10 @@
       width: 50%;
       margin-left: 7%;
     }
+
+    .form-submit {
+      font-size: 14px;
+    }
   }
 
   .user-login-form,
@@ -49,6 +53,9 @@
         display: flex;
         flex-wrap: wrap;
         border: 1px solid $black;
+        @media screen and (max-width: $tablet-max) {
+          border: 0;
+        }
       }
 
       a {
@@ -68,6 +75,10 @@
         font-size: 14px;
         border-right: 1px solid $black;
 
+        @media screen and (max-width: $tablet) {
+          font-size: 12px;
+        }
+
         &.is-active,
         &:hover {
           color: $white;
@@ -80,6 +91,10 @@
 
         @media screen and (min-width: $tablet-max) {
           margin: 0;
+        }
+
+        @media screen and (max-width: $tablet-max) {
+          margin-bottom: 5px;
         }
 
         &:last-child {
