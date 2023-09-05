@@ -55,7 +55,7 @@ class GetProductFeaturesArray extends ApexGetProductFeaturesArray {
         if (!isset($item['copy_point'])) {
           continue;
         }
-        $item['copy_point'] = strip_tags($item['copy_point']);
+        $item['copy_point'] = html_entity_decode(strip_tags($item['copy_point']));
       }
 
       // This forces it to sort in the order we want them in.
