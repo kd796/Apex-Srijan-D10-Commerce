@@ -1,0 +1,5 @@
+services:
+  ecom_azure_api.event_subscriber:
+    class: Drupal\ecom_azure_api\EventSubscriber\CheckUserLogin
+    tags:
+      - { name: event_subscriber }
