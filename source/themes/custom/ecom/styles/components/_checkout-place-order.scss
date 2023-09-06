@@ -1,0 +1,57 @@
+.commerce-checkout-flow {
+  .checkout-pane-review {
+    padding: 0 0 16px;
+    @media only screen and (max-width: $tablet) {
+      padding: 0;
+    }
+
+    fieldset {
+      &.form-wrapper {
+        border: 0;
+        padding: 0;
+        width: 100%;
+        margin: 0 0 25px;
+        @media only screen and (max-width: $tablet) {
+          margin: 0 0 20px;
+        }
+        @media only screen and (max-width: $mobile-sm) {
+          margin: 0 0 16px;
+        }
+
+        legend {
+          color: $black;
+          font-size: 16px;
+          margin: 0 0 16px;
+          padding: 0 0 16px;
+          font-weight: $normal;
+          line-height: 19.36px;
+          text-transform: capitalize;
+          border-bottom: 1px solid rgba($light-black, 0.2);
+
+          a {
+            color: $dark-blue;
+            text-decoration: none;
+            text-transform: lowercase;
+          }
+        }
+
+        .fieldset-wrapper {
+          color: $black;
+          font-size: 16px;
+          font-weight: $normal;
+          line-height: 16.36px;
+
+          .profile {
+            .address-item {
+              margin: 0 0 5px;
+            }
+          }
+
+          div[data-drupal-selector$="shipping-information-summary-0"] {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
