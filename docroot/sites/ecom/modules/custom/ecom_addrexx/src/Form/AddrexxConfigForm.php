@@ -83,7 +83,7 @@ class AddrexxConfigForm extends ConfigFormBase {
       }
       else {
         $this->config('ecom_addrexx.settings')
-          ->set($key, (string) $item)
+          ->set($key, (string) trim($item))
           ->save();
       }
     }

@@ -8,4 +8,12 @@ ecom_addrexx.addrexx_config:
   options:
     _admin_route: 'true'
 
-
+ecom_addrexx.autocomplete:
+  path: '/addrexx/autocomplete/{filter}'
+  defaults:
+    _controller: '\Drupal\ecom_addrexx\Controller\AddrexxAutocompleteController::autocompleteCallback'
+    _title: 'Autocomplete Callback'
+  requirements:
+    _permission: 'access content'
+  options:
+    _json_error_response: TRUE
