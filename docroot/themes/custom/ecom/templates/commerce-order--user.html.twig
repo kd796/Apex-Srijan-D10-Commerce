@@ -1,0 +1,70 @@
+{#
+/**
+ * @file
+ * Template for orders in the 'user' view mode.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapper.
+ * - order: The rendered order fields.
+ *   Use 'order' to print them all, or print a subset such as
+ *   'order.order_number'. Use the following code to exclude the
+ *   printing of a given field:
+ *   @code
+ *   {{ order|without('order_number') }}
+ *   @endcode
+ * - order_entity: The order entity.
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="wrapper-content order-details">
+  <div class="order__heading"> {{ 'Order Details'|t }} </div>
+
+  <div class="order-info">
+    {% if order.completed|render|trim|striptags %}
+      <div class="order-placed">
+        <label>{{ 'Order Date: '|t }}</label>
+        <span>{{ order.completed }}</span>
+      </div>
+    {% endif %}
+    {% if order.delivery|render|trim|striptags %}
+      <div class="order-deliver">
+        {{ 'Delivery Date: '|t }}
+      </div>
+    {% endif %}
+    {% if order.state|render|striptags|trim %}
+      <div class="order-state">
+        {{ order.state }}
+      </div>
+    {% endif %}
+  </div>
+  <div class="shipping-billing-info">
+    {% if order.shipping_information %}
+      <div class="customer-information__shipping">
+        <div class="field__label">{{ 'Shipping information'|t }}</div>
+        {{ order.shipping_information }}
+      </div>
+    {% endif %}
+    {% if order.billing_information %}
+      <div class="customer-billing">
+        <div class="field__label">{{ 'Billing information'|t }}</div>
+        {{ order.billing_information }}
+      </div>
+    {% endif %}
+  </div>
+
+  {% if order.order_items|render|striptags|trim %}
+    <div class="order-items">
+      {{ order.order_items }}
+    </div>
+  {% endif %}
+  {% if order.total_price|render|trim|striptags %}
+  	<div class="order-price">
+      {{ order.total_price }}
+    </div>
+  {% endif %}
+  {% if additional_order_fields|render|trim|striptags %}
+  	{{ additional_order_fields }}
+  {% endif %}
+
+</div>

@@ -1,0 +1,181 @@
+.view-commerce-user-orders {
+
+  margin-bottom: 32px;
+
+  td.views-field-order-number {
+    text-decoration: underline;
+  }
+
+  .views-table {
+    width: 100%;
+  }
+
+  td.is-active {
+    background-color: transparent;
+  }
+
+  thead > tr {
+    border-bottom: 1px solid $gray;
+
+    th {
+      padding-bottom: 12px;
+      width: 25%;
+      font-size: 14px;
+    }
+  }
+
+  tbody {
+    tr:first-child {
+      td {
+        padding-top: 14px;
+      }
+    }
+
+    td {
+      padding-bottom: 16px;
+      width: 25%;
+      padding-left: 4px;
+      padding-right: 4px;
+
+      @media screen and (min-width: $tablet-max) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      &:first-child {
+        padding-left: 20px;
+      }
+    }
+  }
+
+  #view-placed-table-column {
+    .tablesort {
+      display: none;
+    }
+  }
+}
+
+.order__heading {
+  font-size: 24px;
+  font-weight: $bold;
+  display: block;
+  padding-bottom: 12px;
+  border-bottom: 1px solid $gray;
+  margin-bottom: 24px;
+  padding-top: 24px;
+}
+
+.order-details {
+  margin-bottom: 32px;
+
+  .field--name-completed  .field__label {
+    display: none;
+  }
+
+  .order-placed span {
+    display: inline-block;
+  }
+
+  .order-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 1px solid $silver;
+    margin-bottom: 15px;
+  }
+
+  .field__item {
+    display: inline-block;  
+  }
+
+  .shipping-billing-info {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+
+    .customer-information__shipping,
+    .customer-billing {
+      flex: 0 0 100%;
+      max-width: 100%;
+  
+      @media screen and (min-width: $tablet-max) {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+
+      > .field__label {
+        padding-bottom: 15px;
+        border-bottom: 1px solid $silver;
+        margin-bottom: 15px;
+      }
+
+      .profile {
+        padding-right: 20px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  .field--name-shipping-method {
+    margin-bottom: 24px;
+  
+    .field__label {
+      padding-bottom: 8px;
+      border-bottom: 1px solid $gray;
+      margin-bottom: 8px;
+    }
+  }
+
+  .field--name-order-items .field__item {
+    display: block;
+  }
+
+  .view-commerce-order-item-table {
+    .views-table {
+      width: 100%;
+
+      td {
+        width: 25%;
+      }
+    }
+
+    thead {
+      border-bottom: 1px solid $silver;
+
+      th {
+        padding-bottom: 8px;
+      }
+    }
+
+    tbody td {
+      padding-top: 10px;
+    }
+  }
+
+  .order-price {
+    max-width: 25%;
+    margin-left: auto;
+
+    .order-total-line {
+      text-align: left;
+      display: flex;
+      padding: 0;
+      margin-bottom: 5px;
+    }
+
+    .order-total-line-value {
+      width: auto;
+    }
+
+    .order-total-line-label {
+      flex: 0 0 150px;
+    }
+  }
+
+  .field--name-total-price {
+    display: block;
+    margin-left: -150px;
+    margin-top: 15px;
+  }
+}
