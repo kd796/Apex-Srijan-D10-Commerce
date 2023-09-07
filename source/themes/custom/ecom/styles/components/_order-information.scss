@@ -1,6 +1,31 @@
 .commerce-checkout-flow {
+  padding-top: 30px;
   @extend .wrapper-content;
 
+  .layout-checkout-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .layout-region-checkout-footer,
+    .layout-region-checkout-main {
+      padding-right: 2em;
+      width: calc(100% - 250px);
+      @media only screen and (max-width: $tablet) {
+        width: 100%;
+        padding-right: 0;
+      }
+    }
+
+    .layout-region-checkout-secondary {
+      width: 250px;
+      @media only screen and (max-width: $tablet) {
+        width: 100%;
+      }
+    }
+  }
+
+  .checkout-pane-shipping-information,
   .checkout-pane-payment-information {
     border: 0;
     padding: 0 25px 0 0;
@@ -75,6 +100,28 @@
 
         @media only screen and (max-width: $mobile) {
           width: 100%;
+        }
+      }
+
+      &.form-type-checkbox,
+      &.form-type-radio {
+        align-items: flex-start;
+        justify-content: space-between;
+
+        input {
+          margin: 0;
+          width: 16px;
+          height: 16px;
+          display: block;
+        }
+
+        label {
+          padding: 0;
+          width: calc(100% - 25px);
+        }
+
+        .description {
+          display: none;
         }
       }
     }
@@ -215,6 +262,7 @@
             }
           }
 
+          &[data-drupal-selector$="shipping-profile-address-0-address-container0"],
           &[data-drupal-selector$="billing-information-address-0-address-container0"] {
             width: 50%;
             margin: 0;
@@ -235,6 +283,10 @@
             }
           }
         }
+      }
+
+      .form-submit {
+        margin: 16px 0 0;
       }
     }
   }
