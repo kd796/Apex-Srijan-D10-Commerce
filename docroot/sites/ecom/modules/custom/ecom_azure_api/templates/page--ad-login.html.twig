@@ -1,6 +1,12 @@
-<div id="wrapper" {{ attributes }}>
-  <div class="main-content center-container">
+<div id="wrapper" class="ad-login-wrapper">
+{% include '@ecom_azure_api/header--bare.html.twig' %}
+<div class="main-content center-container">
+  {% if page.pre_content %}
+    {{ page.pre_content }}
+  {% endif %}
+  <div id="wrapper-content" {{ attributes }}>
     {{ page.content }}
   </div>
 </div>
-
+{% include '@ecom_azure_api/footer--bare.html.twig' %}
+</div>
