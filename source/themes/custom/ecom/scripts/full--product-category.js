@@ -159,8 +159,11 @@
   // Accordion view of the filter.
 
   let filterWrapper = $('.ecom-product-category-filters .form-wrapper legend');
-  let firstFilter = $('.ecom-product-category-filters .form-wrapper').first();
+  let firstFilter = $('.ecom-product-category-filters .form-wrapper').first().next();
   firstFilter.addClass('filter--open');
+  // placing brand lists on top of list.
+  let brandLists = $('.ecom-product-category-filters .form-wrapper').first().prop('outerHTML');
+  $('.view-product-category').prepend(brandLists);
 
   filterWrapper.each(function () {
     $(this).on('click', function () {
