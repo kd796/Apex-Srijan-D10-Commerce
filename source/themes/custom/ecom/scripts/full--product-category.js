@@ -200,4 +200,16 @@
     $('.view-product-category').find('input[type=submit]').click();
   });
 
+  $(window).on('load', function () {
+    $('#edit-brand-filter-image input[type=checkbox]').each(function () {
+      if ($(this).is(':checked')) {
+        $(this).addClass('checked');
+        $('#edit-brand-filter-image input[type=checkbox]:not(:checked)').removeClass('checked').addClass('not-checked');
+      }
+      else {
+        $('#edit-brand-filter-image input[type=checkbox]').addClass('checked');
+      }
+    });
+  });
+
 })(jQuery, Drupal, once);

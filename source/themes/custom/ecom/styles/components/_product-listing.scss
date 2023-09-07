@@ -516,16 +516,32 @@
     flex-direction: column;
   }
 
+  .form-checkbox {
+    &.checked + label {
+      display: block;
+    }
+
+    &.not-checked + label {
+      display: none;
+    }
+  }
+
   label {
     padding-left: 0;
+    display: none;
 
     &::before {
       display: none;
     }
   }
 
+  .form-type-checkbox {
+    display: flex;
+    align-items: center;
+  }
+
   img {
-    max-height: 30px;
+    max-height: 45px;
     min-width: 60px;
   }
 }
