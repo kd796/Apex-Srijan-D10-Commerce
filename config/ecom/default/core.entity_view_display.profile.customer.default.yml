@@ -4,11 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.profile.customer.address
+    - field.field.profile.customer.field_county
     - field.field.profile.customer.tax_number
     - profile.type.customer
   module:
     - address
     - commerce_tax
+    - options
   enforced:
     module:
       - commerce_order
@@ -25,6 +27,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_county:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
     region: content
   tax_number:
     type: commerce_tax_number_default

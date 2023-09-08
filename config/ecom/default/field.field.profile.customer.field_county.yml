@@ -1,0 +1,21 @@
+uuid: 28187d04-1e67-4053-95d5-10ed78737616
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_county
+    - profile.type.customer
+  module:
+    - options
+id: profile.customer.field_county
+field_name: field_county
+entity_type: profile
+bundle: customer
+label: County
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

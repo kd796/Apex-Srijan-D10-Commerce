@@ -90,15 +90,20 @@ class UtilityTax {
   /**
    * Getting matched tax rate.
    */
-  public function getMatching($state, $postal_code, $city,) {
+  public function getMatching($state, $postal_code, $city, $county) {
     $query = $this->entityTypeManager->getStorage('taxonomy_term')->getQuery();
     $term_ids = $query->condition('vid', 'us_tax_data')
-      ->accessCheck(FALSE)
-      ->condition('field_us_state', $state)
-      ->condition('field_us_city', $city)
-      ->condition('field_starting_zip_code', $postal_code, '<=')
-      ->condition('field_ending_zip_code', $postal_code, '>=')
-      ->execute();
+    ->accessCheck(FALSE)
+    ->condition('field_us_state', $state)
+    ->condition('field_us_city', $city)
+    ->condition('field_starting_zip_code', $postal_code, '<=')
+    ->condition('field_ending_zip_code', $postal_code, '>=');
+
+    if (!empty($county)) {
+      $term_ids->condition('field_us_county', $county);
+    }
+
+    $term_ids = $term_ids->execute();
 
     // Changing index of array to start from 0.
     $term_ids = array_values($term_ids);

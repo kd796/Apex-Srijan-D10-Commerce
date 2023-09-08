@@ -5,3 +5,11 @@ commerce_us_custom_tax.import_form:
     _title: 'Import Tax'
   requirements:
     _permission: 'administer site configuration'
+
+commerce_us_custom_tax.ajax_controller:
+  path: '/search/zipcode'
+  defaults:
+    _controller: '\Drupal\commerce_us_custom_tax\Controller\UsTaxDataAjaxController::sendCountyData'
+    _title: 'UsTaxData AjaxController'
+  requirements:
+    _permission: 'access content'

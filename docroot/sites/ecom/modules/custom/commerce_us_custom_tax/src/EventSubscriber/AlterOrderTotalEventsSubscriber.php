@@ -61,9 +61,12 @@ class AlterOrderTotalEventsSubscriber implements EventSubscriberInterface {
       $city = $customer_address->get('locality')->getCastedValue();
       $postal_code = $customer_address->get('postal_code')->getCastedValue();
       $postal_code = (int) $postal_code;
-
+      $county = '';
+      if ($order_obj->getBillingProfile()->get('field_county') != NULL) {
+        $county = $order_obj->getBillingProfile()->get('field_county')->value;
+      }
       // Getting tax rate based on the above datas.
-      $matched_rate = $this->utilityObj->getMatching($state, $postal_code, $city);
+      $matched_rate = $this->utilityObj->getMatching($state, $postal_code, $city, $county);
       // Calculating tax.
       $tax = (int) $order_total * (int) $matched_rate / 100;
 
