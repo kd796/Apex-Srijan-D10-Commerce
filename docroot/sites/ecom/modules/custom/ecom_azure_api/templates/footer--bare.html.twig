@@ -1,0 +1,13 @@
+<footer{{ footer_attributes }}>
+  <div class="footer-container">
+    <div id="footer-columns" class="region-footer__inner-container footer-columns clearfix">
+      {% if page.footer %}
+      <div class="wrapper-content">
+        <div class="footer-copyrights clearfix">
+          {{ page.footer }}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</footer>

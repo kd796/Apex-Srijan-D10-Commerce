@@ -4,12 +4,13 @@
     @extend .main-contane;
     max-width: 100%;
     &.center-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      margin: auto;
       .ecom-pre-login-form {
         @extend .user-login-form;
+        width: unset;
+        margin-left: unset;
+        padding-top: 15px;
+        padding-bottom: 15px;
         .form-item {
           input {
             margin-top: 0.5rem;
@@ -18,5 +19,20 @@
         }
       }
     }
+  }
+}
+
+.ad-login-wrapper {
+  .page-header,
+  .footer-columns {
+    padding: 15px 0;
+  }
+
+  .footer-copyrights {
+    margin-top: 0;
+  }
+
+  p {
+    margin: 10px 0;
   }
 }
