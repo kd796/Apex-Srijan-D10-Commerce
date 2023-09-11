@@ -1,0 +1,26 @@
+commerce_order_customizations_fulfillment_processing:
+      id: commerce_order_customizations_fulfillment_processing
+      group: commerce_order
+      label: 'Completed, with processing'
+      states:
+        draft:
+          label: Draft
+        processing:
+          label: Processing
+        completed:
+          label: Completed
+        canceled:
+          label: Canceled
+      transitions:
+        place:
+          label: 'Place order'
+          from: [draft]
+          to: processing
+        process:
+          label: 'Process order'
+          from: [processing]
+          to: completed
+        cancel:
+          label: 'Cancel order'
+          from: [draft, processing]
+          to:   canceled
