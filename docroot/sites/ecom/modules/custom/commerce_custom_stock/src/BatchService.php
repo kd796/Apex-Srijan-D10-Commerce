@@ -21,7 +21,6 @@ class BatchService {
         ->loadByProperties([
           'type' => 'product',
           'title' => $sku,
-          'status' => '1',
         ]);
       if (!empty($product_node_arr)) {
         $product_node_arr = array_values($product_node_arr);
@@ -35,7 +34,7 @@ class BatchService {
         }
       }
       else {
-        \Drupal::logger('commerce_custom_stock')->notice("Product '$sku' is unpublished or not present");
+        \Drupal::logger('commerce_custom_stock')->notice("Product '$sku' is not present in Drupal");
       }
       $context['results'][] = $sku;
     }
