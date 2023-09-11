@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.profile.customer.address
+    - field.field.profile.customer.field_county
     - field.field.profile.customer.tax_number
     - profile.type.customer
   module:
@@ -21,6 +22,12 @@ content:
   address:
     type: address_default
     weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_county:
+    type: options_select
+    weight: 26
     region: content
     settings: {  }
     third_party_settings: {  }
