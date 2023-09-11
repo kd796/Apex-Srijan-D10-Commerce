@@ -3,6 +3,11 @@
 
   Drupal.behaviors.campbell = {
     attach: function (context, settings) {
+      // Prevent the opening of the submenu on click of parent link.
+      const $link = $('.mobile-header .we-mega-menu-li.dropdown-menu a');
+      $link.on('click', function (e) {
+        e.stopPropagation();
+      });
       // Toggle search for mobile.
       $(function () {
         const searchIcon = $('.mobile-search-icon');
