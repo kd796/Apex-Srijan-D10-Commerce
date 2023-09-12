@@ -69,6 +69,10 @@
             else if (response.error) {
               $('[class*=field-county]').hide();
               countyField.hide();
+
+              if (countyField.css('display') == 'none') {
+                countyField.find('option:selected').removeAttr("selected"); 
+              }
             }
           },
           error: function (xhr, status, error) {

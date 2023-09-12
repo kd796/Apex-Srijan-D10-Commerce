@@ -62,7 +62,7 @@ class AlterOrderTotalEventsSubscriber implements EventSubscriberInterface {
       $postal_code = $customer_address->get('postal_code')->getCastedValue();
       $postal_code = (int) $postal_code;
       $county = '';
-      if ($order_obj->getBillingProfile()->get('field_county') != NULL) {
+      if ($order_obj->getBillingProfile()->get('field_county')->value !== NULL) {
         $county = $order_obj->getBillingProfile()->get('field_county')->value;
       }
       // Getting tax rate based on the above datas.

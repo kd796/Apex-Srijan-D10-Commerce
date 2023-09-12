@@ -8,10 +8,16 @@
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Implements hook_form_alter() for commerce_checkout_flow_multistep_default.
+ * Implements hook_form_alter() for address field forms.
  */
 function commerce_us_custom_tax_form_alter(array &$form, FormStateInterface &$form_state, $form_id) {
-  if (($form_id == 'commerce_checkout_flow_multistep_default' && $form['#step_id'] == 'order_information') || $form_id == 'profile_customer_edit_form' || $form_id == 'profile_customer_add_form') {
+  $target_form_ids = [
+    'profile_customer_edit_form',
+    'profile_customer_add_form',
+    'profile_customer_address-book-edit_form',
+    'profile_customer_address-book-add_form',
+  ];
+  if (in_array($form_id, $target_form_ids) || ($form_id == 'commerce_checkout_flow_multistep_default' && $form['#step_id'] == 'order_information')) {
     $form['#attached']['library'][] = 'commerce_us_custom_tax/ajax_alter_address';
   }
 }
