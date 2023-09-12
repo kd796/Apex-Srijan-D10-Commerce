@@ -1,0 +1,162 @@
+.commerce-checkout-flow {
+  .checkout-page-title {
+    color: $black;
+    font-size: 24px;
+    padding: 0 0 12px;
+    font-weight: $bold;
+    line-height: 30.26px;
+    border-bottom: 1px solid rgba($light-black, 0.2);
+    @media only screen and(max-width: $tablet-max) {
+      font-size: 22px;
+    }
+    @media only screen and(max-width: $mobile-sm) {
+      font-size: 20px;
+    }
+  }
+
+  .checkout-page-legend {
+    color: $black;
+    font-size: 14px;
+    padding: 12px 0;
+    margin: 0 0 16px;
+    font-weight: $normal;
+    line-height: 19.36px;
+    text-transform: capitalize;
+    border-bottom: 1px solid rgba($light-black, 0.2);
+  }
+
+  .checkout-login {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    @media only screen and(max-width: $tablet-max) {
+      width: 100%;
+    }
+    @media only screen and(max-width: $mobile-sm) {
+      margin: 0 0 25px;
+    }
+
+    p {
+      strong {
+        font-weight: $bold;
+      }
+    }
+
+    .checkout-pane-login {
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -80px;
+      min-height: 600px;
+      overflow: visible !important;
+      justify-content: space-between;
+
+      @media only screen and (max-width: $desktop) {
+        min-height: 500px;
+        margin: 0 -60px;
+      }
+
+      @media only screen and(max-width: $tablet-max) {
+        margin: 0 -40px;
+        min-height: 400px;
+      }
+      @media only screen and(max-width: $tablet) {
+        margin: 0 -20px;
+        min-height: 300px;
+      }
+      @media only screen and(max-width: $mobile-sm) {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      fieldset {
+        border: 0;
+        width: 50%;
+        padding: 0 80px;
+        margin: -30px 0 0;
+        @media only screen and(max-width: $desktop) {
+          padding: 0 60px;
+        }
+        @media only screen and(max-width: $tablet-max) {
+          padding: 0 40px;
+        }
+        @media only screen and(max-width: $tablet) {
+          padding: 0 20px
+        }
+        @media only screen and(max-width: $mobile-sm) {
+          padding: 0;
+          width: 100%;
+          margin: 0 0 16px;
+        }
+
+        legend {
+          padding: 0;
+          color: $black;
+          font-size: 24px;
+          margin: 0 0 16px;
+          font-weight: $bold;
+          line-height: 30.26px;
+          @media only screen and(max-width: $tablet-max) {
+            font-size: 22px;
+          }
+          @media only screen and(max-width: $tablet) {
+            font-size: 20px;
+          }
+          @media only screen and(max-width: $mobile-sm) {
+            font-size: 18px;
+          }
+        }
+
+        .fieldset-wrapper {
+          .form-item {
+            margin: 0 0 16px;
+
+            label {
+              width: 100%;
+              margin: 0 0 10px;
+              font-weight: $normal;
+              text-transform: capitalize;
+            }
+
+            input[type="text"],
+            input[type="password"] {
+              height: 36px;
+            }
+          }
+
+          input[type="submit"][data-drupal-selector$="returning-customer-submit"] {
+            float: right;
+          }
+
+          a[data-drupal-selector$="returning-customer-forgot-password"] {
+            float: left;
+            text-decoration: none;
+            text-transform: capitalize;
+          }
+
+          input[type="submit"][data-drupal-selector$="guest-continue"] {
+            float: right;
+            margin: 60px 0 0;
+            @media only screen and(max-width: $tablet-max) {
+              margin: 40px 0 0;
+            }
+            @media only screen and(max-width: $tablet) {
+              margin: 25px 0 0;
+            }
+            @media only screen and(max-width: $mobile-sm) {
+              margin: 18px 0 0;
+            }
+          }
+        }
+
+        &.form-wrapper__returning-customer {
+          margin: 0;
+
+          legend {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
