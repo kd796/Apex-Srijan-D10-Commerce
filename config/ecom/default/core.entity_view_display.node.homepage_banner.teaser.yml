@@ -1,0 +1,24 @@
+uuid: 9d586370-0cdc-496e-af50-455a69a2c9b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.homepage_banner.field_banner_image
+    - node.type.homepage_banner
+  module:
+    - user
+id: node.homepage_banner.teaser
+targetEntityType: node
+bundle: homepage_banner
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_banner_image: true
+  langcode: true
+  search_api_excerpt: true
