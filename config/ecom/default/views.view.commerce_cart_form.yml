@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_long_description
     - field.storage.node.field_media
+    - image.style.tiny
   module:
     - commerce_cart
     - commerce_order
@@ -86,7 +87,7 @@ display:
           type: media_thumbnail
           settings:
             image_link: content
-            image_style: ''
+            image_style: tiny
             image_loading:
               attribute: lazy
           group_column: target_id
