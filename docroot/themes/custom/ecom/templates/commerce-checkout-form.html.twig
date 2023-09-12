@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Two column template for the checkout form.
+ *
+ * Available variables:
+ * - form: The form.
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="layout-checkout-form clearfix checkout-login">
+  <div class="checkout-page-title">
+    {{'Checkout'|t}}
+  </div>
+
+  <legend class="checkout-page-legend">
+    {{'Checkout Method'|t}}
+  </legend>
+  <p>
+    {{'Already registered? Please'|t}} <strong>{{'log in'|t}}</strong> {{'below'|t}}:
+  </p>
+
+  {{ form }}
+</div>
