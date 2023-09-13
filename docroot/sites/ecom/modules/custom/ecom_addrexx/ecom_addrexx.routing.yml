@@ -18,3 +18,22 @@ ecom_addrexx.autocomplete:
   options:
     _json_error_response: TRUE
 
+ecom_addrexx.ajax_controller:
+  path: '/search/zipcode'
+  defaults:
+    _controller: '\Drupal\ecom_addrexx\Controller\AddressProfileController::getCounty'
+    _title: 'AddressProfileController'
+  requirements:
+    _permission: 'access content'
+  options:
+    _json_error_response: TRUE
+
+ecom_addrexx.state_city:
+  path: '/get-cities'
+  defaults:
+    _controller: '\Drupal\ecom_addrexx\Controller\AddressProfileController::getCity'
+    _title: 'State based city callback'
+  requirements:
+    _permission: 'access content'
+  options:
+    _json_error_response: TRUE

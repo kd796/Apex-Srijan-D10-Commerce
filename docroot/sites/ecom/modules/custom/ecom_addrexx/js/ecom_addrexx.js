@@ -1,28 +1,51 @@
-(function ($) {
+(function ($, Drupal) {
   'use strict';
 
   var eventTriggered = false;
 
   Drupal.behaviors.ecom_addrexx = {
-    attach: function (context, settings) {
+    attach: function (context) {
+      let typingTimer;
       // Initializing input variables.
+      const countyField = jQuery(context).find('select[id*=field-county]');
       const postalCodeInput = jQuery(context).find('[id*=address-0-address-postal-code]');
-      var countyField = jQuery(context).find('select[id*=field-county]');
       var localityInput = jQuery(context).find('[id*=address-0-address-locality]');
       var administrativeAreaInput = jQuery(context).find('[id*=address-0-address-administrative-area]');
       var addressLine1 = jQuery('[id*=address-0-address-address-line1]');
       var addressLine2 = jQuery('[id*=address-0-address-address-line2]');
+      const doneTypingInterval = 1000;
+      const autocompleteFields = jQuery('.field--type-address .ui-autocomplete-input');
+
+      // Hide elements initially.
+      jQuery(context).find('[class*=field-county]').hide();
+      countyField.hide();
+
+      autocompleteFields.on('autocompleteclose', function() {
+        if (jQuery(this).val() == 'No suggestions found.' ||
+          jQuery(this).val() == 'Error while validating address.' ) {
+          jQuery(this).val('');
+        }
+      });
 
       // Postalcode autocompletes close event.
       jQuery(postalCodeInput).on("autocompleteclose", function ( event, ui ) {
+        // Pick only numeric value to set it as Zipcode.
         var zipCodePattern = /\d{5}(-\d{4})?/;
         var zipCodeMatch = jQuery(this).val().match(zipCodePattern);
         if (zipCodeMatch) {
           jQuery(this).val(zipCodeMatch[0]);
         }
-      } );
+        // Clear autocomplete inputs if zipcode is empty.
+        if (jQuery(this).val() == '') {
+          administrativeAreaInput.val('');
+          localityInput.val('');
+        }
+        // Get county value.
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(sendAjaxRequest, doneTypingInterval);
+      });
 
-      // Postalcode autocompletes event.
+      // Zipcode autocompleteselect event.
       jQuery(postalCodeInput).on('autocompleteselect', function (event, ui) {
         var inputString = ui.item.value;
 
@@ -56,6 +79,7 @@
       jQuery(context).find(addressLine1).on('input', addressUpdate);
       jQuery(context).find(addressLine2).on('input', addressUpdate);
 
+      // Update address autocomplete field.
       function addressUpdate() {
         var postalCodeValue = postalCodeInput.val();
         // Check if postalCodeValue is filled.
@@ -80,6 +104,7 @@
         jQuery(this).attr('data-autocomplete-path', currentPath);
       }
 
+      // Update city autocomplete field.
       function cityUpdate() {
         var postalCodeValue = postalCodeInput.val();
         var administrativeAreaValue = administrativeAreaInput.val();
@@ -97,6 +122,69 @@
         // Update the autocomplete field's parameters.
         jQuery(this).attr('data-autocomplete-path', currentPath);
       }
+
+      // Update county field.
+      function sendAjaxRequest() {
+        const city = localityInput.val();
+        const state = administrativeAreaInput.val();
+        const zipcode = postalCodeInput.val();
+        jQuery.ajax({
+          url: '/search/zipcode',
+          type: 'POST',
+          data: {
+            city,
+            state,
+            zipcode,
+          },
+          dataType: 'json',
+          success: function (response) {
+            if (response.county) {
+              const currentSelectedValue = countyField.val();
+              countyField.empty();
+              // Iterate through the response.county array and create options
+              jQuery.each(response.county, function (index, countyValue) {
+                countyField.append(jQuery('<option>', {
+                  value: countyValue,
+                  text: countyValue
+                }));
+                if (currentSelectedValue && countyValue === currentSelectedValue) {
+                  countyField.find('option[value="' + currentSelectedValue + '"').attr('selected', 'selected');
+                }
+              });
+              jQuery('[class*=field-county]').show();
+              countyField.show();
+              // Set the first option as selected
+              if (countyField.find('option:selected').length === 0) {
+                countyField.find('option:first').attr('selected', 'selected');
+              }
+
+              // Handle change event for countyField
+              countyField.on('change', function () {
+                const selectedValue = jQuery(this).val();
+                countyField.find('option').each(function () {
+                  if (jQuery(this).val() === selectedValue) {
+                    jQuery(this).attr('selected', 'selected');
+                  } else {
+                    jQuery(this).removeAttr('selected');
+                  }
+                });
+              });
+            }
+            else if (response.error) {
+              jQuery('[class*=field-county]').hide();
+              countyField.hide();
+
+              if (countyField.css('display') == 'none') {
+                countyField.find('option:selected').removeAttr("selected"); 
+              }
+            }
+          },
+          error: function (xhr, status, error) {
+            console.error(error);
+          },
+        });
+      }
+
     }
   };
-})(jQuery);
+})(jQuery, Drupal);

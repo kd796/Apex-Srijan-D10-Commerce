@@ -3,7 +3,7 @@
 namespace Drupal\ecom_addrexx;
 
 /**
- *
+ * Interface for Address API.
  */
 interface AddrexxInterface {
 

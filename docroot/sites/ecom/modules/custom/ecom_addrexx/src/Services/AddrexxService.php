@@ -7,9 +7,10 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Url;
 use Drupal\ecom_addrexx\AddrexxInterface;
 use GuzzleHttp\ClientInterface;
+use Drupal\ecom_addrexx\CommonConstants;
 
 /**
- *
+ * Service class for Address API.
  */
 class AddrexxService implements AddrexxInterface {
 
@@ -92,17 +93,17 @@ class AddrexxService implements AddrexxInterface {
         // Check if decoding was successful.
         if ($data !== NULL && !empty($data)) {
 
-          return array_column($data, "Address1");
+          return array_column($data, CommonConstants::ADDREXX_JSON_KEY);
         }
         else {
-          return ["No suggestions found."];
+          return [CommonConstants::API_RESULT_NOT_FOUND];
         }
       }
 
-      return ["No suggestions found."];
+      return [CommonConstants::API_RESULT_NOT_FOUND];
     }
     catch (\Exception $e) {
-      return ['Error while validating address.'];
+      return [CommonConstants::API_ERROR_MSG];
     }
   }
 
