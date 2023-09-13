@@ -13,3 +13,13 @@ commerce_us_custom_tax.ajax_controller:
     _title: 'UsTaxData AjaxController'
   requirements:
     _permission: 'access content'
+
+commerce_us_custom_tax.state_city:
+  path: '/get-cities'
+  defaults:
+    _controller: '\Drupal\commerce_us_custom_tax\Controller\UsTaxDataAjaxController::getCity'
+    _title: 'State based city callback'
+  requirements:
+    _permission: 'access content'
+  options:
+    _json_error_response: TRUE

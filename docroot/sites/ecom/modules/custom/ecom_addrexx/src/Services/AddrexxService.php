@@ -2,12 +2,15 @@
 
 namespace Drupal\ecom_addrexx\Services;
 
-use GuzzleHttp\ClientInterface;
-use Drupal\ecom_addrexx\AddrexxInterface;
+use Drupal\Component\Serialization\Json;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Url;
-use Drupal\Component\Serialization\Json;
+use Drupal\ecom_addrexx\AddrexxInterface;
+use GuzzleHttp\ClientInterface;
 
+/**
+ *
+ */
 class AddrexxService implements AddrexxInterface {
 
   /**
@@ -82,28 +85,24 @@ class AddrexxService implements AddrexxInterface {
           'Accept' => 'application/json',
         ],
       ]);
+
       if ($response->getStatusCode() == 200) {
         $jsonData = $this->removeParentheses($response->getBody()->getContents());
         $data = Json::decode(trim($jsonData));
         // Check if decoding was successful.
-        if ($data !== NULL) {
-          return $data;
+        if ($data !== NULL && !empty($data)) {
+
+          return array_column($data, "Address1");
         }
         else {
-          return [
-            "data" => "No suggestions found.",
-          ];
+          return ["No suggestions found."];
         }
       }
 
-      return [
-        "error" => "Error while fetching address",
-      ];
+      return ["No suggestions found."];
     }
     catch (\Exception $e) {
-      return [
-        'error' => 'Error while validating address.',
-      ];
+      return ['Error while validating address.'];
     }
   }
 

@@ -1,20 +1,19 @@
-(function ($, Drupal) {
+(function ($) {
   'use strict';
 
   Drupal.behaviors.commerce_us_custom_tax = {
-    attach: function () {
+    attach: function (context, settings) {
       let typingTimer;
-      const countyField = $('select[id*=field-county]');
-      const postalCodeInput = $('[id*=address-0-address-postal-code]');
-      const localityInput = $('[id*=address-0-address-locality]');
-      const administrativeAreaInput = $('[id*=address-0-address-administrative-area]');
-      const doneTypingInterval = 1000; // Adjust the interval as needed.
+      const countyField = $(context).find('select[id*=field-county]');
+      const postalCodeInput = $(context).find('[id*=address-0-address-postal-code]');
+      const localityInput = $(context).find('[id*=address-0-address-locality]');
+      const administrativeAreaInput = $(context).find('[id*=address-0-address-administrative-area]');
+      const doneTypingInterval = 1000;
 
       // Hide elements initially.
-      $('[class*=field-county]').hide();
+      $(context).find('[class*=field-county]').hide();
       countyField.hide();
-
-      postalCodeInput.on('input', function () {
+      postalCodeInput.on('autocompleteclose', function () {
         clearTimeout(typingTimer);
         typingTimer = setTimeout(sendAjaxRequest, doneTypingInterval);
       });
@@ -23,9 +22,8 @@
         const city = localityInput.val();
         const state = administrativeAreaInput.val();
         const zipcode = postalCodeInput.val();
-
         $.ajax({
-          url: '/search/zipcode', // URL for controller call.
+          url: '/search/zipcode',
           type: 'POST',
           data: {
             city,
@@ -44,7 +42,7 @@
                   text: countyValue
                 }));
                 if (currentSelectedValue && countyValue === currentSelectedValue) {
-                  countyField.find('option[value="'+ currentSelectedValue + '"').attr('selected', 'selected');
+                  countyField.find('option[value="' + currentSelectedValue + '"').attr('selected', 'selected');
                 }
               });
               $('[class*=field-county]').show();
@@ -55,9 +53,9 @@
               }
 
               // Handle change event for countyField
-              countyField.on('change', function() {
+              countyField.on('change', function () {
                 const selectedValue = $(this).val();
-                countyField.find('option').each(function() {
+                countyField.find('option').each(function () {
                   if ($(this).val() === selectedValue) {
                     $(this).attr('selected', 'selected');
                   } else {

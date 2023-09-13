@@ -2,21 +2,8 @@
 
 namespace Drupal\ecom_addrexx\Element;
 
-use CommerceGuys\Addressing\AddressFormat\AddressField;
-use CommerceGuys\Addressing\AddressFormat\AddressFormat;
-use CommerceGuys\Addressing\AddressFormat\AddressFormatHelper;
-use CommerceGuys\Addressing\AddressFormat\FieldOverride;
-use CommerceGuys\Addressing\AddressFormat\FieldOverrides;
-use CommerceGuys\Addressing\Locale;
-use Drupal\address\FieldHelper;
-use Drupal\address\LabelHelper;
-use Drupal\Component\Utility\Html;
-use Drupal\Component\Utility\NestedArray;
-use Drupal\Component\Utility\SortArray;
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Render\Element;
-use Drupal\Core\Render\Element\FormElement;
 use Drupal\address\Element\Address;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Override an address form element.
@@ -25,9 +12,8 @@ use Drupal\address\Element\Address;
  */
 class AddressOverride extends Address {
 
-
   /**
-   * @inheritDoc
+   * {@inheritDoc}
    */
   public function getInfo() {
     $info = parent::getInfo();
@@ -59,8 +45,22 @@ class AddressOverride extends Address {
           $element[$property]['#autocomplete_route_parameters'] = ['filter' => 'lastName'];
           break;
 
+        case "locality":
+          $element[$property]['#autocomplete_route_name'] = 'commerce_us_custom_tax.state_city';
+          $element[$property]['#autocomplete_route_parameters'] = [
+            'state' => 'All',
+            'zipcode' => '000',
+          ];
+          $element[$property]['#weight'] = 4;
+          break;
+
+        case "administrative_area":
+          $element[$property]['#weight'] = 4;
+          break;
+
         case "postal_code":
           $element[$property]['#autocomplete_route_name'] = 'ecom_addrexx.autocomplete';
+          $element[$property]['#weight'] = 3;
           $element[$property]['#autocomplete_route_parameters'] = [
             'filter' => 'zip',
             'contextKey' => 'US',
@@ -68,11 +68,13 @@ class AddressOverride extends Address {
           break;
 
         case "address_line1":
+        case "address_line2":
           $element[$property]['#autocomplete_route_name'] = 'ecom_addrexx.autocomplete';
           $element[$property]['#autocomplete_route_parameters'] = [
             'filter' => 'street',
-            'contextKey' => 'BOULDER80302',
+            'contextKey' => 'All',
           ];
+          $element[$property]['#weight'] = 5;
           break;
       }
     }

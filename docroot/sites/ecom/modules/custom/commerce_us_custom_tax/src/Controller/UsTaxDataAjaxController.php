@@ -3,11 +3,10 @@
 namespace Drupal\commerce_us_custom_tax\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Drupal\taxonomy\Entity\TermStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Controller for handling AJAX requests related to US Tax Data.
@@ -62,7 +61,7 @@ class UsTaxDataAjaxController extends ControllerBase {
     if (count($termIds) > 1) {
       foreach ($termIds as $termId) {
         // Load the taxonomy term.
-        $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($termId);;
+        $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($termId);
         if ($term) {
           // Get the county field value.
           $county[] = $term->get('field_us_county')->value;
@@ -93,7 +92,7 @@ class UsTaxDataAjaxController extends ControllerBase {
     $stateVal = $addressElements['state'];
     $postalCode = (int) $addressElements['zipcode'];
 
-    $query = $this->entityTypeManager->getStorage('taxonomy_term')->getQuery();;
+    $query = $this->entityTypeManager->getStorage('taxonomy_term')->getQuery();
     $termIds = $query->condition('vid', 'us_tax_data')
       ->accessCheck(FALSE)
       ->condition('field_us_state', $stateVal)
@@ -107,4 +106,82 @@ class UsTaxDataAjaxController extends ControllerBase {
 
     return $termIds;
   }
+
+  /**
+   * Handles an AJAX request to retrieve US Tax Data by state.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request object.
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   *   A JSON response with US Tax Data or an error message.
+   */
+  public function getCity(Request $request) {
+    // Get values from the AJAX request.
+    $state = $request->query->get('state');
+    $zipCode = $request->query->get('zipcode');
+
+    // Create an array to hold address elements.
+    $addressElements = ['state' => $state, 'zipcode' => $zipCode];
+
+    // Load term IDs for US Tax Data by address elements.
+    $termIds = $this->loadTermIdsByState($addressElements);
+    $city = [];
+
+    if (count($termIds) > 1) {
+      foreach ($termIds as $termId) {
+        // Load the taxonomy term.
+        $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($termId);
+        if ($term) {
+          // Get the county field value.
+          $city[] = $term->get('field_us_city')->value;
+        }
+      }
+    }
+
+    // Return a JSON response with the term information or an error.
+    if (!empty($city)) {
+      return new JsonResponse($city);
+    }
+    else {
+      return new JsonResponse(['error' => 'No matching terms found.']);
+    }
+  }
+
+  /**
+   * Loads taxonomy term IDs for US Tax Data by state elements.
+   *
+   * @param array $addressElements
+   *   An array of address elements (state, zipcode).
+   *
+   * @return array
+   *   An array of taxonomy term IDs.
+   */
+  private function loadTermIdsByState(array $addressElements) {
+    $stateVal = $addressElements['state'];
+    $postalCode = (int) $addressElements['zipcode'];
+
+    $query = $this->entityTypeManager->getStorage('taxonomy_term')->getQuery();
+    $query->condition('vid', 'us_tax_data')
+      ->accessCheck(FALSE);
+
+    if (!empty($postalCode) && $postalCode != '000') {
+      $query->condition('field_starting_zip_code', $postalCode, '<=');
+      $query->condition('field_ending_zip_code', $postalCode, '>=');
+    }
+    if (!empty($stateVal) && $stateVal != 'All') {
+      $query->condition('field_us_state', $stateVal);
+    }
+    elseif ($stateVal == 'All' || $postalCode == '000') {
+      $query->range(0, 10);
+    }
+
+    $termIds = $query->execute();
+
+    // Reindex the array to start from 0.
+    $termIds = array_values($termIds);
+
+    return $termIds;
+  }
+
 }

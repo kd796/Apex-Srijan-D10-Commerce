@@ -2,6 +2,9 @@
 
 namespace Drupal\ecom_addrexx;
 
+/**
+ *
+ */
 interface AddrexxInterface {
 
   /**

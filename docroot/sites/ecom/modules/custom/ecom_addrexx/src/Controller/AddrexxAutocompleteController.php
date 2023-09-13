@@ -2,13 +2,15 @@
 
 namespace Drupal\ecom_addrexx\Controller;
 
+use Drupal\Core\Controller\ControllerBase;
+use Drupal\ecom_addrexx\AddrexxInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\ecom_addrexx\AddrexxInterface;
 
+/**
+ *
+ */
 class AddrexxAutocompleteController extends ControllerBase {
 
   /**
@@ -58,7 +60,8 @@ class AddrexxAutocompleteController extends ControllerBase {
         $suggestions = $this->addrexx->getbyStreet($string, $contextKey);
         break;
     }
-    return new JsonResponse(array_column($suggestions, 'Address1'));
+
+    return new JsonResponse($suggestions);
   }
 
 }
