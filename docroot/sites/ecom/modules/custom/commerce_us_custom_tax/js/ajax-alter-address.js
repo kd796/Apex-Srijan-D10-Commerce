@@ -9,11 +9,24 @@
       const localityInput = $(context).find('[id*=address-0-address-locality]');
       const administrativeAreaInput = $(context).find('[id*=address-0-address-administrative-area]');
       const doneTypingInterval = 1000;
+      const autocompleteFields = $('.field--type-address .ui-autocomplete-input');
 
       // Hide elements initially.
       $(context).find('[class*=field-county]').hide();
       countyField.hide();
+
+      autocompleteFields.on('autocompleteclose', function() {
+        if ($(this).val() == 'No suggestions found.') {
+          $(this).val('');
+        }
+      });
+      
       postalCodeInput.on('autocompleteclose', function () {
+        if ($(this).val() == '') {
+          administrativeAreaInput.val('');
+          localityInput.val('');
+        }
+
         clearTimeout(typingTimer);
         typingTimer = setTimeout(sendAjaxRequest, doneTypingInterval);
       });
