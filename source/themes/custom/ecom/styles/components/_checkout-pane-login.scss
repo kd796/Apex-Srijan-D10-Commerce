@@ -112,10 +112,20 @@
             margin: 0 0 16px;
 
             label {
-              width: 100%;
               margin: 0 0 10px;
+              position: relative;
               font-weight: $normal;
               text-transform: capitalize;
+
+              &::after {
+                top: -5px;
+                content: '*';
+                font-size: 22px;
+                color: $racing-red;
+                position: absolute;
+                left: calc(100% + 12px);
+                transform: translateX(-100%);
+              }
             }
 
             input[type="text"],

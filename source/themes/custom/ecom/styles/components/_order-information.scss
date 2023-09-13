@@ -1,6 +1,12 @@
 .commerce-checkout-flow {
   padding-top: 30px;
   @extend .wrapper-content;
+  @media only screen and (max-width: $tablet) {
+    padding-top: 25px;
+  }
+  @media only screen and (max-width: $mobile-sm) {
+    padding-top: 20px;
+  }
 
   .layout-checkout-form {
     display: flex;
@@ -18,6 +24,7 @@
     }
 
     .layout-region-checkout-secondary {
+      margin: 0;
       width: 250px;
       @media only screen and (max-width: $tablet) {
         width: 100%;
