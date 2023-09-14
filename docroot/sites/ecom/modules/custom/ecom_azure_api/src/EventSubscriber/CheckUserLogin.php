@@ -67,14 +67,18 @@ class CheckUserLogin implements EventSubscriberInterface {
 
       $response = new TrustedRedirectResponse(Url::fromRoute($target_route, [], $destination)
         ->toString());
+      $response->headers->set('Vary', 'Cookie');
       $response->send();
-
-      return;
+      // Exiting code here to avoid dynamic cache issue.
+      die();
     }
     elseif ($is_user_whitelisted || $is_user_authenticated || $bypass_user || $is_url_whitelisted) {
       if ($current_route == $target_route) {
         $response = new TrustedRedirectResponse(Url::fromRoute("<front>")->toString());
+        $response->headers->set('Vary', 'Cookie');
         $response->send();
+        // Exiting code here to avoid dynamic cache issue.
+        die();
       }
     }
   }
@@ -94,6 +98,7 @@ class CheckUserLogin implements EventSubscriberInterface {
   public static function getSubscribedEvents() {
     $events = [];
     $events[KernelEvents::REQUEST][] = ['redirectAnonymous'];
+
     return $events;
   }
 
