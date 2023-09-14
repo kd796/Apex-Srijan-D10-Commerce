@@ -104,7 +104,8 @@ function ecom_preprocess_node__product__full(array &$variables) {
     $prod_variation_obj = $node->field_commerce_product->entity->variations->entity;
     // Price.
     if ($prod_variation_obj != NULL) {
-      $price = $prod_variation_obj->getPrice();
+      $price = $prod_variation_obj->getPrice()->getNumber();
+      $price = number_format($price, 2);
       // Variance id.
       $var_id = $prod_variation_obj->id();
       // Stock value.
