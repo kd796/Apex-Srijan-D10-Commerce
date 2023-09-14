@@ -1,0 +1,39 @@
+ecom_addrexx.addrexx_config:
+  path: '/admin/config/development/addrexx-config'
+  defaults:
+    _title: 'Addrexx settings'
+    _form: 'Drupal\ecom_addrexx\Form\AddrexxConfigForm'
+  requirements:
+    _permission: 'administer ecom addrexx'
+  options:
+    _admin_route: 'true'
+
+ecom_addrexx.autocomplete:
+  path: '/addrexx/autocomplete/{filter}'
+  defaults:
+    _controller: '\Drupal\ecom_addrexx\Controller\AddrexxAutocompleteController::autocompleteCallback'
+    _title: 'Autocomplete Callback'
+  requirements:
+    _permission: 'access content'
+  options:
+    _json_error_response: TRUE
+
+ecom_addrexx.ajax_controller:
+  path: '/search/zipcode'
+  defaults:
+    _controller: '\Drupal\ecom_addrexx\Controller\AddressProfileController::getCounty'
+    _title: 'AddressProfileController'
+  requirements:
+    _permission: 'access content'
+  options:
+    _json_error_response: TRUE
+
+ecom_addrexx.state_city:
+  path: '/get-cities'
+  defaults:
+    _controller: '\Drupal\ecom_addrexx\Controller\AddressProfileController::getCity'
+    _title: 'State based city callback'
+  requirements:
+    _permission: 'access content'
+  options:
+    _json_error_response: TRUE

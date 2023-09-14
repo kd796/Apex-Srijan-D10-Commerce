@@ -1,0 +1,4 @@
+services:
+  ecom_addrexx.api:
+    class: Drupal\ecom_addrexx\Services\AddrexxService
+    arguments: ['@config.factory', '@http_client'] 
