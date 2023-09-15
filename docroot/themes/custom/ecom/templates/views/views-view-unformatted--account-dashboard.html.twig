@@ -35,6 +35,9 @@
 			</div>
     {% else %}
       <div{{row.attributes.addClass(row_classes)}}>
+        <div class="default-address">
+          {{ 'Default Shipping Address'|t }}
+        </div>
 				{{- row.content -}}
 			</div>
 		{% endif %}

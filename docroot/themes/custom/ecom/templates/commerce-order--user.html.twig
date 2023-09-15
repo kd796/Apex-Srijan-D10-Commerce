@@ -21,20 +21,22 @@
   <div class="order__heading"> {{ 'Order Details'|t }} </div>
 
   <div class="order-info">
-    {% if order.completed|render|trim|striptags %}
+    {% if order.placed|render|trim|striptags %}
       <div class="order-placed">
         <label>{{ 'Order Date: '|t }}</label>
-        <span>{{ order.completed }}</span>
+        <span>{{ order.placed }}</span>
       </div>
     {% endif %}
-    {% if order.delivery|render|trim|striptags %}
+    {% if order.completed|render|trim|striptags %}
       <div class="order-deliver">
-        {{ 'Delivery Date: '|t }}
+        <label>{{ 'Delivery Date: '|t }}</label>
+        <span>{{ order.completed }}</span>
       </div>
     {% endif %}
     {% if order.state|render|striptags|trim %}
       <div class="order-state">
-        {{ order.state }}
+        <label>{{ 'Order Status: '|t }}</label>
+        <span>{{ order.state }}</span>
       </div>
     {% endif %}
   </div>

@@ -61,12 +61,22 @@ function ecom_common_menu_local_tasks_alter(&$data, $route_name, RefinableCachea
     'commerce_wishlist.user_page',
     'entity.user.canonical',
     'ecom_common.account_dashboard',
+    'entity.commerce_order.user_view',
+    'commerce_order.address_book.edit_form',
   ];
   if (in_array($route_name, $route_array)) {
-
     // My Order Tab.
-    $data['tabs'][0]['views_view:view.commerce_user_orders.order_page']['#link']['title'] = 'My Order';
+    $data['tabs'][0]['views_view:view.commerce_user_orders.order_page']['#link']['title'] = t('My Orders');
     $data['tabs'][0]['views_view:view.commerce_user_orders.order_page']['#weight'] = -48;
+
+    if ($route_name == 'entity.commerce_order.user_view') {
+      $data['tabs'][0]['views_view:view.commerce_user_orders.order_page']['#access'] = FALSE;
+      $data['tabs'][0]['entity.commerce_order.user_view']['#weight'] = -48;
+    }
+    if ($route_name == 'commerce_order.address_book.edit_form') {
+      $data['tabs'][0]['commerce_order.address_book.overview']['#access'] = FALSE;
+      $data['tabs'][0]['commerce_order.address_book.edit_form']['#weight'] = -49;
+    }
     // Shortcut Tab.
     $data['tabs'][0]['shortcut.set_switch']['#access'] = FALSE;
     // Submission Tab.
@@ -74,10 +84,10 @@ function ecom_common_menu_local_tasks_alter(&$data, $route_name, RefinableCachea
     // Payment Method Tab.
     $data['tabs'][0]['entity.commerce_payment_method.collection']['#access'] = FALSE;
     // My Wishlist Tab.
-    $data['tabs'][0]['entity.commerce_wishlist.user_page']['#link']['title'] = 'My Wishlist';
+    $data['tabs'][0]['entity.commerce_wishlist.user_page']['#link']['title'] = t('My Wishlist');
     $data['tabs'][0]['entity.commerce_wishlist.user_page']['#weight'] = -47;
     // User Edit Tab.
-    $data['tabs'][0]['entity.user.edit_form']['#link']['title'] = 'Account Information';
+    $data['tabs'][0]['entity.user.edit_form']['#link']['title'] = t('Account Information');
     $data['tabs'][0]['entity.user.edit_form']['#weight'] = -50;
     // Address book Tab.
     $data['tabs'][0]['commerce_order.address_book.overview']['#weight'] = -49;
