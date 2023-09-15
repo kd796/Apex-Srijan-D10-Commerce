@@ -510,15 +510,9 @@
 }
 
 #edit-brand-filter-image {
-  grid-gap: 1em;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  @media screen and (max-width: $tablet-max) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-  @media screen and (max-width: $tablet) {
-    grid-template-columns: 1fr 1fr;
-  }
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
 
   .form-checkbox {
     &.checked + label {
@@ -542,6 +536,7 @@
   .form-type-checkbox {
     display: flex;
     align-items: center;
+    width: 25%;
   }
 
   img {
