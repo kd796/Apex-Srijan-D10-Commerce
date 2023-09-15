@@ -303,3 +303,15 @@
     }
   }
 }
+
+.checkout-pane {
+  .field--name-field-county {
+    select {
+      max-width: 50%;
+
+      @media screen and (min-width: $tablet) {
+        max-width: calc(100% - 125px);
+      }
+    }
+  }
+}
