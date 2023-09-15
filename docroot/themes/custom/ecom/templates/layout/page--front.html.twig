@@ -42,6 +42,7 @@
  * @see html.html.twig
  */
 #}
+
 <div id="wrapper" class="front-page"  {{ attributes }}>
   {% include '@ecom/includes/header.html.twig' %}
   <div class="main-contane">
@@ -50,21 +51,27 @@
     {% endif %}
     <div class="wrapper-content">
       <div class="homepage-container row">
-        <div class="col col-sidebar">
-          {% if page.sidebar_first %}
+        {% if page.sidebar_first %}
+          <div class="col col-sidebar">
             {{ page.sidebar_first }}
-          {% endif %}
-        </div>
-        <div class="col col-main px-0">
-          {% if page.sidebar_first %}
-            {{ page.content }}
-          {% endif %}
-        </div>
-        <div class="col col-sidebar">
-          {% if page.sidebar_second %}
+          </div>
+          <div class="col col-main px-0">
+            {% if page.content %}
+              {{ page.content }}
+            {% endif %}
+          </div>
+        {% elseif page.sidebar_second %}
+          <div class="col col-main px-0">
+            {% if page.content %}
+              {{ page.content }}
+            {% endif %}
+          </div>
+          <div class="col col-sidebar">
             {{ page.sidebar_second }}
-          {% endif %}
-        </div>
+          </div>
+        {% else %}
+          {{ page.content }}
+        {% endif %}
       </div>
     </div>
     {% if page.page.post_contentt %}

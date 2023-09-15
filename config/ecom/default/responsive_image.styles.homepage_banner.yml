@@ -3,9 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
-    - image.style.banner_desktop_1600_500
-    - image.style.banner_mobile_420_200
-    - image.style.banner_tablet_768_362
+    - image.style.banner_desktop_1600_300
+    - image.style.banner_mobile_420_180
+    - image.style.banner_tablet_768_220
   theme:
     - ecom
 id: homepage_banner
@@ -13,23 +13,23 @@ label: 'Homepage Banner'
 image_style_mappings:
   -
     image_mapping_type: image_style
-    image_mapping: banner_desktop_1600_500
+    image_mapping: banner_desktop_1600_300
     breakpoint_id: ecom.large
     multiplier: 1x
   -
     image_mapping_type: image_style
-    image_mapping: banner_desktop_1600_500
+    image_mapping: banner_desktop_1600_300
     breakpoint_id: ecom.desktop
     multiplier: 1x
   -
     image_mapping_type: image_style
-    image_mapping: banner_tablet_768_362
+    image_mapping: banner_tablet_768_220
     breakpoint_id: ecom.tablet
     multiplier: 1x
   -
     image_mapping_type: image_style
-    image_mapping: banner_mobile_420_200
+    image_mapping: banner_mobile_420_180
     breakpoint_id: ecom.mobile
     multiplier: 1x
 breakpoint_group: ecom
-fallback_image_style: banner_desktop_1600_500
+fallback_image_style: banner_desktop_1600_300
