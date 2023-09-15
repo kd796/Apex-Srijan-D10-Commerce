@@ -517,16 +517,20 @@
   .form-checkbox {
     &.checked + label {
       display: block;
+      width: 100%;
+      margin: 0 15px 10px 0;
     }
 
     &.not-checked + label {
       display: none;
+      width: 0;
     }
   }
 
   label {
     padding-left: 0;
     display: none;
+    width: 0;
 
     &::before {
       display: none;
@@ -536,7 +540,7 @@
   .form-type-checkbox {
     display: flex;
     align-items: center;
-    width: 25%;
+    margin: 0;
   }
 
   img {

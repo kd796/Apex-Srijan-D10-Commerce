@@ -15,10 +15,13 @@
  * @see template_preprocess_views_view_unformatted()
  */
 #}
+{% set view_node = fields.view_node.content|render|trim|striptags %}
 <div class="card card--list">
   <div class="card--list__image">
     {% if fields.field_media.content %}
+      <a href="{{ view_node }}">
       {{ fields.field_media.content }}
+      </a>
     {% endif %}
   </div>
   <div class="card--list__details">
