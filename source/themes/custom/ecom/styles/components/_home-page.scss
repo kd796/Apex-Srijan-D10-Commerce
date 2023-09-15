@@ -6,11 +6,17 @@
   }
 }
 
+.block-views-blockfeatured-products-featured-products {
+  h2 {
+    padding-top: 20px;
+  }
+}
+
 .featured-products {
-  max-width: 100vw;
+  max-width: calc(100vw - 15vw);
   width: 100%;
   overflow: hidden;
-  padding: 0 0 50px;
+  padding: 20px 0 50px;
   @media only screen and (max-width: $tablet-max) {
     max-width: calc(100vw - 30px);
   }
