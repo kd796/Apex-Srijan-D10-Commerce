@@ -119,10 +119,6 @@
           width: 16px;
           height: 16px;
           display: block;
-
-          &[data-drupal-selector$="shipments-0-shipping-method-0-6-default"] {
-            display: none;
-          }
         }
 
         label {
@@ -132,6 +128,12 @@
 
         .description {
           display: none;
+        }
+
+        &.form-item-shipping-information-shipments-0-shipping-method-0 {
+          input[type="radio"] {
+            display: none;
+          }
         }
       }
     }
