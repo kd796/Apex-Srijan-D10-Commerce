@@ -28,13 +28,13 @@ content:
     region: content
   completed:
     type: timestamp
-    label: inline
+    label: hidden
     settings:
-      date_format: short
-      custom_date_format: ''
+      date_format: custom
+      custom_date_format: d/n/Y
       timezone: ''
       tooltip:
-        date_format: long
+        date_format: html_date
         custom_date_format: ''
       time_diff:
         enabled: false
@@ -42,6 +42,7 @@ content:
         past_format: '@interval ago'
         granularity: 2
         refresh: 60
+        description: ''
     third_party_settings: {  }
     weight: 2
     region: content
@@ -55,7 +56,8 @@ content:
   order_items:
     type: commerce_order_item_table
     label: hidden
-    settings: {  }
+    settings:
+      view: commerce_order_item_table
     third_party_settings: {  }
     weight: 5
     region: content
@@ -69,13 +71,13 @@ content:
     region: content
   placed:
     type: timestamp
-    label: inline
+    label: hidden
     settings:
-      date_format: short
-      custom_date_format: ''
+      date_format: custom
+      custom_date_format: d/n/Y
       timezone: ''
       tooltip:
-        date_format: long
+        date_format: html_date
         custom_date_format: ''
       time_diff:
         enabled: false
@@ -83,12 +85,13 @@ content:
         past_format: '@interval ago'
         granularity: 2
         refresh: 60
+        description: ''
     third_party_settings: {  }
     weight: 3
     region: content
   state:
     type: list_default
-    label: inline
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 4

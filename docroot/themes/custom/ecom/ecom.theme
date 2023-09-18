@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
 
 // Including all the preprocesses.
 include_once 'preprocess/node.preprocess.php';
@@ -32,6 +33,37 @@ function ecom_form_views_exposed_form_alter(array &$form, FormStateInterface $fo
         unset($form['category']['#options'][$key]);
       }
     }
+  }
+}
+
+/**
+ * Prepares variables for shipment templates.
+ *
+ * Default template: commerce-shipment.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing rendered fields.
+ *   - attributes: HTML attributes for the containing element.
+ */
+function ecom_preprocess_commerce_shipment(array &$variables) {
+  /** @var Drupal\commerce_shipping\Entity\ShipmentInterface $shipment */
+  $shipment = $variables['elements']['#commerce_shipment'];
+
+  $variables['shipment_entity'] = $shipment;
+  $variables['shipment'] = [];
+  foreach (Element::children($variables['elements']) as $key) {
+    if ($key == 'shipping_method') {
+      $currency_formatter = \Drupal::service('commerce_price.currency_formatter');
+      /** @var \Drupal\commerce_price\Price $shipment->getAmount() */
+      $formatted_price = $currency_formatter->format($shipment->getAmount()->getNumber(), $shipment->getAmount()->getCurrencyCode());
+
+      $price_output = t('@amount', [
+        '@amount' => $formatted_price,
+      ]);
+      $variables['price_output'] = $price_output;
+    }
+    $variables['shipment'][$key] = $variables['elements'][$key];
   }
 }
 

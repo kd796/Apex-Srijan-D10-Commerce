@@ -1,0 +1,6 @@
+services:
+  ecom_common.route_subscriber:
+      class: '\Drupal\ecom_common\EventSubscriber\CustomRouteSubscriber'
+      arguments: ['@current_user', '@current_route_match']
+      tags:
+        - { name: 'event_subscriber' }
