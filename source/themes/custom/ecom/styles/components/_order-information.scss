@@ -1,11 +1,21 @@
 .commerce-checkout-flow {
   padding-top: 30px;
+  position: relative;
   @extend .wrapper-content;
   @media only screen and (max-width: $tablet) {
     padding-top: 25px;
   }
   @media only screen and (max-width: $mobile-sm) {
     padding-top: 20px;
+  }
+
+  .ajax-progress {
+    &.ajax-progress-throbber {
+      top: 50%;
+      left: 50%;
+      position: fixed;
+      transform: translate(-50%, -50%);
+    }
   }
 
   .layout-checkout-form {
@@ -16,7 +26,12 @@
     .layout-region-checkout-footer,
     .layout-region-checkout-main {
       padding-right: 2em;
-      width: calc(100% - 250px);
+      width: calc(100% - 280px);
+
+      @media only screen and (max-width: $tablet-max) {
+        width: calc(100% - 250px);
+      }
+
       @media only screen and (max-width: $tablet) {
         width: 100%;
         padding-right: 0;
@@ -25,7 +40,12 @@
 
     .layout-region-checkout-secondary {
       margin: 0;
-      width: 250px;
+      width: 280px;
+
+      @media only screen and (max-width: $tablet-max) {
+        width: 250px;
+      }
+
       @media only screen and (max-width: $tablet) {
         width: 100%;
       }
@@ -35,8 +55,9 @@
   .checkout-pane-shipping-information,
   .checkout-pane-payment-information {
     border: 0;
-    padding: 0 25px 0 0;
     margin: 0 0 12px;
+    padding: 0 25px 0 0;
+
     @media only screen and (max-width: $tablet-max) {
       padding: 0 25px 0 0;
     }
@@ -51,9 +72,9 @@
 
     legend {
       color: $black;
+      padding: 16px 0;
       font-size: 14px;
       margin: 0 0 16px;
-      padding: 0 0 16px;
       font-weight: $normal;
       line-height: 19.36px;
       text-transform: capitalize;
@@ -69,6 +90,7 @@
       flex-wrap: wrap;
       margin: 0 0 25px;
       align-items: center;
+
       @media only screen and (max-width: $tablet) {
         margin: 0 0 20px;
       }
@@ -78,9 +100,10 @@
       }
 
       label {
-        width: 125px;
+        width: 115px;
         text-transform: capitalize;
         position: static !important;
+
         @media only screen and (max-width: $tablet) {
           width: 100px;
         }
@@ -94,8 +117,11 @@
         }
       }
 
+      select,
       input {
-        width: calc(100% - 125px);
+        color: $light-black;
+        width: calc(100% - 115px);
+
         @media only screen and (max-width: $tablet) {
           width: calc(100% - 100px);
         }
@@ -106,6 +132,10 @@
 
         @media only screen and (max-width: $mobile) {
           width: 100%;
+        }
+
+        &::placeholder {
+          color: $light-black;
         }
       }
 
@@ -119,6 +149,11 @@
           width: 16px;
           height: 16px;
           display: block;
+          color: $light-black;
+
+          &::placeholder {
+            color: $light-black;
+          }
         }
 
         label {
@@ -131,6 +166,10 @@
         }
 
         &.form-item-shipping-information-shipments-0-shipping-method-0 {
+          label {
+            font-weight: $bold;
+          }
+
           input[type="radio"] {
             display: none;
           }
@@ -140,28 +179,25 @@
 
     .fieldset-wrapper {
       width: 100%;
+
       .authorize-net-accept-js-form {
         #payment-errors {
           margin: 0 0 16px 8px;
         }
 
         .form-item {
-          width: 50%;
+          width: 100%;
           display: flex;
           flex-wrap: wrap;
           align-items: center;
 
-          @media only screen and (max-width: $desktop) {
-            width: 70%;
-          }
-
-          @media only screen and (max-width: $mobile-sm) {
-            width: 100%;
+          @media only screen and (min-width: $desktop) {
+            width: calc(50% - 16px);
           }
 
           label {
             margin: 0;
-            width: 125px;
+            width: 115px;
             @media only screen and (max-width: $tablet) {
               width: 100px;
             }
@@ -177,7 +213,9 @@
           }
 
           input {
-            width: calc(100% - 125px);
+            color: $light-black;
+            width: calc(100% - 115px);
+
             @media only screen and (max-width: $tablet) {
               width: calc(100% - 100px);
             }
@@ -189,20 +227,21 @@
             @media only screen and (max-width: $mobile) {
               width: 100%;
             }
+
+            &::placeholder {
+              color: $light-black;
+            }
           }
         }
 
         .credit-card-form__expiration {
-          width: 50%;
+          width: 100%;
           display: flex;
           flex-wrap: wrap;
           justify-content: space-between;
-          @media only screen and (max-width: $desktop) {
-            width: 70%;
-          }
 
-          @media only screen and (max-width: $mobile-sm) {
-            width: 100%;
+          @media only screen and (min-width: $desktop) {
+            width: calc(50% - 16px);
           }
 
           .form-item {
@@ -215,6 +254,11 @@
 
             input {
               width: 100%;
+              color: $light-black;
+
+              &::placeholder {
+                color: $light-black;
+              }
             }
 
             &.form-type-item {
@@ -226,23 +270,36 @@
 
       .field--type-address {
         .address-container-inline {
+          margin: 0;
           display: flex;
           flex-wrap: wrap;
-          margin: 0 -16px;
           justify-content: space-between;
 
+          @media only screen and (min-width: $desktop) {
+            margin: 0 -16px;
+          }
+
+          .field--name-field-county,
           .form-item {
-            width: 50%;
+            padding: 0;
+            width: 100%;
             display: flex;
             flex-wrap: wrap;
-            padding: 0 16px;
             align-items: center;
-            @media only screen and (max-width: $mobile-sm) {
+
+            @media only screen and (min-width: $desktop) {
+              width: 50%;
+              padding: 0 16px;
+            }
+
+            .form-type-select {
               width: 100%;
+              padding: 0;
             }
 
             label {
-              width: 125px;
+              width: 115px;
+
               @media only screen and (max-width: $tablet) {
                 width: 100px;
               }
@@ -259,7 +316,10 @@
             select,
             textarea,
             input {
-              width: calc(100% - 125px);
+              color: $light-black;
+              display: block!important;
+              width: calc(100% - 115px);
+
               @media only screen and (max-width: $tablet) {
                 width: calc(100% - 100px);
               }
@@ -271,27 +331,10 @@
               @media only screen and (max-width: $mobile) {
                 width: 100%;
               }
-            }
-          }
 
-          &[data-drupal-selector$="shipping-profile-address-0-address-container0"],
-          &[data-drupal-selector$="billing-information-address-0-address-container0"] {
-            width: 50%;
-            margin: 0;
-            @media only screen and (max-width: $desktop) {
-              width: 70%;
-            }
-
-            @media only screen and (max-width: $mobile-sm) {
-              width: 100%;
-            }
-
-            .form-item {
-              padding: 0;
-              width: 100%;
-              display: flex;
-              flex-wrap: wrap;
-              align-items: center;
+              &::placeholder {
+                color: $light-black;
+              }
             }
           }
         }
@@ -299,18 +342,6 @@
 
       .form-submit {
         margin: 16px 0 0;
-      }
-    }
-  }
-}
-
-.checkout-pane {
-  .field--name-field-county {
-    select {
-      max-width: 50%;
-
-      @media screen and (min-width: $tablet) {
-        max-width: calc(100% - 125px);
       }
     }
   }
