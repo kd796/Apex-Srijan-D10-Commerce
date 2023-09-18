@@ -85,3 +85,42 @@ function ecom_theme_suggestions_taxonomy_term_alter(array &$suggestions, array $
   // Add view mode theme suggestions.
   $suggestions[] = 'taxonomy_term__' . $term->bundle() . '__' . $view_mode;
 }
+
+/**
+ * Implements hook_preprocess_hook()
+ */
+function ecom_preprocess_block(&$vars) {
+  if ($vars['plugin_id'] == "facet_block:brand") {
+    facet_block_brand_logo_alter($vars);
+  }
+}
+
+/**
+ * Facet brand block alter.
+ */
+function facet_block_brand_logo_alter(&$vars) {
+  if (isset($vars['content'][0]['field_brand'])) {
+    $t‌​erms = [];
+    $facet_filter_url = [];
+    foreach ($vars['content'][0]['field_brand'] as $facet_brand) {
+      $t‌​erms[] = $facet_brand['raw_value'];
+      $facet_filter_url[$facet_brand['raw_value']] = $facet_brand['url'];
+    }
+    $brands = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadMultiple($t‌​erms);
+    foreach ($brands as $term) {
+      $brand_logo_field = !$term->get('field_brand_logo')->isEmpty() ?
+      $term->get('field_brand_logo')->entity : '';
+      if ($brand_logo_field && $brand_logo_field->hasField('field_media_image')) {
+        $media_output = '';
+        $media_render = \Drupal::entityTypeManager()->getViewBuilder('media')->view($brand_logo_field, 'full');
+        $media_output = \Drupal::service('renderer')->renderRoot($media_render);
+      }
+      $vars['brands'][] = [
+        'brand_logo' => $media_output,
+        'id' => $term->id(),
+        'name' => $term->getName(),
+        'url' => $facet_filter_url[$term->id()],
+      ];
+    }
+  }
+}

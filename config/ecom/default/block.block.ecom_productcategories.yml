@@ -1,0 +1,29 @@
+uuid: 53f54dcd-cc01-41c1-8675-34565467499b
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.product_categories
+  module:
+    - facets
+    - system
+  theme:
+    - ecom
+id: ecom_productcategories
+theme: ecom
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'facet_block:product_categories'
+settings:
+  id: 'facet_block:product_categories'
+  label: Categories
+  label_display: visible
+  provider: facets
+  context_mapping: {  }
+  block_id: ecom_productcategories
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /search

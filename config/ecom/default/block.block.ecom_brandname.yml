@@ -1,0 +1,29 @@
+uuid: 8173c986-f959-4927-83fd-9603aa4a4663
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.brand_name
+  module:
+    - facets
+    - system
+  theme:
+    - ecom
+id: ecom_brandname
+theme: ecom
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'facet_block:brand_name'
+settings:
+  id: 'facet_block:brand_name'
+  label: Brands
+  label_display: visible
+  provider: facets
+  context_mapping: {  }
+  block_id: ecom_brandname
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /search
