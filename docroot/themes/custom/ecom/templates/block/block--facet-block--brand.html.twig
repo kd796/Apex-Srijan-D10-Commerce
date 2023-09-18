@@ -1,0 +1,16 @@
+{# templates/block--my-facet-block.html.twig #}
+{% if brands %}
+<div class="brand-logo-wrapper">
+  <ul class="brand-logo-listing">
+    {% for item in brands %}
+      <li class="list-item">
+        {% if item.brand_logo|length %}
+          <a href="{{ item.url }}" title="{{ term_entity.name }}">
+          {{ item.brand_logo }}
+          </a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}

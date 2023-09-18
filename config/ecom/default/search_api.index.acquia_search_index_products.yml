@@ -6,6 +6,7 @@ dependencies:
     - field.storage.media.field_media_image
     - field.storage.node.field_product_images
     - field.storage.node.body
+    - field.storage.node.field_brand
     - field.storage.node.field_product_classifications
     - field.storage.taxonomy_term.field_classification_id
     - field.storage.node.field_product_specifications
@@ -67,6 +68,10 @@ third_party_settings:
     multilingual:
       limit_to_content_language: false
       include_language_independent: true
+      use_language_undefined_as_fallback_language: false
+      specific_languages:
+        en: '0'
+      use_universal_collation: false
 id: acquia_search_index_products
 name: 'Acquia Search Index - Products'
 description: ''
@@ -91,6 +96,22 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.body
+  field_brand:
+    label: Brand
+    datasource_id: 'entity:node'
+    property_path: field_brand
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_brand
+  field_brand_name:
+    label: 'Brand name'
+    datasource_id: 'entity:node'
+    property_path: field_brand
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_brand
   field_classification_id:
     label: 'Product Classifications » Taxonomy term » Classification ID'
     datasource_id: 'entity:node'
