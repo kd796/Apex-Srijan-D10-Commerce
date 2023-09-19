@@ -38,6 +38,7 @@ use Drupal\media\Entity\Media;
 use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
 use Drupal\node\NodeInterface;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
+use Drupal\Core\Url;
 
 include_once 'preprocess/block.preprocess.php';
 include_once 'preprocess/media.preprocess.php';
@@ -702,7 +703,6 @@ function sata_preprocess_menu__main__block_header_menu_main(array &$variables) {
 function sata_preprocess_page(array &$variables) {
   // Basic attribute variables.
   $variables['footer_attributes']['class'][] = 'region';
-
   if (isset($variables['node']) && is_object($variables['node'])) {
     /** @var \Drupal\node\NodeInterface $node */
     $node = $variables['node'];
@@ -712,6 +712,10 @@ function sata_preprocess_page(array &$variables) {
       unset($variables['page']['content']['sata_breadcrumbs']);
     }
   }
+
+  $site_name = getenv('AH_DRUPAL_SITE_NAME');
+   $variables['drupal_sitename']= $site_name;
+
 }
 
 /**
