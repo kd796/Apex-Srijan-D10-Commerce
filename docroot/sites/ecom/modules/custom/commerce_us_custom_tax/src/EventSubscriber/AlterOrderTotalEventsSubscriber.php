@@ -68,7 +68,7 @@ class AlterOrderTotalEventsSubscriber implements EventSubscriberInterface {
       // Getting tax rate based on the above datas.
       $matched_rate = $this->utilityObj->getMatching($state, $postal_code, $city, $county);
       // Calculating tax.
-      $tax = (int) $order_total * (int) $matched_rate / 100;
+      $tax = (float) $order_total * (float) $matched_rate / 100;
 
       // Creating adjustment array.
       $adjustments = new Adjustment([
@@ -77,7 +77,19 @@ class AlterOrderTotalEventsSubscriber implements EventSubscriberInterface {
         'amount' => new Price($tax, 'USD'),
         'included' => FALSE,
       ]);
-      $order_obj->addAdjustment($adjustments);
+
+      $adjustment_array = [];
+      $existing_adjustments = $order_obj->getAdjustments();
+      foreach ($existing_adjustments as $existing_adjustment) {
+        $adjustment_array[] = $existing_adjustment->getType();
+      }
+      $custom_adjustment_arr = ['custom_adjustment'];
+      if(in_array('custom_adjustment',$adjustment_array)) {
+        return;
+      }
+      else {
+        $order_obj->addAdjustment($adjustments);
+      }
     }
   }
 

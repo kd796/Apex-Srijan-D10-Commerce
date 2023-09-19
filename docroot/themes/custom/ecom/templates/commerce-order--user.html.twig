@@ -53,6 +53,12 @@
         {{ order.billing_information }}
       </div>
     {% endif %}
+    {% if order.field_order_shipments_para %}
+      <div class="customer-billing">
+        <div class="field__label">{{ 'Shipping And Tracking'|t }}</div>
+        {{ order.field_order_shipments_para }}
+      </div>
+    {% endif %}
   </div>
 
   {% if order.order_items|render|striptags|trim %}

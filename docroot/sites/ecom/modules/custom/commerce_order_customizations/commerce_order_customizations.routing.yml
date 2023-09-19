@@ -1,0 +1,9 @@
+commerce_order_customizations.order_export_import_ftp_config:
+  path: '/admin/config/development/order-ftp-config'
+  defaults:
+    _title: 'Order FTP Server Settings'
+    _form: 'Drupal\commerce_order_customizations\Form\OrderExportImportFTPForm'
+  requirements:
+    _permission: 'administer content'
+  options:
+    _admin_route: 'true'

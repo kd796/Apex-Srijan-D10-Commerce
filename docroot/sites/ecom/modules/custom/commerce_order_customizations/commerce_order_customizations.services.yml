@@ -1,0 +1,9 @@
+services:
+  commerce_order_customizations.utility:
+      class: '\Drupal\commerce_order_customizations\UtilityOrder'
+      arguments: ['@entity_type.manager']
+  commerce_order_customizations.order_export:
+    class: Drupal\commerce_order_customizations\Commands\SapOrderCreate
+    arguments: ['@entity_type.manager','@config.factory','@commerce_order_customizations.utility']
+    tags:
+      - { name: drush.command }

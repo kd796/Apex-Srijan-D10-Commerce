@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - commerce_order.commerce_order_type.default
+    - field.field.commerce_order.default.field_order_exported
     - field.field.commerce_order.default.shipments
   module:
     - commerce_order
@@ -24,7 +25,7 @@ content:
       strip_trailing_zeroes: false
       currency_display: symbol
     third_party_settings: {  }
-    weight: 9
+    weight: 10
     region: content
   changed:
     type: timestamp
@@ -70,19 +71,20 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 7
+    weight: 8
     region: content
   mail:
     type: basic_string
     label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 6
+    weight: 7
     region: content
   order_items:
     type: commerce_order_item_table
     label: hidden
-    settings: {  }
+    settings:
+      view: commerce_order_item_table
     third_party_settings: {  }
     weight: 0
     region: content
@@ -112,7 +114,7 @@ content:
       require_confirmation: true
       use_modal: true
     third_party_settings: {  }
-    weight: 8
+    weight: 9
     region: content
   store_id:
     type: entity_reference_label
@@ -134,10 +136,11 @@ content:
     label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 5
+    weight: 6
     region: content
 hidden:
   billing_profile: true
+  field_order_exported: true
   order_number: true
   search_api_excerpt: true
   shipments: true

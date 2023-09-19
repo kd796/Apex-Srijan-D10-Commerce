@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - commerce_order.commerce_order_type.default
+    - field.field.commerce_order.default.field_order_exported
     - field.field.commerce_order.default.shipments
   module:
     - commerce_order
@@ -29,7 +30,14 @@ content:
     third_party_settings: {  }
   cart:
     type: boolean_checkbox
-    weight: 20
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_order_exported:
+    type: boolean_checkbox
+    weight: 4
     region: content
     settings:
       display_label: true
@@ -46,6 +54,10 @@ content:
       allow_new: true
       allow_existing: false
       match_operator: CONTAINS
+      allow_duplicate: false
+      collapsible: false
+      collapsed: false
+      revision: false
       removed_reference: delete
     third_party_settings: {  }
 hidden:

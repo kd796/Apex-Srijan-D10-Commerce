@@ -5,6 +5,7 @@ dependencies:
   module:
     - commerce_cart
     - commerce_checkout
+    - commerce_order_customizations
     - commerce_shipping
 third_party_settings:
   commerce_cart:
@@ -22,7 +23,7 @@ id: default
 label: Default
 traits: {  }
 locked: false
-workflow: order_default
+workflow: commerce_order_customizations_fulfillment_processing
 numberPattern: order_default
 refresh_mode: customer
 refresh_frequency: 300
