@@ -32,7 +32,6 @@ class AddressOverride extends Address {
    */
   public static function processAddress(array &$element, FormStateInterface $form_state, array &$complete_form) {
     $element = Address::processAddress($element, $form_state, $complete_form);
-    $complete_form['#attached']['library'][] = 'ecom_addrexx/autocomplete_ajax';
 
     foreach ($element as $property => $value) {
       switch ($property) {
@@ -50,18 +49,17 @@ class AddressOverride extends Address {
           $element[$property]['#autocomplete_route_name'] = 'ecom_addrexx.state_city';
           $element[$property]['#autocomplete_route_parameters'] = [
             'state' => CommonConstants::ADDREXX_ALL,
-            'zipcode' => '0',
           ];
           $element[$property]['#weight'] = 4;
           break;
 
         case "administrative_area":
-          $element[$property]['#weight'] = 4;
+          $element[$property]['#weight'] = 3;
           break;
 
         case "postal_code":
           $element[$property]['#autocomplete_route_name'] = 'ecom_addrexx.autocomplete';
-          $element[$property]['#weight'] = 3;
+          $element[$property]['#weight'] = 2;
           $element[$property]['#autocomplete_route_parameters'] = [
             'filter' => 'zip',
             'contextKey' => 'US',
@@ -69,12 +67,14 @@ class AddressOverride extends Address {
           break;
 
         case "address_line1":
-        case "address_line2":
           $element[$property]['#autocomplete_route_name'] = 'ecom_addrexx.autocomplete';
           $element[$property]['#autocomplete_route_parameters'] = [
             'filter' => 'street',
             'contextKey' => CommonConstants::ADDREXX_ALL,
           ];
+          $element[$property]['#weight'] = 5;
+          break;
+        case "address_line2":
           $element[$property]['#weight'] = 5;
           break;
       }
