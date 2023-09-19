@@ -93,6 +93,24 @@ function ecom_preprocess_block(&$vars) {
   if ($vars['plugin_id'] == "facet_block:brand") {
     facet_block_brand_logo_alter($vars);
   }
+  if ($vars['plugin_id'] == "facet_block:brand_name") {
+    $facet = &$vars['content'][0]['#facet'];
+    $active_items = $facet->getActiveItems();
+    if ($active_items) {
+      $active_item = $active_items[array_key_first($active_items)];
+      if ($active_item) {
+        $url_options = $vars['content'][0]['#items'][$active_item]['#url']->getOptions();
+        if (isset($url_options['query']['f'])) {
+          foreach ($url_options['query']['f'] as $key => $query) {
+            if ($query == 'brand:' . $active_item) {
+              unset($url_options['query']['f'][$key]);
+            }
+          }
+        }
+        $vars['content'][0]['#items'][$active_item]['#url']->setOptions($url_options);
+      }
+    }
+  }
 }
 
 /**
@@ -115,6 +133,62 @@ function facet_block_brand_logo_alter(&$vars) {
         $media_render = \Drupal::entityTypeManager()->getViewBuilder('media')->view($brand_logo_field, 'full');
         $media_output = \Drupal::service('renderer')->renderRoot($media_render);
       }
+      // Logic to sync facet Brands filter with Brand name filter starts.
+      $request = \Drupal::request();
+      $current_url = $request->getUri();
+      $uri = parse_url($current_url);
+      parse_str($uri['query'], $query_parameters);
+
+      $facet_url = $facet_filter_url[$term->id()];
+      $facet_uri = parse_url($facet_url);
+      parse_str($facet_uri['query'], $facet_query_parameters);
+
+      if (isset($facet_query_parameters['f'])) {
+        $facet_query_params = [];
+        foreach ($facet_query_parameters['f'] as $parameter_name => $parameter_value) {
+          $parts = explode(':', $parameter_value);
+          if (count($parts) === 2) {
+            $param_facet_name = $parts[0];
+            if (in_array($param_facet_name, ['brand_name', 'brand'])) {
+              $facet_query_params[$param_facet_name] = $parameter_name;
+            }
+          }
+        }
+        if (isset($facet_query_params['brand_name'])) {
+          if (!isset($facet_query_params['brand'])) {
+            unset($facet_query_parameters['f'][$facet_query_params['brand_name']]);
+          }
+          else {
+            foreach ($query_parameters['f'] as $query) {
+              if (substr($query, 0, strlen('brand:')) === 'brand:' &&
+                $query === $facet_query_parameters['f'][$facet_query_params['brand']]) {
+                unset($facet_query_parameters['f'][$facet_query_params['brand']]);
+              }
+              if (substr($query, 0, strlen('brand_name')) === 'brand_name' &&
+                $query === $facet_query_parameters['f'][$facet_query_params['brand_name']]) {
+                unset($facet_query_parameters['f'][$facet_query_params['brand_name']]);
+                unset($facet_query_parameters['f'][$facet_query_params['brand']]);
+              }
+            }
+          }
+
+          $new_query = http_build_query($facet_query_parameters);
+          $new_url = $uri['scheme'] . '://' . $uri['host'] . $uri['path'];
+          if (!empty($new_query)) {
+            $new_url .= '?' . $new_query;
+          }
+          $facet_filter_url[$term->id()] = $new_url;
+        }
+      }
+      // Below code update brand filter with same brand_name.
+      if (strpos($facet_filter_url[$term->id()], 'brand_name') === FALSE &&
+        strpos($facet_filter_url[$term->id()], 'brand%3A') > 0) {
+        $count = isset($query_parameters['f']) ? count($query_parameters['f']) : 1;
+        $facet_filter_url[$term->id()] = $facet_filter_url[$term->id()] . '&f%5B' .
+        $count . '%5D=brand_name%3A' . (int) $term->id();
+      }
+
+      // Empty brand-name filter, If brand filter is empty but brand_name is not.
       $vars['brands'][] = [
         'brand_logo' => $media_output,
         'id' => $term->id(),
