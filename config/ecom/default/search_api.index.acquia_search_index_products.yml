@@ -8,7 +8,6 @@ dependencies:
     - field.storage.node.field_product_classifications
     - field.storage.taxonomy_term.field_classification_id
     - field.storage.node.field_commerce_product
-    - field.storage.commerce_product_variation.field_stock
     - field.storage.node.field_featured_product
     - field.storage.node.field_keywords
     - field.storage.node.field_launch_date
@@ -20,6 +19,7 @@ dependencies:
     - field.storage.node.field_product_specifications
     - field.storage.node.field_set
     - field.storage.node.field_set_components
+    - field.storage.commerce_product_variation.field_stock
     - field.storage.node.field_upc
     - search_api.server.acquia_search_server
     - core.entity_view_mode.node.full
@@ -292,6 +292,16 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: 'field_commerce_product:entity:variations:entity:price:number'
     type: string
+    dependencies:
+      config:
+        - field.storage.node.field_commerce_product
+      module:
+        - commerce_product
+  product_status:
+    label: 'Commerce Product status'
+    datasource_id: 'entity:node'
+    property_path: 'field_commerce_product:entity:status'
+    type: boolean
     dependencies:
       config:
         - field.storage.node.field_commerce_product
