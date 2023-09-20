@@ -88,7 +88,7 @@
   </a>
 
   <span class="lable">
-    {{ label }}
+    {{ '#' }}{{ label|e|striptags|trim }}
   </span>
 
   <div class="cart-price__wrapper">
