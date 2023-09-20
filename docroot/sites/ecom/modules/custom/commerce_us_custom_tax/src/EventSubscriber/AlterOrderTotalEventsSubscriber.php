@@ -44,16 +44,15 @@ class AlterOrderTotalEventsSubscriber implements EventSubscriberInterface {
   public function totalChange(OrderEvent $event) {
     // Initial tax is 0.
     $tax = 0;
-
     // Order object .
     $order_obj = $event->getOrder();
-
     $order_total = 0;
     if ($order_obj->getSubtotalPrice() != NULL) {
       $order_total = $order_obj->getSubtotalPrice()->getNumber();
     }
 
     if ($order_obj->getBillingProfile() != NULL) {
+      $order_obj->set('field_order_exported',0);
       // Getting values from address field.
       $customer_address = $order_obj->getBillingProfile()->get('address')->first();
 
@@ -67,8 +66,10 @@ class AlterOrderTotalEventsSubscriber implements EventSubscriberInterface {
       }
       // Getting tax rate based on the above datas.
       $matched_rate = $this->utilityObj->getMatching($state, $postal_code, $city, $county);
-      // Calculating tax.
-      $tax = (float) $order_total * (float) $matched_rate / 100;
+      // Shipping amount.
+      $shipping_amount = \Drupal::service('commerce_order_customizations.utility')->getShippingAmmount($order_obj);
+      // Calculating tax including shipping cost.
+      $tax = ((float) $order_total + (float) $shipping_amount) * (float) $matched_rate / 100;
 
       // Creating adjustment array.
       $adjustments = new Adjustment([
@@ -84,7 +85,7 @@ class AlterOrderTotalEventsSubscriber implements EventSubscriberInterface {
         $adjustment_array[] = $existing_adjustment->getType();
       }
       $custom_adjustment_arr = ['custom_adjustment'];
-      if(in_array('custom_adjustment',$adjustment_array)) {
+      if (in_array('custom_adjustment', $adjustment_array)) {
         return;
       }
       else {
