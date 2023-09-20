@@ -141,14 +141,20 @@
   .address-book__operations {
     margin-bottom: 0;
     a {
+      margin-bottom: 10px;
       @extend .btn-primary;
+      @media screen and (min-width: $tablet) {
+        margin-bottom: 0;
+      }
     }
   }
 }
 
+.field--name-field-county,
 .address-item {
   display: flex;
 
+  .field__label,
   label {
     flex: 0 0 150px;
   }
