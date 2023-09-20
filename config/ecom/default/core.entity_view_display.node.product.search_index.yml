@@ -25,12 +25,31 @@ dependencies:
     - field.field.node.product.field_upc
     - node.type.product
   module:
+    - datetime
     - user
 id: node.product.search_index
 targetEntityType: node
 bundle: product
 mode: search_index
 content:
+  field_commerce_product:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_launch_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 3
+    region: content
   field_long_description:
     type: string
     label: hidden
@@ -51,10 +70,8 @@ content:
 hidden:
   body: true
   field_brand: true
-  field_commerce_product: true
   field_featured_product: true
   field_keywords: true
-  field_launch_date: true
   field_new_product: true
   field_pdfs: true
   field_product_classifications: true
