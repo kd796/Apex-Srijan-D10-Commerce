@@ -49,25 +49,29 @@
     {% if page.pre_content %}
       {{ page.pre_content }}
     {% endif %}
-    <div class="wrapper-content">
-      <div class="homepage-container row">
+    <div>
+      <div class="homepage-container">
         {% if page.sidebar_first %}
-          <div class="col col-sidebar">
-            {{ page.sidebar_first }}
-          </div>
-          <div class="col col-main px-0">
-            {% if page.content %}
-              {{ page.content }}
-            {% endif %}
+          <div class="row">
+            <div class="col col-sidebar">
+              {{ page.sidebar_first }}
+            </div>
+            <div class="col col-main px-0">
+              {% if page.content %}
+                {{ page.content }}
+              {% endif %}
+            </div>
           </div>
         {% elseif page.sidebar_second %}
-          <div class="col col-main px-0">
-            {% if page.content %}
-              {{ page.content }}
-            {% endif %}
-          </div>
-          <div class="col col-sidebar">
-            {{ page.sidebar_second }}
+          <div class="row">
+            <div class="col col-main px-0">
+              {% if page.content %}
+                {{ page.content }}
+              {% endif %}
+            </div>
+            <div class="col col-sidebar">
+              {{ page.sidebar_second }}
+            </div>
           </div>
         {% else %}
           {{ page.content }}
