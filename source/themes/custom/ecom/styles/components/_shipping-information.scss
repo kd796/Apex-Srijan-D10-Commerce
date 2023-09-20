@@ -1,0 +1,71 @@
+.shipping-information {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 0;
+  justify-content: space-between;
+
+  .ord-title {
+    margin: 0 0 15px;
+    padding: 0 0 10px;
+  }
+
+  .border-bottom {
+    border-bottom: 1px solid $silver;
+  }
+
+  .top-space {
+    padding-top: 30px;
+  }
+
+  &__left {
+    width: 100%;
+    padding: 10px;
+    margin: 0 0 16px;
+    border-radius: 5px;
+    align-self: flex-start;
+    border: 1px solid $silver;
+    background-color: $silver-secondary;
+
+    @media only screen and (min-width: $tablet){
+      margin: 0;
+      width: 250px;
+    }
+
+    > ul {
+      > li {
+        margin: 0 0 3px;
+
+        > a {
+          font-weight: $bold;
+        }
+
+        > ul {
+          padding-left: 10px;
+
+          > li {
+            margin: 0 0 3px;
+          }
+        }
+      }
+    }
+  }
+
+  &__right {
+    width: 100%;
+    @media only screen and (min-width: $tablet){
+      width: calc(100% - 275px);
+    }
+
+    h1 {
+      padding: 0 !important;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+
+    h3 {
+      font-size: 18px;
+    }
+  }
+}
