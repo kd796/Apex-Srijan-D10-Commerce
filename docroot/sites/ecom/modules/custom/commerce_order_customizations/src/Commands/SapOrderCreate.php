@@ -166,11 +166,16 @@ class SapOrderCreate extends DrushCommands {
           array_push($eligible_order_ids, $order_id);
         }
       }
-      $order_objs = $this->entityTypeManager->getStorage('commerce_order')->loadByProperties([
-        'order_id' => $eligible_order_ids,
-      ]);
-      $order_objs = array_values($order_objs);
-      return $order_objs;
+      if (!empty($eligible_order_ids)) {
+        $order_objs = $this->entityTypeManager->getStorage('commerce_order')->loadByProperties([
+          'order_id' => $eligible_order_ids,
+        ]);
+        $order_objs = array_values($order_objs);
+        return $order_objs;
+      }
+      else {
+        return [];
+      }
     }
     else {
       return [];
