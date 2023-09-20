@@ -36,6 +36,18 @@
         width: 100%;
         padding-right: 0;
       }
+
+      .form-actions {
+        .button {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
+        .link--previous {
+          padding-left: 16px;
+          text-transform: capitalize;
+        }
+      }
     }
 
     .layout-region-checkout-secondary {
@@ -102,7 +114,6 @@
       label {
         width: 115px;
         text-transform: capitalize;
-        position: static !important;
 
         @media only screen and (max-width: $tablet) {
           width: 100px;
@@ -114,6 +125,10 @@
 
         @media only screen and (max-width: $mobile) {
           width: 100%;
+        }
+
+        &.visually-hidden {
+          position: static !important;
         }
       }
 
@@ -159,6 +174,10 @@
         label {
           padding: 0;
           width: calc(100% - 25px);
+
+          &:before {
+            display: none;
+          }
         }
 
         .description {

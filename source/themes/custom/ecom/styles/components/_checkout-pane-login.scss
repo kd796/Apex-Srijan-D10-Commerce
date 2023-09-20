@@ -42,7 +42,7 @@
       }
     }
 
-    .checkout-pane-login {
+    .checkout-pane-email-registration-login {
       padding: 0;
       display: flex;
       flex-wrap: wrap;
@@ -108,6 +108,10 @@
         }
 
         .fieldset-wrapper {
+          .form-item--error-message {
+            display: none;
+          }
+
           .form-item {
             margin: 0 0 16px;
 
@@ -136,6 +140,15 @@
               &::placeholder {
                 color: $light-black;
               }
+            }
+
+            .description {
+              display: none;
+            }
+
+            .form-item--error-message {
+              display: block;
+              padding: 5px 0 0;
             }
           }
 

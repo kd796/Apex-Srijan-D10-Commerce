@@ -73,11 +73,18 @@
         color: $black;
         font-size: 14px;
         padding: 0 16px;
+        position: relative;
         font-weight: $normal;
         line-height: 16.94px;
 
         &:not(:last-child) {
           text-align: left;
+        }
+
+        &.order-total-line-label {
+          &:after {
+            content: ":";
+          }
         }
       }
 

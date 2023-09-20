@@ -168,6 +168,9 @@
     max-width: 149px;
     max-height: 45px;
     object-fit: contain;
+    @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      min-width: 120px;
+    }
   }
 
   a {
