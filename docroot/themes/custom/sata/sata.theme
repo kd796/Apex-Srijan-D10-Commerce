@@ -711,10 +711,6 @@ function sata_preprocess_page(array &$variables) {
       unset($variables['page']['content']['sata_breadcrumbs']);
     }
   }
-
-  $site_name = getenv('AH_DRUPAL_SITE_NAME');
-   $variables['drupal_sitename']= $site_name;
-
 }
 
 /**
