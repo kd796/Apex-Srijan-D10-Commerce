@@ -198,3 +198,26 @@ function facet_block_brand_logo_alter(&$vars) {
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_hook.
+ */
+function ecom_preprocess_node(&$variables) {
+  if (isset($variables['view_mode']) && $variables['view_mode'] == "search_index") {
+    _product_search_index_view_mode($variables);
+  }
+}
+
+/**
+ * Customized Product's search_index view mode.
+ */
+function _product_search_index_view_mode(&$variables) {
+  $product = $variables['elements']['#node'];
+  $commerce_product = $product->get('field_commerce_product')->entity;
+  $commerce_product_variation = $commerce_product->get('variations')->entity;
+  $commerce_product_price = $commerce_product_variation->getPrice();
+  $currency_formatter = \Drupal::service('commerce_price.currency_formatter');
+  $variables['price'] = $currency_formatter->format($commerce_product_price->getNumber(),
+    $commerce_product_price->getCurrencyCode());
+  $variables['stock'] = $commerce_product_variation->get('field_stock')->value;
+}

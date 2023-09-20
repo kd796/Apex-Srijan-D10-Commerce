@@ -3,28 +3,32 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.media.field_media_image
-    - field.storage.node.field_product_images
     - field.storage.node.body
     - field.storage.node.field_brand
     - field.storage.node.field_product_classifications
     - field.storage.taxonomy_term.field_classification_id
-    - field.storage.node.field_product_specifications
+    - field.storage.node.field_commerce_product
+    - field.storage.commerce_product_variation.field_stock
     - field.storage.node.field_featured_product
     - field.storage.node.field_keywords
+    - field.storage.node.field_launch_date
     - field.storage.node.field_long_description
-    - field.storage.node.field_set_components
     - field.storage.node.field_new_product
     - field.storage.node.field_product_features
+    - field.storage.node.field_product_images
+    - field.storage.media.field_media_image
+    - field.storage.node.field_product_specifications
     - field.storage.node.field_set
+    - field.storage.node.field_set_components
     - field.storage.node.field_upc
     - search_api.server.acquia_search_server
     - core.entity_view_mode.node.full
   module:
     - search_api_solr
-    - media
     - taxonomy
+    - commerce_product
     - node
+    - media
     - search_api
 third_party_settings:
   search_api_solr:
@@ -96,6 +100,16 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.body
+  currency_code:
+    label: 'Currency code'
+    datasource_id: 'entity:node'
+    property_path: 'field_commerce_product:entity:variations:entity:price:currency_code'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_commerce_product
+      module:
+        - commerce_product
   field_brand:
     label: Brand
     datasource_id: 'entity:node'
@@ -113,7 +127,7 @@ field_settings:
       config:
         - field.storage.node.field_brand
   field_classification_id:
-    label: 'Product Classifications » Taxonomy term » Classification ID'
+    label: 'Category ID'
     datasource_id: 'entity:node'
     property_path: 'field_product_classifications:entity:field_classification_id'
     type: string
@@ -134,6 +148,14 @@ field_settings:
         - field.storage.taxonomy_term.field_classification_id
       module:
         - taxonomy
+  field_commerce_product:
+    label: 'Commerce Product'
+    datasource_id: 'entity:node'
+    property_path: field_commerce_product
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_commerce_product
   field_featured_product:
     label: 'Featured Product'
     datasource_id: 'entity:node'
@@ -150,6 +172,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_keywords
+  field_launch_date:
+    label: 'Launch Date'
+    datasource_id: 'entity:node'
+    property_path: field_launch_date
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_launch_date
   field_long_description:
     label: 'Long Description'
     datasource_id: 'entity:node'
@@ -201,6 +231,17 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_set
+  field_stock:
+    label: Stock
+    datasource_id: 'entity:node'
+    property_path: 'field_commerce_product:entity:variations:entity:field_stock'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.commerce_product_variation.field_stock
+        - field.storage.node.field_commerce_product
+      module:
+        - commerce_product
   field_upc:
     label: UPC
     datasource_id: 'entity:node'
@@ -210,7 +251,7 @@ field_settings:
       config:
         - field.storage.node.field_upc
   name:
-    label: 'Product Classifications » Taxonomy term » Name'
+    label: 'Category Name '
     datasource_id: 'entity:node'
     property_path: 'field_product_classifications:entity:name'
     type: string
@@ -246,6 +287,16 @@ field_settings:
     indexed_locked: true
     type_locked: true
     hidden: true
+  number:
+    label: Price
+    datasource_id: 'entity:node'
+    property_path: 'field_commerce_product:entity:variations:entity:price:number'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_commerce_product
+      module:
+        - commerce_product
   rendered_item:
     label: 'Rendered HTML output'
     property_path: rendered_item
@@ -256,6 +307,14 @@ field_settings:
       view_mode:
         'entity:node':
           product: full
+  rendered_item_1:
+    label: 'Rendered HTML output'
+    property_path: rendered_item
+    type: text
+    configuration:
+      roles:
+        - anonymous
+      view_mode: {  }
   status:
     label: status
     datasource_id: 'entity:node'
@@ -285,6 +344,16 @@ field_settings:
         - field.storage.node.field_product_images
       module:
         - media
+  title_2:
+    label: 'Commerce Product » Product » Title'
+    datasource_id: 'entity:node'
+    property_path: 'field_commerce_product:entity:title'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_commerce_product
+      module:
+        - commerce_product
   type:
     label: 'Content type'
     datasource_id: 'entity:node'
@@ -311,6 +380,16 @@ field_settings:
     dependencies:
       module:
         - node
+  variations:
+    label: 'Commerce Product » Product » Variations'
+    datasource_id: 'entity:node'
+    property_path: 'field_commerce_product:entity:variations'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_commerce_product
+      module:
+        - commerce_product
 datasource_settings:
   'entity:node':
     bundles:
