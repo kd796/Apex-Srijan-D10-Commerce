@@ -28,9 +28,7 @@
         <tr>
           <td>{{ order_item.getQuantity|number_format }}&nbsp;x</td>
           {% if order_item.hasPurchasedEntity %}
-            <td>{{ order_item.getPurchasedEntity|commerce_entity_render('summary') }}</td>
-          {% else %}
-            <td>{{- order_item.label -}}</td>
+            <td>{{- product_title -}}</td>
           {% endif %}
           <td>{{- order_item.getTotalPrice|commerce_price_format -}}</td>
         </tr>
