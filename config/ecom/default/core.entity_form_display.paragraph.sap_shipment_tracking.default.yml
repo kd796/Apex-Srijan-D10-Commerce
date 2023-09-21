@@ -1,0 +1,43 @@
+uuid: 18456533-b4dc-415b-ac9b-211480deec6c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.sap_shipment_tracking.field_carrier_name
+    - field.field.paragraph.sap_shipment_tracking.field_tracking_link
+    - field.field.paragraph.sap_shipment_tracking.field_tracking_number
+    - paragraphs.paragraphs_type.sap_shipment_tracking
+  module:
+    - link
+id: paragraph.sap_shipment_tracking.default
+targetEntityType: paragraph
+bundle: sap_shipment_tracking
+mode: default
+content:
+  field_carrier_name:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_tracking_link:
+    type: link_default
+    weight: 1
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_tracking_number:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

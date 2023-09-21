@@ -1,0 +1,110 @@
+uuid: ad851495-6495-4a0d-9c2e-0450c9b4e617
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_shipping.commerce_shipment_type.default
+    - field.field.commerce_shipment.default.field_item_and_quantity
+    - field.field.commerce_shipment.default.field_sap_order_number
+    - field.field.commerce_shipment.default.field_sap_shipment
+    - field.field.commerce_shipment.default.field_sap_shipment_tracking
+    - field.field.commerce_shipment.default.field_shipment_date
+    - field.field.commerce_shipment.default.field_total_item_quantity
+  module:
+    - commerce_shipping
+    - datetime
+    - paragraphs
+id: commerce_shipment.default.default
+targetEntityType: commerce_shipment
+bundle: default
+mode: default
+content:
+  field_item_and_quantity:
+    type: paragraphs
+    weight: 6
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+  field_sap_order_number:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_sap_shipment:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_sap_shipment_tracking:
+    type: paragraphs
+    weight: 7
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+  field_shipment_date:
+    type: datetime_default
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_total_item_quantity:
+    type: string_textfield
+    weight: 8
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  shipping_method:
+    type: commerce_shipping_rate
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  shipping_profile:
+    type: commerce_shipping_profile
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  state: true
+  tracking_code: true
+  weight: true

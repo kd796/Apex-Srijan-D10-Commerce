@@ -8,6 +8,7 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Link;
+use Drupal\Core\Url;
 
 // Including all the preprocesses.
 include_once 'preprocess/node.preprocess.php';
@@ -98,6 +99,22 @@ function ecom_preprocess_commerce_checkout_order_summary(&$variables) {
   }
   // Set the product titles in the variables array.
   $variables['product_titles'] = $product_titles;
+}
+
+/**
+ * Prepares variables for commerce order item templates.
+ *
+ * Default template: commerce-order-item.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing rendered fields.
+ *   - attributes: HTML attributes for the containing element.
+ */
+function ecom_preprocess_commerce_order(array &$variables) {
+  $view_mode = $variables['elements']['#view_mode'];
+  $order = $variables['elements']['#commerce_order'];
+  $variables['shipping_and_tracking'] = views_embed_view('order_shipment_and_tracking', 'order_shipment_tracking', $order->id());
 }
 
 /**
@@ -262,7 +279,7 @@ function _product_search_index_view_mode(&$variables) {
     $site_url = $uri['scheme'] . '://' . $uri['host'];
 
     $add_to_cart_url = $site_url . '/add-to-cart/' . $commerce_product_variation->id() . '/' . $commerce_product_variation->id();
-    $link = Link::fromTextAndUrl($add_to_card_text, \Drupal\Core\Url::fromUri($add_to_cart_url));
+    $link = Link::fromTextAndUrl($add_to_card_text, Url::fromUri($add_to_cart_url));
     $rendered_link = $link->toRenderable();
     $rendered_link['#attributes']['class'][] = 'btn-primary';
     $renderer = \Drupal::service('renderer');

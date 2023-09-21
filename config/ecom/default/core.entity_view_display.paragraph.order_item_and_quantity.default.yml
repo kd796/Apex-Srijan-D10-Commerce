@@ -1,0 +1,31 @@
+uuid: 66eafae0-15bb-459a-b387-df4321ff280a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.order_item_and_quantity.field_item_name
+    - field.field.paragraph.order_item_and_quantity.field_item_quantity_shipped
+    - paragraphs.paragraphs_type.order_item_and_quantity
+id: paragraph.order_item_and_quantity.default
+targetEntityType: paragraph
+bundle: order_item_and_quantity
+mode: default
+content:
+  field_item_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_item_quantity_shipped:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  search_api_excerpt: true

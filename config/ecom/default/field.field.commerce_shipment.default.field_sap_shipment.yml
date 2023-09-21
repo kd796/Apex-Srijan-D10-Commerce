@@ -1,0 +1,23 @@
+uuid: 258ce2dd-df78-43bc-8bca-001c9e62f7de
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_shipping.commerce_shipment_type.default
+    - field.storage.commerce_shipment.field_sap_shipment
+id: commerce_shipment.default.field_sap_shipment
+field_name: field_sap_shipment
+entity_type: commerce_shipment
+bundle: default
+label: 'SAP Shipment?'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

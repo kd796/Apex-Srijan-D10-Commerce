@@ -1,0 +1,21 @@
+uuid: 766e9864-1208-4c1e-9157-1e46137a79e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_carrier_name
+    - paragraphs.paragraphs_type.sap_shipment_tracking
+id: paragraph.sap_shipment_tracking.field_carrier_name
+field_name: field_carrier_name
+entity_type: paragraph
+bundle: sap_shipment_tracking
+label: 'Carrier Name'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 'UNITED PARCEL SERVICE'
+default_value_callback: ''
+settings: {  }
+field_type: string

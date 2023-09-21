@@ -71,8 +71,10 @@
       {{ order.total_price }}
     </div>
   {% endif %}
+  {{ shipping_and_tracking }}
+  {#
   {% if additional_order_fields|render|trim|striptags %}
   	{{ additional_order_fields }}
   {% endif %}
-
+  #}
 </div>

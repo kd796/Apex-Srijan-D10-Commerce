@@ -1,0 +1,79 @@
+uuid: 130f03c1-10c8-4bd5-bb18-8ed067925278
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_shipping.commerce_shipment_type.default
+    - field.storage.commerce_shipment.field_item_and_quantity
+    - paragraphs.paragraphs_type.order_item_and_quantity
+  module:
+    - entity_reference_revisions
+id: commerce_shipment.default.field_item_and_quantity
+field_name: field_item_and_quantity
+entity_type: commerce_shipment
+bundle: default
+label: 'Item and Quantity'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      order_item_and_quantity: order_item_and_quantity
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 18
+        enabled: false
+      accordion_item:
+        weight: 19
+        enabled: false
+      content:
+        weight: 20
+        enabled: false
+      embed_block:
+        weight: 21
+        enabled: false
+      embed_iframe:
+        weight: 22
+        enabled: false
+      embed_view:
+        weight: 23
+        enabled: false
+      featured_content:
+        weight: 24
+        enabled: false
+      featured_links:
+        weight: 25
+        enabled: false
+      featured_media:
+        weight: 26
+        enabled: false
+      hero:
+        weight: 27
+        enabled: false
+      hero_slide:
+        weight: 28
+        enabled: false
+      image_and_text:
+        weight: 29
+        enabled: false
+      order_item_and_quantity:
+        weight: 30
+        enabled: true
+      pullquote:
+        weight: 31
+        enabled: false
+      section:
+        weight: 32
+        enabled: false
+      tabs:
+        weight: 33
+        enabled: false
+      tabs_tab:
+        weight: 34
+        enabled: false
+field_type: entity_reference_revisions

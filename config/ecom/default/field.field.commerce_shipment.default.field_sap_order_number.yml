@@ -1,0 +1,19 @@
+uuid: 4c13948b-ec08-4a66-9087-8015e6a6fae8
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_shipping.commerce_shipment_type.default
+    - field.storage.commerce_shipment.field_sap_order_number
+id: commerce_shipment.default.field_sap_order_number
+field_name: field_sap_order_number
+entity_type: commerce_shipment
+bundle: default
+label: 'Sap Order Number'
+description: 'Order Number created by SAP'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
