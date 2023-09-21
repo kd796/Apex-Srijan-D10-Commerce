@@ -74,29 +74,29 @@ function ecom_preprocess_commerce_checkout_order_summary(&$variables) {
   /** @var \Drupal\commerce_order\Entity\OrderInterface $order */
   $order = $variables['order_entity'];
 
-  // Get the first order item.
+  // Get the order items.
   $order_items = $order->getItems();
-  $first_order_item = reset($order_items);
 
-  if (!$first_order_item) {
-    // No order item found; there's nothing to do.
-    return;
+  $product_titles = [];
+
+  foreach ($order_items as $order_item) {
+    // Get the title of each order item.
+    $order_item_title = $order_item->getTitle();
+
+    // Load the node by title.
+    $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+    $nodes = $node_storage->loadByProperties([
+      'title' => $order_item_title,
+    ]);
+
+    if ($node = reset($nodes)) {
+      // Get the value of the 'field_long_description' field from the node.
+      $product_title = $node->get('field_long_description')->value;
+      $product_titles[] = $product_title;
+    }
   }
-
-  // Get the title of the first order item.
-  $order_item_title = $first_order_item->getTitle();
-
-  // Load the node by title.
-  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
-  $nodes = $node_storage->loadByProperties([
-    'title' => $order_item_title,
-  ]);
-
-  if ($node = reset($nodes)) {
-    // Get the value of the 'field_long_description' field from the node.
-    $product_title = $node->get('field_long_description')->value;
-    $variables['product_title'] = $product_title;
-  }
+  // Set the product titles in the variables array.
+  $variables['product_titles'] = $product_titles;
 }
 
 /**

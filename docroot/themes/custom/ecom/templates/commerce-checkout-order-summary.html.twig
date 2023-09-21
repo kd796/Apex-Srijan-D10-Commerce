@@ -28,7 +28,7 @@
         <tr>
           <td>{{ order_item.getQuantity|number_format }}&nbsp;x</td>
           {% if order_item.hasPurchasedEntity %}
-            <td>{{- product_title -}}</td>
+            <td>{{ product_titles[loop.index0] }}</td>
           {% endif %}
           <td>{{- order_item.getTotalPrice|commerce_price_format -}}</td>
         </tr>
