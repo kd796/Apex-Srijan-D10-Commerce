@@ -52,10 +52,13 @@ class AlterOrderTotalEventsSubscriber implements EventSubscriberInterface {
     }
 
     if ($order_obj->getBillingProfile() != NULL) {
-      $order_obj->set('field_order_exported',0);
+      // Getting order state.
+      $order_state = $order_obj->get('state')->value;
+      if ($order_state == 'draft') {
+        $order_obj->set('field_order_exported', 0);
+      }
       // Getting values from address field.
       $customer_address = $order_obj->getBillingProfile()->get('address')->first();
-
       $state = $customer_address->get('administrative_area')->getCastedValue();
       $city = $customer_address->get('locality')->getCastedValue();
       $postal_code = $customer_address->get('postal_code')->getCastedValue();

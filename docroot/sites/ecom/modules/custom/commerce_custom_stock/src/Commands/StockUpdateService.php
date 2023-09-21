@@ -249,7 +249,7 @@ class StockUpdateService extends DrushCommands {
         'finished' => '\Drupal\commerce_custom_stock\BatchService::updateFinished',
       ];
       // Chunk the products into smaller batches to process.
-      $product_chunks = array_chunk($products, 20, TRUE);
+      $product_chunks = array_chunk($products, 10, TRUE);
       $this->logger()->notice("Batch operations start.");
       foreach ($product_chunks as $product_chunk) {
         $batch['operations'][] = [
