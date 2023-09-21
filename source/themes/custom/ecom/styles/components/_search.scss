@@ -1,0 +1,136 @@
+.search-page {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 32px auto;
+
+  .sidebar-first {
+    flex: 0 0 100%;
+    max-width: 100%;
+    height: fit-content;
+    background-color: $filter-bg;
+    padding: 15px;
+    @media screen and (min-width: $tablet-max) {
+      max-width: 20%;
+      flex: 0 0 20%;
+    }
+  }
+
+  .main-content {
+    margin-right: 0;
+    flex: 0 0 100%;
+    max-width: 100%;
+
+    @media screen and (min-width: $tablet-max) {
+      flex: 0 0 80%;
+      max-width: 80%;
+      padding-left: 24px;
+    }
+  }
+
+  .block-facet--checkbox h2 {
+    font-size: 14px;
+    font-weight: $bold;
+    padding-right: 20px;
+    background: url('#{$image-base-path}/plus.svg') no-repeat;
+    background-size: 14px;
+    background-position: calc(100% - 5px);
+    cursor: pointer;
+  }
+
+  .block-facet--checkbox.filter--open h2 {
+    background: url('#{$image-base-path}/minus.svg') no-repeat;
+    background-size: 14px;
+    background-position: calc(100% - 5px);
+  }
+
+  .facet-item__value {
+    font-weight: normal;
+    font-size: 12px;
+  }
+
+  .facets-widget-checkbox {
+    display: none;
+
+    ul {
+      max-height: 135px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      border-radius: 5px;
+      padding: 10px 5px;
+      background: $white;
+    }
+
+    .facet-item {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .facets-checkbox {
+    & + label {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 10px;
+      cursor: pointer;
+  
+      &::before {
+        content: '';
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        left: 0;
+        top: 2px;
+        background: transparent;
+        border: 1px solid $black;
+      }
+    }
+
+    &:checked + label::before {
+      background-image: url('#{$image-base-path}/checkbox_checked.png');
+    }
+  }  
+
+  input {
+    display: none;
+  }
+
+  .brand-logo-listing {
+    display: flex;
+    flex-wrap: wrap;
+
+    .list-item {
+      max-width: 20%;
+      margin: 20px;
+      max-height: 60px;
+    }
+
+    img {
+      max-height: 60px;
+      object-fit: contain;
+    }
+  }
+
+  .view-filters {
+    background: transparent;
+  }
+
+  .view-header-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $silver;
+    margin-bottom: 20px;
+
+    .view-header {
+      font-weight: $bold;
+    }
+  }
+
+  .filter--open .facets-widget-checkbox {
+    display: block;
+  }
+}
+
+.page-header__search .form-item-sort-by {
+  display: none;
+}

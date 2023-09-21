@@ -357,7 +357,8 @@
 }
 
 .product-list .view-recently-viewed-product .view-content,
-.view-product-category .view-content {
+.view-product-category .view-content,
+.view-acquia-product-search-solr .view-content {
   display: flex;
   flex-wrap: wrap;
   position: relative;
@@ -426,6 +427,28 @@
       }
 
       &:nth-child(4n+3) {
+        border-right: 0;
+      }
+    }
+  }
+}
+
+.view-acquia-product-search-solr .view-content {
+  max-width: 100%;
+
+  .views-row {
+    @media screen and (min-width: $tablet) and (max-width: $tablet-max) {
+      &:nth-child(2n) {
+        border-right: 0;
+      }
+
+      &:nth-child(2n+1) {
+        border-right: 1px solid $silver;
+      }
+    }
+
+    @media screen and (min-width: $tablet-max) {
+      &:nth-child(4n) {
         border-right: 0;
       }
     }
