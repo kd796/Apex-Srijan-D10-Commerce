@@ -1,6 +1,5 @@
 (function ($, Drupal, once) {
   'use strict';
-
   Drupal.behaviors.campbell = {
     attach: function (context, settings) {
       // Prevent the opening of the submenu on click of parent link.
@@ -79,7 +78,6 @@
           return false;
         });
       });
-
       // accordions
       $(once('accordion', '.accordion-title', context)).on('click', function (e) {
         e.preventDefault();
@@ -98,7 +96,6 @@
             .slideDown(200);
         }
       });
-
       // News Accordions
       $(once('new-accordion', '.news-accordion-title', context)).on('click', function (e) {
         e.preventDefault();
@@ -119,13 +116,31 @@
             .slideDown(200);
         }
       });
-
       // To align the Add address field if the address is empty.
       if ($('.address-book__container .address-book__empty-text').length > 0) {
         $('.address-book__container .address-book__add-link').css('position', 'unset');
       }
 
       /* end */
+
+      // County field append.
+      function checkoutCountyField() {
+        const appendElement = $('.commerce-checkout-flow').find('div[data-drupal-selector$="shipping-profile-address-0-address-container4"],[data-drupal-selector$="billing-information-address-0-address-container4"]');
+        const shippingCounty = $('.commerce-checkout-flow .checkout-pane-shipping-information [data-drupal-selector$="shipping-profile-address-0-address-container4"]');
+        const shippingCountyField = $('.commerce-checkout-flow .checkout-pane-shipping-information .field--name-field-county');
+        const paymentCountyField = $('.commerce-checkout-flow .checkout-pane-payment-information .field--name-field-county');
+        const paymentCounty = $('.commerce-checkout-flow .checkout-pane-payment-information [data-drupal-selector$="billing-information-address-0-address-container4"]');
+        if (appendElement.length < 1) {
+          return false;
+        }
+        if ($(shippingCounty).find('.field--name-field-county').length < 1) {
+          $(shippingCountyField).appendTo($(shippingCounty));
+        }
+        if ($(paymentCounty).find('.field--name-field-county').length < 1) {
+          $(paymentCountyField).appendTo($(paymentCounty));
+        }
+      }
+      checkoutCountyField();
     }
   };
 })(jQuery, Drupal, once);

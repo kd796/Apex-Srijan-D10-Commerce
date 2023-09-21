@@ -48,19 +48,20 @@ class AddressProfileController extends ControllerBase {
    */
   public function getCounty(Request $request) {
     // Get values from the AJAX request.
-    $city = $request->request->get('city');
-    $state = $request->request->get('state');
-    $zipCode = $request->request->get('zipcode');
+    $city = $request->query->get('city');
+    $state = $request->query->get('state');
+    $zipcode = $request->query->get('zipcode');
 
     // Create an array to hold address elements.
     $addressElements = [
       'city' => $city,
       'state' => $state,
-      'zipcode' => $zipCode,
+      'zipcode' => $zipcode,
     ];
 
     // Load term IDs for county Data by address elements.
     $termIds = $this->loadTermIdsByAddress($addressElements);
+
     $county = [];
 
     if (count($termIds) > 1) {
@@ -76,7 +77,7 @@ class AddressProfileController extends ControllerBase {
 
     // Return a JSON response with the term information or an error.
     if (!empty($county)) {
-      return new JsonResponse(['county' => $county]);
+      return new JsonResponse(["county" => $county]);
     }
     else {
       return new JsonResponse([CommonConstants::API_RESULT_NOT_FOUND]);
@@ -87,7 +88,7 @@ class AddressProfileController extends ControllerBase {
    * Loads taxonomy term IDs for address elements.
    *
    * @param array $addressElements
-   *   An array of address elements (city, state, zipcode).
+   *   An array of address elements (city and state).
    *
    * @return array
    *   An array of taxonomy term IDs.
@@ -95,16 +96,19 @@ class AddressProfileController extends ControllerBase {
   private function loadTermIdsByAddress(array $addressElements) {
     $cityVal = $addressElements['city'];
     $stateVal = $addressElements['state'];
-    $postalCode = (int) $addressElements['zipcode'];
+    $zipcode = $addressElements['zipcode'];
 
     $query = $this->entityTypeManager->getStorage('taxonomy_term')->getQuery();
-    $termIds = $query->condition('vid', 'us_tax_data')
+    $query->condition('vid', 'us_tax_data')
       ->accessCheck(FALSE)
-      ->condition('field_us_state', $stateVal)
       ->condition('field_us_city', $cityVal)
-      ->condition('field_starting_zip_code', $postalCode, '<=')
-      ->condition('field_ending_zip_code', $postalCode, '>=')
-      ->execute();
+      ->condition('field_us_state', $stateVal);
+    if (!empty($zipcode) && $zipcode != '0') {
+      $query->condition('field_starting_zip_code', $zipcode, '<=');
+      $query->condition('field_ending_zip_code', $zipcode, '>=');
+    }
+
+    $termIds = $query->execute();
 
     // Reindex the array to start from 0.
     $termIds = array_values($termIds);
@@ -124,13 +128,11 @@ class AddressProfileController extends ControllerBase {
   public function getCity(Request $request) {
     // Get values from the AJAX request.
     $state = $request->query->get('state');
-    $zipCode = $request->query->get('zipcode');
-    $cityCharacter = $request->query->get('q');
+    $cityCharacter = strtoupper($request->query->get('q'));
 
     // Create an array to hold address elements.
     $addressElements = [
       'state' => $state,
-      'zipcode' => $zipCode,
       'city' => $cityCharacter,
     ];
 
@@ -160,31 +162,26 @@ class AddressProfileController extends ControllerBase {
    * Loads taxonomy term IDs for City options by state elements.
    *
    * @param array $addressElements
-   *   An array of address elements (state, zipcode).
+   *   An array of address elements (state and city).
    *
    * @return array
    *   An array of taxonomy term IDs.
    */
   private function loadTermIdsByState(array $addressElements) {
     $stateVal = $addressElements['state'];
-    $postalCode = (int) $addressElements['zipcode'];
     $cityStartsChar = $addressElements['city'];
 
     $query = $this->entityTypeManager->getStorage('taxonomy_term')->getQuery();
     $query->condition('vid', 'us_tax_data')
       ->accessCheck(FALSE);
 
-    if (!empty($postalCode) && $postalCode != '0') {
-      $query->condition('field_starting_zip_code', $postalCode, '<=');
-      $query->condition('field_ending_zip_code', $postalCode, '>=');
-    }
     if (!empty($stateVal) && $stateVal != 'All') {
       $query->condition('field_us_state', $stateVal);
     }
     if (!empty($cityStartsChar)) {
       $query->condition('field_us_city', $cityStartsChar, 'STARTS_WITH');
     }
-    elseif ($stateVal == 'All' || $postalCode == '0') {
+    elseif ($stateVal == 'All') {
       $query->range(0, 10);
     }
 
