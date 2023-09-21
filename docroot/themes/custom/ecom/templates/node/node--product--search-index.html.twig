@@ -76,21 +76,25 @@
   ]
 %}
 
-<div class="product-search-card">
-  <a href={{ url }} class="image">
-    {{ content.field_media }}
+
+<div class="card--list">
+  <a href="{{ url }}" class="card--list__link">
+    {% if content.field_media %}
+      <div class="card--list__image">
+        {{ content.field_media }}
+      </div>
+    {% endif %}
+    {% if content.field_long_description %}
+      <div class="card--list__title">
+        {{ content.field_long_description }}
+      </div>
+    {% endif %}
   </a>
-
-  <a href={{ url }} class="title">
-    <h2>
-      {{ content.field_long_description }}
-    </h2>
-  </a>
-
-  <span class="lable">
-    {{ '#' }}{{ label|e|striptags|trim }}
-  </span>
-
+  {% if label %}
+    <div class="card--list__category">
+      {{'#' | t }}{{ label }}
+    </div>
+  {% endif %}
   <div class="cart-price__wrapper">
     {% if price %}
       <div class="price">
