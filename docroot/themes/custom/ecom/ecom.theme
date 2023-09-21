@@ -7,6 +7,7 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
+use Drupal\Core\Link;
 
 // Including all the preprocesses.
 include_once 'preprocess/node.preprocess.php';
@@ -247,9 +248,25 @@ function _product_search_index_view_mode(&$variables) {
   $product = $variables['elements']['#node'];
   $commerce_product = $product->get('field_commerce_product')->entity;
   $commerce_product_variation = $commerce_product->get('variations')->entity;
+
   $commerce_product_price = $commerce_product_variation->getPrice();
   $currency_formatter = \Drupal::service('commerce_price.currency_formatter');
   $variables['price'] = $currency_formatter->format($commerce_product_price->getNumber(),
     $commerce_product_price->getCurrencyCode());
   $variables['stock'] = $commerce_product_variation->get('field_stock')->value;
+  if ($variables['stock'] && $variables['stock'] > 0) {
+    $add_to_card_text = t('Add to cart');
+    $request = \Drupal::request();
+    $current_url = $request->getUri();
+    $uri = parse_url($current_url);
+    $site_url = $uri['scheme'] . '://' . $uri['host'];
+
+    $add_to_cart_url = $site_url . '/add-to-cart/' . $commerce_product_variation->id() . '/' . $commerce_product_variation->id();
+    $link = Link::fromTextAndUrl($add_to_card_text, \Drupal\Core\Url::fromUri($add_to_cart_url));
+    $rendered_link = $link->toRenderable();
+    $rendered_link['#attributes']['class'][] = 'btn-primary';
+    $renderer = \Drupal::service('renderer');
+    $variables['add_to_cart'] = $renderer->render($rendered_link);
+  }
+
 }
