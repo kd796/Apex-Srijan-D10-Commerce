@@ -1,0 +1,25 @@
+uuid: 100f00bb-3d5f-413a-8c3c-30e5589d7392
+langcode: pt-br
+status: true
+dependencies:
+  module:
+    - user
+  enforced:
+    module:
+      - password_policy
+_core:
+  default_config_hash: FkcjtYqR-bTc6oZBLdP6A89u1UPfdRIV1NYQg_kkUkg
+id: user.field_pending_expire_sent
+field_name: field_pending_expire_sent
+entity_type: user
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: true
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

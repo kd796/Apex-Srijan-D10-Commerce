@@ -702,7 +702,6 @@ function sata_preprocess_menu__main__block_header_menu_main(array &$variables) {
 function sata_preprocess_page(array &$variables) {
   // Basic attribute variables.
   $variables['footer_attributes']['class'][] = 'region';
-
   if (isset($variables['node']) && is_object($variables['node'])) {
     /** @var \Drupal\node\NodeInterface $node */
     $node = $variables['node'];
