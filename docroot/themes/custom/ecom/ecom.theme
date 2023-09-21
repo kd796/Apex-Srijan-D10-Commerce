@@ -68,6 +68,38 @@ function ecom_preprocess_commerce_shipment(array &$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for commerce_checkout_order_summary.
+ */
+function ecom_preprocess_commerce_checkout_order_summary(&$variables) {
+  /** @var \Drupal\commerce_order\Entity\OrderInterface $order */
+  $order = $variables['order_entity'];
+
+  // Get the first order item.
+  $order_items = $order->getItems();
+  $first_order_item = reset($order_items);
+
+  if (!$first_order_item) {
+    // No order item found; there's nothing to do.
+    return;
+  }
+
+  // Get the title of the first order item.
+  $order_item_title = $first_order_item->getTitle();
+
+  // Load the node by title.
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $nodes = $node_storage->loadByProperties([
+    'title' => $order_item_title,
+  ]);
+
+  if ($node = reset($nodes)) {
+    // Get the value of the 'field_long_description' field from the node.
+    $product_title = $node->get('field_long_description')->value;
+    $variables['product_title'] = $product_title;
+  }
+}
+
+/**
  * Implements hook_theme_suggestions_HOOK_alter() for form templates.
  */
 function ecom_theme_suggestions_block_alter(array &$suggestions, array $variables) {
