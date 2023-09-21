@@ -16,6 +16,7 @@ class BatchService {
    *   Context for operations.
    */
   public static function updateProduct($product_chunk, &$context = []) {
+    sleep(3);
     foreach ($product_chunk as $sku => $qty) {
       $product_node_arr = \Drupal::entityTypeManager()->getStorage('node')
         ->loadByProperties([
