@@ -102,6 +102,39 @@ function ecom_preprocess_commerce_checkout_order_summary(&$variables) {
 }
 
 /**
+ * Prepares variables for product variation templates.
+ *
+ * Default template: commerce-product-variation.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing rendered fields.
+ *   - attributes: HTML attributes for the containing element.
+ */
+function ecom_preprocess_commerce_product_variation(array &$variables) {
+  /** @var Drupal\commerce_product\Entity\ProductVariationInterface $product_variation */
+  $product_variation = $variables['elements']['#commerce_product_variation'];
+  $product_variation_title = $product_variation->getTitle();
+  $product_titles = [];
+
+  // Load the node by title.
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $nodes = $node_storage->loadByProperties([
+    'title' => $product_variation_title,
+  ]);
+
+  if ($node = reset($nodes)) {
+    // Get the value of the 'field_long_description' field from the node.
+    $node_url = $node->toUrl();
+    $variables['product_url'] = $node_url;
+    $product_title = $node->get('field_long_description')->value;
+    $product_titles[] = $product_title;
+  }
+  // Set the product titles in the variables array.
+  $variables['product_titles'] = $product_titles;
+}
+
+/**
  * Prepares variables for commerce order item templates.
  *
  * Default template: commerce-order-item.html.twig.
