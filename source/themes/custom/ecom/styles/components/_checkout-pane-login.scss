@@ -86,7 +86,7 @@
         @media only screen and(max-width: $mobile-sm) {
           padding: 0;
           width: 100%;
-          margin: 0 0 16px;
+          margin: 16px 0;
         }
 
         legend {
@@ -165,6 +165,7 @@
           input[type="submit"][data-drupal-selector$="guest-continue"] {
             float: right;
             margin: 60px 0 0;
+            min-width: 150px;
             @media only screen and(max-width: $tablet-max) {
               margin: 40px 0 0;
             }

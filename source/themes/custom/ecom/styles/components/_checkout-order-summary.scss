@@ -16,27 +16,16 @@
 
   .checkout-order-summary {
     table {
-      margin-bottom: 100px;
-      @media only screen and (max-width: $desktop) {
-        margin-bottom: 85px;
-      }
-      @media only screen and (max-width: $tablet-max) {
-        margin-bottom: 65px;
-      }
-      @media only screen and (max-width: $tablet) {
-        margin-bottom: 45px;
-      }
-      @media only screen and (max-width: $mobile-sm) {
-        margin-bottom: 25px;
-      }
-      @media only screen and (max-width: $mobile) {
-        margin-bottom: 18px;
-      }
+      margin-bottom: 20px;
+      border-bottom: solid 1px rgba(51, 51, 51, 0.2);
 
       tbody {
+        padding-bottom: 20px;
+        display: block;
+
         tr {
           td {
-            padding: 0;
+            padding: 0 0 10px;
             border-top: 0;
             color: $black;
             font-size: 14px;
@@ -45,6 +34,10 @@
 
             &:first-child {
               display: none;
+            }
+
+            &:nth-child(2) {
+              padding-right: 10px;
             }
 
             &:last-child {
