@@ -7,6 +7,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drush\Commands\DrushCommands;
+use League\Flysystem\FileAttributes;
 use League\Flysystem\Filesystem;
 use League\Flysystem\PhpseclibV2\SftpAdapter;
 use League\Flysystem\PhpseclibV2\SftpConnectionProvider;
@@ -79,6 +80,12 @@ class StockUpdateService extends DrushCommands {
    * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
   protected $configFactory;
+  /**
+   * The sftp config.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
+  protected $sftpConfig;
 
   /**
    * Initializes the ftp connection.
@@ -90,36 +97,7 @@ class StockUpdateService extends DrushCommands {
     $this->config = $config_factory;
     $this->drupalFileSystem = $file_system;
     $this->loggerFactory = $factory;
-    $sftp_config = $this->config->get('commerce_custom_stock.settings');
-
-    $sftp_host = $sftp_config->get('stftp_host');
-    $sftp_username = $sftp_config->get('stftp_user');
-    $sftp_password = $sftp_config->get('stftp_password');
-    $this->root = $sftp_config->get('stftp_root');
-
-    $this->connection = new SftpConnectionProvider(
-      $sftp_host,
-      $sftp_username,
-      $sftp_password
-    );
-
-    $this->adapter = new SftpAdapter($this->connection, '/');
-
-    // Load up our SFTP connection.
-    $this->filesystem = new Filesystem($this->adapter);
-
-    try {
-      $this->connection->provideConnection();
-
-    }
-    catch (UnableToConnectToSftpHost $e) {
-      $this->output()->writeln($e->getMessage());
-      return;
-    }
-    catch (\Exception $e) {
-      $this->output()->writeln($e->getMessage());
-      return;
-    }
+    $this->sftpConfig = $this->config->get('commerce_custom_stock.settings');
   }
 
   /**
@@ -130,48 +108,55 @@ class StockUpdateService extends DrushCommands {
    */
   public function inventoryManagement() {
 
-    $counter = 0;
-    // If 1 update is successful else failure.
-    $product_update_status = 0;
-    $public_folder_path = 'public://import/inventory_xml_files/';
-    $folder_path = $this->drupalFileSystem->realpath($public_folder_path);
-    $remoteFiles = $this->filesystem->listContents($this->root);
+    $connection_status = $this->loadConfig();
+    if ($connection_status != 0) {
+      $counter = 0;
+      // If 1 update is successful else failure.
+      $product_update_status = 0;
+      $public_folder_path = 'public://import/inventory_xml_files/';
+      $folder_path = $this->drupalFileSystem->realpath($public_folder_path);
+      $remoteFiles = $this->filesystem->listContents($this->root)->toArray();
 
-    foreach ($remoteFiles as $remoteFile) {
-      $this->downloadAndStoreFile($remoteFile['path'], $public_folder_path);
-      $counter++;
-    }
-    $this->logger()->notice('Download and stored phase from FTP Completed');
-    $this->logger()->notice("Total number of files processed are: '{$counter}'");
-    // Getting data after processing the xml files.
-    $data = $this->customXmlReader($public_folder_path);
-    // Updating the stock field in product variation.
-    if (!empty($data)) {
-      $product_update_status = $this->updatestock($data);
-    }
-    // Deleting all the files from public folder.
-    $this->deleteLocalFiles($folder_path);
-    if ($product_update_status) {
-      // Deleting all the files from FTP folder.
-      $this->deleteFtpFiles();
-      $this->logger()->success('Stock updated');
+      foreach ($remoteFiles as $remoteFile) {
+        $this->downloadAndStoreFile($remoteFile, $public_folder_path);
+        $counter++;
+      }
+      $this->logger()->notice('Download and stored phase from FTP Completed');
+      $this->logger()->notice("Total number of files processed are: '{$counter}'");
+      // Getting data after processing the xml files.
+      $data = $this->customXmlReader($public_folder_path);
+      // Updating the stock field in product variation.
+      if (!empty($data)) {
+        $product_update_status = $this->updatestock($data);
+      }
+      // Deleting all the files from public folder.
+      $this->deleteLocalFiles($folder_path);
+      if ($product_update_status) {
+        // Deleting all the files from FTP folder.
+        $this->deleteFtpFiles();
+        $this->logger()->success('Stock updated');
+      }
+      else {
+        $this->logger()->error('Please check logs for more details');
+      }
     }
     else {
-      $this->logger()->error('Please check logs for more details');
+      $this->output()->writeln("Please check the FTP credential form");
     }
   }
 
   /**
    * Download the file from FTP and store it in the local directory.
    *
-   * @param string $remotePath
-   *   The path to the folder ftp server.
+   * @param \League\Flysystem\FileAttributes $remoteFile
+   *   The file object.
    * @param string $localPath
    *   The local public folder path.
    */
-  public function downloadAndStoreFile($remotePath, $localPath) {
+  public function downloadAndStoreFile(FileAttributes $remoteFile, $localPath) {
 
     // Defining Public Folder path.
+    $remotePath = $remoteFile->path();
     $expanded_path = explode('/', $remotePath);
     $simple_filename = array_pop($expanded_path);
     $file_resource = $this->filesystem->read($remotePath);
@@ -278,7 +263,7 @@ class StockUpdateService extends DrushCommands {
   public function deleteFtpFiles() {
     $folder_loc = $this->root;
     try {
-      $remoteFiles = $this->filesystem->listContents($folder_loc);
+      $remoteFiles = $this->filesystem->listContents($folder_loc)->toArray();
       foreach ($remoteFiles as $file) {
 
         if ($file['type'] === 'file') {
@@ -290,6 +275,42 @@ class StockUpdateService extends DrushCommands {
     }
     catch (Exception $e) {
       $this->loggerFactory->get('inventory_batch')->info($e->getMessage());
+    }
+  }
+
+  /**
+   * Load the needed config for this command and initiate the FTP connection.
+   */
+  protected function loadConfig() {
+    $sftp_host = $this->sftpConfig->get('stftp_host');
+    $sftp_username = $this->sftpConfig->get('stftp_user');
+    $sftp_password = $this->sftpConfig->get('stftp_password');
+    if ($this->sftpConfig->get('stftp_root')) {
+      $this->root = $this->sftpConfig->get('stftp_root');
+    }
+    else {
+      return 0;
+    }
+
+    $this->connection = new SftpConnectionProvider(
+      $sftp_host,
+      $sftp_username,
+      $sftp_password
+    );
+    $this->adapter = new SftpAdapter($this->connection, '/');
+    // Load up our SFTP connection.
+    $this->filesystem = new Filesystem($this->adapter);
+    try {
+      $this->connection->provideConnection();
+      return 1;
+    }
+    catch (UnableToConnectToSftpHost $e) {
+      $this->output()->writeln($e->getMessage());
+      return 0;
+    }
+    catch (\Exception $e) {
+      $this->output()->writeln($e->getMessage());
+      return 0;
     }
   }
 
