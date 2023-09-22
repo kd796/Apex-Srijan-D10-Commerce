@@ -1,0 +1,28 @@
+uuid: 174c53c7-749a-4d95-860d-551562af28f8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_tracking_link
+    - paragraphs.paragraphs_type.sap_shipment_tracking
+  module:
+    - link
+id: paragraph.sap_shipment_tracking.field_tracking_link
+field_name: field_tracking_link
+entity_type: paragraph
+bundle: sap_shipment_tracking
+label: 'Tracking Link'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    attributes: {  }
+    uri: 'https://www.ups.com/mobile/track?trackingNumber=1Z2100390357528165'
+    title: 'Track Your Order'
+    options: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

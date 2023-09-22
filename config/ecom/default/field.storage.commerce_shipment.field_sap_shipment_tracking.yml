@@ -1,0 +1,21 @@
+uuid: 82535280-763e-454a-a124-5db5ce2d14fb
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_shipping
+    - entity_reference_revisions
+    - paragraphs
+id: commerce_shipment.field_sap_shipment_tracking
+field_name: field_sap_shipment_tracking
+entity_type: commerce_shipment
+type: entity_reference_revisions
+settings:
+  target_type: paragraph
+module: entity_reference_revisions
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

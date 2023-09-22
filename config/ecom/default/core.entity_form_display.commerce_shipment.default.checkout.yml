@@ -5,6 +5,12 @@ dependencies:
   config:
     - commerce_shipping.commerce_shipment_type.default
     - core.entity_form_mode.commerce_shipment.checkout
+    - field.field.commerce_shipment.default.field_item_and_quantity
+    - field.field.commerce_shipment.default.field_sap_order_number
+    - field.field.commerce_shipment.default.field_sap_shipment
+    - field.field.commerce_shipment.default.field_sap_shipment_tracking
+    - field.field.commerce_shipment.default.field_shipment_date
+    - field.field.commerce_shipment.default.field_total_item_quantity
   module:
     - commerce_shipping
 _core:
@@ -27,6 +33,12 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_item_and_quantity: true
+  field_sap_order_number: true
+  field_sap_shipment: true
+  field_sap_shipment_tracking: true
+  field_shipment_date: true
+  field_total_item_quantity: true
   state: true
   title: true
   tracking_code: true

@@ -1,0 +1,82 @@
+uuid: f2b03624-a846-482f-9297-22b5886ca0b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_shipping.commerce_shipment_type.default
+    - field.storage.commerce_shipment.field_sap_shipment_tracking
+    - paragraphs.paragraphs_type.sap_shipment_tracking
+  module:
+    - entity_reference_revisions
+id: commerce_shipment.default.field_sap_shipment_tracking
+field_name: field_sap_shipment_tracking
+entity_type: commerce_shipment
+bundle: default
+label: 'SAP Shipment Tracking'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      sap_shipment_tracking: sap_shipment_tracking
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 19
+        enabled: false
+      accordion_item:
+        weight: 20
+        enabled: false
+      content:
+        weight: 21
+        enabled: false
+      embed_block:
+        weight: 22
+        enabled: false
+      embed_iframe:
+        weight: 23
+        enabled: false
+      embed_view:
+        weight: 24
+        enabled: false
+      featured_content:
+        weight: 25
+        enabled: false
+      featured_links:
+        weight: 26
+        enabled: false
+      featured_media:
+        weight: 27
+        enabled: false
+      hero:
+        weight: 28
+        enabled: false
+      hero_slide:
+        weight: 29
+        enabled: false
+      image_and_text:
+        weight: 30
+        enabled: false
+      order_item_and_quantity:
+        weight: 31
+        enabled: false
+      pullquote:
+        weight: 32
+        enabled: false
+      sap_shipment_tracking:
+        weight: 33
+        enabled: true
+      section:
+        weight: 34
+        enabled: false
+      tabs:
+        weight: 35
+        enabled: false
+      tabs_tab:
+        weight: 36
+        enabled: false
+field_type: entity_reference_revisions

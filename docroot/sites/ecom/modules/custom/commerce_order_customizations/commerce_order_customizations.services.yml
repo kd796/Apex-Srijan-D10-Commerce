@@ -7,3 +7,8 @@ services:
     arguments: ['@entity_type.manager','@config.factory','@commerce_order_customizations.utility']
     tags:
       - { name: drush.command }
+  commerce_order_customizations.order_update:
+    class: Drupal\commerce_order_customizations\Commands\SapOrderUpdate
+    arguments: ['@entity_type.manager','@config.factory','@file_system','@logger.factory','@commerce_order_customizations.utility']
+    tags:
+      - { name: drush.command }

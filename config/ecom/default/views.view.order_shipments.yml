@@ -2,10 +2,12 @@ uuid: 0bf4df14-425a-4c56-ba8c-23c0801f9080
 langcode: en
 status: true
 dependencies:
+  config:
+    - field.storage.commerce_shipment.field_sap_order_number
+    - field.storage.commerce_shipment.field_shipment_date
   module:
-    - commerce_price
     - commerce_shipping
-    - state_machine
+    - datetime
 _core:
   default_config_hash: agfUTAGtXxAQfj7iZrzQKD2iAPa3jD268U1VH-ey65M
 id: order_shipments
@@ -34,7 +36,7 @@ display:
           entity_type: null
           entity_field: title
           plugin_id: field
-          label: Title
+          label: 'Shipment Number'
           exclude: false
           alter:
             alter_text: false
@@ -89,148 +91,15 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        shipping_method:
-          id: shipping_method
-          table: commerce_shipment
-          field: shipping_method
+        field_sap_order_number:
+          id: field_sap_order_number
+          table: commerce_shipment__field_sap_order_number
+          field: field_sap_order_number
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: commerce_shipment
-          entity_field: shipping_method
           plugin_id: field
-          label: 'Shipping method'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        amount__number:
-          id: amount__number
-          table: commerce_shipment
-          field: amount__number
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: commerce_shipment
-          entity_field: amount
-          plugin_id: field
-          label: Amount
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: number
-          type: commerce_price_default
-          settings:
-            strip_trailing_zeroes: false
-            currency_display: symbol
-          group_column: ''
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        tracking_code:
-          id: tracking_code
-          table: commerce_shipment
-          field: tracking_code
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: commerce_shipment
-          entity_field: tracking_code
-          plugin_id: field
-          label: 'Tracking link'
+          label: 'Sap Order Number'
           exclude: false
           alter:
             alter_text: false
@@ -272,8 +141,9 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: commerce_tracking_link
-          settings: {  }
+          type: string
+          settings:
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -284,17 +154,15 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        state:
-          id: state
-          table: commerce_shipment
-          field: state
+        field_shipment_date:
+          id: field_shipment_date
+          table: commerce_shipment__field_shipment_date
+          field: field_shipment_date
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: commerce_shipment
-          entity_field: state
           plugin_id: field
-          label: State
+          label: 'Shipment Date'
           exclude: false
           alter:
             alter_text: false
@@ -336,10 +204,10 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: state_transition_form
+          type: datetime_default
           settings:
-            require_confirmation: true
-            use_modal: true
+            timezone_override: ''
+            format_type: html_date
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -488,7 +356,45 @@ display:
           validate_options: {  }
           break_phrase: false
           not: false
-      filters: {  }
+      filters:
+        field_sap_shipment_value:
+          id: field_sap_shipment_value
+          table: commerce_shipment__field_sap_shipment
+          field: field_sap_shipment_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: boolean
+          operator: '='
+          value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
       style:
         type: table
         options:
@@ -563,7 +469,9 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-      tags: {  }
+      tags:
+        - 'config:field.storage.commerce_shipment.field_sap_order_number'
+        - 'config:field.storage.commerce_shipment.field_shipment_date'
   page_1:
     id: page_1
     display_title: Page
@@ -579,4 +487,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-      tags: {  }
+      tags:
+        - 'config:field.storage.commerce_shipment.field_sap_order_number'
+        - 'config:field.storage.commerce_shipment.field_shipment_date'
