@@ -287,3 +287,13 @@ function _product_search_index_view_mode(&$variables) {
   }
 
 }
+
+/**
+ * Implements template_preprocess_views_view_unformatted() for homepage slider.
+ */
+function ecom_preprocess_views_view_unformatted(&$vars) {
+  $view = $vars['view'];
+  if ($view->id() == "account_dashboard") {
+    $vars['recent_orders'] = views_embed_view('account_dashboard', 'recent_orders');
+  }
+}

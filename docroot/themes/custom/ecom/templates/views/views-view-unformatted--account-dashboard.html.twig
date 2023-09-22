@@ -17,9 +17,6 @@
 #}
 
 <div class="account-dashboard">
-	<div class="address-book__heading">
-		{{ 'Address Book'|t }}
-	</div>
 	{% for row in rows %}
 		{%
       set row_classes = [
@@ -27,6 +24,9 @@
       ]
     %}
 		{% if loop.first %}
+    <div class="address-book__heading">
+      {{ 'Address Book'|t }}
+    </div>
 			<div{{row.attributes.addClass(row_classes)}}>
 				<div class="default-address">
 					{{ 'Default Billing Address'|t }}
@@ -35,11 +35,18 @@
 			</div>
     {% else %}
       <div{{row.attributes.addClass(row_classes)}}>
-        <div class="default-address">
-          {{ 'Default Shipping Address'|t }}
-        </div>
 				{{- row.content -}}
 			</div>
 		{% endif %}
 	{% endfor %}
+
+  {% if recent_orders %}
+    <div class="recent-orders">
+      <div class="address-book__heading">
+        {{ 'Recent Orders'|t }}
+      </div>
+
+      {{ recent_orders }}
+    </div>
+  {% endif %}
 </div>
