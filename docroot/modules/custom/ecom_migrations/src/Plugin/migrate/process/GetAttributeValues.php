@@ -13,7 +13,7 @@ use Drupal\migrate\Row;
  *   id = "ecom_get_attribute_values"
  * )
  */
-class GetAttributeValue extends ProcessPluginBase {
+class GetAttributeValues extends ProcessPluginBase {
 
   /**
    * {@inheritdoc}
