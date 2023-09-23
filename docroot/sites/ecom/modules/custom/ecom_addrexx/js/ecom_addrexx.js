@@ -144,7 +144,7 @@
           });
 
           // Postalcode autocompletes close event.
-          jQuery(postalCodeInput_Class).one(
+          jQuery(postalCodeInput_Class).on(
             "autocompleteclose",
             function (event, ui) {
               // Pick only numeric value to set it as Zipcode.
