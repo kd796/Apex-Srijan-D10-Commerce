@@ -2,7 +2,7 @@
   "use strict";
 
   Drupal.behaviors.ecom_addrexx = {
-    attach: function (context) {
+    attach: function (context, settings) {
       let typingTimer;
       var doneTypingInterval = 3000;
       var fieldset = "";
@@ -12,6 +12,7 @@
       var administrativeAreaInput = "";
       var addressLine1 = "";
       var autocompleteFields = "";
+      var updateCounty = '';
       // Initializing input variables.
       const shippingPane = ".checkout-pane-shipping-information";
       const billingPane = ".checkout-pane-payment-information";
@@ -100,6 +101,7 @@
 
         administrativeAreaInput.change(function () {
           localityInput.val("");
+          countyField.empty();
           cityUpdate(localityInput, administrativeAreaInput, postalCodeInput);
         });
 
@@ -114,6 +116,7 @@
       }
       else if (jQuery("form.commerce-checkout-flow").length > 0) {
         var selectors = [shippingPane, billingPane];
+
         jQuery.each(selectors, function(index, fieldset) {
           let countyField_Class = fieldset + ' ' +  "select[id*=field-county]";
           countyField = jQuery(countyField_Class);
@@ -198,11 +201,11 @@
           jQuery(administrativeAreaInput_Class).change(function () {
             jQuery(localityInput_Class).val("");
             jQuery(postalCodeInput_Class).val("");
-            jQuery(countyField_Class).val("");
+            jQuery(countyField_Class).empty();
           });
 
           jQuery(localityInput_Class).on("autocompleteclose", function () {
-            jQuery(countyField_Class).val("");
+            jQuery(countyField_Class).empty();
             clearTimeout(typingTimer);
             typingTimer = setTimeout(
               sendAjaxRequest(
@@ -216,10 +219,12 @@
 
           jQuery(localityInput_Class).on(
             "input",
-            cityUpdate(
-              jQuery(this),
-              jQuery(administrativeAreaInput_Class)
-            )
+            function() {
+              cityUpdate(
+                jQuery(this),
+                jQuery(administrativeAreaInput_Class)
+              )
+            }
           );
           jQuery(addressLine1_Class).on(
             "input",
@@ -227,30 +232,23 @@
               addressUpdate(jQuery(addressLine1_Class), jQuery(postalCodeInput_Class), jQuery(localityInput_Class))
             }
           );
-
-          // County hide logic.
-          if (!jQuery('input[name="billing_edit"]').length && jQuery(countyField_Class).length) {
-            let city = jQuery(localityInput_Class).val();
-            let state = jQuery(administrativeAreaInput_Class).val();
-            let zipcode = jQuery(postalCodeInput_Class).val();
-            if (!jQuery(countyField_Class).hasClass('api_called')) {
-              var getCountyResponse = setTimeout(getCountyData(city, state, zipcode), 5000);
-              if (!getCountyResponse || typeof getCountyResponse.county === "undefined") {
-                jQuery(countyField_Class).val("_none");
-                jQuery(countyField_Class).find('option[value="_none"]').prop('selected', true);
-                jQuery(countyField_Class).find('option:not([value="_none"])').remove();
-                jQuery(countyField_Class).hide();
-                jQuery(countyField_Class).closest('[class*=field--name-field-county]').hide();
-              }
-              jQuery(countyField_Class).addClass('api_called');
-            }
-          }
         });
-
-        // Need remove before push
-        jQuery('.messages--error').hide();
-
       }
+      // Using on billing and shipping edit.
+      updateCounty = function(ele) {
+        if (jQuery(document).find('div.address-container-inline [class$="address-postal-code"]').length) {
+          localityInput = jQuery(document).find('div.address-container-inline input[name$="[address][locality]"]');
+          administrativeAreaInput = jQuery(document).find('div.address-container-inline select[name$="[address][administrative_area]"]');
+          administrativeAreaInput = jQuery(document).find('div.address-container-inline select[name$="[address][0][address][administrative_area]"]');
+          postalCodeInput = jQuery(document).find('div.address-container-inline input[name$="[address][postal_code]"]');
+          sendAjaxRequest(
+            jQuery(localityInput),
+            jQuery(administrativeAreaInput),
+            jQuery(postalCodeInput)
+          );
+        }
+      }
+
       // Update address autocomplete field.
       function addressUpdate(addressLine, postalCodeInput, localityInput) {
         var postalCodeValue = postalCodeInput.val();
@@ -307,35 +305,12 @@
         localityInput.attr("data-autocomplete-path", currentPath);
       }
 
-      function getCountyData(city, state, zipcode) {
-        let output = '';
-    
-        jQuery.ajax({
-          url: "/get-county",
-          async: false,
-          data: {
-            city,
-            state,
-            zipcode,
-          },
-          dataType: "json",
-          success: function (response) {
-    
-            return response;
-          },
-          error: function (xhr, status, error) {
-            console.error(error);
-          },
-        });
-      }
-
       // Update county field.
       function sendAjaxRequest(
         localityInput,
         administrativeAreaInput,
         postalCodeInput
       ) {
-
         const city = localityInput.val();
         const state = administrativeAreaInput.val();
         const zipcode = postalCodeInput.val();
@@ -343,31 +318,33 @@
         .parent()
         .siblings(".field--name-field-county");
         
-        const countyField = jQuery(countyFieldWrapper).find(
-            'select[name$="[field_county]"]'
-          );
+        const countyField = jQuery(countyFieldWrapper).find('select[name$="[field_county]"]');
+
         let getCountyResponse = '';
-        jQuery.ajax({
-          url: "/get-county",
-          async: false,
-          data: {
-            city,
-            state,
-            zipcode,
-          },
-          dataType: "json",
-          success: function (response) {
-            getCountyResponse = response;
-          },
-          error: function (xhr, status, error) {
-            console.error(error);
-          },
-        });
+        if (city && state && zipcode) {
+          jQuery.ajax({
+            url: "/get-county",
+            async: false,
+            data: {
+              city,
+              state,
+              zipcode,
+            },
+            dataType: "json",
+            success: function (response) {
+              getCountyResponse = response;
+            },
+            error: function (xhr, status, error) {
+              console.error(error);
+            },
+          });
+        }
+        const currentSelectedValue = countyField.val();
+        countyField.empty();
 
         if (getCountyResponse && typeof getCountyResponse.county !== "undefined") {
-          const currentSelectedValue = countyField.val();
           countyField.empty();
-          // Iterate through the getCountyResponse.county array and create options
+          // Iterate through the getCountyResponse.county array and create options.
           jQuery.each(getCountyResponse.county, function (index, countyValue) {
             countyField.append(
               jQuery("<option>", {
@@ -375,10 +352,8 @@
                 text: countyValue,
               })
             );
-            if (
-              currentSelectedValue &&
-              countyValue === currentSelectedValue
-            ) {
+            if (currentSelectedValue &&
+              countyValue === currentSelectedValue) {
               countyField
                 .find('option[value="' + currentSelectedValue + '"')
                 .attr("selected", "selected");
@@ -390,17 +365,6 @@
           if (countyField.find("option:selected").length === 0) {
             countyField.find("option:first").attr("selected", "selected");
           }
-          // Handle change event for countyField
-          countyField.on("change", function () {
-            const selectedValue = countyField.val();
-            countyField.find("option").each(function () {
-              if (countyField.val() === selectedValue) {
-                countyField.attr("selected", "selected");
-              } else {
-                jQuery(countyField).removeAttr("selected");
-              }
-            });
-          });
         }
         else if (getCountyResponse.error) {
           jQuery(countyField).closest('[class*=field--name-field-county]').hide();
@@ -421,7 +385,34 @@
           jQuery(countyField).find('option[value="_none"]').prop('selected', true);
           jQuery(countyField).find('option:not([value="_none"])').remove();
         }
+
+        // Handle change event for countyField
+        countyField.on("change", function () {
+          const selectedValue = countyField.val();
+          countyField.find("option").each(function () {
+            if (countyField.val() === selectedValue) {
+              countyField.attr("selected", "selected");
+            } else {
+              jQuery(countyField).removeAttr("selected");
+            }
+          });
+        });
       }
+
+      jQuery(".messages--error").hide();
+      jQuery(context).ajaxComplete(function (event, xhr, settings) {
+        jQuery(".messages--error").hide();
+
+        if (typeof settings.extraData !== "undefined") {
+          if (settings.extraData._triggering_element_name == 'shipping_edit' ||
+            settings.extraData._triggering_element_name == 'billing_edit' ||
+            settings.extraData._triggering_element_value == "Recalculate shipping") {
+            if (jQuery('div.address-container-inline').length) {
+              updateCounty(settings.extraData._triggering_element_name);
+            }
+          }
+        }
+      });
     },
   };
 })(jQuery, Drupal);
