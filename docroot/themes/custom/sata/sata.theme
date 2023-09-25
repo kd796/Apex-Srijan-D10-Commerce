@@ -711,6 +711,16 @@ function sata_preprocess_page(array &$variables) {
       unset($variables['page']['content']['sata_breadcrumbs']);
     }
   }
+  $sata_eu_host_names = [
+    "https://stg-www.satatools.eu",
+    "https://satatools.eu",
+    "https://www.satatools.eu",
+  ];
+
+  $host = \Drupal::request()->getSchemeAndHttpHost();
+  if (in_array($host, $sata_eu_host_names)) {
+    $variables['is_sata_eu_domain'] = TRUE;
+  }
 }
 
 /**
