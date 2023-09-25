@@ -17,7 +17,30 @@
       const shippingPane = ".checkout-pane-shipping-information";
       const billingPane = ".checkout-pane-payment-information";
 
+      function rePositionCountyField() {
+        const appendElement = jQuery('.field--type-address', context).find('div[data-drupal-selector$="address-0-address-container4"]');
+        const shippingCounty = jQuery('[data-drupal-selector$="field-county-wrapper"]', context);
+        const shippingCountyField = jQuery('.form-item-field-county', context);
+        countyField = jQuery(context).find("select[id*=field-county]");
+        if (appendElement.length < 1) {
+          return false;
+        }
+
+        if (jQuery(shippingCounty).find(shippingCountyField).length) {
+          jQuery(shippingCounty).appendTo(jQuery(appendElement));
+          if (
+            countyField.val() == "" ||
+            countyField.val() == "undefined" ||
+            countyField.val() == "_none" ||
+            countyField.val() == null
+            ) {
+            shippingCounty.hide();
+          }
+        }
+      }
+
       if (jQuery("select.country", context).length > 0) {
+        rePositionCountyField();
         // Initializing input variables.
         countyField = jQuery(context).find("select[id*=field-county]");
         postalCodeInput = jQuery(context).find(
@@ -101,17 +124,34 @@
 
         administrativeAreaInput.change(function () {
           localityInput.val("");
-          countyField.empty();
-          cityUpdate(localityInput, administrativeAreaInput, postalCodeInput);
+          postalCode.val("");
+          countyField.empty().closest('.field--name-field-county').hide();
+          cityUpdate(localityInput, administrativeAreaInput);
         });
 
         jQuery(localityInput).on(
           "input",
-          cityUpdate(localityInput, administrativeAreaInput, postalCodeInput)
+          cityUpdate(jQuery(this), administrativeAreaInput)
         );
+
+        jQuery(localityInput).on("autocompleteclose", function () {
+          jQuery(countyField).empty();
+          clearTimeout(typingTimer);
+          typingTimer = setTimeout(
+            sendAjaxRequest(
+              jQuery(this),
+              jQuery(administrativeAreaInput),
+              jQuery(postalCodeInput)
+            ),
+            doneTypingInterval
+          );
+        });
+
         jQuery(addressLine1).on(
           "input",
-          addressUpdate(addressLine1, postalCodeInput, localityInput)
+          function () {
+            addressUpdate(addressLine1, postalCodeInput, localityInput)
+          }
         );
       }
       else if (jQuery("form.commerce-checkout-flow").length > 0) {
@@ -120,6 +160,16 @@
         jQuery.each(selectors, function(index, fieldset) {
           let countyField_Class = fieldset + ' ' +  "select[id*=field-county]";
           countyField = jQuery(countyField_Class);
+          if (countyField.length &&
+            (
+              countyField.val() == "" ||
+              countyField.val() == "undefined" ||
+              countyField.val() == "_none" ||
+              countyField.val() == null
+            )) {
+            countyField.hide();
+            countyField.closest('.field--name-field-county').hide();
+          }
 
           let postalCodeInput_Class = fieldset + ' ' +  'input[name$="[address][0][address][postal_code]"]';
           postalCodeInput = jQuery(postalCodeInput_Class);
@@ -201,7 +251,7 @@
           jQuery(administrativeAreaInput_Class).change(function () {
             jQuery(localityInput_Class).val("");
             jQuery(postalCodeInput_Class).val("");
-            jQuery(countyField_Class).empty();
+            jQuery(countyField_Class).empty().closest(fieldset + ' .field--name-field-county').hide();
           });
 
           jQuery(localityInput_Class).on("autocompleteclose", function () {
@@ -253,10 +303,9 @@
       function addressUpdate(addressLine, postalCodeInput, localityInput) {
         var postalCodeValue = postalCodeInput.val();
         var localityValue = localityInput.val();
-
         var localityValueSubStr = localityValue
-          .substring(0, 5)
-          .replace(/\s+/g, "+");
+        .substring(0, 5)
+        .replace(/\s+/g, "+");
         var sourceValue = localityValueSubStr + postalCodeValue;
         var currentPath = addressLine.attr("data-autocomplete-path");
 
@@ -277,10 +326,7 @@
       }
 
       // Update city autocomplete field.
-      function cityUpdate(
-        localityInput,
-        administrativeAreaInput
-      ) {
+      function cityUpdate(localityInput, administrativeAreaInput) {
         var administrativeAreaValue = administrativeAreaInput.val();
         var sourceValue = "state=" + administrativeAreaValue;
 
@@ -314,11 +360,16 @@
         const city = localityInput.val();
         const state = administrativeAreaInput.val();
         const zipcode = postalCodeInput.val();
+
         const countyFieldWrapper = jQuery(localityInput)
         .parent()
         .siblings(".field--name-field-county");
         
-        const countyField = jQuery(countyFieldWrapper).find('select[name$="[field_county]"]');
+        var countyField = jQuery(countyFieldWrapper).find('select[name$="[field_county]"]');
+        // In case is this is not checkout form.
+        if (!countyField.length) {
+          countyField = jQuery(countyFieldWrapper).find('select[name="field_county"]');
+        }
 
         let getCountyResponse = '';
         if (city && state && zipcode) {
@@ -340,8 +391,6 @@
           });
         }
         const currentSelectedValue = countyField.val();
-        countyField.empty();
-
         if (getCountyResponse && typeof getCountyResponse.county !== "undefined") {
           countyField.empty();
           // Iterate through the getCountyResponse.county array and create options.
@@ -355,11 +404,11 @@
             if (currentSelectedValue &&
               countyValue === currentSelectedValue) {
               countyField
-                .find('option[value="' + currentSelectedValue + '"')
+                .find('option[value="' + currentSelectedValue + '"]')
                 .attr("selected", "selected");
             }
           });
-          jQuery(countyField).closest('[class*=field--name-field-county]').show();
+          jQuery(countyFieldWrapper).show();
           countyField.show();
           // Set the first option as selected
           if (countyField.find("option:selected").length === 0) {
@@ -367,7 +416,7 @@
           }
         }
         else if (getCountyResponse.error) {
-          jQuery(countyField).closest('[class*=field--name-field-county]').hide();
+          jQuery(currentSelectedValue).hide();
           countyField.hide();
           if (countyField.css("display") == "none") {
             countyField.find("option:selected").removeAttr("selected");
@@ -384,6 +433,7 @@
           jQuery(countyField).val("_none");
           jQuery(countyField).find('option[value="_none"]').prop('selected', true);
           jQuery(countyField).find('option:not([value="_none"])').remove();
+          countyFieldWrapper.hide();
         }
 
         // Handle change event for countyField
@@ -399,10 +449,7 @@
         });
       }
 
-      jQuery(".messages--error").hide();
       jQuery(context).ajaxComplete(function (event, xhr, settings) {
-        jQuery(".messages--error").hide();
-
         if (typeof settings.extraData !== "undefined") {
           if (settings.extraData._triggering_element_name == 'shipping_edit' ||
             settings.extraData._triggering_element_name == 'billing_edit' ||

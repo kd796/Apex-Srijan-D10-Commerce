@@ -64,7 +64,8 @@ class AddressProfileController extends ControllerBase {
 
     $county = [];
 
-    if (count($termIds) > 1) {
+    // Remove county condition, so that it should always display on value.
+    // if (count($termIds) > 1) {
       foreach ($termIds as $termId) {
         // Load the taxonomy term.
         $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($termId);
@@ -73,7 +74,7 @@ class AddressProfileController extends ControllerBase {
           $county[] = $term->get('field_us_county')->value;
         }
       }
-    }
+    // }
 
     // Return a JSON response with the term information or an error.
     if (!empty($county)) {
@@ -101,13 +102,12 @@ class AddressProfileController extends ControllerBase {
     $query = $this->entityTypeManager->getStorage('taxonomy_term')->getQuery();
     $query->condition('vid', 'us_tax_data')
       ->accessCheck(FALSE)
-      ->condition('field_us_city', $cityVal)
+      ->condition('field_us_city', $cityVal, 'LIKE')
       ->condition('field_us_state', $stateVal);
     if (!empty($zipcode) && $zipcode != '0') {
       $query->condition('field_starting_zip_code', $zipcode, '<=');
       $query->condition('field_ending_zip_code', $zipcode, '>=');
     }
-
     $termIds = $query->execute();
 
     // Reindex the array to start from 0.
