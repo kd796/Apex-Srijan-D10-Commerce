@@ -1,0 +1,13 @@
+uuid: 30b19e22-460c-40a6-b943-a450fa29c715
+langcode: en
+status: true
+dependencies:
+  config:
+    - key.key.tfa_key
+  module:
+    - real_aes
+id: tfa_encryption_
+label: 'TFA Encryption '
+encryption_method: real_aes
+encryption_method_configuration: {  }
+encryption_key: tfa_key
