@@ -3,7 +3,11 @@
 namespace Drupal\commerce_order_customizations;
 
 use CommerceGuys\Addressing\Subdivision\SubdivisionRepository;
+use Drupal\commerce_shipping\Entity\Shipment;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
+use Drupal\paragraphs\Entity\Paragraph;
 
 /**
  * Provides utility functions for order export-import.
@@ -22,13 +26,32 @@ class UtilityOrder {
    * @var \CommerceGuys\Addressing\Subdivision\SubdivisionRepository
    */
   protected SubdivisionRepository $subdivisionRepository;
+  /**
+   * The filesystem class.
+   *
+   * @var \League\Flysystem\Filesystem
+   */
+  protected Filesystem $filesystem;
+  /**
+   * The FTP Connection.
+   *
+   * @var \League\Flysystem\PhpseclibV2\SftpConnectionProvider
+   */
+  protected SftpConnectionProvider $connection;
+  /**
+   * The logger class.
+   *
+   * @var \Drupal\Core\Logger\LoggerChannelFactoryInterface
+   */
+  protected $loggerFactory;
 
   /**
    * Constructor.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, LoggerChannelFactoryInterface $factory) {
     $this->entityTypeManager = $entity_type_manager;
     $this->subdivisionRepository = new SubdivisionRepository();
+    $this->loggerFactory = $factory;
   }
 
   /**
@@ -173,6 +196,184 @@ class UtilityOrder {
    */
   public function getCounty($profile) {
     return $profile->get('field_county')->value;
+  }
+
+  /**
+   * Creates shipments.
+   *
+   * @param array $orders_details
+   *   Array contains order contents.
+   */
+  public function createShipment($orders_details) {
+    $create_shipment_status = 0;
+    try {
+      $shipment_query = $this->entityTypeManager->getStorage('commerce_shipment')->getQuery();
+      $shipment_id_arr = $shipment_query->condition('title', $orders_details['shipment_number'])
+        ->condition('field_sap_shipment', 1)
+        ->accessCheck(FALSE)
+        ->execute();
+
+      if (empty($shipment_id_arr)) {
+        $order_query = $this->entityTypeManager->getStorage('commerce_order')->getQuery();
+        // It should return single id as order number is unique.
+        $order_id_arr = $order_query->condition('order_number', $orders_details['order_number'])
+          ->accessCheck(FALSE)
+          ->execute();
+        $shipment_date = DrupalDateTime::createFromFormat('Ymd', $orders_details['shipment_date']);
+        $order_id = array_keys($order_id_arr);
+        // Create a shipment entity.
+        $shipment = Shipment::create([
+        // You can choose the appropriate shipment type.
+          'type' => 'default',
+          'order_id' => $order_id[0],
+          'field_sap_shipment' => 1,
+          'field_sap_order_number' => $orders_details['sap_order_number'],
+          'field_shipment_date' => $shipment_date->format('Y-m-d'),
+          'field_total_item_quantity' => $orders_details['total_quantity'],
+          'field_item_and_quantity' => $this->createItemParagraph($orders_details),
+          'field_sap_shipment_tracking' => $this->createTrackingParagraph($orders_details),
+          'state' => 'draft',
+        ]);
+        $shipment->setTitle($orders_details['shipment_number']);
+        $shipment->save();
+        $create_shipment_status = 1;
+      }
+    }
+    catch (Exception $e) {
+      $create_shipment_status = 0;
+      $this->loggerFactory->get('commerce_order_customizations')->error($e->getMessage());
+    }
+    return $create_shipment_status;
+  }
+
+  /**
+   * Creates Item and Quantity paragraph entity.
+   */
+  public function createItemParagraph($order_info) {
+    $item_info = $order_info['item_and_quantity'];
+    $paragraph_arr = [];
+    $data = [];
+    $i = 0;
+    foreach ($item_info as $sku => $qty) {
+      $product_node = $this->entityTypeManager->getStorage('node')
+        ->loadByProperties([
+          'type' => 'product',
+          'title' => $sku,
+        ]);
+      $product_node = array_values($product_node);
+      $product_name = $product_node[0]->get('field_long_description')->value;
+      $paragraph_arr[$i] = Paragraph::create([
+        'type' => 'order_item_and_quantity',
+        'field_item_name' => $product_name,
+        'field_item_quantity_shipped' => $qty,
+      ]);
+      $paragraph_arr[$i]->save();
+      $data[] = [
+        'target_id' => $paragraph_arr[$i]->id(),
+        'target_revision_id' => $paragraph_arr[$i]->getRevisionId(),
+      ];
+      $i = $i + 1;
+    }
+    return $data;
+  }
+
+  /**
+   * Creates SAP Shipment Tracking paragraph entity.
+   */
+  public function createTrackingParagraph($order_info) {
+    $item_info = $order_info['carrier_tracking_number'];
+    $paragraph_arr = [];
+    $data = [];
+    $i = 0;
+    foreach ($item_info as $item) {
+      $linkValue = 'https://www.ups.com/mobile/track?trackingNumber=' . $item;
+      // Creating Tracking Number and Tracking Link.
+      // Carrier is asumed to be ups always.
+      $paragraph_arr[$i] = Paragraph::create([
+        'type' => 'sap_shipment_tracking',
+        'field_tracking_number' => $item,
+        'field_tracking_link' => [
+          'uri' => $linkValue,
+          'title' => t('Track Your Order'),
+        ],
+      ]);
+      $paragraph_arr[$i]->save();
+      $data[] = [
+        'target_id' => $paragraph_arr[$i]->id(),
+        'target_revision_id' => $paragraph_arr[$i]->getRevisionId(),
+      ];
+      $i = $i + 1;
+    }
+    return $data;
+  }
+
+  /**
+   * We will set order as completed if shipment quantity equals to order quantity.
+   */
+  public function orderStatusUpdate($orders_details) {
+    $order_update_status = 0;
+    try {
+      $order_number = $orders_details['order_number'];
+      // It should return single object.
+      $order_obj = $this->entityTypeManager->getStorage('commerce_order')
+        ->loadByProperties([
+          'order_number' => $order_number,
+        ]);
+      $order_obj = array_values($order_obj);
+      $items = $order_obj[0]->getItems();
+      $total_item_quantity = 0;
+      foreach ($items as $item) {
+        $total_item_quantity = $total_item_quantity + (int) \Drupal::service('commerce_order_customizations.utility')->getitemQuantity($item);
+      }
+      // Shipment.
+      $total_shipment_quantity = 0;
+      $shipment_obj_arr = $this->entityTypeManager->getStorage('commerce_shipment')
+        ->loadByProperties([
+          'order_id' => $order_obj[0]->id(),
+          'field_sap_shipment' => 1,
+        ]);
+      foreach ($shipment_obj_arr as $shipment) {
+        $total_shipment_quantity = $total_shipment_quantity + (int) $shipment->get('field_total_item_quantity')->value;
+      }
+      if ($total_shipment_quantity == $total_item_quantity) {
+        $order_obj[0]->set('state', 'completed');
+        $order_obj[0]->save();
+      }
+      $order_update_status = 1;
+    }
+    catch (Exception $e) {
+      $order_update_status = 0;
+      $this->loggerFactory->get('commerce_order_customizations')->error($e->getMessage());
+    }
+
+    return $order_update_status;
+  }
+
+  /**
+   * Delete files from ftp server.
+   */
+  public function deleteFtpFiles($file_to_delete, $ftp_folder) {
+    $ftp_con = \Drupal::service('commerce_order_customizations.ftpcon');
+    try {
+      $remoteFiles = $ftp_con->connect()->listContents($ftp_folder)->toArray();
+      foreach ($remoteFiles as $file) {
+        if ($file['type'] === 'file') {
+          // Getting file name.
+          $filePath = $file->path();
+          $expanded_path = explode('/', $filePath);
+          $filename = array_pop($expanded_path);
+          if ($filename == $file_to_delete) {
+            $ftp_con->connect()->delete($file['path']);
+            break;
+          }
+        }
+      }
+    }
+    catch (Exception $e) {
+      // Should send this to mail.
+      $this->loggerFactory->get('commerce_order_customizations')->error($e->getMessage());
+    }
+    $this->loggerFactory->get('commerce_order_customizations')->notice("File: '{$filename}' deleted from FTP folder: '{$ftp_folder}'");
   }
 
 }
