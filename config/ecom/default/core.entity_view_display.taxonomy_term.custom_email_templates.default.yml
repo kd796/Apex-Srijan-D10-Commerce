@@ -1,0 +1,41 @@
+uuid: 22988857-ddf3-4153-a629-d0574d86c93e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.custom_email_templates.field_recipients
+    - field.field.taxonomy_term.custom_email_templates.field_subject
+    - taxonomy.vocabulary.custom_email_templates
+  module:
+    - text
+id: taxonomy_term.custom_email_templates.default
+targetEntityType: taxonomy_term
+bundle: custom_email_templates
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_recipients:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_subject:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true
