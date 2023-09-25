@@ -35,6 +35,29 @@
           }
         }
 
+        &[data-drupal-selector$="review-contact-information"] {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+
+          label {
+            width: 115px;
+            text-transform: capitalize;
+
+            @media only screen and (max-width: $tablet) {
+              width: 100px;
+            }
+          }
+
+          .fieldset-wrapper {
+            width: calc(100% - 115px);
+
+            @media only screen and (max-width: $tablet) {
+              width: calc(100% - 100px);
+            }
+          }
+        }
+
         .fieldset-wrapper {
           .profile {
             .address-item {

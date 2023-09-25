@@ -148,6 +148,14 @@
       }
       checkoutCountyField();
 
+      // Checkout review page  append label inside contact information section.
+      const appendElm = $('<label class="review-contact-info-email-label">Email :</label>');
+      const contactInfoLabel = $('.commerce-checkout-flow .checkout-pane-review .review-contact-info-email-label');
+      const reviewContactLabel = $('.commerce-checkout-flow .checkout-pane-review fieldset[data-drupal-selector$="review-contact-information"] legend');
+      if ($(contactInfoLabel).length < 1) {
+        $(appendElm).insertAfter(reviewContactLabel);
+      }
+
       /* end */
     }
   };
