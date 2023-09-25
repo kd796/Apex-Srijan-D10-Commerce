@@ -33,6 +33,7 @@
     <title>{{ head_title|safe_join(' | ') }}</title>
     <css-placeholder token="{{ placeholder_token }}">
     <js-placeholder token="{{ placeholder_token }}">
+      {% if is_sata_eu_domain %}
     <!-- adding tiktok script -->
 		   <script> 
          !function (w, d, t) { w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){ti=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parettq.load('CJF272JC77U5EBTKJSNG'); ttq.page(); }(window, document, 'ttq'); 
@@ -61,6 +62,8 @@
            </script>
            <noscript> <img height="1" width="1" src="https://www.facebook.com/tr?id=994142264961922&ev=PageView&noscript=1" /> </noscript>
            <!-- End Facebook Pixel Code -->
+
+           {% endif %}
 
   </head>
   <body{{ attributes.addClass(body_classes) }}>
