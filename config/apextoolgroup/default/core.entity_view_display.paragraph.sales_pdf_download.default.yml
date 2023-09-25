@@ -1,0 +1,46 @@
+uuid: 29a899bb-dfb6-4d16-b715-b79d87a3039f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.sales_pdf_download.field_link_text
+    - field.field.paragraph.sales_pdf_download.field_pdf
+    - field.field.paragraph.sales_pdf_download.field_pdf_thumbnail
+    - paragraphs.paragraphs_type.sales_pdf_download
+  module:
+    - image
+    - text
+id: paragraph.sales_pdf_download.default
+targetEntityType: paragraph
+bundle: sales_pdf_download
+mode: default
+content:
+  field_link_text:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_pdf:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_pdf_thumbnail:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  search_api_excerpt: true

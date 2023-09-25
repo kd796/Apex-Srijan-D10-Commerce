@@ -1,0 +1,47 @@
+uuid: c6d10d3b-1379-48a8-b037-4d7843a74607
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.sale_terms_country_details.field_country_flag
+    - field.field.paragraph.sale_terms_country_details.field_country_nam
+    - field.field.paragraph.sale_terms_country_details.field_download_pdf
+    - paragraphs.paragraphs_type.sale_terms_country_details
+  module:
+    - entity_reference_revisions
+    - image
+id: paragraph.sale_terms_country_details.default
+targetEntityType: paragraph
+bundle: sale_terms_country_details
+mode: default
+content:
+  field_country_flag:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_country_nam:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_download_pdf:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  search_api_excerpt: true

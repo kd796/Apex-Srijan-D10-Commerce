@@ -1,0 +1,41 @@
+uuid: d11f1071-4021-4294-9259-b4ef1cacd979
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.page_sales_terms_and_conditions.field_main_title
+    - field.field.node.page_sales_terms_and_conditions.field_pdf_section_file
+    - node.type.page_sales_terms_and_conditions
+  module:
+    - entity_reference_revisions
+    - user
+id: node.page_sales_terms_and_conditions.default
+targetEntityType: node
+bundle: page_sales_terms_and_conditions
+mode: default
+content:
+  field_main_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_pdf_section_file:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true
