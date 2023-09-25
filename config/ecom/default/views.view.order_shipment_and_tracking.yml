@@ -88,7 +88,7 @@ display:
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ', '
+          separator: ''
           field_api_classes: false
         field_item_and_quantity:
           id: field_item_and_quantity
@@ -151,7 +151,7 @@ display:
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ', '
+          separator: ''
           field_api_classes: false
       pager:
         type: full
@@ -279,6 +279,10 @@ display:
             group_items: {  }
       style:
         type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
       row:
         type: fields
       query:
@@ -300,7 +304,20 @@ display:
           entity_type: commerce_order
           plugin_id: standard
           required: false
-      header: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: 'Shipping Information'
+            format: basic_html
+          tokenize: false
       footer: {  }
       display_extenders: {  }
     cache_metadata:

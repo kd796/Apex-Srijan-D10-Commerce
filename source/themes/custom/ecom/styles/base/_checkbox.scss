@@ -26,6 +26,14 @@
         }
       }
     }
+
+    &.checked-on {
+      & + label {
+        &::before {
+          background-image: url('#{$image-base-path}/checkbox_checked.png');
+        }
+      }
+    }
   }
 
   .form-checkbox {

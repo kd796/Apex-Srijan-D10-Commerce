@@ -30,7 +30,7 @@
           hamburgerMenuIcon.toggleClass('close-nav');
         });
       });
-      //  Responsive menu.
+      // Responsive menu.
       $(function () {
         // first level menu collapse.
         const firstLevel_li = $('.navbar-we-mega-menu.navbar li.we-mega-menu-li');
@@ -65,7 +65,7 @@
       if (view.find('.view-empty').length !== 0) {
         view.addClass('no-result');
       }
-      // tabs
+      // Tabs.
       $(function () {
         $('.tabs-nav a').click(function () {
           // Check for active
@@ -78,7 +78,7 @@
           return false;
         });
       });
-      // accordions
+      // Accordions.
       $(once('accordion', '.accordion-title', context)).on('click', function (e) {
         e.preventDefault();
         if ($(this).hasClass('active')) {
@@ -96,7 +96,7 @@
             .slideDown(200);
         }
       });
-      // News Accordions
+      // News Accordions.
       $(once('new-accordion', '.news-accordion-title', context)).on('click', function (e) {
         e.preventDefault();
         if ($(this).hasClass('active')) {
@@ -120,9 +120,15 @@
       if ($('.address-book__container .address-book__empty-text').length > 0) {
         $('.address-book__container .address-book__add-link').css('position', 'unset');
       }
-
-      /* end */
-
+      // Add Class for checkbox on change.
+      $(once('addIconOnChange', '.form-checkbox', context)).on('change', function (e) {
+        if ($(this).is(':checked')) {
+          $(this).addClass('checked-on');
+        }
+        else {
+          $(this).addClass('checked-off');
+        }
+      });
       // County field append.
       function checkoutCountyField() {
         const appendElement = $('.commerce-checkout-flow').find('div[data-drupal-selector$="shipping-profile-address-0-address-container4"],[data-drupal-selector$="billing-information-address-0-address-container4"]');
@@ -141,6 +147,8 @@
         }
       }
       checkoutCountyField();
+
+      /* end */
     }
   };
 })(jQuery, Drupal, once);
