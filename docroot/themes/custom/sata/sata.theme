@@ -702,8 +702,6 @@ function sata_preprocess_menu__main__block_header_menu_main(array &$variables) {
 function sata_preprocess_page(array &$variables) {
   // Basic attribute variables.
   $variables['footer_attributes']['class'][] = 'region';
-  $site_name = getenv('AH_DRUPAL_SITE_NAME');
-  $variables['drupal_sitename'] = $site_name;
   if (isset($variables['node']) && is_object($variables['node'])) {
     /** @var \Drupal\node\NodeInterface $node */
     $node = $variables['node'];
