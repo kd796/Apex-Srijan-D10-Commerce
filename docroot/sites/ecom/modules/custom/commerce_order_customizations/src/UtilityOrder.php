@@ -7,6 +7,7 @@ use Drupal\commerce_shipping\Entity\Shipment;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
+use Drupal\Core\Mail\MailManagerInterface;
 use Drupal\paragraphs\Entity\Paragraph;
 
 /**
@@ -44,14 +45,21 @@ class UtilityOrder {
    * @var \Drupal\Core\Logger\LoggerChannelFactoryInterface
    */
   protected $loggerFactory;
+  /**
+   * The mail manager.
+   *
+   * @var \Drupal\Core\Mail\MailManagerInterface
+   */
+  protected $mailManager;
 
   /**
    * Constructor.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, LoggerChannelFactoryInterface $factory) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, LoggerChannelFactoryInterface $factory, MailManagerInterface $mail_manager) {
     $this->entityTypeManager = $entity_type_manager;
     $this->subdivisionRepository = new SubdivisionRepository();
     $this->loggerFactory = $factory;
+    $this->mailManager = $mail_manager;
   }
 
   /**
@@ -265,7 +273,8 @@ class UtilityOrder {
       $paragraph_arr[$i] = Paragraph::create([
         'type' => 'order_item_and_quantity',
         'field_item_name' => $product_name,
-        'field_item_quantity_shipped' => $qty,
+        'field_sku' => $sku,
+        'field_item_quantity_shipped' => (int) $qty,
       ]);
       $paragraph_arr[$i]->save();
       $data[] = [
@@ -374,6 +383,28 @@ class UtilityOrder {
       $this->loggerFactory->get('commerce_order_customizations')->error($e->getMessage());
     }
     $this->loggerFactory->get('commerce_order_customizations')->notice("File: '{$filename}' deleted from FTP folder: '{$ftp_folder}'");
+  }
+
+  /**
+   * Send mails on failure.
+   */
+  public function sendMail($key, $params) {
+    // Taxonomy term.
+    $term_obj_arr = $this->entityTypeManager->getStorage('taxonomy_term')
+      ->loadByProperties([
+        'vid' => 'custom_email_templates',
+        'name' => $key,
+      ]);
+    if (!empty($term_obj_arr)) {
+      $term_obj_arr = array_values($term_obj_arr);
+      $to = $term_obj_arr[0]->get('field_recipients')->value;
+      $params['subject'] = $term_obj_arr[0]->get('field_subject')->value;
+      $params['message'] = $term_obj_arr[0]->get('description')->value . PHP_EOL . $params['message'];
+      $result = $this->mailManager->mail('ecom_common', $key, $to, 'en', $params, NULL, TRUE);
+    }
+    else {
+      $this->loggerFactory->get('commerce_order_customizations')->error("Unable to send mail. '{$key}' is not present");
+    }
   }
 
 }

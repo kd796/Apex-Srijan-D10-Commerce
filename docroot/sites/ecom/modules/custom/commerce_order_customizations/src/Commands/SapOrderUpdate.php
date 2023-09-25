@@ -81,12 +81,14 @@ class SapOrderUpdate extends DrushCommands {
    * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
   protected $configFactory;
+
   /**
    * Drupal\commerce_order_customizations\UtilityOrder definition.
    *
    * @var \Drupal\commerce_order_customizations\UtilityOrder
    */
   protected $utilityObj;
+
   /**
    * The sftp config.
    *
@@ -122,25 +124,34 @@ class SapOrderUpdate extends DrushCommands {
       $public_folder_path = 'public://import/order_update_xml_files/';
       $folder_path = $this->drupalFileSystem->realpath($public_folder_path);
       $remoteFiles = $this->filesystem->listContents($this->root)->toArray();
-      if (count($remoteFiles) != 0) {
-        foreach ($remoteFiles as $remoteFile) {
+      if (is_dir($public_folder_path)) {
+        if (count($remoteFiles) != 0) {
 
-          $this->downloadAndStoreFile($remoteFile, $public_folder_path);
-          $counter++;
+          foreach ($remoteFiles as $remoteFile) {
+
+            $this->downloadAndStoreFile($remoteFile, $public_folder_path);
+            $counter++;
+          }
+          $this->logger()->notice('Download and stored phase from FTP Completed');
+          $this->logger()->notice("Total number of files downloaded are: '{$counter}'");
+          // Getting order details array after processing the xml files and creating shipments.
+          $data = $this->customXmlReader($public_folder_path);
+          // Deleting all the files from public folder.
+          $this->deleteLocalFiles($folder_path);
         }
-        $this->logger()->notice('Download and stored phase from FTP Completed');
-        $this->logger()->notice("Total number of files downloaded are: '{$counter}'");
-        // Getting order details array after processing the xml files and creating shipments.
-        $data = $this->customXmlReader($public_folder_path);
-        // Deleting all the files from public folder.
-        $this->deleteLocalFiles($folder_path);
+        else {
+          $this->logger()->notice('There are no Files for Order Update at this moment');
+        }
       }
       else {
-        $this->logger()->notice('There are no Files for Order Update at this moment');
+        // Sending mail if Local folder does not exist.
+        $params['message'] = t("Folder: '{$public_folder_path}' does not exist");
+        $this->utilityObj->sendMail('order_update', $params);
+        $this->logger()->error($params['message']);
       }
     }
     else {
-      $this->output()->writeln("Please check the FTP credential form");
+      $this->logger()->error("Please check the FTP credential form");
     }
   }
 
@@ -175,6 +186,9 @@ class SapOrderUpdate extends DrushCommands {
       return 0;
     }
     catch (\Exception $e) {
+      // Sending mail if FTP Connection fails.
+      $params['message'] = $e->getMessage();
+      $this->utilityObj->sendMail('order_update', $params);
       $this->output()->writeln($e->getMessage());
       return 0;
     }
@@ -196,6 +210,7 @@ class SapOrderUpdate extends DrushCommands {
     $file_resource = $this->filesystem->read($remotePath);
     $this->drupalFileSystem->saveData($file_resource, $localPath . $simple_filename);
     $this->logger()->success("File '{$remotePath}' successfully downloaded and stored.");
+
   }
 
   /**
@@ -215,7 +230,7 @@ class SapOrderUpdate extends DrushCommands {
         ];
       }
       batch_set([
-        'title' => t('Batch Processed Kuntal'),
+        'title' => t('Batch Processing for Order Update.'),
         'operations' => $operations,
         'finished' => '\Drupal\commerce_order_customizations\BatchService::processUserUpdateFinished',
       ]);
