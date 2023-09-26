@@ -253,6 +253,26 @@ div[id^="address-0-address-ajax-wrapper"] {
         padding-left: 220px;
       }
     }
+
+    .field--name-field-county {
+      position: relative;
+      flex: 0 0 100%;
+      max-width: 50%;
+      @media screen and (max-width: $tablet-max) {
+        max-width: 100%;
+      }
+
+      .form-item-field-county {
+        max-width: 100%;
+      }
+
+      .form-select {
+        max-width: calc(100% - 200px);
+        @media screen and (max-width: $tablet-max) {
+          max-width: 100%;
+        }
+      }
+    }
   }
 }
 
