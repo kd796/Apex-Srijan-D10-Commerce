@@ -85,7 +85,7 @@
   .checkout-pane-shipping-information,
   .checkout-pane-payment-information {
     border: 0;
-    margin: 0 0 12px;
+    margin: 0;
     padding: 0 25px 0 0;
 
     @media only screen and (max-width: $tablet-max) {
@@ -284,7 +284,7 @@
           @media only screen and (min-width: $desktop) {
             width: calc(37% - 16px);
           }
-        
+
           @media only screen and (min-width: $tablet) and (max-width: $tablet-max) {
             width: calc(80% - 16px);
           }
@@ -487,6 +487,32 @@
 
       .form-submit {
         margin: 16px 0 0;
+      }
+
+      fieldset {
+        &[data-drupal-selector$="payment-information-payment-method"] {
+          margin: 0;
+        }
+      }
+
+      div {
+        &[data-drupal-selector$="shipping-information-shipments"] {
+          .field--name-shipping-method {
+            fieldset {
+              margin: 0;
+              .fieldset-wrapper {
+                .form-radios {
+                  .form-item {
+                    margin: 0 0 25px;
+                    @media only screen and(min-width: $tablet) {
+                      margin: 0;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
