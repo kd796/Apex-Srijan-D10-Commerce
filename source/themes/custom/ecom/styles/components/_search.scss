@@ -85,7 +85,8 @@
       }
     }
 
-    &:checked + label::before {
+    &:checked + label::before,
+    &.checked + label::before {
       background-image: url('#{$image-base-path}/checkbox_checked.png');
     }
   }  
@@ -112,6 +113,54 @@
 
   .view-filters {
     background: transparent;
+
+    >label {
+      margin-right: 8px;
+    }
+
+    .sorted-option {
+      background: url('#{$image-base-path}/sort.svg') no-repeat right $white;
+      background-size: 14px;
+      padding-right: 20px;
+      color: $dark-blue;
+      cursor: pointer;
+    }
+  }
+
+  .bef-exposed-form {
+    .form-item-search,
+    .form-actions {
+      display: none;
+    }
+  }
+
+  #views-exposed-form-acquia-product-search-solr-product-search {
+    .form-item-sort-by {
+      float: none;
+      position: relative;
+      margin-top: 0;
+    }
+
+    .bef-links {
+      position: absolute;
+      padding: 5px;
+      background-color: $white;
+      z-index: 10;
+      border: 1px solid $silver;
+      right: 0;
+      top: 100%;
+      width: 100%;
+      box-shadow: 0 1px 2px $silver;
+      display: none;
+
+      &.none {
+        display: none;
+      }
+
+      &.block {
+        display: block;
+      }
+    }
   }
 
   .view-header-filter {
@@ -120,9 +169,15 @@
     align-items: center;
     border-bottom: 1px solid $silver;
     margin-bottom: 20px;
+    padding-bottom: 5px;
 
     .view-header {
       font-weight: $bold;
+      flex: 0 0 50%;
+
+      @media screen and (min-width: $tablet-max) {
+        flex: 0 0 auto;
+      }
     }
   }
 
@@ -133,6 +188,15 @@
   .view-search__header-results {
     font-size: 18px;
     margin-bottom: 5px;
+  }
+
+  .form-item-sort-by {
+    margin-bottom: 0;
+    margin-right: 0;
+
+    label {
+      display: none;
+    }
   }
 }
 
