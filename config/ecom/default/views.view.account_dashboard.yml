@@ -1553,6 +1553,18 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: true
+          content: 'You have not placed any orders with us yet.'
+          tokenize: false
       sorts:
         changed:
           id: changed
@@ -1689,6 +1701,7 @@ display:
         type: fields
         options: {  }
       defaults:
+        empty: false
         style: false
         row: false
         relationships: false

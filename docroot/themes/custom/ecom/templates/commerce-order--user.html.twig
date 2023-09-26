@@ -27,18 +27,19 @@
         <span>{{ order.placed }}</span>
       </div>
     {% endif %}
-    {% if order.completed|render|trim|striptags %}
-      <div class="order-deliver">
-        <label>{{ 'Delivery Date: '|t }}</label>
-        <span>{{ order.completed }}</span>
-      </div>
-    {% endif %}
-    {% if order.state|render|striptags|trim %}
-      <div class="order-state">
+    <div class="order-state">
+      {% if order.state|render|striptags|trim %}
         <label>{{ 'Order Status: '|t }}</label>
         <span>{{ order.state }}</span>
-      </div>
-    {% endif %}
+      {% endif %}
+
+      {% if order.completed|render|trim|striptags %}
+        <div class="order-deliver">
+          <label>{{ 'Delivery Date: '|t }}</label>
+          <span>{{ order.completed }}</span>
+        </div>
+      {% endif %}
+    </div>
   </div>
   <div class="shipping-billing-info">
     {% if order.shipping_information %}
