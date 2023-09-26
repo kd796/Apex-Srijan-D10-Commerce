@@ -10,13 +10,7 @@
         border: 0;
         padding: 0;
         width: 100%;
-        margin: 0 0 25px;
-        @media only screen and (max-width: $tablet) {
-          margin: 0 0 20px;
-        }
-        @media only screen and (max-width: $mobile-sm) {
-          margin: 0 0 16px;
-        }
+        margin: 0 0 5px;
 
         legend {
           color: $black;
@@ -36,25 +30,18 @@
         }
 
         &[data-drupal-selector$="review-contact-information"] {
+          margin: 0;
           display: flex;
           flex-wrap: wrap;
           align-items: center;
 
           label {
-            width: 115px;
+            width: 150px;
             text-transform: capitalize;
-
-            @media only screen and (max-width: $tablet) {
-              width: 100px;
-            }
           }
 
           .fieldset-wrapper {
-            width: calc(100% - 115px);
-
-            @media only screen and (max-width: $tablet) {
-              width: calc(100% - 100px);
-            }
+            width: calc(100% - 150px);
           }
         }
 
@@ -62,6 +49,14 @@
           .profile {
             .address-item {
               margin: 0 0 5px;
+            }
+
+            .field--name-field-county {
+              .field__label {
+                &:after {
+                  content: ":";
+                }
+              }
             }
           }
 
