@@ -6,6 +6,7 @@ dependencies:
     - commerce_order.commerce_order_type.default
     - field.storage.commerce_shipment.field_item_and_quantity
     - field.storage.commerce_shipment.field_sap_shipment_tracking
+    - field.storage.commerce_shipment.field_total_item_quantity
   module:
     - commerce
     - commerce_order
@@ -27,6 +28,134 @@ display:
     display_options:
       title: 'Order Shipment and Tracking'
       fields:
+        field_total_item_quantity:
+          id: field_total_item_quantity
+          table: commerce_shipment__field_total_item_quantity
+          field: field_total_item_quantity
+          relationship: reverse__commerce_shipment__order_id
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        title:
+          id: title
+          table: commerce_shipment
+          field: title
+          relationship: reverse__commerce_shipment__order_id
+          group_type: group
+          admin_label: ''
+          entity_type: commerce_shipment
+          entity_field: title
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '<h2>Shipment Number: {{ title }} </h2><h4> // Quantity Shipped: {{ field_total_item_quantity }}</h4> '
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
         field_sap_shipment_tracking:
           id: field_sap_shipment_tracking
           table: commerce_shipment__field_sap_shipment_tracking
@@ -330,6 +459,7 @@ display:
       tags:
         - 'config:field.storage.commerce_shipment.field_item_and_quantity'
         - 'config:field.storage.commerce_shipment.field_sap_shipment_tracking'
+        - 'config:field.storage.commerce_shipment.field_total_item_quantity'
   order_shipment_tracking:
     id: order_shipment_tracking
     display_title: Block
@@ -347,3 +477,4 @@ display:
       tags:
         - 'config:field.storage.commerce_shipment.field_item_and_quantity'
         - 'config:field.storage.commerce_shipment.field_sap_shipment_tracking'
+        - 'config:field.storage.commerce_shipment.field_total_item_quantity'

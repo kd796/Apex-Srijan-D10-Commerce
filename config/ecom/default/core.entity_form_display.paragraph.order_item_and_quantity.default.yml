@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.order_item_and_quantity.field_item_name
     - field.field.paragraph.order_item_and_quantity.field_item_quantity_shipped
+    - field.field.paragraph.order_item_and_quantity.field_sku
     - paragraphs.paragraphs_type.order_item_and_quantity
 id: paragraph.order_item_and_quantity.default
 targetEntityType: paragraph
@@ -22,6 +23,14 @@ content:
   field_item_quantity_shipped:
     type: string_textfield
     weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_sku:
+    type: string_textfield
+    weight: 2
     region: content
     settings:
       size: 60
