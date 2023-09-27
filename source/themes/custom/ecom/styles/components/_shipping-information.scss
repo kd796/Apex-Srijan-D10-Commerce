@@ -83,6 +83,10 @@
     margin-bottom: 24px;
     padding-top: 24px;
   }
+
+  h2 {
+    font-size: 22px;
+  }
 }
 
 .views-field-field-sap-shipment-tracking {
@@ -92,11 +96,8 @@
     width: 100%;
     position: relative;
     display: grid;
-    grid-template-columns: 24% 24% auto;
-    grid-gap: 10px;
-    @media only screen and (max-width: $tablet) {
-      grid-template-columns: 30% 30% auto;
-    }
+    grid-template-columns: 45% 25% 20%;
+    grid-gap: 5%;
 
     &:first-child {
       &::after {
@@ -107,11 +108,18 @@
         position: absolute;
         left: 0;
         bottom: calc(100% - 35px);
+        @media only screen and (max-width: $tablet) {
+          bottom: calc(100% - 50px);
+        }
       }
     }
 
     .field__label {
       padding: 10px 0;
+      @media only screen and (max-width: $tablet) {
+        padding: 10px 0 20px;
+        min-height: 60px;
+      }
     }
 
     .field__item {
@@ -139,11 +147,8 @@
     width: 100%;
     position: relative;
     display: grid;
-    grid-template-columns: 24% 24% auto;
-    grid-gap: 10px;
-    @media only screen and (max-width: $tablet) {
-      grid-template-columns: 50% 50%;
-    }
+    grid-template-columns: 45% 25% 20%;
+    grid-gap: 5%;
 
     &:first-child {
       &::after {
@@ -154,11 +159,18 @@
         position: absolute;
         left: 0;
         bottom: calc(100% - 35px);
+        @media only screen and (max-width: $tablet) {
+          bottom: calc(100% - 50px);
+        }
       }
     }
 
     .field__label {
       padding: 10px 0;
+      @media only screen and (max-width: $tablet) {
+        padding: 10px 0 20px;
+        min-height: 60px;
+      }
     }
 
     .field__item {
