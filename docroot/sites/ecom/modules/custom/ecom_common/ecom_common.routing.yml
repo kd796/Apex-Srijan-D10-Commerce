@@ -12,3 +12,18 @@ ecom_common.product_image_download:
 ecom_common.account_dashboard:
   path: 'user/%user/account-dashboard'
 
+ecom_common.page:
+  path: '/add-to-cart/{commerce_product}/{commerce_product_variation}/{token}'
+  defaults:
+    _controller: '\Drupal\ecom_common\Controller\CartQuantityController::action'
+    token: ''
+  requirements:
+    _custom_access:  '\Drupal\ecom_common\Controller\CartQuantityController::access'
+    commerce_product: \d+
+    commerce_product_variation: \d+
+  options:
+    parameters:
+      commerce_product:
+        type: entity:commerce_product
+      commerce_product_variation:
+        type: entity:commerce_product_variation
