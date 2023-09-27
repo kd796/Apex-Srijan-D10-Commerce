@@ -57,6 +57,7 @@
 
   .password-strength__meter {
     max-width: 150px;
+    margin-bottom: 5px;
 
     @media screen and(min-width: $tablet-max) {
       max-width: 200px;
@@ -72,6 +73,33 @@
     min-width: 115px !important;
   }
 
+  [data-drupal-selector$='edit-user-picture-0-remove-button'] {
+    @media only screen and(max-width: $tablet-max) {
+      margin-left: 0;
+      display: block;
+      margin-top: 10px;
+    }
+  }
+
+  .image-widget-data {
+    @media only screen and(max-width: $tablet-max) {
+      margin-top: 10px;
+    }
+  }
+
+  .form-type-password {
+    position: relative;
+
+    .ajax-progress {
+      top: 58%;
+      right: 0;
+      left: unset;
+      @media screen and(min-width: $tablet-max) {
+        position: unset;
+        padding: 1px 5px 2px;
+      }
+    }
+  }
 }
 
 .featured-account-dashboard {
