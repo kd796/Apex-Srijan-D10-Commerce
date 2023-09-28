@@ -116,28 +116,32 @@ class StockUpdateService extends DrushCommands {
       $public_folder_path = 'public://import/inventory_xml_files/';
       $folder_path = $this->drupalFileSystem->realpath($public_folder_path);
       $remoteFiles = $this->filesystem->listContents($this->root)->toArray();
-
-      foreach ($remoteFiles as $remoteFile) {
-        $this->downloadAndStoreFile($remoteFile, $public_folder_path);
-        $counter++;
-      }
-      $this->logger()->notice('Download and stored phase from FTP Completed');
-      $this->logger()->notice("Total number of files processed are: '{$counter}'");
-      // Getting data after processing the xml files.
-      $data = $this->customXmlReader($public_folder_path);
-      // Updating the stock field in product variation.
-      if (!empty($data)) {
-        $product_update_status = $this->updatestock($data);
-      }
-      // Deleting all the files from public folder.
-      $this->deleteLocalFiles($folder_path);
-      if ($product_update_status) {
-        // Deleting all the files from FTP folder.
-        $this->deleteFtpFiles();
-        $this->logger()->success('Stock updated');
+      if (count($remoteFiles)) {
+        foreach ($remoteFiles as $remoteFile) {
+          $this->downloadAndStoreFile($remoteFile, $public_folder_path);
+          $counter++;
+        }
+        $this->logger()->notice('Download and stored phase from FTP Completed');
+        $this->logger()->notice("Total number of files processed are: '{$counter}'");
+        // Getting data after processing the xml files.
+        $data = $this->customXmlReader($public_folder_path);
+        // Updating the stock field in product variation.
+        if (!empty($data)) {
+          $product_update_status = $this->updatestock($data);
+        }
+        // Deleting all the files from public folder.
+        $this->deleteLocalFiles($folder_path);
+        if ($product_update_status) {
+          // Deleting all the files from FTP folder.
+          $this->deleteFtpFiles();
+          $this->logger()->success('Stock updated');
+        }
+        else {
+          $this->logger()->error('Please check logs for more details');
+        }
       }
       else {
-        $this->logger()->error('Please check logs for more details');
+        $this->logger()->error('There are no files at this moment');
       }
     }
     else {
@@ -177,12 +181,20 @@ class StockUpdateService extends DrushCommands {
     if (!empty($xml_files)) {
       foreach ($xml_files as $xml_file) {
         $xml_data = file_get_contents($xml_file->uri);
-        $xmlObj = simplexml_load_string($xml_data);
+        if ($xml_data != "") {
+          $xmlObj = simplexml_load_string($xml_data);
 
-        foreach ($xmlObj->IDOC->E1MARAM as $element) {
-          $sku = trim((string) $element->MATNR);
-          $qty = trim((string) $element->E1MARCM->EISBE);
-          $data[$sku] = $qty;
+          foreach ($xmlObj->IDOC->E1MARAM as $element) {
+            $sku = trim((string) $element->MATNR);
+            $qty = trim((string) $element->E1MARCM->EISBE);
+            $data[$sku] = $qty;
+          }
+        }
+        else {
+           // Sending mail if FTP File contains no data.
+          $params['message'] = "File '{$xml_file->uri}' had no data";
+          \Drupal::service('commerce_order_customizations.utility')->sendMail('inventory_update', $params);
+          $this->logger()->error("File '{$xml_file->uri}' had no data");
         }
       }
       $this->logger()->notice("Reading phase completed.");
@@ -234,7 +246,7 @@ class StockUpdateService extends DrushCommands {
         'finished' => '\Drupal\commerce_custom_stock\BatchService::updateFinished',
       ];
       // Chunk the products into smaller batches to process.
-      $product_chunks = array_chunk($products, 50, TRUE);
+      $product_chunks = array_chunk($products, 100, TRUE);
       $this->logger()->notice("Batch operations start.");
       foreach ($product_chunks as $product_chunk) {
         $batch['operations'][] = [
@@ -261,15 +273,15 @@ class StockUpdateService extends DrushCommands {
    * Delete files from ftp server.
    */
   public function deleteFtpFiles() {
+    $ftp_con = \Drupal::service('commerce_order_customizations.ftpcon');
     $folder_loc = $this->root;
     try {
-      $remoteFiles = $this->filesystem->listContents($folder_loc)->toArray();
+      $remoteFiles = $ftp_con->connect()->listContents($folder_loc)->toArray();
       foreach ($remoteFiles as $file) {
-
         if ($file['type'] === 'file') {
           // Delete the file.
-          $this->filesystem->delete($file['path']);
-          $this->output()->writeln("File '{$file['path']}' deleted successfully.");
+          $ftp_con->connect()->delete($file['path']);
+          $this->loggerFactory->get('inventory_batch')->notice("File '{$file['path']}' deleted successfully.");
         }
       }
     }
@@ -309,6 +321,9 @@ class StockUpdateService extends DrushCommands {
       return 0;
     }
     catch (\Exception $e) {
+      // Sending mail if FTP Connection fails.
+      $params['message'] = $e->getMessage();
+      \Drupal::service('commerce_order_customizations.utility')->sendMail('inventory_update', $params);
       $this->output()->writeln($e->getMessage());
       return 0;
     }

@@ -33,6 +33,7 @@ class BatchService {
           $prod_variation_obj->field_stock->value = $qty;
           $prod_variation_obj->save();
         }
+        \Drupal::logger('commerce_custom_stock')->notice("Processed Product: '$sku'");
       }
       else {
         \Drupal::logger('commerce_custom_stock')->notice("Product '$sku' is not present in Drupal");

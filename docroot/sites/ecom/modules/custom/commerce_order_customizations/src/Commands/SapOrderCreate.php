@@ -300,6 +300,9 @@ class SapOrderCreate extends DrushCommands {
         return 1;
       }
       catch (\Exception $e) {
+        // Sending mail if unable to export.
+        $params['message'] = $e->getMessage();
+        $this->utilityObj->sendMail('order_create', $params);
         throw new \Exception('FTP Failure. Message: ' . $e->getMessage());
       }
     }
@@ -353,6 +356,9 @@ class SapOrderCreate extends DrushCommands {
       return 0;
     }
     catch (\Exception $e) {
+      // Sending mail if FTP Connection fails.
+      $params['message'] = $e->getMessage();
+      $this->utilityObj->sendMail('order_create', $params);
       $this->output()->writeln($e->getMessage());
       return 0;
     }
