@@ -1,7 +1,8 @@
 
 <div class="dash__address-list">
-  <div class="address-item">
-    {% if fields.address_given_name.content|render|striptags|trim or fields.address_family_name.content|render|striptags|trim %}
+  {% if fields.address_given_name.content|render|striptags|trim or fields.address_family_name.content|render|striptags|trim %}
+    <div class="address-item">
+
       <label>
         {{ 'Name:'|t }}
       </label>
@@ -10,8 +11,8 @@
         {{ ' ' }}
         {{ fields.address_family_name.content }}
       </div>
-    {% endif %}
-	</div>
+    </div>
+  {% endif %}
   {% if fields.address_address_line1.content|render|striptags|trim or fields.address_address_line2.content|render|striptags|trim %}
     <div class="address-item">
       <label>
@@ -56,8 +57,10 @@
       </div>
     </div>
   {% endif %}
-  <div class="edit-profile">
+  {% if fields.address_country_code.content|render|striptags|trim %}
+    <div class="edit-profile">
     {{ fields.edit_profile.content }}
   </div>
+  {% endif %}
 
 </div>

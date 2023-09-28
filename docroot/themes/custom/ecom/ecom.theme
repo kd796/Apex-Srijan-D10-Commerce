@@ -332,3 +332,10 @@ function ecom_preprocess_views_view_unformatted(&$vars) {
     $vars['recent_orders'] = views_embed_view('account_dashboard', 'recent_orders');
   }
 }
+
+/**
+ * Implements template_preprocess()
+ */
+function ecom_preprocess(&$vars, $hook) {
+  $vars['user_id'] = \Drupal::currentUser()->id();
+}
