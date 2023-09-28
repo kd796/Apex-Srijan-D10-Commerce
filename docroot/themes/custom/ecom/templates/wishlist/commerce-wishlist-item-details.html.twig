@@ -19,6 +19,8 @@
     </div>
   {% endif %}
   <div class="wishlist-item__quantity">
-    {{ wishlist_item_entity.getQuantity|number_format }}
+  {% if wishlist_item_entity.getPurchasableEntity.qty_increments %}
+     {{ wishlist_item_entity.getPurchasableEntity.qty_increments.value|number_format }}
+  {% endif %}
   </div>
 </div>

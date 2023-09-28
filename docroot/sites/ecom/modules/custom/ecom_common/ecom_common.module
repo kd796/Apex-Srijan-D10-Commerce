@@ -50,6 +50,15 @@ function ecom_common_node_presave(EntityInterface $entity) {
 }
 
 /**
+ * Implements hook_entity_type_alter().
+ */
+function ecom_common_entity_type_alter(array &$entity_types) {
+  $entity_types['commerce_wishlist']->setHandlerClass('form', array(
+    'user' => 'Drupal\ecom_common\Form\EcomWishlistUserForm'
+  ));
+}
+
+/**
  * Implements hook_menu_local_tasks_alter().
  */
 function ecom_common_menu_local_tasks_alter(&$data, $route_name, RefinableCacheableDependencyInterface &$cacheability) {

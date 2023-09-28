@@ -167,10 +167,10 @@
                 {{ 'Availability:'|t }}
                 {% if stock_value <= 0 %}
                 <span class='product-stock out-of-stock'>
-                {{ 'Out of stock' }}</span>
+                {{ 'Out of stock'|t }}</span>
                 {% else %}
                 <span class='product-stock in-stock'>
-                {{ 'In stock' }}</span>
+                {{ 'In stock'|t }}</span>
                 {% endif %}
               </div>
             </div>
@@ -181,9 +181,12 @@
               {{ content.field_product_features }}
             </div>
             <div class="product__actions">
-            {% if stock_value > 0 %}
-              <div class="add-to-cart-button"><a href="/add-to-cart/{{ variation_id }}/{{ variation_id }}" class="button--add-to-cart btn-primary">{{ 'Add to Cart'|t }}</a></div>
-             {% endif %}
+              {% if stock_value > 0 %}
+                <div class="add-to-cart-button"><a href="/add-to-cart/{{ variation_id }}/{{ variation_id }}" class="button--add-to-cart btn-primary">{{ 'Add to Cart'|t }}</a></div>
+                {% if quantity is not empty and quantity > 1 %}
+                  <span class="quantity-note">Quantity Available in Case Pack Only. You can order in {{ quantity }} qty only.</span>
+                {% endif %}
+              {% endif %}
               <div class="wishlist-button"><a href="/add-to-wishlist/{{ variation_id }}/{{ variation_id }}" class="btn btn-primary button--wishlist">
               {{ 'Add to Wishlist'|t }}
               </a></div>
