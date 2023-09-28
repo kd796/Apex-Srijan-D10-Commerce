@@ -31,6 +31,9 @@ configuration:
     payment_information:
       step: order_information
       weight: 2
+      payment_methods_reusable: false
+      payment_methods_always_save: false
+      payment_methods_free_orders: false
     shipping_information:
       step: order_information
       weight: 3
