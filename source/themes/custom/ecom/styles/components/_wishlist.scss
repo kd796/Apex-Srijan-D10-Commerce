@@ -11,75 +11,104 @@
   }
 
   &-header {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    padding-bottom: 12px;
     border-bottom: 1px solid $gray;
     margin-bottom: 15px;
-    overflow-x: scroll;
+    font-size: 14px;
+    background-color: rgb(240, 240, 240);
+    padding: 0;
+    display: grid;
+    grid-template-columns: 20% 25% 25% 30%;
+    @media screen and (max-width: $tablet) {
+      grid-template-columns: 20% 25% 17% 38%;
+    }
 
     .item-heading,
     .item-quantity,
-    .form-wrapper {
-      flex: 0 0 30%;
+    .form-wrapper,
+    .item-product-image {
       font-size: 13px;
       font-weight: $bold;
+      padding: 10px;
+      display: flex;
+      align-items: center;
 
       @media screen and (min-width: $tablet-max) {
         font-size: 15px;
-        flex: 0 0 33%;
       }
     }
 
     .form-wrapper {
-      flex: 0 0 33%;
+      display: flex;
+      align-items: center;
+      @media screen and (max-width: $tablet-max) {
+        flex-direction: column;
+      }
 
-      input, a {
+      input,
+      a {
         font-size: 10px;
-        margin-left: 0;
+        margin: 0 5px;
+        line-height: 1.2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         @media  screen and (min-width: $tablet-max) {
           font-size: 12px;
         }
+
+        @media  screen and (max-width: $tablet-max) {
+          min-width: 100%;
+          white-space: normal;
+          font-size: 8px;
+        }
       }
 
       input {
-        margin-bottom: 5px;
+        @media screen and (max-width: $tablet-max) {
+          margin: 0 0 5px;
+        }
+      }
+
+      a {
+        @media screen and (max-width: $tablet-max) {
+          margin: 0;
+        }
       }
     }
   }
 
   &-item {
-    display: flex;
     margin: 0;
     grid-gap: unset;
     padding-bottom: 14px;
     border-bottom: 1px solid $gray;
     margin-bottom: 15px;
+    display: grid;
+    grid-template-columns: 20% 25% 25% 30%;
+    @media screen and (max-width: $tablet) {
+      grid-template-columns: 20% 25% 17% 38%;
+    }
 
-    &__quantity {
-      padding-left: 20px;
+    img {
+      padding: 10px;
+      border: solid 1px $para;
+      margin: 0 0 10px;
+      width: 80%;
       @media screen and (min-width: $tablet-max) {
-        padding-left: 24px;
+        min-height: 160px;
       }
+    }
+
+    &__product, 
+    &__entity,
+    &__details,
+    &__actions {
+      padding: 10px;
     }
 
     &:last-child {
       border-bottom: 0;
-    }
-
-    &__actions {
-      flex: 0 0 33%;
-    }
-
-    &__entity,
-    &__details {
-      flex: 0 0 30%;
-
-      @media screen and (min-width: $tablet-max) {
-        flex: 0 0 33%;
-      }
     }
 
     &__entity {
@@ -89,15 +118,30 @@
     }
 
     &__actions {
+      .form-wrapper {
+        display: flex;
+        align-items: center;
+        @media screen and (max-width: $tablet-max) {
+          flex-direction: column;
+        }
+      }
 
       .form-submit {
-        margin-left: 0;
-        margin-bottom: 5px;
+        margin: 0 5px;
         font-size: 10px;
+        @media screen and (max-width: $tablet-max) {
+          margin: 0 0 5px;
+        }
 
         @media screen and (min-width: $tablet-max) {
           margin-bottom: 0;
           font-size: 12px;
+        }
+
+        &:last-child {
+          @media screen and (max-width: $tablet) {
+            margin-bottom: 0;
+          }
         }
       }
     }
