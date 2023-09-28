@@ -64,6 +64,21 @@
     }
   }
 
+  .password-suggestions {
+    padding: .5em;
+    max-width: 100%;
+    border-right: 0;
+    border-left: 0;
+    font-size: 14px;
+    font-weight: 600;
+
+    ul {
+      margin-bottom: 10px;
+      font-weight: 400;
+      margin-top: 10px;
+    }
+  }
+
   #edit-pass--description {
     padding-left: 0;
   }
@@ -150,7 +165,7 @@
   .in-active {
     color: $sinopia;
   }
-  
+
   .information {
     pointer-events: none;
   }
@@ -158,11 +173,26 @@
 
 #password-policy-status {
   margin-bottom: 20px;
-  max-width: calc(40% + 220px);
+  max-width: 100%;
 
-  td,th {
+  table {
+    min-width: 100%;
+  }
+
+  tr {
+    th {
+      background: $silver;
+      color: $black;
+    }
+  }
+
+  td,
+  th {
     padding: 5px;
     border: 1px solid $gray;
+    @media screen and (min-width: $tablet) {
+      padding: 10px;
+    }
   }
 }
 

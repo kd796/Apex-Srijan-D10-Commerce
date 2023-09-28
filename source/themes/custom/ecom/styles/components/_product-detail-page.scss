@@ -445,6 +445,11 @@ ul.field--name-field-product-features {
   display: flex;
   justify-content: flex-start;
   padding-top: 10px;
+  position: relative;
+
+  @media only screen and (max-width: $tablet-max) {
+    margin-bottom: 30px;
+  }
 
   .button--add-to-cart,
   .button--wishlist {
@@ -468,6 +473,20 @@ ul.field--name-field-product-features {
   .button--add-to-cart {
     margin-right: 20px;
   }
+
+  .quantity-note {
+    position: absolute;
+    top: 120%;
+    max-width: 35%;
+    font-weight: $bold;
+    @media only screen and (max-width: $tablet) {
+      max-width: 60%;
+    }
+  }
+
+  .quantity-count {
+    font-weight: $normal;
+  }
 }
 
 .product-brand {
@@ -483,7 +502,7 @@ ul.field--name-field-product-features {
   width: 30vw;
   height: 30vw;
   display: none !important;
-  box-shadow: rgba(100,100,111,.2) 0px 0px 10px 1px;
+  box-shadow: rgba(100, 100, 111, .2) 0 0 10px 1px;
   border: 2px solid $black;
 
   @media screen and (min-width: $tablet) {
