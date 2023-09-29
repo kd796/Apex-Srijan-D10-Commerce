@@ -1,0 +1,117 @@
+.commerce-checkout-flow {
+  .checkout-login {
+    .checkout-pane {
+      &.checkout-pane-completion-message {
+        margin: 0;
+        width: 100%;
+        padding: 16px;
+        margin: 16px 0;
+        border-radius: 5px;
+        height: fit-content;
+        border: 1px solid $silver;
+        background-color: $silver-secondary;
+      }
+    }
+
+    .checkout-pane-completion-register {
+      .commerce-checkout-completion-register {
+        &__text {
+          h2 {
+            margin: 0 0 16px;
+          }
+
+          p {
+            margin: 0 0 16px;
+          }
+        }
+
+        &__form {
+          label {
+            font-size: 16px;
+            margin: 0 0 8px;
+            font-weight: 400;
+            color: $light-black;
+            letter-spacing: 0.2px;
+
+            &:after {
+              content: '';
+              background-image: url('#{$image-base-path}/required.svg');
+            }
+          }
+
+          .form-item {
+            margin: 0 0 30px;
+            @media only screen and (max-width: $tablet) {
+              margin: 0 0 15px;
+            }
+
+            input {
+              height: 53px;
+              padding: 12px 15px;
+              border: 1px solid $black;
+
+              @media only screen and (max-width: $tablet) {
+                height: 43px;
+              }
+            }
+
+            .password-confirm,
+            .password-strength,
+            .description {
+              font-size: 13px;
+              font-weight: 400;
+              margin: 5px 0 0;
+              color: $light-black;
+              letter-spacing: 0.1px;
+            }
+
+            &.form-type-password-confirm {
+              @media only screen and(min-width: $mobile-sm) {
+                padding: 0;
+                display: flex;
+                flex-wrap: wrap;
+                margin: 0 -16px;
+              }
+
+              .form-item {
+                width: 100%;
+                max-width: 100%;
+                @media only screen and(min-width: $mobile-sm) {
+                  width: 50%;
+                  padding: 0 16px;
+                }
+
+                input[type="password"] {
+                  margin: 0;
+                  width: 100%;
+                }
+              }
+
+              .description {
+                display: none;
+              }
+            }
+          }
+
+          .form-actions {
+            padding: 0;
+            margin: 0 0 30px;
+            @media only screen and (max-width: $tablet) {
+              margin: 0 0 15px;
+            }
+
+            .button {
+              min-height: 53px;
+              min-width: 200px;
+              border-radius: 4px;
+              @media only screen and (max-width: $tablet) {
+                min-height: 43px;
+                min-width: 150px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
