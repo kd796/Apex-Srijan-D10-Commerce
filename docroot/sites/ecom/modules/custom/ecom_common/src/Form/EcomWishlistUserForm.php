@@ -27,6 +27,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\commerce_wishlist\Form\WishlistUserForm;
 use Drupal\media\Entity\Media;
 use Drupal\Core\File\FileUrlGeneratorInterface;
+use Drupal\Core\Block\BlockManagerInterface;
+use Drupal\Core\Ajax\ReplaceCommand;
 
 /**
  * Provides the wishlist user form.
@@ -123,6 +125,13 @@ class EcomWishlistUserForm extends WishlistUserForm {
   protected $fileUrlGenerator;
 
   /**
+   * The block manager.
+   *
+   * @var \Drupal\Core\Block\BlockManagerInterface
+   */
+  protected $blockManager;
+
+  /**
    * Constructs a new WishlistUserForm object.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
@@ -150,7 +159,7 @@ class EcomWishlistUserForm extends WishlistUserForm {
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
    *   The language manager.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, ConfigFactoryInterface $config_factory, CartManagerInterface $cart_manager, CartProviderInterface $cart_provider, CurrentStoreInterface $current_store, AccountInterface $current_user, OrderTypeResolverInterface $order_type_resolver, RouteMatchInterface $route_match, ChainPriceResolverInterface $chain_price_resolver, WishlistManagerInterface $wishlist_manager, WishlistSessionInterface $wishlist_session, LanguageManagerInterface $language_manager, FileUrlGeneratorInterface $fileUrlGenerator) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, ConfigFactoryInterface $config_factory, CartManagerInterface $cart_manager, CartProviderInterface $cart_provider, CurrentStoreInterface $current_store, AccountInterface $current_user, OrderTypeResolverInterface $order_type_resolver, RouteMatchInterface $route_match, ChainPriceResolverInterface $chain_price_resolver, WishlistManagerInterface $wishlist_manager, WishlistSessionInterface $wishlist_session, LanguageManagerInterface $language_manager, FileUrlGeneratorInterface $fileUrlGenerator, BlockManagerInterface $block_manager) {
     $this->entityTypeManager = $entity_type_manager;
     $this->cartManager = $cart_manager;
     $this->cartProvider = $cart_provider;
@@ -164,6 +173,7 @@ class EcomWishlistUserForm extends WishlistUserForm {
     $this->wishlistSession = $wishlist_session;
     $this->languageManager = $language_manager;
     $this->fileUrlGenerator = $fileUrlGenerator;
+    $this->blockManager = $block_manager;
   }
 
   /**
@@ -183,7 +193,8 @@ class EcomWishlistUserForm extends WishlistUserForm {
       $container->get('commerce_wishlist.wishlist_manager'),
       $container->get('commerce_wishlist.wishlist_session'),
       $container->get('language_manager'),
-      $container->get('file_url_generator')
+      $container->get('file_url_generator'),
+      $container->get('plugin.manager.block')
     );
   }
 
@@ -215,7 +226,7 @@ class EcomWishlistUserForm extends WishlistUserForm {
       '#type' => 'submit',
       '#value' => t('Add the entire list to cart'),
       '#ajax' => [
-        'callback' => [get_called_class(), 'ajaxRefreshForm'],
+        'callback' => '::ajaxRefreshFormAndCartBlock',
       ],
       '#access' => $wishlist_has_items,
     ];
@@ -306,7 +317,7 @@ class EcomWishlistUserForm extends WishlistUserForm {
         '#type' => 'submit',
         '#value' => t('Add to cart'),
         '#ajax' => [
-          'callback' => [get_called_class(), 'ajaxRefreshForm'],
+          'callback' => '::ajaxRefreshFormAndCartBlock',
         ],
         '#submit' => [
           '::addToCartSubmit',
@@ -445,6 +456,13 @@ class EcomWishlistUserForm extends WishlistUserForm {
     }
 
     return $store;
+  }
+
+  public function ajaxRefreshFormAndCartBlock(array $form, FormStateInterface $form_state) {
+    $response = self::ajaxRefreshForm($form, $form_state);
+    $block = $this->blockManager->createInstance('commerce_cart', []);
+    $response->addCommand(new ReplaceCommand('.cart--cart-block', $block->build()));
+    return $response;
   }
 
 }

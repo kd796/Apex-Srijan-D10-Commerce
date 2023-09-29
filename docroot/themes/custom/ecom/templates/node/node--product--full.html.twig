@@ -205,7 +205,11 @@
               <div class="specification-header">{{ 'Specifications'|t }}</div>
 
               {% for specs in content.field_product_specifications %}
-                {% set specs_title =  specs['#plain_text']|split(':', 2) %}
+                {% if specs['#entity'].field_long_name.value %}
+                  {% set specs_title =  specs['#entity'].field_long_name.value|split(':', 2) %}
+                {% else %}
+                  {% set specs_title =  specs['#plain_text']|split(':', 2) %}
+                {% endif %}
                 <div class="field__item">
                   {% for key,specs_label in specs_title %}
                     {% if (loop.index is odd) %}
