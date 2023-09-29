@@ -25,11 +25,11 @@ class VariationAvailabilityChecker implements AvailabilityCheckerInterface {
   public function check(OrderItemInterface $order_item, Context $context) {
 
     $entity = $order_item->getPurchasedEntity();
-    $quantity = $order_item->getQuantity();
+    $quantity = $entity->qty_increments ? $entity->qty_increments->value : 0;
     // Order should not be placed if Stock is zero.
     $route_name = \Drupal::routeMatch()->getRouteName();
 
-    if ($entity->field_stock->value <= 0) {
+    if ($entity->field_stock->value < $quantity) {
       $result = t('This product is out of stock.');
       return AvailabilityResult::unavailable($result);
     }

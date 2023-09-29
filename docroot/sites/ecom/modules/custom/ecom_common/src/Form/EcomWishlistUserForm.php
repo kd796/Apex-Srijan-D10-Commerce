@@ -218,10 +218,6 @@ class EcomWishlistUserForm extends WishlistUserForm {
     $form['header'] = [
       '#type' => 'container',
     ];
-    $form['header']['empty_text'] = [
-      '#markup' => $this->t('Your wishlist is empty.'),
-      '#access' => !$wishlist_has_items,
-    ];
     $form['header']['add_all_to_cart'] = [
       '#type' => 'submit',
       '#value' => t('Add the entire list to cart'),
@@ -313,18 +309,31 @@ class EcomWishlistUserForm extends WishlistUserForm {
       $item_form['actions'] = [
         '#type' => 'container',
       ];
-      $item_form['actions']['add_to_cart'] = [
-        '#type' => 'submit',
-        '#value' => t('Add to cart'),
-        '#ajax' => [
-          'callback' => '::ajaxRefreshFormAndCartBlock',
-        ],
-        '#submit' => [
-          '::addToCartSubmit',
-        ],
-        '#name' => 'add-to-cart-' . $item->id(),
-        '#item_id' => $item->id(),
-      ];
+
+      $quantity = 0;
+      if ($purchasable_entity->qty_increments && $purchasable_entity->qty_increments->value) {
+        $quantity = (int) $purchasable_entity->qty_increments->value;
+      }  
+      if ($purchasable_entity->field_stock->value > $quantity) {
+        $item_form['actions']['add_to_cart'] = [
+          '#type' => 'submit',
+          '#value' => t('Add to cart'),
+          '#ajax' => [
+            'callback' => '::ajaxRefreshFormAndCartBlock',
+          ],
+          '#submit' => [
+            '::addToCartSubmit',
+          ],
+          '#name' => 'add-to-cart-' . $item->id(),
+          '#item_id' => $item->id(),
+        ];
+      }
+      else {
+        $item_form['product_out_of_stock'] = [
+          '#type' => 'markup',
+          '#markup' => $this->t('Out of Stock'),
+        ];
+      }
       $item_form['actions']['remove'] = [
         '#type' => 'submit',
         '#value' => t('Remove'),
