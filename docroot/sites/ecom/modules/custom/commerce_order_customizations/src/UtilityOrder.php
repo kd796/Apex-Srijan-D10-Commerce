@@ -45,21 +45,14 @@ class UtilityOrder {
    * @var \Drupal\Core\Logger\LoggerChannelFactoryInterface
    */
   protected $loggerFactory;
-  /**
-   * The mail manager.
-   *
-   * @var \Drupal\Core\Mail\MailManagerInterface
-   */
-  protected $mailManager;
 
   /**
    * Constructor.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, LoggerChannelFactoryInterface $factory, MailManagerInterface $mail_manager) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, LoggerChannelFactoryInterface $factory) {
     $this->entityTypeManager = $entity_type_manager;
     $this->subdivisionRepository = new SubdivisionRepository();
     $this->loggerFactory = $factory;
-    $this->mailManager = $mail_manager;
   }
 
   /**
@@ -347,6 +340,10 @@ class UtilityOrder {
       if ($total_shipment_quantity == $total_item_quantity) {
         $order_obj[0]->set('state', 'completed');
         $order_obj[0]->save();
+        // Sending mail if order is delivered.
+        // Need to pass order number here.
+        $params['message'] = '';
+        $this->sendMail('order_complete', $params, $order_obj[0]);
       }
       $order_update_status = 1;
     }
@@ -388,23 +385,41 @@ class UtilityOrder {
   /**
    * Send mails on failure.
    */
-  public function sendMail($key, $params) {
+  public function sendMail($key, $params, $order_obj = NULL) {
     // Taxonomy term.
     $term_obj_arr = $this->entityTypeManager->getStorage('taxonomy_term')
       ->loadByProperties([
         'vid' => 'custom_email_templates',
         'name' => $key,
       ]);
-    if (!empty($term_obj_arr)) {
-      $term_obj_arr = array_values($term_obj_arr);
-      $to = $term_obj_arr[0]->get('field_recipients')->value;
-      $params['subject'] = $term_obj_arr[0]->get('field_subject')->value;
-      $params['message'] = $term_obj_arr[0]->get('description')->value . PHP_EOL . $params['message'];
-      $result = $this->mailManager->mail('ecom_common', $key, $to, 'en', $params, NULL, TRUE);
+    $term_obj_arr = array_values($term_obj_arr);
+    try {
+      if ($order_obj == NULL) {
+
+        $to = $term_obj_arr[0]->get('field_recipients')->value;
+        // Exploding to get multiple mails.
+        $to = explode(',', $to);
+        $params['subject'] = $term_obj_arr[0]->get('field_subject')->value;
+        $params['message'] = $term_obj_arr[0]->get('description')->value . PHP_EOL . $params['message'];
+      }
+      else {
+        // For order completion purpose.
+        $to = $order_obj->getEmail();
+        $params['subject'] = $term_obj_arr[0]->get('field_subject')->value;
+        $params['message'] = $term_obj_arr[0]->get('description')->value . PHP_EOL . $params['message'];
+      }
+      // Sending mails.
+      $email_factory = \Drupal::service('email_factory');
+      $email = $email_factory->newTypedEmail('symfony_mailer', 'custom_mail_notification')
+        ->setSubject($params['subject'])
+        ->setTo($to)
+        ->setBody(['#markup' => $params['message']])
+        ->send();
     }
-    else {
-      $this->loggerFactory->get('commerce_order_customizations')->error("Unable to send mail. '{$key}' is not present");
+    catch (\Throwable $e) {
+      $this->loggerFactory->get('commerce_order_customizations')->error($e->getMessage() . '-' . 'Unable to send mail');
     }
+
   }
 
 }
