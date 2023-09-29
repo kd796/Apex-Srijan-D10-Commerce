@@ -1,4 +1,5 @@
 {% set stock = fields.field_stock.content|render|trim|striptags %}
+{% set min_quantity = fields.qty_increments.content|render|trim|striptags %}
 <div class="card--list">
   <a href="{{ fields.view_node.content|render|striptags|trim }}" class="card--list__link">
     {% if fields.field_media.content %}
@@ -23,7 +24,7 @@
         {{ fields.price__number.content }}
       </div>
     {% endif %}
-    {% if fields.nothing.content and (stock > 0) %}
+    {% if fields.nothing.content and (stock > min_quantity) %}
       <div class="add-to-cart">
         {{ fields.nothing.content }}
       </div>
