@@ -5,7 +5,7 @@
  *
  * Available variables:
  * - attributes: Remaining HTML attributes for the element.
- * - css_name: A css-safe version of the view name.
+ * - css_name: A CSS-safe version of the view name.
  * - css_class: The user-specified classes names, if any.
  * - header: The optional header.
  * - footer: The optional footer.
@@ -30,28 +30,40 @@
  * @see template_preprocess_views_view()
  */
 #}
+{%
+  set classes = [
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title }}
+  {{ title_suffix }}
 
-<div class="wrapper-content featured-account-dashboard">
-  <div class="user-details">
-    {% if fields.user_picture.content %}
-      {{ fields.user_picture.content }}
-    {% endif %}
-    <div class="user-information">
-      {% if fields.mail.content|render|striptags|trim %}
-        <div class="address-item"><label>{{ 'Email:' }} </label> <span> {{ fields.mail.content }} </span> </div>
-      {% endif %}
-      <div class="address-item"> <label>{{ 'Username:'|t }} </label> <span> {{ fields.name.content }} </span> </div>
-      <div class="address-item"> <label>{{ 'Status'|t }} </label>
-        {% if fields.status.content|render|striptags|trim == 'True' %}
-          <span class="active"> {{ 'Active'|t }} </span>
-        {% else %}
-          <span class="in-active"> {{ 'Address Incomplete'|t }} </span>
-        {% endif %}
-        </span>
-      </div>
-    </div>
-  </div>
-  <div class="edit-profile">
-	  {{ fields.edit_user.content }}
-  </div>
+  {% if header %}
+    <header class="wrapper-content">
+      {{ header }}
+    </header>
+  {% endif %}
+
+  {{ exposed }}
+  {{ attachment_before }}
+
+  {% if rows -%}
+    {{ rows }}
+  {% elseif empty -%}
+    {{ empty }}
+  {% endif %}
+  {{ pager }}
+
+  {{ attachment_after }}
+  {{ more }}
+
+  {% if footer %}
+    <footer>
+      {{ footer }}
+    </footer>
+  {% endif %}
+
+  {{ feed_icons }}
 </div>

@@ -23,11 +23,13 @@
         default_row_class ? 'views-row',
       ]
     %}
+
     {% if row.content|render|striptags|trim %}
       {% if loop.first %}
-      <div class="address-book__heading">
-        {{ 'Address Book'|t }}
-      </div>
+        <div class="address-book__heading">
+          {{ 'Address Book'|t }}
+        </div>
+
         <div{{row.attributes.addClass(row_classes)}}>
           <div class="default-address">
             {{ 'Default Billing Address'|t }}
@@ -39,6 +41,14 @@
           {{- row.content -}}
         </div>
       {% endif %}
+    {% else %}
+      <div class="address-book__heading">
+        {{ 'Address Book'|t }}
+      </div>
+      <div class="view-empty">
+        {{ 'There are no addresses yet.'|t }}
+        <span><a href="/user/{{ user_id }}/address-book">{{ 'Add new address'|t  }}</a></span>
+      </div>
     {% endif %}
 	{% endfor %}
 
