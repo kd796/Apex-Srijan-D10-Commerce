@@ -106,18 +106,20 @@ function ecom_preprocess_node__product__full(array &$variables) {
     if ($prod_variation_obj != NULL) {
       if ($prod_variation_obj->qty_increments && $prod_variation_obj->qty_increments->value) {
         $quantity = (int) $prod_variation_obj->qty_increments->value;
+        $stock_value = $prod_variation_obj->field_stock->value;
         $variables['quantity'] = $quantity;
+        if ($prod_variation_obj->field_stock->value > $quantity) {
+          $variables['stock_value'] = $stock_value;
+        }
       }
       $price = $prod_variation_obj->getPrice()->getNumber();
       $price = number_format($price, 2);
       // Variance id.
       $var_id = $prod_variation_obj->id();
-      // Stock value.
-      $stock_value = $prod_variation_obj->field_stock->value;
       // Passing in template.
       $variables['variation_id'] = $var_id;
       $variables['price'] = $price;
-      $variables['stock_value'] = $stock_value;
+
     }
   }
   // Count Product Images.

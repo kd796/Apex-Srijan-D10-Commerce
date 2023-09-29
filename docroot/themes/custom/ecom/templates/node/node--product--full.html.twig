@@ -165,12 +165,12 @@
               </div>
               <div class="product-availability">
                 {{ 'Availability:'|t }}
-                {% if stock_value <= 0 %}
-                <span class='product-stock out-of-stock'>
-                {{ 'Out of stock'|t }}</span>
+                {% if stock_value is not empty %}
+                  <span class='product-stock in-stock'>
+                  {{ 'In stock'|t }}</span>
                 {% else %}
-                <span class='product-stock in-stock'>
-                {{ 'In stock'|t }}</span>
+                  <span class='product-stock out-of-stock'>
+                  {{ 'Out of stock'|t }}</span>
                 {% endif %}
               </div>
             </div>
@@ -181,7 +181,7 @@
               {{ content.field_product_features }}
             </div>
             <div class="product__actions">
-              {% if stock_value > 0 %}
+              {% if stock_value %}
                 <div class="add-to-cart-button"><a href="/add-to-cart/{{ variation_id }}/{{ variation_id }}" class="button--add-to-cart btn-primary">{{ 'Add to Cart'|t }}</a></div>
                 {% if quantity is not empty and quantity > 1 %}
                   <div class="quantity-note">Quantity Available in Case Pack Only.<div class="quantity-count">You can order in {{ quantity }} qty only.</div></div>

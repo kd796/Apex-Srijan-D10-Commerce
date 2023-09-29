@@ -72,8 +72,8 @@
       fieldset {
         border: 0;
         width: 50%;
+        margin: 16px 0 0;
         padding: 0 80px;
-        margin: -30px 0 0;
         @media only screen and(max-width: $desktop) {
           padding: 0 60px;
         }
@@ -86,7 +86,6 @@
         @media only screen and(max-width: $mobile-sm) {
           padding: 0;
           width: 100%;
-          margin: 16px 0;
         }
 
         legend {
@@ -164,23 +163,11 @@
 
           input[type="submit"][data-drupal-selector$="guest-continue"] {
             float: right;
-            margin: 60px 0 0;
             min-width: 150px;
-            @media only screen and(max-width: $tablet-max) {
-              margin: 40px 0 0;
-            }
-            @media only screen and(max-width: $tablet) {
-              margin: 25px 0 0;
-            }
-            @media only screen and(max-width: $mobile-sm) {
-              margin: 18px 0 0;
-            }
           }
         }
 
         &.form-wrapper__returning-customer {
-          margin: 0;
-
           legend {
             display: none;
           }

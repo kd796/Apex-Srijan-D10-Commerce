@@ -10,22 +10,32 @@
  */
 #}
 <div class="wishlist-user-form clearfix">
-  <div class="wishlist__heading"> {{'My Wishlist'|t }} </div>
-  <div class="wishlist-header">
-    <div class="item-product-image"> {{ 'Product Image'|t }} </div>
-    <div class="item-heading">
-      {{ 'Product/Item'|t }}
-    </div>
-    <div class="item-quantity"> {{ 'Quantity'|t }} </div>
-    {{ form.header }}
-  </div>
-  <div class="wishlist-items">
-    {% for key, item in form.items %}
-      {% if key|first != '#' %}
+	<div class="wishlist__heading">
+		{{'My Wishlist'|t }}
+	</div>
+
+	<div class="wishlist-items">
+		{% for key, item in form.items %}
+			{% if key|first != '#' %}
+        {% if loop.first %}
+          <div class="wishlist-header">
+            <div class="item-product-image">
+              {{ 'Product Image'|t }}
+            </div>
+            <div class="item-heading">
+              {{ 'Product/Item'|t }}
+            </div>
+            <div class="item-quantity">
+              {{ 'Quantity'|t }}
+            </div>
+            {{ form.header }}
+          </div>
+        {% endif %}
+  
         <div class="wishlist-item">
           <div class="wishlist-item__product">
             {{ item.product_img }}
-          </div>  
+          </div>
           <div class="wishlist-item__entity">
             {{ item.entity }}
           </div>
@@ -33,11 +43,15 @@
             {{ item.details }}
           </div>
           <div class="wishlist-item__actions">
+             <span class="product-stock out-of-stock">{{ item.product_out_of_stock }}</span>
             {{ item.actions }}
           </div>
-        </div>
+				</div>
+			{% endif %}
+      {% if loop.first and key|first == '#' %}
+        <div class="view-empty"> {{ 'Your wishlist is empty.'|t }} </div>
       {% endif %}
     {% endfor %}
-  </div>
-  {{ form|without('header', 'items') }}
+	</div>
+	{{ form|without('header', 'items') }}
 </div>
