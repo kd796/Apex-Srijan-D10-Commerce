@@ -7,3 +7,11 @@ commerce_custom_stock.inventory_ftp_config:
     _permission: 'administer content'
   options:
     _admin_route: 'true'
+
+commerce_custom_stock.cart_settings:
+  path: '/admin/commerce/config/cart-settings'
+  defaults:
+    _form: '\Drupal\commerce_custom_stock\Form\CartSettingsForm'
+    _title: 'Commerce Cart Settings'
+  requirements:
+    _permission: 'administer commerce cart settings'
