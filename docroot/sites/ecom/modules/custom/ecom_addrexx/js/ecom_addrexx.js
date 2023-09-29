@@ -11,6 +11,7 @@
       var localityInput = "";
       var administrativeAreaInput = "";
       var addressLine1 = "";
+      var addressLine2 = "";
       var autocompleteFields = "";
       var updateCounty = '';
       // Initializing input variables.
@@ -54,6 +55,9 @@
         );
         addressLine1 = jQuery(context).find(
           'input[name$="[address][address_line1]"]'
+        );
+        addressLine2 = jQuery(context).find(
+          'input[name$="[address][address_line2]"]'
         );
         autocompleteFields = jQuery(context).find(
           ".field--type-address .ui-autocomplete-input"
@@ -153,6 +157,12 @@
             addressUpdate(addressLine1, postalCodeInput, localityInput)
           }
         );
+        jQuery(addressLine2).on(
+          "input",
+          function () {
+            aptUpdate(addressLine2, postalCodeInput, addressLine1)
+          }
+        );
       }
       else if (jQuery("form.commerce-checkout-flow").length > 0) {
         var selectors = [shippingPane, billingPane];
@@ -182,6 +192,9 @@
 
           let addressLine1_Class = fieldset + ' ' +  'input[name$="[address][0][address][address_line1]"]';
           addressLine1 = jQuery(addressLine1_Class);
+
+          let addressLine2_Class = fieldset + ' ' +  'input[name$="[address][0][address][address_line2]"]';
+          addressLine2 = jQuery(addressLine2_Class);
 
           autocompleteFields = jQuery(fieldset + " " +
             ".field--type-address .ui-autocomplete-input"
@@ -282,6 +295,12 @@
               addressUpdate(jQuery(addressLine1_Class), jQuery(postalCodeInput_Class), jQuery(localityInput_Class))
             }
           );
+          jQuery(addressLine2_Class).on(
+            "input",
+            function () {
+              aptUpdate(jQuery(addressLine2_Class), jQuery(postalCodeInput_Class), jQuery(addressLine1_Class))
+            }
+          );
         });
       }
       // Using on billing and shipping edit.
@@ -307,6 +326,29 @@
         .substring(0, 5)
         .replace(/\s+/g, "+");
         var sourceValue = localityValueSubStr + postalCodeValue;
+        var currentPath = addressLine.attr("data-autocomplete-path");
+
+        // Check if "contextKey" already exists in the data-autocomplete-path.
+        if (currentPath.indexOf("contextKey=") === -1) {
+          // "contextKey" doesn't exist, so add it.
+          currentPath += "&contextKey=" + sourceValue;
+        } else {
+          // "contextKey" already exists, so update its value.
+          currentPath = currentPath.replace(
+            /contextKey=([^&]*)/,
+            "contextKey=" + sourceValue
+          );
+        }
+
+        // Update the autocomplete field's parameters.
+        addressLine.attr("data-autocomplete-path", currentPath);
+      }
+
+      // Update aptUpdate autocomplete field.
+      function aptUpdate(addressLine, postalCodeInput, addressLine1) {
+        var postalCodeValue = postalCodeInput.val();
+        var addressLine1Value = addressLine1.val();
+        var sourceValue = postalCodeValue + addressLine1Value.replace(/\s+/g, "+");
         var currentPath = addressLine.attr("data-autocomplete-path");
 
         // Check if "contextKey" already exists in the data-autocomplete-path.

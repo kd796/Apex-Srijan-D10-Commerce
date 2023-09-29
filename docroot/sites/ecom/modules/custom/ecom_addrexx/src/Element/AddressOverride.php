@@ -74,8 +74,15 @@ class AddressOverride extends Address {
           ];
           $element[$property]['#weight'] = 5;
           break;
+
         case "address_line2":
           $element[$property]['#weight'] = 5;
+          $element[$property]['#autocomplete_route_name'] = 'ecom_addrexx.autocomplete';
+          $element[$property]['#autocomplete_route_parameters'] = [
+            'filter' => 'street2',
+            'contextKey' => CommonConstants::ADDREXX_ALL,
+          ];
+
           break;
       }
     }

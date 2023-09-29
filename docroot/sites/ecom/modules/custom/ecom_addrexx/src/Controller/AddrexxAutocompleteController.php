@@ -58,6 +58,24 @@ class AddrexxAutocompleteController extends ControllerBase {
 
       case "street":
         $suggestions = $this->addrexx->getbyStreet($string, $contextKey);
+        $outputArray = [];
+        // Remove numeric digits comes at end of street value.
+        foreach ($suggestions as $input) {
+          $output = preg_replace('/-\d+$/', '', $input);
+          $outputArray[] = $output;
+        }
+        $suggestions = $outputArray;
+        break;
+
+      case "street2":
+        $suggestions = $this->addrexx->getbyStreet2($string, $contextKey);
+        $outputArray = [];
+        // Remove numeric digits comes at end of apt value.
+        foreach ($suggestions as $input) {
+          $output = preg_replace('/-\d+$/', '', $input);
+          $outputArray[] = $output;
+        }
+        $suggestions = $outputArray;
         break;
     }
 

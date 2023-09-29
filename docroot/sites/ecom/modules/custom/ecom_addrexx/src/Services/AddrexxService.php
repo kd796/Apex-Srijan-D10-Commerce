@@ -156,4 +156,14 @@ class AddrexxService implements AddrexxInterface {
     ]);
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getbyStreet2($prefixText = '', $contextKey = '') {
+    return $this->apiCall('APT', [
+      'prefixText' => $prefixText,
+      'contextKey' => $contextKey,
+    ]);
+  }
+
 }
