@@ -108,6 +108,8 @@ class AddressProfileController extends ControllerBase {
       $query->condition('field_starting_zip_code', $zipcode, '<=');
       $query->condition('field_ending_zip_code', $zipcode, '>=');
     }
+    // Setting query range to 20 to minimize database query execution time.
+    $query->range(0, 20);
     $termIds = $query->execute();
 
     // Reindex the array to start from 0.
@@ -144,8 +146,11 @@ class AddressProfileController extends ControllerBase {
       // Load the taxonomy term.
       $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($termId);
       if ($term) {
-        // Get the city field value.
-        $city[] = $term->get('field_us_city')->value;
+        // Skip duplicate city results.
+        if (!in_array($term->get('field_us_city')->value, $city)) {
+          // Get the city field value.
+          $city[] = $term->get('field_us_city')->value;
+        }
       }
     }
 
@@ -180,10 +185,10 @@ class AddressProfileController extends ControllerBase {
     }
     if (!empty($cityStartsChar)) {
       $query->condition('field_us_city', $cityStartsChar, 'STARTS_WITH');
+      $query->groupBy("field_us_city");
     }
-    elseif ($stateVal == 'All') {
-      $query->range(0, 10);
-    }
+    // Setting query range to 20 to minimize database query execution time.
+    $query->range(0, 20);
 
     $termIds = $query->execute();
 
