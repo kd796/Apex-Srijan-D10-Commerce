@@ -3,3 +3,10 @@ commerce_custom_stock.inventory_ftp_config:
   parent: system.admin_config_development
   description: 'FTP Connection settings'
   route_name: commerce_custom_stock.inventory_ftp_config
+
+commerce_custom_stock.settings:
+  title: 'Commerce Cart Settings'
+  parent: 'commerce_product.configuration'
+  description: 'Provide Commerce Cart settings'
+  route_name: commerce_custom_stock.cart_settings
+  weight: 10
