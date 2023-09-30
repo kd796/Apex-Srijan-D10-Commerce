@@ -122,8 +122,15 @@
       .form-wrapper {
         display: flex;
         align-items: center;
+        position: relative;
         @media screen and (max-width: $tablet-max) {
           flex-direction: column;
+        }
+
+        .ajax-progress {
+          padding: 5px;
+          right: unset;
+          left: unset;
         }
       }
 
@@ -143,6 +150,20 @@
           @media screen and (max-width: $tablet) {
             margin-bottom: 0;
           }
+        }
+      }
+
+      .actions-wrap {
+        display: flex;
+        @media screen and (max-width: $tablet-max) {
+          flex-direction: column;
+        }
+
+        .out-of-stock {
+          padding: 6px 10px;
+          min-width: 115px;
+          margin: 0 5px;
+          text-align: center;
         }
       }
     }
