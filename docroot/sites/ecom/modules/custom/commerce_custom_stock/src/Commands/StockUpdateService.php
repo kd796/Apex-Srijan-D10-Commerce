@@ -273,7 +273,7 @@ class StockUpdateService extends DrushCommands {
    * Delete files from ftp server.
    */
   public function deleteFtpFiles() {
-    $ftp_con = \Drupal::service('commerce_order_customizations.ftpcon');
+    $ftp_con = \Drupal::service('commerce_custom_stock.ftpcon');
     $folder_loc = $this->root;
     try {
       $remoteFiles = $ftp_con->connect()->listContents($folder_loc)->toArray();
