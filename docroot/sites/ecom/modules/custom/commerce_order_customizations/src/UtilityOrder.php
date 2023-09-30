@@ -406,7 +406,9 @@ class UtilityOrder {
         // For order completion purpose.
         $to = $order_obj->getEmail();
         $params['subject'] = $term_obj_arr[0]->get('field_subject')->value;
-        $params['message'] = $term_obj_arr[0]->get('description')->value . PHP_EOL . $params['message'];
+        // Replacing placeholder with order number.
+        $message = str_replace('[order_number]',$order_obj->getOrderNumber(), $term_obj_arr[0]->get('description')->value);
+        $params['message'] = $message;
       }
       // Sending mails.
       $email_factory = \Drupal::service('email_factory');

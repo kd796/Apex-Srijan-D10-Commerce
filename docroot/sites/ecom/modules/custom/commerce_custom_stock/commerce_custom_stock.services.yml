@@ -13,3 +13,6 @@ services:
     arguments: ['@entity_type.manager','@config.factory','@file_system','@logger.factory']
     tags:
       - { name: drush.command }
+  commerce_custom_stock.ftpcon:
+      class: '\Drupal\commerce_custom_stock\FtpConnection'
+      arguments: ['@config.factory']
