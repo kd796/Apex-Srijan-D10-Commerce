@@ -28,7 +28,16 @@ class UtilityTax {
    * Import tax data to taxonomy.
    */
   public function importTax($csv_row) {
-
+    // Handling * condition for city.
+    if ($csv_row['city'] == '*') {
+      $exploded_name = explode('-', $csv_row['code']);
+      $csv_row['city'] = $exploded_name[3];
+    }
+    // Handling * condition for county.
+    if ($csv_row['county'] == '*') {
+      $exploded_name = explode('-', $csv_row['code']);
+      $csv_row['county'] = $exploded_name[2];
+    }
     $postal_range_array = explode('-', $csv_row['postalcoderange']);
     // Need to seperate ex 90000-90002.
     $start_postal_code = $postal_range_array[0];
@@ -109,6 +118,10 @@ class UtilityTax {
     $term_ids = array_values($term_ids);
 
     if (empty($term_ids)) {
+      // Sending mail if tax is 0.
+      // For debuging.
+      $params['message'] = "Tax is calculated as zero for the <p>State: {$state}</p> <p>Postal Code: {$postal_code}</p> <p>City: {$city}</p> <p>County: {$county}</p>";
+      \Drupal::service('commerce_order_customizations.utility')->sendMail('tax_zero', $params);
       return 0;
     }
     else {
