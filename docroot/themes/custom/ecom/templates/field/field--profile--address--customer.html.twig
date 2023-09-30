@@ -63,25 +63,33 @@
       </div>
     </div>
   {% endif %}
-  {% if item.content.locality|render|striptags|trim  or item.content.postal_code|render|striptags|trim %}
+  {% if item.content.locality|render|striptags|trim %}
     <div class="address-item">
       <label>
-        {{ 'City - Zip Code:'|t }}
+        {{ 'City :'|t }}
       </label>
       <div class="address-value">
         {{ item.content.locality }}
-        {% if item.content.postal_code|render|striptags|trim %} {{ ' - ' }} {% endif %}
-        {{ item.content.postal_code }}
       </div>
     </div>
   {% endif %}
+  {% if item.content.postal_code|render|striptags|trim %}
+    <div class="address-item">
+      <label>
+        {{ 'Zip Code :'|t }}
+      </label>
+      <div class="address-value">
+        {{ item.content.postal_code }}
+      </div>
+    </div>
+  {% endif %} 
   {% if item.content.administrative_area|render|striptags|trim %}
     <div class="address-item">
       <label>
         {{ 'State:'|t }}
       </label>
       <div class="address-value">
-        {{ item.content.administrative_area }}
+        {{ address_state }}
       </div>
     </div>
   {% endif %}

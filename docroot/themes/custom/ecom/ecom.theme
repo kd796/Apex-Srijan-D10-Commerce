@@ -39,6 +39,27 @@ function ecom_form_views_exposed_form_alter(array &$form, FormStateInterface $fo
 }
 
 /**
+ * Preprocesses variables for an address field.
+ *
+ * @param array &$variables
+ *   The variables array to preprocess.
+ */
+function ecom_preprocess_field(array &$variables) {
+  // Check if the field is an address field.
+  if ($variables['element']['#field_type'] == 'address') {
+    // Get the field items.
+    $items = $variables['element']['#items'];
+    foreach ($items as $item) {
+      if (!empty($item->administrative_area)) {
+        $subdivisionRepository = \Drupal::service('address.subdivision_repository');
+        $subdivision = $subdivisionRepository->get($item->administrative_area, ['US']);
+        $variables['address_state'] = $subdivision->getName();
+      }
+    }
+  }
+}
+
+/**
  * Prepares variables for shipment templates.
  *
  * Default template: commerce-shipment.html.twig.
