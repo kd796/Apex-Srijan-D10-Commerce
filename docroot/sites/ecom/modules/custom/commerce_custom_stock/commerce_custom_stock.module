@@ -31,8 +31,7 @@ function commerce_custom_stock_form_alter(&$form, FormStateInterface $form_state
  */
 function commerce_custom_stock_order_item_views_form_submit($form,
 FormStateInterface $form_state) {
-
-  return commerce_custom_is_valid_order($form_state->getTriggeringElement()['#order_id'], $form_state, FALSE);
+  return commerce_custom_stock_check_availability($form_state->getTriggeringElement()['#order_id'], $form_state);
 }
 
 /**
@@ -64,4 +63,30 @@ function commerce_custom_is_valid_order($order_id, &$form_state, $set_message = 
   }
 
   return TRUE;
+}
+
+/**
+ * Check if Stock is less than minimum quantity.
+ */
+function commerce_custom_stock_check_availability($order_id, &$form_state) {
+  $order = \Drupal::entityTypeManager()
+    ->getStorage('commerce_order')->load($order_id);
+  
+  $quantities = $form_state->getValue("edit_quantity");
+  $route_name = \Drupal::routeMatch()->getRouteName();
+
+  foreach ($order->getItems() as $key => $order_item) {
+    $entity = $order_item->getPurchasedEntity();
+    $quantity = (int) $quantities[$key];
+    $stock_val = (int) $entity->field_stock->value;
+
+    if ($stock_val < $quantity) {
+      $form_state->setErrorByName('edit_quantity][' . $key, t('This product is out of stock.'));
+      return FALSE;
+    }
+    if ($route_name == 'commerce_cart.page' && $quantity > $stock_val) {
+      $form_state->setErrorByName('edit_quantity][' . $key, t('The quantity is more than the stock quantity'));
+      return FALSE;
+    }
+  }
 }

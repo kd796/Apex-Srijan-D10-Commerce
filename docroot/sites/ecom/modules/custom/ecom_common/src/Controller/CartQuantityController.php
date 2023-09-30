@@ -149,7 +149,6 @@ class CartQuantityController extends ControllerBase {
    *   entity can't be purchased from the current store.
    */
   public function action(ProductInterface $commerce_product, ProductVariationInterface $commerce_product_variation, $token, Request $request) {
-    $quantity = '';
     if ($commerce_product_variation->qty_increments && $commerce_product_variation->qty_increments->value) {
       $quantity = (int) $commerce_product_variation->qty_increments->value;
     }
