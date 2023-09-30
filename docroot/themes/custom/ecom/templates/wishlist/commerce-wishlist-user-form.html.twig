@@ -43,8 +43,14 @@
             {{ item.details }}
           </div>
           <div class="wishlist-item__actions">
-             <span class="product-stock out-of-stock">{{ item.product_out_of_stock }}</span>
-            {{ item.actions }}
+            {% if item.product_out_of_stock %}
+              <div class="actions-wrap">
+                <div class="product-stock out-of-stock">{{ item.product_out_of_stock }}</div>
+                {{ item.actions }}
+              </div>
+            {% else %}
+              {{ item.actions }}
+            {% endif %}
           </div>
 				</div>
 			{% endif %}
