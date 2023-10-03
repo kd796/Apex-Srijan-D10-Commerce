@@ -155,13 +155,6 @@
       if ($(contactInfoLabel).length < 1) {
         $(appendElm).insertAfter(reviewContactLabel);
       }
-      // Cart Page Trigger.
-      $(document).ajaxComplete(function () {
-        $('a.cart-block--link__expand').click(function (event) {
-          // Redirecting to card page.
-          $('.is-outside-horizontal a').trigger('click');
-        });
-      });
 
       /* end */
     }
