@@ -408,6 +408,10 @@ class UtilityOrder {
         $params['subject'] = $term_obj_arr[0]->get('field_subject')->value;
         // Replacing placeholder with order number.
         $message = str_replace('[order_number]',$order_obj->getOrderNumber(), $term_obj_arr[0]->get('description')->value);
+        // Creating Order link.
+        $host = \Drupal::request()->getSchemeAndHttpHost();
+        $order_link = $host . '/user/' . $order_obj->getCustomerId() . '/orders/' . $order_obj->id() ;
+        $message = str_replace('[click_here]',"<a href='{$order_link}'>Click Here</a>", $message);
         $params['message'] = $message;
       }
       // Sending mails.

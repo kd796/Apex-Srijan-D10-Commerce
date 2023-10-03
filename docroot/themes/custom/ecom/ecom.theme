@@ -330,7 +330,7 @@ function _product_search_index_view_mode(&$variables) {
     $commerce_product_price->getCurrencyCode());
   $variables['stock'] = $commerce_product_variation->get('field_stock')->value;
   $min_qty = (int) $commerce_product_variation->get('qty_increments')->value;
-  if ($variables['stock'] && $variables['stock'] > $min_qty) {
+  if ($variables['stock'] && $variables['stock'] >= $min_qty) {
     $add_to_card_text = t('Add to cart');
     $request = \Drupal::request();
     $current_url = $request->getUri();
