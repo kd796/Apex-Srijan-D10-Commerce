@@ -121,7 +121,7 @@ class UtilityTax {
       // Sending mail if tax is 0.
       // For debuging.
       $params['message'] = "Tax is calculated as zero for the <p>State: {$state}</p> <p>Postal Code: {$postal_code}</p> <p>City: {$city}</p> <p>County: {$county}</p>";
-      \Drupal::service('commerce_order_customizations.utility')->sendMail('tax_zero', $params);
+      \Drupal::logger('commerce_us_custom_tax')->notice($params['message']);
       return 0;
     }
     else {

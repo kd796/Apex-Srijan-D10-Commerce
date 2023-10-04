@@ -24,7 +24,7 @@
         {{ fields.price__number.content }}
       </div>
     {% endif %}
-    {% if fields.nothing.content and (stock > min_quantity) %}
+    {% if fields.nothing.content and (stock >= min_quantity) %}
       <div class="add-to-cart">
         {{ fields.nothing.content }}
       </div>
