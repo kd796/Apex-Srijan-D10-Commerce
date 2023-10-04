@@ -314,7 +314,7 @@ class EcomWishlistUserForm extends WishlistUserForm {
       if ($purchasable_entity->qty_increments && $purchasable_entity->qty_increments->value) {
         $quantity = (int) $purchasable_entity->qty_increments->value;
       }  
-      if ($purchasable_entity->field_stock->value > $quantity) {
+      if ($purchasable_entity->field_stock->value >= $quantity) {
         $item_form['actions']['add_to_cart'] = [
           '#type' => 'submit',
           '#value' => t('Add to cart'),

@@ -54,7 +54,11 @@ function ecom_common_node_presave(EntityInterface $entity) {
  */
 function ecom_common_entity_type_alter(array &$entity_types) {
   $entity_types['commerce_wishlist']->setHandlerClass('form', array(
-    'user' => 'Drupal\ecom_common\Form\EcomWishlistUserForm'
+    'default' => 'Drupal\commerce_wishlist\Form\WishlistForm',
+    'user' => 'Drupal\ecom_common\Form\EcomWishlistUserForm',
+    'share' => 'Drupal\commerce_wishlist\Form\WishlistShareForm',
+    'duplicate' => 'Drupal\commerce_wishlist\Form\WishlistForm',
+    'delete' => 'Drupal\Core\Entity\ContentEntityDeleteForm'
   ));
 }
 
