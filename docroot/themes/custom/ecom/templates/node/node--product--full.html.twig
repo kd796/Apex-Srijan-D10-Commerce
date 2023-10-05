@@ -184,7 +184,7 @@
               {% if stock_value %}
                 <div class="add-to-cart-button"><a href="/add-to-cart/{{ variation_id }}/{{ variation_id }}" class="button--add-to-cart btn-primary">{{ 'Add to Cart'|t }}</a></div>
                 {% if quantity is not empty and quantity > 1 %}
-                  <div class="quantity-note">Quantity Available in Case Pack Only.<div class="quantity-count">You can order in {{ quantity }} qty only.</div></div>
+                  <div class="quantity-note">Quantity Available in Case Pack Only.<div class="quantity-count">Only available in multiples of {{ quantity }}.</div></div>
                 {% endif %}
               {% endif %}
               <div class="wishlist-button"><a href="/add-to-wishlist/{{ variation_id }}/{{ variation_id }}" class="btn btn-primary button--wishlist">

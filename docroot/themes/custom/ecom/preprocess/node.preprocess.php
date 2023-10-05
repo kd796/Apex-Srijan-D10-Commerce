@@ -108,7 +108,7 @@ function ecom_preprocess_node__product__full(array &$variables) {
         $quantity = (int) $prod_variation_obj->qty_increments->value;
         $stock_value = $prod_variation_obj->field_stock->value;
         $variables['quantity'] = $quantity;
-        if ($prod_variation_obj->field_stock->value > $quantity) {
+        if ($prod_variation_obj->field_stock->value >= $quantity) {
           $variables['stock_value'] = $stock_value;
         }
       }
