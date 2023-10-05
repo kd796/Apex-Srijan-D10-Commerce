@@ -7,7 +7,6 @@ use Drupal\commerce_shipping\Entity\Shipment;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
-use Drupal\Core\Mail\MailManagerInterface;
 use Drupal\paragraphs\Entity\Paragraph;
 
 /**
@@ -406,13 +405,15 @@ class UtilityOrder {
         // For order completion purpose.
         $to = $order_obj->getEmail();
         $params['subject'] = $term_obj_arr[0]->get('field_subject')->value;
+        // Getting Footer content.
+        $footer = $this->get_common_templates('');
         // Replacing placeholder with order number.
-        $message = str_replace('[order_number]',$order_obj->getOrderNumber(), $term_obj_arr[0]->get('description')->value);
+        $message = str_replace('[order_number]', $order_obj->getOrderNumber(), $term_obj_arr[0]->get('description')->value);
         // Creating Order link.
         $host = \Drupal::request()->getSchemeAndHttpHost();
-        $order_link = $host . '/user/' . $order_obj->getCustomerId() . '/orders/' . $order_obj->id() ;
-        $message = str_replace('[click_here]',"<a href='{$order_link}'>Click Here</a>", $message);
-        $params['message'] = $message;
+        $order_link = $host . '/user/' . $order_obj->getCustomerId() . '/orders/' . $order_obj->id();
+        $message = str_replace('[click_here]', "<a href='{$order_link}'>Click Here</a>", $message);
+        $params['message'] = $message . PHP_EOL . $footer;
       }
       // Sending mails.
       $email_factory = \Drupal::service('email_factory');
@@ -426,6 +427,22 @@ class UtilityOrder {
       $this->loggerFactory->get('commerce_order_customizations')->error($e->getMessage() . '-' . 'Unable to send mail');
     }
 
+  }
+
+  /**
+   * Getting mail templates.
+   */
+  public function get_common_templates($temp_key) {
+
+    $term_obj_arr = $this->entityTypeManager->getStorage('taxonomy_term')
+      ->loadByProperties([
+        'vid' => 'custom_email_templates',
+        'name' => $temp_key,
+      ]);
+    $term_obj_arr = array_values($term_obj_arr);
+    $message = !empty($term_obj_arr) ? $term_obj_arr[0]->get('description')->value : '';
+
+    return $message;
   }
 
 }
