@@ -307,7 +307,6 @@
       updateCounty = function(ele) {
         if (jQuery(document).find('div.address-container-inline [class$="address-postal-code"]').length) {
           localityInput = jQuery(document).find('div.address-container-inline input[name$="[address][locality]"]');
-          administrativeAreaInput = jQuery(document).find('div.address-container-inline select[name$="[address][administrative_area]"]');
           administrativeAreaInput = jQuery(document).find('div.address-container-inline select[name$="[address][0][address][administrative_area]"]');
           postalCodeInput = jQuery(document).find('div.address-container-inline input[name$="[address][postal_code]"]');
           sendAjaxRequest(
@@ -494,8 +493,7 @@
       jQuery(context).ajaxComplete(function (event, xhr, settings) {
         if (typeof settings.extraData !== "undefined") {
           if (settings.extraData._triggering_element_name == 'shipping_edit' ||
-            settings.extraData._triggering_element_name == 'billing_edit' ||
-            settings.extraData._triggering_element_value == "Recalculate shipping") {
+            settings.extraData._triggering_element_name == 'billing_edit') {
             if (jQuery('div.address-container-inline').length) {
               updateCounty(settings.extraData._triggering_element_name);
             }
