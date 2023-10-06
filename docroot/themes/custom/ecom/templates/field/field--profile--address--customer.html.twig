@@ -44,11 +44,11 @@
       <label>
         {{ 'Name:'|t }}
       </label>
-      <div class="address-value">
+      <span class="address-value">
         {{ item.content.given_name }}
         {{ ' ' }}
         {{ item.content.family_name }}
-      </div>
+      </span>
     {% endif %}
 	</div>
   {% if item.content.address_line1|render|striptags|trim or item.content.address_line2|render|striptags|trim %}
@@ -56,11 +56,11 @@
       <label>
         {{ 'Street Address :'|t }}
       </label>
-      <div class="address-value">
+      <span class="address-value">
         {{ item.content.address_line1 }}
         {% if item.content.address_line2|render|striptags|trim %}  {{ ', ' }} {% endif %}
         {{ item.content.address_line2 }}
-      </div>
+      </span>
     </div>
   {% endif %}
   {% if item.content.locality|render|striptags|trim %}
@@ -68,9 +68,9 @@
       <label>
         {{ 'City :'|t }}
       </label>
-      <div class="address-value">
+      <span class="address-value">
         {{ item.content.locality }}
-      </div>
+      </span>
     </div>
   {% endif %}
   {% if item.content.postal_code|render|striptags|trim %}
@@ -78,9 +78,9 @@
       <label>
         {{ 'Zip Code :'|t }}
       </label>
-      <div class="address-value">
+      <span class="address-value">
         {{ item.content.postal_code }}
-      </div>
+      </span>
     </div>
   {% endif %} 
   {% if item.content.administrative_area|render|striptags|trim %}
@@ -88,9 +88,9 @@
       <label>
         {{ 'State:'|t }}
       </label>
-      <div class="address-value">
+      <span class="address-value">
         {{ address_state }}
-      </div>
+      </span>
     </div>
   {% endif %}
   {% if item.content.country|render|striptags|trim %}
@@ -98,9 +98,9 @@
       <label>
         {{ 'Country:'|t }}
       </label>
-      <div class="address-value">
+      <span class="address-value">
         {{ item.content.country }}
-      </div>
+      </span>
     </div>
   {% endif %}
 {% endfor %}

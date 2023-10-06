@@ -9,3 +9,8 @@ services:
     class: Drupal\ecom_common\Routing\ControllerAlterSubscriber
     tags:
       - { name: event_subscriber }
+
+  ecom_common.custom_twig_extension:
+    class: Drupal\ecom_common\EcomUtilityTwigExtension
+    tags:
+      - { name: twig.extension }
