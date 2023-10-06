@@ -38,6 +38,7 @@ class EcomUtilityTwigExtension extends AbstractExtension {
       'name' => $product_name,
       'image_url' => $url,
     ];
+
     return $product_name_image_arr;
 
   }
@@ -48,6 +49,7 @@ class EcomUtilityTwigExtension extends AbstractExtension {
   public function getImageUri($field_name, $entity, $media_field) {
     $image_uri = $entity->$field_name->entity->$media_field->entity->getFileUri();
     $url = !empty($image_uri) ? \Drupal::service('file_url_generator')->generateAbsoluteString($image_uri) : NULL;
+
     return $url;
   }
 

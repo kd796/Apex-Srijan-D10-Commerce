@@ -64,6 +64,9 @@
                                     <tbody style="text-align:left; padding:12px;">
                                       <tr style="background:rgb(246, 246, 246);">
                                         <td style="font-weight:700; padding:5px">
+                                          Image
+                                        </td>
+                                        <td style="font-weight:700; padding:5px">
                                           Name
                                         </td>
                                         <td style="font-weight:700; padding:5px">
@@ -79,10 +82,10 @@
                                       {% for order_item in order_entity.getItems %}
                                         <tr>
                                           <td style="padding:5px">
-                                            {{ get_product_name(order_item.label)['name'] }}
+                                            <img src={{ get_product_name(order_item.label)['image_url'] }} width="62" height="62" alt="{{ get_product_name(order_item.label)['name'] }}" />
                                           </td>
                                           <td style="padding:5px">
-                                            {{ {{ get_product_name(order_item.label)['image_url']}} }}
+                                            {{ get_product_name(order_item.label)['name'] }}
                                           </td>
                                           <td style="padding:5px">
                                             {{ order_item.label }}
