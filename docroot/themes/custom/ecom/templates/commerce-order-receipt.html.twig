@@ -79,7 +79,10 @@
                                       {% for order_item in order_entity.getItems %}
                                         <tr>
                                           <td style="padding:5px">
-                                            {{ get_product_name(order_item.label) }}
+                                            {{ get_product_name(order_item.label)['name'] }}
+                                          </td>
+                                          <td style="padding:5px">
+                                            {{ {{ get_product_name(order_item.label)['image_url']}} }}
                                           </td>
                                           <td style="padding:5px">
                                             {{ order_item.label }}
