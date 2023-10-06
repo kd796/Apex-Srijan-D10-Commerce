@@ -165,7 +165,7 @@
         );
       }
       else if (jQuery("form.commerce-checkout-flow").length > 0) {
-        var selectors = [shippingPane, billingPane];
+        let selectors = [shippingPane, billingPane];
 
         jQuery.each(selectors, function(index, fieldset) {
           let countyField_Class = fieldset + ' ' +  "select[id*=field-county]";
@@ -196,11 +196,9 @@
           let addressLine2_Class = fieldset + ' ' +  'input[name$="[address][0][address][address_line2]"]';
           addressLine2 = jQuery(addressLine2_Class);
 
-          autocompleteFields = jQuery(fieldset + " " +
-            ".field--type-address .ui-autocomplete-input"
-          );
+          autocompleteFields = jQuery(fieldset + ' ' + '.field--type-address .ui-autocomplete-input');
 
-          jQuery(autocompleteFields).on("autocompleteclose", function () {
+          jQuery(fieldset, context).on("autocompleteclose","input.ui-autocomplete-input", function (event, ui) {
             if (
               jQuery(this).val() == "No suggestions found." ||
               jQuery(this).val() == "Error while validating address."
@@ -210,7 +208,7 @@
           });
 
           // Postalcode autocompletes close event.
-          jQuery(postalCodeInput_Class).on(
+          jQuery(postalCodeInput_Class).off("autocompleteclose").on(
             "autocompleteclose",
             function (event, ui) {
               // Pick only numeric value to set it as Zipcode.
@@ -237,7 +235,7 @@
           );
 
           // Postalcode autocompleteselect event.
-          jQuery(postalCodeInput_Class).on(
+          jQuery(postalCodeInput_Class).off("autocompleteselect").on(
             "autocompleteselect",
             function (event, ui) {
               var inputString = ui.item.value;
@@ -305,10 +303,14 @@
       }
       // Using on billing and shipping edit.
       updateCounty = function(ele) {
-        if (jQuery(document).find('div.address-container-inline [class$="address-postal-code"]').length) {
-          localityInput = jQuery(document).find('div.address-container-inline input[name$="[address][locality]"]');
-          administrativeAreaInput = jQuery(document).find('div.address-container-inline select[name$="[address][0][address][administrative_area]"]');
-          postalCodeInput = jQuery(document).find('div.address-container-inline input[name$="[address][postal_code]"]');
+        let currentContext = {};
+        jQuery.each(jQuery("form fieldset[class*='checkout-pane-" + ele + "']"), function() {
+          currentContext = jQuery(this);
+        });
+        if (jQuery(currentContext).find('div.address-container-inline [class$="address-postal-code"]').length) {
+          localityInput = jQuery(currentContext).find('div.address-container-inline input[name$="[address][locality]"]');
+          administrativeAreaInput = jQuery(currentContext).find('div.address-container-inline select[name$="[address][0][address][administrative_area]"]');
+          postalCodeInput = jQuery(currentContext).find('div.address-container-inline input[name$="[address][postal_code]"]');
           sendAjaxRequest(
             jQuery(localityInput),
             jQuery(administrativeAreaInput),
@@ -492,10 +494,15 @@
 
       jQuery(context).ajaxComplete(function (event, xhr, settings) {
         if (typeof settings.extraData !== "undefined") {
-          if (settings.extraData._triggering_element_name == 'shipping_edit' ||
-            settings.extraData._triggering_element_name == 'billing_edit') {
+          let triggeredEle = settings.extraData._triggering_element_name;
+          if (triggeredEle == 'shipping_edit' ||
+            triggeredEle == 'billing_edit' ||
+            settings.extraData._triggering_element_value == 'Recalculate shipping') {
+              if (triggeredEle == 'billing_edit') {
+                triggeredEle = "payment"
+              }
             if (jQuery('div.address-container-inline').length) {
-              updateCounty(settings.extraData._triggering_element_name);
+              setTimeout(function() {  updateCounty(triggeredEle.replace("_edit", "")) }, 50);
             }
           }
         }
