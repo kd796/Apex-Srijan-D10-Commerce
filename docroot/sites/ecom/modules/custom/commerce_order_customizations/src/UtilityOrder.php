@@ -406,7 +406,7 @@ class UtilityOrder {
         $to = $order_obj->getEmail();
         $params['subject'] = $term_obj_arr[0]->get('field_subject')->value;
         // Getting Footer content.
-        $footer = $this->get_common_templates('');
+        $footer = $this->get_common_templates('common_footer');
         // Replacing placeholder with order number.
         $message = str_replace('[order_number]', $order_obj->getOrderNumber(), $term_obj_arr[0]->get('description')->value);
         // Creating Order link.
