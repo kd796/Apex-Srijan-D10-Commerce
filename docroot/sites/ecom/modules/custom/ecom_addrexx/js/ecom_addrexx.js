@@ -306,17 +306,17 @@
         let currentContext = {};
         jQuery.each(jQuery("form fieldset[class*='checkout-pane-" + ele + "']"), function() {
           currentContext = jQuery(this);
+          if (jQuery(currentContext).find('div.address-container-inline [class$="address-postal-code"]').length) {
+            localityInput = jQuery(currentContext).find('div.address-container-inline input[name$="[address][locality]"]');
+            administrativeAreaInput = jQuery(currentContext).find('div.address-container-inline select[name$="[address][0][address][administrative_area]"]');
+            postalCodeInput = jQuery(currentContext).find('div.address-container-inline input[name$="[address][postal_code]"]');
+            sendAjaxRequest(
+              jQuery(localityInput),
+              jQuery(administrativeAreaInput),
+              jQuery(postalCodeInput)
+            );
+          }
         });
-        if (jQuery(currentContext).find('div.address-container-inline [class$="address-postal-code"]').length) {
-          localityInput = jQuery(currentContext).find('div.address-container-inline input[name$="[address][locality]"]');
-          administrativeAreaInput = jQuery(currentContext).find('div.address-container-inline select[name$="[address][0][address][administrative_area]"]');
-          postalCodeInput = jQuery(currentContext).find('div.address-container-inline input[name$="[address][postal_code]"]');
-          sendAjaxRequest(
-            jQuery(localityInput),
-            jQuery(administrativeAreaInput),
-            jQuery(postalCodeInput)
-          );
-        }
       }
 
       // Update address autocomplete field.
@@ -407,7 +407,7 @@
         const countyFieldWrapper = jQuery(localityInput)
         .parent()
         .siblings(".field--name-field-county");
-        
+
         var countyField = jQuery(countyFieldWrapper).find('select[name$="[field_county]"]');
         // In case is this is not checkout form.
         if (!countyField.length) {
@@ -500,6 +500,9 @@
             settings.extraData._triggering_element_value == 'Recalculate shipping') {
               if (triggeredEle == 'billing_edit') {
                 triggeredEle = "payment"
+              }
+              else if (triggeredEle == 'op') {
+                triggeredEle = "";
               }
             if (jQuery('div.address-container-inline').length) {
               setTimeout(function() {  updateCounty(triggeredEle.replace("_edit", "")) }, 50);
