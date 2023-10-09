@@ -51,7 +51,7 @@ class CreateCommerceProduct extends ProcessPluginBase {
 
       if (!empty($pValue_list['CustomerPrice'])) {
         $product_variation = $entity_manager->getStorage('commerce_product_variation')->load($presentProduct[0]->variations[0]->target_id);
-        $product_variation->qty_increments = $pValue_list['CasePackQty'] ? $pValue_list['CasePackQty'] : 1;
+        $product_variation->qty_increments = $pValue_list['DeliveryUnit'] ? $pValue_list['DeliveryUnit'] : 1;
         $product_variation->price = new Price($pValue_list['CustomerPrice'], 'USD');
         if ((in_array($sapSalesOrgStatus, $activeStatusArr))) {
           $product_variation->status = 1;
@@ -70,7 +70,7 @@ class CreateCommerceProduct extends ProcessPluginBase {
       }
       else {
         $product_variation = $entity_manager->getStorage('commerce_product_variation')->load($presentProduct[0]->variations[0]->target_id);
-        $product_variation->qty_increments = $pValue_list['CasePackQty'] ? $pValue_list['CasePackQty'] : 1;
+        $product_variation->qty_increments = $pValue_list['DeliveryUnit'] ? $pValue_list['DeliveryUnit'] : 1;
         $product_variation->price = new Price(0, 'USD');
         $product_variation->status = 0;
         $product_variation->save();
@@ -89,7 +89,7 @@ class CreateCommerceProduct extends ProcessPluginBase {
         'type' => 'default',
         'sku' => $sku_value,
         'price' => new Price($pValue_list['CustomerPrice'] ? $pValue_list['CustomerPrice'] : 0, 'USD'),
-        'qty_increments' => $pValue_list['CasePackQty'] ? $pValue_list['CasePackQty'] : 1,
+        'qty_increments' => $pValue_list['DeliveryUnit'] ? $pValue_list['DeliveryUnit'] : 1,
       ]);
       if ((in_array($sapSalesOrgStatus, $activeStatusArr))) {
         $variation->status = 1;
