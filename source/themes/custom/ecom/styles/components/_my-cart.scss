@@ -52,9 +52,13 @@
             border: solid 1px $para;
             margin: 10px 0;
             width: 80%;
+            height: 100px;
             object-fit: contain;
+            @media screen and (max-width: $tablet) {
+              height: 40px;
+            }
             @media screen and (min-width: $tablet-max) {
-              min-height: 160px;
+              height: 160px;
             }
           }
         }
