@@ -20,21 +20,19 @@
  * - rendered_totals: The rendered order totals.
  */
 #}
+
 <div{{ attributes.addClass('checkout-order-summary') }}>
   {% block order_items %}
-    <table class="table">
-      <tbody>
+    <div class="ordered-product-list">
       {% for order_item in order_entity.getItems %}
-        <tr>
-          <td>{{ order_item.getQuantity|number_format }}&nbsp;x</td>
+        <ul>
           {% if order_item.hasPurchasedEntity %}
-            <td>{{ product_titles[loop.index0] }}</td>
+            <li>{{ product_titles[loop.index0] }}{% if order_item.getQuantity %}<br><b>{{'Qty: ' | t}}{{ order_item.getQuantity|number_format }}</b>{% endif %}</li>
           {% endif %}
-          <td>{{- order_item.getTotalPrice|commerce_price_format -}}</td>
-        </tr>
+          <li>{{- order_item.getTotalPrice|commerce_price_format -}}</li>
+        </ul>
       {% endfor %}
-      </tbody>
-    </table>
+    </div>
   {% endblock %}
   {% block totals %}
     {{ rendered_totals }}
