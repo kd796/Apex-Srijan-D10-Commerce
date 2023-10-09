@@ -221,7 +221,7 @@ $sites['apex-tools.co.uk'] = 'apex-tools';
 $sites['dev-store.apextoolgroup.com'] = 'ecom';
 $sites['qa-store.apextoolgroup.com'] = 'ecom';
 $sites['stg-store.apextoolgroup.com'] = 'ecom';
-$sites['prod-store.apextoolgroup.com'] = 'ecom';
+$sites['store2.apextoolgroup.com'] = 'ecom';
 $sites['www.store.apextoolgroup.com'] = 'ecom';
 $sites['store.apextoolgroup.com'] = 'ecom';
 
