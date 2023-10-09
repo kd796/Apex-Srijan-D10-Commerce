@@ -15,35 +15,34 @@
   width: 100%;
 
   .checkout-order-summary {
-    table {
+    .ordered-product-list {
       margin-bottom: 20px;
+      padding-bottom: 20px;
       border-bottom: solid 1px rgba(51, 51, 51, 0.2);
 
-      tbody {
-        padding-bottom: 20px;
-        display: block;
+      ul {
+        display: flex;
+        margin-bottom: 0;
 
-        tr {
-          td {
-            padding: 0 0 10px;
-            border-top: 0;
-            color: $black;
-            font-size: 14px;
-            font-weight: $normal;
-            line-height: 16.94px;
+        li {
+          padding: 0 0 10px;
+          border-top: 0;
+          color: $black;
+          font-size: 14px;
+          font-weight: $normal;
+          line-height: 16.94px;
 
-            &:first-child {
-              display: none;
+          &:nth-child(1) {
+            padding-right: 15px;
+            width: 87%;
+
+            b {
+              font-size: 12px;
             }
+          }
 
-            &:nth-child(2) {
-              padding-right: 10px;
-              width: 87%;
-            }
-
-            &:last-child {
-              text-align: right;
-            }
+          &:last-child {
+            text-align: right;
           }
         }
       }
