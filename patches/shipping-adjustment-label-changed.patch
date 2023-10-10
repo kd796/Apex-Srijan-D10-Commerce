@@ -1,0 +1,24 @@
+diff --git a/commerce_shipping.commerce_adjustment_types.yml b/commerce_shipping.commerce_adjustment_types.yml
+index 602e928..420a160 100644
+--- a/commerce_shipping.commerce_adjustment_types.yml
++++ b/commerce_shipping.commerce_adjustment_types.yml
+@@ -1,5 +1,5 @@
+ shipping:
+-  label: 'Shipping'
++  label: 'Shipping & Handling'
+   singular_label: 'shipping cost'
+   plural_label: 'shipping costs'
+   has_ui: true
+diff --git a/src/LateOrderProcessor.php b/src/LateOrderProcessor.php
+index 837d953..bdaaac3 100644
+--- a/src/LateOrderProcessor.php
++++ b/src/LateOrderProcessor.php
+@@ -59,7 +59,7 @@ class LateOrderProcessor implements OrderProcessorInterface {
+         // Shipments without an amount are incomplete / unrated.
+         $order->addAdjustment(new Adjustment([
+           'type' => 'shipping',
+-          'label' => $single_shipment ? $this->t('Shipping') : $shipment->getTitle(),
++          'label' => $single_shipment ? $this->t('Shipping & Handling') : $shipment->getTitle(),
+           'amount' => $amount,
+           'source_id' => $shipment->id(),
+         ]));

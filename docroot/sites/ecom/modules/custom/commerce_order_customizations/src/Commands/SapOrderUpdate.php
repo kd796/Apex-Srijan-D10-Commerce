@@ -123,6 +123,8 @@ class SapOrderUpdate extends DrushCommands {
     if ($connection_status != 0) {
       $public_folder_path = 'public://import/order_update_xml_files/';
       $folder_path = $this->drupalFileSystem->realpath($public_folder_path);
+      // Cleaning all local folder files.
+      $this->deleteLocalFiles($folder_path);
       $remoteFiles = $this->filesystem->listContents($this->root)->toArray();
       if (is_dir($public_folder_path)) {
         if (count($remoteFiles) != 0) {
