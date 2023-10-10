@@ -148,46 +148,7 @@ display:
         type: none
         options: {  }
       empty: {  }
-      sorts:
-        field_launch_date:
-          id: field_launch_date
-          table: search_api_index_acquia_search_index_products
-          field: field_launch_date
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api
-          order: ASC
-          expose:
-            label: 'Launch Date'
-            field_identifier: launch_date
-          exposed: true
-        number:
-          id: number
-          table: search_api_index_acquia_search_index_products
-          field: number
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api
-          order: ASC
-          expose:
-            label: Price
-            field_identifier: price_number
-          exposed: true
-        field_long_description:
-          id: field_long_description
-          table: search_api_index_acquia_search_index_products
-          field: field_long_description
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api
-          order: ASC
-          expose:
-            label: Title
-            field_identifier: title
-          exposed: true
+      sorts: {  }
       arguments:
         search_api_fulltext:
           id: search_api_fulltext
@@ -431,7 +392,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - 'url.query_args:sort_by'
         - 'user.node_grants:view'
       tags:
         - 'config:search_api.index.acquia_search_index_products'
@@ -451,7 +411,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - 'url.query_args:sort_by'
         - 'user.node_grants:view'
       tags:
         - 'config:search_api.index.acquia_search_index_products'
@@ -470,7 +429,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - 'url.query_args:sort_by'
         - 'user.node_grants:view'
       tags:
         - 'config:search_api.index.acquia_search_index_products'

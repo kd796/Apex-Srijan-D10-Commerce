@@ -1,6 +1,6 @@
 (function ($, Drupal, once) {
   'use strict';
-  Drupal.behaviors.campbell = {
+  Drupal.behaviors.ecom = {
     attach: function (context, settings) {
       // Prevent the opening of the submenu on click of parent link.
       const $link = $('.mobile-header .we-mega-menu-li.dropdown-menu a');
@@ -155,6 +155,15 @@
       if ($(contactInfoLabel).length < 1) {
         $(appendElm).insertAfter(reviewContactLabel);
       }
+      // Checkout page append title to Billing information section.
+      $(document).ajaxComplete(function () {
+        const appendElement = $('<legend class="billing-title"><span class="fieldset-legend">Billing information</span></legend>');
+        const appedSelect = $('#edit-payment-information-billing-information .form-item-payment-information-billing-information-select-address');
+        $(appendElement).insertBefore(appedSelect);
+        const $billingTitles = $('#edit-payment-information-billing-information  legend.billing-title');
+        // Removing the multiple titles.
+        $billingTitles.not(':first').remove();
+      });
 
       /* end */
     }
