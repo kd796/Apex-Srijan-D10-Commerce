@@ -412,15 +412,13 @@ class UtilityOrder {
         // For order completion purpose.
         $to = $order_obj->getEmail();
         $params['subject'] = $term_obj_arr[0]->get('field_subject')->value;
-        // Getting Footer content.
-        $footer = $this->getEmailTemplates('common_footer');
         // Replacing placeholder with order number.
         $message = str_replace('[order_number]', $order_obj->getOrderNumber(), $term_obj_arr[0]->get('description')->value);
         // Creating Order link.
         $host = \Drupal::request()->getSchemeAndHttpHost();
         $order_link = $host . '/user/' . $order_obj->getCustomerId() . '/orders/' . $order_obj->id();
-        $message = str_replace('[click_here]', "<a href='{$order_link}'>Click Here</a>", $message);
-        $params['message'] = $message . PHP_EOL . $footer;
+        $message = str_replace('[click_here]', "<a target='_blank' href='{$order_link}'>Click Here</a>", $message);
+        $params['message'] = $message;
       }
       // Sending mails.
       $email_factory = \Drupal::service('email_factory');
@@ -464,10 +462,6 @@ class UtilityOrder {
         'order_number' => $order_number,
       ]);
     $order_obj = array_values($order_obj);
-    // Getting domain for mail template.
-    $host = \Drupal::request()->getSchemeAndHttpHost();
-    // E.g https://store.apextoolgroup.com/user.
-    $host_user_url = $host . '/user';
     // Building query to get the tracking link for a order.
     $query = \Drupal::database()->select('commerce_shipment', 'cs');
     $query->addField('cs', 'title');
@@ -486,15 +480,16 @@ class UtilityOrder {
     $results = $query->execute()->fetchAll();
     $output = '';
     foreach ($results as $result) {
-
-      $output .= '<p><a href="' . $result->field_tracking_link_uri . '">' . $result->field_tracking_number_value . '</a></p>';
+      $output .= '<tr><td>United Parcel Service</td><td><a href="' . $result->field_tracking_link_uri . '">' . $result->field_tracking_number_value . '</a></td></tr>';
     }
     // Header of the mail.
-    $header = $this->getEmailTemplates('order_shipment_creation');
-    $header = str_replace('[shipment_number]', $results[0]->title, $header);
-    $header = str_replace('[order_number]', $order_number, $header);
+    $mail_body = $this->getEmailTemplates('order_shipment_creation');
+    $mail_body = str_replace('[shipment_number]', $results[0]->title, $mail_body);
+    $mail_body = str_replace('[order_number]', $order_number, $mail_body);
+    // Placing tracking link.
+    $mail_body = str_replace('[tracking]', $output, $mail_body);
     // Combining all the component of message.
-    $params['message'] = $header . PHP_EOL . $output . PHP_EOL . $this->getEmailTemplates('common_footer');
+    $params['message'] = $mail_body;
     // Sending mail.
     $this->sendMail('order_shipment_creation', $params, $order_obj[0]);
 
