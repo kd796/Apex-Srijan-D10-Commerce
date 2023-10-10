@@ -20,21 +20,22 @@
  * @ingroup themeable
  */
 #}
-
+<div style="font-family: Verdana, Arial, Helvetica, sans-serif, serif, EmojiFont; font-size: 12px; margin: 0px; padding: 0;">
+{{ order_creation_header|render|raw }}
+</div>
 <div style="background: rgb(246, 246, 246); font-family: Verdana, Arial, Helvetica, sans-serif, serif, EmojiFont; font-size: 12px; margin: 0px; padding: 0px;">
   <table cellspacing="0" cellpadding="0" border="0" width="100%">
     <tbody>
       <tr>
-        <td align="center" valign="top" style="padding:20px 0 20px 0">
-          <table bgcolor="#FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
+        <td align="center" valign="top" style="padding:0 0 20px 0">
+          <table cellspacing="0" cellpadding="10" border="0" style="width:100%">
             <tr>
               <td>
-                {{ order_creation_header|render|raw }}
-                <table style="margin: 15px auto 0 auto; max-width: 768px; width:90%; font-family: arial,sans-serif">
+                <table style="margin: 15px auto 0 auto; width:100%; font-family: arial,sans-serif">
                   <tbody>
                     <tr>
                       <td>
-                        <table style="margin-left: auto; margin-right: auto; max-width: 768px; width:90%; text-align: center;">
+                        <table style="margin-left: auto; margin-right: auto; width:100%; text-align: center;">
                           <tbody>
                             <tr>
                               <td>
@@ -43,7 +44,7 @@
                             </tr>
                           </tbody>
                         </table>
-                        <table style="text-align: center; width:90%; min-width: 450px; margin: 5px auto 0 auto; border: 1px solid #cccccc; border-radius: 5px; padding: 40px 30px 30px 30px;">
+                        <table style="text-align: center; width:100%; min-width: 450px; margin: 5px auto 0 auto; border: 1px solid #cccccc; border-radius: 5px; padding: 40px 30px 30px 30px;" bgcolor="#FFFFFF">
                           <tbody>
                             <tr>
                               <td style="font-size: 30px; padding-bottom: 30px">{{ 'Order Confirmation'|t }}</td>
@@ -82,7 +83,7 @@
                                       {% for order_item in order_entity.getItems %}
                                         <tr>
                                           <td style="padding:5px">
-                                            <img src={{ get_product_name(order_item.label)['image_url'] }} width="62" height="62" alt="{{ get_product_name(order_item.label)['name'] }}" />
+                                            <img src={{ get_product_name(order_item.label)['image_url'] }} width="62" alt="{{ get_product_name(order_item.label)['name'] }}" />
                                           </td>
                                           <td style="padding:5px">
                                             {{ get_product_name(order_item.label)['name'] }}
@@ -151,7 +152,7 @@
                             </tr>
                             <tr>
                               <td>
-                                <p style="margin-bottom: 0;">
+                                <p style="margin-bottom: 0; text-align: left; font-size: 16px; margin-top: 5px;">
                                   {{ 'Subtotal: @subtotal'|t({'@subtotal': totals.subtotal|commerce_price_format}) }}
                                 </p>
                               </td>
@@ -159,7 +160,7 @@
                             {% for adjustment in totals.adjustments %}
                               <tr>
                                 <td>
-                                  <p style="margin-bottom: 0;">
+                                  <p style="margin-bottom: 0; text-align: left; font-size: 16px; margin-top: 5px;">
                                     {{ adjustment.label }}:
                                     {{ adjustment.total|commerce_price_format }}
                                   </p>
@@ -168,7 +169,7 @@
                             {% endfor %}
                             <tr>
                               <td>
-                                <p style="font-size: 24px; padding-top: 15px; padding-bottom: 5px;">
+                                <p style="font-size: 24px; padding-top: 0; padding-bottom: 0;">
                                   {{ 'Order Total: @total'|t({'@total': order_entity.getTotalPrice|commerce_price_format}) }}
                                 </p>
                               </td>
@@ -186,15 +187,6 @@
                     </tr>
                   </tbody>
                 </table>
-                <table style="width: 100%;padding-top: 20px;">
-                  <tbody>
-                    <tr>
-                      <td>
-                      {{ footer|render|raw }}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
               </td>
             </tr>
           </table>
@@ -202,4 +194,7 @@
       </tr>
     </tbody>
   </table>
+</div>
+<div style="background: rgb(246, 246, 246); font-family: Verdana, Arial, Helvetica, sans-serif, serif, EmojiFont; font-size: 12px; margin: 0px; padding: 0px;">
+{{ footer|render|raw }}
 </div>
