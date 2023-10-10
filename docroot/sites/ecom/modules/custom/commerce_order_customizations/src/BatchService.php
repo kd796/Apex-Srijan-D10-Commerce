@@ -89,6 +89,10 @@ class BatchService {
           $order_update_status = \Drupal::service('commerce_order_customizations.utility')->orderStatusUpdate($orders_details);
           if ($order_update_status) {
             \Drupal::logger('commerce_order_customizations')->notice("New shipment created and order is updated for Order Number: '{$orders_details['order_number']}'");
+            // Getting Current order id.
+            $order_id = \Drupal::service('commerce_order_customizations.utility')->getOrderId($orders_details['order_number']);
+            // Sending mail after creation of shipment.
+            \Drupal::service('commerce_order_customizations.utility')->postShipmentMail($order_id, $orders_details['order_number']);
             \Drupal::service('commerce_order_customizations.utility')->deleteFtpFiles(array_pop($expanded_path), $ftp_folder);
           }
         }

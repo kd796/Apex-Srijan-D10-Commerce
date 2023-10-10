@@ -182,8 +182,8 @@ function ecom_preprocess_commerce_order_receipt(&$variables) {
   $order_date_timestamp = $oder_obj->getPlacedTime();
   $us_time_format = date("F j, Y g:i:s A", $order_date_timestamp);
   $variables['order_time'] = $us_time_format;
-  $header = \Drupal::service('commerce_order_customizations.utility')->get_common_templates('order_creation_header');
-  $footer = \Drupal::service('commerce_order_customizations.utility')->get_common_templates('common_footer');
+  $header = \Drupal::service('commerce_order_customizations.utility')->getEmailTemplates('order_creation_header');
+  $footer = \Drupal::service('commerce_order_customizations.utility')->getEmailTemplates('common_footer');
   $variables['order_creation_header'] = $header;
   $variables['footer'] = $footer;
 }

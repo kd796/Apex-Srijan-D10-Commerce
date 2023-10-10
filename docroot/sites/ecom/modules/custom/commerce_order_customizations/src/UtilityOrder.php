@@ -401,12 +401,19 @@ class UtilityOrder {
         $params['subject'] = $term_obj_arr[0]->get('field_subject')->value;
         $params['message'] = $term_obj_arr[0]->get('description')->value . PHP_EOL . $params['message'];
       }
+      elseif ($key == 'order_shipment_creation') {
+        // For order shipment creation purpose.
+        $to = $order_obj->getEmail();
+        $params['subject'] = $term_obj_arr[0]->get('field_subject')->value;
+        // Getting Footer content.
+        $params['message'] = $params['message'];
+      }
       else {
         // For order completion purpose.
         $to = $order_obj->getEmail();
         $params['subject'] = $term_obj_arr[0]->get('field_subject')->value;
         // Getting Footer content.
-        $footer = $this->get_common_templates('common_footer');
+        $footer = $this->getEmailTemplates('common_footer');
         // Replacing placeholder with order number.
         $message = str_replace('[order_number]', $order_obj->getOrderNumber(), $term_obj_arr[0]->get('description')->value);
         // Creating Order link.
@@ -432,7 +439,7 @@ class UtilityOrder {
   /**
    * Getting mail templates.
    */
-  public function get_common_templates($temp_key) {
+  public function getEmailTemplates($temp_key) {
 
     $term_obj_arr = $this->entityTypeManager->getStorage('taxonomy_term')
       ->loadByProperties([
@@ -443,6 +450,69 @@ class UtilityOrder {
     $message = !empty($term_obj_arr) ? $term_obj_arr[0]->get('description')->value : '';
 
     return $message;
+  }
+
+  /**
+   * Sends mail after shipment creation.
+   */
+  public function postShipmentMail($order_id, $order_number) {
+
+    // Getting order object for mail purpose.
+    // It should return single object.
+    $order_obj = $this->entityTypeManager->getStorage('commerce_order')
+      ->loadByProperties([
+        'order_number' => $order_number,
+      ]);
+    $order_obj = array_values($order_obj);
+    // Getting domain for mail template.
+    $host = \Drupal::request()->getSchemeAndHttpHost();
+    // E.g https://store.apextoolgroup.com/user.
+    $host_user_url = $host . '/user';
+    // Building query to get the tracking link for a order.
+    $query = \Drupal::database()->select('commerce_shipment', 'cs');
+    $query->addField('cs', 'title');
+    $query->addJoin("inner", "commerce_shipment__field_sap_shipment_tracking", "csfs", "cs.shipment_id = csfs.entity_id");
+    $query->addJoin("inner", "paragraph__field_tracking_number", "pftn", "pftn.entity_id = csfs.field_sap_shipment_tracking_target_id AND pftn.revision_id = csfs.field_sap_shipment_tracking_target_revision_id");
+    $query->fields("pftn", [
+      "field_tracking_number_value",
+    ]);
+    $query->addJoin("inner", "paragraph__field_tracking_link", "pftl", "pftl.entity_id = csfs.field_sap_shipment_tracking_target_id AND pftl.revision_id = csfs.field_sap_shipment_tracking_target_revision_id");
+    $query->fields("pftl", [
+      "field_tracking_link_uri",
+    ]);
+    $query->addJoin("inner", "commerce_shipment__field_sap_shipment", "csfss", "cs.shipment_id = csfss.entity_id");
+    $query->condition('csfss.field_sap_shipment_value', 1);
+    $query->condition('cs.order_id', $order_id);
+    $results = $query->execute()->fetchAll();
+    $output = '';
+    foreach ($results as $result) {
+
+      $output .= '<p><a href="' . $result->field_tracking_link_uri . '">' . $result->field_tracking_number_value . '</a></p>';
+    }
+    // Header of the mail.
+    $header = $this->getEmailTemplates('order_shipment_creation');
+    $header = str_replace('[shipment_number]', $results[0]->title, $header);
+    $header = str_replace('[order_number]', $order_number, $header);
+    // Combining all the component of message.
+    $params['message'] = $header . PHP_EOL . $output . PHP_EOL . $this->getEmailTemplates('common_footer');
+    // Sending mail.
+    $this->sendMail('order_shipment_creation', $params, $order_obj[0]);
+
+  }
+
+  /**
+   * Get order id using order number.
+   */
+  public function getOrderId($order_number) {
+    // Getting order obj.
+    $order_query = $this->entityTypeManager->getStorage('commerce_order')->getQuery();
+    // It should return a single a order id.
+    $order_id_arr = $order_query->condition('order_number', $order_number)
+      ->accessCheck(FALSE)
+      ->execute();
+    $order_id = array_keys($order_id_arr);
+
+    return $order_id[0];
   }
 
 }
