@@ -165,6 +165,13 @@
         $billingTitles.not(':first').remove();
       });
 
+      const appendElement = $('<legend class="billing-title"><span class="fieldset-legend">Billing information</span></legend>');
+      const appedReview = $('.field--name-billing-profile');
+      $(appendElement).insertBefore(appedReview);
+      const $billingTitles = $('legend.billing-title');
+      // Removing the multiple titles.
+      $billingTitles.not(':first').remove();
+
       /* end */
     }
   };

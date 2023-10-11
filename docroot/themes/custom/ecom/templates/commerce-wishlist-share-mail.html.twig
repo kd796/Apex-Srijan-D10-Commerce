@@ -10,7 +10,11 @@
  * @ingroup themeable
  */
 #}
-<p>
+<div style="font-family: Verdana, Arial, Helvetica, sans-serif, serif, EmojiFont; font-size: 12px; margin: 0px; padding: 0;">
+{{ wishlist_header|render|raw }}
+</div>
+
+<p style="margin-top:0;">
   {% trans %}Check out my wishlist!{% endtrans %}
 </p>
 
@@ -22,3 +26,7 @@
 <p>
   {% trans %}Thanks for having a look!{% endtrans %}
 </p>
+
+<div style="background: rgb(246, 246, 246); font-family: Verdana, Arial, Helvetica, sans-serif, serif, EmojiFont; font-size: 12px; margin-top:30px; padding: 0px;">
+{{ footer|render|raw }}
+</div>
