@@ -152,7 +152,7 @@
                             </tr>
                             <tr>
                               <td>
-                                <p style="margin-bottom: 0; text-align: left; font-size: 16px; margin-top: 5px;">
+                                <p style="margin-bottom: 0; text-align: right; font-size: 16px; margin-top: 5px;">
                                   {{ 'Subtotal: @subtotal'|t({'@subtotal': totals.subtotal|commerce_price_format}) }}
                                 </p>
                               </td>
@@ -160,7 +160,7 @@
                             {% for adjustment in totals.adjustments %}
                               <tr>
                                 <td>
-                                  <p style="margin-bottom: 0; text-align: left; font-size: 16px; margin-top: 5px;">
+                                  <p style="margin-bottom: 0; text-align: right; font-size: 16px; margin-top: 5px;">
                                     {{ adjustment.label }}:
                                     {{ adjustment.total|commerce_price_format }}
                                   </p>
