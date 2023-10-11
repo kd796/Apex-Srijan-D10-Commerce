@@ -394,7 +394,7 @@ class UtilityOrder {
     $term_obj_arr = array_values($term_obj_arr);
     try {
       if ($order_obj == NULL) {
-
+        // For error mails.
         $to = $term_obj_arr[0]->get('field_recipients')->value;
         // Exploding to get multiple mails.
         $to = explode(',', $to);
@@ -404,14 +404,15 @@ class UtilityOrder {
       elseif ($key == 'order_shipment_creation') {
         // For order shipment creation purpose.
         $to = $order_obj->getEmail();
-        $params['subject'] = $term_obj_arr[0]->get('field_subject')->value;
         // Getting Footer content.
         $params['message'] = $params['message'];
       }
       else {
         // For order completion purpose.
         $to = $order_obj->getEmail();
-        $params['subject'] = $term_obj_arr[0]->get('field_subject')->value;
+        // Subject of the mail.
+        $site_name = \Drupal::config('system.site')->get('name');
+        $params['subject'] = "{$site_name}: Order # {$order_obj->getOrderNumber()} Delivered";
         // Replacing placeholder with order number.
         $message = str_replace('[order_number]', $order_obj->getOrderNumber(), $term_obj_arr[0]->get('description')->value);
         // Creating Order link.
@@ -421,11 +422,16 @@ class UtilityOrder {
         $params['message'] = $message;
       }
       // Sending mails.
+      $body = [
+        "#type" => "processed_text",
+        "#text" => $params['message'],
+        "#format" => "full_html",
+      ];
       $email_factory = \Drupal::service('email_factory');
       $email = $email_factory->newTypedEmail('symfony_mailer', 'custom_mail_notification')
         ->setSubject($params['subject'])
         ->setTo($to)
-        ->setBody(['#markup' => $params['message']])
+        ->setBody($body)
         ->send();
     }
     catch (\Throwable $e) {
@@ -482,7 +488,10 @@ class UtilityOrder {
     foreach ($results as $result) {
       $output .= '<tr><td>United Parcel Service</td><td><a href="' . $result->field_tracking_link_uri . '">' . $result->field_tracking_number_value . '</a></td></tr>';
     }
-    // Header of the mail.
+    // Subject of the mail.
+    $site_name = \Drupal::config('system.site')->get('name');
+    $params['subject'] = "{$site_name}: Shipment Update # {$results[0]->title} for order # {$order_number}";
+    // Body of the mail.
     $mail_body = $this->getEmailTemplates('order_shipment_creation');
     $mail_body = str_replace('[shipment_number]', $results[0]->title, $mail_body);
     $mail_body = str_replace('[order_number]', $order_number, $mail_body);
