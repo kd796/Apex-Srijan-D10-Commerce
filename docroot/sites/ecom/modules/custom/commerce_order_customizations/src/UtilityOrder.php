@@ -416,9 +416,8 @@ class UtilityOrder {
         // Replacing placeholder with order number.
         $message = str_replace('[order_number]', $order_obj->getOrderNumber(), $term_obj_arr[0]->get('description')->value);
         // Creating Order link.
-        $host = \Drupal::request()->getSchemeAndHttpHost();
-        $order_link = $host . '/user/' . $order_obj->getCustomerId() . '/orders/' . $order_obj->id();
-        $message = str_replace('[click_here]', "<a target='_blank' href='{$order_link}'>Click Here</a>", $message);
+        $order_link = '/user/' . $order_obj->getCustomerId() . '/orders/' . $order_obj->id();
+        $message = str_replace('[click_here]', $order_link, $message);
         $params['message'] = $message;
       }
       // Sending mails.
