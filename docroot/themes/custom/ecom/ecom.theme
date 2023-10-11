@@ -193,7 +193,7 @@ function ecom_preprocess_commerce_order_receipt(&$variables) {
  */
 function ecom_preprocess_commerce_wishlist_share_mail(&$variables) {
   // Add custom mail header and footer.
-  $header = \Drupal::service('commerce_order_customizations.utility')->getEmailTemplates('order_creation_header');
+  $header = \Drupal::service('commerce_order_customizations.utility')->getEmailTemplates('wishlist_header');
   $footer = \Drupal::service('commerce_order_customizations.utility')->getEmailTemplates('common_footer');
   $variables['wishlist_header'] = $header;
   $variables['footer'] = $footer;

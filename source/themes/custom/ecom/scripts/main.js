@@ -155,16 +155,25 @@
       if ($(contactInfoLabel).length < 1) {
         $(appendElm).insertAfter(reviewContactLabel);
       }
+
+      function billingTitle() {
+        const appendElement = $('<legend class="billing-title"><span class="fieldset-legend">Billing information</span></legend>');
+        const appedSelect = $('#edit-payment-information-billing-information .form-type-checkbox, #edit-payment-information-add-payment-method-billing-information .form-type-checkbox');
+        const billingCheckbox = $('#edit-payment-information-billing-information .form-checkbox, #edit-payment-information-add-payment-method-billing-information .form-checkbox');
+        if (!billingCheckbox.is(':checked')) {
+          $(appendElement).insertAfter(appedSelect);
+          const $billingTitles = $('#edit-payment-information-billing-information  legend.billing-title, #edit-payment-information-add-payment-method-billing-information  legend.billing-title');
+          // Removing the multiple titles.
+          $billingTitles.not(':first').remove();
+        }
+      }
+      billingTitle();
       // Checkout page append title to Billing information section.
       $(document).ajaxComplete(function () {
-        const appendElement = $('<legend class="billing-title"><span class="fieldset-legend">Billing information</span></legend>');
-        const appedSelect = $('#edit-payment-information-billing-information .form-item-payment-information-billing-information-select-address');
-        $(appendElement).insertBefore(appedSelect);
-        const $billingTitles = $('#edit-payment-information-billing-information  legend.billing-title');
-        // Removing the multiple titles.
-        $billingTitles.not(':first').remove();
+        billingTitle();
       });
 
+      // Checkout review page append title to Billing information section.
       const appendElement = $('<legend class="billing-title"><span class="fieldset-legend">Billing information</span></legend>');
       const appedReview = $('.field--name-billing-profile');
       $(appendElement).insertBefore(appedReview);
