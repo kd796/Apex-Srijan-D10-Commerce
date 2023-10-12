@@ -45,7 +45,7 @@
                                 <span style="color:#F03746; font-size:16px; font-weight: 700">{{ 'Your Order: #@number'|t({'@number': order_entity.getOrderNumber}) }}</span>
                                 <span style="float: right;">
                                   <label>{{ 'Placed: '|t }}</label>
-                                  {{ order_entity.getCalculationDate }}
+                                  <span style="color:#3077D9;">{{ order_entity.getCalculationDate|date("F d, Y h:i:s A") }}</span>
                                 </span>
                               </td>
                             </tr>
