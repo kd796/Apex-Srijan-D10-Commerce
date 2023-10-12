@@ -83,8 +83,8 @@ function ecom_common_menu_local_tasks_alter(&$data, $route_name, RefinableCachea
     $data['tabs'][0]['views_view:view.commerce_user_orders.order_page']['#weight'] = -48;
 
     if ($route_name == 'entity.commerce_order.user_view') {
-      $data['tabs'][0]['views_view:view.commerce_user_orders.order_page']['#access'] = FALSE;
-      $data['tabs'][0]['entity.commerce_order.user_view']['#weight'] = -48;
+      $data['tabs'][0]['entity.commerce_order.user_view']['#access'] = FALSE;
+      $data['tabs'][0]['views_view:view.commerce_user_orders.order_page']['#weight'] = -48;
     }
     if ($route_name == 'commerce_order.address_book.edit_form') {
       $data['tabs'][0]['commerce_order.address_book.overview']['#access'] = FALSE;
