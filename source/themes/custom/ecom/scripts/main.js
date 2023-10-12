@@ -159,10 +159,10 @@
       function billingTitle() {
         const appendElement = $('<legend class="billing-title"><span class="fieldset-legend">Billing information</span></legend>');
         const appedSelect = $('#edit-payment-information-billing-information .form-type-checkbox, #edit-payment-information-add-payment-method-billing-information .form-type-checkbox');
-        const billingCheckbox = $('#edit-payment-information-billing-information .form-checkbox, #edit-payment-information-add-payment-method-billing-information .form-checkbox');
+        const billingCheckbox = $('#edit-payment-information-billing-information [data-drupal-selector$="billing-information-copy-fields-enable"], #edit-payment-information-add-payment-method-billing-information [data-drupal-selector$="billing-information-copy-fields-enable"]');
         if (!billingCheckbox.is(':checked')) {
           $(appendElement).insertAfter(appedSelect);
-          const $billingTitles = $('#edit-payment-information-billing-information  legend.billing-title, #edit-payment-information-add-payment-method-billing-information  legend.billing-title');
+          const $billingTitles = $('legend.billing-title');
           // Removing the multiple titles.
           $billingTitles.not(':first').remove();
         }

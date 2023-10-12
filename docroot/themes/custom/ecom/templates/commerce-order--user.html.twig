@@ -23,8 +23,8 @@
   <div class="order-info">
     {% if order.placed|render|trim|striptags %}
       <div class="order-placed">
-        <label>{{ 'Order Date: '|t }}</label>
-        <span>{{ order.placed }}</span>
+        <label>{{'Order #' | t}}</label>
+        <span>{{ order.order_number.0 }} | {{ order.placed }}</span>
       </div>
     {% endif %}
     <div class="order-state">
